@@ -1,0 +1,174 @@
+
+\section{Aufgabe 4: SQL (Stex RS DB, Herbst 2015, Thema Nr. 1, Aufgabe 4) (Check-Up)}
+
+Das Datenbankschema der Versicherungsgesellschaft „Insurance Pro“
+enthält sowohl Kunden- als auch Mitarbeiterdaten, sowie Informationen
+über Schadensfälle. Das Schema ist von folgender Gestalt, wobei FS für
+Fremdschlüssel und PS für Primärschlüssel steht:
+
+\bigskip
+
+{
+\ttfamily
+\noindent
+Versicherungsnehmer (\underline{KNr}, Name, Anschrift, Geburtsdatum)\\
+
+\noindent
+Fahrzeug (\underline{Kennzeichen}, Farbe, Fahrzeugtyp)\\
+
+\noindent
+Mitarbeiter (\underline{MNr}, Name, Kontaktdaten, \dashuline{Abteilung},
+Leiter)\\
+
+\noindent
+Abteilung (\underline{ANr}, Bezeichnung, Ort)\\
+
+\noindent
+Versicherungsvertrag (\underline{VNr}, Abschlussdatum, Art,
+\dashuline{Versicherungsnehmer}, \dashuline{Fahrzeug},
+\dashuline{Mitarbeiter})\\
+
+\noindent
+Schadensfall (\underline{SNr}, Datum, Gesamtschaden, Beschreibung,
+\dashuline{Mitarbeiter})\\
+
+\noindent
+Beteiligung (\dashuline{Schadensfall}, \dashuline{Fahrzeug},
+Fahrzeugschaden)}
+
+\bigskip
+
+\begin{itemize}
+\item \emph{Abteilung} ist FS und bezieht sich auf den PS von
+\emph{Abteilung}.
+
+\item \emph{Versicherungsnehmer} ist FS und bezieht sich auf den PS von
+\emph{Versicherungsnehmer}.
+
+\item \emph{Fahrzeug} ist FS und bezieht sich auf den PS von
+\emph{Fahrzeug}.
+
+\item \emph{Mitarbeiter} ist FS und bezieht sich auf den PS von
+\emph{Mitarbeiter}.
+
+\item Attribut \emph{Art} kann die Werte \emph{HP} (Haftpflicht),
+\emph{TK} (Teilkasko) und \emph{VK} (Vollkasko) annehmen.
+
+\item \emph{Mitarbeiter} ist FS und bezieht sich auf den PS von
+\emph{Mitarbeiter}.
+
+\item \emph{Schadensfall} ist FS und bezieht sich auf den PS von
+\emph{Schadensfall}.
+
+\item \emph{Fahrzeug} ist FS und bezieht sich auf den PS von
+\emph{Fahrzeug}.
+\end{itemize}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Herr Meier schließt eine Teilkaskoversicherung bei „Insurance Pro“
+am 11.11.2011 für seinen neuen Wagen, einen roten VW Golf VII mit
+amtlichem Kennzeichen BT-BT 2011, ab. Der Vertrag erhält die laufende
+Nummer 1631 und wird von Frau Schmied mit der Personalnummer 27
+bearbeitet. Herr Meier erhält die Kundennummer 588, da er bisher noch
+kein Kunde war.
+
+Geben Sie die SQL-Befehle an, um die neue Versicherung in die Datenbank
+von „Insurance Pro“ einzutragen. Werte, die hierbei nicht bekannt sind,
+sollen weggelassen werden, wobei angenommen werden darf, dass die
+entsprechenden Attribute nicht mit der Bedingung NOT NULL versehen sind.
+
+\begin{mdframed}
+\begin{minted}{sql}
+INSERT INTO Fahrzeug
+  (Kennzeichen, Farbe, Fahrzeugtyp) VALUES
+  ('BT-BT 2011', 'rot', 'VW Golf VII');
+
+INSERT INTO Versicherungsnehmer
+  (KNr, Name)  VALUES
+  (588, 'Meier');
+
+INSERT INTO Versicherungsvertrag
+  (VNr, Abschlussdatum, Art, Versicherungsnehmer, Fahrzeug, Mitarbeiter) VALUES
+  (1631, 11.11.2011, 'TK', 588, 'BT-BT 2011', 27);
+\end{minted}
+\end{mdframed}
+
+%%
+% (b)
+%%
+
+\item Beschreiben Sie umgangssprachlich, wonach mit folgendem Ausdruck
+gesucht wird:
+
+$\pi_{\text{Versicherungsnehmer}} (
+  \sigma_{\text{Fahrzeugtyp} = \mlq \text{Fiat500} \mrq} (
+    \text{FZ} \bowtie_{\rho_{\text{Kennzeichen} \leftarrow \text{Fahrzeug}}} (\text{VV})
+  )
+)$
+
+\textbf{Anmerkung:} Die Abkürzung \emph{FZ} steht für die Tabelle
+\emph{Fahrzeug} und \emph{VV} für die Tabelle
+\emph{Versicherungsvertrag}.
+
+\begin{mdframed}
+Es wird nach der Kundennummer aller Versicherungsnehmer gesucht, die
+einen Versicherungsvertrag für einen „Fiat 500“ abgeschlossen haben.
+\end{mdframed}
+
+%%
+% (c)
+%%
+
+\item Die Angaben der Mitarbeiter (Nr., Name und Kontakt), deren
+Abteilung ihren Sitz in München oder Stuttgart hat, sollen explizit
+alphabetisch nach Namen sortiert ausgegeben werden. Geben Sie einen
+SQL-Befehl hierfür an.
+
+\begin{mdframed}
+\begin{minted}{sql}
+SELECT m.MNr AS Nr, m.Name, m.Kontaktdaten AS Kontakt
+FROM Mitarbeiter m, Abteilung a
+WHERE
+  a.ANr = m.Abteilung AND
+  a.Ort IN ('München', 'Stuttgart')
+ORDER BY m.Name;
+\end{minted}
+\end{mdframed}
+
+%%
+% (d)
+%%
+
+\item Es soll ausgegeben werden, wie oft jeder Versicherungsnehmer (KNr,
+Name, Anschrift) an einem Schadensfall beteiligt war. Hierbei sollen
+nur die Kunden, die an mindestens drei Schadensfällen beteiligt waren,
+in absteigender Reihenfolge aufgelistet werden.
+
+\begin{mdframed}
+\begin{minted}{sql}
+SELECT vn.KNr, vn.Name, vn.Anschrift, COUNT(*) AS Schadensfaelle
+FROM
+  Versicherungsnehmer vn,
+  Schadensfall s,
+  Beteilung b,
+  Versicherungsvertrag vv
+WHERE
+  vn.KNr = vv.Versicherungsnehmer AND
+  s.SNr = b.Schadensfall AND
+  b.Fahrzeug = vv.Fahrzeug
+GROUP BY vn.KNr, vn.Name, vn.Anschrift
+HAVING COUNT(*) >= 3
+ORDER BY Schadensfaelle DESC;
+\end{minted}
+
+Es ist nicht genau angegeben, nach was sortiert werden soll. Ich
+sortiere nach Anzahl an Schadensfällen, weil dass meiner Meinung nach am
+meisten Sinn macht.
+\end{mdframed}
+
+\end{enumerate}

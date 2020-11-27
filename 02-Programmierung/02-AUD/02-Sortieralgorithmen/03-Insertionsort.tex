@@ -1,0 +1,177 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax}
+\usepackage{tikz}
+\usetikzlibrary{chains,fit,shapes,shapes.multipart}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{InsertionSort: Sortieren durch Einfügen}
+
+\begin{quellen}
+\item \cite[Seite 41]{aud:fs:tafeluebung-11}
+\item \cite{wiki:insertionsort}
+\item \cite[Seite 125-127 (PDF 143-145)]{saake}
+\end{quellen}
+
+\begin{itemize}
+\item Funktionsweise:
+
+\begin{itemize}
+\item solange zu sortierende Liste mehr als ein Element beinhaltet:
+
+\begin{itemize}
+\item lösche das \emph{erste Element} aus der Liste
+\item füge \emph{gemäß Sortierordnung} in die Ergebnisliste ein
+\item wiederhole, bis Eingangsliste leer
+\end{itemize}
+
+\end{itemize}
+
+\item Eigenschaften von InsertionSort:
+
+\begin{itemize}
+\item Laufzeitkomplexität:
+
+\begin{itemize}
+\item $\mathcal{O}(n)$ (im Best-Case)
+\item $\mathcal{O}(n^2)$ (im Average- und Worst-Case)
+\end{itemize}
+
+\item \emph{stabil}
+\item bei Arrays \emph{in-situ}
+\end{itemize}
+
+\end{itemize}
+
+\inputcode[firstline=8,lastline=25]{sortier/InsertionSort}
+\footcite[Seite 125 - 127]{saake}
+
+\section{Zustand des Eingabefelds an einem Beispiel}
+
+\begin{minted}{md}
+for: i=1
+for (Anfang) 7 4 9 2 3
+while        7 7 9 2 3
+for (Ende)   4 7 9 2 3
+for: i=2
+for (Anfang) 4 7 9 2 3
+for (Ende)   4 7 9 2 3
+for: i=3
+for (Anfang) 4 7 9 2 3
+while        4 7 9 9 3
+while        4 7 7 9 3
+while        4 4 7 9 3
+for (Ende)   2 4 7 9 3
+for: i=4
+for (Anfang) 2 4 7 9 3
+while        2 4 7 9 9
+while        2 4 7 7 9
+while        2 4 4 7 9
+for (Ende)   2 3 4 7 9
+\end{minted}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe zum Insertionsort}
+
+\begin{quellen}
+\item \cite[Seite 1]{aud:pu:2}
+\item \cite[Herbst 2017 (RS), Thema 2, A7]{examen:46115:2017:09}
+\end{quellen}
+
+\begin{enumerate}
+\item Führen Sie \emph{„Sortieren durch Einfügen“} lexikographisch
+aufsteigend und \emph{in-situ} (\emph{in-place}) so in einem
+Schreibtischlauf auf folgendem Feld (Array) aus, dass gleiche Elemente
+ihre relative Abfolge jederzeit beibehalten (also dass z.\,B. $A_1$
+stets vor $A_2$ im Feld steht). Jede Zeile stellt den Zustand des Feldes
+dar, nachdem das jeweils nächste Element in die Endposition verschoben
+wurde. Der bereits sortierte Teilbereich steht vor |||. Gleiche Elemente
+tragen zwecks Unterscheidung ihre \emph{„Objektidentität“} als Index
+(z.\,B. \java{"A1".equals("A2")} aber \java{"A1" != "A2"})
+
+\tikzset{
+  sorted/.style = {
+    draw,
+    line width=0.6pt,
+    inner sep=0mm
+  },
+  unsorted/.style = {
+    draw,
+    font=\tiny,
+    rectangle split,
+    rectangle split horizontal,
+    rectangle split parts=6,
+    text centered,
+    align=center
+  },
+}
+
+\def\TmpSchreibtischLauf#1#2#3#4#5#6#7{
+  \noindent
+  \begin{tikzpicture}
+  \node (qs) [unsorted] {
+  \nodepart{one} #1
+  \nodepart{two} #2
+  \nodepart{three} #3
+  \nodepart{four} #4
+  \nodepart{five} #5
+  \nodepart{six} #6
+  };
+
+  \node[sorted, fit=(qs.north west) (qs.south west) (qs.#7 split)] {};
+  \end{tikzpicture}
+}
+
+\begin{center}
+\TmpSchreibtischLauf{$L$}{$A_1$}{$B_1$}{$F$}{$A_2$}{$B_2$}{one}
+
+\TmpSchreibtischLauf{$A_1$}{$L$}{$B_1$}{$F$}{$A_2$}{$B_2$}{two}
+
+\TmpSchreibtischLauf{$A_1$}{$B_1$}{$L$}{$F$}{$A_2$}{$B_2$}{three}
+
+\TmpSchreibtischLauf{$A_1$}{$B_1$}{$F$}{$L$}{$A_2$}{$B_2$}{four}
+
+\TmpSchreibtischLauf{$A_1$}{$A_2$}{$B_1$}{$F$}{$L$}{$B_2$}{five}
+
+\begin{tikzpicture}
+\node (qs) [unsorted] {
+\nodepart{one} $A_1$
+\nodepart{two} $A_2$
+\nodepart{three} $B_1$
+\nodepart{four} $B_2$
+\nodepart{five} $F$
+\nodepart{six} $L$
+};
+
+\node[sorted, fit=(qs.north west) (qs.south west) (qs.south east)] {};
+\end{tikzpicture}
+\end{center}
+
+\item Ergänzen Sie die folgende Methode so, dass sie die Zeichenketten
+im Feld \java{a} lexikographisch aufsteigend durch Einfügen sortiert.
+Sie muss zum vorangehenden Ablauf passen, d.\,h. sie muss
+\emph{iterativ} sowie \emph{in-situ} (\emph{in-place}) arbeiten und die
+relative Reihenfolge gleicher Elemente jederzeit beibehalten. Sie dürfen
+davon ausgehen, dass kein Eintrag im Feld null ist.
+
+\begin{minted}{java}
+void sortierenDurchEinfuegen(String[] a) {
+  // Hilfsvariable:
+  String tmp;
+}
+\end{minted}
+
+\inputcode[firstline=5,lastline=16]{aufgaben/aud/examen_46115_2017_09/InsertionSort}
+
+\end{enumerate}
+
+\literatur
+
+\end{document}

@@ -1,0 +1,787 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax}
+
+\newcommand{\tmptabelle}[1]{
+\bigskip
+\par
+\noindent
+\textbf{#1}:
+\bigskip
+\par
+\noindent
+}
+
+\begin{document}
+
+\chapter{Aufgabenblatt 2: Einstieg SQL}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 1: Kaufhausdatenbank - einfacher Einstieg\footcite{db:ab:2}}
+
+Die relationale Datenbank eines Kaufhauses enthält folgende Tabelle mit
+dem Namen „Artikel“:
+
+\begin{tabular}{llll}
+ArtNr & Bezeichnung  & Verkaufspreis & Einkaufspreis \\
+95    & Kamm         & 1.25          & 0.80          \\
+97    & Kamm         & 0.99          & 0.75          \\
+507   & Seife        & 3.93          & 2.45          \\
+1056  & Zwieback     & 1.20          & 0.90          \\
+1401  & Räucherlachs & 4.90          & 3.60          \\
+2045  & Herrenhose   & 37.25         & 24.45         \\
+2046  & Herrenhose   & 20.00         & 17.00         \\
+2340  & Sommerkleid  & 94.60         & 71.50
+\end{tabular}
+
+Formulieren Sie mit Hilfe von SQL folgende Anfragen:
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Gesucht sind alle Informationen über Herrenhose und Sommerkleid!
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT *
+FROM Artikel
+WHERE
+  Bezeichnung = 'Herrenhose' OR
+  Bezeichnung = 'Sommerkleid';
+\end{minted}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Welche Artikelnummer hat der Zwieback?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT ArtNr
+FROM Artikel
+WHERE
+  Bezeichnung = 'Zwieback';
+\end{minted}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Welche Waren (Artikelnummer und Verkaufspreis) werden für mehr als
+25€ verkauft?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT ArtNr, Verkaufspreis
+FROM Artikel
+WHERE Verkaufspreis > 25.00;
+\end{minted}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Welche Artikel (Angabe der Bezeichnung) bietet das Kaufhaus an?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT DISTINCT Bezeichnung
+FROM Artikel;
+\end{minted}
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item Gesucht sind die Artikelnummern aller Artikel mit Ausnahme der
+Artikelnummer 2046.
+
+\begin{antwort}[richtig]
+\begin{minted}{sql}
+SELECT ArtNr
+FROM Artikel
+WHERE ArtNr != 2046;
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT ArtNr
+FROM Artikel
+WHERE NOT (ArtNr = 2046);
+\end{minted}
+\end{antwort}
+
+%%
+% (f)
+%%
+
+\item Gib die Artikelnummern und die Verkaufspreise aller Herrenhosen
+aus, die für höchstens 25€ verkauft werden! Der Spaltenname für die
+Verkaufspreise soll in der Ergebnistabelle „Sonderangebot“ heißen.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT ArtNr, Verkaufspreis AS Sonderangebot
+FROM Artikel
+WHERE Bezeichnung = 'Herrenhose' AND Verkaufspreis <= 25;
+\end{minted}
+\end{antwort}
+
+%%
+% (g)
+%%
+
+\item Gib Artikelnummer und Verkaufspreis aller Artikel aus, die im
+Einkauf zwischen 80 Cent und 5€ kosten.
+
+\begin{antwort}[richtig]
+\begin{minted}{sql}
+SELECT ArtNr, Verkaufspreis
+FROM Artikel
+WHERE Einkaufspreis >= 0.8 AND Einkaufspreis <= 5;
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT ArtNr, Verkaufspreis
+FROM Artikel
+WHERE Einkaufspreis BETWEEN 0.80 AND 5.00;
+\end{minted}
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 2: Kaufhaus reloaded\footcite{db:ab:2}}
+
+Eine Kaufhausdatenbank besteht aus folgenden Tabellen:
+
+\tmptabelle{Artikel}
+
+\begin{tabular}{llll}
+\textbf{ArtNr} & \textbf{Bezeichnung}  & \textbf{Verkaufspreis} & \textbf{Einkaufspreis} \\
+95    & Kamm         & 1.25          & 0.80          \\
+97    & Kamm         & 0.99          & 0.75          \\
+507   & Seife        & 3.93          & 2.45          \\
+1056  & Zwieback     & 1.20          & 0.90          \\
+1401  & Räucherlachs & 4.90          & 3.60          \\
+2045  & Herrenhose   & 37.25         & 24.45         \\
+2046  & Herrenhose   & 20.00         & 17.00         \\
+2340  & Sommerkleid  & 94.60         & 71.50
+\end{tabular}
+
+\tmptabelle{Abteilung}
+
+\begin{tabular}{lll}
+\textbf{Abteilungsname} & \textbf{Stockwerk} & \textbf{Abteilungsleiter} \\
+Lebensmittel   & I         & Josef Kunz       \\
+Lebensmittel   & EG        & Monika Stiehl    \\
+Textilien      & II        & Monika Stiehl
+\end{tabular}
+
+\tmptabelle{Bestand}
+
+\begin{tabular}{lll}
+\textbf{Abteilungsname}  & \textbf{ArtNr} & \textbf{Vorrat} \\
+Lebensmittel    & 1056  & 129    \\
+Lebensmittel    & 1401  & 200    \\
+Textilien       & 2045  & 14
+\end{tabular}
+
+Hinweis:
+
+Basistabellen (Tabellen, die in der Datenbank definiert sind), werden im
+Rahmen des Kurses graphisch dadurch gekennzeichnet, dass es eine
+„nullte“ Spalte gibt, in der der Tabellenname angegeben wird. Die
+Realisierung der Tabellen in der Datenbank enthält diese Spalte
+natürlich nicht.
+
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+\renewcommand{\labelenumii}{(\alph{enumii})}
+
+\begin{enumerate}
+\item Geben Sie die SQL-Befehle an, mit der die Tabellenschemata von
+Artikel und Bestand erzeugt werden können. Wählen Sie dabei geeignete
+Domänen.
+
+Frage richtig lesen. Abteilung soll nicht erzeugt werden.
+
+\begin{antwort}[falsch]
+\begin{minted}{sql}
+CREATE TABLE Artikel (
+  ArtNr INTEGER PRIMARY KEY NOT NULL,
+  Bezeichnung VARCHAR(100) NOT NULL,
+  Verkaufspreis FLOAT(2),
+  Einkaufspreis FLOAT(2)
+);
+
+CREATE TABLE Abteilung (
+  Abteilungsname VARCHAR(60) NOT NULL,
+  Stockwerk VARCHAR(10) NOT NULL,
+  Abteilungsleiter VARCHAR(100),
+  PRIMARY KEY (Abteilungsname, Stockwerk)
+);
+
+CREATE TABLE Bestand (
+  Abteilungsname VARCHAR(100) REFERENCES Abteilung(Abteilungsname),
+  ArtNr INTEGER PRIMARY KEY NOT NULL,
+  Vorrat INTEGER
+);
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+CREATE TABLE Artikel (
+  ArtNr INTEGER PRIMARY KEY NOT NULL,
+  Bezeichnung VARCHAR(100) NOT NULL,
+  Verkaufspreis FLOAT(2),
+  Einkaufspreis FLOAT(2)
+);
+
+CREATE TABLE Bestand (
+  Abteilungsname VARCHAR(100) REFERENCES Abteilung(Abteilungsname),
+  ArtNr INTEGER REFERENCES Artikel(ArtNr),
+  Vorrat INTEGER,
+  PRIMARY KEY (Abteilungsname, ArtNr)
+);
+\end{minted}
+\end{antwort}
+
+%%
+% 2.
+%%
+
+\item Es treten nun nacheinander die folgenden Änderungen auf.
+Aktualisieren Sie den Tabellenbestand mit den entsprechenden
+SQL-Befehlen:
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Ein Sommerkleid mit der Artikelnummer 2341, dem Einkaufspreis 70€
+und dem Verkaufspreis 90,75€ wird in das Artikelsortiment aufgenommen.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+INSERT INTO Artikel
+VALUES (2341, 'Sommerkleid', 90.75, 70.00);
+\end{minted}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Der Artikel mit der Nummer 2341 wird wieder aus dem Sortiment
+genommen, da er den Qualitätsstandards nicht entsprochen hat.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+DELETE FROM Artikel WHERE ArtNr = 2341;
+\end{minted}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Eine Bürste mit der Artikelnummer 2 wird in das Sortiment
+aufgenommen. Einkaufs- bzw. Verkaufspreis sind noch nicht festgelegt.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+INSERT INTO Artikel (ArtNr, Bezeichnung)
+VALUES (2, 'Bürste');
+\end{minted}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Eine Damenhose (Verkaufspreis 89€, Einkaufspreis: 60,50€) wird
+neu in das Sortiment aufgenommen. Eine Artikelnummer wurde noch nicht
+festgelegt.
+
+\begin{antwort}[falsch]
+Artikelnummer ist noch nicht festgelegt.
+\begin{minted}{sql}
+INSERT INTO Artikel
+VALUES (2342, 'Damenhose', 89.00, 60.50);
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+ArtNr ist der Primärschlüssel der Tabelle Artikel. Bei Eingabe eines
+neuen Datensatzes müssen mindestens die Werte aller Attribute, die zum
+Primärschlüssel gehören, angegeben werden. Da aber im Fall der Damenhose
+die Artikelnummer noch nicht festgelegt ist, ist eine Eingabe der
+Damenhose-Daten in die Tabelle Artikel nicht möglich. Hinweis: Denken
+Sie also immer daran, dass bei Einfügen von Datensätzen der
+Primärschlüssel keine NULL-Werte enthalten darf!
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item Die Herrenhosen werden aus dem Sortiment genommen und deshalb aus
+der Tabelle Artikel gelöscht.
+
+\begin{antwort}[falsch]
+Artikel nicht aus dem Bestand herausgelöscht.
+\begin{minted}{sql}
+DELETE FROM Artikel WHERE Bezeichnung = 'Herrenhose';
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+DELETE FROM Bestand WHERE ArtNr = 2045;
+DELETE FROM Artikel WHERE Bezeichnung = 'Herrenhose';
+\end{minted}
+\end{antwort}
+
+%%
+% (f)
+%%
+
+\item Die neue Abteilungsleiterin der Lebensmittelabteilung heißt Elvira
+Sommer.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+UPDATE Abteilung
+SET Abteilungsleiter = 'Elvira Sommer'
+WHERE Abteilungsnahme = 'Lebensmittel';
+\end{minted}
+\end{antwort}
+
+%%
+% (g)
+%%
+
+\item Die Abteilung Feinkost hat einen Bestand von 150
+Räucherlachspackungen.
+
+\begin{antwort}[falsch]
+vergessen Wert in Abteilung einzutragen
+\begin{minted}{sql}
+INSERT INTO Bestand VALUES ('Feinkost', 1401, 150);
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+Die Attribute ArtNr und Abteilungsname der Tabelle
+Bestand sind Fremdschlüssel. Ein neuer Datensatz darf in die Tabelle nur
+eingefügt werden, wenn die Fremdschlüsselwerte in den entsprechenden
+(Primärschlüssel-)Attribute der referenzierten Tabelle auch existieren.
+Die Abteilung Feinkost, genauer gesagt den Abteilungsnamen ’Feinkost’
+gibt es in Abteilung aber noch nicht.
+
+\begin{enumerate}
+\item Lösungsmöglichkeit: Die Aktualisierung kann nicht durchgeführt
+werden.
+
+\item Lösungsmöglichkeit: Die entsprechende Abteilung Feinkost wird –
+natürlich in „Absprache“ mit der Kaufhausleitung – eingeführt und ein
+dementsprechender Datensatz in Abteilung eingefügt.
+\end{enumerate}
+
+\begin{minted}{sql}
+INSERT INTO Abteilung (Abteilungsname) VALUES ('Feinkost');
+INSERT INTO Bestand VALUES ('Feinkost', 1401, 150);
+\end{minted}
+\end{antwort}
+
+\end{enumerate}
+
+%%
+% 3.
+%%
+
+\item Formulieren Sie folgende Anfragen in SQL:
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Gesucht sind Artikelnummer und Vorrat aller Artikel aus der
+Textil-Abteilung.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT ArtNr, Vorrat FROM Bestand WHERE Abteilungsname = 'Textilien';
+\end{minted}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Gesucht sind alle Informationen über die Abteilungen, die im
+zweiten Stock platziert sind oder von Frau Stiehl geleitet werden.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT * FROM Abteilung
+WHERE Stockwerk = 'II' OR Abteilungsleiter = 'Monika Stiehl';
+\end{minted}
+\end{antwort}
+
+\end{enumerate}
+
+%%
+% 4.
+%%
+
+\item Formulieren Sie folgende SQL-Anfragen umgangssprachlich:
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item SQL-Anfrage:
+
+\begin{minted}{sql}
+SELECT DISTINCT Abteilungsleiter
+FROM Abteilung
+WHERE NOT (Abteilungsname = 'Kosmetik');
+\end{minted}
+
+\begin{antwort}[richtig]
+Es werden alle Abteilungsleiter aus der Abteilungsleiter der
+Kosmetik-Abteilung aufgelistet.
+\end{antwort}
+
+\begin{antwort}[muster]
+Gesucht sind die Namen aller Abteilungsleiter mit Ausnahme der
+Kosmetik-Abteilung. Duplikate sollen eliminiert werden.
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item SQL-Anfrage:
+
+\begin{minted}{sql}
+SELECT ArtNr
+FROM Bestand
+WHERE Abteilungsname = "Lebensmittel" AND Vorrat <= 100;
+\end{minted}
+
+\begin{antwort}[richtig]
+Gesucht sind die Artikelnummer aller Artikel von denen 100 oder weniger
+Bestand vorhanden ist und die aus der Abteilung Lebensmittel stammen.
+\end{antwort}
+
+\begin{antwort}[muster]
+Gesucht sind die Nummern der Artikel, von denen in der
+Lebensmittelabteilung maximal 100 vorrätig sind.
+\end{antwort}
+
+\end{enumerate}
+
+\item Interpretieren Sie nun die obigen Tabellen als Repräsentationen
+der drei Relationen Artikel, Abteilung und Bestand. Bestimmen Sie die
+Ergebnisrelationen folgender relationaler Ausdrücke:
+
+\tmptabelle{Artikel}
+
+\begin{tabular}{llll}
+\textbf{ArtNr} & \textbf{Bezeichnung}  & \textbf{Verkaufspreis} & \textbf{Einkaufspreis} \\
+95    & Kamm         & 1.25          & 0.80          \\
+97    & Kamm         & 0.99          & 0.75          \\
+507   & Seife        & 3.93          & 2.45          \\
+1056  & Zwieback     & 1.20          & 0.90          \\
+1401  & Räucherlachs & 4.90          & 3.60          \\
+2045  & Herrenhose   & 37.25         & 24.45         \\
+2046  & Herrenhose   & 20.00         & 17.00         \\
+2340  & Sommerkleid  & 94.60         & 71.50
+\end{tabular}
+
+\tmptabelle{Abteilung}
+
+\begin{tabular}{lll}
+\textbf{Abteilungsname} & \textbf{Stockwerk} & \textbf{Abteilungsleiter} \\
+Lebensmittel   & I         & Josef Kunz       \\
+Lebensmittel   & EG        & Monika Stiehl    \\
+Textilien      & II        & Monika Stiehl
+\end{tabular}
+
+\tmptabelle{Bestand}
+
+\begin{tabular}{lll}
+\textbf{Abteilungsname}  & \textbf{ArtNr} & \textbf{Vorrat} \\
+Lebensmittel    & 1056  & 129    \\
+Lebensmittel    & 1401  & 200    \\
+Textilien       & 2045  & 14
+\end{tabular}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item $\pi_{ArtNr,Bezeichnung}(Artikel)$
+
+\begin{antwort}[muster]
+\begin{tabular}{ll}
+95    & Kamm          \\
+97    & Kamm          \\
+507   & Seife         \\
+1056  & Zwieback      \\
+1401  & Räucherlachs  \\
+2045  & Herrenhose    \\
+2046  & Herrenhose    \\
+2340  & Sommerkleid
+\end{tabular}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item $\pi_{Abteilungsname}(Bestand)$
+
+\begin{antwort}[muster]
+\begin{tabular}{l}
+Lebensmittel   \\
+Textilien
+\end{tabular}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item $\sigma_{((Vorrat < 100 \land ArtNr > 1500) \lor ArtNr < 1100)}(Bestand)$
+
+\begin{antwort}[muster]
+\begin{tabular}{lll}
+Lebensmittel    & 1056  & 129    \\
+Textilien       & 2045  & 14
+\end{tabular}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item $\sigma_{((Vorrat < 100 \land (ArtNr > 1500  \lor ArtNr < 1100)}(Bestand)$
+
+\begin{antwort}[muster]
+\begin{tabular}{lll}
+Textilien       & 2045  & 14
+\end{tabular}
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item $\pi_{ArtNr}(\sigma_{Bezeichnung=Herrenhose}(Artikel))$
+
+\begin{antwort}[muster]
+\begin{tabular}{l}
+2045 \\
+2046
+\end{tabular}
+\end{antwort}
+
+%%
+% (f)
+%%
+
+\item $\pi_{Abteilungsname}(Abteilung) - \pi_{Abteilungsname} (Bestand)$
+
+\begin{antwort}[muster]
+\begin{tabular}{l}
+Kosmetik
+\end{tabular}
+\end{antwort}
+
+%%
+% (g)
+%%
+
+\item
+
+\begin{math}
+\pi_{Bezeichnung,Einkaufspreis}(\sigma_{Einkaufspreis < 2.50} (Artikel))
+\cup\\
+\pi_{Bezeichnung,Einkaufspreis}(\sigma_{Einkaufsreis > 20.00} (Artikel))
+\end{math}
+
+\begin{antwort}[muster]
+Die letzten Zeile ist nicht in der Musterlösung dabei. Ich glaube aber
+es müsste so stimmen.
+
+\begin{tabular}{llll}
+Bezeichnung  & Einkaufspreis \\
+Kamm         & 0.80          \\
+Kamm         & 0.75          \\
+Seife        & 2.45          \\
+Zwieback     & 0.90          \\
+Herrenhose   & 24.45         \\
+Sommerkleid  & 71.50
+\end{tabular}
+\end{antwort}
+
+Hinweis:
+
+Die Aufgabe bezieht sich auf die oben angegebenen Tabellen. Die in
+Aufgabe 3 durchgeführten Änderungen des Datenbestandes brauchen nicht
+berücksichtigt werden.
+
+\end{enumerate}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 4: SQL-Anfragen auf mehreren Tabellen\footcite{db:ab:2}}
+
+(Quelle: Staatsexamen Softwaretechnologie/Datenbanksysteme, Thema Nr. 2,
+Teilaufgabe II, Aufgabe 4, Herbst 2017 Realschule)
+
+\noindent
+Für die bayerische Meisterschaft im Turmspringen ist folgendes
+Datenbankschema angelegt:
+
+\begin{minted}{md}
+Springer (Startnummer, Nachname, Vorname, Geburtsdatum, Körpergröße)
+Sprung (SID, Beschreibung, Schwierigkeit)
+springt (SID, Startnummer, Durchgang)
+FK (SID) referenziert Sprung (SID)
+FK (Startnummer) referenziert Springer (Startnummer)
+\end{minted}
+
+\noindent
+Das Attribut Schwierigkeit kann die Werte 1 bis 10 annehmen, das
+Attribut Durchgang ist positiv und ganzzahlig. Die Körpergröße der
+Springer ist in Zentimeter angegeben.
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Welche Springer sind größer als 1,80 m? Schreiben Sie eine
+SQL-Anweisung, welche in der Ausgabe mit dem größten Springer beginnt.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Vorname, Nachname
+FROM Springer
+WHERE Koerpergroesse > 180
+ORDER BY Koerpergroesse DESC;
+\end{minted}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Welche Springer haben im ersten Durchgang einen Sprung mit einer
+Schwierigkeit von unter 6 gezeigt? Schreiben Sie eine SQL-Anweisung,
+welche Startnummer und Nachname dieser Springer ausgibt.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Springer.Startnummer, Springer.Nachname
+FROM Springer, Sprung, springt
+WHERE
+  Sprung.SID = springt.SID AND
+  Springer.Startnummer = springt.Startnummer AND
+  springt.Durchgang = 1
+  Sprung.Schwierigkeit < 6;
+\end{minted}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Formulieren Sie in Umgangssprache, aber trotzdem möglichst
+präzise, wonach mit folgender Abfrage gesucht wird:
+
+\begin{minted}{sql}
+SELECT springt.Startnummer, s.Nachname, s.Vorname,
+MAX (springt.Durchgang)
+FROM springt, Springer s
+WHERE springt.Startnummer = s.Startnummer
+GROUP BY springt.Startnummer, s.Nachname, s.Vorname
+\end{minted}
+
+\begin{antwort}[richtig]
+Die Abfrage gibt die Startnummer, den Nachnamen, den Vornamen und
+die Anzahl der Sprünge, d. h. die Anzahl der Durchgänge der
+einzelnen Springer an.
+\end{antwort}
+
+\begin{antwort}[muster]
+Die Abfrage liefert die Startnummer, Vorname und Nachname sowie die
+maximale Anzahl an Durchgängen jedes Springers.
+\end{antwort}
+
+\item Gesucht ist die „durchschnittliche Körpergröße“ all der Springer,
+die vor dem 01.01.2000 geboren wurden. Formulieren Sie eine
+[entsprechende] SQL-Anweisung, [...] wobei die Spalte mit der
+durchschnittlichen Körpergröße genau diesen Namen „durchschnittliche
+Körpergröße“ haben soll.
+
+\begin{antwort}
+Umlaute und Leerzeichen sind bei Spaltenbeschriftungen nicht erlaubt.
+
+\begin{minted}{sql}
+SELECT AVG(Koerpergroesse) AS durchschnittliche_Koerpergroesse
+FROM SPRINGER
+WHERE Geburtsdatum < DATE('2000-01-01');
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT AVG(Koerpergroesse) AS durchschnittliche_Koerpergroesse
+FROM SPRINGER
+WHERE Geburtsdatum < '01.01.2001';
+\end{minted}
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+
+\end{document}

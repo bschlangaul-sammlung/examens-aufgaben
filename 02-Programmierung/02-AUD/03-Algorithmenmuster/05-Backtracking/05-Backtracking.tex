@@ -1,0 +1,344 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax,mathe}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Backtracking}
+
+\begin{quellen}
+\item \cite[Seite 15-21 (PDF 13-19)]{aud:fs:3}
+\item \cite[Seite 222-230 (PDF 240-248)]{saake}
+\item \cite{wiki:backtracking}
+\end{quellen}
+
+\noindent
+Das Backtracking ist ein wichtiges Algorithmenmuster für Such- und
+Optimierungsprobleme. Das Backtracking realisiert eine allgemeine
+systematische Suchtechnik, die einen \memph{vorgegebenen Lösungsraum
+komplett} bearbeitet.
+
+Der Begriff \emph{Backtracking} kommt daher, dass man bei der Suche in
+\memph{Sackgassen} gerät und dann wieder zur nächsten noch nicht
+bearbeiteten Abzweigung zurückgeht, bis man alle Verzweigungen
+abgearbeitet hat.
+\footcite[Seite 222 (PDF 240)]{saake}
+
+\section{Idee des Backtracking:}
+
+Der Algorithmus wird so lange ausführen, bis man an eine Grenze kommt
+Wenn das der Fall ist, geht man zurück zum letzten Schritt
+und testet andere Folgeschritte. Man versucht, gültige Teillösung zu
+finden und auf dieser den restlichen Weg zum Ziel aufzubauen. Wenn das
+nicht möglich ist, versucht man andere Teillösung zu finden.
+\footcite[Seite 18 - 19 (PDF 15-19)]{aud:fs:3}
+
+\section{Funktionsweise\footcite[Seite 17 (PDF 15)]{aud:fs:3}} Das
+Backtracking läuft fast immer nach demselben Schema ab. Wenn man sich
+passende Methoden definiert, kann man für die Implementierung oft
+dasselbe Grundgerüst verwenden. Die erforderlichen Methoden sind:
+
+\begin{description}
+\item[isFinal()] überprüft, ob eine Lösung gefunden wurde, z.\,B.: ist
+ein Sudoku vollständig gefüllt?
+
+\item[getExtensions()] gibt alle möglichen Erweiterungen zurück, z.\,B.:
+alle erlaubte Zahlen für das aktuelle Feld
+
+\item[apply()] verändert den aktuellen Zustand, z.\,B.: schreibe die
+aktuelle Zahl ins aktuelle Feld
+
+\item[revert()] stellt den vorherigen Zustand wieder her, z.\,B.: lösche
+die letzte Zahl aus dem aktuellen Feld
+\end{description}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Ein Beispiel: Das Damenproblem\footcite[Seite 18 - 19 (PDF 15-19)]{aud:fs:3}}
+
+Acht Damen sollen auf einem Schachbrett so aufgestellt werden, dass
+keine zwei Damen einander gemäß ihren in den Schachregeln definierten
+Zugmöglichkeiten schlagen können. Für Damen heißt dies konkret: Es
+dürfen keine zwei Damen auf derselben Reihe, Linie oder Diagonale
+stehen.
+
+Es gibt 92 mögliche Lösungen für das 8x8 Feld – aber wie findet man
+diese?
+
+\inputcode[firstline=3]{aufgaben/aud/pu_3/damenproblem/Damenproblem}
+\inputcode[firstline=3]{aufgaben/aud/pu_3/damenproblem/Ausgabe}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\section{rekursives Backtracking
+\footcite{aud:pu:3}}
+
+Folgende Methode soll das Feld $a$ (garantiert der Länge $2n$ und beim
+ersten Aufruf von außen mit $0$ initialisiert) mittels rekursivem
+Backtracking so mit Zahlen $1 \leq x \leq n$ befüllen, dass jedes $x$
+genau zweimal in $a$ vorkommt und der Abstand zwischen den Vorkommen
+genau $x$ ist. Sie soll genau dann \mintinline{java}|true| zurückgeben,
+wenn es eine Lösung gibt.
+\footcite[Seite 2]{aud:pu:3}
+
+\subsection*{Beispiele:}
+
+\begin{compactitem}
+\item \mintinline{java}|fill(2, [])| $\rightarrow$ \mintinline{java}|false|
+\item \mintinline{java}|fill(3, [])| $\rightarrow$ \mintinline{java}|[3; 1; 2; 1; 3; 2]|
+\item \mintinline{java}|fill(4, [])| $\rightarrow$ \mintinline{java}|[4; 1; 3; 1; 2; 4; 3; 2]|
+\end{compactitem}
+
+\begin{minted}{java}
+boolean fill (int n , int[] a) {
+  if (n <= 0) {
+    return true;
+  }
+  // TODO
+  return false;
+}
+\end{minted}
+
+\inputcode[firstline=4,lastline=20]{aufgaben/aud/pu_3/RekursivesBacktracking}
+
+\begin{minted}{md}
+fill(0, []):
+fill(1, []): false
+fill(2, []): false
+fill(3, []): 3 1 2 1 3 2
+fill(4, []): 4 1 3 1 2 4 3 2
+fill(5, []): false
+fill(6, []): false
+fill(7, []): 7 3 6 2 5 3 2 4 7 6 5 1 4 1
+fill(8, []): 8 3 7 2 6 3 2 4 5 8 7 6 4 1 5 1
+fill(9, []): false
+fill(10, []): false
+fill(11, []): 11 6 10 2 9 3 2 8 6 3 7 5 11 10 9 4 8 5 7 1 4 1
+\end{minted}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Das Haus des Nikolaus
+\footcite[Seite 2-3]{aud:ab:3}
+}
+
+\begin{exkurs}[Quelle]
+Diese Aufgabe stammt von der Website oberstufeninformatik.de. Die
+Materialien sind nicht Freeware, sondern Beerware. Voraussetzung für
+den Einsatz ist, dass der Benutzer ein Bier zum Wohle des Autors Horst
+Gierhardt trinkt \footcite{net:pdf:nikolaus}.
+\end{exkurs}
+
+\noindent
+Hier ist das \emph{„Haus des Nikolaus“} mit einer bestimmten
+Nummerierung der Eckpunkte vorgegeben. Es sollen alle Lösungen zum
+Zeichnen der Figur in einem Zug gefunden werden. Eine Lösung könnte dann
+in der Form 123451352 ausgegeben werden. Das Programm soll eine einfache
+Anpassung an andere Graphen ermöglichen. Der Ausschluss von gespiegelten
+Lösungen ist nicht gefordert.
+
+Eine Lösung lässt sich nach dem Prinzip \emph{Versuch und Testen}
+ermitteln. Eine vermutete Teillösung muss wieder verworfen werden, wenn
+ein Test ihre Ungültigkeit nachgewiesen hat. Man nennt diesen Ansatz
+deshalb auch \emph{Rückverfolgen} oder \emph{Backtracking}. Mit diesem
+Ansatz lassen sich eine ganze Reihe von Problemen in der Informatik sehr
+elegant formulieren und lösen. Hier eine kleine Auswahl (Genaueres dazu
+später):
+
+\begin{description}
+\item[Acht-Damen-Problem:] Acht Damen sollen so auf ein Schachbrett
+gestellt werden, dass keine Dame eine andere bedroht.
+
+\item[Vier-Farben-Problem:] Eine Landkarte soll mit vier Farben so
+gefärbt werden, dass benachbarte Länder immer unterschiedliche Farben
+bekommen.
+
+\item[Labyrinth-Problem:] Ein Labyrinth mit Sackgassen und Verzweigungen
+ist zu durch- laufen, um den Ausgang zu finden.
+\end{description}
+
+\noindent
+Konkreter:
+
+\begin{enumerate}
+\item Man versucht, eine Kante (Verbindungsstrecke) zu zeichnen, wenn
+sie zulässig ist oder noch nicht gezeichnet wurde.
+
+\item Ist das nicht möglich, muss die zuletzt gezeichnete Kante gelöscht
+werden.
+
+\item  Ist es möglich, dann hat man das Problem um eine Stufe
+vereinfacht.
+
+\item  Hat man durch dieses Verfahren insgesamt 8 Kanten zeichnen
+können, hat man eine Lösung gefunden. Jetzt löscht man wieder die
+zuletzt gezeichnete Kante und sucht nach weiteren Lösungen.
+\end{enumerate}
+
+\subsection{Realisierung des Programms}
+
+\subsubsection{Datenstrukturen}
+
+Die folgende Tabelle gibt an, welche Verbindungslinien zulässig sind
+(durch X markiert). Die erste Zeile bedeutet also, dass von Punkt 1 zu
+den Punkten 2, 3 und 5 Strecken gezeichnet werden dürfen. Eine solche
+Tabelle heißt auch Adjazenzmatrix (von adjazieren; lat.: anwohnen,
+anliegen). Eine solche Tabelle lässt sich durch \java{boolean[][]
+kanteZulaessig}; in einem zweidimensionalen Feld speichern. Eine
+entsprechende Tabelle \java{boolean[][] kanteGezeichnet;} erfasst dann die
+schon gezeichneten Kanten. In einem weiteren eindimensionalen Feld
+wird jeweils eine Lösung erfasst.
+
+\subsubsection{Methoden}
+
+Es bieten sich folgende Methoden zur Strukturierung des Programmes an:
+
+\begin{enumerate}
+\item \java{void initArrays()}
+\item \java{void zeichneKante(int von, int nach)}
+\item \java{void loescheKante(int von, int nach)}
+\item \java{void loesungAusgeben()}
+\item \java{void versucheKanteZuZeichnen(int start)}: Die rekursive
+Methode soll vom Punkt start weitere Kanten zeichen.
+
+\item Das Hauptprogramm:
+
+\begin{minted}{java}
+public static void main(String[] arg) {
+  initArrays();
+  for (int punktNr=1; punktNr<=maxPunktAnz; punktNr++) {
+    loesungsWeg[0] = punktNr; // Startpunkt eintragen
+    versucheKanteZuZeichnen(punktNr);
+  } // for punktNr
+  Out.println();
+  Out.println("Es ergaben sich " + loesungsAnzahl + " Loesungen.");
+} // main
+\end{minted}
+
+\end{enumerate}
+
+\inputcode[firstline=3]{aufgaben/aud/ab_3/Nikolaus}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 6 (Backtracking) [30 PUNKTE]\footcite{examen:66115:2018:09}}
+
+Ein sehr bekanntes Optimierungsproblem ist das sogenannte
+Rucksackproblem: Gegeben ist ein Rucksack mit der Tragfähigkeit $B$.
+Weiterhin ist eine endliche Menge von Gegenständen mit Werten und
+Gewichten gegeben. Nun soll eine Teilmenge der Gegenstände so ausgewählt
+werden, dass ihr Gesamtwert maximal ist, aber ihr Gesamtgewicht die
+Tragfähigkeit des Rucksacks nicht überschreitet.
+
+Mathematisch exakt kann das Rucksackproblem wie folgt formuliert werden:
+
+Gegeben ist eine endliche Menge von Objekten $U$. Durch eine
+Gewichtsfunktion $w : U \rightarrow \mathbb{R}^+$ wird den Objekten ein
+Gewicht und durch eine Nutzenfunktion $v : U \rightarrow \mathbb{R}^+$
+ein festgelegter Nutzwert zugeordnet.
+
+Des Weiteren gibt es eine vorgegebene Gewichtsschranke $B \in
+\mathbb{R}^+$. Gesucht ist eine Teilmenge $K \subseteq U$, die die
+Bedingung $\sum_{u \in K} w(u) \leq B$ einhält und die Zielfunktion
+$\sum_{u \in K} v(u)$ maximiert.
+
+Das Rucksackproblem ist NP-vollständig (Problemgröße ist die Anzahl der
+Objekte), sodass es an dieser Stelle wenig Sinn macht, über eine
+effiziente Lösung nachzudenken. Lösen Sie das Rucksackproblem daher
+mittels Backtracking und formulieren Sie einen entsprechenden
+Algorithmus. Gehen Sie davon aus, dass die Gewichtsschranke $B$ sowie
+die Anzahl an Objekten $N$ beliebig, aber fest vorgegeben sind.
+
+Das Programm soll folgende Ausgaben liefern:
+
+\begin{enumerate}
+\item  Maximaler Nutzwert, der durch eine Objektauswahl unter Einhaltung
+der Gewichtsschranke $B$ erreicht werden kann.
+
+\item Das durch die maximierende Objektmenge erreichte Gesamtgewicht.
+
+\item Diejenigen Objekte (Objektnummern) aus $U$, die zur Maximierung
+des Nutzwerts beigetragen haben.
+
+\end{enumerate}
+
+\begin{antwort}
+Foundations of Algorithms Using Java
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 5 (Backtracking)\footcite{examen:46115:2018:09}}
+
+Das Springerproblem ist ein kombinatorisches Problem, das darin besteht,
+für einen Springer auf einem leeren Schachbrett eine Route von einem
+gegebenen Startfeld aus zu finden, auf der dieser jedes Feld des
+Schachbretts genau einmal besucht.
+
+Ein Schachbrett besteht aus 8x8 Feldern. Ein Springer kann bei einem Zug
+von einem Ausgangsfeld aus eines von maximal 8 Folgefelder betreten, wie
+dies in der folgenden Abbildung dargestellt ist. Der Springer darf
+selbstverstndlich nicht über den Rand des Schachbretts hinausspringen.
+
+Eine Lösung des Springerproblems mit Startfeld h1 sieht wie folgt aus.
+Die Felder sind in ihrer Besuchsreihenfolge durchnummeriert. Der
+Springer bewegt sich also von hi nach £2, dann von f2 nach h3 usw.
+
+\begin{tabular}{llllllll}
+41&10&29&26&49&12&31&16\\
+28&25&40&11&30&15&50&13\\
+9&42&27&56&61&48&17&32\\
+24&39&58&47&64&53&14&51\\
+43&8&55&62&57&60&33&18\\
+38&23&46&59&54&63&52&3\\
+7&44&21&36&5&2&19&34\\
+22&37&6&45&20&35&4&1\\
+\end{tabular}
+
+Formulieren Sie einen rekursiven Algorithmus zur Lösung des
+Springerproblems von einem vorgegebenen Startfeld aus. Es sollen dabei
+alle möglichen Lösungen des Springerproblems gefunden werden. Die
+Lösungen sollen durch Backtracking gefunden werden. Hierbei werden alle
+möglichen Teilrouten systematisch durchprobiert, und Teilrouten, die
+nicht zu einer Lösung des Springerproblems führen können, werden nicht
+weiterverfolgt. Dies ist durch rekursiven Aufruf einer Lésungsfunktion
+huepf(z, y, z) zu realisieren, wobei
+
+\begin{itemize}
+
+\item x und y die Koordinaten des als nächstes anzuspringenden Feldes
+sind, und
+
+\item z die aktuelle Rekursionstiefe enthält. Wenn die Rekursionstiefe
+64 erreicht und das betreffende Feld noch unbesucht ist, ist eine Lösung
+des Springerproblems gefunden.
+\end{itemize}
+
+Der initiale Aufruf Ihres Algorithmus kann beispielsweise über den Aufruf
+huepf(1,8,1)
+
+erfolgen.
+
+Wählen Sie geeignete Datenstrukturen zur Verwaltung der unbesuchten
+Felder und zum Speichern gefundener (Teil)Lösungen. Der Algorithmus soll
+eine gefundene Lösung in der oben angegebenen Form ausdrucken, also als
+Matrix mit der Besuchsreihenfolge pro Feld.
+
+\literatur
+
+\end{document}

@@ -1,0 +1,1109 @@
+
+
+Prüfungsteilnehmer Prüfungstermin Einzelprüfungsnummer
+
+Kennzahl:
+
+Kennwort: Herbst 66114
+
+Arbeitsplatz-Nr.: 2 0 1 6
+
+Erste Staatsprüfung für ein Lehramt an öffentlichen Schulen
+
+— Prüfungsaufgaben —
+Fach: Informatik (vertieft studiert)
+Einzelprüfung: Datenbank- und Betriebssysteme
+
+Anzahl der gestellten Themen (Aufgaben): 4 Aufgaben, von denen zwei gemäß untenstehender
+Auswahlregel zu bearbeiten sind!
+
+Anzahl der Druckseiten dieser Vorlage: 26
+
+Zu den zwei Themenschwerpunkten A (Datenbanksysteme) und B (Betriebssysteme)
+ist jeweils entweder die Teilaufgabe 1 oder 2 zu wählen!
+
+Auf der Vorderseite des Kopfbogens sind im Feld „Gewähltes Thema: Nr.“ die
+Nummern der beiden ausgewählten Teilaufgaben anzugeben (z. B. A2, B1)!
+
+Bitte wenden!
+
+Herbst 2016 Einzelprüfungsnummer 66114 Seite 2
+
+Themenschwerpunkt A
+(Datenbanksysteme)
+
+Teilaufgabe 1
+
+1. ER-Modellierung
+
+Gegeben seien folgende Informationen:
+
+b)
+
+Krankenhäuser bestehen aus Stationen. Zu jedem Krankenhaus ist dessen Adresse (wodurch es
+identifiziert werden kann) und die Anzahl an Betten bekannt. Stationen besitzen einen Namen,
+der nur innerhalb eines Krankenhauses eindeutig ist.
+
+Stationen bestehen wiederum aus Zimmern, welche nummeriert sind. Eine solche Nummer ist
+innerhalb einer Station eindeutig.
+
+Jedes Krankenhaus beschäftigt Personal. Dabei wird festgehalten, welches Gehalt bezahlt wird.
+Personal kann in verschiedenen Krankenhäusern beschäftigt sein.
+
+Personal ist durch eine Personal-Nummer gekennzeichnet und kann unter anderem in Ärzte und
+Krankenpfleger unterteilt werden. Zu einem Arzt ist sein Fachbereich bekannt und von welchen
+Krankenpflegern er Vorgesetzter ist. Kein Krankenpfleger kann zugleich Arzt sein, aber
+durchaus mehrere vorgesetzte Ärzte haben.
+
+Eine Station kann von mehreren Ärzten gleitet werden. Ein Arzt kann ebenso mehrere
+Stationen leiten. Außerdem ist bekannt, ob und in welchem Zimmer ein Arzt sein Büro hat.
+Kein Arzt muss sich sein Büro mit einem anderen Arzt teilen.
+
+Personal arbeitet auf Stationen in Schichten. Eine Schicht kann über Datum und Zeitraum
+eindeutig identifiziert werden. Eine Person kann in einer Schicht auf nur einer Station arbeiten.
+
+Erstellen Sie für das oben gegebene Szenario ein geeignetes ER-Diagramm.
+
+Verwenden Sie dabei — wenn angebracht — das Prinzip der Spezialisierung. Kennzeichnen Sie die
+Primärschlüssel der Entity-Typen, totale Teilnahmen und schwache Entity-Typen.
+
+Zeichnen Sie die Funktionalitäten der Relationship-Typen in das Diagramm ein.
+
+Überführen Sie Ihr in Aufgabe a) erstelltes Modell in ein verfeinertes relationales Schema.
+Kennzeichnen Sie die Schlüssel durch Unterstreichen. Datentypen müssen nicht angegeben
+werden.
+
+Fortsetzung nächste Seite!
+Herbst 2016 Einzelprüfungsnummer 66114 Seite 3
+
+2. SQL und relationale Algebra
+
+Gegeben sei der folgende Ausschnitt aus dem Schema einer Schulverwaltung:
+
+Person : {[ Unterricht : {[
+ID : INTEGER, Klassenbezeichnung : VARCHAR(20),
+Name : VARCHAR(255), Schuljahr : INTEGER,
+
+Wohnort : VARCHAR(255), Lehrer : INTEGER,
+Typ :CHAR(I) Fach : VARCHAR(100)
+1 R
+Klasse : {[ Klassenverband : {[
+Klassenbezeichnung : VARCHAR(20), Schüler : INTEGER,
+Schuljahr : INTEGER, Klassenbezeichnung : VARCHAR(20),
+Klassenlehrer : INTEGER Schuljahr : INTEGER
+]} 1
+
+Hierbei enthält die Tabelle Person Informationen über Lehrer (Typ ’L’) und Schüler (Typ ’S’); andere
+Werte für Typ sind nicht zulässig. Klasse beschreibt die Klassen, die in jedem Schuljahr gebildet
+wurden, zusammen mit ihrem Klassenlehrer. In Unterricht wird abgelegt, welcher Lehrer welches
+Fach in welcher Klasse unterrichtet; es ist möglich, dass derselbe Lehrer mehr als ein Fach in einer
+Klasse unterrichtet. Klassenverband beschreibt die Zuordnung der Schüler zu den Klassen.
+
+a) Schreiben Sie eine SQL-Anweisung, die die Tabelle Unterricht mit allen ihren Constraints
+(einschließlich Fremdschlüsselconstraints) anlegt.
+
+b) Definieren Sie ein geeignetes Constraint, das sicherstellt, dass nur zulässige Werte im Attribut
+Typ der (bereits angelegten) Tabelle Person eingefügt werden können.
+
+c) Schreiben Sie eine SQL-Anweisung, die die Bezeichnung der Klassen bestimmt, die im
+Schuljahr 2015 die meisten Schüler haben.
+
+d) Schreiben Sie eine SQL-Anweisung, die die Namen aller Lehrer bestimmt, die nur Schüler aus
+ihrem Wohnort unterrichtet haben.
+
+e) Schreiben Sie eine SQL-Anweisung, die die Namen aller Schüler bestimmt, die immer den
+gleichen Klassenlehrer hatten.
+
+f) Schreiben Sie eine SQL-Anweisung, die alle Paare von Schülern bestimmt, die mindestens
+einmal in der gleichen Klasse waren. Es genügt dabei, wenn Sie die ID der Schüler bestimmen.
+
+g) Formulieren Sie eine Anfrage in der relationalen Algebra, die die ID aller Schüler bestimmt, die
+mindestens einmal von "Ludwig Lehrer’ unterrichtet wurden.
+
+h) Formulieren Sie eine Anfrage in der relationalen Algebra, die Namen und ID der Schüler
+bestimmt, die von allen Lehrern unterrichtet wurden.
+
+Beachten Sie bei der Formulierung der SQL-Anfragen, dass die Ergebnisrelationen keine Duplikate
+enthalten dürfen. Sie dürfen geeignete Views definieren.
+
+Fortsetzung nächste Seite!
+Herbst 2016 Einzelprüfungsnummer 66114 Seite 4
+
+3. Entwurfstheorie
+Gegeben sei folgendes relationale Schema R in erster Normalform:
+R:{[4,B,C,D,E,F]}
+
+Für R gelte folgende Menge FD funktionaler Abhängigkeiten:
+
+FD={
+AC — B,
+DEF — BC,
+F — AB,
+D—- F,
+BC - E
+}
+
+a) Bestimmen Sie alle Kandidatenschlüssel von R mit FD.
+Hinweis: Die Angabe von Attributmengen, die keine Kandidatenschlüssel sind, führt zu Abzügen.
+
+b) Prüfen Sie, ob R mit FD in 2NF bzw. 3NF ist.
+
+c) Bestimmen Sie mit folgenden Schritten eine kanonische Überdeckung FD- von FD:
+i. Führen Sie eine Linksreduktion von FD durch. Geben Sie die Menge funktionaler
+Abhängigkeiten nach der Linksreduktion an (F'D;).
+
+ii. Fiihren Sie eine Rechtsreduktion des Ergebnisses der Linksreduktion (FD,) durch.
+Geben Sie die Menge funktionaler Abhängigkeiten nach der Rechtsreduktion an (FDr).
+
+iii. Bestimmen Sie eine kanonische Überdeckung FD- von FD auf Basis des Ergebnisses der
+Rechtsreduktion (FDR).
+
+d) Zerlegen Sie R mit FD- mithilfe des Synthesealgorithmus in 3NF.
+
+e) Prüfen Sie für alle Relationen der Zerlegung aus d), ob sie jeweils in BCNF sind.
+
+Fortsetzung nächste Seite!
+Herbst 2016 Einzelprüfungsnummer 66114 Seite 5
+
+4. Transaktionen
+
+a) Erläutern Sie kurz die Konzepte Atomarität und Isolation.
+b) Betrachten Sie den folgenden Schedule S:
+
+Ty Ty T3
+r(x)
+r(x)
+ro{y)
+w(x)
+c2
+o (y)
+r3
+w3(y)
+C3
+wily)
+c
+
+Geben Sie den Ausgabeschedule (einschließlich der Operationen zur Sperranforderung und -freigabe)
+im strikten Zweiphasen-Sperrprotokoll für den obigen Eingabeschedule S an.
+
+Hinweis: Sollte während der Ausführung ein Deadlock aufireten, führen Sie ein Rollback einer der
+beteiligten Transaktionen durch.
+
+Fortsetzung nächste Seite!
+Herbst 2016 Einzelprüfungsnummer 66114 Seite 6
+
+Teilaufgabe 2
+
+1. Konzeptioneller Entwurf
+
+Im Folgenden ist die Beschreibung einer Fotoverwaltung gegeben. Erstellen Sie zu dieser ein ERDiagramm. Kennzeichnen Sie die Primärschlüssel durch passendes Unterstreichen und geben Sie die
+Kardinalitäten in Min-Max-Notation an. Modellieren Sie keine Attribute oder Entitytypen, die nicht
+aus dem Text hervorgehen.
+
+Es werden Fotos verwaltet, die über eine eindeutige ID identifiziert werden und einen
+Aufnahmezeitpunkt sowie eine Beschreibung besitzen. Den Fotos können Stichworte zugeordnet
+werden, die einen eindeutigen Namen haben. Stichworte sind hierarchisch organisiert, d.h. ein
+Stichwort kann maximal einem anderen Stichwort untergeordnet sein. Jedes Foto wurde von genau
+einem Fotografen aufgenommen und es können Models auf ihm abgebildet sein. Zu Fotografen und
+Models werden Name, Vorname, Postleitzahl und Wohnort gespeichert. Zu Fotografen wird zusätzlich
+ihre Mitgliedsnummer im Verband deutscher Fotografen abgelegt, durch die sie eindeutig identifiziert
+werden können. Models gehören genau einer Agentur an und haben eine Mitgliedsnummer, die
+innerhalb ihrer Agentur eindeutig ist. Agenturen haben einen eindeutigen Namen sowie eine E-MailAdresse. Ein Fotograf kann auch gleichzeitig Model sein. Models können der Veröffentlichung von
+bestimmten Fotos in bestimmten Medien zustimmen. Zu jedem Medium werden ein eindeutiger Name
+sowie eine Beschreibung abgelegt. Zu einer Zustimmung wird das Datum gespeichert, an dem sie
+erfolgt ist.
+
+Fortsetzung nächste Seite!
+Herbst 2016 Einzelprüfungsnummer 66114 Seite 7
+
+2. Relationenschema
+
+Entwerfen Sie zum untenstehenden ER-Diagramm ein Relationenschema in dritter Normalform
+
+(3 NF) mit möglichst wenigen Relationen.
+
+Verwenden Sie dabei folgende Notation:
+
+Primärschlüssel werden durch Unterstreichen gekennzeichnet, Fremdschlüssel durch die Nennung der
+Relation, auf die sie verweisen, in eckigen Klammern hinter dem Fremdschlüsselattribut. Attribute
+
+zusammengesetzter Fremdschlüssel werden durch runde Klammern als zusammengehörig markiert.
+
+Beispiel: Relationi (Primärschlüssel, Attributl, Attribut2, Fremdschlüssel[Relation2])
+
+bestellt 2
+
+Mitarbeiter
+
+MM
+\_/
+
+N= Artikel
+
+Hersteller —
+
+Fortsetzung nächste Seite!
+Herbst 2016 Einzelprüfungsnummer 66114 Seite 8
+
+3. Normalformen
+
+a) Gegeben ist eine vollständige Extension der Relation Bestellungen mit dem zusammengesetzten
+Primärschlüssel (Kundennummer, Bestellnummer}:
+
+Kundennummer | Bestellnummer Kundennachname | Bestelldatum | Lieferdatum |
+
+1 1657 _ Frank 13.02.2015 | 15.02.2015
+
+2 1306 , Weizenbaum 14.01.2015 | 18.01.2015
+
+3 2369 Weizenbaum 09.08.2014 | 10.01.2015
+2 9847 Weizenbaum 21.11.2013 : 25.11.2013
+
+5 2569 Schmitt 05.09.2015 | 05.09.2015
+7 3457 Nürnberger 07.10.2012 12.12.2012
+8 4468 Haberkorn 31.08.2015 01.10.2015
+
+Geben Sie an, in welcher Normalform sich die Relation Bestellungen befindet. Begründen Sie
+weiterhin in zwei bis drei Sätzen, dass alle Bedingungen dieser Normalform erfüllt sind und dass
+nicht alle Bedingungen der nächsthöheren Normalform erfüllt sind.
+
+b) Nennen Sie die Bezeichnungen der drei Anomalien, zu denen nicht normalisierte
+Relationenschemata führen können, und erläutern Sie die Anomalien in jeweils ein bis zwei
+
+Sätzen. Sie können dazu Beispiele aus der in der vorhergehenden Teilaufgabe gegebenen Relation
+nutzen.
+
+Fortsetzung nächste Seite!
+Herbst 2016 Einzelprüfungsnummer 66114 Seite 9
+
+4.
+
+SOL
+
+Gegeben sind folgende Relationen aus einer Personalverwaltung:
+
+Mitarbeiter (MitarbeiterID, Vorname, Nachname, Vorgesetzter[Mitarbeiter],
+
+AbteilungsID[Abteilung], Telefonnummer, Gehalt)
+
+Abteilung (AbteilungsID, Bezeichnung)
+
+a)
+
+b)
+
+d)
+
+Schreiben Sie eine SQL-Anfrage, die Vor- und Nachnamen der Mitarbeiter aller Abteilungen mit
+Bezeichnung ,,Buchhaltung“ ausgibt, absteigend sortiert nach MitarbeiterID.
+
+Schreiben Sie eine SQL-Anfrage, die die Nachnamen aller Mitarbeiter zusammen mit dem
+Nachnamen ihres jeweiligen direkten Vorgesetzten ausgibt. Mitarbeiter ohne Vorgesetzten sollen
+in der Ausgabe ebenfalls enthalten sein. In diesem Fall soll der Nachname des Vorgesetzten NULL
+sein.
+
+Schreiben Sie eine SQL-Anfrage, die die 10 Abteilungen ausgibt, deren Mitarbeiter das höchste
+Durchschnittsgehalt haben. Ausgegeben werden sollen der Rang (1 = höchstes Durchschnittsgehalt
+bis 10 = niedrigstes Durchschnittsgehalt), die Bezeichnung sowie das Durchschnittsgehalt der
+Abteilung.
+
+Gehen Sie davon aus, dass es keine zwei Abteilungen mit gleichem Durchschnittsgehalt gibt. Sie
+können der Übersichtlichkeit halber Views oder With-Anweisungen verwenden. Verwenden Sie
+jedoch keine datenbanksystemspezifischen Erweiterungen wie limit oder rownum.
+
+Schreiben Sie eine SQL-Anfrage, die das Gehalt aller Mitarbeiter aus der Abteilung mit
+AbteilungsID 42 um 5% erhöht.
+
+Alle Abteilungen mit der Bezeichnung „Qualitätskontrolle“ sollen zusammen mit den Datensätzen
+ihrer Mitarbeiter gelöscht werden. ON DELETE CASCADE ist für keine der Tabellen gesetzt.
+Schreiben Sie die zum Löschen notwendigen SQL-Anfragen.
+
+Alle Mitarbeiter sollen mit SOL-Anfragen nach den Telefonnummern anderer Mitarbeiter suchen
+können. Sie dürfen jedoch das Gehalt der Mitarbeiter nicht sehen können. Erläutern Sie in zwei bis
+drei Sätzen eine Möglichkeit, wie dies in einem Datenbanksystem realisiert werden kann, ohne die
+gegebenen Relationen, die als Tabellen abgelegt sind, zu verändern. Sie brauchen hierzu keinen
+SQL-Code schreiben.
+
+Fortsetzung nächste Seite!
+Herbst 2016 Einzelprüfungsnummer 66114 Seite 10
+
+5. Physische Datenorganisation
+
+a) Erläutern Sie die wesentliche Eigenschaft eines Tupel-Identifikators (TID) in ein bis zwei Sätzen.
+
+b) Fügen Sie in einen anfangs leeren B-Baum mit k = 1 (maximal 2 Schlüsselwerte pro Knoten) die
+im Folgenden gegebenen Schlüsselwerte der Reihe nach ein. Zeichnen Sie den Endzustand des
+
+Baums nach jedem Einfügevorgang. Falls Sie Zwischenschritte zeichnen, kennzeichnen Sie die
+sieben Endzustände deutlich.
+
+3, 7, 13, 11, 9, 10, 8
+
+c) Gegeben ist der folgende B-Baum:
+
+lel 6 19 | a
+a | m
+
+REIN YA 3 7% pis
+ei DO je ei, A je) § le oe! 9 .je oe! Wie °.,.18 |e ee! 49 Je) |e!) 43 |e
+
+Die folgenden Teilaufgaben sind voneinander unabhängig.
+
+i. Léschen Sie aus dem gegebenen B-Baum den Schlüssel 3 und zeichnen Sie den Endzustand des
+Baums nach dem Löschvorgang. Falls Sie Zwischenschritte zeichnen, kennzeichnen Sie den
+Endzustand deutlich.
+
+ii. Löschen Sie aus dem (originalen) gegebenen B-Baum den Schlüssel 17 und zeichnen Sie den
+Endzustand des Baums nach dem Löschvorgang. Falls Sie Zwischenschritte zeichnen,
+kennzeichnen Sie den Endzustand deutlich.
+
+iii. Löschen Sie aus dem (originalen) gegebenen B-Baum den Schlüssel 43 und zeichnen Sie den
+Endzustand des Baums nach dem Löschvorgang. Falls Sie Zwischenschritte zeichnen,
+kennzeichnen Sie den Endzustand deutlich.
+
+6. Transaktionen
+
+a) Nennen Sie in einem Satz den Unterschied zwischen dem strengen Zwei-Phasen-Sperrprotokoll
+und dem Zwei-Phasen-Sperrprotokoll.
+
+b) Beim unkontrollierten Mehrbenutzerbetrieb kann es zum Problem der verlorengegangenen
+Änderungen (lost update) kommen. Erläutern Sie anhand eines Beispiels in drei bis vier Sätzen,
+wie dieses Problem auftreten kann und welche Folgen sich daraus ergeben.
+
+-11Herbst 2016 Einzelprüfungsnummer 66114 Seite 11
+
+Themenschwerpunkt B
+(Betriebssysteme)
+
+Teilaufgabe 1
+
+Aufgabe 1:
+
+a)
+
+Was versteht man unter einem Prozess und was ist der Unterschied zu einem Programm?
+
+b) Das Betriebssystem muss in Zusammenhang mit einem Prozess Ressourcen verwalten. Welche
+
+d)
+
+Ressourcen sind minimal erforderlich, um einen Schutz gegenüber Operationen von anderen
+Prozessen (hierbei geht es nicht um den Schutz gegenüber anderen Benutzern) zu gewährleisten
+und Operationen auf Dateien zu ermöglichen?
+
+Ressourcen und weitere Daten zu einem Prozess werden vom Betriebssystem in der Prozesstabelle
+verwaltet. Nennen Sie 5 weitere typische Einträge und erläutern Sie, zu welchem Zweck diese
+Daten vom Betriebssystem benötigt werden.
+
+Erläutern Sie den Unterschied zwischen den Konzepten Prozess und Thread. Nennen Sie die
+unterschiedlichen Arten von Threads und erläutern Sie die Unterschiede und Vor- und Nachteile
+der Thread-Arten.
+
+Welche Operationen bietet die Systemschnittstelle von UNIX-/Linux-Systemen zur Erzeugung von
+Prozessen und zum Laden von Programmen? Beschreiben Sie die Funktionsweise der einzelnen
+Operationen und was im Betriebssystem dabei jeweils abläuft.
+
+Skizzieren Sie, wie eine Shell in einem UNIX- oder Linux-System funktioniert (vom Einlesen
+eines Kommandos über das Ausführen bis zur Ausgabe des nächsten Prompt-Symbols). Wie geht
+die Shell in diesem Zusammenhang vor, um Kommandos im Vordergrund bzw. Hintergrund
+auszuführen?
+
+Was tut die Shell dabei, um z.B. die Standardeingabe des auszuführenden Kommandos auf eine
+Datei umzuleiten (wie bei Kommando <Dateil)?
+
+Fortsetzung nächste Seite!
+Herbst 2016 Einzelprüfungsnummer 66114 Seite 12
+
+Aufgabe 2:
+
+a) Was versteht man in Betriebssystemen unter einem Semaphor? Beschreiben Sie die elementaren
+Operationen auf Semaphoren im Detail.
+
+b) Man kann Semaphore sowohl für den gegenseitigen Ausschluss als auch zur Synchronisierung von
+mehreren Abläufen (einen Ablauf vor Ausführung der Operation B verzögern, bis ein anderer
+Ablauf einen bestimmten Punkt - d. h. Operation A wurde ausgeführt - erreicht hat) einsetzen.
+Beschreiben Sie jeweils eine typische Situation von solchen Anwendungsfällen und skizzieren Sie
+den Einsatz von Semaphoren (unter Angabe der Semaphor-Werte und -Operationen) in diesen
+Fällen in einer programmiersprachenähnlichen Form.
+
+c) Was versteht man unter einem verdrängenden Scheduling-Verfahren mit dynamischen Prioritäten?
+
+d) Beim Einsatz von Semaphoren bei mehreren Prozessen und verdrängendem Scheduling mit
+dynamischen Prioritäten kann es zu dem Phänomen der Prioritätsinversion kommen. Was versteht
+man darunter? Skizzieren Sie in einem Diagramm mit drei Prozessen eine Situation, in der das
+Phänomen auftritt. Was könnte man zur Vermeidung des Phänomens tun?
+
+Fortsetzung nächste Seite!
+Herbst 2016 Einzelprüfungsnummer 66114 Seite 13
+
+Aufgabe 3:
+
+a)
+
+b)
+
+d)
+
+Die Dateisysteme von UNIX-/Linux-Systemen (z. B. EXT2 oder EXT3) und Windows (z. B.
+NTFS) weisen eine Reihe von gemeinsamen Konzepten auf, unterscheiden sich aber auch in vielen
+Details. Ein gemeinsames Konzept sind die hierarchisch aufbaubaren Dateikataloge. Beschreiben
+Sie die Funktion eines Dateikatalogs (Directory), wie eine baumförmige Hierarchie aufgebaut
+werden kann und wie schließlich in solch einem System Dateien abgelegt, benannt und anhand des
+Namens gefunden werden können.
+
+Die Verwaltungsdatenstruktur zu einer Datei in UNIX/Linux ist der sog. node, das Pendant in
+Windows-NTFES ist ein Eintrag in der Master-File-Table (MFT).
+
+Vergleichen Sie die Konzepte Inode und MFT-Eintrag. Welche Daten werden darin typischerweise
+gespeichert? (Nennen Sie 5 Beispiele und erläutern Sie, wozu diese Daten jeweils benötigt
+werden). Beschreiben Sie zwei Vorteile des NTFS-Konzepts. Was versteht man in diesem
+Zusammenhang unter dem Konzept eines Datenstroms (Streams)?
+
+Wie funktioniert die Verwaltung der Datenblöcke einer Datei in einem FAT-Dateisystem? Geben
+Sie die Belegung der FAT für drei Dateien an, wobei
+
+Datei 1 in den Blöcken 8,1, 5, 9;
+
+Datei 2 in den Blöcken 12,2, 11, 4, 7;
+
+Datei 3 in den Blöcken 3, 6, 10;
+
+gespeichert ist.
+
+Moderne Dateisysteme werden typischerweise als Log-basierte (oder Journaling) Dateisysteme
+realisiert. Beschreiben Sie die grundlegende Funktionsweise eines solchen Dateisystems und
+welche Vorteile es mit sich bringt.
+
+Fortsetzung nächste Seite!
+Herbst 2016 Einzelprüfungsnummer 66114 Seite 14
+
+Teilaufgabe 2
+
+Aufgabe 1: Prozesse
+
+1. Erlautern Sie kurz den Unterschied zwischen Multiprogramming und Multiprocessing.
+2. Worin unterscheiden sich die Aufgaben des Schedulers und des Dispatchers?
+
+3. Erläutern Sie kurz, ob der Einsatz des 5-Zustands-Prozess-Modells mit einem nicht-präemptiven
+Scheduling-Verfahren empfehlenswert ist.
+
+4. Inden folgenden Fragen soll das 7-Zustands-Prozessmodell betrachtet werden.
+
+a) Skizzieren Sie das 7-Zustands-Prozessmodell. Kennzeichnen Sie alle Übergänge durch
+Pfeile.
+Beschriften Sie alle Pfeile mit der Aktion, die bei dem entsprechenden Übergang
+ausgeführt wird.
+
+b) Welche zusätzlichen Möglichkeiten ergeben sich im 7-Zustands-Prozessmodell, die im 5Zustands-Prozessmodell nicht vorhanden sind? Geben Sie für jeden der zusätzlichen
+Zustandsübergänge ein Beispiel an.
+
+Fortsetzung nächste Seite!
+Herbst 2016 Einzelprüfungsnummer 66114 Seite 15
+
+Aufgabe 2: Scheduling-Strategien
+
+In dieser Aufgabe sollen drei Scheduling-Strategien untersucht werden: die nicht-präemptive Strategie
+SJF (Shortest Job First), die präemptive Strategie SRPT (Shortest Remaining Processing Time) und die
+präemptive Strategie RR (Round Robin). Dazu seien die folgenden Prozesse mit ihren
+Ankunftszeitpunkten und Rechenzeiten (in beliebigen Zeiteinheiten) gegeben.
+
+| Prozess Ankunftszeitpunkt Rechenzeit |
+Pı 0 2
+Py
+P3
+Pı
+
+Ps
+Ps
+Pr
+
+Gehen Sie davon aus, dass jeder Prozess sein Zeitquantum stets vollständig ausnutzt d.h. kein Prozess
+gibt den Prozessor freiwillig frei (Ausnahme: bei Prozessende).
+
+Trifft ein Prozess zum Zeitpunkt f ein, so wird er direkt zum Zeitpunkt ¢ beim Scheduling
+berücksichtigt.
+
+Wird ein Prozess zum Zeitpunkt f’ unterbrochen, so reiht er sich auch zum Zeitpunkt 7’ wieder in die
+Warteschlange ein. Sind zwei Prozesse absolut identisch bezüglich ihrer relevanten Werte, so werden
+die Prozesse nach aufsteigender Prozess-ID in die Warteschlange eingereiht. Diese Annahme gilt
+sowohl für neu im System eintreffende Prozesse, als auch für den Prozess, dem der Prozessor u.U.
+gerade entzogen wird.
+
+Beispiel: Es seien folgende Ankunfts- und Rechenzeiten für die drei Beispielprozesse P', Pa und P7
+gegeben:
+
+| Prozess Ankunftszeitpunkt Rechenzeit |
+
+Pi 0 3
+Pf 1 4
+P i 3
+
+Das folgende Diagramm veranschaulicht ein beliebiges Scheduling der drei Prozesse P',, P5 und P?:
+
+Prozesse +
+Py = b-p+} -------- 44
+
+PB) HH HH
+Pi u Pt = = fl a :
+
+Fortsetzung nächste Seite!
+Herbst 2016 Einzelprüfungsnummer 66114 Seite 16
+
+Bearbeiten Sie unter den gegebenen Voraussetzungen nun die folgenden Aufgaben:
+
+1.
+
+Erstellen Sie entsprechend dem Beispiel ein Diagramm für die nicht-präemptive Strategie SIF
+das für die Prozesse P,-P- angibt, wann welchem Prozess Rechenzeit zugeteilt wird und wann die
+Prozesse jeweils terminieren. Kennzeichnen Sie zudem für jeden Prozess seine Ankunftszeit.
+
+Erstellen Sie entsprechend dem Beispiel ein Diagramm für die präemptive Strategie SRPT das
+für die Prozesse P}-P, angibt, wann welchem Prozess Rechenzeit zugeteilt wird und wann die
+Prozesse jeweils terminieren. Kennzeichnen Sie zudem für jeden Prozess seine Ankunftszeit.
+
+Erstellen Sie entsprechend dem Beispiel ein Diagramm für die präemptive Strategie RR das für
+die Prozesse P,-P7 angibt, wann welchem Prozess Rechenzeit zugeteilt wird und wann die Prozesse
+jeweils terminieren. Die Dauer einer Zeitscheibe betrage 2 Zeiteinheiten. Gehen Sie davon aus,
+dass jeder Prozess die Dauer seiner Zeitscheibe stets vollständig ausnutzt, sofern er nicht
+terminiert. Terminiert ein Prozess aber vor Ablauf seiner Zeitscheibe, gibt er den Prozessor zum
+Zeitpunkt der Terminierung sofort frei. Trifft genau nach Ende einer Zeitscheibe ein neuer Prozess
+ein, so wird der neue Prozess vor dem gerade aktiven in die Warteschlange eingereiht.
+
+Berechnen Sie als Dezimalzahl mit einer Nachkommastelle die mittlere Verweil- und Wartezeit für
+die drei Verfahren SJF, SRPT und RR.
+
+Warum ist der Einsatz von SJF in einem realen System in der Regel nicht realisierbar?
+
+Welchen weiteren Nachteil hat SRPT in Bezug auf die Verweildauer von Prozessen?
+
+Fortsetzung nächste Seite!
+Herbst 2016 Einzelprüfungsnummer 66114 Seite 17
+
+Aufgabe 3: Petrinetze
+
+In dieser Aufgabe soll eine Modifikation des Erzeuger-/Verbraucherproblems als Petrinetz modelliert
+werden. Beim klassischen Erzeuger-/Verbraucherproblem liegt folgende Situation vor:
+
+a Es gibt zwei Prozesse. Einen Erzeuger (E) und einen Verbraucher (V).
+
+= E produziert Resultate (R), die zunächst in einem gemeinsamen Speicher (S) der Kapazität max
+abgelegt werden.
+
+=  V entnimmt die Resultate dem gemeinsamen Speicher S und verbraucht diese.
+
+= V darf nur mittels des gemeinsamen Speichers S auf ein Resultat R zugreifen.
+
+= E darf nur bei freien Plätzen ein Resultat R im gemeinsamen Speicher S ablegen.
+= Der Speicher darf nicht gleichzeitig von E und V verändert werden.
+
+Dieses klassische Problem wird nun durch Einführen der folgenden zusätzlichen Bedingung
+modifiziert:
+
+« V darf ein Resultat nur aus dem Speicher S entfernen, wenn danach noch mindestens zwei
+Resultate darin enthalten sind.
+
+Bearbeiten Sie unter Berücksichtigung der gegebenen Anforderungen nun die folgenden
+Teilaufgaben.
+
+1. Modellieren Sie das beschriebene modifizierte Erzeuger-/Verbraucherproblem durch ein Petrinetz.
+Erweitern Sie dazu den nachfolgend angegebenen Rahmen um die minimal notwendigen Stellen,
+Marken, Kanten und Transitionen. Versehen Sie alle Stellen und Transitionen mit aussagekräftigen
+Bezeichnern. Gehen Sie von folgenden Bedingungen aus:
+
+= Die Kapazität max des gemeinsamen Speichers S beträgt 3.
+« Zu Beginn befindet sich bereits ein fertiges Resultat im gemeinsamen Speicher S.
+
+Hinweis: Überlegen Sie sich zunächst die Funktionsweise des klassischen Erzeuger/Verbraucherproblems und leiten Sie darauf basierend die nötigen Anpassungen her.
+
+(Beachten Sie die Abbildung auf der nächsten Seite!)
+
+Fortsetzung nächste Seite!
+Einzelprüfungsnummer 66114
+
+Herbst 2016
+
+Der vorgegebene Rahmen ist:
+
+Bereit um
+Element zu
+abzulegen
+fm
+R existiert \ ® |
+hole
+Schreibrecht
+Schreibt R
+in Speicher
+gib Speicher
+frag
+Speicher f
+freigegeben \ /
+|
+3
+erzeuge R =
+
+Erzeuger (E)
+
+Barak um
+Resultat zu
+verbrauchen
+
+EN
+
+el —
+
+u; Role
+ma Schreibrecht
+
+cEntferne R
+von
+> Speicher
+
+gib Speicher
+frei
+
+R wird
+verbraucht
+
+N
+=
+
+Verbraucher (V}
+
+2. Gegeben sei nun folgendes Petrinetz:
+
+Sa
+
+Y
+
+Leiten Sie den Erreichbarkeitsgraphen für dieses Petrinetz her
+Begründen Sie jeweils separat, ob im Petrinetz aus Teilaufgabe 2 ein Deadlock bzw. ein partieller
+
+4
+
+3.
+Deadlock entstehen kann.
+
+>
+
+N
+(@ ) u
+( Bu 1
+
+Seite 18
+
+Fortsetzung nächste Seite!
+Herbst 2016 Einzelprüfungsnummer 66114 Seite 19
+
+Aufgabe 4: Seitenersetzungsstrategien
+
+Gegeben seien eine Menge an Seiten N = {0, 1, 2, 3, 4} und eine Menge der im Arbeitsspeicher zur
+Verfügung stehenden Seitenrahmen F = {f, fi, A} Auf die Seiten wird in der folgenden Reihenfolge
+zugegriffen:
+
+Ein Seitenfehler liegt immer dann vor, wenn sich eine referenzierte Seite nicht im Arbeitsspeicher
+befindet. Der Arbeitsspeicher ist zu Beginn leer.
+
+1. Bei der Paging-Strategie FIFO (First In, First Out) wird bei einem Seitenfehler diejenige Seite im
+Arbeitsspeicher ersetzt, deren Zeitpunkt der Zuordnung zu einem Seitenrahmen am längsten
+zurück liegt.
+
+Ermitteln Sie die Anzahl der Seitenfehler für die Seitenersetzungsstrategie FIFO, indem Sie alle
+Veränderungen im Speicher dokumentieren. Erstellen Sie dazu eine Tabelle mit dem Schema:
+
+| Zeit | Referenzierte Seite | f,t |/.t |%t _| Summe Seitenfehler
+
+Pf:
+
+Ordnen Sie dabei jeder referenzierten Seite den entsprechenden Seitenrahmen f; (i e {0,1,2}) zu
+und dokumentieren Sie den Zeitpunkt / der Zuordnung. Geben Sie zudem nach jedem Seitenzugriff
+die aktuelle Summe an Seitenfehlern an.
+
+Achtung: Bereits in den Hauptspeicher geladene Seiten dürfen nicht von einem Seitenrahmen in einen
+anderen verschoben werden.
+
+2. Ermitteln Sie die Anzahl der Seitenfehler für die Seitenersetzungsstrategie LFU (Least Frequently
+Used), indem Sie eine Tabelle mit dem bekannten Schema aus Teilaufgabe 1 erstellen. Statt der
+Zeit t soll allerdings nun für jeden Seitenrahmen die Anzahl der Seitenzugriffe seit dem Laden
+einer Seite festgehalten werden. Ordnen Sie in der Tabelle wieder jede referenzierte Seite dem
+entsprechenden Seitenrahmen #5 (i e {0,1,2}) zu und dokumentieren Sie die Anzahl der
+Seitenzugriffe. Geben Sie zudem nach jedem Seitenzugriff die aktuelle Summe an Seitenfehlern
+an. Falls mehrere Seitenrahmen als Kandidaten für die neue Seite infrage kommen, so soll
+diejenige mit der kleinsten Indexnummer gewählt werden.
+
+Achtung: Bereits in den Hauptspeicher geladene Seiten dürfen nicht von einem Seitenrahmen in
+einen anderen verschoben werden.
+
+3. Nun sollen die theoretischen Eigenschaften der Seitenersetzungsstrategie Least Frequently Used
+(LFV) untersucht werden. Dazu soll untersucht werden, wie viele Seitenfehler für das Beispiel aus
+Teilaufgabe 2 unter Verwendung von LFU entstehen, wenn das System 1, 2, 3, 4 oder 5
+Seitenrahmen besäße. Der zugehörige Distance String lautet © ©0033 ©402241214.Der
+Rechenweg muss klar nachvollziehbar sein.
+
+4. Welchen Effekt im Zusammenhang mit der Anzahl der Seitenrahmen eines Systems beschreibt die
+Belady's Anomalie? Kann diese Anomalie mit der Seitenersetzungsstrategie LFU (Least Frequently
+Used) auftreten?
+
+Fortsetzung nächste Seite!
+Herbst 2016 Einzelprüfungsnummer 66114 Seite 20
+
+Aufgabe 5: Buddy-Systeme
+
+Gegeben sei ein mobiles System mit einem Hauptspeicher von 2 GB = 2048 MB, der byteweise
+adressiert wird. Zur Speicherverwaltung werden Buddy-Systeme eingesetzt. Dabei wird immer die am
+weitesten links stehende Speicherzelle geteilt, wenn ein neuer Prozess eingefügt wird. Die minimale
+Buddy-Größe soll 128 MB betragen. Bearbeiten Sie nun folgende Aufgaben:
+
+1. Es werden 5 Prozesse der Reihe nach in das Buddy-System eingefügt:
+
+a) pr:5S10MB
+b) p2:382 MB
+c) ps: 76 MB
+
+d) p4«248MB
+e) ps: 426 MB
+
+Zeichnen Sie insgesamt 5 Buddy-Bäume, die jeweils den Zustand der Speicherbelegung darstellen,
+nachdem ein weiterer der 5 Prozesse eingefügt wurde. Es muss genau ersichtlich sein, ob es sich um
+ein freies, ein gesplittetes bzw. um ein belegtes Segmente des Hauptspeichers handelt. Kennzeichnen
+Sie die entsprechenden Segmente eines Buddy-Baums mit den folgenden Symbolen:
+
+Freies Segment
+
+- Gesplittetes Segment
+Belegtes Segment
+
+2. Wieviele Bits werden benötigt, um ein Byte im gegebenen Speicher adressieren zu können?
+Ergänzen Sie im letzten Buddy-Baum der Teilaufgabe 1 (also dem Buddy-Baum nach dem
+Einfügen von ps) für alle freien, belegten und gesplitteten Segmente die ersten 6 Bits ihrer
+Speicheradresse.
+
+3. Wieviel Speicher würde jedem der 5 Prozesse nach dem Buddy-Verfahren tatsächlich zur
+Verfügung stehen? Geben Sie den maximal zur Verfügung stehenden Speicherplatz für jeden der
+eingefügten Prozesse an.
+
+4. Die eingefügten Prozesse p; bis ps benötigen insgesamt 1642 MB. Durch die Verwendung von
+Buddy-Systemen weicht der tatsächlich zugeordnete Hauptspeicher von diesem Wert ab. Wie viele
+von den ursprünglichen 2048 MB stehen für weitere Prozesse somit nur noch zur Verfügung und
+wieviel Speicher wird letztendlich verschwendet? Wie nennt man den für diese Verschwendung
+verantwortlichen Effekt?
+
+5. Ein neuer Prozess p; mit einem Speicherbedarf von 240 MB soll gestartet werden. Ist es möglich
+diesen Prozess einem Buddy zuzuweisen? Falls ja, zeichnen sie den aktualisierten Buddy-Baum.
+Falls nein, erläutern Sie den Grund.
+
+6. Zunächst terminiert der Prozess p3 und danach der Prozess ps. Zeichen Sie den aktualisierten
+Buddy-Baum nach jeder der beiden Prozessterminierungen. Kennzeichnen Sie dabei freie,
+gesplitteten bzw. belegten Segmente wieder mit den zuvor verwendeten Symbolen.
+
+Fortsetzung nächste Seite!
+Herbst 2016 Einzelprüfungsnummer 66114 Seite 21
+
+Aufgabe 6: Koordination von Threads
+
+In dieser Aufgabe soll der Betrieb eines Terminals in Java simuliert werden, auf dem insgesamt
+5 Prozesse aktiv sind. Es wird angenommen, dass die Prozesse Pı bis Ps spezielle Rechenprozesse
+sind, die regelmäßig große Datenmengen in speziellen Zugriffsphasen auf den gemeinsamen
+Hintergrundspeicher schreiben. Aus Performanzgründen dürfen zu einem Zeitpunkt jedoch maximal
+3 Rechenprozesse gleichzeitig den Hintergrundspeicher beschreiben. In den Zwischenphasen greifen
+die Rechenprozesse nicht auf den Hintergrundspeicher zu und führen spezielle Berechnungen durch. In
+regelmäßigen Abständen soll der aktuelle Stand des Hintergrundspeichers über ein Bandlaufwerk
+gesichert werden, wobei exakt der Zustand zu einem dedizierten Zeitpunkt gespeichert werden soll.
+Diese Datensicherung führt ein weiterer Datensicherungsprozess M durch.
+
+Der Datensicherungsprozess beendet sich im Ruhezustand, wenn aktuell keine Sicherung nötig ist. Er
+geht in den Wartezustand über, wenn eine Sicherung nötig ist und meldet einen Sicherungswunsch an.
+Kein Rechenprozess darf dann mehr einen Schreibzugriff beginnen. Sobald alle noch laufenden
+Schreibzugriffe beendet wurden, beginnt der Datensicherungsprozess seine Arbeit und sichert die
+Daten auf ein Bandlaufwerk. Während der Datensicherung dürfen die Prozesse Pı bis Ps nicht auf die
+Festplatte zugreifen und müssen warten. Gleichzeitig gilt, dass M keine Festplattenzugriffe machen
+darf, solange einer der Prozesse P, bis Ps aktuell noch auf die Festplatte zugreift. Das beschriebene
+Szenario ist in folgender Abbildung nochmals dargestellt:
+
+Im Folgenden soll eine Klasse Speicher zur Simulation des Hintergrundspeichers implementiert
+werden.
+
+Die Beispielimplementierungen der Klassen Rechenprozess, Datensicherungsprozess und Terminal
+soll Ihnen verdeutlichen, wie die Klasse Speicher verwendet werden kann:
+
+Fortsetzung nächste Seite!
+Herbst 2016
+
+Einzelprüfungsnummer 66114 Seite 22
+
+Die Klasse Terminal:
+
+1
+
+we
+
+13
+14
+15
+16
+it
+18
+
+19
+
+21
+
+public class Terminal {
+
+private Speicher my _speicher;
+private Rechenprozess |] rechenprozesse;
+private Datensicherungsprozess my_datensicherungsprozess;
+
+public Terminal{) {
+
+my_speicher = new Speicher (3):
+
+rechenprozesse = new Rechenprozess [5]:
+for(int i = 0; i < rechenprozesse .length; i++) [
+rechenprozesse [i] = new Rechenprozess(my_speicher , i);
+
+rechenprozesse [i]. start (};
+my-_datensicherungsprozess = new Datensicherungsprozess (my-speicher );
+my-_datensicherungsprozess.start ();
+
+public static void main(String {] args) {
+
+new Terminal {);
+
+Die Klasse Rechenprozess:
+
+w
+
+or
+
+import java. util. Random;
+
+public class Rechenprozess extends Thread {
+private Speicher my_speicher:
+private int id:
+private Random generator;
+
+public Rechenprozess (Speicher speicher, int id) {
+
+}
+
+this. my-speicher = speicher;
+this.id = id;
+generator = new Random();
+
+public void run() {
+
+try {
+Thread. sleep (generator. nextInt (2000) + 500);
+my_speicher .schreibzugriffBeginnen (id):
+Thread.sleep (generator. nextInt (2000) + 500);
+my_speicher .schreibzugriffBeenden(id);
+
+}
+
+catch(InterruptedException ie) {}
+
+Fortsetzung nächste Seite!
+Herbst 2016 Einzelprüfungsnummer 66114 Seite 23
+
+Die Klasse Datensicherungsprozess:
+
+ı import java.util.Random:
+
+2
+
+s public class Datensicherungsprozess extends Thread {
+4 private Speicher my uspeicher ;
+5
+&
+
+private Random generator,
+
+public Datensicherungsprozess (Speicher speicher) {
+
+8 this. my speicher = speicher,
+
+9 generator = new Random}:
+
+10 }
+
+14
+
+12 public void run() {
+
+10 while (true) {
+
+14 try {
+
+15 Thread. sleep (generator. nextint (2000) + 500):
+16 my_speicher. sicherungBeginnen ();
+
+ir System .out. printIn ("Daten werden gesichert”);
+15 Thread. sleep (generator. nextInt (2000) + 500):
+15 my_speicher.. sicherungBeenden ():
+
+20 Thread. sleep (1000):
+
+2 } catch (InterruptedExeeption ie} {
+
+22 }
+
+28 }
+
+24 }
+
+Bearbeiten Sie nun die folgenden Aufgaben:
+
+1. Was versteht man allgemein unter einem kritischen Bereich?
+
+2. Implementieren Sie den Konstruktor der Klasse Speicher. Verwenden Sie dabei den Coderahmen
+am Ende der Aufgabe und kommentieren Sie Ihre Lösung ausführlich. Die Klassenattribute sind
+dorts bereits deklariert und müssen durch den Konstruktur initialisiert werden.
+
+Fortsetzung nächste Seite!
+Herbst 2016 Einzelprüfungsnummer 66114 Seite 24
+
+4
+
+I.
+
+Implementieren Sie die Methode schreibzugriffBeginnen(int id), welche den Beginn des
+Zugriff eines Rechenprozesses auf den Hintergrundspeicher modelliert, sowie die Methode
+schreibzugriffBeenden(int id), welche im Gegenzug das Beenden des Zugriffs eines
+Rechenprozesses auf den Hintergrundspeicher modelliert. Beachten Sie dazu, dass alle oben
+genannten Anforderungen beachtet werden müssen. Insbesondere:
+
+# Maximal 3 Rechenprozesse dürfen den Hintergrundspeicher gleichzeitig beschreiben.
+
+= Sobald der Datensicherungsprozess einen Sicherungswunsch hat, darf kein
+Rechenprozess den Hintergrundspeicher mehr beschreiben, bis der
+Datensicherungsprozess fertig ist und der Hintergrundspeicher wieder freigegeben ist.
+
+Ergänzen Sie dazu den Coderahmen am Ende der Aufgabe und kommentieren Sie Ihre Lösung
+ausführlich.
+
+Hinweis: Sie können davon ausgehen, dass die Methoden schreibzugriffBeginnenfint id)
+
+bzw. schreibzugriffBeenden(int id) immer in einer sinnvollen Reihenfolge aufgerufen werden
+(siehe Beispielimplementierung der Klasse Rechenprozess).
+
+Implementieren Sie nun die Methoden für den Datensicherungsprozess. Vervollständigen Sie dazu
+den Coderahmen für die Methoden sicherungBeginnen() und sicherungBeenden() in dem
+Coderahmen am Ende der Aufgabe.
+
+Hinweis: Sie können davon ausgehen, dass die Methoden sicherungBeginnen() und
+sicherungBeenden() immer in einer sinnvollen Reihenfolge aufgerufen werden (siehe
+Beispielimplementierung der Klasse Datensicherungsprozess).
+
+Zeigen Sie zwei kritische Bereiche in Ihrem Programm auf. Wie wird hier sichergestellt, dass die
+Bedingung der Mutual Exclusion erfüllt ist?
+
+Fortsetzung nächste Seite!
+Herbst 2016 Einzelprüfungsnummer 66114 Seite 25
+
+Folgender Coderahmen steht Ihnen zur Bearbeitung der Teilaufgaben 2), 3) und 4) zur Verfügung:
+
+i public class Speicher {
+
+2 private static int maxRechenprozesse:
+3 private int anzahlRechenprozesse :
+
+4 private boolean hat_sicherungswunsch ;
+&
+8
+
+5 public Speicher( if
+a
+10
+11
+as
+33
+34
+18
+aa
+ir
+
+18 }
+
+- public synchronized void schreibzugriffBeginnen{int idj {
+24 ff Wird durch einen Rechenprosess aufgerufen.
+
+a2 try {
+
+2 while (
+
+mt
+m
+
+25
++
+
+mo
+ae
+
+}
+
+} catch (InterruptedException fe) [
+
+23 }
+
+8
+
+38 System out. printla(* Rechenprogess * 4+ id + 7 == Speicher (”
++ anzahlRechenprozesse + 7 schreibend "5;
+
+u }
+
+4a public synchronized void schreibzugriffBeenden(int id) {
+at ff Wird durch einen Rechenprozess aufgerufen.
+
+Fortsetzung nächste Seite!
+Herbst 2016
+
+2 8 € &
+
+we
++
+
+1)
+11
+102
+103
+
+108
+ET
+igs
+
+we }
+
+Einzelprüfungsnummer 66114 Seite 26
+
+System .out.printin(* Speicher == Rechenprozess ” + id +" U’
++ anzahlRechenprozesse + ” schreibend }” );
+
+}
+
+publie syauchronized void sicherungBeginnen () {
+ff Wird durch den Datensicherungsprazess aufgerufen.
+this. hat_sicherungswunsch = true:
+try {
+while ( if
+
+}
+
+} catch (InterruptedException ie) {
+
+}
+
+System .out. printin(* Datensicherungsprozess ==> Speicher (”
++ anzahlRechenprozesse
++ ° Rechenprozesse schreibend }”);
+
+}
+
+public synchronized void sicherungBeenden() {
+ff Wird durch den Datensicherungsprozess aufgerufen.
+this. hat_sicherungswunsch = false;
+
+System.out. printIn ("Speicher —» Datensicherungsprozess (”
++ anzahlRechenprozesse
++ ° Rechenprozesse schreibend )” );

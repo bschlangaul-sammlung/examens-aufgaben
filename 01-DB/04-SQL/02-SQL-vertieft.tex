@@ -1,0 +1,81 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax}
+
+\begin{document}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Top-N-Query\footcite[Seite 8]{db:fs:3}}
+
+Ermittle die TOP(10) der Spitzenverdiener für jede Abteilung und gib
+den Rang und den Namen aus. (Alle Angestellten haben
+unterschiedliches Gehalt)
+
+\begin{minted}{sql}
+SELECT P.AbtNr, COUNT(*) AS Rang, P.Nachname
+FROM Angestellte P, Angestellte A
+WHERE P.AbtNr = A.AbtNr AND P.Gehalt <= A.Gehalt
+GROUP BY P.PersNr, P.Nachname, P.AbtNr
+HAVING COUNT(*) <= 10;
+\end{minted}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Rekursive SQL-Abfragen}
+
+\begin{quellen}
+\item \cite[Seite 136]{kemper}
+\item \cite[Seite 27-31]{db:fs:3}
+\item \cite{db:html:jaxenter:rekursives-sql}
+\end{quellen}
+
+\begin{minted}{sql}
+WITH RECURSIVE t(v) AS (
+  SELECT 1     -- Seed Row
+  UNION ALL
+  SELECT v + 1 -- Recursion
+  FROM t
+)
+SELECT v
+FROM t
+LIMIT 5
+\end{minted}
+\footcite{db:html:jaxenter:rekursives-sql}
+
+Was ist Rekursion? Grundsätzliche Idee: Bestimmte Vorgänge werden auf
+ein Produkt, das sie bereits hervorgebracht haben, von neuem angewandt.
+Dabei entstehen unendliche Abläufe, die mit Hilfe bestimmter Bedingungen
+abgebrochen werden.
+
+Wann ist das erforderlich?
+
+Typisches Beispiel: In einem Unternehmen sollen Hierarchien erfasst
+werden. Wir möchten für einen Chef alle Untergebenen ermitteln, aber
+eben nicht nur auf der Hierarchieebene direkt unter ihm, sondern ALLE.
+Dabei scheitert eine klassische Anweisung!
+
+Basisaufbau:
+
+\begin{minted}{sql}
+WITH tabelle (spaltenliste) AS
+( UrsprungsSELECT
+UNION ALL
+RekursionsSELECT )
+SELECT spaltenliste FROM tabelle WHERE ...
+\end{minted}
+
+Hilfreiche Fragen zur Erstellung:
+
+Welche Spalten sollen in meiner Ergebnismenge auftauchen und/oder werden
+für die Rekursionsbedingung benötigt?
+
+Wie lautet der SELECT für den Satz, von dem die Rekursion ausgehen soll?
+
+Wie lautet die Rekursionsbedingung?
+
+\literatur
+\end{document}

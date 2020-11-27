@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage{tikz-uml}
+\usetikzlibrary{positioning}
+\begin{document}
+
+\section{Aufgabe 4: (Entwurfsmuster) (30 Punkte)}
+
+Zu den Aufgaben eines Betriebssystems zählt die Verwaltung von
+Prozessen. Jeder Prozess durchläuft verschiedene Zustände; Transitionen
+werden durch Operationsaufrufe ausgelöst. Folgendes Zustandsdiagramm
+beschreibt die Verwaltung von Prozessen:
+
+\begin{center}
+\begin{tikzpicture}
+\umlstateinitial[x=0,y=5,name=initial]
+\umlbasicstate[x=0,y=3]{Bereit}
+\umlbasicstate[x=0,y=0]{Aktiv}
+\umlbasicstate[x=6,y=0]{Suspendiert}
+\umlstatefinal[x=0,y=-2, name=beendet]
+\umlstatefinal[x=6,y=-2, name=abgebrochen]
+\node [below=0cm of beendet] {\footnotesize{}Beendet};
+\node [below=0cm of abgebrochen] {\footnotesize{}Abgebrochen};
+
+\umltrans[arg=starten(),pos=0.5]{Bereit}{Aktiv}
+\umltrans[arg=beenden(),pos=0.5]{Aktiv}{beendet}
+\umltrans[arg=abbrechen(),pos=0.5]{Suspendiert}{abgebrochen}
+\umltrans[pos=0.5]{initial}{Bereit}
+
+\path[tikzuml transition style,draw,pos=0.5] (Aktiv.north east) -- node[auto]{\footnotesize{}suspendieren()} (Suspendiert.north west);
+\path[tikzuml transition style,draw,pos=0.5] (Suspendiert.south west) -- node[auto]{\footnotesize{}fortsetzen()} (Aktiv.south east) ;
+\end{tikzpicture}
+\end{center}
+
+\noindent
+Implementieren Sie dieses Zustandsdiagramm in einer Programmiersprache
+Ihrer Wahl mit Hilfe des Zustandsmusters; geben Sie die gewählte Sprache
+an. Die Methoden für die Transitionen sollen dabei die Funktionalität
+der Prozessverwaltung simulieren, indem der Methodenaufruf auf der
+Standardausgabe protokolliert wird. Falls Transitionen im aktuellen
+Zustand undefiniert sind, soll eine Fehlermeldung ausgegeben werden.
+
+\end{document}

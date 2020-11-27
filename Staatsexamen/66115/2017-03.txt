@@ -1,0 +1,474 @@
+
+
+Prüfungsteilnehmer Prüfungstermin Einzelprüfungsnummer
+
+Kennzahl:
+
+Kennwort: Frühjahr
+
+— 66115
+Arbeitsplatz-Nr.: 2017
+
+Erste Staatsprüfung für ein Lehramt an öffentlichen Schulen
+— Prüfungsaufgaben —
+
+Fach: Informatik (vertieft studiert)
+Einzelprüfung: Theoret. Informatik, Algorithmen
+Anzahl der gestellten Themen (Aufgaben): 2
+
+Anzahl der Druckseiten dieser Vorlage: 14
+
+Bitte wenden!
+Frühjahr 2017 Einzelprüfungsnummer 66115 Seite 2
+
+Thema Nr. 1
+(Aufgabengruppe)
+
+Es sind alle Aufgaben dieser Aufgabengruppe zu bearbeiten!
+
+Aufgabe 1 (Graphalgorithmen)
+
+Die folgende Abbildung zeigt die wichtigsten
+bayerischen Autobahnen zusammen mit einigen
+anliegenden Orten und die Entfernungen
+zwischen diesen.
+
+Eintfernungstabelle
+
+von | nach | km
+Würzburg Nürnberg 115
+Nürnberg Regensburg 105
+Regensburg AK Deggendorf | 70
+AK Deggendorf | Passau 50
+Hof Nürnberg 135
+Nürnberg Ingolstadt 90
+Ingolstadt AD Holledau 20
+AD Holledau München 50
+München AK Deggendorf | 140
+Hof Regensburg 170
+Regensburg AD Holledau 70
+
+a) Bestimmen Sie mit dem Algorithmus von Dijkstra den kürzesten Weg von Ingolstadt zu allen
+anderen Orten. Verwenden Sie zur Lösung eine Tabelle gemäß folgendem Muster und markieren
+Sie in jeder Zeile den jeweils als nächstes zu betrachtenden Ort. Setzen Sie für die noch zu
+bearbeitenden Orte eine Prioritätswarteschlange ein, d.h. bei gleicher Entfernung wird der ältere
+
+Knoten gewählt.
+
+5
+Ss =
+“ be 2 5 3
+3 2 E 4 d Ec 3 g
+5 e ) 2] a] 6 | 2] Gg]
+& ‘3 = 3 & Ms Q a 3
+a = = Z < < a =
+[0] oo oO OO oo OO oO oo oo
+Ergebnis:
+
+Fortsetzung nächste Seite!
+Frühjahr 2017 Einzelprüfungsnummer 66115 Seite 3
+
+b) Die bayerische Landesregierung hat beschlossen, die eben betrachteten Orte mit einem
+
+breitbandigen Glasfaser-Backbone entlang der Autobahnen zu verbinden. Dabei soll aus
+Kostengründen so wenig Glasfaser wie möglich verlegt werden. Identifizieren Sie mit dem
+Algorithmus von Kruskal diejenigen Strecken, entlang welcher Glasfaser verlegt werden muss.
+Geben Sie die Ortspaare (Autobahnsegmente) in der Reihenfolge an, in der Sie sie in Ihre
+Verkabelungsliste aufnehmen.
+
+Um Touristen den Besuch aller Orte so zu ermöglichen, dass sie dabei jeden Autobahnabschnitt
+genau einmal befahren müssen, bedarf es zumindest eines sogenannten offenen Eulerzugs.
+Zwischen welchen zwei Orten würden Sie eine Autobahn bauen, damit das bayerische
+Autobahnnetz mindestens einen Euler-Pfad enthält?
+
+Fortsetzung nächste Seite!
+Frühjahr 2017 Einzelprüfungsnummer 66115 Seite 4
+
+Aufgabe 2 (Sortierverfahren)
+
+In
+
+dieser Aufgabe sei vereinfachend angenommen, dass sich Top-Level-Domains (TLD)
+
+ausschließlich aus zwei oder drei der 26 Kleinbuchstaben des deutschen Alphabets ohne Umlaute
+zusammensetzen. Im Folgenden sollen TLDs lexikographisch aufsteigend sortiert werden, d.h. eine
+TLD (s}, s2) mit zwei Buchstaben (z. B. „co“ für Kolumbien) wird also vor einer TLD (h, &, f3) der
+Länge drei (z. B. „com““) einsortiert, wenn sı <tı v (ı ha» <h) gilt.
+
+a)
+
+b)
+
+Sortieren Sie zunächst die Reihung [,,de“, „com“, „uk“, „org“, „co“, „net“, „fr“, „ee“] schrittweise
+unter Verwendung des Radix-Sortierverfahrens (Bucketsort). Erstellen Sie dazu eine Tabelle wie
+das folgende Muster und tragen Sie dabei in das Feld „Stelle“ die Position des Buchstabens ein,
+nach dem im jeweiligen Durchgang sortiert wird (das Zeichen am TLD-Anfang habe dabei die
+„stelle“ 1).
+
+Stelle Reihung
+
+- de com uk org co net fr ee
+
+Sortieren Sie nun die gleiche Reihung wieder schrittweise, diesmal jedoch unter Verwendung des
+Mergesort-Verfahrens (Sortieren durch Mischen). Erstellen Sie dazu eine Tabelle wie das folgende
+Muster und vermerken Sie in der ersten Spalte jeweils welche Operation durchgeführt wurde:
+Wenn Sie die Reihung geteilt haben, schreiben Sie in die linke Spalte ein T und markieren Sie die
+Stelle, an der Sie die Reihung geteilt haben, mit einem senkrechten Strich „| “. Wenn Sie zwei
+Teilreihungen durch Mischen zusammengeführt haben, schreiben Sie ein M in die linke Spalte und
+unterstreichen Sie die zusammengemischten Einträge. Beginnen Sie mit dem rekursiven Abstieg
+immer in der linken Hälfte einer (Teil-)Reihung.
+
+Op. | Reihung
+
+T | de, com, uk, org | co, net, fr, ee
+
+Implementieren Sie das Sortierverfahren Quicksort für String-TLDs in einer gängigen
+Programmiersprache Ihrer Wahl. Ihr Programm (Ihre Methode) wird mit drei Parametern gestartet:
+dem String-Array mit den zu sortierenden TLDs selbst sowie jeweils der Position des ersten und
+des letzten zu sortierenden Eintrags im Array.
+
+Fortsetzung nächste Seite!
+Frühjahr 2017 Einzelprüfungsnummer 66115 Seite 5
+
+Aufgabe 3 (Rekursion und Dynamische Programmierung)
+
+Gegeben seien die folgenden Formeln zur Berechnung der ersten Fibonacci-Zahlen:
+
+fib, = 1 falls n < 2
+" Fibn-ı + fibn-2 sonst
+sowie der Partialsumme der Fibonacci-Quadrate:
+cos, = fibn falls n = 1
+7 | fib? + sosy_t sonst
+
+Sie dürfen im Folgenden annehmen, dass die Methoden nur mit 1< n <46 aufgerufen werden, so
+dass der Datentyp long zur Darstellung aller Werte ausreicht.
+
+a) Implementieren Sie die obigen Formeln zunächst rekursiv (ohne Schleifenkonstrukte wie for
+oder while) und ohne weitere Optimierungen (,„naiv”) in Java als:
+
+long fibNaive (int n) {
+bzw.
+long sosNaive (int n) {
+
+b) Offensichtlich ist die naive Umsetzung extrem ineffizient, da viele Zwischenergebnisse wiederholt
+rekursiv ausgewertet werden müssen. Die Dynamische Programmierung (DP) erlaubt es Ihnen, die
+Laufzeit auf Kosten des Speicherbedarfs zu reduzieren, indem Sie alle einmal berechneten
+Zwischenergebnisse speichern und bei erneutem Bedarf „direkt abrufen“. Implementieren Sie
+obige Formeln nun rekursiv aber mittels DP in Java als:
+
+long fibDP (int n) {
+bzw.
+long sosDP (int n) {
+
+c) Am “einfachsten“ und bzgl. Laufzeit [in © (n)] sowie Speicherbedarf [in O (1)] am effizientesten
+ist sicherlich eine iterative Implementierung der beiden Formeln. Geben Sie eine solche in Java an
+als:
+
+long flIter (int n) {
+
+bzw.
+long sosiIter (int n) {
+
+Fortsetzung nächste Seite!
+Frühjahr 2017 Einzelprüfungsnummer 66115 Seite 6
+
+Aufgabe 4 (Formale Verifikation)
+
+Sie dürfen im Folgenden davon ausgehen, dass keinerlei Under- oder Overflows auftreten (der
+Datentyp long also einen beliebig großen Wertebereich hat).
+
+Gegeben sei folgendes rekursives Programmfragment in der Sprache Java für n 2 0:
+
+long sumDfSquares (long n) {
+
+if (n == 0)
+return 0;
+else
+return n * n + sumOfSquares(n - 1);
+}
+a) Beweisen Sie formal mittels vollständiger Induktion:
+VneN,: sumOfSquares (n)= EL
+
+b) Beweisen Sie die Terminierung von sumOfSquares (n) fürallen > 0.
+
+Aufgabe 5 (Aussagen)
+Zeigen oder widerlegen Sie die folgenden Aussagen (die jeweiligen Beweise sind sehr kurz):
+
+a) Alle regulären Sprachen liegen in NP.
+b) Es gibt Sprachen A, B mit A © B, sodass B regulär und A kontextfrei, aber nicht regulär ist.
+
+c) Es gibt unentscheidbare Sprachen Z über dem Alphabet Z, so dass sowohl Z als auch das
+Komplement L = &* \ L rekursiv aufzählbar (= partiell-entscheidbar) sind.
+
+d) Sei LZ eine beliebige kontextfreie Sprache über dem Alphabet X. Dann ist das Komplement
+L =L*\L entscheidbar.
+
+Schreiben Sie zuerst zur Aussage „Stimmt“ oder „Stimmt nicht“ und dann Ihre Begründung.
+
+Fortsetzung nächste Seite!
+Frühjahr 2017 Einzelprüfungsnummer 66115 Seite 7
+
+Aufgabe 6 (Turing)
+
+Es sei E die Menge aller (geeignet codierten) Turingmaschinen M mit folgender Eigenschaft: Es gibt
+eine Eingabe w, so dass M gestartet auf w mindestens 1000 Schritte rechnet und dann irgendwann hält.
+
+Das Halteproblem auf leerer Eingabe A, ist definiert als die Menge aller Turingmaschinen, die auf
+‚leerer Eingabe gestartet, irgendwann halten.
+
+a) Zeigen Sie, dass E unentscheidbar ist (etwa durch Reduktion vom Halteproblem A5).
+b) Begründen Sie, dass E partiell entscheidbar ist.
+c) Geben Sie ein Problem an, welches nicht einmal partiell entscheidbar ist.
+
+Aufgabe 7 (Automaten)
+a) Gegeben sei der folgende nichtdeterministische endliche Automat N:
+
+alb
+
+Konstruieren Sie zu N mit Hilfe der Potenzmengen-Konstruktion einen äquivalenten deterministischen
+endlichen Automaten A. Zeichnen Sie nur die vom Startzustand erreichbaren Zustände ein, die aber
+alle. Die Zustandsnamen von A müssen erkennen lassen, wie sie zustande gekommen sind. Führen Sie
+keine „Vereinfachungen“ durch!
+
+Hinweis: In einem deterministischen endlichen Automaten muss es an jedem Zustand für jedes
+Zeichen einen Übergang geben.
+
+b) Geben Sie einen regulären Ausdruck « (N) für die Sprache, die der nichtdeterministische endliche
+Automat N aus (a) akzeptiert, an.
+
+c) Sei LZ = { a'b‘ | k, fe IN, k >f}. Jemand behauptet, einen deterministischen endlichen
+Automaten A mit Zustandsmenge QO = {qo,..., dni}, Startzustand go und Endzustandsmenge F
+konstruiert zu haben mit Z = L(A).
+
+Geben Sie in Abhängigkeit von A ein Wort z e Lan, das folgende Eigenschaft besitzt: Aus einer
+akzeptierenden Rechnung von A für z können Sie ein Wort Z konstruieren mit der Eigenschaft:
+(i) A akzeptiert 2 und (ii) 2 ¢ L.
+
+Beweisen Sie konkret die Eigenschaften (i) und (ii) für Ihr Wort z.
+
+Fortsetzung nächste Seite!
+Frühjahr 2017 Einzelprüfungsnummer 66115 Seite 8
+
+Aufgabe 8 (Halteproblem und P = NP)
+
+Sei Z die durch den regulären Ausdruck (10)* u ((101 U 11)* U 111)* beschriebene Sprache.
+[Alternative Schreibweise: (10)* + ((101 + 11)* + 111)*]
+
+a) Sei A das Halteproblem bei fester Eingabe m.
+Zeigen Sie: Z kann auf A, reduziert werden. (Als Relation: Z < H,)
+
+b) Angenommen, es wurde gezeigt, dass P=NP ist. Zeigen Sie, dass Z dann NP-vollständig ist.
+Frühjahr 2017 Einzelprüfungsnummer 66115 Seite 9
+
+Thema Nr. 2
+(Aufgabengruppe)
+
+Es sind alle Aufgaben dieser Aufgabengruppe zu bearbeiten!
+
+Aufgabe 1: Reguläre Sprachen
+
+1. Sei X= {a, b} und L, die Sprache aller Wörter über £, in denen das Wort ab nicht vorkommt. Sei
+weiterhin L) die Sprache aller Wörter über %, in denen b genau zwei mal vorkommt.
+
+a) Geben Sie einen (möglicherweise nichtdeterministischen) endlichen Automaten an, der L|
+akzeptiert.
+
+b) Geben Sie einen (möglicherweise nichtdeterministischen) endlichen Automaten an, der Z
+akzeptiert.
+
+c) Geben Sie einen regulären Ausdruck für Lı N Zz an.
+
+2. Gegeben sei der unten aufgeführte deterministische endliche Automat A. Geben Sie einen
+minimalen deterministischen Automaten für die von A akzeptierte Sprache an.
+
+Fortsetzung nächste Seite!
+Frühjahr 2017 Einzelprüfungsnummer 66115 Seite 10
+
+Aufgabe 2: Kontextfreie Sprachen
+
+1.
+
+Gegeben sei die kontextfreie Grammatik G = (V, Z, P, S) mit Sprache L(G), wobei V = {S,T, U}
+und & = {a, b, c, d, e}. P bestehe aus den folgenden Produktionen:
+
+S>U|SbU T>dsSe|a U ->T \UcT
+
+a) Zeigen Sie acdae e L(G).
+b) Bringen Sie G in Chomsky-Normalform.
+
+Geben Sie eine kontextfreie Grammatik für L = {a' b’c'| i, ke N } an.
+
+Zeigen Sie, dass L = {a' b* c' | i, ke N Ai <i} nicht kontextfrei ist, indem Sie das Pumping-Lemma
+für kontextfreie Sprachen anwenden.
+
+Aufgabe 3: Berechen- und Entscheidbarkeit
+
+1.
+
+Primitiv rekursive Funktionen
+
+a) Zeigen Sie, dass die folgendermaßen definierte Funktion if: NXNxN— N primitiv rekursiv
+ist.
+
+ysonst
+
+b) Wir nehmen eine primitiv rekursive Funktionp: NN an und definieren g(n) als die
+Funktion, welche die größte Zahl i < n zurückliefert, für die p(/) = 0 gilt. Falls kein solches i
+existiert, soll g(n) = 0 gelten:
+
+a(n) = max ({i <n |p) = 0} U {0})
+
+if (b, x, y) = ( falls b=0
+
+Zeigen Sie, dass g: N > N primitiv rekursiv ist. (Sie dürfen obige Funktion if als primitiv rekursiv
+voraussetzen.)
+
+Seit={ab,c}undLc Z*mitl={dbclieN}.
+a) Beschreiben Sie eine Turingmaschine, welche die Sprache Z entscheidet. Eine textuelle
+Beschreibung der Konstruktionsidee ist ausreichend.
+
+b) Geben Sie Zeit- und Speicherkomplexität (abhängig von der Länge der Eingabe) Ihrer
+Turingmaschine an.
+
+Sei & = {0, 1}. Jedes we L* kodiert eine Turingmaschine M,. Die von M, berechnete Funktion
+bezeichnen wir mit gy.
+
+a) Warum ist {w e £* | 3x: @,(&) = xx} nicht entscheidbar?
+b) Warum ist {w e Z* | 3x: w= xx} entscheidbar?
+
+Fortsetzung nächste Seite!
+Frühjahr 2017 Einzelprüfungsnummer 66115 Seite 11
+
+Aufgabe 4: Komplexitätstheorie
+
+Eine Menge U < V heißt Knotenüberdeckung eines ungerichteten Graphen G = (V, E), wenn jede
+Kante des Graphen mit mindestens einem Knoten aus U verbunden ist:
+
+V(u,v)eE:ueU vveU
+
+Das Problem KNOTENÜBERDECKUNG fragt, ob zu einem gegebenen ungerichteten Graphen und einer
+natürlichen Zahl k eine aus k Knoten bestehende Knotenüberdeckung existiert. Für G = (V, E) und
+keN giltalso:
+
+(G, k) € KNOTENUBERDECKUNG
+
+oS
+
+aU ¢ Vv: Uist Knotentiberdeckung von G und |U| = k
+
+1. Begründen Sie, dass KNOTENUBERDECKUNG in NP liegt.
+
+Eine Menge C < V heißt Clique eines ungerichteten Graphen G = (V, E), wenn alle Paare
+verschiedener Knoten der Clique durch eine Kante des Graphen verbunden sind:
+
+VueC VveC:’u#zv>(uv)eE
+
+Das Problem CLIQUE fragt, ob zu einem gegebenen ungerichteten Graphen und einer natürlichen Zahl
+k eine aus k Knoten bestehende Clique existiert. Für G= (V, E) undk eN gilt also:
+
+(G, k) € CLIQUE <= AC CV :C ist Clique und |C| =k
+Wir definieren E := (u,v)yeV/x/|awWeE}.
+
+2. Zeigen Sie: C ist Clique von G = (V, E), genau dann wenn V \C Knotentiberdeckung von (V, E)
+ist.
+
+3. Warum istr:((%, E),k) > ((V, E), |V| - k) eine polynomielle Reduktion von CLIQUE auf
+KNOTENÜBERDECKUNG?
+
+Fortsetzung nächste Seite!
+Frühjahr 2017 Einzelprüfungsnummer 66115 Seite 12
+
+Aufgabe 5: Algorithmen und Datenstrukturen I
+
+Führen Sie den Algorithmus von Dijkstra mit Startknoten s auf dem folgenden Graphen durch, um
+einen Kürzeste-Wege-Baum zu finden. Übernehmen Sie dazu die Berechnungstabelle auf Ihr
+Lösungsblatt und füllen Sie dort die Zeilen der Schritte 2. bis 9. aus. Markieren Sie zum Schluss alle
+Kanten, die zum berechneten Kürzeste-Wege-Baum gehören.
+
+Anmerkung: Für den i-ten Schritt enthält die Spalte Aktueller Knoten den im i-ten Schritt betrachteten
+aktuellen Knoten zusammen mit seinem Distanzwert. (s, 0) im ersten Schritt bedeutet also, dass der
+Knoten s die Distanz 0 zu s hat. Für den i-ten Schritt enthält die Spalte Inhalt der Priority-Queue Paare
+bestehend aus Knoten und zugehöriger Priorität. (g, 1) bedeutet also beispielsweise, dass Knoten g mit
+Priorität 1 in der Queue ist.
+
+. Aktueller Vorgänger-Array .
+Schritt Knoten || a | b | c | d | e | f | 9 | h Inhalt der Priority-Queue
+
+1. (s,0) 8 s|s 8 (g.1), (e,7), (d,8), (6,14)
+
+Fortsetzung nächste Seite!
+Frühjahr 2017 Einzelprüfungsnummer 66115 Seite 13
+
+Aufgabe 6: Algorithmen und Datenstrukturen II
+
+Für ein Array A bezeichne A[i] das i-te Element von A. Die Elemente eines Arrays der Länge n haben
+die Indizes 1 bis n.
+
+Das Maximum Subarray Sum Problem (kurz: MSAS Problem) ist wie folgt definiert:
+Gegeben: Ein nichtleeres Array A der Länge n e N von ganzen Zahlen (d.h. Zahlen aus Z).
+
+Aufgabe: Finden Sie die größte Zahl se Z , sodass s die Summe der Einträge eines nichtleeren
+Teilarrays von A ist. D.h., finden Sie s = max {I} ,A [k];1<si<sj< n}.
+
+1. Betrachten Sie Algorithmus 1.
+Algorithmus 1 : MSAS (4, i, /)
+1¢ < j-i+i
+
+2if 7 =1 then
+
+3 | return Ali]
+
+4sA <0
+
+5forr  itojdo
+
+6 | sA< sA+A[r]
+
+7sLinks <- MSAS (4, i, j-1)
+
+8 sRechts <~ MSAS(4, i+ 1, /)
+
+9 return max {sA, sLinks, sRechts}
+
+a) Begründen Sie weshalb dieser Algorithmus mit dem Aufruf MSAS (4, 1, n) das MSAS Problem
+löst.
+
+b) Analysieren Sie die Laufzeit des Algorithmus.
+
+2. Algorithmus 1 ist relativ ineffizient, da einige Teilarrays zu oft untersucht werden.
+Betrachten Sie Algorithmus 2.
+
+Hierbei ist B ein zweidimensionales globales Array, dessen Einträge mit ~—co vorinitialisiert sind.
+Analysieren Sie die Laufzeit dieses Algorithmus.
+
+Algorithmus 2 : MSAS (4, i, /)
+1 if BEA] #—o then
+2 | return Blif7]
+34<— j-it+l
+4if 7 =1 then
+5 return A[i]
+6sA <0
+Tforr <— itojdo
+8 | sA < sA+ Afr]
+9 sLinks <- MSAS(A,i,j- 1)
+10 sRechts <— MSAS (A, i+ 1, j)
+11 Bf7] <— max {sA, sLinks, sRechts}
+12 return B[fj]
+
+Fortsetzung nächste Seite!
+Frühjahr 2017 Einzelprüfungsnummer 66115 Seite 14
+
+3. Eine bessere Idee, als alle Teilarrays zu betrachten, ist die folgende. Für ein Array B bezeichne
+s(B) die größte Zahl, die die Summe eines nichtleeren Teilarrays von B ist. Außerdem bezeichne
+sRechts(B) die größte Zahl, die die Summe eines nichtleeren Teilarrays von B ist, das das letzte
+
+Element von B enthält. Sei A; das Teilarray von A, das aus den Elementen A[1],..., A[i] gebildet
+wird.
+
+Angenommen, wir kennen für ein i e {l,..., n} bereits die Zahlen s(4,) und sRechts(4,). Dann
+können wir auf sehr einfache Weise die Zahlen s(A,+7) und sRechts(4;.;) bestimmen.
+
+Geben Sie einen Algorithmus in Pseudo-Code an, der keine rekursiven Aufrufe verwendet und mit
+
+obiger Idee das MSAS Problem löst. Der Algorithmus soll eine möglichst gute Laufzeit besitzen.
+(Lineare Laufzeit ist möglich.)

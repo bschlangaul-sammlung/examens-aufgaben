@@ -1,0 +1,760 @@
+\documentclass{lehramt-informatik}
+\usepackage{amsmath}
+
+\newcommand{\tmptabelle}[1]{
+\bigskip
+\par
+\noindent
+\textbf{#1}:
+\bigskip
+\par
+\noindent
+}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\begin{document}
+
+\chapter{Aufgabenblatt 7: Übung}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 1: Kaufhaus again...}
+
+Gegeben ist wiederum die Kaufhausdatenbank
+
+\tmptabelle{Artikel}
+
+\begin{tabular}{llll}
+\textbf{ArtNr} & \textbf{Bezeichnung}  & \textbf{Verkaufspreis} & \textbf{Einkaufspreis} \\
+95    & Kamm         & 1.25          & 0.80          \\
+97    & Kamm         & 0.99          & 0.75          \\
+507   & Seife        & 3.93          & 2.45          \\
+1056  & Zwieback     & 1.20          & 0.90          \\
+1401  & Räucherlachs & 4.90          & 3.60          \\
+2045  & Herrenhose   & 37.25         & 24.45         \\
+2046  & Herrenhose   & 20.00         & 17.00         \\
+2340  & Sommerkleid  & 94.60         & 71.50
+\end{tabular}
+
+\tmptabelle{Abteilung}
+
+\begin{tabular}{lll}
+\textbf{Abteilungsname} & \textbf{Stockwerk} & \textbf{Abteilungsleiter} \\
+Lebensmittel   & I         & Josef Kunz       \\
+Lebensmittel   & EG        & Monika Stiehl    \\
+Textilien      & II        & Monika Stiehl
+\end{tabular}
+
+\tmptabelle{Bestand}
+
+\begin{tabular}{lll}
+\textbf{Abteilungsname}  & \textbf{ArtNr} & \textbf{Vorrat} \\
+Lebensmittel    & 1056  & 129    \\
+Lebensmittel    & 1401  & 200    \\
+Textilien       & 2045  & 14
+\end{tabular}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Formulieren Sie nachfolgende Anfragen in SQL mit Hilfe von Joins!
+
+\begin{itemize}
+
+%%
+% Punkt 1
+%%
+
+\item Wie viele Packungen Zwieback sind noch vorrätig?
+
+\begin{antwort}[richtig]
+\begin{minted}{sql}
+SELECT b.Vorrat
+FROM Bestand b JOIN Artikel a ON b.ArtNr = a.ArtNr
+WHERE a.Bezeichnung = 'Zwieback'
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+Hinweis: In obigem Lösungsansatz wird berücksichtigt, dass ein Artikel,
+hier der Zwieback, in mehreren Abteilungen verkauft werden kann. Geht
+man davon aus, dass Zwieback nur in einer Abteilung verkauft wird, kann
+man die Aggregatfunktion SUM weglassen.
+\begin{minted}{sql}
+SELECT SUM(b.Vorrat)
+FROM Bestand b, Artikel a
+WHERE b.ArtNr = a.ArtNr AND a.Bezeichnung = 'Zwieback';
+\end{minted}
+\end{antwort}
+
+%%
+% Punkt 2
+%%
+
+\item In welchem Stockwerk wird Räucherlachs verkauft?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Abteilung.Stockwerk
+FROM Artikel, Abteilung, Bestand
+WHERE Artikel.ArtNr = Bestand.ArtNr AND
+Bestand.Abteilungsname = Abteilung.Abteilungsname AND
+Artikel.Bezeichnung = 'Räucherlachs';
+\end{minted}
+\end{antwort}
+
+\end{itemize}
+
+%%
+% (b)
+%%
+
+\item Formulieren Sie folgende Anfragen an die Kaufhaus-Datenbank unter
+Verwendung von geschachtelten SELECT-Anweisungen!
+
+\begin{itemize}
+
+%%
+% Punkt 1
+%%
+
+\item Gib die Bezeichnungen und die Artikelnummern aller Artikel aus,
+die nicht mehr als der Artikel mit der Artikelnummer 1401 kosten!
+
+\begin{antwort}[muster]
+Hinweis: Durch Hinzufügen der Bedingung NOT(ArtNr=1401) wird der Artikel
+mit der Nummer 1401 in der Ergebnistabelle nicht aufgeführt
+\begin{minted}{sql}
+SELECT Bezeichnung, ArtNr AS Artikelnummer
+FROM Artikel
+WHERE Verkaufspreis <= (
+  SELECT Verkaufspreis FROM Artikel WHERE ArtNr = 1401
+);
+\end{minted}
+\end{antwort}
+
+%%
+% Punkt 2
+%%
+
+\item Gesucht sind Bezeichnung und Verkaufspreis aller Artikel, die in
+der Textilienabteilung verkauft werden!
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Bezeichnung, Verkaufspreis
+FROM Artikel WHERE ArtNr in (
+  SELECT ArtNr FROM Bestand WHERE Abteilungsname = 'Textilien'
+);
+\end{minted}
+\end{antwort}
+
+%%
+% Punkt 3
+%%
+
+\item Welche Produkte (Angabe der Bezeichnung) werden im Erdgeschoss
+verkauft?
+
+\begin{antwort}[falsch]
+Fragestellung: Es sollen geschachtelte SQL-Anfragen verwendet werden.
+\verb|DISTINCT| vergessen
+\begin{minted}{sql}
+SELECT Bezeichnung
+FROM Artikel
+WHERE ArtNr in (
+  SELECT ArtNr
+  FROM Abteilung, Bestand
+  WHERE Abteilung.Abteilungsname = Bestand.Abteilungsname AND
+    Abteilung.Stockwerk = 'EG'
+);
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT DISTINCT Bezeichnung
+FROM Artikel
+WHERE ArtNr in (
+  SELECT ArtNr
+  FROM Bestand
+  WHERE Abteilungsname IN (
+    SELECT Abteilungsname
+    FROM Abteilung
+    WHERE Stockwerk = 'EG'
+  )
+);
+\end{minted}
+\end{antwort}
+
+%%
+% Punkt 4
+%%
+
+\item Gib die Namen aller Abteilungsleiter aus, in deren Abteilungen von
+jedem Artikel weniger als 100 Exemplare vorrätig sind!
+
+\begin{antwort}[richtig]
+\begin{minted}{sql}
+SELECT DISTINCT Abteilungsleiter
+FROM Abteilung
+WHERE Abteilungsname IN (
+  SELECT Abteilungsname
+  FROM Bestand
+  GROUP BY Abteilungsname
+  HAVING MAX(Vorrat) < 100
+);
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[richtig]
+\begin{minted}{sql}
+SELECT DISTINCT Abteilungsleiter
+FROM Abteilung
+WHERE Abteilungsname NOT IN (
+  SELECT Abteilungsname
+  FROM Bestand
+  WHERE Vorrat >= 100
+);
+\end{minted}
+\end{antwort}
+
+oder:
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT DISTINCT Abteilungsleiter
+FROM Abteilung
+WHERE NOT EXISTS (
+  SELECT *
+  FROM Bestand
+  WHERE (Abteilung.Abteilungsname =
+  Bestand.Abteilungsname) AND Vorrat >= 100
+);
+\end{minted}
+\end{antwort}
+\end{itemize}
+
+%%
+% (c)
+%%
+
+\item Lösen Sie die Aufgabe 1b) Punkt 1 ohne Verwendung einer
+geschachtelten SQL Anfrage! (Gib die Bezeichnungen und die
+Artikelnummern aller Artikel aus, die nicht mehr als der Artikel mit der
+Artikelnummer 1401 kosten!)
+\begin{antwort}[falsch]
+Irgendwie habe ich über Bezeichnung gejoint, was nicht nötig ist.
+\begin{minted}{sql}
+SELECT a1.Bezeichnung, a1.ArtNr as Artikelnummer
+FROM Artikel a1, Artikel a2, Bestand b
+WHERE
+  b.ArtNr = a1.ArtNr AND
+  a2.ArtNr = a1.ArtNr AND
+  a2.ArtNr = 1401 AND
+  a1.Verkaufspreis <= a2.Verkaufspreis;
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+Irgendwie habe ich über Bezeichnung gejoint, was nicht nötig ist.
+\begin{minted}{sql}
+SELECT a.Bezeichnung, a.ArtNr as Artikelnummer
+FROM Artikel a, Artikel b
+WHERE
+  a.Verkaufspreis <= b.Verkaufspreis AND
+  b.ArtNr = 1401;
+\end{minted}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Formulieren Sie nachfolgende Anfragen mit Mengenoperatoren!
+
+\begin{itemize}
+
+%%
+% Punkt 1
+%%
+
+\item Gibt es registrierte Artikel, die noch nicht im Bestand aufgeführt
+sind?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT ArtNr FROM Artikel
+EXCEPT
+SELECT ArtNr FROM Bestand;
+\end{minted}
+\end{antwort}
+
+%%
+% Punkt 2
+%%
+
+\item Welche Artikel (Artikelnummer) sind registriert und bereits im
+Bestand aufgeführt?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT ArtNr FROM Artikel
+INTERSECT
+SELECT ArtNr FROM Bestand;
+\end{minted}
+\end{antwort}
+
+%%
+% Punkt 3
+%%
+
+\item Welche Artikel (Bezeichnung und Artikelnummer) sind bereits
+registriert und im Bestand aufgeführt?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Bezeichnung, ArtNr FROM Artikel WHERE ArtNr IN (
+  SELECT ArtNr FROM Artikel
+  INTERSECT
+  SELECT ArtNr FROM Bestand
+);
+\end{minted}
+\end{antwort}
+\end{itemize}
+
+%%
+% (d)
+%%
+
+\item Formulieren Sie folgende Anfragen in SQL:
+
+\begin{itemize}
+
+%%
+% Punkt 1
+%%
+
+\item Welche Artikel mit dem Anfangsbuchstaben “S” gibt es?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Bezeichnung FROM Artikel WHERE Bezeichnung LIKE 'S%';
+\end{minted}
+\end{antwort}
+
+%%
+% Punkt 2
+%%
+
+\item Welche Artikel haben an der 3. Stelle ein “i”?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Bezeichnung FROM Artikel WHERE Bezeichnung LIKE '__i%';
+\end{minted}
+\end{antwort}
+
+%%
+% Punkt 3
+%%
+
+\item Heißt der Artikel “Zwieback” oder “Zweiback”?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Bezeichnung FROM Artikel WHERE Bezeichnung LIKE 'Zw__back';
+\end{minted}
+\end{antwort}
+\end{itemize}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 2: noch mal Kaufhaus...}
+
+Gegeben ist wiederum die Kaufhaus-Datenbank (Tabellen siehe oben).
+Formulieren Sie nachfolgende Anfragen in SQL!
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Welche Artikel (Artikelnummer, Abteilungsname) werden in den
+Abteilungen angeboten? Die Ausgabe soll absteigend nach der
+Artikelnummer sortiert werden. Bei gleicher Artikelnummer sollen die
+betroffenen Abteilungen alphabetisch aufgelistet werden.
+
+\begin{antwort}[richtig]
+Viel zu kompliziert. Geht ohne Joins
+\begin{minted}{sql}
+SELECT Artikel.ArtNr AS Artikelnummer, Abteilungsname
+FROM Artikel, Bestand WHERE
+  Bestand.ArtNr = Artikel.ArtNr
+ORDER BY Artikel.ArtNr DESC, Abteilungsname ASC;
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT ArtNr, Abteilungsname
+FROM Bestand
+ORDER BY ArtNr DESC, Abteilungsname;
+\end{minted}
+\end{antwort}
+%%
+% (b)
+%%
+
+\item Wie viele verschiedene Waren werden in der Lebensmittelabteilung
+verkauft?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT COUNT(*)
+FROM Bestand
+WHERE Abteilungsname = 'Lebensmittel';
+\end{minted}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Wie viele verschiedene Waren werden in den einzelnen Abteilungen
+verkauft?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Abteilungsname, COUNT(*)
+FROM Bestand
+GROUP BY Abteilungsname;
+\end{minted}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Wie viel kostet der billigste, wie viel der teuerste Artikel?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT MIN(Verkaufspreis), MAX(Verkaufspreis)
+FROM Artikel;
+\end{minted}
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item Gib die Namen aller Abteilungen aus, deren Gesamtvorrat an Artikel
+kleiner als 100 ist!
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Abteilungsname
+FROM Bestand
+GROUP BY Abteilungsname
+HAVING COUNT(Vorrat) < 100;
+\end{minted}
+\end{antwort}
+
+%%
+% (f)
+%%
+
+\item Gesucht sind Bezeichnung und Verkaufspreis aller in der Datenbank
+gespeicherten Artikel. Die Ausgabe soll alphabetisch aufgelistet werden.
+Bei gleicher Bezeichnung sollen die teureren Artikel zuerst aufgelistet
+werden.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Bezeichnung, Verkaufspreis
+FROM Artikel
+ORDER BY Bezeichnung, Verkaufspreis DESC;
+\end{minted}
+\end{antwort}
+
+%%
+% (g)
+%%
+
+\item Gib für alle Artikel, von denen (unabhängig von der Abteilung)
+noch mindestens 130 Exemplare vorrätig sind, die Artikelnummer und den
+aktuellen Vorrat aus!
+
+\begin{antwort}[falsch]
+Derselbe Artikel kann in mehreren Abteilungen angeboten werden.
+\begin{minted}{sql}
+SELECT ArtNr, Vorrat
+FROM Bestand
+WHERE Vorrat >= 130;
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT ArtNr, SUM(Vorrat)
+FROM Bestand
+GROUP BY ArtNr
+HAVING SUM(Vorrat) >= 130;
+\end{minted}
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 3: Kaufhaus zum letzen Mal!}
+
+Gegeben ist wieder die Kaufhaus-Datenbank. Wie lauten die SQL-Befehle
+für folgende Sichten?
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Sicht \verb|view1|: Gesucht sind alle Informationen zu Artikeln,
+an denen das Kaufhaus mehr als 35\% verdient.
+
+\begin{antwort}[falsch]
+Da stimmt irgendwas nicht mit er Mathematik
+\begin{minted}{sql}
+CREATE VIEW view1 AS
+SELECT *
+FROM Artikel
+WHERE 1 - Einkaufspreis / Verkaufspreis >= 0.35;
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+CREATE VIEW view1 AS
+SELECT *
+FROM Artikel
+WHERE Verkaufspreis > 1.35 * Einkaufspreis;
+\end{minted}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Sicht \verb|view2|: Gesucht sind alle Informationen zu Artikeln,
+an denen das Kaufhaus mehr als 35\% verdient und die für höchstens 50 €
+verkauft werden.
+
+\begin{antwort}[richtig]
+Wahrscheinlich soll mit der View weitergemacht werden.
+\begin{minted}{sql}
+CREATE VIEW view2 AS
+SELECT *
+FROM Artikel
+WHERE Verkaufspreis > 1.35 * Einkaufspreis AND Verkaufspreis <= 50;
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+CREATE VIEW view2 AS
+SELECT *
+FROM view1
+WHERE Verkaufspreis <= 50;
+\end{minted}
+\end{antwort}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 5: Entity-Relationship-Modell}
+
+Multiple-Choice-Online-Tests für Nachqualifizierungskurse sollen
+datenbankgestützt erfolgen. Dabei liegt folgende Situation vor:
+
+Ein Kurs (Kursname, verantwortliche Universität), der aus höchstens 30
+Teilnehmern (Teilnehmernummer, Name, Passwort) besteht, behandelt
+mindestens ein Themenmodul. Ein Themenmodul kann aber in mehreren
+verschiedenen Kursen behandelt werden. Ein Teilnehmer besucht genau
+einen Kurs. Jeder Kurs wird von genau einem Tutor betreut, vom dem
+Personalnummer, Name und Spezialgebiet abgespeichert werden sollen. Ein
+Tutor kann maximal zwei Kurse parallel betreuen. Jedes Themenmodul ist
+eindeutig durch seine Modulnummer charakterisiert. Von jedem Modul soll
+der Modultitel abgespeichert werden. Die Kursteilnehmer können
+Multiple-ChoiceTests durchführen. Es soll gespeichert werden, welcher
+Test von welchem Teilnehmer unter Angabe des Datums bereits bearbeitet
+wurde. Die Bearbeitung eines bestimmten Tests ist aber pro Person nur
+einmal möglich. Außerdem will der Tutor wissen, wie viele Tests ein
+Teilnehmer bereits durchgeführt hat. Ein Test hat eine Nummer und eine
+kurze Beschreibung und gehört zu einem eindeutig bestimmten Themenmodul.
+Jeder Test besteht aus einer Menge von Aufgaben. Eine Aufgabe besteht
+dabei aus einer Frage und möglichen Antworten. Ein Test kann eine
+beliebige Anzahl von Aufgaben haben und jede Aufgabe kann eine beliebige
+Zahl von möglichen Antworten haben, von denen aber mindestens eine
+richtig sein muss. Bei einer Antwort muss natürlich vermerkt sein, ob
+sie richtig oder falsch ist. Jede Aufgabe gehört zu genau einem Test und
+jede Antwort genau zu einer Aufgabe. Bei der Bearbeitung eines Tests
+soll gespeichert werden, welche Antworten von einem Prüfling angekreuzt
+werden, um daraus das Testergebnis berechnen zu können.
+
+Erstellen Sie ein ER-Modell! Verarbeiten Sie dabei nur die unbedingt
+notwendigen Informationen. Geben Sie aber an, wie die nicht in Ihrem
+ER-Modell auftauchenden“”Informationen bestimmt werden können. Für im
+Text nicht näher spezifizierte Funktionalitäten besteht keine
+Einschränkung. Formulieren Sie eventuell auftauchende
+Integritätsbedingungen, die nicht in das Modell eingebaut“ werden
+können, extra und”geben Sie jeweils eine Möglichkeit zur Gewährleistung
+dieser Bedingung an.
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 6: Normalformen}
+
+Ein privater Arbeitsvermittler legt eine relationale Datenbank an, in
+der u.a. die folgenden Informationen gespeichert werden:
+
+Zu jeder gemeldeten offenen Stelle werden der Name und die Adresse des
+Arbeitgebers gespeichert, ebenso die genaue Stellenbezeichnung, das
+Jahresgehalt und das Datum, ab dem die Stelle zu besetzen ist. Außerdem
+wird vermerkt, ob es sich um eine befristete oder unbefristete
+Anstellung handelt. Verschiedene Arbeitgeber können Stellen mit
+derselben Stellenbezeichnung anbieten, ebenfalls kann ein Arbeitgeber
+mehrere Niederlassungen haben.
+
+Aus der Adresse kann nicht auf den Namen des Arbeitgebers geschlossen
+werden (Beispiel Bürohochhaus). Ein Arbeitgeber hat jedoch nicht mehrere
+Niederlassungen am selben Ort. Außerdem sei der Einfachheit halber
+vorausgesetzt, dass jeder Arbeitgeber pro Niederlassung nur eine Stelle
+mit einer bestimmten Bezeichnung zu vergeben hat, und jeder Bewerber nur
+einmal vermittelt wird. Aus der Stellenbezeichnung lässt sich bereits
+ersehen, ob die Stelle befristet ist oder nicht. Des Weiteren weist eine
+Stellenbezeichnung darauf hin, welcher Branchenbezeichnung sie
+zuzuordnen ist.
+
+Von jedem Arbeitsuchenden werden der Name und die Adresse, die
+Telefonnummer, der erlernte Beruf und das Geburtsdatum des Bewerbers
+gespeichert. Zusätzlich soll direkt abrufbar sein, ob der Bewerber
+bereits älter als 25 Jahre (schwer zu vermitteln!) ist. Als Kriterium
+gilt dabei der Zeitpunkt der Meldung beim Arbeitsvermittler und nicht
+der Zeitpunkt eines möglichen Stellenantritts.
+
+Aus diesen Vorgaben ergibt sich (beispielsweise) folgendes relationales
+Schema (Relationen mindestens in 1.NF):
+
+\begin{itemize}
+\item \textbf{Stellen}: Stellenbezeichnung, AG-Name, AG-Adresse, Gehalt,
+Einstellungsdatum, befristet
+
+\item \textbf{Bewerber}: Name, Adresse, Gebdatum, Beruf, TelNr,
+Antrittsdatum, aelter25
+
+\item \textbf{Branche}: Branchenbezeichnung, Bedarf
+
+\item \textbf{gehoert\_zu}: Stellenbezeichnung, AG-Name, AG-Adresse,
+Branchenbezeichnung
+
+\item \textbf{vermittelt}: Stellenbezeichnung, AG-Name, AG-Adresse,
+Name, Adresse
+\end{itemize}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Welche funktionalen Abhängigkeiten gibt es bzgl. der einzelnen
+Relationen?
+
+\begin{antwort}[muster]
+\begin{itemize}
+\item \textbf{Stellen}: \\
+Stellenbezeichnung, AG-Name, AG-Adresse $\rightarrow$ Gehalt \\
+Stellenbezeichnung, AG-Name, AG-Adresse $\rightarrow$ Einstellungsdatum \\
+Stellenbezeichnung $\rightarrow$ befristet
+
+\item \textbf{Bewerber}: \\
+Name, Adresse $\rightarrow$ Gebdatum \\
+Name, Adresse $\rightarrow$ Beruf \\
+Name, Adresse $\rightarrow$ TelNr \\
+Name, Adresse $\rightarrow$ Antrittsdatum \\
+Name, Adresse $\rightarrow$ aelter25 \\
+Name, Gebdatum $\rightarrow$ aelter25
+
+\item \textbf{Branche}: \\
+Branchenbezeichnung $\rightarrow$ Bedarf
+
+\item \textbf{gehoert\_zu}: \\
+Stellenbezeichnung $\rightarrow$ Branchenbezeichnung
+
+\item \textbf{vermittelt}: \\
+Stellenbezeichnung, AG-Name, AG-Adresse $\rightarrow$ Name \\
+Stellenbezeichnung, AG-Name, AG-Adresse $\rightarrow$ Adresse \\
+Name, Adresse $\rightarrow$ Stellenbezeichnung \\
+Name, Adresse $\rightarrow$ AG-Name \\
+Name, Adresse $\rightarrow$ AG-Adresse
+\end{itemize}
+
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Wie lauten die Schlüsselkandidaten der einzelnen Relationen?
+
+\begin{antwort}[muster]
+\begin{itemize}
+\item \textbf{Stellen}: \\
+\{ Stellenbezeichnung, AG-Name, AG-Adresse \}
+
+\item \textbf{Bewerber}: \\
+\{ Name, Adresse \}
+
+\item \textbf{Branche}: \\
+\{ Branchenbezeichnung \}
+
+\item \textbf{gehoert\_zu}: \\
+\{ Stellenbezeichnung, AG-Name, AG-Adresse \}
+
+\item \textbf{vermittelt}: \\
+\{ Stellenbezeichnung, AG-Name, AG-Adresse \}, \{ Name, Adresse \} \\
+\end{itemize}
+
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Überprüfen Sie, welche Normalformen bei den einzelnen
+Relationenschemata vorliegen!
+
+%%
+% (d)
+%%
+
+\item Überführen Sie die Relationenschemata in die 3. Normalform!
+\end{enumerate}
+
+\end{document}

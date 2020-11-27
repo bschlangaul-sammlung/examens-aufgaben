@@ -1,0 +1,174 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax,mathe}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Selectionsort: Sortieren durch Auswählen\footcite[Seite 39]{aud:fs:tafeluebung-11}}
+
+\begin{quellen}
+\item \cite[Seite 39]{aud:fs:tafeluebung-11}
+\item \cite{wiki:selectionsort}
+\item \cite[Seite 127-129 (PDF 145-147)]{saake}
+\item \cite[6.4.1 Naive Sortierverfahren, Seite 191]{schneider}
+\end{quellen}
+
+\begin{itemize}
+\item Funktionsweise
+
+\begin{itemize}
+\item solange zu sortierende Liste mehr als ein Element beinhaltet:
+
+\begin{itemize}
+\item lösche das \emph{Maximum / Minimum} aus der Liste
+\item füge es ans Ende der Ergebnisliste
+\item wiederhole, bis Eingangsliste leer
+\end{itemize}
+
+\end{itemize}
+
+\item \emph{Eigenschaften} von Selectionsort:
+
+\begin{itemize}
+\item Laufzeitkomplexität:
+$\mathcal{O}(n^2)$ (im \emph{Best}-, \emph{Average}- und
+\emph{Worst-Case})
+
+\item Stabilität leicht erreichbar
+\item bei Zahlen \emph{in-situ}
+\end{itemize}
+
+\end{itemize}
+
+%%
+%
+%%
+
+\section{Iterativ}
+
+\inputcode[firstline=5,lastline=29]{sortier/SelectionSort}
+\footcite[Seite 128 (PDF 146)]{saake}
+
+\section{Halb Rekursiv}
+
+\inputcode[firstline=31,lastline=52]{sortier/SelectionSort}
+
+\section{Rekursiv}
+
+\inputcode[firstline=54,lastline=77]{sortier/SelectionSort}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Herbst 2014 (66115) - Thema 2, Aufgabe 6\footcite[Aufgabe 4,
+Seite 4]{aud:ab:3}}
+
+Gegeben sei ein einfacher Sortieralgorithmus, der ein gegebenes Feld $A$
+dadurch sortiert, dass er das \emph{Minimum} $m$ von $A$ \emph{findet},
+dann das Minimum von $A$ ohne das Element $m$ usw.
+\footcite[Thema 2, Aufgabe 6, Seite 5]{examen:66115:2014:09}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Geben Sie den Algorithmus in Java an. Implementieren Sie den
+Algorithmus \emph{in situ}, d.\,h. so, dass er außer dem Eingabefeld nur
+konstanten Extraspeicher benötigt. Es steht eine Testklasse zur
+Verfügung.
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/aud/examen_66115_2014_09/SortierungDurchAuswaehlen}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Analysieren Sie die Laufzeit Ihres Algorithmus.
+
+\begin{antwort}
+Beim ersten Durchlauf des \emph{Selectionsort}-Algorithmus muss $n - 1$
+mal das Minimum durch Vergleich ermittel werden, beim zweiten Mal
+$n - 2$.
+Mit Hilfe der \emph{Gaußschen Summenforme}l kann die Komplexität
+gerechnet werden:
+
+\begin{displaymath}
+(n-1)+(n-2)+\dotsb+3+2+1 =
+\frac{(n-1)\cdot n}{2} =
+\frac{n^2}{2}-\frac{n}{2} \approx
+\frac{n^2}{2} \approx
+n^2
+\end{displaymath}
+
+Da es bei der Berechnung des Komplexität um die Berechnung der
+asymptotischen oberen Grenze geht, können Konstanten und die Addition,
+Subtraktion, Multiplikation und Division mit Konstanten z. b.
+$\frac{n^2}{2}$ vernachlässigt werden.
+
+Der \emph{Selectionsort}-Algorithmus hat deshalb die Komplexität
+$\mathcal{O}(n^2)$, er ist von der Ordnung
+$\mathcal{O}(n^2)$.
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Geben Sie eine Datenstruktur an, mit der Sie Ihren Algorithmus
+beschleunigen können.
+
+\begin{antwort}
+Der \emph{Selectionsort}-Algorithmus kann mit einer Min- (in diesem
+Fall) bzw. einer Max-Heap beschleunigt werden. Mit Hilfe dieser
+Datenstruktur kann sehr schnell das Minimum gefunden werden. So kann auf
+die viele Vergleiche verzichtet werden. Die Komplexität ist dann
+$\mathcal{O}(n \log n)$.
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Sortieren\footcite[Aufgabe 2]{aud:e-klausur}}
+
+In dieser Aufgabe soll ein gegebenes Integer Array mit Hilfe von
+\textbf{Selection Sort} sortiert werden. Es soll eine iterative und eine
+rekursive Methode geschrieben werden.
+
+Verwenden Sie zur Implementierung jeweils die Methodenköpfe
+\java{selectionSortIterativ()} und \java{selectionSortRekursiv()}. Eine
+\java{swap}-Methode, die für ein gegebenes Array und zwei Indizes die
+Einträge an den jeweiligen Indizes des Arrays vertauscht, ist gegeben
+und muss nicht implementiert werden.
+
+Es müssen keine weiteren Methoden geschrieben werden!
+
+\begin{antwort}
+\ueberschrift{iterativ}
+
+\inputcode[firstline=11,lastline=21]{aufgaben/aud/e_klausur/SelectionSort}
+
+\ueberschrift{rekursiv}
+
+\inputcode[firstline=23,lastline=35]{aufgaben/aud/e_klausur/SelectionSort}
+\end{antwort}
+
+\end{enumerate}
+
+\literatur
+
+\end{document}

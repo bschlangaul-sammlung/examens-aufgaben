@@ -1,0 +1,586 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax,mathe}
+
+\newcommand{\tmptabelle}[1]{
+\bigskip
+\par
+\noindent
+\textbf{#1}:
+\bigskip
+\par
+\noindent
+}
+
+\DeclareMathSymbol{\mlq}{\mathord}{operators}{``}
+\DeclareMathSymbol{\mrq}{\mathord}{operators}{`'}
+
+\begin{document}
+
+\chapter{Aufgabenblatt 3: Relationale Algebra und SQL}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 2: Herbst 2018 - DB/ST (RS) - Thema 2. TA II. A3}
+
+Gegeben sei das folgende Datenbank-Schema, das für die Speicherung der
+Daten einer Schule entworfen wurde, zusammen mit einem Teil seiner
+Ausprägung. Die Primärschlüssel-Attribute sind jeweils unterstrichen.
+
+Die Relation \emph{Schueler} enthält allgemeine Daten zu den
+Schülerinnen und Schülern. Schülerinnen und Schüler nehmen an Prüfungen
+in verschiedenen Unterrichtsfächern teil und erhalten dadurch Noten.
+Diese werden in der Relation \emph{Noten} abgespeichert. Prüfungen haben
+ein unterschiedliches Gewicht. Beispielsweise hat ein mündliches
+Ausfragen oder eine Extemporale das Gewicht 1, während eine Schulaufgabe
+das Gewicht 2 hat.
+
+Schueler:
+
+\begin{tabular}{llll}
+SchuelerID & Vorname & Nachname  & Klasse \\
+1        & Laura   & Müller    & 4A     \\
+2        & Linus   & Schmidt   & 4A     \\
+3        & Jonas   & Schneider & 4A     \\
+4        & Liam    & Fischer   & 4B     \\
+5        & Tim     & Weber     & 4B     \\
+6        & Lea     & Becker    & 4B     \\
+7        & Emilia  & Klein     & 4C     \\
+8        & Julia   & Wolf      & 4C
+\end{tabular}
+
+Noten:
+
+\begin{tabular}{lllll}
+SchuelerID {[}Schueler{]} & Schulfach  & Note & Gewicht & Datum      \\
+1                         & Mathematik & 3    & 2       & 23.09.2017 \\
+1                         & Mathematik & 1    & 1       & 03.10.2017 \\
+1                         & Mathematik & 2    & 2       & 15.10.2017 \\
+1                         & Mathematik & 4    & 1       & 11.11.2017
+\end{tabular}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Geben Sie die SQL-Befehle an, die notwendig sind, um die oben
+dargestellten Tabellen in einer SQL-Datenbank anzulegen.
+
+\begin{antwort}[muster]
+Ich hatte den Primärschlüssel aus der Tabelle Noten übersehen.
+\begin{minted}{sql}
+CREATE TABLE Schuler (
+  Schueler INTEGER PRIMARY NOT NULL,
+  Vorname VARCHAR(20),
+  Nachname VARCHAR(20),
+  Klasse VARCHAR(5)
+);
+
+CREATE TABLE Noten (
+  SchuelerID INTEGER NOT NULL,
+  Schulfach VARCHAR(20),
+  Note INTEGER,
+  Gewicht INTEGER,
+  Datum DATE,
+  PRIMARY(SchuelerID, Schulfach, Datum),
+  FOREIGN KEY (SchuelerID) REFERENCES Schueler(Schueler)
+);
+\end{minted}
+
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Entscheiden Sie jeweils, ob folgende Einfügeoperationen vom
+gegebenen Datenbanksystem (mit der angegebenen Ausprägungen) erfolgreich
+verarbeitet werden können und begründen Sie Ihre Antwort kurz.
+
+\begin{minted}{sql}
+INSERT INTO
+Schueler (SchuelerID, Vorname, Nachname, Klasse)
+VALUES (6, "Johannes", "Schmied", "4C");
+\end{minted}
+
+\begin{antwort}[richtig]
+Nein, denn die Spalte, die Primärschlüssel heißt Schueler und nicht
+SchuelerID. Außerdem existiert bereits ein Schuüler mit der ID 6.
+\end{antwort}
+
+\begin{antwort}[muster]
+nein, SchuelerID muss als Primärschlüssel eindeutig sein und ist bereits vergeben
+\end{antwort}
+
+\begin{minted}{sql}
+INSERT INTO Noten VALUES (9, "Chemie", 1, 2);
+\end{minted}
+
+\begin{antwort}[richtig]
+Nein, Datum ist zwingend nötig, da es im Primärschlüssel enthalten ist.
+Es gibt keine Schuler mit der ID 9. Der müsste vorher angelegt sein,
+da die Spalte SchuelerID von Noten auf den Fremdschlüssel Schueler aus
+der Schuelertabelle verweist.
+\end{antwort}
+
+\begin{antwort}[muster]
+nein, Schueler mit der ID 9 existiert noch nicht, sodass diese Noten
+nicht eingetragen werden können, da Integritätsbedingungen nicht erfüllt
+(SchuelerID ist Fremdschlüssel), zudem fehlt das Datum. Da es sich
+hier um ein Schlüsselattribut handelt, kann es nicht NULL sein.
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Geben Sie die Befehle für die folgenden Aktionen in SQL an.
+Beachten Sie dabei, dass die Befehle auch noch bei Änderungen des oben
+gegebenen Datenbank- zustandes korrekte Ergebnisse zurückliefern müssen.
+
+\begin{itemize}
+\item Die Schule möchte verhindern, dass in die Datenbank mehrere Kinder
+mit dem selben Vornamen in die gleiche Klasse kommen. Dies soll bereits
+auf Datenbankebene verhindert werden. Dabei sollen die Primärschlüssel
+nicht verändert werden. Geben Sie den Befehl an, der diese Änderung
+durchführt.
+
+\begin{antwort}[falsch]
+\begin{minted}{sql}
+ALTER TABLE Schueler ALTER COLUMN Vorname ADD UNIQUE;
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+ALTER TABLE Schueler
+ADD CONSTRAINT Vorname_eindeutig UNIQUE (Vorname, Klasse);
+\end{minted}
+\end{antwort}
+
+\item Der Schüler Tim Weber (SchuelerID: 5) wechselt die Klasse. Geben
+Sie den SQL-Befehl an, der den genannten Schüler in die Klasse “4C“
+überführt.
+
+\begin{antwort}[richtig]
+\begin{minted}{sql}
+UPDATE Schuler
+SET Klasse = '4C'
+WHERE Vorname = 'Tim' AND Nachname = 'Weber' AND SchuelerID = 5;
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+UPDATE Schuler
+SET Klasse = '4C' WHERE SchuelerID = 5;
+\end{minted}
+\end{antwort}
+
+\item Die Schülerin Laura Müller (SchuelerID: 1) zieht um und wechselt
+die Schule. Löschen Sie die Schülerin aus der Datenbank. Nennen Sie
+einen möglichen Effekt, welcher bei der Verwendung von Primär- und
+Fremdschlüsseln auftreten kann.
+
+\begin{antwort}[richtig]
+\begin{minted}{sql}
+DELETE FROM Noten WHERE SchuelerID = 1;
+DELETE FROM Schueler WHERE Schueler = 1
+\end{minted}
+
+Es könnte passieren, dass man vergisst die Einträge in Noten zu löschen,
+denn der Fremdschlüssel SchuelerID verweist auf den Primärschlüssel
+SchuelerID in Schuler.
+\end{antwort}
+
+\begin{antwort}[muster]
+Löschen aller Noten von Laura Müller, falls ON DELETE CASCADE gesetzt.
+Oder es müssen erst alle Fremdschlüsselverweise auf diese SchuelerID in
+Noten gelöscht werden
+\end{antwort}
+
+\item Erstellen Sie eine View „DurchschnittsNoten“, die die folgenden
+Spalten beinhaltet: Klasse, Schulfach, Durchschnittsnote Hinweis:
+Beachten Sie die Gewichte der Noten.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+CREATE VIEW DurchschnittsNoten AS (
+  (SELECT s.Klasse, n.Schulfach, (SUM(n.Note * n.Gewicht) / SUM(n.Gesicht)) AS Durchschnittsnote
+  FROM Noten n, Schueler s
+  WHERE s.SchulerID = n.SchuelerID AND n.Gewicht = 1
+  GROUP BY s.Klasse, n.Schulfach)
+);
+\end{minted}
+\end{antwort}
+
+\item Geben Sie den Befehl an, der die komplette Tabelle „Noten“ löscht.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+DROP TABLE Noten;
+\end{minted}
+\end{antwort}
+
+\end{itemize}
+
+%%
+% (d)
+%%
+
+\item Formulieren Sie die folgenden Anfragen in SQL. Beachten Sie dabei,
+dass sie SQL-Befehle auch noch bei Änderungen der Ausprägung die
+korrekten Anfrageergebnisse zurückgeben sollen.
+
+\begin{itemize}
+
+%%
+%
+%%
+
+\item Gesucht ist die durchschnittliche Note, die im Fach Mathematik
+vergeben wird.
+
+Hinweis: Das Gewicht ist bei dieser Anfrage nicht relevant
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT AVG(Note)
+FROM Noten
+WHERE Schulfach = 'Mathematik';
+\end{minted}
+\end{antwort}
+
+Musterlösung nimmt View zu hand.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT AVG(Note) AS durchschnittlicheNote
+FROM DurchschnittsNoten
+WHERE Schulfach = 'Mathematik';
+\end{minted}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Berechnen Sie die Anzahl der Schüler, die im Fach Mathematik am
+23.09.2017 eine Schulaufgabe (d.h. Gewicht=2) geschrieben haben.
+
+\begin{antwort}[muster]
+Ich habe in der WHERE Klauses das Schulfach vergessen. Sonst richtig.
+Außerdem habe ich das Datum einfach übernommen.
+\begin{minted}{sql}
+SELECT COUNT(SchuelerID) AS AnzahlSchueler
+FROM Noten
+WHERE Datum = 2017-09-23 AND Gewichtung = 2 AND Schulfach = 'Mathematik';
+\end{minted}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Geben Sie die SchuelerID aller Schüler zurück, die im Fach
+Mathematik mindestens drei mal die Schulnote 6 geschrieben haben.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT SchuelerID
+FROM Noten
+WHERE Schulfach = 'Mathematik' AND Note = 6
+GROUP BY SchuelerID
+HAVING COUNT(*) >= 3;
+\end{minted}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Gesucht ist der Notendurchschnitt bezüglich jedes Fachs der Klasse
+„4A“.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT n.Schulfach, AVG (n.Note)
+FROM Schueler s, Noten n
+WHERE s.SchuelerID = n.SchuelerID AND s.Klasse = ’4 A ’
+GROUP BY n.Schulfach
+\end{minted}
+
+Hier wäre Gewicht unberücksichtigt, also möglicherweise besser, auf die oben erstellte
+View zurückgreifen:
+
+\begin{minted}{sql}
+SELECT Schulfach, durchschnittlicheNote,
+FROM DurchschnittsNoten
+WHERE Klasse = '4a';
+\end{minted}
+\end{antwort}
+\end{itemize}
+
+%%
+% (e)
+%%
+
+\item Geben Sie jeweils an, welchen Ergebniswert die folgenden
+SQL-Befehle für die gegebene Ausprägung zurückliefern.
+
+\begin{minted}{sql}
+SELECT COUNT(DISTINCT Klasse)
+FROM
+Schueler NATURAL JOIN Noten;
+\end{minted}
+
+\begin{antwort}[muster]
+1 $\rightarrow$ 4A von Laura Müller
+\end{antwort}
+
+\begin{minted}{sql}
+SELECT COUNT(all Klasse)
+FROM
+Noten, Schueler;
+\end{minted}
+
+\begin{antwort}[muster]
+32 $\rightarrow$ Kreuzprodukt, zählt alle Einträge in Klasse
+\end{antwort}
+
+\begin{minted}{sql}
+SELECT COUNT(Note)
+FROM
+Schueler NATURAL LEFT OUTER JOIN Noten;
+\end{minted}
+
+\begin{antwort}[muster]
+4 $\rightarrow$ null-Werte nicht mitgezählt, 4 Noten von Laura
+\end{antwort}
+
+\begin{minted}{sql}
+SELECT COUNT(*)
+FROM
+Schueler NATURAL LEFT OUTER JOIN Noten;
+\end{minted}
+
+\begin{antwort}[muster]
+11 $\rightarrow$ alle Schüler, Laura dabei 4-mal, weil 4 Noten
+\end{antwort}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 3: SQL abstrakt...}
+
+Gegeben sind die drei Tabellen TAB1, TAB2 und TAB3:
+
+\tmptabelle{TAB1}
+
+\begin{tabular}{lll}
+A&B&C\\
+1&2&3\\
+4&5&6\\
+7&8&9\\
+\end{tabular}
+
+\tmptabelle{TAB2}
+
+\begin{tabular}{ll}
+A&B\\
+1&4\\
+3&7\\
+\end{tabular}
+
+\tmptabelle{TAB3}
+
+\begin{tabular}{ll}
+A&B\\
+1&2\\
+9&6\\
+3&3\\
+9&2\\
+2&7\\
+7&4\\
+9&4\\
+3&7\\
+\end{tabular}
+
+\bigskip
+
+Geben Sie die Ergebnistabellen der folgenden Aussagen an:
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item
+
+\begin{minted}{sql}
+SELECT A FROM TAB3 WHERE B = 4 OR B = 7 ORDER BY A;
+\end{minted}
+
+\begin{antwort}[muster]
+\begin{tabular}{l}
+A\\
+2\\
+7\\
+9\\
+3\\
+\end{tabular}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item
+
+\begin{minted}{sql}
+SELECT * FROM TAB3 WHERE NOT (B = 7) ORDER BY A ASC, B
+DESC;
+\end{minted}
+
+\begin{antwort}[muster]
+\begin{tabular}{ll}
+A&B\\
+1&2\\
+3&3\\
+7&4\\
+9&6\\
+9&4\\
+9&2\\
+\end{tabular}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item
+
+\begin{minted}{sql}
+SELECT COUNT(DISTINCT A) FROM TAB3 WHERE B >= 3;
+\end{minted}
+
+\begin{antwort}[muster]
+4
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item
+
+\begin{minted}{sql}
+SELECT A, COUNT(*), SUM (B), MAX(A), AVG(B) FROM TAB3
+GROUP BY A;
+\end{minted}
+
+\begin{antwort}
+\begin{tabular}{lllll}
+A&Count&SumB&MaxA&AvgB\\
+1&1&2&1&2\\
+2&1&7&2&7\\
+3&2&10&3&5\\
+7&1&4&7&4\\
+9&3&12&9&4\\
+\end{tabular}
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item
+
+\begin{minted}{sql}
+SELECT TAB1.*, TAB2.* FROM TAB1, TAB2;
+\end{minted}
+
+\begin{antwort}
+\begin{tabular}{lllll}
+TAB1.A&TAB1.B&TAB1.C&TAB2.A&TAB2.B\\
+1&2&3&1&4\\
+4&5&6&1&4\\
+7&8&9&1&4\\
+1&2&3&3&7\\
+4&5&6&3&7\\
+7&8&9&3&7\\
+\end{tabular}
+\end{antwort}
+
+%%
+% (f)
+%%
+
+\item
+
+\begin{minted}{sql}
+SELECT TAB1.*, TAB2.* FROM TAB1, TAB2 WHERE TAB1.A =
+TAB2.B;
+\end{minted}
+
+\begin{antwort}
+\begin{tabular}{lllll}
+TAB1.A&TAB1.B&TAB1.C&TAB2.A&TAB2.B\\
+4&5&6&1&4\\
+7&8&9&3&7\\
+\end{tabular}
+\end{antwort}
+
+%%
+% (g)
+%%
+
+\item
+
+\begin{minted}{sql}
+SELECT TAB1.*, TAB2.* FROM TAB1, TAB2 WHERE TAB1.A =
+TAB2.B AND TAB2.A = 3;
+\end{minted}
+
+\begin{antwort}
+\begin{tabular}{lllll}
+TAB1.A&TAB1.B&TAB1.C&TAB2.A&TAB2.B\\
+7&8&9&3&7\\
+\end{tabular}
+\end{antwort}
+
+%%
+% (h)
+%%
+
+\item
+
+\begin{minted}{sql}
+SELECT TAB1.A, TAB1.C, TAB2.A FROM TAB1, TAB2 WHERE
+TAB1.A = TAB2.B AND TAB2.A = 3;
+\end{minted}
+
+\begin{antwort}
+\begin{tabular}{lll}
+TAB1.A&TAB1.C&TAB2.A\\
+7&9&3\\
+\end{tabular}
+\end{antwort}
+
+\end{enumerate}
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\end{document}

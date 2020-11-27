@@ -1,0 +1,343 @@
+
+
+Prüfungsteilnehmer Prüfungstermin Einzelprüfungsnummer
+
+Kennzahl:
+
+"Kennwort Frühjahr
+Arbeitsplatz-Nr.: 2 0 1 4
+
+66115
+
+Erste Staatsprüfung für ein Lehramt an öffentlichen Schulen
+
+— Prüfungsaufgaben —
+
+Fach: Informatik (vertieft studiert)
+Einzelprüfung: _ Theoret. Informatik, Algorithmen
+Anzahl der gestellten Themen (Aufgaben): 2
+
+Anzahl der Druckseiten dieser Vorlage: 13
+
+Bitte wenden!
+
+Frühjahr 2014 Einzelprüfungsnummer 66115 Seite 2
+
+Thema Nr. 1
+
+Aufgabe 1: ,Rekursion und Induktion“
+
+a) Gegeben sei die Methode BigInteger 1£Big(int n) zur Berechnung der
+. eingeschränkten Linksfakultät:
+
+nm D-@-D-!a-2) falls 1<n< 32767
+In= 1 falls n=l
+& sonst
+
+import java.math.Biginteger;
+import static java.math.BigInteger.*;
+
+public class LeftFactorial {
+// returns the left factorial !n
+BigInteger 1fBig(int n) {
+if (n <= @ || n >= Short.MAX_VALUE) {
+return ZERO;
+} else if (n == 1) {
+return ONE;
+} else {
+return sub(mul(n, 1fBig(n - 1)), mul(n - 1, 1fBig(n - 2)));
+}
+
+Implementieren Sie unter Verwendung des Konzeptes der dynamischen Programmierung
+die Methode Biginteger dp({int n), die jede !n auch bei mehrfachem Aufrufen mit dem
+gleichen Parameter höchstens einmal rekursiv berechnet. Sie dürfen der Klasse
+LeftFactorial genau ein Attribut beliebigen Datentyps hinzufügen und die in HBig(int)
+verwendeten Methoden und Konstanten ebenfalls nutzen.
+
+Fortsetzung nächste Seite!
+
+Seite 3
+
+Frühjahr 2014 Einzelprüfungsnummer 66115
+
+b) Betrachten Sie nun die Methode L£Long (int) zur Berechnung der vorangehend -
+definierten Linksfakultät ohne obere Schranke. Nehmen Sie im Folgenden an, dass der
+
+Datentyp long unbeschränkt ist und daher kein Überlauf auftritt.
+
+long lfLong(int n) {
+if (n <= 9) {
+return 6;
+} else if (n == 1) {
+return 1;
+
+} else {
+return n * lfLong(n - 1) - (n - 1) * 1fLong(n - 2);
+} .
+
+Beweisen Sie formal mittels vollständiger Induktion:
+
+nel
+Vn >0:lfLong(n) =>  k!
+. k=0
+
+Fortsetzung nachste Seite!
+
+Frühjahr 2014 Einzelprüfungsnummer 66115 Seite 4
+
+Aufgabe 2: „Binäre Bäume“
+
+Implementieren Sie in einer objekt-orientierten Sprache Ihrer Wahl eine Klasse namens
+BinBaum, deren Instanzen binäre Bäume mit ganzzahligen Datenknoten darstellen, nach
+folgender Spezifikation:
+
+a)
+
+Beginnen Sie zunächst mit der Datenstruktur selbst:
+
+s Mit Hilfe des Konstruktors soll ein neuer Baum erstellt werden, der aus einem
+einzelnen Knoten besteht, in dem der dem Konstruktor als Parameter übergebene
+Wert (ganzzahlig, in Java z.B. int) gespeichert ist.
+
+- Die Meihoden setLeft(int value) bzw. setRight(int value) sollen den
+linken bzw. rechten Teilbaum des aktuellen Knotens durch einen jeweils neuen
+Teilbaum ersetzen, der seinerseits aus einem einzelnen Knoten besteht, in dem der
+übergebene Wert value gespeichert ist. Sie haben keinen Rückgabewert.
+
+- Die Methoden getLeft() bzw. getRight() sollen den linken bzw. rechten Teilbaum
+zurückgeben (bzw. null, wenn keiner vorhanden ist)
+
+«e Die Meihode int getValue() soll den Wert zurückgeben, der im aktuellen
+Wurzelknoten gespeichert ist.
+
+b) Implementieren Sie nun die Methoden preOrder () bzw. postOrder (). Sie sollen die
+
+Knoten des Baumes mit Tiefensuche traversieren, die Werte dabei in pre-order bzw. posiorder Reihenfolge in eine Liste (z.B. List<Integer>) speichern und diese Ergebnisliste
+
+zurückgeben.Die Tiefensuche soll dabei zuerst in den linken und dann in den rechten
+Teilbaum absteigen.
+
+Ergänzen Sie schließlich die Methode isSearchTres () .Sie soll überprüfen, ob der
+Binärbaum die Eigenschaften eines binären Suchbaums erfüllt. Beachten Sie, dass die
+
+Laufzeit-Komplexität Ihrer Implementierung linear zur Anzahl der Knoten im Baum sein
+muss.
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2014 Einzelprüfungsnummer 66115 Seite 5
+
+Aufgabe 3: ,AVL-Baume‘
+
+a) Fügen Sie die Zahlen (7, 6, 2,1, 5, 3, 8, 4) in dieser Reihenfolge in einen anfangs leeren
+AVL Baum ein. Stellen Sie die AVL Eigenschaft ggf. nach jedem Einfügen mit geeigneten
+
+Rotationen wieder her. Zeichnen Sie den AVL Baum einmal vor und einmal nach jeder
+einzelnen Rotation.
+
+b) Entfernen Sie den jeweils markierten Knoten aus den folgenden AVL-Bäumen. Stellen Sie
+
+die AVL-Eigenschaft ggf. durch geeignete Rotationen wieder her. Zeichnen Sie nur den
+resultierenden Baum.
+
+i) Baum 1:
+
+ii) Baum 2:
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2014 Einzelprüfungsnummer 66115 Seite 6
+
+ii) Baum 3:
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2014 Einzelprüfungsnummer 66115 Seite 7
+
+Aufgabe 4:
+
+Zeigen oder widerlegen Sie die folgenden Aussagen. (die jeweiligen Beweise sind sehr
+kurz):
+
+a)Sei L C D*. Ist L regulär, so gilt das Pumping-Lemma für kontextfreie Sprachen
+auch für L.
+
+b)Sei H das (allgemeine) Halteproblem (kodiert mit Zeichen über %), und sei
+H=2*\H das Komplement des (allgemeinen) Halteproblems. Dann kann Af
+auf H reduziert werden, d.h. es gilt: H < H.
+
+c)Der Standard-Beweis dafür, dass CLIQUE NP-schwer ist, zeigt, dass
+SAT <, CLIQUE. Stimmt es auch, dass CLIQUE <, SAT ist?
+
+~~ Schreiben Sie zuerst zur Aussage ,,Stimmt“ oder ,,Stimmt nicht“ und dann Ihre Begründung.
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2014 Einzelprüfungsnummer 66115 Seite 8
+
+Aufgabe 5:
+
+a)Definieren Sie die zum Halteproblem für Turing-Maschinen bei fester Eingabe
+me IN: = {0,1,2,...} gehörende Menge Hp.
+
+b)Gegeben sei das folgende Problem E:
+
+eEntscheide, ob es für die deterministische Turing-Maschine mit der Gédelnummer n eine Eingabe w € IN gibt, so dass w eine gerade Zahl ist und
+die Maschine n gestartet mit w halt.
+
+Zeigen. Sie, dass E nicht entscheidbar ist. Benutzen Sie, dass H,„, aus (a) für
+jedes m € INg nicht entscheidbar ist.
+
+c)Zeigen Sie, dass das Problem E aus (b) partiell-entscheidbar (= rekursiv aufzählbar) ist.
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2014 . Einzelprüfungsnummer 66115 Seite 9
+
+Aufgabe 6:
+
+a)Gegeben sei der folgende nichtdeterministische endliche Automat N:
+
+Konstruieren Sie zu N mit den Potenzmengen-Konstruktionen einen aquivalenten deterministischen endlichen Automaten A. Zeichnen Sie nur die vom Startzustand erreichbaren Zustände ein, die aber alle. Die Zustandsnamen von A
+müssen erkennen ‘lassen, wie sie zustande gekommen sind. Führen Sie keine
+„Vereinfachungen“ durch.. :
+
+Hinweis: In einem deterministischen endlichen Automaten darf es keine
+&-Übergänge geben, und es muss an jedem Zustand für jedes Zeichen einen
+Übergang geben.
+
+b)Geben Sie einen regulären Ausdruck «{N) für die Sprache, die der nichtdeterministische endliche Automat N aus (a) akzeptiert, an.
+
+c)Beweisen oder widerlegen Sie die folgende Behauptung.
+Beh.: Ist die Sprache L nicht regulär, dann ist auch jede echte Obermenge von
+Z nicht reguWär.
+
+d)Sei A ein deterministischer endlicher Automat mit Zustandsmenge
+Q={u,---, dn}, Startzustand gq, Alphabet 5 und Endzustandsmenge F.
+
+Im Zusammenhang der Umwandlung endlicher Automaten in reguläre Ausdrücke wird die Menge R& = {w € 2* | ö(q,w) = q;, kein echter Zwischenzustand hat Index > k} betrachtet.
+
+dl) Wie lautet die Rekursionsformel für die RE, die die Grundlage des Umwandlungsalgorithmus ist?
+
+Hinweis: Es werden. die drei Fälle unterschieden: )k = 0, i # j, (ii) k = 0,
+i= und (iii) der Sonst-Fall.
+
+d2) Wie ergibt sich aus den Mengen RE dann die Sprache L(A) des Automaten?
+
+Fortsetzung mächste Seite!
+
+Frühjahr 2014 Einzelprüfungsnummer 66115
+
+Aufgabe 7:
+
+a)Sei SAT das Erfüllbarkeitsproblem, und sei H,, das Halteproblem bei fester
+Eingabe m (siehe Aufgabe 5).
+Zeigen Sie: SAT kann in polynomieller Zeit auf H,, reduziert werden. (Als Relation: SAT <, Hm)
+
+b)Angenommen, es wurde gezeigt, dass P = NP ist. Zeigen Sie, dass dann jede
+Sprache L € P über dem Alphabet © mit L #4 @ und L ¢ 2* sogar NPvollständig ist.
+
+Seite 10
+
+-1Frühjahr 2014 Einzelprüfungsnummer 66115 Seite 11
+
+Thema Nr. 2
+
+Teilaufgabe I
+
+Seien D,A Alphabete. Ein Homomorphismus ist eine Funktion f : 5* — A* sodass
+Fuv) = f(u)f(v) für alle u,v € 2*. Es ist klar, dass dann f schon eindeutig durch
+die Werte f(a) fix a € D bestimmt ist.
+
+Seien f,g:2* — A* Homomorphismen. Der Differenzkern. E(f,g) < S* ist definiert
+durch
+
+E(f,9) = {w | F(w) = g(w)}
+Ist zum Beispiel f(a) = 00, f(b) = 0, g(a) = 0 und g(b) = 00, so gilt für w = ababab
+dass f(w) = 00 0 00 0 00 0 = 0 00 0 00 0 00 = g(w) und es ist hier E(f,g) = {w |
+
+2lwla + wo = wla + 2lwls} = {w | Joa = fwl}. Wie üblich ist jw|. die Zahl der
+Buchstaben x im Wort w.
+
+Von den folgenden vier Aussagen ist genau eine falsch, die anderen drei sind wahr.
+Identifizieren Sie die falsche Aussage, erklären Sie, warum sie falsch ist und zeigen
+Sie, dass die anderen drei Aussagen wahr sind.
+
+1.Seien f,g Homomorphismen. Falls E(f,g) durch einen nichtdeterministischen
+Kellerautomaten (PDA) erkannt wird, so ist E(f,g) kontextfrei.
+
+2.Für alle f,g kann E(f,g) durch einen PDA wie folgt erkannt werden: Sei die
+Eingabe au mit a € D, w € U*. Man vergleiche f(a) mit g(a). Falls keines von
+beiden Präfix des anderen ist, so verwerfe man; anderenfalls lege man die Differenz der beiden auf den Keller, merke sich, auf welcher Seite noch etwas fehlt und
+
+fahre fort, wobei dann natürlich der Kellerinhalt auch noch zu berücksichtigen
+ist.
+
+3.Die Sprache Z = {u | [w|. = |w| = |w|.} ist nicht kontextfrei.
+
+4.Für L aus 3) gilt L= E(f,g) mit f,g : 2° — {0, 1}* definiert durch f(a) =
+00, f(b) = 1, f(c) = 1,9(a) Fr 0, g(b) = 0, g(e) =11.
+
+Fertsetzung nächste Seite!
+
+Frühjahr 2014 Einzelprüfungsnummer 66115 Seite 12
+
+Teilaufgabe II
+
+Wir definieren das Problem INTPOLY wie folgt:
+
+GEGEBEN: Eine Liste von Variablen (zı,...,x.) und ein Polynom p(zı,...,2n) in
+diesen Variablen und mit ganzzahligen Koeffizienten.
+
+GEFRAGT: Hat dieses Polynom eine ganzzahlige Nullstelle, d.h.. existieren ganze
+Zahlen 2;,...,2,, sodass p(21,...,2n) = 0.
+
+So sind beispielsweise ((z,y,2),2?° +4? — 2) und (x,y, 2), 2" — xy + y? +1) beides
+Instanzen, aber nur die erste ist eine JA Instanz, also formal ein Element von INTPOLY. Es ist z.B. 3? + 4° — 5? = 0, aber 2? —2ry4+y?+1= (z—y)? +1 > 0 für alle
+LY; Ze
+
+1.Zeigen Sie durch Reduktion von 3SAT, dass INTPOLY NP-schwierig ist. Zeigen
+Sie also, dass 3SAT <p INTPOLY. Legen Sie zunächst dar, aus welchen Daten
+so eine Reduktion besteht und was über diese Daten zu zeigen ist.
+
+Weitere Hinweise: p(Z)q(Z) =0 <=> p(Z) = 0 V q(Z) =0 und pz)? + ¢(#)? =
+0 <=> p(Z) = 0A q() = 0. Für jede Boole’sche Variable A bietet es sich an,
+zwei ganzzahlige Variablen x4 und x..4 einzuführen.
+
+2.Interessanterweise ist INTPOLY ein unentscheidbares Problem (das wurde in
+den 1970er Jahren recht aufwendig bewiesen). Nun behauptet aber jemand,
+INTPOLY sei in NP, denn, wenn £ und p(Z) gegeben sind, dann könne man ja
+nichtdeterministisch ganze Zahlen z,,..., z„ raten und dann prüfen, ob p(2) = 0
+ist. Beschreiben Sie genau, an welcher Stelle diese Person irrt.
+
+3.Gibt es unentscheidbare Probleme in NP ?
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2014 Einzelprüfungsnummer 66115 Seite 13
+
+Teilaufgabe III
+
+Gegeben sei ein Array A[1],..., A[n] von Zahlen. Es soll ein zweidimensionales Array
+
+Bll, 1]... Bln, n] bestimmt werden, sodass gilt
+Bi, j] = Ale) + Ali+ 1]+ + Af],
+
+falls i < j und BR, 5] =0, falls i > 5. Folgender Algorithmus leistet; das Verlangte:
+
+fori:=1,...,n
+for j:=1,...,n
+Blij]:=0;
+fort:=i...j
+Bij=Blij]+Aft];
+
+eGeben Sie eine Funktion f(n) an, sodass die Laufzeit dieses Algorithmus 0(f(n))
+ist. Sollte Ihnen die 8-Notation nicht geläufig sein, so können Sie alternativ
+eine möglichst schwach wachsende Funktion f bestimmen, sodass die Laufzeit
+O(f{n)) ist.
+
+eFinden Sie einen Algorithmus für dieselbe Problemstellung mit einer echt besseren Laufzeit. Gesucht ist also ein Algorithmus für unser Problem mit einer
+
+Laufzeit O(g(r)) wobei im, g(n)/f(n) = 0. Geben Sie sowohl den Algorithmus, als auch die neue Laufzeitschranke g(n) an.
+
+[Nach Kleinberg-Tardos. Algorithm Design. Pearson 2005]

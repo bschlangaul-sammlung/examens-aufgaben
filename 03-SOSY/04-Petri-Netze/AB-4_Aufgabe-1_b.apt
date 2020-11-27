@@ -1,0 +1,19 @@
+.name "b"
+.type PN
+
+.places
+p1
+p2
+p3
+
+.transitions
+t1
+t2
+t3
+
+.flows
+t1: {1*p3} -> {1*p1}
+t2: {1*p1, 1*p2} -> {1*p3}
+t3: {1*p2} -> {1*p2, 1*p3}
+
+.initial_marking {2019*p2}

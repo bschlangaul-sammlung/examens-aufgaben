@@ -1,0 +1,390 @@
+
+
+Prüfungsteilnehmer Prüfungstermin Einzelprüfungsnummer
+
+Kennzahl:
+
+Frühjahr
+Kennwort: 66 1 12
+2005
+
+Arbeitsplatz-Nr.:
+
+Erste Staatsprüfung für ein Lehramt an öffentlichen Schulen
+
+- Prüfungsaufgaben -
+
+Fach: Informatik (vertieft studiert)
+Einzelprüfung: Automatentheorie, Komplexität, Algorithmen
+Anzahl der gestellten Themen (Aufgaben): 2
+
+Anzahl der Druckseiten dieser Vorlage: 9
+
+Bitte wenden!
+
+Frühjahr 2005 Einzelprüfungsnummer: 66112 Seite: 2
+
+Thema Nr. 1
+
+Sämtliche Teilaufgaben sind zu bearbeiten!
+
+Aufgabe 1
+
+Betrachten Sie folgendes Klassendiagramm, das doppelt-verkettete Listen spezifiziert. Die Assoziation
+
+head zeigt auf das erste Element der Liste. Die Assoziationen previous und next zeigen auf das
+vorherige bzw. folgende Element.
+
+DoublyLinkedList head > Listiien pers
+insert(i : Integer) data : Integer ,
+check : Boolean insert(i : Integer) noe
+
+Implementieren Sie die doppelt-verketteten Listen in einer geeigneten objektorientierten Sprache
+(z. B. Java oder C++), das heißt:
+
+a) Implementieren Sie die Klasse ListElem. Die Methode insert ordnet eine ganze Zahl iin
+eine aufsteigend geordnete doppelt-verkettete Liste 1 an die korrekte Stelle ein. Sei z. B. das Objekt 1 eine Repräsentation der Liste <O, 2,2, 6,'8>; dann liefert 1. insert (3) eine Repräsentation der Liste <0, 2, 2, 3, 6, 8>. :
+
+b) Implementieren Sie die Klasse DoublyLinkedList, wobei dic Methode insert eine Zahli
+in eine aufsteigend geordnete Liste einordnet. Die Methode check überprüft, ob eine Liste korrekt verkettet ist, d. h. ob für jedes ListElem-Objekt o, das über den head der Liste erreichbar ist,
+der Vorgänger des Nachfolgers von o gleich o ist.
+
+Aufgabe 2
+
+a) Was ist eine reguläre Sprache und was ist eine kontextfreie Sprache? Definieren Sie die beiden
+Begriffe und erklären Sie, worin sich die beiden Sprachklassen unterscheiden.
+Formulieren Sie das Pumpinglemma für reguläre Sprachen.
+
+b) Gegeben sei die Sprache \
+L= {we {a,b}* | /wi,= lwp, und für jedes Präfix Pp von w gilt |p, <|pla}.
+Dabei bezeichnet wi für einen Buchstaben x die Anzahl der Vorkommen von x in w.
+
+bl) Welche der fol genden Worte sind in der Sprache enthalten: abab, baba, aaabba, aababbab?
+Begründen Sie kurz Ihre Antwort.
+
+b2) Zeigen Sie, dass L nicht regulär ist.
+
+b3) Zeigen Sie, dass die Sprache L kontextfrei ist, indem Sie einen Kellerautomaten
+K=(ZUTE, 2,#,%) finden, der L mit leerem Keller akzeptiert, und erläutern Sie kurz die
+
+Funktionsweise von K. Geben Sie eine Folge von Konfigurationen an, die K beim Akzeptieren des Wortes abaabbab durchläuft.
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2005 Einzelprüfungsnummer: 66112 . Seite: 3
+
+Aufgabe 3
+
+a)
+
+b)
+
+°)
+~ @)
+
+Methodenaufrufen in objekt-orientierten
+Sprachen. .
+
+Die folgenden Java-Klassen sollen Daten über Personen speichern. Die Methode getSalaryin
+der Klasse Person soll das Gehalt einer Person als Ergebnis liefern. Die Methode getSalary
+
+in der Klasse Manager soll die Summe aus dem Managerzuschlag und dem Personen-Gehalt als
+Ergebnis liefern.
+
+class Person {
+String name;
+double salary;
+public double getSalary() {
+return salary;
+}
+}
+class Manager extends Person {
+double extraSalary;
+public double getSalary() {
+return (extraSalary + getSalary());
+}
+public static void main (String[] args) {
+Person p = new Manager);
+p.salary = 5000;
+P-getSalary();
+
+Terminiert die Methode main? Begründen Sie Ihre Antwort. Wie kann man die Implementation
+verbessern?
+
+Erklären Sie die Parameterübergabemechanismen call by value und call by reference.
+
+Welche Ausgabewerte liefert die folgende Methode main? Erklären Sie insbesondere die letzte
+Ausgabezeile. Begründen Sie Ihre Antwort.
+
+class CallBy {
+static int changei(int i) {
+return (++i);
+} .
+public static void main (String[] args) {
+int i=2;
+
+System.out.printin("i ist vorher "+i);
+int i_return = changei (i);
+
+System.out.printlin ("changei lieferte "+i_return+" zurueck")
+System.out.println ("1 ist nachher SAE) 2
+
+,
+
+Fortsetzung nächste Seite!
+
+r
+
+Frühjahr 2005 Einzelprüfungsnummer: 66112 Seite: 4
+
+Aufgabe 4
+
+a)
+
+b)
+
+Erläutern Sie die auf F loyd und Hoare zurtickgehende Verifikationsmethode. (In Ihrer Antwort
+
+müssen Sie mindestens die Begriffe von Zusicherung, schwächste Vor- und stärkste Nachbedingung erklären.)
+
+Eine Bank bietet ihren Kunden 1% Zinsen pro Monat. Betrachten Sie das folgende Hoare-Triple
+(*), das das Anwachsen eines Geldbetrags B beschreibt, wenn ein Kunde diesen eine gewisse Anzahl von Monaten M auf seinem Konto stehen lässt. :
+
+- {betrag = B, Zeitraum=M, M> 0}
+while (Zeitraum > 0) {
+betrag = betrag* (1 + 1/100);
+Zeitraum = Zeitraum - Ley
+}
+
+{betrag=B*(1+1/100)"4
+
+b1) Zeigen Sie, dass {betrag =B - (1+ 1/100) frau eitraum = 0} eine Schleifeninvariante ist.
+b2) Beweisen Sie die Gültigkeit von (*).
+
+-b3) Terminiert das Programm immer? Beweisen Sie Ihre Antwort.
+
+Frühjahr 2005 Einzelprüfungsnummer: 66112 Seite: 5
+
+Thema Nr. 2
+
+Sämtliche Teilaufgaben sind zu bearbeiten!
+
+Aufgabe 1
+
+Betrachten Sie die beiden regulären Ausdrücke über dem Alphabet > = {a,b}:
+a@=ab(aab)*, @= (aba)* ab.
+
+a) Zeigen Sie die Aquivalenz der beiden Ausdrücke, d.h. L(a) = £(8).
+
+b) Geben Sie eins Grammatik an, die £ (a) erzeugt.
+
+©) Geben Sie einen deterministischen endlichen Automaten an, der £ (a) akzeptiert.
+
+Aufgabe 2
+
+Es seien Y = {a,b} und T= {a,b,c} Alphabete. Betrachten Sie die Sprachen
+
+L= {we L* wl =} und L'= fe True = Ittse }
+aller Wörter, in denen das Teilwort ab genauso oft vorkommt, wie das Teilwort ba. (Beachten Sie: als
+Wortmengen sind L und L’ identisch, aber es wird auf unterschiedliche Alphabete Bezug genommen!)
+
+a) Zeigen Sie, dass die Sprache L CD" regulär ist, indem Sie sowohl einen regulären Ausdruck als
+auch einen akzeptierenden endlichen Automaten für L angeben.
+
+b) Zeigen Sie, dass die Sprache Z'CT* nicht regulär ist, indem Sie (beispielsweise) nachweisen,
+dass L'unendlichen Index Z(L ') in P* hat.
+
+c) Zeigen Sie, dass die Sprache L'CT* kontextfrei ist, indem Sie einen Kellerautomaten über
+T konstruieren, der L' akzeptiert.
+
+Aufgabe 3
+
+In dieser Aufgabe bezeichne 4 den Operator der Minimalisierung, der einer (k +1)-stelligen (partiellen) Funktion f: NT N eine k-stellige (partielle) Funktion u(f): N® — N zuordnet.
+
+a) Geben Sie die Definition von u(f) an, wobei Sie der genauen Beschreibung des Definitionsbereiches besondere Beachtung schenken sollten. Insbesondere: welche unterschiedlichen
+Gründe können dafür verantwortlich sein, dass u(f) für ein (2, =) € N” nicht definiert ist?
+
+b) Esseinun f die zweistellige (partielle) Funktion
+|z~y| falls x A 3 und y 43
+
+F(t,y)=%y+3  fallse = 3
+T falls y= 3 und « 43
+
+Dabei steht | für „undefiniert“. Berechnen Sie uf).
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2005 Einzelprüfungsnummer: 66112 Seite: 6
+
+Aufgabe 4
+
+Gegeben seien die Methoden foo(n) und bar(n) mit asymptotischen Aufwandsfunktionen O(log n)
+bzw. O(n). Es seien:
+
+- keine positive Konstante,
+- neine Variable,
+- iundj zwei Laufvariablen.
+
+Geben Sie den asymptotischen Aufwand (Komplexität) folgender Programmstücke in O-Notation an:
+
+a) for (ant i = 1; i-<= n; it++){
+foo (i);
+}
+bar (n);
+
+b) for (anh L = 1; Gd =
+foo(n);
+bar (n);-
+
+N
+
+k; i++) {
+
+c) for (int i= 1; i <= n; i+t){
+bar(i);
+for (int j = 1; 3 <= k; 9++){
+foo(n);
+
+d) for (int i=l;
+
+Aufgabe 5
+
+Folgendes Programmstück realisiert ein Sortieren durch Einfügen
+
+for (int j = 1; j < feld. length; j++) {
+schluessel = feld[j];
+/f Fuege Element 5 in sortierte Folge
+// feld {0].. feld[j—1] ein
+int i= j ~1;
+while (i >=0 && feld{i] > schluessel) {
+feld[i + 1] = feld[i];
+i=i-4;
+}
+feld[i + 1] = schluessel;
+
+2) 92 eee be OO
+
+ri
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2005 Einzelprüfungsnummer: 66112 Seite: 7
+
+Geben Sie für die Programmzeilen 1, 2, 6 und 7 an, wie oft diese Zeilen im besten sowie im
+schlechtesten Fall ausgeführt werden. Nehmen Sie an, dass das Feld 10 Elemente enthält und alle
+Variablen korrekt vereinbart wurden!
+
+Geben Sie eine Aufwandsabschätzung in O-Notation für das Verhalten im schlechtesten Fall an.
+Im obigen Code wird die Einfügestelle mit linearer Suche gefunden. Wieso verschlechtert sich
+
+durch die Verwendung der Binärsuche der Aufwand im günstigsten Fall? Erläutern Sie Ihre Antwort gegebenenfalls an einer Zahlenfolge.
+
+Aufgabe 6
+
+Die Zahl 7 soll nach folgender Formel berechnet werden: Hinweis: Wenn Sie die Zahl x auf eine
+andere Weise berechnen, z. B. durch einen Zugriff auf die Java-Bibliothek, ist Ihre Lösung ungültig.
+
+n=(4/1-4/3+4/5-4/7...)
+
+Gegeben sei folgender Rahmen
+
+static final double EPSILON = 0.0001;
+
+public static double piBerechnung (char schalter) {
+double pi = 0.0;
+switch (schalter) {
+case ’r’: .
+pi = piBerechnungRekursiv (1.0, 1.0);
+break;
+case ’i’:
+10 pi = piBerechnunglterativ ();
+11 break;
+12 default: \
+13 throw new RuntimeException (” Fehlende.Methode” );
+14 } //switch
+15 return pi;
+16 } // piBerechnung
+
+ANS Tig Oh OH
+
+Die Berechnung soll abbrechen, wenn der Wert des Bruchs unter den vorgegebenen Wert EPSILON
+gefallen ist. Geben Sie bei jeder Ihrer Lösungen an, ob in Ihrer Lösung der erste berechnete Bruch,-der
+
+unter dem Wert von EPSILON liegt, noch zur Summe mit hinzuaddiert wird oder nicht. Beide Varianten sind erlaubt.
+
+a)
+
+"Geben Sie eine rekursive Methode piBerechnungRekursiv an, die m entsprechend der oben
+
+angegebenen Formel berechnet und über eine Schnittstelle wie in der Methode piBerechnung
+angegeben verfügt.
+
+Verwenden Sie den ersten Parameter zur Übergabe des aktuell betrachteten Nenners. Der zweite
+Parameter soll zur Implementierung des Vorzeichens dienen.
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2005 Einzelprüfungsnummer: 66112 Seite: 8
+
+b) Geben Sie eine iterative Methode piBerechnungIterativ an, die m entsprechend der oben
+
+angegebenen Formel berechnet und über eine Schnittstelle wie in der Methode piBerechnung
+angegeben verfügt.
+
+Aufgabe 7
+
+Berechnen Sie mit dem Algorithmus von Dijkstra die kürzesten Pfade für den Knoten v.
+
+a) Machen Sie den Ablauf des Algorithmus mit Hilfe einer Tabelle folgenden Musters deutlich:
+
+Schritt | ausgewählter untersuchter Knotenbewertung nach Dijkstras Algorithmus
+Knoten Knoten .
+
+b) Geben Sie die kürzesten Pfade ausgehend von Knoten v zu jedem einzelnen der übrigen Knoten
+an!
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2005 Einzelprüfungsnummer: 66112 Seite: 9
+
+Aufgabe 8
+Gegeben seien die folgenden Zahlen: 7, 4,3, 5,0,1
+
+a) Zeichnen Sie eine Hash-Tabelle mit 8 Zellen und tragen Sie diese Zahlen genau in der oben gegebenen Reihenfolge in Ihre Hash-Tabelle ein. Verwenden Sie dabei die Streufunktion fin) = 1? mod 7
+und eine Kollisionsauflésung durch lineares Sondieren.
+
+b) Welcher Belegungsfaktor ist für die Streutabelle und die Streufunktion aus Teilaufgabe a zu erwarten, wenn sehr viele Zahlen eingeordnet werden und eine Kollisionsauflösung durch Verkettung (verzeigerte Listen) verwendet wird? Begründen Sie Ihre Antwort kurz.
+
+Hinweis: Es ist kein formaler Beweis nötig, aber Sie müssen Ihre Antwort plausibel begründen.
+
+Aufgabe 9
+
+Gegeben sei folgende partielle Spezifikation eines Datentyps Baum mit der Eigenschaft, dass genau
+eine Integer-Zahl pro Knoten gespeichert wird. \
+
+Signatur:
+
+neu: — Baum
+konstr: Baum x Baum x int — Baum
+links: Baum -— Baum
+rechts: Baum — Baum
+anzahl: Baum — int
+
+Axiome:
+links(konstr(b1,52,%)) = ol
+rechts(konstr(b1,b2,K)) = b2
+
+a) Die Funktion anzahl soll angeben, wieviel int-Werte im Baum enthalten sind. Geben Sie
+Axiome an, die diese Funktion festlegen.
+
+b) Eine Klasse enthalte bereits die den Axiomen entsprechenden Methoden links und rechts mit
+folgenden Signaturen:
+
+- Baum links(Baum b)
+- Baum rechts(Baum b)
+
+Geben Sie den Rumpf der folgenden Methode an:
+public int anzahl (Baum b)
+
+©) Geben Sie an, wie die Reihenfolge bezeichnet wird, in der die Knoten in Ihrer Lösung der
+Methode anzahl durchlaufen werden.

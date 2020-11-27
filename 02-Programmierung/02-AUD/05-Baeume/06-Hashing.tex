@@ -1,0 +1,903 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax,mathe}
+\usepackage{amsmath}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Hashing}
+
+\begin{quellen}
+\item \cite[Kapitel 6.3.3 Streutabellen (Hashing), Seite
+188-189]{schneider}
+\item \cite[Seite 22-39]{aud:fs:tafeluebung-10}
+\item \cite[Seite 419-439]{saake}
+\item \cite{wiki:hashtabelle}
+\end{quellen}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Grundlagen}
+Das Ziel von Hashing ist einerseits einen \memph{extrem großen
+Schlüsselraum} auf einen vernünftig \memph{kleinen Bereich von ganzen
+Zahlen} abzubilden und andererseits dass \memph{zwei Schlüssel auf die
+selbe Zahl} abgebildet werden, soll möglichst \memph{unwahrscheinlich}
+sein.\footnote{Seite 4
+\url{https://moves.rwth-aachen.de/wp-content/uploads/SS15/dsal/lec13.pdf}}
+
+Daten werden in einer \memph{Streu(wert)tabelle} (hash table) abgelegt.
+Aufgrund des wahlfreien Zugriffs eignen sich Felder zum Abspeichern der
+Daten.
+%
+Eine \memph{Hashfunktion} $h$ bildet ein Datenelement auf einen
+\memph{Hashwert} ab. Das Datenelement benötigt dazu einen
+\memph{Schlüssel} (key), der das Element eindeutig identifiziert. Der
+Hashwert wird als Index in dem Feld verwendet. Das Datenelement wird
+im entsprechenden \memph{Bucket} der Tabelle gespeichert.
+%
+Bei der \memph{Suche} nach einem Element mit \memph{bekanntem Schlüssel}
+wird der Index mittels der Hashfunktion bestimmt. Dies geschieht mit
+\memph{konstantem Aufwand}.
+%
+Der Aufwand des Nachschlagens an entsprechender Stelle ist abhängig von
+der \emph{Organisationsform}.
+\footcite[Seite 25]{aud:fs:tafeluebung-10}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Kollisionen}
+
+Da Hashfunktionen im Allgemeinen  \memph{nicht eindeutig (injektiv)}
+sind, können zwei unterschiedliche Schlüssel zum selben Hash-Wert, also
+zum selben Feld in der Tabelle, führen. Dieses Ereignis wird als
+\memph{Kollision} bezeichnet. In diesem Fall muss die Hashtabelle
+mehrere Werte in demselben Bucket aufnehmen.
+
+Eine Kollision benötigt bei der Suche eine spezielle Behandlung durch
+das Verfahren: Zunächst wird aus einem Suchschlüssel wieder ein Hashwert
+berechnet, der den Bucket des gesuchten Datenobjektes bestimmt; dann
+muss noch durch direkten Vergleich des Suchschlüssels mit den Objekten
+im Bucket das gesuchte Ziel bestimmt werden.
+
+Zur Behandlung von Kollisionen werden kollidierte Daten nach einer
+\memph{Ausweichstrategie in alternativen Feldern} oder in einer Liste
+gespeichert. Schlimmstenfalls können Kollisionen zu einer Entartung der
+Hashtabelle führen, wenn wenige Hashwerte sehr vielen Objekten
+zugewiesen wurden, während andere Hashwerte unbenutzt bleiben.
+Kollisionsauflösungsstrategien
+
+Um das Kollisions-Problem zu handhaben, gibt es diverse
+Kollisionsauflösungsstrategien.
+
+%%
+%
+%%
+
+\subsection{geschlossenes Hashing mit offener Adressierung}
+
+Wenn dabei ein Eintrag an einer schon belegten Stelle in der
+Tabelle abgelegt werden soll, wird stattdessen eine \memph{andere freie
+Stelle genommen}. Häufig werden drei Varianten unterschieden:
+
+\subsubsection{lineares Sondieren}
+
+es wird um ein \memph{konstantes Intervall} verschoben nach einer freien
+Stelle gesucht. Meistens wird die Intervallgröße auf 1 festgelegt.
+
+\subsubsection{quadratisches Sondieren}
+
+Nach jedem erfolglosen Suchschritt wird das \memph{Intervall quadriert}.
+
+\ueberschrift{Beispiele}
+
+\begin{itemize}
+
+%%
+%
+%%
+
+\item \ueberschrift{nach Foliensatz der TU Braunschweig}
+\footnote{Seite 25\url{https://www.ibr.cs.tu-bs.de/courses/ws0708/aud/skript/hash.np.pdf}}
+
+\ueberschrift{Formel}
+
+$h(k, i) := h'(k) + (-1)^{i+1} \cdot \left\lfloor \frac{i+1}{2}\right\rfloor ^2 \mod m$
+
+$k$, $k+1^2$, $k-1^2$, $k+2^2$, $k-2^2$,
+$\ldots$
+$k+(\frac{m-1}{2})^2$, $k-(\frac{m-1}{2})^2 \bmod m$
+
+\ueberschrift{Werte}
+
+$m=19$, d. h. das Feld (die Tabelle) hat die Index-Nummern 0 bis 18.
+$k = h(x) = 7$
+
+\ueberschrift{Sondierungsfolgen}
+
+\def\tmp#1{{\tiny#1}}
+
+\begin{tabular}{|l|l|l|l|}
+i & Rechnung & Ergebnis & Index in der Tabelle\\\hline\hline
+0 & $7 + 0^2$ & 7 & 7\\
+1 & $7 + 1^2$ & 8 & 8\\
+1 & $7 - 1^2$ & 6 & 6\\
+2 & $7 + 2^2$ & 11 & 11\\
+2 & $7 - 2^2$ & 3 & 2 \\
+3 & $7 + 3^2 = 7 + 9$  & 16 & 16 \\
+
+3 & $7 - 3^2 = 7 - 9$  & -2 &
+17 \tmp{($19-2=10$) oder ($0 \rightarrow 0$, $-1 \rightarrow 18$, $-2 \rightarrow 17$)}
+\\
+
+4 & $7 + 4^2 = 7 + 16$  & 23 &
+4 \tmp{($23-19=4$) oder ($19 \rightarrow 0$, $20 \rightarrow 1$, $21 \rightarrow 2$, $22 \rightarrow 3$, $23 \rightarrow 4$)}
+\\
+
+4 & $7 - 4^2 = 7 - 16$  & -9 &
+10 \tmp{($19-9=10$) oder ($0 \rightarrow 0$, $-1 \rightarrow 18$, $-2 \rightarrow 17$, $\cdots$, $-9 \rightarrow 10$)}
+\\
+
+5 & $7 + 5^2 = 7 + 25$  & 32 & 13 \tmp{($32-19=13$)} \\
+5 & $7 - 5^2 = 7 - 25$  & -18 & 1 \tmp{($19-18=1$)}\\
+\end{tabular}
+
+%%
+%
+%%
+
+\item \ueberschrift{nach Foliensatz der RWTH Aachen}
+\footnote{Seite 19 \url{https://moves.rwth-aachen.de/wp-content/uploads/SS15/dsal/lec13.pdf}}
+
+$h'(k) = k \mod 11$
+
+$h(k, i) = (h'(k) + i + 3i^2) \mod 11$
+
+$h'(17) = 17 \mod 11 = 6$
+
+\ueberschrift{Sondierungsfolgen}
+
+$h(17, 0) = (17 + 0 + 3 \cdot 0^2) \mod 11 = 6$
+
+$h(17, 1) = (17 + 1 + 3 \cdot 1^2) \mod 11 = 21 \mod 11 = 10$
+
+$h(17, 2) = (17 + 2 + 3 \cdot 2^2) \mod 11 = 31 \mod 11 = 31 - 2 \cdot 11 = 9$
+
+$h(17, 3) = (17 + 3 + 3 \cdot 3^2) \mod 11 = 47 \mod 11 = 47 - 4 \cdot 11 = 3$
+
+\end{itemize}
+
+\subsubsection{doppeltes Hashen}
+
+eine \memph{weitere Hash-Funktion} liefert das Intervall.
+
+%%
+%
+%%
+
+\subsection{offenes Hashing mit geschlossener Adressierung}
+
+Anstelle der gesuchten Daten enthält die Hashtabelle hier
+\memph{Behälter} (englisch \memph{Buckets}), die alle Daten mit gleichem
+Hash-Wert aufnehmen. Es müssen die \memph{Elemente im Behälter
+durchsucht werden}. Oft wird die Verkettung durch eine lineare Liste pro
+Behälter realisiert.
+\footcite{wiki:hashtabelle}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Die Divisionsrestmethode\footcite{wiki:divisionsrestmethode}}
+
+Die Divisionsrestmethode - auch Modulo genannt liefert eine
+Hashfunktion. Die Funktion lautet:  $h(k)=k{\bmod {m}}$. $m$ ist die
+Größe der Hashtabelle. Die Hash-Funktion kann sehr schnell berechnet
+werden. Die Wahl der Tabellengröße $m$ beeinflusst die
+Kollisionswahrscheinlichkeit der Funktionswerte von $h$. Für
+praxisrelevante Anwendungen liefert die Wahl einer Primzahl für $m$.
+
+\section{Belegungsfaktor\footcite[Seite 29]{aud:fs:tafeluebung-10}}
+
+$\text{Belegungsfaktor} =
+\frac{\text{Anzahl tatsächlich eingetragenen Schlüssel}}
+{\text{Anzahl Hashwerte}}$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\section{Aufgabe zum Hashing\footcite[Seite 1]{aud:ab:5}}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Ist $h(k) = k^2 \mod 11$ eine gut gewählte Hashfunktion? Begründen
+Sie Ihre Antwort.
+
+Tipp: Berechnen Sie zunächst $h(k)$ für $0 \leq k < 11$. Überlegen Sie
+dann, welche Werte $h(k')$ für $k' = a \cdot 11 + k$ mit $a > 0$ und $0
+\leq k < 11$ annehmen kann.
+
+\begin{antwort}
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+$k$ & $h(k)$\\\hline\hline
+0 & 0\\\hline
+1 & 1\\\hline
+2 & 4\\\hline
+3 & 9\\\hline
+4 & 5\\\hline
+5 & 3\\\hline
+6 & 3\\\hline
+7 & 5\\\hline
+8 & 9\\\hline
+9 & 4\\\hline
+10 & 1\\\hline
+\end{tabular}
+\end{center}
+
+Nein, $h$ ist keine gute Hashfunktion. Betrachten wir zunächst die
+Wertetabelle von $h$ für $0 \leq k < 11$ . Wir erhalten
+
+Wir sehen, dass nie die Werte $2$, $6$, $7$, $8$ und $10$ eingenommen
+werden. Man könnte nun noch hoffen, dass das vielleicht für irgendein
+größeres $k$ der Fall ist, dem ist jedoch nicht so. Wir können uns
+leicht davon überzeugen, dass für ein beliebiges $k' = a \cdot 11 + k$
+mit $a > 0$ und $0 \leq k < 11$ folgendes gilt:
+
+\begin{align*}
+h(k')
+  &= (k')^2 mod 11\\
+  &= (a \cdot 11 + k)^2 mod 11\\
+  &= (a^2 \cdot 11^2 + 2ak \cdot 11 + k^2) mod 11\\
+  &= (k^2) mod 11\\
+  &= h(k)
+\end{align*}
+
+Somit haben wir die Berechnung des Hashwertes für ein beliebiges $k'$
+auf die Berechnung des Hashwertes für ein $k < 11$ zurückgeführt, was
+impliziert, dass kein Schlüssel jemals auf etwas anderes als $0$, $1$,
+$3$, $4$, $5$ oder $9$ abgebildet werden kann.
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item  Die Schlüssel $23$, $57$, $26$, $6$, $77$, $43$, $74$, $60$, $9$,
+$91$ sollen in dieser Reihenfolge mit der Hashfunktion $h(k) = k \mod
+17$ in eine Hashtabelle der Länge $17$ eingefügt werden.
+
+\begin{antwort}
+\begin{exkurs}[Sondieren]
+\begin{description}
+\item[separate Verkettung]
+Kollisionsauflösung durch Verkettung (separate chaining): Jedes Bucket
+speichert mit Hilfe einer dynamischen Datenstruktur (Liste, Baum,
+weitere Streutabelle, ...) alle Elemente mit dem entsprechenden
+Hashwert.\footcite[Seite 32]{aud:fs:tafeluebung-10}
+
+\item[lineares Sondieren]
+es wird um ein konstantes Intervall verschoben nach einer freien Stelle
+gesucht. Meistens wird die Intervallgröße auf 1 festgelegt.
+
+\item[quadratisches Sondieren]
+Nach jedem erfolglosen Suchschritt wird das Intervall
+quadriert.\footcite{wiki:hashtabelle}
+\end{description}
+\end{exkurs}
+\end{antwort}
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Verwenden Sie separate Verkettung zur Kollisionsauflösung.
+
+\begin{antwort}
+Nebenrechnung:
+
+$17 \cdot 1 = 17$\\
+$17 \cdot 2 = 34$\\
+$17 \cdot 3 = 51$\\
+$17 \cdot 4 = 68$\\
+$17 \cdot 5 = 85$
+
+Modulo-Berechnung der gegebenen Zahlen:
+
+$23 \mod 17 = \textbf{6} \text{ da } 23 : 17 = 1 \text{, Rest } 6 \text{ da } 23 = 1 \cdot 17 + 6$\\
+$57 \mod 17 = 57 - 3 \cdot 17 = 57 - 51 = \textbf{6}$\\
+$26 \mod 17 = 26 - 17 = \textbf{9}$\\
+$6 \mod 17 = 6 - 0 \cdot 17 = \textbf{6}$\\
+$77 \mod 17 = 77 - 4 \cdot 17 = 77 - 68 = \textbf{9}$\\
+$43 \mod 17 = \textbf{9}$\\
+$74 \mod 17 = \textbf{6}$\\
+$60 \mod 17 = \textbf{9}$\\
+$9 \mod 17 = \textbf{9}$\\
+$91 \mod 17 = \textbf{6}$\\
+
+{
+\setlength{\tabcolsep}{2pt}
+\footnotesize
+\begin{tabular}{r|ccccccccccccccccc}
+Index & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 \\\hline
+Schlüssel &&&&&&&23&&&26&&&&&&&\\
+          &&&&&&&57&&&77&&&&&&&\\
+          &&&&&&&6 &&&43&&&&&&&\\
+          &&&&&&&74&&&60&&&&&&&\\
+          &&&&&&&91&&&9 &&&&&&&\\
+\end{tabular}
+}
+\end{antwort}
+
+%%
+% 2.
+%%
+
+\item Verwenden Sie lineares Sondieren zur Kollisionsauflösung.
+
+\def\tmp#1{{\tiny($#1$)}}
+
+\begin{antwort}
+\def\tmp#1{{\footnotesize#1}}
+
+Die Hashfunkion lautet:
+
+\tmp{$h'(k) = k \mod 17$}
+
+Die verwendete Hashfunktion beim linearen Sondieren:
+
+\tmp{$h(k, i) = (h'(k) - i) \mod 17$}
+
+\bigskip
+
+Es ergeben sich folgende Sondierungsfolgen:
+{
+\setlength{\tabcolsep}{2pt}
+\footnotesize
+
+\begin{tabular}{r|ccccccccc}
+Schlüssel & \multicolumn{6}{l}{Index}\\\hline
+23 & 6\\
+57 & 6 & 5\\
+26 & 9\\
+6  & 6 & 5 & 4\\
+77 & 9 & 8\\
+43 & 9 & 8 & 7\\
+74 & 6 & 5 & 4 & 3 \\
+60 & 9 & 8 & 7 & 6 & 5 & 4 & 3 & 2\\
+9  & 9 & 8 & 7 & 6 & 5 & 4 & 3 & 2 & 1 \\
+91 & 6 & 5 & 4 & 3 & 2 & 1\\
+\end{tabular}
+
+Damit ergibt sich folgende Hashtabelle:
+
+\begin{tabular}{r|ccccccccccccccccc}
+Index & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 \\\hline
+Schlüssel &91&9&60&74&6&57&23&43&77&26&&&&&&&\\
+\end{tabular}
+}
+\end{antwort}
+
+%%
+% 3.
+%%
+
+\item Verwenden Sie quadratisches Sondieren zur Kollisionsauflösung.
+
+\begin{antwort}
+
+\def\tmp#1{{\footnotesize#1}}
+
+Die Hashfunkion lautet:
+
+\tmp{$h'(k) = k \mod 17$}
+
+Die verwendete Hashfunktion beim quadratischen Sondieren:
+
+\tmp{$h(k, i) = (h'(k) + i^2) \mod 17$}
+
+\bigskip
+
+Am Beispiel von zwei Schlüsseln werden die Sondierungsfolgen berechnet:
+
+\bigskip
+
+\ueberschrift{$h'(23) = 6$}
+
+\begin{enumerate}
+\item Sondierungsfolge: \\
+\tmp{$h(23, 0) = (h'(23) + 0^2) \mod 17 = (6 + 0) \mod 17 = 6 \mod 17 = \textbf{6}$}
+
+\item Sondierungsfolge: \\
+\tmp{$h(23, 1) = (h'(23) + 1^2) \mod 17 = (6 + 1) \mod 17 = 7 \mod 17 = \textbf{7}$}
+
+\item Sondierungsfolge: \\
+\tmp{$h(23, 2) = (h'(23) + 2^2) \mod 17 = (6 + 4) \mod 17 = 10 \mod 17 = \textbf{10}$}
+
+\item Sondierungsfolge: \\
+\tmp{$h(23, 3) = (h'(23) + 3^2) \mod 17 = (6 + 9) \mod 17 = 15 \mod 17 = \textbf{15}$}
+
+\item Sondierungsfolge: \\
+\tmp{$h(23, 4) = (h'(23) + 4^2) \mod 17 = (6 + 16) \mod 17 = 22 \mod 17 = \textbf{5}$}
+\end{enumerate}
+
+\bigskip
+
+\ueberschrift{$h'(26) = 9$}
+
+\begin{enumerate}
+\item Sondierungsfolge: \\
+\tmp{$h(26, 0) = (h'(26) + 0^2) \mod 17 = (9 + 0) \mod 17 = 9 \mod 17 = \textbf{9}$}
+
+\item Sondierungsfolge: \\
+\tmp{$h(26, 1) = (h'(26) + 1^2) \mod 17 = (9 + 1) \mod 17 = 10 \mod 17 = \textbf{10}$}
+
+\item Sondierungsfolge: \\
+\tmp{$h(26, 2) = (h'(26) + 2^2) \mod 17 = (9 + 4) \mod 17 = 13 \mod 17 = \textbf{13}$}
+
+\item Sondierungsfolge: \\
+\tmp{$h(26, 3) = (h'(26) + 3^2) \mod 17 = (9 + 9) \mod 17 = 18 \mod 17 = \textbf{1}$}
+
+\item Sondierungsfolge: \\
+\tmp{$h(26, 4) = (h'(26) + 4^2) \mod 17 = (9 + 16) \mod 17 = 25 \mod 17 = \textbf{8}$}
+
+\item Sondierungsfolge: \\
+\tmp{$h(26, 5) = (h'(26) + 5^2) \mod 17 = (9 + 25) \mod 17 = 34 \mod 17 = \textbf{0}$}
+\end{enumerate}
+
+\bigskip
+
+Es ergeben sich folgende Sondierungsfolgen:
+
+{
+\setlength{\tabcolsep}{2pt}
+\footnotesize
+
+\begin{tabular}{r|cccccc}
+Schlüssel & \multicolumn{6}{l}{Index}\\\hline
+23 & 6\\
+57 & 6 & 7\\
+26 & 9\\
+6  & 6 & 7 & 10 \\
+77 & 9 & 10 & 13 \\
+43 & 9 & 10 & 13 & 1 \\
+74 & 6 & 7 & 10 & 15\\
+60 & 9 & 10 & 13 & 1 & 8 \\
+9  & 9 & 10 & 13 & 1 & 8 & 0\\
+91 & 6 & 7 & 10 & 15 & 5\\
+\end{tabular}
+
+Damit ergibt sich folgende Hashtabelle:
+
+\begin{tabular}{r|ccccccccccccccccc}
+Index & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 \\\hline
+Schlüssel &9&43&&&&91&23&57&60&26&6&&&77&&74&\\
+\end{tabular}
+}
+\end{antwort}
+\end{enumerate}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 3: Hashing\footcite[Seite 2]{aud:pu:5}}
+
+Gegeben seien die folgenden Zahlen: 7, 4, 3, 5, 0, 1\footcite[Frühjahr
+2005, Thema 2, A 8]{examen:66112:2005:03}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Zeichnen Sie eine Hash-Tabelle mit 8 Zellen und tragen Sie diese
+Zahlen genau in der oben gegebenen Reihenfolge in Ihre Hash-Tabelle ein.
+Verwenden Sie dabei die Streufunktion $f(n) = n^2 \mod 7$ und eine
+Kollisionsauflösung durch lineares Sondieren.
+
+\begin{antwort}
+{
+\footnotesize
+$f(7) = 7^2 \mod 7 = 49 \mod 7 = 0$
+
+$f(4) = 4^2 \mod 7 = 16 \mod 7 = 2$
+
+$f(3) = 3^2 \mod 7 = 9 \mod 7 = 2$ lineares Sondieren: $+1 = 3$
+
+$f(5) = 5^2 \mod 7 = 25 \mod 7 = 4$
+
+$f(0) = 0^2 \mod 7 = 0 \mod 7 = 0$ lineares Sondieren: $+1 = 1$
+
+$f(1) = 1^2 \mod 7 = 1 \mod 7 = 1$ lineares Sondieren: $-1 = 0$, $-1 = 7$
+}
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\\hline
+7 & 0 & 4 & 3 & 5 &   &   & 1 \\\hline
+\end{tabular}
+
+\end{antwort}
+
+%%
+% b)
+%%
+
+\item Welcher Belegungsfaktor ist für die Streutabelle und die
+Streufunktion aus Teilaufgabe a zu erwarten, wenn sehr viele Zahlen
+eingeordnet werden und eine Kollisionsauflösung durch Verkettung
+(verzeigerte Listen) verwendet wird? Begründen Sie Ihre Antwort kurz.
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{„Streuspeicherung“\footcite[Aufgabe 4: „Streuspeicherung
+“]{examen:46115:2013:03}}
+
+Die Werte $7$, $0$, $9$, $11$, $18$, $4$, $5$, $3$, $13$, $24$, $2$
+sollen in eine Hashtabelle der Größe $11$ (Fächer $0$ bis $10$)
+eingetragen werden. Die zur Hashfunktion $h(x) = (7 \cdot x) \% 11$
+gehörenden Schlüssel sind in der folgenden Tabelle bereits
+ausgerechnet:\footcite[Seite 2]{aud:pu:5}
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$x$ & 7 & 0 & 9 & 11 & 18 & 4 & 5 & 3 & 13 & 24 & 2\\\hline
+$h(x)$ & 5 & 0 & 8 & 0 & 5 & 6 & 2 & 10 & 3 & 3 & 3\\\hline
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Fügen Sie die oben genannten Schlüssel in der vorgegebenen
+Reihenfolge in einen Streuspeicher ein, welcher zur Kollisionsauflösung
+verkettete Listen verwendet, und stellen Sie die endgülttige
+Streutabelle dar.
+
+\begin{antwort}
+\begin{center}
+\begin{tabular}{l|ccccccccccc}
+Index     & 0  & 1 & 2 & 3  & 4 & 5  & 6 & 7 & 8 & 9 & 10\\\hline
+Schlüssel & 0  &   & 5 & 13 &   & 7  & 4 &   & 8 &   & 3 \\
+          & 11 &   &   & 24 &   & 18 &   &   &   &   &  \\
+          &    &   &   & 2  &   &    &   &   &   &   &  \\
+\end{tabular}
+\end{center}
+\end{antwort}
+
+%%
+% b)
+%%
+
+\item Fügen Sie die gleichen Schlüssel mit linearem Sondieren bei
+Schrittweite $+1$ zur Kollisionsauflösung in eine neue Hash-Tabelle ein.
+Geben Sie für jeden Schlüssel an, auf welche Felder beim Einfügen
+zugegriffen wird und ob Kollisionen auftreten. Geben Sie die gefüllte
+Streutabelle an.
+
+\begin{antwort}
+\begin{center}
+\begin{tabular}{l|ccccccccccc}
+Index     & 0  & 1      & 2 & 3  & 4       & 5  & 6      & 7      & 8 & 9      & 10\\\hline
+Schlüssel & 0  & $11_1$ & 5 & 13 & $24_1$  & 7  & $18_1$ & $4_1$  & 9 & $2_6$  & 3 \\
+\end{tabular}
+\end{center}
+\end{antwort}
+
+%%
+% c)
+%%
+
+\item Wie hoch ist der „Load“-Faktor (die Belegung) der Hashtabelle aus
+a) bzw. b) in Prozent? Können Sie weitere Schlüssel einfügen?
+
+\begin{antwort}
+\ueberschrift{Teilaufgabe a)}
+
+$\frac{11}{11} = 100\%$: Es können allerdings weitere Elemente eingefügt
+werden. Die Verkettung lässt einen Loadfaktor über 100\% zu. Der
+Suchaufwand wird dann jedoch größer.
+
+\ueberschrift{Teilaufgabe b)}
+
+$\frac{11}{11} = 100\%$: Es können keine weiteren Elemente eingefügt
+werden, da alle Buckets belegt sind.
+\end{antwort}
+
+%%
+% d)
+%%
+
+\item Würden Sie sich bei dieser Zahlensequenz für das Hashing-Verfahren
+nach a) oder nach b) entscheiden? Begründen Sie kurz Ihre Entscheidung.
+
+\begin{antwort}
+Das Verfahren a) scheint hier sinnvoller, da noch nicht zu viele
+Suchoperationen notwendig sind (max. 2), während bei Verfahren b) einmal
+bereits 6-mal sondiert werden muss.
+\end{antwort}
+
+\end{enumerate}
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 8: Hashing\footcite[entnommen aus Algorithmen und
+Datenstrukturen, Übungsblatt 5, Universität Würzburg]{aud:pu:7}}
+
+Fügen Sie die folgenden Werte in der gegebenen Reihenfolge in eine
+Streutabelle der Größe $8$ (mit den Indizes $0$ bis $7$) und der
+Streufunktion $h(x) = x \mod 8$ ein. Verwenden Sie die jeweils angegebene
+Hash-Variante bzw. Kollisionsauflösung: $15$, $3$, $9$, $23$, $1$, $8$,
+$17$, $4$ \footcite[Staatsexamen Theoretische Informatik, Algorithmen
+und Datenstrukturen, Realschulen, Herbst 2015, Thema 2, Aufgabe 1
+(Auszug)]{examen:46115:2015:09}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item \ueberschrift{Offenes Hashing}
+
+Zur Kollisionsauflösung wird Verkettung
+verwendet.
+
+\ueberschrift{Beispiel}
+
+Für die beiden Werte $8$ und $16$ würde die Lösung wie folgt aussehen:
+
+\begin{center}
+\begin{tabular}{l|cccc}
+Bucket    & 0  & 1      & 2 & $\cdots$ \\\hline
+Inhalt    & 8 \\
+          & 16 \\
+\end{tabular}
+\end{center}
+
+\begin{antwort}
+{\footnotesize
+\begin{equation*}
+\begin{aligned}
+h(15) &= 15 \mod 8 &= 7\\
+h(3)  &= 3 \mod 8  &= 3\\
+h(9)  &= 9 \mod 8  &= 1\\
+h(23) &= 23 \mod 8 &= 7\\
+h(1)  &= 1 \mod 8  &= 1\\
+h(8)  &= 8 \mod 8  &= 0\\
+h(17) &= 17 \mod 8 &= 1\\
+h(4)  &= 4 \mod 8  &= 4\\
+\end{aligned}
+\end{equation*}}
+
+\begin{center}
+\begin{tabular}{l|cccccccc}
+Bucket & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7  \\\hline
+Inhalt & 8 & 9 &   & 3 & 4 &   &   & 15 \\
+       &   & 1 &   &   &   &   &   & 23 \\
+       &   & 17 &  &   &   &   &   &    \\
+\end{tabular}
+\end{center}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item \ueberschrift{Geschlossenes Hashing}
+
+Zur Kollisionsauflösung wird lineares Sondieren (nur hochzählend) mit
+Schrittweite $+5$ verwendet.
+
+Treten beim Einfügen Kollisionen auf, dann notieren Sie die Anzahl der
+Versuche zum Ablegen des Wertes im Subskript (z.\,B. das Einfügen des
+Wertes 8 gelingt im 5. Versuch: $8_5$).
+
+\ueberschrift{Beispiel}
+
+Für die beiden Werte $8$ und $16$ würde die Lösung wie folgt aussehen:
+
+\begin{center}
+\begin{tabular}{l|ccccccc}
+Bucket    & 0  & 1      & 2 & 3 & 4 & 5 &  $\cdots$  \\\hline
+Inhalt    & 8 & &&&& $16_1$\\
+\end{tabular}
+\end{center}
+
+\begin{antwort}
+$h'(x) = x \mod 8$
+
+$h(x, i) = (h'(x) + i \cdot 5) \mod 8$
+
+\ueberschrift{Kleines Java-Hilfsprogramm zum Ausrechnen der Sondierungen}
+
+\inputcode[firstline=3]{aufgaben/aud/pu_7/aufgabe_8/Hashing}
+
+\ueberschrift{17 einfügen}
+
+\begin{center}
+\begin{tabular}{l|cccccccc}
+Bucket    & 0  & 1 & 2     & 3 & 4      & 5 & 6     & 7 \\\hline
+Inhalt    & 8  & 9 &       & 3 & $23_2$ &   & $1_2$ & 15 \\
+\end{tabular}
+\end{center}
+
+{\tiny
+\begin{equation*}
+\begin{aligned}
+\text{1. Versuch: } h(17, 0) &= (h'(17) + 0 \cdot 5) \mod 8 &= (1 + 0) \mod 8  &= 1 \mod 8  &= 1 \text{ (belegt von } 9)\\
+\text{2. Versuch: } h(17, 1) &= (h'(17) + 1 \cdot 5) \mod 8 &= (1 + 5) \mod 8  &= 6 \mod 8  &= 6 \text{ (belegt von } 1)\\
+\text{3. Versuch: } h(17, 2) &= (h'(17) + 2 \cdot 5) \mod 8 &= (1 + 10) \mod 8 &= 11 \mod 8 &= 3 \text{ (belegt von } 3)\\
+\text{4. Versuch: } h(17, 3) &= (h'(17) + 3 \cdot 5) \mod 8 &= (1 + 15) \mod 8 &= 16 \mod 8 &= 0 \text{ (belegt von } 8)\\
+\text{5. Versuch: } h(17, 4) &= (h'(17) + 4 \cdot 5) \mod 8 &= (1 + 20) \mod 8 &= 21 \mod 8 &= 5\\
+\end{aligned}
+\end{equation*}
+}
+
+\ueberschrift{4 einfügen}
+
+\begin{center}
+\begin{tabular}{l|cccccccc}
+Bucket    & 0  & 1 & 2     & 3 & 4      & 5      & 6     & 7 \\\hline
+Inhalt    & 8  & 9 &       & 3 & $23_2$ & $17_5$ & $1_2$ & 15 \\
+\end{tabular}
+\end{center}
+
+{\tiny
+\begin{equation*}
+\begin{aligned}
+\text{1. Versuch: } h(4, 0) &= (h'(4) + 0 \cdot 5) \mod 8 &= (4 + 0) \mod 8  &= 4 \text{ (belegt von } 23)\\
+\text{2. Versuch: } h(4, 1) &= (h'(4) + 1 \cdot 5) \mod 8 &= (4 + 5) \mod 8  &= 1 \text{ (belegt von } 9)\\
+\text{3. Versuch: } h(4, 2) &= (h'(4) + 2 \cdot 5) \mod 8 &= (4 + 10) \mod 8 &= 6 \text{ (belegt von } 1)\\
+\text{4. Versuch: } h(4, 3) &= (h'(4) + 3 \cdot 5) \mod 8 &= (4 + 15) \mod 8 &= 3 \text{ (belegt von } 3)\\
+\text{5. Versuch: } h(4, 4) &= (h'(4) + 4 \cdot 5) \mod 8 &= (4 + 20) \mod 8 &= 0 \text{ (belegt von } 8)\\
+\text{6. Versuch: } h(4, 5) &= (h'(4) + 5 \cdot 5) \mod 8 &= (4 + 25) \mod 8 &= 5 \text{ (belegt von } 17)\\
+\text{7. Versuch: } h(4, 6) &= (h'(4) + 6 \cdot 5) \mod 8 &= (4 + 30) \mod 8 &= 2 \\
+\end{aligned}
+\end{equation*}
+}
+
+\begin{center}
+\begin{tabular}{l|cccccccc}
+Bucket    & 0  & 1 & 2     & 3 & 4      & 5      & 6     & 7 \\\hline
+Inhalt    & 8  & 9 & $4_7$ & 3 & $23_2$ & $17_5$ & $1_2$ & 15 \\
+\end{tabular}
+\end{center}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Welches Problem tritt auf, wenn zur Kollisionsauflösung lineares
+Sondieren mit Schrittweite 4 verwendet wird? Warum ist 5 eine bessere
+Wahl?
+
+\begin{antwort}
+Beim linearen Sondieren mit der Schrittweite 4 werden nur zwei
+verschiedene Buckets erreicht, beispielsweise: 1, 5, 1, 5, etc.
+
+Beim linearen Sondieren mit der Schrittweite 5 werden nacheinander alle
+möglichen Buckets erreicht, beispielsweise: 1, 6, 3, 0, 5, 2, 7, 4.
+\end{antwort}
+
+\end{enumerate}
+
+\section{Aufgabe 9 (Hashing)\footcite{examen:66115:2019:09}}
+
+Verwenden Sie die Hashfunktion $h(k,i) = (h’(k) + i^2) \mod 11$ mit
+$h’(k) = k \mod 13$, um die Werte $12$, $29$ und $17$ in die folgende
+Hashtabelle einzufügen. Geben Sie zudem jeweils an auf welche Zellen der
+Hashtabelle zugegriffen wird.
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+0&1&2&3&4&5&6&7&8&9&10\\\hline
+&&&16&&5&&&&22&\\\hline
+\end{tabular}
+\end{center}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{4. Hashing\footcite[Seite 7]{examen:66115:2016:03}}
+
+Betrachte eine Hashtabelle der Größe m = 10.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Welche der folgenden Hashfunktionen ist für Hashing mit
+verketteten Listen am besten geeignet? Begründen Sie Ihre Wahl!
+
+\begin{enumerate}
+\item $h_1(x) = (4x + 3) mod m$
+\item $h_2(x) = (3x + 3) \mod m$.
+\end{enumerate}
+
+%%
+% b)
+%%
+
+\item Welche der folgenden Hashfunktionen ist für Hashing mit offener
+Adressierung am besten geeignet? Begründen Sie Ihre Wahl!
+
+\begin{enumerate}
+\item $h_1(x,i) = (7 \cdot x + i \cdot m) \mod m$
+\item $h_2(x,i) = (7 \cdot x + i \cdot (m - 1)) \mod m$.
+\end{enumerate}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 3: Hashing\footcite{examen:66115:2010:09}}
+
+Gegegen sei ein Array der Größe 10, z.\,B. \java{int[] hashfeld = new
+int [10]}. Die Hashfunktion sei der Wert modulo 10, $h(x) = x \% 10$.
+Kollisionen werden mit linearer Verschiebung um 1 (modulo 10) gelöst.
+
+\java{in(x)} bedeutet, dass die Zahl x eingefügt wird,
+\java{search(x)}, dass nach x gesucht wird mit den Antworten „ja“ bzw. „nein“ und
+\java{out(x)}, dass x gelöscht wird, sofern x gespeichert ist.
+
+Es wird folgende Sequenz von Operationen auf ein anfangs leeres Array
+ausgeführt:
+
+\java{in(19)},
+\java{in(29)},
+\java{in(39)},
+\java{in(10)},
+\java{out(29)},
+\java{out(39)},
+\java{search(29)},
+\java{in(11)},
+\java{in(17)},
+\java{out(10)},
+\java{in(2)},
+\java{in(22)}
+
+Geben Sie den Inhalt von \java{hashfeld} an
+
+nach \java{search(29)}\\
+nach \java{out(10)}\\
+und nach \java{in(22)}.
+
+\literatur
+
+\end{document}

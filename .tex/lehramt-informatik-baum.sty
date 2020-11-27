@@ -1,0 +1,52 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-bbaum}[2020/06/13]
+
+\RequirePackage{tikz}
+
+% für binaerer baum
+\RequirePackage{tikz-qtree}
+
+% Für b baum
+\usetikzlibrary{shapes.multipart}
+
+\tikzset{
+  binaerer baum/.style={
+    shorten <=2pt,
+    shorten >=2pt,
+    ->,
+    every tree node/.style={
+      minimum width=2em,
+      draw,
+      circle
+    },
+    blank/.style={
+      draw=none
+    },
+    edge from parent/.style={
+      draw,
+      edge from parent path={(\tikzparentnode) -- (\tikzchildnode)}
+    },
+    level distance=1cm,
+  },
+  bbaum node/.style={
+    rectangle split parts=10,
+    rectangle split,
+    rectangle split horizontal,
+    rectangle split ignore empty parts,
+    draw,
+    fill=white
+  },
+  bbaum/.style={
+    shorten <=2pt,
+    shorten >=2pt,
+    every node/.style=bbaum node,
+    level 1/.style={
+      level distance=12mm,
+      sibling distance=25mm,
+    },
+    level 2/.style={
+      level distance=9mm,
+      sibling distance=15mm,
+    },
+  }
+}

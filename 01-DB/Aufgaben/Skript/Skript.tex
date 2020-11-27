@@ -1,0 +1,1345 @@
+\documentclass{lehramt-informatik}
+
+\begin{document}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 5.1 (Seite 79)}
+
+\begin{enumerate}
+\item Gegeben sind die Domänen Klassenstufe = \{5, 11\} und
+Raumnummer = \{101, 102, 202\}\}. Bestimmen Sie das kartesische Produkt
+Klassenstufe x Raumnummer.
+
+\begin{antwort}[muster]
+\{(5, 101), (5, 102), (5, 202), (11, 101), (11, 102), (11,202)\}
+\end{antwort}
+
+\item Es gilt: Klasse $\subseteq$ Klassenstufe $\times$ Raumnummer.
+Bestimmen Sie diese Relation bezüglich der dem Material
+zugrundeliegenden Schulverwaltungsdaten.
+
+\begin{antwort}[muster]
+Klasse = {(5, 101), (11, 202)}
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 5.2 (Seite 81)}
+
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Die Objekte Schüler lassen sich durch eine Relation mit
+dem Relationschema Schueler (Eintrittsjahr, Nr, Name, Konfession)
+darstellen. Geben Sie die Extension der Relation an.
+
+Lösung: \{(2017, 1, Max Mustermann, rk), (2018, 2, Sabine Kracker, ev)\}
+
+%%
+%
+%%
+
+\item Klassen lassen sich durch Angabe von Name und
+Klassenzimmer beschreiben. Geben Sie ein mögliches Relationenschema
+Klasse an.
+
+\begin{antwort}[muster]
+Klasse \{[Name: STRING, Klassenzimmer: STRING]\}
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 7.1 (Seite 161)}
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Betrachten Sie das Datenbankschema der Schulverwaltungsdatenbank
+und geben Sie eine mögliche Reihenfolge der Tabellenerzeugung an!
+
+\begin{minted}{md}
+ist_Fachlehrkraft_von{Klasse: INTEGER, Fach: STRING, Lehrkraft: INTEGER, Stundenzahl: INTEGER}
+Lehrkraft{PersNr: INTEGER, Name: STRING, Geschlecht: {'m', 'w'}, Wohnort: STRING, Geburtsjahr: INTEGER}
+Klasse{Name: INTEGER, Klassenzimmer: INTEGER, Klassenleitung: INTEGER}
+Schueler{Eintrittsjahr: INTEGER, Nr: INTEGER, Name: STRING, Konfession: {'ev', 'rk', 'isl', 'bk'}, gehoert_zu: INTEGER}
+hat_Lehrbefaehigung_in{Lehrkraft: INTEGER, Fach: STRING}
+hat_Fachbetreuung_in{Lehrkraft: INTEGER , Fach: STRING, Wertigkeit: {1, 2}}
+Fach{Name:STRING, Pflichtfach: {'ja', 'nein'}}
+\end{minted}
+
+\noindent
+\verb|PersNr| wurde umbenannt in \verb|Klassenleitung| und ist ein
+Fremdschlüssel von \verb|Lehrkraft|
+
+\noindent
+\verb|gehoert_zu| ist das umbenannte Attribut \verb|Klasse.Name|, also
+ein Fremdschlüssel von \verb|Klasse|.
+
+\begin{minted}{md}
+Lehrkraft
+Fach
+Klasse (Lehrkraft.Klassenleitung)
+Schueler (Klasse.Name)
+hat_Lehrbefaehigung_in (Lehrkraft.PersNr, Fach.Name)
+ist_Fachlehrkraft_von (Klasse.Name, Fach.Name, Lehrkraft.PersNr)
+hat_Fachbetreuung_in (Lehrkraft.PersNr, Fach.Name)
+\end{minted}
+
+%%
+% 2.
+%%
+
+\item Geben Sie nun die zugehörigen \verb|CREATE TABLE|-Befehle an
+(Angabe Seite 134, Lösung Seite 161).
+
+\begin{minted}{sql}
+CREATE TABLE Lehrkraft (
+  PersNr INTEGER PRIMARY KEY,
+  Name VARCHAR(60),
+  Geschlecht CHAR(1),
+  Wohnort VARCHAR(60),
+  Geburtsjahr INTEGER,
+  CHECK (Geschlecht in ('m', 'w'))
+);
+
+CREATE TABLE Fach (
+  Name VARCHAR(60) PRIMARY KEY,
+  Pflichtfach INTEGER,
+  CHECK (Pflichtfach in (0, 1))
+);
+
+CREATE TABLE Klasse (
+  Name INTEGER,
+  Klassenzimmer INTEGER,
+  Klassenleitung INTEGER,
+  PRIMARY KEY (Name, Klassenzimmer),
+  FOREIGN KEY (Klassenleitung) REFERENCES Lehrkraft(PersNr)
+);
+
+CREATE TABLE Schueler (
+  Eintrittsjahr INTEGER,
+  Nr INTEGER PRIMARY KEY,
+  Name VARCHAR(60),
+  Konfession VARCHAR(2),
+  gehoert_zu INTEGER,
+  CHECK (Konfession in ('ev', 'rk', 'isl', 'bk')),
+  FOREIGN KEY (gehoert_zu) REFERENCES Klasse(Name)
+);
+
+CREATE TABLE hat_Lehrbefaehigung_in (
+  Lehrkraft INTEGER NOT NULL,
+  Fach VARCHAR(20) NOT NULL,
+  PRIMARY KEY (Lehrkraft, Fach),
+  FOREIGN KEY (Lehrkraft) REFERENCES Lehrkraft(PersNr),
+  FOREIGN KEY (Fach) REFERENCES Fach(Name)
+);
+
+CREATE TABLE ist_Fachlehrkraft_von (
+  Klasse INTEGER NOT NULL,
+  Fach VARCHAR(20) NOT NULL,
+  Lehrkraft INTEGER NOT NULL,
+  Stundenzahl INTEGER NOT NULL,
+  PRIMARY KEY (Klasse, Fach, Lehrkraft),
+  FOREIGN KEY (Klasse) REFERENCES Klasse(Name),
+  FOREIGN KEY (Fach) REFERENCES Fach(Name),
+  FOREIGN KEY (Lehrkraft) REFERENCES Lehrkraft(PersNr)
+);
+
+CREATE TABLE hat_Fachbetreuung_in (
+  Lehrkraft INTEGER NOT NULL,
+  Fach VARCHAR(20) NOT NULL,
+  Wertigkeit INTEGER NOT NULL,
+  CHECK (Wertigkeit in (1, 2)),
+  PRIMARY KEY (Lehrkraft, Fach),
+  FOREIGN KEY (Lehrkraft) REFERENCES Lehrkraft(PersNr),
+  FOREIGN KEY (Fach) REFERENCES Fach(Name)
+);
+\end{minted}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 7.2 (Seite 134)}
+
+\begin{enumerate}
+\item Geben Sie eine mögliche Reihenfolge für das Löschen der Tabellen
+der Schulverwaltungsdatenbank an! (Angabe Seite 134, Lösung Seite 162)
+
+Umgekehrte Reiheinfolge wie die Erstellung.
+
+\begin{minted}{md}
+hat_Fachbetreuung_in (Lehrkraft.PersNr, Fach.Name)
+ist_Fachlehrkraft_von (Klasse.Name, Fach.Name, Lehrkraft.PersNr)
+hat_Lehrbefaehigung_in (Lehrkraft.PersNr, Fach.Name)
+Schueler (Klasse.Name)
+Klasse (Lehrkraft.Klassenleitung)
+Fach
+Lehrkraft
+\end{minted}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 7.3 (Seite 135)}
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Zur Tabelle Lehrkraft soll die Spalte Amtsbezeichnung hinzugefügt
+werden. Möglich sind die Bezeichnungen StR, OStR, StD und OStD. (Angabe
+Seite 135)
+
+\begin{minted}{sql}
+ALTER TABLE Lehrkraft
+ADD COLUMN Amtsbezeichnung VARCHAR(10)
+CHECK (Amtsbezeichnung in ('StR', 'OStR', 'StD', 'OStD'));
+\end{minted}
+
+%%
+% 2.
+%%
+
+\item In die Tabelle Schueler soll die Spalte Konfession gelöscht
+werden. (Angabe Seite 135)
+
+\begin{minted}{sql}
+ALTER TABLE Schueler
+DROP COLUMN Konfession;
+\end{minted}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 7.4 (Seite 136)}
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Falbala (Konfession: bk) tritt im Schuljahr 2000 als erste
+Schülerin in die Schule ein. Sie kommt in die Klasse 11. (Angabe Seite
+136, Lösung 162)
+
+\begin{minted}{sql}
+INSERT INTO Schueler (Name, Konfession, Eintrittsjahr, Nr, gehoert_zu)
+VALUES ('Falbala', 'bk', 2000, 1, 11);
+\end{minted}
+
+%%
+% 2.
+%%
+
+\item Das Fach Informatik soll in den Fächertabelle aufgenommen werden.
+Es ist aber noch nicht klar, ob das Fach ein Pflichtfach ist oder nicht.
+(Angabe Seite 136, Lösung 162)
+
+\begin{minted}{sql}
+INSERT INTO Fach (Name) VALUES (Informatik);
+\end{minted}
+
+%%
+% 3.
+%%
+
+\item Die Lehrerin Graf qualifiziert sich im Fach Informatik nach und
+hat damit die Lehrbefähigung in diesem Fach. (Angabe Seite 137, Lösung
+163)
+
+wahrscheinlich falsch wegen verschachtelten \verb|SELECT|.
+
+\begin{minted}{sql}
+INSERT INTO hat_Lehrbefaehigung_in (Lehrkraft, Fach)
+VALUES((SELECT PersNr FROM Lehrkraft WHERE Name = 'Graf'), 'Informatik');
+\end{minted}
+
+%%
+% 4.
+%%
+
+\item Die Klasse 7 wird in die Datenbank aufgenommen. Die Klassenleitung
+hat Frau Rinser, das Klassenzimmer steht noch nicht fest. (Angabe Seite
+137, Lösung 163)
+
+wahrscheinlich falsch wegen verschachtelten \verb|SELECT|.
+
+\begin{minted}{sql}
+INSERT INTO Klasse (Name, Klassenleitung)
+VALUES (7, (SELECT PersNr FROM Lehrkraft WHERE Name = 'Rinser'));
+\end{minted}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+% 7.5
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 7.5 (Seite 138)}
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Der Schüler Obelix (Eintrittsjahr 1999/2) ist aus der Schule
+ausgetreten und soll deswegen aus der Datenbank gelöscht werden. (Angabe
+Seite 138, Lösung Seite)
+
+\begin{minted}{sql}
+DELETE FROM Klasse
+WHERE Name = 'Obelix' AND Eintrittsjahr = 1999 AND Nr = 2;
+\end{minted}
+
+%%
+% 2.
+%%
+
+\item aufgrund sinkender Schülerzahl ist für das Fach Mathematik nur
+noch ein Fachbetreuer zulässig. Herr Gauß muss deshalb das Amt aufgeben.
+(Angabe Seite 138, Lösung Seite 163)
+
+falsch: in \verb|hat_Fachbetreuung_in| steht keine Lehrername nur die ID
+
+\begin{minted}{sql}
+DELETE FROM hat_Fachbetreuung_in
+WHERE Lehrkraft = 'Gauß' and Fach = 'Mathematik';
+\end{minted}
+
+Musterlösung:
+
+\begin{minted}{sql}
+DELETE FROM hat_Fachbetreuung_in
+WHERE Lehrkraft IN (
+  SELECT PersNr
+  FROM Lehrkraft
+  WHERE Name = 'Gauss'
+);
+\end{minted}
+
+%%
+% 3.
+%%
+
+\item Alle Lehrkräfte der Jahrgänge 1941 und früher, werden pensioniert
+und aus der Datenbank entfernt. (Angabe Seite 138, Lösung Seite 163)
+
+\begin{minted}{sql}
+DELETE FROM Lehrkraft WHERE Geburstjahr <= 1941;
+\end{minted}
+
+%%
+% 4.
+%%
+
+\item Ist das Löschen von Daten wie in Übung 1 und 3 in der Realität
+adäquat? Was gibt es für Alternativen? (Angabe Seite 138, Lösung Seite
+163)
+
+\begin{antwort}
+Man könnte eine neue Spalte einfügen, z. B. bei Lehrer pensioniert.
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+% 7.6
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 7.6 (Seite 163)}
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Die Klasse 11 erhält als neues Klassenzimmer den Raum 303. (Angabe
+Seite 139 Lösung Seite 163)
+
+\begin{minted}{sql}
+UPDATE Klasse SET Klassenzimmer = 303 WHERE Name = 11;
+\end{minted}
+
+%%
+% 2.
+%%
+
+\item Der Schüler Asterix (Eintrittsjahr 1999, Nummer 1) hat seinem
+Namen geändert und heißt nun Idefix. Außerdem ist er zum evangelischen
+Glauben konvertiert. (Angabe Seite 139 Lösung Seite 163)
+
+\begin{minted}{sql}
+UPDATE Schueler
+SET Name = 'Idefix', Konfession = 'ev'
+WHERE Eintrittsjahr = 1999 AND Nummer = 1;
+\end{minted}
+
+%%
+% 3.
+%%
+
+\item Das Fach Informatik ist nun Pflichtfach. (Angabe Seite 139 Lösung
+Seite 163)
+
+\begin{minted}{sql}
+UPDATE Fach
+SET Pflichtfach = 1
+WHERE Name = 'Informatik';
+\end{minted}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+% 7.7
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 7.7 (Seite 143)}
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Welche Lehrkräfte - unter Angabe von Personalnummer, Name und
+Geschlecht - gibt es im Kollegium? (Angabe Seite 143)
+
+\begin{minted}{sql}
+SELECT PersNr, Name, Geschlecht FROM Lehrkraft;
+\end{minted}
+
+%%
+% 2.
+%%
+
+\item Welche Schülerinnen und Schüler - unter Angabe von Eintrittsjahr,
+Nummer und Name - sind an der Schule? (Angabe Seite 143)
+
+\begin{minted}{sql}
+SELECT Eintrittsjahr, Nr, Name FROM Schueler;
+\end{minted}
+
+%%
+% 3.
+%%
+
+\item Welche Fächer werden an der Schule unterrichtet? Die Ausgabespalte
+soll den Namen “Angebotene Faecher” erhalten. (Angabe Seite 143)
+
+falsch: Spaltenname darf kein Leerzeichen haben.
+
+\begin{minted}{sql}
+SELECT Name AS "Angebotene_Faecher" FROM Fach;
+\end{minted}
+
+%%
+% 4.
+%%
+
+\item Welche Schülernamen existieren an der Schule? Duplikate sollen
+nicht ausgegeben werden. (Angabe Seite 143)
+
+\begin{minted}{sql}
+SELECT DISTINCT Name FROM Schueler;
+\end{minted}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 7.8 (Seite 146)}
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Welche Lehrer haben eine dreistellige Personalnummer?
+
+\begin{minted}{sql}
+SELECT * FROM Lehrkraft WHERE Personalnummer > 99;
+\end{minted}
+
+%%
+% 2.
+%%
+
+\item Welche Lehrerinnen - unter Angabe von Personalnummer und Name -
+wohnen in Berlin oder Muenchen?
+
+\begin{minted}{sql}
+SELECT PersNr, Name
+FROM Lehrkraft
+WHERE
+  Geschlecht = 'w' AND
+  Wohnort IN ('Berlin', 'Muenchen');
+\end{minted}
+
+%%
+% 3.
+%%
+
+\item Welche Schülernamen gibt es bei den Bekenntnislosen in der fünften
+Klasse?
+
+\begin{minted}{sql}
+SELECT DISTINCT Name
+FROM Schueler
+WHERE Konfession = 'bk';
+\end{minted}
+
+\item Welche Ergebnisse liefern folgende Anfragen?
+
+\begin{antwort}
+Alle männliches Lehrkräfte oder LehrerInnen die in Passau wohnen und
+nach 1944 geboren sind.
+
+Alle Lehrkräft nach 1944 geboren, die entweder männlich sind oder in
+Passau wohnen.
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+% Aufgabe 7.9
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 7.9 (Seite 147)}
+
+\begin{enumerate}
+\item Welche Fächer, alphabetisch sortiert, gibt es an der Schule?
+
+\begin{minted}{sql}
+SELECT Name
+FROM Fach
+ORDER BY Name;
+\end{minted}
+
+\item Gewünscht ist Klasse, Eintrittsjahr und Name aller katholischen
+Schülerinnen und Schüler, sortiert nach der Klasse und innerhalb der
+Klasse nach dem Eintrittsjahr.
+
+\begin{minted}{sql}
+SELECT gehoert_zu AS Klasse, Eintrittsjahr, Name
+FROM Schueler
+WHERE Konfesstion = 'rk'
+ORDER BY gehoert_zu, Eintrittsjahr;
+\end{minted}
+
+\item Gesucht sind Personalnummer und Name der Lehrerinnen, die in
+Passau wohnen, absteigend sortiert nach dem Geburtsjahr.
+
+\begin{minted}{sql}
+SELECT PersNr, Name FROM Lehrkraft
+WHERE Geschlecht = 'w' AND Wohnort 'Passau'
+ORDER BY Geburstjahr DESC;
+\end{minted}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+% 7.10
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 7.10 (Seite 149)}
+
+\begin{minted}{sql}
+CREATE TABLE Lehrkraft (
+PersNr INTEGER PRIMARY KEY ,
+Name VARCHAR(20) NOT NULL,
+Geschlecht VARCHAR(1) CHECK (Geschlecht IN ('m', 'w')),
+Wohnort VARCHAR(20) ,
+Geburtsjahr INTEGER);
+\end{minted}
+
+\begin{minted}{sql}
+CREATE TABLE Schueler (
+Eintrittsjahr INTEGER,
+Nr INTEGER,
+Name VARCHAR(20) NOT NULL,
+Konfession VARCHAR(3),
+gehoert_zu INTEGER,
+PRIMARY KEY (Eintrittsjahr, Nr),
+CHECK (Konfession IN ('rk', 'ev', 'bk', 'isl')),
+FOREIGN KEY (gehoert_zu) REFERENCES Klasse (Name) ) ;
+\end{minted}
+
+\begin{enumerate}
+\item Wie viele Lehrerinnen bzw. Lehrer aus Passau gibt es?
+
+falsch:
+
+\begin{minted}{sql}
+SELECT COUNT(*) AS Anzahl
+FROM Lehrkraft
+WHERE Wohnort = 'Passau'
+GROUP BY Wohnort;
+\end{minted}
+
+Musterlösung:
+
+\begin{minted}{sql}
+SELECT Geschlecht COUNT(Geschlecht) AS Anzahl
+FROM Lehrkraft
+WHERE Wohnort = 'Passau'
+GROUP BY Geschlecht;
+\end{minted}
+
+\item Wie viele Schülerinnen und Schüler pro Konfession gibt es in der
+elften Klasse?
+
+war richtig:
+
+\begin{minted}{sql}
+SELECT Konfession, COUNT(*) AS Anzahl
+FROM Schueler
+WHERE gehoert_zu = 11
+GROUP BY Konfession;
+\end{minted}
+
+\item Wie groß sind die Klassenstärken?
+
+\verb|AS Klasse| vergessen
+
+\begin{minted}{sql}
+SELECT gehoert_zu AS Klasse, COUNT(*) AS Anzahl
+FROM Schueler
+GROUP BY gehoert_zu;
+\end{minted}
+
+\item Zu wie vielen Fächern gibt es eine Fachbetreuung?
+
+falsch
+
+\begin{minted}{sql}
+SELECT Fach
+FROM hat_Fachbetreuung_in
+GROUP BY Fach
+HAVING COUNT(*) = 1;
+\end{minted}
+
+Musterlösung
+
+\begin{minted}{sql}
+SELECT COUNT (DISTINCT Fach)
+FROM hat_Fachbetreuung_in;
+\end{minted}
+
+\item Gesucht ist die höchste laufende Nummer innerhalb eines
+Eintrittsjahres! Zusätzlich ausgegeben werden soll dazu das jeweilige
+Eintrittsjahr.
+
+\begin{minted}{sql}
+SELECT Eintrittsjahr, MAX(Nr)
+FROM Schueler
+GROUP BY Eintrittsjahr;
+\end{minted}
+
+\item Wie viele Mathematikstunden sind von Lehrkräften zu halten, wenn
+der Stundenansatz pro Klasse um 2 erhöht wird?
+
+\begin{minted}{sql}
+?
+\end{minted}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 7.11 (Seite 150)}
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Zu welchem Fach gibt es nur eine Lehrkraft?
+
+\begin{minted}{sql}
+SELECT Fach
+FROM hat_Lehrbefaehigung_in
+GROUP BY Fach
+HAVING COUNT(*) = 1;
+\end{minted}
+
+%%
+% 2.
+%%
+
+\item Welche Klassen haben derzeit mehr als 10 Stunden Unterricht?
+Auszugeben sind die Klasse und deren Gesamtstundenzahl. (Lösung Seite
+166)
+
+\begin{minted}{sql}
+SELECT Klasse, SUM(Stundenzahl)
+FROM ist_Fachlehrkraft_von
+GROUP BY Klasse
+HAVING SUM(Stundenzahl) > 10;
+\end{minted}
+
+%%
+% 3.
+%%
+
+\item Ist folgende Anfrage vernünftig?  (Lösung Seite 166)
+\end{enumerate}
+
+\begin{minted}{sql}
+SELECT Konfession
+FROM Schueler
+WHERE gehoert_zu = 11
+GROUP BY Konfession
+HAVING COUNT (*) = 0 ;
+\end{minted}
+
+\begin{antwort}
+Ist nicht vernünftig, da Konfession gecheckt wird auf ev rk etc und
+also Konfession immer einen Wert hat.  (Lösung Seite 166)
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 7.12 (Seite 153)}
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Welche Fächer dürfen die einzelnen Lehrkräfte unterrichten?
+Gewünscht ist die Ausgabe der Namen von Lehrkraft und Fach.
+
+\begin{minted}{sql}
+SELECT l.Name, f.Fach
+FROM Lehrkraft l, hat_Lehrbefaehingung_in f
+WHERE l.PersNr = f.Lehrkraft;
+\end{minted}
+
+%%
+% 2.
+%%
+
+\item Welche Lehrerin bzw. welcher Lehrer (Angabe des Namens) ist
+Fachbetreuer in Deutsch?
+
+\begin{minted}{sql}
+SELECT l.Name
+FROM Lehrkraft l, hat_Fachbetreuung_in f
+WHERE l.PersNr = f.Lehrkraft AND f.Fach = 'Deutsch';
+\end{minted}
+
+%%
+% 3.
+%%
+
+\item Gesucht sind die Namen der Lehrkräfte, die die Schülerin Falbala
+unterrichten?
+
+\begin{minted}{sql}
+SELECT l.Name
+FROM Lehrkraft l, ist_Fachlehrkraft_von f, Schueler s
+WHERE
+  s.Name = 'Falbala' AND
+  s.gehoert_zu = f.Klasse AND
+  f.Lehrkraft = l.PersNr;
+\end{minted}
+
+%%
+% 4.
+%%
+
+\item Gibt es Lehrkräfte (Angabe der PersNr), die mehr als ein Fach in
+derselben Klasse unterrichten?
+
+\begin{minted}{sql}
+SELECT f1.Lehrkraft AS PersNr
+FROM ist_Fachlehrkraft_von f1, ist_Fachlehrkraft_von f1
+WHERE
+  f1.Lehrkraft = f2.Lehrkraft AND
+  f1.Klasse = f2.Klasse AND
+  f1.Fach <> f2.Fach;
+\end{minted}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+% 7.13
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 7.13 (Seite 154)}
+\begin{enumerate}
+\item Welche Lehrkraft ist Fachbetreuer in Sport?
+
+\begin{minted}{sql}
+SELECT Name FROM Lehrkraft WHERE PersNr = (
+  SELECT Lehrkraft FROM hat_Fachbetreuung_in WHERE Fach = 'Sport'
+);
+\end{minted}
+
+\item Welche Lehrkräfte sind älter als der Durchschnitt des Kollegiums?
+
+\begin{minted}{sql}
+SELECT Name FROM Lehrkraft WHERE Geburstjahr < (
+  SELECT AVG(Geburtsjahr) FROM Lehrkraft
+);
+\end{minted}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+% 7.14
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 7.14 (Seite 156)}
+
+\begin{enumerate}
+\item Welche Lehrerinnen sind 1950, 1952, 1956 oder 1957 geboren?
+(Lösung Seite 167)
+
+\begin{minted}{sql}
+SELECT Name
+FROM Lehrkraft
+WHERE
+  Geschlecht = 'w' AND
+  Geburtsjahr IN (1950, 1952, 1956, 1957);
+\end{minted}
+
+\item Welche Lehrkräfte haben die Fachbetreuung in Mathematik? (Lösung
+Seite 167)
+
+\begin{minted}{sql}
+SELECT Name FROM Lehrkraft WHERE PersNr IN (
+  SELECT Lehrkraft FROM hat_Fachbetreuung_in WHERE Fach = 'Mathematik'
+);
+\end{minted}
+
+\item Welchen Lehrkräften, alphabetisch absteigend sortiert, wurden
+bereits Klassen zugeteilt? (Lösung Seite 167)
+
+falsch: \verb|ist_Fachlehrkraft_von| nicht verwendet. Es geht nicht
+um die Klassenleitung.
+
+\begin{minted}{sql}
+SELECT Name FROM LEHRKRAFT WHERE PersNr IN (
+  SELECT Klassenleitung FROM Klasse
+)
+ORDER BY Name DESC;
+\end{minted}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+% 7.15
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 7.15 (Seite 157)}
+\begin{enumerate}
+\item Welche Lehrkräfte haben die Lehrbefähigung im Fach Informatik?
+
+\begin{minted}{sql}
+SELECT (
+  SELECT Name FROM Lehrkraft WHERE PersNr = Lehrkraft
+)
+FROM hat_Lehrbefaehigung_in
+WHERE Fach = 'Informatik';
+\end{minted}
+
+\item Welche Lehrkräfte haben noch keine Unterrichtstunden?
+
+nicht sicher ob diese Lösung auch stimmt.
+V
+\begin{minted}{sql}
+SELECT Name
+FROM Lehrkraft
+WHERE PersNr NOT IN (SELECT DISTINCT Lehrkraft FROM ist_Fachlehrkraft_von);
+\end{minted}
+
+\item Gesucht sind die Personalnummern der Lehrkräfte, die gleichzeitig
+in Fachbetreuung und Klassenleitung eingebunden sind.
+
+nicht sicher ob diese Lösung auch stimmt.
+
+\begin{minted}{sql}
+SELECT FROM Klasse k, hat_Fachbetreuung_in f WHERE k.Klassenleitung = f.Lehrkraft;
+\end{minted}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+% 7.16
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 7.16 (Seite 158)}
+
+\begin{enumerate}
+\item Gesucht sind alle Schülerinnen und Schüler mit Ausnahme der
+Bekenntnislosen. (Lösung Seite 168)
+
+\begin{minted}{sql}
+SELECT Name FROM Schueler
+EXCEPT
+SELECT Name FROM Schueler WHERE Konfession = 'bk';
+\end{minted}
+
+\item Gesucht sind die Namen des Lehrerkollegiums und der Schülerschaft.
+(Lösung Seite 168)
+
+\begin{minted}{sql}
+SELECT Name FROM Lehrkraft
+UNION
+SELECT Name FROM Schueler;
+\end{minted}
+
+\item Welchen Lehrkräften (Angabe der Personalnummer) wurden bereits
+Klassen zugeteilt? (Lösung Seite 168)
+
+\begin{minted}{sql}
+SELECT PersNr FROM Lehrkraft
+INTERSECT
+SELECT Lehrkraft FROM ist_Fachlehrkraft_von;
+\end{minted}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 7.17 (Seite 158)}
+\begin{enumerate}
+\item Welche Fächer mit dem Anfangsbuchstaben M gibt es? (Lösung Seite
+168)
+
+\begin{minted}{sql}
+SELECT Name
+FROM Fach
+WHERE Name LIKE 'M%';
+\end{minted}
+
+\item Welche Lehrernamen haben an der zweiten Stelle den Buchstaben u?
+(Lösung Seite 168)
+
+\begin{minted}{sql}
+SELECT Name FROM Lehrkraft
+WHERE Name LIKE '_u%';
+\end{minted}
+
+\item Heißt die Schülerin aus der 11. Klasse Fabala oder Falbala?
+(Lösung Seite 169)
+
+\begin{minted}{sql}
+SELECT Name
+FROM Schueler
+WHERE Name LIKE 'Fa%bala';
+\end{minted}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 7.18 (Seite 160)}
+
+\begin{enumerate}
+\item Es soll eine View mit dem Namen \verb|Klasse_5| erstellt werden,
+die die Namen aller Schüler der fünften Klasse zeigt. (Lösung Seite 169)
+
+\begin{minted}{sql}
+CREATE VIEW Klasse_5 AS
+SELECT Name FROM Schueler WHERE gehoert_zu = 5;
+\end{minted}
+
+\item Gibt es in der fünften Klasse einen Schüler mit dem Namen Asterix?
+Erstellen Sie eine View Schuelersuche unter Ausnutzung der Lösung der
+Vorgängeraufgabe. (Lösung Seite 169)
+
+\begin{minted}{sql}
+CREATE VIEW Schuelersuche AS
+SELECT Name FROM Klasse_5 WHERE Name = 'Asterix';
+\end{minted}
+
+\item Gewünscht ist eine Sicht mit dem Namen \verb|Lehrkraefte_5|, die
+eine Liste mit den Lehrkräften, die in der Klasse 5 unterrichten, und
+dem entsprechenden Fach berechnet. (Lösung Seite 169)
+
+\begin{minted}{sql}
+CREATE VIEW Lehrkraefte_5 AS
+SELECT l.NAME
+FROM ist_Fachlehrkraft_von f, Lehrkraft l
+WHERE f.Klasse = 5 AND f.Lehrkraft = l.PersNr;
+\end{minted}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 8.1 (Seite 174)}
+
+Gegeben sei die Relation Artikel mit dem Schema
+\texttt{Artikel\{Lieferant, Adresse, Artikelname, Preis\}}. Die
+Relation wird durch folgende Tabelle repräsentiert:
+
+Geben Sie Beispiele für mögliche Anomalien an!
+
+\begin{antwort}[muster]
+Lösung Seite 203
+\begin{description}
+\item[Update-Anomalie:] Die Firma Meier verlegt ihren Firmensitz nach
+Regensburg. Die Adressänderungen werden nicht konsequent bei allen
+betroffenen Tupeln vorgenommen.
+
+\item[Insert-Anomalie:] In die Datenbank soll ein neuer Lieferant
+eingetragen werden, der aber vorerst keine Artikel liefert. Da das
+Attribut \texttt{Artikel} zum Primärschlüssel gehört, darf dessen Wert
+keine Nullwert sein. Damit kann ein Lieferant öhneÄrtikel nicht in die
+Datenbank eingetragen werden.
+
+\item[Delete-Anomalie:] Der Lieferant kann kurzfristig weder Seezunge
+noch Forelle liefern. Die entsprechenden Einträge müssen gelöscht
+werden. Damit geht aber auch die Information über die Adresse des
+Lieferanten verloren.
+\end{description}
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 8.2 (Seite 176)}
+
+Gegeben sei das Relationenschema $Artikel\{ Lieferant, Adresse,
+Artikelname, Preis\}$ und die Instanz
+
+Angenommen wird, dass es keine zwei Lieferanten mit demselben Namen
+gibt, jeder Lieferant nur eine Adresse hat und kein Lieferant zwei
+verschiedene Artikel mit demselben Artikelnamen liefert. Welche FDs
+gelten? Begründen Sie Ihre Entscheidung!
+
+Lösung 204
+
+\begin{antwort}
+\begin{itemize}
+\item $Lieferant \rightarrow Adresse$
+
+Über den Lieferantennamen kommt man zur Adresse
+
+\item ${Lieferant, Artikelname \rightarrow Preis}$
+
+Über den Lieferantennamen und den Artikelnamen kommt man zur Preis. Es
+gibt zwei verschiedene Arten von Forellen
+\end{itemize}
+\end{antwort}
+
+\begin{antwort}[muster]
+Alle trivialen FDs gelten.
+\begin{itemize}
+\item $Lieferant \rightarrow Adresse$ gilt, da es keine zwei Lieferanten
+mit gleichem Namen geben kann und jeder Lieferant eine eindeutige
+Adresse hat. Damit ist durch die Angabe des Lieferanten die
+entsprechende Adresse festgelegt.
+
+\item $Artikelname \rightarrow  Preis$ gilt nicht, da es mehrere gleiche
+Artikelnamen (die dann zu verschiedenen Lieferanten gehören würden)
+geben kann und dadurch nicht eindeutig auf den Preis geschlos- sen
+werden kann.
+
+\item $Lieferant \rightarrow Artikel$ gilt nicht, da ein Lieferant
+mehrere Artikel anbieten kann.
+
+\item $Lieferant \rightarrow Preis$ gilt nicht, da ein Lieferant mehrere
+Artikel anbieten kann und damit keine eindeutige Zuordnung möglich ist.
+
+\item $Artikelname \rightarrow Lieferant$ gilt nicht, da es durchaus
+mehrere Artikel gleichen Namens geben kann, die dann aber von
+verschiedenen Lieferanten stammen.
+
+\item $Lieferant, Artikelname \rightarrow Preis$ gilt, da durch die
+Angabe von Lieferant und Artikelname der
+Preis eindeutig bestimmt werden kann.
+\end{itemize}
+
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 8.3 (Seite 181)}
+
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Gegeben sei das Relationenschema
+$Artikel\{Lieferant, Adresse, Artikelname, Preis\}$ , die folgende
+Menge $F$ funktionaler Abhängigkeiten für Artikel
+$F := \{
+  Lieferant \rightarrow Adresse,
+  Lieferant Artikelname \rightarrow Preis
+\}$
+und die Menge
+$X = \{Lieferant, Artikelname\}$.
+Bestimmen Sie $AttrHull(F, X)$.
+
+\begin{antwort}
+$F^+ = \{Lieferant, Artikelname\}$
+
+1. Durchlauf
+
+$Lieferant$ ja $F^+ = \{Lieferant, Artikelname, Adresse\}$
+$Lieferant Artikelname$ ja $F^+$ $F^+ = \{Lieferant, Artikelname, Adresse, Preis\}$
+
+2. Durchlauf
+
+keine Veränderungen mehr
+
+$F^+ = \{Lieferant, Artikelname, Adresse, Preis\}$
+\end{antwort}
+
+%%
+%
+%%
+
+\item Gegeben sei das Relationenschema $Abstrakt\{A, B, C, D, E\}$ , und
+$F := \{
+  A D \rightarrow C,
+  B \rightarrow D,
+  E \rightarrow A
+\}$. Bestimmen Sie $AttrHull(F, \{A, B\})$.
+\end{enumerate}
+
+\begin{antwort}
+$F^+ = A, B$
+
+1. Durchlauf
+
+A D nichts
+B ja $F^+ \cup D$ $F^+ = A B D$
+E nichts
+
+2. Durchlauf
+
+A D ja $F^+ \cup A B D C$
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 8.4 (Seite 184)}
+
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Gegeben sei das Relationenschema
+\texttt{Professor\{PersNr, Dienststelle, Zimmer, Telefon\}}
+und
+\texttt{F = \{
+  PersNr Dienststelle $\rightarrow$ Zimmer,
+  Zimmer $\rightarrow$ Telefon
+\}}.
+Ist F bereits minimal?
+
+\begin{antwort}
+
+\begin{enumerate}
+\item Überprüfung der FDs auf Einfachheit: F enthält nur einfache FDs.
+
+\item Überprüfung, ob redundante Attribute vorliegen:
+
+\begin{itemize}
+\item \texttt{Zimmer $\rightarrow$ Telefon}: \texttt{\{Zimmer\}} ist
+bereits einelementig, d.h. es gibt kein redundantes Attribut
+
+\item \texttt{PersNr Dienststelle $\rightarrow$ Zimmer}
+
+\begin{itemize}
+\item Wir berechnen:
+\texttt{AttrHull(F, \{PersNr\}) = \{PersNr\}}, aber
+\texttt{Zimmer $\notin$ \{PersNr\}}.
+
+Dienststelle ist nicht redundant.
+
+\item Wir berechnen:
+\texttt{AttrHull(F, \{Dienststelle\}) = \{Dienststelle\}},
+aber
+\texttt{Zimmer $\notin$ \{Dienststelle\}}.
+PersNr ist nicht redundant.
+\end{itemize}
+
+Es gibt keine redundanten Attribute.
+\end{itemize}
+
+\item Überprüfung, ob redundante FDs vorliegen:
+
+\begin{itemize}
+\item \texttt{Zimmer $\rightarrow$ Telefon}:
+Wir berechnen:
+\texttt{AttrHull(F - \{Zimmer $\rightarrow$ Telefon\}, \{Zimmer\}) = \{Zimmer\}},
+aber
+\texttt{Telefon $\notin$ \{Zimmer\}}.
+\texttt{Zimmer $\rightarrow$ Telefon} ist nicht redundant.
+
+\item \texttt{PersNr Dienststelle $\rightarrow$ Zimmer}:
+Wir berechnen:
+\texttt{AttrHull(F - \{PersNr Dienststelle $\rightarrow$ Zimmer\}, \{PersNr, Dienststelle\}) =
+\{PersNr, Dienststelle\}},
+aber
+\texttt{Zimmer $\notin$ \{PersNr, Dienststelle\}}.
+\texttt{PersNr Dienststelle $\rightarrow$ Zimmer} ist nicht redundant.
+\end{itemize}
+
+\end{enumerate}
+F ist bereits minimal.
+\end{antwort}
+
+%%
+%
+%%
+
+\item Gegeben ist die Menge von FDs \texttt{F = \{%
+  PersNr $\rightarrow$ Name Wohnort,
+  PersNr Name $\rightarrow$ Geburtsjahr,
+  Name $\rightarrow$ PersNr%
+\}}.
+Bestimmen Sie die minimale Überdeckung von \texttt{F}!
+
+\begin{antwort}
+\texttt{F = \{%
+  PersNr $\rightarrow$ Name,
+  PersNr $\rightarrow$ Wohnort,
+  PersNr Name $\rightarrow$ Geburtsjahr,
+  Name $\rightarrow$ PersNr%
+\}}
+
+\begin{itemize}
+\item \texttt{PersNr Name $\rightarrow$ Geburtsjahr} ohne \texttt{Name}:
+
+\texttt{Geburtsjahr} $\in$ \texttt{AttrHüll\{F, \{PersNr\}\} = \{PersNr, Name, Wohnort, Geburtsjahr\}}
+
+\item \texttt{PersNr Name $\rightarrow$ Geburtsjahr} ohne \texttt{PersNr}:
+
+\texttt{Geburtsjahr} $\in$ \texttt{AttrHüll\{F, \{Name\}\} = \{Name, PersNr, Wohnort, Geburtsjahr\}}
+
+\texttt{F = \{%
+  PersNr $\rightarrow$ Name, Wohnort, Geburtsjahr,
+  Name $\rightarrow$ PersNr%
+\}}
+\end{itemize}
+
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 8.5 (Seite 186])}
+
+Gegeben sei das Relationenschema \texttt{Professor\{PersNr, Dienststelle, Zimmer, Telefon\}}.
+
+\begin{itemize}
+\item Bestimmen Sie eine sinnvolle Menge \texttt{F} von FDs!
+
+\begin{antwort}[muster]
+Es ist sicher sinnvoll anzunehmen, dass ein Professor in jeder
+Dienststelle höchstens ein Zimmer hat. Ferner hat ein Professorenzimmer
+höchstens einen Telefonanschluss. Damit kann beispielsweise folgende
+Menge von funktionalen Abhängigkeiten festgelegt werden:
+
+\begin{itemize}
+\item \texttt{PersNr Dienststelle $\rightarrow$ Zimmer}
+\item \texttt{Zimmer $\rightarrow$ Telefon}
+\end{itemize}
+\end{antwort}
+
+\item Prüfen Sie, ob {PersNr, Dienststelle} ein Superschlüssel ist.
+
+\begin{antwort}[muster]
+\footnotesize
+\begin{tabular}{ll}
+Ergebnismenge \texttt{Erg} &
+Erklärung\\
+
+\texttt{\{PersNr, Dienststelle\}} &
+\texttt{Erg} wird initialisiert\\
+
+\texttt{\{PersNr, Dienststelle\} $\cup$ \{Zimmer\}} &
+wegen FD \texttt{PersNr Dienststelle $\rightarrow$ Zimmer}\\
+
+\texttt{\{PersNr, Dienststelle, Zimmer\} $\cup$ \{Telefon\}} &
+wegen FD \texttt{Zimmer $\rightarrow$ Telefon}\\
+\end{tabular}
+
+\end{antwort}
+
+\end{itemize}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 8.7 (Seite 198)}
+
+\begin{enumerate}
+\item Gegeben sei das Relationenschema
+$Artikel\{\textrm{Lieferant, Adresse, Artikelname, Preis}\}$
+und die Menge
+$F = \{\textrm{Lieferant} \rightarrow \textrm{Adresse}, \textrm{Lieferant Artikelname} \rightarrow \textrm{Preis} \}$.
+Zeigen Sie, dass Artikel nicht 2NF ist!
+
+\item Gegeben ist das Relationenschema
+$Lehrkraft\{\textrm{PersNr, Name, Geburtsdatum, Wohnort}\}$
+mit
+$F = \{PersNr \rightarrow Name, PersNr \rightarrow Geburtsdatum, PersNr \rightarrow Wohnort, Name Geburtsdatum \rightarrow PersNr\}$.
+Ist das Relationenschema in 2NF?
+
+\end{enumerate}
+
+\end{document}

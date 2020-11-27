@@ -1,0 +1,543 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax,mathe}
+\begin{document}
+
+\chapter{Präsenzübung 3: SQL Vertieft}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 1: SQL\footcite{db:pu:3}}
+
+Gegeben sind folgende Relationen aus einer Personalverwaltung:
+\footcite[DB/ST - Herbst 2016 (vertieft - 66116), Thema 1, TA1, A4]{examen:66116:2016:09}
+
+\begin{minted}{md}
+Mitarbeiter (MitarbeiterID), Vorname, Nachname, Vorgesetzter[Mitarbeiter], AbteilungsID[Abteilung], Telefonnummer, Gehalt)
+Abteilung (AbteilungsID, Bezeichnung)
+\end{minted}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Schreiben Sie eine SQL-Anfrage, die \emph{Vor-} und
+\emph{Nachnamen} der \emph{Mitarbeiter} aller \emph{Abteilungen} mit der
+Bezeichnung \emph{„Buchhaltung“} ausgibt, absteigend sortiert nach
+\emph{Mitarbeiter-ID}.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Vorname, Nachname
+FROM Mitarbeiter m, Abteilung a
+WHERE
+  m.AbteilungsID = a.AbteilungsID AND
+  a.Bezeichung = 'Buchhaltung'
+ORDER BY m.MitarbeiterID DESC;
+\end{minted}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Schreiben Sie eine SQL-Anfrage, die die Nachnamen aller
+Mitarbeiter mit dem Nachnamen ihres jeweiligen direkten Vorgesetzten
+ausgibt. Mitarbeiter ohne Vorgesetzten sollen in der Ausgabe ebenfalls
+enthalten sein. In diesem Fall soll der Nachname des Vorgesetzten NULL
+sein.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT m.Nachname AS Mitarbeiter, v.Nachname AS Vorgesetzter
+FROM Mitarbeiter m LEFT OUTER JOIN Mitarbeiter v
+ON m.Vorgesetzter = v.MitarbeiterID;
+\end{minted}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Schreiben Sie eine SQL-Anfrage, die die 10 Abteilungen ausgibt,
+deren Mitarbeiter das höchste Durchschnittsgehalt haben. Ausgegeben
+werden sollen der Rang (1 = höchstes Durchschnittsgehalt bis 10 =
+niedrigstes Durchschnittsgehalt), die Bezeichnung sowie das
+Durchschnittsgehalt der Abteilung. Gehen Sie davon dass es keine zwei
+Abteilungen mit gleichem Durchschnittsgehalt gibt. Sie können der
+Übersichtlichkeit halber Views oder With-Anweisungen verwenden.
+Verwenden Sie jedoch keine datenbanksystemspezifischen Erweiterungen wie
+\verb|limit| oder \verb|rownum|.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+CREATE VIEW Durchschnittsgehaelter AS
+SELECT Abteilung.AbteilungsID, Bezeichnung,
+  AVG (Gehalt) AS Durchschnittsgehalt
+FROM Mitarbeiter, Abteilung
+WHERE Mitarbeiter.AbteilungsID = Abteilung.AbteilungsID
+GROUP BY Abteilung.AbteilungsID, Bezeichnung
+
+SELECT a.Bezeichnung, a.Durchschnittsgehalt, COUNT (*) AS Rang
+FROM Durchschnittsgehaelter a, Durchschnittsgehaelter b
+WHERE a.Durchschnittsgehalt <= b.Durchschnittsgehalt
+GROUP BY a.AbteilungsID, a.Bezeichnung, a.Durchschnittsgehalt
+HAVING COUNT (*) <= 10
+ORDER BY Rang ASC
+\end{minted}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Schreiben Sie eine SQL-Anfrage, die das Gehalt aller Mitarbeiter
+aus der Abteilung mit der AbteilungsID 42 um 5\% erhöht.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+UPDATE Mitarbeiter
+SET Gehalt = 1.05 * Gehalt
+WHERE AbteilungsID = 42
+\end{minted}
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item Alle \emph{Abteilungen} mit Bezeichnung \emph{„Qualitätskontrolle
+“} sollen zusammen mit den Datensätzen ihrer \emph{Mitarbeiter} gelöscht
+werden. \verb|ON DELETE CASCADE| ist für keine der Tabellen gesetzt.
+Schreiben Sie die zum Löschen notwendigen SQL-Anfragen.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+DELETE FROM Mitarbeiter
+WHERE AbteilungsID ANY (
+  SELECT a.AbteilungsID
+  FROM Abteilung a
+  WHERE a.Bezeichnung = 'Qualitaetskontrolle'
+);
+
+DELETE FROM Abteilung
+WHERE Bezeichnung = 'Qualitaetskontrolle';
+\end{minted}
+\end{antwort}
+
+%%
+% (f)
+%%
+
+\item Alle Mitarbeiter sollen mit SQL-Anfragen nach den Telefonnummern
+anderer Mitarbeiter suchen können. Sie dürfen jedoch das Gehalt der
+Mitarbeiter nicht sehen können. Erläutern Sie in zwei bis drei Sätzen
+eine Möglichkeit, wie dies in einem Datenbanksystem realisiert werden
+kann, ohne die gegebenen Relationen, die Tabellen als abgelegt sind, zu
+verändern. Sie brauchen hierzu keinen SQL-Code schreiben.
+
+\begin{antwort}[muster]
+VIEW Erstellen, die zwar Namen und ID der anderen Mitarbeiter, sowie
+ihre Telefonnummern enthält (evtl. auch Abteilungsbezeichnung und ID),
+aber eben nicht das Gehalt: Mitarbeiter arbeiten auf eingeschränkter
+Sicht
+
+Alternativ mit \verb|GRANT|:
+
+explizit mit \verb|SELECT| die Spalten auswählen,
+die man lesen können soll (auf nicht angegebene Spalten ist kein Zugriff
+möglich)
+
+\begin{minted}{sql}
+GRANT SELECT (Vorname, Nachname, Telefonnummer)
+ON Mitarbeiter TO alle anderen Mitarbeiter
+\end{minted}
+\end{antwort}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 2: SQL\footcite{db:pu:3}}
+
+DB/ST - Herbst 2018 (nicht vertieft -46116), Thema 1, TA1, A4
+
+Gegeben sind folgende Relationen aus einem Kundenverwaltungssystem:
+
+\begin{minted}{md}
+Kunde (ID), Vorname, Nachname, PLZ)
+Produkt (GTIN, Bezeichnung, Bruttopreis, MWStSatz)
+Kauf (ID[Kunde], GTIN[Produkt], Datum, Menge)
+\end{minted}
+
+Verwenden Sie im Folgenden nur Standard-SQL und keine
+produktspezifischen Erweiterungen. Sie dürfen bei Bedarf Views anlegen.
+Geben Sie einen Datensatz, also eine Entity, nicht mehrfach aus.
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Tabelle \emph{„Kauf“}
+anlegt. Gehen Sie davon aus, dass die Tabellen \emph{„Kunde“} und
+\emph{„Produkt“} bereits existieren.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+CREATE TABLE Kauf (
+  ID INTEGER REFERENCES Kunde(ID),
+  GTIN INTEGER REFERENCES Produkt(GTIN),
+  Datum DATE,
+  Menge INTEGER,
+  PRIMARY KEY (ID, GTIN, Datum)
+);
+\end{minted}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die \emph{Vorname} und
+\emph{Nachname} aller \emph{Kunden} mit der \emph{Postleitzahl}
+\emph{20251} ausgibt, absteigend sortiert nach \emph{Nachname} und bei
+gleichen \emph{Nachnamen}, absteigend nach \emph{Vorname}.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Vorname, Nachname
+FROM Kunde
+WHERE PLZ = 20251
+ORDER BY Nachname DESC, Vorname DESC;
+\end{minted}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die zu jedem Einkauf mit mehr
+als 10 unterschiedlichen Produkten den \emph{Nachnamen} des
+\emph{Kunden} und den \emph{Bruttogesamtpreis} des Einkaufs ausgibt. Ein
+Einkauf ist definiert als Menge aller Produkte, die ein bestimmter Kunde
+an einem bestimmten Datum kauft.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Nachname, SUM(Bruttopreis * Menge)
+FROM Kunde k, Produkt p, Kauf x
+WHERE k.ID = x.ID AND p.GTIN = x.GTIN
+GROUP BY Datum, Nachname, k.ID
+HAVING COUNT (*) > 10;
+\end{minted}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die \emph{GTINs} aller
+Produkte ausgibt, die an mindestens einen in der Datenbank enthaltenen
+PLZ-Bereich noch nie verkauft worden sind. Als in der Datenbank
+enthaltener PLZ-Bereich gelten alle in der Tabelle \emph{„Kunde“}
+enthaltenen PLZs. Ein Produkt gilt als an einen PLZ-Bereich verkauft,
+sobald es von mindestens einem Kunden aus diesem PLZ-Bereich gekauft
+wurde. Produkte, die bisher noch gar nicht verkauft worden sind, müssen
+nicht berücksichtigt werden.
+
+\begin{minted}{sql}
+SELECT PLZ
+FROM Kunde k
+GROUP BY PLZ
+HAVING NOT EXISTS (
+  SELECT DISTINCT Kauf.GTIN
+  FROM Kauf, Kunde
+  WHERE Kauf.ID = Kunde.ID AND Kunde.PLZ = k.PLZ
+);
+\end{minted}
+
+\begin{antwort}[muster]
+in Mysql gibt es kein EXCEPT
+
+\begin{minted}{sql}
+SELECT GTIN FROM
+(SELECT GTIN, PLZ
+FROM Kunde, Produkt)
+EXCEPT
+(SELECT DISTINCT x.GTIN, k.PLZ
+FROM Kunde k, Kauf x
+WHERE k.ID = x.ID)
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+WITH tmp AS (
+  SELECT x.GTIN, k.PLZ
+  FROM Kunde k, Kauf x
+  WHERE x.ID = k.ID
+  GROUP BY x.GTIN, k.PLZ
+)
+
+SELECT GTIN
+FROM tmp
+WHERE EXISTS
+(SELECT Kunde.PLZ
+FROM Kunde LEFT OUTER JOIN tmp
+ON Kunde.PLZ = tmp.PLZ
+WHERE tmp.PLZ IS NULL);
+\end{minted}
+
+oder eleganter
+
+\begin{minted}{sql}
+SELECT DISTINCT GTIN
+FROM
+(SELECT GTIN, PLZ
+FROM Kunde, Produkt)
+EXCEPT
+(SELECT x.GTIN, k.PLZ
+FROM Kunde k, Kauf x
+WHERE x.ID = k.ID
+GROUP BY x.GTIN, k.PLZ)
+\end{minted}
+
+Statt WITH koennen auch VIEWs erstellt werden !
+Eine Konstruktion mit NOT IN sollte auch moeglich sein
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Top-Ten der am meisten
+verkauften Produkte ausgibt. Ausgegeben werden sollen der Rang (1 bis
+10) und die Bezeichnung des Produkts. Gehen Sie davon aus, dass es keine
+zwei Produkte mit gleicher Verkaufszahl gibt und verwenden Sie keine
+produktspezifischen Anweisungen wie beispielsweise \verb|ROWNUM|,
+\verb|TOP| oder \verb|LIMIT|.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+WITH Gesamtverkauf AS
+(SELECT k.GTIN, Bezeichnung, SUM (Menge) AS Gesamtmenge)
+FROM Produkt p, Kauf k
+WHERE p.GTIN = k.GTIN
+GROUP BY k.GTIN, Bezeichnung)
+
+SELECT g1.Bezeichnung, COUNT (*) AS Rang
+FROM Gesamtverkauf g1, Gesamtverkauf g2
+WHERE g1.Gesamtmenge <= g2.Gesamtmenge
+GROUP BY g1.GTIN, g1.Bezeichnung
+HAVING COUNT (*) <=10
+ORDER BY Rang;
+\end{minted}
+\end{antwort}
+
+%%
+% (f)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die alle Produkte löscht, die
+noch nie gekauft wurden.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+DELETE FROM Produkt
+WHERE GTIN NOT IN
+(
+  SELECT DISTINCT GTIN
+  FROM Kauf
+);
+\end{minted}
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 4\footcite{db:pu:3}}
+
+DB/ST - Frühjahr 2016, 66116, Thema 1, TA 1, A 2
+
+\noindent
+Gehen Sie dabei von dem dazugehörigen relationalen Schema aus:
+
+\bigskip
+
+{
+\noindent
+\ttfamily
+\footnotesize
+Polizist: \{[\underline{PersNr}, DSID, Vorname, Nachname, Dienstgrad, Gehalt]\}\\
+Dienststelle: \{[\underline{DSID}, Name, Strasse, HausNr, Stadt ]\}\\
+Fall: \{[\underline{AkZ}, Titel, Beschreibung, Status ]\}\\
+Arbeitet\_An: \{[\underline{PersNr}, AkZ, Von, Bis]\}\\
+Vorgesetzte: \{[\underline{PersNr}, PersNr, Vorgesetzter]\}
+}
+
+\bigskip
+
+\noindent
+Gegeben sei folgendes ER-Modell, welches Polizisten, deren Dienststelle
+und Fälle, an denen sie arbeiten, speichert:
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Formulieren Sie eine Anfrage in relationaler Algebra, welche den
+\emph{Vornamen} und \emph{Nachnamen} von Polizisten zurückgibt, deren
+Dienstgrad \emph{„Polizeikommissar“} ist und die mehr als 1500 Euro
+verdienen.
+
+\begin{antwort}[muster]
+$\pi_{\text{Vorname,Nachname}}(
+  \sigma_{
+    \text{Dienstgrad} = \mlq \text{Polizeikommissar} \mrq
+      \land
+    \text{Gehalt} > 1500
+  }(\text{Polizist})
+)$
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Formulieren Sie eine Anfrage in relationaler Algebra, welche die
+\emph{Titel} der \emph{Fälle} ausgibt, die von \emph{Polizisten} mit dem
+\emph{Nachnamen} \emph{„Mayer“} bearbeitet wurden.
+
+\begin{antwort}[muster]
+$
+\pi_{\text{Titel}}(
+  \sigma_{\text{Nachname} = \mlq \text{Mayer} \mrq}(\text{Polizist})
+  \bowtie_{\text{PersNr}}
+  \text{Arbeitet\_an}
+  \bowtie_{\text{AkZ}}
+  \text{Fall}
+)
+$
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Formulieren Sie eine SQL-Anfrage, welche die Anzahl der
+Polizisten ausgibt, die in der Stadt \emph{„München“} arbeiten und mit
+Nachnamen \emph{„Schmidt“} heißen.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT COUNT(*) AS Anzahl_Polizisten
+FROM Polizist p, Dienststelle d
+WHERE
+  p.DSID = d.DSID AND
+  d.Name = 'München' AND
+  p.Nachname = 'Schmidt';
+\end{minted}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Formulieren Sie eine SQL-Anfrage, welche die \emph{Namen} der
+\emph{Dienststellen} ausgibt, die am \emph{14.02.2012} an dem Fall mit
+dem \emph{XZ1508} beteiligt waren. Ordnen Sie die Ergebnismenge
+alphabetisch (aufsteigend) und achten Sie darauf, dass keine Duplikate
+enthalten sind.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT DISTINCT d.Name
+FROM Dienstelle d, Polizist p, Arbeitet_an a
+WHERE
+  a.AkZ = 'XZ1508' AND
+  p.PersNr = a.PersNr AND
+  p.DSID = d.DSID AND
+  a.Von >= '14.02.2012' AND
+  a.Bis <= '14.02.2012' AND
+ORDER BY d.Name ASC;
+\end{minted}
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item Definieren Sie die View \emph{„Erstrebenswerte Dienstgrade“},
+welche Dienstgrade enthalten soll, die in \emph{München} mit
+durchschnittlich mehr als \emph{2500} Euro besoldet werden.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+CREATE VIEW ErstrebenswerteDienstgrade AS (
+  SELECT DISTINCT d.Dienstgrad
+  FROM Polizist p, Dienststelle d
+  WHERE
+    p.DSID = d.DSID AND
+    d.Dienststelle = 'München';
+  GROUP BY Dienstgrad
+  HAVING (AVG(Gehalt) > 2500);
+)
+\end{minted}
+\end{antwort}
+
+%%
+% (f)
+%%
+
+\item Formulieren Sie eine SQL-Anfrage, welche \emph{Vorname},
+\emph{Nachname} und \emph{Dienstgrad} von \emph{Polizisten} mit
+\emph{Vorname}, \emph{Nachname} und \emph{Dienstgrad} ihrer
+\emph{Vorgesetzten} als ein Ergebnis-Tupel ausgibt (siehe
+Beispiel-Tabelle). Dabei sind nur \emph{Polizisten} zu selektieren, die
+an Fällen gearbeitet haben, deren Titel den Ausdruck „Fussball“
+beinhalten. An \emph{Vorgesetzte} sind keine Bedingungen gebunden.
+Achten Sie darauf, dass Sie nicht nur direkte Vorgesetzte, sondern alle
+Vorgesetzte innerhalb der Vorgesetzten-Hierarchie betrachten. Ordnen Sie
+ihre Ergebnismenge alphabetisch (absteigend) nach Nachnamen des
+Polizisten.
+
+Hinweis: Sie dürfen Views verwenden, um Teilergebnisse auszudrücken.
+
+\begin{antwort}[muster]
+
+\begin{minted}{sql}
+WITH RECURSIVE meins (PersNr, VN, NN, DG, VN_VG, NN_VG, DG_VG)
+  SELECT PersNr, Vorname as VN, Nachname AS VN, Dienstgrad AS DG_VG
+  FROM Polizist p1, Fall f, Arbeitet_An a, Polizist p2
+  WHERE
+    p1.PersNr = a.PersNr AND
+    a.AkZ = f.Akz AND
+    f.Titel CONTAINS "Fussball" AND
+    p1.Vorgesetzter = p2.PersNr
+  UNION ALL
+  SELECT m.PersNr, m.Vorname, m.Nachname, p.Vorname AS VN,
+    p.Nachname AS VN, p.Dienstgrad AS DG_VG
+  FROM meins m, Polizist p, Vorgesetzte v
+  WHERE m.PersNr = v.PersNr AND p.PersNr_Vorgesetzter = p.PersNr;
+
+SELECT VN, NN, NN, DG, VN_DG, NN_VG, DG_VG
+FROM meins
+ORDER BY NN DESC;
+\end{minted}
+\end{antwort}
+
+\end{enumerate}
+
+\end{document}

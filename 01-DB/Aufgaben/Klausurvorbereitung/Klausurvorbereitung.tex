@@ -1,0 +1,734 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{mathe,syntax,er}
+\usepackage[normalem]{ulem}
+\begin{document}
+
+\chapter{Aufgabenblatt 8: Klausurvorbereitung}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 1: Wiederholung ER-Modell und Relationenmodell}
+
+Für einen Flughafen soll eine Datenbank für folgendes Szenario
+entwickelt werden: Von den \textbf{Fluggesellschaften} sollen
+\emph{Name} und \emph{Hauptsitz} abgespeichert werden. Der
+Gesellschaftsname ist dabei eindeutig. Die Gesellschaften sind
+Eigentümer von Flugzeugen. Wichtig ist, seit wann das Flugzeug für die
+Gesellschaft im Einsatz ist und wie viele Flugzeuge die Gesellschaft
+insgesamt besitzt.
+
+Die \textbf{Flugzeuge} tragen eine eindeutige \emph{FZ-Nr}.
+Weiterhin soll auch der \textbf{Typ} des Flugzeuges mit
+\emph{Sitzplatzanzahl} und \emph{Größe der Besatzung} abrufbar sein.
+
+Für einen \textbf{Flug} setzt eine Fluggesellschaft ein Flugzeug ein.
+Dabei muss dieses Flugzeug aber nicht Eigentum der Fluggesellschaft
+sein. Der Flug hat eine \emph{Flug-Nr}. Bezüglich eines Fluges sind
+\emph{Flug-Nr}, \emph{Abflugzeit} und \emph{Zielflughafen} abzuspeichern.
+
+Ein \textbf{Passagier} kann Flüge buchen. Von den Passagieren müssen
+\emph{Name} und \emph{Gebdat} bekannt sein. Dabei ist aber davon
+auszugehen, dass es Passagiere mit gleichem Namen und gleichem
+Gebdat geben kann.
+
+Bei der \textbf{Buchung} wird dem Passagier eine \emph{Sitzplatz-Nr}
+zugeteilt. Für jeden Flug muss die Anzahl der gebuchten Plätze
+feststellbar sein.
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Erstellen Sie ein ER-Diagramm! Verarbeiten Sie dabei nur die
+unbedingt notwendigen Informationen. Geben Sie an, wie die nicht im
+ER-Modell „auftauchenden“ Informationen bestimmt werden können.
+
+\begin{antwort}
+\begin{center}
+\begin{tikzpicture}[er2,scale=0.7,transform shape]
+\node[entity] (Fluggesellschaft) {Fluggesellschaft};
+\node[attribute, left of=Fluggesellschaft] {Name} edge (Fluggesellschaft);
+\node[attribute, above of=Fluggesellschaft] {Hauptsitz} edge (Fluggesellschaft);
+
+\node[relationship,right of=Fluggesellschaft] (besitzt) {besitzt} edge (Fluggesellschaft);
+
+\node[entity,right of=besitzt] (Flugzeug) {Flugzeug} edge (besitzt);
+\node[attribute, above left of=Flugzeug] {FZ-Nr} edge (Flugzeug);
+\node[attribute, above of=Flugzeug] {Typ} edge (Flugzeug);
+\node[attribute, above right of=Flugzeug] {Sitzplatzanzahl} edge (Flugzeug);
+\node[attribute, right of=Flugzeug] {Besatzung} edge (Flugzeug);
+
+\node[entity,below of=Flugzeug] (Flug) {Flug};
+
+\node[relationship,below of=besitzt] (setztEin) {setztEin}
+  edge (Flug)
+  edge (Flugzeug)
+  edge (Fluggesellschaft);
+
+\node[relationship,right of=Flug] (bucht) {bucht}
+  edge (Flug);
+
+\node[entity,below of=Flug] (Passagier) {Passagier}
+  edge (bucht);
+\node[attribute, left of=Passagier] {Name} edge (Passagier);
+\node[attribute, below left of=Passagier] {Gebdat} edge (Passagier);
+\node[attribute, below of=Passagier] {PasID} edge (Passagier);
+\end{tikzpicture}
+\end{center}
+
+%\includegraphics[width=\linewidth]{Aufgabe-1_muster}
+
+Wie viele Flugzeuge eine Fluggesellschaft besitzt ergibt sich nicht
+direkt aus dem ER-Modell, sondern kann später durch eine einfache
+SQL-Abfrage ermittelt werden:
+
+\begin{minted}{sql}
+SELECT FluggesellschaftName, COUNT (*) AS Anzahl
+FROM Eigentuemer_von
+GROUP BY FluggesellschaftName;
+\end{minted}
+
+Auch die Anzahl der gebuchten Sitze pro Flug lässt sich durch eine
+SQL-Abfrage ermit- teln:
+
+\begin{minted}{sql}
+SELECT Flug-Nr, COUNT (*) AS Anzahl
+FROM bucht
+GROUP BY Flug-Nr;
+\end{minted}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Legen Sie die Primärschlüssel fest. Begründen Sie Ihre
+Entscheidung, falls Sie zusätzliche künstliche Schlüssel einfügen.
+
+\begin{antwort}[richtig]
+Pass-Nr weil Geburtstdatum und Namen zusammen nicht
+eindeutig ist.
+\end{antwort}
+
+\begin{antwort}[muster]
+Von einem Passagier werden nur Name und Gebdat gespeichert. Da
+diese beiden nicht eindeutig sind, können sie nicht als Primärschlüssel
+verwendet werden. Folglich muss ein künstlicher Schlüssel eingeführt
+werden, die \verb|Passagier-Nr|. \verb|Typ-Nr| des Flugzeugtyps sollte
+auch gespeichert werden, da Personalzahl und Sitzplatzzahl nicht
+eindeutig sind.
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Geben Sie die Funktionalitäten an!
+
+%%
+% (d)
+%%
+
+\item Erstellen Sie nun ein zu dieser Modellierung passendes
+Relationenschema! Markieren Sie Schlüssel und Fremdschlüssel.
+
+\begin{antwort}[richtig]
+\verb|angehoeren| wird aufgelöst: \verb|Typ-Nr[Flugzeugtyp]| nach
+\verb|Flugzeug|
+
+\verb|besitzen| wird aufgelöst: \verb|FGName[Fluggesellschaft]| nach
+\verb|Flugzeug|
+
+\verb|fliegen| wird aufgelöst: \verb|FGName[Fluggesellschaft]|
+\verb|FZ-Nr[Flugzeug]| nach \verb|Flug|
+
+\bigskip
+
+{
+\footnotesize\ttfamily
+Fluggesellschaft(\underline{FGName}, Hauptsitz)
+
+Flug(\underline{Flug-Nr}, Abflugzeit, Zielflughafen,
+\dashuline{FGName[Fluggesellschaft]},
+\dashuline{FZ-Nr[Flugzeug]})
+
+Flugzeug(\underline{FZ-Nr},
+\dashuline{FGName[Fluggesellschaft]},
+DatumErsterEinsatz,
+\dashuline{Typ-Nr[Flugzeugtyp]})
+
+Flugzeugtyp(\underline{Typ-Nr}, SitzplatzAnzahl, GroesseBesatzung)
+
+Passagier(\underline{Pass-Nr}, Name, Gebdat)
+
+buchen(\dashuline{Pass-Nr[Passagier]},
+\dashuline{Flug-Nr[Flug]}, Sitzplatz-Nr)
+}
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item Finden Sie nun jeweils eine Datenbank-Anfrage (in SQL und in
+relationaler Algebra) zur Lösung der folgenden Problemstellungen:
+
+\renewcommand{\labelenumii}{\alph{enumii}.}
+\begin{enumerate}
+
+%%
+% a.
+%%
+
+\item Die Fluggesellschaft „Never-Come-Back-Airlines“ (NCA) will wissen,
+ob (und wenn ja bei welchem Flug) heute Abend Passagiere (Name,
+Sitzplatz-Nr) mit einem ihrer Flugzeuge unterwegs sind, die heute
+Geburtstag haben (GebDat = TODAY).
+
+\begin{antwort}[richtig]
+$
+\pi_{\text{Name,Sitzplatz-Nr}}(
+  \sigma_{\text{GebDat} = \text{TODAY}}(\text{Passagier})
+  \bowtie
+  \text{buchen}\\
+  \bowtie
+  \sigma_{\text{Name} = \mlq \text{Never-Come-Back-Airlines} \mrq \land \text{Abflugzeit} > \text{18.00}}(\text{Flug})
+)
+$
+
+\begin{minted}{sql}
+SELECT p.Name, p.Sitzplatz-Nr
+FROM Passagier p, Flug f, buchen b
+WHERE
+  f.Name = 'Never-Come-Back-Airlines' AND
+  f.Abflugzeit > 18.00 AND
+  p.Gebdat = TODAY AND
+  f.Flug-Nr = b.Flug-Nr AND
+  b.Pass-Nr = p.Pass-Nr;
+\end{minted}
+\end{antwort}
+
+%%
+% b.
+%%
+
+\item Ein Passagier möchte erfahren, welcher Flug (Flug-Nr, FZ-Nr,
+Abflugzeit, FGName) derjenige mit dem „modernsten“ Flugzeug ist, der
+nach „London“ geht.
+
+\begin{minted}{sql}
+SELECT f.Flug-Nr, f.FZ-Nr, f.Abflugzeit, f.FGName
+FROM Flug f, Flugzeug fz
+WHERE
+  f.FZ-Nr = fz.FZ-Nr AND
+  f.Zielflughafen = 'London' AND
+  fz.DatumErsterEinsatz = (
+    SELECT MAX(Flugzeug.DatumErsterEinsatz)
+    FROM Flug, Flugzeug
+    WHERE
+      Flug.Zielflughafen = 'London' AND
+      Flug.FZ-Nr = Flugzeug.FZ-Nr
+  )
+\end{minted}
+
+\end{enumerate}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+\section{Aufgabe 2}
+
+Überführen Sie folgendes ER-Diagramm in ein (verfeinertes)
+Relationenschema!
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 3: Staatsexamen Herbst 1996, Aufgabe 4}
+
+Gegeben sei die folgende, in dritter Normalform vorliegende relationale
+Datenbank zur Modellierung des Gebrauchtwagenparks eines Autohändlers.
+
+Die Relation Modelle beinhaltet alle Fahrzeugtypen, die der Händler im
+Gebrauchtwagenprogramm führt. Die Modelle sind über das Attribut „mnr“
+über alle Hersteller hinweg eindeutig nummeriert. „mnr“ ist daher
+Primärschlüssel in der Relation Modelle. Über das Attribut „hnr“ wird
+von Modelle auf die Relation Hersteller verwiesen. In der Relation
+Fahrzeuge werden alle tatsächlich beim Händler am Lager befindlichen
+Fahrzeuge geführt. Über „mnr“ wird von Fahrzeuge auf Modelle verwiesen.
+Bei gegebener Modellnummer ist die vergebene Fahrgestellnummer („fgnr“)
+eindeutig. Darum bilden „mnr“ und „fgnr“ zusammen den Primärschlüssel
+der Relation Fahrzeuge.
+
+\begin{itemize}
+
+%%
+%
+%%
+
+\item Formulieren Sie folgende Anfragen jeweils in relationaler Algebra
+und SQL!
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Bestimmen Sie alle Modelle mit mehr als 60 PS
+
+\begin{antwort}[muster]
+\ueberschrift{Relationale Algebra}
+$\pi_{mnr}(\sigma_{ps > 60}(Modelle))$
+
+\ueberschrift{SQL}
+\begin{minted}{sql}
+SELECT mnr FROM Modelle WHERE ps > 60;
+\end{minted}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Bestimmen Sie die Typen aller Modelle des Herstellers VW.
+
+\begin{antwort}[richtig]
+Müsste richtig sein:
+\ueberschrift{Relationale Algebra}
+$\pi_{typ}(\sigma_{hersteller = \mlq vw \mrq}(Modelle
+\bowtie_{Modelle.hnr = Hersteller.hnr} Hersteller))$
+\end{antwort}
+
+\begin{antwort}[muster]
+\ueberschrift{Relationale Algebra}
+
+$\pi_{typ}(Modelle \bowtie \sigma_{hersteller = \mlq vw \mrq}
+(Hersteller))$
+
+oder
+
+$\pi_{typ}(\sigma_{hersteller = \mlq vw \mrq}(Modelle \bowtie
+Hersteller))$
+
+\ueberschrift{SQL}
+\begin{minted}{sql}
+SELECT m.typ
+FROM Modelle m, Hersteller h
+WHERE h.hnr = m.hnr AND
+h.hersteller = 'VV';
+\end{minted}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Bestimmen Sie die Nummern aller Modelle des Herstellers Opel, von
+denen tatsächlich Fahrzeuge auf Lager sind
+
+\begin{antwort}[muster]
+\ueberschrift{Relationale Algebra}
+
+$\pi_{mnr}(
+  Fahrzeuge \bowtie (
+    Modelle \bowtie \sigma_{hersteller = \mlq Opel \mrq}(Hersteller)
+  )
+)$
+
+\ueberschrift{SQL}
+\begin{minted}{sql}
+SELECT DISTINCT m.mnr
+FROM Modelle m, Hersteller h, Fahrzeuge f
+WHERE f.mnr = m.mnr AND m.hnr = h.hnr AND h.hersteller = 'Opel';
+\end{minted}
+\end{antwort}
+
+\end{enumerate}
+
+%%
+%
+%%
+
+\item Formulieren Sie folgende Anfrage nur in SQL! Bestimmen Sie die
+Namen der Hersteller, für deren sämtliche Modelle mindestens ein
+Fahrzeug im aktuellern Bestand vorhanden ist.
+
+%%
+%
+%%
+
+\item Formulieren Sie folgende SQL-Anfrage umgangssprachlich, aber exakt!
+
+\begin{minted}{sql}
+SELECT AVG(neupreis), hnr
+FROM Modelle
+GROUP BY hnr;
+\end{minted}
+
+\end{itemize}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+\section{Aufgabe 4}
+
+Für ein Unternehmen soll eine Fertigungsdatenbank aufgebaut werden. Der
+Erhebungsprozess liefert folgenden Informationsbedarf:
+
+\subsection{Entity-Typen:}
+
+\begin{compactitem}
+\item ABTEILUNG mit den Attributen ANR, ANAME, AORT, MNR
+\item PERSONAL mit den Attributen PNR, NAME, BERUF
+\item MASCHINE mit den Attributen MANR, FABRIKAT, TYP, BEZ, LEISTUNG
+\item TEILE mit den Attributen LNR, BEZ, GEWICHT, FARBE, PREIS
+\end{compactitem}
+
+\subsection{Relationship-Typen:}
+
+\begin{compactitem}
+\item ABT-PERS zwischen ABTEILUNG und PERSONAL
+\item SETZT-EIN zwischen ABTEILUNG und MASCHINEN
+\item KANN-BEDIENEN zwischen PERSONAL und MASCHINEN
+\item GEEIGNET-FÜR-DIE-HERSTELLUNG-VON zwischen MASCHINEN und TEILE
+\item PRODUKTION zwischen PERSONAL, TEILE und MASCHINEN mit den Attributen
+DATUM und MENGE
+\end{compactitem}
+
+Dabei sollen folgende grundlegenden Bedingungen gelten:
+
+\begin{compactitem}
+\item Zu einer Abteilung gehört mindestens ein Beschäftigter
+
+\item Eine Person ist immer nur genau einer Abteilung zugeordnet
+
+\item Eine Maschine kann, wenn überhaupt, nur von einer Abteilung
+eingesetzt werden
+
+\item Alle anderen (Teil-)Beziehungen sind nicht weiter eingeschränkt.
+\end{compactitem}
+
+\begin{enumerate}
+\item Zeichnen Sie zu dem obigen Szenario das zugehörige ER-Diagramm.
+
+\item Legen Sie die Schlüsselkandidaten fest und zeichnen Sie diese in
+das ER-Diagramm ein. Tragen Sie die oben genannten Bedingungen mit Hilfe
+der (min, max) – Notation in das ER-Diagramm. Formulieren Sie weitere
+sinnvolle Bedingungen und tragen Sie diese ebenfalls in das Diagramm
+ein.
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+\section{Aufgabe 5: Fertigungsdatenbank die Zweite (Fortsetzung Staatsexamen Herbst 1997)}
+
+Konvertieren Sie das folgende ER-Modell in ein (vereinfachtes)
+relationales Schema! Geben Sie dabei geeignete Domänenattribute an!
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 6: Bus-Unternehmen}
+
+Konvertieren Sie das folgende ER-Modell in ein relationales DB-Schema.
+Hinweis: Die Angabe der Domänen ist nicht notwendig!
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 7: IS-A}
+
+Konvertieren Sie folgenden Ausschnitt aus einem ER-Modell in ein Relationenschema.
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 8: Süße Produktion?}
+
+Vorgegeben sind die Domänen Abteilung = Verwaltung, Lager, Produktion
+und Mitarbeiter = Fent, Süß, Dobler.
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Bestimmen Sie Mitarbeiter x Abteilung! Welche Aussage liefert
+dieses kartesische Produkt?
+
+%%
+% (b)
+%%
+
+\item Geben Sie – orientiert an Aufgabe a) - eine mögliche
+Interpretation der Menge (Fent,Produktion), (Süß, Lager) an.
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 9: Miniwelt}
+
+Modellieren Sie folgende Miniwelt: Eine Firma mit Firmenname und
+Firmensitz besteht aus Abteilungen (Abteilungsname, Abteilungsnummer).
+Die Abteilungen haben Mitarbeiter, von denen Personalnummer, Büronummer
+und die dienstliche Telefonnummer gespeichert werden sollen.
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 10: Nachteile der Normalisierung (Staatsexamen Herbst
+2003, Thema II, Aufgabe 1)}
+
+Erläutern Sie, inwiefern sich eine vollständige Normalisierung
+nachteilig auf die Geschwindigkeit der Anfragebearbeitung auswirken kann
+und wie darauf reagiert werden kann!
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 11: Schicht auf Schicht}
+
+Das Drei-Schichten-Modell trägt den verschiedenen Sichten auf eine
+Datenbank Rechnung. Geben Sie zu den unten (unter a bis e) genannten
+Vorgängen jeweils an, welche
+der folgenden Aussagen zutreffen:
+
+\renewcommand{\labelenumi}{(\arabic{enumi})}
+\begin{enumerate}
+\item Änderungen in bestehenden Anwendungsprogrammen notwendig
+\item Änderungen im externen Schema notwendig
+\item Änderungen im konzeptionellen Schema notwendig
+\item Änderungen im internen Schema notwendig
+\end{enumerate}
+
+\subsection{Vorgänge}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Ein neues Anwendungsprogramm wird geschrieben, das bestehende
+Daten nutzt.
+
+%%
+% (b)
+%%
+
+\item Der Datentyp eines Attributs wird geändert, z.B. wird statt
+varchar(20) varchar(30) verwendet.
+
+%%
+% (c)
+%%
+
+\item Ein neues Anwendungsprogramm wird entwickelt, das neue
+(zusätzliche) Datenstrukturen benötigt.
+
+%%
+% (d)
+%%
+
+\item Es werden neue Daten eingespeichert bzw. bestehende gelöscht.
+
+%%
+% (e)
+%%
+
+\item Der Zugriff auf die Daten wird optimiert.
+\end{enumerate}
+
+\noindent
+Sie könnten dazu folgende Tabelle ausfüllen: Kreuzen Sie das
+entsprechende Feld an, wenn die Aussage diesbezüglich wahr ist, oder
+lassen Sie es andernfalls leer. Ist die Aussage nicht eindeutig und
+situationsbedingt wahr, setzen sie ein eingeklammertes Kreuz (x) ein!
+
+\begin{antwort}[muster]
+\begin{tabular}{lllll}
+  &  1  &  2  & 3   & 4 \\
+a &     & (x) &     &   \\
+b & (x) & (x) & (x) & x \\
+c & (x) & (x) &  x  & x \\
+d &     &     &     &   \\
+e &     &     &     & x
+\end{tabular}
+
+\subsection{Hinweis}
+
+\begin{itemize}
+\item Zu b) Bei der vorgegebenen Änderung des Datentyps ist sicher das
+interne Schema betroffen, da sich die Speicherstruktur ändert. Wird der
+Datentyp „stark“ geändert, d.h. beispielsweise char durch integer
+ersetzt, kann das auch Änderungen bei (1), (2) und (3) nach sich ziehen.
+
+\item Zu d) Schemata beschreiben Strukturen. Das Speichern bzw. Löschen
+von Daten kann damit keinen Einfluss auf ein Schema haben.
+\end{itemize}
+
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 12: (Begriffe definieren) (aus Stex RS DB, Herbst 2015,
+Thema Nr. 1, Aufgabe 1)}
+
+Erläutern Sie die folgenden Begriffe in knappen Worten:
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Datenunabhängigkeit
+
+%%
+% (b)
+%%
+
+\item Superschlüssel
+
+%%
+% (c)
+%%
+
+\item Referentielle Integrität
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 13: Personalverwaltung (Stex RS DB, Frühjahr 2012,
+Thema Nr. 1, Teilaufgabe I, Aufgabe 3)}
+
+Gegeben ist folgendes einfache Datenbankschema zur Personalverwaltung
+(Schlüsselattribute unterstrichen, Fremdschlüssel kursiv):
+
+{
+\noindent
+\ttfamily
+Angestellter (\underline{PersNr}, Name, Gehalt, Beruf, \emph{AbtNr}, Ort)\\
+Abteilung (\underline{AbtNr}, Name, Ort)
+}
+
+\noindent
+Formulieren Sie folgende Datenbankoperationen in SQL:
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Welche Angestellten sind von Beruf Koch und verdienen mehr als
+5000 €?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT name
+FROM Angestellter
+WHERE Beruf = 'Koch' AND Gehalt > 5000:
+\end{minted}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Welche Angestellten der Abteilung B17 sind aus München?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Name
+FROM Angestellter, Abteilung
+WHERE
+  Angestellter.AbtNr = Abteilung.AbtNr AND
+  Abteilung.Name = 'B17' AND
+  Abgesteller.Ort = 'München';
+\end{minted}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Hans Meier aus der Abteilung C4 zieht von München nach Erlangen um.
+
+\begin{antwort}[falsch]
+Zu komplitziert möglicherweise falsch
+\begin{minted}{sql}
+UPDATE Angesteller
+SET Ort = 'Erlangen'
+WHERE PersNr IN (
+  SELECT PersNr
+  FROM Angestellter an, Abteilung ab
+  WHERE
+    an.AbtNr = ab.AbtNr AND
+    an.Name = 'Hans Meier' AND
+    an.Ort = 'München' AND
+    ab.Name = 'C4'
+);
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+UPDATE Angestellter SET Ort = "Erlangen"
+WHERE Name = "Hans Meier" AND (
+  SELECT ab.AbtNr
+  FROM Abteilung ab
+  WHERE ab.Name = "C4"
+) = AbtNr;
+\end{minted}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Abteilung C4 wird aufgelöst.
+
+%%
+% (e)
+%%
+
+\item Formulieren Sie folgende SQL-Anfrage umgangssprachlich und so
+exakt wie möglich.
+
+\begin{minted}{sql}
+SELECT AbtNr
+FROM Abteilung a, (
+  SELECT PersNr, Name, AbtNr
+  FROM Angestellter
+  WHERE Gehalt < 2000) t
+WHERE
+a.AbtNr = t.AbtNr AND a.Ort = "Nuernberg";
+\end{minted}
+
+\end{enumerate}
+
+\end{document}

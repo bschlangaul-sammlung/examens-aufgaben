@@ -1,0 +1,23 @@
+.name "Sample Net"
+.type PN
+
+.places
+p1
+p2
+p3
+
+.transitions
+t1
+t2
+t5
+t3
+t4
+
+.flows
+t1: {1*p3} -> {1*p1}
+t2: {1*p1, 1*p2} -> {2*p3}
+t5: {1*p1} -> {1*p3}
+t3: {1*p3} -> {1*p2}
+t4: {1*p2} -> {1*p3}
+
+.initial_marking {2*p3}

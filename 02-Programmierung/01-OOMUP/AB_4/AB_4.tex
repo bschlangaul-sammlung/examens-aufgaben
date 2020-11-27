@@ -1,0 +1,207 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax}
+
+\begin{document}
+
+\chapter{Aufgabenblatt 4: Algorithmen implementieren II}
+
+Alle Aufgaben auf diesem Blatt sind mit der Entwicklungsumgebung BlueJ
+zu bearbeiten.
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 1\footcite{oomup:ab:4}}
+
+Eine gute Möglichkeit, um erstes Arbeiten mit Methoden und
+Kontrollstrukturen zu üben, stellen Turtlegrafiken dar, die sowohl in
+der bereits bekannten Programmierumgebung Greenfoot als auch in BlueJ
+genutzt werden können. Bevor Sie mit dem Programmieren starten können,
+gehen Sie bitte auf \url{http://www.java-online.ch/lego/turtleGrafik}
+und laden sich die Klassenbibliothek \verb|aplu5.jar| herunter.
+Integrieren Sie diese in BlueJ folgendermaßen:
+
+\begin{itemize}
+\item Starten Sie BlueJ.
+
+\item Im Menü oben gehen Sie auf Werkzeuge (Windows / Linux) bzw. auf
+BlueJ (OS) $\rightarrow$ Einstellungen $\rightarrow$ Bibliotheken
+$\rightarrow$ Hinzufügen aplu5.jar auswählen $\rightarrow$ ok
+$\rightarrow$ ok
+
+\item Reset der Virtuellen Maschine mit Rechtsklick auf den Balken unten
+rechts oder über Menüpunkt.
+
+\end{itemize}
+
+Lesen Sie sich auf der oben verlinkten Website in die Anwendung der
+Turtlegrafik ein und bearbeiten Sie dann die folgenden Teilaufgaben:
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Implementieren Sie unter Verwendung der Wiederholung mit fester
+Anzahl die Methode \verb|sechseckZeichnen()|.
+
+\begin{antwort}
+\inputcode[firstline=13,lastline=18]{aufgaben/oomup/ab_4/turtle/Blume}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Ergänzen Sie Ihr Projekt um eine Methode \verb|blumeZeichnen()|,
+die mit Hilfe der Methode \verb|sechseckZeichnen()| folgende Zeichnung
+erstellt:
+
+\begin{antwort}
+\inputcode[firstline=20,lastline=28]{aufgaben/oomup/ab_4/turtle/Blume}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Zeichnen Sie eine Europa-Flagge, indem Sie zuerst eine Methode
+\verb|star()|, die einen Stern zeichnet, schreiben. Die blaue
+Hintergrundfarbe erhält man mit der Methode \verb|clear(Color.blue)|.
+
+\begin{antwort}
+\inputcode[firstline=6]{aufgaben/oomup/ab_4/turtle/EuropaFlagge}
+\end{antwort}
+
+Die vorangegangenen Aufgabenstellungen und die verwendete Bibliothek
+sind dem Material des Forschungsprojekts PHBern mit freundlicher
+Genehmigung durch Frau Jarka Arnold entnommen.
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 2\footcite{oomup:ab:4}}
+
+Modellierung und Implementierung des Spiels \emph{„No Risk No Money“}
+
+\subsection{Spielidee:}
+
+\begin{itemize}
+\item Der Spieler kann so oft würfeln, wie er will.
+
+\item Mit jedem Wurf erhöht sich sein Gewinn um eins, sofern die
+gewürfelte Zahl nicht vorher schon einmal gewürfelt wurde.
+
+\item Wenn man eine Zahl das zweite Mal würfelt, ist der Gewinn weg.
+\end{itemize}
+
+\subsection{Ablauf:}
+
+Der Spieler würfelt einmal. Hat er eine Zahl gewürfelt, die noch nicht
+gewürftelt wurde, erhöht sich sein Gewinn um eins. Dies wiederholt der
+Spieler so oft er möchte. Er kann sich jederzeit ausgeben lasse, welche
+Zahlen er bereits gewürfelt hat.
+
+\subsection{Spielende:}
+
+Der Spieler kann entscheiden wie oft er spielen möchte. Hört er auf,
+obwohl er noch spielen könnte, dann darf er den Gewinn behalten. Würfelt
+er eine Zahl das zweite mal, dann ist das Spiel beendet und der Spieler
+erhält keinen Gewinn.
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Begründen Sie, weshalb sich zur Verwaltung der bereits gewürfelten
+Zahlen ein Feld vom Typ \verb|boolean| eignet.
+
+%%
+% (b)
+%%
+
+\item Erstellen Sie eine zur obigen Spielbeschreibung passende
+Klassenkarte.
+
+%%
+% (c)
+%%
+
+\item Implementieren Sie das Spiel wie oben beschrieben und unter
+Beachtung der Modellierung aus Teilaufgabe (b). Dabei können Sie
+zunächst davon ausgehen, dass immer mit einem normalen
+\emph{„sechsseitigen“} Würfel gewürfelt wird. Achten Sie darauf, dass
+dem Spieler immer passende Ausgaben zum aktuellen Spielstand angezeigt
+werden.
+
+%%
+% (d)
+%%
+
+\item Beschreiben Sie in kurzen Sätzen, welche Fälle beim Testen des
+Spieles beachtet werden müssen, und testen Sie ihr Spiel danach
+ausführlich.
+
+%%
+% (e)
+%%
+
+\item Ändern Sie die Implementierung des Spieles so ab, dass der Spieler
+beim Start selbst entscheiden kann, mit welcher Art Würfel er spielen
+möchte. Dabei muss er mindestens einen vierseitigen Würfel wählen.
+\end{enumerate}
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/oomup/ab_4/risk/Spiel}
+\end{antwort}
+
+Diese Aufgabe entstammt den Materialien von Inf-schule.de. Diese sind
+unter Creative Commons BY-SA 4.0 lizenziert. Das ursprüngliche Material
+wurde in der vorliegenden Aufgabe adaptiert.
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 3 (Check-Up)\footcite{oomup:ab:4}}
+
+Das Kino der Kleinstadt Cinehausen möchte die Kartenreservierung ab
+sofort digital ermöglichen. Es besteht aus 5 Kinosälen, die jeweils 180
+Sitzplätze beinhalten. Jeden Tag gibt es pro Kinosaal nur eine
+Vorstellung um 20.15 Uhr. Die gezeigten Filme können in den Sälen
+unterschiedlich sein, so dass Besucher bei der Reservierung angeben
+müssen, welchen Sitzplatz sie in welchem Saal buchen möchten. Die
+Reservierung ist immer nur für den gleichen Tag möglich. Jeden Tag
+starten die vergebenen Buchungsnummern wieder bei 1 und werden dann nach
+jeder vorgenommenen Reservierung um eins erhöht. Wenn das Ticket vom
+Besucher abgeholt wurde, wird die Buchungsnummer des Sitzplatzes
+gelöscht.
+
+Weitere Informationen über die gewünschte Modellierung können Sie dem
+folgenden Klassendiagramm entnehmen:
+
+Setzen Sie das gegebene Szenario passend in einem BlueJ-Projekt um.
+Schreiben Sie außerdem eine Testklasse, die alle geforderten Methoden
+ausgiebig testet. Dabei sollen auch Fälle abgefangen werden, bei denen
+zum Beispiel bei der Ticketabholung eine ungültige bzw. nicht vorhandene
+Buchungsnummer angegeben wird oder ein Sitzplatz reserviert werden soll,
+der bereits vergeben oder im Kino nicht vorhanden ist. Achten Sie auch
+darauf, dass dem Benutzer passende Textausgaben angezeigt werden.
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/oomup/ab_4/kino/Kino}
+\inputcode[firstline=3]{aufgaben/oomup/ab_4/kino/Kinosaal}
+\inputcode[firstline=3]{aufgaben/oomup/ab_4/kino/Reservierung}
+\inputcode[firstline=3]{aufgaben/oomup/ab_4/kino/Sitzplatz}
+\end{antwort}
+
+\end{document}

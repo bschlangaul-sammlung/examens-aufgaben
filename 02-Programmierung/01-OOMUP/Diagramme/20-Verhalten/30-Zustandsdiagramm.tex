@@ -1,0 +1,266 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{uml}
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Zustandsdiagramm}
+
+\begin{quellen}
+\item \cite[Seite 329-400]{rupp}
+\item \cite{net:pdf:zustandsdiagramm}
+\end{quellen}
+
+\noindent
+Zustandsautomaten (state diagrams) beschreiben die Systemzustände bei
+definierten Ereignissen. Das bedeutet, ein Zustandsautomat bildet die
+verschiedenen Zustände ab, die ein Objekt während seiner Lebenszeit
+durchläuft.
+\footcite[Seite 166]{schatten}
+
+\begin{description}
+
+%%
+%
+%%
+
+\item[Einfacher Zustand (simple state))] \strut
+
+\begin{description}
+\item[Notation]
+
+Ein Rechteck mit abgerundeten Ecken, das durch eine waagrechte Linie
+unterteilt sein kann, symbolisiert einen Zustand.
+
+Im zweiten Abschnitt wird angegeben, welches interne Verhalten und
+welche internen Transitionen in diesem Zustand ausgeführt werden können.
+
+In der UML sind die folgenden Arten von Verhalten eines Zustandes mit
+ihren Auslösern definiert. Die Auslöser gelten als Schlüsselwörter und
+dürfen demnach nicht in einem an­ deren Kontext verwendet werden.
+
+\begin{description}
+\item[Eintrittsverhalten:] entry / Verhalten
+\item[Austrittsverhalten:] exit / Verhalten
+\item[Zustandsverhalten:] do / Verhalten
+\end{description}
+
+\item[Beschreibung]
+
+Ein einfacher Zustand (simple state) bildet eine Situation ab, in deren
+Verlauf eine spezielle Bedingung gilt.
+\footcite[Seite 338]{rupp}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{umlstate}[name=substate, entry=Verhalten, exit=Verhalten, do=Verhalten]{Zustand}
+\end{umlstate}
+\end{tikzpicture}
+\end{center}
+\end{description}
+
+%%
+%
+%%
+
+\item[Transition / Zustandsübergängen] \strut
+
+\begin{description}
+\item[Notation] \strut
+
+Eine Transition wird durch eine durchgezogene, gerichtete und
+üblicherweise beschriftete Kante abgebildet. Die Beschriftung beinhaltet
+die folgenden Elemente (Ereignis(Argumente) [Bedingung] / Aktivität):
+
+\begin{description}
+\item[Trigger] der Auslöser für die Transition. Die einzelnen Trigger
+werden durch Kommas voneinander getrennt. Erläuterungen zu den
+verschiedenen Typen von Triggern finden Sie in der Infobox im
+nachfolgenden Abschnitt.
+
+\item[Guard] eine Bedingung, die wahr sein muss, damit die Transition
+bei Erhalt des Triggers durchlaufen wird. Die Guard wird in eckigen
+Klammern notiert.
+
+\item[Verhalten] Das Verhalten, das beim Durchlaufen der Transition
+ausgeführt wird. Es wird durch den Namen des gewünschten Verhaltens
+angegeben.
+\end{description}
+
+\item[Beschreibung] Transitionen schaffen einen Übergang von einem
+Ausgangs- zu einem Zielzustand.
+\footcite[Seite 340-341]{rupp}
+
+\end{description}
+
+\begin{center}
+\begin{tikzpicture}
+\draw[tikzuml transition style] (0,0) -- (5,0) node[auto,pos=0.5]{Trigger[Guard] / Verhalten};
+\end{tikzpicture}
+\end{center}
+
+%%
+%
+%%
+
+\item[Startzustand]
+Ein Startzustand wird als ausgefüllter Kreis dargestellt.
+
+\begin{center}
+\tikz \umlstateinitial ;
+\end{center}
+
+%%
+%
+%%
+
+\item[Endzustand]
+Ein Endzustand wird als ein kleiner ausgefüllter Kreis, umgeben von
+einem unausgefüllten Kreis, dargestellt.
+
+\begin{center}
+\tikz \umlstatefinal ;
+\end{center}
+\end{description}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Übungen}
+
+\section{Aufgabe 3 (Verhaltens-Modellierung mit Zustandsdiagrammen)
+\footcite{examen:46116:2018:09}}
+
+Eine Digitaluhr kann alternativ entweder die Zeit (Stunden und Minuten)
+oder das Datum (Tag, Monat und Jahr) anzeigen. Zu Beginn zeigt die Uhr
+die Zeit an. Sie besitzt drei Druckknöpfe \textbf{A}, \textbf{B} und
+\textbf{C}. Mit Knopf \textbf{A} kann zwischen Zeit- und Datumsanzeige
+hin und her gewechselt werden.
+
+Wird die Zeit angezeigt, dann kann mit Knopf \textbf{B} der Reihe nach
+erst in einen Stundenmodus, dann in einen Minutenmodus und schließlich
+zurück zur Zeitanzeige gewechselt werden. Im Stundenmodus blinkt die
+Stundenanzeige. Mit Drücken des Knopfes \textbf{C} können dann die
+Stunden schrittweise inkrementiert werden. Im Minutenmodus blinkt die
+Minutenanzeige und es können mit Hilfe des Knopfes \textbf{C} die
+Minuten schrittweise inkrementiert werden.
+
+Die Datumsfunktionen sind analog. Wird das Datum angezeigt, dann kann
+mit Knopf \textbf{B} der Reihe nach in einen Tagesmodus, Monatsmodus,
+Jahresmodus und schließlich zurück zur Datumsanzeige gewechselt werden.
+Im Tagesmodus blinkt die Tagesanzeige. Mit Drücken des Knopfes
+\textbf{C} können dann die Tage schrittweise inkrementiert werden.
+Analog blinken mit Eintritt in den entsprechenden Einstellmodus der
+Monat oder das Jahr, die dann mit Knopf \textbf{C} schrittweise
+inkrementiert werden können.
+
+Wenn sich die Uhr in einem Einstellmodus befindet, hat das Betätigen des
+Knopfes \textbf{A} keine Wirkung. Ebenso wirkungslos ist Knopf
+\textbf{C}, wenn gerade
+Zeit oder Datum angezeigt wird.
+
+Beschreiben Sie das Verhalten der Digitaluhr durch ein
+UML-Zustandsdiagramm. Dabei muss - gemäß der UML-Notation -
+unterscheidbar sein, was Ereignisse und was Aktionen sind. Deren
+Bedeutung soll durch die Verwendung von sprechenden Namen klar sein. Für
+die Inkrementierung von Stunden, Minuten, Tagen etc. brauchen keine
+konkreten Berechnungen angegeben werden. Der kontinuierliche
+Zeitfortschritt des Uhrwerks ist nicht zu modellieren.
+
+Zustände sind, wie in der UML üblich, durch abgerundete Rechtecke
+darzustellen. Sie können unterteilt werden in eine obere und eine untere
+Hälfte, wobei der Name des Zustands in den oberen Teil und eine in dem
+Zustand auszuführende Aktivität in den unteren Teil einzutragen ist.
+\footcite{oomup:pu:2}
+
+\begin{tikzpicture}[font=\scriptsize]
+\def\TmpRekursiv#1#2{
+\umltrans[recursive=-10|10|0.5cm,recursive direction=right to right,name=#1-trans]{#1}{#1}
+\node[anchor=west,text width=2cm,font=\scriptsize] at (#1-trans-3){#2};
+}
+
+%%
+% Zeit
+%%
+
+\begin{umlstate}{Zeitanzeige}
+\end{umlstate}
+
+\begin{umlstate}[y=-3,do={Stundenanzeige blinkt}]{Stundenmodus}
+\end{umlstate}
+
+\begin{umlstate}[y=-6,do={Minutenanzeige blinkt}]{Minutenmodus}
+\end{umlstate}
+
+\umltrans[arg={drücke Knopf B},pos=0.5]{Zeitanzeige}{Stundenmodus}
+\TmpRekursiv{Stundenmodus}{drücke Knopf C / Stunden um eins erhöhen}
+
+\umltrans[arg={drücke Knopf B},pos=0.5]{Stundenmodus}{Minutenmodus}
+\TmpRekursiv{Minutenmodus}{drücke Knopf C / Minuten um eins erhöhen}
+
+\umlHVHtrans[arm1=-3cm,arg={drücke Knopf B},pos=1.75,swap]{Minutenmodus}{Zeitanzeige}
+
+%%
+% Datum
+%%
+
+\begin{umlstate}[x=7,y=0]{Datumsanzeige}
+\end{umlstate}
+
+\begin{umlstate}[x=7,y=-3,do={Tagesanzeige blinkt}]{Tagesmodus}
+\end{umlstate}
+\TmpRekursiv{Tagesmodus}{drücke Knopf C / Tag um eins erhöhen}
+
+\begin{umlstate}[x=7,y=-6,do={Monatsanzeige blinkt}]{Monatsmodus}
+\end{umlstate}
+\TmpRekursiv{Monatsmodus}{drücke Knopf C / Monat um eins erhöhen}
+
+\begin{umlstate}[x=7,y=-9,do={Jahresanzeige blinkt}]{Jahresmodus}
+\end{umlstate}
+% \TmpRekursiv{Jahresmodus}{drücke Knopf C / Jahr um eins erhöhen}
+\umltrans[recursive=170|190|0.5cm,recursive direction=left to left,name=Jahresmodus-trans]{Jahresmodus}{Jahresmodus}
+\node[anchor=east,text width=2cm,font=\scriptsize] at (Jahresmodus-trans-3){drücke Knopf C / Jahr um eins erhöhen};
+
+\umltrans[arg={drücke Knopf C},pos=0.5]{Datumsanzeige}{Tagesmodus}
+\umltrans[arg={drücke Knopf C},pos=0.5]{Tagesmodus}{Monatsmodus}
+\umltrans[arg={drücke Knopf C},pos=0.5]{Monatsmodus}{Jahresmodus}
+\umlHVHtrans[arm1=5cm,arg={drücke Knopf C},pos=1.5]{Jahresmodus}{Datumsanzeige}
+
+\umlVHVtrans[arm1=1.5cm,arg={drücke Knopf A},pos=1.5]{Zeitanzeige}{Datumsanzeige}
+\umltrans[arg={drücke Knopf B},pos=0.5]{Datumsanzeige}{Zeitanzeige}
+
+\end{tikzpicture}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Übung von Wikiversity\footcite{net:pdf:wikiversity:zustandsdiagramm}}
+
+Max und Sarah haben ein Ziel. Jeder Gast, der ihr Restaurant, das
+„fleißige Bienchen“ besucht, soll so schnell wie möglich satt werden. Um
+das zu erreichen arbeiten sie auf Hochtouren. Wenn ein Gast sein Essen
+bestellt, wird das sofort in der Küche gehört. Max fängt direkt an das
+Gericht zuzubereiten. Man hat es noch nicht bewiesen, aber
+wahrscheinlich ist er der schnellste Koch der Welt und dementsprechend
+dauert das Kochen nur wenige Minuten. Ist das Gericht fertig rennt Sarah
+zu den Gästen und serviert es. Manchmal verliert sie dabei, weil sie so
+schnell rennt, Teile des Essens. Dann muss sie zurück in die Küche, in
+der das Gericht neu zubereitet wird. Wenn aber alles gut gegangen ist,
+kann der Gast schnell essen. Gäste mit kleinem Hunger sind nach dem
+Essen satt. Hungrige Gäste bestellen noch einen Nachtisch der schon
+bereit steht, damit keine Zeit verloren geht. Ist dieser aufgegessen
+sind auch die hungrigsten Gäste satt. Sarah und Max haben
+herausgefunden, dass die Gäste beim Bezahlen der Rechnung viel mehr
+Trinkgeld geben, wenn sie innerhalb von einer halben Stunde satt sind.
+Aber egal, wie viel Geld sie bekommen. Max und Sarah sind glücklich über
+jeden Gast der sie besucht.
+
+% https://www.isf.cs.tu-bs.de/cms/teaching/2012w/se1/solution6.pdf
+
+\literatur
+
+\end{document}

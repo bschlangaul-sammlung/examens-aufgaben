@@ -1,0 +1,32 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-cpm}[2020/09/03]
+\RequirePackage{tikz}
+
+\def\ereignis#1(#2,#3){
+  \node[circle,draw] (#1) at (#2,#3) {#1};
+}
+
+% name
+\def\ereignisN(#1)#2(#3,#4){
+  \node[circle,draw] (#1) at (#3,#4) {#2};
+}
+
+\def\vorgang(#1>#2)#3{
+  \path[->] (#1) edge node[auto,sloped] {#3} (#2);
+}
+
+\def\VORGANG(#1>#2)#3{
+  \path[->,thick] (#1) edge node[auto,sloped] {#3} (#2);
+}
+
+\def\scheinvorgang(#1>#2)#3{
+  \path[->,dashed] (#1) edge node[auto,sloped] {#3} (#2);
+}
+
+% \t = tmp
+\def\t#1(#2-#3){#1_{\scriptscriptstyle(#2\rightarrow#3)}}
+
+% \v = von
+\def\v#1(#2){#1_{\scriptscriptstyle(\rightarrow#2)}}
+
+\let\f=\footnotesize

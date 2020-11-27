@@ -1,0 +1,577 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax,mathe}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Tupelkalkül
+\footcite[Seite 100]{kemper}}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Symbole}
+
+\begin{tabular}{l|l|l|l}
+\textbf{Name} & \textbf{Symbol} & \textbf{LaTeX} & \textbf{Interpretation}\\
+
+\hline
+\hline
+
+\multicolumn{4}{l}{Mengenrelationen} \\
+
+\hline
+\hline
+
+% \in
+% https://de.wikipedia.org/wiki/Liste_mathematischer_Symbole#Mengenrelationen
+Element von & $\in$ & \verb|\in| & das Element $a$  a ist in der Menge $A$ enthalten \\
+
+\hline
+
+\multicolumn{4}{l}{Junktoren} \\
+
+\hline
+\hline
+
+% ∧
+% https://de.wikipedia.org/wiki/Liste_mathematischer_Symbole#Junktoren
+Und & $\land$ & \verb|\land| & Aussage $A$ und Aussage $B$ \\
+
+% ∨
+% https://de.wikipedia.org/wiki/Liste_mathematischer_Symbole#Junktoren
+Oder & $\lor$ & \verb|\lor| & Aussage $A$ und Aussage $B$ \\
+
+% ⇒
+% https://de.wikipedia.org/wiki/Liste_mathematischer_Symbole#Junktoren
+folgt & $\Rightarrow$ & \verb|\Rightarrow| & aus Aussage $A$ folgt Aussage $B$ \\
+
+% ¬
+% https://de.wikipedia.org/wiki/Liste_mathematischer_Symbole#Junktoren
+Negation & $\neg$ & \verb|\neg| & nicht Aussage $A$\\
+
+\hline
+
+\multicolumn{4}{l}{Quantoren} \\
+
+\hline
+\hline
+
+% ∀
+% https://de.wikipedia.org/wiki/Liste_mathematischer_Symbole#Quantoren
+All-Quantor & $\forall$ & \verb|\forall| & für alle Elemente $x$ \\
+
+% \exists
+% https://de.wikipedia.org/wiki/Liste_mathematischer_Symbole#Quantoren
+Existenzquantor & $\exists$ & \verb|\exists| & es existiert mindestens ein Element $x$\\
+
+\end{tabular}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Definitionen}
+
+%%
+%
+%%
+
+\subsection{Kalkül}
+
+In formalen Wissenschaften wie Logik und Mathematik ein formales System
+von Regeln, mit denen sich aus gegebenen Aussagen (Axiomen) weitere
+Aussagen ableiten lassen.
+\footcite{wiki:kalkuel}
+
+%%
+%
+%%
+
+\subsection{Kalkül (Datenbank)}
+
+Für die theoretische Betrachtung und die semantisch genaue Definition
+von Anfragesprachen für Datenbanken werden Kalkülausdrücke genutzt,
+speziell der Tupelkalkül (englisch tuple calculus) und der
+Bereichskalkül (auch Domänen-Kalkül, englisch domain calculus).
+\footcite{wiki:kalkuel-datenbank}
+
+%%
+%
+%%
+
+\subsection{Prädikat}
+
+Prädikat (von lateinisch praedicare ‚zusprechen‘) nennt man in der
+modernen Prädikatenlogik den Teil einer atomaren Aussage.
+\footcite{wiki:praedikat-logik}
+
+Ein Prädikat ist eine Folge von Wörtern mit Leerstellen, die zu einer
+wahren oder falschen Aussage wird, wenn in jede Leerstelle ein Eigenname
+eingesetzt wird. Zum Beispiel ist die Wortfolge „… ist ein Mensch“ ein
+Prädikat, weil durch Einsetzen eines Eigennamens – etwa „Sokrates“ – ein
+Aussagesatz, zum Beispiel „Sokrates ist ein Mensch“, entsteht.
+\footcite{wiki:praedikatenlogik}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Grundlagen Relationales Tupelkalkül}
+
+\begin{itemize}
+\item Verwandt mit der Relationalen Algebra, gleich mächtig, aber
+deklarativ ausgerichtet
+
+\item Basiert auf dem
+\href{https://de.wikipedia.org/wiki/Pr%C3%A4dikatenlogik_erster_Stufe}
+{mathematischen Prädikatenkalkül erster Stufe}.
+
+\item Form: $\{t | P(t)\}$
+
+\begin{itemize}
+\item $t$: Tupelvariable
+
+\item $|$: bedeutet soviel wie „mit der Eigenschaft, dass...“
+
+\item $P$: Prädikat, das erfüllt sein muss, damit $t$ ins Ergebnis
+aufgenommen wird
+
+\item Datenbankprädikate werden als $P(t)$ oder $t \in P$ geschrieben,
+auf einzelne Elemente des Tupels (Attribute) greift man durch
+Punktnotation mit Angabe des Attributnamens zu: $t.A$ (bzw. durch
+Zugriff über den Index $t[i]$)
+
+\item $t$ ist freie Variable, d.h. $t$ darf nicht durch Existenz- oder
+Allquantor quantifiziert sein
+
+\item Aufbau nicht existierender Tupel: durch den Tupelkonstruktor:
+$\{[t_1.A_1,...,t_n.A_n] | P(t_1,...,t_n)\}$
+
+\end{itemize}
+\end{itemize}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Beispiel Kunden}
+
+\begin{mdframed}
+\noindent
+$KUNDE (kdnr, kname, adresse, ort)$
+
+\noindent
+$AUFTRAG (auftragsnr, kdnr, warennr, menge)$
+
+\noindent
+$WARE (warennr, wname, wpreis)$
+\end{mdframed}
+
+\begin{description}
+\item[Orte, in denen es Kunden gibt]
+$\{t.ort | KUNDE(t)\}$ bzw. $\{t.ort | t \in KUNDE \}$
+
+\item[Alle Kunden aus Bremen]
+$\{t | KUNDE(t) \land t.ort=\mlq Bremen \mrq \}$
+
+\item[Kunden mit Bestellung]
+$\{t | KUNDE(t) \land \exists s(AUFTRAG(s) \land s.kdnr=t.kdnr)\}$
+
+\item[Waren ohne Bestellung]
+$\{t | WARE(t) \land \neg\exists s(AUFTRAG(s) \land s.warennr=t.warennr)\}$
+\end{description}
+
+\section{Beispiel Englischlehrer}
+
+Weiteres Beispiel für eine einfache Abfrage: Gesucht sind der Name
+und die Schülerzahl aller Klassen, deren Englischlehrer die
+Personalnummer 42 hat.
+
+$\{[k.KName, k.Schuelerzahl] | k \in Klasse \land k.Englischlehrer = 42\}$
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Beispiel Professoren
+\footcite{net:html:uni-osnabrueck:dbs-skript}}
+
+\begin{description}
+\item[Alle C4-Professoren]
+$\{p | p \in \text{Professoren} \land \text{p.Rang} = 'C4'\}$
+
+\item[Alle Professorennamen zusammen mit den Personalnummern ihrer
+Assistenten]
+
+$\{[\text{p.Name}, \text{a.PersNr}] | p \in \text{Professoren} \land
+a \in \text{Assistenten} \land \text{p.PersNr} = \text{a.Boss}\}$
+
+\item[Alle diejenigen Studenten, die sämtliche vierstündigen Vorlesungen
+gehört haben]
+
+$\{s | s \in \text{Studenten} \land \forall
+v \in \text{Vorlesungen}(\text{v.SWS} = 4 \Rightarrow
+\exists h \in \text{hören}(\text{h.VorlNr} = \text{v.VorlNr} \land
+\text{h.MatrNr} = \text{s.MatrNr}))\}$
+
+\item[sichere Ausdrücke]
+
+Für die Äquivalenz des Tupelkalküls mit der Relationenalgebra ist es
+wichtig, sich auf sogenannte sichere Ausdrücke zu beschränken, d.h.
+Ausdrücke, deren Ergebnis wiederum eine Teilmenge der Domäne ist. Zum
+Beispiel ist der Ausdruck
+
+$\{n | \neg (n \in \text{Professoren})\}$
+
+\end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Übungen der TU München
+\footcite{net:pdf:tum:db-tutor-uebung}
+}
+
+Lösen Sie die Aufgaben im Tupel- und Domänenkalkül:
+
+\begin{enumerate}
+\item Geben Sie alle Vorlesungen an, die der Student
+\emph{Xenokrates} gehört hat.
+
+\begin{antwort}[muster]
+$\{
+  v |
+  v \in Vorlesungen \land
+  \exists h \in hoeren(
+    v.VorlNr = h.VorlNr \land
+    \exists s \in Studenten(
+      h.MatrNr = s.MatrNr \land s.Name = \mlq Xenokrates \mrq
+    )
+  )
+\}
+$
+\end{antwort}
+
+\item Geben Sie die Titel der direkten Voraussetzungen für die
+Vorlesung Wissenschaftstheorie an.
+
+\item Geben Sie Paare von Studenten(-Namen) an, die sich aus
+der Vorlesung Grundzüge kennen.
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Staatsexamensaufgabe zum Tupelkalkül
+\footcite[Seite 12-13, Frühjahr 2018, 66116, T2, A4]{examen:66116:2018:03}}
+
+Gegeben sei das folgende Datenbank-Schema, das für die Speicherung der
+Daten einer Universität entworfen wurde, zusammen mit einem Teil seiner
+Ausprägung. Die Primärschlüssel-Attribute sind jeweils unterstrichen.
+Die Relation \emph{Dozent} enthält allgemeine Daten zu den Doz\-entinnen
+und Dozenten. Dozentinnen und Dozenten halten Vorlesungen, die in der
+Relation \emph{Vorlesung} abgespeichert sind. Wir gehen davon aus, dass
+es zu jeder Vorlesung genau einen Dozenten (und nicht mehrere) gibt.
+Zusätzlich wird in der Relation \emph{Vorlesung} das \emph{Datum}
+gespeichert, an dem die Klausur stattfindet. In der Relation
+\emph{Student} werden die Daten der teilnehmenden Studierenden
+verwaltet, während die Relation \emph{besucht} Auskunft darüber gibt,
+welche Vorlesung von welchen Studierenden besucht wird.
+\footcite[Seite 4-5]{db:ab:3}
+
+\begin{mdframed}
+\tt
+Dozent (\underline{DNR}, DVorname, DNachname, DTitel)\\
+Vorlesung (\underline{VNR}, VTitel, Klausurtermin, Dozent)\\
+Student (\underline{Matrikelnummer}, SVorname, SNachname, Semesterzahl)\\
+besucht (\underline{Student, Vorlesung})
+\end{mdframed}
+
+Formulieren Sie die folgenden Anfragen im Tupelkalkül. Datumsvergleiche
+können Sie mit $>$, $\geq$, $<$, $\leq$ oder $=$ angeben:
+
+\begin{enumerate}
+
+\item Geben Sie die Vornamen aller Studierenden aus, die die Vorlesung
+\emph{„Datenbanksysteme“} besuchen oder besucht haben.
+
+\begin{antwort}
+$\{s.SVorname |
+s \in Student \land
+\forall v \in
+Vorlesung(
+  v.VTitel = \mlq Datenbanksysteme \mrq \Rightarrow
+  \exists b \in besucht(
+    b.Vorlesung = v.VNR \land
+    b.Student = s.Matrikelnummer
+  )
+)
+\}$
+\end{antwort}
+
+oder
+
+\begin{antwort}
+$\{\text{s.SVorname} |
+\text{s} \in \text{Student} \land
+\text{s.Matrikelnummer} = \text{b.Student} \land
+\text{b} \in \text{besucht} \land
+\text{b.Vorlesung} = \text{v.NVR} \land
+\text{v.VNR} \in \text{Vorlesung} \land
+\text{v.VTitel} = \mlq \text{Datenbanksysteme} \mrq
+\}$
+\end{antwort}
+
+%%
+%
+%%
+
+\item Geben Sie die Matrikelnummern der Studierenden an, die keine
+Vorlesung mit einem Klausurtermin nach dem 31.12.2017 besuchen oder
+besucht haben.
+
+\begin{antwort}
+\begin{multline*}
+\{\text{s.Matrikelnummer} |\\
+\text{s} \in \text{Student} \land
+\forall \text{v} \in
+\text{Vorlesung}(\\
+  \text{v.Klausurtermin} > \mlq 31.12.2017 \mrq \Rightarrow\\
+  \text{b} \in \text{besucht}(\\
+    \text{b.Vorlesung} = \text{v.VNR} \land
+    \text{b.Student} = \text{s.Matrikelnummer}\\
+  )\\
+)\}
+\end{multline*}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Geben Sie die Matrikelnummern der Studierenden aus, die alle
+Vorlesungen von Prof. Dr. Schulz hören oder gehört haben.
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{2. Anfragen\footcite{db:ab:examen-rs-2013-03}}
+
+Zu einer Website, auf der Besucher im Browser Online-Spiele spielen
+können, liegt das folgende relationale Schema einer Datenbank vor:
+\footcite{examen:46116:2013:03}
+
+\bigskip
+
+{
+\ttfamily
+\noindent
+Team : \{[\underline{TNr}, Name, Teamfarbel]\}\\
+Spieler : \{[\underline{SNr}, Name, Icon, TNr, EMail]\}\\
+Minispiel : \{[\underline{MNr}, Name, Kategorie, Schwierigkeit]\}\\
+Wettkampf : \{[\underline{WNr}, Sieger, Geschlagener, MNr, Dauer]\}\\
+}
+
+\bigskip
+
+Auf der Website treten jeweils zwei Spieler gegeneinander in Minispielen
+an. In diesen ist es das Ziel, den gegnerischen Spieler in möglichst
+kurzer Zeit zu besiegen. Minispiele gibt es dabei in verschiedenen
+Schwierigkeitsstufen („leicht“, „mittel“, „schwer“, „sehr schwer“) und
+verschiedenen Kategorien („Denkspiel“, „Geschicklichkeitsspiel“, usw.).
+Die Attribute \emph{Sieger} und \emph{Geschlagener} sind jeweils
+Fremdschlüsselattribute, die auf das Attribut \emph{SNr} der Relation
+\emph{Spieler} verweisen. Beachten Sie, dass das Dauer-Attribut der
+Wettkampf-Relation die Dauer eines Wettkampfes in der Einheit Sekunden
+speichert.
+
+\renewcommand{\labelenumi}{\alph{enumi})}
+\renewcommand{\labelenumii}{\roman{enumii})}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Formulieren Sie geeignete Anfragen in relationaler Algebra für
+die folgenden Teilaufgaben:
+
+\begin{enumerate}
+%%
+% i.
+%%
+
+\item Geben Sie die \emph{Namen} der \emph{Minispiele} zurück, die zur
+\emph{Kategorie} \emph{„Denkspiele“} zählen.
+
+\begin{antwort}
+$
+\pi_{\text{Name}}(
+  \sigma_{\text{Kategorie} = \mlq \text{Denkspiele} \mrq}(\text{Minispiele})
+)
+$
+\end{antwort}
+
+%%
+% ii.
+%%
+
+\item Geben Sie die \emph{Namen} und \emph{E-Mail-Adressen} aller
+Spieler zurück, die in einem Minispiel des Typs
+\emph{„Geschicklichkeitsspiel“} gewonnen haben.
+\end{enumerate}
+
+\begin{antwort}
+$
+\pi_{\text{Spieler.Name,Spieler.Email}}(
+  \sigma_{\text{Kategorie} = \mlq \text{Geschicklichkeitsspiel} \mrq}(\text{Minispiele})
+  \bowtie_{\text{Minispiel.MNr} = \text{Wettkampf.MNr}}
+  \text{Wettkampf}
+  \bowtie_{\text{Wettkampf.Sieger} = \text{Spieler.SNr}}
+  \text{Spieler}
+)
+$
+\end{antwort}
+
+%%
+% b)
+%%
+
+\item Formulieren Sie geeignete SQL-Anfragen für die folgenden
+Teilaufgaben. Beachten Sie dabei, dass Ihre Ergebnisrelationen keine
+Duplikate enthalten sollen.
+
+\begin{enumerate}
+
+%%
+% i.
+%%
+
+\item Geben Sie jede Spielekategorie aus, für die ein Minispiel der
+Schwierigkeitsstufe sehr schwer vorhanden ist.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT DISTINCT Kategorie
+FROM Minispiel
+WHERE Schwierigkeit = 'sehr schwer';
+\end{minted}
+\end{antwort}
+
+%%
+% ii.
+%%
+
+\item Geben Sie die Wettkämpfe aus, deren Dauer unter der
+durchschnittlichen Dauer der Wettkämpfe liegt.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT WNr
+FROM Wettkampf
+WHERE Dauer < (
+  SELECT AVG(Dauer) FROM Wettkampf
+);
+\end{minted}
+\end{antwort}
+
+%%
+% iii.
+%%
+
+\item Geben Sie für jeden \emph{Spieler} seine \emph{SNr}, seinen \emph{Namen}, die Anzahl
+seiner Siege, die durchschnittliche Dauer seiner siegreichen Wettkämpfe
+und die Anzahl der Teams, aus denen er bereits mindestens einen Spieler
+besiegt hat, zurück.
+
+\begin{minted}{sql}
+SELECT
+  SNr,
+  Name,
+  (
+    SELECT COUNT(*)
+    FROM Wettkampf
+    WHERE Wettkampf.Sieger = SNr
+  ) AS Anzahl_Siege,
+  (
+    SELECT AVG(Dauer)
+    FROM Wettkampf
+    WHERE Wettkampf.Sieger = SNr
+  ),
+  (
+    SELECT COUNT(DISTINCT Team.TNr)
+    FROM Team, Spieler, Wettkampf
+    WHERE
+      Team.TNr = Spieler.TNr AND
+      Wettkampf.Geschlagener = Spieler.SNr AND
+      Wettkampf.Sieger = SNr
+  )
+FROM Spieler;
+\end{minted}
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT
+  s.SNR,
+  s.Name,
+  COUNT(*) AS AnzahlSiege,
+  AVG(w.Dauer) AS DurchschnittlicheWettkampfdauer,
+  COUNT(DISTINCT g.TNr) AS TeamsBesiegt
+FROM Spieler s, Wettkampf w, Spieler g
+WHERE
+  s.SNr = w.Sieger AND
+  g.SNr = w.Geschlagener
+GROUP BY s.SNR, s.Name;
+\end{minted}
+\end{antwort}
+
+\end{enumerate}
+
+%%
+% c)
+%%
+
+\item Verwenden Sie den relationalen Tupelkalkül, um die folgenden
+Anfragen zu formulieren:
+
+\begin{enumerate}
+
+%%
+% i.
+%%
+
+\item Finden Sie die Namen der Spieler des Teams Dream Team.
+
+%%
+% ii.
+%%
+
+\item Geben Sie die Namen der Minispiele zurück, bei denen bereits
+Spieler gegeneinander angetreten sind, deren Teams dieselbe Teamfarbe
+haben.
+\end{enumerate}
+\end{enumerate}
+
+Hinweis: Die Anfragen im relationalen Tupelkalkül dürfen auch nicht
+sicher sein.
+
+\literatur
+
+\end{document}

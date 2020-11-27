@@ -1,0 +1,323 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{uml,syntax}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Sequenzdiagramm}
+
+\begin{quellen}
+\cite[Seite 401-471]{rupp}
+\cite[Zusammengefügtes PDF Seite 115-117 / Kapitel „Assoziationen“ 33-35]{brinda}
+\end{quellen}
+
+Sequenzdiagramme (sequence diagrams) stellen eine exemplarische Abfolge
+von Nachrichten zwischen Objekten dar. Der Fokus liegt dabei auf der
+zeitlichen Ordnung der Nachrichten. Sequenzdiagramme sind meist sehr
+implementationsspezifisch, das heißt, sie sind ohne näheres Wissen
+über den Sourcecode des Systems nur schwer nachvollziehbar.
+\footcite[Seite 167]{schatten}
+
+\begin{description}
+\item[Kommunikationspartner als Lebenslinien]
+
+Nachrichten in Form von Pfeile
+
+\item[synchroner Operationsaufruf]
+Pfeil mit ausgefülltem Dreieck, gestrichelter Pfeil zurück
+\footcite[Seite 507 (PDF 523): \emph{Synchronous Messages typically
+represent operation calls and are shown with a filled arrow head.}]{uml}
+
+\begin{tikzpicture}
+\begin{umlseqdiag}
+\umlobject[class=A]{a}
+\umlobject[class=B]{b}
+\begin{umlcall}[op={call()},
+return=return]{a}{b}
+\end{umlcall}
+\end{umlseqdiag}
+\end{tikzpicture}
+
+\item[asynchroner Signal-Operationsaufruf]
+Normaler offener Pfeil
+%
+\footcite[Seite 507 (PDF 523): \emph{Asynchronous Messages have an open
+arrow head.}]{uml}
+
+\begin{tikzpicture}
+\begin{umlseqdiag}
+\umlobject[class=A]{a}
+\umlobject[class=B]{b}
+\begin{umlcall}[type=asynchron]{a}{b}
+\end{umlcall}
+\end{umlseqdiag}
+\end{tikzpicture}
+
+\item[Antwortnachricht]
+gestrichelter Pfeil
+%
+\footcite[Seite 507 (PDF 523): \emph{The reply message from a method has a dashed
+line.}]{uml}
+
+\item[Erzeugunsaufruf]
+gestrichelter Pfeil erzeugt neues Objekt
+%
+\footnote{\href{https://stackoverflow.com/a/2128192} The UML 2.2
+specifications (superstructure) has an example on page 474, Figure 14.11
+is their canonical syntax/notation reference. And on page 495 (UML 2.2)
+(Seite 577 (PDF 619) UML 2.5.1) in the notation section it states
+“Object creation Message has a dashed line with an open arrow.”}
+
+\begin{tikzpicture}
+\begin{umlseqdiag}
+\umlobject[class=A]{a}
+\umlcreatecall[class=B]{a}{b}
+\end{umlseqdiag}
+\end{tikzpicture}
+
+\item[Sendeergebnis nicht bekannt]
+kleiner Kreis am Pfeilanfang
+
+\item[Empfangergebnis nicht bekannt]
+kleiner Kreis am Pfeilende
+
+\end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\section{Aufgabe 1: (Objektorientierte Programme und Reverse Engineering)
+\footcite[Seite 15-16]{examen:66116:2018:03}}
+
+Gegeben sei das folgende Java-Programm:
+
+\begin{minted}{java}
+class M {
+  private boolean b;
+  private F f;
+  private A a;
+
+  public void m() {
+    f = new F();
+    a = new A(f);
+    b = true;
+  }
+}
+
+class A {
+  private R r;
+  public A(I i) {
+    r = i.createX();
+  }
+}
+
+interface I {
+  public X createX();
+}
+
+class F implements I {
+  public X createX() {
+    return new X(0, 0);
+  }
+}
+
+abstract class R {
+  protected int v;
+}
+
+class X extends R {
+  private int v, w;
+  public X(int v, int w) {
+    this.v = v;
+    this.w = w;
+  }
+}
+\end{minted}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Das Subtypprinzip der objektorientierten Programmierung wird in
+obigem Programmcode zweimal ausgenutzt. Erläutern Sie wo und wie dies
+geschieht.
+
+%%
+% b)
+%%
+
+\item Zeichnen Sie ein UML-Klassendiagramm, das die statische Struktur
+des obigen Programms modelliert. Instanzvariablen mit einem Klassentyp
+sollen durch gerichtete Assoziationen mit Rollennamen und Multiplizität
+am gerichteten Assoziationsende modelliert werden. Alle aus dem
+Programmcode ersichtlichen statischen Informationen (insbesondere
+Interfaces, abstrakte Klassen, Zugriffsrechte, benutzerdefinierte
+Konstruktoren und Methoden) sollen in dem Klassendiagramm abgebildet
+werden.
+
+\begin{tikzpicture}
+\umlclass[x=1,y=5]{M}{- boolean b}{+ m(): void}
+\umlsimpleclass[x=0,y=2.5]{F}
+\umlsimpleclass[x=5,y=5]{A}
+\umlclass[x=7,y=2.5,type=abstract]{R}{\# int v}{}
+\umlclass[x=3,y=0,type=interface]{I}{}{+ createX(): X}
+\umlclass[x=8,y=0]{X}{- int v\\- int w}{}
+
+\umluniassoc[mult=1]{A}{R}
+\umluniassoc[mult=1]{M}{A}
+\umluniassoc[mult=1]{M}{F}
+\umluniassoc[mult=1]{I}{X}
+\umldep[mult=1,pos=0.9]{A}{I}
+\umlinherit{X}{R}
+\umlreal{F}{I}
+\end{tikzpicture}
+
+%%
+% c)
+%%
+
+\item Es wird angenommen, dass ein Objekt der Klasse M existiert, für
+das die Methode \java{m()} aufgerufen wird. Geben Sie ein
+Instanzendiagramm (Objektdiagramm) an, das alle nach der Ausführung der
+Methode \java{m} existierenden Objekte und deren Verbindungen (Links)
+zeigt.
+
+%%
+% d)
+%%
+
+\item Wie in Teil c) werde angenommen, dass ein Objekt der Klasse M
+existiert, für das die Methode \java{m()} aufgerufen wird. Diese
+Situation wird in Abb. 1 dargestellt. Zeichnen Sie ein Sequenzdiagramm,
+das Abb. 1 so ergänzt, dass alle auf den Aufruf der Methode \java{m()}
+folgenden Objekterzeugungen und Interaktionen gemäß der im Programmcode
+angegebenen Konstruktor- und Methodenrümpfe dargestellt werden.
+Aktivierungsphasen von Objekten sind durch längliche Rechtecke deutlich
+zu machen.
+
+\begin{tikzpicture}
+\begin{umlseqdiag}
+\umlobject[class=M]{m}
+%,create text={new F()}
+\umlcreatecall[class=F]{m}{f}
+%,create text={new A(f)
+\umlcreatecall[class=A]{m}{a}
+\begin{umlcall}[op={createX()},return={:X}]{a}{f}
+% ,create text={new X(0,0)
+\umlcreatecall[class=X]{f}{x}
+\end{umlcall}
+\end{umlseqdiag}
+\end{tikzpicture}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 2: Modellierung von Interaktionen durch Sequenzdiagramme
+\footcite{examen:46116:2016:09}}
+
+Die Fahrtrichtung der ersten elektrischen Spielzeugeisenbahnen wurde
+häufig durch Stromunterbrechung gesteuert. Dazu betrachten wir das
+Anwendungsfall-Diagramm.
+
+\begin{center}
+\begin{tikzpicture}
+\umlactor{Spieler}
+\begin{umlsystem}[x=5]{}
+\umlusecase[name={Steuere Lokomotive}]{Steuere Lokomotive}
+\end{umlsystem}
+\umlassoc{Spieler}{Steuere Lokomotive}
+\end{tikzpicture}
+\end{center}
+
+\noindent
+An dem Anwendungsfall \emph{„Steuere Lokomotive“} sind ein Spieler, als
+Aktor außerhalb des Systems, und jeweils ein Objekt der Klassen
+\emph{Stromschalter}, \emph{Lokomotive}, \emph{Scheinwerfer} und
+\emph{Rad}, als Objekte innerhalb des Systems, beteiligt. Zur
+Vereinfachung wird nur ein Objekt der Klasse \emph{Rad} stellvertretend
+für alle vier Räder modelliert. Der Anwendungsfall zum Steuern einer
+Lokomotive wird durch folgendes Szenario beschrieben.
+
+\begin{enumerate}
+
+\item Der Spieler schaltet den Stromschalter ein, woraufhin der Schalter
+der Lokomotive \emph{Strom zuführt}.
+
+\item Die Lokomotive schickt nun den Rädern ein Signal um
+\emph{vorwärts} zu fahren.
+
+\item Dann schaltet der Spieler den Stromschalter aus, woraufhin der
+Schalter die Stromzufuhr bei der Lokomotive \emph{abstellt}.
+
+\item Daraufhin schickt die Lokomotive das Signal \emph{stop} an die
+Räder.
+
+\item Der Spieler schaltet jetzt den Stromschalter wieder ein, woraufhin
+der Schalter der Lokomotive \emph{Strom zuführt}.
+
+\item Die Lokomotive schickt den Rädern ein Signal um \emph{rückwärts}
+zu fahren.
+
+\item Nun schaltet der Spieler den Stromschalter wieder aus, woraufhin
+der Schalter die Stromzufuhr bei die Lokomotive \emph{abstellt}.
+
+\item Daraufhin schickt die Lokomotive wieder das Signal \emph{stop} an
+die Räder.
+\end{enumerate}
+
+\noindent
+Geben Sie ein Sequenzdiagramm an, das die oben beschriebenen
+Interaktionen zwischen Spieler, Stromschalter, Lokomotive und Rädern
+beschreibt.
+
+\begin{tikzpicture}
+\begin{umlseqdiag}
+\umlactor{Spieler}
+\umlobject[class=Stromschalter]{schalter}
+\umlobject[class=Lokomotive]{lok}
+\umlobject[class=Rad]{rad}
+
+\begin{umlcall}[op=einschalten()]{Spieler}{schalter}
+\begin{umlcall}[op=stromZufuehren()]{schalter}{lok}
+\begin{umlcall}[op=vorwaertsFahren()]{lok}{rad}
+\end{umlcall}
+\end{umlcall}
+\end{umlcall}
+
+\begin{umlcall}[op=ausschalten(),with return]{Spieler}{schalter}
+\begin{umlcall}[op=stromAbstellen(),with return]{schalter}{lok}
+\begin{umlcall}[op=stop(),with return]{lok}{rad}
+\end{umlcall}
+\end{umlcall}
+\end{umlcall}
+
+\begin{umlcall}[op=einschalten()]{Spieler}{schalter}
+\begin{umlcall}[op=stromZufuehren()]{schalter}{lok}
+\begin{umlcall}[op=rueckwaertsFahren()]{lok}{rad}
+\end{umlcall}
+\end{umlcall}
+\end{umlcall}
+
+\begin{umlcall}[op=ausschalten(),with return]{Spieler}{schalter}
+\begin{umlcall}[op=stromAbstellen(),with return]{schalter}{lok}
+\begin{umlcall}[op=stop(),with return]{lok}{rad}
+\end{umlcall}
+\end{umlcall}
+\end{umlcall}
+
+\end{umlseqdiag}
+\end{tikzpicture}
+
+\literatur
+
+\end{document}

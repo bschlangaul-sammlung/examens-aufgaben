@@ -1,0 +1,232 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax,sortieren,mathe}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{MergeSort: Sortieren durch Verschmelzen}
+
+\begin{quellen}
+\item \cite[Seite 50]{aud:fs:tafeluebung-11}
+\item \cite[Seite 131-135(PDF 149-153)]{saake}
+\item \cite{wiki:mergesort}
+\item \cite[6.4.2 Effiziente Sortierverfahren, Seite 192]{schneider}
+\end{quellen}
+
+\begin{center}
+\def\myNodes{}
+\begin{forest}
+  /tikz/arrows=->, /tikz/>=latex, /tikz/nodes={draw},
+  for tree={delay={sort}}, sort level=2
+[38 27 43 3 9 82 10
+  [38 27 43 3
+    [38 27 [39][27]]
+    [43 3 [43][3]]
+  ]
+  [9 82 10
+    [9 82 [9] [82]]
+    [10 [10]]
+  ]
+]
+%
+\coordinate (m) at (!|-!\forestOnes);
+\myNodes
+\end{forest}
+\end{center}
+
+\begin{itemize}
+\item Funtionsweise:
+
+\begin{itemize}
+\item Listen mit maximal \emph{einem} Element sind \emph{trivialerweise sortiert}
+\item falls zu sortierende Liste mehr als ein Element beinhaltet:
+
+\begin{itemize}
+\item \emph{teile} Liste in zwei kleinere Listen auf
+\item verfahre \emph{rekursiv} mit den beiden Teillisten
+\item \emph{verschmelze} die zwei rekursiv sortierten Listen
+\item dabei Sortierung in verschmolzener Liste beibehalten
+\end{itemize}
+\end{itemize}
+
+$\rightarrow$ Teile-Und-Herrsche
+\item Eigenschaften von MergeSort:
+
+\begin{itemize}
+\item Laufzeitkomplexität:
+$\mathcal{O}(n \cdot log(n))$ (im Best-, Average- und Worst-Case)
+\item bei geeigneter „Verschmelzung“ \emph{stabile} Sortierung
+\item durch Rekursion wachsender Aufrufstapel
+$\rightarrow$ \emph{out-of-place}
+\end{itemize}
+
+\end{itemize}
+
+\inputcode[firstline=14,lastline=61]{sortier/MergeSort}
+\footcite[Seite 134 (PDF 152)]{saake}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\section{Implementierung der \java{merge}-Methode, Berechnung der
+Zeitkomplexität
+\footcite[Seite 2, Aufgabe 3: Mergesort]{aud:ab:7}
+}
+
+Das Sortierverfahren \emph{Mergesort}, das nach der Strategie
+\emph{Divide-and-Conquer} arbeitet, sortiert eine Sequenz, indem die
+Sequenz in zwei Teile zerlegt wird, die dann einzeln sortiert und wieder
+zu einer sortierten Sequenz zusammengemischt werden (to merge =
+zusammenmischen, verschmelzen).
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Gegeben seien folgende Methoden:
+
+\inputcode[firstline=13,lastline=31]{aufgaben/aud/ab_7/mergesort/Mergesort}
+
+Schreiben Sie die Methode \java{public int[] merge (int[] s, int[] r)},
+die die beiden aufsteigend sortierten Sequenzen \java{s} und \java{r} zu
+einer aufsteigend sortierten Sequenz zusammenmischt.
+
+\begin{antwort}
+\inputcode[firstline=33,lastline=60]{aufgaben/aud/ab_7/mergesort/Mergesort}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Analysieren Sie die Zeitkomplexität von \java{mergesort}.
+
+\begin{antwort}
+$O(n \cdot \log n)$
+
+\ueberschrift{Erklärung}
+
+Mergesort ist ein stabiles Sortierverfahren, vorausgesetzt der
+Merge-Schritt ist korrekt implementiert. Seine Komplexität beträgt im
+Worst-, Best- und Average-Case in Landau-Notation ausgedrückt stets $O(n
+\cdot \log n)$. Für die Laufzeit $T(n)$ von Mergesort bei $n$ zu
+sortierenden Elementen gilt die Rekursionsformel
+
+\begin{align*}
+T(n) & = \\
+     & T\left(\left\lfloor\frac{n}{2}\right\rfloor\right) + && \text{Aufwand, 1. Teil zu sortieren}\\
+     & T\left(\left\lceil\frac{n}{2}\right\rceil\right) + && \text{Aufwand, 2. Teil zu sortieren}\\
+     & \mathcal{O}(n) && \text{Aufwand, beide Teile zu verschmelzen}\\
+\end{align*}
+
+mit dem Rekursionsanfang $T(1) = 1$.
+
+Nach dem Master-Theorem kann die Rekursionsformel durch
+
+\begin{displaymath}
+2T\left(\left\lfloor\frac{n}{2}\right\rfloor\right) + n
+\end{displaymath}
+
+bzw.
+
+\begin{displaymath}
+2T\left(\left\lceil\frac{n}{2}\right\rceil\right) + n
+\end{displaymath}
+
+approximiert werden mit jeweils der Lösung $T(n) = O(n \cdot \log n)$.
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe zum Mergesort}
+
+\begin{quellen}
+\item \cite[Seite 2]{aud:pu:2}
+\item \cite[Frühjahr 2018 (RS), Thema 1, A6]{examen:46115:2018:03}
+\end{quellen}
+
+\begin{enumerate}
+
+\item Gegeben ist das folgende Array von Zahlen:
+
+\begin{minted}{java}
+[13, 4, 7, 32, 27, 11, 6, 17, 2]
+\end{minted}
+
+Sortieren Sie das Array mittels Mergesort aufsteigend von links nach
+rechts. Das Aufteilen einer Liste soll in der Mitte erfolgen und, falls
+notwendig, die zweite Liste ein Element länger sein als die erste.
+Listen der Länge zwei dürfen durch direkten Vergleich sortiert werden.
+Geben Sie die Eingabe und das Ergebnis jedes (rekursiven) Aufrufs an.
+Geben Sie abschließend die sortierte Liste an.
+
+\begin{antwort}
+\begin{center}
+\def\myNodes{}
+\begin{forest}
+  /tikz/arrows=->, /tikz/>=latex, /tikz/nodes={draw},
+  for tree={delay={sort}}, sort level=2
+  [13 4 7 32 27 11 6 17 2
+    [13 4 7 32
+      [13 4
+        [13]
+        [4]
+      ]
+      [7 32
+        [7]
+        [32]
+      ]
+    ]
+    [27 11 6 17 2
+      [27 11
+        [27]
+        [11]
+      ]
+      [6 17 2
+        [6]
+        [17]
+        [2]
+      ]
+    ]
+  ]
+]
+%
+\coordinate (m) at (!|-!\forestOnes);
+\myNodes
+\end{forest}
+\end{center}
+\end{antwort}
+
+\item Beantworten Sie folgende Fragen jeweils ohne Begründung oder
+Beweis.
+
+\begin{enumerate}
+\item Welche Worst-Case-Laufzeit ($\mathcal{O}$-Notation) hat Mergesort
+für n Elemente?
+
+\begin{antwort}
+$\mathcal{O}(n \cdot log(n))$ im Best-, Average- und Worst-Case
+\end{antwort}
+
+\item Welche Laufzeit hat Mergesort für n Elemente im Best-Case?
+
+\item Kann basierend auf paarweisen Vergleichen von Werten schneller
+(Laufzeitkomplexität) als Mergesort sortiert werden?
+\end{enumerate}
+\end{enumerate}
+
+\literatur
+
+\end{document}

@@ -1,0 +1,1285 @@
+\documentclass{lehramt-informatik}
+\usepackage{fancyvrb}
+\usepackage{soul}
+\usepackage{multicol}
+\def\TmpUeber#1{{\setul{-0.9em}{}\ul{#1}}}
+
+\InformatikPakete{mathe,syntax}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Relationale Algebra}
+
+\begin{quellen}
+\item \cite{net:html:uni-innsbruck:relax}
+\end{quellen}
+
+\section{Symbole}
+% https://dbai.tuwien.ac.at/education/dm/resources/symbols.html
+
+\begin{tabular}{l|l|l|l}
+\textbf{Name} & \textbf{Symbol} & \textbf{LaTeX} & \textbf{Alternativtext}\\\hline\hline
+% σ
+Selektion & $\sigma$ & \verb|\sigma| & SEL\\
+% π
+Projektion & $\pi$ & \verb|\pi| & PR\\
+% ∪
+Vereinigung & $\cup$ & \verb|\cup| & UNION\\
+% ∩
+Durchschnitt & $\cap$ & \verb|\cap| & INTERSECTION\\
+% −
+Mengendifferenz & $-$ & - & -\\
+% ✕
+kartesisches Produkt & $\times$ & \verb|\times| & X\\
+% ρ ←
+Umbenennung (+Zuweisung) & $\rho \leftarrow$ & \verb|\rho \leftarrow| & RENAME\\
+% ÷
+Division & $\div$ & \verb|\div| & DIV\\
+
+% △
+Symmetrische Differenz & $\bigtriangleup$ & \verb|\bigtriangleup| & \\
+
+\hline
+
+% ⋈
+Join & $\bowtie$ & \verb|\bowtie| & JOIN\\
+
+% ⟕
+%Left Outer Join & {\tiny \textifsym{d|><|}} & \verb|{\tiny \textifsym{d|><|}}| & LOJOIN\\
+
+% Right Outer Join & ⟖ & {\tiny \textifsym{|><|d}} & ROJOIN\\
+
+% Full Outer Join & ⟗ & {\tiny \textifsym{d|><|d}} & FOJOIN\\
+
+% ⋉ needs \usepackage{amssymb}
+Left Semi Join & $\ltimes$ & \verb|\ltimes| & LSJOIN\\
+
+% ⋊ needs \usepackage{amssymb}
+Right Semi Join & $\rtimes$ & \verb|\rtimes| & RSJOIN\\
+
+\hline
+
+% ∧
+Und & $\land$ & \verb|\land| & AND\\
+
+% ∨
+Oder & $\lor$ & \verb|\lor| & OR\\
+
+% ¬
+Negation & $\neg$ & \verb|\neg| & -\\
+
+% ≥
+Größer-gleich & $\geq$ & \verb|\geq| & >=\\
+
+% ≤
+Kleiner-gleich & $\leq$ & \verb|\leq| & <=\\
+
+% ≠
+Ungleich & $\neq$ & \verb|\neq| & =/=\\
+
+% ≡
+Äquivalenz & $\equiv$ & \verb|\equiv| & EQ\\
+
+% ∃
+Existenzquantor & $\exists$ & \verb|\exists| & EXISTS\\
+
+% ∀
+All-Quantor & $\forall$ & \verb|\forall| & FORALL\\
+\end{tabular}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Operationen der Relationen Algebra}
+
+\subsection{Mengenoperation}
+
+%%
+%
+%%
+
+\subsubsection{Vereinigung}
+
+\begin{description}
+\item[Symbol-Schreibweise] $R \cup S$
+\item[SQL] UNION
+\end{description}
+
+%%
+%
+%%
+
+\subsubsection{Mengendifferenz}
+
+\begin{description}
+\item[Symbol-Schreibweise] $R - S$
+\item[SQL] EXCEPT
+\end{description}
+
+%%
+%
+%%
+
+\subsubsection{Mengendurchschnitt (Schnittmenge/Intersection)}
+
+\begin{description}
+\item[Symbol-Schreibweise] $R \cap S$
+\item[SQL] INTERSECT
+\end{description}
+
+%%
+%
+%%
+
+\subsubsection{Symmetrische Differenz}
+
+\begin{description}
+\item[Symbol-Schreibweise] $R \bigtriangleup S$
+\item[SQL] INTERSECT
+\end{description}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\subsection{Selektion}
+
+\begin{description}
+\item[Symbol-Schreibweise] $\sigma_{Ausdruck}(R)$
+\item[lineare Schreibweise] $R[Ausdruck]$
+\item[SQL] WHERE
+\end{description}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\subsection{Projektion}
+
+\begin{description}
+\item[Symbol-Schreibweise] $\pi_{\beta}(R)$
+\item[lineare Schreibweise] $R[\beta]$
+\item[SQL] SELECT
+\end{description}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\subsection{Kartesisches Produkt (Kreuzprodukt)}
+
+\begin{description}
+\item[Symbol-Schreibweise] $R \times S$
+\item[lineare Schreibweise] $R~x~S$
+\item[SQL] CROSS JOIN
+\end{description}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\subsection{Umbenennung}
+
+\begin{description}
+\item[Symbol-Schreibweise] $\rho_{[{neu}\leftarrow alt]} (R)$
+\item[lineare Schreibweise] $R[alt\rightarrow neu]$
+\end{description}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\subsection{Division\footcite[Division]{relationale-algebra}}
+
+\begin{description}
+\item[Symbol-Schreibweise] $R \div S$
+\end{description}
+
+Die Division ist dann definiert durch:
+
+$R\div S:=\pi_{{R'}}(R)-\pi_{{R'}}((\pi_{{R'}}(R)\times S)-R)$
+
+\begin{minted}{sql}
+SELECT distinct MatrNr
+FROM hoert
+WHERE MatrNr NOT IN(
+  SELECT R.MatrNr
+  FROM hoert R, Professor P, Vorlesung V
+  WHERE P.Name = 'Sokrates'
+  AND P.PersNr=V.gelesenVon
+  AND (R.MatrNr, V.VorlNr) NOT IN (
+    SELECT MatrNr, VorlNr
+    FROM hoert
+  )
+);
+\end{minted}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Die 5 Grundoperationen der Relationalen Algebra
+\footcite{net:pdf:lmu:dbs}
+}
+
+Mit diesen Grundoperationen lassen sich weitere Operationen (z. B. die
+Schnittmenge) nachbilden.
+
+\begin{itemize}
+\item Verenigung $R = S \cup T$
+\item Differenz $R = S - T$
+\item Kartesisches Prokukt (Kreuzprodukt) $R = S \times T$
+\item Selection $R = \sigma_F(S)$
+\item Projektion $R = \pi_{A,B,...}(S)$
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Staatsexamen Herbst 2018 - DB/ST (RS) - Thema 2. TA II. A2
+\footcite[Herbst 2018 - DB/ST (RS) - Thema 2. TA II. A2]{examen:46116:2018:09}}
+
+Geben Sie die Ergebnisrelation folgender Ausdrücke der relationalen
+Algebra als Tabellen an. Begründen Sie Ihr Ergebnis, gegebenenfalls
+durch Zwischenschritte. Gegeben seien folgende Relationen:
+\footcite[Seite 1, Aufgabe 1: Herbst 2018 - DB/ST (RS) - Thema 2. TA II. A2]{db:ab:3}
+
+\bigskip
+
+\begin{minipage}[t]{5cm}
+\subsection*{R}
+\begin{tabular}{llllll}
+A & B & C & D & E & F \\\hline
+6 & 8 & 1 & 7 & 3 & 7 \\
+5 & 3 & 4 & 4 & 5 & 7 \\
+0 & 6 & 3 & 0 & 1 & 7
+\end{tabular}
+\end{minipage}
+%
+\begin{minipage}[t]{3.8cm}
+\subsection*{S}
+\begin{tabular}{llll}
+A & C & X & Z \\\hline
+7 & 8 & 6 & 1 \\
+0 & 3 & 0 & 0 \\
+2 & 3 & 0 & 5 \\
+0 & 6 & 1 & 6 \\
+6 & 7 & 1 & 7 \\
+7 & 1 & 2 & 2 \\
+1 & 8 & 8 & 0 \\
+5 & 1 & 5 & 5 \\
+7 & 3 & 0 & 2 \\
+4 & 8 & 2 & 7 \\
+\end{tabular}
+\end{minipage}
+%
+\begin{minipage}[t]{2cm}
+\subsection*{T}
+\begin{tabular}{ll}
+X & Y \\\hline
+5 & 3 \\
+0 & 5 \\
+8 & 6 \\
+3 & 6 \\
+5 & 7 \\
+2 & 8 \\
+\end{tabular}
+\end{minipage}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item $\sigma_{A>6}(S) \bowtie_{S.X=T.Y} \pi_Y(T)$
+
+\begin{antwort}
+\begin{tabular}{lllll}
+A & C & X & Z & Y \\\hline
+7 & 8 & 6 & 1 & 6 \\
+\end{tabular}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item $\pi_{A,C}(S) - (\pi_A(R) \times \pi_C(\sigma_{x=1}(S)))$
+
+\begin{antwort}
+\begin{minipage}[t]{4cm}
+$\sigma_{x=1}(S)$:
+
+\bigskip
+\begin{tabular}{llll}
+A & C & X & Z \\\hline
+0 & 6 & 1 & 6 \\
+6 & 7 & 1 & 7 \\
+\end{tabular}
+\end{minipage}
+%
+\begin{minipage}[t]{3cm}
+$\pi_C(\sigma_{x=1}(S))$:
+
+\bigskip
+\begin{tabular}{l}
+C \\\hline
+6 \\
+7 \\
+\end{tabular}
+\end{minipage}
+%
+\begin{minipage}[t]{3cm}
+$\pi_A(R)$:
+
+\bigskip
+\begin{tabular}{l}
+A \\\hline
+6 \\
+5 \\
+0 \\
+\end{tabular}
+\end{minipage}
+
+\begin{minipage}[t]{5cm}
+$(\pi_A(R) \times \pi_C(\sigma_{x=1}(S)))$
+
+\bigskip
+\begin{tabular}{ll}
+A & C \\\hline
+6 & 6 \\
+5 & 6 \\
+0 & 6 \\
+6 & 7 \\
+5 & 7 \\
+0 & 7 \\
+\end{tabular}
+\end{minipage}
+%
+\begin{minipage}[t]{4cm}
+$\pi_{A,C}(S)$
+
+\bigskip
+\begin{tabular}{llll}
+A & C \\\hline
+7 & 8 \\
+0 & 3 \\
+2 & 3 \\
+0 & 6 \\
+6 & 7 \\
+7 & 1 \\
+1 & 8 \\
+5 & 1 \\
+7 & 3 \\
+4 & 8 \\
+\end{tabular}
+\end{minipage}
+
+\begin{tabular}{llll}
+A & C \\\hline
+7 & 8 \\
+0 & 3 \\
+2 & 3 \\
+7 & 1 \\
+1 & 8 \\
+5 & 1 \\
+7 & 3 \\
+4 & 8 \\
+\end{tabular}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item $(\pi_D(R) \times \pi_E(R)) \div \pi_E(R)$
+
+\begin{antwort}
+\begin{minipage}[t]{3cm}
+$\pi_D(R) \times \pi_E(R)$
+
+\bigskip
+\begin{tabular}{ll}
+A & E \\\hline
+7 & 3 \\
+4 & 3 \\
+0 & 3 \\
+7 & 5 \\
+4 & 5 \\
+0 & 5 \\
+7 & 1 \\
+4 & 1 \\
+0 & 1 \\
+\end{tabular}
+\end{minipage}
+%
+\begin{minipage}[t]{2cm}
+$\pi_E(R)$
+
+\bigskip
+\begin{tabular}{l}
+E \\\hline
+3 \\
+5 \\
+1 \\
+\end{tabular}
+\end{minipage}
+%
+\begin{minipage}[t]{6cm}
+$(\pi_D(R) \times \pi_E(R)) \div \pi_E(R)$
+
+\bigskip
+\begin{tabular}{l}
+D \\\hline
+7 \\
+4 \\
+0 \\
+\end{tabular}
+\end{minipage}
+\end{antwort}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{SQL-Anfragen auf einer Tabelle \& Relationale Algebra
+\footcite[Staatsexamen Softwaretechnologie/Datenbanksysteme, Thema Nr. 1,
+Teilaufgabe II, Aufgabe 1, Herbst 2015 Realschule]{examen:46116:2015:09}
+}
+
+Gegeben sei folgendes relationales Schema, dessen Attribute nur atomare
+Attributwerte besitzen.
+\footcite{db:ab:2}
+
+Computer: \{IP, Name, Hersteller, Modell, Standort\}
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Geben Sie für die folgenden Anfragen einen relationalen Ausdruck
+an:
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Geben Sie die IP-Adresse des Computers mit Namen „Chiemsee“ aus.
+
+\begin{antwort}
+$\pi_{\text{IP}}(\sigma_{\text{Name} = \text{Chiemsee}}(\text{Computer}))$
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Geben Sie 2er-Tupel von IP-Adressen der Computer am selben
+Standort aus.
+
+\begin{antwort}
+\begin{multline*}
+\pi_{\text{c1.IP},\text{c2.IP}}(
+  \sigma_{\text{c1.Standort} = \text{c2.Standort}}(\\
+    \rho_{\text{c1}} (\text{Computer})
+    \times
+    \rho_{\text{c2}} (\text{Computer})
+  )
+)
+\end{multline*}
+\end{antwort}
+\end{enumerate}
+
+%%
+% (2)
+%%
+
+\item Formulieren Sie die folgenden Anfragen in SQL:
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Geben Sie die IP-Adressen der Rechner am Standort „Büro2“ aus.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT IP FROM Computer WHERE Standort = 'Büro2';
+\end{minted}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Geben Sie alle Computer-Namen in aufsteigender Ordnung mit ihren
+IP-Adressen aus.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT Name, IP FROM Computer ORDER BY Name ASC;
+\end{minted}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Geben Sie für jeden Hersteller die Anzahl der unterschiedlichen
+Modelle aus.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT COUNT(DISTINCT Modell), Hersteller
+FROM Computer
+GROUP BY Hersteller;
+\end{minted}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Geben Sie für jeden Hersteller, welcher mindestens 2
+unterschiedliche Modelle hat, die Anzahl der unterschiedlichen Modelle
+aus.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT Hersteller, COUNT(*) FROM Modelle GROUP BY Hersteller HAVING COUNT(*) > 1;
+\end{minted}
+\end{antwort}
+
+oder
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT COUNT(DISTINCT Modell), Hersteller
+FROM Computer
+GROUP BY Hersteller
+HAVING COUNT(DISTINCT Modell) >= 2;
+\end{minted}
+\end{antwort}
+\end{enumerate}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Bundesliga-Datenbank
+\footcite[Aufgabe 4: Relationale Algebra und SQL]{db:ab:7}}
+
+Gegeben sei die folgende Bundesliga-Datenbank, in der die Vereine,
+Spiele, Trainer und Spieler mit ihren Einsätzen für die laufende Saison
+verwaltet werden:
+
+\begin{itemize}
+\item VEREIN (VNAME, ORT, PRÄSIDENT)
+\item SPIELE (HEIM, GAST, RESULTAT, ZUSCHAUER, TERMIN, SPIELTAG, H-TRAINER,
+G-TRAINER)
+\item SPIELER (SPNR, NAME, VORNAME, VEREIN, ALTER, GEHALT, GEB-ORT)
+\item TRAINER (TRNR, NAME, VORNAME, VEREIN, ALTER, GEHALT, GEB-ORT)
+\item EINSATZ (HEIM, GAST, SPNR, VON, BIS, TORE, KARTE)
+\end{itemize}
+
+\begin{enumerate}
+\item Zeichnen Sie das „zugehörige“ ER-Modell!
+
+\item Formulieren Sie folgende Anfragen in relationaler Algebra und in
+SQL:
+
+\begin{itemize}
+\item Welche Spieler haben beim Spiel TSV 1860 München – FC Bayern
+München mitgewirkt?
+
+\begin{antwort}
+$\pi_{\text{NAME,VORNAME}}(
+  \text{Spieler}
+  \bowtie
+  (\sigma_{
+    \text{HEIM} = \mlq \text{TSV 1860 München} \mrq \land
+    \text{GAST} = \mlq \text{FC Bayern München} \mrq
+  }(\text{Einsatz}))
+)$
+
+\begin{minted}{sql}
+SELECT NAME, VORNAME FROM Spieler, Einsatz,
+WHERE
+  HEIM = 'TSV 1860 München' AND GAST = 'FC Bayern München' AND
+  Einsatz.SPNR = Spieler.SPNR;
+\end{minted}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Welche Spiele sind 2 : 0 ausgegangen?
+
+\begin{antwort}
+$\pi_{\text{HEIM},\text{GAST},\text{SPIELTAG}}(\sigma_{\text{RESULTAT} = \mlq 2 : 0 \mrq}(\text{SPIELE}))$
+
+\begin{minted}{sql}
+SELECT HEIM, GAST, SPIELTAG FROM SPIELE
+WHERE RESULTAT = '2 : 0';
+\end{minted}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Welche Spieler spielen in einem Verein ihres Geburtsortes?
+
+\begin{antwort}
+$\pi_{\text{NAME},\text{VORNAME}}(
+  \text{VEREIN}
+  \bowtie_{\text{VEREIN.ORT} = \text{SPIELER.GEB-ORT} \land \text{SPIELER.VEREIN} = \text{VEREIN.VNAME}}
+  \text{SPIELER}
+)$
+
+\begin{minted}{sql}
+SELECT NAME, VORNAME
+FROM SPIELER, VEREIN
+WHERE VEREIN.ORT = SPIELER.GEB-ORT AND SPIELER.VEREIN = VEREIN.VNAME;
+\end{minted}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Welche Spieler vom 1. FC Köln haben alle Spiele mitgemacht?
+
+\begin{antwort}
+\def\tmpkoeln{\mlq \text{1. FC Köln} \mrq}
+
+\begin{multline*}
+\pi_{\text{NAME,VORNAME}}(\\
+  \sigma_{\text{VEREIN} = \tmpkoeln}(\text{SPIELER})\\
+  \bowtie\\
+  (
+    \pi_{\text{HEIM,GAST,SPNR}}(\sigma_{\text{HEIM} = \tmpkoeln \lor \text{GAST} = \tmpkoeln}(\text{EINSATZ}))\\
+    \div\\
+    \pi_{\text{HEIM,GAST}}(\sigma_{\text{HEIM} = \tmpkoeln \lor \text{GAST} = \tmpkoeln}(\text{SPIELE}))
+  )
+)
+\end{multline*}
+
+\begin{minted}{sql}
+SELECT NAME, VORNAME
+FROM SPIELER
+WHERE VEREIN = '1. FC Koeln' AND SPNR IN (
+  SELECT SPNR
+  FROM EINSATZ
+  WHERE HEIM = '1. FC Koeln' OR GAST = '1. FC Koeln'
+  GROUP BY SPNR
+  HAVING COUNT(*) = (
+    SELECT COUNT(*)
+    FROM SPIELE
+    WHERE HEIM = '1. FC Koeln' OR GAST = '1. FC Koeln'
+  )
+);
+\end{minted}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Wie heißen die Präsidenten der Vereine, die zur Zeit einen Trainer
+beschäftigen, der jünger ist als der älteste Spieler, der beim Verein
+beschäftigt ist?
+
+\begin{antwort}
+\begin{multline*}
+\pi_{\text{PRÄSIDENT}}(\\
+  \text{VEREIN}\\
+  \bowtie\\
+  \pi_{\text{VEREIN}}(\\
+    \text{TRAINER}\\
+    \bowtie_{
+      \text{TRAINER.ALTER} < \text{SPIELTER.ALTER} \land
+      \text{TRAINER.VEREIN} = \text{SPIELER.VEREIN}
+    }\\
+    \text{SPIELER}\\
+  )\\
+)
+\end{multline*}
+
+\begin{minted}{sql}
+SELECT PRÄSIDENT
+FROM VEREIN, SPIELER, TRAINER
+WHERE
+  VEREIN.VNAME = SPIELER.VEREIN AND
+  VEREIN.VNAME = VEREIN.TRAINER AND
+  TRAINER.ALTER < SPIELER.ALTER;
+\end{minted}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Welche Spieler haben bisher noch nie gespielt?
+
+\begin{antwort}
+$\pi_{\text{SPNR}}(\text{SPIELER}) - \pi_{\text{SPNR}}(\text{EINSATZ})$
+
+\begin{minted}{sql}
+SELECT SPNR FROM SPIELER
+EXCEPT
+SELECT SPNR FROM EINSATZ;
+\end{minted}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Welche Spieler haben bisher noch kein Tor geschossen?
+
+\begin{antwort}
+$\pi_{\text{SPNR}}(\text{SPIELER}) -
+\pi_{\text{SPNR}}(\sigma_{\text{TORE} > 0}(\text{EINSATZ}))$
+
+\begin{minted}{sql}
+SELECT SPNR FROM SPIELER
+EXCEPT
+SELECT SPNR FROM EINSATZ WHERE TORE > 0;
+\end{minted}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Welcher Trainer hat schon mehr als einen Verein trainiert? Welche
+Vereine haben schon mehrere Trainer gehabt?
+
+%%
+%
+%%
+
+\begin{antwort}
+Vereine:
+
+\begin{minted}{sql}
+SELECT HEIM FROM SPIELE l, SPIELE r
+WHERE l.HEIM = r.HEIM AND NOT (l.H-TRAINER = r.H-TRAINER)
+UNION
+SELECT GAST FROM SPIELE l, SPIELE r
+WHERE l.GAST = r.GAST AND NOT (l.G-TRAINER = r.G-TRAINER)
+UNION
+SELECT HEIM FROM SPIELE l, SPIELE r
+WHERE l.HEIM = r.GAST AND NOT (l.H-TRAINER = r.G-TRAINER)
+\end{minted}
+
+Trainer:
+
+\begin{minted}{sql}
+SELECT H-TRAINER FROM SPIELE l, SPIELE r
+WHERE l.H-TRAINER = r.HEIM AND NOT (l.HEIM = r.HEIM)
+UNION
+SELECT G-TRAINER FROM SPIELE l, SPIELE r
+WHERE l.G-TRAINER = r.G-TRAINER AND NOT (l.GAST = r.GAST)
+UNION
+SELECT H-TRAINER FROM SPIELE l, SPIELE r
+WHERE l.H-TRAINER = r.G-TRAINER AND NOT (l.H-TRAINER = r.G-TRAINER)
+\end{minted}
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\item Welche Spiele am 10. Spieltag hatten mehr als 30.000 Zuschauer?
+
+\begin{antwort}
+$\pi_{\text{HEIM,GAST}}(
+  \sigma_{\text{ZUSCHAUER} > 30000 \land \text{SPIELTAG} = 10}(\text{SPIELE})
+)$
+
+\begin{minted}{sql}
+SELECT HEIM, GAST
+  FROM SPIELE
+  WHERE ZUSCHAUER > 30000 AND SPIELTAG = 10;
+\end{minted}
+\end{antwort}
+\end{itemize}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{2. SQL und relationale Algebra\footcite{examen:66116:2016:09}}
+
+Gegeben sei der folgende Ausschnitt aus dem Schema einer Schulverwaltung:
+\footcite{db:ab:examen-gym-2016-09}
+
+\newcommand{\tmpu}[1]{\underline{\texttt{#1}}}
+
+\begin{Verbatim}[commandchars=+*~]
+Person : {[
+  +tmpu*ID~ : INTEGER,
+  Name : VARCHAR(255),
+  Wohnort : VARCHAR(255),
+  Typ : CHAR(1)
+]}
+
+Unterricht : {[
+  +tmpu*Klassenbezeichnung~ : VARCHAR(20),
+  +tmpu*Schuljahr~ : INTEGER,
+  +tmpu*Lehrer~ : INTEGER,
+  +tmpu*Fach~ : VARCHAR(100)
+]}
+
+Klasse : {[
+  +tmpu*Klassenbezeichnung~ : VARCHAR(20),
+  +tmpu*Schuljahr~ : INTEGER,
+  Klassenlehrer : INTEGER
+]}
+
+Klassenverband : {[
+  +tmpu*Schüler~ : INTEGER,
+  Klassenbezeichnung : VARCHAR(20),
+  +tmpu*Schuljahr~ : INTEGER
+]}
+\end{Verbatim}
+
+\noindent
+Hierbei enthält die Tabelle \emph{Person} Informationen über Lehrer (Typ
+’L’) und Schüler (Typ ’S’); andere Werte für Typ sind nicht zulässig.
+\emph{Klasse} beschreibt die Klassen, die in jedem Schuljahr gebildet
+wurden, zusammen mit ihrem Klassenlehrer. In \emph{Unterricht} wird
+abgelegt, welcher Lehrer welches Fach in welcher Klasse unterrichtet; es
+ist möglich, dass derselbe Lehrer mehr als ein Fach in einer Klasse
+unterrichtet. \emph{Klassenverband} beschreibt die Zuordnung der Schüler
+zu den Klassen.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Tabelle
+\emph{Unterricht} mit allen ihren Constraints (einschließlich
+Fremdschlüsselconstraints) anlegt.
+
+\begin{antwort}
+Ich habe \verb|REFERENCES| bei Unterricht Schuljahr vergessen, die
+referenzierten Tabellen \verb|Person| und \verb|Klasse| wurden in der
+Musterlösung auch nicht angelegt.
+
+\begin{minted}{sql}
+CREATE TABLE Person(
+  ID INTEGER PRIMARY KEY,
+  Name VARCHAR(255),
+  Wohnort VARCHAR(255),
+  Typ CHAR(1) CHECK(Typ in ('S', 'L'))
+);
+
+CREATE TABLE Klasse(
+  Klassenbezeichnung VARCHAR(20),
+  Schuljahr INTEGER,
+  Klassenlehrer INTEGER REFERENCES Person(ID),
+  PRIMARY KEY (Klassenbezeichnung, Schuljahr)
+);
+
+CREATE TABLE Unterricht (
+  Klassenbezeichnung VARCHAR(20) REFERENCES Klasse(Klassenbezeichnung),
+  Schuljahr INTEGER REFERENCES Klasse(Schuljahr),
+  Lehrer INTEGER REFERENCES Person(ID),
+  Fach VARCHAR(100),
+  CONSTRAINT Unterricht_PK
+    PRIMARY KEY (Klassenbezeichnung, Schuljahr, Lehrer, Fach)
+);
+\end{minted}
+\end{antwort}
+
+%%
+% b)
+%%
+
+\item Definieren Sie ein geeignetes Constraint, das sicherstellt, dass
+nur zulässige Werte im Attribut Typ der (bereits angelegten) Tabelle
+\emph{Person} eingefügt werden können.
+
+\begin{antwort}
+Ich habe \verb|REFERENCES| bei Unterricht Schuljahr vergessen, die
+referenzierten Tabellen \verb|Person| und \verb|Klasse| wurden in der
+Musterlösung auch nicht angelegt.
+
+\begin{minted}{sql}
+ALTER TABLE Person
+  ADD CONSTRAINT TypLS
+    CHECK(Typ IN ('S', 'L'));
+\end{minted}
+\end{antwort}
+
+%%
+% c)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Bezeichnung der Klassen
+bestimmt, die im Schuljahr 2015 die meisten Schüler haben.
+
+\begin{antwort}
+Falsch: \verb|ORDER BY Anzahl;|. \verb|DESC| vergessen.
+
+\begin{minted}{sql}
+SELECT k.Klassenbezeichnung, COUNT(*) AS Anzahl
+FROM Klasse k, Klassenverband v
+WHERE
+  k.Schuljahr = 2015 AND
+  k.Klassenbezeichnung = v.Klassenbezeichnung
+GROUP BY k.Klassenbezeichnung
+ORDER BY COUNT(*) DESC;
+\end{minted}
+\end{antwort}
+
+%%
+% d)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Namen aller Lehrer
+bestimmt, die nur Schüler aus ihrem Wohnort unterrichtet haben.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT DISTINCT l.Name
+FROM Person l
+WHERE NOT EXISTS(
+  SELECT DISTINCT *
+  FROM Unterricht u, Klassenverband v, Person s
+  WHERE
+    u.Lehrer = l.ID AND
+    u.Klassenbezeichnung = v.Klassenbezeichnung AND
+    v.Schüler = s.ID AND
+    l.Wohnort != s.Wohnort
+);
+\end{minted}
+\end{antwort}
+
+%%
+% e)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Namen aller Schüler
+bestimmt, die immer den gleichen Klassenlehrer hatten.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT s.Name
+FROM Person s, Klasse k, Klassenverband v
+WHERE
+  s.ID = v.Schueler AND
+  v.Klassenbezeichnung = k.Klassenbezeichnung AND
+  v.Schuler = s.ID
+GROUP BY k.Klassenlehrer, v.Schueler
+HAVING COUNT(*) = 1
+\end{minted}
+\end{antwort}
+
+%%
+% f)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die alle Paare von Schülern
+bestimmt, die mindestens einmal in der gleichen Klasse waren. Es genügt
+dabei, wenn Sie die ID der Schüler bestimmen.
+
+\begin{antwort}
+Ich habe Schuljahr zum joinen vergessen.
+\begin{minted}{sql}
+SELECT DISTINCT s1.ID, s2.ID
+FROM Klassenverband s1, Klassenverband s2
+WHERE
+  s1.Schuljahr = s2.Schuljahr AND
+  s1.Schueler <> s2.Schueler AND
+  s1.Klassenbezeichung = s2. Klassenbezeichnung;
+\end{minted}
+\end{antwort}
+
+%%
+% g)
+%%
+
+\item Formulieren Sie eine Anfrage in der relationalen Algebra, die die
+ID aller Schüler bestimmt, die mindestens einmal von „Ludwig Lehrer“
+unterrichtet wurden.
+
+\begin{antwort}
+\begin{multline*}
+\pi_{\text{Schüler}} (\\
+  \sigma_{\text{Name} = \mlq \text{Ludwig Lehrer} \mrq} (\text{Person})\\
+  \bowtie_{\text{Person.ID} = \text{Unterricht.Lehrer}}\\
+  \text{Unterricht}\\
+  \bowtie_{\text{Unterricht.Klassenbezeichnung} = \text{Klassenverband.Klassenbezeichnung}}\\
+  \text{Klassenverband}\\
+)
+\end{multline*}
+\end{antwort}
+
+%%
+% h)
+%%
+
+\item Formulieren Sie eine Anfrage in der relationalen Algebra, die
+Namen und ID der Schüler bestimmt, die von allen Lehrern unterrichtet
+wurden.
+
+\begin{antwort}
+\begin{multline*}
+\pi_{\text{Name,ID}}(\\
+  (\\
+    \pi_{\text{Lehrer,Schueler}}(
+      \text{Unterricht}
+      \bowtie
+      \text{Klassenverband}
+    )
+    \div
+    \pi_{\text{ID}}(
+      \sigma_{\text{Typ} = \mlq \text{L} \mrq }(\text{Person})
+    )\\
+  )\\
+  \bowtie\\
+  \text{Person}\\
+)
+\end{multline*}
+\end{antwort}
+
+\end{enumerate}
+
+\noindent
+Beachten Sie bei der Formulierung der SQL-Anfragen, dass die
+Ergebnisrelationen keine Duplikate enthalten dürfen. Sie dürfen
+geeignete Views definieren.
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 2: Relationale Algebra\footcite{db:pu:wh}}
+
+Gegeben sei das folgende relationale Schema mitsamt Beispieldaten für
+eine Datenbank von Mitfahrgelegenheiten. Die Primärschlüssel-Attribute
+sind jeweils unterstrichen, Fremdschlüssel sind überstrichen.
+\footcite[DB/ST - Frühjahr 2014 (nicht vertieft -46116), Thema 2, A2]{examen:46116:2014:03}
+
+{
+\footnotesize
+\begin{multicols}{2}
+„Kunde":
+
+\begin{tabular}{|l|l|l|l|}
+\hline
+\ul{KID} & Name & Vorname & \TmpUeber{Stadt}\\\hline\hline
+K1 & Meier & Stefan & S3\\\hline
+K2 & Müller & Peta & S3\\\hline
+K3 & Schmidt & Christine & S2\\\hline
+K4 & Schulz & Michael & S4\\\hline
+\end{tabular}
+
+„Stadt"
+
+\begin{tabular}{|l|l|l|}
+\hline
+\ul{SID} & SName & Bundesland\\\hline\hline
+S1 & Berlin & Berlin\\\hline
+S2 & Nürn & Bayern\\\hline
+S3 & Köln & Nordrhein-Wesffalen\\\hline
+S4 & Stuttgart & Baden-Württemberg\\\hline
+S5 & München & Bayer\\\hline
+\end{tabular}
+\end{multicols}
+
+\begin{multicols}{2}
+„Angebot":
+
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\ul{KID} & \TmpUeber{Start} & \TmpUeber{Ziel} & \ul{Datum} & Plätze\\\hline\hline
+K4 & S4 & S5 & 08.07.2011 & 3\\\hline
+K4 & S5 & S4 & 10.07.2011 & 3\\\hline
+K1 & S1 & S5 & 08.07.2011 & 3\\\hline
+K3 & S2 & S3 & 15.07.2011 & 1\\\hline
+K4 & S4 & S1 & 15.07.2011 & 3\\\hline
+K1 & S5 & S5 & 09.07.2011 & 2\\\hline
+\end{tabular}
+
+„Anfrage":
+
+\begin{tabular}{|l|l|l|l|}
+\hline
+\ul{KID} & \TmpUeber{Start} & \TmpUeber{Ziel} & \ul{Datum}\\\hline\hline
+K2 & S4 & S5 & 08.07.2011\\\hline
+K2 & S5 & S4 & 10.07.2011\\\hline
+K3 & S2 & S3 & 08.07.2011\\\hline
+K3 & S3 & S2 & 10.07.2011\\\hline
+K2 & S4 & S5 & 05.07.2011\\\hline
+K2 & S5 & S4 & 17.07.2011\\\hline
+\end{tabular}
+\end{multicols}
+}
+
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+\begin{enumerate}
+\item Formulieren Sie die folgenden Anfragen auf das gegebene Schema in
+relationaler Algebra:
+
+\begin{itemize}
+\item Finden Sie die Namen aller Städte in Bayern!
+
+\begin{antwort}
+$\pi_{\text{SName}}(\sigma_{\text{Bundesland} = \text{Bayern}}(\text{Stadt}))$
+\end{antwort}
+
+%%
+%
+%%
+
+\item Finden Sie die SIDs aller Städte, für die weder als Start noch als
+Ziel eine Anfrage vorliegt!
+
+\begin{antwort}
+$
+\pi_{\text{SID}}(\text{Stadt}) - \pi_{\text{Start}}(\text{Anfage}) - \pi_{\text{Ziel}}(\text{Anfrage})
+$
+\end{antwort}
+
+%%
+%
+%%
+
+\item Finden Sie alle IDs von Kunden, welche eine Fahrt in ihrer
+Heimatstadt starten.
+
+\begin{antwort}
+\begin{multline*}
+\pi_{\text{KID}}(\\
+  \text{Kunde} \bowtie_{\text{Kunde.KID} = \text{Anfrage.KID} \land \text{Kunde.Stadt} = \text{Anfrage.Stadt}} \text{Anfrage}
+)\\
+\land\\
+\pi_{\text{KID}}(\\
+  \text{Kunde} \bowtie_{\text{Kunde.KID} = \text{Angebot.KID} \land \text{Kunde.Stadt} = \text{Angebot.Stadt}} \text{Angebot}
+  )
+\end{multline*}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Geben Sie das Datum aller angebotenen Fahrten von München nach
+Stuttgart aus!
+
+\begin{antwort}
+\begin{multline*}
+\pi_{\text{Datum}}(\\
+  (\text{Angebot} \bowtie_{\text{Start} = \text{SID} \land \text{SName} = \mlq\text{München}\mrq} \text{Stadt})\\
+  \bowtie_{\text{Ziel} = \text{SID} \land \text{SName} = \mlq\text{Stuttgart}\mrq}\\
+  \text{Stadt}\\
+)
+\end{multline*}
+\end{antwort}
+
+Variante 2:
+
+\begin{antwort}
+\begin{multline*}
+\pi_{\text{Datum}}(\\
+  \sigma_{
+    \text{Sname} = \mlq\text{München}\mrq \land
+    \text{Zname} = \mlq\text{Stuttgart}\mrq
+  }(\\
+    \rho_{
+      \text{Zname} \leftarrow \text{Sname},
+      \text{SID1} \leftarrow \text{SID}
+    }(\text{Stadt})\\
+    \bowtie_{\text{Ziel} = \text{SID1}}\\
+    \text{Angebot}\\
+    \bowtie_{\text{Start} = \text{SID}}\\
+    \text{Stadt}
+  )
+)
+\end{multline*}
+\end{antwort}
+
+%%
+%
+%%
+
+\end{itemize}
+
+\item Geben Sie das Ergebnis (bezüglich der Beispieldaten) der folgenden
+Ausdrücke der relationalen Algebra als Tabellen an:
+
+%%
+%
+%%
+
+\begin{itemize}
+\item $\pi_{\text{KID}} (\text{Angebot}) \bowtie \text{Kunde}$
+
+\begin{antwort}
+Zeile mit der Petra Müller fällt weg.
+
+\begin{tabular}{|l|l|l|l|}
+\hline
+\ul{KID} & Name & Vorname & \TmpUeber{Stadt}\\\hline\hline
+K1 & Meier & Stefan & S3\\\hline
+K3 & Schmidt & Christine & S2\\\hline
+K4 & Schulz & Michael & S4\\\hline
+\end{tabular}
+\end{antwort}
+
+%%
+%
+%%
+
+\item $
+\pi_{(\text{KID},\text{Stadt})} (\text{Kunde})
+\bowtie_{\text{Kunde.Stadt} = \text{Angebot.Ziel}}
+\pi_{\text{Plaetze}} (\text{Angebot})$
+
+\begin{antwort}
+
+\begin{tabular}{|l|l|l|}
+\hline
+KID & Stadt & Plätze \\\hline\hline
+K1 & S3 & 1 \\\hline
+K2 & S3 & 1 \\\hline
+K4 & S4 & 1 \\\hline
+K4 & S4 & 2 \\\hline
+\end{tabular}
+\end{antwort}
+\end{itemize}
+\end{enumerate}
+
+\literatur
+
+\end{document}

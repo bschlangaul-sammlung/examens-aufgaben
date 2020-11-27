@@ -1,0 +1,18 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-uml}[2020/06/13]
+\RequirePackage{tikz-er2}
+\usetikzlibrary{positioning}
+\RequirePackage{soul}
+\RequirePackage{MnSymbol}
+
+\newcommand{\Entity}[1]{\textbf{#1}}
+\newcommand{\Relationship}[1]{\ul{#1}}
+\newcommand{\Attribute}[1]{\emph{#1}}
+
+% mp = marginpar
+\newcommand{\mpEntity}[1]{\Entity{#1}\marginpar{\Entity{\tiny{}\medsquare{} E: #1}}}
+\newcommand{\mpRelationship}[1]{\Relationship{#1}\marginpar{\Relationship{\tiny{}\meddiamond{} R: #1}}}
+\newcommand{\mpAttribute}[1]{\Attribute{#1}\marginpar{\Attribute{\tiny{}\medcircle{} A: #1}}}
+
+% datenbank name
+\def\dname#1{{\footnotesize\texttt{(#1)}}}

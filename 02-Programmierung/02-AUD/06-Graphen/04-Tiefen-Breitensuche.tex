@@ -1,0 +1,456 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{graph,syntax}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Tiefensuche, Breitensuche}
+
+\section{Tiefesuche}
+
+\begin{quellen}
+\item \cite[Seite 39-52 (PDF 32-45)]{aud:fs:6}
+\item \cite{wiki:tiefensuche}
+\item \cite[Kapitel 6.2.2.2 Graphalgorithmen, Seite 185]{schneider}
+\end{quellen}
+
+Die Tiefensuche (englisch \memph{depth-first search}, \memph{DFS}) ist
+in der Informatik ein Verfahren zum Suchen von Knoten in einem Graphen.
+
+Der Tiefendurchlauf ist das Standardverfahren zum Durchlaufen eines
+Graphen bei dem \memph{jeder Knoten mindestens einmal} und \memph{jede
+Kante genau einmal} besucht wird. Man geht vom jeweiligen Knoten
+\memph{erst zu einem nicht besuchten Nachbarknoten} und setzt den
+Algorithmus dort \memph{rekursiv} fort. Bei schon besuchten Knoten wird
+abgebrochen. Als Hilfsstruktur wird ein \memph{Stack} (Stapelspeicher,
+Keller) verwendet. Der konkrete Durchlauf hängt von der Reihenfolge der
+Knoten in den Adjazenzlisten ab.
+\footcite[Seite 40 (PDF 33)]{aud:fs:6}
+
+\def\TmpGraph{
+  \graph knoten {
+    \knoten{A}(1,5)
+    \knoten{B}(0,4)
+    \knoten{C}(0,2)
+    \knoten{D}(1,0)
+    \knoten{E}(2,2)
+    \knoten{F}(3,1)
+    \knoten{G}(6,2)
+    \knoten{H}(5,3)
+    \knoten{I}(4,5)
+    \knoten{J}(5,5)
+    \knoten{K}(6,4)
+    \knoten{L}(7,3)
+    \knoten{M}(8,0)
+  } kanten {
+    \kanteO(A-B)
+    \kanteO(A-C)
+    \kanteO(A-E)
+    \kanteO(B-C)
+    \kanteO(C-E)
+    \kanteO(C-I)
+    \kanteO(D-E)
+    \kanteO(D-F)
+    \kanteO(F-G)
+    \kanteO(F-H)
+    \kanteO(F-I)
+    \kanteO(F-M)
+    \kanteO(I-J)
+    \kanteO(L-K)
+    \kanteO(M-L)
+  }
+}
+
+\TmpGraph
+
+\def\TmpBesuch#1{\strut\par\textbf{Besuchte Knoten:} #1}
+\def\TmpStack#1{\par\textbf{Stack:} #1}
+
+Startknoten A:
+
+\begin{description}
+
+\item[A:]
+\TmpBesuch{A, B}
+\TmpStack{A}
+
+\item[B:]
+\TmpBesuch{A, B, C}
+\TmpStack{A, B}
+
+\item[C:]
+\TmpBesuch{A, B, C, E}
+\TmpStack{A, B, C}
+
+\item[B:]
+A, B, C
+\TmpStack{A, B, C}
+
+\item[C:]
+A, B, C, E
+\TmpStack{A, B, C, E}
+
+\item[E:]
+A, B, C, E, D
+\TmpStack{A, B, C, E}
+
+\item[E:]
+A und C schon
+markiert
+A, B, C, E, D
+\TmpStack{A, B, C, E, D}
+
+\item[D:]
+A, B, C, E, D, F
+\TmpStack{A, B, C, E, D}
+
+\item[F:]
+A, B, C, E, D, F, M
+\TmpStack{A, B, C, E, D, F}
+
+\item[M:]
+A, B, C, E, D, F, M, L
+\TmpStack{A, B, C, E, D, F, M}
+
+\item[L:]
+A, B, C, E, D, F, M, L, K
+\TmpStack{A, B, C, E, D, F, M, L}
+
+\item[K:] keine Kinder
+A, B, C, E, D, F, M, L, K
+\TmpStack{A, B, C, E, D, F, M, L}
+
+\item[L:] alle Kinder schon markiert
+A, B, C, E, D, F, M, L, K
+\TmpStack{A, B, C, E, D, F, M}
+
+\item[M:] alle Kinder schon markiert
+A, B, C, E, D, F, M, L, K
+\TmpStack{A, B, C, E, D, F}
+
+\item[F:]
+A, B, C, E, D, F, M, L, K, G
+\TmpStack{A, B, C, E, D, F}
+
+\item[G:] keine Kinder
+
+\item[F:]
+A, B, C, E, D, F, M, L, K, G, H
+\TmpStack{A, B, C, E, D, F}
+
+\item[H:] keine Kinder
+
+\item[F:]
+A, B, C, E, D, F, M, L, K, G, H, I
+\TmpStack{A, B, C, E, D, F}
+
+\item[I:]
+A, B, C, E, D, F, M, L, K, G, H, I, J
+\TmpStack{A, B, C, E, D, F, I}
+
+\item[J:] keine Kinder
+I: alle Kinder markiert
+F: alle Kinder markiert
+D: alle Kinder markiert
+E: alle Kinder markiert
+C: alle Kinder markiert
+B: alle Kinder markiert
+A: alle Kinder markiert
+
+A, B, C, E, D, F, M, L, K, G, H, I, J
+\TmpStack{leer}
+
+\end{description}
+
+ENDE
+
+\subsection{Implementierung der Tiefensuche}
+
+\begin{itemize}
+\item Eine Möglichkeit, abzuspeichern, welche Knoten bereits besucht
+wurden $\rightarrow$ Boolean-Array
+
+\item Eine Methode, die für uns diese Markierung der Knoten als besucht
+übernimmt (und somit die eigentliche Tiefensuche durchführt)
+$\rightarrow$  Knoten als besucht eintragen, existierende Nachbarknoten
+suchen und prüfen, ob diese bereits besucht wurden, falls nicht: diese
+durch rekursiven Aufruf besuchen
+
+\item Eine Methode, um die Tiefensuche zu starten $\rightarrow$  Wenn
+ein übergebnisener Startknoten existiert, dann müssen erst alle Knoten
+als nicht besucht markiert werden und dann vom Startknoten aus das
+Besuchen der Knoten gestartet werden
+\end{itemize}
+\footcite[Seite 45 (PDF 45)]{aud:fs:6}
+
+\section{Pseudocode: Tiefensuche mit explizitem Stack\footcite[Seite 51 (PDF 45)]{aud:fs:6}}
+
+\begin{minted}{md}
+funktion dfs(G: Graph, k: Startknoten in G) {
+  S := leerer Stack;
+  lege k oben auf S;
+  markiere k;
+
+  solange S nicht leer ist fuehre aus {
+    a := entferne oberstes Element von S;
+    bearbeite Knoten a;
+
+    fuer alle Nachfolger n von a fuehre aus {
+      falls n noch nicht markiert fuehre aus {
+        lege n oben auf S;
+        markiere n;
+      }
+    }
+  }
+}
+\end{minted}
+
+\inputcode[firstline=34,lastline=74]{graph/TiefenSucheStapel}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Breitensuche}
+
+\begin{quellen}
+\item \cite[Seite 53-64 (PDF 46-57)]{aud:fs:6}
+\item \cite[Kapitel 6.2.2.2 Graphalgorithmen, Seite 185]{schneider}
+\end{quellen}
+
+Der Breitendurchlauf ist Verfahren zum Durchlaufen eines Graphen bei dem
+jeder Knoten genau einmal besucht wird. Man geht von einem Knoten
+\memph{erst zu allen Nachbarknoten} \memph{bevor deren Nachbarn} besucht
+werden. Bei schon besuchten Knoten wird abgebrochen. Als Hilfsstruktur
+wird eine Queue (Warteschlange) verwendet.
+
+Der konkrete Durchlauf hängt von der Reihenfolge der Knoten in den
+Adjazenzlisten ab.
+
+\TmpGraph
+
+\begin{description}
+
+\item[A:]
+A, B, C, E
+w: B, C, E
+
+\item[B:] alle Kinder markiert
+
+A, B, C, E
+w: C, E
+
+\item[C:] A, B und E markiert
+
+A, B, C, E, I
+w: E, I
+
+\item[E:] A und C markiert
+
+A, B, C, E, I, D
+w: I, D
+
+\item[I:] C markiert
+
+A, B, C, E, I, D, F, J
+w: D, F, J
+
+\item[D:] E, F sind markiert
+A, B, C, E, I, D, F, J
+w: F, J
+
+\item[F:] I ist markiert
+A, B, C, E, I, D, F, J, M
+w: J, M, G, H
+
+\item[J:] keine Kinder
+
+A, B, C, E, I, D, F, J, M,
+G, H
+w: M, G, H
+
+\item[M:]
+
+A, B, C, E, I, D, F, J, M, G, H, L
+w: G, H, L
+
+\item[G:] keine Kinder
+A, B, C, E, I, D, F, J, M, G, H, L
+w: H, L
+
+\item[H:] keine Kinder
+A, B, C, E, I, D, F, J, M, G, H, L
+w: L
+
+\item[L:]
+A, B, C, E, I, D, F, J, M, G, H, L, K
+w: K
+
+\item[K:] keine Kinder
+A, B, C, E, I, D, F, J, M, G, H, L, K
+w:
+\end{description}
+
+ENDE
+
+\section{Pseudocode Breitensuche mit Queue
+\footcite[Seite 64 PDF (56)]{aud:fs:6}}
+
+\begin{minted}{md}
+funktion bfs(G: Graph, k: Startknoten in G) {
+  Q := leere Queue:
+  fuege k in Q ein;
+  markiere k;
+
+  solange Q nicht leer ist fuehre aus {
+    a := entferne vorderstes Element aus Q;
+    bearbeite Knoten a;
+
+    fuer alle Nachfolger n von a fuehre aus {
+      falls n noch nicht markiert fuehre aus {
+        fuege n hinten in Q ein;
+        markiere n;
+      }
+    }
+  }
+}
+\end{minted}
+
+\inputcode[firstline=37,lastline=77]{graph/BreitenSucheWarteschlange}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\section{Herbst 2014 (46115) - Thema 1, Aufgabe 8
+\footcite[Seite 2, Aufgabe 3: Tiefensuche, Breitensuche]{aud:ab:6}}
+
+\graph knoten {
+  \knoten{a}(8,3)
+  \knoten{b}(2,3)
+  \knoten{c}(2,1)
+  \knoten{d}(0,1)
+  \knoten{e}(7,5)
+  \knoten{f}(7,2)
+  \knoten{g}(5,0)
+  \knoten{h}(0,5)
+  \knoten{s}(5,3)
+} kanten {
+  \kanteO(a-e)
+  \kanteO(a-f)
+  \kanteO(a-s)
+  \kanteO(b-c)
+  \kanteO(b-d)
+  \kanteO(b-h)
+  \kanteO(c-d)
+  \kanteO(c-h)
+  \kanteO(c-s)
+  \kanteO(d-h)
+  \kanteO(e-f)
+  \kanteO(f-s)
+  \kanteO(g-s)
+  \kanteO(h-s)
+}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Führen Sie auf dem folgenden ungerichteten Graphen \texttt{G} eine
+Tiefensuche ab dem Knoten \texttt{s} aus (graphische Umsetzung).
+Unbesuchte Nachbarn eines Knotens sollen dabei in \emph{alphabetischer
+Reihenfolge} abgearbeitet werden. Die Tiefensuche soll auf Basis eines
+\emph{Stacks} umgesetzt werden. Geben Sie die Reihenfolge der besuchten
+Knoten, also die \texttt{dfs-number} der Knoten, und den Inhalt des
+Stacks in jedem Schritt an.
+
+\begin{minted}{java}
+public static void main(String[] args) {
+  TiefenSucheStapel ts = new TiefenSucheStapel(20);
+  ts.fügeKnotenUndKantenEin("a-e a-f a-s b-c b-d b-h c-d c-h c-s d-h e-f f-s g-s h-s");
+  ts.gibMatrixAus();
+  ts.starteTiefenSucheStapel("s");
+}
+\end{minted}
+
+\begin{antwort}
+In der Musterlösung auf Seite 3 lautet das Ergebnis s, a, e, f, c, b, d, h, g.
+Ich glaube jedoch diese Lösung ist richtig:
+
+\textbf{fett:} Knoten, der entnommen wird.
+
+\textit{kursiv:} Knoten, die zum Stapel hinzugefügt werden.
+
+\begin{tabular}{|r|r|l|}
+\hline
+\textbf{Reihenfolge} & \textbf{Stapel} & \textbf{besucht} \\\hline\hline
+1 & \textit{\textbf{s}} & s \\\hline
+2 & \textit{a, c, f, g, \textbf{h}} & h \\\hline
+3 & a, c, f, g, \textit{b, \textbf{d}} & d \\\hline
+4 & a, c, f, g, \textbf{b} & b \\\hline
+5 & a, c, f, \textbf{g} & g \\\hline
+6 & a, c, \textbf{f} & f \\\hline
+7 & a, c, \textbf{e} & e \\\hline
+8 & a, \textbf{c} & c \\\hline
+9 & \textbf{a} & a \\\hline
+\end{tabular}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Führen Sie nun eine Breitensuche auf dem gegebenen Graphen aus,
+diese soll mit einer Queue umgesetzt werden. Als Startknoten wird wieder
+$s$ verwendet. Geben Sie auch hier die Reihenfolge der besuchten Knoten
+und den Inhalt der Queue bei jedem Schritt an.
+
+\begin{minted}{java}
+public static void main(String[] args) {
+  BreitenSucheWarteschlange bs = new BreitenSucheWarteschlange(20);
+  bs.fügeKnotenUndKantenEin("a-e a-f a-s b-c b-d b-h c-d c-h c-s d-h e-f f-s g-s h-s");
+  bs.gibMatrixAus();
+  bs.starteBreitenSuche("s");
+}
+\end{minted}
+
+\begin{antwort}
+\textbf{fett:} Knoten, der entnommen wird.
+
+\textit{kursiv:} Knoten, die zur Warteschlange hinzugefügt werden.
+
+\begin{tabular}{|r|l|l|}
+\hline
+\textbf{Reihenfolge} & \textbf{Warteschlange} & \textbf{besucht} \\\hline\hline
+1 & \textit{\textbf{s}} & s\\\hline
+2 & \textit{\textbf{a}, c, f, g, h} & a\\\hline
+3 & \textbf{c}, f, g, h, \textit{e} & c\\\hline
+4 & \textbf{f}, g, h, e, \textit{b, d} & f\\\hline
+5 & \textbf{g}, h, e, b, d & g\\\hline
+6 & \textbf{h}, e, b, d & h\\\hline
+7 & \textbf{e}, b, d & e\\\hline
+8 & \textbf{b}, d & b\\\hline
+9 & \textbf{d} & d\\\hline
+\end{tabular}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Geben Sie in Pseudocode den Ablauf von Tiefen- und Breitensuche
+an, wenn diese wie beschrieben mit einem Stack bzw. einer Queue
+implementiert werden.
+
+\end{enumerate}
+
+\literatur
+
+\end{document}

@@ -1,0 +1,34 @@
+graph ER {
+	edge [len=1.5];
+	bgcolor="transparent";
+
+	node [shape=box]; Konsulat;
+	node [shape=ellipse]; KonsulatName[label=<<u>KonsulatName</u>>]; Adresse; KVorname; KNachname;
+	Konsulat -- KonsulatName;
+	Konsulat -- Adresse;
+	Konsulat -- KVorname;
+	Konsulat -- KNachname;
+
+	node [shape=box]; Stadt [peripheries = 2];
+	node [shape=ellipse];
+		StadtName[label=<<u>S</u>t<u>a</u>d<u>t</u>N<u>a</u>m<u>e</u>>];
+		EinwohnerAnzahl;
+		StadtLandesID[label=LandesID];
+	Stadt -- StadtName;
+	Stadt -- EinwohnerAnzahl;
+	Stadt -- StadtLandesID;
+
+	node [shape=box]; Land;
+	node [shape=ellipse]; LandesID[label=<<u>LandesID</u>>]; Landessprache; Staatspraesident;
+	Land -- LandesID;
+	Land -- Landessprache;
+	Land -- Staatspraesident;
+
+	node [shape=diamond]; hatSitz;
+	hatSitz -- Konsulat [label=n];
+	hatSitz -- Stadt [label=1];
+
+	node [shape=diamond]; gehoertZu [peripheries = 2];
+	gehoertZu -- Stadt [color = "black:invis:black"] [label=n];
+	gehoertZu -- Land [label=1];
+}

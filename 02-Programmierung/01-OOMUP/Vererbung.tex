@@ -1,0 +1,130 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax,uml}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Objektorientierung}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\section{Bankverwaltung\footcite[Seite 60, Oldenburg, Informatik II, S. 128]{oomup:fs:3}}
+
+Eine kleine Bank bietet drei Arten von Konten an: Girokonten, Sparkonten
+und Geschäftskonten. Alle drei Kontoarten haben die Methoden
+\java{Einzahlen}, \java{Abheben} und \java{KontostandGeben} sowie die
+Attribute \java{kontostand} und \java{kontonummer}.
+
+\begin{itemize}
+\item Sparkonten haben einen Zinssatz und eine Methode \java{Verzinsen},
+die den Jahreszins zum Guthaben addiert. Maximalbetrag beim Abheben ist
+der aktuelle Kontostand.
+
+\item Girokonten können um bis 2000 € überzogen werden (Dispokredit).
+
+\item Geschäftskonten haben einen variablen Dispokredit, der über die
+Methode \java{DispoKreditSetzen} festgelegt wird; der Startwert für den
+Dispokredit wird mit dem Konstruktor beim Einrichten des Kontos als
+Parameter mitgegeben.
+\end{itemize}
+
+\begin{enumerate}
+
+%%
+% a
+%%
+
+\item Überlege dir, welche Konten Generalisierungen bzw.
+Spezialisierungen anderer Konten sind. Warum ist es sinnvoll, eine
+Klasse Konto als oberste Klasse Generalisierungshierarchie einzuführen?
+
+\begin{antwort}
+Da alle Konten die Methoden \java{einzahlen()}, \java{abheben()} und
+\java{kontostandGeben()} sowie die Attribute \java{kontostand} und
+\java{kontonummer} besitzen, bietet sich deren Verwaltung in einer
+einzigen Klasse an. Da jede Kontoart aber auch individuelle
+Eigenschaften bzw. Methoden hat, muss es für jede auch eine eigene
+Klasse geben. Daher bietet es sich an, die Gemeinsamkeiten in eine
+Oberklasse \java{Konto} auszulagern (Generalisierung).
+\end{antwort}
+
+%%
+% b
+%%
+
+\item Entwirf ein Klassendiagramm für die Klassen \java{Konto},
+\java{Girokonto}, \java{Sparkonto}, \java{Geschaeftskonto}.
+
+\begin{antwort}
+Da das Geschäftskonto genauso wie das Girokonto einen Dispokredit
+besitzt, dieser nur anders festgelegt wird, wurde bei der Modellierung
+die Klasse \java{Geschaeftskonto} als Unterklasse der Klasse
+\java{Girokonto} umgesetzt.
+
+Die Oberklasse \java{Konto} wurde abstrakt modelliert, da von ihr direkt
+keine Objekte erzeugt werden können.
+
+Die Attribute \java{kontostand} und \java{kontonummer} in der Klasse
+\java{Konto} haben den Sichtbarkeitsmodifikator \java{private}, da die
+Unterklassen nie direkt auf die Attribute zugreifen, sondern die zur
+Verfügung stehenden Methoden dafür verwenden.
+
+\begin{center}
+\begin{tikzpicture}
+\umlclass{Konto}{
+  - kontostand: double\\
+  - kontostand: int
+}{
+  + einzahlen(betrag: double)\\
+  + abheben(betrag: double)\\
+  + kontostandGeben(): double
+}
+
+\umlclass[below left=1.5cm and -1cm of Konto]{Sparkonto}{
+  - zinssatz: double
+}{
+  + verzinsen()
+}
+
+\umlclass[below right=1.5cm and -1cm of Konto]{Girokonto}{
+  \# dispokredit: double
+}{}
+
+\umlclass[below=1cm of Girokonto]{Geschaeftskonto}{}{
+ + Geschaeftskonto(dispokredit: double)\\
+ + dispokreditSetzen(dispokreditNeu: double)
+}
+
+\umlVHVinherit[arm2=-2cm]{Sparkonto}{Konto}
+\umlVHVinherit[arm2=-2cm]{Girokonto}{Konto}
+\umlinherit{Geschaeftskonto}{Girokonto}
+\end{tikzpicture}
+\end{center}
+\end{antwort}
+
+%%
+% c
+%%
+
+\item Implementiere die Klassen in einem eigenen Projekt und teste die
+vorhandenen Methoden.
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/oomup/pu_3/bankverwaltung/Konto}
+\inputcode[firstline=3]{aufgaben/oomup/pu_3/bankverwaltung/Sparkonto}
+\inputcode[firstline=3]{aufgaben/oomup/pu_3/bankverwaltung/Girokonto}
+\inputcode[firstline=3]{aufgaben/oomup/pu_3/bankverwaltung/Geschaeftskonto}
+\end{antwort}
+
+\end{enumerate}
+
+\literatur
+
+\end{document}

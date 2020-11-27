@@ -1,0 +1,250 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{sortieren,quicksort,syntax}
+\usepackage{multicol}
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Sortieralgorithmen}
+
+\begin{quellen}
+\cite{wiki:sortierverfahren}
+\end{quellen}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\section{Händisches Sortieren\footcite[Seite 1]{aud:pu:1}}
+
+Gegeben sei ein Array $a$, welches die Werte $5,7,9,3,6,1,2,8$ enthält.
+Sortieren Sie das Array händisch mit:
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Bubblesort
+
+erster Durchgang a
+
+\sortieren{5 7 9 >3 <6 1 2 8}
+
+\sortieren{5 7 9 6 >3 <1 2 8}
+
+\sortieren{5 7 9 6 1 >3 <2 8}
+
+Zweiter Durchgang
+
+\sortieren{5 7 9 >6 <1 2 3 8}
+
+\sortieren{5 7 9 1 >6 <2 3 8}
+
+\sortieren{5 7 9 1 2 >6 <3 8}
+
+Dritter Durchgang
+
+\sortieren{5 7 >9 <1 2 3 6 8}
+
+\sortieren{5 7 1 >9 <2 3 6 8}
+
+\sortieren{5 7 1 2 >9 <3 6 8}
+
+\sortieren{5 7 1 2 3 >9 <6 8}
+
+\sortieren{5 7 1 2 3 6 >9 <8}
+
+Vierter Durchgang
+
+\sortieren{5 >7 <1 2 3 6 8 9}
+
+\sortieren{5 1 >7 <2 3 6 8 9}
+
+\sortieren{5 1 2 >7 <3 6 8 9}
+
+\sortieren{5 1 2 3 >7 <6 8 9}
+
+Fünfter Durchgang
+
+\sortieren{>5 <1 2 3 6 7 8 9}
+
+\sortieren{1 >5 <2 3 6 7 8 9}
+
+\sortieren{1 2 >5 <3 6 7 8 9}
+
+fertig
+
+\sortieren{1 2 3 5 6 7 8 9}
+
+%%
+% (b)
+%%
+
+\item Mergesort
+
+\begin{forest}
+  /tikz/arrows=->, /tikz/>=latex, /tikz/nodes={draw},
+  for tree={delay={sort}}, sort level=2
+[5 7 9 3 6 1 2 8
+  [5 7 9 3
+    [5 7
+      [5]
+      [7]
+    ]
+    [9 3
+      [9]
+      [3]
+    ]
+  ]
+  [6 1 2 8
+    [6 1
+      [6]
+      [1]
+    ]
+    [2 8
+      [2]
+      [8]
+    ]
+  ]
+]
+%
+\coordinate (m) at (!|-!\forestOnes);
+\myNodes
+\end{forest}
+
+%%
+% (c)
+%%
+
+\item Quicksort
+
+\QSinitialize{5,7,9,3,6,1,2,8}
+
+\loop
+\QSpivotStep
+\ifnum\value{pivotcount}>0
+  \QSsortStep
+\repeat
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 2: Sortieren\footcite{aud:ab:2}}
+
+Für diese Aufgabe wird die Vorlage Sortieralgorithmen benötigt, die auf
+dem Beiblatt genauer erklärt wird.\footnote{Diese Aufgabe stammt aus dem
+Übungsblatt 1 zu Algorithmen und Datenstrukturen von Prof. Dr. Martin
+Hennecke und Rainer Gall an der Universität Würzburg und wurde
+dankenswerterweise zur Verwendung in diesem Aufgabenblatt zur Verfügung
+gestellt.}
+
+Die fertigen Methoden sollen in der Lage sein, beliebige Arrays zu
+sortieren. Im gelben Textfeld des Eingabefensters soll dabei wieder
+ausführlich und nachvollziehbar angezeigt werden, wie die jeweilige
+Methode vorgeht. Beispielsweise so:
+
+{
+\tiny
+\begin{multicols}{2}
+\begin{verbatim}
+Führe die Methode selectionSort() aus:
+Sortiere dieses Feld: 5, 3, 17, 7, 42, 23
+Der Marker liegt bei: 5
+Das Maximum liegt bei: 4
+Diese beiden Elemente werden nun vertauscht.
+Ergebnis dieser Runde: 5, 3, 17, 7, 23, 42
+Der Marker liegt bei: 4
+Das Maximum liegt bei: 4
+Diese beiden Elemente werden nun vertauscht.
+Ergebnis dieser Runde: 5, 3, 17, 7, 23, 42
+Der Marker liegt bei: 3
+Das Maximum liegt bei: 2
+Diese beiden Elemente werden nun vertauscht.
+Ergebnis dieser Runde: 5, 3, 7, 17, 23, 42
+Der Marker liegt bei: 2
+Das Maximum liegt bei: 2
+Diese beiden Elemente werden nun vertauscht.
+Ergebnis dieser Runde: 5, 3, 7, 17, 23, 42
+Der Marker liegt bei: 1
+Das Maximum liegt bei: 0
+Diese beiden Elemente werden nun vertauscht.
+Ergebnis dieser Runde: 3, 5, 7, 17, 23, 42
+Der Marker liegt bei: 0
+Das Maximum liegt bei: 0
+Diese beiden Elemente werden nun vertauscht.
+Ergebnis dieser Runde: 3, 5, 7, 17, 23, 42
+\end{verbatim}
+
+\begin{verbatim}
+Führe die Methode bubbleSort() aus:
+Sortiere dieses Feld: 5, 3, 17, 7, 42, 23
+Das Element an der Stelle 0 ist größer als sein Nachfolger.
+Diese beiden werden nun vertauscht.
+Ergebnis dieser Runde: 3, 5, 17, 7, 42, 23
+Das Element an der Stelle 2 ist größer als sein Nachfolger.
+Diese beiden werden nun vertauscht.
+Ergebnis dieser Runde: 3, 5, 7, 17, 42, 23
+Das Element an der Stelle 4 ist größer als sein Nachfolger.
+Diese beiden werden nun vertauscht.
+Ergebnis dieser Runde: 3, 5, 7, 17, 23, 42
+\end{verbatim}
+\end{multicols}
+}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Vervollständige die Methode \java{selectionSort()}.
+
+\begin{antwort}
+\inputcode[firstline=65,lastline=91]{aufgaben/aud/ab_2/Sortieralgorithmen}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Vervollständige die Methode \java{bubbleSort()}.
+
+\begin{antwort}
+\inputcode[firstline=93,lastline=118]{aufgaben/aud/ab_2/Sortieralgorithmen}
+\end{antwort}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 3: Sortieren I\footcite[entnommen aus Algorithmen und
+Datenstrukturen, Übungsblatt 2, Universität Würzburg]{aud:pu:7}}
+
+Gegeben ist folgende Zahlenfolge:
+
+35, 22, 5, 3, 28, 16, 8, 60, 17, 66, 4, 9, 82, 11, 10, 20
+
+\begin{enumerate}
+\item Sortiere Sie händisch mit Mergesort. Orientieren Sie sich beim
+Aufschreiben der Zwischenschritte an dieser Darstellung:
+
+\item Sortiere Sie händisch mit Quicksort. Wählen Sie als Pivot-Element
+immer das Element in der Mitte - oder gegebenenfalls das Element direkt
+links neben der Mitte. Orientieren Sie sich beim Aufschreiben der
+Zwischenschritte an dieser Darstellung:
+
+\end{enumerate}
+
+\literatur
+
+\end{document}

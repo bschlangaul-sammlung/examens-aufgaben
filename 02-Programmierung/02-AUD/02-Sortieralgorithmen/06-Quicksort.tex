@@ -1,0 +1,66 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{QuickSort: Sortieren durch Zerlegen}
+
+\begin{quellen}
+\item \cite[Seite 55]{aud:fs:tafeluebung-11}
+\item \cite{wiki:quicksort}
+\item \cite[Seite 135-139 (PDF 153-157)]{saake}
+\end{quellen}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Funktionsweise}
+
+Listen mit maximal \emph{einem} Element sind
+\emph{trivialerweise sortiert}.
+%
+Falls die zu sortierende Liste mehr als ein Element beinhaltet wird ein
+sogenanntes \emph{Pivot-Element} (vom Französischen \emph{pivot}
+„Dreh-/Angelpunkt“) ausgewählt.
+%
+Alle \emph{kleineren} Elemente werden \emph{vor} und alle
+\emph{größeren} \emph{hinter} das Pivot-Element verschoben. Der
+Algorithmus verfährt \emph{rekursiv} mit den beiden Teillisten.
+
+$\rightarrow$ Teile-Und-Herrsche
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Eigenschaften}
+
+\begin{itemize}
+\item Laufzeitkomplexität:
+
+\begin{itemize}
+\item $\mathcal{O}(n \cdot log(n))$ (im Best-/Average-Case)
+\item $\mathcal{O}(n^2)$ (im Worst-Case)
+\end{itemize}
+
+\item in „klassischer“ Variante \emph{instabil}
+\item durch Rekursion wachsender Aufrufstapel
+$\rightarrow$ out-of-place
+\end{itemize}
+
+\section{Implementation nach Saake (Pivot-Element rechts)\footcite[Seite 138 (PDF 156)]{saake}}
+
+\inputcode[firstline=14,lastline=47]{sortier/QuickSort}
+
+\section{Weitere Implementation (Pivot-Element in der Mitte)}
+
+\inputcode[firstline=15,lastline=50]{sortier/QuickSortMitte}
+
+\literatur
+
+\end{document}

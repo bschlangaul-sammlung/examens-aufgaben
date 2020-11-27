@@ -1,0 +1,313 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax,uml}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Beobachter / Observer}
+
+\begin{quellen}
+\item \cite{wiki:beobachter}
+\item \url{https://www.philipphauer.de/study/se/design-pattern/observer.php}
+\item \cite[Seite 249-257]{gof}
+\item \cite[Kapitel 8.5.1, Seite 269-274]{schatten}
+\item \cite[Kapitel 4.7, Seite 70-75]{eilebrecht}
+\item \cite[Seite 269]{siebler}
+\end{quellen}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Zweck}
+
+Das Observer-Muster ermöglicht einem oder mehreren Objekten, automatisch
+auf die \memph{Zustandsänderung} eines bestimmten Objekts \memph{zu
+reagieren}, um den eigenen Zustand anzupassen.
+\footcite[Seite 70]{eilebrecht}
+
+%%
+%
+%%
+
+\section{Szenario}
+
+Zusätzlich zur historischen Darstellung von Verkaufszahlen soll Ihre
+Software um eine Prognose-Ansicht erweitert werden. Diese soll zum einen
+jede Viertelstunde die aktuellen Zahlen einbeziehen und zum anderen eine
+durch den Benutzer gewählte Vorhersagestrategie. Im Gegensatz zur
+Anzeige des historischen Verlaufs kann sich folglich die Prognose
+kurzfristig ändern. Genauer gesagt, sobald neue Verkaufszahlen vorliegen
+oder der Anwender die Strategie ändert. Sie möchten erreichen, dass sich
+die Anzeige der Prognose automatisch anpasst, sobald sich im Hintergrund
+Änderungen ergeben.
+\footcite[Seite 70]{eilebrecht}
+
+%%
+%
+%%
+
+\section{UML-Diagramm}
+
+\begin{tikzpicture}
+\umlclass[x=0,y=0,type=abstract]{Gegenstand}{}{
+  + registriere(beobachter: Beobachter): void\\
+  + entferne(beobachter: Beobachter): void\\
+  + benachrichtige(beobachter: Beobachter): void\\
+}
+\umlclass[x=0,y=-3]{KonkreterGegenstand}{}{
+  + setzteZustand(zustand: Zustand): void
+}
+\umlinherit{KonkreterGegenstand}{Gegenstand}
+
+\umlclass[x=8,y=0,type=interface]{Beobachter}{}{
+  + aktualisiere(zustand: Zustand): void
+}
+\umlclass[x=8,y=-3]{KonkreterBeobachter}{}{
+  + aktualisiere(zustand: Zustand): void
+}
+\umlreal{KonkreterBeobachter}{Beobachter}
+
+\umlHVHaggreg[arg1=beobachter,pos1=0.5,mult2=*,pos2=2.5]{KonkreterGegenstand}{Beobachter}
+
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\section{Akteure}
+
+\begin{description}
+\item[Gegenstand / Subjekt (Subject / Observable)]
+
+Ein Subjekt (beobachtbares Objekt, auf Englisch publisher, also
+„Veröffentlicher“, genannt) hat eine Liste von Beobachtern, ohne deren
+konkrete Typen zu kennen. Es bietet eine Schnittstelle zur An- und
+Abmeldung von Beobachtern und eine Schnittstelle zur Benachrichtigung
+von Beobachtern über Änderungen an.\footcite[Seite 251]{gof}
+
+\item[Beobachter (Observer)]
+Die Beobachter (auf Englisch auch subscriber, also „Abonnent“, genannt)
+definieren eine Aktualisierungsschnittstelle.
+
+\item[konkreter/s GegenStand / Subjekt (ConcreteSubject / ConcreteObservable)]
+
+Ein konkretes Subjekt (konkretes, beobachtbares Objekt) speichert den
+relevanten Zustand und benachrichtigt alle Beobachter bei
+Zustandsänderungen über deren Aktualisierungsschnittstelle. Es verfügt
+über eine Schnittstelle zur Erfragung des aktuellen Zustands.
+
+\item[Konkrete Beobachter (ConcreteObserver)]
+
+Konkrete Beobachter verwalten die Referenz auf ein konkretes Subjekt,
+dessen Zustand sie beobachten und speichern und dessen Zustand
+konsistent ist. Sie implementieren eine Aktualisierungsschnittstelle
+unter Verwendung der Abfrageschnittstelle des konkreten Subjekts.
+\footcite{wiki:beobachter}
+\end{description}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Allgemeines Code-Beispiel}
+
+\def\TmpCode#1{\inputcode[firstline=3]{entwurfsmuster/beobachter/allgemein/#1}}
+
+\TmpCode{Gegenstand}
+\TmpCode{KonkreterGegenstand}
+\TmpCode{Beobachter}
+\TmpCode{KonkreterBeobachterA}
+\TmpCode{KonkreterBeobachterB}
+\TmpCode{Klient}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\section{Aufgabe 2: (Anwendung des Observer-Patterns)\footcite{examen:66116:2018:03}}
+
+Es soll eine (kleine) Anwendung entwickelt werden, in der ein Zähler in
+1-er Schritten von 5000 bis 0 herunterzählt. Der Zähler soll als Objekt
+der Klasse \java{Countdown} realisiert werden, die in UML-Notation
+dargestellt ist. Das Attribut value soll den aktuellen Zählerstand
+speichern, der mit dem Konstruktor zu initialisieren ist. Die Methode
+\java{getValue} soll den aktuellen Zählerstand liefern und die Methode
+\java{countdown} soll den Zähler von 5000 bis 0 herunterzählen.
+
+Der jeweilige Zählerstand soll von einem Objekt der in untenstehender
+Abbildung angegebenen Klasse \java{Display} am Bildschirm ausgegeben
+werden. Bei der Konstruktion eines \java{Display}-Objekts soll es mit
+einem \java{Countdown}-Objekt verbunden werden, indem dessen Referenz
+unter \java{myCountdown} abgespeichert wird. Die Methode \java{update}
+soll den aktuellen Zählerstand vom \java{Countdown}-Objekt holen und mit
+\java{System.out.println} am Bildschirm ausgeben. Dies soll zu Beginn
+des Zählprozesses und nach jeder Änderung des Zählerstands erfolgen.
+
+\begin{center}
+\begin{tikzpicture}
+\umlclass{Display}{}{
+  +Display(cd: Countdown)\\
+  +update()
+}
+
+\umlclass[x=7]{Countdown}{
+  -value: Integer
+}{
+  +Countdown() \\
+  +getValue(): Integer\\
+  +countdown()
+}
+
+\umluniassoc[arg2=-myCountdown,mult2=1,pos2=0.65]{Display}{Countdown}
+\end{tikzpicture}
+\end{center}
+
+\noindent
+Damit das \java{Display}-Objekt über Zählerstände des
+\java{Countdown}-Objekts informiert wird, soll das Observer-Pattern
+angewendet werden. Untenstehende Abbildung zeigt die im Observer-Pattern
+vorkommenden abstrakten Klassen. (Kursivschreibweise bedeutet abstrakte
+Klasse bzw. abstrakte Methode.)
+
+\begin{center}
+\begin{tikzpicture}
+\umlclass[type=abstract]{Subject}{}{
+  +attach(o: Observer)\\
+  +notify()
+}
+
+\umlclass[x=6,type=abstract]{Observer}{
+}{
+  +update()
+}
+
+\umluniassoc[arg2=-observers,mult2=1,pos2=0.7]{Subject}{Observer}
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Welche Wirkung haben die Methoden \java{attach} und \java{notify}
+gemäß der Idee des Observer-Patterns?
+
+\begin{antwort}
+Das beobachtete Objekt bietet mit der Methode \java{attach} einen
+Mechanismus, um Beobachter anzumelden und diese über Änderungen zu
+informieren.
+
+Mit der Methode \java{notify} werden alle Beobachter benachrichtigt,
+wenn sich das beobachtete Objekt ändert.
+\end{antwort}
+
+%%
+% b)
+%%
+
+\item Welche der beiden Klassen \java{Display} und \java{Countdown} aus
+obenstehender Abbildung spielt die Rolle eines \java{Subject} und welche
+die Rolle eines \java{Observer}?
+
+\begin{antwort}
+Die Klasse \java{Countdown} spielt die Rolle des \java{Subject}s, also
+des Gegenstands, der beobachtet wird.
+
+Die Klasse \java{Display} spielt die Rolle eines \java{Observer}, also
+die Rolle eines Beobachters.
+\end{antwort}
+
+%%
+% c)
+%%
+
+\item Erstellen Sie ein Klassendiagramm, das die beiden obenstehenden
+gegebenen Diagramme in geeigneter Weise, d.\,h. entsprechend der Idee
+des Observer-Patterns, zusammenfügt. Es reicht die Klassen und deren
+Beziehungen anzugeben. Eine nochmalige Nennung der Attribute und
+Methoden ist nicht notwendig.
+
+\begin{antwort}
+\begin{tikzpicture}
+\umlclass[type=abstract]{Subject}{}{
+  +attach(o: Observer)\\
+  +notify()
+}
+\umlclass[x=6,type=abstract]{Observer}{
+}{
+  +update()
+}
+\umluniassoc[arg2=-observers,mult2=1,pos2=0.7]{Subject}{Observer}
+
+\umlclass[y=-3]{Countdown}{
+  -value: Integer
+}{
+  +Countdown() \\
+  +getValue(): Integer\\
+  +countdown()
+}
+\umlclass[x=6,y=-3]{Display}{}{
+  +Display(cd: Countdown)\\
+  +update()
+}
+\umluniassoc[arg2=-myCountdown,mult2=1,pos2=0.65]{Display}{Countdown}
+
+\umlinherit{Countdown}{Subject}
+\umlinherit{Display}{Observer}
+\end{tikzpicture}
+\end{antwort}
+
+%%
+% d)
+%%
+
+\item Unsere Anwendung soll nun in einer objektorientierten
+Programmiersprache Ihrer Wahl (z.\,B. Java oder C++) implementiert
+werden. Dabei soll von folgenden Annahmen ausgegangen werden:
+
+\begin{itemize}
+\item Das Programm wird mit einer main-Methode gestartet, die folgenden
+Rumpf hat:
+
+\begin{minted}{java}
+public static void main(String[] args){
+  Countdown cd = new Countdown();
+  new Display(cd);
+  cd.countdown();
+}
+\end{minted}
+
+\item Die beiden Klassen Subject und Observer sind bereits gemäß der
+Idee des Observer-Patterns implementiert.
+\end{itemize}
+
+Geben Sie auf dieser Grundlage eine Implementierung der beiden Klassen
+\java{Display} und \java{Countdown} an, so dass das gewünschte
+Verhalten, d.\,h. Anzeige der Zählerstände und Herunterzählen des
+Zählers, realisiert wird. Die Methoden der Klassen \java{Subject} und
+\java{Observer} sind dabei auf geeignete Weise zu verwenden bzw. zu
+implementieren. Geben Sie die verwendete Programmiersprache an.
+
+\begin{antwort}
+\def\TmpCode#1{\inputcode[firstline=3]{aufgaben/sosy/examen_66116_2018_03/#1}}
+\TmpCode{Client}
+\TmpCode{Subject}
+\TmpCode{Observer}
+\TmpCode{Countdown}
+\TmpCode{Display}
+\end{antwort}
+
+\end{enumerate}
+
+\literatur
+
+\end{document}

@@ -1,0 +1,262 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Queue}
+
+\begin{quellen}
+\item \cite[Kapitel 6.2.1.5, Seite 183]{schneider}
+\item \cite{wiki:warteschlange}
+\end{quellen}
+
+\noindent
+Eine Queue, auch \memph{Warteschlange} oder \memph{Puffer} genannt, ist
+eine Datenstruktur, bei der die Elemente – ähnlich wie bei einem Stack –
+\memph{als Folge „organisiert“} sind.
+%
+Ein neues Element kann \memph{nur auf einer Seite} der Elementfolge
+\memph{eingefügt} werden.
+%
+Das \memph{Entfernen} eines Elements ist – im Gegensatz zum Stack – nur
+\memph{auf der anderen Seite} der Elementfolge möglich (\memph{FIFO}:
+\memph{First In – First Out}). Das Element, das als erstes in eine Queue
+eingefügt wird, muss somit als erstes Element wieder entfernt werden.
+%
+Die Operation zum Hinzufügen eines Elements wird oft \java{insert()}
+bzw. \java{enqueue()}, die Operation zum Entfernen eines Elements oft
+\java{remove()} bzw. \java{dequeue()} genannt.
+\footcite[Seite 24 (PDF 21)]{aud:fs:4}
+
+%%
+%
+%%
+
+\section{Suchen in Queues}
+
+Auch in einer Queue muss man bei der \memph{Suche} nach einem bestimmten
+Element im schlimmsten Fall \memph{bis zum Ende} der Queue suchen.
+%
+Hierbei kann allerdings \memph{ohne Zerstörung der Datenstruktur}, also
+auch ohne „Hilfsstruktur“, vorgegangen werden.
+%
+Wegen des \memph{möglichen linearen Komplettdurchlaufs} durch die
+gesamte Datenstruktur ist auch bei Queues die Suche eines Elements nicht
+optimal.
+\footcite[Seite 25 (PDF 22)]{aud:fs:4}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe aus dem Informatik-Biber: Tellerstapel - Biberschlagen}
+
+Im Restaurant der Biberschule gibt es normalerweise zwei Warteschlangen:
+In der einen holen sich die kleinen Biber ihre hohen grünen Teller, in
+der anderen holen sich die großen Biber ihre flachen braunen Teller.
+Wegen Bauarbeiten kann es heute nur eine Warteschlange für alle Biber
+geben. Die Küchenbiber müssen deshalb einen Tellerstapel vorbereiten,
+der zur Schlange passt: Sie müssen die grünen und braunen Teller so
+stapeln, dass jeder Biber in der Schlange den passenden Teller bekommt.
+Schau dir zum Beispiel diese Warteschlange an. Für diese Warteschlange
+müssen die Teller so gestapelt sein.
+
+Daten, die mit Computerprogrammen verarbeitet werden sollen, müssen
+passend organisiert sein. Informatiker beschäftigen sich deshalb
+intensiv mit Datenstrukturen. Zwei einfache Datenstrukturen sind
+„Schlange” (Queue) und „Stapel” (Stack). Bei einer „Schlange” kann man
+nur auf die zuerst eingereihten Daten zugreifen (nach dem Prinzip FIFO:
+„first in, first out”). Bei einem „Stapel” kann man nur auf die zuletzt
+eingereihten Daten zugreifen (nach dem Prinzip LIFO: „last in, first
+out”). Die Datenstruktur der wartenden Biber ist eine „Schlange”. Die
+Datenstruktur der Teller ist ein „Stapel”.
+\footcite[Seite 35]{net:pdf:informatik-biber-2010}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe zu Queues\footcite[Seite 1-2, Aufgabe 2: Queue Frühjahr 2007, Thema 1, A7]{aud:pu:4}}
+
+Implementieren Sie die angegebenen Methoden einer Klasse \java{Queue}
+für Warteschlangen. Eine Warteschlange soll eine unbeschränkte Anzahl
+von Elementen aufnehmen können. Elemente sollen am Ende der
+Warteschlange angefügt und am Anfang aus ihr entfernt werden. Sie können
+davon ausgehen, dass ein Klasse \java{QueueElement} mit der folgenden
+Schnittstelle bereits implementiert ist
+\footcite[Seite 3]{examen:66115:2007:03}.
+
+\inputcode[firstline=3]{aufgaben/aud/examen_66115_2007_03/QueueElement}
+
+\noindent
+Von der Klasse \java{Queue} ist folgendes gegeben:
+
+\inputcode[firstline=3,lastline=5]{aufgaben/aud/examen_66115_2007_03/Queue}
+
+\begin{enumerate}
+\item Schreiben Sie eine Methode \java{void append (Object contents)},
+die ein neues Objekt in der Warteschlange einfügt.
+
+\begin{antwort}
+\inputcode[firstline=7,lastline=17]{aufgaben/aud/examen_66115_2007_03/Queue}
+\end{antwort}
+
+\item Schreiben Sie eine Methode \java{Object remove()}, die ein Element
+aus der Warteschlange entfernt und dessen Inhalt zurückliefert.
+Berücksichtigen Sie, dass die Warteschlange leer sein könnte.
+
+\begin{antwort}
+\inputcode[firstline=20,lastline=30]{aufgaben/aud/examen_66115_2007_03/Queue}
+\end{antwort}
+
+\item Schreiben Sie eine Methode \java{boolean isEmpty()}, die
+überprüft, ob die Warteschlange leer ist.
+
+\begin{antwort}
+\inputcode[firstline=32,lastline=34]{aufgaben/aud/examen_66115_2007_03/Queue}
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 4\footcite[Frühjahr 2015 (vertieft 66115) - Thema 2, Aufgabe 5]{examen:66115:2015:03}}
+
+Gegeben seien die Standardstrukturen Stapel (Stack) und Schlange (Queue)
+mit folgenden Standardoperationen:
+
+\begin{center}
+\begin{tabular}{l|l}
+Stapel & Schlange \\\hline
+\java{boolean isEmpty()} & \java{boolean isEmpty()} \\
+\java{void push(int e)} & \java{enqueue(int e)} \\
+\java{int pop()} & \java{int dequeue()} \\
+\java{int top()} & \java{int head()} \\
+\end{tabular}
+\end{center}
+
+\noindent
+Beim Stapel gibt die Operation \java{top()} das gleiche Element wie
+\java{pop()} zurück, bei der Schlange gibt \java{head()} das gleiche
+Element wie \java{dequeue()} zurück. Im Unterschied zu \java{pop()},
+beziehungsweise \java{dequeue()}, wird das Element bei \java{top()} und
+\java{head()} nicht aus der Datenstruktur entfernt.
+
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Geben Sie in Pseudocode einen Algorithmus \java{sort(Stapel s)}
+an, der als Eingabe einen Stapel \java{s} mit \java{n} Zahlen erhält und
+die Zahlen in \java{s} sortiert. (Sie dürfen die Zahlen wahlweise
+entweder aufsteigend oder absteigend sortieren.) Verwenden Sie als
+Hilfsdatenstruktur ausschließlich eine Schlange \java{q}. Sie erhalten
+volle Punktzahl, wenn Sie außer \java{s} und \java{q} keine weiteren
+Variablen benutzen. Sie dürfen annehmen, dass alle Zahlen in \java{s}
+verschieden sind.
+
+\begin{antwort}
+\begin{minted}{md}
+q := neue Schlange
+while s not empty:
+    q.enqueue(S.pop())
+while q not empty:
+    while s not empty and s.top() < q.head():
+        q.enqueue(s.pop())
+    s.push(q.dequeue)
+\end{minted}
+
+\ueberschrift{Als Java-Code}
+
+\inputcode[firstline=5,lastline=25]{aufgaben/aud/examen_66115_2015_03/Sort}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Analysieren Sie die Laufzeit Ihrer Methode in Abhängigkeit von $n$.
+
+\begin{antwort}
+Zeitkomplexität: $\mathcal{O}(n^2)$, da es zwei ineinander
+verschachtelte \java{while}-Schleifen gibt, die von der Anzahl der
+Elemente im Stapel abhängen.
+\end{antwort}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Listen\footcite[Aufgabe 3]{aud:e-klausur}}
+
+Am Nürnberger Flughafen starten und landen täglich viele Flugzeuge. Der
+Flughafen verfügt jedoch nur über eine einzige Start- bzw. Landebahn,
+sodass Starts und Landungen gemeinsam koordiniert werden müssen. Für die
+interne Verwaltung, welcher Flieger als nächstes bearbeitet werden soll,
+wird eine neue Software entwickelt. Sie haben die Aufgabe einen Teil
+dieser Software zu erstellen.
+
+Das folgende UML-Klassendiagramm gibt einen Überblick über den für Sie
+relevanten Teil der Software:
+
+Implementieren Sie die beiden Methoden addNewFlight(Flug) und
+addEmergency(Flug) der Klasse Warteschlange!
+
+\begin{itemize}
+\item In der Methode \java{addNewFlight}
+
+\begin{itemize}
+\item soll ein neu übergebener Flug der Warteschlange hinzugefügt werden.
+\end{itemize}
+
+\item  In der Methode \java{addEmergency}
+
+\begin{itemize}
+\item soll für den übergebenen Flug überprüft werden, ob der Flug
+bereits in der Warteschlange vorkommt oder ob es sich um einen komplet
+neuen Flug handelt.
+
+\item soll der Notfall die erste Priorität in der Warteschlange
+erhalten, d.h. zwingend als nächstes abgearbeitet werden.
+
+\item soll die korrekte Funktionalität der Warteschlange weiterhin
+gegeben sein.
+\end{itemize}
+\end{itemize}
+
+Jeder Flug wird in der Warteschlange mit einem eigenen Ticket verwaltet.
+Die Funktionalitäten der Tickets und der Flüge entnehmen Sie dem
+Quelltext.
+
+\begin{antwort}
+\ueberschrift{Klasse „Flug“}
+
+\inputcode[firstline=3]{aufgaben/aud/e_klausur/flughafen/Flug}
+
+\ueberschrift{Klasse „Ticket“}
+
+\inputcode[firstline=3]{aufgaben/aud/e_klausur/flughafen/Ticket}
+
+\ueberschrift{Klasse „Warteschlange“}
+
+\inputcode[firstline=3]{aufgaben/aud/e_klausur/flughafen/Warteschlange}
+\end{antwort}
+
+\literatur
+
+\end{document}

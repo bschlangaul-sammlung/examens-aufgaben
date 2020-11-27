@@ -1,0 +1,77 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax,uml}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Schablone Schablonenmethode / Template, Template method}
+
+\begin{quellen}
+\item \cite{wiki:schablone}
+% \item \url{https://www.philipphauer.de/study/se/design-pattern/}
+\item \cite[Seite 274-278]{gof}
+% \item \cite{schatten}
+\item \cite[Seite 68 - 70]{eilebrecht}
+% \item \cite{siebler}
+\end{quellen}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Zweck}
+
+Es wird die Struktur eines Algorithmus definiert, wobei \memph{einzelne,
+konkrete Schritte in Unterklassen verlagert} werden. Das Muster erlaubt
+es, bestimmte Operationen eines Algorithmus zu überschreiben, ohne
+dessen Struktur zu ändern.
+\footcite[Seite 68]{eilebrecht}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Klassendiagramm}
+
+\begin{tikzpicture}
+\umlclass[x=0,y=3]{AbstrakteKlasse}{}{
+  + schablonenMethode()\\
+  \umlvirt{+ primitiveMethode1()}\\
+  \umlvirt{+ primitiveMethode2()}
+}
+\umlclass[x=0,y=0]{KonkreteKlasse}{}{
+  + primitiveMethode1()\\
+  + primitiveMethode2()
+}
+
+\umlinherit{KonkreteKlasse}{AbstrakteKlasse}
+
+\umlnote[x=5,y=3,width=3cm]{AbstrakteKlasse}{
+  + primitiveMethode1()\\
+  + primitiveMethode2()\\
+}
+\end{tikzpicture}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Allgemeines Code-Beispiel}
+
+\def\TmpCode#1{\inputcode[firstline=3]{entwurfsmuster/schablone/allgemein/#1}}
+
+\TmpCode{AbstrakteKlasse}
+\TmpCode{KonkreteKlasse}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\literatur
+
+\end{document}

@@ -1,0 +1,21 @@
+graph ER {
+	bgcolor="transparent";
+
+	node [shape=box]; Kurs;
+	node [shape=ellipse]; Kursname; KursNr;
+	Kurs -- Kursname;
+	Kurs -- KursNr;
+
+	node [shape=box]; Tutor;
+	node [shape=ellipse]; PersNr; Name; Buero;
+	Tutor -- PersNr;
+	Tutor -- Name;
+	Tutor -- Buero;
+
+	node [shape=diamond] betreut;
+	node [shape=ellipse]; Sprechstunde;
+	betreut -- Sprechstunde;
+
+	betreut -- Kurs [label="1"];
+	betreut -- Tutor [label="1"];
+}

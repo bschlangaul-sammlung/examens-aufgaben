@@ -1,0 +1,42 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-syntax}[2020/06/10]
+\RequirePackage{xparse}
+%-----------------------------------------------------------------------
+% minted
+%-----------------------------------------------------------------------
+
+\RequirePackage{minted}
+% pygmentize -L styles
+\usemintedstyle{colorful}
+%\BeforeBeginEnvironment{minted}{\begin{mdframed}}
+%\AfterEndEnvironment{minted}{\end{mdframed}}
+%\setminted{breaklines=true,linenos}
+\setminted{
+  breaklines=true,
+  linenos,
+  fontsize=\footnotesize,
+}
+
+%%
+% \java
+%%
+\def\java#1{\mintinline{java}|#1|}
+
+%%
+% \latex
+%%
+\def\latex#1{\mintinline{latex}|#1|}
+
+%%
+% \inputjava
+%%
+\NewDocumentCommand{\inputjava}{O{} m }{
+  \inputminted[#1]{java}{#2.java}
+}
+
+%%
+% \inputjava
+%%
+\NewDocumentCommand{\inputcode}{O{} m }{
+  \inputminted[#1]{java}{\LehramtInformatikRepository/Code/src/main/java/org/bschlangaul/#2.java}
+}

@@ -1,0 +1,16 @@
+graph ER {
+	bgcolor="transparent";
+    len=1.2
+
+	node [shape=box]; Fahrer; Fahrzeug; Abteilung; Garage;
+	node [shape=diamond]; hat_Fahrerlaubnis; steht_in; gehoert;
+
+	gehoert -- Fahrzeug;
+	gehoert -- Abteilung;
+
+	steht_in -- Garage;
+	steht_in -- Fahrzeug;
+
+	hat_Fahrerlaubnis -- Fahrer [len=1.6];
+	hat_Fahrerlaubnis -- Fahrzeug [len=1.6];
+}

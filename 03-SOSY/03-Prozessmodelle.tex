@@ -1,0 +1,1041 @@
+\documentclass{lehramt-informatik}
+\usepackage{tikz,tabularx}
+\usetikzlibrary{chains,positioning,shadows}
+
+\usepackage{enumitem,amssymb}
+\newlist{checkbox}{itemize}{2}
+\setlist[checkbox]{label=$\square$}
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Prozessmodelle / Vorgehensmodelle}
+
+\begin{quellen}
+\item \cite[Seite 47-69]{schatten}
+\end{quellen}
+
+\noindent
+Ein Prozessmodell ist ein für die Softwareentwicklung angepasstes
+Vorgehensmodell bei der professionellen Anwendungsentwicklung. Es dient
+dazu, die Softwareentwicklung übersichtlicher zu gestalten und in der
+Komplexität beherrschbar zu machen.\footcite[Seite 25]{sosy:fs:1}
+
+\section{Beispiele}
+
+\begin{itemize}
+\item Wasserfallmodell
+\item V-Modell
+\item Spiralmodell
+\item Agile Entwicklung
+\end{itemize}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Wasserfallmodell}
+
+\begin{quellen}
+\item \cite[Kapitel 3.2 „Wasserfallmodell“, Seite 48-49]{schatten}
+\item \cite[Seite 26]{sosy:fs:1}
+\item \cite[Kapitel 8.2.3 Plangetriebene Vorgehensmodelle, Seite 226-227]{schneider}
+\item \cite{wiki:wasserfallmodell}
+\end{quellen}
+
+Das Wasserfallmodell ist der Klassiker unter den Vorgehensmodellen. Das
+Modell wurde bereits in den 1970er Jahren veröffentlicht und wird heute
+nur noch selten für bestimmte Anwendungsgebiete eingesetzt, bei denen
+ein \memph{strikt sequenzieller Projektablauf} möglich ist. Namensgebend
+ist, dass die sequenziellen Schritte des Lebenszyklusses eines
+Software-Produkts in Form eines Wasserfalls dargestellt werden.
+
+Alle Schritte werden sequenziell durchlaufen, wobei jeweils die
+\memph{vorangegangene Phase vollständig abgeschlossen} und freigegeben
+werden muss, \memph{bevor die nächste Phase gestartet} werden kann. Als
+\emph{Abschluss jeder Phase} sind Verifikations- und
+\memph{Validierungsschritte} vorgesehen, die quasi als Freigabe der
+erstellten Produkte verwendet werden. Wird die geforderte Qualität an
+der Stelle nicht erreicht, kann zur vorangegangenen Phase
+\memph{„zurückgesprungen“} werden.
+\footcite[Seite 48]{schatten}
+
+Aufgrund der \emph{guten Planbarkeit} durch klar abgegrenzte Phasen wird
+das Wasserfallmodell typischerweise bei stabilen und \memph{genau
+beschriebenen Anforderungen} und Abläufen eingesetzt.
+
+Nachteilig wirkt sich allerdings aus, dass dieses Modell \emph{nur wenig
+Flexibilität} aufweist und somit nur schwer auf (späte) Änderungen im
+Projekt reagieren kann. Als weitere Folge werden Fehler unter Umständen
+erst sehr spät im Entwicklungsprozess oder erst beim Kunden erkannt. Das
+hat zur Folge, dass teuere Nacharbeiten notwendig werden und das Projekt
+in Zeitnot kommen kann.
+
+Ein weiterer Nachteil des Wasserfallmodells ist, dass durch den
+sequenziellen Ablauf eine \memph{finale Software-Lösung erst sehr spät
+zur Verfügung} steht, der Kunde also erst gegen Ende des Projekts sieht,
+was er tatsächlich bekommen wird und dann grundlegende Änderungen nicht
+mehr leicht machbar sind.
+
+In der Praxis der modernen Software-Entwicklung ist das Modell
+gelegentlich noch anzutreffen, wird aber zunehmend \memph{von
+flexibleren Prozessmodellen verdrängt.}
+
+\tikzset{wasserfall/.style={
+  >=stealth,
+  node distance = 2mm and -8mm,
+  start chain = A going below right,
+  every node/.style = {
+    draw,
+    text width=24mm,
+    minimum height=12mm,
+    align=center,
+    inner sep=1mm,
+    fill=white,
+    drop shadow={fill=black},
+    on chain=A
+  },
+}}
+
+\begin{figure}
+\begin{tikzpicture}[wasserfall]
+\node {Systemanforderung}; % A-1
+\node {Softwareanforderung};
+\node {Analyse};
+\node {Entwurf};
+\node {Implementierung};
+\node {Test};
+\node {Betrieb};
+
+%
+\foreach \i [count=\j] in {2,...,7}
+{
+  \draw[->, thick] (A-\i) -| (A-\j);
+  \draw[->, thick] (A-\j) -| (A-\i);
+}
+\end{tikzpicture}
+\caption{Nach researchgate.net\footcite[Seite 26]{sosy:fs:1}}
+\end{figure}
+
+\begin{figure}
+\begin{tikzpicture}[wasserfall]
+\node {Anforderungen}; % A-1
+\node {Entwurf};
+\node {Implementation};
+\node {Überprüfung};
+\node {Wartung};
+
+%
+\foreach \i [count=\j] in {2,...,5}
+{
+  \draw[->, thick] (A-\i) -| (A-\j);
+  \draw[->, thick] (A-\j) -| (A-\i);
+}
+\end{tikzpicture}
+\caption{Nach Wikipedia \footcite{wiki:wasserfallmodell}}
+\end{figure}
+
+\subsection{Phasen\footcite{wiki:wasserfallmodell}}
+
+\begin{enumerate}
+\item Anforderungsanalyse und -spezifikation
+(Requirement analysis and specification)
+resultiert im Lastenheft
+
+\item Systemdesign und -spezifikation
+(System design and specification)
+resultiert in der Softwarearchitektur
+
+\item Programmierung und Modultests
+(Coding and module testing)
+resultiert in der eigentlichen Software
+
+\item Integrations- und Systemtest
+(Integration and system testing)
+
+\item Auslieferung, Einsatz und Wartung
+(Delivery, deployment and maintenance)
+\end{enumerate}
+
+\noindent
+Eine andere Variante macht daraus sechs Schritte:
+
+\begin{enumerate}
+\item Planung
+(mit Erstellung des Lastenhefts, Projektkalkulation und Projektplan)
+(Systems Engineering)
+
+\item Definition
+(mit Erstellung des Pflichtenhefts, Produktmodell, GUI-Modell und evtl.
+schon Benutzerhandbuch)
+(Analysis)
+
+\item Entwurf
+(UML, Struktogramme)
+(Design)
+
+\item Implementierung
+(Coding)
+
+\item Testen
+(Testing)
+
+\item Einsatz und Wartung
+(Maintenance)
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{V-Modell}
+
+\begin{quellen}
+\item \cite[Seite 49-52]{schatten}
+\item \cite[Seite 27]{sosy:fs:1}
+\item \cite[Kapitel 8.2.3 Plangetriebene Vorgehensmodelle, Seite 226-227]{schneider}
+\item \cite{wiki:v-modell}
+\end{quellen}
+
+Das V-Modell organisiert \memph{ähnlich dem Wasserfallmodell} den
+Softwareentwicklungsprozess in \memph{Phasen}. \memph{Zusätzlich} zu
+diesen Entwicklungsphasen definiert das V-Modell auch das Vorgehen zur
+\memph{Qualitätssicherung (Testen)}, indem den einzelnen
+\memph{Entwicklungsphasen Testphasen gegenüber gestellt} werden. Auf der
+linken Seite wird mit einer funktionalen/fachlichen Spezifikation
+begonnen, die immer tiefer detailliert zu einer technischen
+Spezifikation und Implementierungsgrundlage ausgebaut wird. In der
+Spitze erfolgt die Implementierung, die anschließend auf der rechten
+Seite gegen die entsprechenden Spezifikationen der linken Seite getestet
+wird. So entsteht bildlich das namensgebende „V“, welches die einzelnen
+Entwicklungsebenen ihren jeweiligen Testebenen gegenüberstellt.
+\footcite{wiki:v-modell}
+
+\subsection{Erweiterung des Wasserfall-Modells im Hinblick auf die beiden
+Qualitätssicherungsaspekte}
+
+\begin{description}
+\item[Verifikation]
+
+Überprüfung der Übereinstimmung zwischen einem Software-Produkt und der
+Spezifikation
+
+Frage: Are we doing things right?
+
+\item[Validierung]
+
+Überprüfung der Eignung eines Softwareprodukts bezogen auf seinen
+Einsatzzweck
+
+Frage: Are we doing right things?\footcite[Seite 27]{sosy:fs:1}
+\end{description}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Inkrementelles Vorgehen\footcite[Seite 56]{schatten}}
+
+Eine inkrementelle – also schrittweise – Vorgehensweise wird vor allem
+bei großen und \memph{komplexen Systemen} eingesetzt, von denen rasch
+erste verwendbare Teile ausgeliefert werden sollen. Ein Hauptziel ist
+dabei, möglichst \memph{rasch} mit einer \memph{(Teil-)Lösung} auf den
+Markt zu kommen und dann das Software-Produkt \memph{durch laufende
+Ergänzungen auszubauen}.
+
+Die Eckpunkte der Entwicklung sind: \memph{Analyse}, \memph{Design},
+\memph{Implementierung}, \memph{Integration} und \memph{Auslieferung}.
+Dabei werden \memph{alle Phasen für eine Version} (oder ein Release)
+durchlaufen, bis diese Version abgeschlossen ist und ausgeliefert werden
+kann. \memph{Parallel bzw. zeitlich versetzt} kann bereits mit der
+Planung und Umsetzung der \memph{Folgeversion} begonnen werden.
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Spiralmodell}
+
+\begin{quellen}
+\item \cite[Seite 57-58]{schatten}
+\item \cite[Seite 28]{sosy:fs:1}
+\item \cite{wiki:spiralmodell}
+\end{quellen}
+
+Das Spiralmodell stellt eine \memph{konkrete Ausprägung der
+inkrementellen Entwicklung} dar, in dem \memph{vier grundlegende
+Schritte} solange zyklisch durchlaufen werden, bis das Produkt in einer
+zufriedenstellenden Qualität vorliegt
+
+\begin{enumerate}
+\item Definition von Zielen und Alternativen.
+\item Einschätzung des Risikos.
+\item Entwicklung und Durchführung von Tests und Evaluierungen der
+aktuellen Ergebnisse.
+\item Feedback zur erstellten Lösung und Planung für die nächste
+Iteration.\footcite[Seite 57]{schatten}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Agile Vorgehensmodelle}
+
+\begin{quellen}
+\item \cite[Seite 62-65]{schatten}
+\item \cite[Seite 29-31]{sosy:fs:1}
+\item \cite[Kapitel 8.2.4 Agile Modelle, Seite 229-231]{schneider}
+\end{quellen}
+
+\memph{Kritikpunkte an traditionellen Vorgehensmodellen} sind unter
+anderem mangelhafte Flexibilität (durch vorgegebene starre Strukturen),
+mangelnde Einbeziehung des Kunden in den Entwicklungsprozess sowie ein
+(scheinbar unnötig) hoher Dokumentationsaufwand. Agile
+Software-Entwicklungsprozesse sollen diese Nachteile beheben und ein
+\memph{höheres Maß an Flexibilität und Kundennähe} bei einem
+\memph{Mindestmaß an Dokumentation} ermöglichen. Agile
+Entwicklungsprozesse gehen auf das \memph{Agile Manifest}, das von 17
+Software-Entwicklern im Jahr 2001 veröffentlicht wurde, zurück:
+
+\begin{quote}
+\itshape
+„Individuals and interactions over processes and tools\\
+Working software over comprehensive documentation\\
+Customer collaboration over contract negotiation\\
+Responding to change over following a plan.“
+\end{quote}
+
+%%
+%
+%%
+
+\subsection{SCRUM}
+
+SCRUM definiert ein agiles Software-Projekt aus der Sicht des
+Projektmanagements und besteht aus einer Sammlung von Prozeduren, Rollen
+und Methoden zur erfolgreichen Projektdurchführung. Das Prozessmodell
+umfasst drei wesentliche Phasen:
+
+\begin{description}
+\item[Pregame] In einem \memph{Pregame} erfolgt die Festlegung der
+wesentlichen Produkteigenschaften und der grundlegenden Architektur
+sowie die Projektplanung. Alle Eigenschaften und gewünschten Features
+werden \memph{gemeinsam mit dem Kunden} in einem Produkt-Backlog
+gesammelt und priorisiert. In diesem \memph{Produkt-Backlog} werden auch
+geänderte Anforderungen gesammelt.
+
+\item[Sprint] Die eigentliche Entwicklungsarbeit wird in einem
+\memph{Sprint} durchgeführt. Vor einem Sprint werden die
+\memph{wichtigsten und machbaren Features} aus dem priorisierten
+Produkt-Backlog ausgewählt und in das Sprint-Backlog übernommen. Wichtig
+ist dabei, dass die Auswahl und Planung nur so viele Features umfasst,
+wie das Team im nächsten Sprint auch tatsächlich umsetzen kann. Das
+\memph{Sprint-Backlog} beinhaltet also einen \memph{machbaren Auszug aus
+dem Produkt-Backlog}.
+
+\item[Postgame] Die abschließende Phase – das \memph{Postgame} – umfasst
+die \memph{Bereitstellung und Auslieferung neuer Funktionalität} in Form
+von (neuen) Releases.\footcite[Seite 63]{schatten}
+\end{description}
+
+% https://natanael.arndt.xyz/notes/agile
+% donut diagram
+% http://www.texample.net/tikz/examples/circular-arrows-text/
+\usetikzlibrary{decorations.text}
+\newcommand{\arcarrow}[8]{
+% inner radius, middle radius, outer radius, start angle,
+% end angle, tip protusion angle, color, text, text-direction
+  \pgfmathsetmacro{\rin}{#1}
+  \pgfmathsetmacro{\rmid}{#2}
+  \pgfmathsetmacro{\rout}{#3}
+  \pgfmathsetmacro{\astart}{#4}
+  \pgfmathsetmacro{\aend}{#5}
+  \pgfmathsetmacro{\atip}{#6}
+  \fill[fill=white,draw=black]   (\astart:\rin) arc (\astart:\aend:\rin)
+       -- (\aend+\atip:\rmid) -- (\aend:\rout) arc (\aend:\astart:\rout)
+       -- (\astart+\atip:\rmid) -- cycle;
+  \ifthenelse{#8=1}{
+    \path[decoration = {text along path, text = {#7}, text align = {align = center}, raise = -0.5ex}, decorate]
+    (\astart+\atip:\rmid) arc (\astart+\atip:\aend+(\atip/2):\rmid);
+  }{
+    \path[decoration = {text along path, text = {#7}, text align = {align = center}, raise = -0.5ex}, decorate]
+    (\aend+\atip:\rmid) arc (\aend+\atip:\astart+(\atip/2):\rmid);
+  }
+}
+
+\begin{tikzpicture}
+\arcarrow{2}{2.4}{2.8}{0}{40}{-5}{Test}{0}
+\arcarrow{2}{2.4}{2.8}{45}{120}{-5}{Implementierung}{0}
+\arcarrow{2}{2.4}{2.8}{125}{175}{-5}{Entwurf}{0}
+\arcarrow{2}{2.4}{2.8}{180}{270}{-5}{Anforderungsanalyse}{1}
+\arcarrow{2}{2.4}{2.8}{275}{355}{-5}{Planung anpassen}{1}
+\end{tikzpicture}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 1
+\footcite[Seite 1]{sosy:ab:1}}
+
+Die Firma Teacher-Data soll für einen Auftraggeber ein
+Informationssystem entwickeln. Das Entwicklerteam entscheidet sich, nach
+dem \emph{Wasserfallmodell} vorzugehen.
+
+\begin{enumerate}
+\item Geben Sie an, welche \emph{Phasen} dabei durchlaufen werden und
+erläutern Sie kurz deren \emph{Zweck / Intention / Aufgabe}.
+
+\begin{antwort}
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Problem- und Systemanalyse
+
+Grobe Formulierung der Ziele (z. B. Einsatzplattform Windows,
+einheitliche Software zur Unterstützung des Verkaufs, …)
+
+\begin{itemize}
+\item Erfassung des Problembereichs (z. B. Interaktion zwischen Händler
+und Hersteller soll komplett über das Netz funktionieren.)
+
+\item Machbarkeitsstudie (z. B. Händler sind bereit, sich an das zu
+entwickelnde System anzupassen.)
+
+\item Analyse des Ist-Zustandes (z. B. Händler A bietet Interface X
+wohingegen Händler B Interface Z bietet. Es wird bereits teilweise bei
+Händler C über das Netz bestellt. …)
+
+\item Anforderungsspezifikation (Lastenheft) (z. B. Einheitliche
+Oberfläche für alle Benutzer beim Hersteller, möglichst wenige
+Veränderungen für die Mitarbeiter (= schnelle Eingewöhnungsphase) …)
+
+\item Systemspezifikation (Pflichtenheft) (z. B. soll der Ablauf eines
+Kaufvorgangs folgendermaßen aussehen: Händlerauswahl, Bestellung,
+Abrechnung … Die Benutzeroberfläche soll folgende Informationen
+anzeigen: Lieferstatus, ….)
+\end{itemize}
+
+%%
+%
+%%
+
+\item Systementwurf
+
+\begin{itemize}
+\item Systemarchitektur (z. B. Klassendiagramm, Festlegung von
+Komponenten …)
+
+\item Schnittstellen der Komponenten festlegen (z. B. Datenbank,
+Middleware, …)
+
+\item Modulkonzept (z. B. Modulstruktur und Art der Module (funktional,
+prozedural, objektorientiert)
+
+\item Definition der Einzelschnittstellen (z. B. Interfaces und
+abstrakte Klassen in Java)
+\end{itemize}
+
+%%
+%
+%%
+
+\item Implementierung
+
+\begin{itemize}
+\item Strukturierung der Komponenten in Module (z. B. Klassenrümpfe)
+
+\item Spezifikation einzelner Module (z. B. exakte Beschreibung eines
+Moduls)
+
+\item Codierung, Generierung, Wiederverwendung einzelner Module (z. B.
+Methoden in Klassen, …)
+\end{itemize}
+
+%%
+%
+%%
+
+\item Integration und Test
+
+\begin{itemize}
+\item Integration von Modulen (z. B. Zusammensetzen von Datenbank und
+Applikation zum Server)
+
+\item Integration von Komponenten (z. B. Einsetzen von Client und Server
+ins Gesamtsystem.)
+
+\item Testen und Verifikation (z. B. Testen, ob die Implementierung
+zusammen mit der Umgebung funktioniert. Zusichern, dass gewisse
+Eigenschaften gültig sind.)
+\end{itemize}
+
+%%
+%
+%%
+
+\item Wartung und Weiterentwicklung
+
+\begin{itemize}
+\item Wartung (z. B. Korrektur eines Fehlers im Programm, Portierung auf
+anderes Betriebssystem, …)
+
+\item Erweitern der Funktionalität (z. B. Einbeziehen einer neuen Option
+im Geschäftsprozess)
+
+\item Anpassung der Funktionalität (z. B. Anpassung an Änderung im
+Geschäftsprozess)
+\end{itemize}
+
+\end{enumerate}
+
+\end{antwort}
+
+\item Während des Entwicklungsprozesses werden nach und nach im
+Folgenden aufgelistete Teilprodukte entstehen. Ordnen Sie diese den
+jeweiligen Phasen zu.
+
+\begin{itemize}
+\item Schätzung der Entwicklungskosten
+\item Dokumentation der Änderungen nach Produktabnahme
+\item Pflichtenheft
+\item Beschreibung der Datenstruktur in der Datenbank
+\item Integration von Modulen/Komponenten
+\item Betriebsbereites Informationssystem
+\item Beschreibung der Schnittstelle einzelner Softwarekomponenten
+\item Quellcode für die GUI
+\item Durchführbarkeitsstudie
+\item Systemarchitektur
+\end{itemize}
+
+\begin{antwort}
+\def\TmpPhase#1{$\rightarrow$ \emph{#1}}
+\begin{itemize}
+\item Schätzung der Entwicklungskosten \TmpPhase{Anforderungsdefinition}
+\item Dokumentation der Änderungen nach Produktabnahme \TmpPhase{Betrieb und Wartung}
+\item Pflichtenheft \TmpPhase{Anforderungsdefinition}
+\item Beschreibung der Datenstruktur in der Datenbank \TmpPhase{System- und Softwareentwurf}
+\item Integration von Modulen/Komponenten \TmpPhase{Integration und Systemtest}
+\item Betriebsbereites Informationssystem \TmpPhase{Betrieb und Wartung}
+\item Beschreibung der Schnittstelle einzelner Softwarekomponenten \TmpPhase{System- und Softwareentwurf}
+\item Quellcode für die GUI \TmpPhase{Implementierung und Komponententest}
+\item Durchführbarkeitsstudie \TmpPhase{Anforderungsdefinition}
+\item Systemarchitektur \TmpPhase{System- und Softwareentwurf}
+\end{itemize}
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 2
+\footcite[Seite 2]{sosy:ab:1}}
+
+Dem Team von Teacher-Data kommen Zweifel, ob die Entscheidung für das
+Wasserfallmodell für die Umsetzung des Informationssystems richtig war,
+oder ob ein anderes Vorgehen eventuell besser wäre. Beurteilen und
+vergleichen Sie die Vorgehensmodelle
+
+\begin{itemize}
+\item Wasserfallmodell
+\item Spiralmodell
+\item V-Modell
+\item Evolutionäres Modell oder Inkrementelles Modell
+\item agile Entwicklung, wie z. B. Scrum
+\end{itemize}
+
+\noindent
+nach den folgenden Gesichtspunkten:
+
+\begin{enumerate}
+\item Größe des Entwicklerteams
+\item Komplexität des Projekts
+\item Bekanntheit der Anforderungen
+\item Änderung der Anforderungen
+\item Zeitspielraum (Time-to-Market; was muss bis wann fertig sein?)
+\item Dokumentation
+\item IT-Kenntnisse des Kunden
+\item Durchschnittliche Anzahl an Iterationen
+\end{enumerate}
+
+\begin{antwort}
+\noindent
+{\tiny
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X||>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+&
+Wasserfallmodell &
+Spiralmodell &
+V-Modell &
+evolutionär / inkrementell &
+agil
+\\\hline\hline
+
+Größe des Entwicklerteams &
+diskutiert die Projektgröße nicht & % Wasserfallmodell
+mittlere Teams & % Spiralmodell
+mittlere und große Teams & % V-Modell
+diskutiert die Projektgröße nicht & % evolutionär / inkrementell
+ca. 3-9 Entwickler (ohne Product Owner und Scrum Master) % agil
+\\\hline
+
+Komplexität des Projekts &
+einfache Projekte mit stabilen Anforderungen &
+einfache Projekte mit stabilen Anforderungen; Anforderungen können
+jedoch in den Iterationen angepasst werden. & % Spiralmodell
+komplexe Projekte; bei einfachen Projekten relativ viel bürokratischer
+Overhead. & % V-Modell
+große, lange und komplexe Projekte & % evolutionär / inkrementell
+hohe Komplexität möglich % agil
+\\\hline
+
+Bekanntheit der Anforderungen &
+Alle Anforderungen müssen zu Beginn des Projekts bekannt sein.
+& % Wasserfallmodell
+Es muss eine initiale Menge von Anforderung bekannt sein. Der Kunde
+kann die Anforderungen aber aufgrund von Prototypen erweitern.
+& % Spiralmodell
+evolutionär: Alle Anforderungen müssen zu Beginn des Projekts bekannt
+sein. inkrementell: Anforderungen müssen nicht von Anfang an bekannt
+sein. & % V-Modell
+Anforderungen müssen von Anfang an bekannt sein.
+& % evolutionär / inkrementell
+Es muss eine initiale Menge von Anforderung bekannt sein. Der Kunde
+kann die Anforderungen aber laufend erweitern / ggf. ändern. % agil
+\\\hline
+
+Änderungen der Anforderungen &
+Schwer möglich. Durch den strikten Top-Down-Ansatz von der Anforderung
+hin zum Code zieht eine Änderung einen tiefen Eingriff in den
+Prozess mit sich. & % Wasserfallmodell
+Gut möglich. In jeder Runde der Spirale können die Anforderungen neu
+definiert werden. & % Spiralmodell
+Schwer möglich → strikter Top-Down-Ansatz & % V-Modell
+evolutionär: häufige Änderungen möglich. inkrementell: Änderungen
+teilweise möglich. & % evolutionär / inkrementell
+rasche Anpassung an neue Anforderungen möglich (deshalb agil!) % agil
+\\\hline
+
+Zeitspielraum &
+Wenig Spielraum. Üblicher weise muss der ganze Prozess durchlaufen
+werden. Es ist höchstens möglich, den Prozess zu beschleunigen,
+indem man Anforderungen streicht. Es wird also alles zum Schluss
+fertig. & % Wasserfallmodell
+Relativ flexibel. Sobald ein Prototyp existiert, der akzeptabel ist,
+kann dieser auf den Markt gebracht werden. & % Spiralmodell
+Wenig Spielraum (vgl. Wasserfallmodell) & % V-Modell
+Einsatzfähige Produkte in kurzen Zeitabständen, daher relativ
+flexibel. & % evolutionär / inkrementell
+Unterteilung in Sprints, daher schnell lauffähige Prototyoen vorhanden.
+Bei der Planung des nächsten Sprints kann auf neue zeitliche
+Gegebenheiten relativ flexibel eingegangen werden. % agil
+\\\hline
+
+Dokumentation &
+Viel Dokumentation – Für jede Phase wird eine komplette Dokumentation
+erstellt. & % Wasserfallmodell
+Sehr viel Dokumentation – In jedem Zyklus werden alle Phasen
+(inkl. Dokumentation) durchlaufen, aber nur im Umfang des
+Prototypen. Es werden alle Artefakte und Tätigkeiten dokumentiert.
+& % Spiralmodell
+Viel Dokumentation – Gerade in den ersten Phasen wird sehr viel über
+die Software schriftlich festgehalten. Aber auch für die anderen
+Phasen wird eine komplette Dokumentation erstellt.
+& % evolutionär / inkrementell
+&
+Anforderungsdokumentation ist sehr wichtig. Ansonsten ist
+funktionierende Software höher zu bewerten als eine umfangreiche
+Dokumentation. % agil
+\\\hline
+
+ITKenntnisse des Kunden &
+Wenig Kenntnisse nötig. Meistens schreibt der Kunde das Lastenheft und
+der Entwickler versucht dieses dann in einem Pflichtenheft
+umzusetzen. Wenn das Lastenheft vom Entwickler als machbar
+befunden wird, bekommt der Kunde das fertige Produkt.
+& % Wasserfallmodell
+Wenig Kenntnisse nötig. – Kunde sieht immer nur die fertigen Prototypen
+und äußert dann seine Wünsche. & % Spiralmodell
+Wenig Kenntnisse nötig (vgl. Wasserfallmodell) & % V-Modell
+Wenig Kenntnisse nötig & % evolutionär / inkrementell
+Wenig Kenntnisse nötig, aber von Vorteil, da enge Zusammenarbeit mit
+dem Kunden % agil
+\\\hline
+
+Durchschnittliche Anzahl an Iterationen &
+vgl. V-Modell & % Wasserfallmodell
+ca. 3-5 Iterationen & % Spiralmodell
+Nur lange Zyklen. – Mit dem V-Modell sind nur sehr lange Zyklen
+handhabbar, da immer wieder der ganze Entwicklungsprozess durchlaufen
+werden muss. & % V-Modell
+& % evolutionär / inkrementell
+variable Anzahl an Sprints, je nach Projektgröße % agil
+\\\hline
+\end{tabularx}
+}
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 1: Allgemeine SWT, Vorgehensmodelle und Requirements
+Engineering\footcite[46116 – Herbst 2014 – Thema 2, TA 1, Aufgabe 1]{examen:46116:2014:09}}
+
+Kreuzen Sie für die folgenden Multiple-Choice-Fragen genau die richtigen
+Antworten deutlich an. Es kann mehr als eine Antwort richtig sein.
+
+Jedes korrekt gesetzte oder korrekt nicht gesetzte Kreuz wird mit 1
+Punkt gewertet. Jedes falsch gesetzte oder falsch nicht gesetzte Kreuz
+wird mit -1 Punkt gewertet. Eine Frage kann entwertet werden, dann wird
+sie nicht in der Korrektur berücksichtigt. Einzelne Antworten können
+nicht entwertet werden. Entwerten Sie eine Frage wie folgt
+
+Die gesamte Aufgabe wird nicht mit weniger als 0 Punkten gewertet.
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Welche Aussage ist wahr?
+
+\begin{checkbox}
+\item Je früher ein Fehler entdeckt wird, umso teurer ist seine
+Korrektur.
+
+\item Je später ein Fehler entdeckt wird, umso teurer ist seine
+Korrektur.
+
+\item Der Zeitpunkt der Entdeckung hat keinen Einfluss auf die Kosten.
+\end{checkbox}
+
+\begin{antwort}
+2 ist richtig: Je später der Fehler entdeckt wird, desto mehr wurde er
+schon in das Projekt „eingearbeitet“, daher dauert das Beseitigen des
+Fehlers länger und das kostet mehr Geld.
+\end{antwort}
+
+%%
+% 2.
+%%
+
+\item  Mit welcher Methodik können Funktionen spezifiziert werden?
+
+\begin{checkbox}
+\item Als Funktionsvereinbarung in einer Programmiersprache
+\item Mit den Vor- und Nachbedingungen von Kontrakten
+\item Als Zustandsautomaten
+\end{checkbox}
+
+\begin{antwort}
+2 und 3 ist richtig: Die Spezifikation soll unabhängig von einer
+Programmiersprache sein.
+\end{antwort}
+
+%%
+% 3.
+%%
+
+\item Welche Vorgehensmodelle sind für Projekte mit häufigen Änderungen
+geeignet?
+
+\begin{checkbox}
+\item Extreme Programming (XP)
+\item Das V-Modell 97
+\item Scrum
+\end{checkbox}
+
+\begin{antwort}
+1 und 3 ist richtig. Das V-Modell ist ein starres Vorgehensmodell, bei
+dem alle Anforderungen zu Beginn vorhanden sein müssen.
+\end{antwort}
+
+%%
+% 4.
+%%
+
+\item Welche der folgenden Aussagen ist korrekt?
+
+\begin{checkbox}
+\item Mittels Prototyping versucht man die Anzahl an nötigen Unit-Tests
+zu reduzieren.
+
+\item Ein Ziel von Prototyping ist die Erhöhung der Qualität während der
+Anforderungsanalyse.
+
+\item Mit Prototyping versucht man sehr früh Feedback von Stakeholdern
+zu erhalten.
+\end{checkbox}
+
+\begin{antwort}
+2 und 3 ist richtig: Prototypen müssen auch getestet werden. Es kann
+nicht an Tests gespart werden. Durch das häufige Feedback des Kunden /
+der Stakeholder können die Anforderungen immer genauer und klarer
+erfasst werden.
+\end{antwort}
+
+%%
+% 5.
+%%
+
+\item Welche der folgenden Aussagen ist korrekt?
+
+\begin{checkbox}
+\item Bei der Architektur sollten funktionale und nicht-funktionale
+Anforderungen beachtet werden.
+
+\item Bei der Architektur soliten nur funktionale Anforderungen beachtet
+werden.
+
+\item Bei der Architektur sollten nur nicht-funktionale Anforderungen
+beachtet werden.
+
+\item Bei der Architektur sollte auf die mögliche Änderungen von
+Komponenten geachtet werden.
+\end{checkbox}
+
+\begin{antwort}
+1 und 4 ist richtig: Mögliche Änderungen werden durch klar definierte
+Schnittstellen und wenig Kopplung der Komponenten erleichtert. (Kopplung
+handelt von Abhängigkeiten zwischen Modulen. Kohäsion handelt von
+Abhängigkeiten zwischen Funktionen innerhalb eines Moduls.)
+\end{antwort}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 2: Vorgehensmodelle
+\footcite[46116 – Herbst 2014 – Thema 2, TA 1, Aufgabe 2]{examen:46116:2014:09}}
+
+Software wird oft in definierten Prozessen entwickelt. Diese nennt man
+Vorgehensmodelle.
+
+\bigskip
+
+\noindent
+Allgemein
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Was sind die Aufgaben eines Vorgehensmodells im Allgemeinen?
+
+\begin{antwort}
+\begin{itemize}
+\item liefert Erfahrungen und bewährte Methoden
+\item beschreibt die am Projekt beteiligten Rollen
+\item legt Aufgaben und Aktivitäten fest
+\item definiert einheitliche Begriffe
+\item gibt Techniken, Werkzeuge, Richtlinien / Standards an
+\end{itemize}
+\end{antwort}
+
+%%
+% b)
+%%
+
+\item Was sind die wesentlichen Bestandteile eines Vorgehensmodells und
+in welcher Beziehung stehen diese zueinander?
+
+\begin{antwort}
+Bestandteile: Anforderungsanalyse, Modellierung, Implementierung, Test,
+Auslieferung, Wartung
+
+Die einzelnen Phasen bauen immer aufeinander aus. Je nach Vorgehensmodell
+können sich Phasen auch wiederholen (Prototyping, Scrum...).
+\end{antwort}
+
+\end{enumerate}
+
+\noindent
+Ein frühes Vorgehensmodell ist das von Dr. Winston Royce 1970
+formalisierte Wasserfallmodell.
+
+\begin{enumerate}
+
+%%
+% c)
+%%
+
+\item Geben Sie eine schematische Darstellung des Wasserfallmodelis an.
+
+\begin{antwort}
+\begin{tikzpicture}[wasserfall]
+\node {Systemanforderung}; % A-1
+\node {Softwareanforderung};
+\node {Analyse};
+\node {Entwurf};
+\node {Implementierung};
+\node {Test};
+\node {Betrieb};
+
+%
+\foreach \i [count=\j] in {2,...,7}
+{
+  \draw[->, thick] (A-\i) -| (A-\j);
+  \draw[->, thick] (A-\j) -| (A-\i);
+}
+\end{tikzpicture}
+\end{antwort}
+
+%%
+% d)
+%%
+
+\item Nennen Sie zwei Probleme des Modells und erläutern Sie diese kurz.
+
+\begin{antwort}
+Fehler werden ggf. erst am Ende des Entwicklungsprozesses erkannt, da
+erst dort das Testen stattfindet. Dadurch kann die Behebung eines
+Fehlers sehr aufwändig und somit teuer werden.
+
+Der Kunde / Endanwender wird erst nach der Implementierung wieder
+eingebunden. Das bedeutet, dass er nach der Stellung der Anforderungen
+keinen Einblick mehr in den Prozess hat und somit auch nicht
+gegensteuern kann, falls ihm etwas nicht gefällt oder er etwas nicht
+bedacht hat.
+\end{antwort}
+
+%%
+% e)
+%%
+
+\item In welchen Situationen lässt sich das Wasserfallmodell gut
+einsetzen?
+
+\begin{antwort}
+Das Wasserfallmodell ist geeignet, wenn es sich um ein von Anfang an
+klar definiertes Projekt ohne große Komplexität handelt, bei dem alle
+Anforderungen, Aufwand und Kosten schon zu Beginn des Projekts
+feststehen bzw. abgeschätzt werden können.
+\end{antwort}
+
+\end{enumerate}
+
+\noindent
+Barry Boehm erweiterte das Wasserfallmodell 1979 zum so genannten
+V-Modell.
+
+\begin{enumerate}
+
+%%
+% f)
+%%
+
+\item Geben Sie eine schematische Darstellung des V-Modells an.
+
+%%
+% g)
+%%
+
+\item Nennen Sie zwei Probleme des Modells und erläutern Sie diese kurz.
+
+\begin{antwort}
+\begin{itemize}
+\item Die Nachteile des Wasserfallmodells bestehen weiterhin!
+
+\item Nicht für kleine Projekte geeignet, da aufwändige Tests vorgesehen
+sind, die im Kleinen detailliert meist nicht stattfinden (können).
+\end{itemize}
+\end{antwort}
+
+%%
+% h)
+%%
+
+\item Welchen Vorteil hat das V-Modell gegenüber dem Wasserfallmodell?
+
+\begin{antwort}
+Für jedes Dokument besteht ein entsprechender Test (Validierung /
+Verifikation). Dabei kann die Planung der Tests schon vor der
+eigentlichen Durchführung geschehen, so dass Aktivitäten im Projektteam
+parallelisiert werden können. So kann zum Beispiel der Tester die
+Testfälle für den Akzeptanztest (=Test des Systementwurfs) entwicklen,
+auch wenn noch keine Implementierung existiert.
+\end{antwort}
+
+\end{enumerate}
+
+\noindent
+In neuerer Zeit finden immer häufiger iterative und inkrementelle
+Vorgehensweisen Anwendung.
+
+\begin{enumerate}
+
+%%
+% i)
+%%
+
+\item Erklären Sie den Begriff iterative Softwareentwicklung.
+
+\begin{antwort}
+Iterativ heißt, dass der Entwikclungsprozess mehrfach wiederholt wird:
+statt den „Wasserfall“ einmal zu durchlaufen, werden
+„kleine Wasserfälle“ hintereinander gesetzt.
+\end{antwort}
+
+%%
+% j)
+%%
+
+\item Erklären Sie den Begriff inkrementelle Softwareentwicklung und
+grenzen Sie ihn von iterativer Softwareentwicklung ab.
+
+\begin{antwort}
+Bei der inkrementellen Entwicklung wird das System Schritt für Schritt
+fertig gestellt. D.\,h., dass ein Prototyp immer etwas mehr kann als der
+Prototyp davor. Dies wird durch die iterative Entwicklung unterstützt,
+da bei jeder Wiederholung des Entwicklungsprozesses ein neues
+Inkrement entsteht, d. h. ein neuer Prototyp, der mehr Funktionalitäten
+benutzt als der vorangegangene.
+\end{antwort}
+
+%%
+% k)
+%%
+
+\item Nennen Sie jeweils zwei Vor- und Nachteile eines iterativen und
+inkrementellen Vorgehens im Vergleich zum Wasserfallmodell.
+
+\begin{antwort}
+Vorteile:
+
+\begin{itemize}
+\item Risiken können früher erkannt werden.
+\item volatile Anforderungen können besser berücksichtigt werden.
+\item inkrementelle Auslieferung wird erleichtert.
+\end{itemize}
+
+Nachteile:
+
+\begin{itemize}
+\item komplexeres Projektmanagement
+\item schwerer messbar
+\item (Mehrarbeit)\footnote{Quelle: https://www.pst.ifi.lmu.de/Lehre/WS0607/pm/vorlesung/PM-02-Prozess.pdf}
+\end{itemize}
+\end{antwort}
+\end{enumerate}
+
+\literatur
+
+\end{document}

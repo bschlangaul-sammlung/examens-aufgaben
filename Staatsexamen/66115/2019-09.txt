@@ -1,0 +1,516 @@
+
+
+Prüfungsteilnehmer Prüfungstermin Einzelprüfungsnummer
+
+Kennzahl:
+
+Kennwort: Herbst 66115
+
+2019
+
+Arbeitsplatz-Nr.:
+
+Erste Staatsprüfung für ein Lehramt an öffentlichen Schulen
+
+— Prüfungsaufgaben —
+
+Fach: Informatik (vertieft studiert)
+Einzelprüfung: Theoretische Informatik, Algorithmen
+Anzahl der gestellten Themen (Aufgaben): 2
+
+Anzahl der Druckseiten dieser Vorlage: 12
+
+Bitte wenden!
+Herbst 2019 Einzelprüfungsnummer: 66115 Seite: 2
+
+Thema Nr. 1
+(Aufgabengruppe)
+
+Es sind alle Aufgaben dieser Aufgabengruppe zu bearbeiten!
+
+Aufgabe 1 (Reguläre Sprachen) [36 PUNKTE]
+
+(a) [10 Punkte] Betrachten Sie den regulären Ausdruck
+a = ((a+6)*ab) + ((a+5)*bb) .
+
+Geben Sie einen minimalen DEA für die von diesem Ausdruck beschriebene Sprache L(«)
+an.
+
+(b) [14 Punkte] Betrachten Sie die folgenden Sprachen über dem Alphabet ” = {a,b}:
+Lı = {w € {a,b}* | es existieren u,v € {a,b}* mit |u| = |v| und w = uav}
+I, ={w € {a}* | es existieren u,v € {a}* mit |u| = |v| und w = uav }
+
+Geben Sie für die Sprachen jeweils an, ob sie regulär sind oder nicht, und beweisen Sie Ihre
+Antwort. Für den Beweis von Regularität reicht die Angabe eines Automaten oder regulären
+Ausdrucks für die jeweilige Sprache.
+
+(c) [12 Punkte] Wir definieren die Menge der Permutationen eines Wortes w. Sei w = a, ---@ny
+mit a; € b für allez =1,...,n. Dann ist
+
+Perm(w) := {@_(1)°+:@p(n) | 7 ist eine Permutation von {l,...,r}}.
+
+So ist z.B. Perm(aab) = {aab, aba, baa}. Weiter definieren wir Perm(Z) für eine Sprache L
+als |) ‚ec, Perm(w).
+
+Zeigen oder widerlegen Sie: Falls Z eine reguläre Sprache ist, dann ist auch Perm(Z) eine
+reguläre Sprache.
+
+Aufgabe 2 (Kontextfreie Sprachen) [24 PUNKTE]
+
+(a) [10 Punkte] Geben Sie einen (deterministischen oder nichtdeterministischen) Kellerautomaten für die Sprache u
+{a'bic® |i,9,k EN undi+tk <j}
+
+an.
+
+(b) [14 Punkte] Sei |
+Lz = {we'w | w € {a,b}* und i > 1}
+
+eine Sprache iiber dem Alphabet {a,b,c}. Zeigen Sie, dass L3 nicht kontextfrei ist.
+
+Fortsetzung nächste Seite!
+Herbst 2019 Einzelprüfungsnummer: 66115 Seite: 3
+
+Aufgabe 3 (Entscheidbarkeit) [30 PUNKTE]
+
+(a) [18 Punkte] Wir betrachten eine Gödelisierung von Turingmaschinen und bezeichnen mit M„
+die Turingmaschine, die gemäß dieser Kodierung vom Binärwort w kodiert wird. Außerdem
+bezeichnen wir mit M,„(x) die Berechnung der Maschine M,„ bei Eingabe x. Betrachten Sie
+die Sprache
+
+La = {w
+
+M.,(0) hält nach weniger Schritten an als M„(1)}
+
+Hier sind Wörter w bei denen sowohl M„(0) als auch M„(1) nicht anhalten, nicht in L.
+Beweisen Sie, dass L, unentscheidbar ist.
+
+(b) [12 Punkte] Das CYK-Verfahren ist ein Algorithmus, der für eine bestimmte kontextfreie
+Grammatik G in polynomieller Zeit entscheidet, ob ein gegebenes Wort w in L(G) liegt. Somit ist jede kontextfreie Sprache entscheidbar. Zeigen oder widerlegen Sie folgende Aussage:
+
+Seien K,, Ko und K3 kontextfreie Sprachen. Sei L; die Sprache, für die L; = (KıNnKa)\Ks
+gilt. Dann ist Ls entscheidbar.
+
+Aufgabe 4 (Komplexität) [30 PUNKTE]
+
+Betrachten Sie die folgenden Probleme:
+
+SAT
+
+Gegeben: Aussagenlogische Formel Fin KNF.,
+
+Frage: Gibt es mindestens eine erfüllende Belegung für
+F?
+
+DOPPELSAT
+
+Gegeben: Aussagenlogische Formel F' in KNF.
+
+Frage: Gibt es mindestens eine erfüllende Belegung für
+F, in der mindestens zwei Literale pro Klausel
+wahr sind?
+
+(a) [24 Punkte] Führen Sie eine polynomielle Reduktion von SAT auf DOPPELSAT durch.
+(b) [6 Punkte] Zeigen Sie, dass DOPPELSAT NP-vollständig ist.
+
+Fortsetzung nächste Seite!
+Herbst 2019 Einzelprüfungsnummer: 66115 Seite: 4
+
+Aufgabe 5 (Sortierverfahren) [40 PUNKTE]
+
+In der folgenden Aufgabe soll ein Feld A von ganzen Zahlen aufsteigend sortiert werden. Das Feld
+habe n Elemente A|0] bis A[n—1]. Der folgende Algorithmus (in der Notation des InformatikDuden) sei gegeben:
+
+1 procedure quicksort (links, rechts : integer)
+2 var i, j, x : integer;
+
+3 begin
+
+4 i := links;
+
+5 j i= rechts;
+
+6 if j > i then begin
+
+7 x := Allinks];
+
+8 repeat
+
+9 while A[i] < x do i := i+1;
+10 while A[j] > x do j := j-1;
+11 if i < j then begin
+
+12 tmp := Ali]; Ali] := A[j]; Alj] := tmp;
+13 i != it]; j := j-l;:
+
+14 end
+
+15 until i> j;
+
+16 quicksort (links, j);
+
+17 quicksort(i, rechts);
+
+18 end
+
+19 end
+
+Der initiale Aufruf der Prozedur lautet:
+
+quicksort (0,n—1)
+
+(a) [18 Punkte] Sortieren Sie das folgende Feld der Länge 7 mittels des Algorithmus. Notieren
+
+Sie jeweils alle Aufrufe der Prozedur quicksort mit den konkreten Parameterwerten. Geben
+Sie zudem für jeden Aufruf der Prozedur den Wert des in Zeile 7 gewählten Elements an.
+
+Index 0I1112|3I4|1516
+
+Wert | 2713213|6,17]44| 42
+
+(b) [5 Punkte] Angenommen, die Bedingung j > iin Zeile 6 des Algorithmus wird ersetzt durch
+
+die Bedingung j > i. Ist der Algorithmus weiterhin korrekt? Begründen Sie Ihre Antwort.
+
+(c) [5 Punkte] Angenommen, die Bedingung i < jin Zeile 11 des Algorithmus wird ersetzt durch
+
+die Bedingung i < j. Ist der Algorithmus weiterhin korrekt? Begründen Sie Ihre Antwort.
+
+(d) [5 Punkte] Wie muss das Feld A gestaltet sein, damit der Algorithmus mit der geringsten
+
+Anzahl von Schritten terminiert? Betrachten Sie dazu vor allem Zeile 7. Begründen Sie Ihre
+Antwort und geben Sie ein Beispiel.
+
+Fortsetzung nächste Seite!
+Herbst 2019 Einzelprüfungsnummer: 66115 Seite: 5
+
+(e) [7 Punkte] Die rekursiven Aufrufe in den Zeilen 16 und 17 des Algorithmus werden zur
+Laufzeit des Computers auf dem Stack verwaltet. Die Anzahl der Aufrufe von quicksort
+auf dem Stack abhängig von der Eingabegröße n sei mit s(n) bezeichnet. Geben Sie die
+Komplexitätsklasse von s(n) für den schlimmsten möglichen Fall an. Begründen Sie Ihre
+Antwort.
+
+Aufgabe 6 (O-Notation) [40 PUNKTE]
+
+(a) [8 Punkte] Sortieren Sie die unten angegebenen Funktionen der O-Klassen O(a(n)), O(b(n)),
+O(e(n)), O(d(n)) und O(e(n)) beziiglich ihrer Teilmengenbeziehungen. Nutzen Sie ausschließlich die echte Teilmenge C sowie die Gleichheit = für die Beziehung zwischen den
+Mengen. Folgendes Beispiel illustriert diese Schreibweise für einige Funktionen fı bis fs
+(diese haben nichts mit den unten angegebenen Funktionen zu tun):
+
+O(fa(n)) C O(fa(n)) = O(fa(m)) C O(film)) = O(fa(n))
+
+Die angegebenen Beziehungen müssen weder bewiesen noch begründet werden.
+
+- a(n) = nn? log,(n) + 42
+
+- b(n) = 2" +n
+- c(n) = 2°"
+- d(n) = 2"?
+
+- e(n) = Vind
+
+(b) Beweisen Sie die folgenden Aussagen formal nach den Definitionen der O-Notation oder
+widerlegen Sie sie.
+
+(i) [8 Punkte] Ofn - log,n) C O(n - (log, n)*)
+(ii) [8 Punkte] 2”*! € O(2")
+
+(c) Bestimmen Sie eine asymptotische Lösung (in ©-Schreibweise) für die folgende Rekursionsgleichung:
+
+(i) [8 Punkte] T(n) =4-T(8) +n’
+(ii) [8 Punkte] T(n) =T(2)+3n’+n
+
+Fortsetzung nächste Seite!
+Herbst 2019 Einzelprüfungsnummer: 66115 Seite: 6
+
+Aufgabe 7 (Bäume) 40 PUNKTE]
+
+Gegeben sei die folgende Realisierung von binären Bäumen (in einer an Java angelehnten Notation):
+class Node {
+Node left, right
+int value
+}
+
+(a) [8 Punkte] Beschreiben Sie in möglichst wenigen Worten, was die folgende Methode foo auf
+einem nicht-leeren binären Baum berechnet.
+
+1 int foo( Node node ){
+
+2 int b = node.value ;
+
+3 if (b<0) {
+
+4 b=-—l« b ;
+
+5
+
+6 if ( node.left != null ) {
+7 b = b+ foo( node.left );
+8
+
+9 if ( node.right != null ) {
+10 b = b + foo( node.right );
+11 }
+
+12 return b ;
+
+13 }
+
+(b) [6 Punkte] Die Laufzeit der Methode foo(tree) ist linear in n, der Anzahl von Knoten im
+übergebenen Baum tree. Begründen Sie kurz, warum foo(tree) eine lineare Laufzeit hat.
+
+(c) [14 Punkte] Betrachten Sie den folgenden Algorithmus für nicht-leere, binäre Bäume. Beschreiben Sie in möglichst wenigen Worten die Wirkung der Methode magic(tree). Welche
+Rolle spielt dabei die Methode max?
+
+1 void magic( Node node ){
+
+2 Node m = max ( node );
+
+3 if (m.value > node.value ) {
+4 /f Werte von m und node vertauschen
+5 int tmp = m. value;
+
+6 m.value = node. value;
+
+7 node.value = tmp;
+
+8}
+
+9 if (node. left != null )
+
+10 magic( node.left );
+
+11 if (node.right != null )
+
+12 magic( node.right };
+
+13 }
+
+14 Node max( Node node ){
+15 Node max = node ;
+16 if ( node.left != null ){
+
+Fortsetzung nächste Seite!
+Herbst 2019 Einzelprüfungsnummer: 66115 Seite: 7
+
+17
+18
+19
+20
+21
+22
+23
+24
+29
+
+Node tmp = max( node.left };
+if (tmp.value > max. value ) max = tmp ;
+
+if ( node.right != null J{
+Node tmp = max( node.right );
+if (tmp.value > max.value ) max = tmp ;
+
+}
+
+return max ;
+
+}
+
+(d) [12 Punkte] Geben Sie in Abhängigkeit von n, der Anzahl von Knoten im iibergebenen Baum
+
+tree, jeweils eine Rekursionsgleichung für die asymptotische Best-Case-Laufzeit (B(n)) und
+Worst-Case-Laufzeit (W(n)) des Aufrufs magic(tree} sowie die entsprechende Komplexitätsklasse (Q) an. Begründen Sie Ihre Antwort.
+
+Hinweis: Überlegen Sie, ob die Struktur des übergebenen Baumes Einfluss auf die Laufzeit
+hat. Die lineare Laufzeit von max(t) in der Anzahl der Knoten des Baumes t darf vorausgesetzt werden.
+Herbst 2019 Einzelprüfungsnummer: 66115 Seite: 8
+
+Thema Nr. 2
+(Aufgabengruppe)
+
+Es sind alle Aufgaben dieser Aufgabengruppe zu bearbeiten!
+
+Aufgabe 1 (Turing-Maschine) |26 PUNKTE]
+
+Gesucht ist eine Turing-Maschine mit genau einem beidseitig unendlichen Band, die die Funktion
+f:N—- Nmit f(x) = 37 berechnet. Zu Beginn der Berechnung steht die Eingabe binär codiert
+auf dem Band, wobei der Kopf auf die linkeste Ziffer (most significant bit) zeigt. Am Ende der
+Berechnung soll der Funktionswert binär codiert auf dem Band stehen, wobei der Kopf auf ein
+beliebiges Feld zeigen darf.
+
+(a) Beschreiben Sie zunächst in Worten die Arbeitsweise Ihrer Maschine.
+
+(b) Geben Sie dann das kommentierte Programm der Turing-Maschine an und erklären Sie die
+Bedeutung der verwendeten Zustände.
+
+Aufgabe 2 (Zwei Abschlusseigenschaften von REG und CFL) |24 PUNKTE]
+Es sei & = {a,b} das Alphabet. Die folgenden Aussagen A und B werden betrachtet.
+
+A: Für jede reguläre Sprache L, C D* ist auch die Sprache L‘ regulär, wobei
+Li = {w € &* | für alle Wörter w € I* gilt ww’ € Ly}.
+
+B: Für jede kontextfreie Sprache La C D* ist auch die Sprache L, kontextfrei, wobei
+I, = {w € {a,b,#}* | dn > 13u,...,Un,U1,---,0n € Lo mit w = uy-- WHV: in}:
+D.h. [4 besteht aus den Wortern u#v, sodass sich u und v aus der gleichen Anzahl von
+Wörtern aus L, bilden lassen.
+
+(a) Zeigen Sie die Aussage A. Es genügt die Beschreibung der Konstruktion, die aus einem
+endlichen Automaten für die Sprache L, einen endlichen Automaten für die Sprache [4
+erzeugt.
+
+(b) Zeigen Sie die Aussage B. Es genügt die Beschreibung der Konstruktion, die aus einer kontextfreien Grammatik für die Sprache La eine kontextfreie Grammatik für die Sprache L,
+erzeugt.
+
+Aufgabe 3 (Einordnung von Mengen in Komplexitätsklassen) [42 PUNKTE]
+
+Sei Mo, Mı,. .. eine Gödelisierung der Registermaschinen (RAMs). Weiter bezeichne bin (x) die Binärdarstellung der Zahl x € N. Wir betrachten folgende Klassen von Sprachen über dem Alphabet
+
+yo = {0,1, #}.
+REG = {LC X* | L ist regular}
+P = {LC %X* | L ist in deterministischer Polynomialzeit entscheidbar }
+NP = {LC%* | £ wird von einer nichtdeterministischen Polynomialzeit-Maschine akzeptiert }
+REC = {LC &* | L ist entscheidbar}
+RE = {LC "| L ist aufzihlbar}
+ALL = {L|LCx*}
+
+Fortsetzung nächste Seite!
+Herbst 2019 Einzelprüfungsnummer: 66115 Seite: 9
+
+Es gilt
+REGGPCNPCRECCRECALL. (x)
+
+Weiter seien folgende Sprachen über dem Alphabet % = {0,1,#} gegeben.
+
+L = {wekd* | dane N,w =0°1"0"}
+
+Io = {bin(z) | zs € N und M, halt nicht bei Eingabe x}
+
+Ds {bin(x) | z € N und z ist durch 4 teilbar}
+
+La {bin(x) |x € N und die von M, berechnete Funktion N— N ist nicht injektiv }
+L; = {bin(a,)#bin(a2)#---#bin(a,)#bin(b) | a1,...,@n,6€ N und 3 C {1,...,n}, 4° a=}
+
+tel
+
+I
+
+Geben Sie für jedes L,; Folgendes an:
+
+(a) die (nach aktuellem Kenntnisstand) kleinste Klasse C aus der Inklusionskette (x) mit der
+Eigenschaft L, € C;
+
+(b) eine kurze Begründung für L; € C (ca. 2-3 Zeilen Begründung, kein ausführlicher Beweis);
+
+(c) eine kurze Begründung dafür, dass L; (nach aktuellem Kenntnisstand) nicht in der nächst
+kleineren Klasse liegt (ca. 2-3 Zeilen Begründung, kein ausführlicher Beweis).
+
+Aufgabe 4 (Reduktion von 3-FARB auf 7-FARB) [28 PUNKTE]
+
+Im Folgenden werden endliche, ungerichtete Graphen betrachtet, wobei ein endlicher ungerichteter
+Graph G ein Paar (V, E) ist, sodass
+
+- V eine nichtleere, endliche Menge ist (die Knotenmenge) und
+
+- EC {{u,v} | uv e Vu #v} (die Kantenmenge), d.h. E ist eine Menge zweielementiger
+Teilmengen von V.
+
+Für k > 3 betrachten wir das Problem
+
+k-FARB = {G | G ist ein k-färbbarer ungerichteter Graph},
+
+wobei ein Graph G = (V,E) genau dann k-färbbar heißt, falls seine Knoten so mit k Farben
+eingefärbt werden können, dass alle durch eine Kante verbundenen Knoten verschiedenfarbig sind
+(d.h. es gibt ein totales c: V + {1,...,k} mit V{u,v} € E& gilt c(u) # c(v)).
+
+Zeigen Sie, dass 3-FARB in polynomieller Zeit auf 7-FARB reduzierbar ist
+(d.h. 3-FARB < 7-FARB). Gehen Sie dazu wie folgt vor:
+
+(a) Geben Sie eine totale, in Polynomialzeit berechenbare Reduktionsfunktion f an.
+(Es ist hier kein Nachweis der Totalität und Polynomialzeit-Berechenbarkeit von f gefordert.)
+
+(b) Zeigen Sie: Falls G in 3-FARB, so ist f(G) in 7-FARB.
+(c) Zeigen Sie: Falls f(G) in 7-FARB, so ist G in 3-FARB.
+
+Fortsetzung nächste Seite!
+Herbst 2019 Einzelprüfungsnummer: 66115 Seite: 10
+
+Aufgabe 5 (© -Notation) (35 PUNKTE]
+
+(a) |5 Punkte] Geben Sie eine formale Definition von O(f).
+(b) [10 Punkte] Zeigen oder widerlegen Sie: O(log(n!)) = O(nlognr).
+
+(c) |20 Punkte] Zeigen oder widerlegen Sie jeweils für Funktionen
+
+sn, sonst
+
+(i) f € O(9).
+
+(ii) g € O(Ff).
+Aufgabe 6 (Mastertheorem) [20 PUNKTE|
+Der Hauptsatz der Laufzeitfunktionen ist bekanntlich folgendermaßen definiert:
+
+<
+Sei T(n) = de O(1), falls n sk mtikeNa>1lundb>1
+a:T(%)+g(n), sonst
+
+Dann gilt
+
+1. g(n) € O(n!°&@=®) für eine >0
+> T(n) € O(n!°& ®)
+
+2. g(n) € O(n!°%«) => T(n) € O(n'°% . logn) = O(g(n) - logn)
+
+3. g(n) € O(n 2+) für ein « > 0 und a- g9(}) < c-g(n) für fast alle n und ein cmit0<c< 1
+> T(n) € O(g(r))
+
+Bestimmen und begründen Sie formal mit Hilfe dieses Satzes welche Komplexität folgende Laufzeitfunktionen haben.
+
+(a) [12 Punkte] T(n) = 8T(2) + 5n°
+(b) [8 Punkte] T(r) = 97(2) + 5n?
+
+Fortsetzung nächste Seite!
+Herbst 2019 Einzelprüfungsnummer: 66115 Seite: 11
+
+Aufgabe 7 (AVL-Bäume) [32 PUNKTE]
+
+Fügen Sie (manuell) nacheinander die Zahlen 20, 31, 2, 17, 7 in folgenden AVL-Baum ein. Löschen
+Sie anschließend aus dem entstandenen Baum nacheinander 14 und 25.
+
+Zeichnen Sie jeweils direkt nach jeder einzelnen Operation zum Einfügen oder Löschen eines Knotens, sowie nach jeder elementaren Rotation den entstehenden Baum. Insbesondere sind evtl.
+
+anfallende Doppelrotationen in zwei Schritten darzustellen. Geben Sie zudem an jedem Knoten
+die Balancewerte an.
+
+Aufgabe 8 (Minimaler Spannbaum) 21 PUNKTE]
+
+Gegeben Sei der folgende ungerichtete Graph mit Kantengewichten.
+
+pe ~*~ 20, ) (n)
+
+6( , )
+
+3,5)
+
+(> )
+
+(a) |7 Punkte] Zeichnen Sie den (hier eindeutigen) minimalen Spannbaum.
+
+(b) |14 Punkte] Geben Sie sowohl für den Algorithmus von Jarnik-Prim als auch für den Algorithmus von Kruskal die Reihenfolge an, in der die Kanten hinzugefügt werden. Starten Sie
+für den Algorithmus von Jarnik-Prim beim Knoten a.
+
+Übernehmen Sie den Graph auf Ihre Bearbeitung und füllen Sie hierzu das Tupel jeder Kante
+- aus dem MST in der Form (n, m) aus, wobei die Kante e vom Algorithmus von Jarnik-Prim
+als n’te Kante und vom Algorithmus von Kruskal als m’te Kante hinzugefügt wird. Lassen
+Sie andere Tupel unausgefüllt.
+
+Fortsetzung nächste Seite!
+Herbst 2019 Einzelprüfungsnummer: 66115 Seite: 12
+
+Aufgabe 9 (Hashing) [12 PUNKTE]
+Verwenden Sie die Hashfunktion h(k,i) = (h’(k) +1?) mod 11 mit h’(k) = k mod 13, um die Werte
+
+12,29 und 17 in die folgende Hashtabelle einzufügen. Geben Sie zudem jeweils an auf welche Zellen
+der Hashtabelle zugegriffen wird.
+
+0 1 2 3 4 5 6 78 9 1
+
+16 o 22

@@ -1,0 +1,395 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{mathe,syntax}
+\usepackage{paralist}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Rekursion}
+
+\begin{quellen}
+\item \cite[Seite 27-30]{saake}
+\item \cite[Seite 178 6.1.2.5]{schneider}
+\item \cite{wiki:rekursive-programmierung}
+\end{quellen}
+
+\noindent
+Bei der \emph{rekursiven Programmierung} ruft sich eine
+\memph{Prozedur}, \memph{Funktion} oder \memph{Methode} in einem
+Computerprogramm \memph{selbst wieder auf} (d. h. enthält eine
+Rekursion). Auch der gegenseitige Aufruf stellt eine Rekursion dar.
+
+Wichtig bei der rekursiven Programmierung ist eine
+\memph{Abbruchbedingung} in dieser Funktion, weil sich das rekursive
+Programm sonst (theoretisch) unendlich oft selbst aufrufen würde.
+\footcite{wiki:rekursive-programmierung}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Ein Beispiel: Das Begrüßungsproblem\footcite[Seite 12-14]{aud:fs:1}}
+
+\begin{minted}{java}
+int anzahlBegruessungen(int anzahlPersonen) {
+  if (anzahlPersonen < 2) {
+    return 0;
+  } else {
+    return anzahlBegruessungen(anzahlPersonen - 1) + (anzahlPersonen - 1);
+  }
+}
+\end{minted}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Typen von Rekursion\footcite{net:html:gehaxelt:rekursionsarten}}
+
+\begin{itemize}
+\item \textbf{Indirekte Rekursion}
+
+Bei der indirekten Rekursion ruft die Funktion eine andere Funktion auf,
+welche wiederum die aufrufende Funktion aufruft.
+
+\item \textbf{Direkte Rekursion}
+
+Bei der direkten Rekursion ruft sich eine Funktion wieder selbst auf.
+
+\begin{itemize}
+
+%%
+%
+%%
+
+\item \textbf{Repetitive Rekursion}
+
+Bei der repetitiven Rekursion ruft sich die Funktion mit einem
+\emph{veränderten Parameter} auf:
+
+\begin{minted}{java}
+public int f(int x, int y) {
+  if (x == 0) return y
+  y = y + x
+  return func(x - 1, y)
+}
+\end{minted}
+
+%%
+%
+%%
+
+\item \textbf{Lineare Rekursion}
+
+Bei der linearen Rekursion wird der \emph{übergebene Parameter} mit dem
+Rekursion\emph{sergebnis verrechnet}:
+
+\begin{minted}{java}
+public int f(int x) {
+  if (x == 0) return 1
+  return x * f(x - 1)
+}
+\end{minted}
+
+%%
+%
+%%
+
+\item \textbf{Baumartige Rekursion}
+
+Die baumartige Rekursion kommt zum Einsatz, wenn man das Ergebnis aus
+\emph{zwei verschiedenen Rekursionsaufrufen} berechnet.
+
+\begin{minted}{java}
+public int f(int x) {
+  if (x == 1) return 0
+  return f(x - 1) + f(x - 2)
+}
+\end{minted}
+
+%%
+%
+%%
+
+\item \textbf{Geschachtelte Rekursion}
+
+Bei der geschachtelten Rekursion ist das \emph{Ergebnis} des
+Rekursionsaufrufes \emph{Parameter eines Rekursionsaufrufes}.
+
+\begin{minted}{java}
+public int f(int x) {
+  if (x == 1) return 0
+  return f(x - f(x-1))
+}
+\end{minted}
+
+%%
+%
+%%
+
+\item \textbf{Verschränkte Rekursion}
+
+Bei der verschränkten Rekursion \emph{rufen} sich \emph{zwei Funktionen
+gegenseitig} auf.
+
+\begin{minted}{java}
+public int f(int x) {
+  if (x == 0) return 1
+  return g(x - 1)
+}
+
+public int g(int x) {
+  if (x == 1) return 0
+  return f(x - 1)
+}
+\end{minted}
+\end{itemize}
+\end{itemize}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Iterativ vs. Rekursiv}
+
+\cite[Seite 16-19 (Gedruckte Seitenzahlen stimmen nicht)]{aud:fs:1}
+
+Interativ
+
+\begin{minted}{java}
+public static void pizzaIterativ (int anzahlStuecke){
+  for (int i = 1; i< anzahlStuecke; i++) {
+    schneiden();
+  }
+  essen();
+}
+\end{minted}
+
+Rekursiv
+
+\begin{minted}{java}
+public static pizzaRekursiv (int anzahlStuecke)
+  if (anzahlStuecke == 1) {
+    essen();
+  } else {
+    schneiden();
+    pizzaRekursiv(anzahlStuecke - 1);
+  }
+}
+\end{minted}
+
+\inputcode[firstline=3]{aufgaben/aud/pu_1/Rater}
+
+\inputcode[firstline=3]{aufgaben/aud/pu_1/Rekursion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 2: Rekursion\footcite[Seite 2]{aud:ab:1}}
+
+Gegeben ist folgende Methode.
+
+\inputcode[firstline=5,lastline=12]{aufgaben/aud/ab_1/Rekursion}
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Beschreiben Sie kurz, woran man erkennt, dass es sich bei der
+gegebenen Methode um eine rekursive Methode handelt. Gehen Sie dabei auf
+wichtige Bestandteile der rekursiven Methode ein.
+
+\begin{antwort}
+Die Methode mit dem Namen \java{function} ruft sich in der letzten
+Code-Zeile selbst auf. Außerdem gibt es eine Abbruchbedingung
+(\java{if (e == 1) { return b * 1; }}), womit verhindert wird, dass die
+Rekursion unendlich weiter läuft.
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Geben Sie die Rekursionsvorschrift für die Methode \java{function}
+an. Denken Sie dabei an die Angabe der Zahlenbereiche!
+
+\begin{antwort}
+\begin{equation*}
+\text{int function(int b, int e)} =
+\begin{cases}
+\text{return b*1}, & \text{falls e = 1}.\\
+\text{return b*function(b,e-1)}, & \text{falls e > 1}.
+\end{cases}
+\end{equation*}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Erklären Sie kurz, was die Methode \java{function} berechnet.
+
+\begin{antwort}
+Die Methode \java{function} berechnet die Potenz $b^e$.
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 1: Arrays und Rekursion\footcite[Diese Aufgabe stammt
+aus der Vorlesung Konzepte der Programmierung von Prof. Bernhard
+Westfechtel der Universität Bayreuth, WS 2017/18, Übungsblatt 8 und
+wurde dankenswerterweise zur Verwendung in diesem Aufgabenblatt zur
+Verfügung gestellt.]{aud:ab:2}}
+
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Erstellen Sie eine neue Klasse \java{ArrayInvertierer} mit einer
+rekursiven Methode, die den Inhalt eines ihr übergebenen 1D-Arrays
+gefüllt mit Strings invertiert. Auf diese Weise kann z.B. ein deutscher
+Satz im Array gespeichert und dann verkehrt herum ausgegeben werden.
+
+\emph{Wichtig:} Nicht das übergebene Array soll verändert werden,
+sondern ein Neues erstellt und von der Methode zurückgegeben werden.
+
+\emph{Tipp:} Sie dürfen dafür gerne auch rekursive Hilfsmethoden
+benutzen.
+
+%%
+%
+%%
+
+\item Implementieren Sie dann eine main-Methode, in der Sie zwei
+verschieden lange \java{String}-Arrays erzeugen und die Wortreihenfolge
+umkehren lassen. Das Ergebnis soll auf der Konsole ausgegeben werden
+und könnte z.B. wie folgt aussehen.
+
+\bigskip
+
+{
+\ttfamily
+Den Satz\\
+Ich find dich einfach klasse!\\
+wuerde Meister Yoda so aussprechen:\\
+klasse! einfach dich find Ich\\
+
+Den Satz\\
+Das war super einfach/schwer\\
+wuerde Meister Yoda so aussprechen:\\
+einfach/schwer super war Das
+}
+
+\bigskip
+
+[optional] Wenn das ursprüngliche \java{String}-Array selbst verändert
+werden soll, braucht die rekursive Methode keine Rückgabe. Versuchen
+Sie, diese Aufgabe ohne das Nutzen einer Hilfsmethode zu lösen.
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/aud/ab_2/ArrayInvertierer}
+\end{antwort}
+\end{enumerate}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 6: Rekursion\footcite[(entnommen aus Algorithmen und Datenstrukturen, Übungsblatt 2, Universität Würzburg)]{aud:pu:7}}
+
+Für Binomialkoeffizienten
+$\binom{n}{k}$
+gelten neben den grundlegenden Beziehungen
+$\binom{n}{0} = 1$
+und
+$\binom{n}{n} = 1$
+auch folgende Formeln: \footcite[Staatsexamen Theoretische Informatik,
+Algorithmen und Datenstrukturen, Realschulen, Frühjahr 2014, Thema 2,
+Aufgabe 4]{examen:46115:2014:03}
+
+\centerline{A)
+$
+\binom{n+1}{k}
+=
+\binom{n}{k-1}
++
+\binom{n}{k}
+$}
+
+\centerline{B)
+$
+\binom{n}{k}
+=
+\binom{n-1}{k-1}
+\cdot
+\frac{n}{k}
+$}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Implementieren Sie unter Verwendung von Beziehung (A) eine
+rekursive Methode \java{binRek(n, k)} zur Berechnung des
+Binomialkoeffizienten in einer objektorientierten Programmiersprache
+oder entsprechendem Pseudocode!
+
+\begin{antwort}
+Zuerst verwandeln wir die Beziehung (A) geringfügig um, indem wir $n$
+durch $n-1$ ersetzen:
+
+$
+\binom{n}{k}
+=
+\binom{n-1}{k-1}
++
+\binom{n-1}{k}
+$
+
+\inputcode[firstline=8,lastline=18]{aufgaben/aud/examen_46115_2014_03/rekursion/Rekursion}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Implementieren Sie unter Verwendung von Beziehung (B) eine
+iterative Methode \java{binIt(n, k)} zur Berechnung des
+Binomialkoeffizienten in einer objektorientierten Programmiersprache
+oder entsprechendem Pseudocode!
+
+\begin{antwort}
+\inputcode[firstline=20,lastline=36]{aufgaben/aud/examen_46115_2014_03/rekursion/Rekursion}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Geben Sie die Laufzeitkomplexität der Methoden \java{binRek(n, k)}
+und \java{binIt(n, k)} aus den vorhergehenden beiden Teilaufgaben in
+O-Notation an!
+
+\end{enumerate}
+
+\literatur
+
+\end{document}

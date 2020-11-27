@@ -1,0 +1,15 @@
+graph ER {
+	bgcolor="transparent";
+
+	node [shape=box]; Fahrer; Fahrzeug; Abteilung; Garage;
+	node [shape=diamond]; Fahrerlaubnis; steht_in; gehoert;
+
+	gehoert -- Fahrzeug [len=1.2,label=n];
+	gehoert -- Abteilung [len=1.2,label=1];
+
+	steht_in -- Garage  [len=1.2,label=1];
+	steht_in -- Fahrzeug [len=1.2,label=1];
+
+	Fahrerlaubnis -- Fahrer [len=2,label=n];
+	Fahrerlaubnis -- Fahrzeug [len=2,label=m];
+}

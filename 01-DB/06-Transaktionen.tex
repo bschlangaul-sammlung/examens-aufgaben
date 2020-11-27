@@ -1,0 +1,469 @@
+\documentclass{lehramt-informatik}
+
+\begin{document}
+
+\section{Definition}
+
+Unter einer Transaktion versteht man die „Bündelung“ mehrerer
+Datenbankoperationen, die in einem Mehrbenutzersystem ohne unerwünschte
+Einflüsse durch andere Transaktionen als Einheit fehlerfrei ausgeführt
+werden sollen.
+
+\section{ACID-Prinzip}
+
+\begin{quellen}
+\cite[Kapitel 9.5 „Eigenschaften Von Transaktionen“, Seite 299]{kemper}
+\cite[Seite 1]{db:fs:5}
+\cite{wiki:acid}
+\end{quellen}
+
+\begin{description}
+\item[Atomicity]
+
+Eine Transaktion ist atomar, d. h. von den vorgesehenen
+Änderungsoperationen auf die Datenbank haben entweder alle oder keine
+eine Wirkung auf die Datenbank.
+
+\item[Consistency]
+
+Eine Transaktion überführt einen korrekten (konsistenten)
+Datenbankzustand wieder in einen korrekten (konsistenten)
+Datenbankzustand.
+
+\item[Isolation]
+
+Eine Transaktion bemerkt das Vorhandensein anderer (parallel
+ablaufender) Transaktionen nicht und beeinflusst auch andere
+Transaktionen nicht.
+
+\item[Durability]
+
+Die durch eine erfolgreiche Transaktion vorgenommenen Änderungen sind
+dauerhaft (persistent).
+
+\end{description}
+
+\section{Operationen auf Transaktions-Ebene}
+
+\begin{quellen}
+\item \cite[Seite 5]{db:fs:5}
+\item \cite[Seite 211]{winter}
+\end{quellen}
+
+\begin{description}
+\item[read \& write]
+
+als Operationen zur Ausführung von Änderungen
+
+\item[begin of transaction (BOT)]
+
+Mit diesem Befehl wird der Beginn einer eine Transaktion darstellende
+Befehlsfolge gekennzeichnet.
+
+\item[commit]
+
+Hierdurch wird die Beendigung der Transaktion eingeleitet. Alle
+Änderungen der Datenbasis werden durch diesen Befehl festgeschrieben,
+d.h. sie werden dauerhaft in die Datenbank eingebaut.
+
+\item[abort]
+
+Dieser Befehl führt zu einem Selbstabbruch der Transaktion. Das
+Datenbanksystem muss sicherstellen, dass die Datenbasis wieder in den
+Zustand zurückgesetzt wird, der vor Beginn der Transaktionsausführung
+existierte.
+\end{description}
+
+Für den Abschluss einer Transaktion gibt es 2 Möglichkeiten:
+
+\begin{itemize}
+\item Den erfolgreichen Abschluss mit \texttt{commit}.
+\item Den erfolglosen Abschluss mit \texttt{abort}
+\end{itemize}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Zustandsübergänge einer Transaktion}
+
+\begin{quellen}
+\item \cite[Kapitel 9.7, Seite 301]{kemper}
+\item \cite[Seite 5]{db:fs:5}
+\end{quellen}
+
+\begin{description}
+\item[potentiell]
+
+Die Transaktion ist codiert und „wartet darauf", in den Zustand aktiv zu
+wechseln. Diesen Übergang nennen wir inkarnieren.
+
+\item[aktiv]
+
+Die aktiven (d.h. derzeit rechnenden) Transaktionen konkurrieren
+untereinander um die Betriebsmittel, wie z.B. Hauptspeicher, Rechnerkern
+zur Ausführung von Operationen, etc.
+
+\item[wartend]
+
+Bei einer Überlast des Systems: (z.B. thrashing (Seitenflattern) des
+Puffers) kann die Transaktionsverwaltung einige aktive Transaktionen in
+den Zustand wartend verdrängen. Nach Behebung der Überlast werden diese
+wartenden Transaktionen sukzessive wieder eingebracht, d.h. wieder
+aktiviert.
+
+\item[abgeschlossen]
+
+Durch den commit-Befehl wird eine aktive Transaktion beendet. Die
+Wirkung abgeschlossener TAS kann aber nicht gleich in der Datenbank
+festgeschrieben werden. Vorher müssen noch möglicherweise verletzte
+Konsistenzbedingungen überprüft werden.
+
+\item[persistent]
+
+Die Wirkungen abgeschlossener Transaktionen werden — wenn die
+Konsistenzerhaltung sichergestellt ist — durch festschreiben dauerhaft
+in die Datenbasis eingebracht. Damit ist die Transaktion persistent.
+Dies ist einer von zwei möglichen Endzuständen einer
+Transaktionsverarbeitung.
+
+\item[gescheitert]
+
+Transaktionen können aufgrund vielfältiger Ereignisse scheitern. Z.B.
+kann der Benutzer selbst durch ein abort eine aktive Transaktion
+abbrechen. Weiterhin können Systemfehler zum Scheitern aktiver oder
+wartender Transaktionen führen. Bei abgeschlossenen Transaktionen können
+auch Konsistenzverletzungen festgestellt werden, die ein Scheitern
+veranlassen.
+
+\item[wiederholbar]
+
+Einmal gescheiterte Transaktionen sind u.U. wiederholbar. Dazu muss
+deren Wirkung auf die Datenbasis zunächst zurückgesetzt werden. Danach
+können sie durch Neustarten wiederum aktiviert werden.
+
+\item[aufgegeben]
+
+Eine gescheiterte Transaktion kann sich aber auch als „hoffnungslos"
+herausstellen. In diesem Fall wird ihre Wirkung zurückgesetzt und die
+Transaktionsverarbeitung geht in den Endzustand aufgegeben über.
+\end{description}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Fehler}
+
+\section{“Einfacher” Fehlerfall}
+
+Änderungen durch nicht zu Ende geführte Transaktionen müssen rückgängig
+gemacht werden. Diesen Vorgang nennt man \emph{Rollback}. Dazu müssen
+gegebenenfalls die zuletzt gültigen Werte der geänderten
+Datenbankobjekte in die Datenbank geschrieben werden.
+
+Es muss sichergestellt werden, dass die Änderungen erfolgreich zu Ende
+geführter Transaktionen tatsächlich permanent gemacht werden. Dazu
+müssen gegebenenfalls die neuen Werte der Datenbankobjekte erneut auf
+die Datenbank geschrieben werden.
+
+%%
+%
+%%
+
+\subsection{Das Lost-Update-Problem\footcite{wiki:verlorenes-update}}
+
+Änderungen in einer Datenbank, die durch eine Transaktion vorgenommen
+wurden, gehen aufgrund unkontrollierter Parallelausführung verloren.
+
+\emph{„Überschreiben“}
+
+%%
+%
+%%
+
+\subsection{Das Dirty-Read-Problem\footcite{wiki:schreib-lese-konflikt}}
+
+Der Wert eines Datenobjekts, der noch nicht permanent gespeichert wurde,
+wird gelesen.
+
+\emph{„Zwischenstände lesen“}
+
+%%
+%
+%%
+
+\subsection{Das Unrepeatable-Read-Problem\footcite{wiki:nichtwiederholbares-lesen}}
+
+Während einer Transaktion wird der Wert eines Datenobjekts zweimal
+gelesen, wobei dieser Wert aber in der Zwischenzeit von einer anderen
+Transaktion geändert wurde.
+
+\emph{„Verschiedene Zwischenstände lesen“}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Zweiphasige Abarbeitung mit Sperren}
+
+\cite[Seite 15]{db:fs:5}
+
+Die Abarbeitung von Transaktionen erfolgt zweiphasig oder genügt dem
+2-Phasen-Sperrprotokoll, wenn keine Transaktion eine Sperre freigibt,
+bevor sie alle benötigten Sperren angefordert hat.
+
+\begin{itemize}
+\item Ein strenges 2-Phasen-Sperrprotokoll wird dadurch realisiert, dass
+
+\begin{itemize}
+\item eine Transaktion sukzessive alle benötigten Sperren anfordert
+(alle Elemente, die eine Transaktion lesen oder ändern möchte, werden
+von dieser Transaktion reserviert und dürfen nicht von anderen
+Transaktionen abgegriffen werden),
+
+\item alle Lesesperren (\textbf{S}hared oder \textbf{R}ead) bis zum
+Ende, d. h. bis zur Aktion commit, hält und
+
+\item alle Schreibsperren (e\textbf{X}clusive oder \textbf{W}rite) bis
+nach \texttt{commit} hält.
+\end{itemize}
+
+\item Eine bereits gesetzte Lesesperre (durch Angabe von \texttt{rlock})
+kann durch \texttt{xlock} in eine \emph{Schreibsperre umgewandelt}
+werden, ohne dass vorher die Lesesperre aufgehoben werden muss.
+
+\item Reine \emph{Lesesperren} auf ein Element können \emph{mehrere}
+Transaktionen gleichzeitig besitzen, dann ist jedoch \emph{keine
+Schreibsperre} mehr möglich.
+\end{itemize}
+
+%%
+%
+%%
+
+\subsection{2-Phasen-Sperrprotokoll\footcite[Seite 16]{db:fs:5}}
+
+Die Serialisierbarkeit ist bei Einhaltung des folgenden
+Zwei-Phasen-Sperrprotokolls durch den Scheduler gewährleistet. Bezogen
+auf individuelle Transaktion wird folgendes verlangt:\footcite{wiki:sperrverfahren}
+
+\begin{enumerate}
+\item Jedes Objekt, das von einer Transaktion benutzt werden soll, muss
+vorher entsprechend gesperrt werden.
+
+\item Eine Transaktion fordert eine Sperre, die sie schon besitzt, nicht
+erneut an.
+
+\item Eine Transaktion muss die Sperren anderer Transaktionen auf dem
+von ihr benötigten Objekt gemäß der Verträglichkeitstabelle beachten.
+Wenn die Sperre nicht gewährt werden kann, wird die Transaktion in eine
+entsprechende Warteschlange eingereiht — bis die Sperre gewährt werden
+kann.
+
+\item Jede Transaktion durchläuft zwei Phasen:
+
+\begin{itemize}
+\item Eine Wachstumsphase, in der sie Sperren anfordern, aber keine
+freigeben darf und
+
+\item Eine Schrumpfungsphase, in der sie ihre bisher erworbenen
+Sperren freigibt, aber keine weiteren anfordern darf.
+\end{itemize}
+
+\item Bei \texttt{EOT} (Transaktionsende) muss eine Transaktion alle
+ihre Sperren zurückgeben
+\end{enumerate}
+
+%%
+%
+%%
+
+\subsection{Deadlock (bei Transaktionen)}
+
+Deadlock bei den sperrbasierten Synchronisationsmethoden:
+
+\begin{itemize}
+\item Beide Transaktionen können zunächst lesen
+
+\item Beim Umwandeln der Lesesperre in eine Schreibsperre in Schritt 9
+kommt es zu einem Sperrkonflikt, da T2 noch die Lesesperre hält.
+
+\item Die Transaktion T1 wird vom System verzögert.
+
+\item In Schritt 10 möchte T2 ihre Lesesperre in eine Schreibsperre
+umwandeln.
+
+\item Es kommt erneut zu einem Sperrkonflikt, der wiederum zur
+Verzögerung der zweiten Transaktion führt.
+\end{itemize}
+
+\begin{itemize}
+\item Deadlock-Situationen müssen entweder vermieden oder vom DBMS
+erkannt und aufgelöst werden.
+
+\item Das DBMS kann in diesem Fall eine der beiden Transaktionen
+abbrechen und diese von Neuem starten.
+\end{itemize}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Recovery-Klassen: Wiederherstellungsmechanismen des DBS nach
+Fehlern}
+
+\begin{description}
+
+%%
+%
+%%
+
+\item[Partial Undo (partielles Zurücksetzen / R1-Recovery)]
+
+Nach Transaktionsfehler
+
+\begin{itemize}
+\item Isoliertes und vollständiges Zurücksetzen der veränderten Daten in
+den Zustand zu Beginn der Transaktion
+
+\item Beeinflusst andere Transaktionen nicht!
+\end{itemize}
+
+%%
+%
+%%
+
+\item[Partial Redo (partielles Wiederholen / R2-Recovery)]
+
+Nach Systemfehler (mit Verlust des Hauptspeicherinhalts)
+
+\begin{itemize}
+\item Wiederholung aller verlorengegangenen Änderungen (waren nur im
+Puffer) von abgeschlossenen Transaktionen
+\end{itemize}
+
+%%
+%
+%%
+
+\item[Global Undo (vollständiges Zurücksetzen / R3-Recovery)]
+
+Nach Systemfehler (mit Verlust des Hauptspeicherinhalts), z.B.
+Stromausfall
+
+\begin{itemize}
+\item Zurücksetzen aller durch den Ausfall abgebrochenen Transaktionen
+\end{itemize}
+
+%%
+%
+%%
+
+\item[Global Redo (vollständiges Wiederholen / R4-Recovery)]
+
+Nach Gerätefehler
+
+\begin{itemize}
+\item Einspielen einer Archivkopie auf neuen Datenträger und
+Nachvollziehen aller beendeten Transaktionen, die nach der letzten
+beendeten Transaktion auf der Archivkopie noch ausgeführt wurden
+\end{itemize}
+
+\end{description}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Puffer-Verwaltung}
+
+\cite[Seite 25]{db:fs:5}
+\cite[Seite 305]{kemper}
+
+Wann werden Änderungen, die von Transaktionen ausgelöst wurden, vom
+temporären Puffer in die Datenbank geschrieben (permanent)?
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Verdrängungsstrategien}
+
+Ersetzung „schmutziger“ Seiten im Puffer, d.h. Seite Puffer $\neq$ Seite
+DB $\rightarrow$ Seite wurde verändert
+
+\begin{itemize}
+
+\item No-Steal
+
+\begin{itemize}
+\item Schmutzige Seiten dürfen nicht aus dem Puffer entfernt und in die
+DB übertragen werden, solange die Transaktion noch aktiv ist
+
+\item DB enthält keine Änderungen nicht-erfolgreicher TAs
+
+\item UNDO-Recovery ist nicht erforderlich
+
+\item Probleme bei langen Änderungs-TAs, da große Teile des Puffers
+blockiert werden
+\end{itemize}
+
+\item Steal
+
+\begin{itemize}
+\item Schmutzige Seiten dürfen jederzeit ersetzt und in die DB
+eingebracht werden
+
+\item DB kann unbestätigte Änderungen enthalten
+
+\item UNDO-Recovery ist erforderlich
+
+\item Effektivere Puffernutzung bei langen TAs mit vielen Änderungen
+\end{itemize}
+\end{itemize}
+
+%%
+%
+%%
+
+\subsection{Ausschreibestrategien (EOT-Behandlung)}
+
+\begin{itemize}
+
+\item Force
+
+\begin{itemize}
+\item Alle geänderten Seiten werden spätestens bei EOT (vor COMMIT) in
+die DB geschrieben
+
+\item Keine REDO-Recovery erforderlich bei Systemfehler
+
+\item Hoher I/O-Aufwand, da Änderungen jeder TA einzeln geschrieben
+werden
+
+\item Vielzahl an Schreibvorgängen führt zu schlechteren Antwortzeiten,
+länger gehaltenen Sperren und damit zu mehr Sperrkonflikten
+
+\item Große DB-Puffer werden schlecht genutzt
+\end{itemize}
+
+\item No-Force
+
+\begin{itemize}
+\item Änderungen können auch erst nach dem COMMIT in die DB geschrieben
+werden, „Sammeln“ von Änderungen durch mehrere Transaktionen
+
+\item Beim COMMIT werden lediglich REDO-Informationen in die Log-Datei
+geschrieben
+
+\item REDO-Recovery erforderlich bei Systemfehler
+
+\item Änderungen auf einer Seite über mehrere TAs hinweg können
+gesammelt werden
+\end{itemize}
+\end{itemize}
+
+\literatur
+
+\end{document}

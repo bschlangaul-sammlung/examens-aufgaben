@@ -1,0 +1,1263 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax,mathe}
+\usepackage{array}
+\usepackage{multicol}
+
+\def\MatheEnv#1{
+  \medskip
+
+  \hspace{2em}#1
+
+  \medskip
+}
+
+\def\Mathe#1{
+  \MatheEnv{$#1$}
+}
+
+\def\MatheEquiv#1{
+  \MatheEnv{$\equiv$\hspace{2em}$#1$}
+}
+
+\def\Erklaerung#1{
+  \medskip
+  {\footnotesize#1}
+}
+
+\def\wp#1#2{
+  \text{wp}(\texttt{\scriptsize"#1"},\thinspace #2)
+}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Formale Verifikation}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Programmverifikation, Korrektheit\footcite[Seite 14]{sosy:fs:5}}
+
+Verifikation dient dazu, die Korrektheit eines Programms
+\memph{mathematisch} zu beweisen.
+
+Ein Algorithmus ist dabei
+
+\begin{itemize}
+
+\item \memph{partiell korrekt}, wenn er bei gültiger Eingabe
+(Vorbedingung) immer ein gültiges Ergebnis (Nachbedingung) liefert.
+
+\item \memph{total korrekt}, wenn er partiell korrekt ist und terminiert.
+\end{itemize}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{\text{wp}-Kalkül zur Verfikation\footcite[Seite 15]{sosy:fs:5}}
+
+Der \text{wp}-Kalkül ist ein Kalkül in der Informatik zur Verifikation
+eines imperativen Programmcodes. Die Abkürzung \text{wp} steht für
+\memph{weakest precondition}, auf deutsch schwächste Vorbedingung. Bei
+der Verifikation geht es nicht darum, die Funktion mit einer bestimmten
+Menge an Eingabedaten auf korrekte Ergebnisse zu testen, sondern darum,
+eine \memph{allgemeingültige Aussage über das korrekte Ablaufen} des
+Programms zu erhalten.
+
+Die Überprüfung der Korrektheit geschieht durch \memph{Rückwärtsanalyse}
+des Programmcodes. Ausgehend von der Nachbedingung wird geprüft, ob
+diese durch die Vorbedingung und den Programmcode garantiert wird.
+
+Alternativ kann auch der \memph{Hoare-Kalkül} benutzt werden, bei dem im
+Gegensatz zum \text{wp}-Kalkül eine \memph{Vorwärtsanalyse} stattfindet.
+
+Der \text{wp}-Kalkül hilft gewisse Zusicherungen im Programm zu machen.
+Eine Zusicherung ist eine prädikatenlogische Aussage über den Inhalt der
+Variablen an der bestimmten Stelle. Eine Zusicherung vor einem
+Programmtext heißt \memph{Vorbedingung P}, eine Zusicherung danach
+\memph{Nachbedingung Q}.\footcite{wiki:wp-kalkuel}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Beispiel}
+
+$\wp{x += 5; y *= 2; z = z \% 4; y--;}{x + y = 17}$
+
+$\wp{x += 5; y *= 2; z = z \% 4;}{x + y - 1 = 17}$
+
+$\wp{x += 5; y *= 2; z = z \% 4;}{x + y = 18}$
+
+$\wp{x += 5; y *= 2;}{x + y = 18}$
+
+$\wp{x += 5;}{x + y \cdot 2 = 18}$
+
+$x + 5 + y \cdot 2 = 18$
+
+$x + y \cdot 2 = 13$\footcite[Seite 21-26]{sosy:fs:5}
+
+\section{Verzweigung}
+
+$\text{\text{wp}}(\text{„}\texttt{IF B THEN <}A_1\texttt{> ELSE <}A_2\texttt{>}\text{“}, Q)
+\equiv
+(B \land \text{\text{wp}}(\texttt{<}A_1\texttt{>}, Q))
+\lor
+(\neg B \land \text{\text{wp}}(\texttt{<}A_2\texttt{>}, Q))$
+
+\section{Transformationen}
+
+\begin{enumerate}
+\item $\text{\text{wp}}(\texttt{""}, Q) = Q$
+Nichts passiert, die Vorbedingung bleibt gleich
+
+\item $\text{\text{wp}}(\texttt{"Fehler"}, Q) = \text{falsch}$
+Fehler dürfen nicht auftreten
+
+\item $\text{\text{wp}}(A, Q) \land \text{\text{wp}}(A, R) = \text{\text{wp}}(A, Q \land R)$
+Distributivität der Konjunktion
+
+\item $\text{\text{wp}}(A, Q) \lor \text{\text{wp}}(A, R) = \text{\text{wp}}(A, Q \lor R)$
+Distributivität der Disjunktion
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Schleifen}
+
+Die Behandlung von Schleifen ist etwas schwieriger als die von anderen
+Konstrukten, da die Variablen innerhalb jedes einzelnen
+Schleifendurchgangs verändert werden. Daher ist es nicht einfach möglich
+eine starre Ersetzung vorzunehmen. Anstattdessen verwendet man eine Art
+Vollständige Induktion um die Funktion der Schleife nachzuweisen.
+
+Um die schwächste Vorbedingung eines Ausdrucks der Form „\java{while b
+{ A }}“ zu finden verwendet man eine \memph{Schleifeninvariante}. Sie
+ist ein Prädikat für das
+
+\begin{displaymath}
+\{ I \wedge b \} A \{ I \}
+\end{displaymath}
+
+\noindent
+gilt. Die Schleifeninvariante gilt also sowohl vor, während und nach der
+Schleife. Das Schema einer Schleife sieht dann wie folgt aus:
+
+\begin{minted}{java}
+// { I } - Invariante gilt vor der Schleife
+while (b) {
+  // { I && b} - Invariante gilt vor dem Schleifenkörper
+  A;
+  // { I } - Invariante gilt nach dem Schleifenkörper
+}
+// { I ∧ (¬b) }
+\end{minted}
+
+Nun gilt es nur noch folgende Schritte zu beweisen:
+
+\begin{enumerate}
+\item Die Invariante gilt vor Schleifeneintritt
+
+\item $\{ I \wedge b \} A \{ I \}$, dass also $I$ wirklich eine
+Invariante ist
+
+\item $(I \wedge \neg b) \Rightarrow Q$, dass also bei der Terminierung
+auch die Nachbedingung aus der Invariante folgt. Dass die Schleife
+terminiert (mittels Schleifenvariante/Terminierungsfunktion)
+\end{enumerate}
+
+\subsection{Beispiel}
+
+Dazu ein Beispiel, das die Fakultät einer Variable $x$ ausrechnet und in
+der Variable $fak$ ausgibt
+
+\begin{minted}{java}
+int berechneFakultaet(int x) {
+  int i = 1;
+  int fak = 1;
+  // I: fak = i!
+  while (i < x) {
+    // I: fak = i! && i < x
+    i = i + 1;
+    fak = fak * i;
+    // I: fak = i!
+  }
+  // I: fak = i! && i >= x
+  return x;
+}
+\end{minted}
+
+\noindent
+Die Schleifeninvariante ist hier $(\text{fak} = i!)$. Der Ausdruck $(x -
+i)$ fällt streng monoton während der Schleifenausführung gegen $0$ und
+ist die Abbruchbedingung.
+
+\subsubsection{Am Beispiel von $x = 3$}
+
+\begin{multicols}{2}
+\ueberschrift{1. Durchgang}
+
+\begin{minted}{java}
+int i = 1;
+int fak = 1;
+// I: fak = i! -> 1 = 1
+while (i < x) {
+  // I: fak = i! && i < x -> 1 = 1 && 1 < 3
+  i = i + 1;
+  // i = 2
+  fak = fak * i;
+  // I: fak = i! -> 2 = 2
+}
+\end{minted}
+
+\ueberschrift{2. Durchgang}
+
+\begin{minted}{java}
+while (i < x) {
+  // I: fak = i! && i < x -> 2 = 2 && 2 < 3
+  i = i + 1;
+  // i = 3
+  fak = fak * i;
+  // I: fak = i! -> 6 = 3! -> 6 = 3
+}
+// I: fak = i! && i >= x -> 6 = 6 && 3 >= 3
+\end{minted}
+
+\end{multicols}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\section{Aufgabe 1: Grundwissen\footcite[Seite 1]{sosy:ab:8}}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Geben Sie zwei verschiedene Möglichkeiten der formalen
+Verifikation an.
+
+\begin{antwort}
+\begin{itemize}
+\item 1. Möglichkeit: formale Verifikation mittels \emph{vollständiger
+Induktion} (eignet sich bei \emph{rekursiven} Programmen).
+
+\item 2. Möglichkeit: formale Verifikation mittels \emph{\text{wp}-Kalkül} oder
+\emph{Hoare-Kalkül} (eignet sich bei \emph{iterativen} Programmen).
+\end{itemize}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Erläutern Sie den Unterschied von partieller und totaler
+Korrektheit.
+
+\begin{antwort}
+\begin{itemize}
+\item partielle Korrektheit:
+
+Das Programm verhält sich spezifikationsgemäß, \emph{falls} es
+terminiert.
+
+\item totale Korrektheit:
+
+Das Programm verhält sich spezifikationsgemäß und es \emph{terminiert
+immer}.
+\end{itemize}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Gegeben sei die Anweisungssequenz $A$. Sei $P$ die Vorbedingung
+und $Q$ die Nachbedingung dieser Sequenz. Erläutern Sie, wie man die
+(partielle) Korrektheit dieses Programmes nachweisen kann.
+
+\begin{antwort}
+\begin{tabular}{p{4cm}ll}
+Vorgehen & Horare-Kalkül & \text{wp}-Kalkül \\
+
+Wenn die Vorbedingung $P$ zutrifft, gilt nach der Ausführung der
+Anweisungssequenz $A$ die Nachbedingung $Q$. &
+
+$\{P\}A\{Q\}$ &
+
+$P \Rightarrow \text{\text{wp}}(A,Q)$
+
+\end{tabular}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Gegeben sei nun folgendes Programm:
+
+\begin{minted}{python}
+A_1
+while(b):
+    A_2
+A_3
+\end{minted}
+
+wobei $A_1$, $A_2$, $A_3$ Anweisungssequenzen sind. Sei $P$ die
+Vorbedingung und $Q$ die Nachbedingung des Programms. Die
+Schleifeninvariante der while-Schleife wird mit $I$ bezeichnet.
+Erläutern Sie, wie man die (partielle) Korrektheit dieses Programmes
+nachweisen kann.
+
+\begin{antwort}
+\begin{tabular}{>{\raggedright\arraybackslash}p{4cm}ll}
+Vorgehen & Horare-Kalkül & \text{wp}-Kalkül \\\hline\hline
+
+Die Invariante $I$ gilt vor Schleifeneintritt. &
+$\{P\} A_1 \{I\}$ &
+$P \Rightarrow \text{\text{wp}}(A_1,I)$\\\hline
+
+$I$ ist invariant, d. h. $I$ gilt nach jedem Schleifendurchlauf.&
+$\{I \land b\} A_2 \{I\}$ &
+$I \land b \Rightarrow \text{\text{wp}}(A_2, I)$\\\hline
+
+Die Nachbedingung $Q$ wird erfüllt.&
+$\{I \land \neg b\} A_3 \{Q\}$ &
+$I \land \neg b \Rightarrow \text{\text{wp}}(A_3, I)$\\
+\end{tabular}
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item Beschreiben Sie, welche Vorraussetzungen eine
+Terminierungsfunktion erfüllen muss, damit die totale Korrektheit
+gezeigt werden kann.
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 2: \text{wp}-Kalkül\footcite{sosy:ab:8}}
+
+Gegeben sei folgendes Programm:
+
+\begin{minted}{java}
+int f(int x, int y) {
+  /* P */ x = 2 * x + 1 + x * x;
+  y += 7;
+  if (x > 196) {
+    y = 2 * y;
+  } else {
+    y -= 8;
+    x *= 2;
+  } /* Q */
+  return x + y;
+}
+\end{minted}
+
+Bestimmen Sie die schwächste Vorbedingung (weakest precondition), für
+die die Nachbedingung $Q := (x \geq 8) \land (y \% 2 = 1)$ noch
+zutrifft.
+\end{enumerate}
+
+\begin{antwort}
+\setlength{\parindent}{0pt}
+
+\def\code#1{„\texttt{#1}“}
+\def\FarbeA#1{\textcolor{orange}{#1}}
+\def\FarbeB#1{\textcolor{red}{#1}}
+\def\FarbeC#1{\textcolor{blue}{#1}}
+
+\def\NebenRechnung#1{\medskip\bigskip\par\textbf{Nebenrechnung: #1}\par\medskip}
+
+\def\AnweisungI{x=2*x+1+x*x;}
+\def\AnweisungII{y+=7;}
+\def\AnweisungIII{y=2*y;}
+\def\AnweisungIV{y-=8;}
+\def\AnweisungV{x*=2;}
+
+\def\A{\FarbeA{\AnweisungI\AnweisungII}}
+\def\B{\FarbeB{\AnweisungIII}}
+\def\C{\FarbeC{\AnweisungIV\AnweisungV}}
+\def\Q{(x \geq 8) \land (y \% 2 = 1)}
+
+Mit dem Distributivgesetz der Konjugation gilt: \bigskip
+
+$\wp{A; if(b) B; else C;}{Q} \equiv$
+
+$\wp{A;}{b} \land \wp{A;B;}{Q}$
+
+$\lor$%
+
+$\wp{A;}{\neg b} \land \wp{A;C;}{Q}$
+
+\bigskip Der tatsächliche Programmcode wird eingesetzt:\bigskip
+
+$\wp{\A{}if(x>196)\{\B\}else\{\C\}}{\Q} \equiv$
+
+% A if(b)
+$\wp{\A}{x > 196} \land$
+
+% A;B; Q
+$\wp{\A\B}{\Q}$
+
+%
+$\lor$
+
+% A if(!b)
+$\wp{\A}{x \leq 196} \land$
+
+% A;C; Q
+$\wp{\A\C}{\Q}$
+
+=: P
+
+%%
+%
+%%
+
+\NebenRechnung{$\wp{A;}{b}$}
+
+\Mathe{
+  \wp{\A}{x > 196}
+}
+
+\Erklaerung{Wir lassen $y+=7$ weg, weil in der Nachbedingung kein y
+vorkommt und setzen in den Term $x > 196$ für das $x$ die erste
+Code-Zeile $2 \cdot x + 1 + x \cdot x$ ein.}
+
+\MatheEquiv{
+  \wp{}{2 \cdot x + 1 + x \cdot x > 196}
+}
+
+\Erklaerung{Nach der Transmformationsregel \textit{Nichts passiert, die
+Vorbedingung bleibt gleich} kann das auch so geschrieben werden:}
+
+\MatheEquiv{
+  2 \cdot x + 1 + x \cdot x > 196
+}
+
+\Erklaerung{Die erste binomische Formel (Plus-Formel) lautet
+$(a + b)^2 = a^2 + 2ab + b^2$.
+Man kann die Formel auch umgedreht verwenden:
+$a^2 + 2ab + b^2 = (a + b)^2$.
+Die erste Code-Zeile $2 \cdot x + 1 + x \cdot x$
+kann umformuliert werden in
+$
+1 + 2 \cdot 1 \cdot x + x \cdot x =
+1^2 + 2 \cdot 1 \cdot x + x^2 =
+(1 + x)^2 =
+(x + 1)^2
+$.
+Wir haben für $a$ die Zahl $1$ und für $b$ den Buchstaben $x$
+eingesetzt.}
+
+\MatheEquiv{
+  (x + 1)^2 > 196
+}
+
+%%
+%
+%%
+
+\NebenRechnung{$\wp{A;B;}{Q}$}
+
+\Mathe{
+  \wp{\A\B}{\Q}
+}
+
+\Erklaerung{Für das $x$ in der Nachbedingung setzen wir die erste
+Code-Zeile $2 \cdot x + 1 + x \cdot x$ ein.
+%
+Für das $y$ in der Nachbedingung setzen wir dritte Code-Zeile
+\texttt{\AnweisungIII} ein und dann die zweite Code-Zeile
+\texttt{\AnweisungII}. Das wp-Kalkül arbeitet den Code rückswärts ab.
+%
+in $y \% 2$ die dritte Anweisung $y = 2 \cdot y$ einfügen: $2 \cdot y \%
+2$
+%
+dann in $2 \cdot y \% 2$ die zweite Anweisung $y = y + 7$ einfügen: $2
+\cdot (y + 7) \% 2$}
+
+\MatheEquiv{
+  (x + 1)^2 \geq 8 \land 2(y + 7)\%2 = 1
+}
+
+\Erklaerung{Diese Aussage ist falsch, da $2(y + 7)$ immer eine gerade
+Zahl ergibt und der Rest von einer Division durch zwei einer geraden
+Zahl immer 0 ist und nicht 1.}
+
+\MatheEquiv{
+  (x + 1)^2 \geq 8 \land \text{falsch}
+}
+
+\MatheEquiv{
+  \text{falsch}
+}
+
+%%
+%
+%%
+
+\NebenRechnung{$\wp{A;}{\neg b}$}
+
+\Mathe{
+  \wp{\A}{x \leq 196}
+}
+
+\Erklaerung{Analog zu Nebenrechnung 1}
+
+\MatheEquiv{
+  (x + 1)^2 \leq 196
+}
+
+%%
+%
+%%
+
+\NebenRechnung{$\wp{A;C;}{Q}$}
+
+\Mathe{
+  \wp{\A\C}{\Q}
+}
+
+\Erklaerung{\code{x*=2;}: $x \cdot 2$ für $x$ einsetzen:}
+
+\MatheEquiv{
+  \wp{x=2*x+1+x*x;y+=7;y-=8;}
+  {(2 \cdot x \geq 8) \land (y \% 2 = 1)}
+}
+
+\Erklaerung{\code{y-=8;}: $y - 8$ für $y$ einsetzen:}
+
+\MatheEquiv{
+  \wp{x=2*x+1+x*x;y+=7;}
+  {(2 \cdot x \geq 8) \land ((y - 8) \% 2 = 1)}
+}
+
+\Erklaerung{\code{y+=7}: $y + 7$ für $y$ einsetzen:}
+
+\MatheEquiv{
+  \wp{x=2*x+1+x*x;}
+  {(2 \cdot x \geq 8) \land (((y + 7) - 8) \% 2 = 1)}
+}
+
+\Erklaerung{\code{x=2*x+1+x*x;}: $(x + 1)^2$ für $x$ einsetzen:}
+
+\MatheEquiv{
+\wp{}
+  {(2 \cdot (x + 1)^2 \geq 8) \land (((y + 7) - 8) \% 2 = 1)}
+}
+
+\Erklaerung{Nur noch die Nachbedingung stehen lassen:}
+
+\MatheEquiv{
+  (2 \cdot (x + 1)^2 \geq 8) \land ((\textcolor{red}{(y + 7) - 8}) \% 2 = 1)
+}
+
+\Erklaerung{Subtraktion:}
+
+\MatheEquiv{
+  (2 \cdot (x + 1)^2 \geq 8) \land ((\textcolor{red}{y - 1}) \% 2 = 1)
+}
+
+\Erklaerung{Vereinfachen (links beide Seiten durch 2 teilen und rechts
+von beiden Seiten $1$ abziehen)}
+
+\MatheEquiv{
+  (\frac{2 \cdot (x + 1)^2}{2} \geq \frac{8}{2}) \land (((y - 1) \% 2) - 1 = 1 - 1)
+}
+
+\Erklaerung{Zwischenergebnis:}
+
+\MatheEquiv{
+((x + 1)^2 \geq 4) \land y \% 2 = 0
+}
+
+\vspace{1cm}
+
+\ueberschrift{Zusammenführung}
+
+\Erklaerung{Die Zwischenergebnisse aus den Nebenrechnungen
+zusammenfügen:}
+
+\MatheEquiv{
+  [
+    (x + 1)^2 > 196 \land
+    \text{falsch}
+  ]
+  \lor
+  [
+    (x + 1)^2 \leq 196 \land
+    (x + 1)^2 \geq 4 \land y\%2 = 0
+  ]
+}
+
+\Erklaerung{„falsch“ und eine Aussage verbunden mit logischem Und
+„$\land$“ ist insgesamt falsch:}
+
+\MatheEquiv{
+  \text{falsch}
+  \lor
+  [
+    (x + 1)^2 \leq 196 \land
+    (x + 1)^2 \geq 4 \land y\%2 = 0
+  ]
+}
+
+\Erklaerung{falsch verbunden mit oder weglassen:}
+
+\MatheEquiv{
+  (x + 1)^2 \leq 196
+  \land
+  (x + 1)^2 \geq 4 \land y\%2 = 0
+}
+
+\Erklaerung{Umgruppieren, sodass nur noch ein $(x + 1)^2$ geschrieben
+werden muss:}
+
+\MatheEquiv{
+  4 \leq (x + 1)^2 \leq 196
+  \land
+  y\%2 = 0
+}
+
+$4 = 2^2$ und $196 = 14^2$
+
+\MatheEquiv{
+  2^2 \leq (x + 1)^2 \leq 14^2
+  \land
+  y\%2 = 0
+}
+
+\Erklaerung{Hoch zwei weg lassen: Betragsklammer $|x|$ oder auch
+Betragsfunktion hinzufügen (Die Betragsfunktion ist festgelegt als
+„Abstand einer Zahl von der Zahl Null“.}
+
+\MatheEquiv{
+  2 \leq | x + 1 | \leq 14 \land y\%2 = 0
+}
+
+\Erklaerung{Auf die Gleichung der linken Aussage $-1$ anwenden:}
+
+\MatheEquiv{
+  1 \leq |x| \leq 13 \land y\%2 = 0
+}
+
+\Erklaerung{Die Betragsklammer weg lassen:}
+
+\MatheEquiv{
+  (1 \leq x \leq 13 \lor -13 \leq x \leq -1) \land y\%2 = 0
+}
+
+\Mathe{=: P}
+
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 3: „Formale Verifikation“\footcite{examen:46116:2015:09}}
+
+Sei \text{wp}(A, Q) die schwächste Vorbedingung (weakest precondition)
+eines Programmfragments $A$ bei gegebener Nachbedingung $Q$ so, dass $A$
+alle Eingaben, die \text{wp}(A,Q) erfüllen, auf gültige Ausgaben
+abbildet, die $Q$ erfüllen.
+
+Bestimmen Sie schrittweise und formal (mittels Floyd-Hoare-Kalkül)
+jeweils \text{wp}(A, Q) für folgende Code-Fragmente $A$ und
+Nachbedingungen $Q$ und vereinfachen Sie dabei den jeweils ermittelten
+Ausdruck so weit wie möglich.
+
+Die Variablen $x$, $y$ und $z$ in folgenden Pseudo-Codes seien
+ganzzahlig (vom Typ int). Zur Vereinfachung nehmen Sie bitte im
+Folgenden an, dass die verwendeten Datentypen unbeschränkt sind und
+daher keine Überläufe auftreten können.
+
+\begin{enumerate}
+% \item Sequenz:
+% x = -2 * (x + 2 * vy)?
+% yt= 2* x+yt 2
+% Z-= X- yr zZ
+% Q:=x=yt+z
+
+\item Verzweigung:
+
+% if (x < y) {
+% KX =yit Z
+% } else if (y > 0) {
+
+% z=y-];
+% } else {
+
+% x -= y = 2;
+% }
+% O:=ex>z
+
+\item Mehrfachauswahl:
+
+\begin{minted}{java}
+switch (z) {
+  case "x":
+    y = "x";
+  case "y":
+    y = --z;
+    break;
+  default:
+    y = 0x39 + "?";
+}
+\end{minted}
+
+$Q :\equiv \texttt{"x"} = y$
+
+Hinweis zu den ASCII-Codes
+
+\begin{itemize}
+\item $\texttt{"x"} = 120_{(10)}$
+\item $\texttt{"y"} = 121_{(10)}$
+\item $\texttt{0x39} = 57_{(10)}$
+\item $\texttt{"?"} = 63_{(10)}$
+\end{itemize}
+
+\end{enumerate}
+
+\begin{antwort}
+Mehrfachauswahl in Bedingte Anweisungen umschreiben. Dabei beachten,
+dass bei fehlendem \java{break} die Anweisungen im folgenden Fall bzw.
+ggf. in den folgenden Fällen ausgeführt werden:
+
+\begin{minted}{java}
+if (z == "x") {
+  y = "x";
+  y = z - 1;
+} else if (z == "y") {
+  y = z - 1;
+} else {
+  y = 0x39 + "?";
+}
+\end{minted}
+
+Da kein \java{break} im Fall \java{z == "x"}. \java{--z} bedeutet, dass
+die Variable erst um eins verringert und dann zugewiesen wird.
+
+\begin{minted}{java}
+if (z == 120) {
+  y = 120;
+  y = 120 - 1;
+} else if (z == 121) {
+  y = 121 - 1;
+} else {
+  y = 57 + 63;
+}
+\end{minted}
+
+Vereinfachung / Zusammenfassung:
+
+\begin{minted}{java}
+if (z == 120) {
+  y = 120;
+  y = 119;
+} else if (z == 121) {
+  y = 120;
+} else {
+  y = 120;
+}
+\end{minted}
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 3: wp-Kalkül und Schleifeninvariante\footcite{sosy:ab:8}}
+
+nach Herbst 2015 (66116) - Thema 2, Teilaufgabe 2, Aufgabe 3
+
+Gegeben Sei folgendes Programm:
+
+\begin{minted}{java}
+long doubleFac (long n) {
+  /* P */ long df = 1;
+  for (long x = n; x > 1; x -= 2) {
+    df *= x;
+  } /* Q */
+  return df;
+}
+\end{minted}
+
+\noindent
+sowie die Vorbedingung $P \equiv n \geq 0$ und Nachbedingung $Q \equiv
+(df = n!!)$ wobei gilt
+
+\begin{equation*}
+n!! :=
+\begin{cases}
+2^k \cdot k! & n\text{ gerade, }k := \frac{n}{2} \\
+\frac{(2k)!}{2^k \cdot k!}& n\text{ ungerade, }k := \frac{n+1}{2}
+\end{cases}
+\end{equation*}
+
+\begin{exkurs}[Doppelfakultät]
+Die seltener verwendete „Doppelfakultät“ oder „doppelte Fakultät“ist für
+gerade $n$ das Produkt aller geraden Zahlen kleiner gleich $n$. Für
+ungerade $n$ ist es das Produkt aller ungeraden Zahlen kleiner gleich
+$n$.
+
+Sie ist definiert als:
+
+\begin{equation*}
+n!! = \begin{cases}
+n \cdot (n-2) \cdot (n-4) \dotsm 2 & \text{für } n \text{ gerade und } n > 0, \\
+n \cdot (n-2) \cdot (n-4) \dotsm 1 & \text{für } n \text{ ungerade und } n > 0, \\
+1 & \text{für } n \in \{ -1, 0\}
+\end{cases}
+\end{equation*}
+
+\noindent
+Häufig werden anstelle der Doppelfakultät Ausdrücke mit der gewöhnlichen
+Fakultät verwendet. Es gilt $(2k)!! = 2^k k!$  und $(2k-1)!! =
+\frac{(2k)!}{2^k k!}$
+\end{exkurs}
+
+\noindent
+Zur Vereinfachung nehmen Sie im Folgenden an, dass die verwendeten
+Datentypen unbeschränkt sind und daher keine Überläufe auftreten können.
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Welche der folgenden Bedingungen ist eine zum Beweisen der
+Korrektheit der Methode mittels wp-Kalkül sinnvolle Schleifeninvariante?
+
+\begin{itemize}
+\item $\text{df} = n!! − x!! \land x \geq 1$
+\item $\text{df} = (n − x)!! \land x \geq 1$
+\item $\text{df} \cdot x!! = n!! \land x \geq 0$
+\item $(\text{df} + x)!! = n!! \land x \geq 0$
+\end{itemize}
+
+\begin{antwort}
+Zunächst wird der Code in einen äquivalenten Code mit while-Schleife
+umgewandelt:
+
+\begin{minted}{java}
+long doubleFac (long n) {
+  /* P */ long df = 1;
+  long x = n ;
+  while (x > 1) {
+    df = df * x;
+    x = x - 2;
+  } /* Q */
+  return df;
+}
+\end{minted}
+
+Die ersten beiden Bedingungen sind unmöglich, da z.\,B. für $n = 2$ nach
+der Schleife $x = 0$ gilt und daher $x \geq 1$ verletzt wäre. Die letzte
+kann es auch nicht sein, da vor der Schleife $df = 1$ und $x = n$ gilt,
+d.\,h. $(\text{df} + x)!! = (1 + n)!!$. Jedoch ist offenbar $(1 + n)!!
+\not = n!!$. Nach dem Ausschlussprinzip ist es daher die dritte
+Bedingung: $I \equiv (\text{df} + x)!! = n!! \land x \geq 0$.
+
+\end{antwort}
+
+%%
+% (b)
+%%
+\item Zeigen Sie formal mittels wp-Kalkül, dass die von Ihnen gewählte
+Bedingung unmittelbar vor Beginn der Schleife gilt, wenn zu Beginn der
+Methode die Anfangsbedingung $P$ gilt.
+
+\begin{antwort}
+Zu zeigen $P \Rightarrow \wp{Code vor der Schleife}{I}$
+
+\begin{align*}
+\wp{Code vor der Schleife}{I}
+& \equiv \wp{df = 1; x = n;}{(\text{df} \cdot x)!! = n!! \land x \geq 0} \\
+& \equiv \wp{df = 1;}{(\text{df} \cdot n)!! = n!! \land n \geq 0} \\
+& \equiv \wp{}{(1 \cdot n)!! = n!! \land n \geq 0} \\
+& \equiv n!! = n!! \land n \geq 0 \\
+& \equiv n \geq 0 \\
+& \equiv P \\
+\end{align*}
+
+Insbesondere folgt damit die Behauptung.
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Zeigen Sie formal mittels wp-Kalkül, dass die von Ihnen gewählte
+Bedingung tatsächlich eine Invariante der Schleife ist.
+
+\begin{antwort}
+zu zeigen: $I \land \text{Schleifenbedingung} \Rightarrow \wp{Code in der Schleife}{I}$
+
+Bevor wir dies beweisen, zeigen wir erst $x \cdot (x − 2)!! = x!!$.
+
+\begin{itemize}
+\item Fall $x$ ist gerade ($n!! = 2^k \cdot k!$ für $k := \frac{n}{2}$):
+
+$x \cdot (x - 2)!! =
+x \cdot 2^\frac{x - 2}{2} \cdot (\frac{x - 2}{2})! =
+x \cdot \frac{1}{2} \cdot 2^\frac{x}{2} \cdot (\frac{x}{2} - 1)! =
+2^\frac{x}{2} \cdot (\frac{x}{2})! =
+x!!
+$
+
+Nebenrechnung (Division mit gleicher Basis: $x^{a-b} = \frac{x^a}{x^b}$):
+
+$2^\frac{x - 2}{2} =
+2^{(\frac{x}{2} - \frac{2}{2})} =
+\frac{2^\frac{x}{2}}{2^\frac{2}{2}} =
+\frac{2^\frac{x}{2}}{2^1} =
+\frac{2^\frac{x}{2}}{2} =
+\frac{1}{2} \cdot 2^\frac{x}{2}
+$
+
+Nebenrechnung ($n! = (n - 1)! \cdot n$):
+
+$x \cdot \frac{1}{2} \cdot (\frac{x}{2} - 1)! =
+\frac{x}{2} \cdot (\frac{x}{2} - 1)! =
+\frac{x}{2}!
+$
+
+\item Fall $x$ ist ungerade:
+\end{itemize}
+
+Dies benutzen wir nun, um den eigentlichen Beweis zu führen:
+
+\begin{align*}
+\wp{Code vor der Schleife}{I}
+& \equiv \wp{df = df * x; x = x - 2;}{(\text{df} \cdot x)!! = n!! \land x \geq 0} \\
+& \equiv \wp{df = df * x;}{(\text{df} \cdot (x - 2)))!! = n!! \land x - 2 \geq 0} \\
+& \equiv \wp{}{(\text{df} \cdot x \cdot (x - 2)))!! = n!! \land x - 2 \geq 0} \\
+& \equiv (\text{df} \cdot x)!! = n!! \land x \geq 2 \\
+& \equiv (\text{df} \cdot x)!! = n!! \land x > 1 \\
+& \equiv I \land x > 1 \\
+& \equiv I \land \text{Schleifenbedingung} \\
+\end{align*}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Zeigen Sie formal mittels wp-Kalkül, dass am Ende der Methode die
+Nachbedingung $Q$ erfüllt wird.
+
+%%
+% (e)
+%%
+
+\item Beweisen Sie, dass die Methode immer terminiert. Geben Sie dazu
+eine Terminierungsfunktion an und begründen Sie kurz ihre Wahl.
+
+\begin{antwort}
+Sei $T (x) := x$. $T$ ist offenbar ganzzahlig. Da $x$ in jedem
+Schleifendurchlauf um $2$ verringert wird, ist $T$ streng monoton
+fallend. Aus der Schleifeninvariante folgt $x \geq 0$ und daher ist $x$
+auch nach unten beschränkt. Damit folgt $I \Rightarrow T \geq 0$ und $T$
+ist eine gültige Terminierungsfunktion.
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 5 (Check-Up)}
+
+Sie dürfen im Folgenden davon ausgehen, dass keinerlei Under- oder
+Overflows auftreten.\footcite[nach Frühjahr 2017 (66116) - Thema 2,
+Teilaufgabe 2, Aufgabe 4]{examen:66116:2017:03}
+
+Gegeben sei die folgende Methode mit Vorbedingung $P := x \geq 0 \land y
+\geq 0$ und Nachbedingung $Q := x \cdot y = z$.
+
+\begin{minted}{java}
+int mul (int x , int y) {
+  /* P */
+  int z = 0, i = 0;
+  while (i++ != x)
+    z += y;
+  /* Q */
+  return z;
+}
+\end{minted}
+
+Betrachten Sie dazu die folgenden drei Prädikate:
+
+\begin{itemize}
+\item $I_1 := z + i \cdot y = x \cdot y$
+\item $I_2 := \text{false}$
+\item $I_3 := z + (x - i) \cdot y = x \cdot y$
+\end{itemize}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Beweisen Sie formal für jedes der drei Prädikate, ob es
+unmittelbar vor Betreten der Schleife in \java{mul} gilt oder nicht.
+
+\begin{antwort}
+\begin{align*}
+\wp{Code vor der Schleife}{I_1}
+& \equiv \wp{int z = 0, i = 0;}{z + i \cdot y = x \cdot y} \\
+& \equiv \wp{}{0 + 0 \cdot y = x \cdot y} \\
+& \equiv 0 = x \cdot y \\
+& \equiv \text{falsch} \\
+\end{align*}
+
+\begin{align*}
+\wp{Code vor der Schleife}{I_2}
+& \equiv \wp{int z = 0, i = 0;}{\text{false}} \\
+& \equiv \wp{}{\text{false}} \\
+& \equiv \text{false} \\
+& \equiv \text{falsch} \\
+\end{align*}
+
+\begin{align*}
+\wp{Code vor der Schleife}{I_3}
+& \equiv \wp{int z = 0, i = 0;}{z + (x - i) \cdot y = x \cdot y} \\
+& \equiv \wp{}{0 + (x - 0) \cdot y = x \cdot y} \\
+& \equiv x \cdot y = x \cdot y \\
+& \equiv \text{wahr} \\
+\end{align*}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Weisen Sie formal nach, welche der drei Prädikate Invarianten des
+Schleifenrumpfs in \java{mul} sind oder welche nicht.
+
+\begin{antwort}
+Für den Nachweis muss der Code etwas umformuliert werden:
+
+\begin{minted}{java}
+int mul (int x , int y) {
+  /* P */
+  int z = 0, i = 0;
+  while (i != x) {
+    i = i + 1;
+    z = z + y;
+  }
+  /* Q */
+  return z;
+}
+\end{minted}
+
+\begin{align*}
+\wp{Code Schleife}{I_1 \land i \neq x}
+& \equiv \wp{i = i + 1; z = z + y;}{z + i \cdot y = x \cdot y \land i \neq x} \\
+& \equiv \wp{i = i + 1;}{z + y + i \cdot y = x \cdot y \land i \neq x} \\
+& \equiv \wp{}{z + y + (i + 1) \cdot y = x \cdot y \land i + 1 \neq x} \\
+& \equiv z + y + (i + 1) \cdot y = x \cdot y \land i + 1 \neq x \\
+& \equiv z + i \cdot y + 2 \cdot y = x \cdot y \land i + 1 \neq x \\
+& \equiv \text{falsch} \land i + 1 \neq x \\
+& \equiv \text{falsch} \\
+\end{align*}
+
+\begin{align*}
+\wp{Code Schleife}{I_2 \land i \neq x}
+& \equiv \wp{i = i + 1; z = z + y;}{\text{false} \land i \neq x} \\
+& \equiv \wp{}{\text{false} \land i \neq x} \\
+& \equiv \text{falsch} \land i \neq x \\
+& \equiv \text{falsch} \\
+\end{align*}
+
+\begin{align*}
+\wp{Code Schleife}{I_3 \land i \neq x}
+& \equiv \wp{i = i + 1; z = z + y;}{z + (x - i) \cdot y = x \cdot y \land i \neq x} \\
+& \equiv \wp{i = i + 1;}{z + y + (x - i) \cdot y = x \cdot y \land i \neq x} \\
+& \equiv \wp{}{z + y + (x - i + 1) \cdot y = x \cdot y \land i + 1 \neq x} \\
+& \equiv z + y + x \cdot y - i \cdot y + y = x \cdot y \land i + 1 \neq x \\
+& \equiv z + 2 \cdot y + x \cdot y - i \cdot y = x \cdot y \land i + 1 \neq x \\
+& \equiv \text{wahr} \\
+\end{align*}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Beweisen Sie formal, aus welchen der drei Prädikate die
+Nachbedingung gefolgert werden darf bzw. nicht gefolgert werden kann.
+
+\begin{antwort}
+
+$I_1 := z + i \cdot y = x \cdot y$
+$I_2 := \text{false}$
+$I_3 := z + (x - i) \cdot y = x \cdot y$
+
+\begin{align*}
+\wp{Code nach Schleife}{I_1 \land i = x}
+& \equiv \wp{}{z + i \cdot y = x \cdot y \land i = x} \\
+& \equiv z + i \cdot y = x \cdot y \land i = x \\
+& \equiv z + x \cdot y = x \cdot y\\
+& \neq Q
+\end{align*}
+
+\begin{align*}
+\wp{Code nach Schleife}{I_2 \land i = x}
+& \equiv \wp{}{\text{false} \land i = x} \\
+& \equiv \text{false} \land i = x \\
+& \equiv \text{falsch} \\
+& \neq Q
+\end{align*}
+
+\begin{align*}
+\wp{Code nach Schleife}{I_3 \land i = x}
+& \equiv \wp{}{z + (x - i) \cdot y = x \cdot y \land i = x} \\
+& \equiv z + (x - i) \cdot y = x \cdot y \land i = x \\
+& \equiv z + (x - x) \cdot y = x \cdot y\\
+& \equiv z + 0 \cdot y = x \cdot y\\
+& \equiv z + 0 = x \cdot y \\
+& \equiv z = x \cdot y \\
+& \equiv Q \\
+\end{align*}
+
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Skizzieren Sie den Beweis der totalen Korrektheit der Methode
+\java{mul}. Zeigen Sie dazu auch die Terminierung der Methode.
+
+\begin{antwort}
+Aus den Teilaufgaben folgt der Beweis der partiellen Korrektheit mit
+Hilfe der Invariante $i_3$. $i$ steigt streng monoton von $0$ an so
+lange gilt $i \neq x$. $i = x$ ist die Abbruchbedingung für die bedingte
+Wiederholung. Dann terminiert die Methode. Die Methode \java{mul} ist
+also total korrekt.
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 1: „Formale Verifikation“\footcite{examen:46116:2014:03}}
+
+Gegeben sei folgende Methode zur Berechnung der Anzahl der notwendigen
+Züge beim Spiel \emph{„Die Türme von Hanoi“}:
+
+\inputcode[firstline=4,lastline=15]{aufgaben/sosy/examen_64116_2014_09/Hanoi}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Beweisen Sie formal mittels vollständiger Induktion, dass zum
+Umlegen von $k$ Scheiben (z.\,B. vom Turm A zum Turm C) insgesamt
+$2^k-1$ Schritte notwendig sind, also dass für $k \geq 0$ folgender
+Zusammenhang gilt:
+
+\begin{displaymath}
+\text{hanoi}(k,\text{'A'},\text{'C'}) = 2^k - 1
+\end{displaymath}
+
+\begin{antwort}
+Zu zeigen:
+
+\begin{displaymath}
+\text{hanoi}(k,\text{'A'},\text{'C'}) = 2^k - 1
+\end{displaymath}
+
+%%
+%
+%%
+
+\ueberschrift{I. A.} $k=0$
+
+$\text{hanoi}(0,\text{'A'},\text{'C'}) = 0$
+
+$2^0 - 1 = 1 - 1 = 0$
+
+%%
+%
+%%
+
+\ueberschrift{I. V.}
+
+\begin{displaymath}
+\text{hanoi}(k,\text{'A'},\text{'C'}) = 2^k - 1
+\end{displaymath}
+
+%%
+%
+%%
+
+\ueberschrift{I. S.} $k \rightarrow k + 1$
+
+\begin{align*}
+\text{hanoi}(k +  1, \text{'A'},\text{'C'})
+& = 1 + \text{hanoi}(k, \text{'A'},\text{'B'}) + \text{hanoi}(k, \text{'B'},\text{'C'})\\
+& = 1 + 2^k - 1 +  2^k - 1 \\
+& = 2 \cdot 2^k - 1 \\
+& = 2^{k+1} - 1 \\
+\end{align*}
+
+\end{antwort}
+
+%%
+% b)
+%%
+
+\item Geben Sie eine geeignete Terminierungsfunktion an und begründen
+Sie kurz Ihre Wahl!
+
+\begin{antwort}
+Betrachte Argumentenfolge
+
+$k, k-1, k-2, \dots, 0$
+
+$\Rightarrow$ Terminierungsfunktion: $T(k) = k$
+
+Nachweis für ganzzahlige $k \geq 0$:
+
+\begin{itemize}
+\item $T(k)$ ist auf der Folge der Argumente streng monoton fallend bei
+jedem Rekursionsschritt.
+
+\item Bei der impliziten Annahme $k$ ist ganzzahlig und $k \geq 0$ ist
+$T(k)$ nach unten durch $0$ beschränkt.
+\end{itemize}
+
+\end{antwort}
+
+\end{enumerate}
+
+\literatur
+
+\end{document}

@@ -1,0 +1,570 @@
+
+
+Prüfungsteilnehmer Prüfungstermin Einzelprüfungsnummer
+
+Kennzahl:
+
+Kennwort: Frü hj ahr
+
+— 66116
+Arbeitsplatz-Nr.: 2016
+
+Erste Staatsprüfung für ein Lehramt an öffentlichen Schulen
+— Prüfungsaufgaben —
+
+Fach: Informatik (vertieft studiert)
+Einzelprüfung: Datenbanksysteme, Softwaretechnologie
+Anzahl der gestellten Themen (Aufgaben): 2
+
+Anzahl der Druckseiten dieser Vorlage: 14
+
+Bitte wenden!
+Frühjahr 2016 Einzelprüfungsnummer 66116 Seite 2
+
+Thema Nr. 1
+
+Teilaufgabe 1
+
+1. Modellierung
+
+Für die bayerische Forstverwaltung wird eine Datenbank zur Erschließung einer Jagd-Statistik
+benötigt. Gehen Sie dabei von folgendem Szenario aus:
+
+b)
+
+Die Administration von Jagdgebieten obliegt den Landkreisen. Jeder Landkreis besitzt, neben
+seinem Namen und der Einwohnerzahl, ein eindeutiges KFZ-Kennzeichen.
+
+Die Jagd findet in Jagdgebieten statt. Ein Jagdgebiet soll dem Landkreis zugeteilt werden,
+indem es liegt. Gehen Sie davon aus, dass Jagdgebiete nicht in mehreren Landkreisen liegen
+können. Zusätzlich ist für jedes Jagdgebiet der Name und die Gesamtfläche zu speichern. Dabei
+ist zu beachten, dass die Namen nur innerhalb eines einzelnen Landkreises eindeutig sind.
+
+Die Erlaubnis zum Jagen wird durch einen Jagdschein erteilt. Dieser kann nur von einem
+Landkreis ausgestellt werden und beschränkt sich auf ein oder mehrere Jagdgebiete. Er wird
+durch eine Jagdschein-Nummer (JSNR) identifiziert und ist in einem bestimmtem Zeitintervall
+gültig. Dieses soll über zwei Zeitpunkte festgelegt werden (gültig von, gültig bis).
+
+Ein Jäger besitzt genau einen Jagdschein. Zu einem Jäger sollen Name, Stadt, Straße und
+Hausnummer, gespeichert werden. Da die Jagdtradition innerhalb einer Familie häufig von
+einer zur nächsten Generation weitergegeben wird, kann es vorkommen, dass Name und
+Adresse von zwei unterschiedlichen Jägern gleich ist (z.B. Vater und Sohn). Aus diesem Grund
+ist eine eindeutige Identifikationsnummer notwendig.
+
+Um Statistiken erheben zu können, muss berücksichtigt werden, welches Wild von welchen
+Jägern zu welchem Zeitpunkt in welchem Jagdgebiet erlegt worden ist. Gehen Sie davon aus,
+dass es mehrere Jäger geben kann, die gemeinsam ein Wild erlegen (z.B. in einer
+Jagdgesellschaft). Zu einem Wild gehört die Art (z.B. Reh), die Größe, das Gewicht, sowie
+eine eindeutige Identifikationsnummer. Zusätzlich unterscheidet man zwischen Haarwild und
+Federwild, wobei beim Haarwild der Typ des Gehörns (z.B. Hirschgeweih) und beim
+Federwild die Flügelspannweite betrachtet werden soll.
+
+Entwerfen Sie für das beschriebene Szenario ein ER-Modell in Chen-Notation. Bestimmen Sie
+hierzu:
+
+die Entity-Typen, die Relationship-Typen und jeweils deren Attribute,
+
+die Primärschlüssel der Entity-Typen, welche Sie anschließend in das ER-Diagramm eintragen,
+und
+
+die Funktionalitäten der Relationship-Typen.
+
+Überführen Sie das ER-Modell aus Aufgabe a) in ein verfeinertes relationales Modell. Geben Sie
+hierfür die verallgemeinerten Relationenschemata an. Achten Sie dabei insbesondere darauf, dass
+die Relationenschemata keine redundanten Attribute enthalten.
+
+Fortsetzung nächste Seite!
+Frühjahr 2016 Einzelprüfungsnummer 66116 Seite 3
+
+2. Relationale Algebra, SOL
+
+Gegeben sei folgendes ER-Modell, welches Polizisten, deren Dienststelle und Fälle, an denen sie
+arbeiten, speichert:
+
+I
+
+PersNr
+grad
+N M
+Vor- u; NachPoa
+N N
+
+_ Costa)
+Gehalt
+arbentet stationtert
+
+M 1
+
+Gehen Sie dabei von dem dazugehörigen relationalen Schema aus:
+
+Polizist: {[PersNr, DSID, Vorname, Nachname, Dienstgrad, Gehalt]}
+Dienststelle: {{DSID, Name, Strasse, HausNr, Stadt]}
+
+Fall: {[ {AkZ, Titel, Beschreibung, Status]}
+
+Arbeitet_An: {{PersNr, AkZ, Von, Bis]}
+
+Vorgesetzte: {| PersNr, PersNr_Vorgesetzter]}
+
+a) Formulieren Sie eine Anfrage in relationaler Algebra, welche den Vornamen und Nachnamen von
+Polizisten zurückgibt, deren Dienstgrad 'Polizeikommissar' ist und mehr als 1500 Euro verdienen.
+
+b) Formulieren Sie eine Anfrage in relationaler Algebra, welche die Titel der Fälle ausgibt, die von
+Polizisten mit dem Nachnamen 'Mayer' bearbeitet wurden.
+
+c) Formulieren Sie eine SQL-Anfrage, welche die Anzahl der Polizisten ausgibt, die in der Stadt
+"München! arbeiten und mit Nachnamen 'Schmidt' heißen.
+
+d) Formulieren Sie eine SQL-Anfrage, welche die Namen der Dienststellen ausgibt, die am
+14.02.2012 an dem Fall mit dem Aktenzeichen XZ1508 beteiligt waren. Ordnen Sie die
+
+Ergebnismenge alphabetisch (aufsteigend) und achten Sie darauf, dass keine Duplikate enthalten
+sind.
+
+e) Definieren Sie die View 'Erstrebenswerte_Dienstgrade', welche Dienstgrade enthalten soll, die in
+München mit durchschnittlich mehr als 2500 Euro besoldet werden.
+
+Fortsetzung nächste Seite!
+Frühjahr 2016 Einzelprüfungsnummer 66116 Seite 4
+
+f) Formulieren Sie eine SQL-Anfrage, welche Vorname, Nachname und Dienstgrad von Polizisten
+mit Vorname, Nachname und Dienstgrad ihrer Vorgesetzten als ein Ergebnis-Tupel ausgibt (siehe
+Beispiel-Tabelle). Dabei sind nur Polizisten zu selektieren, die an Fällen gearbeitet haben, deren
+Titel den Ausdruck 'Fussball' beinhalten. An Vorgesetzte sind keine Bedingungen gebunden.
+Achten Sie darauf, dass Sie nicht nur direkte Vorgesetzte, sondern alle Vorgesetzte innerhalb der
+
+Vorgesetzten-Hierarchie betrachten. Ordnen Sie ihre Ergebnismenge alphabetisch (absteigend)
+nach Nachnamen des Polizisten.
+
+VN NN DG VN VG NN VG DG_VG
+
+Hans Müller Polizeimeister Andreas Schmidt Polizeikommissar
+Hans Müller Polizeimeister Stefan Hoffmann Polizeidirektor
+
+Josef Fischer Polizeihauptmeister Sebastian Wagner Polizeioberkommissar
+Josef Fischer Polizeihauptmeister Stefan Hoffmann Polizeidirektor
+
+Abbildung 1: Ergebnistabelle
+
+Hinweis: Sie dürfen Views verwenden, um Teilergebnisse auszudrücken.
+
+Fortsetzung nächste Seite!
+Frühjahr 2016 Einzelprüfungsnummer 66116 Seite 5
+
+3. Normalformen
+
+Gegeben sei ein Auszug der Relation S einer relationalen Datenbank in Abbildung 2. Darin sind
+Informationen zu Schrauben eines Baumarkts enthalten. Jeder Schraubentyp besitzt eine eindeutige
+Artikelnummer, sowie eine Kopfform, ein Formelement, einen Gewindetyp, das Material und die
+jeweilige Länge. Zusätzlich ist zu jeder Schraube gespeichert, welche DIN Norm sie erfüllt. Diese
+Normen standardisieren Kopfform, Formelement, Material und Gewinde. Zum Beispiel erfüllt eine
+Senk-Holzschraube mit Schlitz die DIN Norm 97.
+
+ArtNr DIN Kopfform Formelement Gewinde Material Länge
+SR2141 DIN571 Sechskant Kreuz Holzschraube Holz 34mm
+SR8923 DIN478 Vierkant Trox-TR Rechts Stahl 41mm
+SR0984 DIN7996 Rund Schlitz Links Messing 80mm
+SR7688 DIN571 Sechskant Kreuz Holzschraube Holz 52mm
+SR3579 DIN965 Senk Kreuz Rohr Keramik 29mm
+SR4139 DINS71 Sechskant Kreuz Holzschraube Holz 78mm
+SR6760 DIN97 Senk Schlitz Holzschraube Holz 29mm
+
+Abbildung 2: Relation S
+
+Bearbeiten Sie mit diesen Informationen folgende Teilaufgaben. Vergessen Sie dabei nicht, Ihr
+Vorgehen stichpunktartig zu dokumentieren und zu begründen.
+
+a) Bestimmen Sie alle funktionalen Abhängigkeiten von S.
+b) Bestimmen Sie alle Kandidatenschlüssel von S.
+c) Zeigen Sie an einer geeigneten Instanz, dass in der Relation S eine Update-Anomalie auftreten
+
+kann.
+
+Hinweis: Beachten Sie, dass Ihre Instanz alle Funktionalen Abhängigkeiten aus der
+Aufgabenstellung erfüllt.
+
+d) Welcher Normalform genügt die Relation S (INF, 2NF, 3NF, BCNF)? Begründen Sie Ihre
+Aussagen ausführlich.
+
+Fortsetzung nächste Seite!
+Frühjahr 2016 Einzelprüfungsnummer 66116 Seite 6
+
+Teilaufgabe 2
+
+Aufgabe 1.1: UML-Klassendiagramm
+Aufgabenstellung:
+
+Modellieren Sie das wie folgend spezifizierte soziale Netzwerk mit Hilfe eines UMLKlassendiagramms. Auf Sichtbarkeiten kann verzichtet werden.
+
+In dieser Aufgabe soll eine Internetplattform für ein einfaches soziales Netzwerk mit Hilfe von UML
+modelliert werden. Das soziale Netzwerk besteht aus Teilnehmern. Für jeden Teilnehmer sind
+Benutzername, Passwort und E-Mail-Adresse zu speichern. Zwei Teilnehmer können miteinander
+befreundet sein, wobei jeder Teilnehmer beliebig viele Freunde besitzen kann. Jeder Teilnehmer kann
+ferner eine beliebige Anzahl von Gruppen gründen. Für jede Gruppe ist ein Titel, eine
+Kurzbeschreibung, der Gründer sowie ein Gründungsdatum zu erfassen. Jede Gruppe wiederum besitzt
+eine beliebige Anzahl von Teilnehmern als Mitglieder. Um Mitglied einer Gruppe werden zu können,
+muss sich ein Teilnehmer bei dieser anmelden. Damit der entsprechende Teilnehmer tatsächlich
+Mitglied wird, muss er nachfolgend vom Gründer der Gruppe zugelassen werden. Für jedes Mitglied
+einer Gruppe ist das Datum des Beitritts zu dieser Gruppe zu speichern. Zu jeder Gruppe gehört
+zusätzlich ein Forum, in dem sich die Mitglieder der Gruppe austauschen können. Die Forenbeiträge
+können nur von Gruppenmitgliedern eingestellt werden. Ein Forenbeitrag ist dabei durch einen Betreff,
+einen Beitragstext, den Autor, ein Einstellungsdatum sowie ggf. einen „Ursprungs“-Beitrag
+charakterisiert, auf den sich der entsprechende Eintrag bezieht.
+
+Aufgabe 1.2: UML-Aktivitätsdiagramm
+Aufgabenstellung:
+Modellieren Sie das folgende Verhalten mit Hilfe eines Aktivitätsdiagramms.
+
+Versucht ein Besucher (nicht notwendigerweise ein Teilnehmer) der Internetplattform einen Eintrag in
+ein Forum zu schreiben, reagiert die Plattform wie folgt: Zunächst wird der Besucher aufgefordert sich
+mit Benutzername und Kennwort zu authentifizieren. Solange dies misslingt, erfolgt ein erneuter
+Versuch. Gelingt die Anmeldung, wird überprüft, ob der (nun authentifizierte) Teilnehmer Mitglied
+der Gruppe ist. Wenn dies zutrifft kann der Benutzer seinen Eintrag verfassen. Andernfalls bekommt
+der Teilnehmer die Möglichkeit sich für die Gruppe anzumelden.
+
+Fortsetzung nächste Seite!
+Frühjahr 2016
+
+Einzelprüfungsnummer 66116
+
+Seite 7
+
+Aufgabe 2.1: Entwurfsmuster erkennen
+
+Aufgabenstellung:
+
+Benennen Sie im folgenden Klassendiagramm fünf verschiedene Entwurfsmuster. Geben Sie die
+jeweils beteiligten Klassen und deren Zuständigkeit im entsprechenden Muster an.
+
+«interface»
+DocumentTraverser
+s*hasNextO : Boolean
+ned) : Document
+rT
+| iin
+7S
+5
+banking |
+| eh |
+einterfare» 2.1 i
+JobCreator «interface» 4. [ «interfaces
++createRecord? stchO : RecordF etch u Banking oe
++treateTransferg : Transfer Zw
+1
+i :
+ı ‘ FaeDB
+a 4 I
+r t
+is id
+| HECTBanking |
+
+Fortsetzung nächste Seite!
+Frühjahr 2016 Einzelprüfungsnummer 66116 Seite 8
+
+Aufgabe 2.2: Entwurfsmuster beschreiben
+
+Aufgabenstellung:
+
+a) Beschreiben Sie die Funktionsweise zweier der folgenden Entwurfsmuster und geben Sie ein
+passendes UML-Klassendiagramm an
+o Kompositum
+o Dekorator
+o Klassenadapter
+o Objektadapter
+
+b) Erklären Sie unabhängig zu den in a) gewählten Mustern mit maximal zwei Sätzen den
+Unterschied zwischen Klassenadapter und Objektadapter.
+
+Aufgabe 2.3: Entwurfsmuster Implementierung
+
+Aufgabenstellung:
+
+Implementieren Sie einen Stapel in einer beliebigen Sprache. Nutzen Sie dazu ein Array mit fixer
+Größe. Auf eine Überlaufprüfung darf verzichtet werden. Implementieren Sie in der Klasse das Iterator
+Entwurfsmuster, um auf die Inhalte zuzugreifen, sowie eine Funktion zum hinzufügen von Elementen.
+Als Typ für den Stapel kann zur Vereinfachung ein Integertyp verwendet werden.
+Frühjahr 2016 Einzelprüfungsnummer 66116 Seite 9
+
+Thema Nr. 2
+
+Teilaufgabe 1
+
+1. ER-Diagramme
+
+1.1 Modellieren Sie den Aufbau eines Sportklubs mit einem ER-Diagramm. Kardinalitäten sind
+hierbei in der (min, max)-Notation anzugeben.
+
+Personen unterteilen sich in Sportler und Betreuer. Personen haben einen Namen, eine Adresse, eine
+Telefonnummer sowie ein Geburtsdatum. Identifiziert werden sie über eine eindeutige Kennung. Zu
+den Sportlern ist ihr Gewicht sowie ihr Geburtsland bekannt, zu den Betreuern ihr Gehalt sowie eine
+Liste ihrer Führerscheinklassen.
+
+Sportler können Mitglied eines oder mehrerer Teams sein, die über ihren Namen identifiziert werden.
+Jedes Team wird von mindestens einem Betreuer in mindestens einer Sportart betreut. Sportarten
+haben eine Kennung, einen Namen und eine Angabe zu den durchschnittlichen monatlichen Kosten.
+Sportler können mehrere Sportarten betreiben, wobei sie maximal eine Lieblingssportart haben.
+
+1.2 Welche Aussagen lassen sich für folgende Modelle unter einer üblichen Interpretation
+treffen? Inwieweit unterscheiden bzw. gleichen sie sich? Es kommt hier vor allem auf die
+Gesamtaussage an. Formulieren Sie die Aussagen auch mit Hilfe partieller Funktionen.
+
+N M
+Kunde Produkt Kunde Nr Produkt
+N M N N
+1 N 1
+Laden Laden
+
+Bemerkung: Die Attribute wurden der Übersichtlichkeit wegen weggelassen.
+
+Fortsetzung nächste Seite!
+Frühjahr 2016 Einzelprüfungsnummer 66116 Seite 10
+
+2. Relationales Modell
+
+2.1 Überführen Sie das folgende ER-Modell in ein relationales Modell.
+
+=
+Essen Zusatzstoffe
+Snack
+
+M Getränk
+Im
+
+N
+\
+Same a
+
+1
+
+Saal #Sitzplätze
+
+2.2 Macht es im ER-Modell von Aufgabe 2.1 einen Unterschied, zwischen Entitätstyp „Kino“ und
+
+Entitätstyp „Saal“ noch eine zusätzliche Beziehung einzuführen? Wenn ja, wo liegt der
+Unterschied? Wenn nein, warum nicht?
+
+Fortsetzung nächste Seite!
+Frühjahr 2016 Einzelprüfungsnummer 66116 Seite 11
+
+3. Normalisierung
+
+Gegeben ist eine Relation „Mitarbeiter“ sowie alle für die Attribute der Relation geltenden
+funktionalen Abhängigkeiten.
+
+3.1 Ist die Relation in erster Normalform? Ist sie in zweiter Normalform? Ist sie in dritter
+Normalform? Geben Sie jeweils eine Begründung für Ihre Antwort mit an.
+
+Mitarbeiter(MID, Vorname, Nachname, Geburtsdatum, Straße, Hausnummer, Postleitzahl, Ort,
+PrivatVorwahl, PrivatTelefonnummer, Abteilungsnummer, Abteilungsname, Bereichsnummer,
+Bereichsname, Eintrittsdatum, Dienstalter, Gehaltsklasse, Gehalt)
+
+Zusätzlich zur Schlüsseleigenschaft des Attributs MID (MID — Mitarbeiter) gelten noch weitere
+funktionalen Abhängigkeiten. Alle Abhängigkeiten sind in der Menge FD zusammengefasst:
+
+FD={
+
+MID — Vorname Nachname Geburtsdatum Straße Hausnummer Postleitzahl Ort PrivatVorwahl
+PrivatTelefonnummer Abteilungsnummer Abteilungsname Bereichsnummer Bereichsname
+Eintrittsdatum Dienstalter Gehaltsklasse Gehalt,
+
+Postleitzahl — Ort,
+
+Postleitzahl — PrivatVorwahl,
+
+PrivatVorwahl — Ort,
+
+Ort — Privatvorwahl,
+
+Abteilungsnummer — Abteilungsname,
+
+Abteilungsname — Abteilungsnummer,
+
+Bereichsnummer — Bereichsname,
+
+Bereichsname — Bereichsnummer,
+
+Bereichsnummer — Abteilungsnummer,
+
+Eintrittsdatum — Dienstalter,
+
+Dienstalter — Eintrittsdatum,
+
+Eintrittsdatum Gehaltsklasse — Gehalt
+
+}
+
+Bei der Bestimmung der kanonischen Uberdeckung für die Menge FD muss eine Links- und eine
+Rechtsreduktion durchgeführt werden.
+
+3.2 Warum führt eine Linksreduktion von FD zu keiner Veränderung?
+
+Fortsetzung nächste Seite!
+Frühjahr 2016 Einzelprüfungsnummer 66116 Seite 12
+
+3.3
+
+4.1
+
+4.2
+
+4.3
+
+4.4
+
+4.5
+
+4.6
+
+5.1
+
+5.2
+
+Welche Attribute auf der rechten Seite der funktionalen Abhängigkeit
+MID - Vorname Nachname Geburtsdatum Straße Hausnummer Postleitzahl Ort
+PrivatVorwahl PrivatTelefonnummer Abteilungsnummer Abteilungsname
+
+Bereichsnummer Bereichsname Eintrittsdatum Dienstalter Gehaltsklasse
+Gehalt
+
+sind redundant, wenn noch keine der anderen Abhängigkeiten entfernt wurden?
+
+Relationale Algebra und SQL
+
+Nachfolgend ist das Datenbankschema einer Schule gegeben. Verschiedene Anfragen in SQL
+sollen auf diesem Schema durchgeführt werden.
+
+Lehrkraft (Personalnummer, Name, Geschlecht, Wohnort, Geburtsjahr)
+Schüler (Schülernummer, Name, Konfession, Klassennummer)
+Fach (Fachname, Beschreibung)
+
+unterrichtet (Personalnummer, Schülernummer, Fachname, Stundenzahl)
+
+Bemerkung: Das Geschlecht einer Lehrkraft ist entweder 'm' oder 'w'.
+
+In unterrichtet: Personalnummer ist Fremdschlüssel und referenziert den Primärschlüssel von
+Lehrkraft; Schülernummer ist Fremdschlüssel und referenziert den Primärschlüssel von Schüler;
+Fachname ist Fremdschlüssel und referenziert den Primärschlüssel von Fach.
+
+Es soll eine Liste mit Schülernamen und den zugehörigen Klassen ausgegeben werden, wobei die
+
+Ausgabe absteigend nach Klassennummer und innerhalb der Klassen aufsteigend nach Name
+erfolgen soll.
+
+Aus welchen Wohnorten stammen die Lehrerinnen und wie viele kommen jeweils aus einem
+Ort?
+
+Wie lautet das durchschnittliche Geburtsjahr aller Lehrkräfte?
+Zu welchem Fach gibt es momentan nur eine unterrichtende Lehrkraft?
+
+Welche Lehrkräfte unterrichten mindestens zwei verschiedene Klassen im Fach Mathematik?
+Geben Sie Personalnummer und Name der entsprechenden Lehrkräfte aus.
+
+Nachfolgende Anfragen soll in relationaler Algebra formuliert werden.
+Geben Sie alle Schüler mit Nummer aus, die von Lehrkraft Maier unterrichtet werden.
+
+Transaktionen
+
+Welche vier grundlegenden Eigenschaften soll eine Datenbanktransaktion erfüllen?
+Nennen Sie diese vier Eigenschaften und beschreiben Sie sie kurz.
+
+Geben Sie zwei Fehler an, die im unkontrollierten (nicht synchronisierten) Mehrbenutzerbetrieb
+auftreten können und beschreiben Sie diese jeweils anhand eines Beispiels.
+
+Fortsetzung nächste Seite!
+Frühjahr 2016 Einzelprüfungsnummer 66116 Seite 13
+
+Teilaufgabe 2
+
+1.
+
+Definieren Sie die folgenden UML-Begriffe und gehen Sie besonders auf die jeweiligen
+Unterschiede ein.
+
+- Assoziation, Aggregation und Komposition
+- Invariante, Vor- und Nachbedingungen
+
+In der Tagespresse war zu lesen, dass die deutschen Banken an der Entwicklung eines Online
+Bezahlsystems „BV“ arbeiten, welches eine Alternative zu „Paypal“ bilden soll. Hier sollen Sie
+ein einfaches UML-Modell für solch ein System entwickeln.
+
+Benutzer können durch Email-Adresse identifizierte BV-Konten bei einer der organisierenden
+Banken einrichten und dieses an ein existierendes Giro- oder Kreditkartenkonto (reales Konto)
+binden. Von einem BV-Konto kann man an ein anderes BV-Konto Geld senden und von einem
+BV-Konto Geld empfangen. Möchte man Geld empfangen, so wird die zahlende Partei per Email
+aufgefordert, die Zahlung zu tätigen.
+
+Geld auf einem BV-Konto kann auf ein verbundenes reales Konto transferiert werden. Reicht das
+Geld auf dem BV-Konto nicht aus für die Zahlungen, dann wird automatisch vom realen Konto
+nachgeladen.
+
+Benutzer können die bisher stattgefundenen Transaktionen einsehen. Transaktionen können nach
+Zustimmungen der organisierenden Bank widerrufen werden.
+
+Erläutern Sie die Begriffe Refactoring, Pair Programming, testgetriebene Entwicklung. Gehen
+Sie insbesondere darauf ein, warum diese Konzepte im Rahmen der Agilen Softwareentwicklung
+empfohlen werden.
+
+Projektmanagement
+
+(a) Erklären Sie in maximal zwei Sätzen den Unterschied zwischen Knoten- und
+Kantennetzwerken im Kontext des Projektmanagements.
+
+Fortsetzung nächste Seite!
+Frühjahr 2016 Einzelprüfungsnummer 66116 Seite 14
+
+Gegeben ist die folgende Tabelle zur Grobplanung eines hypothetischen Softwareprojekts:
+
+Aktivität Minimale Dauer | Einschränkungen
+
+Anforderungs- | 2 Monate Endet frühestens einen Monat nach dem Start der
+
+analyse Entwurfsphase.
+
+Entwurf 4 Monate Startet frühestens zwei Monate nach dem Start der
+Anforderungsanalyse.
+
+Implemen- 5 Monate Endet frühestens drei Monate nach dem Ende der
+
+tierung Entwurfsphase. Darf erst starten, nachdem die
+Anforderungsanalyse abgeschlossen ist.
+
+(b)
+
+(e)
+
+(d)
+
+(e)
+
+(f)
+
+Geben Sie ein CPM-Netzwerk an, das die Aktivitäten und Abhängigkeit des obigen
+Projektplans beschreibt. Gehen Sie von der Zeiteinheit „Monate“ aus.
+
+Das Projekt hat einen Start- und einen Endknoten.
+
+Jede Aktivität wird auf einen Start- und einen Endknoten abgebildet.
+
+Die Dauer der Aktivitäten sowie Abhängigkeiten sollen durch Kanten dargestellt werden.
+Der Start jeder Aktivität hängt vom Projektstart ab, das Projektende hängt vom Ende aller
+
+Aktivitäten ab. Modellieren Sie diese Abhängigkeiten durch Pseudoaktivitäten mit Dauer
+null.
+
+Berechnen Sie für jedes Ereignis (d.h. für jeden Knoten) die früheste Zeit sowie die späteste
+Zeit. Beachten Sie, dass die Berechnungsreihenfolge einer topologischen Sortierung des
+Netzwerks entsprechen sollte.
+
+Geben Sie einen kritischen Pfad durch das CPM-Netzwerk an. Möglicherweise sind hierfür
+weitere Vorberechnungen vonnöten.
+
+Welche Aktivität sollte sich demnach auf keinen Fall verzögern?
+
+Geben Sie ein Gantt-Diagramm an, das den Projektplan visualisiert. Gehen Sie davon aus, dass
+jede Aktivität zur frühesten Zeit ihres Startknotens beginnt und zur spätesten Zeit ihres
+Endknotens endet (s. jeweils Teilaufgabe (c)). Geben Sie die minimale Dauer jeder Aktivität,
+sowie die Pufferzeit (in Klammern) an. Beispiel: 4 (+2). Notieren Sie alle Einschränkungen mit
+Hilfe geeigneter Abhängigkeitsbeziehungen. Geben Sie eine absolute Zeitskala in Monaten an.
+
+Nennen Sie zwei weitere Aktivitäten, die in der obigen Tabelle fehlen, jedoch typischerweise in
+Softwareentwicklungs-Prozessmodellen wie etwa dem Wasserfallmodell vorkommen.

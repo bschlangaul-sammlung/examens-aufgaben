@@ -1,0 +1,722 @@
+
+
+Prüfungsteilnehmer Prüfungstermin Einzelprüfungsnummer
+
+Kennzahl:
+
+Kennwort: Frühjahr
+
+nn 66114
+Arbeitsplatz-Nr.: _ 2 0 1 4 -
+
+Erste Staatsprüfung für ein Lehramt an öffentlichen Schulen
+— Prüfungsaufgaben —
+
+Fach: Informatik (vertieft studiert)
+Einzelprüfung: Datenbank- und Betriebssysteme
+
+Anzahl der gestellten Themen (Aufgaben): 4 Aufgaben, von denen zwei gemäß untenstehender
+: Auswahlregel zu bearbeiten sind!
+
+Anzahl der Druckseiten dieser Vorlage: 20
+
+Zu den zwei Themenschwerpunkten A (Datenbanksysteme) und B (Betriebssysteme) ist
+jeweils entweder die Teilaufgabe 1 oder 2 zu wählen!
+
+Auf der Vorderseite des Kopfbogens sind im Feld „gewähltes Thema: Nr.“ die
+Nummern der beiden gewählten Teilaufgaben anzugeben (z. B. A2, B1)!
+
+Bitte wenden!
+
+Frühjahr 2014 Einzelprüfimgsnummer 66114 Seite 2
+
+Themenschwerpunkt A
+(Datenbanksysteme)
+
+Teilaufgabe 1:
+
+1. Modellierung
+
+Der VDS (Verein deutscher Schwimmbäder) möchte Informationen über seine bestehenden Einrichtungen in Verbindung mit dessen Besucherzahlen festhalten und
+digitalisieren. Dazu soll eine Datenbank in zwei Schritten erstellt werden. Der erste
+soll folgende Informationen enthalten:
+
+ePersonen werden spezifiziert durch ihren Vor- sowie Nachnamen und einer Ausweisnummer.
+
+eEin Schwimmbad besitzt einen Namen und eine Stadt, in der es sich befindet.
+
+ePersonen besuchen Schwimmbäder.
+
+eFür Schwimmbecken wird ein Name, die Länge, die Breite sowie die Tiefe gespeichert. Ein Schwimmbecken befindet sich in genau einem Schwimmbad und
+kann nur durch dieses eindeutig identifiziert werden.
+
+ePersonen können in einem Schwimmbecken schwimmen, wobei dazu ein
+Schwimmstil festgehalten werden soll.
+
+Im zweiten Schritt der Datenbank wird spezieller auf die Personen im Schwimmbad
+eingegangen:
+
+elm Bezug auf die Domäne unterteilen sich Personen in Personal des Schwimmbads und Besucher. Angestellte des Schwimmbads können dieses aber auch au8erhalb Ihrer Arbeitszeiten besuchen. Für das Personal wird eine Personalnummer, für die Besucher eine Besuchernummer gespeichert.
+
+eEs werden Schwimmkurse angeboten. Zu diesen wird eine Kursnummer sowie
+dessen Gebiet festgehalten.
+
+eEin Angestellter kann eine beliebige Anzahl an Kursen leiten, wobei jeder Kurs
+eine beliebige Anzahl an Besuchern als Teilnehmer fassen kann.
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2014 Einzelprüfungsnummer 66114 Seite 3
+
+a) Entwerfen Sie für das beschriebene Szenario des ersten Schritts der Datenbank
+ein ER-Modell! Bestimmen Sie hierzu:
+
+- die Entity-Typen, die Relationship-Typen und jeweils deren Attribute,
+
+- die Primärschlüssel der Entity-Typen, welche Sie anschließend in das ERDiagramm eintragen, und
+
+- die Kardinalitäten der Relationship-Typen.
+
+b) Übernehmen Sie den Entity-Typ für eine Person aus Aufgabenteil a) und entwerfen Sie ausgehend davon ein weiteres ER-Modell für den zweiten Teil der
+
+Datenbank! Bestimmten Sie dazu ebenfalls dieselben Kriterien wie in Aufgabenteil a)!
+
+c) Überführen Sie das ER-Modell aus Aufgabe a) in ein verfeinertes relationales
+Modell! Geben Sie hierfür die verallgemeinerten Relationenschemata an! Achten
+Sie dabei insbesondere darauf, dass die Relationenschemata keine redundanten
+Attribute enthalten!
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2014 Einzeiprüfungsnummer 66114 Seite 4
+
+2. SQL-Anfragen
+
+Gegeben sei folgendes ER-Modell, welches eine Datenbank für Statistiken über Grillabende beschreibt. Darin sind Studenten, die Grills betreiben, enthalten. Zu jedem
+Studenten soll die Anzahl an Speisen und Getränken erfasst werden, welche sie zu
+sich genommen haben:
+
+Cie) <>
+
+Student
+
+Anzahl
+
+Nummer (Garen )
+trinkt isst
+
+Getränkeart Canzanı) N] grügut-Typ
+Alkohol- Bezei- Vegegehalt chnung tarisch
+
+hf
+a
+®
+ao
+
+=
+=
+Ei
+SI
+Ol
+
+Gehen Sie von folgendem dazugehörigen relationalem Schema aus:
+
+Student{ [Matrikel Nummer, Name, Vorname/}
+
+Grill [Modell, Matrikel.Nummer, Flaeche]}
+
+Getraenkeart{ [Marke, Bezeichnung, Alkoholgehalt]}
+
+Grillgut-Typ{ [Bezeichnung, Vegetarisch, Garzeit]}
+
+Trinkt{ [Getraenkeart_Marke, Getraenkeart-Bezeichnung, Matrikel-Nummer, Anzahl]}
+Isst{ [Grillgut-Typ-Bezeichnung, Matrikel-Nummer, Anzahl]}
+
+Formulieren Sie folgende Anfragen in SQL. Achten Sie, falls nötig, auf duplikatfreie
+Ausgaben:
+
+a) Geben Sie die Garzeit des Grillgut-Typs mit der Bezeichnung „Schweinenacken“
+aus!
+
+b) Geben Sie die Namen und Vornamen aller Grillmeister aus! Hinweis: Als Grillmeister gelten Studierende, die mindestens einen Grill betreiben.
+
+c) Geben Sie alle Attribute von Studierenden aus, die mindestens ein Getränk mit
+mehr als 5 % Alkohol getrunken haben!
+
+d) Geben Sie alle Attribute von Studierenden aus, die mindestens zwei alkoholhaltige
+Getränke konsumiert haben!
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2014 Einzelprüfungsnummer 66114 Seite 5
+
+3. Normalformen
+
+Gegeben sei folgendes relationales Schema R, dessen Attribute nur atomare Attribut:
+werte besitzen.
+
+R: {[A, B, C,D, E, F,G, H]}
+
+Es gelte die folgende Menge FD von funkionalen Abhängigkeiten:
+FD={ |
+
+A+B,
+CD - EB,
+C+ DA,
+CF > FE,
+F—+GHCA
+
+}
+
+a) Nennen Sie die drei Änderungsanomalien, die auftreten können, wenn ein
+
+Datenbank-Schema nicht der Boyce-Codd-Normalform entspricht, und beschreiben Sie eine näher!
+
+b) Definieren Sie die Begriffe Superschlüssel, Schlüsselkandidat und Primarschlüssel.
+Wie unterscheiden sich diese voneinander?
+
+c) Finden Sie den/die Schlüsselkandidaten!
+d) Prüfen Sie, in welcher Normalform R vorliegt!
+e) Berechnen Sie die kanonische Überdeckung FD, von FD!
+
+Hinweis: Es genügt, wenn Sie für jeden der vier Einzelschritte die Menge der
+funktionalen Abhängigkeiten als Zwischenergebnis angeben.
+
+f) Bestimmen Sie eine Zerlegung der Relation R in dritter Normalform. Verwenden
+Sie dafür den Synthesealgorithmus!
+
+Hinweis: Sie können dazu die kanonische Uberdeckung FD, verwenden, die Sie
+in der vorherigen Teilaufgabe berechnet haben.
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2014 Einzelprüfungsnummer 66114
+
+Seite 6
+
+Teilaufgabe 2:
+
+Aufgabe 1: E/R-Modellierung, SOL-DDL
+
+Für die Verwaltung von Museen soll folgendes System entworfen werden:
+
+eDie zentrale Komponente ist das Museum mit eindeutigem Namen.
+
+eEin Museum besteht aus mindestens einem Themenbereich, welcher ebenfalls
+einen eindeutigen Namen besitzt.
+
+eEin Themenbereich erstreckt sich über mindestens einen Raum, der einen Namen
+
+hat und über eine eindeutige Raumnummer identifiziert werden kann. Ein Raum
+gehört zu genau einem Themenbereich.
+
+eln einem Raum befindet sich mindestens ein Kunstwerk. Ein Kunstwerk gehört
+zum Eigentum genau eines Museums, welches aber (im Fall einer Leihgabe) nicht
+zwingend das Museum sein muss, in dem es ausgestellt ist. Ein Museum kann
+Eigentümer vieler Kunstwerke sein.
+
+.eEin Kunstwerk wurde von genau einem Künstler erstellt und gehört einer speziellen Kunstepoche an. Jedes Kunstwerk hat einen eindeutigen Titel sowie einen
+Untertitel und ein Entstehungsjahr.
+
+eEine Kunstepoche wird durch einen eindeutigen Namen und einen Zeitraum
+(Start- und Endjahr) beschrieben.
+
+eEin Künstler wird durch seinen Namen und Vornamen identifiziert und hat auSerdem ein Geburtsdatum und gegebenenfalls ein Sterbedatum. Von Künstlern
+
+kann man sagen, dass sie in ihrem Leben viele Kunstwerke erschaffen und in
+mindestens einer Kunstepoche gewirkt haben.
+
+eManche Künstler sind Mitglied in einer Künstlervereinigung mit eindeutigem
+Namen und einem Gründungsdatum.
+
+1.Erstellen Sie ein Entity-Relationship-Diagramm für obige Datenbank!
+2.Setzen Sie das gegebene E/R-Diagramm in ein entsprechendes relationales
+Datenbankschema um. Geben Sie die resultierenden Relationenschemata in
+folgender Schreibweise an:
+
+Relation (Attributi, Attribut2, ..., Attribut)
+
+Identifizieren Sie für jede Relation einen Primärschlüssel und unterstreichen
+Sie diesen! Achten Sie auf eine möglichst kompakte Modellierung der Relationships! Geben Sie außerdem erforderliche Fremdschlüsselbeziehungen
+an!
+
+3.Geben Sie die Anweisungen in SQL-DDL an, die notwendig sind, um die
+Relationen für ein Kunstwerk und eine Kunstepoche aus Teilaufgabe
+(2) in einer relationalen Datenbank zu erzeugen! Kennzeichnen Sie dabei
+die Primär- und Fremdschlüssel der Relationen. Geben Sie sinnvolle Integritätsbedingungen für Zahlen und Daten an und achten Sie auf die sinnvolle
+Behandlung möglicher leerer Ausprägungen!
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2014 Einzelprüfungsnummer 66114 Seite 7
+
+Aufgabe 2: Relationale Algebra und SQL
+
+Gegeben sei das folgende relationale Schema mitsamt Beispieldaten für eine Datenbank für Bierbrauereien und ihre Produkte. Die Primärschlüssel- Attribute sind jeweils
+unterstrichen, Fremdschlüssel sind überstrichen.
+
+“Brauerei”:
+D Name Sitz | Gründungsjahr
+
+“Sitz”:
+Bi | Augustiner | S4 1328 ID Stadt Bundesland
+B2 Beck’s $3 1873 =
+
+BI Palen 54 1634 si Köln Nordrhein-Westfalen
+S2 | Karlsruhe | Baden-Württemberg
+B4 | Krombacher | S5 1803
+= S3 | Bremen Bremen
+B5 Früh $1 1904 =
+B6 | Gaffal 151 1908 pe [ Münden Bayer
+By | Hoenfner 55 1798 85 | Krombach | Nordrhein-Westfalen
+
+B8 Spaten $4 1397
+
+“Bier”:
+iersorte”: ID | Brauerei | Biersorte | Alkoholgehalt
+
+ID | Bezeichnung Hefetyp AOI; Bil T4 5,2
+Tl Pils untergarig A02 Bl T6 .. 5,6
+T2 Lager untergärig A03 B2 Tl 4,9
+T3 | Weizenbier obergärig A04 B3 T3 5,5
+T4 Helles untergärig A05 B3 T4 4,9
+T5 | Starkbier | ober- und untergärig A06 B4 Tl 4,8
+T6 Export untergärig A07 B5 T7 4,8
+T7 Kölsch obergärig A08 B6 T7 4,8
+T8 Altbier obergärig A09 B7 T1 4,7
+Aid B8 TA 52
+
+«
+
+Algebra: u
+
+a) Finden Sie die Nämen aller Brauereien, die vor dem Jahr 1800 gegründet
+wurden.
+
+b) Finden Sie die Bezeichnungen aller Biersorten mit einem Alkoholgehalt von
+4,8% oder 4,9%.
+
+c) Finden Sie die Städte und zugehörigen Bundesländer, in denen Brauereien
+ihren Sitz haben, die im 19. Jahrhundert gegründet. wurden.
+
+d) Finden Sie die Bezeichnungen aller Biersorten, die von der Brauerei ’Paulaner’ hergestellt werden.
+
+2.Geben Sie das Ergebnis (bezüglich der Beispieldaten) der folgenden Ausdrücke
+‚der relationalen Algebra als Tabellen a an:
+
+a) "Nome,Bundesiond(Brauerei rn a Sitz)
+
+b) "Gründungsjahr, Hefetyp
+
+Brauerei > Bier ba aol Bi
+( Brauerei.1D=Bier.Brauerei Bier.Biersorte-Biersorte.1p ° Feletyp = ‘obergdrig’( Bier sorte))
+
+Fortsetzung nächste Seite!
+
+
+
+jahr 2014 Einzelprüfungsnummer 66114 Seite 8
+
+3.Formulieren Sie die folgenden Anfragen in SQL:
+
+a) Finden Sie die Namen aller Brauereien, die mehr als eine Biersorte herstellen!
+
+b) Geben Sie die Bezeichnung einer jeden Biersorte zusammen mit ihrem durchschnittlichen Alkoholgehalt an!
+
+c) Geben Sie die Stadt aus, in der die älteste Brauerei ihren Sitz hat!
+
+d) Finden Sie alle Bundesländer mit Brauereien, die nur untergärige Biersorten
+herstellen!
+
+4.Wie sieht die Ergebnisrelation zu folgenden Anfragen auf den Beispieldaten aus?
+
+a) select Hefetyp, count (Bezeichnung) as Anzahl
+from Biersorte
+
+group by Hefetyp
+having count (Bezeichnung) > 1;
+
+b) Select Bezeichnung
+from Biersorte
+where ID not in
+(select Biersorte
+from Bier join Brauerei on Bier.Brauerei = Brauerei.ID
+
+join Sitz on Brauerei Sitz = Sitz.ID
+where Bundesland = ’Bayern’);
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2014 Einzelprüfungsnummer 66114 Seite 9
+
+Aufgabe 3: Entwurfstheorie
+
+Gegeben sei das folgende relationale Schema mitsamt Beispieldaten für eine Flugdatenbank. Die Primärschlüsselattribute sind unterstrichen.
+
+Relation “Flüge”:
+
+L_ENz | Datum ]_VonS | Von | Nachs [| Nach | Gesellschaft | Sitz | Flugzeugs |_ Typ | Plätze ]
+LH1432 | 03.04.11 | München T GER [ Frankfurt GER Lufthansa Köln Boeing 747 452
+UA732 | 05.04.12 Chicago USA Brisbane AUS United Chicago | Embraer [ ERI-195 108
+UA735 | 05.04.12 | Frankfurt [GER Chicago USA United Chicago Airbus 320 152
+EK935 01.02.11 Dubai UAE | Montreal CAN Emirates Dubai Airbus 380 526
+UA735 | 05.04.09 ] Frankfurt | GER Chicago USA United Chicago Airbus 320 152
+
+Gegeben seien ebenso die folgenden funktionalen Abhängigkeiten:
+
+FD1: FNr — VonS, VonL, Nach$, NachL, Gesellschaft, Sitz, Flugzeug, Typ, Plätze
+FD2: VonS — VonL
+
+FD3: Nach$ -> NachL
+FD4: Gesellschaft — Sitz _
+FD5: Flugzeug, Typ — Plätze
+
+1. Beschreiben Sie kurz, welche Redundanzen in der Datenbank vorhanden sind
+und weiche Anomalien auftreten können. Geben Sie ein Beispiel für jede
+Anomalie an.
+
+2. Welchen Normalformen genügt das angegebene Relationenschema? Begründen
+Sie Ihre Entscheidung.
+
+3. Überführen Sie das obige Relationenschema in die dritte N. ormalform und geben
+Sie die mit obigen Daten gefüllten Relationen an.
+
+4. Erläutern Sie kurz, welchen Nachteil Normalisierung allgemein für die Anfragebearbeitung haben kann.
+
+-10Frühjahr 2014 Einzelprüfungsnummer 66114 Seite 10
+
+Themenschwerpunkt B
+(Betriebssysteme)
+
+Teilaufgabe 1:
+
+Aufgabe 1: Petri-Netze
+
+Gegeben sei das in folgender Abbildung dargestellte, boolesche Petri-Netz.
+
+Abbildung 1: Boolesches Petri-Netz
+
+1.Geben Sie den Erreichbarkeitsgraphen zu dem Petri-Netz aus Abbildung 1 an!
+
+2.Begründen Sie, dass es in dem Petri-Netz aus Abbildung 1 zu Verklemmungen
+
+kommen kann! Sie können für Ihre Argumentation den Erreichbarkeitsgraphen
+aus der vorigen Teilaufgabe benutzen.
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2014 Einzelprüfungsnummer 66114 Seite 11
+
+Aufgabe 2: Seitenersetzung
+
+2.1 Grundsätzliche Fragen
+
+1.Erklären Sie die Seitenersetzungs-Strategien LIFO und LRU jeweils knapp!
+
+2.Nennen und erklären Sie kurz zwei Elemente, die typischerweise in einem SeitenDeskriptor enthalten sind!
+
+3.Diskutieren Sie kurz Vor- und Nachteile großer bzw.- kleiner Seitengrößen!
+2.2 LFÜ
+
+1.Sei eine Menge von Seiten N = {0,1,2,3,4,5,6} und eine Menge von Kacheln
+(Frames) F = {fı, fa, Js, Ja} gegeben. Nun wird in folgender Reihenfolge auf die
+Seiten zugegriffen:
+w=34604512345256
+Voliziehen Sie die Strategie LFU (Least Frequently Used) schrittweise nach,
+indem Sie die folgende Tabelle auf Ihr Blatt übertragen und vervollständigen!
+Wenn die Wahl der zu verdrängenden Seite nicht eindeutig ist, soll immer die
+Seite mit dem kleineren Seiten-Index verdrängt werden. Wir gehen davon aus,
+dass der Zugtiffszähler einer Seite auch beim Verdrängen nicht gelöscht wird.
+
+aufaddierte
+
+fi | fo | fs | fa || ee
+
+Seitenfebler
+
+-f - T
+
+®
+3
+<q
+
+Upset pst yt
+OD FOO 109 FOO [OD
+
+2
+3
+4
+4
+
+oO
+ı ISO JO Io
+
+Dre | In In ID
+
+2.Welches Problem kann bei der LFU Strategie auftreten? Diskutieren Sie kurz!
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2014 Einzelprüfungsnummer 66114 Seite 12
+
+Aufgabe 3: Memory-Management
+
+1.Welche Art von Daten verwaltet das Betriebssystem typischerweise in einer Halde (Heap) und welche Art von Daten in einem Keller (Stack)? Erläutern Sie an
+Beispielen!
+
+2.Worin besteht der Unterschied zwischen externer und interner Fragmentierung
+von Speicherbereichen? Erläutern Sie!
+
+3.Skizzieren Sie eine typische Speicherhierarchie! Was ist das fundamentale Konzept von Speicherhierarchien? Warum funktionieren sie bspw. in einem gewöhnlichen PC recht gut?
+
+4.Sie haben ein Geschäft für Computer-Hardware. Ein guter Kunde möchte den
+Arbeitsspeicher seines 32 Bit-Systems von 4 GB auf 16 GB aufrüsten. Welche
+Speicherbausteine verkaufen Sie dem Kunden? Sein virtueller Speicher ist in
+2* Seiten eingeteilt. Wie groß ist eine solche Seite demnach, wenn man von
+byteweiser Adressierung ausgeht?
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2014 Einzelprüfungsnummer 66114 Seite 13
+
+Aufgabe 4: Wechselseitiger Ausschluss
+
+Ein Gemüsehändler führt Gurken und Karotten. Er hat einen Lieferanten C, der
+ihm pro Lieferung eine Kiste Gurken und eine Kiste Karotten liefert. Er hat einen
+Kunden A, der bei ihm jeweils eine Kiste Karotten abholt, und einen Kunden B,
+der bei ihm jeweils eine Kiste Gurken abholt. Für sich alleine betrachtet laufen die
+Prozesse folgendermaßen ab:
+
+Process A Process B Process C
+
+{ { u:
+
+while (TRUE) . while (TRUE) while (TRUE)
+
+{ { * {
+<an den Gemuesestand treten>; <an den Gemuesestand treten>; <an den Gemuesestand treten>;
+<Kiste Karotten abholen>; <Kiste Gurken abholen>; <Kiste Gurken abladen>;
+<Gemuesestand verlässen>; <Gemuesestand verlassen>; <Kiste Karotten abladen>;
+
+} + <Gemuesestand verlassen>;
+
+} 3 ° }
+
+}
+
+Synchronisieren Sie diese drei Prozesse, indem Sie in Pseudocode-Notation in geeigneter Weise Semaphore deklarieren und Semaphor-Operationen einfügen.
+
+Die Pseudocode-Operation zum Deklarieren eines Semaphors mit Namen name mit
+Startwert n laute:
+
+name(n);
+
+Die Pseudocode-Operationen zum Aufrufen von P und V auf der Semaphore mit
+Namen name lauten:
+
+P (name)
+
+V(name)
+
+Sperrphasen sind möglichst kurz zu halten und folgende Bedingungen müssen erfüllt
+sein: -
+eAn den Gemiisestand können jeweils nur zwei Personen herantreten
+
+eKunde A darf nur an den Stand herantreten, wenn mindestens eine Kiste Karotten vorrätig ist.
+
+®Kunde B darf nur an den Stand herantreten, wenn mindestens eine Kiste Gurken
+vorrätig ist.
+
+eDer Gemüsestand hat beschränkte Kapazität, er kann höchstens 10 Gemüsekisten aufnehmen.
+
+eDer Lieferant darf nur an den Gemüsestand herantreten, wenn er seine Lieferung
+vollständig abladen kann. ,
+
+eZu Beginn sei der Stand leer und niemand steht dort.
+
+1.Listen Sie alle benötigten Semaphoren auf und erklären Sie ihren Zweck bzw.
+ihre Pragmatik.
+
+2.Fügen Sie in den bzw. zu dem oben aufgelisteten Pseudocode des Ablaufs der
+
+beteiligten Prozesse an geeigneter Stelle entsprechende Aufrufe zum Deklarieren
+der Semaphoren und der Aufrufe von P und V ein!
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2014 Einzelprüfungsnummer 66114
+
+Aufgabe 5: Prozesse, Threads und Scheduling
+
+5.1 Prozesswechsel
+Unter Konteztwechsel versteht man das Wegnehmen des Rechenkerns von einem
+Prozess und die Zuweisung des Rechenkerns an einen anderen Prozess.
+
+1.Beschreiben Sie stichpunktartig den Ablauf eines Kontextwechsels!
+
+2.Welche Rolle spielt die Größe des Prozesskontrollblocks beim Kontextwechsel?
+Betrachten Sie diesen Aspekt im Hinblick auf Häufigkeit und Effizienz multipler
+Kontextwechsel.
+
+3.Grenzen Sie die Aufgabe des Dispatchers von der des Schedulers ab! Wie gestaltet sich die Zusammenarbeit dieser beiden Komponenten?
+
+5.2 Scheduling
+Ein Scheduler verwende eine priorisierte Zeitscheibenstrategie:
+
+eIn jedem Zeitquantum wird der Prozess mit der höchsten Priorität ausgewählt.
+eJeder Prozess P; besitzt eine Initialpriorität I;.
+
+eDas Quantum beträgt q = 4 Zeiteinheiten. Das zugeteilte Quantum wird bei
+Prioritätsänderungen nicht unterbrochen.
+
+elm rechnenden Zustand wird die Priorität des Prozesses nach je einer Zeiteinheit
+um 2 erniedrigt.
+
+elm rechenwilligen Zustand wird die Priorität des Prozesses nach je einer Zeiteinheit um 1 erhöht.
+
+ePrioritäten reichen von 0 bis 25.
+
+Nun seien drei Prozesse Pı, Pa und P gegeben. Der Vektor ihrer Initialprioritäten
+sei:
+
+I= (8,6,12)
+Der Vektor der Ankunftszeiten der Prozesse sei:
+
+a= (0,2,0)
+
+d.h. P, startet zum Zeitpunkt 0, P, zum Zeitpunkt 2 und P; zum Zeitpunkt 0. Ferner
+seien die Bedienzeiten der Prozesse bekannt:
+
+b= (8,4, 8)
+
+1.Visualisieren Sie die Ausführung von P, Pa und P; in einem geeigneten Diagramm, indem Sie die zeitliche Abfolge der Bedienung der Prozesse darstellen.
+
+zesses! ’
+
+2.Berechnen Sie die mittlere Wartezeit W und die mittlere Verweilzeit V für dieses
+Szenario!
+
+Seite 14
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2014 Einzelprüfungsnummer 66114 Seite 15
+
+Teilaufgabe 2:
+
+Aufgabe 1
+
+Die folgenden drei Jobs stehen zu den angegebenen Zeiten (in Minuten) zur Ausführung an:
+
+Job Ankunftszeit || Bearbeitungszeit
+A 0 6
+B 2 3
+[ei 5 2
+
+a) Untersuchen Sie hierfür die folgenden Scheduling-Strategien:
+
+1. First-Come-First-Served (FCFS)
+2. Shortest-Job-First (SJF)
+3. Round-Robin (RR) mit Zeitquantum q =2
+
+Geben Sie dazu jeweils in einem Gantt-Diagramm, mit je einer Zeile pro Job, für alle Jobs die
+Bearbeitungs- und Wartezeiten an.
+
+b) Zusätzlich zu den obigen Jobs A, B, C (der Kategorie Batch) sollen zu den Zeitpunkten 4 und
+6 die Jobs Nummer D und E (der Kategorie Interactive) mit jeweils einer Laufzeit von 6
+Zeiteinheiten zur Bearbeitung ankommen.
+
+Job Ankunftszeit || Bearbeitungszeit
+
+Oro] +o
+A} O}O | a
+
+OF en [NO YO
+
+Nun soll ein Multi-Level-Scheduling eingesetzt werden derart, dass jeweils eine Warteschlange für
+die Kategorien Interactive und Batch existiert, wobei bei den interaktiven Jobs Round-Robin (mit
+Zeitscheibe q=2) und bei den Batch-Jobs FCFS verwendet wird. Die interaktiven Jobs haben
+Priorität über die Batch-Jobs, d. h. falls gerade ein Batch-Job bearbeitet wird und es kommt ein
+neuer interaktiver Job an, so wird dieser Batch-Job genau solange angehalten, bis keine
+interaktiven Jobs mehr im System sind.
+
+Geben Sie in einem Gantt-Diagramım, mit je einer Zeile pro Job, für alle Jobs die Bearbeitungsund Wartezeiten an!
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2014 Einzelprüfungsnummer 66114 Seite 16
+
+Aufgabe 2
+
+Ein System mit drei Betriebsmitteltypen Rı, Ra, Rs und fünf Prozessen A,B,C,D,E befinde sich
+aktuell im unten gezeigten Zustand.
+
+Ry Ro R3
+
+Verfügbarkeitsvektor 131312]
+
+Zuteilungsmatrix
+
+ojaln—ın
+mt OlOiet|o
+QIN] aAlo
+WAOQN
+
+Maximale Anforderungen
+inkl. bereits zugeteilter
+Betriebsmittel
+
+alalalain
+ulalolaln
+=/nlalajs
+WROQN
+
+a) Erklaren Sie informell die Vorgehensweise des Banker’ s-Algorithmus’!
+b) Berechnen Sie die Matrix der Maximalen Restforderungen!
+
+c) Zeigen Sie mittels der Einzelschritte der Safety-Prüfung aus dem Banker’ s-Algorithmus, dass der
+‚oben beschriebene Zustand sicher ist!
+
+d) Kann eine neue Anforderung (1 0.2) von Prozess A unter Erhalt der Safety des Systems nun sofort
+erfüllt werden?
+
+Fortsetzung nächste Seite!
+
+Frühjahr 2014 Einzelprüfungsnummer 66114 Seite 20
+
+Aufgabe 4
+
+a) Gegeben sei ein System mit drei verfügbaren Frames FO, FI, F2, welche zu Beginn leer sind.
+Tragen Sie für die Seitenanforderungsfolge 1, 2, 3, 4, 5, 1, 2, 5, 1, 2, 3, 4, 5 und die Verfahren
+OPT (Belady’s optimale Strategie), FIFO (First-In-First-Out), LRU (Least-Recently-Used)
+die jeweils entstehende Belegung der Speicherkacheln an!
+
+Übertragen Sie die unten gegebenen Schemata auf Ihr Blatt und ergänzen Sie diese! Geben Sie
+für jedes Verfahren die Anzahl der resultierenden Page-Faults an!
+
+OPT
+
+FO
+
+FI
+
+F2
+
+FIFO , _
+
+FO
+
+FI
+
+F2
+
+LRU
+
+FO
+
+FI
+
+F2
+
+b) Der Algorithmus von Belady minimiert die Anzahl der Page-Faults. Warum wird er trotzdem
+in realen Paging-Systemen nicht eingesetzt?

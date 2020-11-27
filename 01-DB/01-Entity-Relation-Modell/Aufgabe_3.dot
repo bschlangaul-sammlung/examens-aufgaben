@@ -1,0 +1,52 @@
+graph ER {
+	edge [len=1.8];
+	bgcolor="transparent";
+
+	node [shape=box]; Bauteil;
+	node [shape=ellipse]; Nummer[label=<<u>Nummer</u>>]; BauteilBezeichnung; Hersteller; Einkaufspreis; Vorrat;
+
+	Bauteil -- Nummer;
+	Bauteil -- BauteilBezeichnung;
+	Bauteil -- Hersteller;
+	Bauteil -- Einkaufspreis;
+	Bauteil -- Vorrat;
+
+	node [shape=box]; Geraet;
+	node [shape=ellipse]; GeraetBezeichnung[label=<<u>GeraetBezeichnung</u>>]; Lagerbestand; Verkaufspreis; Anliefergebuehr;
+	Geraet -- GeraetBezeichnung;
+	Geraet -- Lagerbestand;
+	Geraet -- Verkaufspreis;
+	Geraet -- Anliefergebuehr;
+
+	node [shape=box]; Kunde;
+	node [shape=ellipse]; Name[label=<<u>Name</u>>]; Adresse[label=<<u>Adresse</u>>]; Branche[label=<<u>Branche</u>>]; Sonderkonditionen;
+	Kunde -- Name;
+	Kunde -- Adresse;
+	Kunde -- Branche;
+	Kunde -- Sonderkonditionen;
+
+    node [shape=box]; Kundenbetreuer;
+    node [shape=ellipse]; BetreuerName;
+    Kundenbetreuer -- BetreuerName;
+
+    node [shape=box]; Bezirk;
+    node [shape=ellipse]; BezirkNummer[label=<<u>BezirkNummer</u>>]; Beschreibung;
+    Bezirk -- BezirkNummer;
+    Bezirk -- Beschreibung;
+
+    node [shape=diamond]; betreut;
+    betreut -- Kundenbetreuer [label=1];
+    betreut -- Kunde [label=n];
+
+    node [shape=diamond]; istBezirkZugeteilt;
+    istBezirkZugeteilt -- Kundenbetreuer [label=n];
+    istBezirkZugeteilt -- Bezirk [label=1];
+
+	node [shape=diamond]; bestehtAus;
+	bestehtAus -- Geraet [label=n];
+	bestehtAus -- Bauteil [label=m];
+
+	node [shape=diamond]; beliefert;
+	beliefert -- Kunde [label=n];
+	beliefert -- Geraet [label=m];
+}

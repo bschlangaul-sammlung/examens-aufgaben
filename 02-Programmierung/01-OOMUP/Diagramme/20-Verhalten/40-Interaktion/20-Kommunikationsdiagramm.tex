@@ -1,0 +1,165 @@
+\documentclass{lehramt-informatik}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Kommunikationsdiagramm (communication diagram)}
+
+\begin{quellen}
+\item \cite[Seite 473-484]{rupp}
+\item \cite{wiki:kommunikationsdiagramm}
+\end{quellen}
+
+Kommunikationsdiagramme (communication diagrams) zeigen die
+unterschiedlichen Teile einer (komplexen) Struktur und ihre
+Zusammenarbeit zur Erfüllung definierter Funktionalitäten. Die
+Funktionsweise ist mit den Sequenzdiagrammen vergleichbar. Der
+wesentliche Unterschied liegt in der Darstellung, wie die Objekte
+verbunden sind und welche Nachrichten sie über diese Verbindungen in
+einem spezifischen Szenario austauschen.
+\footcite[Seite 167]{schatten}
+
+Das Kommunikationsdiagramm (Communication Diagram) zeigt
+\memph{Interaktionen} zwischen \memph{Teilen einer meist komplexen
+Struktur.} Das Abstraktionsniveau ist so gewählt, dass das
+\memph{Zusammenspiel} (Nachrichtenaustausch) zwischen den
+Kommunikationspartnern und die \memph{Verantwortlichkeiten} (wer macht
+was) herausgearbeitet werden.
+
+\memph{Strikte zeitliche Abläufe}, Zustandswechsel, aber auch
+strukturelle Zerlegungen, Parallelitäten oder Kontrollsequenzen (wie
+Alter­nativen oder Schleifen) sind anders als in Sequenzdiagrammen
+entweder \memph{nicht darstellbar} oder zumindest nicht in den
+Vordergrund gestellt. Die Reihenfolge der Nachrichten wird lediglich
+durch eine gesonderte Nummerierung angezeigt.
+\footcite[Seite 474]{rupp}
+
+\begin{description}
+
+%%
+%
+%%
+
+\item[Interaktionsrahmen] Auch das Kommunikationsdiagramm ist in einen
+\memph{rechteckigen Rahmen} gefasst. Irreführen­ derweise wird auch hier
+die Abkürzung \memph{sd} (eigentlich für sequence diagram) verwendet und
+der Name der Interaktion in einem \memph{Fünfeck in der linken oberen
+Ecke} eingetragen.
+\footcite[Seite 478]{rupp}
+
+%%
+%
+%%
+
+\item[Lebenslinie] \strut
+\begin{description}
+\item[Notation] Eine Lebenslinie wird in Kommunikationsdiagrammen als
+\memph{rechteckiger Kasten} modelliert. Die eigentliche (Lebens-)Linie
+entfällt.
+
+\item[Beschreibung] Die Lebenslinie (Lifeline) repräsentiert die im
+Sequenzdiagramm beschriebenen \memph{Kommunikationspartner}. Allerdings
+müssen bei der Modellierung in Kommunikationsdiagrammen auf viele
+Konstrukte verzichtet werden.
+\footcite[Seite 478]{rupp}
+\end{description}
+
+%%
+%
+%%
+
+\item[Nachricht] \strut
+\begin{description}
+\item[Notation] Im Kommunikationsdiagramm modellieren Sie Nachrichten
+als \memph{durchgezogene Linie}. An die Nachricht wird ein
+\memph{Pfeil}, der die Richtung vom Sender zum Empfänger kennzeichnet,
+angetragen. Der Nachricht wird beim Kommunikationsdiagramm zusätzlich
+ein \memph{Sequenzbezeichner} vorangestellt.
+
+\item[Beschreibung]
+Nachrichten repräsentieren den Aufruf von Operationen und die
+Übertragung von Signalen.
+\footcite[Seite 480-481]{rupp}
+\end{description}
+
+\end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\section{Systementwurf\footcite{examen:66112:2006:09}}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Erklären Sie den Begriff Vererbung und benennen Sie die damit
+verbundenen Vorteile!
+
+%%
+% b)
+%%
+
+\item Erstellen Sie zu der folgenden Beschreibung eines Systems zur
+Buchung von Flügen ein Klassendiagramm, das neben Attributen und
+Assoziationen mit Kardinalitäten auch Methoden zur Tarifberechnung
+enthält! Setzen Sie dabei das Konzept der Vererbung sinnvoll ein!
+
+\begin{itemize}
+\item Die Fluggesellschaft bietet verschiedene Flugrouten an, die durch
+den jeweiligen Startflughafen und Zielflughafen charakterisiert werden.
+
+\item Jeder Flug besitzt eine Flugnummer, eine Abflugzeit, eine geplante
+Ankunftszeit und ist genau einer Flugroute zugeordnet. Flugrouten sollen
+auch gespeichert werden, falls noch keine zugehörigen Flüge existieren.
+
+\item Flugbuchungen beziehen sich auf einzelne Plätze im Flugzeug.
+Sowohl in der Economy Class als auch in der Business Class gibt es
+Nichtraucher- und Raucherplätze. Zu jeder Buchung wird das Datum
+vermerkt.
+
+\item Zu jedem Passagier müssen die Adressinformationen erfasst werden.
+
+\item Die Berechnung des Tarifs soll vom System unterstützt werden.
+Jeder Flug besitzt einen Grundpreis. Für Plätze der Business Class wird
+ein Aufschlag verrechnet. Auf diesen ermittelten Zwischenpreis sind zwei
+Arten von Rabatten möglich:
+
+\begin{itemize}
+\item Jugendliche Privatkunden unter 25 Jahren erhalten einen Nachlass
+auf den Flugpreis.
+
+\item Geschäftsreisende erhalten Vergünstigungen in Abhängigkeit ihrer
+gesammelten Flugmeilen.
+\end{itemize}
+\end{itemize}
+
+%%
+% c)
+%%
+
+\item Erstellen Sie ein exemplarisches Objektdiagramm! Es soll
+mindestens einen Flug enthalten, in dem sowohl ein privater Kunde als
+auch ein Geschäftskunde einen Platz gebucht haben! Wählen Sie geeignete
+Attributwerte!
+
+%%
+% d)
+%%
+
+\item Beschreiben Sie den Vorgang „Tarifberechnung“ wahlweise als
+Sequenzdiagramm oder Kommunikationsdiagramm!
+
+\end{enumerate}
+
+\literatur
+
+\end{document}

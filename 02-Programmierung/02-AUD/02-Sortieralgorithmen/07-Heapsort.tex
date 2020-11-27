@@ -1,0 +1,75 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Heapsort}
+
+\begin{quellen}
+\item \cite[Seite 45]{aud:fs:tafeluebung-11}
+\item \cite{wiki:heapsort}
+\item \cite[Seite 407-413 (PDF 424-429) 14.6.1
+407
+Sortieren
+Sortieren mit Bäumen: HeapSort]{saake}
+\end{quellen}
+
+HeapSort
+• HeapSort
+; Haldensortierung
+• füge alle Elemente in eine Max-Halde (bzw. Min-Halde) ein
+• das Maximum (bzw. Minimum) eines jeden Teilbaums steht in der Wurzel
+• solange noch Elemente in der Halde sind:
+• entnimm die Wurzel der Halde
+• füge sie vorne an die sortierte Liste an
+(bzw. am hintersten freien Platz ins sortierte Array ein)
+; alle Elemente werden dabei aufsteigend (bzw. absteigend) sortiert
+• Eigenschaften von HeapSort:
+• Laufzeitkomplexität:
+$O( n \cdot \log n)$
+• sortiert auf Grund der Eigenschaften der Halde instabil
+• in-place-Implementierung möglich (s.u.)
+
+\inputcode[firstline=1,lastline=27]{sortier/HeapSort}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\section{Aufgabe 4: Sortieren II\footcite[entnommen aus Algorithmen und
+Datenstrukturen, Übungsblatt 4, Universität Würzburg]{aud:pu:7}}
+
+\begin{enumerate}
+
+%%
+% b)
+%%
+
+\item Sortieren Sie mittels HeapSort (Haldensortierung) die folgende
+Liste weiter: Notation: Markieren Sie die Zeilen wie
+folgt:\footcite[Staatsexamen Theoretische Informatik, Algorithmen und
+Datenstrukturen, Realschulen, Frühjahr 2013, Thema 2, Aufgabe 6
+(Auszug)]{examen:46115:2013:03}
+
+\begin{description}
+\item[I:] Initiale Heap-Eigenschaft hergestellt (größtes Element am
+Anfang der Liste).
+
+\item[R:] Erstes und letztes Element getauscht und letztes „gedanklich
+entfernt“.
+
+\item[S:] Erstes Element nach unten „versickert“ (Heap-Eigenschaft
+wiederhergestellt).
+\end{description}
+
+\end{enumerate}
+
+\literatur
+
+\end{document}

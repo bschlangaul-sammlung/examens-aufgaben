@@ -1,0 +1,147 @@
+\documentclass{lehramt-informatik}
+
+\begin{document}
+
+\chapter{Physische Datenorganisation}
+
+\tableofcontents
+
+(Foliensatz Seite 18)
+
+\section{Definition „Physische Datenunabhängigkeit“:}
+
+\begin{mdframed}
+Änderungen an der physischen Speicher- oder der Zugriffsstruktur
+(beispielsweise Anlegen einer Indexstruktur) haben keine Auswirkungen
+auf die logische Struktur der Datenbasis, also auf das Datenbankschema
+\end{mdframed}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{ANSI-SPARC-Architektur (auch Drei-Schema-Architektur)
+\footcite[Seite 443, 13.1.3 Architektur eines Datenbanksystems]{schneider}
+}
+
+Trennung des Datenbankschemas in 3 verschiedene Beschreibungsebenen:
+
+\begin{description}
+\item[Externe Ebene]
+
+stellt Benutzern und Anwendungen individuelle Benutzersichten bereit.
+Bsp.: Formulare, Masken-Layouts, Schnittstellen
+
+\item[Konzeptionelle Ebene]
+
+beschriebt, welche Daten in der Datenbank gespeichert sind, sowie deren
+Beziehungen. Designziel: vollständige und redundanzfreie Darstellung
+aller zu speichernden Informationen. Hier findet die Normalisierung des
+relationalen Datenbankschemas statt.
+
+\item[Interne / physische Ebene]
+
+stellt physische Sicht der Datenbank im Computer dar. Beschreibt, wie
+und wo die Daten in der Datenbank gespeichert werden. Designziel:
+effizienter Zugriff auf die gespeicherten Informationen, meist durch
+bewusst in Kauf genommene Redundanz erreicht (z. B. Index speichert die
+gleichen Daten, die auch schon in der Tabelle gespeichert sind).
+
+\end{description}
+
+\subsection{Vorteile des Modells:}
+
+\begin{description}
+\item[physischen Datenunabhängigkeit] da die interne von der
+konzeptionellen und externen Ebene getrennt ist. Physische Änderungen,
+z. B. des Speichermediums oder des Datenbankprodukts, wirken sich nicht
+auf die konzeptionelle oder externe Ebene aus.
+
+\item[logischen Datenunabhängigkeit] da die konzeptionelle und die
+externe Ebene getrennt sind. Dies bedeutet, dass Änderungen an der
+Datenbankstruktur (konzeptionelle Ebene) keine Auswirkungen auf die
+externe Ebene, also die Masken-Layouts, Listen und Schnittstellen haben.
+\end{description}
+
+Allgemein: höhere Robustheit gegenüber Änderungen
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Physische Datenorganisation
+\footcite[Seite 21]{db:fs:3}}
+
+\begin{itemize}
+\item Daten werden in Form von \emph{Sätzen} auf der Festplatte
+abgelegt, um auf Sätze zugreifen zu können, verfügt jeder Satz über eine
+\emph{eindeutige, unveränderliche Satzadresse}
+
+\item TID = Tupel Identifier: dient zur Adressierung von Sätzen in einem
+Segment und besteht aus zwei Komponenten
+
+\begin{itemize}
+\item Seitennummer (Seiten bzw. Blöcke sind größere Speichereinheiten
+auf der Platte)
+
+\item Relative Indexposition innerhalb der Seite
+\end{itemize}
+
+\item Satzverschiebung innerhalb einer Seite bleibt ohne Auswirkungen
+auf TID, wird ein Satz auf eine andere Seite migriert, wird eine
+„Stellvertreter-TID“ zum Verweis auf den neuen Speicherort verwendet.
+Die eigentliche TID-Adresse bleibt stabil
+\footcite[Seite 219]{kemper}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\section{Aufgabe 3: Physische Datenorganisation, TID
+\footcite{db:pu:3}}
+
+DB/ST - Frühjahr 2017, Thema 1, TA2, A4
+
+\begin{enumerate}
+\item Erläutern Sie in ein bis zwei Sätzen, aus welchen zwei Teilen
+sich ein TID (Tupelldentifikator) zusammensetzt.
+
+\begin{antwort}
+Seitennummer (Seiten bzw. Blöcke sind größere Speichereinheiten auf der
+Platte) Relative Indexposition innerhalb der Seite
+\end{antwort}
+
+\item Erläutern Sie in ein bis zwei Sätzen das Vorgehen, wenn ein
+durch einen TID adressierter Satz innerhalb einer Seite verschoben
+werden muss.
+
+\begin{antwort}
+Satzverschiebung innerhalb einer Seite bleibt ohne Auswirkungen auf TID,
+\end{antwort}
+
+\item Erläutern Sie in ein bis zwei Sätzen das Vorgehen, wenn ein
+durch einen TID adressierter Satz erstmalig in eine andere Seite
+verschoben werden muss.
+
+\begin{antwort}
+wird ein Satz auf eine andere Seite migriert, wird eine
+„Stellvertreter-TID“ zum Verweis auf den neuen Speicherort verwendet.
+Die eigentliche TID-Adresse bleibt stabil
+\end{antwort}
+
+\item Erläutern Sie in zwei bis drei Sätzen das Vorgehen, wenn ein
+durch einen TID adressierter und bereits einmal über Seitengrenzen
+hinweg verschobener Satz erneut in eine andere Seite verschoben werden
+muss.
+
+\begin{antwort}
+Es wird eine neue stellvertreter TID aktualisiert.
+\end{antwort}
+
+\end{enumerate}
+
+\literatur
+\end{document}

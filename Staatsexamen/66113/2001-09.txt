@@ -1,0 +1,378 @@
+Prüfungsteilnehmer
+
+Prüfungstermin
+
+Einzelprüfungsnummer
+
+Kennzahl:
+
+Herbst
+Kennwort:
+
+200r
+
+66113
+
+Arbeitsplatz-Nr.:
+
+Erste Staatsprüfungfür ein Lehramt an öffentlichen Schulen
+- PrüfungsaufgabenFach:
+
+Informatik (vertieft studiert)
+
+Einzelprüfung:
+
+RechnerarchitekturrDatenb.rBetriebssys.
+
+Anzahlder gestelltenThemen(Aufgaben): 2
+Anzahlder Druckseiten
+dieserVorlaee:
+
+9
+
+Bitte wenden!
+
+Herbst2001
+
+Einzelprüfungsnummer
+: 661L3
+
+Seite:2
+
+Thema Nr. 1
+Sämtliche Teilaufgaben sind zu bearbeiten!
+
+l. Aufgabe (ER-Diagramm,Integritätsbedingungen,
+Schemaentwurfund SQl-Anfragen)
+Es soll eineDatenbankfür ein Kino- und Fikn-Auskunftssysternfür eineStadtentworfenwerden.Das
+Systemsoll vergangeneund zukünftige Spielpläneenthaltenkönnen.
+Entity Mengen:
+Regisseure/Innen
+
+mit denAttributen NAME, VORNAME, GEB-DATIIM,
+VTIA
+
+Filme
+
+mit dem Athibut TITEL
+
+Schauspieler
+
+mit denselbenAttributen wie Regisseure/kmenaberzusdtzlich dem künstlichenSchlüsselS# vom Typ integer
+
+Kinos
+
+mit denAtributen BEZEICHNUNG.STRASSE.HAUSNR. TELEFON-NR
+
+Relationships:
+spielt
+
+Ein Schauspielerspielt in einemFilm.
+
+führt
+
+Ein Regisseurführt Regie in einem Film.
+
+läuft
+
+Ein Film läuft in einem Kino.
+
+Integritätsbedingungen:
+Nebenden offensichtlichenIntegritätsbedingungen
+sollen folgendegeiten:
+I1
+
+h einemFilm führt nur I PersonRegie.
+
+12
+
+In einemKino könnenmehrereFilme laufen.abernur zu verschiedenen
+Zeiten (esgibt nur I Vorführraum).
+
+Ii
+
+TITEL, BEZEICHNLING sowie die KombinationNAME. VORNAME
+sind eindeutigfür Filme, Kinos bzw. Regisseure.Für Schauspielersei die
+KombinationNAME, VORNAME, GEB-DATUM eindeutig.
+
+1.1E/R Diagramm
+- EntwerfenSie für die Datenbankein E/R Diagrammentsprechend
+den obigenSpezifikationen
+und lrtegritätsbedingungen.
+- GebenSie die Kardinalitatenfür die Relationshipsan.
+- GebenSie für jede Entität die Mengender Schlüsselkandidaten
+an.
+- GebenSie die Attribute der Relationshipsan.
+- GebenSie mindestenszwei verschiedeneVariantenfür die Relationshipläuft an, treffen Sie
+eineModellierungsentscheidung
+und begründenSieIhre Entscheidung.
+FortsetzungnächsteSeite!
+
+Herbst2001
+
+Einzelprüfu
+ngsnumm
+er: 66t13
+
+Seite:3
+
+1.2RelationalesSchema
+GebenSie zu dem enrwickeltenE/R Diagrammein reiationalesSchemaan und kennzeichnenSie
+durchUnterstreichendie gewähltenPrimiirschlüssel.
+
+1.3SQl-Anfragen
+FormulierenSie für dasrelationaleSchemadie folgendenAnfragenbzw. Operationanin SQL:
+- EineListeallerFilmregisseure
+- In welchenFilmenspieltMeryll Streep?
+- NAME, GEB-DATLIMundVITA desRegisseurs
+von ,,AfricanQueen"
+- In welchenFilmenspieltMeryll Streepgemeinsam
+mit RobertRedford?
+- In welchemKino mit Tel.Nr.läuft heutederFilm ,,TheStraightStorl' und zu welcherZeit?
+- AnderungdesSpielplans
+desKinos ,,MediaPalast",so dassmorgenum 22:15h derFilm ,,The
+StraightStorf'läuft
+
+2. Aufgabe@etriebsmittelverwaltung
+und Deadlocks)
+Einederwesentlichen
+AufgabeneinesBetriebssystems
+Hardware-und Softist es,die vorhandenen
+ware-Betriebsmittel
+verwalten
+zu
+zu
+und für einenverklemmunesfreien
+Ablauf der einzelnenProzesse
+sorgen.
+
+2.1 Betriebsmitteleinteilung
+BeIn welcheKlassenkönnenBetriebsmittel
+eingeteiltwerden?GebenSiefür jede der genannten
+ein Beispielan.
+triebsmittelklassen
+2.2Bedingungenfür Deadlocks
+Bei der Zuteilungvon Befiebsmittein an Prozessesollte dasAufoeten von Deadlocksausgeschlossen
+werden.Welchevier Bedingungensind Voraussetzrurg
+für einenDeadlock?Bei welchender oben
+genaru:tenBetriebsmittelklassen
+könnendieseBedingungeneintreten?
+
+2.3Deadlock-Verhinderungund Deadlock-Vermeidung
+Erkl?irenSie denUnterschiedzwischenDeadlock-Verhinderung
+und Deadlock-Vermeidung,und nennen Sie ieweils ein IhnenbekanntesVerfahren.
+
+FortsetzungnächsteSeite!
+
+Herbst2001
+
+Seite:4
+
+Eirzelprüfungsnunrmer
+: 66L13
+
+3. Aufgabe (Prozesssynchronisation)
+Gegebensei ein Keller, in denElementederKlasseElemazl abgelegtwerdenkönnen.Auf demKeller
+seienzwei Methodet defniert: füge_eiz, mit der ein Elernentder KlasseElement in denKeller eingefügl werdenkann und entnimm, mit der ein ElementausdemKeller entnommenwerdenkann.Es
+könnenmaximal max Elementeim Keller abgelegtwerden.
+gegeben:
+Für die BenutzrmgdesKellers seienfolgendeS1'nchronisationsbedingungen
+- Die Methodenfüge_ein rnd entnimm sind wechselseitigausgeschlossen
+auszufüken.
+- Die Methodefüge_eiz darf nur ausgeführtwerden,wern der Keller nicht voll ist, d.h. wenn
+die Anzahl der Elementeim Keller kleiner max ist.
+- Die Methodeeztnimm darf nur ansgeführtwerden,werurder Keller nicht leer ist, d.h. wenn
+die Anzahl der Elementeim Keller sößer 0 ist.
+
+3.1 Semaphore
+ImplementierenSie die KlasseKeller so, dassdie obengenarmtenSynchronisationsbedingungen
+durchgesetztwerden.VerwendenSie zur Durchsetzungder Synchronisationsbedingungen
+ausschließ(gegeben
+lich Semaphore
+durchdie KlasseSemaphor).
+AchtenSiedabeiauf die konekteInitialisierung der verwendetenSemaphore.
+Sie dürfenfür lhre kisung folgendezwei Klassenals gegebenvoraussetzen:
+publicclassSemaphor
+// Konstruktor
+public Semaphor
+(int init) {...}
+// Methoden
+publicvoidprolog0 {...}
+publicvoid epilog0 {...}
+)
+public classElement
+// Konstukor
+publicElement(...) {...}
+// Methoden
+
+3.2 EigenschafteneinesSemaphors
+NennenSie die EigenschafteneinesSernaphorsund erklärenSie seineFunktionsweise.
+
+FortsetzungnächsteSeite!
+
+Herbst200I
+
+Einzelprüfungsnummer
+: 661L3
+
+Seite:5
+
+3.3 Prozesszustandsgraph
+Prozesse,die einenwie obenbeschriebenenPuffer nutzen.könnenim Verlauf ihrer LebenszeitunterschiedlicheZuständeannehmen.ZeichnenSie einenallgemeinenProzesszustandsgraphen
+und markieren Sie die möglicheniJbergängeausTeilaufgabe3.1 in diesemGraph.
+4. Aufgabe (Hauptspeicherund Festplatte)
+4.1 First Fit und BestFit
+BeschreibenSie die beidenSpeicherverwaltungsstrategien
+First Fit und Best Fit und nermenSiejeweils derenVor- undNachteile.
+
+4.2 SSFund SCAII
+Beschreibenuird bewertenSie die beidenPlattenzugriffsstrategien
+SSF(shortestseektime first) und
+SCAN (Aufzugssfrategie).WelchesGütekriteriumfür Festplattenwird heutzutagemeist angegeben
+und wie beurteilenSiees?
+
+5. Aufgabe @echnerarchitektur)
+5.1 PipeliningPrinzip
+(pipelining) ist ein hauptsächlichin Prozessorenund/oderin ihren Teilwerken
+Fliessband-Ausführung
+angewandtes
+Ausführungsprinzipvon Befehlen(Instruktionen).
+1 WelchesZiel soll mit der AnwendungdiesesPrinzipserreichtwerden?
+2. WaskönnenSie bzgl. der Ausführungszeitder einzelnenBefehlesagen?
+3. Angenommensei eine linearePipelinemit k Stufenund identischerAusführungszeitvon T.
+Zeiteinheiten(ZE, meist in Taktzeitenangegeben)
+pro Stufe:
+Wie lang ist die (maximale)AusführungszeitA jedes einzelnenBefehls?
+4. Zusätzlichangenommen
+sei die Ausführungvon n Befehlen:Gesuchtist eineFormel für die
+mittlere AusführungszeitAft,n) einesBefehlesbei idealerAusführungder n Befehle(d.h.
+bei Abwesenheitjeglichen Konllikts wie Ressourcenkonllikt,Datenabhängigkeit,
+Verzweigrngen,Unterbrechungen,
+u.a.). Was ist die g1ößteuntereSchrankefür die miulere AusführungszeitAft)?
+
+FortsetzungnächsteSeite!
+
+Herbst200I
+
+Einzelprüfungsnunmer:66IL3
+
+Seite:6
+
+5.2 Sprünge in Pipelines
+Gegebensei folgendePipeline fürdie Befehlsausführungmitden 5 StufenSl, 52, 53, 54, 55:
+S1: Befehl Holen
+
+(BH)
+
+52: Befehl Dekodieren
+
+(BD)
+
+53: OperandenHolen
+
+(OH)
+
+54: Befehl Ausführen
+
+(BA)
+
+55: ErgebnisSpeichern
+
+(ES)
+
+Es gelte die Ausflihrungsreihenfolge:-+ BH -+ BD -+ OH + BA + ES +
+Welche Auswirkung gegenüberdem idealenAblauf der Befehlsausführungin der Pipeline (ohne organisatorische Gegenmaßnatrmen) haben Programmstrukturenwi e
+- unbedingteSprtinge(Jump address),
+- bedingteVerzweigungen(ConditionalJump: if (condition)then ...),
+- Schleifen(Loops)?
+
+- 7Herbst2001
+
+Einzelprüfungsnummer
+: 66Lt3
+
+Seite:7
+
+ThemaNr. 2
+Sämtliche Teilaufgaben sind zu bearbeiten!
+
+Teilgebiet1: Rechnerarchitekturund Rechnernetze
+AufgabeI @echnernetze)
+1.1 ErklärenSie die Begriffe Speicher-und Leitungsvermittlung.StellenSie die Vor- und Nachteile
+derbeidenVermittlungsartengegenüber.
+1.2 Washeißt ATM? BeschreibenSie kurz die Grundideevon ATM und die er^'warteten
+Vorteile eegenüberklassischerVerfahren.
+-
+
+i.3 WelcheArt der Vermittlung benutztATM? BegründenSie lhre Antwort.
+
+Teilgebiet2: Datenbanken
+Aufgabe2.1 (Normalformen)
+Für die Anwendungin der AnlageabteilungeinerBank sei ein relationalesDatenbankschema
+gegeben.Die verwendetenAttribute sind:
+Anlageberater(AB), Büro desBeraters(Büro), Anleger,Aktierurame(Aktie), Arzahl der gekauften
+Aktien und die für einebestimmteAktie gezahlteDividende.
+Die Relationenschemata
+sehenwie folgl aus:
+ANLAGE (Aktie, Arzahl, Anleger,Dividende)
+mit den funktionalenAbhängigkeitenAktie -+ DividendesowieAnleger,Aktie -+ Arzahl
+BERATUNG (Anleger,AB, Büro)
+mit denfunktionalenAbhängigkeitenAB -+ Büro sowieAnleger -+ AB
+2. I .1 WelchenNormalformen(2. NF, 3. NF, BCNF) genügendie Relationenschemata
+und welchen
+nicht? Begri.indenSie kurz Ilre Antworten.
+2.1.2 Kömen beim Arbeiten mit dieserDatenbankAnomalienauffretenund, werurj4 welche(jeweils
+mit einernkurzenBeispiel)?
+2.1.3 Bringen Sie die Relationenin BCNF und begründenSie Ihre Transformationen.
+
+FortsetzungnächsteSeite!
+
+Herbst2A0l
+
+Einzelprüfungsnurlmer:
+66LL3
+
+Seite:8
+
+Aufgab e 2.2 (SQL)
+Ein Flugbuchungssystementhalteunter anderenfolgendeRelationen:
+- Flughafen( FluehafenNummer, FlughafenName,FlughafenOrt, Land)
+- Flug( FlugNummer, FluggesellschaftKi.irzel,
+FlugzeugNummer)
+- Flugintervall( FlusintervallNummer, FlugNummer, StartflughafenNturrrner,
+Zielflugh afenNummer, Ab fl u gzeit, Ankun ft szei t)
+- Buchung( PassaeierNummer.FlugintervallNummer,BuchungsklasseNummer)
+- Buchungsklasse( BuchungsklasseNummer,BuchungsklasseBeschreibung)
+
+- Flugpreis(FlueintervallNummer.BuchungskiasseNummer,
+Preis)
+
+2.2.1 FormulierenSie eineAnfrage,die für die vorhandenenFlugintervalleeineTabelleder Namenspaareder Start- und Ziel-FlughäfennachStart-Flughäfensortiert liefert.
+2.2.2 Etmilteln Siedie Flugintervallnummem,
+die zwei Orte(!),Start'und ,Ziel' direktverbinden,
+zusammenmit denzugehörigenAbflugs- und Ankunftszeiten.
+sein.
+,Start'und ,Ziel' sollenParameter
+2.2.3 Ermitteln Sie zu einemals Parameterangebbaren
+Flugintervall, wie viele Plätzein den verschiedenenBuchungsklassen
+belegtsind. @uchungsklassen
+ohneBuchungenbrauchannicht
+aufgefübrtzu werden.)
+2.2.4 Ermilteln Sie zu einemangebbaren
+Flug den Gesamtpreisder getätigtenBuchungen.
+Teilgebiet3: Betriebssysteme
+Aufgabe 3.1
+Sie wollen mit Ibrem Computereine(Modell)Eisenbabnsteuern.Dazu besitzt die Eisenbahneine
+(mlißig) intelligenteSteuereinheit.DieseSteuereinheitsei an eineder (seriellenoder parallelen)
+SchnittstellendesRechnersangeschlossen.
+Die Steuereinheitselbstverhält sich passiv,d.h. alle Aktivitäten müssenvom Rechnerausgelöstwerden.
+Um die Eisenbahnzu steuem,mussalso derRechnerein ,,Schreib-Kommando"über die Schnittstelle
+an die Steuereinheitsenden,dasetwafolgendeForm habenkönnte:
+Write <adresse><wert> (mit Adressewird einebestimmteWeicheoder Lokomotive angesprochen
+und auf denmitgesendetenWert gesetzt).
+Zum AbfrageneinesZustandes(2.8. einebestimmteWeichenstellung)mussder Rechnerzunächstein
+,,Lese-Kommando"der Form: ,,Read<adresse>"an die Steuerungsendenund daruran der Schnittstelle auf den als Antwort gesendeten
+Wert waden.
+FortsetzungnächsteSeite!
+
+

@@ -1,0 +1,594 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{gantt,cpm}
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Gantt-Diagramm}
+
+\begin{quellen}
+\item \cite[Seite 194]{schatten}
+\item \cite{wiki:gantt-diagramm}
+\end{quellen}
+
+Ein Gantt-Diagramm ist ein Instrument des Projektmanagements, das die
+zeitliche Abfolge von Aktivitäten graphisch in Form von Balken auf einer
+Zeitachse darstellt.
+
+\section{Anordnungsbeziehungen im Gantt Diagramm\footcite[Seite 34]{sosy:fs:3}}
+
+\begin{description}
+\item[Normalfolge EA:] end-to-start relationship Anordnungsbeziehung vom
+Ende eines Vorgangs zum Anfang seines Nachfolgers.
+
+\begin{center}
+\begin{ganttchart}{1}{9}
+\ganttbar{}{2}{4} \\
+\ganttbar{}{6}{8}
+\ganttlink[link type=f-s]{elem0}{elem1}
+\end{ganttchart}
+\end{center}
+
+\item[Anfangsfolge AA:] start-to-start relationship Anordnungsbeziehung
+vom Anfang eines Vorgangs zum Anfang seines Nachfolgers.
+
+\begin{center}
+\begin{ganttchart}{1}{9}
+\ganttbar{}{2}{4} \\
+\ganttbar{}{6}{8}
+\ganttlink[link type=s-s]{elem0}{elem1}
+\end{ganttchart}
+\end{center}
+
+\item[Endefolge EE:] finish-to-finish relationship Anordnungsbeziehung
+vom Ende eines Vorgangs zum Ende seines Nachfolgers.
+
+\begin{center}
+\begin{ganttchart}{1}{9}
+\ganttbar{}{2}{4} \\
+\ganttbar{}{6}{8}
+\ganttlink[link type=f-f]{elem0}{elem1}
+\end{ganttchart}
+\end{center}
+
+\item[Sprungfolge AE:] start-to-finish relationship Anordnungsbeziehung
+vom Anfang eines Vorgangs zum Ende seines Nachfolgers
+
+\begin{center}
+\begin{ganttchart}{1}{9}
+\ganttbar{}{2}{4} \\
+\ganttbar{}{6}{8}
+\ganttlink[link type=s-f]{elem0}{elem1}
+\end{ganttchart}
+\end{center}
+
+\end{description}
+
+\section{Von Gantt nach CPM}
+
+\begin{enumerate}
+
+\item Zeichne (falls gefordert bzw. nötig) für das Projekt einen Start-
+und Endknoten
+
+\item Zeichen für jede Aktivität (= Balken im Gantt Diagramm) einen
+Start- und einen Endknoten
+
+\item Zeichne zwischen Start- und Endknoten einen Vorgang ein. Seine
+Dauer entspricht der Länge des Balkens (falls Pufferzeiten in Klammern
+angegeben sind werden sie von der Balkenlänge abgezogen).
+
+\item Zeichne für jede Anordnungsbeziehung die im Gantt Diagramm
+eingezeichnet ist einen Vorgang ein. Ist der zeitliche Versatz zwischen
+dem Balken der Aktivität und dem der Nachfolge-Aktivität
+
+\begin{itemize}
+\item positiv, so entspricht die Richtung des Pfeils der im Gantt
+Diagramm ist.
+
+\item negativ so wird die Richtung des Pfeils im CPM Netz umgekehrt.
+
+\item null, so zeichne einen Scheinvorgang ein.
+\end{itemize}
+
+Der Betrag des zeitlichen Versatzes der Balken ist die Dauer des
+Vorgangs (also immer positiv).
+\end{enumerate}
+
+\footcite[Seite 35]{sosy:fs:3}
+
+\section{Von CPM nach Gantt}
+
+\begin{enumerate}
+\item Zeichne für jeden Vorgang einen Balken ein. Beginne beim FAZ und
+ende beim SEZ des Vorgangs. Optional: Trage die Bezeichnung des Vorgangs
+ein.
+
+\item Optional (falls gefordert): Trage Dauer und Puffer ein.
+
+\item Pfeile im CPM die zwischen Anfangs- und Endpunkt verschiedener
+Vorgänge verlaufen werden zu Anordnungsbeziehungen (AOBs):
+
+\begin{itemize}
+\item identifiziere im CPM denjenigen Vorgang, der der Nachfolgevorgang
+ist (z.B. Entwurf ist Nachfolger der Anforderungsanalyse).
+
+\item identifiziere damit die Art der AOB (EA, AA, EE, AE)
+
+\item Zeichne sie im Gantt Diagramm ein
+
+\item Optional (falls gefordert): beschrifte sie mit der identifizierten
+Art (EA, AA, EE, AE) und ggf. der
+
+\begin{itemize}
+\item Verzögerung = positiver Wert: Pfeil zeigt im CPM zum
+Nachfolgevorgang
+
+\item Überlappung = negativer Wert: Pfeil geht im CPM vom
+Nachfolgevorgang aus
+\end{itemize}
+\end{itemize}
+\end{enumerate}
+
+\footcite[Seite 36]{sosy:fs:3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 2: Gantt\footcite[Seite 1]{sosy:ab:5}}
+
+In Gantt-Diagrammen unterscheidet man vier Anordnungsbeziehungen:
+Normalfolge (EA), Anfangsfolge (AA), Endfolge (EE) und Sprungfolge
+(AE). Ordnen Sie folgende Beispielen den Anordnungsbeziehungen (EA, AA,
+EE, AE) zu.
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Tests durchführen und Dokumentation erstellen
+
+\begin{antwort}
+EE (Das Testen muss abgeschlossen sein bevor die Erstellung der
+Dokumentation beendet werden kann.)
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Systementwurf und Implementierung
+
+\begin{antwort}
+AA (Der Beginn des Systementwurfs ist Voraussetzung für den Beginn der
+Implementierung.)
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item neue Anwendung in Betrieb nehmen und alte Anwendung abschalten
+
+\begin{antwort}
+AE (Die alte Anwendung kann erst abgeschaltet werden, wenn die neue
+Anwendung in Betrieb genommen wurde.)
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Implementierung und Dokumentation
+
+\begin{antwort}
+EE (Die Implementierung muss abgeschlossen sein bevor die Dokumentation
+beendet werden kann.)
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item Abitur schreiben und Studieren
+
+\begin{antwort}
+EA (Das Abitur muss abgeschlossen sein bevor mit dem Studium begonnen
+werden kann.)
+\end{antwort}
+
+%%
+% (f)
+%%
+
+\item Führerschein machen und selbstständiges Autofahren
+
+\begin{antwort}
+EA (Der Führerschein muss bestanden sein bevor mit dem selbstständigen
+Autofahren begonnen werden kann.)
+\end{antwort}
+
+%%
+% (g)
+%%
+
+\item Studieren und Buch aus Uni-Bibliothek ausleihen
+
+\begin{antwort}
+AA (Der Beginn des Studiums ist Voraussetzung für das Ausleihen eines
+Buches aus der Uni-Bibliothek.)
+\end{antwort}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 3: Gantt (Staatsexamen H18 T2 TA1 A1, erweiterte
+Aufgabenstellung*)\footcite[Seite 2]{sosy:ab:5}}
+
+Ein Team von zwei Softwareentwicklern soll ein Projekt umsetzen, das in
+sechs Arbeitspakete unterteilt ist. Die Dauer der Arbeitspakete und ihre
+Abhängigkeiten können Sie aus folgender Tabelle entnehmen:
+\footcite{examen:66116:2018:09}
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+Name & Dauer in Wochen & Abhängig von\\\hline\hline
+A1 & 2 & - \\\hline
+A2 & 5 & - \\\hline
+A3 & 2 & A1 \\\hline
+A4 & 5 & A1,A2 \\\hline
+A5 & 7 & A3 \\\hline
+A6 & 4 & A4 \\\hline
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Zeichnen Sie ein Gantt-Diagramm, das eine kürzestmögliche
+Projektabwicklung beinhaltet.
+
+\begin{antwort}
+\begin{center}
+\begin{ganttchart}[x unit=0.7cm, y unit chart=0.6cm]{1}{14}
+\gantttitlelist{1,...,14}{1} \\
+\ganttbar[name=A1]{A1}{3}{5} \\
+\ganttbar[name=A2]{A2}{1}{5} \\
+\ganttbar[name=A3]{A3}{6}{7} \\
+\ganttbar[name=A4]{A4}{6}{10} \\
+\ganttbar[name=A5]{A5}{8}{14} \\
+\ganttbar[name=A6]{A6}{11}{14}
+\ganttlink{A1}{A3}
+\ganttlink{A1}{A4}
+\ganttlink[link type=f-s]{A2}{A4}
+\ganttlink[link type=f-s]{A3}{A5}
+\ganttlink[link type=f-s]{A4}{A6}
+\end{ganttchart}
+\end{center}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Bestimmen Sie die Länge des kritischen Pfades und geben Sie an,
+welche Arbeitspakete an ihm beteiligt sind.
+
+\begin{antwort}
+Auf dem kritischen Pfad befinden die Arbeitspakete A2, A4 und A6. Die
+Länge des kritischen Pfades ist 14.
+\end{antwort}
+
+%%
+% (c*)
+%%
+
+\item Wandeln Sie das Gantt-Diagramm in ein CPM-Netzplan um.
+
+\begin{antwort}
+\begin{tikzpicture}[font=\scriptsize,scale=0.95]
+\ereignis{SP}(0,1.5)
+
+\ereignis{1A}(1.5,3)
+\ereignis{1E}(3,3)
+\ereignis{2A}(1.5,0)
+\ereignis{2E}(3,0)
+\ereignis{3A}(4.5,3)
+\ereignis{3E}(6,3)
+\ereignis{4A}(4.5,0)
+\ereignis{4E}(6,0)
+\ereignis{5A}(7.5,3)
+\ereignis{5E}(9,3)
+\ereignis{6A}(7.5,0)
+\ereignis{6E}(9,0)
+
+\ereignis{EP}(10.5,1.5)
+
+\vorgang(1A>1E){2}
+\vorgang(2A>2E){5}
+\vorgang(3A>3E){2}
+\vorgang(4A>4E){5}
+\vorgang(5A>5E){7}
+\vorgang(6A>6E){4}
+
+\scheinvorgang(1E>3A){}
+\scheinvorgang(2E>4A){}
+\scheinvorgang(1E>4A){}
+\scheinvorgang(3E>5A){}
+\scheinvorgang(4E>6A){}
+
+\scheinvorgang(SP>1A){}
+\scheinvorgang(SP>2A){}
+
+\scheinvorgang(5E>EP){}
+\scheinvorgang(6E>EP){}
+\end{tikzpicture}
+\end{antwort}
+
+%%
+% (d*)
+%%
+
+\item Berechnen Sie für jedes Ereignis den \emph{frühesten Termin} und
+den \emph{spätesten Termin} sowie die \emph{Gesamtpufferzeiten}.
+
+\begin{antwort}
+{\scriptsize
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Ergebnis &SP&1A&1E&2A&2E&3A&3E&4A&4E&5A&5E&6A&6E&EP\\\hline\hline
+$FZ_i$   &0 &0 &2 &0 &5 &2 &4 &5 &10&4 &11&10&14&14\\\hline
+$SZ_i$   &0 &3 &5 &0 &5 &5 &7 &5 &10&7 &14&10&14&14\\\hline
+$GP$     &0 &3 &3 &0 &0 &3 &3 &0 &0 &3 &3 &0 &0 &0 \\\hline
+\end{tabular}
+}
+\end{antwort}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Projektmanagement}
+
+Gegeben ist das folgende Gantt-Diagramm zur Planung eines
+hypothetischen Softwareprojekts:
+\footcite{examen:66116:2017:09}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Konvertieren Sie das Gantt-Diagramm in ein CPM-Netzwerk, das die
+Aktivitäten und Abhängigkeiten äquivalent beschreibt. Gehen Sie von der
+Zeiteinheit „Monate“ aus. Definieren Sie im CPM-Netzwerk je einen
+globalen Start- und Endknoten. Der Start jeder Aktivität hängt dabei vom
+Projektstart ab, das Projektende hängt vom Ende aller Aktivitäten ab.
+
+%%
+% b)
+%%
+
+\item Berechnen Sie für jedes Ereignis (d.\,h. für jeden Knoten Ihres
+CPM-Netzwerks) die früheste Zeit, die späteste Zeit sowie die
+Pufferzeit. Beachten Sie, dass die Berechnungsreihenfolge einer
+topologischen Sortierung des Netzwerks entsprechen sollte.
+
+%%
+% c)
+%%
+
+\item Geben Sie einen kritischen Pfad durch das CPM-Netzwerk an.
+Welche Aktivität darf sich demnach wie lange verzögern?
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Projektmanagement\footcite{examen:66116:2016:03}}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Erklären Sie in maximal zwei Sätzen den Unterschied zwischen
+Knoten- und Kantennetzwerken im Kontext des Projektmanagements.
+
+%%
+% (b)
+%%
+
+\item Gegeben ist die folgende Tabelle zur Grobplanung eines
+hypothetischen Softwareprojekts:
+
+Aktivität
+Anforderungs-
+analyse
+
+Minimale Dauer
+2 Monate
+Entwurf 4 Monate
+Implemen-
+tierung 5 Monate
+Einschränkungen
+Endet frühestens einen Monat nach dem Start der
+Entwurfsphase.
+Startet frühestens zwei Monate nach dem Start der
+Anforderungsanalyse.
+Endet frühestens drei Monate nach dem Endeder
+Entwurfsphase. Darf erst starten, nachdem die
+Anforderungsanalyse abgeschlossenist.
+
+Geben Sie ein CPM-Netzwerkan, das die Aktivitäten und Abhängigkeit des
+obigen Projektplans beschreibt. Gehen Sie von der Zeiteinheit „Monate“
+aus. Das Projekt hat einen Start- und einen Endknoten.
+
+Jede Aktivität wird auf einen Start- und einen Endknoten abgebildet. Die
+Dauer der Aktivitäten sowie Abhängigkeiten sollen durch Kanten
+dargestellt werden. Der Start jeder Aktivität hängt vom Projektstart ab,
+das Projektende hängt vom Ende aller Aktivitäten ab. Modellieren Sie
+diese Abhängigkeiten durch Pseudoaktivitäten mit Dauer null.
+
+%%
+% (c)
+%%
+
+\item Berechnen Sie für jedes Ereignis (d.h. für jeden Knoten) die
+früheste Zeit sowie die späteste Zeit. Beachten Sie, dass die
+Berechnungsreihenfolge einer topologischen Sortierung des Netzwerks
+entsprechensollte.
+
+%%
+% (d)
+%%
+
+\item Geben Sie einen kritischen Pfad durch das CPM-Netzwerk an.
+Möglicherweise sind hierfür weitere Vorberechnungen vonnöten. Welche
+Aktivität sollte sich demnach auf keinen Fall verzögern?
+
+%%
+% (e)
+%%
+
+\item Geben Sie ein Gantt-Diagramm an, das den Projektplan visualisiert.
+Gehen Sie davon aus, dass jede Aktivität zur frühesten Zeitihres
+Startknotens beginnt und zur spätesten Zeit ihres Endknotens endet(s.
+jeweils Teilaufgabe (c)). Geben Sie die minimale Dauer jeder Aktivität,
+sowie die Pufferzeit (in Klammern) an. Beispiel: 4 (+2). Notieren Sie
+alle Einschränkungen mit Hilfe geeigneter Abhängigkeitsbeziehungen.
+Geben Sie eine absolute Zeitskala in Monaten an.
+
+%%
+% (f)
+%%
+
+\item Nennen Sie zwei weitere Aktivitäten, die in der obigen Tabelle
+fehlen, jedoch typischerweise in Softwareentwicklungs-Prozessmodellen
+wie etwa dem Wasserfallmodell vorkommen.
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 5: Projektmanagement\footcite{examen:46116:2017:03}}
+
+Betrachten Sie die folgende Tabelle zum Projektmanagement:
+
+Arbeitspaket | Dauer (Tage) | Abhängig von
+Al 5
+A2 10
+A3 5 Al
+AA 15 A2, A3
+AS 10 Al
+A6 10 Al, A2
+A7 10 A2, A4
+A8 15 A4, AS
+
+Tabelle 1: Übersicht Arbeitspakete
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Erstellen Sie ein Gantt-Diagramm, das die in der Tabelle
+angegebenen Abhängigkeiten berücksichtigt.
+
+%%
+% b)
+%%
+
+\item Wie lange dauert das Projekt mindestens?
+
+%%
+% c)
+%%
+
+\item Geben Sie den oder die kritischen Pfad(e) an.
+
+%%
+% d)
+%%
+
+\item Konstruieren Sie ein PERT-Chart zum obigen Problem.
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{3. Projektmanagement\footcite{examen:46116:2015:09}}
+
+Betrachten Sie die folgende Tabelle zum Projektmanagement:
+
+Arbeitspaket | Dauer (Tage) | abhängig von
+Al 10
+A2 5 Al
+A3 15 Al
+Aa 10 A2, AB
+AS 15 Ai, A3
+A6 10
+AT 5 A2, A4
+AS 10 A4, A5, A6
+
+Tabelle 1: Ubersicht Arbeitspakete
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Erstellen Sie ein Gantt-Diagramm, das die in der Tabelle
+angegebenen Abhängigkeiten berücksichtigt.
+
+%%
+% b)
+%%
+
+\item Wie lange dauert das Projekt mindestens?
+
+%%
+% c)
+%%
+
+\item Geben Sie den oder die kritischen Pfad(e) an.
+
+%%
+% d)
+%%
+
+\item Konstruieren Sie ein PERT-Chart zum obigen Problem.
+
+\end{enumerate}
+
+\literatur
+
+\end{document}

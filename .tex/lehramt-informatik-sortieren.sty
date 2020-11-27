@@ -1,0 +1,59 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-sortieren}[2020/06/10]
+\RequirePackage{tikz}
+\usetikzlibrary{shapes.multipart,positioning}
+
+\def\sortieren#1{
+  \directlua{
+    local sortieren = require('lehramt-informatik-sortieren')
+    sortieren('#1')
+  }
+}
+
+% https://tex.stackexchange.com/a/140895
+\RequirePackage{forest,xstring}
+\usetikzlibrary{calc}
+
+\makeatletter
+\pgfmathdeclarefunction{strrepeat}{2}{%
+  \begingroup\pgfmathint{#2}\pgfmath@count\pgfmathresult
+    \let\pgfmathresult\pgfutil@empty
+    \pgfutil@loop\ifnum\pgfmath@count>0\relax
+      \expandafter\def\expandafter\pgfmathresult\expandafter{\pgfmathresult#1}%
+      \advance\pgfmath@count-1\relax
+    \pgfutil@repeat\pgfmath@smuggleone\pgfmathresult\endgroup}
+\makeatother
+
+\def\myNodes{}
+
+\ExplSyntaxOn
+\newcommand*\sortList[1]{%
+  \clist_sort:Nn#1{\int_compare:nNnTF{##1}>{##2}\sort_return_swapped:\sort_return_same:}}
+\ExplSyntaxOff
+
+\forestset{
+  sort/.code={%
+    \pgfmathparse{level()>\forestSortLevel}%
+    \ifnum\pgfmathresult=0
+      \StrSubstitute{\forestov{content}}{ }{,}[\myList]%
+      \sortList\myList
+      \StrSubstitute{\myList}{,}{ }[\myList]%
+      \pgfmathparse{strrepeat("1",level())}%
+      \xappto\myNodes{\noexpand\node at ($(\forestov{name}|-m)!-1!(\forestov{name})$)
+        (m\forestov{name}) {\myList}}%
+      \pgfmathparse{level()==\forestSortLevel}%
+      \ifnum\pgfmathresult=1
+        \forestOget{\forestov{@first}}{name}\forestFirst
+        \forestOget{\forestov{@last}}{name}\forestLast
+        \xappto\myNodes{{[<-]edge (\forestOv{\forestov{@first}}{name})
+          \ifx\forestFirst\forestLast\else edge (\forestOv{\forestov{@last}}{name})\fi}}%
+      \fi
+      \ifnum\forestov{@parent}=0\else
+        \xappto\myNodes{edge (m\forestOv{\forestov{@parent}}{name})}%
+      \fi
+      \gappto\myNodes{;}%
+    \fi}}
+
+\forestset{sort level/.code=%
+  \pgfmathparse{#1}\let\forestSortLevel\pgfmathresult
+  \pgfmathparse{strrepeat("1",\forestSortLevel+1)}\let\forestOnes\pgfmathresult}

@@ -1,0 +1,71 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax}
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Dekorierer / Decorator}
+
+\begin{quellen}
+\item \cite{wiki:dekorierer}
+\item \cite[Seite 149-156]{gof}
+\item \url{https://www.philipphauer.de/study/se/design-pattern/decorator.php}
+\item \cite[Kapitel 8.5.2, Seite 274-278]{schatten}
+\item \cite[Seite 274]{schatten}
+\item \cite[Kapitel 5.3, Seite 83-86]{eilebrecht}
+\item \cite[Kapitel 22, Seite 269]{siebler}
+\end{quellen}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Zweck}
+
+Ein Decorator fügt einer Komponente dynamisch neue Funktionalität
+hinzu, ohne die Komponente selbst zu ändern.
+\footcite[Seite 83]{eilebrecht}
+
+\section{Szenario}
+
+Stellen Sie sich vor, Sie betreiben eine Espressobar. Dort bieten Sie
+typischerweise neben reinem Espresso auch diverse Kaffeevarianten an:
+echten Kaffee oder ohne Koffein, mit heißer (Latte Macciato) oder
+geschäumter Milch (Cappuccino), mit Sahne, mit einer Kugel Eis, mit
+Likör oder doppelt (Doppio). Wenn Sie diese Kombinationen alle explizit
+modellieren, erhalten Sie eine unübersichtlich große Zahl von Klassen.
+Erweiterungen des Angebotes (etwa mit Ahorn- oder Nussaroma) lassen die
+Anzahl Klassen drastisch weiter wachsen.
+\footcite[Seite 83]{eilebrecht}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Allgemeines Code-Beispiel}
+
+\def\TmpCode#1{\inputcode[firstline=3]{entwurfsmuster/dekorierer/allgemein/#1}}
+
+\TmpCode{Komponente}
+
+\TmpCode{KonkreteKomponenteA}
+\TmpCode{KonkreteKomponenteB}
+
+\TmpCode{Dekorierer}
+\TmpCode{KonkreterDekorierer1}
+\TmpCode{KonkreterDekorierer2}
+\TmpCode{KonkreterDekorierer3}
+
+\TmpCode{Klient}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\literatur
+
+\end{document}

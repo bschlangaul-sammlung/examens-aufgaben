@@ -1,0 +1,349 @@
+
+\section{Aufgabe 5 (Check-Up)}
+
+\newcommand{\tmptt}[1]{%
+  {%
+    \small%
+    \ttfamily%
+    \noindent%
+    #1
+  }
+}
+
+Ein Supermarkt speichert seine Bestellungen in nachfolgender Tabelle:
+
+\bigskip
+
+\tmptt{%
+  \{
+    ARTBEST[
+      ArtNr;
+      ArtName;
+      ArtArt;
+      Hersteller;
+      HerstTel;
+      Lieferant;
+      LiefTel;
+      BestDat;
+      Anzahl;
+      EP
+    ]
+  \}
+}
+
+\bigskip
+
+\noindent
+Es existieren folgende funktionale Abhängigkeiten:
+
+\bigskip
+
+\tmptt{%
+  ArtNr $\rightarrow$ ArtName; ArtArt; Hersteller; HerstTel\\
+  Hersteller $\rightarrow$ HerstTel\\
+  Lieferant $\rightarrow$ LiefTel\\
+  ArtNr, Lieferant, BestDat $\rightarrow$ Anzahl
+}
+
+\bigskip
+\noindent
+EP „Bestdat“ steht für Bestelldatum, „EP“ für Einkaufspreis
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Erläutern Sie, warum nur Relationen mit einem zusammengesetzten
+Schlüsselkandidaten die 2. Normalform verletzen können!
+
+\begin{mdframed}
+Eine Relation ist genau dann in der zweiten Normalform, wenn kein
+Nichtprimärattribut funktional von einer echten Teilmenge eines
+Schlüsselkandidaten abhängt.
+
+Anders gesagt: Jedes nicht-primäre Attribut ist jeweils von
+allen ganzen Schlüsseln abhängig, nicht nur von einem Teil
+eines Schlüssels.
+
+Bei nicht zusammengesetzten Schlüsselkandidaten, d. h.
+Schlüsselkandidaten mit nur einem Attribut, können Nichtprimärattribute
+nur von diesem einen Schlüsselkandidaten abhängen,
+sonst wäre es ja kein Schlüsselkandidat / Primär\-schlüssel.
+\end{mdframed}
+
+%%
+% (b)
+%%
+
+\item Finden Sie den einzigen Schlüsselkandidaten von ARTBEST.
+
+\begin{mdframed}
+Ich wähle \texttt{ArtNr, Lieferant, BestDat} aus, da diese Attribute auf
+keiner rechten Seite einer FD vorkommen. Außerdem wähle ich \texttt{EP}
+aus, da \texttt{EP} in keiner FD vorkommt.
+
+\tmptt{AttrHülle(F, \{ArtNr, Lieferant, BestDat, EP\}) = \\
+\{
+  ArtNr,
+  Lieferant,
+  BestDat,
+  EP,
+  ArtName,
+  ArtArt,
+  Hersteller,\\
+  HerstTel,
+  LiefTel,
+  Anzahl
+\} = R}
+
+Damit ist gezeigt, dass \texttt{ArtNr, Lieferant, BestDat, EP} ein
+Superschlüssel ist.
+
+Ich teste mit Hilfe der Attributhülle, ob man den Superschlüssel noch
+weiter verkleinern kann.
+
+\subsection*{ohne \texttt{ArtNr}}
+
+\tmptt{AttrHülle(F, \{Lieferant, BestDat, EP\}) = \\
+\{
+  Lieferant,
+  BestDat,
+  EP,
+  LiefTel
+\} $\neq$ R}
+
+\subsection*{ohne \texttt{Lieferant}}
+
+\tmptt{AttrHülle(F, \{ArtNr, BestDat, EP\}) = \\
+\{
+  ArtNr,
+  BestDat,
+  EP,
+  ArtName,
+  ArtArt,
+  Hersteller,
+  HerstTel
+\} $\neq$ R}
+
+\subsection*{ohne \texttt{BestDat}}
+
+\tmptt{AttrHülle(F, \{ArtNr, Lieferant, EP\}) = \\
+\{
+  ArtNr,
+  Lieferant,
+  EP,
+  ArtName,
+  ArtArt,
+  Hersteller,
+  HerstTel,
+  LiefTel
+\} $\neq$ R}
+
+\subsection*{ohne \texttt{EP}}
+
+\tmptt{AttrHülle(F, \{ArtNr, Lieferant, BestDat\}) = \\
+\{
+  ArtNr,
+  Lieferant,
+  BestDat,
+  ArtName,
+  ArtArt,
+  Hersteller,\\
+  HerstTel,
+  LiefTel,
+  Anzahl
+\} $\neq$ R}
+
+Der Superschlüssel \texttt{ArtNr, Lieferant, BestDat, EP} kann nicht
+mehr weiter \\verkleinert werden. Er ist bereits minimal. \texttt{ArtNr,
+Lieferant, BestDat, EP} ist der einzige Schlüsselkandidat und damit
+der Primärschlüssel.
+
+\end{mdframed}
+
+%%
+% (c)
+%%
+
+\item Erläutern Sie, inwiefern obiges Schema die 3. Normalform verletzt!
+Zeigen Sie anhand obiger Relation \texttt{ARTBEST} zwei mögliche
+Anomalien auf, die bei fehlender Normalisierung auftreten können.
+
+\begin{mdframed}
+In der dritten Normalform darf kein Nichtschlüsselattribut von einem
+Schlüsselkandidaten transitiv abhängen. In der Relation \texttt{ARTBEST}
+hängt \texttt{HerstTel} funkional von \texttt{Hersteller} und
+\texttt{Hersteller} hängt wiederum funktional von dem Primärschlüssel /
+Schlüsselkandidaten \texttt{ArtNr, Lieferant, BestDat, EP} ab.
+
+\bigskip
+
+\texttt{ArtNr, Lieferant, BestDat, EP}
+$\rightarrow$ \texttt{Hersteller}
+$\rightarrow$ \texttt{HerstTel}
+
+\subsection*{Update-Anomalie}
+
+Es kann zur Update-Anomalie kommen. Ändert sich zum Beispiel die
+Telefonnummer eines Herstellers, so müssen in allen
+Datensätzen die Telefonnummer geändert werden.
+
+\subsection*{Delete-Anomalie}
+
+Wird die Datenbank aufgeräumt, d. h. alte Bestellungen gelöscht,
+so verschindet auch die Hersteller-Telefonnumer von manchen
+Herstelllern.
+\end{mdframed}
+
+%%
+% (d)
+%%
+
+\item Überführen Sie das obige Relationenschema schrittweise in die 3.
+Normalform! Erläutern Sie die dazu durchzuführenden Schritte jeweils
+kurz!
+
+\begin{mdframed}
+
+\begin{enumerate}
+\item Kanonische Überdeckung
+
+\begin{enumerate}
+\item Linksreduktion
+
+Die einzige FD mit einer Determinante bestehtend aus mehrere Attributen,
+ist \tmptt{ArtNr, Lieferant, BestDat $\rightarrow$ Anzahl}
+
+\begin{itemize}
+\item ohne \tmptt{ArtNr}
+
+\tmptt{Anzahl $\notin$ AttrHülle(F, \{Lieferant, BestDat\}) = \\
+\{
+  Lieferant,
+  BestDat,
+  LiefTel
+\}}
+
+\item ohne \tmptt{Lieferant}
+
+\tmptt{Anzahl $\notin$ AttrHülle(F, \{ArtNr, BestDat\}) = \\
+\{
+  ArtNr,
+  BestDat,
+  ArtName,
+  ArtArt,
+  Hersteller,
+  HerstTel
+\}}
+
+\item ohne \tmptt{BestDat}
+
+\tmptt{Anzahl $\notin$ AttrHülle(F, \{ArtNr, Lieferant\}) = \\
+\{
+  ArtNr,
+  Lieferant,
+  ArtName,
+  ArtArt,
+  Hersteller,
+  HerstTel,
+  LiefTel
+\}}
+
+\end{itemize}
+
+Die linke Seiten der FDs können nicht reduziert werden.
+
+\item Rechtsreduktion
+
+Das einzige Attribut, dass auf der rechten Seite der FDs doppelt vorkommt
+ist \tmptt{HerstTel}
+
+\tmptt{HerstTel $\in$ AttrHülle(F - \{ArtNr $\rightarrow$ HerstTel\}, \{ArtNr\}) = \\
+\{
+  ArtNr,
+  ArtName,
+  ArtArt,
+  Hersteller,
+  HerstTel
+\}}
+
+\item Leere Klauseln streichen
+
+Nichts zu tun
+
+\item Vereinigung
+
+Nichts zu tun
+\end{enumerate}
+
+Kanonische Überdeckung:
+
+\tmptt{%
+  ArtNr $\rightarrow$ ArtName; ArtArt; Hersteller\\
+  Hersteller $\rightarrow$ HerstTel\\
+  Lieferant $\rightarrow$ LiefTel\\
+  ArtNr, Lieferant, BestDat $\rightarrow$ Anzahl
+}
+
+\item Neues Relationenschema
+
+\tmptt{%
+  R1(ArtNr, ArtName, ArtArt, Hersteller)\\
+  R2(Hersteller, HerstTel)\\
+  R3(Lieferant, LiefTel)\\
+  R4(ArtNr, Lieferant, BestDat, Anzahl)
+}
+
+\item Hinzufügen einer Relation
+
+Es muss noch eine Relation hinzugefügt werden, nämlich kommt das
+Attribut \tmptt{EP} bisher in keiner Relation vor.
+
+\tmptt{%
+  R1(ArtNr, ArtName, ArtArt, Hersteller)\\
+  R2(Hersteller, HerstTel)\\
+  R3(Lieferant, LiefTel)\\
+  R4(ArtNr, Lieferant, BestDat, Anzahl)\\
+  R5(ArtNr, Lieferant, BestDat, EP)
+}
+
+\item Erfernung überflüssiger Teilschemata
+
+Nicht zu tun.
+
+\end{enumerate}
+
+Ergebnis:
+
+\tmptt{%
+  R1(ArtNr, ArtName, ArtArt, Hersteller)\\
+  R2(Hersteller, HerstTel)\\
+  R3(Lieferant, LiefTel)\\
+  R4(ArtNr, Lieferant, BestDat, Anzahl)\\
+  R5(ArtNr, Lieferant, BestDat, EP)
+}
+
+\end{mdframed}
+
+%%
+% (e)
+%%
+
+\item Erläutern Sie, inwiefern sich eine vollständige Normalisierung
+nachteilig auf die Geschwindigkeit der Anfragebearbeitung auswirken kann
+und wie darauf reagiert werden kann!
+
+\begin{mdframed}
+Eine vollständige Normalisierung hat den Effekt, dass die Daten auf mehr
+Relation bzw. Tabellen aufgeteilt werden. In der Regel geht damit
+einher, dass bei Abfragen mehr Joins durchgeführt werden müssen, was
+in der Regel mit mehr Speicherbedarf und Rechenzeit der Anfragen
+einhergeht.
+
+Man könnte auf eine Normalisierung verzichten, oder nur teilweise
+normalisieren und somit zwischen Performance und Redundanz abwägen.
+\end{mdframed}
+
+\end{enumerate}

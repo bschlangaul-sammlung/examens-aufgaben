@@ -1,0 +1,550 @@
+Prüfungsüeilnehmer
+
+Prüfungstermin
+
+Einzelprüfungsnummer
+
+Kennzahl:
+
+Herbst
+Kennwort:
+
+2003
+
+66113
+
+Arbeitsplatz-Nr.:
+
+Erste Staatsprüfung für ein Lehramt an öffentlichen Schulen
+PrüfungsaufgabenFach:
+
+Informatik (vertieft studiert)
+
+Einzelprüfung:
+
+Rechnerarchitektur, Datenb., Betriebssys.
+
+Anzahl der gestelltenThemen (Aufgaben):
+
+2
+
+Anzahl der Druckseitendieser Vorlage:
+
+9
+
+Bitte wenden!
+
+Herbst2003
+
+Einzelprüfungsnummer
+: 66113
+
+Seite:2
+
+ThemaNr. I
+
+SämtlicheTeilaufgabensind zu bearbeiten!
+Aufgabe1: Betriebssysteme:
+Für die Kommunikationzwischenverschiedenen
+Prozesser/Threads
+soll ein gemeinsamer
+Datenbereichdienen.Wir unterscheiden
+zwischenLesemund Schreibem.Es sollenbeliebigviele Leser
+gleichzeitiglesendürfen;aberein SchreiberbenötigtexklusivenZugriff auf denDatenbereich.
+Es darf
+alsowederein Lesernochein andererSchreibergleichzeitigim kritischenBereichsein.Realisieren
+Siediesmit Hilfe von Semaphoren.
+ZeigenSiedurchentsprechende
+graphische
+Visualisierungen,
+wie Ihre Lösungbei gleichzeitigem
+Zugriff mehrererThreads/Prozesse
+funktioniert! GehenSie insbesondereauf die ErläuterungdeskritischenBereichsein! Wie wird bei Ihrer Lösungder wechselseitigeAusschlussgarufüert?Ist Ihre Lösungverklemmungsfrei?
+
+Aufgabe2: Rechnernetze,ClienUServer:
+ErläutemSie die Funktionsweiseder Client/Server-Architekturam Beispiel von Web-Servemund
+Browsem!GehenSiedabeiauf folgendeAspektedetailliertern:
+.
+.
+.
+.
+.
+
+VerbindungsaulbauimTCP/lP-Protokoll
+Adressierungvon Rechnem:DomainNamen,Domain Name Service,IP-Nummem
+Adressierungvon Dokumentenvia URL
+Fenstertechnik(sliding window) währendder Kommunikation
+HTML-Sprache
+
+Aufgabe3: Datenmodellierung:
+ModellierenSieeineBibliothekl Es solltenzumindestdie folgendenKonzepteabgedeckt
+werden:
+. Autoren habenBüchergeschrieben.
+. LeserleihenBücheraus.
+. Lesergebendieseausgeliehenen
+Bücher(hoffentlich) irgendwannwieder zwück.
+ModellierenSie dieseMiniwelt zunächstals ER-Diagramm!DiesekonzeptuelleER-Modellierung
+solltedannin ein relationalesSchematransformiertwerden.GebenSiedie SchlüsselderRelationen
+an!
+
+FortsetzungnächsteSeite!
+
+Herbst2003
+
+Einzelprüfungsnummer
+: 66113
+
+Seite:3
+
+Auf derBasisIhresrelationalenSchemas
+formulierenSiefolgendeAnfiage:Wie viele Lesernamens
+und nochnicht zurückBohlenhabenein Buchmit demTitel "Nichtsalsdie Wahrheit"auseeliehen
+gegeben?
+Aufgabe4: Normalformen und Normalisierung:
+ZeigenSie formal, dassdasnachfolgenderelationaleSchemaeinerRelation Universitätennicht in
+dritter Normalform ist!
+Universitäten:{ [UniName,Professor,Fakultät,Dekan,Studiendekan,Rektor]]
+Wir gehendabeidavonaus,dassProfessoreneindeutigeNamenhaben.Zur Erinnerung:eineUniversitäthat i. Allg. mehrereFakultäten,ProfessorengehöreneinerFakultäteinerUniversität an, eineUniversitäthat einenRektor, eine Fakultäthat einenDekanund einenStudiendekan.
+BegründenSie intuitiv, wanrm eszweckmäßigist, eineRelationin die dritte Normalform umzuwandeln!ZeigenSiedazudie so genarurten
+Anomalienauf,die bei fehlenderNormalisierungauftreten
+können!
+anwenden!
+NormalisierenSie die obige RelationUniversitäten,indem Sie den Synthesealgorithmus
+ZeigenSiedetailliertdie Vorgehensweise
+auf!
+bei derNormalisierung
+Aufgabe5: SQL:
+modelliert:
+Gegeben
+sei folgendesrelationalesSchema,daseineUniversitätsverwalfung
+Studenten
+Vorlesungen
+Professoren
+hören
+voraussetzen
+prüfen
+
+{[MatrNr : inteser,Name : string, Semester: integer]]
+integer]]
+{[VorlNr : inteeer,Titel: string,SWS:integer,gelesenVon:
+{[PersNr: integer,Name : string, Rang : string, Raum : integer]]
+{[MatrNr : inteeer.VorlNr : inteeer]]
+{[VorgängerVorlNr: inteeer.NachfoleerVorlNr: inteeerl]
+{[MatrNr: integer,VorlNr: integer,PrüferPersNr:integer,Note: decimal]]
+
+FormulierenSiedie folgendenAnfragenin SQL:
+a) Alle Studenten,
+die denProfessorKant auseinerVorlesungkennen.
+b) Die Studenten,
+die die besteDurchschnittsnote
+ihrerPrüfungenhaben.
+c) GebenSie eine Liste der Professoren(Name,PersNr)mit ihrern Lehrdeputat
+(Summeder SWSder gelesenen
+auslOrdnenSiedieseListe so,
+Vorlesungen)
+nachLehrdeputat
+dasssie absteigend
+sortiertist! Bei gleicherLehtätigkeit
+darurnoch aufsteigendnachdemNamendesProfessors/derProfessorin.
+(Name,MatrNr, Semester)
+zwei Vorleaus,die mindestens
+d) GebenSieeineListeder Studenten
+sungenbei Kant gehörthaben.
+
+Herbst2003
+
+Einzelprüfungsnummer
+: 66113
+
+Seite:4
+
+e) GebenSie eine Liste der Studentenaus,die alle Vorlesungenvon Sokratesgehört
+haben.
+f) GebenSie eineListe der Studentenaus,die nur Vorlesungenvon Sokratesgehört
+haben.
+GebenSieverbalan,welchesErgebnisfolgendeSQl-Anfrageliefert:
+
+SELECT
+s1.lfame, s2.Nane
+FRO!{Studenten s1", hören h1 , hören h2, Studenten s2
+tfHEREsl.llatrl{r = h1 .}latrl{r ANDh1 .Vorll{r = b2.Vorll{r AND
+h2.Matrllr = s2.l.latrl{r
+GebenSie einenRelationenalgebra-Ausdruck
+für dieseAnfrage anl DieserAusdruck sollte keine
+Kreuzprodukte(nur Joins) enthalten.
+
+Aufgabe6: Indexstrukturen:
+ln denmeistenDatenbanksystemen
+wird standardmäßig
+ein B-Baum als Indexstrukturangelegt.ErläuternSiedie Funktionsweise
+desB-Baums!ZeigenSiegraphisch,waspassiert,wennnacheinander
+die Schlüssel
+1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 t, 0
+9,
+eingefügtwerden! Wir nehmenan, dassdie Knoten desB-BaumseineKapazitätvon vier haben.
+
+-5Seite:5
+
+Einzelprüfungsnummer
+: 66113
+
+Herbst2003
+
+ThemaNr. 2
+
+SämtlicheTeilaufgabensind zu bearbeiten!
+
+FunktionaleAbhängigkeit,Normalisierung
+Aufgabe1: Datenbanksysteme:
+der KundeneinesVerGegeben
+sei die folgenderelationaleDatenbankmit denoffenenRechnungen
+sandhauses:
+Rechnung RNR
+I
+
+2
+a
+J
+
+4
+5
+6
+
+KDNR Name
+I
+I
+
+2
+2
+.|
+
+J
+
+4
+
+Müller
+Müller
+Huber
+Huber
+Meier
+Meier
+
+Betrag
+Adresse Positionen Datum
+a
+J
+01.1I .2002 60
+München
+2
+23.05.2003 90
+München
+5
+09.03.2003 90
+Nürnbere
+14.02.2003 70
+8
+Nürnberg
+20.06.2003 1 1 0
+7
+Augsburg
+L2
+07.04.2003 90
+München
+
+die 2.
+Schlüsselkandidaten
+1. ErläutemSie,warumnur Relationenmit einemzusarnmengesetzten
+verletzen
+können!
+Normalform
+(einschließlich
+dertransi2. GebenSiefür obigeDatenbankallevollen funktionalenAbhängigkeiten
+tiven)an!
+3. ErläutemSie, inwiefem obigesSchemadie 3. Normalform verletztt
+in die 3. Normalform! Erläutem Sie die dazudurchzu4. ÜberführenSie dasobige Relationenschema
+führendenSchrittejeweils kurz!
+5. ErläutemSie, inwiefern sich einevollständigeNormalisierungnachteilig auf die Geschwindigkeit
+der Anfragebearbeitungauswirkenkannund wie daraufreagiertwerdenkann!
+
+FortsetzungnächsteSeite!
+
+Herbst2003
+
+Einzelprüfungsnummer
+: 66IL3
+
+Seite:6
+
+Aufgabe2: Datenbanksysteme:
+RelationaleAnfragen:
+Gegeben
+sei dasfolgenderelationaleDatenbankschema
+(Schlüsselattribute
+sindjeweils unterstrichen):
+Lehrer (PNR, LName, Fachgebiet)
+Schüler(SN& SName,Adresse,KNR)
+Klasse(l(NR. Raum,Jahrgangsstufe)
+Fach@\\FName, Stundenzahl)
+
+unterrichtet(BN& Is{R. ENE)
+
+In derDatenbanksinddie Datenvon Lehrem,Schülem,Klassenund FächemeinerSchulegespei
+chert.Ein Lehrerhat dabei eine Personalnummer
+@NR), einenNamenund ein Fachgebiet.Schüler
+habennebeneinerIdentifikationsnummer(SNR) einenNamen,eineAdresseund gehöreneinereinzigenKlassean. Klassensind eindeutigdurch ihre Klassermummer(KNR) bestimmtund ihnen ist ein
+Klassenraumund eineJahrgangstufezugeordnet.Eine Klassewird von genaueinemLehrer in einem
+Fachunterrichtet.Ein Lehrer kannjedoch dieselbeKlassein unterschiedlichenFächernunterrichten.
+1. GebenSiefür die folgendenverbalformuliertenAnfragenjeweils eineAnfrageformulierung
+in
+RelationalerAlsebraan!
+a) BestimmenSie die Namen und Adressenaller Schülerder 5. Jahrgangsstufe!
+b) Bestimmen Sie die Namen aller Lehrer, die jeweils jede Klasse der 6. Jahrgangsstufeunterrichten!
+c) GebenSie die Namen aller Schüleran, die von einem Lehrer in einem Fach unterrichtetwerden,
+das nicht dem FachgebietdiesesLehrers entspricht!
+
+2 . Formulieren Sie die folgendenAnfragen in SQL:
+a) Bestimmen Sie für jede Jahrgangstufedie durchschnittliche Anzahl an Schülern in einer Klasse!
+b) Erstellen Sie eine alphabetischsortierteListe mit den Namen aller Lehrer, die jedes Fach unterrichten, unabhängigvon einer konkretenKlasse!
+c) Erstellen Sie eine Liste aller Lehrer. die nur Klassenmit mehr als 30 Schülernunterrichten!
+
+FortsetzungnächsteSeite!
+
+Herbst2043
+
+Einzelprüfungsnummer
+: 66113
+
+Seite:7
+
+Aufgabe3: Rechnerarchitektur:RISC / CISC
+1. ErstellenSieeinentabellarischen
+Vergleichzwischenklassischen
+RISC-und ClSC-Architekturen
+hinsichtlich der folgendenKriterien: Umfang desMaschinenbefehlssatzes,
+Umfang der Adressierungsarten,Anzahl der Register,Implementierungstechnik
+desProzessor-Leitwerks,Ausführungszeitenvon Maschinenbefehlen.
+2. ErläutemSie,warumderUmfangderBefehlebei RlSC-Prozessoren
+so geringgewähltwurde!
+WelcheFolgenhattedas?
+3. ErklärenSie,wodurchdie "Platzverschwendung"
+in denBefehlsformaten
+bei RlSC-Prozessoren
+entstehtundwodurchsiemotiviertist!
+4. Bei RlSC-Prozessoren
+nehmendie CompilerCodeoptimierungen
+vor, die durchdie Prozessorarchitektur notwendigsind. Erklären Sie,warum bei folgendemAusschnittauseinem (virtuellen) Maschinenprogramm
+ein scheinbarsinnloserNOP-BefehlnachdemSprung-Befehl
+steht!
+:"
+
+JUmpxxxxx
+:*
+
+Aufgabe4: Rechnernetze
+I . Zwei Kommunikationspartner(beidebefindensich auf der Erde) sind über eine Satellitenstrecke
+miteinanderverbunden.
+Der Satellitbefindetsichin einerHöhevon 40.000km. Wie hochist im
+(Hinweis:Die LichtoptimalenFall derDelay für eineNachrichtunddie zugehörige
+Bestätigung?
+geschwindigkeitkannmit 300.000krn/s angenommenwerden.)
+2. BetrachtenSieein klassisches
+Ethernetmit Bus-Topologie.
+a) WelchesVerfahrensbedientsich Ethemetfür den Medienzugriff?Warum sind hierfür Festlegungenzu minimalerFramel?inge
+undmaximalerL2ingedesMediums(Bus)notwendig?
+b) Die minimaleFramelänge
+seiauf 64 Byte festgelegt.
+WennSieein Ethe,metmit 2 Gigabit/s
+Übertragungsrate
+installierensollen,welcheräumlicheAusdehnung
+darf ihr Überhagungsme(Die
+idealen
+dium dann,selbstunter
+Bedingungen,
+maximalhaben?
+Signalesollensichim
+Mediummit 200.000km/s ausbreiten,
+Bearbeitungszeiten
+in denStationenkönnenvemachläswerden.)
+sigt
+
+Aufgabe5: Betriebssysterne:
+Scheduling
+FolgendeProzesse
+sollenbetrachtetwe.rden(die Zeitenseienin beliebigenZeiteinheitengegeben):
+Prozess Ankunftszeitpunkt Laufzett
+
+A
+B
+C
+D
+E
+
+-t
+
+0
+
+J
+
+I
+
+2
+
+2
+
+I
+
+a
+J
+
+2
+
+4
+
+3
+FortsetzungnächsteSeite!
+
+Herbst2003
+
+Einzelprüfungsnummer
+: 661L3
+
+Seite:8
+
+Ein Prozess,der zum Zeitpunkt I eintritt, wird auchzum Zeitpunkt r in die Warteschlangeeingereiht.
+Kommenzwei Prozessezur gleichenZeit, so wird die Ordnungauf den Prozessnamen
+(Alphabet)
+herangezogen.
+Wird ein Prozessvor seinemTerminierenzum Zeitpunktt'unterbrochen,soreiht er
+sichin die Warteschlange
+mit Ankunftszeitt'wieder ein.
+1. ErklärenSie zunächstden Unterschiedzwischenpreemptivenund nicht-preemptivenSchedulingVerfahren!
+2. GebenSie für die StrategienShortestJobFirst (SJF)undRoundRobin(RR) mit Quantum
+I = I jeweils in Form einesDiagrammsflir die ersten11Zeiteinheiten
+an,wannwelchemProzess
+Rechenzeitzugeteiltwird und wann die Prozesseggf. terminieren!
+3. Die Reaktionszeit
+p; sei definiertals:
+4 einesProzesses
+:
+r i ersterRechenzeitpunh; Ankunftszeitpunkt;
+GebenSie die mittlere Reaktionszeitder StrategienRR und SJFausTeilaufgabea) an!
+4. Wie mussdie GrößedesQuantumsbei RR gewähltwerden,damit sich dieseStrategieäquivalent
+zur FlFO-Strategieverhält?
+5. NennenSie drei unabh2ingige
+Einflussgrößen,die man zur Festlegungder Quantumslänge
+bei RR
+sinnvoll heranziehenkann!
+Aufgabe6: Betriebssysteme:
+Seitenersetzungsstrategien
+Bei der AusführungeinesSpeicherzugriffsbei der virtuellen Speicherverwaltungkann esvorkommen,
+dasssich die referenzierteSeitenicht im Arbeitsspeicherbefindet.DieseSituationwird Seitenfehler
+(pagefault) genannt.
+Die BehandlungeinesSeitenfehlerserforderti. Allg. Maßnahmenzur Ersetzungeiner Seiteim Arbeitsspeicher,
+d. h., um die gewünschte
+Seitein einenSeitenrahmen
+desArbeitsspeichers
+einlagemzu
+können,musszunächsteine andereSeitevom Arbeitsspeicherauf denHintergrundspeicherausgelagertwerden.
+Die Mengeder Seitensei gegebendurchN : {0,1,2,3, 4, 5} und die Mengeder Seitenrahmen,
+die
+für die Speicherungder Seitenim Arbeitsspeicherzur Verfügung steht,sei gegebendurchFramea=
+{fi,"f2,"fi,fq}.
+Auf die 6 Seitender MengeN werde in folgenderReihenfolgezugegriffen:
+a:135424321053504
+Arbeiten Sie mit den zur Verfügung stehendenSeitenrahmender MengeFrameadie Seitenzugriffsfolge ar gemäßdennachfolgenden
+Ersetzungsstrategien
+ab.ErstellenSiehierzujeweils eineTabelle
+mit denhierfür angegebenen
+Spalten.
+1. LIFO : Lastin First out
+Referenzierte Inhalt
+Seiten
+fr
+
+Inhalt
+
+f,
+
+Inhalt
+fi
+
+Inhalt
+f+
+
+Summeder Sertenfehler
+
+2. LRU : LeastRecentlyused
+
+FortsetzungnächsteSeite!
+
+Herbst7003
+
+Einzelprüfungsnummer
+: 66113
+
+Referenzierte Inhalt
+Seiten
+fi.t
+
+Inhalt Inhalt
+fz.t
+fi.t
+
+Seite:9
+
+Inhalt
+fq. t
+
+Summeder
+Seitenfehler
+
+3. LFU : LeastFrequentlyused
+
+Referenzierte lnhalt
+Seiten
+fi,akz
+
+Inhalt
+Inhalt
+Inhalt
+Summeder
+Seitenfehler
+f2,anz fi,anz
+fa,LTIZ
+
+4. ErklärenSie den UnterschiedzwischenSwappingund Paging!
+5. ErklärenSie den UnterschiedzwischenSegmentenund Seiten(pages)!
+Aufgabe 7: Deadlock und Semaphore:
+Zwet ProzessePr und P2 seienwie folgt unter Verwendung von booleschenSemaphorenprogrammiert (WAIT entsprichtUP und SIGNAL entsprichtDOWN):
+P1 :
+
+REPEAT
+
+<unkritischer Bereich>
+(1) ItAIT(Platz)
+Q) WAIT(S)
+<kritischer Bereich)
+SIGNAL(S)
+SIGNAL(Bestand)
+<unkritischer Bereich>
+UIITIL false
+
+P2Z
+
+REPEAT
+
+<unkritischer Bereich>
+tIAIT(Bestand)
+T.IAIT(S)
+<kritischer Bereich>
+SIGNAT(S)
+SIGNAT(Platz)
+(unkritischer Bereich>
+UNTIL false
+
+Ein Vertauschender Zetlen (1) und (2) von ProzessP1könnte zu Konflikten fi.ihren.Erklären
+Sie anhandeiner Belegung der SemaphoreS, Platz und Bestandund einer Beschreibungeines
+zeitlichenAblauß der beidenProzesseP1und P2,wie in diesemFall ein Deadlock entstehen
+kann.
+
+

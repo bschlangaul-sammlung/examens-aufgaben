@@ -1,0 +1,55 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-kontrollflussgraph}[2020/11/07]
+
+\RequirePackage{tikz}
+\usetikzlibrary{positioning}
+\tikzset{
+  kontrollfluss/.style={
+    knoten/.style={
+      circle,
+      draw
+    },
+    usebox/.style={
+      draw,
+      rectangle,
+      font=\scriptsize,
+      anchor=west,
+      align=left,
+    },
+    bedingung/.style={
+      midway,
+      font=\scriptsize
+    },
+    knotenbeschriftung/.style={
+      draw,
+      rectangle,
+      midway,
+      font=\scriptsize
+    },
+    every pin/.style={
+      draw,
+      dotted,
+      rectangle,
+      pin position=right,
+      font=\scriptsize
+    },
+    every pin edge/.style={
+      dotted
+    }
+  }
+}
+
+\def\bedingung#1#2{node[bedingung,#1]{[\texttt{#2}]}}
+\def\KanteWahr#1{node[bedingung,#1]{\texttt{true}}}
+\def\KanteFalsch#1{node[bedingung,#1]{\texttt{false}}}
+
+\def\TextzeileKnoten#1{\raisebox{-2pt}{\tikz[scale=0.5,transform shape] \node[draw,circle]{#1};}}
+
+\ExplSyntaxOn
+\NewDocumentCommand \KnotenPfad { m }
+{
+  \seq_set_split:Nnn \l_tmpa_seq { - } { #1 }
+  \seq_set_map:NNn \l_tmpa_seq \l_tmpa_seq {\TextzeileKnoten{##1}}
+  \seq_use:Nn \l_tmpa_seq { ~-~~ }
+}
+\ExplSyntaxOff

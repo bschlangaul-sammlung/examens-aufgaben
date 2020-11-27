@@ -1,0 +1,71 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{sortieren,syntax}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{BubbleSort: Blasensortierung}
+
+\begin{quellen}
+\item \cite[Seite 43]{aud:fs:tafeluebung-11}
+\item \cite[Seite 129-131 (PDF 147-149)]{saake}
+\item \cite{wiki:bubblesort}
+\end{quellen}
+
+\sortieren{3 2 5 1 4}
+
+1. Durchgang
+
+\sortieren{>3 <2 5 1 4}
+
+\sortieren{2 3 >5 <1 4}
+
+\sortieren{2 3 1 >5 <4}
+
+2. Durchgang
+
+\sortieren{2 >3 <1 4 5}
+
+\sortieren{2 1 3 4 5}
+
+3. Durchgang
+
+\sortieren{>2 <1 3 4 5}
+
+fertig
+
+\sortieren{1 2 3 4 5}
+
+\section{Funktionsweise}
+
+\begin{itemize}
+\item solange zu sortierende Liste nicht vollständig sortiert ist:
+\item iteriere von vorne über die Elemente
+\item falls zwei aufeinanderfolgende Elemente nicht sortiert sind: vertauschen
+\item fertig, wenn während einer Runde keine Vertauschung passiert ist
+\end{itemize}
+
+\section{Eigenschaften}
+
+\begin{itemize}
+\item Laufzeitkomplexität:
+
+\begin{itemize}
+\item $\mathcal{O}(n)$ (im Best-Case)
+\item $\mathcal{O}(n^2)$ (im Average- und Worst-Case)
+\end{itemize}
+
+\item stabil
+\item in-situ
+\end{itemize}
+
+\inputcode[firstline=8,lastline=21]{sortier/BubbleSort}
+
+\footcite[Seite 130-131 (PDF 148-149)]{saake}
+
+\literatur
+
+\end{document}

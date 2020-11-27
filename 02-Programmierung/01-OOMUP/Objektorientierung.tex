@@ -1,0 +1,350 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax,uml}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Objektorientierung}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\section{Aufgabe 3 (Objektorientierte Implementierung)\footcite{oomup:pu:4}}
+
+Für die nächste Fußballweltmeisterschaft möchte ein Wettbüro ein
+Programm zur Verwaltung von Spielern, Vereinen und
+(National-)Mannschaften entwickeln. Dazu wurde bereits das folgende
+UML-Klassendiagramm entworfen.
+\footcite{examen:46116:2018:03}
+
+\begin{center}
+\begin{tikzpicture}
+\umlclass{Mannschaft}{
+  -land: String\\
+  -anzahlSpieler: Integer
+}{
+  +Mannschaft(land: String)\\
+  +hinzufuegen(s: Spieler)\\
+  +torschuetzenkoenig():String
+}
+
+\umlclass[right=1.5cm of Mannschaft]{Spieler}{
+  -name: String
+  -tore: Integer
+}{
+  +Spieler(name: String, verein: Verein)\\
+  +getName(): String\\
+  +getTore(): Integer\\
+  +schiesseTor()\\
+  +wechsleVerein(neuerVerein: Verein)
+}
+
+\umlclass[below=1cm of Spieler]{Verein}{
+  -name: String
+}{
+  +Verein(name:String)\\
+  +getName():String
+}
+
+\umluniassoc[mult2=0..20,arg2=-team,pos2=0.6]{Mannschaft}{Spieler}
+\umluniassoc[mult2=0..20,arg2=-team]{Spieler}{Verein}
+\end{tikzpicture}
+\end{center}
+
+\noindent
+Es kann angenommen werden, dass die Klasse \java{Verein} bereits
+implementiert ist. In den folgenden Implementierungsaufgaben können Sie
+eine objektorientierte Programmiersprache Ihrer Wahl verwenden. Die
+verwendete Sprache ist anzugeben. Zu beachten sind jeweils die im
+Klassendiagramm angegebenen Sichtbarkeiten von Attributen, Rollennamen,
+Konstruktorn und Operationen.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Es ist eine Implementierung der Klasse \java{Spieler} anzugeben.
+Der Konstruktor soll die Instanzvariablen mit den gegebenen Parametern
+initialisieren, wobei die. Anzahl der Tore nach der Objekterzeugung
+gleich 0 sein soll. Ansonsten kann die Funktionalität der einzelnen
+Operationen aus deren Namen geschlossen werden.
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/oomup/pu_4/verein/Spieler}
+\end{antwort}
+
+%%
+% b)
+%%
+
+\item Es ist eine Implementierung der Klasse \java{Mannschaft}
+anzugeben. Der Konstruktor soll das Land initialisieren, die Anzahl der
+Spieler auf 0 setzen und das Team mit einem noch „leeren“ Array der
+Länge 20 initialisieren. Das Team soll mit der Methode
+\java{hinzufuegen} um einen Spieler erweitert werden. Die Methode
+\java{torschuetzenkoenig} soll den Namen eines Spielers aus dem Team
+zurückgeben, der die meisten Tore für die Mannschaft geschossen hat. Ist
+das für mehrere Spieler der Fall, dann kann der Name eines beliebigen
+solchen Spielers zurückgegeben werden. Ist noch kein Spieler im Team,
+dann soll der String \java{"Kein Spieler vorhanden"} zurückgegeben
+werden.
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/oomup/pu_4/verein/Mannschaft}
+\end{antwort}
+
+%%
+% c)
+%%
+
+\item Schreiben Sie den Rumpf einer \java{main}-Methode, so dass nach
+Ausführung der Methode eine deutsche Mannschaft existiert mit zwei
+Spielern Namens \java{"Hugo Meier"} und \java{"Frank Huber"}. Beide
+Spieler sollen zum selben Verein \java{"FC Staatsexamen"} gehören.
+\java{"Hugo Meier"} soll nach Aufnahme in die deutsche Mannschaft genau
+ein Tor geschossen haben, während \java{"Frank Huber"} noch kein Tor
+erzielt hat. (Wir abstrahieren hier von der Realität, in der ein 2-er
+Team noch gar nicht spielbereit ist.)
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/oomup/pu_4/verein/Verein}
+\end{antwort}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 1: Vererbung und Abstrakte Klassen\footcite[(entnommen
+aus Algorithmen und Datenstrukturen, 3. \& 4. Übungsblatt, Universität
+Bayreuth)]{aud:pu:7}}
+
+\def\TmpHinweis#1{{\footnotesize[#1]}}
+
+In einer Anforderungsanalyse für ein
+Banksystem wird der folgende Sachverhalt beschrieben:
+\footcite[Objektorientierte Modellierung (aus Stex vertieft
+Automatentheorie, Komplexität, Algorithmen, Herbst 02, Thema Nr. 1,
+Aufgabe 4)]{examen:66112:2002:09}
+
+Eine Bank hat einen Namen und sie führt Konten. Jedes Konto hat eine
+Kontonummer, einen Kontostand und einen Besitzer. Der Besitzer hat einen
+Namen und eine Kundennummer. Ein Konto ist entweder ein Sparkonto oder
+ein Girokonto. Ein Sparkonto hat einen Zinssatz, ein Girokonto hat einen
+Kreditrahmen und eine Jahresgebühr.
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Deklarieren Sie geeignete Klassen in Java [oder in C++], die die
+oben beschriebenen Anforderungen widerspiegeln! Nutzen Sie dabei das
+Vererbungskonzept aus, wo es sinnvoll ist! Gibt es Klassen, die als
+abstrakt zu verstehen sind?
+
+\TmpHinweis{Hinweis: Geben Sie sowohl ein Klassendiagramm als auch den
+Quellcode für die beteiligten Klassen inkl. Attributen, ohne Methoden
+an! Achtung: in Teilaufgabe b) werden anschließend die benötigten
+Konstruktoren verlangt; Um die verschiedenen Konten in einer Bank zu
+verwalten, eignet sich das Array NICHT als Datenstruktur. Informieren
+Sie sich über die Datenstruktur „ArrayList“ und verwenden Sie diese.}
+
+\begin{antwort}
+Die Klasse Konto ist abstrakt, da ein Konto immer entweder ein Spar-
+\emph{oder} ein Girokonto
+ist. Ein Objekt der Klasse Konto ist deshalb nicht sinnvoll.
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Geben Sie für alle nicht abstrakten Klassen benutzerdefinierte
+Konstruktoren an mit Parametern zur Initialisierung der folgenden Werte:
+der Name einer Bank, die Kontonummer, der Kontostand, der Besitzer und
+der Zinssatz (bzw. Kreditrahmen und Jahresgebühr) eines Sparkontos (bzw.
+Girokontos), der Name und die Kundennummer eines Kontobesitzers.
+
+Ergänzen Sie die Klassen um Methoden für die folgenden Aufgaben! Nutzen
+Sie wann immer möglich das Vererbungskonzept aus und verwenden Sie ggf.
+abstrakte (bzw. virtuelle) Methoden!
+
+\TmpHinweis{Achtung: Ergänzen Sie ggf. alle benötigten Getter und Setter
+in den beteiligten Klassen!}
+
+\begin{antwort}
+Konstruktoren ergänzen:
+
+Bemerkung: Auch eine abstrakte Klasse kann einen Konstruktor besitzen,
+dieser kann nur nicht ausgeführt werden. In den abgeleiteten Klassen
+kann dieser Super-Konstruktor aber verwendet werden.
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Auf ein Konto soll ein Betrag eingezahlt und ein Betrag abgehoben
+werden können. Soll von einem Sparkonto ein Betrag abgehoben werden,
+dann darf der Kontostand nicht negativ werden. Bei einer Abhebung von
+einem Girokonto darf der Kreditrahmen nicht überzogen werden.
+
+\begin{antwort}
+Bemerkung: Die Methode \java{einzahlen} ist in der Klasse \java{Konto}
+implementiert, da sie sich für Spar- und Girokonten nicht unterscheidet
+im Gegensatz zur Methode \java{abheben}, die in beiden Klassen
+unterschiedlich implementiert ist. \TmpHinweis{Sie wird als abstrakte
+Methode in der Klasse Konto angegeben, um ihre Implementierung
+(Überschreiben) zu gewährleisten.} Kreditrahmen wird als negativer Wert
+gespeichert. Die Methoden zum Abheben liefern zusätzlich zur Änderung
+des Kontostandes eine Rückmeldung bezüglich Erfolg oder Misserfolg der
+Abbuchung.
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Ein Konto kann eine Jahresabrechnung durchführen. Bei der
+Jahresabrechnung eines Sparkontos wird der Zinsertrag gutgeschrieben,
+bei der Jahresabrechnung eines Girokontos wird die Jahresgebühr
+abgezogen (auch wenn dadurch der Kreditrahmen überzogen wird).
+
+\begin{antwort}
+Anmerkung: Im Folgenden nur noch Angabe der gesuchten Methoden, alle
+vorherigen Implementierungen (Attribute, Konstruktoren, Methoden, s. o.)
+wurden nicht nochmals aufgeführt.
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item Eine Bank kann einen Jahresabschluss durchführen. Dieser bewirkt,
+dass für jedes Konto der Bank eine Jahresabrechnung durchgeführt wird.
+
+%%
+% (f)
+%%
+
+\item Eine Bank kann ein Sparkonto eröffnen. Die Methode soll die
+folgenden fünf Parameter haben: den Namen und die Kundennummer des
+Kontobesitzers, die Kontonummer, den (anfänglichen) Kontostand und den
+Zinssatz des Sparkontos. Alle Parameter sind als String-Objekte oder als
+Werte eines Grunddatentyps zu übergeben! Das Sparkonto muss nach seiner
+Eröffnung in den Kontenbestand der Bank aufgenommen sein.
+
+\TmpHinweis{Hinweis: Falls der Kunde schon mit einem Konto in der Bank
+geführt ist, können die Werte für das \java{Besitzer}-Objekt übernommen
+werden. Schreiben Sie daher eine Hilfsmethode \java{Besitzer
+schonVorhanden(String name, int kunr)}, die prüft, ob der Kunde mit
+\java{name} und \java{kunr} schon in der Liste vorhanden ist und diesen
+bzw. andernfalls einen neu erzeugten Besitzer zurückgibt.}
+
+\TmpHinweis{Sinnvolle/notwendige Methoden der Klasse ArrayList für diese
+Aufgabe:
+\\
+\java{public int size()}: Returns the number of elements in this
+list.
+\\
+\java{public boolean isEmpty()}: Returns true if this list contains no
+elements.
+\\
+\java{public E get(int index)}: Returns the element at the specified
+position in this list.
+\\
+\java{public boolean add(E e)}: Appends the specified element to the end of this list.
+\\
+(siehe auch Java-Api: https://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html)}
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/oomup/examen_66112_2002_09/Bank}
+\inputcode[firstline=3]{aufgaben/oomup/examen_66112_2002_09/Konto}
+\inputcode[firstline=3]{aufgaben/oomup/examen_66112_2002_09/Sparkonto}
+\inputcode[firstline=3]{aufgaben/oomup/examen_66112_2002_09/Girokonto}
+\inputcode[firstline=3]{aufgaben/oomup/examen_66112_2002_09/Besitzer}
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 2: Vererbung und Abstrakte Klassen II
+\footcite[entnommen aus Staatexamen DB/ST 66116 , Frühjahr 2015, TA2, A3 a]{aud:pu:7}}
+
+In dieser Aufgabe implementieren Sie ein konzeptionelles Datenmodell für
+eine Firma, die Personendaten von Angestellten und Kunden verwalten
+möchte. Gegeben seien dazu folgende Aussagen:
+\footcite[Seite 5]{examen:66116:2015:03}
+
+\begin{itemize}
+\item Eine Person hat einen Namen und ein Geschlecht (männlich oder
+weiblich).
+
+\item Ein Angestellter ist eine Person, zu der zusätzlich das monatliche
+Gehalt gespeichert wird.
+
+\item Ein Kunde ist eine Person, zu der zusätzlich eine Kundennummer
+hinterlegt wird.
+\end{itemize}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Geben Sie in einer objektorientierten Programmiersprache Ihrer
+Wahl (geben Sie diese an) eine Implementierung des aus den obigen
+Aussagen resultierenden konzeptionellen Datenmodells in Form von Klassen
+und Interfaces an. Gehen Sie dabei wie folgt vor:
+
+\begin{itemize}
+\item Schreiben Sie ein Interface \java{Person} sowie zwei davon erbende
+Interfaces \java{Angestellter} und \java{Kunde}. Die Interfaces sollen
+jeweils lesende Zugriffsmethoden (Getter) die entsprechenden Attribute
+(Name, Geschlecht, Gehalt, Kundennummer) deklarieren.
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/oomup/examen_66116_2015_03/Person}
+\inputcode[firstline=3]{aufgaben/oomup/examen_66116_2015_03/Angestellter}
+\inputcode[firstline=3]{aufgaben/oomup/examen_66116_2015_03/Kunde}
+\end{antwort}
+
+\item Schreiben Sie eine abstrakte Klasse \java{PersonImpl}, die das
+Interface \java{Person} implementiert. Für jedes Attribut soll ein
+Objektfeld angelegt werden. Außerdem soll ein Konstruktor definiert
+werden, der alle Objektfelder initialisiert.
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/oomup/examen_66116_2015_03/PersonImpl}
+\end{antwort}
+
+\item Schreiben Sie zwei Klassen \java{AngestellterImpl} und
+\java{KundeImpl}, die von \java{PersonImpl} erben und die jeweils
+dazugehörigen Interfaces implementieren. Es sollen wiederum
+Konstruktoren definiert werden, die alle Objektfelder initialisieren und
+dabei auf den Konstruktor der Basisklasse \java{PersonImpl} Bezug
+nehmen.
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/oomup/examen_66116_2015_03/AngestellterImpl}
+\inputcode[firstline=3]{aufgaben/oomup/examen_66116_2015_03/KundeImpl}
+\end{antwort}
+\end{itemize}
+\end{enumerate}
+\end{enumerate}
+
+\literatur
+
+\end{document}

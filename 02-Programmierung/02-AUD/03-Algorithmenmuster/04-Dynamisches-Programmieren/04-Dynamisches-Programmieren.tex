@@ -1,0 +1,361 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax,mathe}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Dynamische Programmierung}
+
+\begin{quellen}
+\item \cite[Seite 10-12]{aud:fs:3}
+\item \cite[Seite 230-235 (PDF 248-253)]{saake}
+\item \cite{wiki:dynamische-programmierung}
+\end{quellen}
+
+\noindent
+Dynamische Programmierung ist eine Methode zum algorithmischen Lösen
+eines Optimierungsproblems durch \memph{Aufteilung in Teilprobleme} und
+\memph{systematische Speicherung} von Zwischenresultaten.
+\footcite{wiki:dynamische-programmierung}
+Dynamische Programmierung vereint Aspekte der drei bisher vorgestellten
+Algorithmenmuster. Vom Ansatz der Greedy-Algorithmen wird die Wahl
+optimaler Teillösungen übernommen, von Divide-and-conquer und
+Backtracking die rekursive Herangehensweise basierend auf einem
+Konfigurationsbaum. Während Divide-and-conquer-Verfahren unabhängige
+Teilprobleme durch rekursive Aufrufe lösen, werden bei der dynamischen
+Programmierung abhängige Teilprobleme optimiert gelöst, indem mehrfach
+auftretende Teilprobleme nur einmal gelöst werden.
+\footcite[Seite 230 (PDF 248)]{saake}
+Als Vorteil der dynamischen Programmierung kann eine \memph{Verbesserung
+der Laufzeit-Effizienz} genannt werden. Es wird jedoch mehr
+\memph{Speicherplatz} benötigt.
+\footcite{aud:fs:3}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Das Rucksack-Problem\footcite[Seite 231-235]{saake}}
+
+\inputcode{muster/rucksack/Rucksack}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgaben zu Rekursion und Dynamische Programmierung anhand der
+Fibonacci-Zahlen\footcite[Seite 1]{aud:pu:3}}
+
+Gegeben\footcite{examen:66115:2017:03} seien die folgenden Formeln zur
+Berechnung der \emph{ersten}
+Fibonacci-Zahlen\footcite{wiki:fibonacci-folge}:
+
+\begin{equation*}
+\text{fib}_n =
+\begin{cases}
+1 & \text{falls}\ n \leq 2\\
+\text{fib}_{n-1} + \text{fib}_{n-2} & \text{sonst}
+\end{cases}
+\end{equation*}
+
+sowie der Partialsumme der Fibonacci-Quadrate:
+
+\begin{equation*}
+\text{sos}_n =
+\begin{cases}
+\text{fib}_n & \text{falls}\ n = 1\\
+\text{fib}_n^2 + \text{sos}_{n-1} & \text{sonst}
+\end{cases}
+\end{equation*}
+
+\noindent
+Sie dürfen im Folgenden annehmen, dass die Methoden nur mit $1 \leq n
+\leq 46$ aufgerufen werden, so dass der Datentyp \java{long} zur
+Darstellung aller Werte ausreicht.
+
+\begin{exkurs}[Fibonacci-Folge]
+Die Fibonacci-Folge beginnt zweimal mit der Zahl 1.
+Im Anschluss ergibt jeweils die Summe zweier aufeinanderfolgender Zahlen
+die unmittelbar danach folgende Zahl: 1, 1, 2, 3, 5, 8, 13\footcite{wiki:fibonacci-folge}
+\end{exkurs}
+
+\begin{exkurs}[Partialsumme]
+Unter der n-ten Partialsumme $s_n$ einer Zahlenfolge $a_n$ versteht man
+die Summe der Folgenglieder von $a_1$ bis $a_n$. Die immer
+weiter fortgesetzte Partialsumme einer (unendlichen) Zahlenfolge nennt
+man eine (unendliche) Reihe.
+\footnote{\url{https://www.lernhelfer.de/schuelerlexikon/mathematik/artikel/folgen-partialsummen}}
+Partialsummen sind das Bindeglied zwischen Summen und Reihen.
+Gegeben sei die Reihe $\sum_{k = 1}^{\infty} a_k$.
+Die $n$-te Partialsumme dieser Reihe lautet: $\sum_{k = 1}^{n} a_k$.
+d.\,h. wir summieren unsere Reihe nur bis zum Endindex $n$.
+\footnote{\url{https://www.massmatics.de/merkzettel/index.php\#!164:Partialsummen}}
+\end{exkurs}
+
+\hinweis{\texttt{sos} steht für \emph{Summe of Squares}}
+
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+n &
+$\text{fib}_n$ &
+$\text{fib}_n^2$ &
+&
+$\sum_{k = 1}^{n} \text{fib}^k$\\\hline\hline
+
+1 &
+1 &
+1 &
+1 &
+1\\\hline
+
+2 &
+1 &
+1 &
+$1+1$ &
+2\\\hline
+
+3 &
+2 &
+4 &
+$1+1+4$ &
+6\\\hline
+
+4 &
+3 &
+9 &
+$1+1+4+9$ &
+15\\\hline
+
+5 &
+5 &
+25 &
+$1+1+4+9+25$ &
+40\\\hline
+
+6 &
+8 &
+64 &
+$1+1+4+9+25+64$ &
+104\\\hline
+
+7 &
+13 &
+169 &
+$1+1+4+9+25+64+169$ &
+273\\\hline
+
+8 &
+21 &
+441 &
+$1+1+4+9+25+64+169+441$ &
+714\\\hline
+
+9 &
+34 &
+1156 &
+$1+1+4+9+25+64+169+441+1156$ &
+1870\\\hline
+
+10 &
+55 &
+3025 &
+$1+1+4+9+25+64+169+441+1156+3025$ &
+4895 \\\hline
+
+\end{tabular}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Implementieren Sie die obigen Formeln zunächst rekursiv (ohne
+Schleifenkonstrukte wie \mintinline{java}|for| oder
+\mintinline{java}|while|) und ohne weitere Optimierungen („naiv”) in
+Java als:
+
+\hspace{1cm}\mintinline{java}|long fibNaive (int n) {|
+
+bzw.
+
+\hspace{1cm}\mintinline{java}|long sosNaive (int n) {|
+
+\begin{antwort}
+\inputcode[firstline=16,lastline=28]{aufgaben/aud/examen_66115_2017_03/Fibonacci}
+\end{antwort}
+
+%%
+% b)
+%%
+
+\item Offensichtlich ist die naive Umsetzung extrem ineffizient, da
+viele Zwischenergebnisse wiederholt rekursiv ausgewertet werden müssen.
+Die Dynamische Programmierung (DP) erlaubt es Ihnen, die Laufzeit auf
+Kosten des Speicherbedarfs zu reduzieren, indem Sie alle einmal
+berechneten Zwischenergebnisse speichern und bei erneutem Bedarf „direkt
+abrufen“. Implementieren Sie obige Formeln nun rekursiv aber mittels DP
+in Java als:
+
+\hspace{1cm}\mintinline{java}|long fibDP (int n) {|
+
+bzw.
+
+\hspace{1cm}\mintinline{java}|long sosDP (int n) {|
+
+\begin{antwort}
+\inputcode[firstline=30,lastline=57]{aufgaben/aud/examen_66115_2017_03/Fibonacci}
+\end{antwort}
+
+%%
+% c)
+%%
+
+\item Am „einfachsten“ und bzgl. Laufzeit [in $\mathcal{O}(n)$] sowie
+Speicherbedarf [in $\mathcal{O}(1)$] am effizientesten ist sicherlich
+eine iterative Implementierung der beiden Formeln. Geben Sie eine solche
+in Java an als:
+
+\hspace{1cm}\mintinline{java}|long fibIter (int n) {|
+
+bzw.
+
+\hspace{1cm}\mintinline{java}|long sosIter (int n) {|
+
+\begin{antwort}
+\inputcode[firstline=59,lastline=81]{aufgaben/aud/examen_66115_2017_03/Fibonacci}
+\end{antwort}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Wegberechnung im Gitter
+\footcite[Seite 1, Aufgabe 2: Dynamische Programmierung]{aud:ab:3}}
+
+Betrachten Sie das folgende Gitter mit $m + 1$ Zeilen und $n + 1$
+Spalten ($m \geq 1$ und $n \geq 1$):
+\footnote{Quelle möglicherweise von \url{https://www.yumpu.com/de/document/read/17936760/ubungen-zum-prasenzmodul-algorithmen-und-datenstrukturen}}
+geeksforgeeks
+\footnote{\url{https://www.geeksforgeeks.org/count-possible-paths-top-left-bottom-right-nxm-matrix/}}
+
+Angenommen, Sie befinden sich zu Beginn am Punkt $(0, 0)$ und wollen zum
+Punkt $(m, n)$.
+
+Für die Anzahl $A(i, j)$ aller verschiedenen Wege vom Punkt $(0, 0)$ zum
+Punkt $(i, j)$ lassen sich folgende drei Fälle unterscheiden (es geht
+jeweils um die kürzesten Wege
+ohne Umweg!):
+
+\begin{itemize}
+\item $1 \leq i \leq m$ und $j = 0$:\\\\
+Es gibt genau einen Weg von $(0, 0)$ nach $(i, 0)$ für
+$1 \leq i \leq m$.
+
+\item $i = 0$ und $1 \leq j \leq n$:\\\\
+Es gibt genau einen Weg von $(0, 0)$ nach $(0, j)$ für
+$1 \leq j \leq n$.
+
+\item $1 \leq i \leq m$ und $1 \leq j \leq n$:\\\\
+auf dem Weg zu $(i, j)$
+muss als vorletzter Punkt entweder $(i-1, j)$ oder $(i, j-1)$ besucht
+worden sein.
+\end{itemize}
+
+\noindent
+Daraus ergibt sich folgende Rekursionsgleichung:
+
+\begin{equation*}
+A(i, j) =
+\begin{cases}
+1 &
+\text{falls }
+(1 \leq i \leq m \text{ und } j = 0) \text{ oder }
+(i = 0 \text{ und } 1 \leq j \leq n) \\
+
+A(i - 1, j) + A(i, j - 1) &
+\text{falls }
+1 \leq i \leq m \text{ und }
+1 \leq j \leq n \\
+\end{cases}
+\end{equation*}
+
+\noindent
+Implementieren Sie die Java-Klasse \java{Gitter} mit der Methode
+
+\begin{center}
+\java{public int berechneAnzahlWege()},
+\end{center}
+
+\noindent
+die ausgehend von der Rekursionsgleichung durch dynamische
+Programmierung die Anzahl aller Wege vom Punkt $(0, 0)$ zum Punkt $(m,
+n)$ berechnet.
+Die Überprüfung, ob $m \leq 1$ und $n \leq 1$ gilt, können Sie der
+Einfachheit halber weglassen.
+
+\begin{antwort}
+\inputcode[firstline=32,lastline=46]{aufgaben/aud/ab_3/Gitter}
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 7: Dynamische Programmierung\footcite{aud:pu:7}}
+
+Mittels Dynamischer Programmierung (auch Memoization genannt) kann man
+insbesondere rekursive Lösungen auf Kosten des Speicherbedarf
+beschleunigen, indem man Zwischenergebnisse „abspeichert“ und bei
+(wiederkehrendem) Bedarf „abruft“, ohne sie erneut berechnen zu müssen.
+\footcite[Staatsexamen AuD/TI, 46115, Herbst 2016, Thema 2, A4]{examen:46115:2016:09}
+
+Gegeben sei folgende geschachtelt-rekursive Funktion für $n, m \geq 0$:
+
+\begin{equation*}
+a(n, m) =
+\begin{cases}
+n + \lfloor \frac{n}{2} \rfloor &
+\text{falls}\ m = 0\\
+
+a(1, m-1), &
+\text{falls}\ n = 0 \land m \neq 0 \\
+
+a(n + \lfloor \sqrt{a(n-1,m)} \rfloor, m - 1), &
+sonst \\
+\end{cases}
+\end{equation*}
+
+\begin{enumerate}
+\item Implementieren Sie die obige Funktion \java{a(n,m)} zunächst ohne
+weitere Optimierungen als Prozedur/Methode in einer Programmiersprache
+Ihrer Wahl.
+
+\begin{antwort}
+\inputcode[firstline=4,lastline=12]{aufgaben/aud/examen_46115_2016_09/DynamischeProgrammierung}
+\end{antwort}
+
+\item Geben Sie nun eine DP-Implementierung der Funktion \java{a(n,m)}
+an, die \java{a(n,m)} für $0 \geq n \geq 100000$ und $0 \geq m \geq 25$
+höchstens einmal gemäß obiger rekursiver Definition berechnet. Beachten
+Sie, dass Ihre Prozedur trotz/dem auch weiterhin mit $n > 100000$ und $m
+> 25$ aufgerufen werden können soll.
+
+\begin{antwort}
+\inputcode[firstline=14,lastline=34]{aufgaben/aud/examen_46115_2016_09/DynamischeProgrammierung}
+\end{antwort}
+\end{enumerate}
+
+\literatur
+
+\end{document}

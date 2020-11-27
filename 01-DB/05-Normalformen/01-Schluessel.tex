@@ -1,0 +1,188 @@
+\documentclass{lehramt-informatik}
+\usepackage{amsmath}
+\begin{document}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\chapter{Schlüssel}
+
+\begin{lernkartei}{Schlüssel}
+\begin{description}
+\item[Superschlüssel] Attribut oder Attributkombination, von
+der alle Attribute einer Relation funktional abhängen
+
+\item[Schlüsselkandidat] \textbf{Minimaler} Superschlüssel
+(Keine Teilmenge dieses Superschlüssels ist ebenfalls Superschlüssel)
+
+\item[Primärschlüssel] Unter allen Schlüsselkandidaten einer
+Relation wird ein sogenannter \textbf{Primärschlüssel} ausgewählt.
+
+\item[Schlüsselattribut] Attribut, das Teil eines
+Schlüsselkandidaten ist
+
+\item[Nicht-Schlüsselattribut] Attribut, das an keinem der
+Schlüsselkandidaten beteiligt ist
+\end{description}
+\end{lernkartei}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\subsection{Bestimmung von Schlüsselkandidaten ohne Algorithmus}
+
+\begin{itemize}
+\item Attribute, die auf \textbf{keiner rechten Seite} einer FD
+vorkommen.
+
+\item Attribute, die in \textbf{keiner FD} vorkommen.
+\end{itemize}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\subsection{Algorithmus zur Bestimmung von Schlüsselkandidaten}
+
+\href{http://www.ict.griffith.edu.au/~jw/normalization/ind.php}
+{Normalization Tool of the Griffith Univerity}
+
+Foliensätze Seite 8
+
+\begin{itemize}
+\item
+$Erg = \{\}$,
+$Test = \{\{\textit{alle Attribute der Relation}\}\}$,
+$K = \{\textit{alle Attribute der Relation}\}$
+
+\begin{itemize}
+\item Wähle ein Attribut aus $K$, ist
+$\textit{AttrHüll}(F,K \SLASH \{A\}) = R$?
+(Also die Menge $K$ ohne das Attribut $A$)
+
+\item ja $\Rightarrow$ ändere $\textit{Test}$:
+streiche $K$ aus $\textit{Test}$, füge $K \SLASH \{A\}$ in $\textit{Test}$ ein.
+
+\item $K$ selbst bleibt unverändert!
+
+\item entferne ein anderes Attribut aus $K$, so lange, bis alle
+Attribute reihum untersucht wurden.
+\end{itemize}
+
+\item wenn kein $K\{A\}$ Superschlüssel $\Rightarrow$
+$K$ ist Schlüsselkandidat!
+Füge $K$ zu $Erg$ hinzu und lösche $K$ aus $\textit{Test}$.
+
+\item mache dasselbe mit allen Mengen, die jetzt in $\textit{Test}$ sind,
+bis $\textit{Test}$ leer ist.
+
+\end{itemize}
+
+\subsection{Am Beispiel einer Aufgabe}
+
+Seite 12
+
+Gegeben sei ein Relationenschema $R$ mit Attributen $A, B, C, D$. Für
+dieses Relationenschema seien die folgenden Mengen an funktionalen
+Abhängigkeiten (FDs) gegeben:
+
+\begin{multline*}
+F = \{ \\
+  A \rightarrow B,\\
+  B \rightarrow C,\\
+  A \rightarrow D,\\
+\}
+\end{multline*}
+
+%%
+%
+%%
+
+\subsubsection{Abkürzung}
+
+$A$ kommt auf keiner rechten Seite der FD’s vor.
+Man kann es über FD's nicht erreichen. $A$ muss also Teil des
+Schlüsselkandidaten sein.
+
+\begin{equation*}
+\textit{AttrHüll}(F, \{A\}) = R = \textit{Superschlüssel}
+\end{equation*}
+
+A ist minimal Schlüsselkandidat.
+%
+Jeder weitere Schlüsselkandidat muss ebenfalls minimal sein und zudem
+A enthalten $\rightarrow$ A einziger Schlüsselkandidat.
+
+%%
+%
+%%
+
+\subsubsection{Mit Hilfe des Algorithmus:}
+
+$Test = \{\{A, B, C, D\}\}$ $Erg = \{\}$
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item $K = \{A, B, C, D\}$
+
+$K \SLASH A: \textit{AttrHüll}(F, \{B, C, D\}) = \{B, C, D\}$ !\\
+
+$K \SLASH B: \textit{AttrHüll}(F, \{A, C, D\}) = R$\\
+$\rightarrow Test = \{\{A, C, D\}\}$ \\
+
+$K \SLASH C: \textit{AttrHüll}(F, \{A, B, D\}) = R$\\
+$\rightarrow Test = \{\{A, C, D\}, \{A, B, D\}\}$ \\
+
+$K \SLASH D: \textit{AttrHüll}(F, \{A, B, C\}) = R$\\
+$\rightarrow Test = \{\{A, C, D\}, \{A, B, D\}, \{A, B, C\}\}$ \\
+
+%%
+% 2.
+%%
+
+\item $K = \{A, C, D\}$
+
+$K \SLASH A: \textit{AttrHüll}(F, \{C, D\}) = \{C, D\}$ !\\
+
+$K \SLASH C: \textit{AttrHüll}(F, \{A, D\}) = R$\\
+$\rightarrow Test = \{\{A, D\}, \{A, C, D\}, \{A, B, D\}, \{A, B, C\}\}$ \\
+
+$K \SLASH C: \textit{AttrHüll}(F, \{A, C\}) = R$\\
+$\rightarrow Test = \{\{A, C\}, \{A, D\}, \{A, C, D\}, \{A, B, D\}, \{A, B, C\}\}$ \\
+
+%%
+% 3.
+%%
+
+\item $K = \{A, C\}$
+
+$K \SLASH A: \textit{AttrHüll}(F, \{C\}) = \{C\}$ !\\
+
+$K \SLASH C: \textit{AttrHüll}(F, \{A\}) = R$\\
+$\rightarrow Test = \{\{A\}, \{A, D\}, \{A, C, D\}, \{A, B, D\}, \{A, B, C\}\}$ \\
+
+%%
+% 4.
+%%
+
+\item $K = \{A\}$
+
+$K \SLASH A$: ! $\rightarrow$ kein Superschlüssel ohne A mehr möglich\\
+$\rightarrow$ dieses K wandert in Ergebnis und wird in Test gelöscht
+
+$\rightarrow Test = \{\{A, D\}, \{A, C, D\}, \{A, B, D\}, \{A, B, C\}\}$ \\
+$\rightarrow Erg = \{\{A\}\}$ \\
+\end{enumerate}
+
+analog verfahren wir mit den übrigen Mengen in Test, wie man bereits
+sieht bleibt $\{A\}$ einziger Schlüsselkandidat.
+
+\literatur
+
+\end{document}

@@ -1,0 +1,57 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{uml,syntax}
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Einzelstück / Singleton}
+
+\begin{quellen}
+\item \cite{wiki:singleton}
+\item \url{https://www.philipphauer.de/study/se/design-pattern/singleton.php}
+\item \cite[Seite 109-115]{gof}
+\item \cite[Kapitel 8.3.1, Seite 247-249]{schatten}
+\item \cite[Kapitel 3.4 Seite 38-43]{eilebrecht}
+\item \cite[Kapitel 1, Seite 1-17]{siebler}
+\end{quellen}
+
+\section{Zweck}
+
+Stellt sicher, dass nur \memph{genau eine Instanz einer Klasse} erzeugt
+wird.
+\footcite[Seite 38]{eilebrecht}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Klassendiagramm}
+
+\begin{tikzpicture}
+\umlclass{Singleton}{
+\umlstatic{- instance: Singleton}\\
+}{
+\umlstatic{- Singleton()}\\
++ getInstance()
+}
+\end{tikzpicture}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Allgemeines Code-Beispiel}
+
+\inputcode[firstline=3]{entwurfsmuster/einzelstueck/allgemein/Einzelstueck}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\literatur
+
+\end{document}

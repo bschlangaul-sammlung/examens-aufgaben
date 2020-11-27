@@ -1,0 +1,220 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Stack}
+
+\begin{quellen}
+\item \cite[Seite 275-281 (PDF 291-297)]{saake}
+\item \cite{wiki:stapelspeicher}
+\item \cite[Kapitel 6.2.1.4 Seite 182]{schneider}
+\end{quellen}
+
+Ein Stack, auch \memph{Stapel} oder \memph{Keller} genannt, ist eine
+Datenstruktur, bei der die Elemente \memph{als Folge „organisiert“}
+sind. Elemente können nur an \memph{einem Ende der Folge eingefügt bzw.
+ausgelesen / gelöscht} werden (\memph{LIFO}: \memph{Last In – First
+Out}).
+%
+Das Element, das als \emph{letztes} Element in den Stack
+\emph{eingefügt} wurde, muss also als \emph{erstes} Element wieder vom
+Stack \emph{entfernt} werden.
+%
+Dementsprechend kann das als \emph{erstes} in den Stack
+\emph{eingefügte} Element erst als \emph{letztes} Element wieder vom
+Stack \emph{entfernt} werden.
+%
+Die Operation zum Hinzufügen eines Elements heißt in der Regel
+\java{push(Object o)}, die Operation zum Entfernen eines Stackelements
+\java{pop()}. \java{top()} gibt das oberste Element des Stack zurück,
+ohne es zu entfernen
+\footcite[Seite 19 (PDF 17)]{aud:fs:4}
+
+%%
+%
+%%
+
+\section{Suchen im Stack}
+
+Um in einem Stack ein Element zu suchen, muss man \memph{im schlimmsten
+Fall bis zum Ende} des Stacks suchen.
+%
+Außerdem wird eine \memph{zweite Datenstruktur als „Zwischenlager“} der
+von oben entfernten Elemente benötigt.
+%
+Und schließlich muss von dort aus \memph{alles wieder zurückgelegt}
+werden, um den ursprünglichen Datenzustand wieder herzustellen.
+\footcite[Seite 20 (PDF 18)]{aud:fs:4}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\section{Aufgabe aus dem Informatik-Biber zu Stapeln}
+
+Der Güterzug der Biberbahn wurde in der Wagenreihung \verb|D-E-B-C-A|
+abgestellt: Die Lok kann vorwärts und rückwärts fahren und dabei
+beliebig viele Waggons ziehen und schieben. Jedes Mal, wenn ein Waggon
+angekoppelt oder ein Waggon abgekoppelt wird, zählt das als eine
+Rangieroperation. Wie viele Rangieroperationen sind mindestens nötig, um
+die Wagenreihung \verb|A-B-C-D-E| herzustellen?
+
+Die Anzahl 8 ist richtig: Um einen Zug mit nur zwei Waggons umzuordnen,
+muss jeder der beiden Waggons einmal an- und einmal abgekoppelt werden,
+das sind vier Operationen. Bei dieser Aufgabe kann man die bereits
+geordneten Zugteile \verb|D-E| und \verb|B-C| als einzelne Waggons
+behandeln. Die ersten beiden umzuordnen, etwa \verb|D-E| und \verb|B-C|,
+erfordert also vier Operationen. Den so gewonnenen Zugteil
+\verb|B-C-D-E| und den verbleibenden Waggon \verb|A| umzuordnen
+erfordert weitere vier Operationen. Die Reihenfolge der Schritte mag
+variieren, aber nur mit mehr Gleisen könnten Operationen eingespart
+werden.
+
+Die zwei Abstellgleise können als Stapelspeicher (stacks) angesehen
+werden. Man kann Objekte hineintun und wieder herausholen – aber nicht
+in beliebiger Reihenfolge. Was zuletzt hineinkam (push), muss zuerst
+wieder heraus (pop). Stapelspeicher, manchmal auch Kellerspeicher
+genannt, werden von der Informatik in Programmen und Hardwareschaltungen
+für vielfältige Zwecke eingesetzt.
+\footcite[Seite 23]{net:pdf:informatik-biber-2012}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Pseudocode (Sackbahnhof)
+\footcite[Seite 3, Aufgabe 4: Stack]{aud:ab:7}}
+
+In einem Sackbahnhof mit drei Gleisen befinden sich in den Gleisen
+\texttt{S1} und \texttt{S2} zwei Züge jeweils mit Waggons für
+Zielbahnhof \texttt{A} und \texttt{B}. Gleis \texttt{S3} ist leer.
+Stellen Sie die Züge zusammen, die nur Waggons für einen Zielbahnhof
+enthalten! Betrachten Sie \texttt{S1}, \texttt{S2} und \texttt{S3} als
+Stapel und entwerfen Sie einen Algorithmus (Pseudocode genügt), der die
+Züge so umordnet, dass anschließend alle Waggons für \texttt{A} in
+\texttt{S1} und alle Waggons für \texttt{B} in \texttt{S2} stehen.
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Herbst 2014 (66115) - Thema 2, Aufgabe 5
+\footcite[Herbst 2014 (66115) - Thema 2, Aufgabe 5, Seite 5]{examen:66115:2014:09}}
+
+Gegeben sei eine Standarddatenstruktur Stapel (Stack) mit den Operationen
+
+\begin{compactitem}
+\item \java{void push(Element e)}
+\item \java{Element pop()},
+\item \java{boolean isEmpty()}.
+\end{compactitem}
+
+sowie dem Standardkonstruktor \java{Stapel()}, der einen leeren Stapel
+zur Verfügung stellt.\footcite[Seite 2-3, Aufgabe 5]{aud:ab:4}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Geben Sie eine Methode \java{Stapel merge(Stapel s, Stapel t)} an,
+die einen aufsteigend geordneten Stapel zurückgibt, unter der Bedingung,
+dass die beiden übergebenen Stapel aufsteigend sortiert sind, d.\,h.
+\java{S.pop()} liefert das größte Element in \java{s} zurück und
+\java{T.pop()} liefert das größte Element in \java{t} zurück. Als
+Hilfsdatenstruktur dürfen Sie nur Stapel verwenden, keine Felder oder
+Listen.
+
+\begin{antwort}
+\inputcode[firstline=46,lastline=65]{aufgaben/aud/examen_66115_2014_09/Stapel}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Analysieren Sie die Laufzeit Ihrer Methode.
+
+\end{enumerate}
+
+\noindent
+Hinweis: Nehmen Sie an, dass Objekte der Klasse \java{Element}, die auf
+dem Stapel liegen mit \java{compareTo()} vergleichen werden können. Zum
+Testen haben wir Ihnen eine Klasse \java{StapelTest} zur Verfügung
+gestellt, sie können Ihre Methode hier einfügen und testen, ob die
+Stapel korrekt sortiert werden. Überlegen Sie auch, was geschieht, wenn
+einer der Stapel (oder beide) leer ist!
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 2: Türme von Hanoi\footcite{aud:ab:7}}
+
+Betrachten wir das folgende Spiel (Türme von Hanoi), das aus drei Stäben
+1, 2 und 3 besteht, die senkrecht im Boden befestigt sind. Weiter gibt
+es $n$ kreisförmige Scheiben mit einem Loch im Mittelpunkt, so dass man
+sie auf die Stäbe stecken kann. Dabei haben die Scheiben verschiedene
+Radien, alle sind unterschiedlich groß. Zu Beginn stecken alle Scheiben
+auf dem Stab 1, wobei immer eine kleinere auf einer größeren liegt. Das
+Ziel des Spiels ist es nun, die Scheiben so umzuordnen, dass sie in der
+gleichen Reihenfolge auf dem Stab 3 liegen. Dabei darf immer nur eine
+Scheibe bewegt werden und es darf nie eine größere auf einer kleineren
+Scheibe liegen. Stab 2 darf dabei als Hilfsstab verwendet werden.
+
+Ein Beispiel für 4 Scheiben finden Sie in folgendem Bild:
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Ein \java{Element} hat immer einen Wert (Integer) und kennt das
+Nachfolgende \java{Element}, wobei immer nur das jeweilige
+\java{Element} auf seinen Wert und seinen Nachfolger zugreifen darf.
+
+\begin{antwort}
+\inputcode[firstline=6]{aufgaben/aud/ab_7/hanoi/Element}
+\end{antwort}
+
+%%
+% 2.
+%%
+
+\item Ein \java{Turm} ist einem Stack (Kellerspeicher) nachempfunden und
+kennt somit nur das erste Element. Hinweis: Beachten Sie, dass nur
+kleinere Elemente auf den bisherigen Stack gelegt werden können
+
+\begin{antwort}
+\inputcode[firstline=6]{aufgaben/aud/ab_7/hanoi/Turm}
+\end{antwort}
+
+%%
+% 3.
+%%
+
+\item In der Klasse \java{Hanoi} müssen Sie nur die Methode \java{public
+void hanoi (int n, Turm quelle, Turm ziel, Turm hilfe)} implementieren.
+Die anderen Methoden sind zur Veranschaulichung des Spiels! Entwerfen
+Sie eine rekursive Methode die einen Turm der Höhe $n$ vom Stab
+\java{quelle} auf den Stab \java{ziel} transportiert und den Stab
+\java{hilfe} als Hilfsstab verwendet.
+
+\begin{antwort}
+\inputcode[firstline=6]{aufgaben/aud/ab_7/hanoi/Hanoi}
+\end{antwort}
+
+\end{enumerate}
+
+\literatur
+
+\end{document}

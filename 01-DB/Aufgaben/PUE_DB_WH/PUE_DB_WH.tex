@@ -1,0 +1,200 @@
+\documentclass{lehramt-informatik}
+\usepackage{soul}
+\usepackage{multicol}
+\def\TmpUeber#1{{\setul{-0.9em}{}\ul{#1}}}
+
+\InformatikPakete{syntax,mathe,er}
+
+\begin{document}
+
+\chapter{Präsenzübung 6: Wiederholung}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 3: SQL\footcite{db:pu:wh}}
+
+{
+\footnotesize
+\begin{multicols}{2}
+„Kunde":
+
+\begin{tabular}{|l|l|l|l|}
+\hline
+\ul{KID} & Name & Vorname & \TmpUeber{Stadt}\\\hline\hline
+K1 & Meier & Stefan & S3\\\hline
+K2 & Müller & Peta & S3\\\hline
+K3 & Schmidt & Christine & S2\\\hline
+K4 & Schulz & Michael & S4\\\hline
+\end{tabular}
+
+„Stadt"
+
+\begin{tabular}{|l|l|l|}
+\hline
+\ul{SID} & SName & Bundesland\\\hline\hline
+S1 & Berlin & Berlin\\\hline
+S2 & Nürn & Bayern\\\hline
+S3 & Köln & Nordrhein-Wesffalen\\\hline
+S4 & Stuttgart & Baden-Württemberg\\\hline
+S5 & München & Bayer\\\hline
+\end{tabular}
+\end{multicols}
+
+\begin{multicols}{2}
+„Angebot":
+
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\ul{KID} & \TmpUeber{Start} & \TmpUeber{Ziel} & \ul{Datum} & Plätze\\\hline\hline
+K4 & S4 & S5 & 08.07.2011 & 3\\\hline
+K4 & S5 & S4 & 10.07.2011 & 3\\\hline
+K1 & S1 & S5 & 08.07.2011 & 3\\\hline
+K3 & S2 & S3 & 15.07.2011 & 1\\\hline
+K4 & S4 & S1 & 15.07.2011 & 3\\\hline
+K1 & S5 & S5 & 09.07.2011 & 2\\\hline
+\end{tabular}
+
+„Anfrage":
+
+\begin{tabular}{|l|l|l|l|}
+\hline
+\ul{KID} & \TmpUeber{Start} & \TmpUeber{Ziel} & \ul{Datum}\\\hline\hline
+K2 & S4 & S5 & 08.07.2011\\\hline
+K2 & S5 & S4 & 10.07.2011\\\hline
+K3 & S2 & S3 & 08.07.2011\\\hline
+K3 & S3 & S2 & 10.07.2011\\\hline
+K2 & S4 & S5 & 05.07.2011\\\hline
+K2 & S5 & S4 & 17.07.2011\\\hline
+\end{tabular}
+\end{multicols}
+}
+
+\begin{enumerate}
+\item Formulieren Sie die folgenden Anfragen in SQL:
+\footcite[DB/ST - Frühjahr 2014 (nicht vertieft -46116), Thema 2, A3]{examen:46116:2014:03}
+
+\renewcommand{\labelenumii}{(\alph{enumi})}
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Geben Sie alle Attribute aller Anfragen aus, für die passende
+Angebote existieren! Ein Angebot ist passend zu einer Anfrage, wenn
+Start, Ziel und Datum identisch sind!
+
+\begin{antwort}[richtig]
+\begin{minted}{sql}
+SELECT Anfrage.KID, Anfrage.Start, Anfrage.Ziel, Anfrage.Datum
+FROM Anfrage, Angebot
+WHERE
+  Anfrage.Start = Angebot.Start AND
+  Anfrage.Ziel = Angebot.Ziel AND
+  Anfrage.Datum = Angebot.Datum;
+\end{minted}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Finden Sie Nachnamen und Vornamen aller Kunden, für die kein
+Angebot existiert!
+
+\begin{minted}{sql}
+SELECT k.Name, k.Vorname
+FROM Kunde k
+WHERE NOT EXISTS ( SELECT * FROM Angebot a WHERE a.KID = k.KID )
+\end{minted}
+
+oder:
+
+\begin{minted}{sql}
+SELECT k.Name, k.Vorname
+FROM Kunde k
+WHERE k.KID NOT IN ( SELECT KID FROM Angebot );
+\end{minted}
+
+%%
+%
+%%
+
+\item Geben Sie das Datum aller angebotenen Fahrten von München nach
+Stuttgart aus und sortieren Sie das Ergebnis aufsteigend!
+
+\begin{minted}{sql}
+SELECT Datum
+FROM Angebot, Stadt
+WHERE
+  (SID = Start OR
+  SID = Ziel)
+  AND
+  (SName = 'München' OR SName = 'Stuttgart')
+\end{minted}
+
+%%
+%
+%%
+
+\item Geben Sie für jeden Startort einer Anfrage den Namen der Stadt und
+die Anzahl der Anfragen aus.
+
+\begin{minted}{sql}
+SELECT SName, COUNT(*)
+FROM Anfrage, Stadt
+WHERE SID = Start
+GROUP BY SID;
+\end{minted}
+
+\end{enumerate}
+
+\item Wie sieht die Ergebnisrelation zu folgenden Anfragen auf den
+Beispieldaten aus?
+
+\begin{minted}{sql}
+SELECT *
+FROM
+Stadt
+WHERE
+NOT EXISTS ( SELECT *
+FROM Anfrage
+WHERE Start = SID OR Ziel = SID ) ;
+\end{minted}
+
+\begin{antwort}
+S1 Berlin Berlin
+\end{antwort}
+
+\begin{minted}{sql}
+SELECT KID, SUM (Plaetze)
+FROM Angebot
+WHERE Plaetze > 2
+GROUP BY KID
+HAVING SUM (Plaetze) > 4;
+\end{minted}
+
+\end{enumerate}
+
+\section{Aufgabe 6: Normalformen\footcite{db:pu:wh}}
+
+a) C und E müssen immer Teil des Schlüsselkandidaten
+AttrHull(F, \{C, E\} = \{C, E, B, A, D, F\})
+
+-> Superschlüssel
+-> Schlüsselkandidat, weil minimal denn C und E müssen immer Teil sein.
+-> kein anderer SK möglich, weil C und E immer Teil sein müssen.
+
+Sie selbst aber schon minimal sind.
+
+b)
+
+\literatur
+
+\end{document}

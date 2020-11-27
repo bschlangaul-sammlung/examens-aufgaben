@@ -1,0 +1,240 @@
+\documentclass{lehramt-informatik}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Lebenszyklus eines Software-Produktes}
+
+\begin{quellen}
+\item \cite[Kapitel 2, Seite 11-45]{schatten}
+\end{quellen}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Grundlegende Phasen des Software-Lebenszyklusses\footcite[Seite
+19]{sosy:fs:1}}
+
+vier grundlegenden Schritte des Lebenszyklusses\footcite[Seite
+13]{schatten}
+
+\begin{itemize}
+\item Software-Spezifikation
+
+\item Design und Implementierung
+
+\item Software-Validierung
+
+\item Software-Evolution
+\end{itemize}
+
+Die technischen Phasen
+
+\begin{itemize}
+\item Anforderungen und Spezifikationen
+\item Planung
+\item Entwurf und Design
+\item Implementierung und Integration
+\item Betrieb und Wartung
+\item Stilllegung
+\end{itemize}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Übergreifende Aktivitäten\footcite[Seite 11]{sosy:fs:1}}
+
+\begin{itemize}
+\item Projektmanagement (PM):
+
+Planung, Kontrolle und Steuerung von Projekten (Aufwand, Ressourcen,
+Personen, Kosten) $\rightarrow$ organisatorischer Rahmen
+
+\item Qualitätsmanagement (QM):
+
+qualitativer Kundennutzen ist im Vordergrund:
+
+\begin{itemize}
+\item Erfüllung, der vom Kunden gewünschten Eigenschaften eines Produktes
+(ob das richtige Produkt erstellt wurde) $\rightarrow$ Validierung
+
+\item Erfüllung der spezifizierten Eigenschaften eines Produktes
+(ob das Produkt richtig erstellt wurde) $\rightarrow$ Verifikation
+\end{itemize}
+
+\end{itemize}
+
+\section{Qualitätsmerkmale:\footcite[Seite 12]{sosy:fs:1}}
+
+(Qualitätsmerkmale nach ISO/IEC 9126-1)
+
+\begin{description}
+
+\item[Funktionalität]
+Welche Aufgaben sollen durch zu erstellende Software erfüllt werden?
+
+\item[Zuverlässigkeit]
+Fähigkeit verlangte Funktionalität unter gegebenen Randbedingungen in
+gegebener Zeit zu erfüllen
+
+\item[Benutzbarkeit]
+Verwendbarkeit durch den Endanwender, z. B. Benutzerführung,
+Erlernbarkeit
+
+\item[Effizienz]
+Leistung, die ein System mit einem minimum an Ressourcen erbringen kann,
+v.a. Zeitverhalten
+
+\item[Änderbarkeit]
+Durchführbarkeit von Änderungen und Erweiterungen am Software-Produkt
+
+\item[Übertragbarkeit]
+Fähigkeit, ein Software-System in einer anderen Umgebung, z. B. auf
+einer anderen Plattform, einsetzen zu können\footcite[Seite
+15-16]{schatten}
+\end{description}
+
+\subsection{Lasten- und Pflichtenheft\footcite[Seite 16]{sosy:fs:1}}
+
+Der \memph{Auftraggeber} beschreibt im
+\memph{Lastenheft}\footcite{wiki:lastenheft} möglichst präzise die
+Gesamtheit der Anforderungen. (\memph{Was?})
+
+Das \memph{Pflichtenheft}\footcite{wiki:pflichtenheft} beschreibt in
+konkreter Form, wie der \memph{Auftragnehmer} die Anforderungen des
+Auftraggebers zu lösen gedenkt. (\memph{Wie? Womit?})
+
+Erst wenn der Auftraggeber das Pflichtenheft akzeptiert, sollte die
+eigentliche Umsetzungsarbeit beim Auftragnehmer beginnen.
+
+\subsubsection{Gliederung Pflichtenheft\footcite[Seite
+17-18]{sosy:fs:1}}
+
+\begin{enumerate}
+\item Zielbestimmung
+
+\begin{itemize}
+\item Musskriterien
+\item Wunschkriterien
+\item Abgrenzungskriterien
+\end{itemize}
+
+\item Produkteinsatz
+
+\begin{itemize}
+\item Anwendungsbereiche
+\item Zielgruppen
+\item Betriebsbedingungen
+\end{itemize}
+
+\item Produktübersicht
+
+\begin{itemize}
+\item Übersicht über die wichtigsten Anwendungsfälle
+\end{itemize}
+
+\item Produktfunktionen
+
+\begin{itemize}
+\item Konkretisierung / Detaillierung der Anwendungsfälle
+\end{itemize}
+
+\item Produktdaten
+
+\begin{itemize}
+\item Beschreibung langfristig zu speichernder Daten
+\end{itemize}
+
+\item Produktleistungen
+
+\begin{itemize}
+\item Leistungsanforderungen bzgl. Zeit / Genauigkeit an Funktionen / Daten
+\end{itemize}
+
+\item Qualitätsanforderungen
+
+\begin{itemize}
+\item Qualitätsmerkmale / -stufen z.B. bzgl. definierter Standards
+\end{itemize}
+
+\item Benutzungsoberfläche
+
+\begin{itemize}
+\item grundlegende Anforderungen z.B. Fensterlayout, Dialogstruktur, Mausbedienung
+\item Benutzerrollen ggfs. Zugriffsrechte
+\end{itemize}
+
+\item Nichtfunktionale Anforderungen
+
+\begin{itemize}
+\item einzuhaltende Gesetze
+\item einzuhaltende Normen
+\item Plattformabhängigkeiten
+\end{itemize}
+
+\item Technische Produktumgebung
+
+\begin{itemize}
+\item Software
+\item Hardware
+\item Orgware („organisatorische Randbedingungen“)
+\item Produktschnittstellen („Schnittstellen zu anderen Produkten“)
+\end{itemize}
+
+\item Spezielle Anforderungen an die Entwicklungsumgebung
+
+\begin{itemize}
+\item Software
+\item Hardware
+\item Orgware
+\item Entwicklungsschnittstellen
+\end{itemize}
+
+\item Gliederung in Teilprodukte
+
+\begin{itemize}
+\item sequentiell entwickelbare Teilprodukte
+\end{itemize}
+
+\item Ergänzungen
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{2. Projektplanung und -steuerung\footcite[Seite 19]{sosy:fs:1}}
+
+Das Projektmanagement muss das Projekt initial planen (Ressourcen,
+Arbeitspakete etc.) und diese Planung in regelmäßigen Abständen
+überprüfen.
+
+Je detaillierter diese Informationen sind, desto genauer und
+plan-getriebener kann die Entwicklung erfolgen ($\rightarrow$
+Wasserfall-, V-Modell).
+
+Bei eher vagen Vorstellungen, ungenauen Projektaufträgen oder
+gewünschter hoher Flexibilität erfolgt die Planung iterativ
+($\rightarrow$ agiler Ansatz) Instrumente zur
+Projektplanung:\footcite[Seite 25-27]{schatten}
+
+\begin{itemize}
+\item Gantt-Diagramm
+\item CPM-Netzplan
+\item Petri-Netze
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\literatur
+
+\end{document}

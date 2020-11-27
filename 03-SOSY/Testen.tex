@@ -1,0 +1,1723 @@
+\documentclass{lehramt-informatik}
+\usepackage{multicol}
+\InformatikPakete{syntax,mathe,kontrollflussgraph}
+
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Testen}
+
+\begin{quellen}
+\item \cite[Kapitel 4 „Software-Text“; Seite 157-246]{hoffmann}
+\end{quellen}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Black-Box-Test\footcite[Seite 32]{sosy:fs:5}}
+
+Die Grundlage für das Black-Box Testverfahren sind \memph{Anforderungen
+und Spezifikationen}, für die der innere Aufbau der Komponenten oder des
+Systems (also die konkrete Umsetzung und Implementierung) zum Zeitpunkt
+des Tests \memph{nicht bekannt} sein muss. Die Testobjekte werden daher
+\memph{unabhängig von ihrer Realisierung getestet}. Aufgrund der
+Betrachtung des zu testenden Objekts als Black-Box werden die Testfälle
+von \memph{Daten getrieben} (\memph{Data-Driven}) und beziehen sich auf
+Anforderungen und das spezifizierte Verhalten der Testobjekte. Das
+Testobjekt wird mit definierten Eingangsparametern aufgerufen. Die
+Ergebnisse - nach Abarbeitung durch das Testobjekt - werden mit den
+erwarteten Ergebnissen verglichen. Stimmen die tatsächlichen Ergebnisse
+nicht mit den erwarteten Ergebnissen überein, liegt ein Fehler vor. Ziel
+ist es dabei, eine \memph{möglichst hohe Anforderungsüberdeckung} zu
+erreichen, also möglichst alle Anforderungen zu testen. Um die Anzahl
+der Tests bei gleichbleibender Testintensität zu reduzieren, bedient man
+sich Techniken, wie \memph{Äquivalenzklassenzerlegung} und
+\memph{Grenzwertanalyse}. Dabei versucht man, die Menge an Eingabe- und
+Ausgabedaten zu beschränken, um mit minimalem Aufwand möglichst alle
+Testfälle abzudecken.\footcite[Seite 140-141]{schatten}
+
+%%
+%
+%%
+
+\subsection{Äquivalenzklassenzerlegung:}
+
+Das vollständige Testen einer Komponente oder eines Software-Systems ist
+in der Regel aufgrund der Vielzahl an unterschiedenen Werten, die sowohl
+Eingangsparameter als auch Ausgangsparameter annehmen können, kaum
+realisierbar und auch meist nicht sinnvoll. Um die Anzahl der Testdaten
+auf ein vernünftiges Minimum zu reduzieren, bedient man sich der
+Äquivalenzklassenzerlegung. Die Äquivalenzklassenzerlegung hilft dabei,
+Bereiche von Eingabewerten zu identifizieren, die jeweils dieselben
+Ergebnisse liefern. Aus diesen Klassen von Eingabewerte wählt man
+jeweils einen Vertreter (Repräsentanten) aus, der dann für den konkreten
+Testfall verwendet wird.
+
+Komplizierter wird die Äquivalenzklassenzerlegung, falls Bedingungen mit
+mehreren Parametern zu testen sind, da sämtliche Kombinationen von
+Parameterklassen getestet werden müssen. Allerdings gilt auch hier
+wieder, dass pro Äquivalenzklassenkombination nur ein Repräsentant
+ausgewählt werden muss und die Anzahl der Testfälle auf diese Weise
+beschränkt werden kann.\footcite[Seite 142]{schatten}
+
+%%
+%
+%%
+
+\subsection{Grenzwertanalyse}
+
+Einen besonderen Stellenwert nehmen Bereichsgrenzen von
+Äquivalenzklassen ein, da diese häufige Ursachen für Fehler sind, die
+beispielsweise durch Tippfehler verursacht werden. Statt eines
+„\texttt{<=}“ wird ein „\texttt{<}“ geschrieben, was speziell an den
+Systemgrenzen zu einem Fehlverhalten des Systems führt. Diese
+Fehlerquelle kann beispielsweise mit der Grenzwertanalyse erkannt
+werden. Die Kernidee bei der Grenzwertanalyse ist, (a) Grenzbereiche zu
+identifizieren und (b) Testdaten aus dem nahen Umfeld dieser
+Bereichsgrenzen auszuwählen. Dabei empfiehlt es sich, jeweils einen Wert
+aus dem Grenzbereich der einen und der anderen Klasse auszuwählen.
+Optional kann natürlich auch der exakte Grenzwert in einem Testfall
+spezifiziert werden, der aber - bei genauer Analyse - ohnehin einer der
+beiden Klassen zugeordnet werden kann.
+\footcite[Seite 142]{schatten}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{White-Box-Testtechniken\footcite[Seite 199-246]{hoffmann}}
+
+\begin{quellen}
+\item \cite{wiki:white-box-test}
+\item \cite[Seite 199-246]{hoffmann}
+\end{quellen}
+
+Quellcode ist bekannt und wird
+zum Testen benutzt\footcite[Seite 32]{sosy:fs:5}
+
+%%
+%
+%%
+
+\subsection{Kontrollflussorientiertes Testen\footcite[Seite 34]{sosy:fs:5}}
+
+\begin{quellen}
+\item \cite{wiki:kontrollfluss-test}
+\item \cite[Kapitel 8.6.3 „Methoden zur Testfallermittlung“, Seite 251-252]{schneider}
+\end{quellen}
+
+Dynamische White-Box-Tests, die sich am Kontrollflussgraphen des
+Programms orientieren.
+
+\begin{itemize}
+\item Anweisungsüberdeckungstest
+\item Zweigüberdeckungstest
+\item Pfadüberdeckungstest
+\item Bedingungsüberdeckungstest
+\end{itemize}
+
+%%
+%
+%%
+
+\subsection{Kontrollflussgraph}
+
+Ein Kontrollflussgraph (englisch: \memph{control-flow graph} (CFG))
+bezeichnet einen \memph{gerichteten Graphen} der dazu dient, den
+Kontrollfluss eines Computerprogramms zu beschreiben. Sie werden unter
+anderem zur Programmoptimierung
+eingesetzt.\footcite{wiki:kontrollflussgraph}
+
+Jeder Graph enthält genau \memph{einen Startknoten} und \memph{einen
+Endknoten}. \memph{Verschiedenen Aussprungspunkte} (z. B. mehrere
+return-Anweisungen) werden in einem neuen, \memph{zusätzlich
+eingeführten Knoten} zusammengeführt.\footcite[Seite
+203]{hoffmann}
+
+Der Kontrollflussgraph wird in manchen Aufgaben auch
+\memph{Ablaufdiagramm} genannt. Geschrichelte Kanten können
+eingezeichnet werden, um einen \java{false}-Zweig von einem
+\java{true}-Zweig besser unterscheiden zu können. Oftmals sind die
+Knoten mit dem Präfix „n“ (für node) benannt. S steht für Start-Knoten
+und E steht für End-Knoten.
+
+\subsubsection{Kontrollflussgraphen der elementaren Verzweigungs- und Schleifenkonstrukte\footcite[Seite 205]{hoffmann}}
+
+\begin{itemize}
+\item \java{if (B) X;}
+
+\item \java{if (B) X; else Y;}
+
+\item \java{while (B) X;}
+
+\item \java{do X; while (B);}
+\end{itemize}
+
+\begin{multicols}{2}
+\inputcode[firstline=4,lastline=16]{testen/Beispiel}
+
+\begin{tikzpicture}[kontrollfluss,xscale=0.7,yscale=-0.8]
+\node[knoten] at (0,0) (S) {S};
+\node[knoten] at (0,1) (1) {1};
+\node[knoten] at (0,2) (2) {2};
+\node[knoten] at (1,3) (3) {3};
+\node[knoten] at (1,4) (4) {4};
+\node[knoten] at (0,5) (5) {5};
+\node[knoten] at (1,6) (6) {6};
+\node[knoten] at (0,7) (E) {E};
+
+\draw[->] (S) -- (1);
+\draw[->] (1) -- (2);
+\draw[->] (2) -- (3) \bedingung{above right}{y > x};
+\draw[->] (2) -- (5) \bedingung{left}{y <= x};
+\draw[->] (3) -- (4);
+\draw[->] (4) -- (5);
+\draw[->] (5) -- (6) \bedingung{above right}{2 * max < 3 * min};
+\draw[->] (5) -- (E) \bedingung{left}{2 * max >= 3 * min};
+\draw[->] (6) -- (E);
+\end{tikzpicture}
+\end{multicols}
+
+%%
+%
+%%
+
+\subsubsection{$C_0$-Test: Anweisungsüberdeckung (Statement Coverage)\footcite[Seite 36]{sosy:fs:5}}
+
+Anweisungsüberdeckungstests, auch $C_0$-Test genannt, testen \memph{jede
+Anweisung mindestens ein Mal}. Wurde jede Anweisung in einem Programm
+mindestens einmal ausgeführt, spricht man von \memph{vollständiger
+Anweisungsüberdeckung}. Wurde vollständige Anweisungsüberdeckung
+erreicht, dann steht fest, dass \memph{kein toter Code} (Anweisungen,
+die niemals durchlaufen werden) im Programm existiert.
+\footcite{wiki:kontrollfluss-test}
+
+\texttt{(S, 1, 2, 3, 4, 5, 6, E)}
+bzw.
+\texttt{x=4, y=5}
+
+%%
+%
+%%
+
+\subsubsection{$C_1$-Test: Zweigüberdeckung (Branch Coverage)\footcite[Seite 37]{sosy:fs:5}}
+
+Die Zweigüberdeckung fordert, dass jede \memph{Kante} des
+Kontrollflussgraphen von mindestens einem Testfall durchlaufen werden
+muss. Um das Kriterium zu erfüllen, müssen die Testfälle so gewählt
+werden, dass jede Verzweigungsbedingung mindestens \memph{einmal wahr}
+und mindestens \memph{einmal falsch} wird. Da hierdurch alle Knoten
+ebenfalls mindestens einmal besucht werden müssen, ist die
+\memph{Anweisungsüberdeckung} in der Zweigüberdeckung \memph{vollständig
+enthalten}.\footcite[Seite 209]{hoffmann}
+
+Der Zweigüberdeckungstest wird auch Entscheidungsüberdeckungstest
+genannt, da die Hilfsvariable mindestens einmal mit dem Wert true und
+false durchlaufen werden muss. In diesem Fall muss die While-Schleife
+mindestens zweimal durchlaufen werden.\footcite{wiki:kontrollfluss-test}
+
+\ueberschrift{vollständige Zweigüberdeckung}
+
+\texttt{\{(S, 1, 2, 3, 4, 5, 6, E), (S, 1, 2, 5, E)\}}
+bzw.
+\texttt{\{x=4, y=5; x=3, y=2\}}
+
+%%
+%
+%%
+
+\paragraph{Zyklomatische Komplexität\footcite[Seite 38]{sosy:fs:5}}
+
+\begin{itemize}
+\item gibt an, wie viele Testfälle höchstens nötig sind, um eine
+Zweigüberdeckung zu erreichen
+
+\item i.A. Metrik für “Testbarkeit/Komplexität”
+\end{itemize}
+
+\noindent
+Berechnung durch Anzahl Binärverzweigungen $b$ ($p$ Anzahl der
+Zusammenhangskomponenten des Kontrollflussgraphen)
+
+\begin{displaymath}
+M = b + p
+\end{displaymath}
+
+$\rightarrow M = 2 + 1 = 3$
+
+\noindent
+oder durch Anzahl Kanten $e$ und Knoten $n$
+
+\begin{displaymath}
+M = e - n + 2p
+\end{displaymath}
+
+$\rightarrow M = 9 - 8 + 2 *1 = 3$\footcite[Kapitel 4.4.6
+McCabe-Überdeckung, Seite 216220]{hoffmann}
+
+%%
+%
+%%
+
+\subsubsection{$C_2$-Test: Pfadüberdeckung (Path Coverage)\footcite[Seite 39]{sosy:fs:5}}
+
+Die Pfadüberdeckung ist die mit Abstand mächtigste
+White-Box-Prüftechnik, besitzt aufgrund ihrer immensen Komplexität
+aber nur eine äußerst geringe Praxisbedeutung.
+
+\paragraph{vollständiger Pfadüberdeckungstest:}
+
+Das Kriterium der vollständigen Pfadüberdeckung wird erst dann erfüllt,
+wenn für jeden möglichen Pfad, der den Eingangsknoten des
+Kontrollflussgraphen mit dem Ausgangsknoten verbindet, ein separater
+Testfall existiert.\footcite[Seite 210]{hoffmann}
+
+Um die Limitierungen der vollständigen Pfadüberdeckung zu überwinden,
+wurden in der Vergangenheit mehrere Variationen vorgeschlagen, mit deren
+Hilfe sich die kombinatorische Explosion zumindest teilweise eindämmen
+lässt. Von Bedeutung sind in diesem Zusammenhang insbesondere die
+\memph{Boundary-Interior-Pfadüberdeckung} und die \memph{strukturierte
+Pfadüberdeckung}. Beide Variationen basieren auf der Beobachtung, dass
+ein Großteil der Fehler innerhalb eines Schleifenkonstrukts bereits nach
+wenigen Iterationsschritten zum Vorschein kommt. Mit anderen Worten:
+Eine weitere Erhöhung der ausgeführten Schleifeniterationen kann die
+erreichbare Fehlererkennungsrate nur noch marginal steigern. Beide der
+hier vorgestellten Pfadüberdeckungsvarianten tragen diesem Phänomen
+Rechnung und versuchen, die Anzahl der Schleifendurchläufe
+dementsprechend einzugrenzen:
+
+\paragraph{Boundary-Interior-Pfadüberdeckung / Schleife-Inneres-Überdeckung:}
+
+\noindent
+Der Boundary-Interior-Pfadtest konstruiert für jede Schleife des
+Programms drei Gruppen von Testfällen, die alle erfolgreich abgearbeitet
+werden müssen.
+
+\begin{description}
+\item[Äußere Pfade]
+Die Testfälle durchlaufen das Programm auf Pfaden, die den
+\memph{Schleifenkörper nicht betreten}. Für Schleifen fester Lauflänge
+sowie für While-Schleifen, die erst am Ende des Schleifenkörpers die
+Wiederholungsbedingung auswerten, ist diese Testfallgruppe leer.
+
+\item[Grenzpfade (boundary paths, boundary test)] Die Testfälle
+durchlaufen das Programm auf Pfaden, die den Schleifenkörper betreten,
+jedoch zu \memph{keiner Wiederholung} führen. Innerhalb des
+Schleifeninneren müssen \memph{alle möglichen Pfade getestet} werden.
+Für Schleifen fester Lauflänge ist diese Testfallgruppe leer.
+
+\item[Innere Pfade (interior test)] Die Testfälle durchlaufen das
+Programm auf Pfaden, die den Schleifenkörper betreten und
+\memph{mindestens eine weitere Iteration} ausführen. Die Testfälle
+werden so gewählt, dass \memph{innerhalb der ersten beiden Ausführungen
+alle möglichen Pfade abgearbeitet} werden.\footcite[Seite 212]{hoffmann}
+\end{description}
+
+\paragraph{Strukturierter Pfadüberdeckungstest:}
+
+\noindent
+Anzahl der Schleifendurchläufe auf eine
+Zahl $n$ reduziert
+
+\ueberschrift{vollständige Pfadüberdeckung}
+
+\texttt{(S, 1, 2, 3, 4, 5, 6, E), (S, 1, 2, 5, E),
+(S, 1, 2, 3, 4, 5, E), (S, 1, 2, 5, 6, E)}
+
+%%
+%
+%%
+
+\subsubsection{$C_3$-Test: Bedingungsüberdeckung (Condition Coverage)\footcite[Seite 40]{sosy:fs:5}}
+
+Problem: zusammengesetzte, hierarchische Bedingungen nicht ausreichend
+getestet
+
+Einfachbedingungsüberdeckung:
+Alle atomaren Prädikate müssen mindestens einmal beide Wahrheitswerte
+annehmen.
+(→ A = 0, B = 1; A = 1, B = 0)
+Mehrfachbedingungsüberdeckung:
+Alle Wahrheitskombinationen müssen getestet werden.
+(→ A = 0, B = 1; A = 1, B = 0; A = 1, B = 1; A = 0, B = 0)
+Minimaler Mehrfachbedingungsüberdeckung: („Zwischenlösung“)
+Alle atomaren und zusammengesetzten Prädikate müssen einmal beide
+Wahrheitswerte annehmen.
+
+{
+\footnotesize
+\noindent
+\begin{tabular}{llL{4cm}L{3cm}}
+&
+&
+\textbf{erfüllte Bedingung} &
+\textbf{Durchführbarkeit}
+\\
+
+\hline
+
+%%
+%
+%%
+
+\textbf{Anweisungsüberdeckungstest}
+&
+C0 &
+jede Anweisung wird mindestens einmal ausgeführt &
+relativ einfach \\
+
+\hline
+
+%%
+%
+%%
+
+\textbf{Zweigüberdeckungstest} &
+C1 &
+jede Kante im Kontrollflussgraph (KFG) wird mindestens einmal durchlaufen &
+realistische Mindestanforderung, vertretbarer Aufwand \\
+
+\hline
+
+%%
+%
+%%
+
+\textbf{Pfadüberdeckungstest} &
+C2 &
+&
+\\
+
+Vollständig &
+C2a &
+Alle möglichen Pfade werden durchlaufen &
+unmöglich bei Schleifen \\
+
+Boundary-Interior &
+C2b &
+wie C2a, Schleifen werden jedoch nach speziellen Regeln durchlaufen &
+aufwendig \\
+
+Strukturiert &
+C2c &
+wie C2b, Schleifen werden jedoch genau n-mal durchlaufen &
+aufwendig \\
+
+\hline
+
+%%
+%
+%%
+
+\textbf{Bedingungsüberdeckungstest} &
+C3 &
+&
+\\
+
+Einfachbedingung &
+C3a &
+jede atomare Bedingung wird einmal mit true und false getestet &
+\\
+
+Mehrfachbedingung &
+C3b &
+jede true/false Kombination der atomaren Bedingungen wird getestet &
+sehr hoher Aufwand \\
+
+Minimale Mehrfachbedingung &
+C3c &
+jede atomare Bedingung und die Gesamtbedingung wird mit true und false getestet &
+hoher Aufwand\\
+\end{tabular}
+
+Quelle: Wikipedia\footcite{wiki:kontrollfluss-test}
+}
+
+%%
+%
+%%
+
+\subsection{Datenflussorientiertes Testen}
+
+\begin{quellen}
+\item \cite[Kapitel 8.6.3 „Methoden zur Testfallermittlung“, Seite 250-251]{schneider}
+\item \cite[Kapitel 4.4.7 Def-Uses-Überdeckung, Seite 220-227]{hoffmannn}
+
+\end{quellen}
+Im Gegensatz zu allen bisher betrachteten Überdeckungskriterien, die
+ausschließlich den Kontrollfluss eines Programms in Betracht ziehen,
+leiten die Defs-Uses-Kriterien die auszuführenden Pfade aus dem
+Datenfluss ab. Hierzu werden die \memph{Variablenzugriffe} des
+untersuchten Programms analysiert und \memph{mit verschiedenen
+Datenflussattributen versehen}. Die vergebenen Attribute teilen die
+Variablenzugriffe in \memph{drei Klassen} ein:
+
+Sie sind besonders geeignet für objektorientiert entwickelte Systeme.
+
+\def\TmpBeispiel#1{(Beispiel: \java{#1})}
+
+\begin{description}
+\item[Definitorische Nutzung (\texttt{def-use}):]
+
+In diese Klasse fallen alle Zugriffe, die den aktuellen \memph{Wert
+einer Variablen überschreiben}. Alle Variablenzugriffe auf der linken
+Seite einer Zuweisung fallen in diese Kategorie. \TmpBeispiel{x = 42;}
+
+\item[Referenzierende Nutzung (\texttt{r-use}):]
+
+In diese Klasse fallen alle Zugriffe, die den Wert einer Variablen
+\memph{verwenden, jedoch nicht verändern}. Zwischen einer Zuweisung und
+einer nachfolgenden Referenz, die den zugewiesenen Wert verwendet,
+besteht eine \texttt{du}-Interaktion. Referenzierende Nutzungen können
+weiter in berechnende und prädikative Nutzungen unterteilt werden.
+
+\begin{description}
+\item[Berechnende Nutzung (\texttt{c-use}):]
+
+In diese Klasse fallen alle Zugriffe, die den \memph{Wert einer
+Variablen in einer Berechnung verwenden} (\memph{computational use},
+kurz \texttt{c-use}). Zwischen einer Zuweisung und einer sich
+anschließenden berechnenden Nutzung besteht eine
+\texttt{dc}-Interaktion. \TmpBeispiel{x = x * 2;} (+ \texttt{def-use})
+\footcite[Seite 220]{hoffmannn}
+
+\item[Prädikative Nutzung (\texttt{p-use}):]
+
+In diese Klasse fallen alle Zugriffe, die den Wert einer Variablen
+\memph{prädikativ}, d. h. innerhalb eines \memph{booleschen Ausdrucks}
+verwenden (\memph{predicative use}, kurz \texttt{p-use}). Zwischen einer
+Zuweisung und einer sich anschließenden prädikativen Nutzung besteht
+eine dp-Interaktion. \TmpBeispiel{if (x > 42)}
+\footcite[Seite 221]{hoffmannn}
+\end{description}
+\end{description}
+\footcite[Seite 42]{sosy:fs:5}
+
+%%
+%
+%%
+
+\subsubsection{Datenflussgraph}
+
+\inputcode[firstline=18,lastline=25]{testen/Beispiel}
+
+\begin{description}
+\item[def-use:] Knoten
+\item[c-use:] Knoten
+\item[p-use:] Kanten\footcite[Seite 43]{sosy:fs:5}
+\end{description}
+
+\begin{tikzpicture}[kontrollfluss,xscale=0.7,yscale=-1.5]
+\node[knoten] at (0,0) (S) {S};
+\node[knoten] at (0,1) (1) {1};
+\node[knoten] at (1,2) (2) {2};
+\node[knoten] at (0,3) (E) {E};
+
+\draw[->] (S) -- (1);
+\draw[->] (1) edge node[name=e11]{} (2);
+\draw[->] (1) edge node[name=e1E]{} (E);
+\draw[->] (2) -- (E);
+
+\node[usebox] at (3,0) {def(min), def(max)}
+  edge[dotted] (S);
+
+\node[usebox] at (3,0.75) {p-use(min), p-use(max)}
+  edge[dotted] (e11.center)
+  edge[dotted] (e1E.center);
+
+\node[usebox] at (3,2) {def(tmp), c-use(max)\\def(max), c-use(min)\\def(min), c-use(tmp)}
+  edge[dotted] (2);
+
+\node[usebox] at (3,3) {c-use(min), c-use(max)}
+  edge[dotted] (E);
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\subsubsection{Überdeckungskriterium}
+
+Definitionsfreier Pfad: Wird $x$ im Knoten $0$ definiert, so ist der
+Pfad 0, 1, 2, 3, 4, 5 definitionsfrei, wenn $x$ in keinem weiteren
+Knoten 1, 2, 3, 4, 5 erneut definiert wird.
+
+\bigskip\noindent
+Testfälle durchlaufen für jede Definition einer Variable einen
+definitionsfreien Pfad zu ...
+
+\begin{description}
+
+\item[all definitions:] mindestens einem p- oder c-use
+→ S, 1, 2, E
+
+\item[all c-uses:] allen erreichbaren c-uses
+→ S, 1, 2, E und S, 1, E
+
+\item[all p-uses:] allen erreichbaren p-uses
+→ S, 1, 2, E und S, 1, E
+
+\item[all uses:] zu allen erreichbaren p- und c-uses
+→ S, 1, 2, E und S, 1, E
+
+\item[all c-uses/some p-uses bzw. all p-uses/some c-uses:] falls zu
+manchen Variablendefinitionen kein c- bzw. p-use vorhanden ist,
+stattdessen mindestens einen p-use bzw. c-use testen.
+\end{description}
+
+\footcite[Seite 44]{sosy:fs:5}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 1: Grundwissen\footcite{sosy:ab:7}}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Nennen Sie die wesentlichen Unterschiede zwischen White-Box-Testen
+und Black-Box-Testen und geben Sie jeweils zwei Beispiele an.
+
+\begin{antwort}
+White-Box-Tests sind \emph{strukturorientiert}, z.\,B.
+Kontrollflussorientiertes Testen oder Datenflussorientiertes Testen.
+Black-Box-Test sind \emph{spe\-zifi\-kations- und funktionsorientiert} (nur
+Ein- und Ausgabe relevant), z. B. Äquivalenzklassenbildung oder
+Grenzwertanalyse.
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Geben Sie drei nicht-funktionalorientierte Testarten an.
+
+\begin{antwort}
+Performanztest, Lasttest, Stresstest.
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Nennen Sie die vier verschiedenen Teststufen aus dem V-Modell und
+erläutern Sie deren Ziele.
+
+\begin{antwort}
+\begin{description}
+\item[Komponenten-Test:]
+Fehlerzustände in Modulen finden.
+
+\item[Integrations-Test:]
+Fehlerzustände in Schnittstellen und Interaktionen finden.
+
+\item[System-Test:]
+Abgleich mit Spezifikation.
+
+\item[Abnahme-Test:]
+Vertrauen in System und nicht-funktionale Eigenschaften gewinnen.
+\footcite[Seite 50, Abbildung 3.2]{schatten}
+\end{description}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Nennen Sie fünf Aktivitäten des Testprozesses.
+
+\begin{antwort}
+\begin{enumerate}
+\item Testplanung und Steuerung,
+
+\item Testanalyse und Testentwurf,
+
+\item Testrealisierung und Testdurchführung,
+
+\item Bewertung von Endekriterien und Bericht,
+
+\item Abschluss der Testaktivitäten\footcite[Kapitel „5.6.2 Der
+traditionelle Testprozess“ Seite 135-138]{schatten}
+\end{enumerate}
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 2: Kontrollflussorientiertes Testen\footcite{sosy:ab:7}}
+
+Im Folgenden ist ein Algorithmus angegeben, der für eine positive Zahl
+\java{until} die Summe aller Zahlen bildet, die kleiner als \java{until}
+und Vielfache von 4 oder 6 sind. Für nicht positive Zahlen soll 0
+zurückgegeben werden. Der Algorithmus soll also folgender Spezifikation
+genügen:
+\footcite[Herbst 2014 (66116) - Thema 2, Teilaufgabe 2, Aufgabe 3]{examen:66116:2014:09}
+
+\bigskip
+
+{\footnotesize
+\noindent
+$\texttt{until} > 0 \Rightarrow \texttt{specialSums(until)} =
+\sum \{y | 0 < y < \texttt{until} \land (y\%4 = 0 \lor y\%6 = 0)\}$
+
+\noindent
+$\texttt{until} \leq 0 \Rightarrow \texttt{specialSums(until)} = 0$
+}
+
+\bigskip\noindent
+wobei $\%$ den Modulo-Operator bezeichnet.
+
+\inputcode[firstline=4,lastline=14]{aufgaben/sosy/ab_7/Aufgabe2}
+
+\noindent
+Beachten Sie, dass der Algorithmus nicht der Spezifikation genügt. Der
+Fehler liegt in der Bedingung der for-Schleife. Der Fehler kann jedoch
+einfach korrigiert werden indem die Bedingung
+
+\begin{center}
+$i \leq \texttt{until}$ in $i < \texttt{until}$
+\end{center}
+
+geändert würde.
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+  % public static long specialSums(int until) {
+  %   long sum = 0; // 0
+  %   if (until > 0) { // 1
+  %     for (int i = 1; i <= until; i++) { // 2 // 5
+  %       if (i % 4 == 0 || i % 6 == 0) { // 3
+  %         sum += i; // 4
+  %       }
+  %     }
+  %   }
+  %   return sum; // 6
+  % }
+
+\item Zeichnen Sie das zum Programm gehörige Ablaufdiagramm.
+
+\begin{antwort}
+\begin{tikzpicture}[kontrollfluss,xscale=1,yscale=-1.5]
+\node[knoten] at (0,0.5) (0) {0}; % long sum = 0;
+\node[knoten,pin=if] at (0,1) (1) {1}; % if (until > 0)
+\node[knoten,pin=for-Bedingung] at (1,2) (2) {2}; % for (int i = 1; i <= until; i++)
+\node[knoten,pin=if] at (2,3) (3) {3}; % if (i % 4 == 0 || i % 6 == 0)
+\node[knoten,pin=sum += i] at (3,4) (4) {4}; % sum += i;
+\node[knoten,pin=i++] at (2,5) (5) {5}; % i++
+\node[knoten,pin=return sum] at (0,5.5) (6) {6}; % return sum;
+
+\draw[->] (0) -- (1);
+\draw[->] (1) -- (2) \bedingung{above right}{until > 0};
+\draw[->] (2) -- (3) \bedingung{above right}{i <= until};
+\draw[->] (3) -- (4) \bedingung{above right}{i \% 4 == 0 || i \% 6 == 0};
+\draw[->] (4) -- (5);
+\draw[->] (1) -- (6) \bedingung{left}{until <= 0};
+\draw[->] (2) -- (6);
+\draw[->] (5) -- (2);
+\draw[->] (3) -- (5);
+\end{tikzpicture}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Schreiben Sie einen Testfall, der das Kriterium „100\%
+Anweisungsüberdeckung“ erfüllt, aber den Fehler trotzdem nicht aufdeckt.
+
+\begin{antwort}
+Der Fehler fällt nur dann auf, wenn \texttt{until} durch $4$ oder $6$
+ohne Rest teilbar ist. \texttt{until = 0\%4} oder \texttt{until = 0\%6}.
+Wähle daher den Testfall $\{(1, 0)\}$. Alternativ kann für die Eingabe
+auch 2, 3, 5, 7, 9, 10, 11, 13, ... gewählt werden.
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Schreiben Sie einen Testfall, der das Kriterium „100\%
+Zweigüberdeckung“ erfüllt, aber den Fehler trotzdem nicht aufdeckt.
+
+\begin{antwort}
+Betrachte den Testfall $\{(0, 0), (5, 4)\}$.
+
+\begin{description}
+\item[erste if-Bedingung]
+Das erste Tupel mit $\text{until} = 0$ stellt sicher, dass
+die erste if-Bedingung \java{false} wird.
+
+\item[Bedingung der for-Schleife]
+Für die zweite Eingabe $\text{until} = 5$ werden für $i$ die Werte 1, 2,
+3, 4, 5, 6 angenommen. Wobei für $i = 6$ die Bedingung der for-Schleife
+\java{false} ist.
+
+\item[Binnere if-Bedingung]
+Für i = 1, 2, 3, 5 wird die innere if-Bedingung jeweils \java{false},
+für $i = 4$ wird sie \java{true}.
+\end{description}
+
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Schreiben Sie einen Testfall, der den Fehler aufdeckt. Berechnen
+Sie Anweisungsüberdeckung und Zweigüberdeckung ihres Testfalls.
+
+\begin{antwort}
+\begin{description}
+\item[Anweisungsüberdeckung]
+Wähle $\{(4, 0)\}$. Durch die fehlerhafte Bedingung in der for-Schleife
+wird der Wert $i = 4$ akzeptiert. Da alle Anweisungen ausgeführt werden,
+wird eine Anweisungsüberdeckung mit 100\% erreicht.
+
+\item[Verzweigungsüberdeckung]
+Da die erste Verzweigung nur zur Hälfte überdeckt wird und die anderen
+beiden vollständig, gilt für die Verzweigungsüberdeckung:
+
+$\frac{1+2+2}{2+2+2} = \frac{5}{6}$
+\end{description}
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item Es ist nicht immer möglich vollständige Pfadüberdeckung zu
+erreichen. Geben Sie einen gültigen Pfad des Programmes an, der nicht
+erreichbar ist. Ein Testfall kann als Menge von Paaren dargestellt
+werden, wobei jedes Paar $(I, O)$ die Eingabe $I$ und die zu dieser
+erwartete Ausgabe $O$ darstellt.
+
+\begin{antwort}
+Ein gültiger Pfad im Kontrollflussgraphen wäre \TextzeileKnoten{0} -
+\TextzeileKnoten{1} - \TextzeileKnoten{2} - \TextzeileKnoten{3} -
+\TextzeileKnoten{4} - \TextzeileKnoten{5} - \TextzeileKnoten{2} -
+\TextzeileKnoten{6}. Der Übergang von \TextzeileKnoten{3} auf
+\TextzeileKnoten{4} ist hier aber nicht möglich, da beim ersten
+Durchlaufen der for-Schleife (\TextzeileKnoten{2}) $i$ immer $1$ ist
+und $1$ weder durch $4$ noch durch $6$ teilbar ist. Somit kann die
+Bedingung des inneren ifs (\TextzeileKnoten{3}) beim ersten Durchlauf
+nie \emph{wahr} sein, womit immer der Übergang \TextzeileKnoten{3} -
+\TextzeileKnoten{5} zu Beginn genommen werden muss. Alle Pfade, die zu
+Beginn \TextzeileKnoten{3} - \TextzeileKnoten{4} enthalten, sind somit
+nicht überdeckbar.
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 3: Schleifen-Inneres-Überdeckung\footcite{sosy:ab:7}}
+
+Gegeben sei folgende Methode und ihr Kontrollflussgraph:
+
+\begin{multicols}{2}
+\inputcode[firstline=4]{aufgaben/sosy/ab_7/Aufgabe3}
+
+\begin{tikzpicture}[kontrollfluss,xscale=1,yscale=-0.8]
+\node[knoten] at (0,0) (S) {S};
+\node[knoten] at (0,1) (1) {1};
+\node[knoten] at (0,2) (2) {2};
+\node[knoten] at (0,3) (3) {3};
+\node[knoten] at (-1,4) (4) {4};
+\node[knoten] at (1,4) (5) {5};
+\node[knoten] at (0,5) (6) {6};
+\node[knoten] at (0,6) (7) {7};
+\node[knoten] at (0,7) (E) {E};
+
+\draw[->] (S) -- (1);
+\draw[->] (1) -- (2);
+\draw[->] (2) -- (3);
+\draw[->] (3) -- (4);
+\draw[->,dashed] (3) -- (5);
+\draw[->] (4) -- (6);
+\draw[->] (5) -- (6);
+\draw[->] (6) -- (7);
+\draw[->] (7) -- (-2,6) -- (-2,2) -- (2);
+\draw[->,dashed] (2) -- (2,2) -- (2,7) -- (E);
+\end{tikzpicture}
+\end{multicols}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Begründen Sie, warum der Pfad \TextzeileKnoten{S} -
+\TextzeileKnoten{1} - \TextzeileKnoten{2} - \TextzeileKnoten{3} -
+\TextzeileKnoten{5} - \TextzeileKnoten{6} - \TextzeileKnoten{7} -
+\TextzeileKnoten{2} - \TextzeileKnoten{E}
+infeasible (= nicht überdeckbar) ist, also weshalb es keine Eingabe
+gibt, unter der dieser Pfad durchlaufen werden kann.
+
+\begin{antwort}
+Damit dieser Pfad durchlaufen werden könnte, müsste die Eingabe $a$
+gleichzeitig $2$ und ungerade sein.
+
+\begin{tikzpicture}[kontrollfluss,xscale=1,yscale=-1]
+\node[knoten] at (0,0) (S) {S};
+
+\node[knoten,pin={
+  \java{int x = y; int z = 0;}
+}] at (0,1) (1) {1};
+
+\node[knoten,pin={
+    [pin distance=1cm]
+    5:\java{while (x > 1)}
+}] at (0,2) (2) {2};
+
+\node[knoten,pin={
+  [pin distance=2cm]
+  \java{if (x \% 2 == 0)}
+}] at (0,3) (3) {3};
+
+\node[knoten,pin={
+  [pin distance=1cm]
+  180:\java{z++; x /= 2;}
+}] at (-1,4) (4) {4};
+
+\node[knoten,pin={
+  [pin distance=1cm]
+  \java{x--;}
+}] at (1,4) (5) {5};
+
+\node[knoten] at (0,5) (6) {6};
+\node[knoten] at (0,6) (7) {7};
+\node[knoten,pin={
+  -90:\java{return z;}
+}] at (0,7) (E) {E};
+
+\draw[->] (S) -- (1);
+\draw[->] (1) -- (2);
+\draw[->] (2) -- (3) \bedingung{right}{x > 1};
+\draw[->] (3) -- (4);
+\draw[->,dashed] (3) -- (5);
+\draw[->] (4) -- (6);
+\draw[->] (5) -- (6);
+\draw[->] (6) -- (7);
+\draw[->] (7) -- (-2,6) -- (-2,2) -- (2);
+\draw[->,dashed] (2) -- (2,2) -- (2,7) \bedingung{right}{x <= 1} -- (E) ;
+\end{tikzpicture}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Geben Sie eine minimale Menge von Pfaden an, mit der eine
+vollständigen Schleifen-Inneres-Überdeckung erzielt werden kann, sowie
+gegebenenfalls zu jedem Pfad eine Eingabe, unter der dieser Pfad
+durchlaufen werden kann.
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 4: Datenflussorientiertes Testen\footcite{sosy:ab:7}}
+
+Gegeben Sei folgende Java-Methode sort zum Sortieren eines Feldes ganzer
+Zahlen:
+\footcite[Herbst 2016 (66116) - Thema 1, Teilaufgabe 2, Aufgabe 3 a-e]{examen:66116:2016:09}
+
+\inputcode[firstline=4]{aufgaben/sosy/ab_7/Aufgabe4}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Konstruieren Sie den Kontrollflussgraphen des obigen
+Code-Fragments und annotieren Sie an den Knoten und Kanten die
+zugehörigen Datenflussinformationen (Definitionen bzw. berechnende
+oder prädikative Verwendung von Variablen).
+
+%%
+% (b)
+%%
+
+\item Nennen Sie die maximale Anzahl linear unabhängiger Programmpfade,
+also die zyklomatische Komplexität nach McCabe.
+
+%%
+% (c)
+%%
+
+\item Geben Sie einen möglichst kleinen Testdatensatz an, der eine
+100\%-ige Verzweigungsüberdeckung dieses Moduls erzielt.
+
+%%
+% (d)
+%%
+
+\item Beschreiben Sie kurz, welche Eigenschaften eine Testfallmenge
+allgemein haben muss, damit das datenflussorientierte
+Überdeckungskriterium all-uses“ erfüllt.
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 5 (Check-Up)\footcite{sosy:ab:7}}
+
+Gegeben Sei folgende Methode und ihr Kontrollflussgraph:
+\footcite[nach Frühjahr 2017 (66116) - Thema 2, Teilaufgabe 2, Aufgabe 1]{examen:66116:2017:03}
+
+\begin{minipage}{6cm}
+\inputcode[firstline=4,lastline=21]{aufgaben/sosy/ab_7/Aufgabe5}
+%
+\end{minipage}
+%
+\begin{minipage}{4cm}
+\begin{tikzpicture}[kontrollfluss,xscale=1,yscale=-1.2]
+\node[knoten] at (0,0) (nS) {nS};
+\node[knoten] at (0,1) (n1) {n1};
+\node[knoten] at (0,2) (n2) {n2};
+\node[knoten] at (0,3) (n3) {n3};
+\node[knoten] at (-1.5,3) (n4) {n4};
+\node[knoten] at (0,4) (n5) {n5};
+\node[knoten] at (-1,5) (n6) {n6};
+\node[knoten] at (1,5) (n7) {n7};
+\node[knoten] at (0,6) (n8) {n8};
+\node[knoten] at (-2,6) (nE) {nE};
+
+\draw[->] (nS) -- (n1);
+\draw[->,dashed] (n1) -- (n2) \KanteFalsch{right};
+\draw[->] (n2) -- (n3);
+\draw[->,dashed] (n3) -- (n4) \KanteFalsch{below};
+\draw[->] (n3) -- (n5) \KanteWahr{right};
+\draw[->,dashed] (n5) -- (n6) \KanteFalsch{right};
+\draw[->] (n5) -- (n7) \KanteWahr{right};
+\draw[->] (n6) -- (n8) \KanteWahr{right};
+\draw[->] (n7) -- (n8);
+\draw[->,dashed] (n6) -- (nE) \KanteFalsch{right};
+\draw[->] (n4) -- (nE);
+\draw[->] (n1) -- (-2,1) -- (nE) \KanteWahr{left};
+\draw[->] (n8) -- (2,6) -- (2,3) -- (n3);
+\end{tikzpicture}
+\end{minipage}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Geben Sie je einen Repräsentanten aller Pfadklassen im
+Kontrollflussgraphen an, die zum Erzielen einer vollständigen
+
+\begin{antwort}
+\begin{tikzpicture}[kontrollfluss,xscale=1,yscale=-1.2]
+\node[knoten] at (0,0) (nS) {nS};
+
+\node[knoten,pin={
+  \java{if (bin.isEmpty())}
+}] at (0,1) (n1) {n1};
+
+\node[knoten,pin={
+  \java{int place; int length}
+}] at (0,2) (n2) {n2};
+
+\node[knoten,pin={
+  [pin distance=2cm]
+  for-Bedingung \java{i >= 0}}
+] at (0,3) (n3) {n3};
+
+\node[knoten,pin={
+  180:\java{return value;}
+}] at (-1.5,3) (n4) {n4};
+
+\node[knoten,pin={
+  \java{if (ch = '1')}
+}] at (0,4) (n5) {n5};
+
+\node[knoten,pin={
+  180:\java{else if (ch = '0')}
+}] at (-1,5) (n6) {n6};
+
+\node[knoten,pin={
+  \java{value += place;}
+}] at (1,5) (n7) {n7};
+
+\node[knoten,pin={
+  270:\java{place *= 2; i--;}}
+] at (0,6) (n8) {n8};
+
+\node[knoten] at (-2,6) (nE) {nE};
+
+\draw[->] (nS) -- (n1);
+\draw[->,dashed] (n1) -- (n2) \KanteFalsch{right};
+\draw[->] (n2) -- (n3);
+\draw[->,dashed] (n3) -- (n4) \KanteFalsch{below};
+\draw[->] (n3) -- (n5) \KanteWahr{right};
+\draw[->,dashed] (n5) -- (n6) \KanteFalsch{right};
+\draw[->] (n5) -- (n7) \KanteWahr{right};
+\draw[->] (n6) -- (n8) \KanteWahr{right};
+\draw[->] (n7) -- (n8);
+\draw[->,dashed] (n6) -- (nE) \KanteFalsch{right};
+\draw[->] (n4) -- (nE);
+\draw[->] (n1) -- (-2,1) -- (nE) \KanteWahr{left};
+\draw[->] (n8) -- (2,6) -- (2,3) -- (n3);
+\end{tikzpicture}
+\end{antwort}
+
+\def\r#1{\textcolor{red}{#1}}
+\def\g#1{\textcolor{green}{#1}}
+
+\begin{enumerate}
+
+%%
+% (i)
+%%
+
+\item Verzweigungsüberdeckung
+
+\begin{antwort}
+\begin{description}
+\item[p1 (Pfad 1)] S 1 E
+\item[p2] S 1 2 3 4 E
+\item[p3] S 1 2 3 5 \r{7} 8 3 5 \g{6} 8 3 5 \g{6} E
+\end{description}
+\end{antwort}
+
+%%
+% (ii)
+%%
+
+\item Schleife-Inneres-Überdeckung
+
+\begin{antwort}
+\begin{description}
+\item[Äußere Pfade (äußere Pfade):]
+
+(ohne Ausführung der Wiederholung)
+
+\begin{description}
+\item[p1] S 1 E
+\item[p2] S 1 2 3 4 E
+\end{description}
+
+\item[Grenzpfade (boundary test)]
+
+(alle Pfade, die die Wiederholung betreten, aber nicht wiederholen;
+innerhalb des Schleifenrumpfes alle Pfade!)
+
+\begin{description}
+\item[p4] S 1 2 3 5 \g{6} E
+\end{description}
+
+\item[Innere Pfade (interior test)]
+
+(alle Pfade mit \emph{einer Wiederholung des Schleifenrumpfes};
+innerhalb des Schleifenrumpfes wieder alle Pfade!)
+
+\begin{description}
+\item[p5] S 1 2 3 5 \r{7} 8 3 5 \r{7} 8 3 4 E
+\item[p6] S 1 2 3 5 \r{7} 8 3 5 \g{6} 8 3 4 E
+\item[p7] S 1 2 3 5 \g{6} 8 3 5 \g{6} 8 3 4 E
+\item[p8] S 1 2 3 5 \g{6} 8 3 5 \r{7} 8 3 4 E
+\item[p9] S 1 2 3 5 \r{7} 8 3 5 \r{7} 8 3 5 \g{6} E
+\item[p10 = p3] S 1 2 3 5 \r{7} 8 3 5 \g{6} 8 3 5 \g{6} E
+\item[p11] S 1 2 3 5 \g{6} 8 3 5 \g{6} 8 3 5 \g{6} E
+\item[p12] S 1 2 3 5 \g{6} 8 3 5 \r{7} 8 3 5 \g{6} E
+\end{description}
+\end{description}
+\end{antwort}
+\end{enumerate}
+
+mit minimaler Testfallanzahl genügen würden.
+
+%%
+% (b)
+%%
+
+\item Welche der vorangehend ermittelten Pfade sind mittels Testfälle
+tatsächlich überdeckbar („feasible“)? Falls der Pfad ausführbar ist,
+geben Sie bitte den Testfall an, andernfalls begründen Sie kurz,
+weshalb der Pfad nicht überdeckbar ist.
+
+\begin{antwort}
+Erweitere Methode, die die Knotennamen ausgibt:
+
+\inputcode[firstline=23]{aufgaben/sosy/ab_7/Aufgabe5}
+
+Alle mit Ausnahme von p2.
+
+\textbf{p2} ist nicht überdeckbar. Passiert ein Wert der Variable
+\java{bin} die erste if-Verzweigung, dann hat der Wert eine Länge größer
+0 und betritt deshalb die Wiederholung mit fester Anzahl.
+
+\begin{tabular}{lll}
+p1 &
+S 1 E &
+\java{binToInt("");} \\
+
+p2 &
+S 1 2 3 4 E &
+not feasible \\
+
+p3 &
+S 1 2 3 5 \r{7} 8 3 5 \g{6} 8 3 5 \g{6} E &
+\java{binToInt("x01");} \\
+
+p4 &
+S 1 2 3 5 \g{6} E  &
+\java{binToInt("x");} \\
+
+p5 &
+S 1 2 3 5 \r{7} 8 3 5 \r{7} 8 3 4 E &
+\java{binToInt("11");} \\
+
+p6 &
+S 1 2 3 5 \r{7} 8 3 5 \g{6} 8 3 4 E &
+\java{binToInt("01");} \\
+
+p7 &
+S 1 2 3 5 \g{6} 8 3 5 \g{6} 8 3 4 E &
+\java{binToInt("00");} \\
+
+p8 &
+S 1 2 3 5 \g{6} 8 3 5 \r{7} 8 3 4 E &
+\java{binToInt("10");} \\
+
+p9 &
+S 1 2 3 5 \r{7} 8 3 5 \r{7} 8 3 5 \g{6} E &
+\java{binToInt("x11");} \\
+
+p10 = p3 &
+S 1 2 3 5 \r{7} 8 3 5 \g{6} 8 3 5 \g{6} E &
+\java{binToInt("x01");} \\
+
+p11 &
+S 1 2 3 5 \g{6} 8 3 5 \g{6} 8 3 5 \g{6} E &
+\java{binToInt("x00");} \\
+
+p12 &
+S 1 2 3 5 \g{6} 8 3 5 \r{7} 8 3 5 \g{6} E &
+\java{binToInt("x10");} \\
+\end{tabular}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Bestimmen Sie anhand des Kontrollflussgraphen die maximale Anzahl
+linear unabhängiger Programmpfade, also die zyklomatische Komplexität
+nach Mc-Cabe.
+
+\begin{antwort}
+\begin{description}
+\item[Binärverzweigungen] 4
+\item[Knoten] 10
+\item[Kanten] 13
+\end{description}
+
+\noindent
+Anhand der Binärverzweigungen:
+
+\begin{align*}
+M
+&= b + p \\
+&= 4 + 1 \\
+&= 5
+\end{align*}
+
+\noindent
+oder durch Anzahl Kanten $e$ und Knoten $n$
+
+\begin{align*}
+M
+&= e - n + 2p \\
+&= 13 - 10 + 2 \cdot 1 \\
+&= 5
+\end{align*}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Kann für dieses Modul eine 100\%-ige Pfadüberdeckung erzielt
+werden? Begründen Sie kurz Ihre Antwort.
+
+\begin{antwort}
+Nein, da \textbf{p2} nicht überdeckbar ist.
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item Geben Sie zu jedem Knoten die jeweilige Datenfluss-Annotation
+(\texttt{defs} bzw. \texttt{uses}) für jede betroffene Variable in der
+zeitlichen Reihenfolge ihres Auftretens zur Laufzeit an.
+
+\begin{antwort}
+\begin{tikzpicture}[kontrollfluss,xscale=1,yscale=-1.2]
+\node[knoten] at (0,0) (nS) {nS};
+\node[knoten] at (0,1) (n1) {n1};
+\node[knoten] at (0,2) (n2) {n2};
+\node[knoten] at (0,3) (n3) {n3};
+\node[knoten] at (-1.5,3) (n4) {n4};
+\node[knoten] at (0,4) (n5) {n5};
+\node[knoten] at (-1,5) (n6) {n6};
+\node[knoten] at (1,5) (n7) {n7};
+\node[knoten] at (0,6) (n8) {n8};
+\node[knoten] at (-2,6) (nE) {nE};
+
+\draw[->] (nS) -- (n1);
+\draw[->,dashed] (n1) -- node[name=n1n2]{} (n2);
+\draw[->] (n2) -- (n3);
+\draw[->,dashed] (n3) -- node[name=n3n4]{} (n4);
+\draw[->] (n3) -- node[name=n3n5]{} (n5);
+\draw[->,dashed] (n5) -- node[name=n5n6]{} (n6);
+\draw[->] (n5) -- node[name=n5n7]{} (n7);
+\draw[->] (n6) -- node[name=n6n8]{} (n8);
+\draw[->] (n7) -- (n8);
+\draw[->,dashed] (n6) -- node[name=n6nE]{} (nE);
+\draw[->] (n4) -- (nE);
+\draw[->] (n1) -- node[name=n1nE]{} (-2,1) -- (nE);
+\draw[->] (n8) -- (1.5,6) -- (1.5,3) -- (n3);
+
+\node[usebox] at (2,0) {def(bin)} edge[dashed] (nS);
+\node[usebox] at (2,2) {def(place), def(value)\\def(length), c-use(bin)} edge[dashed] (n2);
+\node[usebox] at (2,3) {def(i), c-use(length)} edge[dashed] (n3);
+\node[usebox,anchor=east] at (-2.5,3) {c-use(value)} edge[dashed] (n4);
+\node[usebox] at (2,4) {def(ch), c-use(bin)} edge[dashed] (n5);
+\node[usebox] at (2,6) {def(value), c-use(place)} edge[dashed] (n7);
+\node[usebox,anchor=north] at (0,7) {def(place), c-use(place)} edge[dashed] (n8);
+\node[usebox,anchor=north] at (-3.5,7) {c-use(value)} edge[dashed] (nE);
+
+\node[usebox] at (-3,0) {p-use(bin)} edge[dashed] (n1n2.center) edge[dashed] (n1nE.center);
+\node[usebox,anchor=west] at (-4,1) {p-use(length)} edge[dashed] (n3n4.center) edge[dashed] (n3n5.center);
+\node[usebox,anchor=west] at (2,4.8) {p-use(ch)} edge[dashed] (n5n6.center) edge[dashed] (n5n7.center);
+\node[usebox] at (-4.5,4.5) {p-use(ch)} edge[dashed] (n6n8.center) edge[dashed] (n6nE.center);
+
+\end{tikzpicture}
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 2: „Testen“\footcite{examen:46116:2017:09}}
+
+Gegeben sei folgende Methode \java{isPalindrom} und ihr
+Kontrollflussgraph:
+
+\noindent
+\textbf{Abkürzungen:} nI = nImport, nE = nExport
+
+\begin{minipage}{9  cm}
+\inputcode[firstline=5,lastline=17]{aufgaben/sosy/pu_5/Aufgabe2}
+\end{minipage}
+%
+\begin{minipage}{4cm}
+\begin{tikzpicture}[kontrollfluss,xscale=1,yscale=-1.1]
+\node[knoten] at (0,0) (nI) {nI};
+\node[knoten] at (0,1) (n1) {n1};
+\node[knoten] at (0,2) (n2) {n2};
+\node[knoten] at (0,3) (n3) {n3};
+\node[knoten] at (-0.5,4) (n4) {n4};
+\node[knoten] at (0,5) (n5) {n5};
+\node[knoten] at (0,6) (n6) {n6};
+\node[knoten] at (0,7) (nE) {nE};
+
+\draw[->] (nI) -- (n1);
+\draw[->] (n1) -- (n2);
+\draw[->] (n2) -- node[bedingung,left]{true} (n3);
+\draw[->] (n3) -- node[bedingung,above left]{true} (n4);
+\draw[->] (n4) -- (n5);
+\draw[->] (n5) -- (n6);
+\draw[->] (n6) -- node[bedingung,left]{false} (nE);
+\draw[->] (n2) edge[bend right=50] node[bedingung,right]{false} (nE);
+\draw[->] (n6) edge[bend right=90] node[bedingung,left]{true} (n3);
+\draw[->] (n3) edge[bend right] node[bedingung,right]{false} (n5);
+\end{tikzpicture}
+\end{minipage}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Geben Sie je einen Repräsentanten aller Pfadklassen \textbf{im
+Kontrollflussgraphen} an, die zum Erzielen einer vollständigen
+
+\begin{antwort}
+Bemerkung: In der Aufgabenstellung steht \emph{„Geben Sie je einen
+Repräsentanten aller Pfadklassen \textbf{im Kontrollflussgraphen} an,
+[...] “.} Das bedeutet, dass es hier erstmal egal ist, ob ein Pfad im
+Code möglich ist oder nicht!
+
+\begin{tikzpicture}[kontrollfluss,xscale=1,yscale=-1.2]
+\node[knoten] at (0,0) (nI) {nI};
+\node[knoten,pin={\java{boolean yesItIs = true;}}] at (0,1) (n1) {n1};
+
+\node[knoten,pin={
+  [pin distance=0.5cm]
+  äußeres if \java{if (s != null && s.length() > 1)}
+}] at (0,2) (n2) {n2};
+
+\node[knoten,pin={
+  [pin distance=1cm]
+  inneres if \java{if (s.charAt(0) != s.charAt(s.length() - 1))}
+}] at (0,3) (n3) {n3};
+
+\node[knoten,pin={
+  [pin distance=1.5cm]
+  \java{yesItIs = false;}
+}] at (-0.5,4) (n4) {n4};
+
+\node[knoten,pin={
+  [pin distance=1.5cm]
+  \java{s = s.substring(1, s.length() - 1);}
+}] at (0,5) (n5) {n5};
+
+\node[knoten,pin={
+  [pin distance=1cm]
+  \java{while (yesItIs && s.length() > 1);}
+}] at (0,6) (n6) {n6};
+
+\node[knoten] at (0,7) (nE) {nE};
+
+\draw[->] (nI) -- (n1);
+\draw[->] (n1) -- (n2);
+\draw[->] (n2) -- node[bedingung,left]{true} (n3);
+\draw[->] (n3) -- node[bedingung,above left]{true} (n4);
+\draw[->] (n4) -- (n5);
+\draw[->] (n5) -- (n6);
+\draw[->] (n6) edge[dashed] node[bedingung,left]{false} (nE);
+\draw[->] (n2) edge[dashed,bend right=50] node[bedingung,right]{false} (nE);
+\draw[->] (n6) edge[bend right=90] node[bedingung,left]{true} (n3);
+\draw[->] (n3) edge[dashed,bend right] node[bedingung,right]{false} (n5);
+\end{tikzpicture}
+
+\end{antwort}
+
+\begin{enumerate}
+
+%%
+% i)
+%%
+
+\item Verzweigungsüberdeckung (Branch-Coverage, $C_1$)
+
+\def\TmpPfadEins{\KnotenPfad{nI - n1 - n2 - nE}}
+\def\TmpPfadZwei{\KnotenPfad{nI - n1 - n2 - n3 - n5 - n6 - n3 - n4 - n5 - n6 - nE}}
+
+\begin{antwort}
+\begin{description}
+% Video:
+\item[Pfad 1 (p1)]
+
+\TmpPfadEins
+
+(äußere \java{if}-Bedingung \java{false})
+
+\item[Pfad 2 (p2)]
+
+\TmpPfadZwei
+
+(äußere \java{if}-Bedingung \java{true}, innere \java{if}-Bedingung
+\java{false}, Wiederholung, innere \java{if}-Bedingung \java{true}, keine
+Wiederholung)
+\end{description}
+
+\end{antwort}
+
+%%
+% ii)
+%%
+
+\item Schleife-Inneres-Überdeckung (Boundary-Interior-Coverage,
+$C_{\infty,2}$)
+
+\begin{antwort}
+% Video ab 1:10
+\begin{description}
+\item[ohne Ausführung der Wiederholung (äußere Pfade):]
+
+p1 (siehe oben) \TmpPfadEins
+
+\item[Boundary-Test:]
+
+(alle Pfade, die die Wiederholung betreten, aber nicht wiederholen; innerhalb des
+Schleifenrumpfes alle Pfade!)
+
+\item[interior-Test:]
+
+(alle Pfade mit \emph{einer Wiederholung des Schleifenrumpfes};
+innerhalb des Schleifenrumpfes wieder alle Pfade!)
+
+\def\TmpWahr{innere \java{if}-Bedingung \java{true}}
+\def\TmpFalsch{innere \java{if}-Bedingung \java{false}}
+
+\TmpWahr: \KnotenPfad{n3 - n4 - n5 - n6}
+
+\TmpFalsch: \KnotenPfad{n3 - n5 - n6}
+
+\begin{description}
+\item[p5]
+
+\KnotenPfad{nI - n1 - n2 - n3 - n4 - n5 - n6 - n3 - n4 - n5 - n6 - nE}
+
+(\TmpWahr, \TmpWahr)
+
+\item[p2]
+
+(siehe oben) \TmpPfadZwei
+
+(\TmpFalsch, \TmpWahr)
+
+\item[p6]
+
+\KnotenPfad{nI - n1 - n2 - n3 - n4 - n5 - n6 - n3 - n4 - n5 - n6 - nE}
+
+(\TmpWahr, \TmpFalsch)
+
+\item[p7]
+
+\KnotenPfad{nI - n1 - n2 - n3 - n5 - n6 - n3 - n5 - n6 - nE}
+
+(\TmpFalsch, \TmpFalsch)
+\end{description}
+\end{description}
+\end{antwort}
+\end{enumerate}
+
+mit \textbf{minimaler} Testfallanzahl und \textbf{möglichst kurzen}
+Pfaden genügen würden.
+
+%%
+% b)
+%%
+
+\item Welche der vorangehend ermittelten Pfade für die
+$C_{\infty,2}$-Überdeckung sind mittels Testfällen tatsächlich
+überdeckbar (\emph{„feasible“})? Falls der Pfad ausführbar ist, geben
+Sie den zugehörigen Testfall an - andernfalls begründen Sie kurz,
+weshalb der Pfad nicht überdeckbar ist.
+
+\begin{antwort}
+\begin{description}
+\item[p1] \java{s = "a";}
+
+\item[p2] \java{s = "abaa";}
+
+\item[p3] \java{s = "ab";}
+
+\item[p4] \java{s = "aa";}
+
+\item[p5]
+nicht überdeckbar, da \java{yesItIs = false}, wenn innere
+\java{if}-Bedingung \java{true}) keine Wiederholung!
+
+\item[p6]
+nicht überdeckbar, da \java{yesItIs = false}, wenn innere
+\java{if}-Bedingung \java{true}) keine Wiederholung!
+
+\item[p7] \java{s = "abba";}
+\end{description}
+\end{antwort}
+
+%%
+% c)
+%%
+
+\item Bestimmen Sie anhand des Kontrollflussgraphen des obigen
+Code-Fragments die maximale Anzahl linear unabhängiger Programmpfade,
+also die zyklomatische Komplexität nach McCabe.
+
+\begin{antwort}
+$M = b + p = 3 + 1 = 4$
+
+($b$: Anzahl Binärverzweigungen, $p$: Anzahl Zusammenhangskomponenten)
+
+\ueberschrift{Alternativ}
+
+$M = e - n + 2p = 10 - 8 + 2 = 4$
+
+($e$: Anzahl Kanten, $n$: Anzahl Knoten, $p$: Anzahl
+Zusammenhangskomponenten)
+\end{antwort}
+
+%%
+% d)
+%%
+
+\item Kann für dieses Modul eine 100\%-ige Pfadüberdeckung erzielt
+werden? Begründen Sie kurz Ihre Antwort.
+
+\begin{antwort}
+Eine 100\%-ige Pfadüberdeckung kann nicht erzielt werden, da es zum
+einen unüberdeckbare Pfade gibt (vgl. Teilaufgabe b). Zum anderen ist
+das Testen aller Testfälle nicht möglich, da die Anzahl an Zeichen des
+übergebenen Wortes nicht begrenzt ist und es somit eine unendliche
+Anzahl an Testfällen gibt.
+\end{antwort}
+
+%%
+% e)
+%%
+
+\item Übernehmen Sie den vorgegebenen Kontrollflussgraphen und
+annotieren Sie ihn mit allen relevanten Datenflussereignissen. Geben Sie
+jeweils an, ob die Verwendungen berechnend (\texttt{c-use}) oder
+prädikativ (\texttt{p-use}) sind.
+
+\begin{antwort}
+\begin{tikzpicture}[kontrollfluss,xscale=1,yscale=-1.2]
+\node[knoten] at (0,0) (nI) {nI};
+\node[knoten] at (0,1) (n1) {n1};
+\node[knoten] at (0,2) (n2) {n2};
+\node[knoten] at (0,3) (n3) {n3};
+\node[knoten] at (-0.5,4) (n4) {n4};
+\node[knoten] at (0,5) (n5) {n5};
+\node[knoten] at (0,6) (n6) {n6};
+\node[knoten] at (0,7) (nE) {nE};
+
+\draw[->] (nI) -- (n1);
+\draw[->] (n1) -- (n2);
+\draw[->] (n2) -- (n3) \bedingung{left}{true};
+\draw[->] (n3) -- (n4) \bedingung{right}{true};
+\draw[->] (n4) -- (n5);
+\draw[->] (n5) -- (n6);
+\draw[->] (n6) -- (nE) \bedingung{left}{false};
+\draw[->] (n2) edge[bend right=90] (nE);
+\draw[->] (n6) edge[bend right=90] (n3);
+\draw[->] (n3) edge[bend right] (n5);
+
+\node[usebox] at (4,0) {def(s)} edge[dotted] (nI);
+\node[usebox] at (4,1) {def(yesItIs)} edge[dotted] (n1);
+\node[usebox,anchor=east] at (-3,4) {def(yesItIs)} edge[dotted] (n4);
+\node[usebox] at (4,5) {def(s), c-use(s)} edge[dotted] (n5);
+\node[usebox] at (4,7) {c-use(yesItIs)} edge[dotted] (nE);
+\end{tikzpicture}
+\end{antwort}
+
+\end{enumerate}
+
+%%
+%
+%%
+
+\section{Aufgabe 4: Qualitätssicherung\footcite{examen:46116:2017:09}}
+
+Ein gängiger Ansatz zur Messung der Qualität von Software ist das
+automatisierte Testen von Programmen. Im Folgenden werden praktische
+Testmethoden anhand des nachstehend angegebenen Sortieralgorithmus
+diskutiert.
+
+\ueberschrift{Algorithmus 1 Bubble Sort}
+
+\inputcode{aufgaben/sosy/examen_46116_2017_09/BubbleSort}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Nennen Sie eine Art des Black-Box-Testens und beschreiben Sie
+deren Durchführung anhand des vorgegebenen Algorithmus.
+
+\begin{antwort}
+Beim Black-Box-Testen sind die Testfälle von Daten getrieben
+(Data-Driven) und beziehen sich auf die Anforderungen und das
+spezifizierte Verhalten.)
+
+$\Rightarrow$ Aufruf der Methoden mit verschiedenen
+Eingangsparametern und Vergleich der erhaltenen Ergebnisse mit den
+erwarteten Ergebnissen.
+
+Das Ziel ist dabei eine möglichst hohe Anforderungsüberdeckung, wobei
+man eine minimale Anzahl von Testfällen durch Äquivalenzklassenzerlegung
+(1) und Grenzwertanalyse (2) erhält.
+
+\begin{description}
+\item[zu (1):] Man identifiziert Bereiche von Eingabewerten, die jeweils
+diesselben Ergebnisse liefern. Dies sind die sog. Äquivalenzklassen. Aus
+diesen wählt man nun je einen Repräsentanten und nutzen diesen für den
+Testfall.
+
+\item[zu (2):] Bei der Grenzwertanalyse identifiziert man die
+Grenzbereiche der Eingabedaten und wählt Daten aus dem nahen Umfeld
+dieser für seine Testfälle.
+\end{description}
+
+Angewendet auf den gegebenen Bubblesort-Algorithmus würde die
+Grenzwertanalyse bedeuten, dass man ein bereits aufsteigend sortiertes
+Array und ein absteigend sortiertes Array übergibt.
+\end{antwort}
+
+%%
+% b)
+%%
+
+\item Zeichnen Sie ein mit Zeilennummem beschriftetes
+Kontrollflussdiagramm für den oben angegebenen Sortieralgorithmus.
+
+\begin{antwort}
+Zur Erinnerung: Eine im Code enthaltene Wiederholung mit for muss wie
+folgt im Kontrollflussgraphen „zerlegt“ werden:
+\end{antwort}
+
+%%
+% c)
+%%
+
+\item Erklären Sie, ob eine vollständige Pfadüberdeckung für die
+gegebene Funktion möglich und sinnvoll ist.
+
+\begin{antwort}
+Eine vollständige Pfadüberdeckung ($C_1$-Test) kann nicht erreicht werden, da die
+Bedingung der inneren Wiederholung immer wahr ist, wenn die Bedingung der
+äußeren Wiederholung wahr ist. D. h., der Pfad S-1-1-2-2-1“ kann nie gegangen
+werden. Dies wäre aber auch nicht sinnvoll, weil jeder Eintrag mit jedem anderen
+verglichen werden soll und im Fall true $\rightarrow$ false ein Durchgang ausgelassen.
+\end{antwort}
+
+\end{enumerate}
+
+\literatur
+
+\end{document}

@@ -1,0 +1,295 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{er,rmodell}
+\begin{document}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\chapter{Das Relationenmodell}
+
+\begin{quellen}
+\item \cite[Überführung in ein relationales Modell]{wiki:entity-relationship-modell}
+\item \cite{wiki:relational-model}
+\end{quellen}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Grundbegriffe des Relationenmodells\footcite[Seite 76]{winter}}
+
+Objekte und Beziehungen besitzen Eigenschaften, die \memph{Attribute}
+genannt werden.
+%
+Diese Attribute sind für jedes Objekt bzw. jede Beziehung durch
+\memph{Attributwerte} konkretisiert.
+%
+Die Menge aller möglichen Attributwerte eines Attributs heißt
+\memph{Domäne}.
+%
+Objekte bzw. Beziehungen werden durch \memph{Tupel} d.h. Listen
+der entsprechenden Attributwerte, dargestellt.
+%
+\memph{Gleichartige Objekte} werden durch \memph{gleichartig
+aufgebaute Tupel} repräsentiert. Diese Tupel werden zu einer Menge, der
+sogenannten \memph{Relation}, zusammengefasst.
+%
+Während aber beim Entity-Relation\-ship-Modell zwei
+Strukturierungskonzepte in Form von Entity- und Relationship-Typ zur
+Verfügung gestellt werden, besitzt das Relationenmodell mit der Relation
+lediglich \memph{ein Konzept}.
+
+Eine Relation ist eine \memph{Menge gleichartig gebauter Tupel}. Diese
+Eigenschaft unterscheidet eine Relation grundsätzlich von einer Tabelle.
+Aus der Mengeneigenschaft der Relation ergeben sich folgende wichtige
+Konsequenzen:
+%
+Es existieren \memph{keine Tupelduplikate}, d.\,h. es gibt zu keinem
+Zeitpunkt zwei Tupel mit identischen Attributwerten. Die Tupel sind
+nicht geordnet, d.h. es existiert \memph{keine festgelegte Reihenfolge}
+der Elemente.\footcite[Seite 77]{winter}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Vom ER-Modell zum Relationenmodell\footcite[Seite 33]{db:fs:1}}
+
+Für jeden Entity-Typen wird ein \memph{Relationenschema} festgelegt.
+%
+Für jeden Relation\-ship-Typen wird (zunächst) ein Relationenschema
+festgelegt, das zusätzlich zu den Attributen des Relationship-Typs die
+\memph{Schlüssel der zugehörigen Entity-Typen} enthält, welche
+\memph{Fremdschlüssel} genannt werden. Das/die Schlüsselattribut/e
+werden/wird unterstrichen.
+%
+Ein Relationenschema hat folgenden Aufbau:
+
+\begin{center}
+\texttt{Relationenname\{[Attribut1: Domäne1, Attribut2: Domäne2, ...])}
+\end{center}
+
+\noindent
+Es gibt eine vereinfachte Notation:
+
+\begin{center}
+\texttt{Relationenname(Attribut1, Attribut2, Attribut3[Fremdrelation])}
+\end{center}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Verfeinertes Relationenschema\footcite[Seite 34]{db:fs:1}}
+
+Jedes Relationenmodell kann \memph{verfeinert} werden, indem Relationen,
+deren Schlüssel aus den \memph{gleichen Attributen} besteht,
+\memph{zusammengefasst} werden.
+Grundsätzlich können \memph{nur} Relationen eliminiert werden,
+die \memph{1:1 bzw. 1:N}-Beziehungen repräsentieren.
+
+\begin{description}
+\item[1:N-Beziehungen] Integration in Relation der N-Seite (ansonsten
+ergeben sich Anomalien!).
+
+\item[1:1-Beziehungen] Integration in beide Relationen möglich, aber:
+Abwägen, wo mehr „Lehrstellen“ in Form von NULL-Werten entstehen.
+\end{description}
+
+\noindent
+Nur Relationen, die aus \memph{Relationship-Typen} entstanden sind,
+dürfen \memph{eliminiert} werden! Diese Relationen dürfen nur dann
+eliminiert werden, wenn die in ihnen enthaltene Information in eine
+andere Relation vollständig integriert werden kann!
+
+Die genaue Überführung, die automatisiert werden kann, erfolgt in 7
+Schritten:
+
+\begin{description}
+\item[Starke Entitätstypen:] Für jeden starken Entitätstyp wird eine
+Relation mit seinen Attributen und seinen Primärschlüssel erstellt.
+
+\item[Schwache Entitätstypen:] Für jeden schwachen Entitätstyp wird eine
+Relation erstellt. Der Primärschlüssel des starken Entitätstyps wird als
+Fremdschlüssel ergänzt, um den schwachen Entitätstyp zu identifizieren.
+
+\item[1:1-Beziehungstypen:] Für einen 1:1-Beziehungstyp zweier
+Entitätstypen wird eine der beiden Relationen um den Fremdschlüssel
+für die jeweils andere Relation erweitert.
+
+\item[1:N-Beziehungstypen:] Für den 1:N-Beziehungstyp zweier
+Entitätstypen wird der Fremdschlüssel der „1“-Relation in die „N
+“-Relation geschrieben.
+
+\item[N:M-Beziehungstypen:] Für jeden N:M-Beziehungstyp wird eine neue
+Relation mit den Fremschlüsseln der beiden Relation ergänzt.
+
+\item[Mehrwertige Attribute:] Für jedes mehrwertige Attribut wird eine
+Relation erstellt und als Fremdschlüssel der Primärschlüssel des
+zugehörigen Entitätstyps verwendetn.1
+
+\item[n-äre Beziehungstypen:] Für jeden Beziehungstyp mit einem Grad $n
+> 2$ wird eine neue Relation erstellt.\footcite[Überführung in ein
+relationales Modell]{wiki:entity-relationship-modell}
+
+\end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 5: ER-Tutor\footcite{db:ab:1}}
+
+\begin{center}
+\begin{tikzpicture}[er2]
+\node[entity] (kurs) {Kurs};
+\node[attribute,far,left of=kurs] {Kursname} edge(kurs);
+\node[attribute,right of=kurs] {KursNr} edge(kurs);
+
+\node[relationship,below of=kurs,node distance=6em] (betreut) {betreut} edge node[auto] {1} (kurs);
+\node[attribute,far,left of=betreut]{Sprechstunde} edge(betreut);
+
+\node[entity,below of=betreut,node distance=6em] (tutor) {Tutor} edge node[auto] {1} (betreut);
+\node[attribute,left of=tutor] {PersNr} edge(tutor);
+\node[attribute,right of=tutor] {Büro} edge(tutor);
+\node[attribute,below of=tutor,node distance=4em] {Name} edge(tutor);
+\end{tikzpicture}
+\end{center}
+
+Beim obenstehenden ER-Modell gilt:
+
+\begin{itemize}
+\item Ein Tutor kann durch seine Personalnummer oder durch die
+Kombination aus Name und Büro(-nummer) identifiziert werden.
+
+\item Bei den Kursen ist sowohl Kursname als auch Kursnummer eindeutig.
+\end{itemize}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Überführen Sie die Entity-Typen Kurs und Tutor in entsprechende
+Relationen. Legen Sie für jede der Relationen einen Primärschlüssel
+fest.
+
+\begin{antwort}
+\begin{rmodell}
+Kurs (\primaer{KursNr}, Kursname)
+
+Tutor (\primaer{PersNr}, Name, Buero)
+\end{rmodell}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Für die Konvertierung des Relationship-Typen betreut gibt es –
+unabhängig von den gewählten Primärschlüsseln in Aufgabe a – mehrere
+Möglichkeiten. Geben Sie alle möglichen Relationen (mit Festlegung des
+Primärschlüssels) an.
+
+\begin{antwort}
+\begin{rmodell}
+betreut (\primaer{PersNr}, KursNr, Sprechstunde)
+
+betreut (PersNr, \primaer{KursNr}, Sprechstunde)
+
+betreut (\primaer{PersNr}, Kursname, Sprechstunde)
+
+betreut (PersNr, \primaer{Kursname}, Sprechstunde)
+
+betreut (\primaer{Name, Büro}, KursNr, Sprechstunde)
+
+betreut (Name, Büro, \primaer{KursNr}, Sprechstunde)
+
+betreut (\primaer{Name, Büro}, Kursname, Sprechstunde)
+
+betreut (Name, Büro, \primaer{Kursname}, Sprechstunde)
+\end{rmodell}
+\end{antwort}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Überführen Sie folgendes ER-Diagramm in ein (verfeinertes) Relationenschema!
+\footcite{db:ab:7}}
+
+\begin{tikzpicture}[nearer]
+\node[entity] (Station) {Station};
+\node[attribute,above left=0.5cm of Station] {\key{Nr}}
+  edge (Station.west);
+\node[attribute,left=0.5cm of Station] {Name}
+  edge (Station.west);
+\node[attribute,below left=0.5cm of Station] {Bettenanzahl}
+  edge (Station.west);
+
+\node[relationship,above right=of Station] (leitet) {leitet}
+  edge node[auto]{(1,1)} (Station);
+
+\node[relationship,below right=of Station] (arbeitetAuf) {arbeitetAuf}
+  edge node[auto]{(1,n)} (Station);
+
+\node[entity,far,right=of Station] (Arzt) {Arzt}
+  edge node[auto]{(0,1)} (leitet)
+  edge node[auto]{(1,1)} (arbeitetAuf);
+  \node[attribute,above right=0.5cm of Arzt] {\key{PersNr}}
+    edge (Arzt.east);
+  \node[attribute,right=0.5cm of Arzt] {Name}
+    edge (Arzt.east);
+  \node[attribute,below right=0.5cm of Arzt] {Fachrichtung}
+    edge (Arzt.east);
+
+\node[relationship,below=of Station] (liegtAuf) {liegtAuf}
+  edge node[auto]{(0,*)} (Station);
+
+\node[entity,below=1cm of liegtAuf] (Patient) {Patient}
+  edge node[auto]{(1,1)} (liegtAuf);
+  \node[attribute,above left=0.5cm of Patient] {\key{PatNr}}
+    edge (Patient.west);
+  \node[attribute,left=0.5cm of Patient] {Name}
+    edge (Patient.west);
+  \node[attribute,below left=0.5cm of Patient] {Adresse}
+    edge (Patient.west);
+  \node[attribute,below=1cm of Patient,text width=2cm,align=center] {Kranken\-versicherung}
+    edge (Patient);
+
+\node[relationship,below=of Arzt] (behandelt) {behandelt}
+  edge node[auto,swap]{(0,*)} (Arzt)
+  edge node[auto,swap]{(1,*)} (Patient);
+
+\node[entity,far,below=1cm of behandelt] (Behandlung) {Behandlung}
+  edge node[auto]{(0,*)} (behandelt);
+  \node[attribute,above right=0.5cm of Behandlung] {\key{Code}}
+    edge (Behandlung.east);
+  \node[attribute,right=0.5cm of Behandlung] {Name}
+    edge (Behandlung.east);
+  \node[attribute,below right=0.5cm of Behandlung] {Behandlungspunkte}
+    edge (Behandlung.east);
+
+\node[relationship,below left=0.8cm of Behandlung] (benötigt) {benötigt}
+  edge node[auto]{(0,*)} (Behandlung);
+
+\node[entity,far,below=1.5cm of Behandlung] (Gerät) {Gerät}
+  edge node[auto]{(1,*)} (benötigt);
+  \node[attribute,right=0.5cm of Gerät] {\key{Typ}}
+    edge (Gerät);
+  \node[attribute,below=0.5cm of Gerät] {Einsatzkosten}
+    edge (Gerät);
+\end{tikzpicture}
+
+\literatur
+
+\end{document}

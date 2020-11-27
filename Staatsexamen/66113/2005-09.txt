@@ -1,0 +1,602 @@
+
+
+Prüfungsteilnehmer Prüfungstermin Einzelprüfungsnummer
+
+Kennzahl:
+
+Herbst
+Kennwort: 66 1 13
+2005
+
+Arbeitsplatz-Nr.:
+
+Erste Staatsprüfung für ein Lehramt an öffentlichen Schulen
+
+- Prüfungsaufgaben -
+
+Fach: Informatik (vertieft studiert)
+Einzelprüfung: Rechnerarchitektur, Datenbanken, Betriebssysteme
+Anzahl der gestellten Themen (Aufgaben): 2
+
+Anzahl der Druckseiten dieser Vorlage: 15
+
+Bitte wenden!
+
+Herbst 2005 Einzelprüfungsnummer: 66113 Seite: 2
+
+Thema Nr. 1
+
+Sämtliche Teilaufgaben sind zu bearbeiten!
+
+Aufgabe 1: E-R-Modell
+
+Gegeben ist folgendes Entity-Relationship-Diagramm eines großen Sportvereins:
+
+ae) (i,1)- leitet . (0,1)
+
+Abteilung Mitarbeiter
+
+HQ
+
+(0,*) (1,*) rbeitet_in ab
+
+gehört_zu
+
+u
+
+Mannschaft
+
+Mitglied
+
+Erläutern Sie die Relationen ‚, leiter“ und „, trainiert_in“, insbesondere bezüglich der angegebenen
+Funktionalitäten!
+
+Überführen Sie das E-R-Diagramm in ein (verfeinertes) DB-Schema! Auf die Angabe von Domä-
+nen können Sie verzichten.
+
+Markieren Sie alle Fremdschlüssel innerhalb der verfeinerten Relationenschemata!
+
+Das Training findet mindestens einmal pro Woche statt. Die Trainingszeiten und -orte bleiben jede
+Saison gleich, beispielsweise montags 20-22 Uhr und donnerstags 17-19 Uhr, jeweils in Halle 1.
+Doppelbelegungen von Sporthallen sollten vermieden werden. Ergänzen Sie obiges E-RDiagramm entsprechend, wenn ein Trainer mehrere Mannschaften trainieren kann und von diesem
+Name und Lizenz abgespeichert werden müssen! Erläutern Sie kurz Ihr Vorgehen und begründen
+Sie die Wahl aller Schlüssel!
+
+Fortsetzung nächste Seite!
+
+Herbst 2005 Einzelprüfungsnummer: 66113 Seite: 3
+
+Aufgabe 2: Normalformen
+
+Gegeben ist folgende Tabelle einer Film-Datenbank:
+Film(SNr, SName, GebTag, Sternz, Agent, Titel, Jahr, Regie, PName, PAdr, PTelefon, Gage)
+
+Der Buchstabe „S“ steht hierbei für „Schauspieler“ bzw. „Schauspielerin“, der Buchstabe „P“ für
+„Produzent“ bzw. „Pröduzentin“. Unter „PAdr“ findet sich also die Adresse des Filmpröduzenten.
+„sternz“ steht für das Sternzeichen.
+
+Es existieren folgende funktionalen Abhängigkeiten (auf die Angabe der trivialen Abhängigkeiten
+wurde verzichtet):
+
+SNr — SName, GebTag, Sternz, Agent
+Titel, Jahr — Regie, PName, PAdr, PTelefon
+SNr, Titel, Jahr — Gage
+
+GebTag — Stemz
+
+PName — PAdr, PTelefon
+
+1. Die Relation „Film“ sei in erster Normalform. Was muss für die Attribute der Tabelle gelten?
+Wie muss insbesondere „PAdr“ abgespeichert werden?
+2. Bestimmen Sie den einzigen Schlüsselkandidaten von „Film“!
+
+3. Überführen Sie die Relation in zweite (aber noch nicht dritte) Normalform und erläutern Sie Ihre
+Schritte kurz! Markieren Sie von allen Relationen die Primärschlüssel!
+
+4. . Erlautem Sie eine Anomalie, die Sie in diesem Beispiel durch Überführung in zweite Normalform
+eliminieren konnten, sowie eine andere, die weiterhin vorhanden ist!
+
+5. Überführen Sie nun die Relation, ebenfalls mit kurzer Erläuterung, in dritte Normalform! Markieren Sie von allen Relationen die Primärschlüssel!
+
+Fortsetzung nächste Seite!
+
+Herbst 2005 Einzelprüfungsnummer: 66113 Seite: 4
+
+Aufgabe 3: Relationale Anfragen
+Ein Unternehmen verwaltet seine Daten in folgenden Relationen:
+
+Angestellte (AngNr, Name, Vorname, GebDat, Wohnort, AbtNr, Gehalt)
+Abteilung (AbtNr, Name, Leiter)
+
+Projekt (PrNr, Name, Leiter)
+
+arbeitet _an(AngNr, PrNr)
+
+Die Primärschlüssel sind unterstrichen. Ferner ist „Leiter“ in „Abteilung“ und „Projekt“ jeweils
+Fremdschlüssel bezüglich der Relation „Angestellte“ und steht für den Mitarbeiter, der die jeweilige
+Abteilung bzw. das jeweilige Projekt leitet. „AbtNr“ in „Angestellte“ kennzeichnet als Fremdschlüssel
+die Abteilung, in der der Mitarbeiter arbeitet. „AngNr“ und „PrNr“ sind F remdschlüssel aus „Angestellte“ bzw. „Projekt“ und stehen für die Angestellten-Nummer bzw. Projekt-Nummer.
+1. Formulieren Sie folgende Anfragen jeweils in Relationaler Algebra und in SQL:
+
+a) Wie lauten die Namen aller Angestellten mit dem Wohnort München?
+
+b) Welche Angestellten (Angabe von Nummer und Namen) leiten ein Projekt?
+
+€) Welche Angestellten (Angabe des Namens) sind an keinem Projekt beteiligt?
+
+2. Formulieren Sie folgende Anfragen in SQL:
+
+a) Gesucht sind die Namen derjenigen Mitarbeiter, deren Einkommen höher ist als das
+eines jeden Mitarbeiters der Abteilung 7.
+
+b) Gesucht wird die Anzahl der Mitarbeiter und ihr Durchschnittsgehalt innerhalb jeder
+Abteilung, in der mindestens 20 Mitarbeiter tätig sind.
+
+Fortsetzung nächste Seite!
+
+Herbst 2005 Einzelprüfungsnummer: 66113 Seite: 5
+
+Aufgabe 4: Verklemmungen
+Gegeben sei ein System mit den vier Prozessen p,, p2, ps Pa
+
+1. Gehen Sie von folgenden Annahmen aus:
+- Es gibt die beiden Ressourcen ry und rz.
+- Prozess p; belegt die Ressource r;.
+* Prozess p; belegt die Ressource r;.
+- Die Ressourcen sind nur exklusiv (d.h. unter wechselseitigem Ausschluss)
+benutzbar und können einem Prozess, der sie belegt, nicht entzo gen werden.
+
+a) Definieren Sie in einem Satz, wann sich eine Menge von Prozessen in einem Verklemmungszustand befindet! Begründen Sie, warum ein Verklemmungszustand vorliegt, wenn p; die Ressource 7; anfordert und p> die Ressource rn.
+
+b) Erläutern Sie kurz zwei Verfahren der Verklemmungsvermeidung, mit denen unter den gegebenen Annahmen der Verklemmungszustand in a) vermieden werden kann!
+
+2. Nehmen Sie nun an, es gibt die Ressourcen 7), rz, rz, und r4. Die folgenden Tabellen zeigen die
+Belegung und die Anforderung der Ressourcen. Ein Kreuz in der linken Tabelle bedeutet, dass ein
+Prozess eine Ressource belegt (z.B. Prozess p; belegt die Ressource rz). Ein Kreuz in der rechten
+Tabelle bedeutet, dass ein Prozess eine Ressource anfordert (z.B. Prozess p> fordert die Ressource
+ry; an).
+
+Belegung: Anforderung:
+
+ry ry r3 ra Fy ¥2 r3 ra
+Pi 1 x x
+P2 x Po | x
+P3 x P3 x
+Pa | X x pa
+
+Zeichnen Sie den Belegungs-Anforderungs-Graphen und bestimmen Sie anhand des Graphen,
+ob ein Verklemmungszustand vorliegt!
+
+3. Nehmen Sie nun an, es gibt die Ressourcenklassen R),R 2, R3 und Ry. Zu jeder Ressourcenklasse
+seien mehrere Instanzen vorhanden. Die Anzahl der zur Verfügung stehenden Instanzen pro Ressourcenklasse ist durch folgende Tabelle gegeben:
+
+Ri_| Ro | Rs | Re
+12; 10 | 13 | 19
+
+Die maximalen Anforderungen der Prozesse sind:
+
+Ry | Ro | Rs | Ry
+Pi 9 4 11 | 6
+
+2 | 4 3 4 6
+ps | 5s | 35 | 10113
+pa | 5 7 6 2
+
+Beispiel: pı fordert maximal 6 Instanzen der Ressourcenklasse Ryan,
+
+Fortsetzung nächste Seite!
+
+Herbst 2005 Einzelprüfungsnummer: 66113 Seite: 6
+
+Das Betriebssystem verwende den Bankiers-Algorithmus zur Verhinderung von Verklemmungen.
+
+a) Die folgende Tabelle zeigt eine Belegung der Ressourcen:
+
+Ro | Rs | Ra
+1 2 3
+2 | 6
+P3 1 3 8
+P4 4 2 2
+
+Beispiel: pı belegt 3 Instanzen der Ressourcenklasse R,.
+
+Pi
+P2
+
+=
+SIN] SEIN NN
+Re
+
+Kann das System in den durch diese Tabelle beschriebenen Zustand gelangen?
+
+Erläutern Sie kurz die einzelnen Schritte, die zu Ihrer Antwort führen! Verwenden Sie dazu geeignete Vektoren und Matrizen!
+
+folgende Belegung der Ressourcen
+beschrieben ist: \
+
+Pi
+P2
+P3
+Da
+
+RETIN a]
+en
+are”
+
+Ag] N [st] of
+
+Prozess ps fordert nun eine Instanz der Ressourcenklasse R; an. Darf das Betriebssystem diese
+Anforderung erfüllen?
+
+Erläutern Sie kurz die einzelnen Schritte, die zu Ihrer Antwort führen! Verwenden Sie dazu geeignete Vektoren und Matrizen!
+
+Fortsetzung nächste Seite!
+
+Herbst 2005 Einzelprüfungsnummer: 66113 Seite: 7
+
+Aufgabe 5: Speicherverwaltung
+1. Speicherverwaltungsstrategien:
+
+Gegeben sei ein freier Speicherbereich, der bei der Adresse 5000 (Dezimalschreibweise) beginnt und
+2000 Bytes lang ist. Jedes Byte wird durch eine fortlaufende Adresse gekennzeichnet.
+
+Es werden zusammenhängende Speicherbereiche wie folgt angefordert und wieder freigegeben:
+
+Zeitpunkt |: Anforderung 500 Bytes
+
+Zeitpunkt 2: Anforderung 500 Bytes .
+
+Zeitpunkt 3: Freigabe des zum Zeitpunkt 1 angeforderten Speicherbereichs
+Zeitpunkt 4: Anforderung 400 Bytes
+
+Zeitpunkt 5: Anforderung .500 Bytes
+
+Zeitpunkt 6: Anforderung 500 Bytes
+
+Zeitpunkt 7: Freigabe des zum Zeitpunkt 5 angeforderten Speicherbereichs
+Zeitpunkt 8: Anforderung 400 Bytes
+
+Zeitpunkt 9: Anforderung 200 Bytes
+
+Geben Sie für die folgenden Speicherverwaltungsstrategien die freien Speicherbereiche nach jedem
+Zeitpunkt an:
+
+a) Best Fit
+
+b) Worst Fit
+
+Kennzeichnen Sie gegebenenfalls, dass zu einem Zeitpunkt die Anforderung nicht zu erfüllen ist!
+Verwenden Sie zur Angabe eines freien Speicherbereichs die Form
+
+[Adresse des ersten Bytes, Anzahl der Bytes].
+
+Beispiel: Vor Zeitpunkt 1 wird der freie Speicherbereich angegeben durch [5000, 2000].
+
+2. Seitenersetzungsstrategien:
+
+Gegeben sei ein System mit Seitenadressierung. Ein Prozess arbeite mit einem virtuellen Speicher von
+fünf Seiten. Zur Realisierung des Speichers stehen drei Kacheln zur Verfügung. Die Kacheln seien zu
+Beginn leer. Folgende Seitenreferenzkette sei zu bearbeiten:
+
+w=125131423524
+
+a) Ermitteln Sie für die Seitenersetzungsstrategien FIFO (First in First out) und LRU (Least
+Recently Used) die Zahl der Seitenfehler bei der Abarbeitung der Seitenreferenzkette w.
+
+b) Beschreiben Sie kurz die optimale Seitenersetzungsstrategie und ermitteln Sie für diese Strategie
+
+die Zahl der Seitenfehler bei der Abarbeitung der Seitenreferenzkette w . Warum ist die optimale
+Seitenersetzungsstrategie unrealistisch?
+
+Fortsetzung nächste Seite!
+
+Herbst 2005 “ Einzelprüfungsnummer: 66113 “Seite: 8
+
+Aufgabe 6: Sicherungsschicht
+
+Das ISO-OSI-Referenzmodell gliedert eine Kommunikation von Sender und Empfänger in sieben
+Schichten. In dieser Aufgabe wird die Sicherungsschicht genauer betrachtet.
+
+1.
+
+2:
+
+Erläutern Sie die Aufgaben der Sicherungsschicht!
+
+In einem Broadcast-Netz wie zum Beispiel Ethernet wird die Sicherungsschicht unterteilt.
+Für welche Aufgabe wird die neue Teilschicht eingefügt?
+
+Erläutern Sie stichpunktartig die Funktionsweise von CSMA/CD!
+
+In der Sicherungsschicht findet die erste F lusskontrolle statt. Erläutern Sie kurz die beiden verschiedenen Arten!
+
+Für die transatlantische Kommunikation von zwei Rechenzentren wird ein Satellit als Hub
+eingesetzt. Die Übertragung vom und zum Satelliten dauert jeweils 270 ms. Der Satellit
+braucht für die Umsetzung eines Frames vom Upstream- zum Downstreamkanal 10 ms.
+Die vier Kanäle weisen jeweils eine Bandbreite von 128 kbit/s auf. Die Frames werden
+Jeweils auf eine Größe von 1536 Bytes zugeschnitten. Zur Flusskontrolle wird ein SlidingWindow-Verfahren eingesetzt.
+
+a) Welche effektive Datenrate wird bei einer Fenstergröße von 7 erreicht?
+
+b) Wie groß muss das Fenster mindestens sein, um die volle Bandbreite auszunutzen?
+
+Aufgabe 7: Verbindungsorientierung
+
+1.
+
+2.
+
+Beschreiben Sie kurz den Ablauf der Kommunikation bei einem verbindungsorientierten
+Dienst!
+
+_ Erläutern Sie die Datenübertragung bei einem
+a) verbindungsorientierten Dienst!
+
+b) verbindungslosen Dienst!
+
+Herbst 2005 | Einzelprüfungsnummer: 66113 Seite: 9
+
+Thema Nr. 2
+
+Sämtliche Teilaufgaben sind zu bearbeiten!
+
+Aufgabe 1: Routing
+
+Betrachten Sie folgendes Netzwerk mit 6 Knoten:
+
+b)
+
+Ahmen Sie die Funktion des Dijksta-Algorithmus zur Bestimmung der Pfade mit geringsten Kosten von Knoten A zu allen anderen Knoten des Netzwerkes nach! Verfolgen Sie den Ablauf des
+Algorithmus für dieses Netz in einer Tabelle! Für jeden Schritt des Algorithmus soll die Tabelle
+eine Zeile enthalten. In jeder Zeile sollen folgende Angaben vorhanden sein:
+
+- die Menge der Knoten, für die der günstigste Pfad definitiv bekannt ist
+
+>
+
+- fürjeden Knoten außer A:
+
+- die Kosten von A zu diesem Knoten auf dem aktuell bekannten günstigsten Pfad
+
+2
+
+- der Vorgängerknoten auf diesem Pfad.
+
+Wie kann Knoten A aus den Informationen in der in Aufgabe 1a erstellten Tabelle den günstigsten
+Pfad zu Knoten D bestimmen?
+
+Fortsetzung nächste Seite!
+Herbst 2005 ' Einzelprüfungsnummer: 66113 Seite: 10
+
+Aufgabe 2: LANs und WANs
+
+Das folgende Bild zeigt zwei Netzwerke, die über Router miteinander verbunden sind. Dabei soll angenommen werden, dass alle Verbindungen zwischen Geräten mittels Ethernet hergestellt werden.
+Host A möchte nun ein IP-Paket an Host C senden
+
+Router 1 Router 2
+
+131.188.1.11 131.188.1.12°
+00:D0:01:F0:AA:01 00:D0:01:F0:BB:01
+
+131.188.37.1
+
+131.188.47.1
+00:D0:01:F0:AA:02
+
+00:D0:01:F0:BB:02
+
+Swiich 1 Switch 2
+
+Fa (eee) Fe ee
+HostA HostB HostC HostD
+
+131.188.37.101 131.188.37.102 131.188.47.201 131.188.47.202
+00:30:05:5E:08:15 00:30:05:5E:08:16 08:00:20:70:47:11 08:00:20:70:47:12
+
+Welche Quell- und Ziel-IP-Adresse tragt das IP-Paket?
+
+Da Ethernet zur Übertragung verwendet wird, wird auf Host A aus dem IP-Paket ein EthernetFrame erzeugt. Welche Quell- und Ziel-MAC-Adresse trägt der Frame zwischen Host A und
+Router 1?
+
+Wie kann der Switch 1 feststellen, an welchen Aus gang das Paket gesendet werden soll?
+
+Anhand welcher Informationen bestimmt Router J, an welchen Aus gang das ankommende Paket
+weitergeleitet werden muß?
+
+Welche Ziel-MAC-Adresse trägt der zur Übertragung zwischen Router J und Router 2 verwendete Ethernet-Frame?
+
+Wie bringt Router I diese Ziel. MAC-Adresse in Erfahrung? Erläutern Sie kurz die Funktionsweise des verwendeten Verfahrens!
+
+Fortsetzung nächste Seite!
+
+Herbst 2005 _  Einzelprüfungsnummer: 66113 Seite: 11
+
+Themengebiet Datenbanksysteme
+Aufgabe 3: Allgemeine Fragen
+
+Bewerten Sie die folgenden Aussagen a)-f}! Geben Sie für jede Aussage an, ob diese richtig oder
+falsch ist! Begründen Sie Ihre Aussage in jedem Fall!
+
+a) Anwender müssen sich beim Mehrfachzugriff auf gleiche Daten eines Datenbanksystems
+absprechen, um Fehler bzw. Chaos zu vermeiden.
+
+b) Die physische Datenstruktur entspricht in einem relationalen Datenbanksystem immer der logischen Datenstruktur.
+
+c) In jeder Relation gibt es immer mindestens einen Schlüsselkandidaten.
+
+d) Alle Relationen eines relationalen Schemas müssen miteinander in Beziehung stehen. .
+e) Alle Relationen in einem Datenbankschema müssen normalisiert sein.
+
+D Attribute derselben Relation dürfen nicht den gleichen Namen haben.
+
+Definieren Sie folgende Begriffe bzw. Abkürzungen g)-i) im Kontext von Datenbanksyste-.
+men:
+
+g) View
+
+h) DDL
+
+i) Domäne
+
+Aufgabe 4: Das Entity-Relationship-Modell
+
+a) Bei einem 2-stelligen Relationship-Typ muss die Kardinalität (Funktionalität) festgelegt werden.
+Beschreiben, definieren und illustrieren Sie alle mö glichen Formen!
+
+b) Was versteht man unter der sog. (min, max)-Notation bei einem 2-stelligen Relationship-Typ?
+Erläutern Sie den Vorteil dieser Notation gegenüber der herkömmlichen Notation und geben Sie
+ein kurzes Beispiel!
+
+©) Wie unterscheidet sich ein schwacher Entitätstyp von einem starken Entitätstyp? Skizzieren Sie an
+einem kleinen Beispiel, wie man einen schwachen Entitätstyp im ER-Modell darstellt!
+
+Fortsetzung nächste Seite!
+
+Herbst 2005 Einzelprüfungsnummer: 66113 Seite: 12
+
+Aufgabe 5: Transaktionen und Transaktionsverarbeitung
+a) Nennen und definieren Sie die vier wesentlichen Merkmale einer Datenbanktransaktion!
+
+b) Beschreiben Sie zwei mögliche Probleme, die bei der unsynchronisierten Transaktionsausführung auftreten können!
+
+Aufgabe 6: ER-Modellierung und Relationenmodell
+
+a) ER-Modellierung
+
+Erstellen Sie das Modell eines fiktiven Grundbuchamtes in ER-Notation! Wo möglich bzw. sinnvoll,
+sollen 3-fache Beziehungen und Generalisierung/Spezialisierung verwendet werden! Attribute von
+Entitäten und Beziehungen sind anzugeben; Schlüsselattribute werden durch Unterstreichen gekennzeichnet! Die Kardinalitäten von Beziehungen und - falls nötig - Rollennamen sollen ins Diagramm
+aufgenommen werden! Führen Sie Surro gatschlüssel nur ein, falls es nötig ist!
+
+„Im Grundbuchamt“
+
+Grundstücke werden im Grundbuchamt eindeutig durch eine Grundbuchnummer identifiziert und
+durch einen Lageplan genauer beschrieben. Grundstücke liegen nebeneinander und stehen dadurch in
+einer Nachbarschaftsbeziehung zueinander. Es gibt Grundstücke, die nicht neben anderen Grundstü-
+cken liegen und Grundstücke, die an mehrere andere Grundstücke angrenzen.
+
+Ein Haus steht genau auf einem Grundstück. Grundstücke sind entweder nicht, mit einem oder mit
+mehreren Häusern bebaut. Jedes Haus kann eindeutig anhand seiner Hausnummer identifiziert werden.
+
+Zu jedem Haus gehört mindestens ein Stockwerk. Aus städtebaulichen Gründen darf ein Haus aber
+maximal aus 30 Stockwerken bestehen. Ein Stockwerk gehört immer genau zu einem Haus. Jedes
+Stockwerk wird eindeutig durch seine Stockwerksnummer identifiziert. Ein Grundriss beschreibt die
+Aufteilung eines Stockwerks.
+
+Ein Eigentümer kann beliebig viele Häuser besitzen. Ein Haus hat mindestens einen oder mehrere
+Eigentümer. Einem Eigentümer können beliebig viele Grundstücke gehören. Ein Grundstück kann
+immer nur einem Eigentümer gehören. Ein Eigentümer wird eindeuti g durch seinen Namen und seine
+Adresse beschrieben.
+
+b) Relationenmodell
+
+Ausgehend von der ER-Darstellung ist ein Relationenschema in dritter Normalforn (3. NF) zu entwerfen! Wie gewohnt, werden dabei Primärschlüssel durch Unterstreichen, Fremdschlüssel durch
+
+Überstreichen kenntlich gemacht.
+
+Fortsetzung nächste Seite!
+
+Herbst 2005 “ Einzelprüfungsnummer: 66113 Seite: 13
+
+Aufgabe 7: SQL
+Szenario 1: Winzergenossenschaft
+
+Für die Verwaltung ihrer Kunden in einer Datenbank verwendet eine kleine Genossenschaft der
+Amateurwinzer „AmMeiHü‘die folgenden Relationen:
+
+WEINFREUND (NR, NAME, VORNAME, ALTER, ADRESSE)
+BESTELLUNG (NR, W ID DATUM, MENGE)
+WEIN (W_ID, WEINBERG, JAHRGANG, PROZENT, REBSORTE)
+
+Die Primärschlüssel der Relationen sind unterstrichen. W_IDin BESTELLUNG ist Fremdschlüssel zu
+W_IDin WEIN. NR in BESTELLUNG ist Fremdschlüssel zu NR in WEINFREUND. Formulieren Sie
+die folgenden Datenbankoperationen in SQL:
+
+a) Geben Sie den Namen und Vornamen aller gespeicherten Weinfreunde aus, die Jünger als 30 Jahre
+sind! .
+
+b) Geben Sie die durchschnittlich bestellte Menge Wein aller erfassten Bestellungen an!
+
+c) Fügen Sie einen neuen Wein mit den folgenden Attributen in die Liste der Weine ein:
+
+Weinberg: „Katzkopf“
+Jahrgang: „2005“
+Prozent: „12“
+Rebsorte: „Silvaner“
+
+Die nächste freie W_ID ist 67.
+
+Szenario 2: Fußball Weltmeisterschaft
+
+Zur Vorbereitung auf die Fußball-Weltmeisterschaft 2006 entwickeln die Stadtliga-Hobbyspieler des
+Dorffußballvereins „EFC Lummerland“ einen Spielplan. Einige der Spieler sind selbst Hobbyprogrammierer und entscheiden sich für die folgenden Relationen:
+
+NATION (Land, Kapitän, Trainer) :
+STADION (SID, Stadionname , Ort, Kapazitat, Eintrittspreis)
+MATCH (Stadion ID, Datum, Landi, Land2, Ergebnis, Tore)
+
+Es existieren folgende Fremdschlüsselbeziehungen: Das Attribut STADION_ID der Relation MATCH
+ist ein Fremdschlüssel auf das Attribut STD der Relation STADION. Die Attribute LAND1 und LAND?
+der Relation MATCH sind Fremdschlüssel auf das Attribut LAND der Relation NATION.
+
+Fortsetzung nächste Seite!
+
+Herbst 2005 Einzelprüfungsnummer: 66113 Seite: 14
+
+Geben Sie SQL-Anweisungen für folgende Problemstellungen an:
+
+d) Erstellung des beschriebenen Relationenschemas mit Tabellen, Primary Key Constraints und
+Foreign Key Constraints.
+
+e) Das versehentlich vorzeitig eingetragene „Traumfinale“ „Brasilien gegen Deutschland“, am
+09.07.2006 in Berlin, wird wieder gelöscht.
+
+f) Kurz vor dem offiziellen Start der WM 2006 kehrt der ehemalige Trainer der Deutschen Nationalmannschaft, „Rudi Völler“, wieder in sein Amt zurück und ersetzt den bisherigen Trainer
+„Jürgen Klinsmann“,
+
+8) Um den Ticketkauf planen zu können, möchten die Hobbyfußballer eine Liste aller Spiele (Matches), die im „Olympiastadium“ in „Berlin“ stattfinden, ausgeben.
+
+h) Um einen Vergleich mit ihren ei genen Fußballspielen zu haben, wollen die Hobbyfußballer nach
+der WM die durchschnittliche Anzahl an Toren pro Spiel berechnen.
+
+Themengebiet Betriebssysteme
+
+Szenario: Ein Programm zur Durchführung der Datensicherung auf einem Magnetbandgerät arbeite
+nach folgendem Schema:
+
+A) Eine Konfigurationsdatei "backup.conf” enthält eine Liste von Dateikatalogen, die zu sichern
+sind.
+
+B) Das Datensicherungsprogramm liest jeden dieser Dateikataloge durch und schreibt nacheinander
+die Verwaltungsinformationen und den Inhalt der darin enthaltenen Dateien in einen Speicherblock der Größe 4 MB.
+
+C) Das Magnetbandgerät arbeitet optimal, wenn es mit möglichst großen Schreibaufträgen versorgt
+wird. Deshalb wird ein zweiter Prozess erzeugt, der Zugriff auf den gleichen Speicherblock hat
+und der jeweils 1 MB große Datenbereiche daraus an das Magnetbandgerät überträgt.
+
+Aufgabe 8: Dateisystem
+
+a) Ziel der Datensicherung ist natürlich eine mö glichst originalgstreue Rekonstruktion im Fall
+von Datenverlust. Nennen Sie Däteiattribute (Verwaltungsinformationen des Dateisystems
+zu einer Datei), die Sie bei der Datensicherung mit abspeichern würden! Begründen Sie dies
+jeweils!
+
+b) Dateisysteme sind meist hierarchisch aufgebaut. Was bedeutet dies und wie geht man damit in
+dem Datensicherungsprogramm um?
+
+c) Skizzieren Sie in programmiersprachlicher Form den Ablauf von Schritt B in dem skizzierten
+Szenario in einem Betriebssystem Ihrer Wahl (z.B. UNIX, Linux oder Windows)! Sie können hier
+vereinfachend davon ausgehen, dass der Speicherblock von 4 MB für die komplette Datensicherung groß genug ist.
+
+Fortsetzung nächste Seite!
+
+Herbst 2005 Einzelprüfungsnummer: 66113 Seite: 15
+
+Aufgabe 9: Speicherverwaltung
+
+a) Der in den Schritten B und C erwähnte Speicherblock soll von dem in Schritt B beschriebenen
+Prozess 1 gefüllt und von dem in Schritt C beschriebenen Prozess 2 ausgelesen werden. Wie erreicht man, dass beide Prozesse gemeinsam auf diesen Speicherblock zugreifen können - welches
+Speicherverwaltungskonzept muss dafür von der Hardware und dem Betriebssystem unterstützt
+werden?
+
+b) Beschreiben Sie für den Fall einer segmentierten Speicherverwaltung, wie die Abbildung der logischen Adressen. der beiden Prozesse auf diesen gemeinsam erreichbaren Speicherblock funktioniert! Skizzieren Sie hierzu die an dem Abbildungsvorgang beteiligten Datenstrukturen des Betriebssystems!

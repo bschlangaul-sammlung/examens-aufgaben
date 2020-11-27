@@ -1,0 +1,277 @@
+\documentclass{lehramt-informatik}
+\usepackage{tikz}
+\usepackage{tikz-uml}
+\usepackage{tikz-uml-activity}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aktivitätsdiagramm (activity diagram)}
+
+\begin{quellen}
+\item \cite[Seite 263-328]{rupp}
+\item \cite{wiki:aktivitaetsdiagramm}
+\end{quellen}
+
+Aktivitätsdiagramme (activity diagrams) zeigen eine bestimmte Sicht auf
+die Dynamik des Systems (Abläufe). Sie beschreiben das konkrete
+Verhalten eines Systems. Aktivitätsdiagramme sind meist sehr
+domänenspezifisch und ohne weiteren Kontext schwer zu verstehen.
+\footcite[Seite 166]{schatten}
+
+\begin{description}
+
+%%
+%
+%%
+
+\item[Aktion (action)] \strut
+
+\begin{description}
+\item[Notation]
+Eine Aktion wird durch ein Rechteck mit abgerundeten Ecken dargestellt.
+Dieses kann mit einem Namen oder einem ausführlichen Text für die Aktion
+versehen werden.
+
+\item[Beschreibung]
+Eine Aktion (action) steht für den Aufruf eines Verhaltens oder die
+Bearbeitung von Daten, die innerhalb einer Aktivität nicht weiter
+zerlegt wird. Sie beschreibt einen Einzelschritt, der zur Realisierung
+des durch die Aktivität beschriebenen Verhaltens beiträgt.
+\footcite[Seite 274]{rupp}
+\end{description}
+
+\begin{center}
+\tikz \node[action]{Aktionsname};
+%
+\tikz \node[action,text width=2.5cm,align=center]{Schulaufgabe \\erstellen};
+\end{center}
+
+%%
+%
+%%
+
+\item[Aktivität (activity)] \strut
+
+\begin{description}
+\item[Notation]
+Eine Aktivität wird nach außen durch ein Rechteck mit abgerundeten Ecken
+abgegrenzt. Mögliche Parameter werden durch Objektknoten auf der Grenze
+dargestellt.
+
+\item[Beschreibung]
+Aktivität bezeichnet die die gesamte Einheit, die in einem
+Aktivitätsmodell modelliert wird. Dieses Modell besteht aus einer Folge
+von Aktionen und weiteren Elementen.
+\footcite[Seite 278-279]{rupp}
+\end{description}
+
+%%
+%
+%%
+
+\item[Objektknoten (object node)] \strut
+
+\begin{description}
+\item[Notation]
+Ein Objektknoten wird durch ein Rechteck gezeichnet.
+
+\item[Beschreibung]
+Ein Objektknoten (object node) innerhalb einer Aktivität repräsentiert
+Ausprägungen eines  bestimmten Typs. In den meisten Fällen sind das
+Werte oder Objekte von Klassen. Objektknoten bilden das logische Gerüst,
+um Daten und Werte innerhalb einer Aktivität während eines Ablaufs zu
+transportieren.
+\footcite[Seite 281]{rupp}
+\end{description}
+
+\begin{center}
+\tikz \node[object]{Objektknoten};
+\end{center}
+
+%%
+%
+%%
+
+\item[Kanten (activity edge)] \strut
+
+\begin{description}
+\item[Notation]
+Kanten werden als Pfeile gezeichnet.
+
+\item[Beschreibung]
+Kanten sind Übergänge zwischen zwei Knoten (zum Beispiel Aktionen,
+Objektknoten, ...). Die Kanten sind immer gerichtet und können zum
+besseren Verständnis mit einem Namen versehen werden.
+\footcite[Seite 287]{rupp}
+\end{description}
+
+\begin{center}
+\tikz \draw[arrow] (0,0) -- (1.5,0);
+\hspace{0.5cm}
+\tikz \draw[arrow] (0,0) -- (1.5,0) node[auto,pos=0.5]{Name};
+\end{center}
+
+%%
+%
+%%
+
+\item[Startknoten (initial node)] \strut
+
+\begin{description}
+\item[Notation]
+Ein Startknoten wird durch einen ausgefüllten schwarzen Punkt notiert.
+
+\item[Beschreibung]
+Ein Startknoten (initial node) markiert den Startpunkt eines Ablaufs bei
+Aktivierung einer Aktivität. Eine Aktivität darf beliebig viele
+Startknoten besitzen. Jeder Startknoten darf wiederum beliebig viele
+wegführende Kanten besitzen. Von einem Startknoten führen aller­dings
+nur Kontrollkanten weg.
+\footcite[Seite 292]{rupp}
+\end{description}
+
+\begin{center}
+\tikz{
+  \node[initial] at (1,0) (node) {};
+  \draw[arrow] (0,0) -- (node);
+}
+\end{center}
+
+\item[Endknoten für Aktivitäten (flow final node)]
+
+\tikz{
+  \node[flow final] at (1,0) (node) {};
+  \draw[arrow] (0,0) -- (node);
+}
+
+\item[Endknoten für Kontrollflüsse (activity final node)]
+
+\tikz{
+  \node[activity final] at (1,0) (node) {};
+  \draw[arrow] (0,0) -- (node);
+}
+
+\item[Verzweigungsknoten]
+
+\tikz{
+  \node[decision,scale=1.5] at (1,0) (node) {};
+  \draw[arrow] (0,0) -- (node);
+  \draw[arrow] (node) -- (2,0.5);
+  \draw[arrow] (node) -- (2,0);
+  \draw[arrow] (node) -- (2,-0.5);
+}
+
+\item[Verbindungsknoten]
+
+\tikz{
+  \node[decision,scale=1.5] at (1,0) (node) {};
+  \draw[arrow] (0,0.5) -- (node);
+  \draw[arrow] (0,0) -- (node);
+  \draw[arrow] (0,-0.5) -- (node);
+  \draw[arrow] (node) -- (2,0);
+}
+
+\end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\section{2. Objektorientierte Modellierung mit UML
+\footcite{examen:66116:2017:09}}
+
+Gegeben sei das folgende Glossar, welches die statische Struktur von
+einfachen Aktivitatsdiagrammen in natürlicher Sprache beschreibt:
+
+\begin{description}
+\item[Aktivitätsdiagramm:]
+Benannter Container für Aktivitäten und Datenflüsse. Eine der
+definierten Aktivitäten ist als Start-Aktivität ausgezeichnet.
+
+\item[Aktivität:]
+Teil des beschriebenen Verhaltens. Man unterscheidet Start-, \mbox{End-,} echte
+Aktivitäten sowie Entscheidungen. Aktivitäten können generell mehrere
+ein- und auslaufende Kontrollflüsse haben.
+
+\item[Startaktivität:]
+Ist im Aktivitätsdiagramm eindeutig und dient als Einstiegspunkt des
+beschriebenen Ablaufs.
+
+\item[Endaktivität:]
+Wird eine solche Aktivität erreicht, ist der beschriebene Ablauf zu
+Ende.
+
+\item[Echte Aktivität:]
+Benannte Aktion, die nach Ausführung zu einer definierten nächsten
+Aktivität führt.
+
+\item[Entscheidung:]
+Aktivität, die mehrere Nachfolger hat. Welche davon als nächstes
+ausgeführt wird, wird durch entsprechende Bedingungen (s. Kontrollfluss)
+gesteuert.
+
+\item[Kontrollfluss:]
+Verbindet je eine Quell- mit einer Zielaktivität. Kann eine Bedingung
+enthalten, die erfüllt sein muss, damit die Zielaktivität im Falle einer
+Entscheidung ausgeföhrt wird.
+
+\end{description}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Geben Sie ein UML-Klassendiagramm an, welches die im Glossar
+definierten Konzepte und Beziehungen formal beschreibt. Geben Sie bei
+allen Attributen und Assoziationsenden deren Sichtbarkeit, Multiplizität
+imd Typ an. Benennen Sie alle Assoziationen.
+
+%%
+% b)
+%%
+
+\item Nachfolgend ist ein Beispiel eines Aktivitätsdiagramms in der
+gängigen grafischen Notation abgebildet. Stellen Sie den beschriebenen
+Kontrollfluss als UML-Objektdiagramm konform zum in Teilaufgabe a
+erstellten UML-Klassendiagramm dar. Referenzieren Sie die dort
+definierten Klassen und Assoziationen; auf Objektbezeichner dürfen Sie
+verzichten.
+
+\begin{tikzpicture}[x=2cm,y=2cm]
+\node[initial] at (1.3,4) (start) {};
+
+\node[action] at (4,4) (voranschlag) {Reisekostenvoranschlag}
+  edge[arrow from] (start);
+\node[action] at (4,2) (buchen) {Reise buchen};
+\node[action] at (2,1) (abrechnung) {Kostenabrechnung};
+
+\node[decision] at (4,3) (genehmigung) {}
+  edge[arrow from] (voranschlag);
+
+\draw[arrow to] (genehmigung) -- (buchen)
+  node[pos=0.5,auto,swap] {[Reise genehmigt]};
+
+\draw[arrow] (buchen.south) |- (abrechnung);
+
+\node[flow final] at (0,1) (ende) {};
+
+\draw[arrow] (genehmigung) -| (ende)
+  node[pos=0.25,auto,swap]{[Reise nicht genehmigt]};
+
+\draw[arrow] (abrechnung) -- (ende);
+
+\end{tikzpicture}
+
+\end{enumerate}
+
+\literatur
+
+\end{document}

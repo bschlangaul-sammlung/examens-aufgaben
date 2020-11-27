@@ -1,0 +1,62 @@
+graph ER {
+  edge[len=1.6]
+  bgcolor=transparent;
+
+  // Entity-Types
+
+  node[shape=box]; Fluggesellschaft;
+  node[shape=ellipse]; FGName[label=<<u>FGName</u>>]; Hauptsitz;
+  Fluggesellschaft--FGName;
+  Fluggesellschaft--Hauptsitz;
+
+  node[shape=box]; Flugzeug;
+  node[shape=ellipse]; FZNr[label=<<u>FZ-Nr</u>>];
+  Flugzeug--FZNr;
+
+  node[shape=box]; Flugzeugtyp;
+  node[shape=ellipse]; TypNr[label=<<u>TypNr</u>>]; SitzplatzAnzahl; GroesseBesatzung;
+  Flugzeugtyp--TypNr;
+  Flugzeugtyp--SitzplatzAnzahl;
+  Flugzeugtyp--GroesseBesatzung;
+
+  node[shape=box]; Flug;
+  node[shape=ellipse]; FlugNr[label=<<u>Flug-Nr</u>>]; Abflugzeit; Zielflughafen;
+  Flug--FlugNr;
+  Flug--Abflugzeit;
+  Flug--Zielflughafen;
+
+  node[shape=box]; Passagier;
+  node[shape=ellipse];
+    PassNr[label=<<u>Pass-Nr</u>>];
+    Name;
+    Gebdat;
+  Passagier--PassNr;
+  Passagier--Name;
+  Passagier--Gebdat;
+
+  // Relationship-Types
+
+  node[shape=diamond] angehoeren;
+  angehoeren--Flugzeug[label="n (1,*)"];
+  angehoeren--Flugzeugtyp[label="1 (1,1)"];
+
+  node[shape=diamond] buchen;
+  node[shape=ellipse] Sitzplatznummer;
+  buchen--Sitzplatznummer;
+  // Entities
+  buchen--Passagier[label="n (1,*)"];
+  buchen--Flug[label="m (1,*)"];
+
+  node[shape=diamond] besitzen;
+  node[shape=ellipse] Anschaffungsjahr;
+  besitzen--Anschaffungsjahr;
+  // Entities
+  besitzen--Fluggesellschaft[label="1 (0,*)"];
+  besitzen--Flugzeug[label="n (1,1)"];
+
+  node[shape=diamond] fliegen;
+  // Entities
+  fliegen--Fluggesellschaft[label="1 (0,*)"];
+  fliegen--Flugzeug[label="1 (0,*)"];
+  fliegen--Flug[label="n (1,1)"];
+}

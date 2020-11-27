@@ -1,0 +1,482 @@
+Prüfungsteilnehmer
+
+Prüfungstermin
+
+Einzerprüfungsnummer
+
+Kennzahl:
+
+Herbst
+Kennwort:
+
+1998
+
+66113
+
+Arbeitsplatz-Nr.:
+
+Erste Staatsprüfungfür ein Lehramt an öffentlichenSchulen
+PrüfungsaufgabenFach:
+
+Informatik (vertieft studiert)
+
+Einzelprüfung:
+
+Rechnerarchitektur,Datenb.,Betriebssys.
+
+Anzahl der gestelltenThemen (Aufgaben):
+
+2
+
+Anzahl der DruckseitendieserVorlage:
+
+g
+
+Bitte wenden!
+
+Herbst1998
+
+Einzelprüfungsnummer
+: 66LL3
+
+Seite:2
+
+ThemaNr. 1
+sämtliche Teilaufgabensind zu bearbeiten!
+Aufgabe 1: (Normalformenrelationaler Datenbanken)
+Gegeben
+sei folgendesRelationenschema
+_
+(MATNR, VORNAME, NACHNAME, PLZ, STADT)
+Rl
+R2 : (MATNR, VORLESUNG,ZEIT,NACHNAME)
+R3 : (VORLESUNG,RAUM, ZEIT, PROFESSOR)
+und die folgendeMengeF von funktionalenAbhängigkeiten
+-+
+MATNR
+VORNAME, NACHNAME
+_)
+MATNR
+PLZ
+-+
+PLZ
+STADT
+-)
+VORLESUNG
+PROFESSOR
+VORLESUNG,ZEIT -)
+RAUM
+PROFESSOR.
+ZEIT
++
+VORLESUNG
+a) NennenSiejeweils alle möglichenSchlüsselvon R1, R2 und R3.
+b) Gebensie für R1, R2, R3 die schärfsteNormalform(lNF, 2NF, 3NF, BCNF) an, die
+für die
+jeweilige Relationgilt. BegrtindenSie gegebenenfalls,
+warumdie nächstschärfere
+nicht erfüllt
+lst.
+
+Aufgabe2: @R-Modell und Sel-Anfragen)
+In einemBetriebsoll ein neuesInformationssystem
+eingerichtetwerden.Bei der Voruntersuchung
+zeigtsich, dassin der Datenbasis
+zumindestdie zwei BereichePERSfür personalund ABT für
+Abteilungeinzurichtensind, wobeidie folgendenInformationenzu verwaltensind:
+o Abteilung: ANR, ANAME, AORT
+r Personal: PNR, NAME, GEHALT, BERUF, ANR, VNR,
+ORT
+DabeistehtANR für Abteilungsnummer,
+PNR für Personalnummer
+und VNR für die personatnurnmerdesjeweiligenvorgesetzten.Alle anderenBezeichlungensindselbsterklärend.
+Zusätzlichwird festgestellt,dassdie folgendengrundlegenden
+Integritätsbedingungen
+zu erfüllen
+sind:
+o Zu einerAbteilunggehörtimmer mindestens
+ein Ansestellter.
+. Ein Angesrellterist immer nur genaueinerAbteilunf zugeordner.
+o Zu einemAngestelltengibt es maximaleinenvorgesetzten
+Manager.
+o Ein Vorgesetzterkann mehrereAngestellteverantwortlich
+betreuen.
+a) ModellierenSie die obenbeschriebene
+Informationsstruktur
+mit Hilfe einesEntity-RelationshipGraphen.Tragen Sie darin auchdie Integritätsbedingungen
+in geeigneterweise ein.
+b) TransformierenSie ihr ER-Modellin Datenstruknrren
+nachdem Relationenmodell.
+GebenSie in
+Ihrem Relationenschema
+die Primär-und Fremdschlüssel
+an.
+
+FortsetzungnächsteSeite!
+
+Herbst 1998
+
+Einzelpnifungsnummer:
+66I i 3
+
+Seite:3
+
+c) Formulieren Sie folgendeAnfragenund Anderungsoperationen
+an Ihre Datenbankin der SpracheSQL:
+(1) WelcheAngestelltenausder Abteilung"Einkauf"verdienenwenigerals dasdurchschnittiiche Gehaltaller Angestelltender Firma ?
+(2) WelcheAbteilungenin Frankfurtbeschäftigen
+mehrals 1 0 Angestelltemit demBeruf "pro"
+grammierer ?
+(3) In welchenAbteilungen(ANR, ANAME) verdienendie Angestelltenim Durchschnittweniger als2500DM ?
+(4) WelcheAbteilungenhabenkeineAngestellten?
+(5) Findedie Abteilungsnummern
+von Abteilungenin Darmstadt,in denenesAngestelltegibt,
+die wenigerals 2000DM verdienen.
+(6) Findedie Namender Angestellten,
+die dengleichenBeruf und dasgleicheGehaltwie der
+Angestellte"Müller" haben.
+(7) In der Abteilung"Marketing" wird ein neuerAngestelltermit dem Namen',Meier" einsestellt. Er soll die Personalnummer
+353 erhalten.
+(8) Löschealle Abteilungen,die keineAngestellten
+haben.
+Aufgabe 3: (MaschinennaheBerechnungarithmetischer Ausdrücke)
+EinProzessor
+Pl init den 32 RegisternR0 bis R3l sol denarithmetischen
+Ausdruck
+z. : (AxB+C)*(D_E*F)
+berechnen.Die Inhalteder VariablenA bis F stehenin Speicherzellen
+mit denAdressenmA bis
+mF, dasErgebnisZ soll in der Speicherzelle
+mit der Adressemz abgelegtwerden.pl hat unter
+anderemdie folgendenBefehle(r, rl, 12, 13stehenfür Register,m lür eine Speicherzelle
+und ( a )
+für den InhaltdesSpeicherelementes
+a):
+
+Befehl
+load r m
+store r m
+add r1 1213
+sub r1 r2 13
+mult rI 12 13
+
+Wirkung
+
+(r) :- (m)
+(m) :<r3> :<r3> ::
+<r3> ::
+
+<r>
+<rl> * <r2>
+<rl> - < 12>
+<rl> - <r2>
+
+In diesenBefehlenbenötigt ein Operationscode
+8 Bit, eine Registeradresse
+4 Bit und eine Speicheradresse32 Bit. Die Ausflihrungszeitder Befehlebeträgtl0 Takte und zusärzlich4 Takteje Speicherzugriff (Register-und Befehlszugriffesind ausgenommen).So benötigenload und store zum
+Beispielje L4 Takte.
+a) GebenSie eine Befehlsfolgean, welcheden oben angegebenen
+Ausdruck Z berechnet.
+b) welchen Platzbedarfin Bits hat die gesamreBefehlsfolge?
+c) Wieviel Takte benötigt die Ausführung der Befehlsfolgeauf einem seriell arbeitendenProzessor
+(d.h. die Ausführung einzelner Befehleüberlappt nicht)?
+
+FortsetzungnächsteSeite!
+
+Herbst1998
+
+Einzelprüfungsnummer
+: 66113
+
+Seite:4
+
+Der ProzessorP 1 soll nun zusätzlichüber die folgendenBefehleverfügen:
+
+Befehl
+madd r m
+
+Wirkung
+
+msubr m
+
+(1) ': (P * <m>
+(P :- (P - (m)
+
+mmult r m
+
+(1)
+
+;- (P
+
+* (m)
+
+a) GebenSie eine Befehlsfolsean, die so weit wie möglich ohne load/store-Befehleauskommt
+und
+ebenfallsZ berechnet.
+b) Welchen Platzbedarfin Birs hat dieseBefehlsfolge?
+c) Wieviele Takte benörietdie Ausftihrung der Befehlsfolgeauf einem seriell arbeitendenprozessor?
+Alternativ zu der oben beschriebenenMaschinewird nun ein andererProzesso
+r p2 betrachtet,der
+den angegebenen
+Ausdruck Z mit Hilfe einesStacksberechnensoll. FolgendeBefehle stehenihm
+dabeizur Verfügung:
+push m
+pop
+
+pusham
+
+legt den in Zelle m stehe4denWert auf dem Stack ab
+bringt den oberstenWert vom Stack in die ZeLIe,deren Adressein der
+zweitobersten Zelle des Stacks steht; beide Zellen des Stackswerden
+eelöscht.
+legt die Adressem auf dem Stackab
+
+Die drei zusätzlichen
+arithmetischen
+Operationenadd, sub, mult verknüpfendie beidenoberen
+WertedesStacks,löschensie und legendasErgebniswiederumauf den Stack.Bei der Subtrakion
+wird der obersteWert desStacksals Minuendbehandelt.Für den Speicherbedarf
+der Befehlegelten
+die Konventionenvon P1.
+a)
+b)
+c)
+d)
+e)
+
+ZeichnenSie einenOperatorbaum
+für den AusdruckZ.
+SchreibenSie Z in Postfixform.
+GebenSieeineBefehlsfolgefür P2 an, welcheZ berechnet.
+welchenPlatzbedarfin Bits hat lhre Befehlsfolgeausder vorigenTeilaufgabe?
+welchenZeitbedarfhat die Ausführungder Befehlsfolge,wennpush m und pop je 14 und die
+übrigenBefehleje 10 Taktebrauchen,auf einemseriellarbeitenden
+prozessor?
+
+FortsetzungnächsteSeite!
+
+Herbst1998
+
+Einzelprüfungsnummer:
+66113
+
+Seite:5
+
+Aufgabe 4: (Seitenersetzungsstrategien)
+Der Prozessp arbeitemit einem virtuellen Speichervon ftinf Seiten. Der Zugriff auf diese
+Seiten
+finde in der durch die folgende Seiterueferenzkettew gegebenenReihenfolge statt:
+w: 0 I2 30 I 40 | 2 34.
+
+a) Für die Realisierungder Speicherfähigkeit
+desProzesses
+p sollenzunächstdrei Kachelnzur Verfügungstehen.GebenSiefür die beidenSeitenersetzungsstratgegien
+LRU (LeastRecentlyUsed)
+und FIFO (First in First ouQjeweils die Entwicklungder Seiten-Kachel-Tabelle
+und die Anzahl
+der aufgetretenen
+Seitenfehleran. MarkierenSiejedesAuftreteneinesseitenfehlers!
+a) Beschreiben
+Siekurz die (theoretisch)
+besteSeitenersetzungssffategie.
+Warumist dieseStrategie
+nicht realisierbar?
+b) ErklärenSiedenBegriff der Keller-(Stack-)Strategie
+und zeigenSie, dassFIFO keineKellerstrategieist, indemSie denProzessp mit der angegebenen
+Seitenreferenzkette
+mit vier Kacheln
+realisieren.
+Aufgabe5: @rozesssysteme)
+Gegebensei folgendeProzedur:
+PROCEDURE
+(x, y, z: IN INTEGER;a: OUT REAL);
+berechnen
+VAR b, C,d: INTEGER;
+BEGIN
+b : - x + y , c : - b * b i d : - b - z ; a : - c l d;
+END;
+DieseProzedursoll nun mit Hilfe einesdeterminiertenProzesssystem fr
+{D, P, <*, V, N} modelliertwerden.
+
+a) GebenSiedie Mengeder verwendeten
+Betriebsmittel(Speichervariablen)
+D und die Mengeder
+benötigtenProzesseP an. Die Prozesse
+ausp sollendabeiatomarsein(d.h. nur eineRechenooe_
+rationausführen).
+b) GebenSie frir jeden Prozessp € P die jeweilige Rechenfunktion sowie seinenVorbereichVo
+\
+und seinenNachbereichNo an.
+a) Aus Effizienzgrinden sollen soviele Prozesseaus P wie möglich parallel ausgefi.ihrtwerdenkönnen. StellenSie eine geeigneteVorrangrelation < * auf und zeichnenSie den Vorranggraphen.
+b) BeweisenSie, dassIhr Systemdeterminiertist.
+
+-6Herbst1998
+
+Einzelprüfungsnummer:
+66113
+
+Seite:6
+
+Thema Nr. 2
+Sämtliche Teilaufgaben sind zu bearbeiten!
+Teilgebiet1: Betriebssl'temeund Systemnrogrammierung
+Aufgabe1.1:
+1. 1. I Beschreiben
+Sie kurz die folgendenProzessorvergabestrategien
+(SchedulingAlgorithmen)
+sowiederenVor- und Nachteile:
+FCFS(First ComeFirsr Served),SJF(ShortestJob First) und RR (RoundRobin)
+1.1.2
+
+Wasverstehtmanunter Job-Scheduling
+(Longterm-Scheduling)?
+
+1.1.3
+
+WelcheAufgabehat der Prozessumschalter
+(Dispatcher)?
+
+Aufeabe 1.2:
+1.2.1
+
+ErklärenSiedie Begriffe"Seite"und "Kachel".
+
+1.2.2
+
+Wie ist einelogische(virtuelle)Adresseaufgebaut(nur reinespaging)?
+SkizzierenSie den Abbildungsmechanismus
+von logischenauf physikalische
+Adressen.
+
+1.2.3
+
+ErklärenSie den Seitenaustauschalgorithmus
+LRU (LeastRecentlyUsed).
+
+1.2.4
+
+was verstehtmanunter seitenflattern(Thrashing)und waskannmandagegentun?
+
+Aufeabe 1.3:
+1.3.1
+
+FormulierenSieumgangssprachlich
+in Stichpunkten
+die Schritte,die vom Kommandointerpreter einesMultluser/Multi-Tasking Beftiebssystems(wie etwa UNIX) zur Entgegennahmeund Ausführung einesKommandosdurchgeführtwerden.
+
+1.3.2
+
+wie gehtein Kommandointerpreter
+vor, um ein Kommando"im Hintergrund" auszuführen?
+
+FortsetzungnächsteSeite!
+
+Herbst1998
+
+Einzelprüfungsnunmer
+: 66I 13
+
+Seite:7
+
+Teilgebiet 2: Datenbanksvsteme
+Aufgabe2.1:
+2'1 1
+
+StellenSie an einemselbstgewähltenBeispieldenrelationalenNormalisierungsvorgang
+bis
+hin zur Dritten Normalformdar.
+
+Aufsabe2.2:
+2.2.I
+
+DefinierenSie die wichtigstenrelationalenOperatoren.
+
+Aufsabe 2.3:
+2'3'1
+
+ZeigenSiean einemBeispiel,wie die SpracheSQL in eineProgrammiersprache
+eingebettet
+wird.
+
+Teileebiet 3: Rechner- und Kommunikationsarchitektur
+Aufgabe:ISO/OSI- Kommunikationsarchitektur
+Kommunikationsnetze
+werdenimmer leistungsfähiger,
+größerund komplexer;gefordertwird von
+einerSystemarchitektur.
+dasssie universellverwendbar,flexibelanpasib- *Jb.h.r.r.hbar ist.
+3 1'1
+
+NennenSie die vier grundlegenden
+Strukturierungskonzepte,
+die diesenForderungen
+beim
+gesamtenEntwurf, bei der Implementierung
+und beimBetriebRechnungtragen.
+
+3.1.2
+
+was versrehen
+sie unterdemISo/oSl-schichtenmodell
+bzw. demISo/DIN-Basis.
+Referenzmodell
+fur offeneKommunikation?
+Welcheder obenangesprochenen
+Strukturierungsprinzipien
+werdendabeibenutzt?WelcheDienstleistung
+ist der Schicht4 zugeordnet?
+
+3.1.3
+
+EntwerfenSie zu demuntengezeigtenNetzausschnitt
+inkl. Anwendungsrechner
+die entsprechende
+funktionelleStrukturentsprechend
+dem ISO/DlN-BasisrefJrenzmodell
+bzw.
+demISo/oSl-Schichrenmodell.
+Zeigensie denweg auf, dendie zwischenzwerAnwen_
+derprozessen
+zu übertragende
+Nutzinformationdurchdie einzelnenSchichtenrummt.
+
+FortsetzungnächsteSeite!
+
+Herbst1998
+
+Einzelprüfungsnuulmer
+: 66L13
+
+Seite:8
+
+Aufgabe3.2: Nekmanagement
+Unter demBegriff Netzmanagement
+werdenalle technischen
+und organisatorischen
+Vorkehrungen
+und Aktivitäten zum ManagementeinesKommunikationssystems
+zusammengefasst.
+3.2.1
+
+NennenSiedie unterschiediichen
+Managementbereiche
+desfunktionalenModells.
+Beschreiben
+Sie weiterhinstichwortartigderenAufgaben.
+
+3.2'2
+
+Auf allenKomponentendesdargestellten
+Netzausschnittes
+laufenManagementprozesse
+ab!
+WelcheKlassenvon Managementprozessen
+unterscheiden
+wir beim ,os.n"*t.n orqalusa_
+torischenModell?
+
+3 .2.3
+
+Wie sieht jetzt die Gesamtarchitekfurflir Anwender- und Managementkommunikationinnerhalb des Netzausschnittesaus?
+
+

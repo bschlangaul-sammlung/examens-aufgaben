@@ -1,0 +1,97 @@
+\documentclass{lehramt-informatik}
+\begin{document}
+
+\chapter{Fallunterscheidung}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\cite{oomup:fs:2}
+
+\section{Fallunterscheidung ohne Klammer}
+
+Die Schreibweise einer Fallunterscheidung ohne Klammer ist nur möglich,
+wenn nach der Bedingung nur eine Anweisung folgt.
+
+\begin{minted}{java}
+int x = 2;
+if (x > 1)
+  System.out.println("x ist größer als 1");
+else
+  System.out.println("x ist kleiner gleich 1");
+\end{minted}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Tenärer Operator}
+
+\texttt{variable = bedingung ? wert1 : wert2}
+
+\bigskip
+
+\noindent
+\texttt{bedingung} muss immer ein boolscher Ausdruck sein. Er
+entscheidet über die Wertzuweisung. Ist er \java{true}, so wird der Wert
+nach dem Fragezeichen zugewiesen, ansonsten der Wert nach dem
+Doppelpunkt. Der zweite und der dritte Operand können beliebige
+Ausdrücke sein, die einen Wert zurückgeben.
+
+\begin{minted}{java}
+int x = 2;
+String msg = x > 1 ? "x ist größer als 1" : "x ist kleiner gleich 1";
+System.out.println(msg);
+\end{minted}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Mehrfache Fallauswahl}
+
+Bei mehrfachen Fallunterscheidungen wird die Verschachtelung bedingter
+Anweisungen unübersichtlich. Hierfür bietet Java die sogenannte
+\java{switch}-Anweisung.
+
+\bigskip
+\noindent
+\textbf{Hinweis:} Die switch-Anweisung funktioniert \memph{nur} mit
+\memph{ganzen Zahlen} oder \memph{Buchstaben}, nicht aber mir reellen
+Zahlen oder Strings.
+
+\bigskip
+\noindent
+\textbf{Beispiel:} Die Schulnote eines Schülers wird in der Variable
+\java{note} gespeichert. Geben Sie mit Hilfe der \java{switch}-Anweisung
+die jeweilige Notenbedeutung als Text aus.
+\footcite[Seite 57]{oomup:fs:2}
+
+\begin{minted}{java}
+switch (note) {
+  case 1:
+    System.out.println("sehr gut");
+    break;
+  case 2:
+    System.out.println("gut");
+    break;
+  case 3:
+    System.out.println("befriedigend");
+    break;
+  case 4:
+    System.out.println("ausreichend");
+    break;
+  case 5:
+    System.out.println("mangelhaft");
+    break;
+  case 6:
+    System.out.println("ungenügend");
+    break;
+}
+
+\end{minted}
+
+\literatur
+
+\end{document}

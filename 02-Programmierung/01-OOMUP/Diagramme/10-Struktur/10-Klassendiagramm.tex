@@ -1,0 +1,525 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{uml,syntax}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Klassendiagramm}
+
+\begin{quellen}
+\item \cite[Seite 108-169]{rupp}
+\item \cite[Zusammengefügtes PDF Seite 30-32 / Kapitel „Klassen“ 8-10]{brinda}
+\item \cite{wiki:klassendiagramm}
+\end{quellen}
+
+Klassendiagramme (class diagrams) beschreiben die Entitäten eines
+Systems und welche Beziehungen sie untereinander eingehen können
+(Struktur der Daten). Neben Paketdiagrammen werden Klassendiagramme bzw.
+deren Notation wahrscheinlich am häufigsten eingesetzt.
+\footcite[Seite 166]{schatten}
+
+\begin{description}
+
+%%
+%
+%%
+
+\item[Klasse]
+Klassen werden durch Rechtecke dargestellt, die entweder nur den Namen
+der Klasse (fett gedruckt) tragen oder zusätzlich auch Attribute und
+Methoden spezifiziert haben.
+Dabei werden diese drei Rubriken (engl. compartment) – Klassenname,
+Attribute, Methoden – jeweils durch eine horizontale
+Linie getrennt.
+\footcite{wiki:klassendiagramm}
+\footcite[Seite 49-50 (PDF 65-66)]{uml}
+
+\begin{tikzpicture}
+\umlclass{Lehrer}{Attribute}{Methoden}
+\umlsimpleclass[x=3]{Lehrer}
+\umlclass[x=8]{Lehrer}{
+- alter: int\\
++ name: String\\
++ guteLaune: Boolean = false
+}{
++ frageAb()
+}
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item[Abstrakte Klassen]
+Kursiv oder mit Untertitle \{abstract\} oder mit <<>>
+
+\begin{tikzpicture}
+\umlsimpleclass[type=abstract,x=0]{Lehrer}
+\umlsimpleclass[tags=abstract,x=3]{Lehrer}
+\umlsimpleclass[type=abstrakt,x=6]{Lehrer}
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item[Sichtbarkeit]
+$-$: private, $+$: public, $\#$: protected, \~{}: package
+\footcite[Seite 141-142 (PDF 158-159)]{uml}
+
+\begin{tikzpicture}
+\umlclass{Lehrer}{
+  - geburtstag \\
+  + name \\
+  \# spitzname \\
+  \~{} hobby \\
+}{}
+\end{tikzpicture}
+
+\item[Klassenattribute]
+Klassenattribute (statische Attribute) werden unterstrichen
+\footcite[Seite 118,121]{rupp}
+
+\begin{tikzpicture}
+\umlclass{Lehrer}{
+  \umlstatic{- gehalt}
+}{}
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item[Multiplizität]
+z. B. 0..1, 1..1, 1, 0..*, *, n..m
+\footcite[Seite 98 (PDF 115)]{uml}
+
+%%
+%
+%%
+
+\item[Methoden/Operationsdeklaration]
+z. B. \verb|-div(divident : Int, divisor : Int) : double|
+
+%%
+%
+%%
+
+\item[Assoziation] Eine Assoziation beschreibt eine Beziehung zwischen
+zwei oder mehr Klassen. An den Enden von Assoziationen sind häufig
+Multiplizitäten vermerkt.
+
+\begin{tikzpicture}
+\umlsimpleclass{Fach}
+\umlsimpleclass[x=4]{Lehrer}
+\umlassoc[mult1=1..*,mult2=1]{Fach}{Lehrer}
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item[Generalisierung (Inheritance)] Eine Generalisierung in der UML ist
+eine \emph{gerichtete} Beziehung zwischen einer \emph{generelleren} und
+einer \emph{spezielleren} Klasse. Der Pfeil zeigt von der spezielleren
+Klasse zur generellen Klasse.
+\footcite[Kapitel 6.4.6 Generalisierung, Seite 135]{rupp}
+
+\begin{tikzpicture}
+\umlsimpleclass[y=1.4,tags=generelle Klasse]{Mensch}
+\umlsimpleclass[tags=spezielle Klasse]{Lehrer}
+\umlinherit{Lehrer}{Mensch}
+\end{tikzpicture}
+
+\item[Realisierung (Realization)] Gestrichelte Linie mit nicht
+ausgefüllten Dreieck als Pfeilspitze. \latex{\umlreal{A}{B}}
+\footcite[Kapitel 6.4.13, Seite 164]{rupp}
+
+\begin{tikzpicture}
+\umlsimpleclass[]{Implementierung}
+\umlsimpleclass[x=4cm]{Spezifikation}
+\umlreal{Implementierung}{Spezifikation}
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item[Aggregation (Aggregation)]
+Teil-Ganzes-Beziehung, nicht-ausgefüllte Raute am „Ganzen“-Objekt,
+in Java keine entsprechung
+
+\begin{tikzpicture}
+\umlsimpleclass{Unterrichtsstunde}
+\umlsimpleclass[x=6]{Schüler}
+\umlaggreg[mult1=20..*,mult2=12..*]{Unterrichtsstunde}{Schüler}
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item[Komposition (Composition)]
+starke Aggregation, ausgefüllte Raute, Teilobjekte existenzabhängig von
+Aggregationsobjekt: z. B. Bank, Konto
+
+\begin{tikzpicture}
+\umlsimpleclass{Schule}
+\umlsimpleclass[x=4]{Klassenzimmer}
+\umlcompo[mult1=1,mult2=1..*]{Schule}{Klassenzimmer}
+\end{tikzpicture}
+
+\item[Assoziationsklasse]
+beschreibt Assoziation zwischen anderen Klassen beschreibt, wird
+aufgelöst: entweder Verteilung der Attribute und Methoden oder
+eigenständige Klasse. Als „Kochrezept“: „Was bei den Multiplizitäten
+vorher bei den einzelnen Klassen steht, hüpft jeweils auf die andere
+Seite der aufgelösten Assoziationsklasse.“
+
+\item[Abhängigkeitsbeziehung (Dependency)]
+
+Gestrichelte Line mit offenen Pfeil. Der Pfeil zeigt \emph{vom
+abhängigen auf das unabhängige} Modellelement. \latex{\umldep{A}{B}}
+\footcite[Kapitel 6.4.10 Abhängigkeitsbeziehung, Seite 159]{rupp}
+
+\begin{tikzpicture}
+\umlsimpleclass[tags=abhängig]{Schüler}
+\umlsimpleclass[x=4,tags=unabhängig]{Lehrer}
+\umldep{Schüler}{Lehrer}
+\end{tikzpicture}
+\end{description}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Arten von Assoziationen}
+
+\begin{description}
+\item[Ungerichtete Assoziation]
+Linie mit Beschriftung
+
+\begin{tikzpicture}
+\umlsimpleclass{A}
+\umlsimpleclass[x=4]{B}
+\umlassoc{A}{B}
+\end{tikzpicture}
+
+Assoziation mit sich selbst.
+
+\begin{tikzpicture}
+\umlsimpleclass{A}
+\umlassoc[angle1=-90,angle2=0,loopsize=3cm,arg1=next,arg2=previous,mult1=1,mult2=1]{A}{A}
+\end{tikzpicture}
+
+\item[Gerichtete Assoziation]
+Linie mit Beschriftung und Leserichtungspfeil
+
+\begin{tikzpicture}
+\umlsimpleclass{A}
+\umlsimpleclass[x=4]{B}
+\umluniassoc{A}{B}
+\end{tikzpicture}
+
+\item[Reflexive Assoziation]
+Pfeil mit Beschriftung
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\item[Navigierbare Assoziation]
+
+Die Navigierbarkeit von Assoziationen wird durch eine Pfeilspitze am
+Ende einer Assoziation ausgedrückt. Die Pfeilrichtung zeigt an, dass die
+Instanzen der Klasse A die Instanzen der Klasse B in Pfeilrichtung
+„kennen“.
+\footcite[Seite 150]{rupp}
+
+%%
+%
+%%
+
+\begin{description}
+\item[Unspezifizierte Navigierbarkeit] \latex{\umlassoc{A}{B}}
+
+\begin{tikzpicture}
+\umlsimpleclass{A}
+\umlsimpleclass[x=4]{B}
+\umlassoc{A}{B}
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item[Unidirektionale Navigierbarkeit] \latex{\umluniassoc{A}{B}}
+
+\begin{tikzpicture}
+\umlsimpleclass{A}
+\umlsimpleclass[x=4]{B}
+\umluniassoc{A}{B}
+\end{tikzpicture}
+\end{description}
+\end{description}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Übungen}
+
+\begin{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\item Modellieren Sie die folgende Situation als Klassendiagramm:
+\cite[Seite 1, Aufgae 2]{net:html:tu-dortmund:uebung-softwaretechnik}
+
+Fußballmannschaften einer Liga bestreiten während einer
+Meisterschaftsrunde Spiele gegen andere Mannschaften. Dabei werden in
+jeder Mannschaft Spieler für einen bestimmten Zeitraum (in Minuten)
+eingesetzt, die dabei eventuell Tore schießen.
+
+Die Modellierung soll es ermöglichen, festzustellen, welcher Spieler in
+welchem Spiel wie lange auf dem Feld war und wie viele Tore geschossen
+hat. Ebenso soll es möglich sein, für jede Mannschaft festzustellen,
+gegen welche Mannschaft welche Ergebnisse erzielt wurden.
+
+\begin{center}
+\begin{tikzpicture}
+\umlsimpleclass[y=5]{Liga}
+\umlsimpleclass[y=3]{Mannschaft}
+\umlsimpleclass[y=1]{Spieler}
+\umlsimpleclass[x=5,y=3]{Spiel}
+
+\umlassoc[mult2=*]{Liga}{Mannschaft}
+\umlassoc[mult1=1,mult2=*]{Mannschaft}{Spieler}
+\umlassoc[mult1=2,mult2=*,name=mannschaftspiel]{Mannschaft}{Spiel}
+\umlHVassoc[mult1=*,mult2=*,pos2=1.7,name=spielerspiel]{Spieler}{Spiel}
+\node[below=0cm of spielerspiel-2,font=\scriptsize] {nimmt teil};
+
+\umlassocclass[x=2.5,y=5]{Saison}{mannschaftspiel-1}{- spieljahr}{}
+\umlassocclass[x=8,y=1]{Teilnahme}{spielerspiel-2}{- minuten: int\\- tore: int}{}
+\end{tikzpicture}
+\end{center}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\item Gegeben ist der folgende Sachverhalt.
+\cite[Seite 4]{net:pdf:uzh-zuerich:uebung-4}
+
+Jede \textbf{Person} hat einen \emph{Namen}, eine \emph{Telefonnummer}
+und \emph{E-Mail}.
+
+Jede \textbf{Wohnadresse} wird von nur einer Person bewohnt. Es kann
+aber sein, dass einige Wohnadressen nichtbewohnt sind. Den Wohnadressen
+sind je eine \emph{Strasse}, eine \emph{Stadt}, eine \emph{PLZ} und ein
+\emph{Land} zugeteilt. Alle Wohnadressen können bestätigt werden und als
+Beschriftung (für Postversand) gedruckt werden.
+
+Es gibt zwei Sorten von \textbf{Personen}: \textbf{Student}, welcher
+sich für ein \emph{Modul einschreiben} kann und \textbf{Professor},
+welcher einen \emph{Lohn} hat. Der Student besitzt eine
+\emph{Matrikelnummer} und eine \emph{Durchschnittsnote}.
+
+Modellieren Sie diesen Sachverhalt mit einem UML Klassendiagramm.
+
+\begin{tikzpicture}
+\umlclass[x=2,y=4]{Person}{
+  + name: String\\
+  + telefonNummer: String\\
+  + eMail: String
+}{}
+\umlclass[]{Professor}{
+  + lohn: double
+}{}
+\umlclass[x=5]{Student}{
+  + matrikelNummer: int\\
+  + durchschnittsNote: double
+}{
+  + einschreibenFuerModule()
+}
+\umlclass[x=10,y=4]{Wohnadresse}{
+  + strasse: String \\
+  + stadt: String \\
+  + plz: int \\
+  + land: String \\
+}{
+  + bestaetigen()\\
+  + drucken()
+}
+
+\umlVHVinherit{Professor}{Person}
+\umlVHVinherit{Student}{Person}
+\umlassoc[arg1=adresse,arg2=person,stereo=wohnt\LeserichtungRechts,mult1=0..1,mult2=1,pos1=0.15,pos2=0.85]{Person}{Wohnadresse}
+\end{tikzpicture}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+% https://upload.wikimedia.org/wikiversity/de/b/b9/Klassendiagramme.pdf
+
+\item Essen in Gasthausen
+\cite[Seite 4-5]{net:pdf:wikiversity:klassendiagramm}
+
+In diesem kleinen Städtchen gibt es fünf Restaurants, aber egal, ob es
+sich um ein 2*-Restaurant, oder um ein 5*-Restaurant handelt, alle haben
+Gemeinsamkeiten. In jedem Restaurant sind mehrere \textbf{Mitarbeiter}
+angestellt. Im kleinsten Restaurant nur zwei, aber im größten verdienen
+16 Mitarbeiter ihr Geld. Die Mitarbeiter bekommen in jedem Restaurant
+ein anderes \emph{Gehalt}, aber alle machen ihre Arbeit. Die
+\textbf{Kellner}
+\emph{nehmen bestellungen entgegen}, \emph{servieren das Essen} und \emph{kassieren das Geld}
+von den Gästen. Jeder Kellner gibt die Bestellungen der Gäste an die
+Köche weiter. Die \textbf{Köche} kennen verschiedene \textbf{Rezepte},
+nach denen sie die \textbf{Menüs} dann zubereiten. Jedes Menü hat einen
+anderen \emph{Preis}, aber es besteht nach Tradition immer aus einem
+\textbf{Salat} und einer \textbf{Hauptspeise}. An manchen Tagen ist kein
+\textbf{Gast} da. Dann werden Sie in ganz familiärem Rahmen bewirtet.
+Aber auch an guten Tagen gibt es, bei 100 Plätzen im größten Restaurant,
+sicher für jeden hungrigen Gast einen \textbf{Platz}. Wer in Gasthausen
+Essen geht sollte hungrig sein! Natürlich hat jeder Gast unterschiedlich
+viel Geld zur Verfügung, aber bei entsprechender Wahl des Restaurants
+reicht es sicher für sein Lieblingsessen.
+
+\begin{tikzpicture}[scale=0.8, transform shape]
+\umlclass[x=0,y=5]{Restaurant}{- anzahlSterne: int}{}
+
+\umlclass[x=8,y=5]{Mitarbeiter}{
+- gehalt: double
+}{}
+
+\umlclass
+[below left=0.5cm and -1cm of Mitarbeiter]
+{Kellner}{}
+{
+  + nehmeBestellungenAuf()\\
+  + serviereEssen()\\
+  + kassiereGeld()
+}
+
+\umlclass[below right=0.5cm and -1cm of Mitarbeiter]{Koch}{}{}
+
+\umlclass[below left=0.5cm and 0cm of Restaurant]{Sitzplatz}{}{}
+
+\umlclass[x=8cm,y=0cm]{Menü}{- preis: float}{}
+\umlsimpleclass[below left=0.5cm of Menü]{Salat}
+\umlsimpleclass[below right=0.5cm of Menü]{Hauptspeise}
+\umlcompo[mult1=1,mult2=1]{Menü}{Salat}
+\umlcompo[mult1=1,mult2=1]{Menü}{Hauptspeise}
+
+\umlclass{Gast}{
+  hungrig: boolean = true\\
+  lieblingsEssen: String\\
+  geld: double
+}{}
+
+\umlassoc[mult1=2..16,mult2=5,stereo=beschäftigt]{Mitarbeiter}{Restaurant}
+
+\umlassoc[mult1=0..100,mult2=0..5,stereo=besucht]{Gast}{Restaurant}
+
+\umlassoc[stereo=bedient]{Kellner}{Gast}
+
+\umlassoc[stereo=bestellt]{Gast}{Menü}
+
+\umlassoc[stereo=Bestellung weiter geben]{Kellner}{Koch}
+
+\end{tikzpicture}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Hotel-Verwaltung\footcite[leicht verändert]{examen:46116:2012:03}}
+
+Erstellen Sie zu der folgenden Beschreibung eines Systems zur
+Organisation eines Hotels ein Klassendiagramm, das Attribute und
+Assoziationen mit Kardinalitäten sowie Methoden enthält. Setzen Sie
+dabei das Konzept der Vererbung sinnvoll ein.
+
+\begin{itemize}
+\item Ein \textbf{Hotel} besteht aus genau einer Küche und mehreren Gästezimmern.
+
+\item Es hat einen Namen, eine Adresse und kann Werbeaktionen
+durchführen.
+
+\item Alle Mitarbeiter, sowohl Servicekräfte als auch
+Küchenmitarbeiter, sind Angestellte des Hotels.
+
+\item Die Küche kann geöffnet oder geschlossen sein.
+
+\item Gästezimmer haben eine Nummer und eine bestimmte Anzahl an Betten,
+die ausgegeben werden kann.
+
+\item In diesen Gästezimmern wohnen Gäste, die von einer oder mehreren
+Servicekräften umsorgt werden.
+
+\item Servicekräfte sind nur für die ihnen zugeordneten Gästezimmer
+verantwortlich.
+
+\item Jede Servicekraft hat einen Namen und eine Personalnummer sowie
+einen Vorgesetzten, der auch eine Servicekraft ist.
+
+\item In der Küche arbeiten Küchenmitarbeiter, die einen Namen haben und
+ein Gehalt bekommen.
+
+\item Küchenmitarbeiter sind entweder Köche oder Aushilfen. Köche können
+zudem Sterneköche sein, also mit einem oder mehreren Sternen dekoriert
+sein.
+
+\item Aushilfen bauen die Büffets für die Mahlzeiten auf.
+
+\item Gäste können sich unterhalten. Jeder Gast hat einen Namen und eine
+Adresse und ist seinem Zimmer zugeordnet.
+\end{itemize}
+
+\begin{tikzpicture}[scale=0.7, transform shape]
+\umlclass[type=abstrakt,x=1.5,y=8]{Angestellter}{- namen : String}{}
+
+  \umlclass[below left=1cm and 0.5cm of Angestellter,anchor=north]{Servicekraft}{- persNr : int}{}
+  \umlassoc[arg=hat Chef,angle1=-90,angle2=150,loopsize=3cm]{Servicekraft}{Servicekraft}
+  \umlclass[below right=1cm and -1cm of Angestellter,type=abstrakt,x=4,y=5]{Küchenmitarbeiter}{- gehalt : double}{}
+  \umlVHVinherit{Servicekraft}{Angestellter}
+  \umlVHVinherit[arm1=1.5cm]{Küchenmitarbeiter}{Angestellter}
+
+    \umlclass[below left=1cm and -1cm of Küchenmitarbeiter,x=4,y=5]{Koch}{- istSternekoch : bool }{}
+    \umlclass[below right=1cm and -1cm of Küchenmitarbeiter,x=4,y=5]{Aushilfe}{}{+ baueBüffetauf()}
+    \umlVHVinherit{Koch}{Küchenmitarbeiter}
+    \umlVHVinherit{Aushilfe}{Küchenmitarbeiter}
+
+\umlclass[x=8.5,y=8]{Hotel}{- namen : String \\ - adresse : String}{ + führeWerbeaktionDurch() }
+
+  \umlclass[below left=1cm and -2cm of Hotel]{Küche}{- geöffnet : boolean}{}
+  \umlclass[below right=1cm and -1.5cm of Hotel]{Gästezimmer}{- nummer : int \\ anzahlBetten : int }{ + gibBettenAnzahl()}
+  \umlVHVcompo[mult1=1,mult2=1,pos1=0.5,pos2=2.6,arm1=-1.5cm]{Hotel}{Küche}
+  \umlVHVcompo[mult1=1,mult2=1..*,pos1=0.5,pos2=2.6,arm1=-1.5cm]{Hotel}{Gästezimmer}
+
+\umlclass[x=7]{Gast}{- name : String\\- adresse : String}{ + unterhalten() }
+
+\umlassoc[mult1=1..*,pos1=0.1,mult2=1,pos2=0.9,arg2=,name=angestellter]{Angestellter}{Hotel}
+\node [above left=0.1cm and -0.7cm of angestellter-1] {ist angestellt \LeserichtungRechts};
+
+\umlHVassoc[mult1=1..*,mult2=1,pos2=1.9]{Gast}{Gästezimmer}
+
+\umlVHassoc[anchor1=-140,mult1=1..*,mult2=1..*,pos2=1.9, arg=betreut\LeserichtungRechts]
+{Servicekraft}{Gast}
+\umlVHVassoc[arm1=5cm,anchor1=-140,mult1=1..*,mult2=1..*,pos2=1.9, arg=reinigt\LeserichtungRechts]
+{Servicekraft}{Gästezimmer}
+
+\umlVHVassoc[anchor1=40,anchor2=125,arm1=0.5cm,arg=arbeitet in\LeserichtungRechts,pos=1.5]{Küchenmitarbeiter}{Küche}
+\end{tikzpicture}
+
+\literatur
+
+\end{document}

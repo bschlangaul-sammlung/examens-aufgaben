@@ -1,0 +1,417 @@
+\documentclass{lehramt-informatik}
+\usepackage{amsmath}
+
+\begin{document}
+
+\chapter{Synthesealgorithmus}
+
+\begin{lernkartei}{Synthesealgorithmus zur 3NF}
+
+\begin{compactenum}
+\item Reduktion (kanonische Überdeckung)
+
+\begin{compactenum}
+\item Linksreduktion:
+$B \subseteq \textit{AttrHülle}(F, \alpha - A)$
+
+\item Rechsreduktion:
+$B \in \textit{AttrHülle}(F - (\alpha \rightarrow \beta) \cup (\alpha \rightarrow (\beta - B)), \alpha)$
+
+\item Leere Klauseln streichen:
+$\alpha \rightarrow \emptyset$
+
+\item Vereinigung:
+$\alpha \rightarrow \beta_1,...,\alpha \rightarrow \beta_n  = \alpha \rightarrow (\beta_1 \cup ... \cup \beta_n)$
+\end{compactenum}
+
+\item Neues Relationenschema
+\item Hinzufügen einer Relation
+\item Entfernen überflüssiger Teilschemata
+\end{compactenum}
+\end{lernkartei}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Synthesealgorithmus (kleines Beispie aus Kemper)}
+
+\cite[Seite 186]{kemper}
+
+$F = \{A \rightarrow B, B \rightarrow C, AB \rightarrow C\}$
+
+\begin{compactitem}
+\item $A \rightarrow B$
+\item $B \rightarrow C$
+\item $AB \rightarrow C$
+\end{compactitem}
+
+\begin{enumerate}
+\item Kanonische Überdeckung
+
+\begin{enumerate}
+\item Linksreduktion
+
+AttrH(F, A) = {A, B, C}
+
+\begin{compactitem}
+\item $A \rightarrow B$
+\item $B \rightarrow C$
+\item $A \rightarrow C$
+\end{compactitem}
+
+\item Rechtsreduktion
+
+\begin{compactitem}
+\item $A \rightarrow B$
+\item $B \rightarrow C$
+\item $A \rightarrow \emptyset$
+\end{compactitem}
+
+\item Leere Klauseln leeren
+
+\begin{compactitem}
+\item $A \rightarrow B$
+\item $B \rightarrow C$
+\end{compactitem}
+
+\item Vereinigung
+
+\item Neues Relationenschema
+
+\begin{compactitem}
+\item $R1(A, B)$
+\item $R2(B, C)$
+\end{compactitem}
+
+\item Hinzufügen einer Relation
+\item Entfernen überflüssiger Teilschemata
+
+\end{enumerate}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Staatsexamen Frühjahr 1994 - Aufgabe 7}
+
+\cite[Seite 1, Aufgabe 2]{db:ab:6}
+\cite[Seite 4, Aufgabe 7]{examen:66111:1994:03}
+
+Betrachten Sie das relationale Schema
+
+$R(Signatur, Titel, Fachgebiet, Art, ErschOrt, MatrNr, StudName, Gebdatum,
+StudWohnort, StudFachrichtung, AutNr, AutName, AutWohnort, AutBuchHonorar)$
+
+und die Menge
+
+\begin{multline}
+F = \{\\
+Signatur \rightarrow Titel, Fachgebiet, Art, ErschOrt, \\
+Signatur \rightarrow MatrNr, \\
+MatrNr \rightarrow StudName, Gebdatum, StudWohnort, StudFachrichtung,\\
+AutNr \rightarrow AutName, AutWohnort, \\
+AutNr, Signatur \rightarrow AutBuchHonorar \\
+\}
+\end{multline}
+
+Geben Sie eine abhängigkeitserhaltende und verlustfreie Zerlegung von R
+in 3. Normalform an!
+
+\begin{antwort}
+
+\begin{enumerate}
+\item Linksreduktion
+
+$AttrHull(F, \{Autnr\}) = \{ Autnr, AutName, AutWohnort \}$
+
+$AttrHull(F, \{Signatur\}) = \{ Signatur, Titel, Fachgebiet, Art, ErschOrt, MatrNr, StudName, Gebdatum, StudWohnort, StudFachrichtung, \}$
+
+\item Rechtsreduktion
+
+$AttrHull(F - \{Signatur \rightarrow MatrNr\}, \{Signatur\}) = \{ Signatur, Titel, Fachgebiet, Art, ErschOrt \}$ Es kann nichts weggelassen werden
+
+\end{enumerate}
+
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Normalformen Einstieg
+\footcite[Seite 1, Aufgabe 1: Normalformen Einstieg]{db:pu:4}
+}
+
+Es seien folgende Relationenschemata mit den jeweiligen Mengen
+funktionaler Abhängigkeiten gegeben:
+
+$S_1 \{P, Q, R\}$ mit
+$F_1 = \{P Q \rightarrow R, P R \rightarrow Q, QR \rightarrow P \}$
+
+$S_2 \{P, R, S, T \}$ mit
+$F_2 = \{P S \rightarrow T \}$
+
+$S_3 \{P, S, U \}$ mit
+$F_3 = \{\}$
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Welche der drei Schemata sind in BCNF, welche in 3NF, welche in
+2NF? Begründe!
+
+\begin{antwort}
+\begin{itemize}
+\item $S_1$: BCNF
+
+\item $S_2$: 1NF aber nicht 2NF
+
+\item $S_3$: BCNF
+\end{itemize}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Wenden Sie auf ($S_2$, $F_2$) den Synthesealgorithmus an, und
+bestimmen Sie auch die Mengen aller nichttrivialen einfachen
+funktionalen Abhängigkeiten, die über den erhaltenen Teilrelationen
+gelten. Ihr Lösungsweg muss nachvollziehbar sein.
+
+\begin{antwort}
+PS -> T (ist schon kanonische Überdeckung)
+
+2. Schritt
+
+R1 (P, S, T)
+
+3. Schritt
+
+R1 (P, S, T) mit F21 = {PS->}
+R2 (P, S, R) mit F22 = {}
+
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Synthesealgorithmus
+\footcite[Seite 1, Aufgabe 2: Synthesealgorithmus]{db:pu:4}
+}
+
+Überführen Sie das Relationenschema mit Hilfe des Synthesealgorithmus in
+die 3. Normalform!
+
+$R(A, B, C, D, E, F, G, H)$
+
+\begin{compactitem}
+\item $F \rightarrow E$
+\item $A \rightarrow B, D$
+\item $AE \rightarrow D$
+\item $A \rightarrow E, F$
+\item $AG \rightarrow H$
+\end{compactitem}
+
+\begin{antwort}
+
+\begin{enumerate}
+
+\item Kanonische Überdeckung
+
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item 1. Linksreduktion:
+
+Wir betrachten nur die zusammegesetzten Attribute:
+
+\begin{itemize}
+\item $AE \rightarrow D$:
+
+$\textit{AttrHüll}(F, \{A\}) = \{A, E, F, B, \textbf{D}\}$ \\
+$\textit{AttrHüll}(F, \{E\}) = \{E\}$
+
+\item $AG \rightarrow H$:
+
+$\textit{AttrHüll}(F, \{A\}) = \{A, E, F, B, D\}$ \\
+$\textit{AttrHüll}(F, \{G\}) = \{G\}$
+\end{itemize}
+
+\textbf{FDs}
+
+\begin{compactitem}
+\item $F \rightarrow E$
+\item $A \rightarrow B, D$
+\item $A \rightarrow D$
+\item $A \rightarrow E, F$
+\item $AG \rightarrow H$
+\end{compactitem}
+
+%%
+%
+%%
+
+\item 2. Rechtsreduktion:
+
+Nur die Attribute betrachten, die rechts doppelt vorkommen:
+
+$E$:
+
+$\textit{AttrHüll}(F - \{F \rightarrow E\}, \{F\}) = \{F\}$ \\
+$\textit{AttrHüll}(F - \{A \rightarrow E\}, \{A\}) = \{A, B, D, F, \textbf{E}\}$
+
+$D$:
+
+$\textit{AttrHüll}(F - \{A \rightarrow D\}, \{A\}) = \{A, B, \textbf{D}, F, E\}$
+
+$A \rightarrow D$ kann wegen der Armstrongschen Dekompositionsregel
+weggelassen werden. Wenn gilt $A \rightarrow B, D$, dann gilt auch $A
+\rightarrow B$ und $A \rightarrow D$
+
+\textbf{FDs}
+
+\begin{compactitem}
+\item $F \rightarrow E$
+\item $A \rightarrow B, D$
+\item $A \rightarrow \emptyset$
+\item $A \rightarrow F$
+\item $AG \rightarrow H$
+\end{compactitem}
+
+\item 3. Leere Klauseln streichen:
+
+\begin{compactitem}
+\item $F \rightarrow E$
+\item $A \rightarrow B, D$
+\item $A \rightarrow F$
+\item $AG \rightarrow H$
+\end{compactitem}
+
+\item 4. Vereinigung
+
+\begin{compactitem}
+\item $F \rightarrow E$
+\item $A \rightarrow B, D, F$
+\item $AG \rightarrow H$
+\end{compactitem}
+
+Jetzt die weiteren Hauptschritte:
+
+\end{enumerate}
+
+\item Neues Relationenschema
+
+\begin{compactitem}
+\item $R1(F, E)$
+\item $R2(A, B, D, F)$
+\item $R3(A, G, H)$
+\end{compactitem}
+
+\item Hinzufügen einer Relation
+
+Schlüsselkandidaten hinzufügen, falls nicht vorhanden:
+$R4(A, C, G)$
+
+\begin{compactitem}
+\item $R1(F, E)$
+\item $R2(A, B, D, F)$
+\item $R3(A, G, H)$
+\item $R4(A, C, G)$
+\end{compactitem}
+
+\item Entfernen überflüssiger Teilschemata
+
+nichts zu tun
+
+\end{enumerate}
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Zusatzaufgabe 1 (wird nicht in der Übung
+besprochen)\footcite{db:pdf:tum:uebung-08}}
+
+Betrachten Sie ein abstraktes Relationenschema $R = \{M, N, V, T, P,
+PN\}$ mit den FDs
+
+\begin{compactitem}
+\item $M \rightarrow M$
+\item $M \rightarrow N$
+\item $V \rightarrow T, P, PN$
+\item $P \rightarrow PN$
+\end{compactitem}
+
+\begin{enumerate}
+\item Bestimmen Sie alle Kandidatenschlüssel.
+
+\begin{antwort}
+V kommt auf keiner rechten Seite der FDs vor.
+
+$\text{AttrHuell}(R, \{V\}) = \{V, T, P, PN\} \neq  R$
+
+$\text{AttrHuell}(R, \{V, M\}) = \{V, M, N, T, P, PN\} = R$
+
+$\text{AttrHuell}(R, \{V, P\}) = \{V, P, T, PN\} \neq R$
+
+$V, M$ ist Schlüsselkandidat
+\end{antwort}
+
+\item In welcher Normalform befindet sich die Relation?
+
+\begin{antwort}
+1NF weil nichtprimäre Attribute von einer echten Teilmenge des
+Schlüsselkandidaten abhängen (z. B. $M \rightarrow N$).
+\end{antwort}
+
+\item Bestimmen Sie zu den gebenen FDs die kanonische Überdeckung.
+
+\begin{antwort}
+
+\begin{enumerate}
+\item Linkreduktion bleibt aus
+
+\item Rechtsreduktion: PN ist doppelt
+
+$\text{AttrHuell}(R - (V \rightarrow T, P, PN) \cup (V \rightarrow T, P), \{V\}) = \{V, T, P, PN\}$
+
+\begin{compactitem}
+\item $M \rightarrow M$
+\item $M \rightarrow N$
+\item $V \rightarrow T, P$
+\item $P \rightarrow PN$
+\end{compactitem}
+\item Leere Klausel streichen
+
+\item Vereinigung
+
+\begin{compactitem}
+\item $M \rightarrow N$
+\item $V \rightarrow T, P$
+\item $P \rightarrow PN$
+\end{compactitem}
+
+\end{enumerate}
+
+\end{antwort}
+
+\item Falls nötig, überführen Sie die Relation verlustfrei und
+abhängigkeitsbewahrend in die dritte Normalform.
+\end{enumerate}
+
+\literatur
+
+\end{document}

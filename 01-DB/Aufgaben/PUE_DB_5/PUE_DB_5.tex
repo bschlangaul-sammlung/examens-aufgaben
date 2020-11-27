@@ -1,0 +1,83 @@
+\documentclass{lehramt-informatik}
+\begin{document}
+
+\chapter{Präsenzübung 5: Transaktionen}
+
+\section{Aufgabe 1: Transaktionen, Schedules\footcite{db:pu:5}}
+
+DB/ST - Frühjahr 2016 (nicht vertieft - 46116), Thema 1, TA2, A5
+
+\begin{itemize}
+\item Nennen Sie die vier wesentlichen Eigenschaften einer Transaktion
+und erläutern Sie jede Eigenschaft kurz (ein Satz pro Eigenschaft).
+
+\begin{antwort}
+ACID
+\end{antwort}
+
+\item Gegeben ist die folgende Historie (Schedule) dreier Transaktionen:
+
+$
+r_1 (B) \rightarrow
+w_1 (C) \rightarrow
+r_3 (C) \rightarrow
+r_1 (A) \rightarrow
+c_1 \rightarrow
+r_2 (C) \rightarrow
+r_3 (C) \rightarrow
+r_2 (C) \rightarrow
+w_2 (B) \rightarrow
+c_2 \rightarrow
+c_3
+$
+
+\begin{antwort}
+\begin{tabular}{lll}
+T1 & T2 & T3 \\
+$r_1 (B)$ &           &           \\
+$w_1 (C)$ &           &           \\
+          &           & $r_3 (C)$ \\
+$r_1 (A)$ &           &           \\
+$c_1$     &           &           \\
+          & $r_2 (C)$ &           \\
+          &           & $r_3 (C)$ \\
+          & $r_2 (C)$ &           \\
+          & $w_2 (B)$ &           \\
+          & $c_2$     &           \\
+          &           & $c_3$     \\
+\end{tabular}
+
+$w_1 (C) < r_3 (C)$ Konfliktoperation
+
+Kante von T1 nach T3
+
+Keine weitere Konfliktoperation
+
+Serialisierbarkeitsgraphen
+
+Kein Zyklus im Graph -> serialisierbar
+
+Falls ein Zyklus dann wäre es nicht serialisierbar
+\end{antwort}
+
+Zeichnen Sie den Serialisierbarkeitsgraphen zu dieser Historie* und
+begründen Sie, warum die Historie serialisierbar ist oder nicht.
+
+*In Transaktionssystemen existiert ein Ausführungsplan für die parallele
+Ausführung mehrerer Transaktionen. Der Plan wird auch Historie genannt
+und gibt an, in welcher Reihenfolge die einzelnen Operationen der
+Transaktion ausgeführt werden. Als serialisierbar bezeichnet man eine
+Historie, wenn sie zum selben Ergebnis führt wie eine nacheinander
+(seriell) ausgeführte Historie über dieselben Transaktionen.
+
+\item Geben Sie an, wodurch die erste und die zweite Phase des
+Zwei-Phasen-Sperrprotokolls jeweils charakterisiert sind (ein Satz pro
+Phase).
+
+\begin{antwort}
+Siehe Folie Seite 16 Zwei-Phasen-Sperrprotokoll
+\end{antwort}
+
+\end{itemize}
+
+\end{document}

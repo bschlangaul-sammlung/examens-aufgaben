@@ -1,0 +1,160 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax}
+\usepackage{multicol}
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Suchalgorithmen}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Suchen Allgemein}
+
+Eine der wichtigsten und häufigsten Aufgaben in der Informatik ist das
+Suchen.
+%
+Die Suche in unsortierter Datenmenge ist langwierig. Es gibt keine
+Möglichkeit, das ideal zu gestalten.
+%
+Das Suchen in sortierten Daten ist sinnvoll, denn es kann optimiert
+werden.
+
+\subsection{Möglichkeiten:}
+
+\begin{description}
+\item[Sequenzielle Suche:] Es wird eine Folge vom ersten Element an
+durchlaufen. Die Suche ist beendet, wenn das gesuchte Element gefunden
+ist oder die gesamte Folge ohne Ergebnis durchlaufen wurde.
+
+\item[Binäre Suche:] Wir „verkleinern“ die zu durchsuchenden Menge durch
+Herausgreifen eines Elements aus der Folge und vergleichen, ob mein
+gesuchtes Element vor oder nach diesem Element in der Folge liegt. Es
+muss nur noch eine Hälfte durchsucht werden. In dieser fahren wir analog
+fort.
+\end{description}
+
+Ein Bewertungskriterium für das Suchverfahren ist der
+Berechnungsaufwand. Wie viele Schritte sind durchschnittlich nötig, um
+eine Folge zu durchlaufen?\footcite[Seite 16 (PDF 8)]{aud:fs:2}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Binäre Suche}
+
+Die binäre Suche ist ein Algorithmus, der auf einem Feld (also meist „in
+einer Liste“) sehr effizient ein gesuchtes Element findet bzw. eine
+zuverlässige Aussage über das Fehlen dieses Elementes liefert.
+Voraussetzung ist, dass die Elemente in dem Feld \emph{sortiert} sind.
+Der Algorithmus basiert auf einer einfachen Form des Schemas \emph{Teile
+und Herrsche}, zugleich stellt er auch einen \emph{Greedy-Algorithmus}
+dar. Ordnung und spätere Suche müssen sich auf denselben Schlüssel
+beziehen.
+\footcite{wiki:binaere-suche}
+
+\cite[Seite 17 (PDF 9)]{aud:fs:2}
+
+\section{Interativer Ansatz}
+
+\begin{minted}{java}
+public int binsearch(int[] a, int lo, int hi, int x){
+  while (lo <= hi) {
+    int m = lo + (hi - lo) / 2;
+    if (x < a[m]){
+      hi = m - 1;
+    } else if (x > a[m]) {
+      lo = m + 1;
+    } else {
+      return m;
+    }
+  }
+  return -1;
+}
+\end{minted}
+
+\section{Rekursiver Ansatz}
+
+\begin{minted}{java}
+public int binsearch(int[] a, int lo, int hi, int x){
+  if (lo > hi){
+    return -1;
+  }
+  int m = lo + (hi - lo) / 2;
+  if (x < a[m]) {
+    return binsearch(a, lo, m - 1, x);
+  }
+  if (x > a[m]) {
+    return binsearch(a, m + 1, hi, x);
+  }
+  return m;
+}
+\end{minted}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\section{Aufgabe 3: Suchen\footcite{aud:ab:2}}
+
+Für diese Aufgabe wird die Vorlage Suchalgorithmen benötigt, die auf dem
+Beiblatt genauer erklärt wird.\footcite{Diese Aufgabe stammt aus dem
+Übungsblatt 1 zu Algorithmen und Datenstrukturen von Prof. Dr. Martin
+Hennecke und Rainer Gall an der Universität Würzburg und wurde
+dankenswerterweise zur Verwendung in diesem Aufgabenblatt zur Verfügung
+gestellt.}
+
+Vervollständigen Sie die Methode \java{sucheBinaer()}. Die fertige
+Methode soll in der Lage sein, beliebige Werte in beliebigen sortierten
+Arrays zu suchen. Im gelben Textfeld des Eingabefensters soll dabei
+ausführlich und nachvollziehbar angezeigt werden, wie die Methode
+vorgeht. Beispielsweise so:
+
+{
+\tiny
+\begin{multicols}{2}
+\begin{verbatim}
+Führe die Methode sucheSequenziell() aus:
+Suche in diesem Feld: 3, 5, 7, 17, 42, 23
+Überprüfen des Werts an der Position 0
+Überprüfen des Werts an der Position 1
+Überprüfen des Werts an der Position 2
+Überprüfen des Werts an der Position 3
+Fertig :-)
+\end{verbatim}
+
+\begin{verbatim}
+Führe die Methode sucheBinaer() aus:
+Suche in diesem Feld: 3, 5, 7, 17, 42, 23
+Suchbereich: 0 bis 5
+Mitte: 2, also neuer Bereich: 3 bis 5
+Mitte: 4, also neuer Bereich: 3 bis 3
+Mitte: 3, Treffer : -)
+\end{verbatim}
+\end{multicols}
+}
+
+\begin{enumerate}
+\item Sequenzielle Suche
+\begin{antwort}
+\inputcode[firstline=22,lastline=44]{aufgaben/aud/ab_2/Suchalgorithmen}
+\end{antwort}
+
+\item Binäre Suche
+
+\begin{antwort}
+\inputcode[firstline=46,lastline=76]{aufgaben/aud/ab_2/Suchalgorithmen}
+\end{antwort}
+
+\end{enumerate}
+
+\literatur
+
+\end{document}

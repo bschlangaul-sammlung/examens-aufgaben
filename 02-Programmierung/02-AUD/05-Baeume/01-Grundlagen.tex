@@ -1,0 +1,202 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{baum}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Bäume}
+
+\section{Grundlagen}
+
+\begin{quellen}
+\item \cite[Kapitel 6.2.2.3, Seite 186]{schneider}
+\item \cite[Seite 345-419]{saake}
+\end{quellen}
+
+Bäume sind eine der \memph{wichtigsten dynamischen Datenstrukturen} in
+der Informatik. Es können nicht nur Daten, sondern \memph{auch
+Beziehungen }(z. B. Ordnungen) der Daten gespeichert werden. Bäume sind
+aus Knoten aufgebaut, die durch (gerichtete) Kanten verbunden sind. Die
+Daten werden in der Regel in den Knoten gespeichert. Die Wurzel eines
+Baums besitzt nur auslaufende Kanten. Blätter sind Knoten mit nur einer
+einlaufenden Kante.
+\footcite[Seite 2]{aud:fs:5}
+
+%%
+%
+%%
+
+\subsection{Definition (Baum - rekursiv)}
+
+Ein Baum ist leer oder er besteht aus einer Wurzel und einer leeren oder
+nichtleeren endlichen Menge disjunkter Bäume (sogenannte Teilbäume).
+
+%%
+%
+%%
+
+\subsection{Definition (Binärbaum)}
+
+Ein Binärbaum ist ein Baum, bei dem jeder Knoten genau zwei
+Verzweigungsmöglichkeiten besitzt.
+
+Diese Variante des Baumes wird sehr häufig verwendet. Es ist eine
+Hierarchische Datenstruktur. Jedes Baumelement besitzt einen linken und
+einen rechten Teilbaum. Diese Datenstruktur ist gut geeignet zum
+Sortieren.
+\footcite[Seite 3]{aud:fs:5}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Staatsexamenaufgabe zu Binärbaum, Halde, AVL
+\footcite[Thema 2, Aufgabe 8]{examen:66115:2017:09}}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Fügen Sie die Zahlen $13$, $12$, $42$, $3$, $11$ in der gegebenen
+Reihenfolge in einen zunächst leeren binären Suchbaum mit aufsteigender
+Sortierung ein. Stellen Sie nur das Endergebnis dar.
+\footcite[Seite 12]{examen:66115:2017:09}
+
+\begin{center}
+\begin{tikzpicture}[binaerer baum]
+\Tree
+[.13
+  [.12
+    [.3
+      \edge[blank]; \node[blank]{};
+      [.11 ]
+    ]
+    \edge[blank]; \node[blank]{};
+  ]
+  [.42 ]
+]
+\end{tikzpicture}
+\end{center}
+
+%%
+% (b)
+%%
+
+\item Löschen Sie den Wurzelknoten mit Wert $42$ aus dem folgenden
+\emph{binären} Suchbaum mit aufsteigender Sortierung und ersetzen Sie
+ihn dabei durch einen geeigneten Wert aus dem \emph{rechten} Teilbaum.
+Lassen Sie möglichst viele Teilbäume unverändert und erhalten Sie die
+Suchbaumeigenschaft.
+\footcite[Seite 12]{examen:66115:2017:09}
+
+% 42,13,66,28,50,99,61,55
+
+\begin{minipage}{0.5\linewidth}
+\begin{tikzpicture}[binaerer baum]
+\Tree
+[.\node(root){\textbf{42}};
+  [.13
+    \edge[blank]; \node[blank]{};
+    [.28 ]
+  ]
+  [.\node(66){66};
+    [.\node(replacement){\textbf{50}};
+      \edge[blank]; \node[blank]{};
+      [.\node(61){61};
+        [.55 ]
+        \edge[blank]; \node[blank]{};
+      ]
+    ]
+    [.99 ]
+  ]
+]
+\draw[dotted,->] (replacement) -- (root);
+\draw[dotted,<-] (66) -- (61);
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\begin{tikzpicture}[binaerer baum]
+\Tree
+[.\textbf{50}
+  [.13
+    \edge[blank]; \node[blank]{};
+    [.28 ]
+  ]
+  [.66
+    [.61
+      [.55 ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.99 ]
+  ]
+]
+\end{tikzpicture}
+\end{minipage}
+
+%%
+% (c)
+%%
+
+\item Fügen Sie einen neuen Knoten mit dem Wert 13 in die folgende
+Min-Halde ein und stellen Sie anschließend die Halden-Eigenschaft vom
+neuen Blatt aus beginnend wieder her, wobei möglichst viele Knoten der
+Halde unverändert bleiben und die Halde zu jedem Zeitpunkt
+links-vollständig sein soll. Geben Sie nur das Endergebnis an.
+
+%%
+% (d)
+%%
+
+\item Geben Sie für die ursprüngliche Min-Halde aus Teilaufgabe c)(d.h.
+ohne den neu eingefügten Knoten mit dem Wert 13) die Feld-Einbettung
+(Array-Darstellung) an.
+
+%%
+% (e)
+%%
+
+\item Löschen Sie den Wurzelknoten mit Wert 42 aus der folgenden
+Max-Halde und stellen Sie anschließend die Halden-Eigenschaft ausgehend
+von einer neuen Wurzel wieder her, wobei möglichst viele Knoten der
+Halde unverändert bleiben und die Halde zu jedem Zeitpunkt
+links-vollständig sein soll. Geben Sie nur das Endergebnis an.
+
+%%
+% (f)
+%%
+
+\item Fügen Sie in jeden der folgenden AVL-Bäume mit aufsteigender
+Sortierung jeweils einen neuen Knoten mit dem Wert 13 ein und führen Sie
+anschließend bei Bedarf die erforderliche(n) Rotation(en) durch.
+Zeichnen Sie den Baum vor und nach den Rotationen.
+
+\begin{enumerate}
+
+%%
+% i)
+%%
+
+\item AVL-Baum A
+
+%%
+% ii)
+%%
+
+\item AVL-Baum B
+\end{enumerate}
+\end{enumerate}
+
+\literatur
+
+\end{document}

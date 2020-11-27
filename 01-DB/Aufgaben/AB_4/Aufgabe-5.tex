@@ -1,0 +1,269 @@
+
+\section{Aufgabe 5: Freizeitcenter (Check-Up)}
+
+Gegeben ist das Datenbankschema „Freizeitcenter“ mit folgender
+Ausprägung:
+
+\subsection*{Hinweise:}
+
+\begin{itemize}
+\item Die Courts werden immer für eine Stunde gebucht. Gespeichert ist
+der Buchungsbeginn.
+
+\item Die Tabelle „Buchung“ enthält die Daten eines Tages.
+
+\item Angabe der Attributwerte von Betrag in Euro
+
+\item Court 1-10: Squash, Court 11-20: Badminton, Court 21-30:
+Tischtennis
+\end{itemize}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Interpretieren Sie folgende Terme in natürlicher Sprache und geben
+Sie die Ergebnisrelation an!
+
+\begin{enumerate}
+
+%%
+% (i)
+%%
+
+\item $\pi_{\text{Name}} (
+  \sigma_{\text{Beruf}=\mlq \text{Student} \mrq} (\text{Spieler})
+)$
+
+\begin{mdframed}
+Es sollen die Nachnamen aller Studenten ausgegeben werden, die im
+Freizeitcenter registriert sind.
+
+\begin{tabular}{|l|}
+\hline
+\textbf{Name}\\
+Klein\\\hline
+\end{tabular}
+
+\end{mdframed}
+
+%%
+% (ii)
+%%
+
+\item $\pi_{\text{Beruf,von,bis,Betrag}} (
+  \sigma_{\text{Beruf} = \mlq \text{Schüler} \mrq} (\text{Spieler})
+    \bowtie
+  \text{Preis}
+)$
+
+\begin{mdframed}
+Der gegebene Term gibt nichts aus, da die Relation \emph{Spieler} und
+\emph{Preis} kein gemeinsames Attribut haben. Es kann kein Naturaljoin
+statt finden.
+
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Beruf} & \textbf{von} & \textbf{bis} & \textbf{Betrag}\\
+\hline
+\end{tabular}
+
+\bigskip
+
+Müsste es nicht so heißen?
+
+$\pi_{\text{Beruf,von,bis,Betrag}} (
+  \sigma_{\text{Beruf} = \mlq \text{Schüler} \mrq} (\textbf{Preisstufe})
+    \bowtie
+  \text{Preis}
+)$
+
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Beruf} & \textbf{von} & \textbf{bis} & \textbf{Betrag}\\
+Schüler & 07:00 & 12:00 & 10\\
+Schüler & 12:00 & 17:00 & 15\\
+Schüler & 17:00 & 22:00 & 20 \\
+\hline
+\end{tabular}
+
+\end{mdframed}
+
+%%
+% (iii)
+%%
+
+\item $\pi_{\text{Name,Vorname}} (
+  \sigma_{\text{Betrag} \geq  10 \land \text{Betrag} \leq 20} (\text{Preis}) \bowtie
+  \text{Preisstufe} \bowtie
+  \text{Spieler}
+)$
+
+\begin{mdframed}
+Es werden der Nachname und der Vorname von allen Mitglieder des
+Freizeitcenters eingezeigt, die der Preisstufe 1 und 2 angehören und
+deshalb nicht mehr als 20 Euro zahlen müssen.
+
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Name} & \textbf{Vorname}\\
+Klein & Mathias\\
+Müller & Inge\\
+Deckard & Klara\\
+Beutlin & Hein\\
+\hline
+\end{tabular}
+
+\end{mdframed}
+
+%%
+% (iv)
+%%
+
+\item
+\begin{multline*}
+\pi_{\text{Name,Buchung,Zeit}} (\\
+  \sigma_{\text{Typ} = \mlq \text{Tischtennis} \mrq} (\text{Court})\\
+  \bowtie_{\text{Court.ID} = \text{Buchung.Court-ID}} \text{Buchung}\\
+  \bowtie_{\text{Buchung.Spieler} = \text{Spieler.Spieler-ID}} \text{Spieler}\\
+)
+\end{multline*}
+
+\begin{mdframed}
+Es wird der Name der/des SpielerIn, die Buchung (Court-ID) und die Zeit
+von allen Tischtennis-Buchungen ausgegeben.
+
+Zwischenschritt:
+
+$\sigma_{\text{Typ} = \mlq \text{Tischtennis} \mrq} (\text{Court})
+\bowtie_{\text{Court.ID} = \text{Buchung.Court-ID}} \text{Buchung}$
+
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Court-ID} & \textbf{Zeit} & \textbf{Spieler} & \textbf{Typ}\\
+21 & 16:00 & 5 & Tischtennis\\
+24 & 12:00 & 1 & Tischtennis\\
+\hline
+\end{tabular}
+
+Ergebnis-Relation:
+
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Name} & \textbf{Buchung} & \textbf{Zeit}\\
+Beutlin & NULL & 16:00 \\
+Klein & NULL & 12:00 \\
+\hline
+\end{tabular}
+
+Müsste es nicht so heißen?
+
+\begin{multline*}
+\pi_{\text{Name,\textbf{Court-ID},Zeit}} (\\
+  \sigma_{\text{Typ} = \mlq \text{Tischtennis} \mrq} (\text{Court})\\
+  \bowtie_{\text{Court.ID} = \text{Buchung.Court-ID}} \text{Buchung}\\
+  \bowtie_{\text{Buchung.Spieler} = \text{Spieler.Spieler-ID}} \text{Spieler}\\
+)
+\end{multline*}
+
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Name} & \textbf{Court-ID} & \textbf{Zeit}\\
+Beutlin & 21 & 16:00 \\
+Klein & 24 & 12:00 \\
+\hline
+\end{tabular}
+\end{mdframed}
+
+\end{enumerate}
+
+%%
+% (b)
+%%
+
+\item Formulieren Sie folgende Anfragen in relationaler Algebra!
+
+\begin{enumerate}
+
+%%
+% (i)
+%%
+
+\item Gesucht sind die Spieler-IDs der Personen, die einen Squash-Court
+gebucht haben.
+
+\begin{mdframed}
+$\pi_{\text{Spieler}}(
+  \sigma_{\text{Typ} = \mlq \text{Squash} \mrq} (\text{Court})
+    \bowtie_{\text{Court.ID} = \text{Buchung.Court-ID}}
+  \text{Buchung}
+)$
+\end{mdframed}
+
+%%
+% (ii)
+%%
+
+\item In welche Preisstufe fällt Frau Tyrell?
+
+\begin{mdframed}
+$\pi_{\text{PS}}(
+  \sigma_{\text{Name} = \mlq \text{Tyrell} \mrq} (\text{Spieler})
+    \bowtie
+  \text{Preisstufe}
+)$
+\end{mdframed}
+
+%%
+% (iii)
+%%
+
+\item Gesucht sind die Nummern der Courts, die nicht benutzt werden.
+
+\begin{mdframed}
+$\pi_{\text{ID}}(\text{Court}) - \pi_{\text{Court-ID}}(\text{Buchung})$
+\end{mdframed}
+
+%%
+% (iv)
+%%
+
+\item Welche Berufe üben die Personen aus, die zwischen 9 und 12 Uhr
+einen Court gebucht haben?
+
+\begin{mdframed}
+$
+  \pi_{\text{Beruf}}(
+    \sigma_{\text{Zeit} \geq 9 \land \text{Zeit} \leq 11}(\text{Buchung})
+      \bowtie_{\text{Buchung.Spieler} = \text{Spieler.Spieler-ID}}
+    \text{Spieler}
+  )
+$
+\end{mdframed}
+
+%%
+% (v)
+%%
+
+\item Gesucht sind Name und Vorname der Spieler, die für mehr als eine
+Stunde gebucht haben.
+
+\begin{mdframed}
+\begin{multline*}
+  \pi_{\text{Name, Vorname}}(\\
+    \text{Buchung}\\
+      \bowtie_{\text{left.Spieler} = \text{right.Spieler} \land \text{left.Zeit} \neq \text{right.Zeit}}\\
+    \text{Buchung}\\
+      \bowtie_{\text{Buchung.Spieler} = \text{Spieler.Spieler-ID}}\\
+    \text{Spieler}\\
+  )
+\end{multline*}
+\end{mdframed}
+
+\end{enumerate}
+
+\end{enumerate}

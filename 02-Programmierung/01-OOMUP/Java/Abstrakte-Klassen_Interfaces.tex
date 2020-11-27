@@ -1,0 +1,212 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax,uml}
+\usepackage{paralist}
+
+\begin{document}
+
+\chapter{Abstrakte Klassen / Interface}
+
+\cite[Vererbung Seite 28-31 (PDF Seite 156-159)]{brinda}
+
+\section{Abstrake Klassen und Methoden}
+
+Eine abstrakte Klasse ist eine spezielle Klasse, von der keine Objekte
+erstellt werden können, d.\,h. die Klasse ist nicht \memph{nicht
+instanziierbar}.
+
+Das ist nützlich, wenn eine Menge von Klassen gemeinsame Methoden
+benötigt, die in einer Oberklasse implementiert werden können, aber es
+keinen Sinn mach, von der Oberklasse selbst Instanzen zu erstellen.
+
+Es ist zudem möglich, Methoden, die alle Unterklassen haben sollen, in
+einer abstrakten Oberklasse zu definieren, aber nicht zu implementieren,
+weil die Funktionalität in den Unterklassen leicht unterschiedlich ist,
+dazu werden abstrakte \memph{Methoden} verwendet. Diese \memph{müssen}
+dann in der \memph{Unterklasse implementiert} werden.
+\footcite[Seite 31]{oomup:fs:3}
+
+\begin{minted}{java}
+public abstract class Vierbeiner {
+  private String vierbeinerName;
+
+  public Vierbeiner(String name) {
+    this.setName(name);
+  }
+
+  public void setName(String pName) {
+    vierbeinerName = pName;
+  }
+
+  public abstract void rennen();
+}
+\end{minted}
+
+\begin{minted}{java}
+public class Katze extends Vierbeiner{
+  public Katze(String name){
+    super(name);
+    rennen();
+  }
+
+  public void rennen(){
+    System.out.println("Deine Katze rennt!");
+  }
+}
+\end{minted}
+
+\section{Interfaces (Schnittstellen)
+\footcite[Vererbung Seite 32-38 (PDF Seite 160-166)]{brinda}}
+
+„Eine Schnittstelle (interface) spezifiziert einen Ausschnitt aus dem
+Verhalten einer Klasse. Eine Schnittstelle besteht nur aus den
+Signaturen von Operationen, d. h. sie besitzt keine Implementierung,
+keine Attribute oder Assoziationen. Eine Schnittstelle ist äquivalent zu
+einer abstrakten Klasse, die ausschließlich abstrakte Operationen
+besitzt.“ (vgl. Balzert, 2005)
+
+Schnittstellen legen für die Objekte der implementierenden Klassen ein
+bestimmtes, gleichartiges Verhalten fest. Durch das
+Schnittstellenkonzept wird gewährleistet, dass jede Klasse, die die
+Schnittstelle implementiert, die in der Schnittstelle deklarierten
+Methoden zur Verfügung stellt. Eine Klasse kann mehrere Schnittstellen
+implementieren.
+
+\begin{tikzpicture}
+\umlclass[x=2,type=abstract]
+{Figur}
+{rahmendicke\\farbe}
+{berechnenFlaeche()}
+
+\umlclass[x=-2,y=-3,anchor=north]
+{Rechteck}
+{laenge\\breite}
+{berechnenFlaeche()}
+
+\umlclass[x=2,y=-3,anchor=north]
+{Kreis}
+{radius}
+{berechnenFlaeche()}
+
+\umlclass[x=6,y=-3,anchor=north]
+{Dreieck}
+{grundlinie\\hohe}
+{berechnenFlaeche()}
+
+\umlVHVinherit[arm2=-2cm]{Rechteck}{Figur}
+\umlVHVinherit[arm2=-2cm]{Kreis}{Figur}
+\umlVHVinherit[arm2=-2cm]{Dreieck}{Figur}
+\end{tikzpicture}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe zu Abstrakten Klassen und Interfaces (Parkhaus)}
+
+\begin{quellen}
+\item \cite{aud:ab:1}
+\item \cite[Seite 11, Thema 2, Teilaufgabe 2, Aufgabe 1]{examen:66116:2014:03}
+\end{quellen}
+
+In dieser Aufgabe werden Sie Datentypen für die Verwaltung eines
+Parkhauses mit Hilfe objektorientierter Methoden definieren. Bearbeiten
+Sie die folgenden Teilaufgaben in einer objektorientierten
+Programmiersprache Ihrer Wahl (geben Sie diese an)! Solange nicht anders
+definiert, sollen Eigenschaften und Methoden \emph{uneingeschränkt
+sichtbar} sein.
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Erzeugen Sie eine \emph{Klasse} \java{Fahrzeug}, deren Instanzen
+folgende Eigenschaften besitzen (wählen Sie geeignete Typen):
+
+\begin{compactitem}
+\item Ein amtliches Kennzeichen (Buchstaben- und Zahlenkombination).
+
+\item Die Dimensionen des Fahrzeugs (Länge, Breite, Höhe) in Metern.
+
+\item Das Datum der Erstzulassung. Definieren Sie hierfür entweder einen
+eigenen Datentyp oder machen Sie Gebrauch von der Standardbibliothek
+Ihrer gewählten Programmiersprache.
+\end{compactitem}
+
+Die Eigenschaften sollen für \emph{Unterklassen nicht sichtbar} sein.
+Schreiben Sie außerdem einen Konstruktor, der eine Instanz erzeugt und
+die Eigenschaften setzt!
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/aud/ab_1/parkhaus/Fahrzeug}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Schreiben Sie eine \emph{Klasse} \emph{Parkplatz}, in der
+ebenfalls Eigenschaften für die Dimension (Länge, Breite, Höhe) in
+Metern vorgesehen sind! Die Eigenschaften sollen ebenfalls im
+\emph{Konstruktor} initialisiert werden können. Außerdem soll eine
+Objektmethode hinzugefügt werden, die prüft, ob ein gegebenes Fahrzeug
+in den Parkplatz passt.
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/aud/ab_1/parkhaus/Parkplatz}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Ein \emph{Interface} \java{Parkhaus} soll Objektmethoden für
+folgende Anwendungsfälle deklarieren:
+
+\begin{enumerate}
+
+%%
+% (i)
+%%
+
+\item Alle freien Parkplätze sollen (z.B. als \emph{Array} oder als
+Instanz einer in der Standardbibliothek Ihrer verwendeten Sprache
+definierten Kollektionsklasse) zurückgegeben werden.
+
+%%
+% (ii)
+%%
+
+\item Der erste freie Parkplatz, der zu einem gegebenen Fahrzeug passt,
+soll zurückgegeben werden.
+
+%%
+% (iii)
+%%
+
+\item Ein gegebener Parkplatz soll für ein gegebenes Fahrzeug reserviert
+werden. Deklarieren Sie das Interface und geben Sie geeignete Signaturen
+die \emph{Objektmethoden} an!
+\end{enumerate}
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/aud/ab_1/parkhaus/Parkhaus}
+\end{antwort}
+
+\item Schreiben Sie eine \emph{abstrakte Klasse}, die das Interface
+\java{Parkhaus} partiell implementiert! Geben Sie außerdem eine
+geeignete \emph{Implementierung} für die Objektmethode (c.ii) unter
+Verwendung der existierenden Objektmethoden aus (b) und (c.i) an!
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/aud/ab_1/parkhaus/MeinParkhaus}
+\end{antwort}
+
+\end{enumerate}
+
+\literatur
+
+\end{document}

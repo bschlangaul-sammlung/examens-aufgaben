@@ -1,0 +1,420 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{mathe,baum,syntax}
+\usepackage{xparse}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{AVL-Bäume}
+
+\begin{quellen}
+\item \cite{wiki:avl-baum}
+\item \cite[Kapitel 14.4.2, Seite 378-386 (PDF 394-402)]{saake}
+\item \cite[bst]{net:html:visualgo}
+\end{quellen}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Visualisierungstools}
+
+\begin{itemize}
+\item \url{https://www.cs.usfca.edu/~galles/visualization/AVLtree.html}
+\item \url{https://visualgo.net/bn/bst} (oben in den Tabs umschalten auf AVL)
+\end{itemize}
+
+\noindent
+Ein AVL-Baum ist ein binärer Suchbaum, der \memph{höhenbalanciert} ist,
+d.\,h. für jeden Knoten gilt:
+
+\begin{center}
+$|h(\text{rechterTeilbaum}) - h(\text{linkerTeilbaum})| \leq 1$
+\end{center}
+
+\noindent
+Die \memph{„Entartung“} des Baums wird so vermieden. Die Höhe eines
+AVL-Baums ist $h \in \mathcal{O}(\log n)$. Beim Einfügen und Löschen von
+Knoten muss die AVL-Eigenschaft durch \memph{Rotationen}
+wiederhergestellt werden.
+\footcite[Seite 22 (PDF 16)]{aud:fs:5}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Rotationsregeln}
+
+\begin{center}
+Balance-Faktor $=$ Knotenzahl rechter Teilbaum $-$ Knotenzahl linker Teilbaum
+\end{center}
+
+Rotationsregeln:
+bO= „oberer“ Wurzelknoten, bU = Kindknoten von bO
+
+\begin{itemize}
+\item bO = -2, bU = -1  Rechtsrotation (Rechtsdrehung um bO)
+\item bO = +2, bU = +1  Linksrotation (Linksdrehung um bO)
+\item bO = -2, bU = +1  Links-Rechts-Rotation (Linksdrehung um bU, dann Rechtsdrehung um bO)
+\item bO = +2, bU = -1  Rechts-Links-Rotation (Rechtsdrehung um bU, dann Linksdrehung um bO)
+\end{itemize}
+
+%%
+%
+%%
+
+\subsection{Linksrotation}
+
+\inputcode[firstline=147,lastline=152]{baum/saake/AVLBaum}
+
+%%
+%
+%%
+
+\subsection{Rechtsrotation}
+
+\inputcode[firstline=160,lastline=165]{baum/saake/AVLBaum}
+
+Kindknoten, die nach der Drehung „im Weg stehen“, werden „umgeklappt“,
+also vom linken zum rechten Kind der nächsten Ebene und umgekehrt
+
+\section{Aufgabe Herbst 2006, Thema 1\footcite{examen:66115:2006:09}}
+
+\begin{enumerate}
+\item Gegeben sei die folgende Folge ganzer Zahlen: 6, 13, 4, 8, 11, 9, 10.
+
+\begin{enumerate}
+\item Fügen Sie obige Zahlen der Reihe nach in einen anfangs leeren
+AVL-Baum ein und stellen Sie den Baum nach jedem Einfügeschritt dar!
+
+\item Löschen Sie das Wurzelelement des entstandenen AVL-Baums und
+stellen Sie die AVL-Eigenschaft wieder her!
+\end{enumerate}
+\end{enumerate}
+
+\NewDocumentCommand{\tmpEinfuegen}{ m }{
+  \bigskip
+  \noindent
+  \textbf{Einfügen von $#1$:}
+}
+
+\NewDocumentCommand{\tmpAvl}{ m m } {
+  \bigskip
+  \noindent
+  \begin{minipage}{6cm}
+  \begin{tikzpicture}[binaerer baum]
+   #1
+  \end{tikzpicture}
+  \end{minipage}
+  \begin{minipage}{6cm}
+  #2
+  \end{minipage}
+}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\tmpEinfuegen{6}
+
+%%
+%
+%%
+
+\tmpAvl
+{\Tree[.6 ]}
+{$6$ als Wurzel eingefügt}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\tmpEinfuegen{13}
+
+%%
+%
+%%
+
+\tmpAvl
+{\Tree
+[.6
+  \edge[blank]; \node[blank]{};
+  \edge[]; {13}
+]
+}
+{$13 > 6$ deshalb rechts angehängt}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\tmpEinfuegen{4}
+
+%%
+%
+%%
+
+\tmpAvl
+{\Tree
+[.6
+  [.4 ]
+  [.13 ]
+]}
+{$4 < 6$ deshalb links angehängt}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\tmpEinfuegen{8}
+
+%%
+%
+%%
+
+\tmpAvl
+{\Tree
+[.6
+  [.4 ]
+  [.13
+    \edge[]; {8}
+    \edge[blank]; \node[blank]{};
+  ]
+]}
+{$8 > 6$ und $8 < 13$}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\tmpEinfuegen{11}
+
+%%
+%
+%%
+
+\tmpAvl
+{\Tree
+[.6
+  [.4 ]
+  [.13
+    [.8
+      \edge[blank]; \node[blank]{};
+      \edge[]; {11}
+    ]
+    \edge[blank]; \node[blank]{};
+  ]
+]}
+{
+  $11 > 6$, $11 < 13$ und $11 > 8$;
+  die Balancierung ist jetzt verletzt, mit unterschiedlichen Vorzeichen ($+1$, $-2$)
+  deshalb Doppelrotation links-rechts
+}
+
+%%
+%
+%%
+
+\tmpAvl
+{\Tree
+[.6
+  [.4 ]
+  [.13
+    [.11
+      \edge[]; {8}
+      \edge[blank]; \node[blank]{};
+    ]
+    \edge[blank]; \node[blank]{};
+  ]
+]}
+{
+  Balancierung wäre nach Linksrotation weiter verletzt, deshalb zusätzliche Rechtsrotation
+}
+
+%%
+%
+%%
+
+\tmpAvl
+{\Tree
+[.6
+  [.4 ]
+  [.11
+    [.8 ]
+    [.13 ]
+  ]
+]}
+{Balancierung wiederhergestellt}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\tmpEinfuegen{9}
+
+%%
+%
+%%
+
+\tmpAvl
+{\Tree
+[.6
+  [.4 ]
+  [.11
+    [.8
+      \edge[blank]; \node[blank]{};
+      \edge[]; {9}
+    ]
+    [.13 ]
+  ]
+]}
+{
+  $9 > 8$;
+  Balancierung verletzt mit unterschiedlichen Vorzeichen ($-1$, $+2$),
+  deshalb Doppelrotation rechts-links
+}
+
+%%
+%
+%%
+
+\tmpAvl
+{\Tree
+[.6
+  [.4 ]
+  [.8
+    [.9 ]
+    [.11
+      \edge[blank]; \node[blank]{};
+      \edge[]; {13}
+    ]
+  ]
+]}
+{
+  Balancierung wäre nach Rechtsrotation weiter verletzt,
+  deshalb zusätzliche Linksrotation
+}
+
+%%
+%
+%%
+
+\tmpAvl
+{\Tree
+[.8
+  [.6
+    \edge[]; {4}
+    \edge[blank]; \node[blank]{};
+  ]
+  [.11
+    [.9 ]
+    [.13 ]
+  ]
+]}
+{
+  Balancierung wiederhergestellt
+}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\tmpEinfuegen{10}
+
+%%
+%
+%%
+
+\tmpAvl
+{\Tree
+[.8
+  [.6
+    \edge[]; {4}
+    \edge[blank]; \node[blank]{};
+  ]
+  [.11
+    [.9
+      \edge[blank]; \node[blank]{};
+      \edge[]; {10}
+    ]
+    [.13 ]
+  ]
+]}
+{
+  $10 > 8$
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\section{Einfügen von Knoten
+\footcite[Seite 3, Aufgabe 5: AVL-Baum]{aud:ab:7}}
+
+Gegeben sei folgender AVL-Baum:
+
+Dabei sind die Blätter der Übersichtlichkeit halber weggelassen worden
+und über jedem Knoten v ist folgender Wert angegeben:
+
+\begin{center}
+Höhe linker Teilbaum von v – Höhe rechter Teilbaum von v
+\end{center}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Fügen Sie in diesen Baum den Schlüssel 1 ein.
+
+%%
+% (b)
+%%
+
+\item Fügen Sie in diesen Baum den Schlüssel 11 ein.
+
+\section{AVL-Baum\footcite{aud:e-klausur}}
+
+Fügen Sie die Zahlen 2, 8, 10, 1, 4, 5, 11 in der vorgegebenen
+Reihenfolge in einen AVL-Baum ein. Wie sieht der finale AVL-Baum aus?
+
+\begin{antwort}
+\begin{description}
+\item[2:] ist die Wurzel
+\item[8:] rechts an 2
+\item[10:] rechts an 8, dann Links-Rotation
+\item[1:] links an 2
+\item[4:] rechts an 2
+\item[5:] rechts an 4, dann Links-Rechts-Rotation.
+\item[11:] rechts an 10
+\end{description}
+
+\begin{tikzpicture}[binaerer baum]
+\Tree
+[.4
+  [.2
+    [.1 ]
+    \edge[blank]; \node[blank]{};
+  ]
+  [.8
+    [.5 ]
+    [.10
+      \edge[blank]; \node[blank]{};
+      [.11 ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{antwort}
+
+\end{enumerate}
+
+\literatur
+
+\end{document}

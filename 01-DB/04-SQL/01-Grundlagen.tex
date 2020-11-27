@@ -1,0 +1,324 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax}
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{SQL-Grundlagen}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Datentypen
+\footcite[Seite 132]{winter}}
+
+\begin{description}
+\item[CHAR(n)] Zeichenreihe (String) einer festen Länge von n Zeichen
+
+\item[VARCHAR(n)] Zeichenreihe variabler Länge (String) mit bis zu n
+Zeichen
+
+\item[INT, SMALLINT] Ganze Zahl (mit oder ohne Vorzeichen)
+
+\item[NUMERIC(p,q), DEC(p,q)] Dezimalzahl mit p Ziffern insgesamt und q
+Ziffern nach dem Dezimalpunkt
+
+\item[FLOAT(n), FLOAT, REAL] Gleitkommazahl mit Stelligkeit n oder
+systemabhängiger Genauigkeit
+
+\item[DATE, TIME, TIMESTAMP] Datum und/oder Uhrzeit
+\end{description}
+
+\section{CREATE TABLE}
+
+\begin{minted}{sql}
+CREATE TABLE Tabellennamen
+(
+   Spaltenname1 Datentyp1 [Spaltenbedingung]
+   Spaltenname2 Datentyp2 [Spaltenbedingung]
+   [...]
+);
+\end{minted}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Mengenoperationen\footcite[Seite 157]{winter}}
+
+\noindent
+\begin{tabular}{ll}
+\textbf{Mengenoperation} &
+\textbf{SQL - Schlüsselwort} \\
+
+Vereinigung von Mengen &
+UNION \\
+
+Schnitt von Mengen &
+INTERSECT \\
+
+Differenz von Mengen &
+EXCEPT \\
+\end{tabular}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Integritätsbedingungen:
+\footcite[Seite 7]{db:fs:2}}
+
+\begin{description}
+
+\item[NOT NULL]
+
+Alle eingetragenen Tupel müssen an dieser Stelle einen definierten Wert
+haben.
+
+\item[UNIQUE]
+
+Kennzeichnung von Schlüsselkandidaten. Gibt an, dass dieses Attribut
+eindeutig sein muss.
+
+\item[PRIMARY KEY]
+
+Primärschlüssel-Kennzeichnung, impliziert automatisch \verb|NOT NULL|,
+jede Tabelle benötigt einen Primärschlüssel!
+
+\item[FOREIGN KEY]
+
+Kennzeichnung von Fremdschlüsseln, null-Werte möglich, wenn nicht
+explizit \verb|NOT NULL| gesetzt (\verb|UNIQUE FOREIGN KEY| um
+1:1-Beziehung zu modellieren)
+
+\item[CHECK (Attributname IN / (BETWEEN) AND)]
+
+Überprüfung der angegebenen Werte auf eine bestimmte Eigenschaft.
+
+\item[DEFAULT Wert]
+
+setzt das Attribut auf einen bestimmten Standardwert, wenn kein Wert für
+das Attribut angegeben wird
+
+\item[ON DELETE / ON UPDATE SET NULL / SET DEFAULT / CASCADE]
+
+für Fremdschlüssel, setzt im Fall des Updates bzw. Löschens des
+Primärschlüssels in der anderen Tabelle diesen Attributwert auf
+\verb|NULL| / einen Defaultwert oder ändert / löscht ihn kaskadierend
+\end{description}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aggregatsfunktionen\footcite[Seite 10]{db:fs:2}}
+
+\begin{description}
+\item[AVG()] berechnet den arithmetischen Mittelwert einer Menge von
+Werten in einem bestimmten Feld einer Abfrage
+
+\item[COUNT()] berechnet die Anzahl der von einer Abfrage
+zurückgegebenen Datensätze.
+
+\item[MAX()/ MIN()] - gibt den größten / kleinsten Wert aus einer Reihe
+von Werten zurück, die in einem bestimmten Feld einer Abfrage enthalten
+sind.
+
+\item[SUM()] - berechnet die Summe einer Menge von Werten in einem
+bestimmten Feld einer Abfrage.
+\end{description}
+
+\subsection{Besonderheiten bei Aggregatoperationen}
+
+\begin{compactitem}
+\item SQL erzeugt pro Gruppe ein Ergebnistupel
+
+\item Deshalb müssen alle in der SELECT-Klausel aufgeführten Attribute -
+außer den aggregierten – auch in der GROUP BY-Klausel aufgeführt werden
+
+\item Nur so kann SQL sicherstellen, dass sich das Attribut nicht
+innerhalb der Gruppe ändert
+\end{compactitem}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Geschachtelte Anfragen in SQL}
+
+(Foliensatz Seite 26)
+
+SQL erlaubt das Schachteln von Anfragen
+
+%%
+%
+%%
+
+\subsection{Unterscheidung nach Anzahl der Rückgabetupel}
+
+Unterscheidung von Anfragen, die nur ein Tupel zurückgeben und Anfragen,
+die beliebig viele Tupel ergeben
+
+Wenn nur ein Tupel mit nur einem Attribut zurückgeliefert wird, dann
+kann die Anfrage dort eingesetzt werden, wo ein skalarer Wert gefordert
+wird $\rightarrow$ vor allem in WHERE und SELECT-Klauseln
+
+%%
+%
+%%
+
+\subsection{Korrelierte vs. Nicht-korrelierte Anfragen}
+
+\begin{description}
+\item[Nicht-korrelierte Anfragen:]
+
+verwenden lediglich „eigene“ Attribute, müssen nur einmal ausgewertet
+werden, zudem kann ihr Ergebnis materialisiert werden $\rightarrow$ wenn
+möglich ist dies die bessere Lösung!
+
+\begin{minted}{sql}
+SELECT *
+FROM prüfen
+WHERE Note < (SELECT AVG (Note) FROM prüfen);
+\end{minted}
+
+\item[Korrelierte Anfragen:]
+
+greifen auf Attribute der umschließenden Anfrage zu, werden daher für
+jedes Tupel der umschließenden Anfrage neu berechnet
+\end{description}
+
+\begin{minted}{sql}
+SELECT PersNr, Name, (
+  SELECT SUM(SWS) AS Lehrbelastung
+  FROM Vorlesungen
+  WHERE gelesenVon = PersNr
+)
+FROM Professoren;
+\end{minted}
+
+%%
+%
+%%
+
+\subsection{Verwertung der Ergebnismenge einer Unteranfrage}
+
+\begin{minted}{sql}
+SELECT tmp.MatrNr, tmp.Name, tmp.VorlAnzahl
+FROM (
+  SELECT s.MatrNr, s.Name, COUNT(*) AS VorlAnzahl
+  FROM Studenten s, hören h
+  WHERE s.MatrNr = h.MatrNr
+  GROUP BY s.MatrNr, s.Name
+) tmp
+WHERE tmp.VorlAnzahl > 2;
+\end{minted}
+
+\noindent
+Geht allerdings schöner: \verb|WITH| $\rightarrow$ erlaubt
+Modularisierung, besonders nützlich, wenn ich das Ergebnis meiner
+Unterabfrage in einer Reihe weiterer SQL-Abfragen ebenfalls benötige
+
+\begin{minted}{sql}
+WITH tmp AS (
+  SELECT s.MatrNr, s.Name, COUNT(*) AS VorlAnzahl
+  FROM Studenten s, hören h
+  WHERE s.MatrNr = h.MatrNr
+  GROUP BY s.MatrNr, s.Name
+)
+SELECT tmp.MatrNr, tmp.Name, tmp.VorlAnzahl
+FROM tmp
+WHERE tmp.VorlAnzahl > 2;
+\end{minted}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{DB/ST - Herbst 2018 (46116, nicht vertieft), Thema 1, TA II, A4
+- Ausschnitte
+\footcite[Aufgabe 6: SQL Einstieg]{db:pu:1}
+}
+
+Gegeben sind folgende Relationen aus einem Kundenverwaltungssystem:
+\footcite[DB/ST - Herbst 2018 (46116, nicht vertieft), Thema 1, TA II, A4
+- Ausschnitte]{examen:46116:2018:09}
+
+\begin{minted}{md}
+Kunde (ID, Vorname, Nachname, PLZ)
+Produkt (GTIN, Bezeichnung, Bruttopreis, MWStSatz)
+Kauf (ID[Kunde], GTIN[Produkt], Datum, Menge)
+\end{minted}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die \emph{Vorname} und
+\emph{Nachname} aller \emph{Kunden} mit der Postleitzahl \emph{20251}
+ausgibt, \emph{absteigend} sortiert nach \emph{Nachname} und bei
+gleichen Nachnamen absteigend nach \emph{Vorname}.
+
+ASC (ascending) = aufsteigend
+DESC (descending) = absteigend
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Vorname, Nachname
+FROM Kunde
+WHERE PLZ = 20251
+ORDER BY Nachname, Vorname DESC;
+\end{minted}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Bezeichnung aller
+Produkte ausgibt, deren Bruttopreis größer ist als 10 €.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Bezeichnung
+FROM Produkt
+WHERE Bruttopreis > 10;
+\end{minted}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Tabelle „Kauf“ anlegt.
+Gehen Sie davon aus, dass die Tabellen „Kunde“ und „Produkt“ bereits
+existieren.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+CREATE TABLE Kauf (
+  ID INTEGER REFERENCES Kunde(ID),
+  GTIN INTEGER REFERENCES Produkt(GTIN),
+  Datum DATE,
+  Menge INTEGER,
+  PRIMARY KEY (ID, GTIN, Datum)
+);
+\end{minted}
+\end{antwort}
+\end{enumerate}
+
+\literatur
+
+\end{document}

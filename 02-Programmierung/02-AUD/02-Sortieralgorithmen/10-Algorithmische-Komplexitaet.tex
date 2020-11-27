@@ -1,0 +1,817 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax,mathe}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Algorithmische Komplexität}
+
+\inhaltsverzeichnis
+
+\begin{quellen}
+\item \cite[Seite 196-206 (PDF 214-224)]{saake}
+\item \cite[Seite 19-35 (PDF 11-24)]{aud:fs:2}
+\end{quellen}
+
+\noindent
+Die Algorithmische Komplexität macht Aussagen über den
+\memph{Ressourcenverbrauch} (Laufzeit und Resourcenverbrauch) eines
+Algorithmus. Aussagen zur Algorithmischen Komplexität sind unabhängig
+von:
+
+\begin{compactitem}
+\item Programmiersprache
+\item installiertem Betriebssystem
+\item Prozessorleistung
+\item Speicherausstattung
+\item zugrunde liegender Computerarchitektur
+\end{compactitem}
+
+\noindent
+Die Algorithmische Komplexität beschreibt die \memph{Effizienz} eines
+eingesetzten Algorithmus und entscheidet über die \memph{praktische
+Anwendbarkeit} eines Verfahrens.
+\footcite[Seite 20 (PDF 12)]{aud:fs:2}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\subsection{Zeitkomplexität}
+
+Die Speicherkapazität wächst schneller als die Taktfrequenz. Die Zeit
+ist die meist beschränkende Größe.
+%
+Die Anzahl der für seine Ausführung benötigten elementaren Operationen
+eines Algorithmus in Abhängigkeit von der Eingabelänge $n$ heißt,
+Laufzeit $T(n)$.
+%
+Ziel ist die Laufzeitanalyse für große Eingaben. Mit Fachbegriff nennt
+man diesen Sachverhalt \emph{„asymptotische Komplexität“}.
+\footcite[Seite 21 (PDF 12)]{aud:fs:2}
+
+Da der Aufwand schon vom Ansatz her ohnehin nur grob abgeschätzt werden
+kann, brauchen einige Informationen, wie etwa Konstanten nicht
+berücksichtig werden.
+
+ $T_n = \mathcal{O}(\log n)$, bedeutet zum Beispiel, dass $T_n$
+\emph{„von der Ordnung log n“} ist, wobei multiplikative und additive
+Konstanten sowie die Basis des Logarithmus unspezifiziert bleiben.
+\footcite[Seite 200 (PDF 2018)]{saake}
+
+Da die $\mathcal{O}(g)$-Notation eine obere Grenze für eine Klasse von
+Funktionen definiert, kann die Funktion $g$ jeweils vereinfacht werden,
+indem konstante Faktoren weggelassen werden sowie nur der höchste
+Exponent berücksichtigt wird.
+\footcite[Seite 201 (PDF 2019)]{saake}
+
+\section{$\mathcal{O}$-Notation}
+
+Offensichtlich gilt für große $n$:
+$1 < \log_2(n) < n < n^2 < n^3 < ... < 2^n$
+
+Bestimmung einer asymptotischen oberen Schranke $g$.
+
+$T(n) \in \mathcal{O}(g(n))$ bedeutet:
+
+\begin{itemize}
+\item $T(n)$ wächst höchstens so schnell wie die Funktion $g(n)$
+
+\item Es gibt eine Konstante $c$, sodass für große $n$ immer gilt: $T(n)
+\leq c \times g(n)$
+
+\item $c \times g(n)$ ist damit eine obere Schranke für $T(n)$
+\end{itemize}
+
+\section{Definition (O-Notation)}
+
+$\mathcal{O}(g(n)) = \{T(n)|$
+Es gibt ein
+$c > 0$
+und ein
+$n_0$
+aus,
+$\mathbb{N}$
+sodass gilt:
+$0 \leq T(n) \leq c \times g(n)$
+für alle
+$n \geq n_0\}$
+
+$\mathcal{O}(g(n)) = \{T(n)|
+\exists
+c > 0,
+n_0 \in \mathbb{N}:
+\forall n \geq n_0 0 \leq T(n) \leq c \times g(n)
+\}$
+
+\begin{minted}{java}
+max = messwert[0]; // 1
+for (int i = 0; i < anzMesswerte; i++) { // n-mal
+  System.out.println(i + ":" + messwert[i]); // konstanter Bedarf
+  if (messwert[i] > max) {
+    max = messwert[i];
+  }
+}
+\end{minted}
+
+\noindent
+$T(n) = 1 + \text{const} * n$
+$\rightarrow$ Laufzeit ist in $\mathcal{O}(n)$
+
+\begin{minted}{java}
+for (int k = 0; k < anzVersuchsreihen; k++) { // n-mal
+  System.out.println(k + "-te Versuchsreihe: "); // konstant
+  for ( int i = 0; i < anzMesswerte; i++) {
+    System.out.println(k + "." + i + ":" + messwert[k][i]); // n-mal
+  }
+}
+\end{minted}
+
+\noindent
+$T(n)= n + n^2$
+$\rightarrow$ wächst quadratisch mit $n$
+$\rightarrow$ $T(n)$ ist in $\mathcal{O}(n^2)$
+\footcite[Seite 25 (PDF 17)]{aud:fs:2}
+
+%%
+%
+%%
+
+\subsection{Definition (Best Case, Worst Case, Average Case)}
+
+Der günstigste Fall (\memph{best case}) für einen Algorithmus liegt vor,
+wenn sein Ergebnis mit minimalem Aufwand erzielt werden kann.
+
+Es handelt sich um den ungünstigsten Fall (\memph{worst case}), wenn der
+Aufwand zur Erzielung des Ergebnisses maximal ist.
+
+Im Durchschnittsfall (\memph{average case}) ist ein mittlerer erwarteter
+Aufwand erforderlich.\footcite[Seite 26 (PDF 18)]{aud:fs:2}
+
+\subsubsection{Beispiel}
+
+Ist eine gegebene Zahl n eine Primzahl?
+
+\begin{description}
+\item[best case] $n = 14672940583676948672397956$
+(Die Zahl ist gerade und daher durch zwei teilbar)
+
+\item[worst case] $n$ ist eine Primzahl
+
+\item[average case] (Um den \emph{average case} zu bestimmen, ist eine
+aufwändige statistische Berechnung nötig.)
+\end{description}
+
+%%
+%
+%%
+
+\subsection{Beispiel einer Komplexitätsberechnung}
+
+\begin{minted}{java}
+int summe = 0;
+for (int j = 1 ; j < n ; j ++) {
+  for (int i = 1 ; i < j ; i ++) {
+    summe = summe + 1;
+  }
+}
+for (int k = 0 ; k <= n ; k ++) {
+  a[k] = k;
+}
+\end{minted}
+
+\noindent
+Offenbar fallen die Fälle \emph{Best Case}, \emph{Worst Case} und
+\emph{Average Case} zusammen, da die Anzahl der Durchläufe der
+Wiederholungsanweisungen fest ist.
+\footcite[Seite 27 (PDF 19)]{aud:fs:2}
+
+%%
+%
+%%
+
+\subsubsection{ersten Zeile}
+
+\begin{minted}{java}
+int summe = 0;
+\end{minted}
+
+\noindent
+Die Zuweisung in der ersten Zeile benötigt die konstante Zeit $c_1$,
+also gilt: $T_{\text{Erste Zuweisung}}(n) = \mathcal{O}(1)$
+\footcite[Seite 28 (PDF 20)]{aud:fs:2}
+
+%%
+%
+%%
+
+\subsubsection{erste for-Anweisung}
+
+\begin{minted}[firstnumber=2]{java}
+for (int j = 1 ; j < n ; j ++) {
+  for (int i = 1 ; i < j ; i ++) {
+    summe = summe + 1;
+  }
+}
+\end{minted}
+
+\noindent
+Die innere Zuweisung benötigt einen konstanten Zeitbedarf $c_2$. Die
+innere Wiederholungsanweisung eine $j$-fache Ausführung, d.\,h. den
+Zeitbedarf $j \times c_2$. Die äußere Wiederholungsanweisung eine
+$n$-fache Ausführung. Bei jedem Durchlauf wird $j$ um 1 inkrementiert.
+Die Laufzeit für die verschachtelte for-Anweisung beträgt:
+
+\begin{displaymath}
+c_2 \times (1 + 2 + \ldots + n) =
+c_2 \times \frac{n \times (n + 1) }{2} =
+c_2 \times \frac{(n^2 + n)}{2} =
+c_2 / 2 \times (n^2 + n)
+\end{displaymath}
+\footcite{wiki:gausssche-summenformel}
+
+\begin{displaymath}
+\mathcal{O}(c_2 / 2 \times (n_2 + n)) =
+\mathcal{O}(n^2 + n) =
+\mathcal{O}(n^2)
+\end{displaymath}
+\footcite[Seite 29 (PDF 21)]{aud:fs:2}
+
+%%
+%
+%%
+
+\subsubsection{zweite for-Anweisung}
+\noindent
+Für die zweite for-Anweisung gilt:
+
+\begin{minted}[firstnumber=7]{java}
+for (int k = 0 ; k <= n ; k ++) {
+  a[k] = k;
+}
+\end{minted}
+
+\begin{displaymath}
+T_\text{Zweite for-Anweisung}(n) = (n + 1) * c_3 = \mathcal{O}(n)
+\end{displaymath}
+
+\noindent
+Laufzeitverhalten für das gesamte Codefragment:
+
+\begin{align*}
+T_\text{gesamt} &\\
+= & T_\text{Erste Zuweisung}(n) +
+    T_\text{Erste for-Anweisung}(n) +
+    T_\text{Zweite for-Anweisung}(n) \\
+= &
+    \mathcal{O}(1) + \mathcal{O}(n^2) + \mathcal{O}(n)\\
+= & \mathcal{O}(n^2)
+\end{align*}
+
+\noindent
+Insgesamt ist die Laufzeit für das gesamte Codefragment also
+quadratisch.
+\footcite[Seite 30 (PDF 22)]{aud:fs:2}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Typische Komplexitätsklassen}
+
+Quellen
+\footcite[Seite 24 (PDF 16)]{aud:fs:2}
+\footcite[Seite 202 (PDF 220)]{saake}
+\footcite[Absatz „Anforderungen an Schrankenfunktionen“]{wiki:komplexitaetstheorie}
+
+\begin{tabular}{|l|l|}
+konstant &$\mathcal{O}(1)$ \\
+logarithmisch &$\mathcal{O}(\log n)$ \\
+linear &$\mathcal{O}(n)$ \\
+linearithmisch  &$\mathcal{O}(n \log n)$ \\
+quadratisch &$\mathcal{O}(n^2)$ \\
+polynomial &$\mathcal{O}(n^k)$ für $k \geq 1$ \\
+exponentiell &$\mathcal{O}(d^n)$ für $d > 1$ \\
+\end{tabular}
+
+\section{Landau-Symbole}
+
+Landau-Symbole werden in der Informatik verwendet, um das asymptotische
+Verhalten von Funktionen und Folgen zu beschreiben. In der Informatik
+werden sie bei der Analyse von Algorithmen verwendet und geben ein Maß
+für die Anzahl der Elementarschritte oder der Speichereinheiten in
+Abhängigkeit von der Größe der Eingangsvariablen an. Die
+Komplexitätstheorie verwendet sie, um verschiedene Probleme danach zu
+vergleichen, wie „schwierig“ oder aufwendig sie zu lösen sind. Man sagt,
+„schwere Probleme“ wachsen exponentiell mit der Instanz oder schneller
+und für „leichte Probleme“ existiert ein Algorithmus, dessen
+Laufzeitzuwächse sich durch das Wachstum eines Polynoms beschränken
+lassen. Man nennt sie (nicht) polynomiell lösbar.
+\footcite{wiki:landau-symbole}
+
+\begin{center}
+\begin{tabular}{ll}
+\textbf{Notation} &
+\textbf{Anschauliche Bedeutung}
+\\\hline
+
+$f \in \begin{smallmatrix}\!\mathcal{O}\!\end{smallmatrix}(g)$ &
+$f$ wächst langsamer als $g$
+\\\hline
+
+$f \in \mathcal{O}(g)$ &
+$f$ wächst nicht wesentlich schneller als $g$
+\\\hline
+
+$f \in \Theta(g)$ &
+$f$ wächst genauso schnell wie $g$
+\\\hline
+
+$f \in \Omega(g)$ &
+$f$ wächst nicht wesentlich langsamer als $g$
+\\\hline
+
+$f \in \omega(g)$ &
+$f$ wächst schneller als $g$
+\\\hline
+\end{tabular}
+\end{center}
+
+\subsection{Asymptotische \emph{untere} Schranke: $\Omega$-Notation}
+
+\begin{compactitem}
+\item $f(n) \in \Omega(g(n))$: $f(n)$ wächst mindestens so schnell wie $g(n)$
+\item $\Omega(g(n)) = \{f(n) | \exists c > 0 \exists n_0 > 0 \forall n \geq n_0: 0 \leq c \cdot g(n) \leq f(n) \}$
+\end{compactitem}
+
+\subsection{Asymptotisch \emph{scharfe} Schranke ermitteln: $\Theta$-Notation}
+
+\begin{compactitem}
+\item $f(n) \in \Theta(g(n))$: $f(n)$ wächst ebenso schnell wie $g(n)$
+\item $\Theta(g(n)) = \{f(n) |
+\exists c_1 > 0
+\exists c_2 > 0
+\exists n_0 > 0
+\forall n \geq n_0 :
+ 0 \leq c 1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n) \}$
+\end{compactitem}
+
+\subsection{„Sandwich-Gedanke“}
+
+\begin{compactitem}
+\item  $\mathcal{O}$ ist eine (möglicherweise viel zu große obere
+Schranke).
+
+\item  $\Omega$ ist eine (möglicherweise viel zu kleine untere
+Schranke). Beide helfen bei der Charakterisierung von Aufwänden nur
+bedingt.
+
+\item  Es gilt: $f(n) \in \Theta(g(n))$ genau dann, wenn $f(n) \in
+\mathcal{0}(g(n))$ und $f(n) \in \Omega(g(n))$.
+
+\item  Aufwandsabschätzungen mit Hilfe von $\Theta$ wären ideal, aber
+leider lassen sich Beweise oft nur schwer führen.
+\end{compactitem}
+
+Daher werden oft in der Literatur nur $\mathcal{O}$-Abschätzungen
+verwendet, aber mit der Maßgabe, dass die kleinstmögliche obere Schranke
+angegeben wird.
+\footcite[Seite 37 (PDF 26)]{aud:fs:2}
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Master-Theorem}
+
+Der Hauptsatz der Laufzeitfunktionen – oder oft auch aus dem Englischen
+als Master-Theorem entlehnt – bietet eine \memph{schnelle Lösung} für
+die Frage, \memph{in welcher Laufzeitklasse} eine gegebene
+\memph{rekursiv definierte Funktion} liegt. Mit dem Master-Theorem kann
+allerdings \memph{nicht jede rekursiv definierte Funktion} gelöst
+werden. Lässt sich keiner der \memph{drei möglichen Fälle} des
+Master-Theorems auf die Funktion $T$ anwenden, so muss man die
+Komplexitätsklasse der Funktion anderweitig berechnen.
+
+$T(n) = a \cdot T(\frac{n}{b}) + f(n)$
+
+\footcite{wiki:master-theorem}
+\footcite[Seite 19-35 (PDF 11-24)]{aud:fs:2}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\begin{exkurs}[asymptotische Abschätzung]%
+Unter der Zeitkomplexität eines Problems wird in der Informatik die
+Anzahl der Rechenschritte verstanden, die ein optimaler Algorithmus zur
+Lösung dieses Problems benötigt, in Abhängigkeit von der Länge der
+Eingabe. Man spricht hier auch von der \emph{asymptotischen Laufzeit}
+und meint damit, in Anlehnung an eine \emph{Asymptote}, das
+Zeitverhalten des Algorithmus für eine \emph{potenziell unendlich große
+Eingabemenge}.
+
+Es interessiert also \emph{nicht} der \emph{Zeitaufwand eines konkreten
+Programms} auf einem bestimmten Computer, sondern viel mehr, wie der
+Zeitbedarf wächst, wenn mehr Daten zu verarbeiten sind, also z. B. ob
+sich der Aufwand für die doppelte Datenmenge verdoppelt oder quadriert
+(Skalierbarkeit).
+\footcite{wiki:zeitkomplexitaet}
+\end{exkurs}
+
+\subsection{Vergleichsbasiertes Sortieren}
+
+Allgemeine Verfahren basieren auf dem paarweisen Vergleich der zu
+sortierenden Elemente, ob das eine Element „kleiner“ als, „größer“ als
+oder „gleich(groß)“ wie das andere Element ist. Bei der
+Komplexitätsanalyse wird davon ausgegangen, dass der Aufwand zum
+Vergleich zweier Elemente konstant ist.
+\footcite{wiki:sortierverfahren}
+\footcite[Seite 35 (PDF 24)]{aud:fs:2}
+
+\begin{center}
+\begin{tabular}{llll}
+\textbf{Sortierverfahren} &
+\textbf{Best-Case} &
+\textbf{Average-Case} &
+\textbf{Worst-Case}
+\\\hline
+
+Binary Tree Sort &
+$\Theta( n \cdot \log (n) )$ &
+$\Theta( n \cdot \log (n) )$ &
+$\Theta(n^2)$
+\\\hline
+
+Bubblesort &
+$\Theta(n)$ &
+$\Theta(n^2)$ &
+$\Theta(n^2)$
+\\\hline
+
+Heapsort &
+$\Theta( n \cdot \log (n) )$ &
+$\Theta( n \cdot \log (n) )$ &
+$\Theta( n \cdot \log (n) )$
+\\\hline
+
+Insertionsort &
+$ \Theta(n)$ &
+$\Theta(n^2)$ &
+$\Theta(n^2)$
+\\\hline
+
+Mergesort &
+$\Theta( n \cdot \log (n) )$ &
+$\Theta( n \cdot \log (n) )$ &
+$\Theta( n \cdot \log (n) )$
+\\\hline
+
+Quicksort &
+$\Theta( n \cdot \log (n) )$ &
+$\Theta( n \cdot \log (n) )$ &
+$\Theta( n^2 )$
+\\\hline
+
+Selectionsort &
+$\Theta( n^2 )$ &
+$\Theta( n^2 )$ &
+$\Theta( n^2 )$
+\\\hline
+\end{tabular}
+\end{center}
+
+\begin{exkurs}[Logarithmus]
+Der Logarithmus zur Basis $b$ ist die Umkehrfunktion der allgemeinen
+Exponentialfunktion zur positiven Basis $b$:
+
+$x \mapsto b^x.$
+
+Die Funktionen $b^x$ und $\log_b x$ sind also Umkehrfunktionen
+voneinander, d.\,h. Logarithmieren macht Exponenzieren rückgängig und
+umgekehrt:
+
+$b^{\log_b x} = x \quad \text{und} \quad \log_b(b^x) = x.$
+
+Der natürliche Logarithmus ergibt sich mit der Basis $b=\mathrm{e}$,
+wobei $\mathrm{e} = 2{,}718281828459\ldots$ die Eulersche Zahl ist.
+\footcite[Definition / Als Umkehrfunktion der Exponentialfunktion]{wiki:logarithmus}
+\end{exkurs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Beispiel-Aufgabe zum Master-Theorem
+\footcite[Seite 39 (PDF 26)]{aud:fs:2}
+\footcite[Thema 2, A6a]{examen:66115:2018:03}
+}
+
+\begin{enumerate}
+
+\item Betrachten Sie die folgende Methode \java{m} in Java, die initial
+mit \java{m(r, 0, r.length)} für das Array \java{r} aufgerufen wird.
+Geben Sie dazu eine Rekursionsgleichung $T(n)$ an, welche die Anzahl an
+Rechenschritten von \java{m} in Abhängigkeit von der Länge
+\java{n = r.length} berechnet.
+
+\begin{minted}{java}
+public static int m(int[] r, int lo, int hi) {
+  if (lo < 8 || hi <= 10 || lo >= r.length || hi > r.length) {
+  throw new IllegalArgumentException();
+  }
+
+  if (hi - lo == 1) {
+    return r[lo];
+  } else if (hi - lo == 2) {
+    return Math.max(r[lo], r[lo + 1]); // 0(1)
+  } else {
+    int s = (hi - lo) / 3;
+    int x = m(r, lo, lo + s);
+    int y = m(r, lo + s, lo + 2 * s);
+    int z = m(r, lo + 2 * s, hi);
+    return Math.max(Math.max(x, y), 2); // 0(1)
+  }
+}
+\end{minted}
+\end{enumerate}
+
+\begin{antwort}
+
+Allgemeine Rekursionsgleichung: $T(n) = a \cdot T(\frac{n}{b}) + f(n)$
+
+$a$ (Anzahl der rekursiven Aufrufe): 3
+
+$b$ (Um welchen Anteil wird das Problem durch den Aufruf verkleinert):
+um $\frac{1}{3}$ also $b = 3$
+
+Für den obigen Code:  $T(n) = 3 \cdot T(\frac{n}{3}) + \mathcal{O}(1)$
+
+1. Fall:
+$f(n) \in \mathcal{O}\left(n^{\log_{3}3-\varepsilon}\right) =
+\mathcal{O}\left(n^{1-\varepsilon}\right) =
+\mathcal{O}\left(1\right) \text{ für } \varepsilon = 1
+$
+
+2. Fall:
+$f(n) \notin \Theta \left(n^{{\log_{3}3}}\right) =
+\Theta \left(n^1\right)
+$
+
+3. Fall:
+$f(n) \notin \Omega \left(n^{\log_{3}3 + \varepsilon}\right) =
+\Omega \left(n^{1 + \varepsilon}\right)$
+
+Also: $T(n)\in \Theta \left(n^{\log_{b}a}\right)$
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe zur Komplexität\footcite[Seite 1-2]{aud:pu:2}}
+
+\noindent
+Geben Sie die Komplexität folgender Funktionen in der
+$\mathcal{O}$-Notation an!
+
+\begin{compactitem}
+\item $x(n) = 4 \times n$
+\item $a(n) = n^2$
+\item $k(n) = 5 + n$
+\item $p(n) = 4$
+\item $j(n) = 4^n$
+\item $b(n) = \frac{n}{8}$
+\item $m(n) = \frac{1}{n}$
+\end{compactitem}
+
+\begin{antwort}
+\begin{tabular}{ll}
+$x(n) = 4 \times n$  & $\mathcal{O}(n)$\\
+$a(n) = n^2$         & $\mathcal{O}(n^2)$ \\
+$k(n) = 5 + n$       & $\mathcal{O}(n)$ \\
+$p(n) = 4$           & $\mathcal{O}(1)$ \\
+$j(n) = 4^n$         & $\mathcal{O}(4^n)$ \\
+$b(n) = \frac{n}{8}$ & $\mathcal{O}(n)$\\
+$m(n) = \frac{1}{n}$ & $\mathcal{O}(1)$\\
+\end{tabular}
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe zur Komplexität\footcite[Seite 3]{aud:pu:2}}
+
+\noindent
+Der Konstruktor \java{QueueElement(...)} und die Methode
+\java{setNext(...)} sowie \java{getNext(...)} haben $\mathcal{O}(1)$.
+Gib die Zeitkomplexität der Methode \java{append(int content)} an, die
+einer Schlange ein neues Element anhängt.
+
+\begin{minted}{java}
+public void append(int contents) {
+QueueElement newElement = new QueueElement(contents) ;
+  if (first == 0) {
+    first = newElement;
+    last = newElement;
+  } else {
+    last.setNext (newElement); // neues Element hinten anhaengen
+    last = last.getNext(); // angehaengtes Element ist Letztes
+  }
+}
+\end{minted}
+
+\begin{antwort}
+Das Anhängen eines neuen Elements in die gegebene Warteschlange hat
+konstanten Rechenzeitbedarf $\mathcal{O}(1)$, egal wie lange die
+Schlange ist, da man das letzte Element direkt ansprechen kann.
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Vergleich zweier Algorithmen
+\footcite[Seite 1, Aufgabe 1: Komplexität]{aud:ab:7}
+}
+
+Seien \textbf{A} und \textbf{B} zwei Algorithmen,
+die dasselbe Problem lösen.
+Zur Lösung von Problemen der Eingabegröße $n$ benötigt
+Algorithmus \textbf{A} $500 \times n^2 - 16 \times n$ Elementoperationen
+und
+\textbf{B} $\frac{1}{2} \times n^3 + \frac{11}{2} \times  n + 7$
+Elementoperationen.
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Wenn Sie ein Problem für die Eingabegröße 256 lösen wollen,
+welchen Algorithmus würden Sie dann wählen?
+
+%%
+% (b)
+%%
+
+\item Wenn Sie ein Problem lösen wollen, deren Eingabegröße immer
+mindestens 1024 ist, welchen Algorithmus würden Sie wählen? Begründen
+Sie Ihre Antwort.
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 5: Komplexität
+\footcite[entnommen aus Algorithmen und Datenstrukturen, Übungsblatt 3, Universität Würzburg]{aud:pu:7}}
+
+Geben Sie jeweils die kleinste, gerade noch passende Laufzeitkomplexität
+folgender Java-Methoden im O-Kalkül (Landau-Notation) in Abhängigkeit
+von n und ggf. der Länge der Arrays an. \footcite[Staatsexamen
+Theoretische Informatik, Algorithmen und Datenstrukturen, Realschulen,
+Herbst 2016, Thema 2, Aufgabe 2 (Auszug)]{examen:46115:2016:09}
+
+\begin{enumerate}
+\item \strut\bigskip
+
+\inputcode[firstline=5,lastline=13]{aufgaben/aud/examen_46115_2016_09/Komplexitaet}
+
+\begin{antwort}
+Die Laufzeit liegt in $\mathcal{O}(n^2)$.
+
+Begründung (nicht verlangt): Die äußere Schleife wird $n$-mal
+durchlaufen. Die innere Schleife wird dann jeweils wieder $n$-mal
+durchlaufen. Die Größe des Arrays spielt hier übrigens keine Rolle, da
+die Schleifen ohnehin immer nur bis zum Wert $n$ ausgeführt werden.
+\end{antwort}
+
+\item \strut\bigskip
+
+\inputcode[firstline=15,lastline=25]{aufgaben/aud/examen_46115_2016_09/Komplexitaet}
+
+\begin{antwort}
+Die Laufzeit liegt in $\mathcal{O}(\log(\text{keys.length}))$. Dabei ist
+keys.length die Größe des Arrays bezüglich seiner ersten Dimension.
+
+Begründung (nicht verlangt): Der Grund für diese Laufzeit ist derselbe
+wie bei der binären Suche\footcite[Seite 122 (PDF 140)]{saake}. Die
+Größe des Arrays bezüglich seiner zweiten Dimension spielt hier übrigens
+keine Rolle, da diese Dimension hier ja nur einen einzigen festen Wert
+annimmt.
+\end{antwort}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 4: Komplexität\footcite{aud:ab:2}}
+
+Gegeben seien die Funktionen $f : N \rightarrow N$ und $g : N \rightarrow N$ , wobei $f (n)
+= (n - 1)^3$ und $g(n) = (2n + 3)(3n + 2)$. Geben Sie an, welche der
+folgenden Aussagen gelten. Beweisen Sie Ihre Angaben.
+\footcite[Herbst 2012 (66115) - Thema 2, Aufgabe 6: O-Notation]{examen:66115:2012:09}
+
+\begin{enumerate}
+\item $f(n) \in \mathcal{O}(g(n))$
+\item $g(n) \in \mathcal{O}(f(n))$
+\end{enumerate}
+
+\begin{antwort}
+Es gilt Aussage (b), da $f(n) \in \mathcal{O}(n^3)$ und $g(n) \in
+\mathcal{O}(n^2)$ und der Grenzwert $\lim$ bei größer werdendem $n$
+gegen $0$ geht. Damit wächst $f (n)$ stärker als $g(n)$, sodass nur
+Aussage (b) gilt und nicht (a). Dafür nutzen wir die formale Definition
+des $\mathcal{O}$-Kalküls, indem wir den Grenzwert $\frac{f}{g}$ bzw.
+$\frac{g}{f}$ bilden:
+
+{
+\footnotesize
+\begin{displaymath}
+\lim_{n \to \infty}
+\frac{f(n)}
+{g(n)}
+=
+\lim_{n \to \infty}
+\frac{(n - 1)^3}
+{(2n + 3)(3n + 2)}
+=
+\lim_{n \to \infty}
+\frac{3(n - 1)^2}
+{(2n + 3) \cdot 3 + 2 \cdot (3n + 2)}
+=
+\lim_{n \to \infty}
+\frac{6(n - 1)}
+{12}
+=
+\infty
+\end{displaymath}
+
+\begin{displaymath}
+\lim_{n \to \infty}
+\frac{g(n)}
+{f(n)}
+=
+\lim_{n \to \infty}
+\frac{(2n + 3)(3n + 2)}
+{(n - 1)^3}
+=
+\lim_{n \to \infty}
+\frac{(2n + 3) \cdot 3 + 2 \cdot (3n + 2)}
+{3(n - 1)^2}
+=
+\lim_{n \to \infty}
+\frac{12}
+{6(n - 1)}
+=
+0
+\end{displaymath}
+}
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Komplexität\footcite[Aufgabe 5]{aud:e-klauusr}}
+
+Welche Komplexität hat das Programmfragment?
+
+\inputcode[firstline=5,lastline=17]{aufgaben/aud/e_klausur/Komplexitaet}
+
+\noindent
+Bestimmen Sie in Abhängigkeit von n die Komplexität des
+Programmabschnitts im
+
+\begin{enumerate}
+\item Best-Case.
+
+\begin{antwort}
+$\mathcal{O}(1)$: Wenn die erste Zahl im Feld \java{array} ohne Rest
+durch 3 teilbar ist, wird sofort aus der for-Schleife ausgestiegen
+(wegen der \java{break} Anweisung).
+\end{antwort}
+
+\item Worst-Case.
+\begin{antwort}
+$\mathcal{O}(n^2)$: Wenn keine Zahl aus \java{array} ohne Rest durch 3
+teilbar ist, werden zwei Schleifen (for und do while) über die Anzahl n
+der Elemente des Felds.
+\end{antwort}
+\end{enumerate}
+
+\literatur
+\end{document}

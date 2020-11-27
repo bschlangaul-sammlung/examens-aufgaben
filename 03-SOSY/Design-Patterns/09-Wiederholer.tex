@@ -1,0 +1,124 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax,uml}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Wiederholder / Iterator}
+
+\begin{quellen}
+\item \cite{wiki:iterator}
+%\item \url{}
+\item \cite[PDF Seite 219-231]{gof}
+% \item \cite{schatten}
+\item \cite[Seite 56-59]{eilebrecht}
+\item \cite[Seite 106-116]{siebler}
+\end{quellen}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Zweck}
+
+Das Iterator-Muster erlaubt den \memph{sequenziellen Zugriff} eines
+Clients auf die \memph{Elemente einer Aggregation}, \memph{ohne deren
+internen Aufbau zu kennen}.
+\footcite[Seite 56]{eilebrecht}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Szenario}
+
+Innerhalb Ihrer Software wird eine Kundenliste verwaltet. Verschiedene
+Anwendungsfälle erfordern die sequenzielle Abarbeitung dieser Liste.
+Dabei existieren unterschiedliche Vorgaben bezüglich der Reihenfolge. Es
+ist Ihre Aufgabe festzulegen, an welcher Stelle die verschiedenen
+Traversierungsvarianten zu implementieren sind.
+\footcite[Seite 56]{eilebrecht}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{UML-Diagramm}
+
+\begin{tikzpicture}
+\umlclass[x=0,y=3,type=interface]{Aggregat}{}{
+  + erzeugeIterator()\\
+  + suche()
+}
+
+\umlsimpleclass[x=0,y=0]{KonkretesAggregat}
+
+\umlclass[x=8,y=3,type=interface]{Iterator}{
+  + weiter()\\
+  + zurueck()\\
+  + hatNächstes()\\
+  + gibAktuellesElement
+}{}
+
+\umlsimpleclass[x=8,y=0]{KonkreterIterator}
+
+\umlsimpleclass[x=4,y=5]{Klient}
+
+\umlsimpleclass[x=0,y=-1.5]{Element}
+
+\umlinherit{KonkretesAggregat}{Aggregat}
+\umlinherit{KonkreterIterator}{Iterator}
+
+\umlVHuniassoc{KonkreterIterator}{Element}
+\umluniassoc[arg=*]{KonkretesAggregat}{Element}
+\umluniassoc{KonkretesAggregat}{KonkreterIterator}
+\umluniassoc{KonkreterIterator}{KonkretesAggregat}
+
+\umluniassoc{Klient}{Aggregat}
+\umluniassoc{Klient}{Iterator}
+
+\end{tikzpicture}
+\footcite{wiki:iterator}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Akteure}
+
+\begin{description}
+\item[Iterator] definiert die Schnittstelle zum Zugriff auf die Elemente
+und zum Traversieren des Aggregates.
+
+\item[Konkreter Iterator] implementiert diese Schnittstelle und
+speichert die Position im Aggregat.
+
+\item[Aggregat] definiert die Schnittstelle zum Erzeugen eines
+Iterators. Oft enthält die Schnittstelle auch Methoden zum Erzeugen von
+Iteratoren die auf spezielle Elemente zeigen, wie z. B. erstes, letztes
+oder ein Element mit bestimmten Eigenschaften.
+
+\item[Konkretes Aggregat] implementiert diese Schnittstelle.
+\footcite{wiki:iterator}
+\end{description}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Akteuere}
+
+\section{Allgemeines Code-Beispiel}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\literatur
+
+\end{document}

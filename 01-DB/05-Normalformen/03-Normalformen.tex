@@ -1,0 +1,913 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{mathe}
+\usepackage{tabularx}
+\usepackage{paralist}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Normalformen}
+
+\begin{lernkartei}{Normalformen}
+\begin{description}
+\item[1NF] alle Attribute atomar
+
+\item[2NF] 1NF $+$ kein Nichtprimärattribut hängt funktional von einer
+echten Teilmenge eines Schlüsselkandidaten ab
+
+\item[3NF] 2NF $+$ keine transitiven Abhängigkeiten über
+Nichtschlüsselkandidaten
+
+\item[BCNF] 3NF $+$ jede Determinante ein Schlüsselkandidat\footcite[Seite 179]{kemper}
+\end{description}
+\end{lernkartei}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Anomalien}
+
+\begin{lernkartei}{Anomalien}
+\begin{itemize}
+\item Update-Anomalie
+\item Einfüge- oder Insert-Anomalie
+\item Lösch- oder Delete-Anomalie
+\end{itemize}
+\end{lernkartei}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Attributhülle}
+
+\begin{lernkartei}{Bestimmung der Attributhülle}
+\begin{flalign*}
+\textit{Hülle}(F,\alpha )\\
+    \alpha^{+}=\alpha\\
+   \textbf{while} (\text{Änderung} an \alpha^{+}) do\\
+      \textbf{foreach}(\textit{Abhängigkeit} \beta \rightarrow \gamma \in F) do\\
+        \textbf{if} (\beta \subseteq \alpha^{+} ) \textbf{then} \alpha^{+}=\alpha^{+}\cup \gamma
+\end{flalign*}
+\end{lernkartei}
+
+Die Attributhülle $\alpha ^{+}$ eines bestimmten Attributs $\alpha$
+(müsste eigentlich heißen: einer bestimmten Menge von Attributen) ist
+eine Liste aller Attribute, die von $\alpha$ funktional
+abhängen.\footcite[Attributhülle]{wiki:funktionale-abhängigkeit}
+
+Durch die Bestimmung der Attributhülle kann angegeben werden, welche anderen
+Attribute in einer Relation durch die \memph{gegebenen} Attribute
+bestimmt werden können.\footcite[Seite 8]{db:fs:4}\footcite[Seite 179]{winter}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\subsection{Attributhüllenalgorithmus\footcite[Seite 179]{winter}}
+
+Beispiel:\footcite[Seite 8]{db:fs:4}
+
+$F$:
+
+$PQ \rightarrow R$
+
+$PR \rightarrow Q$
+
+$Q \rightarrow S$
+
+$PS \rightarrow T$
+
+$QR \rightarrow P$
+
+$T \rightarrow U$
+
+Gesucht
+
+$\textit{AttrHüll}(F, \{P,Q\})$
+
+\noindent
+\begin{tabularx}{\linewidth}{lX}
+$\{P, Q\}$ &
+Initialisierung von Erg mit den vorgegebenen Attributwerten P und Q
+\\\hline
+
+$\{P, Q\} \cup \{R\}$  &
+Die linke Seite der FD $P Q \rightarrow R$ ist bereits in Erg enthalten.
+Also werden die Attribute der rechten Seite zur Menge Erg hinzugefügt.
+\\\hline
+
+$\{P, Q, R\}$ &
+Wegen der FD $PR \rightarrow Q$ käme Q hinzu, ist aber schon in Erg
+enthalten. Also bleibt Erg unverändert.
+\\\hline
+
+$\{P, Q, R\} \cup \{S\}$ &
+Die linke Seite der FD $Q \rightarrow S$ ist bereits in Erg enthalten.
+Also werden die Attribute der rechten Seite zur Menge Erg hinzugefügt.
+\\\hline
+
+$\{P, Q, R, S\} \cup \{T\}$ &
+Die linke Seite der FD $PS \rightarrow T$ ist bereits in Erg enthalten.
+Also werden die Attribute der rechten Seite zur Menge Erg hinzugefügt.
+\\\hline
+
+$\{P, Q, R, S, T\}$ &
+Wegen der FD $QR \rightarrow P$ käme P hinzu, ist aber schon in Erg
+enthalten. Also bleibt Erg unverändert.
+\\\hline
+
+$\{P, Q, R, S, T\} \cup \{U\}$ &
+Die linke Seite der FD $T \rightarrow U$ ist bereits in Erg enthalten.
+Also werden die Attribute der rechten Seite zur Menge Erg hinzugefügt.
+\\\hline
+
+$\{P, Q, R, S, T, U\}$ &
+Es ist also bereits die gesamte Attributmenge erreicht. Weitere
+Betrachtungen erübrigen sich hiermit.
+\\\hline
+\end{tabularx}
+
+\section{Die Normalformen}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\subsection{Erste Normalform\footcite[Seite 195]{winter}}
+
+Ein Relationenschema R ist in \textbf{erster Normalform (1NF)}, wenn
+alle Attribute atomar sind.
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\subsection{Zweite Normalform}
+
+Eine Relation ist genau dann in der zweiten Normalform, wenn die erste
+Normalform vorliegt und kein Nichtprimärattribut (Attribut, das nicht
+Teil eines Schlüsselkandidaten ist) funktional von einer echten
+Teilmenge eines Schlüsselkandidaten abhängt.
+
+Anders gesagt: Jedes nicht-primäre Attribut (nicht Teil eines
+Schlüssels) ist jeweils von \textbf{allen ganzen Schlüsseln} abhängig,
+nicht nur von einem Teil eines Schlüssels. Wichtig ist hierbei, dass die
+Nichtschlüsselattribute wirklich von allen Schlüsseln vollständig
+abhängen.\footcite[Zweite Normalform (2NF)]{wiki:normalisierung}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\subsection{Dritte Normalform\footcite[Seite 201]{winter}}
+
+aufgrund von transitiven Abhängigkeiten über Nichtschlüsselkandidaten
+Falls A nicht prim ist, muss A funktional von jedem Superschlüssel
+abhängen
+
+Die dritte Normalform ist genau dann erreicht, wenn sich das
+Relationenschema in der 2NF befindet, und kein Nichtschlüsselattribut
+(hellgraue Zellen in der Tabelle) von einem Schlüsselkandidaten
+transitiv abhängt.\footcite[Dritte Normalform (3NF)]{wiki:normalisierung}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\subsection{Boyce-Codd-Normalform}
+
+Sei $R$ eine Relationenschema in erster Normalform. Sei $F$ eine Menge
+einfacher nichttrivialer funktionaler Abhängigkeiten für $R$. $R$ ist in
+Boyce-Codd-Normalform (BCNF) bzgl. $F$, falls für jede FD $X \rightarrow
+A$ aus $F$ gilt: $X$ ist ein Superschlüssel von $R$.
+\footcite[Boyce-Codd-Normalform (BCNF)]{wiki:normalisierung}
+
+Ein Relationenschema ist in der Boyce-Codd-Normalform, wenn es in der
+3NF ist und jede Determinante (Attributmenge, von der andere Attribute
+funktional abhängen) ein Schlüsselkandidat ist (oder die Abhängigkeit
+ist trivial).
+
+Die BCNF (nach Raymond F. Boyce und Edgar F. Codd) verhindert, dass
+Teile zweier aus mehreren Feldern zusammengesetzten Schlüsselkandidaten
+voneinander abhängig sind.
+
+Die Überführung in die BCNF ist zwar immer verlustfrei möglich, aber
+nicht immer abhängigkeitserhaltend. Die Boyce-Codd-Normalform war
+ursprünglich als Vereinfachung der 3NF gedacht, führte aber zu einer
+neuen Normalform, die diese verschärft: Eine Relation ist automatisch
+frei von transitiven Abhängigkeiten, wenn alle Determinanten
+Schlüsselkandidaten sind.
+
+\subsubsection{Beispiel}
+
+Gegeben ist das Relationenschema
+$Aufnahmepruefung\{PersNr, Schuelername, Fach, Note\}$
+und die Menge von FDs
+$F = \{
+  PersNr Schuelername \rightarrow Note,
+  Schuelername Fach \rightarrow Note,
+  PersNr \rightarrow Fach,
+  Fach \rightarrow PersNr
+\}$.
+
+Die funktionalen Abhängigkeiten implizieren, dass es zwei
+Schlüsselkandidaten gibt, nämlich
+$\{PersNr, Schuelername\}$ und
+$\{Schuelername, Fach\}$.
+
+Das Relationenschema befindet sich in 3NF, da gilt:
+
+\begin{itemize}
+\item PersNr, Fach und Schülername sind prime Attribute.
+
+\item Bei allen FDs, auf deren rechten Seite das (einzige) nichtprime
+Attribut Note vorkommt, ist die Attributmenge auf der linken Seite ein
+Superschlüssel.
+\end{itemize}
+
+Trotzdem kann es zu Redundanzen kommen, da die Information, in welchem
+Fach eine Lehrkraft prüft, mehrfach abgespeichert wird.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Übungen}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Abstaktes R\footcite[Seite 1, Aufgabe 1]{db:ab:6}}
+
+Gegeben sei das Relationenschema $R\{A, B, C, D, E, G\}$ mit
+
+\begin{multline}
+F = \{ \\
+  E \rightarrow D, \\
+  C \rightarrow B, \\
+  CE \rightarrow G, \\
+  B \rightarrow A \\
+\}
+\end{multline}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Zeigen Sie: ${C, E}$ ist der einzige Schlüsselkandidat von $R$.
+
+\begin{antwort}
+A, G, D kommen auf keiner linken Seite vor
+
+$AttrHull(F, \{C, E\}) = R$
+
+$AttrHull(F, \{C\}) = \{B\} != R$
+
+$AttrHull(F, \{E\}) = \{E, D\} != R$
+\end{antwort}
+
+\begin{antwort}[muster]
+
+$C$ und $E$ kommen auf keiner rechten Seite der FDs aus $F$ vor, d.h.
+$C$ und $E$ müssen Teil jedes Schlüsselkandidaten sein.
+
+Außerdem gilt: $AttrHull(F, \{C, E\}) = \{A, B, C, D, E, G\} = R$
+
+$\{C, E\}$ ist somit Superschlüssel von $R$. Zudem ist $\{C, E\}$
+minimal, da beide Attribute Teil jedes SK sein müssen.
+
+$\Rightarrow$ $\{C, E\}$ ist damit der einzige Schlüsselkandidat von $R$
+(da kein SK ohne $C$ und $E$ möglich ist).
+
+Anmerkung:
+
+\begin{itemize}
+\item Man könnte hier auch einen Algorithmus zur Bestimmung der
+Schlüsselkandidaten verwenden, dessen einziges Ergebnis wäre dann $\{C,
+E\}$. In diesem Fall lässt sich die Schlüsselkandidateneigenschaft
+jedoch einfacher zeigen, sodass man den Algorithmus und somit Zeit
+sparen kann.
+
+\item Achtung! $\{C, E\}$ ist zwar der einzige Schlüsselkandidat, aber
+nicht der einzige Superschlüssel, auch \{A, B, C, D, E, G\} wäre ein
+Superschlüssel!
+\end{itemize}
+
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Ist $R$ in 2NF?
+
+\begin{antwort}
+Ist nicht in der 2NF, denn $D$ hängt von $E$ ab, also von einer
+echten Teilmenge des Schlüsselkandidaten $\{C, E\}$. Das gleiche gilt
+für die FD $C \rightarrow B$.
+\end{antwort}
+
+\begin{antwort}[muster]
+$R$ ist nicht in 2NF, denn:
+
+Betrachte $E \rightarrow D$: $D$ ist ein Nicht-Schlüsselattribut und $E$
+ist echt Teilmenge des Schlüsselkandidaten $\{C, E\}$.
+%
+Ebenso ist $B$ nicht voll funktional abhängig vom Schlüsselkandidaten,
+sondern nur von einer echten Teilmenge des Schlüsselkandidaten, nämlich
+$C$.
+
+Anmerkung:
+
+\begin{itemize}
+\item Ob alle Attributwerte atomar sind, können wir in einem abstrakten
+Schema wie diesem nicht wirklich sagen, daher kann dies Annahme in der
+Regel nicht getroffen werden.
+
+\item Dass $A$ von $B$ abhängig ist, spielt bei der Entscheidung über
+die 2. NF keine Rolle, da $B$ selbst (genauso wie $A$) ein
+Nicht-Schlüsselattribut ist. Wichtig ist nur, ob es Abhängigkeiten
+zwischen einem Teil der Schlüsselkandidaten (also einem
+Schlüsselattribut) und einem Nicht-Schlüsselattribut gibt.
+
+\item Um der 2NF zu genügen, müsste in folgenden Relationen aufgeteilt
+werden:
+$R1(C, E, G)$,
+$R2(C, B, A)$,
+$R3(E, D)$
+\end{itemize}
+
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Ist $F$ minimal?
+\begin{multline}
+F = \{ \\
+  E \rightarrow D, \\
+  C \rightarrow B, \\
+  CE \rightarrow G, \\
+  B \rightarrow A \\
+\}
+\end{multline}
+
+\begin{antwort}
+Kanonische Überdeckung
+
+\begin{enumerate}
+\item Linksreduktion\\
+$AttrHul\{F, \{C\}\} = \{C, B\}$ $\rightarrow G$ nicht enthalten\\
+$AttrHul\{F, \{E\}\} = \{E, D\}$ $\rightarrow G$ nicht enthalten
+
+\item Rechtsreduktion\\
+Kein Attribut auf einer rechten Seite ist redundant: Da das einzelne
+Attribut, das die rechte Seite einer FD aus F bildet, bei keiner anderen
+FD auf der rechten Seite auftritt, kann die rechte Seite einer FD nicht
+unter ausschließlicher Verwendung der restlichen FD aus der
+entsprechenden linken Seite abgeleitet werden.
+\end{enumerate}
+
+\end{antwort}
+
+\begin{antwort}
+Vorgehen: Entsprechen die hier abgebildeten Funktionalen Abhängigkeiten
+bereits einer kanonischen Überdeckung von F oder nicht?
+
+\begin{itemize}
+\item Eliminierung redundanter Attribute auf der linken Seite: Die
+Attributmenge auf den linken Seiten der FDs sind bereits bis auf $CE
+\rightarrow G$ einelementig. Bei $CE \rightarrow G$ ist \{CE\} der
+Schlüsselkandidat, also kann kein redundantes Attribut vorliegen.
+
+\item Eliminierung redundanter Attribute auf der rechten Seite (hier müssen auch alle
+einelementigen FA’s betrachtet werden)
+
+\begin{itemize}
+\item $E \rightarrow D$: $AttrHull(F - \{E \rightarrow D\}, \{E\}) = \{E\}$, d.h.
+$D \notin AttrHull(F - \{E \rightarrow D\}, \{E\})$
+
+\item $C \rightarrow B$: $AttrHull(F - \{C \rightarrow B\}, \{C\}) = \{C\}$, d.h.
+$B \notin AttrHull(F - \{C \rightarrow B\}, \{E\})$
+
+\item $CE \rightarrow G$: $AttrHull(F - \{CE \rightarrow G\}, \{C, E\}) = \{A, B, C, D, E\}$, d.h.
+$G \notin AttrHull(F - \{CE \rightarrow G\}, \{E\})$
+$\Rightarrow$ $CE \rightarrow G$ ist nicht redundant
+
+\item $B \rightarrow A$: $AttrHull(F - \{B \rightarrow A\}, \{B\}) = \{B\}$, d.h.
+
+$A \notin AttrHull(F - \{B \rightarrow A\}, \{E\})$
+$\Rightarrow$ $B \rightarrow A$ ist nicht redundant
+\end{itemize}
+
+F ist bereits minimal.
+\end{itemize}
+
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Normalformen (Mietwagenfirma)
+\footcite[Seite 2, Aufgabe 3: Normalformen]{db:pu:4}
+}
+
+Gegeben sei die folgende relationale Datenbank der Mietwagenfirma
+„MobilRent“, Station „München-Mitte“.
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+\begin{tabular}{lllllllll}
+KdNr & Name & Wohnort & Buchungsdatum & Aktion & Fahrzeug & Typ & Tarifgruppe & Tage
+\\
+
+123 & Chomsky & Nürnberg & 23.01.2004 & 0 & Cala & Klein & 7 & 2
+\\
+
+123 & Chomsky & Nürnberg & 07.10.2003 & -25\% & Vanny & Transp & ® & 1
+\\
+
+220 & Neumann & München & 02.04.2004 & 0 & Baro & Klein & 7 & 2
+\\
+
+710 & Turing & München & 20.02.2004 & -10\% & Cala & Klein & 1 & 2
+\\
+
+888 & Neumann & Passau & 07.10.2003 & -25\% & Lux & Mittelkl & 3 & 3
+\\
+\end{tabular}
+
+$KdNr$ steht für die Kundennummer der Kunden. An bestimmten Tagen
+gewährt die Firma Rabatt. Folgende funktionale Abhängigkeiten seien
+vorgegeben.
+
+$KdNr \rightarrow Name, Wohnort$
+
+$KdNr, Buchungsdatum \rightarrow Fahrzeug, Typ, Tarifgruppe, Tage, Rueckgabe-Station$
+
+$Buchungsdatum \rightarrow Aktion$
+
+$Fahrzeug \rightarrow Typ, Tarifgruppe$
+
+$Typ \rightarrow Tarifgruppe$
+
+$Rueckgabestation \rightarrow Stationsleiter$
+
+Der Primärschlüssel besteht aus den Attributen $KdNr$ und
+$Buchungsdatum$.
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Begründe, dass diese Tabelle in 1. Normalform vorliegt.
+
+\begin{antwort}
+Es gibt nur atomare Werte. Alle Attributewerte sind atomar.
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Erläutere, warum nur Tabellen mit zusammengesetzem Primärschlüssel
+die zweite Normalform verletzen können.
+
+\begin{antwort}
+Nur bei Tabellen mit zusammegesetzten Primärschlüssel kann es vorkommen,
+dass ein Nichtschlüssel-Attribute von einer echten Teilmenge des
+Primärschlüssel voll funktional abhängt.
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Zeige mögliche Anomalien auf, die hier auftreten können.
+
+\begin{antwort}
+Löschanomalie, z. B.
+
+Updateanomalie, z. B. Chomsky zieht um
+
+Insert-Anomalie, z. B. Kunde kann sich nicht registrieren ohne
+dass ein Buchung stattfand.
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Überführe das Schema in die 2. Normalform.
+
+\begin{antwort}
+MobilRent(\underline{KdNr, Buchungsdatum}, Fahrzeug, Typ, Tarifgruppe, Tage,Rückgabestation, Stationsleiter)
+
+Kunden(\underline{Kdnr}, Name, Wohnort)
+
+Aktion(\underline{Buchungsdatum}, Aktion)
+\end{antwort}
+
+%%
+% (3)
+%%
+
+\item Überführe das Schema in die 3. Normalform.
+
+\begin{antwort}
+Kunden(\underline{Kdnr}, Name, Wohnort)
+
+Aktion(\underline{Buchungsdatum}, Aktion)
+
+Fahrzeugtypen(\underline{Fahrzeug}, Typ)
+
+Tarifgruppen(\underline{Typ}, Tarifgruppe)
+
+Stationsleiter(\underline{Rückgabestation}, Stationsleiter)
+
+MobilRent(\underline{KdNr, Buchungsdatum}, Fahrzeug, Tage, Rückgabestation)
+\end{antwort}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Anomalien und Abhängigkeiten
+\footcite[Seite 1, Aufgabe 1: Anomalien und Abhängigkeiten]{db:ab:5}
+}
+
+Gegeben ist die Relation \emph{Abteilungsmitarbeiter}, repräsentiert
+durch folgende Tabelle. Es sei angenommen, dass innerhalb einer
+Abteilung keine Mitarbeiter mit identischem Namen existieren. Die
+Abteilungsnummer ist eindeutig, es kann aber durchaus sein, dass mehrere
+Abteilungen die gleiche Bezeichnung tragen.
+
+\begin{tabular}{lllll}
+Name           & Straße       & Ort     & AbtNr & Bezeichnung \\
+Schweizer      & Hauptstraße  & Zürich  & A3    & Finanzen    \\
+Deutscher      & Lindenstraße & Passau  & A4    & Informatik  \\
+Österreicher   & Nebenstraße  & Wien    & A4    & Informatik
+\end{tabular}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Geben Sie - orientiert an der obigen Tabelle - ein Beispiel für
+eine mögliche Änderungsanomalie an!
+
+Ich habe nur die Update-Anomalie beschrieben.
+
+\begin{antwort}[falsch]
+Es könnte sein, dass sie Abteilung „A4 Informatik“ in „Computer Sience“
+umgenannt wird. Die Bezeichnung muss in mehreren Tabellenzeilen
+geändert werden, hier bei „Deutscher“ und „Österreicher“
+\end{antwort}
+
+\begin{antwort}[muster]
+\begin{description}
+\item[Update-Anomalie] Die Abteilung A4 wird umbenannt, beispielsweise
+in Softwareabteilung. Die Änderung wird aus Versehen nicht in allen
+Tupeln mit AbtNr = A4 vollzogen.
+
+\item[Delete-Anomalie] Herr Schweizer (aus der Abteilung A4) verlässt
+die Firma und wird aus der Datenbank gelöscht. Damit gehen auch die
+Daten über die Abteilung A3 verloren.
+
+\item[Insert-Anomalie] Es wird eine neue Abteilung A5
+(Hardwareabteilung) geschaffen, der aber noch keine Mitarbeiter
+zugeteilt sind. Damit müsste ein Tupel (NULL, NULL, NULL, A5,
+Hardwareabteilung) in die Datenbank eingefügt werden. Da aber das
+Attribut Name sicher in jedem Schlüsselkandidaten enthalten sein muss,
+kann der Wert von Name keinen Nullwert enthalten. Das Tupel kann nicht
+eingefügt werden.
+\end{description}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Bestimmen Sie eine Menge F der funktionalen Abhängigkeiten, die
+sich aus Ihrer Analyse des Anwendungsbereiches ergeben. (Triviale
+Abhängigkeiten brauchen nicht angegeben werden.) Begründen Sie Ihre
+Entscheidung kurz.
+
+\begin{antwort}[falsch]
+$Name \rightarrow Strasse, Ort, AbtNr, Bezeichnung$ \\
+$Name \rightarrow Strasse$ \\
+$Name \rightarrow Ort$ \\
+$Name \rightarrow AbtNr$ \\
+$Name \rightarrow Bezeichnung$ \\
+$AbtNr \rightarrow Bezeichnung$
+\end{antwort}
+
+\begin{antwort}[muster]
+\begin{itemize}
+\item $AbtNr \rightarrow Bezeichnung$ \\
+Die Abteilungsnummer ist eindeutig (als „künstliches“
+Unterscheidungsmerkmal für Abteilungen) und legt damit die Abteilung
+eindeutig fest.
+
+\item $Name, AbtNr \rightarrow Strasse, Ort$ \\
+Da der Name innerhalb der Abteilung eindeutig ist, ist damit der
+Mitarbeiter und folglich auch die Adressdaten eindeutig festgelegt. Da
+es sich bei dieser Attributkombination um den Primärschlüssel handelt,
+bestimmt diese Attributkombination auch das Attribut „Bezeichnung“,
+allerdings darf es nicht in diese FA aufgenommen werden, da die
+Abteilungsbezeichnung nicht von der Kombination aus Name \& AbtNr
+abhängig, sondern nur von der AbtNr allein, somit muss dies als
+einzelne FA formuliert werden und kann hier nicht aufgenommen werden
+
+$\rightarrow$ der Rückschluss daraus wäre nämlich, dass sich die
+Bezeichnung der Abteilung nur aus der Kombination von Mitarbeiter und
+AbtNr erkennen lässt und nicht allein aus der AbtNr und das wäre ja
+nicht korrekt. Grundsätzlich gilt: Primärschlüssel und FA’s müssen
+getrennt betrachtet werden!
+
+$F = \{
+  Name\ AbtNr \rightarrow Strasse\ Ort,
+  AbtNr \rightarrow Bezeichnung
+\}$
+\end{itemize}
+
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Bestimmen Sie z.B. mit Hilfe des Attributhüllen-Algorithmus die
+Attributhülle
+
+\renewcommand{\labelenumii}{\arabic{enumii}.}
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item $AttrHull(F, \{Name, Bezeichnung\})$
+
+\begin{antwort}[richtig]
+$AttrHull(F, \{Name, Bezeichnung\}) = \{Name, Bezeichnung\}$
+\end{antwort}
+
+%%
+% 2.
+%%
+
+\item $AttrHull(F, \{Name, AbtNr\})$
+
+\begin{antwort}[richtig]
+$AttrHull(F, \{Name, AbtNr\}) = \{Name, AbtNr, Strasse, Ort, Bezeichnung\}$
+\end{antwort}
+\end{enumerate}
+
+%%
+% (d)
+%%
+
+\item Ist ${Name, Bezeichnung}$ (bzw. ${Name, AbtNr}$ ein Superschlüssel
+der Relation Abteilungsmitarbeiter? Kurze Begründung!
+
+\begin{antwort}[richtig]
+${Name, AbtNr}$
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Minimale Überdeckung\footcite[Seite 1, Aufgabe 2]{db:ab:5}}
+
+Gegeben ist die Menge $F = \{A \rightarrow BC, C \rightarrow DA, E
+\rightarrow AC, CD \rightarrow BE\}$. Bestimmen Sie eine minimale
+Überdeckung von F.
+
+\begin{multline*}
+F = \{ \\
+  A \rightarrow BC, \\
+  C \rightarrow DA, \\
+  E \rightarrow AC, \\
+  CD \rightarrow BE \\
+\}
+\end{multline*}
+
+\begin{antwort}
+
+\begin{enumerate}
+\item Linksreduktion
+
+$AttrHull(F, \{D\}) = \{D\}$ \\
+$AttrHull(F, \{C\}) = \{C, D, A, B, E\}$ \\
+
+\begin{multline*}
+F' = \{ \\
+  A \rightarrow BC, \\
+  C \rightarrow DA, \\
+  E \rightarrow AC, \\
+  C \rightarrow BE \\
+\}
+\end{multline*}
+
+\item Rechtsreduktion
+
+$AttrHull(F - \{A \rightarrow BC\}, \{A\}) = \{A\}$ \\
+$AttrHull(F - \{C \rightarrow DA\}, \{C\}) = \{C, B, E, A\}$ \\
+$AttrHull(F - \{E \rightarrow AC\}, \{E\}) = \{E\}$ \\
+$AttrHull(F - \{C \rightarrow BE\}, \{C\}) = \{C, D, A, B\}$ \\
+Keine Linksreduktion möglich
+
+schon minimal
+
+\end{enumerate}
+
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Schlüsselkandidaten von Relation \emph{Abstrakt}
+\footcite[Seite 1, Aufgabe 3]{db:ab:5}
+}
+
+Gegeben sei die Relation \emph{Abstrakt} mit dem Schema $Abstrakt\{A, B, C, D,
+E\}$ und die Menge der funktionalen Abhängigkeiten $F = \{A \rightarrow
+BC, CD \rightarrow E, AC \rightarrow E, B \rightarrow D\}$.
+
+\noindent
+Bestimmen Sie die Schlüsselkandidaten von Abstrakt!
+
+\begin{multline*}
+F = \{ \\
+  A \rightarrow BC, \\
+  CD \rightarrow E, \\
+  AC \rightarrow E, \\
+  B \rightarrow D \\
+\}
+\end{multline*}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{StEx Herbst 2003, Thema II, A1
+\footcite[Seite 2, Aufgabe 4: StEx Herbst 2003, Thema II, A1]{db:ab:5}
+}
+
+Gegeben sei die folgenden Datenbank mit den offenen Rechnungen der
+Kunden eines Versandhauses:
+
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\textbf{RNR} & \textbf{KDNR} & \textbf{Name} & \textbf{Adresse} & \textbf{Positionen} & \textbf{Datum} & \textbf{Betrag}
+\\\hline
+1   & 1    & Müller & München  & 3          & 01.11.2002 & 60     \\
+2   & 1    & Müller & München  & 2          & 23.05.2003 & 90     \\
+3   & 2    & Huber  & Nürnberg & 3          & 09.03.2003 & 90     \\
+4   & 2    & Huber  & Nürnberg & 8          & 14.02.2003 & 70     \\
+5   & 3    & Meier  & Augsburg & 7          & 20.06.2003 & 110    \\
+6   & 4    & Meier  & München  & 12         & 07.04.2003 & 90
+\end{tabular}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Erläutern Sie, warum nur Relationen mit einem zusammengesetzten
+Schlüsselkandidaten die 2. Normalform verletzen können!
+
+\begin{antwort}[muster]
+
+Ist der Schlüsselkandidat ein-elementig, so müssen sämtliche Attribute
+zwangsläufig voll funktional von diesem Schlüsselkandidaten abhängig
+sein. Dies ist genau die Voraussetzung für die 2. NF, sodass die 2. NF
+bei atomaren Attributwerten und nur ein-elementigen Schlüsselkandidaten
+immer gegeben ist. Bei zusammengesetzten Schlüsselkandidaten kann die 2.
+NF hingegen verletzt werden, da es sein kann, dass ein
+Nicht-Schlüsselattribut nur von Schlüsselkandidaten abhängig ist.
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Geben Sie für obige Datenbank alle vollen funktionalen
+Abhängigkeiten (einschließlich der transitiven) an?
+
+\begin{antwort}[falsch]
+\ttfamily
+\begin{compactitem}
+\item RNR $\rightarrow$ Positionen
+\item RNR $\rightarrow$ Datum
+\item RNR $\rightarrow$ Betrag
+\item KDNR $\rightarrow$ Name
+\item KDNR $\rightarrow$ Adresse
+\item RNR $\rightarrow$ KDNR
+\end{compactitem}
+\end{antwort}
+
+\begin{antwort}[muster]
+\ttfamily
+\begin{compactitem}
+\item RNR $\rightarrow$ KDNR, Name, Adresse, Positionen, Datum, Betrag
+\item KDNR $\rightarrow$ Name, Adresse
+\end{compactitem}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Erläutern Sie, inwiefern obiges Schema die 3. Normalform verletzt!
+Zeigen Sie anhand obiger Relation „Rechnung“ zwei mögliche Anomalien
+auf, die bei fehlender Normalisierung auftreten können.
+
+\begin{antwort}[muster]
+Die Attribute \texttt{Name} und \texttt{Adresse} sind transitiv
+(\texttt{RNR $\rightarrow$ KDNR $\rightarrow$ Name, Adresse})
+vom Schlüssel \texttt{RNR} abhängig!
+
+\subsection*{Mögliche Anomalien:}
+
+\begin{description}
+\item[UPDATE-Anomalie:] Müller zieht nach Regensburg, müsste in jedem
+Tupel geändert werden, wird aber bei \texttt{RNR 2} vergessen $\rightarrow$
+Inkonsistenz
+
+\item[INSERT-Anomalie:] Neuer (potentieller) Kunde Schmidt kann erst
+eingefügt werden, wenn auch eine offene Rechnung vorliegt
+
+\item[DELETE-Anomalie:] Wird \texttt{RNR 6} gelöscht, gehen auch die
+Kundendaten von Meier aus München verloren.
+\end{description}
+
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Überführen Sie das obige Relationenschema in die 3. Normalform!
+Erläutern Sie die dazu durchzuführenden Schritte jeweils kurz!
+
+\begin{antwort}
+
+Rechnung:
+
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\textbf{RNR} & \textbf{KDNR} & \textbf{Positionen} & \textbf{Datum} & \textbf{Betrag}
+\\\hline
+1   & 1    & 3          & 01.11.2002 & 60     \\
+2   & 1    & 2          & 23.05.2003 & 90     \\
+3   & 2    & 3          & 09.03.2003 & 90     \\
+4   & 2    & 8          & 14.02.2003 & 70     \\
+5   & 3    & 7          & 20.06.2003 & 110    \\
+6   & 4    & 12         & 07.04.2003 & 90
+\end{tabular}
+
+Kunde:
+
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\textbf{KDNR} & \textbf{Name} & \textbf{Adresse}
+\\\hline
+1    & Müller & München       \\
+1    & Müller & München       \\
+2    & Huber  & Nürnberg      \\
+2    & Huber  & Nürnberg      \\
+3    & Meier  & Augsburg      \\
+4    & Meier  & München
+\end{tabular}
+
+Die transitiven Abhängigkeiten sind zu entfernen, dadurch wird die neue
+Relation „Kunde“ mit KDNR als Primärschlüssel geschaffen.
+\end{antwort}
+
+\end{enumerate}
+
+\literatur
+
+\end{document}

@@ -1,0 +1,569 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax,uml,baum}
+\usepackage{amsmath}
+\usepackage{tabularx}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Binärer Suchbaum}
+
+\begin{quellen}
+\item \cite{wiki:binaerbaum}
+\item \cite{wiki:binaerer-suchbaum}
+\item \cite[Kapitel 14.2.1, Seite 348-358 (PDF 364-374)]{saake}
+\item \cite[Seite 4-14]{aud:fs:5}
+\end{quellen}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Visualisierungstools}
+
+\begin{itemize}
+\item \url{http://btv.melezinek.cz/binary-search-tree.html} Auch für Postorder etc
+\item \url{https://visualgo.net/bn/bst}
+\end{itemize}
+
+\noindent
+Ein binärer Suchbaum - häufig abgekürzt als \textbf{BST} (von englisch
+\emph{Binary Search Tree}) - ist ein binärer Baum, bei dem die Knoten
+\emph{„Schlüssel“} tragen, und die Schlüssel des \memph{linken
+Teilbaums} eines Knotens nur \memph{kleiner (oder gleich)} und die des
+\memph{rechten} Teilbaums nur \memph{größer}\footcite[Seite 5]{aud:fs:5}
+als der Schlüssel des Knotens selbst sind.
+\footcite{wiki:binaerer-suchbaum}
+
+\begin{center}
+\begin{tabular}{ll}
+$S$ &
+Wert eines Knotens \\
+
+$S_\text{links}$ &
+Wert der Wurzel des linken Teilbaumes \\
+
+$S_\text{rechts}$ &
+Wert der Wurzel des rechten Teilbaumes \\
+\end{tabular}
+\end{center}
+
+Bei einem binären Suchbaum gilt:
+$\text{S}_\text{links} \leq \text{S} < \text{S}_\text{recht}$
+
+\section{Beispiel}
+
+Anordnung von \verb|7, 3, 6, 9, 2, 9, 5, 1| in einem int-Baum
+\footcite[Seite 5]{aud:fs:5}
+
+\begin{center}
+\begin{tikzpicture}[binaerer baum]
+\Tree
+[.7
+  [.3
+    [.2
+      \edge[]; {1}
+      \edge[blank]; \node[blank]{};
+    ]
+    [.6
+      \edge[]; {5}
+      \edge[blank]; \node[blank]{};
+    ]
+  ]
+  [.9
+    \edge[]; {9}
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{center}
+
+%%
+%
+%%
+
+\subsection{Traversierung eines Baums (7, 3, 6, 9, 2, 8, 5, 1)}
+
+Es gibt drei verschiedene Möglichkeiten einen binären Baum zu
+traversieren:
+
+\begin{itemize}
+\item \texttt{preorder}:
+besuche die Wurzel, dann den linken Unterbaum, dann den rechten
+Unterbaum; auch: WLR
+
+\item \texttt{inorder}:
+besuche den linken Unterbaum, dann die Wurzel, dann den rechten
+Unterbaum;
+auch: LWR
+\item \texttt{postorder}:
+besuche den linken Unterbaum, dann den rechten, dann die Wurzel;
+auch: LRW
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[binaerer baum]
+\Tree
+[.7
+  [.3
+    [.2
+      [.1 ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.6
+      [.5 ]
+      \edge[blank]; \node[blank]{};
+    ]
+  ]
+  [.9
+    [.8 ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tabular}{ll}
+\texttt{preorder} & \texttt{7 3 2 1 6 5 9 8} \\
+\texttt{inorder} & \texttt{1 2 3 5 6 7 8 9} \\
+\texttt{postorder} & \texttt{1 2 5 6 3 8 9 7} \\
+\end{tabular}
+\end{center}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Entfernen eines Elements}
+
+%%
+%
+%%
+
+\subsection{Knoten ohne Nachfolger\footcite[Seite 10]{aud:fs:5}}
+
+\begin{compactenum}
+\item Suche den zu löschenden Knoten
+\item Lösche die Referenz vom Vorgängerkonten auf den zu löschenden Knoten
+\end{compactenum}
+
+\begin{minipage}{0.5\linewidth}
+\begin{tikzpicture}[binaerer baum]
+\Tree
+[.7
+  [.3
+    [.2
+      [.1 ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.6
+      [.5 ]
+      \edge[blank]; \node[blank]{};
+    ]
+  ]
+  [.11
+    \edge[dotted]; \node[dotted]{9};
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\begin{tikzpicture}[binaerer baum]
+\Tree
+[.7
+  [.3
+    [.2
+      [.1 ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.6
+      [.5 ]
+      \edge[blank]; \node[blank]{};
+    ]
+  ]
+  [.11 ]
+]
+\end{tikzpicture}
+\end{minipage}
+
+%%
+%
+%%
+
+\subsubsection{Knoten mit genau einem Nachfolger\footcite[Seite 11]{aud:fs:5}}
+
+\begin{compactenum}
+\item Suche den zu löschenden Knoten
+\item Referenz von Vorgängerkonten auf den (einzigen) Nachfolgerknoten
+des zu löschenden Knotens
+\end{compactenum}
+
+\begin{minipage}{0.5\linewidth}
+\begin{tikzpicture}[binaerer baum]
+\Tree
+[.7
+  [.\node(3){3};
+    [.2
+      [.1 ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.\node[dotted]{6};
+      [.\node(5){5}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+  ]
+  [.11
+    [.9 ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\draw (3) -- (5);
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\begin{tikzpicture}[binaerer baum]
+\Tree
+[.7
+  [.3
+    [.2
+      [.1 ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.5 ]
+  ]
+  [.11
+    [.9 ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{minipage}
+%%
+%
+%%
+
+\subsection{Knoten mit zwei Nachfolgern\footcite[Seite 12]{aud:fs:5}}
+
+\begin{compactenum}
+\item Suche den zu löschenden Knoten
+\item Suche den „kleinsten“ Knoten im rechten Teilbaum
+\item Ersetze den zu löschenden Knoten durch den „kleinsten“ Knoten
+\end{compactenum}
+
+\begin{minipage}{0.5\linewidth}
+\begin{tikzpicture}[binaerer baum]
+\Tree
+[.\node(7){7};
+  [.\node[dotted](3){3};
+    [.\node(2){2};
+      [.1 ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.\node(6){6};
+      [.\node(5){5}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+  ]
+  [.11
+    [.9 ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\draw[dashed] (7) ..controls +(south east:5.1).. (5);
+\draw[dashed] (5) ..controls +(east:0.7).. (6);
+\draw[dashed] (5) ..controls +(south west:0.7).. (2);
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\begin{tikzpicture}[binaerer baum]
+\Tree
+[.7
+  [.5
+    [.2
+      [.1 ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.6 ]
+  ]
+  [.11
+    [.9 ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 1: Binärbaum\footcite[Seite 1]{aud:pu:5}}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Erstellen Sie ein Klassendiagramm für einen Binärbaum.
+
+\begin{antwort}
+\ueberschrift{einfacher Binärbaum}
+
+\begin{tikzpicture}
+\umlsimpleclass{Binärbaum}
+\umlclass[x=4]{Knoten}{wert}{}
+\umlaggreg[mult=0..1,arg=wurzel,pos=0.6]{Binärbaum}{Knoten}
+\umlaggreg[mult=0..2,pos=0.8]{Knoten}{Knoten}
+\end{tikzpicture}
+
+\ueberschrift{Binärbaum mit Kompositum}
+
+\begin{tikzpicture}
+\umlsimpleclass[x=-1,y=5]{Binärbaum}
+\umlsimpleclass[x=3,y=5,type=abstrakt]{Baumelement}
+\umlsimpleclass[x=1,y=3]{Abschluss}
+\umlsimpleclass[x=5,y=3]{Datenknoten}
+\umlsimpleclass[x=5,y=1]{Inhalt}
+
+\umlassoc[mult2=1,stereo=wurzel \LeserichtungRechts]{Binärbaum}{Baumelement}
+\umlVHVinherit{Abschluss}{Baumelement}
+\umlVHVinherit{Datenknoten}{Baumelement}
+
+\umlaggreg[mult=1]{Datenknoten}{Inhalt}
+\umlVHaggreg[mult2=2,pos2=1.8,anchor1=50]{Datenknoten}{Baumelement}
+\end{tikzpicture}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Entwerfen Sie eine mögliche Implementierung zur Erzeugung eines
+binären Baumes in Java.
+
+\begin{antwort}
+\ueberschrift{einfacher Binärbaum}
+
+\inputcode[firstline=3]{baum/einfach/Baum}
+\inputcode[firstline=3]{baum/einfach/Knoten}
+
+\ueberschrift{Binärbaum mit Kompositum}
+
+\inputcode[firstline=3]{baum/kompositum/Ahnenbaum}
+\inputcode[firstline=3]{baum/kompositum/Baumelement}
+\inputcode[firstline=3]{baum/kompositum/Abschluss}
+\inputcode[firstline=3]{baum/kompositum/Datenknoten}
+\inputcode[firstline=3]{baum/kompositum/Person}
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 2: Suchbaum\footcite[Seite 1]{aud:pu:5}}
+
+\footcite[Abgewandelt von Herbst 2003, Thema 2, Aufgabe 8, Seite 8]{examen:66112:2003:09}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Implementieren Sie in einer objektorientierten Sprache einen
+binären Suchbaum für ganze Zahlen! Dazu gehören Methoden zum Setzen und
+Ausgeben der Attribute \java{zahl}, \java{linker_teilbaum} und
+\java{rechter_teilbaum}. Design: eine Klasse \java{Knoten} und eine
+Klasse \java{BinBaum}. Ein Knoten hat einen linken und einen rechten
+Nachfolger. Ein Baum verwaltet die Wurzel. Er hängt neue Knoten an und
+löscht Knoten.
+
+%%
+% (b)
+%%
+
+\item Schreiben Sie eine Methode \java{fuegeEin(...)}, die eine Zahl in
+den Baum einfügt!
+
+%%
+% (c)
+%%
+
+\item Schreiben Sie eine Methode \java{postOrder(...)}, die die Zahlen
+in der Reihenfolge postorder ausgibt!
+
+%%
+% (d)
+%%
+
+\item Ergänzen Sie Ihr Programm um die rekursiv implementierte Methode
+\java{summe(...)}, die die Summe der Zahlen des Unterbaums, dessen
+Wurzel der Knoten ist, zurückgibt! Falls der Unterbaum leer ist, ist der
+Rückgabewert 0!
+
+\begin{minted}{java}
+int summe (Knoten x)...
+\end{minted}
+
+%%
+% (e)
+%%
+
+\item Schreiben Sie eine Folge von Anweisungen, die einen Baum mit Namen
+BinBaum erzeugt und nacheinander die Zahlen 5 und 7 einfügt! In den
+binären Suchbaum werden noch die Zahlen 4, 11, 6 und 2 eingefügt.
+Zeichnen Sie den Baum, den Sie danach erhalten haben, und schreiben Sie
+die eingefügten Zahlen in der Reihenfolge der Traversierungsmöglichkeit
+\texttt{postorder} auf!
+
+%%
+% (f)
+%%
+
+\item Implementieren Sie eine Operation \java{isSorted(...)}, die für
+einen (Teil-)baum feststellt, ob er sortiert ist.
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Frühjahr 2014 (46115) - Thema 2, Aufgabe 3\footcite{examen:46115:2014:09}}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Fügen Sie die Zahlen 17, 7, 21, 3, 10, 13, 1, 5 nacheinander in
+der vorgegebenen Reihenfolge in einen binären Suchbaum ein und zeichnen
+Sie das Ergebnis!
+
+\begin{center}
+\begin{tikzpicture}[binaerer baum]
+\Tree
+[.17
+  [.7
+    [.3
+      [.1 ]
+      [.5 ]
+    ]
+    [.10
+      \edge[blank]; \node[blank]{};
+      [.13 ]
+    ]
+  ]
+  [.21 ]
+]
+\end{tikzpicture}
+\end{center}
+
+%%
+% (b)
+%%
+
+\item Implementieren Sie in einer objektorientierten Programmiersprache
+eine rekursiv festgelegte Datenstruktur, deren Gestaltung sich an
+folgender Definition eines binären Baumes orientiert!
+
+Ein binärer Baum ist entweder ein leerer Baum oder besteht aus einem
+Wurzelelement, das einen binären Baum als linken und einen als rechten
+Teilbaum besitzt. Bei dieser Teilaufgabe können Sie auf die
+Implementierung von Methoden (außer ggf. notwendigen Konstruktoren)
+verzichten!
+
+\paragraph{Klasse Knoten}
+
+\begin{minted}{java}
+class Knoten {
+  public int wert;
+  public Knoten links;
+  public Knoten rechts;
+  public Knoten elternKnoten;
+
+  Knoten(int wert) {
+    this.wert = wert;
+    links = null;
+    rechts = null;
+    elternKnoten = null;
+  }
+
+  public Knoten findeMiniumRechterTeilbaum() {
+  }
+
+  public void anhängen (Knoten knoten) {
+  }
+}
+\end{minted}
+
+\begin{minted}{java}
+
+public class BinärerSuchbaum {
+  public Knoten wurzel;
+
+  BinärerSuchbaum(Knoten wurzel) {
+    this.wurzel = wurzel;
+  }
+
+  BinärerSuchbaum() {
+    this.wurzel = null;
+  }
+
+  public void einfügen(Knoten knoten) {
+  }
+
+  public void einfügen(Knoten knoten, Knoten elternKnoten) {
+  }
+
+  public Knoten suchen(int wert) {
+  }
+
+  public Knoten suchen(int wert, Knoten knoten) {
+  }
+
+}
+\end{minted}
+
+%%
+% (c)
+%%
+
+\item Beschreiben Sie durch Implementierung in einer gängigen
+objektorientierten Programmiersprache, wie bei Verwendung der obigen
+Datenstruktur die Methode \java{loescheKnoten(w)} gestaltet sein muss,
+mit der der Knoten mit dem Eintrag \java{w} aus dem Baum entfernt werden
+kann, ohne die Suchbaumeigenschaft zu verletzen!
+
+\begin{antwort}
+\inputcode[firstline=64,lastline=93]{aufgaben/aud/examen_46115_2014_03/suchbaum/BinaererSuchbaum}
+\end{antwort}
+\end{enumerate}
+
+\begin{antwort}
+\ueberschrift{Klasse „BinärerSuchbaum“}
+
+\inputcode{aufgaben/aud/examen_46115_2014_03/suchbaum/BinaererSuchbaum}
+
+\ueberschrift{Klasse „Knoten“}
+
+\inputcode{aufgaben/aud/examen_46115_2014_03/suchbaum/Knoten}
+\end{antwort}
+
+\literatur
+
+\end{document}

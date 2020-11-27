@@ -1,0 +1,342 @@
+\documentclass{lehramt-informatik}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Klausur}
+
+Fügen Sie die Zahlen 2, 8, 10, 1, 4, 5, 11 in der vorgegebenen Reihenfolge in einen AVL-Baum ein. Wie sieht der finale AVL-Baum aus? Ziehen Sie die entsprechenden Zahlen auf die zugehörigen Knoten. Knoten, die in ihrem AVL-Baum nicht existieren, lassen Sie leer.
+
+Sortieren
+Frage 2 von 6 (12 Punkte)
+Nicht beantwortet (in Bearbeitung)
+Die Frage ist nicht markiert.  Aktionen
+
+In dieser Aufgabe soll ein gegebenes Integer Array mit Hilfe von Selection Sort sortiert werden. Es soll eine iterative und eine rekursive Methode geschrieben werden.
+
+Verwenden Sie zur Implementierung jeweils die Methodenköpfe selectionSortIterativ und selectionSortRekursiv. Eine swap-Methode, die für ein gegebenes Array und zwei Indizes die Einträge an den jeweiligen Indizes des Arrays vertauscht, ist gegeben und muss nicht implementiert werden.
+
+Es müssen keine weiteren Methoden geschrieben werden!
+
+Ihre Lösung:
+1
+
+public class SelectionSort{
+
+2
+
+    public static void swap(int[] arr, int i, int j){
+
+3
+
+        /*
+
+4
+
+         swap-Magic
+
+5
+
+        */
+
+16
+
+    public static void selectionSortIterativ(int[] arr){
+
+17
+
+        /*TODO*/
+
+18
+
+​
+
+19
+
+    }
+
+20
+
+​
+
+21
+
+    public static void selectionSortRekursiv(int[] arr, int i, int n){
+
+22
+
+        /*TODO*/
+
+23
+
+​
+
+24
+
+    }
+
+37
+
+}
+
+Am Nürnberger Flughafen starten und landen täglich viele Flugzeuge. Der Flughafen verfügt jedoch nur über eine einzige Start- bzw. Landebahn, sodass Starts und Landungen gemeinsam koordiniert werden müssen. Für die interne Verwaltung, welcher Flieger als nächstes bearbeitet werden soll, wird eine neue Software entwickelt. Sie haben die Aufgabe einen Teil dieser Software zu erstellen.
+
+Das folgende UML-Klassendiagramm gibt einen Überblick über den für Sie relevanten Teil der Software:
+
+Implementieren Sie die beiden Methoden addNewFlight(FLUG) und addEmergency(FLUG) der Klasse WARTESCHLANGE!
+
+    In der Methode addNewFlight
+        soll ein neu übergebener Flug der Warteschlange hinzugefügt werden.
+    In der Methode addEmergency
+        soll für den übergebenen Flug überprüft werden, ob der Flug bereits in der Warteschlange vorkommt oder ob es sich um einen komplet neuen Flug handelt.
+        soll der Notfall die erste Priorität in der Warteschlange erhalten, d.h. zwingend als nächstes abgearbeitet werden.
+        soll die korrekte Funktionalität der Warteschlange weiterhin gegeben sein.
+
+Jeder Flug wird in der Warteschlange mit einem eigenen Ticket verwaltet. Die Funktionalitäten der Tickets und der Flüge entnehmen Sie dem Quelltext.
+
+Ihre Lösung:
+1
+
+class FLUG {
+
+2
+
+    private int flugnummer;
+
+3
+
+    private String startFlughafen;
+
+4
+
+    private String zielFlughafen;
+
+5
+
+6
+
+    public FLUG(int flugnummer, String startFlughafen, String zielFlughafen) {
+
+7
+
+        this.flugnummer = flugnummer;
+
+8
+
+        this.startFlughafen = startFlughafen;
+
+9
+
+        this.zielFlughafen = zielFlughafen;
+
+10
+
+    }
+
+11
+
+​
+
+12
+
+    public int getFlugnummer() {
+
+13
+
+        return flugnummer;
+
+14
+
+    }
+
+15
+
+​
+
+16
+
+    public String getStartFlughafen() {
+
+17
+
+        return startFlughafen;
+
+18
+
+    }
+
+19
+
+​
+
+20
+
+    public String getZielFlughafen() {
+
+21
+
+        return zielFlughafen;
+
+22
+
+    }
+
+23
+
+24
+
+}
+
+25
+
+​
+
+26
+
+class TICKET {
+
+27
+
+    public FLUG flug;
+
+28
+
+    public TICKET next;
+
+29
+
+    public boolean startetInNBG = false;
+
+30
+
+    public boolean landetInNBG = false;
+
+31
+
+32
+
+33
+
+    public TICKET(FLUG flug) {
+
+34
+
+        this.flug = flug;
+
+35
+
+        if( flug.getStartFlughafen().equals("NUE") ) {
+
+36
+
+            startetInNBG = true;
+
+37
+
+        } else {
+
+38
+
+            landetInNBG = true;
+
+39
+
+        }
+
+40
+
+    }
+
+41
+
+}
+
+42
+
+​
+
+43
+
+public class WARTESCHLANGE {
+
+44
+
+    TICKET first = null;
+
+45
+
+46
+
+    public void addNewFlight(FLUG flug) {
+
+47
+
+        //TODO
+
+48
+
+​
+
+49
+
+    }
+
+50
+
+​
+
+51
+
+    public void addEmergency(FLUG flug) {
+
+52
+
+        //TODO
+
+53
+
+​
+
+54
+
+    }
+
+55
+
+​
+
+102
+
+}
+
+Führen Sie auf dem gegebenen Graphen die Suche nach der kürzesten Distanz aller Knoten zum Startknoten A mit dem Algorithmus von Dijkstra durch. Tragen Sie die Abarbeitungsreihenfolge, den unmittelbaren Vorgängerknoten, sowie die ermittelte kürzeste Distanz für jeden Knoten ein! Bei gleichen Distanzen arbeiten Sie die Knoten in lexikalischer Reihenfolge ab.
+
+Komplexität
+Frage 5 von 6 (6 Punkte)
+Nicht beantwortet
+Die Frage ist nicht markiert.  Aktionen
+
+Welche Komplexität hat das Programmfragment?
+
+Bestimmen Sie in Abhängigkeit von n die Komplexität des Programmabschnitts im
+• Best-Case.
+• Worst-Case.
+
+Bearbeitungshinweis: Potenzen werden mit dem Zeichen "^" dargestellt, yn wird  beispielsweise geschrieben als y^n. Quadratwurzeln können mit n^1/2 dargestellt werden.
+
+Best case: O()
+
+Worst case: O()
+
+Ermitteln Sie einen minimalen Spannbaum des vorliegenden Graphen. Nutzen Sie den Knoten A als Startknoten in ihrem Algorithmus.
+
+Welches Gewicht hat der Spannbaum insgesamt?
+
+Welchen Algorithmus haben Sie zur Ermittlung eingesetzt?
+
+\literatur
+
+\end{document}

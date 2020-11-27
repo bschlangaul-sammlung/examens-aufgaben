@@ -1,0 +1,138 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{syntax}
+\begin{document}
+
+\chapter{Aufgabenblatt 3: Algorithmen implementieren I}
+
+Alle Aufgaben auf diesem Blatt sind mit der Entwicklungsumgebung
+Greenfoot zu bearbeiten. Es ist zu empfehlen, sich vor dem Arbeiten mit
+Greenf oot in die Grundzüge des Themas Vererbung einzulesen.
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 1\footcite{oomup:ab:3}}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Öffnen Sie Greenfoot, erstellen Sie ein neues Java-Szenario
+Supermarkt und ändern Sie den Hintergund der Klasse \java{MyWorld} auf
+das Bild supermarket-background, das Sie im Materialordner finden.
+Passen Sie die Größe der Spielwelt in der Klasse \java{MyWorld} auf
+600x566 an.
+
+%%
+% (b)
+%%
+
+\item Erzeugen Sie eine neue Unterklasse der Klasse Actor und nennen Sie
+diese Einkauf swagen. Vergeben Sie für diese Klasse das entsprechende
+Bild im Materialordner und positionieren Sie ein Objekt dieser Klasse
+passend auf der Spielwelt. Speichern Sie die Welt, so dass sie bei jedem
+reset wieder so aussieht, wie am Anfang. Zum Beispiel:
+
+%%
+% (c)
+%%
+
+\item Erstellen Sie in der Klasse Einkauf swagen eine Methode bewegen(),
+die von der act-Methode aufgerufen wird. Diese soll dafür sorgen, dass
+der Einkaufswagen sich durch die Pfeiltasten nach links und rechts
+steuern lässt. Achten Sie auch darauf, dass das Bild passend gespiegelt
+wird. In den nächsten Schritten fügen wir nun Lebensmittel am oberen
+Rand des Spielfeldes ein, die nach unten fallen. Diese sollen mit dem
+Einkaufswagen eingesammelt werden. Dabei geben gesunde Lebensmittel
+(Obst) jeweils einen Punkt. Ungesunde Lebensmittel (Junk-Food) geben
+einen Minuspunkt. Sobald man negative Gesamtpunkte hat, ist das Spiel
+verloren.
+
+%%
+% (d)
+%%
+
+\item Füge eine Unterklasse Lebensmittel der Klasse Actor ein, die
+wiederum die Unterklassen Obst und Junk-F ood besitzt. Erzeuge je drei
+weitere Unterklassen, z.B. Apfel, Birne und Banane für Obst und P
+ommes, Muffin, Hamburger für JunkFood. Versehe die Unterklassen mit
+passenden Bildern. (Klassenstruktur siehe Abb. rechts)
+
+%%
+% (e)
+%%
+
+\item Ergänzen Sie die Klasse M yW orld um eine Methoden
+lebensmittelErzeugen(), die mit Hilfe von Zufallszahlen verschiedene
+Lebensmittel am oberen Rand der Spielwelt erzeugt.
+
+%%
+% (f)
+%%
+
+\item Implementieren Sie in der Klasse Lebensmittel die Methode
+protected void f allen(), die in den act()-Methoden der betroffenen
+Klassen aufgerufen wird. Diese sorgt dafür, dass sich die Lebensmittel
+in einem konstanten Tempo von oben nach unten bewegen.
+
+%%
+% (g)
+%%
+
+\item Ergänzen Sie die Klasse Einkauf swagen um ein Attribut punkte und
+lassen Sie diesen an einer passenden Stelle der Spielwelt anzeigen.
+Implementieren Sie außerdem eine Methode punkteAktualisieren(), die bei
+Aufruf den Punktestand um 1 erhöht bzw. verringert, je nachdem, ob ein
+Stück Obst oder ein Junk-FoodLebensmittel mit dem Einkaufswagen berührt
+wird. Wird der Punktestand -1 erreicht, also wurden mehr
+Junk-Food-Lebensmittel als Obst eingesammelt, so ist das Spiel verloren.
+In der Mitte der Spielwelt soll die Anzeige GAME OVER erscheinen und
+das Spiel soll stoppen.
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 2\footcite{oomup:ab:3}}
+
+Eine moderne Variante des altbekannten Spiels Frogger stellt das
+Bier-Hol-Spiel dar, das momentan bei vielen beliebt ist.
+
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Probieren Sie das Spiel aus (http://bier.drwuro.com) und
+modellieren Sie es passend mit Hilfe eines Klassendiagramms. Gerne
+können Sie den Kontext abändern. Die Funktionalitäten und der
+Spielablauf sollen aber erhalten werden. Da das Spiel in Greenfoot
+umgesetzt werden soll, denken Sie bitte auch an die Klassen World und
+Actor.
+
+Hinweis: Zur Vereinfachung können Sie sich auf Feinde beschränken, die
+nur aus einer Fahrtrichtung kommen.
+
+%%
+%
+%%
+
+\item Setzen Sie das Projekt in \emph{Greenfoot} um und testen Sie es
+ausführlich.
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/oomup/ab_3/bier/Akteur}
+\inputcode[firstline=3]{aufgaben/oomup/ab_3/bier/BierWorld}
+\inputcode[firstline=3]{aufgaben/oomup/ab_3/bier/Gegner}
+\inputcode[firstline=3]{aufgaben/oomup/ab_3/bier/Kuh}
+\inputcode[firstline=3]{aufgaben/oomup/ab_3/bier/Sepp}
+\inputcode[firstline=3]{aufgaben/oomup/ab_3/bier/Traktor}
+\end{antwort}
+\end{enumerate}
+\end{document}

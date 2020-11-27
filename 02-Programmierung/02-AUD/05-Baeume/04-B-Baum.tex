@@ -1,0 +1,795 @@
+\documentclass{lehramt-informatik}
+\usepackage{multicol}
+\InformatikPakete{baum}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{B-Bäume}
+
+\begin{quellen}
+\item \cite{wiki:bbaum}
+\item \cite[Kapitel 14.4.3, Seite 386-399 (PDF 402-415)]{saake}
+\item \cite[Kapitel 13.5.4.2 Balancierte Mehrwegbäume, Seite 464, wird
+nur erwähnt, nicht beschrieben]{schneider}
+\end{quellen}
+
+\url{https://www.cs.usfca.edu/~galles/visualization/BTree.html}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Definition}
+
+Ein Baum heißt genau dann B-Baum, wenn gilt:
+%
+
+\begin{itemize}
+\item Jeder Knoten außer der Wurzel enthält zwischen \memph{$k$ und $2k$
+Elemente} (Schlüsselwerte), $k$ wird als \memph{Ordnung} des B-Baums
+bezeichnet.
+%
+\item Jeder \memph{Knoten ist entweder ein Blatt (ohne Kinder)} oder hat
+\memph{mindestens $k + 1$ und höchstens $2k + 1$ Kind-Knoten}.
+%
+\item Der Wurzelknoten ist \memph{entweder ein Blatt oder hat mindestens
+2 Nachfolger}.
+%
+\item Alle Blätter haben die \memph{gleiche Tiefe}, d.\,h. alle Wege von
+der Wurzel bis zu den Blättern sind gleich lang. Pfade haben die Länge
+$h-1$, wobei $h$ die Höhe des gesamten Baums ist.
+\end{itemize}
+
+\footcite[Seite 32 (PDF 26)]{aud:fs:5}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Einfügen}
+
+Das Einfügen in einen B-Baum erfolgt \memph{nur in den Blattknoten}.
+Wenn in einem Blattknoten die \memph{maximale Anzahl} von Elementen
+($2k$) erreicht ist, findet ein \memph{Split} statt, d.\,h. die
+Elemente werden aufgeteilt und ein neuer Knoten entsteht. Das
+\memph{mittlere Element} des ursprünglichen Knotens wird dabei \memph{in
+den Elternknoten integriert}.
+\footcite[Seite 32 (PDF 26)]{aud:fs:5}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Suchen}
+
+\begin{enumerate}
+\item Beginnend mit Wurzelknoten wird Knoten jeweils \memph{von links
+nach rechts} durchsucht:
+
+\item \memph{Stimmt} Element mit gesuchtem Schlüsselwert
+\memph{überein}, ist der Satz \memph{gefunden}.
+
+\item Ist das \memph{Element größer} als der gesuchte Wert, wird die
+Suche im \memph{links} hängenden Unterbaum \memph{fortgesetzt}.
+
+\item Ist das \memph{Element kleiner} als der gesuchte Wert, wird der
+Vergleich mit dem \memph{nächsten Element der Wurzel wiederholt}.
+
+\item Ist auch das letztes Element der Wurzel noch kleiner als der
+gesuchte Wert, dann wird die Suche im rechten Unterbaum des Elements
+fortgesetzt.
+
+\item Falls ein weiterer Abstieg in den Unterbaum nicht möglich ist
+(d.\,h. Blattknoten), wird die Suche abgebrechen. Dann ist kein Satz mit
+dem gewünschten Schlüsselwert vorhanden.
+\end{enumerate}
+
+\footcite[Seite 37 (PDF 31)]{aud:fs:5}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Löschen}
+
+Suche den Knoten, in dem das zu löschende Element E liegt.
+
+\begin{itemize}
+\item Falls das Element $E$ im Blattknoten liegt, dann lösche $E$ dort
+und behandle ggf. entstehenden Unterlauf durch Mischen.
+
+\item Falls das Element $E$ in einem inneren Knoten liegt, dann
+untersuche den linken und rechten Unterbaum von $E$:
+
+\begin{itemize}
+\item Betrachte den Blattknoten mit dem direkten Vorgänger $E'$ von $E$
+und den Blattknoten mit direktem Nachfolger $E''$ von $E$.
+
+\item Wähle den Blattknoten aus, der mehr Elemente hat. Falls beide
+Blattknoten gleich viele Elemente haben, wähle zufällig einen der beiden
+aus.
+
+\item Ersetze das zu löschende Element $E$ durch $E'$ bzw. $E''$ aus dem
+gewählten Blattknoten.
+
+\item Lösche $E'$ bzw. $E''$ im gewählten Blattknoten und behandle ggf.
+entstehenden Unterlauf in diesem Blattknoten.
+\end{itemize}
+\end{itemize}
+
+\footcite[Seite 39 (PDF 32)]{aud:fs:5}
+
+\subsection{Hinweise zum Unterlauf:}
+
+Ein Unterlauf entsteht auf Blattebene. Der Unterlauf wird durch Mischen
+des Unterlaufknotens mit seinem Nachbarknoten und dem darüberliegenden
+Element beseitig.
+\footcite[Seite 40 (PDF 33)]{aud:fs:5}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+\section{Übungsaufgabe B-Bäume
+(Adaptiert von Herbst 2005, Thema 2, A6)
+\footcite[Seite 34-37(PDF 28-31)]{aud:fs:5}}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Erzeugen Sie aus der gegebenen Folge einen B-Baum der Ordnung
+$m=2$:
+
+$22,10,19,20,1,13,11,12,7,8,5,42,33,21,52,48,50$
+
+Fügen Sie dazu die einzelnen Elemente in gegebener Reihenfolge in einen
+anfangs leeren B-Baum ein. Stellen Sie für jeden Wert die entsprechenden
+Zwischenergebnisse und die angewendeten Operationen als Bäume dar!
+
+\begin{itemize}
+
+%%
+%
+%%
+
+\item \fbox{+22} \fbox{+10} \fbox{+19} \fbox{+20} Einfügen der ersten
+Zahlen bis zur kompletten Füllung der Wurzel:
+
+\begin{tikzpicture}[bbaum]
+\node {10 \nodepart{two} 19 \nodepart{three} 20 \nodepart{four} 22};
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item \fbox{+1} Einfügen der 1 führt zum Überlauf, deshalb Aufspaltung:
+
+\begin{tikzpicture}[bbaum]
+\node {1 \nodepart{two} 10 \nodepart{three} 19 \nodepart{four} 20 \nodepart{five} 22};
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item Übernahme des mittleren Elements (19) in die Wurzel:
+
+\begin{tikzpicture}[
+  bbaum,
+  level 1/.append style={sibling distance=15mm},
+]
+\node {19}[->]
+  child{node {1 \nodepart{two} 10}}
+  child{node {20 \nodepart{two} 22}}
+;
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item \fbox{+13} Einfügen der 13:
+
+\begin{tikzpicture}[
+  bbaum,
+  level 1/.append style={sibling distance=20mm},
+]
+\node {19}[->]
+  child{node {1 \nodepart{two} 10 \nodepart{three} 11 \nodepart{four} 13}}
+  child{node {20 \nodepart{two} 22}}
+;
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item \fbox{+12} Einfügen der 12 nicht möglich, also wieder Aufspaltung.
+11 als mittleres Element wird nach oben geschrieben:
+
+\begin{tikzpicture}[
+  bbaum,
+  level 1/.append style={sibling distance=15mm},
+]
+\node {11 \nodepart{two} 19}[->]
+  child{node {1 \nodepart{two} 10}}
+  child{node {12 \nodepart{two} 13}}
+  child{node {20 \nodepart{two} 22}}
+;
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item \fbox{+7} \fbox{+8} Einfügen von 7 und 8:
+
+\begin{tikzpicture}[
+  bbaum,
+  level 1/.append style={sibling distance=20mm},
+]
+\node {11 \nodepart{two} 19}[->]
+  child{node {1 \nodepart{two} 7 \nodepart{three} 8 \nodepart{four} 10}}
+  child{node {12 \nodepart{two} 13}}
+  child{node {20 \nodepart{two} 22}}
+;
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item \fbox{+5} Einfügen von 5 nicht möglich, deshalb Aufspaltung, 7 als
+mittleres Element wird nach oben geschrieben:
+
+\begin{tikzpicture}[
+  bbaum,
+  level 1/.append style={sibling distance=15mm},
+]
+\node {7 \nodepart{two} 11 \nodepart{three} 19}[->]
+  child{node {1 \nodepart{two} 5}}
+  child{node {8 \nodepart{two} 10}}
+  child{node {12 \nodepart{two} 13}}
+  child{node {20 \nodepart{two} 22}}
+;
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item \fbox{+42} \fbox{+33} Einfügen von 42 und 33:
+
+\begin{tikzpicture}[
+  bbaum,
+  level 1/.append style={sibling distance=20mm},
+]
+\node {7 \nodepart{two} 11 \nodepart{three} 19}[->]
+  child{node {1 \nodepart{two} 5}}
+  child{node {8 \nodepart{two} 10}}
+  child{node {12 \nodepart{two} 13}}
+  child{node {20 \nodepart{two} 22 \nodepart{three} 33 \nodepart{four} 42}}
+;
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item \fbox{+21} Einfügen von 21 nicht möglich, also Aufspaltung, 22
+nach oben schieben
+
+\begin{tikzpicture}[
+  bbaum,
+  level 1/.append style={sibling distance=15mm},
+]
+\node {7 \nodepart{two} 11 \nodepart{three} 19 \nodepart{four} 22}[->]
+  child{node {1 \nodepart{two} 5}}
+  child{node {8 \nodepart{two} 10}}
+  child{node {12 \nodepart{two} 13}}
+  child{node {20 \nodepart{two} 21}}
+  child{node {33 \nodepart{two} 42}}
+;
+\end{tikzpicture}
+
+\item \fbox{+52} \fbox{+48} Einfügen von 52 und 48
+
+\begin{tikzpicture}[
+  bbaum,
+  level 1/.append style={sibling distance=20mm},
+]
+\node {7 \nodepart{two} 11 \nodepart{three} 19 \nodepart{four} 22}[->]
+  child{node {1 \nodepart{two} 5}}
+  child{node {8 \nodepart{two} 10}}
+  child{node {12 \nodepart{two} 13}}
+  child{node {20 \nodepart{two} 21}}
+  child{node {33 \nodepart{two} 42 \nodepart{three} 48 \nodepart{four} 52}}
+;
+\end{tikzpicture}
+
+\item \fbox{+50} Einfügen von 50 nicht möglich, daher splitten und 48 eine Ebene
+nach oben schieben
+
+\begin{tikzpicture}[
+  bbaum,
+  level 1/.append style={sibling distance=15mm},
+]
+\node {7 \nodepart{two} 11 \nodepart{three} 19 \nodepart{four} 22 \nodepart{five} 48}[->]
+  child{node {1 \nodepart{two} 5}}
+  child{node {8 \nodepart{two} 10}}
+  child{node {12 \nodepart{two} 13}}
+  child{node {20 \nodepart{two} 21}}
+  child{node {33 \nodepart{two} 42}}
+  child{node {48 \nodepart{two} 52}}
+;
+\end{tikzpicture}
+
+\item Einfügen von 48 oben nicht möglich, da Knoten ebenfalls voll! ->
+weiterer Splitt notwendig, der neue Ebene erzeugt!
+
+\begin{tikzpicture}[
+  bbaum,
+  level 1/.append style={level distance=5mm,sibling distance=60mm},
+  level 2/.append style={sibling distance=20mm}
+]
+\node{19}[->]
+  child{node{7 \nodepart{two} 11}
+      child{node {1 \nodepart{two} 5}}
+      child{node {8 \nodepart{two} 10}}
+      child{node {12 \nodepart{two} 13}}
+  }
+  child{node{22 \nodepart{two} 48}
+    child{node {20 \nodepart{two} 21}}
+    child{node {33 \nodepart{two} 42}}
+    child{node {48 \nodepart{two} 52}}
+  }
+;
+\end{tikzpicture}
+\end{itemize}
+
+%%
+% b)
+%%
+
+\item In dem Ergebnisbaum suchen wir nun den Wert 17. Stellen Sie den
+Ablauf des Suchalgorithmus an einer Zeichnung graphisch dar!
+
+\begin{tikzpicture}[
+  bbaum,
+  level 1/.append style={level distance=5mm,sibling distance=60mm},
+  level 2/.append style={sibling distance=20mm}
+]
+\node[name=eins]{19}[->]
+  child{node[name=zwei]{7 \nodepart{two} 11}
+      child{node {1 \nodepart{two} 5}}
+      child{node {8 \nodepart{two} 10}}
+      child{node[name=drei]{12 \nodepart{two} 13}}
+  }
+  child{node{22 \nodepart{two} 48}
+    child{node {20 \nodepart{two} 21}}
+    child{node {33 \nodepart{two} 42}}
+    child{node {48 \nodepart{two} 52}}
+  }
+;
+\end{tikzpicture}
+\end{enumerate}
+
+\section{Einfügen und Löschen-Operation
+\footcite[Seite 3 und 4, Aufgabe 6: B-Baum (H 2015(66116) - Thema 2, TA1, A3, a)]{aud:ab:7}}
+
+Gegeben ist der folgende B-Baum der Ordnung 3 (max. drei Kindknoten,
+max. zwei Schlüssel pro Knoten):
+
+\begin{tikzpicture}[
+  bbaum,
+  level 1/.style={level distance=10mm,sibling distance=50mm},
+  level 2/.style={level distance=10mm,sibling distance=20mm}
+]
+\node {50} [->]
+  child {node {10 \nodepart{two} 30}
+    child {node {5 \nodepart{two} 8}}
+    child {node {15 \nodepart{two} 20}}
+    child {node {31 \nodepart{two} 33}}
+  }
+  child {node {70}
+    child {node {60}}
+    child {node {80}}
+  };
+\end{tikzpicture}
+
+\noindent
+Fügen Sie die Werte 9 und 45 ein. Löschen Sie anschließend die Werte 30
+und 70. Zeichnen Sie den Baum nach jeder Einfüge- bzw. Lösch-Operation.
+
+\begin{antwort}
+\ueberschrift{9 einfügen}
+
+\begin{tikzpicture}[
+  scale=0.8,
+  transform shape,
+  bbaum,
+  level 1/.style={level distance=10mm,sibling distance=35mm},
+  level 2/.style={level distance=10mm,sibling distance=20mm},
+]
+\node {10 \nodepart{two} 50} [->]
+  child {node {8}
+    child {node {5}}
+    child {node[thick,font=\bfseries] {9}}
+  }
+  child {node {30}
+    child {node {15 \nodepart{two} 20}}
+    child {node {31 \nodepart{two} 33}}
+  }
+  child {node {70}
+    child {node {60}}
+    child {node {80}}
+  }
+;
+\end{tikzpicture}
+
+\ueberschrift{45 einfügen}
+
+\begin{tikzpicture}[
+  scale=0.8,
+  transform shape,
+  bbaum,
+  level 1/.style={level distance=10mm,sibling distance=45mm},
+  level 2/.style={level distance=10mm,sibling distance=20mm},
+]
+\node {10 \nodepart{two} 50} [->]
+  child {node {8}
+    child {node {5}}
+    child {node {9}}
+  }
+  child {node {30 \nodepart{two} 33}
+    child {node {15 \nodepart{two} 20}}
+    child {node {31}}
+    child {node[thick,font=\bfseries]{45}}
+  }
+  child {node {70}
+    child {node {60}}
+    child {node {80}}
+  }
+;
+\end{tikzpicture}
+
+\ueberschrift{30 löschen}
+
+\begin{tikzpicture}[
+  scale=0.8,
+  transform shape,
+  bbaum,
+  level 1/.style={level distance=10mm,sibling distance=42mm},
+  level 2/.style={level distance=10mm,sibling distance=20mm},
+]
+\node {10 \nodepart{two} 50} [->]
+  child {node {8}
+    child {node {5}}
+    child {node {9}}
+  }
+  child {node {20 \nodepart{two} 33}
+    child {node {15}}
+    child {node {31}}
+    child {node {45}}
+  }
+  child {node {70}
+    child {node {60}}
+    child {node {80}}
+  }
+;
+\end{tikzpicture}
+
+\ueberschrift{70 löschen}
+
+\begin{tikzpicture}[
+  scale=0.8,
+  transform shape,
+  bbaum,
+  level 1/.style={level distance=10mm,sibling distance=32mm},
+  level 2/.style={level distance=10mm,sibling distance=20mm},
+]
+\node {10 \nodepart{two} 33} [->]
+  child {node {8}
+    child {node {5}}
+    child {node {9}}
+  }
+  child {node {20}
+    child {node {15}}
+    child {node {31}}
+  }
+  child {node {50}
+    child {node {45}}
+    child {node {60 \nodepart{two} 80}}
+  }
+;
+\end{tikzpicture}
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 9: Bäume\footcite[entnommen aus Algorithmen und
+Datenstrukturen, Übungsblatt 6, Universität Würzburg]{aud:pu:7}}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Fügen Sie in einen anfangs leeren 2-3-4-Baum (B-Baum der Ordnung
+4)\footnote{ein Baum, für den folgendes gilt: Er besitzt in einem Knoten
+max. 3 Schlüssel-Einträge und 4 Kindknoten und minimal einen Schlüssel
+und 2 Nachfolger} der Reihe nach die folgenden Schlüssel ein:
+
+\centerline{$1$, $2$, $3$, $5$, $7$, $8$, $9$, $4$, $11$, $12$, $13$, $6$.}
+
+Dokumentieren Sie die Zwischenschritte so,
+dass die Entstehung des Baumes und nicht nur das Endergebnis
+nachvollziehbar ist. \footcite[Staatsexamen Theoretische Informatik,
+Algorithmen und Datenstrukturen, Realschulen, Frühjahr 2011, Thema 1,
+Aufgabe 3]{examen:46115:2011:03}
+
+\begin{antwort}
+\begin{multicols}{2}
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item 1, 2, 3 einfügen:
+
+\begin{tikzpicture}[
+  scale=0.8,
+  transform shape,
+  bbaum,
+  level 1/.style={level distance=10mm,sibling distance=32mm},
+  level 2/.style={level distance=10mm,sibling distance=20mm},
+]
+\node {1 \nodepart{two} 2 \nodepart{three} 3};
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item 5 einfügen:
+
+\begin{tikzpicture}[
+  scale=0.8,
+  transform shape,
+  bbaum,
+  level 1/.style={level distance=8mm,sibling distance=25mm},
+]
+\node {2} [->]
+  child {node {1}}
+  child {node {3 \nodepart{two} 5}}
+;
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item 7 einfügen:
+
+\begin{tikzpicture}[
+  scale=0.8,
+  transform shape,
+  bbaum,
+  level 1/.style={level distance=8mm,sibling distance=25mm},
+]
+\node {2} [->]
+  child {node {1}}
+  child {node {3 \nodepart{two} 5 \nodepart{three} 7}}
+;
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item 8 einfügen:
+
+\begin{tikzpicture}[
+  scale=0.8,
+  transform shape,
+  bbaum,
+  level 1/.style={level distance=10mm,sibling distance=15mm},
+]
+\node {2 \nodepart{two} 5} [->]
+  child {node {1}}
+  child {node {3}}
+  child {node {7 \nodepart{two} 8}}
+;
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item 9 und 4 einfügen:
+
+\begin{tikzpicture}[
+  scale=0.8,
+  transform shape,
+  bbaum,
+  level 1/.style={level distance=10mm,sibling distance=15mm},
+]
+\node {2 \nodepart{two} 5} [->]
+  child {node {1}}
+  child {node {3 \nodepart{two} 4}}
+  child {node {7 \nodepart{two} 8 \nodepart{three} 9}}
+;
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item 11 einfügen:
+
+\begin{tikzpicture}[
+  scale=0.8,
+  transform shape,
+  bbaum,
+  level 1/.style={level distance=10mm,sibling distance=15mm},
+]
+\node {2 \nodepart{two} 5 \nodepart{three} 8} [->]
+  child {node {1}}
+  child {node {3 \nodepart{two} 4}}
+  child {node {7}}
+  child {node {9 \nodepart{two} 11}}
+;
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item 12 einfügen:
+
+\begin{tikzpicture}[
+  scale=0.8,
+  transform shape,
+  bbaum,
+  level 1/.style={level distance=10mm,sibling distance=15mm},
+]
+\node {2 \nodepart{two} 5 \nodepart{three} 8} [->]
+  child {node {1}}
+  child {node {3 \nodepart{two} 4}}
+  child {node {7}}
+  child {node {9 \nodepart{two} 11 \nodepart{three} 12}}
+;
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item 13 einfügen (zwei Splits):
+
+\begin{tikzpicture}[
+  scale=0.8,
+  transform shape,
+  bbaum,
+  level 1/.style={level distance=7mm,sibling distance=31mm},
+  level 2/.style={level distance=10mm,sibling distance=12mm},
+]
+\node {5} [->]
+  child {node {2}
+    child {node {1}}
+    child {node {3 \nodepart{two} 4}}
+  }
+  child {node {8 \nodepart{two} 11}
+    child {node {7}}
+    child {node {9}}
+    child {node {12 \nodepart{two} 13}}
+  }
+;
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\item 6 einfügen:
+
+\begin{tikzpicture}[
+  scale=0.8,
+  transform shape,
+  bbaum,
+  level 1/.style={level distance=7mm,sibling distance=31mm},
+  level 2/.style={level distance=10mm,sibling distance=12mm},
+]
+\node {5} [->]
+  child {node {2}
+    child {node {1}}
+    child {node {3 \nodepart{two} 4}}
+  }
+  child {node {8 \nodepart{two} 11}
+    child {node {6 \nodepart{two} 7}}
+    child {node {9}}
+    child {node {12 \nodepart{two} 13}}
+  }
+;
+\end{tikzpicture}
+\end{enumerate}
+\end{multicols}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Zeichnen Sie einen Rot-Schwarz-Baum oder einen AVL-Baum, der
+dieselben Einträge enthält.
+
+%%
+% (c)
+%%
+
+\item Geben Sie eine möglichst gute untere Schranke (in
+$\Omega$-Notation) für die Anzahl der Schlüssel in einem 2-3-4-Baum der
+Höhe h an.
+
+Hinweis: Überlegen Sie sich, wie ein 2-3-4-Baum mit Höhe $h$ und
+möglichst wenigen Schlüsseln aussieht.
+
+\begin{antwort}
+Ein 2-3-4-Baum mit möglichst wenigen Schlüsseln sieht aus wie ein
+Binärbaum:
+
+\begin{itemize}
+\item Ein Baum der Höhe $1$ hat $1$ Schlüssel.
+\item Ein Baum der Höhe $2$ hat $3$ Schlüssel.
+\item Ein Baum der Höhe $3$ hat $7$ Schlüssel.
+\item $\cdots$
+\item Ein Baum der Höhe $h$ hat $2^h - 1$ Schlüssel.
+\end{itemize}
+
+Also liegt die Untergrenze für die Anzahl der Schlüssel in
+$\Omega(2^h)$.
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Geben Sie eine möglichst gute obere Schranke (in
+$\mathcal{O}$-Notation) für die Anzahl der Schlüssel in einem 2-3-4-Baum
+der Höhe h an.
+
+\begin{antwort}
+Ein 2-3-4-Baum mit möglichst vielen Schlüsseln hat in jedem Knoten drei
+Schlüssel. Und jeder Knoten, der kein Blatt ist, hat vier Kinder:
+
+\begin{itemize}
+\item Ein Baum der Höhe $1$ hat $3$ Schlüssel.
+\item Ein Baum der Höhe $2$ hat $15$ Schlüssel.
+\item Ein Baum der Höhe $3$ hat $63$ Schlüssel.
+\item $\cdots$
+\item Ein Baum der Höhe $h$ hat $4^h - 1$ Schlüssel.
+\end{itemize}
+
+Also liegt die Obergrenze für die Anzahl der Schlüssel in
+$\mathcal{O}(4^h)$.
+\end{antwort}
+
+\end{enumerate}
+
+\literatur
+
+\end{document}

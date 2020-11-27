@@ -1,0 +1,349 @@
+\documentclass{lehramt-informatik}
+\InformatikPakete{mathe,syntax}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Greedy-Algorithmen}
+
+\begin{quellen}
+\item \cite[Seite 207-235 (PDF 225-253)]{saake}
+\item \cite[Seite 5-6]{aud:fs:3}
+\item \cite{wiki:greedy-algorithmus}
+\end{quellen}
+
+\memph{Greedy} steht hier für gierig. Das Prinzip gieriger Algorithmen
+ist es, in \memph{jedem Teilschritt so viel wie möglich} zu erreichen.
+\footcite[Seite 213 (PDF 231)]{saake}
+Greedy-Algorithmen berechnen jeweils ein lokales Optimum in jedem Schritt
+und können daher eventuell ein globales Optimum verpassen.
+\footcite[Seite 214 (PDF 232)]{saake}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgaben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aufgaben}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Wechselgeldalgorithmus
+\footcite{net:html:wikiversity:wechselgeld}}
+
+Als Beispiel nehmen wir die Herausgabe von Wechselgeld auf Beträge unter
+1€. Verfügbar sind die Münzen mit den Werten 50ct, 10ct, 5ct, 2ct, 1ct.
+Unser Ziel ist, so wenig Münzen wie möglich in das Portemonnaie zu
+bekommen.
+%
+Ein Beispiel: $78ct = 50 + 2 \cdot 10 + 5 + 2 + 1$
+%
+Es wird jeweils immer die größte Münze unter dem Zielwert genommen und
+von diesem abgezogen. Das wird so lange durchgeführt, bis der Zielwert
+Null ist.
+
+%%
+%
+%%
+
+\subsection{Formalisierung}
+
+Gesucht ist ein Algorithmus der folgende Eigenschaften beschreibt.
+Bei der \emph{Eingabe} muss gelten:
+
+\bigskip
+
+\begin{compactenum}
+\item dass die eingegebene Zahl eine natürliche Zahl ist, also
+$\text{betrag} > 0$
+
+\item dass eine Menge von Münzwerten zur Verfügung steht $
+\text{münzen}=\{c_1,...,c_n\}$ z.\,B. $\{1,2,5,10,20,50\}$
+\end{compactenum}
+
+\bigskip
+
+\noindent
+Die \emph{Ausgabe} besteht dann aus ganzen Zahlen
+$\text{wechselgeld}[1], \ldots ,\text{wechselgeld}[n]$.
+Dabei ist $\text{wechselgeld}[i] $ die Anzahl der Münzen
+des Münzwertes für $ c_i $ für $ i=1,\ldots,n $ und haben die
+Eigenschaften:
+
+\bigskip
+
+\begin{compactenum}
+\item $\text{wechselgeld}[1] \cdot c_1 + \ldots +
+\text{wechselgeld}[n] \cdot c_n = \text{betrag}$
+
+\item $\text{wechselgeld}[1] + \ldots + \text{wechselgeld}[n] $
+ist minimal unter allen Lösungen für 1.
+\end{compactenum}
+
+%%
+%
+%%
+
+\begin{antwort}
+\inputcode[firstline=3]{muster/Wechselgeld}
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Greedy-Münzwechsler
+\footcite[Seite 1, Aufgabe 1: Greedy-Münzwechsler]{aud:ab:3}}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Nehmen Sie an, es stehen beliebig viele 5-Cent, 2-Cent und
+1-Cent-Münzen zur Verfügung. Die Aufgabe besteht darin, für einen
+gegebenen Cent-Betrag möglichst wenig Münzen zu verbrauchen. Entwerfen
+Sie eine Methode
+
+\begin{minted}{java}
+public void wechselgeld (int n)
+\end{minted}
+
+die diese Aufgabe mit einem Greedy-Algorithmus löst und für den Betrag
+von $n$ Cent die Anzahl $c5$ der 5-Cent-Münzen, die Anzahl $c2$ der
+2-Cent-Münzen und die Anzahl $c1$ der 1-Cent-Münzen berechnet und diese
+auf der Konsole ausgibt. Sie können dabei den Operator \texttt{/} für
+die ganzzahlige Division und den Operator $\%$ für den Rest bei der
+ganzzahligen Division verwenden.
+\footnote{Quelle möglicherweise von \url{https://www.yumpu.com/de/document/read/17936760/ubungen-zum-prasenzmodul-algorithmen-und-datenstrukturen}}
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/aud/ab_3/GreedyMuenzwechsler}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Es kann gezeigt werden, dass der Greedy-Algorithmus für den obigen
+Fall der Münzwerte 5, 2 und 1 optimal ist, d.\,h. dass er immer die
+Gesamtzahl der Münzen minimiert. Nehmen Sie nun an, es gibt die
+Münzwerte 5 und 1. Ist es dann möglich, einen dritten Münzwert so zu
+wählen, dass der Greedy-Algorithmus mit den drei Münzen nicht mehr
+optimal ist? Begründen Sie Ihre Antwort.
+
+\begin{antwort}
+Falls der dritte Münzwert 4 ist, ist der Greedy-Algorithmus nicht mehr
+optimal. Der Greedy-Algorithmus benutzt zunächst so viele 5-Cent-Münzen
+wie möglich und dann so viele 4-Cent-Münzen wie möglich. Ein Betrag von
+8 Cent wird also in eine 5-Cent und drei 1-Cent-Münzen aufgeteilt.
+Optimal ist aber die Aufteilung in zwei 4-Cent-Münzen.
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Frühjahr 2007 : 66115 - Thema Nr. 2\footcite{examen:66115:2007:03}}
+
+Aufgabe 1:
+
+a) Beschreiben Sie in Pseudocode oder einer Programmiersprache Ihrer Wahl einen GreedyAlgorithmus, der einen Betrag von n Cents mit möglichst wenigen Cent-Münzen herausgibt.
+Bei n = 29 wäre die erwartete Antwort etwa 1 x 20ct, 1x 5ct,2 x 2ct.
+
+b) Beweisen Sie die Korrektheit Ihres Verfahrens, also dass tatsächlich die Anzahl der Münzen
+minimiert wird.
+
+c) Nehmen wir an, Bayern führe eine Sondermünze im Wert von 7ct ein. Dann liefert der naheliegende Greedy-Algorithmus nicht immer die minimale Zahl von Münzen. Geben Sie für dieses
+Phänomen ein konkretes Beispiel an und führen Sie aus, warum Ihr Beweis aus Aufgabenteil
+a) in dieser Situation nicht funktioniert.
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Frühjahr 2019 : 66115 Seite: 5 Aufgabe 6 (Algorithmen und Datenstrukturen)\footcite{examen:66115:2019:03}}
+
+Aus dem Känguru-Wettbewerb 2017 — Klassenstufen 3 und 4.
+
+(a)
+
+(c)
+
+(d)
+
+Luna hat für den Kuchenbasar Muffins mitgebracht: 10 Apfelmuffins, 18 Nussmuffins,
+12 Schokomuffins und 9 Blaubeermuffins. Sie nimmt immer 3 verschiedene Muffins
+und legt sie auf einen Teller. Welches ist die kleinste Zahl von Muffins, die dabei übrig
+bleiben können?
+
+A: 1, B: 3, C: 4, D: 7, E: 8
+
+Geben Sie die richtige Antwort auf die im Känguru-Wettbewerb gestellte Frage und begründen Sie sie.
+
+Lunas Freundin empfiehlt den jeweils nächsten Teller immer aus den drei aktuell häufigsten Muffinsorten zusammenzustellen. Leiten Sie aus dieser Idee einen effizienten GreedyAlgorithmus her, der die Fragestellung für beliebige Anzahlen von Muffins löst (nach wie
+vor soll es nur vier Sorten und je drei pro Teller geben). Skizzieren Sie in geeigneter Form,
+wie Ihr Algorithmus die Beispielinstanz von oben richtig löst.
+
+Beschreiben Sie eine mögliche und sinnvolle Verallgemeinerung Ihrer Lösung auf n Muffinsorten und k Muffins pro Teller fürn >4undk>3.
+
+Diskutieren Sie, wie man die Korrektheit des Greedy-Algorithmus zeigen könnte, also dass
+er tatsächlich immer eine optimale Lösung findet. Ein kompletter, rigoroser Beweis ist nicht
+verlangt.
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 6: Herbst 2009  66115\footcite{examen:66115:2009:09}}
+
+Die Wäscheleinenaufgabe besteht darin, n Wäschestücke der Breiten bı, ba,...,b„ auf Wäscheleinen der Breite b aufzuhängen. Idealerweise sollte die Zahl der benutzten Leinen möglichst klein
+werden. Formal ist eine Aufhängung der Wäsche auf ! Leinen also eine Einteilung der Menge
+(1,...,n) in I! Klassen Lı,...,L,, sodass für alle j = 1...1 gilt Vier, b; < b. Eine Lösung der
+Wäscheleinenaufgabe ist dann eine Zahl ! und eine Aufhängung der Wäsche auf ! Leinen. Eine
+Lösung ist umso besser, je kleiner / ist.
+
+a) Beschreiben Sie einen sinnvollen Greedy-Algorithmus für das Wäscheleinenproblem. (Also
+nicht einfach für jedes Wäschestück eine neue Leine)
+
+b) Geben Sie ein Beispiel einer Wäscheladung (Instanz des Wäscheleinenproblems), für die Ihr
+Algorithmus mehr als die minimal mögliche Zahl von Leinen verbraucht.
+
+c) Nennen Sie ein Beispiel einer Problemstellung, die mit einem Greedy-Algorithmus optimal
+gelöst werden kann.
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Greedy-Färben von Intervallen\footcite{examen:66115:2017:09}}
+
+Aufgabe 8:
+
+Sei X = (Ji,/2,...,
+eine Menge von n (geschlossenen) Intervallen über den reellen Zahlen
+R. Das Intervall Ij sei dabei gegeben dnrch seine linke Intervallgrenze Ij E R sowie seine rechte
+Intervallgrenze rj E R mit rj > Ij, d.h. Ij = [lj,rj].
+Wir nehmen in dieser Aufgabe der Einfachheit halber an, dass die Zahlen
+
+alle paarweise verschieden sind.
+
+Zwei Intervalle Ij, 1 überlappen sich gdw. sie mindestens einen Punkt gemeinsam haben, d.h. gdw.
+falls für (o.B.d.A.) Ij < 4, auch 1 < Vj gilt. Eine gültige Färbung von X mit c e N Farben ist eine
+Funktion F : X  (1,2,...,c) mit der Eigenschaft, dass für jedes Paar Ij,Ik von überlappenden
+Intervallen F(Ij)  F(Ik) gilt.
+
+Abbildung 1: Eine gültige Färbung von X
+
+Eine minimale gültige Färbung von X ist eine gültige Färbung mit einer minimalen Anzahl an Far
+
+ben. Die Anzahl von Farben in einer minimalen gültigen Färbung von X bezeichnen wir mit x(X).
+Wir gehen im Folgenden davon aus, dass für X eine minimale gültige Färbung F* gefunden wurde.
+1. Nehmen wir an, dass aus X alle Intervalle einer bestimmten Farbe von F* gelöscht werden.
+Ist die so aus F* entstandene Färbung der übrigen Intervalle in jedem Fall immer noch eine
+minimale gültige Färbung? Begründen Sie Ihre Antwort.
+
+2. Nehmen wir an, dciss aus X ein beliebiges Intervall gelöscht wird. Ist die so aus F* entstehende
+Färbung der übrigen Intervalle in jedem Fall immer noch eine minimale gültige Färbung?
+Begründen Sie Ihre Antwort.
+
+3. Mit uj(X) bezeichnen wir die maximale Anzahl von Intervallen in X, die sich paarweise
+überlappen. Zeigen Sie, dass x(A) > uj(X) ist.
+Wir betrachten nun folgenden Algorithmus, der die Menge X = (F,F ■ ..,In) von n Intervallen
+einfärbt:
+
+- Zunächst sortieren wir die Intervalle von X aufsteigend nach ihren linken Intervallgrenzen.
+Die Intervalle werden jetzt in dieser Reihenfolge nacheinander eingefärbt; ist ein Intervall
+dabei erst einmal eingefärbt, ändert sich seine Farbe nie wieder. Angenommen die sortierte
+
+Reihenfolge der Intervalle sei Ia(i), ■ ■ ■ , F(n)-
+
+- Das erste Intervall F(i) erhält die Farbe 1. Für 1 < i < n verfahren wir im Aten Schritt zum
+Färben des Aten Intervalls
+
+wie folgt:
+
+Bestimme die Menge Cj aller Farben der bisher schon eingefärbten Intervalle die /„(p
+
+überlappen. Färbe /„-(j) dann mit der Farbe c, = min((l,2,..., n)\ Cj).
+Fortsetzung nächste Seite!
+
+4. Begründen Sie, warum der Algorithmus immer eine gültige Färbung von X findet (Hinweis:
+Induktion).
+
+5. Zeigen Sie, dass die Anzahl an Farben, die der Algorithmus für das Einfärben benötigt,
+mindestens cü(X) ist.
+6. Zeigen Sie, dass die Anzahl an Farben, die der Algorithmus für das Einfärben benötigt,
+höchstens uj(X) ist.
+7. Begründen Sie mit Hilfe der o.g. Eigenschaften, warum der Algorithmus korrekt ist, d.h.
+immer eine minimale gültige Färbung von X findet.
+
+8. Wir betrachten folgenden Implementierung des Algorithmus in Pseudocode:
+
+1 Algorithmus : ColoringNumber(A'L[l,...,n], Aß[l,...,n])
+Eingabe : Felder Xr und Xr mit den rechten und linken Intervallgrenzen.
+Ergebnis : Minimale gültige Färbung der Intervalle.
+2 begin
+
+sortiere Xr (und passe Xr an);
+/* color[i] ist die Feirbe des Intervals i
+*/
+initialisiere Array coZor[l,.., n];
+// mit Nullen
+/* lastintervalofcolor[c] ist der Index des letzten Intervals das mit c gefärbt
+wurde
+5
+
+initialisiere Array lastintervalofcolor[l,..,n];
+
+color[l freecolor]
+lastintervalofcolor[freecolor] •<— 1;
+for i -k— 2 to n do
+
+freecolorfound (— falsc]
+
+for c ■<— 1 to maxcolor do
+
+// mit Nullen
+
+maxcolor <— 1;
+freecolor <— maxcolor]
+
+ic <— lastintervalofcolor[c]]
+if XL] > XR[ic] then
+/* i schneidet kein Interval der Farbe c
+
+freecolor found
+freecolor
+c;
+
+*/
+
+truc]
+
+break;
+/* i schneidet ein Interval der Farbe c
+
+*/
+
+Ifreecolorfound then
+maxcolor <— maxcolor + 1;
+freecolor <— maxcolor]
+
+color[i] <r- freecolor]
+lastintervalofcolor[freecolor] ■(— i]
+return color]
+
+Was ist die asymptotische Laufzeit dieses Algorithmus? Was ist der asymptotische Speicher
+bedarf dieses Algorithmus? Begründen Sie Ihre Antworten.
+
+\end{enumerate}
+
+\literatur
+
+\end{document}
