@@ -1,0 +1,275 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{syntax}
+\begin{document}
+
+\section{Aufgabe 2: SQL\footcite{db:pu:3}}
+
+Gegeben sind folgende Relationen aus einem Kundenverwaltungssystem:
+\footcite[DB/ST - Herbst 2018 (nicht vertieft -46116), Thema 1, TA1, A4]{examen:46116:2018:09}
+
+\begin{minted}{md}
+Kunde (ID), Vorname, Nachname, PLZ)
+Produkt (GTIN, Bezeichnung, Bruttopreis, MWStSatz)
+Kauf (ID[Kunde], GTIN[Produkt], Datum, Menge)
+\end{minted}
+
+Verwenden Sie im Folgenden nur Standard-SQL und keine
+produktspezifischen Erweiterungen. Sie dürfen bei Bedarf Views anlegen.
+Geben Sie einen Datensatz, also eine Entity, nicht mehrfach aus.
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Tabelle \emph{„Kauf“}
+anlegt. Gehen Sie davon aus, dass die Tabellen \emph{„Kunde“} und
+\emph{„Produkt“} bereits existieren.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+CREATE TABLE Kauf (
+  ID INTEGER REFERENCES Kunde(ID),
+  GTIN INTEGER REFERENCES Produkt(GTIN),
+  Datum DATE,
+  Menge INTEGER,
+  PRIMARY KEY (ID, GTIN, Datum)
+);
+\end{minted}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die \emph{Vorname} und
+\emph{Nachname} aller \emph{Kunden} mit der \emph{Postleitzahl}
+\emph{20251} ausgibt, absteigend sortiert nach \emph{Nachname} und bei
+gleichen \emph{Nachnamen}, absteigend nach \emph{Vorname}.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Vorname, Nachname
+FROM Kunde
+WHERE PLZ = 20251
+ORDER BY Nachname DESC, Vorname DESC;
+\end{minted}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die zu jedem Einkauf mit mehr
+als 10 unterschiedlichen Produkten den \emph{Nachnamen} des
+\emph{Kunden} und den \emph{Bruttogesamtpreis} des Einkaufs ausgibt. Ein
+Einkauf ist definiert als Menge aller Produkte, die ein bestimmter Kunde
+an einem bestimmten Datum kauft.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Nachname, SUM(Bruttopreis * Menge)
+FROM Kunde k, Produkt p, Kauf x
+WHERE k.ID = x.ID AND p.GTIN = x.GTIN
+GROUP BY Datum, Nachname, k.ID
+HAVING COUNT (*) > 10;
+\end{minted}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die \emph{GTINs} aller
+Produkte ausgibt, die an mindestens einen in der Datenbank enthaltenen
+PLZ-Bereich noch nie verkauft worden sind. Als in der Datenbank
+enthaltener PLZ-Bereich gelten alle in der Tabelle \emph{„Kunde“}
+enthaltenen PLZs. Ein Produkt gilt als an einen PLZ-Bereich verkauft,
+sobald es von mindestens einem Kunden aus diesem PLZ-Bereich gekauft
+wurde. Produkte, die bisher noch gar nicht verkauft worden sind, müssen
+nicht berücksichtigt werden.
+
+\begin{minted}{sql}
+SELECT PLZ
+FROM Kunde k
+GROUP BY PLZ
+HAVING NOT EXISTS (
+  SELECT DISTINCT Kauf.GTIN
+  FROM Kauf, Kunde
+  WHERE Kauf.ID = Kunde.ID AND Kunde.PLZ = k.PLZ
+);
+\end{minted}
+
+\begin{antwort}[muster]
+in Mysql gibt es kein EXCEPT
+
+\begin{minted}{sql}
+SELECT GTIN FROM
+(SELECT GTIN, PLZ
+FROM Kunde, Produkt)
+EXCEPT
+(SELECT DISTINCT x.GTIN, k.PLZ
+FROM Kunde k, Kauf x
+WHERE k.ID = x.ID)
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+WITH tmp AS (
+  SELECT x.GTIN, k.PLZ
+  FROM Kunde k, Kauf x
+  WHERE x.ID = k.ID
+  GROUP BY x.GTIN, k.PLZ
+)
+
+SELECT GTIN
+FROM tmp
+WHERE EXISTS
+(SELECT Kunde.PLZ
+FROM Kunde LEFT OUTER JOIN tmp
+ON Kunde.PLZ = tmp.PLZ
+WHERE tmp.PLZ IS NULL);
+\end{minted}
+
+oder eleganter
+
+\begin{minted}{sql}
+SELECT DISTINCT GTIN
+FROM
+(SELECT GTIN, PLZ
+FROM Kunde, Produkt)
+EXCEPT
+(SELECT x.GTIN, k.PLZ
+FROM Kunde k, Kauf x
+WHERE x.ID = k.ID
+GROUP BY x.GTIN, k.PLZ)
+\end{minted}
+
+Statt WITH koennen auch VIEWs erstellt werden !
+Eine Konstruktion mit NOT IN sollte auch moeglich sein
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Top-Ten der am meisten
+verkauften Produkte ausgibt. Ausgegeben werden sollen der Rang (1 bis
+10) und die Bezeichnung des Produkts. Gehen Sie davon aus, dass es keine
+zwei Produkte mit gleicher Verkaufszahl gibt und verwenden Sie keine
+produktspezifischen Anweisungen wie beispielsweise \verb|ROWNUM|,
+\verb|TOP| oder \verb|LIMIT|.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+WITH Gesamtverkauf AS
+(SELECT k.GTIN, Bezeichnung, SUM (Menge) AS Gesamtmenge)
+FROM Produkt p, Kauf k
+WHERE p.GTIN = k.GTIN
+GROUP BY k.GTIN, Bezeichnung)
+
+SELECT g1.Bezeichnung, COUNT (*) AS Rang
+FROM Gesamtverkauf g1, Gesamtverkauf g2
+WHERE g1.Gesamtmenge <= g2.Gesamtmenge
+GROUP BY g1.GTIN, g1.Bezeichnung
+HAVING COUNT (*) <=10
+ORDER BY Rang;
+\end{minted}
+\end{antwort}
+
+%%
+% (f)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die alle Produkte löscht, die
+noch nie gekauft wurden.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+DELETE FROM Produkt
+WHERE GTIN NOT IN
+(
+  SELECT DISTINCT GTIN
+  FROM Kauf
+);
+\end{minted}
+\end{antwort}
+\end{enumerate}
+
+\begin{minted}{sql}
+-- sudo mysql < Kundenverwaltungssystem.sql
+DROP DATABASE IF EXISTS Kundenverwaltungssystem;
+CREATE DATABASE Kundenverwaltungssystem;
+USE Kundenverwaltungssystem;
+
+CREATE TABLE Kunde(
+	ID INTEGER PRIMARY KEY,
+	Vorname VARCHAR(30),
+	Nachname VARCHAR(30),
+	PLZ INTEGER
+);
+
+CREATE TABLE Produkt(
+	GTIN INTEGER PRIMARY KEY,
+	Bezeichnung VARCHAR(40),
+	Bruttopreis DOUBLE,
+	MWStSatz INTEGER
+);
+
+CREATE TABLE Kauf(
+  ID INTEGER REFERENCES Kunde(ID),
+  GTIN INTEGER REFERENCES Produkt(GTIN),
+  Datum DATE,
+  Menge INTEGER,
+  PRIMARY KEY (ID, GTIN, Datum)
+);
+
+INSERT INTO Kunde VALUES (1, 'Max', 'Mustermann',91052);
+INSERT INTO Kunde VALUES (2, 'Erika', 'Musterfrau',91052);
+INSERT INTO Kunde VALUES (3, 'Max', 'Meyer',91058);
+INSERT INTO Kunde VALUES (4, 'Hans', 'Schmidt',91054);
+INSERT INTO Kunde VALUES (5, 'Eva', 'Müller',91056);
+INSERT INTO Kunde VALUES (6, 'Hanna', 'Winter',20251);
+INSERT INTO Kunde VALUES (7, 'Bert', 'Sommer',20251);
+INSERT INTO Kunde VALUES (8, 'Jakob', 'Sommer',20251);
+
+INSERT INTO Produkt VALUES (123, 'Buch', 12.30,19);
+INSERT INTO Produkt VALUES (124, 'Kaffee', 4.30,7);
+INSERT INTO Produkt VALUES (125, 'Pullover', 36.40,19);
+INSERT INTO Produkt VALUES (113, 'Heft', 2.30,19);
+INSERT INTO Produkt VALUES (023, 'Honig', 3.20,7);
+INSERT INTO Produkt VALUES (155, 'T-Shirt', 19.30,19);
+INSERT INTO Produkt VALUES (189, 'Nudeln', 1.30,7);
+INSERT INTO Produkt VALUES (004, 'Sonnenbrille', 40.60,19);
+INSERT INTO Produkt VALUES (324, 'Hammer', 22.80,19);
+INSERT INTO Produkt VALUES (112, 'Topf', 50.20,19);
+INSERT INTO Produkt VALUES (453, 'Klopapier', 3.30,7);
+INSERT INTO Produkt VALUES (765, 'Duschgel', 1.89,19);
+INSERT INTO Produkt VALUES (889, 'Deko', 5.89,19);
+
+INSERT INTO Kauf VALUES(1,123,'2019-04-11',1);
+INSERT INTO Kauf VALUES(1,124,'2019-04-11',21);
+INSERT INTO Kauf VALUES(1,125,'2019-04-11',1);
+INSERT INTO Kauf VALUES(1,765,'2019-04-11',4);
+INSERT INTO Kauf VALUES(1,453,'2019-04-11',1);
+INSERT INTO Kauf VALUES(1,324,'2019-04-11',3);
+INSERT INTO Kauf VALUES(1,113,'2019-04-11',2);
+INSERT INTO Kauf VALUES(1,023,'2019-04-11',1);
+INSERT INTO Kauf VALUES(1,189,'2019-04-11',1);
+INSERT INTO Kauf VALUES(1,112,'2019-04-11',7);
+INSERT INTO Kauf VALUES(1,155,'2019-04-11',7);
+INSERT INTO Kauf VALUES(1,004,'2019-05-11',6);
+INSERT INTO Kauf VALUES(7,112,'2019-04-11',7);
+INSERT INTO Kauf VALUES(5,112,'2019-04-11',7);
+INSERT INTO Kauf VALUES(8,112,'2019-06-23',5);
+INSERT INTO Kauf VALUES(8,112,'2019-04-12',3);
+INSERT INTO Kauf VALUES(2,112,'2019-04-23',1);
+INSERT INTO Kauf VALUES(2,112,'2019-08-11',8);
+INSERT INTO Kauf VALUES(4,112,'2019-10-10',2);
+INSERT INTO Kauf VALUES(2,453,'2019-09-24',4);
+INSERT INTO Kauf VALUES(4,004,'2019-07-30',9);
+\end{minted}
+
+\end{document}

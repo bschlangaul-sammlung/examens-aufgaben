@@ -1,0 +1,238 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{syntax,mathe}
+\begin{document}
+
+\section{Aufgabe 2\footcite{db:pu:3}}
+
+\noindent
+Gehen Sie dabei von dem dazugehörigen relationalen Schema aus:
+\footcite[DB/ST - Frühjahr 2016, 66116, Thema 1, TA 1, A 2]{examen:66116:2016:03}
+\bigskip
+
+{
+\noindent
+\ttfamily
+\footnotesize
+Polizist: \{[\underline{PersNr}, DSID, Vorname, Nachname, Dienstgrad, Gehalt]\}\\
+Dienststelle: \{[\underline{DSID}, Name, Strasse, HausNr, Stadt ]\}\\
+Fall: \{[\underline{AkZ}, Titel, Beschreibung, Status ]\}\\
+Arbeitet\_An: \{[\underline{PersNr}, AkZ, Von, Bis]\}\\
+Vorgesetzte: \{[\underline{PersNr}, PersNr, Vorgesetzter]\}
+}
+
+\bigskip
+
+\noindent
+Gegeben sei folgendes ER-Modell, welches Polizisten, deren Dienststelle
+und Fälle, an denen sie arbeiten, speichert:
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Formulieren Sie eine Anfrage in relationaler Algebra, welche den
+\emph{Vornamen} und \emph{Nachnamen} von Polizisten zurückgibt, deren
+Dienstgrad \emph{„Polizeikommissar“} ist und die mehr als 1500 Euro
+verdienen.
+
+\begin{antwort}
+$\pi_{\text{Vorname,Nachname}}(
+  \sigma_{
+    \text{Dienstgrad} = \mlq \text{Polizeikommissar} \mrq
+      \land
+    \text{Gehalt} > 1500
+  }(\text{Polizist})
+)$
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Formulieren Sie eine Anfrage in relationaler Algebra, welche die
+\emph{Titel} der \emph{Fälle} ausgibt, die von \emph{Polizisten} mit dem
+\emph{Nachnamen} \emph{„Mayer“} bearbeitet wurden.
+
+\begin{antwort}
+$
+\pi_{\text{Titel}}(
+  \sigma_{\text{Nachname} = \mlq \text{Mayer} \mrq}(\text{Polizist})
+  \bowtie_{\text{PersNr}}
+  \text{Arbeitet\_an}
+  \bowtie_{\text{AkZ}}
+  \text{Fall}
+)
+$
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Formulieren Sie eine SQL-Anfrage, welche die Anzahl der
+Polizisten ausgibt, die in der Stadt \emph{„München“} arbeiten und mit
+Nachnamen \emph{„Schmidt“} heißen.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT COUNT(*) AS Anzahl_Polizisten
+FROM Polizist p, Dienststelle d
+WHERE
+  p.DSID = d.DSID AND
+  d.Name = 'München' AND
+  p.Nachname = 'Schmidt';
+\end{minted}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Formulieren Sie eine SQL-Anfrage, welche die \emph{Namen} der
+\emph{Dienststellen} ausgibt, die am \emph{14.02.2012} an dem Fall mit
+dem \emph{XZ1508} beteiligt waren. Ordnen Sie die Ergebnismenge
+alphabetisch (aufsteigend) und achten Sie darauf, dass keine Duplikate
+enthalten sind.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT DISTINCT d.Name
+FROM Dienstelle d, Polizist p, Arbeitet_an a
+WHERE
+  a.AkZ = 'XZ1508' AND
+  p.PersNr = a.PersNr AND
+  p.DSID = d.DSID AND
+  a.Von >= '14.02.2012' AND
+  a.Bis <= '14.02.2012' AND
+ORDER BY d.Name ASC;
+\end{minted}
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item Definieren Sie die View \emph{„Erstrebenswerte Dienstgrade“},
+welche Dienstgrade enthalten soll, die in \emph{München} mit
+durchschnittlich mehr als \emph{2500} Euro besoldet werden.
+
+\begin{antwort}
+\begin{minted}{sql}
+CREATE VIEW ErstrebenswerteDienstgrade AS (
+  SELECT DISTINCT d.Dienstgrad
+  FROM Polizist p, Dienststelle d
+  WHERE
+    p.DSID = d.DSID AND
+    d.Dienststelle = 'München';
+  GROUP BY Dienstgrad
+  HAVING (AVG(Gehalt) > 2500);
+)
+\end{minted}
+\end{antwort}
+
+%%
+% (f)
+%%
+
+\item Formulieren Sie eine SQL-Anfrage, welche \emph{Vorname},
+\emph{Nachname} und \emph{Dienstgrad} von \emph{Polizisten} mit
+\emph{Vorname}, \emph{Nachname} und \emph{Dienstgrad} ihrer
+\emph{Vorgesetzten} als ein Ergebnis-Tupel ausgibt (siehe
+Beispiel-Tabelle). Dabei sind nur \emph{Polizisten} zu selektieren, die
+an Fällen gearbeitet haben, deren Titel den Ausdruck „Fussball“
+beinhalten. An \emph{Vorgesetzte} sind keine Bedingungen gebunden.
+Achten Sie darauf, dass Sie nicht nur direkte Vorgesetzte, sondern alle
+Vorgesetzte innerhalb der Vorgesetzten-Hierarchie betrachten. Ordnen Sie
+ihre Ergebnismenge alphabetisch (absteigend) nach Nachnamen des
+Polizisten.
+
+Hinweis: Sie dürfen Views verwenden, um Teilergebnisse auszudrücken.
+
+\begin{antwort}
+
+\begin{minted}{sql}
+WITH RECURSIVE meins (PersNr, VN, NN, DG, VN_VG, NN_VG, DG_VG)
+  SELECT PersNr, Vorname as VN, Nachname AS VN, Dienstgrad AS DG_VG
+  FROM Polizist p1, Fall f, Arbeitet_An a, Polizist p2
+  WHERE
+    p1.PersNr = a.PersNr AND
+    a.AkZ = f.Akz AND
+    f.Titel CONTAINS "Fussball" AND
+    p1.Vorgesetzter = p2.PersNr
+  UNION ALL
+  SELECT m.PersNr, m.Vorname, m.Nachname, p.Vorname AS VN,
+    p.Nachname AS VN, p.Dienstgrad AS DG_VG
+  FROM meins m, Polizist p, Vorgesetzte v
+  WHERE m.PersNr = v.PersNr AND p.PersNr_Vorgesetzter = p.PersNr;
+
+SELECT VN, NN, NN, DG, VN_DG, NN_VG, DG_VG
+FROM meins
+ORDER BY NN DESC;
+\end{minted}
+\end{antwort}
+\end{enumerate}
+
+\begin{minted}{sql}
+CREATE TABLE Dienststelle(
+DSID INT PRIMARY KEY,
+Name VARCHAR (30),
+Strasse VARCHAR (30),
+HausNr VARCHAR (30),
+Stadt VARCHAR (30));
+
+INSERT INTO Dienststelle VALUES
+(10, 'Stadt Mitte', NULL, NULL, 'Muenchen'),
+(11, 'Stadt Mitte', NULL, NULL, 'Nuernberg'),
+(12, 'Stadt Mitte', NULL, NULL, 'Augsburg');
+
+CREATE TABLE Polizist(
+PersNr INT Primary KEY,
+DSID INT REFERENCES Dienststelle(DSID),
+Vorname VARCHAR (30),
+Nachname VARCHAR (30),
+Dienstgrad VARCHAR (30),
+Gehalt INT);
+
+INSERT INTO Polizist
+VALUES
+(1, 10, 'Hans', 'Müller', 'Polizeimeister', 40000),
+(2, 11, 'Josef', 'Fischer', 'Polizeihauptmeister', 45000),
+(3, 10, 'Andreas', 'Schmidt', 'Polizeikommisar', 50000),
+(4, 12, 'Stefan', 'Hoffmann', 'Polizeidirektor', 70000),
+(5, 11, 'Sebastian', 'Wagner', 'Polizeioberkommisar', 60000);
+
+CREATE TABLE Fall(
+AkZ VARCHAR (30) PRIMARY KEY,
+Titel VARCHAR (30),
+Beschreibung VARCHAR (50),
+Status VARCHAR (30));
+
+INSERT INTO Fall
+VALUES
+('VR30932', 'Mord im Fussballstadion', 'Toter BVB-Fan', 'bearbeitet');
+
+CREATE TABLE Arbeitet_An(
+PersNr INT References Polizist(PersNr),
+AkZ VARCHAR (30) References Fall(AkZ),
+Von DATE,
+Bis DATE,
+PRIMARY KEY (PersNr, AkZ));
+
+INSERT INTO Arbeitet_An VALUES
+(1, 'VR30932', '2012-02-15', '2012-04-12'),
+(2, 'VR30932', '2012-02-15', '2012-04-12');
+
+CREATE TABLE Vorgesetzte(
+PersNr INT References Polizist(PersNr),
+PersNr_Vorgesetzter INT References Polizist(PersNr),
+PRIMARY KEY (PersNr, PersNr_Vorgesetzter));
+
+INSERT INTO Vorgesetzte VALUES
+(1,3),
+(1,4),
+(2,5),
+(2,4);
+\end{minted}
+\end{document}
