@@ -405,6 +405,21 @@ Materialsammlung für das Studium Lehramt Informatik
 - [pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66118/2019-03.pdf) [txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66118/2019-03.txt) 2019 Frühjahr
 - [pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66118/2019-09.pdf) [txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66118/2019-09.txt) 2019 Herbst
 
+# Ordner-Struktur
+
+`03` steht für Frühjahr `09` steht für Herbst
+
+eine Aufgabe:
+`Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-2/Aufgabe-2.tex`
+
+geTeXtes komplettes Staatsexamen:
+`Staatsexamen/66116/2018/03/Staatsexamen.tex`
+
+gescanntes komplettes Staatsexamen (Angabe):
+`Staatsexamen/66116/2018/03/Scann.pdf`
+
+OCR des oben genannten Scanns:
+`Staatsexamen/66116/2018/03/OCR.txt`
 
 # TeX-Klassen und Pakete installieren
 

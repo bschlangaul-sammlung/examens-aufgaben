@@ -6,3 +6,4 @@
 
 % Formatierung muss vor literatur sein, sonst Option clash
 \InformatikPakete{formatierung,literatur,makros}
+\RequirePackage{standalone}
