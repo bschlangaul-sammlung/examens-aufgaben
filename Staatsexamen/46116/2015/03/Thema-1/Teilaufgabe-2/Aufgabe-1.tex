@@ -1,0 +1,131 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{syntax,mathe}
+\begin{document}
+
+\section{1. Relationale Anfragesprachen
+\footcite[Staatsexamen Softwaretechnologie/Datenbanksysteme, Thema Nr. 1,
+Teilaufgabe II, Aufgabe 1, Frühjar 2015 Realschule]{examen:46116:2015:09}
+}
+
+Gegeben sei folgendes relationales Schema, dessen Attribute nur atomare
+Attributwerte besitzen.
+\footcite{db:ab:2}
+
+Computer: \{IP, Name, Hersteller, Modell, Standort\}
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Geben Sie für die folgenden Anfragen einen relationalen Ausdruck
+an:
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Geben Sie die IP-Adresse des Computers mit Namen „Chiemsee“ aus.
+
+\begin{antwort}
+$\pi_{\text{IP}}(\sigma_{\text{Name} = \text{Chiemsee}}(\text{Computer}))$
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Geben Sie 2er-Tupel von IP-Adressen der Computer am selben
+Standort aus.
+
+\begin{antwort}
+\begin{multline*}
+\pi_{\text{c1.IP},\text{c2.IP}}(
+  \sigma_{\text{c1.Standort} = \text{c2.Standort}}(\\
+    \rho_{\text{c1}} (\text{Computer})
+    \times
+    \rho_{\text{c2}} (\text{Computer})
+  )
+)
+\end{multline*}
+\end{antwort}
+\end{enumerate}
+
+%%
+% (2)
+%%
+
+\item Formulieren Sie die folgenden Anfragen in SQL:
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Geben Sie die IP-Adressen der Rechner am Standort „Büro2“ aus.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT IP FROM Computer WHERE Standort = 'Büro2';
+\end{minted}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Geben Sie alle Computer-Namen in aufsteigender Ordnung mit ihren
+IP-Adressen aus.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT Name, IP FROM Computer ORDER BY Name ASC;
+\end{minted}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Geben Sie für jeden Hersteller die Anzahl der unterschiedlichen
+Modelle aus.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT COUNT(DISTINCT Modell), Hersteller
+FROM Computer
+GROUP BY Hersteller;
+\end{minted}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Geben Sie für jeden Hersteller, welcher mindestens 2
+unterschiedliche Modelle hat, die Anzahl der unterschiedlichen Modelle
+aus.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT Hersteller, COUNT(*) FROM Modelle GROUP BY Hersteller HAVING COUNT(*) > 1;
+\end{minted}
+\end{antwort}
+
+oder
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT COUNT(DISTINCT Modell), Hersteller
+FROM Computer
+GROUP BY Hersteller
+HAVING COUNT(DISTINCT Modell) >= 2;
+\end{minted}
+\end{antwort}
+\end{enumerate}
+\end{enumerate}
+\end{document}
