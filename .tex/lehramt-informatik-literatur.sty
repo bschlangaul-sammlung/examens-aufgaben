@@ -1,0 +1,31 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-literatur}[2020/11/27]
+
+%-----------------------------------------------------------------------
+% Citation
+%-----------------------------------------------------------------------
+
+% biblatex not working with lualatex and babel
+\RequirePackage{polyglossia}
+\setmainlanguage{german}
+%
+\RequirePackage{csquotes}
+\RequirePackage[
+  bibencoding=utf8,
+  citestyle=authortitle,
+  backend=biber,
+]{biblatex}
+\addbibresource{\LehramtInformatikRepository/Quellen/01-DB.bib}
+\addbibresource{\LehramtInformatikRepository/Quellen/02-OOMUP.bib}
+\addbibresource{\LehramtInformatikRepository/Quellen/03-AUD.bib}
+\addbibresource{\LehramtInformatikRepository/Quellen/04-SOSY.bib}
+\addbibresource{\LehramtInformatikRepository/Quellen/Allgemein.bib}
+\addbibresource{\LehramtInformatikRepository/Quellen/Examen.bib}
+\addbibresource{\LehramtInformatikRepository/Quellen/Wikipedia.bib}
+% To allow footnotes in the heading
+\RequirePackage[stable,multiple]{footmisc}
+
+%%
+% \literatur
+%%
+\def\literatur{\printbibliography[heading=subbibliography]}

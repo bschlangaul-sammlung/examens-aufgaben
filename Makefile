@@ -8,12 +8,17 @@ git_submodule:
 
 install_tex:
 	for BASENAME in \
+		basis \
 		baum \
 		cpm \
 		er \
+		formatierung \
 		gantt \
 		graph \
 		kontrollflussgraph \
+		literatur \
+		literatur-dummy \
+		makros \
 		mathe \
 		quicksort \
 		rmodell \
@@ -27,6 +32,7 @@ install_tex:
 
 	cp -f .tex/lehramt-informatik-sortieren.lua $(HOME)/texmf/tex
 	cp -f .tex/lehramt-informatik.cls $(HOME)/texmf/tex
+	cp -f .tex/lehramt-informatik-minimal.cls $(HOME)/texmf/tex
 
 	cp -f .tex/tikz-er2.sty $(HOME)/texmf/tex
 	cp -f .tex/tikz-er2.pdf $(HOME)/texmf/doc

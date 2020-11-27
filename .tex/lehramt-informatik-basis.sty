@@ -1,0 +1,13 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-basis}[2020/11/27]
+
+\RequirePackage{xparse}
+\ExplSyntaxOn
+\NewDocumentCommand{\InformatikPakete}{ m }
+{
+  \clist_map_inline:nn { #1 } { \RequirePackage{lehramt-informatik-##1} }
+}
+\ExplSyntaxOff
+
+% \def\LehramtInformatikRepository{/pfad/zum/repository}
+\input /etc/lehramt-informatik.config.tex

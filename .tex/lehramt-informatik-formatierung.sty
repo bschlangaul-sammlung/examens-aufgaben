@@ -1,0 +1,72 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-formatierung}[2020/11/27]
+
+%\RequirePackage{fontspec}
+% http://www.tug.org/pracjourn/2006-1/hartke/hartke.pdf
+%\usepackage{mathpple}
+%\usepackage{palatino}
+%\setmainfont{Palatino}
+
+\RequirePackage{mathpazo}
+\RequirePackage[no-math]{fontspec}
+\setmainfont{texgyrepagella}
+\setsansfont{QTAncientOlive}
+\RequirePackage{sectsty}
+\allsectionsfont{\fontspec{QTAncientOlive}}
+
+%-----------------------------------------------------------------------
+% Farben
+%-----------------------------------------------------------------------
+
+\RequirePackage{xcolor}
+\definecolor{infogray}{rgb}{0.97,0.97,0.97}
+
+%-----------------------------------------------------------------------
+% Überschriften
+%-----------------------------------------------------------------------
+
+\RequirePackage{titlesec}
+\titleformat{\chapter}[display]{\sffamily\bfseries}{}{0pt}{\LARGE}
+\titlespacing{\chapter}{0pt}{0pt}{*1}
+\titleformat{\paragraph}[hang]{\sffamily\normalsize\bfseries}{\theparagraph}{1em}{}
+\setcounter{secnumdepth}{0}
+
+%-----------------------------------------------------------------------
+% Listen
+%-----------------------------------------------------------------------
+
+\RequirePackage{paralist}
+\renewcommand\labelitemi{-}
+\renewcommand\labelitemii{-}
+\renewcommand\labelitemiii{-}
+\renewcommand\labelitemiv{-}
+% Counter: enumi enumii enumiii enumiv
+% Styles: \arabic{counter} \alph{counter} \Alph{counter} \roman{counter} \Roman{counter}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+
+%-----------------------------------------------------------------------
+% mdframed
+%-----------------------------------------------------------------------
+
+\RequirePackage{mdframed}
+\mdfsetup{backgroundcolor=infogray}
+
+%-----------------------------------------------------------------------
+% geometry
+%-----------------------------------------------------------------------
+
+%\RequirePackage[margin=3cm]{geometry}
+
+%-----------------------------------------------------------------------
+% fancyhdr
+%-----------------------------------------------------------------------
+
+\RequirePackage{fancyhdr}
+\fancyhead[L,C,R]{}
+\fancyfoot[L]{}
+\fancyfoot[C]{}
+\fancyfoot[R]{\thepage}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}

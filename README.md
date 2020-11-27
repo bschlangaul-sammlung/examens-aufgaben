@@ -441,36 +441,3 @@ git submodule update --init
 
 \end{document}
 ```
-
-# Java-Coding-Style
-
-## Methodenamen
-
-Verb im Imperativ: `berechneEinnahmen(...)` [wie in diesem Wikipedia-Artikel](https://de.wikipedia.org/wiki/Methode_(Programmierung)#Beispiel)
-
-Methodennamen sollen Verben sein und mit einem Kleinbuchstaben beginnen,
-z. B. add oder remove.
-[Wikipedia](https://de.wikipedia.org/wiki/Namenskonvention_(Datenverarbeitung)#Namenskonventionen_f%C3%BCr_Java)
-
-Wie intelij reformat code. Umlaute im Methodennamen etc sind erlaubt.
-
-```java
-public class WortPaar extends WörterbuchEintrag {
-  private final String deutsch;
-
-  private final String englisch;
-
-  public WortPaar(String deutsch, String englisch) {
-    this.deutsch = deutsch;
-    this.englisch = englisch;
-  }
-
-  public String gibDeutschesWort() {
-    return deutsch;
-  }
-
-  public String gibEnglischesWort() {
-    return englisch;
-  }
-}
-```
