@@ -1,0 +1,99 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{mathe,syntax}
+\begin{document}
+
+\section{Aufgabe 1: „Formale Verifikation“
+\footcite[46116 – Frühjahr 2014 – Thema 2, TA 1, Aufgabe 1]{examen:46116:2014:03}}
+
+Gegeben sei folgende Methode zur Berechnung der Anzahl der notwendigen
+Züge beim Spiel \emph{„Die Türme von Hanoi“}:
+\footcite{sosy:pu:5:1}
+
+\inputcode[firstline=4,lastline=15]{aufgaben/sosy/examen_46116_2014_03/Hanoi}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Beweisen Sie formal mittels vollständiger Induktion, dass zum
+Umlegen von $k$ Scheiben (z.\,B. vom Turm A zum Turm C) insgesamt
+$2^k-1$ Schritte notwendig sind, also dass für $k \geq 0$ folgender
+Zusammenhang gilt:
+
+\begin{displaymath}
+\text{hanoi}(k,\text{'A'},\text{'C'}) = 2^k - 1
+\end{displaymath}
+
+\begin{antwort}
+Zu zeigen:
+
+\begin{displaymath}
+\text{hanoi}(k,\text{'A'},\text{'C'}) = 2^k - 1
+\end{displaymath}
+
+%%
+%
+%%
+
+\ueberschrift{I. A.} $k=0$
+
+$\text{hanoi}(0,\text{'A'},\text{'C'}) = 0$
+
+$2^0 - 1 = 1 - 1 = 0$
+
+%%
+%
+%%
+
+\ueberschrift{I. V.}
+
+\begin{displaymath}
+\text{hanoi}(k,\text{'A'},\text{'C'}) = 2^k - 1
+\end{displaymath}
+
+%%
+%
+%%
+
+\ueberschrift{I. S.} $k \rightarrow k + 1$
+
+\begin{align*}
+\text{hanoi}(k +  1, \text{'A'},\text{'C'})
+& = 1 + \text{hanoi}(k, \text{'A'},\text{'B'}) + \text{hanoi}(k, \text{'B'},\text{'C'})\\
+& = 1 + 2^k - 1 +  2^k - 1 \\
+& = 2 \cdot 2^k - 1 \\
+& = 2^{k+1} - 1 \\
+\end{align*}
+
+\end{antwort}
+
+%%
+% b)
+%%
+
+\item Geben Sie eine geeignete Terminierungsfunktion an und begründen
+Sie kurz Ihre Wahl!
+
+\begin{antwort}
+Betrachte Argumentenfolge
+
+$k, k-1, k-2, \dots, 0$
+
+$\Rightarrow$ Terminierungsfunktion: $T(k) = k$
+
+Nachweis für ganzzahlige $k \geq 0$:
+
+\begin{itemize}
+\item $T(k)$ ist auf der Folge der Argumente streng monoton fallend bei
+jedem Rekursionsschritt.
+
+\item Bei der impliziten Annahme $k$ ist ganzzahlig und $k \geq 0$ ist
+$T(k)$ nach unten durch $0$ beschränkt.
+\end{itemize}
+
+\end{antwort}
+
+\end{enumerate}
+\end{document}

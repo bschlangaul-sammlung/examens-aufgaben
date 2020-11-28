@@ -1,0 +1,205 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{mathe,syntax}
+\begin{document}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgabe 3: wp-Kalkül und Schleifeninvariante\footcite{sosy:ab:8}}
+
+Gegeben Sei folgendes Programm:
+\footcite[nach Herbst 2015 (66116) - Thema 2, Teilaufgabe 2, Aufgabe 3]{66116:2015:09}
+
+\begin{minted}{java}
+long doubleFac (long n) {
+  /* P */ long df = 1;
+  for (long x = n; x > 1; x -= 2) {
+    df *= x;
+  } /* Q */
+  return df;
+}
+\end{minted}
+
+\noindent
+sowie die Vorbedingung $P \equiv n \geq 0$ und Nachbedingung $Q \equiv
+(df = n!!)$ wobei gilt
+
+\begin{equation*}
+n!! :=
+\begin{cases}
+2^k \cdot k! & n\text{ gerade, }k := \frac{n}{2} \\
+\frac{(2k)!}{2^k \cdot k!}& n\text{ ungerade, }k := \frac{n+1}{2}
+\end{cases}
+\end{equation*}
+
+\begin{exkurs}[Doppelfakultät]
+Die seltener verwendete „Doppelfakultät“ oder „doppelte Fakultät“ist für
+gerade $n$ das Produkt aller geraden Zahlen kleiner gleich $n$. Für
+ungerade $n$ ist es das Produkt aller ungeraden Zahlen kleiner gleich
+$n$.
+
+Sie ist definiert als:
+
+\begin{equation*}
+n!! = \begin{cases}
+n \cdot (n-2) \cdot (n-4) \dotsm 2 & \text{für } n \text{ gerade und } n > 0, \\
+n \cdot (n-2) \cdot (n-4) \dotsm 1 & \text{für } n \text{ ungerade und } n > 0, \\
+1 & \text{für } n \in \{ -1, 0\}
+\end{cases}
+\end{equation*}
+
+\noindent
+Häufig werden anstelle der Doppelfakultät Ausdrücke mit der gewöhnlichen
+Fakultät verwendet. Es gilt $(2k)!! = 2^k k!$  und $(2k-1)!! =
+\frac{(2k)!}{2^k k!}$
+\end{exkurs}
+
+\noindent
+Zur Vereinfachung nehmen Sie im Folgenden an, dass die verwendeten
+Datentypen unbeschränkt sind und daher keine Überläufe auftreten können.
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Welche der folgenden Bedingungen ist eine zum Beweisen der
+Korrektheit der Methode mittels wp-Kalkül sinnvolle Schleifeninvariante?
+
+\begin{itemize}
+\item $\text{df} = n!! − x!! \land x \geq 1$
+\item $\text{df} = (n − x)!! \land x \geq 1$
+\item $\text{df} \cdot x!! = n!! \land x \geq 0$
+\item $(\text{df} + x)!! = n!! \land x \geq 0$
+\end{itemize}
+
+\begin{antwort}
+Zunächst wird der Code in einen äquivalenten Code mit while-Schleife
+umgewandelt:
+
+\begin{minted}{java}
+long doubleFac (long n) {
+  /* P */ long df = 1;
+  long x = n ;
+  while (x > 1) {
+    df = df * x;
+    x = x - 2;
+  } /* Q */
+  return df;
+}
+\end{minted}
+
+Die ersten beiden Bedingungen sind unmöglich, da z.\,B. für $n = 2$ nach
+der Schleife $x = 0$ gilt und daher $x \geq 1$ verletzt wäre. Die letzte
+kann es auch nicht sein, da vor der Schleife $df = 1$ und $x = n$ gilt,
+d.\,h. $(\text{df} + x)!! = (1 + n)!!$. Jedoch ist offenbar $(1 + n)!!
+\not = n!!$. Nach dem Ausschlussprinzip ist es daher die dritte
+Bedingung: $I \equiv (\text{df} + x)!! = n!! \land x \geq 0$.
+
+\end{antwort}
+
+%%
+% (b)
+%%
+\item Zeigen Sie formal mittels wp-Kalkül, dass die von Ihnen gewählte
+Bedingung unmittelbar vor Beginn der Schleife gilt, wenn zu Beginn der
+Methode die Anfangsbedingung $P$ gilt.
+
+\begin{antwort}
+Zu zeigen $P \Rightarrow \wp{Code vor der Schleife}{I}$
+
+\begin{align*}
+\wp{Code vor der Schleife}{I}
+& \equiv \wp{df = 1; x = n;}{(\text{df} \cdot x)!! = n!! \land x \geq 0} \\
+& \equiv \wp{df = 1;}{(\text{df} \cdot n)!! = n!! \land n \geq 0} \\
+& \equiv \wp{}{(1 \cdot n)!! = n!! \land n \geq 0} \\
+& \equiv n!! = n!! \land n \geq 0 \\
+& \equiv n \geq 0 \\
+& \equiv P \\
+\end{align*}
+
+Insbesondere folgt damit die Behauptung.
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Zeigen Sie formal mittels wp-Kalkül, dass die von Ihnen gewählte
+Bedingung tatsächlich eine Invariante der Schleife ist.
+
+\begin{antwort}
+zu zeigen: $I \land \text{Schleifenbedingung} \Rightarrow \wp{Code in der Schleife}{I}$
+
+Bevor wir dies beweisen, zeigen wir erst $x \cdot (x − 2)!! = x!!$.
+
+\begin{itemize}
+\item Fall $x$ ist gerade ($n!! = 2^k \cdot k!$ für $k := \frac{n}{2}$):
+
+$x \cdot (x - 2)!! =
+x \cdot 2^\frac{x - 2}{2} \cdot (\frac{x - 2}{2})! =
+x \cdot \frac{1}{2} \cdot 2^\frac{x}{2} \cdot (\frac{x}{2} - 1)! =
+2^\frac{x}{2} \cdot (\frac{x}{2})! =
+x!!
+$
+
+Nebenrechnung (Division mit gleicher Basis: $x^{a-b} = \frac{x^a}{x^b}$):
+
+$2^\frac{x - 2}{2} =
+2^{(\frac{x}{2} - \frac{2}{2})} =
+\frac{2^\frac{x}{2}}{2^\frac{2}{2}} =
+\frac{2^\frac{x}{2}}{2^1} =
+\frac{2^\frac{x}{2}}{2} =
+\frac{1}{2} \cdot 2^\frac{x}{2}
+$
+
+Nebenrechnung ($n! = (n - 1)! \cdot n$):
+
+$x \cdot \frac{1}{2} \cdot (\frac{x}{2} - 1)! =
+\frac{x}{2} \cdot (\frac{x}{2} - 1)! =
+\frac{x}{2}!
+$
+
+\item Fall $x$ ist ungerade:
+\end{itemize}
+
+Dies benutzen wir nun, um den eigentlichen Beweis zu führen:
+
+\begin{align*}
+\wp{Code vor der Schleife}{I}
+& \equiv \wp{df = df * x; x = x - 2;}{(\text{df} \cdot x)!! = n!! \land x \geq 0} \\
+& \equiv \wp{df = df * x;}{(\text{df} \cdot (x - 2)))!! = n!! \land x - 2 \geq 0} \\
+& \equiv \wp{}{(\text{df} \cdot x \cdot (x - 2)))!! = n!! \land x - 2 \geq 0} \\
+& \equiv (\text{df} \cdot x)!! = n!! \land x \geq 2 \\
+& \equiv (\text{df} \cdot x)!! = n!! \land x > 1 \\
+& \equiv I \land x > 1 \\
+& \equiv I \land \text{Schleifenbedingung} \\
+\end{align*}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Zeigen Sie formal mittels wp-Kalkül, dass am Ende der Methode die
+Nachbedingung $Q$ erfüllt wird.
+
+%%
+% (e)
+%%
+
+\item Beweisen Sie, dass die Methode immer terminiert. Geben Sie dazu
+eine Terminierungsfunktion an und begründen Sie kurz ihre Wahl.
+
+\begin{antwort}
+Sei $T (x) := x$. $T$ ist offenbar ganzzahlig. Da $x$ in jedem
+Schleifendurchlauf um $2$ verringert wird, ist $T$ streng monoton
+fallend. Aus der Schleifeninvariante folgt $x \geq 0$ und daher ist $x$
+auch nach unten beschränkt. Damit folgt $I \Rightarrow T \geq 0$ und $T$
+ist eine gültige Terminierungsfunktion.
+\end{antwort}
+
+\end{enumerate}
+\end{document}

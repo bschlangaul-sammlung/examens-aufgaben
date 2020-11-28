@@ -1,0 +1,113 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{syntax,mathe}
+\begin{document}
+
+\section{Aufgabe 3: „Formale Verifikation“\footcite{examen:46116:2015:09}}
+
+Sei \text{wp}(A, Q) die schwächste Vorbedingung (weakest precondition)
+eines Programmfragments $A$ bei gegebener Nachbedingung $Q$ so, dass $A$
+alle Eingaben, die \text{wp}(A,Q) erfüllen, auf gültige Ausgaben
+abbildet, die $Q$ erfüllen.
+
+Bestimmen Sie schrittweise und formal (mittels Floyd-Hoare-Kalkül)
+jeweils \text{wp}(A, Q) für folgende Code-Fragmente $A$ und
+Nachbedingungen $Q$ und vereinfachen Sie dabei den jeweils ermittelten
+Ausdruck so weit wie möglich.
+
+Die Variablen $x$, $y$ und $z$ in folgenden Pseudo-Codes seien
+ganzzahlig (vom Typ int). Zur Vereinfachung nehmen Sie bitte im
+Folgenden an, dass die verwendeten Datentypen unbeschränkt sind und
+daher keine Überläufe auftreten können.
+\footcite{sosy:pu:5}
+
+\begin{enumerate}
+% \item Sequenz:
+% x = -2 * (x + 2 * vy)?
+% yt= 2* x+yt 2
+% Z-= X- yr zZ
+% Q:=x=yt+z
+
+\item Verzweigung:
+
+% if (x < y) {
+% KX =yit Z
+% } else if (y > 0) {
+
+% z=y-];
+% } else {
+
+% x -= y = 2;
+% }
+% O:=ex>z
+
+\item Mehrfachauswahl:
+
+\begin{minted}{java}
+switch (z) {
+  case "x":
+    y = "x";
+  case "y":
+    y = --z;
+    break;
+  default:
+    y = 0x39 + "?";
+}
+\end{minted}
+
+$Q :\equiv \texttt{"x"} = y$
+
+Hinweis zu den ASCII-Codes
+
+\begin{itemize}
+\item $\texttt{"x"} = 120_{(10)}$
+\item $\texttt{"y"} = 121_{(10)}$
+\item $\texttt{0x39} = 57_{(10)}$
+\item $\texttt{"?"} = 63_{(10)}$
+\end{itemize}
+
+\end{enumerate}
+
+\begin{antwort}
+Mehrfachauswahl in Bedingte Anweisungen umschreiben. Dabei beachten,
+dass bei fehlendem \java{break} die Anweisungen im folgenden Fall bzw.
+ggf. in den folgenden Fällen ausgeführt werden:
+
+\begin{minted}{java}
+if (z == "x") {
+  y = "x";
+  y = z - 1;
+} else if (z == "y") {
+  y = z - 1;
+} else {
+  y = 0x39 + "?";
+}
+\end{minted}
+
+Da kein \java{break} im Fall \java{z == "x"}. \java{--z} bedeutet, dass
+die Variable erst um eins verringert und dann zugewiesen wird.
+
+\begin{minted}{java}
+if (z == 120) {
+  y = 120;
+  y = 120 - 1;
+} else if (z == 121) {
+  y = 121 - 1;
+} else {
+  y = 57 + 63;
+}
+\end{minted}
+
+Vereinfachung / Zusammenfassung:
+
+\begin{minted}{java}
+if (z == 120) {
+  y = 120;
+  y = 119;
+} else if (z == 121) {
+  y = 120;
+} else {
+  y = 120;
+}
+\end{minted}
+\end{antwort}
+\end{document}
