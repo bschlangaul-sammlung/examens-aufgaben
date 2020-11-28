@@ -416,9 +416,9 @@ geTeXtes komplettes Staatsexamen:
 `Staatsexamen/66116/2018/03/Staatsexamen.tex`
 
 gescanntes komplettes Staatsexamen (Angabe):
-`Staatsexamen/66116/2018/03/Scann.pdf`
+`Staatsexamen/66116/2018/03/Scan.pdf`
 
-OCR des oben genannten Scanns:
+OCR des oben genannten Scans:
 `Staatsexamen/66116/2018/03/OCR.txt`
 
 # TeX-Klassen und Pakete installieren

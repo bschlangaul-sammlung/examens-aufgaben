@@ -1,0 +1,114 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{syntax}
+\begin{document}
+
+\section{Aufgabe 13: Personalverwaltung
+\footcite[Stex RS DB, Frühjahr 2012,
+Thema Nr. 1, Teilaufgabe I, Aufgabe 3]{46116:2012:03}}
+
+Gegeben ist folgendes einfache Datenbankschema zur Personalverwaltung
+(Schlüsselattribute unterstrichen, Fremdschlüssel kursiv):
+\footcite{db:ab:7}
+{
+\noindent
+\ttfamily
+Angestellter (\underline{PersNr}, Name, Gehalt, Beruf, \emph{AbtNr}, Ort)\\
+Abteilung (\underline{AbtNr}, Name, Ort)
+}
+
+\noindent
+Formulieren Sie folgende Datenbankoperationen in SQL:
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Welche Angestellten sind von Beruf Koch und verdienen mehr als
+5000 €?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT name
+FROM Angestellter
+WHERE Beruf = 'Koch' AND Gehalt > 5000:
+\end{minted}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Welche Angestellten der Abteilung B17 sind aus München?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Name
+FROM Angestellter, Abteilung
+WHERE
+  Angestellter.AbtNr = Abteilung.AbtNr AND
+  Abteilung.Name = 'B17' AND
+  Abgesteller.Ort = 'München';
+\end{minted}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Hans Meier aus der Abteilung C4 zieht von München nach Erlangen um.
+
+\begin{antwort}[falsch]
+Zu komplitziert möglicherweise falsch
+\begin{minted}{sql}
+UPDATE Angesteller
+SET Ort = 'Erlangen'
+WHERE PersNr IN (
+  SELECT PersNr
+  FROM Angestellter an, Abteilung ab
+  WHERE
+    an.AbtNr = ab.AbtNr AND
+    an.Name = 'Hans Meier' AND
+    an.Ort = 'München' AND
+    ab.Name = 'C4'
+);
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+UPDATE Angestellter SET Ort = "Erlangen"
+WHERE Name = "Hans Meier" AND (
+  SELECT ab.AbtNr
+  FROM Abteilung ab
+  WHERE ab.Name = "C4"
+) = AbtNr;
+\end{minted}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Abteilung C4 wird aufgelöst.
+
+%%
+% (e)
+%%
+
+\item Formulieren Sie folgende SQL-Anfrage umgangssprachlich und so
+exakt wie möglich.
+
+\begin{minted}{sql}
+SELECT AbtNr
+FROM Abteilung a, (
+  SELECT PersNr, Name, AbtNr
+  FROM Angestellter
+  WHERE Gehalt < 2000) t
+WHERE
+a.AbtNr = t.AbtNr AND a.Ort = "Nuernberg";
+\end{minted}
+
+\end{enumerate}
+\end{document}

@@ -30,15 +30,20 @@ const vorlage =
 \\end{document}
 `
 
-const thema = `Thema-${process.argv[3]}`
-const teilAufgabe = `Teilaufgabe-${process.argv[4]}`
-const aufgabe = `Aufgabe-${process.argv[5]}.tex`
+const themaNummer = process.argv[3]
+const thema = `Thema-${themaNummer}`
+const teilAufgabeNummer = process.argv[4]
+const teilAufgabe = `Teilaufgabe-${teilAufgabeNummer}`
+const aufgabeNummer = process.argv[5]
+const aufgabe = `Aufgabe-${aufgabeNummer}.tex`
 
 const zielPfad = path.join(__dirname, '..', 'Staatsexamen', examensNummer, jahr, monat, thema, teilAufgabe, aufgabe)
 console.log(zielPfad)
 
 fs.mkdirSync(path.dirname(zielPfad), { recursive: true })
-fs.writeFileSync(zielPfad, vorlage, { encoding: 'utf-8' })
+if (!fs.existsSync(zielPfad)) {
+  fs.writeFileSync(zielPfad, vorlage, { encoding: 'utf-8' })
+}
 
 const subprocess = childProcess.spawn('/usr/bin/code', [zielPfad], {
   detached: true,
@@ -46,3 +51,5 @@ const subprocess = childProcess.spawn('/usr/bin/code', [zielPfad], {
 })
 
 subprocess.unref()
+
+console.log(`\n\\ExamensAufgabe ${examensNummer} / ${jahr} / ${monat} : Thema ${themaNummer} Teilaufgabe ${teilAufgabeNummer} Aufgabe ${aufgabeNummer}`)
