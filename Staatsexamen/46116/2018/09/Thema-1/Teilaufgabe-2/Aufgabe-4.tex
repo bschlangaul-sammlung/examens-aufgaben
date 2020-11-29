@@ -1,0 +1,79 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{syntax}
+\begin{document}
+
+\section{DB/ST - Herbst 2018 (46116, nicht vertieft), Thema 1, TA II, A4
+- Ausschnitte
+\footcite[Aufgabe 6: SQL Einstieg]{db:pu:1}
+}
+
+Gegeben sind folgende Relationen aus einem Kundenverwaltungssystem:
+\footcite[DB/ST - Herbst 2018 (46116, nicht vertieft), Thema 1, TA II, A4
+- Ausschnitte]{examen:46116:2018:09}
+
+\begin{minted}{md}
+Kunde (ID, Vorname, Nachname, PLZ)
+Produkt (GTIN, Bezeichnung, Bruttopreis, MWStSatz)
+Kauf (ID[Kunde], GTIN[Produkt], Datum, Menge)
+\end{minted}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die \emph{Vorname} und
+\emph{Nachname} aller \emph{Kunden} mit der Postleitzahl \emph{20251}
+ausgibt, \emph{absteigend} sortiert nach \emph{Nachname} und bei
+gleichen Nachnamen absteigend nach \emph{Vorname}.
+
+ASC (ascending) = aufsteigend
+DESC (descending) = absteigend
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Vorname, Nachname
+FROM Kunde
+WHERE PLZ = 20251
+ORDER BY Nachname, Vorname DESC;
+\end{minted}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Bezeichnung aller
+Produkte ausgibt, deren Bruttopreis größer ist als 10 €.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT Bezeichnung
+FROM Produkt
+WHERE Bruttopreis > 10;
+\end{minted}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Tabelle „Kauf“ anlegt.
+Gehen Sie davon aus, dass die Tabellen „Kunde“ und „Produkt“ bereits
+existieren.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+CREATE TABLE Kauf (
+  ID INTEGER REFERENCES Kunde(ID),
+  GTIN INTEGER REFERENCES Produkt(GTIN),
+  Datum DATE,
+  Menge INTEGER,
+  PRIMARY KEY (ID, GTIN, Datum)
+);
+\end{minted}
+\end{antwort}
+\end{enumerate}
+\end{document}

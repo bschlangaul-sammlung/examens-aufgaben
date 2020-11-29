@@ -1,0 +1,251 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{mathe,syntax}
+\usepackage{fancyvrb}
+\begin{document}
+
+\section{2. SQL und relationale Algebra\footcite{examen:66116:2016:09}}
+
+Gegeben sei der folgende Ausschnitt aus dem Schema einer Schulverwaltung:
+\footcite{db:ab:examen-gym-2016-09}
+
+\newcommand{\tmpu}[1]{\underline{\texttt{#1}}}
+
+\begin{Verbatim}[commandchars=+*~]
+Person : {[
+  +tmpu*ID~ : INTEGER,
+  Name : VARCHAR(255),
+  Wohnort : VARCHAR(255),
+  Typ : CHAR(1)
+]}
+
+Unterricht : {[
+  +tmpu*Klassenbezeichnung~ : VARCHAR(20),
+  +tmpu*Schuljahr~ : INTEGER,
+  +tmpu*Lehrer~ : INTEGER,
+  +tmpu*Fach~ : VARCHAR(100)
+]}
+
+Klasse : {[
+  +tmpu*Klassenbezeichnung~ : VARCHAR(20),
+  +tmpu*Schuljahr~ : INTEGER,
+  Klassenlehrer : INTEGER
+]}
+
+Klassenverband : {[
+  +tmpu*Schüler~ : INTEGER,
+  Klassenbezeichnung : VARCHAR(20),
+  +tmpu*Schuljahr~ : INTEGER
+]}
+\end{Verbatim}
+
+\noindent
+Hierbei enthält die Tabelle \emph{Person} Informationen über Lehrer (Typ
+’L’) und Schüler (Typ ’S’); andere Werte für Typ sind nicht zulässig.
+\emph{Klasse} beschreibt die Klassen, die in jedem Schuljahr gebildet
+wurden, zusammen mit ihrem Klassenlehrer. In \emph{Unterricht} wird
+abgelegt, welcher Lehrer welches Fach in welcher Klasse unterrichtet; es
+ist möglich, dass derselbe Lehrer mehr als ein Fach in einer Klasse
+unterrichtet. \emph{Klassenverband} beschreibt die Zuordnung der Schüler
+zu den Klassen.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Tabelle
+\emph{Unterricht} mit allen ihren Constraints (einschließlich
+Fremdschlüsselconstraints) anlegt.
+
+\begin{antwort}
+Ich habe \verb|REFERENCES| bei Unterricht Schuljahr vergessen, die
+referenzierten Tabellen \verb|Person| und \verb|Klasse| wurden in der
+Musterlösung auch nicht angelegt.
+
+\begin{minted}{sql}
+CREATE TABLE Person(
+  ID INTEGER PRIMARY KEY,
+  Name VARCHAR(255),
+  Wohnort VARCHAR(255),
+  Typ CHAR(1) CHECK(Typ in ('S', 'L'))
+);
+
+CREATE TABLE Klasse(
+  Klassenbezeichnung VARCHAR(20),
+  Schuljahr INTEGER,
+  Klassenlehrer INTEGER REFERENCES Person(ID),
+  PRIMARY KEY (Klassenbezeichnung, Schuljahr)
+);
+
+CREATE TABLE Unterricht (
+  Klassenbezeichnung VARCHAR(20) REFERENCES Klasse(Klassenbezeichnung),
+  Schuljahr INTEGER REFERENCES Klasse(Schuljahr),
+  Lehrer INTEGER REFERENCES Person(ID),
+  Fach VARCHAR(100),
+  CONSTRAINT Unterricht_PK
+    PRIMARY KEY (Klassenbezeichnung, Schuljahr, Lehrer, Fach)
+);
+\end{minted}
+\end{antwort}
+
+%%
+% b)
+%%
+
+\item Definieren Sie ein geeignetes Constraint, das sicherstellt, dass
+nur zulässige Werte im Attribut Typ der (bereits angelegten) Tabelle
+\emph{Person} eingefügt werden können.
+
+\begin{antwort}
+Ich habe \verb|REFERENCES| bei Unterricht Schuljahr vergessen, die
+referenzierten Tabellen \verb|Person| und \verb|Klasse| wurden in der
+Musterlösung auch nicht angelegt.
+
+\begin{minted}{sql}
+ALTER TABLE Person
+  ADD CONSTRAINT TypLS
+    CHECK(Typ IN ('S', 'L'));
+\end{minted}
+\end{antwort}
+
+%%
+% c)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Bezeichnung der Klassen
+bestimmt, die im Schuljahr 2015 die meisten Schüler haben.
+
+\begin{antwort}
+Falsch: \verb|ORDER BY Anzahl;|. \verb|DESC| vergessen.
+
+\begin{minted}{sql}
+SELECT k.Klassenbezeichnung, COUNT(*) AS Anzahl
+FROM Klasse k, Klassenverband v
+WHERE
+  k.Schuljahr = 2015 AND
+  k.Klassenbezeichnung = v.Klassenbezeichnung
+GROUP BY k.Klassenbezeichnung
+ORDER BY COUNT(*) DESC;
+\end{minted}
+\end{antwort}
+
+%%
+% d)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Namen aller Lehrer
+bestimmt, die nur Schüler aus ihrem Wohnort unterrichtet haben.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT DISTINCT l.Name
+FROM Person l
+WHERE NOT EXISTS(
+  SELECT DISTINCT *
+  FROM Unterricht u, Klassenverband v, Person s
+  WHERE
+    u.Lehrer = l.ID AND
+    u.Klassenbezeichnung = v.Klassenbezeichnung AND
+    v.Schüler = s.ID AND
+    l.Wohnort != s.Wohnort
+);
+\end{minted}
+\end{antwort}
+
+%%
+% e)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Namen aller Schüler
+bestimmt, die immer den gleichen Klassenlehrer hatten.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT s.Name
+FROM Person s, Klasse k, Klassenverband v
+WHERE
+  s.ID = v.Schueler AND
+  v.Klassenbezeichnung = k.Klassenbezeichnung AND
+  v.Schuler = s.ID
+GROUP BY k.Klassenlehrer, v.Schueler
+HAVING COUNT(*) = 1
+\end{minted}
+\end{antwort}
+
+%%
+% f)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die alle Paare von Schülern
+bestimmt, die mindestens einmal in der gleichen Klasse waren. Es genügt
+dabei, wenn Sie die ID der Schüler bestimmen.
+
+\begin{antwort}
+Ich habe Schuljahr zum joinen vergessen.
+\begin{minted}{sql}
+SELECT DISTINCT s1.ID, s2.ID
+FROM Klassenverband s1, Klassenverband s2
+WHERE
+  s1.Schuljahr = s2.Schuljahr AND
+  s1.Schueler <> s2.Schueler AND
+  s1.Klassenbezeichung = s2. Klassenbezeichnung;
+\end{minted}
+\end{antwort}
+
+%%
+% g)
+%%
+
+\item Formulieren Sie eine Anfrage in der relationalen Algebra, die die
+ID aller Schüler bestimmt, die mindestens einmal von „Ludwig Lehrer“
+unterrichtet wurden.
+
+\begin{antwort}
+\begin{multline*}
+\pi_{\text{Schüler}} (\\
+  \sigma_{\text{Name} = \mlq \text{Ludwig Lehrer} \mrq} (\text{Person})\\
+  \bowtie_{\text{Person.ID} = \text{Unterricht.Lehrer}}\\
+  \text{Unterricht}\\
+  \bowtie_{\text{Unterricht.Klassenbezeichnung} = \text{Klassenverband.Klassenbezeichnung}}\\
+  \text{Klassenverband}\\
+)
+\end{multline*}
+\end{antwort}
+
+%%
+% h)
+%%
+
+\item Formulieren Sie eine Anfrage in der relationalen Algebra, die
+Namen und ID der Schüler bestimmt, die von allen Lehrern unterrichtet
+wurden.
+
+\begin{antwort}
+\begin{multline*}
+\pi_{\text{Name,ID}}(\\
+  (\\
+    \pi_{\text{Lehrer,Schueler}}(
+      \text{Unterricht}
+      \bowtie
+      \text{Klassenverband}
+    )
+    \div
+    \pi_{\text{ID}}(
+      \sigma_{\text{Typ} = \mlq \text{L} \mrq }(\text{Person})
+    )\\
+  )\\
+  \bowtie\\
+  \text{Person}\\
+)
+\end{multline*}
+\end{antwort}
+
+\end{enumerate}
+
+\noindent
+Beachten Sie bei der Formulierung der SQL-Anfragen, dass die
+Ergebnisrelationen keine Duplikate enthalten dürfen. Sie dürfen
+geeignete Views definieren.
+
+\end{document}

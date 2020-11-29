@@ -1,0 +1,147 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{er}
+\begin{document}
+
+\section{Aufgabe 1: ER-Modell\footcite{db:pu:wh}}
+
+\def\TmpUeber#1{{\setul{-0.9em}{}\ul{#1}}}
+
+Überführen Sie das Datenbankschema in ein ER-Diagramm. Verwenden Sie
+hierfür die bereits eingezeichneten Entity-Typen und Relationship-Typen.
+Weisen Sie die Relationen zu und schreiben Sie deren Namen in die
+dazugehörigen Felder. Fügen Sie, falls erforderlich, Attribute hinzu und
+beschriften Sie die Beziehungen. Markieren Sie Schlüsselattribute durch
+unterstreichen.
+
+Gegeben sei das folgende Datenbankschema, wobei Primärschlüssel
+unterstrichen und Fremdschlüssel überstrichen sind. Die von einem
+Fremdschlüssel referenzierte Relation ist in eckigen Klammem nach dem
+Fremdschlüsselattribut angegeben.
+\footcite[DB/ST - Herbst 2018 (nicht vertieft - 46116), Thema 2, TA2, A5]{examen:46116:2018:09}
+
+\bigskip
+
+{
+  \noindent
+  \ttfamily
+  \footnotesize
+  Schüler (%
+    \ul{SchülerID},
+    SVorname,
+    SNachname,
+    \TmpUeber{KlassenID}[Klassen],
+    Geburtsdatum%
+  )\\\\
+  Lehrer (%
+    \ul{LehrerID},
+    LVorname,
+    LNachname%
+  )\\\\
+  Klassen (%
+    \ul{KlassenID},
+    Klassenstufe,
+    Buchstabe%
+  )\\\\
+  Unterrichtsfächer (%
+    \ul{FachID},
+    Name%
+  )\\\\
+  Noten (%
+    \ul{NotenID},
+    \TmpUeber{SchülerID}[Schüler],
+    \TmpUeber{FachID}[Unterrichtsfächer],
+    Note,
+    Gewicht%
+  )\\\\
+  LehrerUnterrichtet (%
+    \TmpUeber{LehrerID}[Lehrer],
+    \ul{KlassenID}[Klassen],
+    \ul{FachID}[Unterrichtsfächer]%
+  )\\\\
+}
+
+\begin{center}
+\begin{tikzpicture}[er2,rs/.style={text width=2cm,aspect=2},scale=0.8]
+\node[entity] (e1) {};
+\node[entity,right of=e1] (e2) {};
+\node[entity,right of=e2] (e3) {};
+\node[entity,right of=e3] (e4) {};
+
+\node[relationship,above of=e3,rs] (r1) {}
+  edge (e1)
+  edge (e4);
+\node[relationship,below of=e3,rs] (r2) {}
+  edge (e2)
+  edge (e3)
+  edge (e4);
+\node[relationship,below of=e1,rs] (r3) {}
+  edge (e1)
+  edge (e2);
+\node[entity,right of=r3] (e5) {}
+  edge (r3);
+\end{tikzpicture}
+\end{center}
+
+\begin{antwort}
+\begin{center}
+\begin{tikzpicture}[er2,scale=0.5,transform shape]
+\node[entity] (Schüler) {Schüler};
+\node[attribute,below left of=Schüler,near]{\ul{SchülerID}} edge (Schüler);
+\node[attribute,left of=Schüler]{SVorname} edge (Schüler);
+\node[attribute,above left of=Schüler,near]{SNachname} edge (Schüler);
+\node[attribute,above right of=Schüler]{Geburstdatum} edge (Schüler);
+
+\node[entity,right of=Schüler,farer] (Unterrichtsfächer) {Unterrichtsfächer};
+\node[attribute,above of=Unterrichtsfächer,nearer] {FachID} edge (Unterrichtsfächer);
+\node[attribute,below of=Unterrichtsfächer,nearer] {Name} edge (Unterrichtsfächer);
+
+\node[entity,right of=Unterrichtsfächer,farer] (Lehrer) {Lehrer};
+\node[attribute,above left of=Lehrer,near] {LVorname} edge (Lehrer);
+\node[attribute,above right of=Lehrer,near] {LNachname} edge (Lehrer);
+\node[attribute,below right of=Lehrer,node distance=5em] {LehrerID} edge (Lehrer);
+
+\node[entity,right of=Lehrer,farer] (Klassen) {Klassen};
+\node[attribute,right of=Klassen]{\ul{KlassenID}} edge (Klassen);
+\node[attribute,below right of=Klassen,near]{Klassenstufe} edge (Klassen);
+\node[attribute,above right of=Klassen,near]{Buchstabe} edge (Klassen);
+
+\node[relationship,above of=Lehrer] (gehtIn) {gehtIn};
+\draw (gehtIn) -| (Schüler) node[auto,pos=0.9]{n};
+\draw (gehtIn) -| (Klassen) node[auto,pos=0.9]{1};
+
+\node[relationship,below of=Lehrer,text width=2cm,farer,aspect=2] (lehrerUnterrichtet) {lehrer-\\Unterrichtet}
+  edge node[auto]{n} (Unterrichtsfächer)
+  edge node[auto]{1} (Lehrer)
+  edge node[auto,pos=0.8]{n} (Klassen);
+\node[relationship,below of=Schüler,text width=1.5cm] (wirdBenotet) {wird-\\Benotet}
+  edge node[auto]{1} (Schüler)
+  edge node[auto]{1} (Unterrichtsfächer);
+
+\node[entity,right of=wirdBenotet,far] (Noten) {Noten}
+  edge node[auto]{1} (wirdBenotet);
+\node[attribute,below left of=Noten,near] {NotenID} edge (Noten);
+\node[attribute,below of=Noten,near] {Note} edge (Noten);
+\node[attribute,below right of=Noten,near] {Gewicht} edge (Noten);
+\end{tikzpicture}
+\end{center}
+
+\ueberschrift{Funktionalitäten}
+
+\begin{description}
+\item[gehtIn] n:1 Eine Klasse hat n Schüler, einE SchülerIn geht in eine
+Klasse
+
+\item[wirdBenotet]  1:1:1: Das ist anderes nicht möglich, da nur
+\texttt{NotenID} Primärschlüssel ist, dann muss aber die Kombination aus
+\texttt{Schüler} und \texttt{Unter\-richtsfach} auch einmalig sein, d.\,h.
+UNIQUE und es gilt \texttt{Note} und \texttt{Unter\-richtsfach} bestimmt
+\texttt{Schüler}, \texttt{Note} und \texttt{Schüler} bestimmt
+\texttt{Unterrichtsfach} und \texttt{Schüler} und
+\texttt{Unterrichtsfach} bestimmt
+\texttt{Noten}.
+
+\item[LehrerUnterrichtet] 1(Lehrer):n:n
+\end{description}
+\end{antwort}
+
+\end{document}

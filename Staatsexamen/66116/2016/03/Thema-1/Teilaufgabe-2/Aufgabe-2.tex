@@ -1,0 +1,134 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{}
+\begin{document}
+
+\section{Aufgabe 2\footcite{sosy:ab:6}}
+
+\includegraphics[width=\linewidth]{\LehramtInformatikRepository/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-2/UML-Examen_2016-03.png}
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Kennzeichnen Sie im folgenden Klassendiagramm die Entwurfsmuster
+\emph{„Abstrakte Fabrik“}, \emph{„Iterator“}, \emph{„Adapter“} und
+\emph{„Kompositum“}. Geben Sie die jeweils beteiligten Klassen und deren
+Zuständigkeit im entsprechenden Muster an.
+\footcite[StEx F16, T1, TA 2, A2 (abgeändert)]{examen:66116:2016:03}
+
+\begin{antwort}
+
+\begin{description}
+
+%%
+%
+%%
+
+\item[Iterator] \strut
+
+\begin{description}
+\item[DocumentTraverser (interface)]
+Schnittstelle zur Traversierung und zum Zugriff auf Dokumente
+
+\item[Document]
+implementiert die Schnittstelle
+\end{description}
+
+%%
+%
+%%
+
+\item[Kompositum] \strut
+
+\begin{description}
+\item[AbstractDocument]
+abstrakte Basisklasse, die gemeinsames Verhalten der beteiligten
+Klassen definiert
+
+\item[Document]
+enthält wiederum weitere Documente bzw. DocumentEntities und Images
+
+\item[DocumentEntity, Image]
+primitive Unterklassen, besitzen keine Kindobjekte
+\end{description}
+
+%%
+%
+%%
+
+\item[Adapter (Objektadapter)] \strut
+
+\begin{description}
+\item[Banking (interface)]
+vom Client (hier Application) verwendete Schnittstelle
+
+\item[HBCTBanking]
+passt Schnittstelle der unpassenden Klasse an Zielschnittstelle
+(Banking) an
+
+\item[DB (interface)]
+anzupassende Schnittstelle
+\end{description}
+
+%%
+%
+%%
+
+\item[abstrakte Fabrik] \strut
+
+\begin{description}
+\item[JobCreator (interface)]
+abstrakte Fabrik
+
+\item[Job (abstrakt) mit Unterklassen RecordFetch und Transfer]
+abstraktes Produkt
+
+\item[Job (konkret) mit Unterklassen]
+konkretes Produkt
+\end{description}
+\end{description}
+\end{antwort}
+
+%%
+% 2.
+%%
+
+\item
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Beschreiben Sie die Funktionsweise der folgenden Entwurfsmuster
+und geben Sie ein passendes UML-Diagramm an.
+
+\begin{itemize}
+\item Dekorierer
+\item Klassenadapter
+\item Objektadapter
+\end{itemize}
+
+%%
+% (b)
+%%
+
+\item Erklären Sie mit maximal zwei Sätzen den Unterschied zwischen
+Klassenadapter und Objektadapter.
+\end{enumerate}
+
+%%
+% 3.
+%%
+
+\item Implementieren Sie einen Stapel in der Programmiersprache Java.
+Nutzen Sie dazu ein Array mit fester Größe. Auf eine Überlaufprüfung
+darf verzichtet werden. Implementieren Sie in der Klasse das Iterator
+Entwurfsmuster, um auf die Inhalte zuzugreifen, sowie eine Funktion zum
+Hinzufügen von Elementen. Als Typ für den Stapel kann zur Vereinfachung
+ein Integertyp verwendet werden.
+\end{enumerate}
+\end{document}

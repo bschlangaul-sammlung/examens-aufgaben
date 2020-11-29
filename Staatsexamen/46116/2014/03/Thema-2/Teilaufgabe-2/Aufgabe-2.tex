@@ -1,0 +1,205 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{mathe}
+\usepackage{multicol}
+\usepackage{soul}
+
+\def\TmpUeber#1{{\setul{-0.9em}{}\ul{#1}}}
+\begin{document}
+
+\section{Aufgabe 2: Relationale Algebra\footcite{db:pu:wh}}
+
+Gegeben sei das folgende relationale Schema mitsamt Beispieldaten für
+eine Datenbank von Mitfahrgelegenheiten. Die Primärschlüssel-Attribute
+sind jeweils unterstrichen, Fremdschlüssel sind überstrichen.
+\footcite[DB/ST - Frühjahr 2014 (nicht vertieft -46116), Thema 2, TA2, A2]{examen:46116:2014:03}
+
+{
+\footnotesize
+\begin{multicols}{2}
+„Kunde":
+
+\begin{tabular}{|l|l|l|l|}
+\hline
+\ul{KID} & Name & Vorname & \TmpUeber{Stadt}\\\hline\hline
+K1 & Meier & Stefan & S3\\\hline
+K2 & Müller & Peta & S3\\\hline
+K3 & Schmidt & Christine & S2\\\hline
+K4 & Schulz & Michael & S4\\\hline
+\end{tabular}
+
+„Stadt"
+
+\begin{tabular}{|l|l|l|}
+\hline
+\ul{SID} & SName & Bundesland\\\hline\hline
+S1 & Berlin & Berlin\\\hline
+S2 & Nürn & Bayern\\\hline
+S3 & Köln & Nordrhein-Wesffalen\\\hline
+S4 & Stuttgart & Baden-Württemberg\\\hline
+S5 & München & Bayer\\\hline
+\end{tabular}
+\end{multicols}
+
+\begin{multicols}{2}
+„Angebot":
+
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\ul{KID} & \TmpUeber{Start} & \TmpUeber{Ziel} & \ul{Datum} & Plätze\\\hline\hline
+K4 & S4 & S5 & 08.07.2011 & 3\\\hline
+K4 & S5 & S4 & 10.07.2011 & 3\\\hline
+K1 & S1 & S5 & 08.07.2011 & 3\\\hline
+K3 & S2 & S3 & 15.07.2011 & 1\\\hline
+K4 & S4 & S1 & 15.07.2011 & 3\\\hline
+K1 & S5 & S5 & 09.07.2011 & 2\\\hline
+\end{tabular}
+
+„Anfrage":
+
+\begin{tabular}{|l|l|l|l|}
+\hline
+\ul{KID} & \TmpUeber{Start} & \TmpUeber{Ziel} & \ul{Datum}\\\hline\hline
+K2 & S4 & S5 & 08.07.2011\\\hline
+K2 & S5 & S4 & 10.07.2011\\\hline
+K3 & S2 & S3 & 08.07.2011\\\hline
+K3 & S3 & S2 & 10.07.2011\\\hline
+K2 & S4 & S5 & 05.07.2011\\\hline
+K2 & S5 & S4 & 17.07.2011\\\hline
+\end{tabular}
+\end{multicols}
+}
+
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+\begin{enumerate}
+\item Formulieren Sie die folgenden Anfragen auf das gegebene Schema in
+relationaler Algebra:
+
+\begin{itemize}
+\item Finden Sie die Namen aller Städte in Bayern!
+
+\begin{antwort}
+$\pi_{\text{SName}}(\sigma_{\text{Bundesland} = \text{Bayern}}(\text{Stadt}))$
+\end{antwort}
+
+%%
+%
+%%
+
+\item Finden Sie die SIDs aller Städte, für die weder als Start noch als
+Ziel eine Anfrage vorliegt!
+
+\begin{antwort}
+$
+\pi_{\text{SID}}(\text{Stadt}) - \pi_{\text{Start}}(\text{Anfage}) - \pi_{\text{Ziel}}(\text{Anfrage})
+$
+\end{antwort}
+
+%%
+%
+%%
+
+\item Finden Sie alle IDs von Kunden, welche eine Fahrt in ihrer
+Heimatstadt starten.
+
+\begin{antwort}
+\begin{multline*}
+\pi_{\text{KID}}(\\
+  \text{Kunde} \bowtie_{\text{Kunde.KID} = \text{Anfrage.KID} \land \text{Kunde.Stadt} = \text{Anfrage.Stadt}} \text{Anfrage}
+)\\
+\land\\
+\pi_{\text{KID}}(\\
+  \text{Kunde} \bowtie_{\text{Kunde.KID} = \text{Angebot.KID} \land \text{Kunde.Stadt} = \text{Angebot.Stadt}} \text{Angebot}
+  )
+\end{multline*}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Geben Sie das Datum aller angebotenen Fahrten von München nach
+Stuttgart aus!
+
+\begin{antwort}
+\begin{multline*}
+\pi_{\text{Datum}}(\\
+  (\text{Angebot} \bowtie_{\text{Start} = \text{SID} \land \text{SName} = \mlq\text{München}\mrq} \text{Stadt})\\
+  \bowtie_{\text{Ziel} = \text{SID} \land \text{SName} = \mlq\text{Stuttgart}\mrq}\\
+  \text{Stadt}\\
+)
+\end{multline*}
+\end{antwort}
+
+Variante 2:
+
+\begin{antwort}
+\begin{multline*}
+\pi_{\text{Datum}}(\\
+  \sigma_{
+    \text{Sname} = \mlq\text{München}\mrq \land
+    \text{Zname} = \mlq\text{Stuttgart}\mrq
+  }(\\
+    \rho_{
+      \text{Zname} \leftarrow \text{Sname},
+      \text{SID1} \leftarrow \text{SID}
+    }(\text{Stadt})\\
+    \bowtie_{\text{Ziel} = \text{SID1}}\\
+    \text{Angebot}\\
+    \bowtie_{\text{Start} = \text{SID}}\\
+    \text{Stadt}
+  )
+)
+\end{multline*}
+\end{antwort}
+
+%%
+%
+%%
+
+\end{itemize}
+
+\item Geben Sie das Ergebnis (bezüglich der Beispieldaten) der folgenden
+Ausdrücke der relationalen Algebra als Tabellen an:
+
+%%
+%
+%%
+
+\begin{itemize}
+\item $\pi_{\text{KID}} (\text{Angebot}) \bowtie \text{Kunde}$
+
+\begin{antwort}
+Zeile mit der Petra Müller fällt weg.
+
+\begin{tabular}{|l|l|l|l|}
+\hline
+\ul{KID} & Name & Vorname & \TmpUeber{Stadt}\\\hline\hline
+K1 & Meier & Stefan & S3\\\hline
+K3 & Schmidt & Christine & S2\\\hline
+K4 & Schulz & Michael & S4\\\hline
+\end{tabular}
+\end{antwort}
+
+%%
+%
+%%
+
+\item $
+\pi_{(\text{KID},\text{Stadt})} (\text{Kunde})
+\bowtie_{\text{Kunde.Stadt} = \text{Angebot.Ziel}}
+\pi_{\text{Plaetze}} (\text{Angebot})$
+
+\begin{antwort}
+
+\begin{tabular}{|l|l|l|}
+\hline
+KID & Stadt & Plätze \\\hline\hline
+K1 & S3 & 1 \\\hline
+K2 & S3 & 1 \\\hline
+K4 & S4 & 1 \\\hline
+K4 & S4 & 2 \\\hline
+\end{tabular}
+\end{antwort}
+\end{itemize}
+\end{enumerate}
+\end{document}
