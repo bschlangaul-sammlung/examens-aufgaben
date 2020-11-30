@@ -1,0 +1,109 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{syntax,uml}
+\begin{document}
+
+\section{Aufgabe 3 (Objektorientierte Implementierung)\footcite{oomup:pu:4}}
+
+Für die nächste Fußballweltmeisterschaft möchte ein Wettbüro ein
+Programm zur Verwaltung von Spielern, Vereinen und
+(National-)Mannschaften entwickeln. Dazu wurde bereits das folgende
+UML-Klassendiagramm entworfen.
+\footcite[Thema 1 TA 1 Aufgabe 3]{examen:46116:2018:03}
+
+\begin{center}
+\begin{tikzpicture}
+\umlclass{Mannschaft}{
+  -land: String\\
+  -anzahlSpieler: Integer
+}{
+  +Mannschaft(land: String)\\
+  +hinzufuegen(s: Spieler)\\
+  +torschuetzenkoenig():String
+}
+
+\umlclass[right=1.5cm of Mannschaft]{Spieler}{
+  -name: String
+  -tore: Integer
+}{
+  +Spieler(name: String, verein: Verein)\\
+  +getName(): String\\
+  +getTore(): Integer\\
+  +schiesseTor()\\
+  +wechsleVerein(neuerVerein: Verein)
+}
+
+\umlclass[below=1cm of Spieler]{Verein}{
+  -name: String
+}{
+  +Verein(name:String)\\
+  +getName():String
+}
+
+\umluniassoc[mult2=0..20,arg2=-team,pos2=0.6]{Mannschaft}{Spieler}
+\umluniassoc[mult2=0..20,arg2=-team]{Spieler}{Verein}
+\end{tikzpicture}
+\end{center}
+
+\noindent
+Es kann angenommen werden, dass die Klasse \java{Verein} bereits
+implementiert ist. In den folgenden Implementierungsaufgaben können Sie
+eine objektorientierte Programmiersprache Ihrer Wahl verwenden. Die
+verwendete Sprache ist anzugeben. Zu beachten sind jeweils die im
+Klassendiagramm angegebenen Sichtbarkeiten von Attributen, Rollennamen,
+Konstruktorn und Operationen.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Es ist eine Implementierung der Klasse \java{Spieler} anzugeben.
+Der Konstruktor soll die Instanzvariablen mit den gegebenen Parametern
+initialisieren, wobei die. Anzahl der Tore nach der Objekterzeugung
+gleich 0 sein soll. Ansonsten kann die Funktionalität der einzelnen
+Operationen aus deren Namen geschlossen werden.
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/oomup/pu_4/verein/Spieler}
+\end{antwort}
+
+%%
+% b)
+%%
+
+\item Es ist eine Implementierung der Klasse \java{Mannschaft}
+anzugeben. Der Konstruktor soll das Land initialisieren, die Anzahl der
+Spieler auf 0 setzen und das Team mit einem noch „leeren“ Array der
+Länge 20 initialisieren. Das Team soll mit der Methode
+\java{hinzufuegen} um einen Spieler erweitert werden. Die Methode
+\java{torschuetzenkoenig} soll den Namen eines Spielers aus dem Team
+zurückgeben, der die meisten Tore für die Mannschaft geschossen hat. Ist
+das für mehrere Spieler der Fall, dann kann der Name eines beliebigen
+solchen Spielers zurückgegeben werden. Ist noch kein Spieler im Team,
+dann soll der String \java{"Kein Spieler vorhanden"} zurückgegeben
+werden.
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/oomup/pu_4/verein/Mannschaft}
+\end{antwort}
+
+%%
+% c)
+%%
+
+\item Schreiben Sie den Rumpf einer \java{main}-Methode, so dass nach
+Ausführung der Methode eine deutsche Mannschaft existiert mit zwei
+Spielern Namens \java{"Hugo Meier"} und \java{"Frank Huber"}. Beide
+Spieler sollen zum selben Verein \java{"FC Staatsexamen"} gehören.
+\java{"Hugo Meier"} soll nach Aufnahme in die deutsche Mannschaft genau
+ein Tor geschossen haben, während \java{"Frank Huber"} noch kein Tor
+erzielt hat. (Wir abstrahieren hier von der Realität, in der ein 2-er
+Team noch gar nicht spielbereit ist.)
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/oomup/pu_4/verein/Verein}
+\end{antwort}
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,69 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{syntax}
+\begin{document}
+
+\section{Aufgabe 2: Vererbung und Abstrakte Klassen II
+\footcite{aud:pu:7}}
+
+In dieser Aufgabe implementieren Sie ein konzeptionelles Datenmodell für
+eine Firma, die Personendaten von Angestellten und Kunden verwalten
+möchte. Gegeben seien dazu folgende Aussagen:
+\footcite[entnommen aus Staatexamen DB/ST 66116, Frühjahr 2015, Thema 1, TA2, A3 a, Seite 5]{examen:66116:2015:03}
+
+\begin{itemize}
+\item Eine Person hat einen Namen und ein Geschlecht (männlich oder
+weiblich).
+
+\item Ein Angestellter ist eine Person, zu der zusätzlich das monatliche
+Gehalt gespeichert wird.
+
+\item Ein Kunde ist eine Person, zu der zusätzlich eine Kundennummer
+hinterlegt wird.
+\end{itemize}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Geben Sie in einer objektorientierten Programmiersprache Ihrer
+Wahl (geben Sie diese an) eine Implementierung des aus den obigen
+Aussagen resultierenden konzeptionellen Datenmodells in Form von Klassen
+und Interfaces an. Gehen Sie dabei wie folgt vor:
+
+\begin{itemize}
+\item Schreiben Sie ein Interface \java{Person} sowie zwei davon erbende
+Interfaces \java{Angestellter} und \java{Kunde}. Die Interfaces sollen
+jeweils lesende Zugriffsmethoden (Getter) die entsprechenden Attribute
+(Name, Geschlecht, Gehalt, Kundennummer) deklarieren.
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/oomup/examen_66116_2015_03/Person}
+\inputcode[firstline=3]{aufgaben/oomup/examen_66116_2015_03/Angestellter}
+\inputcode[firstline=3]{aufgaben/oomup/examen_66116_2015_03/Kunde}
+\end{antwort}
+
+\item Schreiben Sie eine abstrakte Klasse \java{PersonImpl}, die das
+Interface \java{Person} implementiert. Für jedes Attribut soll ein
+Objektfeld angelegt werden. Außerdem soll ein Konstruktor definiert
+werden, der alle Objektfelder initialisiert.
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/oomup/examen_66116_2015_03/PersonImpl}
+\end{antwort}
+
+\item Schreiben Sie zwei Klassen \java{AngestellterImpl} und
+\java{KundeImpl}, die von \java{PersonImpl} erben und die jeweils
+dazugehörigen Interfaces implementieren. Es sollen wiederum
+Konstruktoren definiert werden, die alle Objektfelder initialisieren und
+dabei auf den Konstruktor der Basisklasse \java{PersonImpl} Bezug
+nehmen.
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/oomup/examen_66116_2015_03/AngestellterImpl}
+\inputcode[firstline=3]{aufgaben/oomup/examen_66116_2015_03/KundeImpl}
+\end{antwort}
+\end{itemize}
+\end{enumerate}
+\end{document}

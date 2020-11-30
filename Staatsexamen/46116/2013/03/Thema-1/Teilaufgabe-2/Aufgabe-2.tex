@@ -1,0 +1,202 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{syntax,mathe}
+\begin{document}
+
+\section{2. Anfragen\footcite{db:ab:examen-rs-2013-03}}
+
+Zu einer Website, auf der Besucher im Browser Online-Spiele spielen
+können, liegt das folgende relationale Schema einer Datenbank vor:
+\footcite[Theam 1 TA2. Aufgabe 2]{examen:46116:2013:03}
+
+\bigskip
+
+{
+\ttfamily
+\noindent
+Team : \{[\underline{TNr}, Name, Teamfarbel]\}\\
+Spieler : \{[\underline{SNr}, Name, Icon, TNr, EMail]\}\\
+Minispiel : \{[\underline{MNr}, Name, Kategorie, Schwierigkeit]\}\\
+Wettkampf : \{[\underline{WNr}, Sieger, Geschlagener, MNr, Dauer]\}\\
+}
+
+\bigskip
+
+Auf der Website treten jeweils zwei Spieler gegeneinander in Minispielen
+an. In diesen ist es das Ziel, den gegnerischen Spieler in möglichst
+kurzer Zeit zu besiegen. Minispiele gibt es dabei in verschiedenen
+Schwierigkeitsstufen („leicht“, „mittel“, „schwer“, „sehr schwer“) und
+verschiedenen Kategorien („Denkspiel“, „Geschicklichkeitsspiel“, usw.).
+Die Attribute \emph{Sieger} und \emph{Geschlagener} sind jeweils
+Fremdschlüsselattribute, die auf das Attribut \emph{SNr} der Relation
+\emph{Spieler} verweisen. Beachten Sie, dass das Dauer-Attribut der
+Wettkampf-Relation die Dauer eines Wettkampfes in der Einheit Sekunden
+speichert.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Formulieren Sie geeignete Anfragen in relationaler Algebra für
+die folgenden Teilaufgaben:
+
+\begin{enumerate}
+%%
+% i.
+%%
+
+\item Geben Sie die \emph{Namen} der \emph{Minispiele} zurück, die zur
+\emph{Kategorie} \emph{„Denkspiele“} zählen.
+
+\begin{antwort}
+$
+\pi_{\text{Name}}(
+  \sigma_{\text{Kategorie} = \mlq \text{Denkspiele} \mrq}(\text{Minispiele})
+)
+$
+\end{antwort}
+
+%%
+% ii.
+%%
+
+\item Geben Sie die \emph{Namen} und \emph{E-Mail-Adressen} aller
+Spieler zurück, die in einem Minispiel des Typs
+\emph{„Geschicklichkeitsspiel“} gewonnen haben.
+\end{enumerate}
+
+\begin{antwort}
+$
+\pi_{\text{Spieler.Name,Spieler.Email}}(
+  \sigma_{\text{Kategorie} = \mlq \text{Geschicklichkeitsspiel} \mrq}(\text{Minispiele})
+  \bowtie_{\text{Minispiel.MNr} = \text{Wettkampf.MNr}}
+  \text{Wettkampf}
+  \bowtie_{\text{Wettkampf.Sieger} = \text{Spieler.SNr}}
+  \text{Spieler}
+)
+$
+\end{antwort}
+
+%%
+% b)
+%%
+
+\item Formulieren Sie geeignete SQL-Anfragen für die folgenden
+Teilaufgaben. Beachten Sie dabei, dass Ihre Ergebnisrelationen keine
+Duplikate enthalten sollen.
+
+\begin{enumerate}
+
+%%
+% i.
+%%
+
+\item Geben Sie jede Spielekategorie aus, für die ein Minispiel der
+Schwierigkeitsstufe sehr schwer vorhanden ist.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT DISTINCT Kategorie
+FROM Minispiel
+WHERE Schwierigkeit = 'sehr schwer';
+\end{minted}
+\end{antwort}
+
+%%
+% ii.
+%%
+
+\item Geben Sie die Wettkämpfe aus, deren Dauer unter der
+durchschnittlichen Dauer der Wettkämpfe liegt.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT WNr
+FROM Wettkampf
+WHERE Dauer < (
+  SELECT AVG(Dauer) FROM Wettkampf
+);
+\end{minted}
+\end{antwort}
+
+%%
+% iii.
+%%
+
+\item Geben Sie für jeden \emph{Spieler} seine \emph{SNr}, seinen \emph{Namen}, die Anzahl
+seiner Siege, die durchschnittliche Dauer seiner siegreichen Wettkämpfe
+und die Anzahl der Teams, aus denen er bereits mindestens einen Spieler
+besiegt hat, zurück.
+
+\begin{minted}{sql}
+SELECT
+  SNr,
+  Name,
+  (
+    SELECT COUNT(*)
+    FROM Wettkampf
+    WHERE Wettkampf.Sieger = SNr
+  ) AS Anzahl_Siege,
+  (
+    SELECT AVG(Dauer)
+    FROM Wettkampf
+    WHERE Wettkampf.Sieger = SNr
+  ),
+  (
+    SELECT COUNT(DISTINCT Team.TNr)
+    FROM Team, Spieler, Wettkampf
+    WHERE
+      Team.TNr = Spieler.TNr AND
+      Wettkampf.Geschlagener = Spieler.SNr AND
+      Wettkampf.Sieger = SNr
+  )
+FROM Spieler;
+\end{minted}
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT
+  s.SNR,
+  s.Name,
+  COUNT(*) AS AnzahlSiege,
+  AVG(w.Dauer) AS DurchschnittlicheWettkampfdauer,
+  COUNT(DISTINCT g.TNr) AS TeamsBesiegt
+FROM Spieler s, Wettkampf w, Spieler g
+WHERE
+  s.SNr = w.Sieger AND
+  g.SNr = w.Geschlagener
+GROUP BY s.SNR, s.Name;
+\end{minted}
+\end{antwort}
+
+\end{enumerate}
+
+%%
+% c)
+%%
+
+\item Verwenden Sie den relationalen Tupelkalkül, um die folgenden
+Anfragen zu formulieren:
+
+\begin{enumerate}
+
+%%
+% i.
+%%
+
+\item Finden Sie die Namen der Spieler des Teams Dream Team.
+
+%%
+% ii.
+%%
+
+\item Geben Sie die Namen der Minispiele zurück, bei denen bereits
+Spieler gegeneinander angetreten sind, deren Teams dieselbe Teamfarbe
+haben.
+\end{enumerate}
+\end{enumerate}
+
+Hinweis: Die Anfragen im relationalen Tupelkalkül dürfen auch nicht
+sicher sein.
+\end{document}
