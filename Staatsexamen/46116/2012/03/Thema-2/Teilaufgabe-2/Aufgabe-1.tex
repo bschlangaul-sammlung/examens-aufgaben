@@ -1,0 +1,83 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{uml}
+\begin{document}
+
+\section{Hotel-Verwaltung\footcite[leicht verändert, Thema 2, TA2, Aufgabe 1]{examen:46116:2012:03}}
+
+Erstellen Sie zu der folgenden Beschreibung eines Systems zur
+Organisation eines Hotels ein Klassendiagramm, das Attribute und
+Assoziationen mit Kardinalitäten sowie Methoden enthält. Setzen Sie
+dabei das Konzept der Vererbung sinnvoll ein.
+
+\begin{itemize}
+\item Ein \textbf{Hotel} besteht aus genau einer Küche und mehreren Gästezimmern.
+
+\item Es hat einen Namen, eine Adresse und kann Werbeaktionen
+durchführen.
+
+\item Alle Mitarbeiter, sowohl Servicekräfte als auch
+Küchenmitarbeiter, sind Angestellte des Hotels.
+
+\item Die Küche kann geöffnet oder geschlossen sein.
+
+\item Gästezimmer haben eine Nummer und eine bestimmte Anzahl an Betten,
+die ausgegeben werden kann.
+
+\item In diesen Gästezimmern wohnen Gäste, die von einer oder mehreren
+Servicekräften umsorgt werden.
+
+\item Servicekräfte sind nur für die ihnen zugeordneten Gästezimmer
+verantwortlich.
+
+\item Jede Servicekraft hat einen Namen und eine Personalnummer sowie
+einen Vorgesetzten, der auch eine Servicekraft ist.
+
+\item In der Küche arbeiten Küchenmitarbeiter, die einen Namen haben und
+ein Gehalt bekommen.
+
+\item Küchenmitarbeiter sind entweder Köche oder Aushilfen. Köche können
+zudem Sterneköche sein, also mit einem oder mehreren Sternen dekoriert
+sein.
+
+\item Aushilfen bauen die Büffets für die Mahlzeiten auf.
+
+\item Gäste können sich unterhalten. Jeder Gast hat einen Namen und eine
+Adresse und ist seinem Zimmer zugeordnet.
+\end{itemize}
+
+\begin{tikzpicture}[scale=0.7, transform shape]
+\umlclass[type=abstrakt,x=1.5,y=8]{Angestellter}{- namen : String}{}
+
+  \umlclass[below left=1cm and 0.5cm of Angestellter,anchor=north]{Servicekraft}{- persNr : int}{}
+  \umlassoc[arg=hat Chef,angle1=-90,angle2=150,loopsize=3cm]{Servicekraft}{Servicekraft}
+  \umlclass[below right=1cm and -1cm of Angestellter,type=abstrakt,x=4,y=5]{Küchenmitarbeiter}{- gehalt : double}{}
+  \umlVHVinherit{Servicekraft}{Angestellter}
+  \umlVHVinherit[arm1=1.5cm]{Küchenmitarbeiter}{Angestellter}
+
+    \umlclass[below left=1cm and -1cm of Küchenmitarbeiter,x=4,y=5]{Koch}{- istSternekoch : bool }{}
+    \umlclass[below right=1cm and -1cm of Küchenmitarbeiter,x=4,y=5]{Aushilfe}{}{+ baueBüffetauf()}
+    \umlVHVinherit{Koch}{Küchenmitarbeiter}
+    \umlVHVinherit{Aushilfe}{Küchenmitarbeiter}
+
+\umlclass[x=8.5,y=8]{Hotel}{- namen : String \\ - adresse : String}{ + führeWerbeaktionDurch() }
+
+  \umlclass[below left=1cm and -2cm of Hotel]{Küche}{- geöffnet : boolean}{}
+  \umlclass[below right=1cm and -1.5cm of Hotel]{Gästezimmer}{- nummer : int \\ anzahlBetten : int }{ + gibBettenAnzahl()}
+  \umlVHVcompo[mult1=1,mult2=1,pos1=0.5,pos2=2.6,arm1=-1.5cm]{Hotel}{Küche}
+  \umlVHVcompo[mult1=1,mult2=1..*,pos1=0.5,pos2=2.6,arm1=-1.5cm]{Hotel}{Gästezimmer}
+
+\umlclass[x=7]{Gast}{- name : String\\- adresse : String}{ + unterhalten() }
+
+\umlassoc[mult1=1..*,pos1=0.1,mult2=1,pos2=0.9,arg2=,name=angestellter]{Angestellter}{Hotel}
+\node [above left=0.1cm and -0.7cm of angestellter-1] {ist angestellt \LeserichtungRechts};
+
+\umlHVassoc[mult1=1..*,mult2=1,pos2=1.9]{Gast}{Gästezimmer}
+
+\umlVHassoc[anchor1=-140,mult1=1..*,mult2=1..*,pos2=1.9, arg=betreut\LeserichtungRechts]
+{Servicekraft}{Gast}
+\umlVHVassoc[arm1=5cm,anchor1=-140,mult1=1..*,mult2=1..*,pos2=1.9, arg=reinigt\LeserichtungRechts]
+{Servicekraft}{Gästezimmer}
+
+\umlVHVassoc[anchor1=40,anchor2=125,arm1=0.5cm,arg=arbeitet in\LeserichtungRechts,pos=1.5]{Küchenmitarbeiter}{Küche}
+\end{tikzpicture}
+\end{document}

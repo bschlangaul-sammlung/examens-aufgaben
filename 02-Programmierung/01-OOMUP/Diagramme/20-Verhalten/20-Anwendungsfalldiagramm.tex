@@ -182,69 +182,7 @@ notiert.
 %
 %-----------------------------------------------------------------------
 
-\section{Aufgabe 3\footcite{sosy:ab:3}}
-
-Im Folgenden sehen Sie ein fehlerhaftes Use-Case-Diagramm für das System
-„Geldautomat”. Geben Sie ein korrektes Use-Case-Diagramm (Beziehungen
-und Beschriftungen) entsprechend der folgenden Beschreibung an. Sollte
-es mehrere Möglichkeiten geben, begründen Sie Ihre Entscheidung kurz.
-
-Kunden können am Geldautomat verschiedene Services nutzen, es kann Geld
-abgehoben und eingezahlt sowie der Kontostand abgefragt werden. Für
-jeden dieser Services ist eine Authentifizierung notwendig. Diese
-besteht aus der Prüfung der Bankkarte und des eingegebenen PINs. Manche
-Bankautomaten können Karten bei zu vielen Fehlversuchen (3) bei der
-Anmeldung sperren, andere geben Fehlermeldungen aus, falls die Karte
-gesperrt wurde oder nicht mehr genügend Geld auf dem Konto oder im
-Bankautomaten vorhanden ist. Mitarbeiter bzw. Mitarbeiterinnen der Bank
-können sich ebenfalls über PIN und Karte authentifizieren, um dann den
-Bankautomaten neu zu starten oder mit Geld aufzufüllen. Bevor Geld
-abgehoben werden kann, ist sicherzustellen, dass auf dem Konto und im
-Bankautomaten genügend Geld vorhanden ist.
-\footcite[StEx Realschule Frühjahr 2017, Thema 1, TA 1, A2]{examen:46116:2017:03}
-
-\begin{antwort}
-\begin{tikzpicture}[scale=0.7,transform shape]
-\begin{umlsystem}{Geldautomat}
-
-\umlusecase[x=2,y=0,name={Service nutzen}]{Service nutzen}
-\umlusecase[x=8,y=0,name=Authentifizierung]{Authentifizierung}
-\umlinclude{Service nutzen}{Authentifizierung}
-
-\umlusecase[x=13,y=2,name={Karte prüfen}]{Karte prüfen}
-\umlusecase[x=13,y=0,name={PIN prüfen}]{PIN prüfen}
-\umlusecase[x=13,y=-2,name={Karte sperren}]{Karte sperren}
-
-\umlinclude{Authentifizierung}{Karte prüfen}
-\umlinclude{Authentifizierung}{PIN prüfen}
-\umlextend[name=extend-sperren]{Authentifizierung}{Karte sperren}
-\umlnote[x=13,y=-4]{extend-sperren-1}{Karte und PIN konten 3x nicht erfolgreich geprüft werden.}
-
-\umlusecase[x=9,y=-4,name={Bankautomat neustarten},text width=2cm]{Bankautomat neustarten}
-\umlusecase[x=5,y=-4,name={Bankautomat auffüllen},text width=2cm]{Bankautomat auffüllen}
-\umlinclude{Bankautomat neustarten}{Authentifizierung}
-\umlinclude{Bankautomat auffüllen}{Authentifizierung}
-\end{umlsystem}
-
-\umlactor[x=7,y=-6.5,name=Mitarbeiter]{Mitarbeiter}
-\umlVHVassoc{Mitarbeiter}{Bankautomat neustarten}
-\umlVHVassoc{Mitarbeiter}{Bankautomat auffüllen}
-
-\umlactor[x=-1,y=0,name=Kunde]{Kunde}
-\umlassoc{Kunde}{Service nutzen}
-
-\umlusecase[x=0,y=2,name={Geld abheben},text width=1.5cm]{Geld abheben}
-\umlusecase[x=3,y=2,name={Geld einzahlen},text width=1.5cm]{Geld einzahlen}
-\umlusecase[x=6,y=2,name={Kontostand abfragen},text width=2cm]{Kontostand abfragen}
-\umlVHVinherit{Geld abheben}{Service nutzen}
-\umlVHVinherit{Geld einzahlen}{Service nutzen}
-\umlVHVinherit{Kontostand abfragen}{Service nutzen}
-
-\umlusecase[x=0,y=4,name={Kontostand / Automat prüfen},text width=1.5cm]{Kontostand / Automat prüfen}
-\umlusecase[x=2,y=-2,name={Fehlermeldung},text width=1.5cm]{Fehlermeldung}
-
-\end{tikzpicture}
-\end{antwort}
+\ExamensAufgabe 46116 / 2017 / 03 : Thema 1 Teilaufgabe 1 Aufgabe 2
 
 \literatur
 
