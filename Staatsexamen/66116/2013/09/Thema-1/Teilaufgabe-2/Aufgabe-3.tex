@@ -1,0 +1,221 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{}
+\begin{document}
+\section{Aufgabe 1\footcite{sosy:ab:9}}
+
+\begin{itemize}
+
+%%
+%
+%%
+
+\item Nennen Sie jeweils einen Vorteil und einen Nachteil für
+Qualitätssicherung durch „Testing“ bzw. durch „Model Checking“.
+\footcite[Herbst 2013 (66116) - Thema 1, Teilaufgabe 2, Aufgabe 3]{examen:66116:2013:09}
+
+\begin{antwort}
+
+\ueberschrift{Qualitätssicherung durch „Testing“}
+
+\begin{description}
+\item[Vorteil]
+schnell, Massentests
+
+\item[Nachteil]
+keine 100\% Garantie, dass alles getestet ist
+\end{description}
+
+\ueberschrift{Qualitätssicherung durch „Model Checking“}
+
+\begin{description}
+\item[Vorteil]
+mathematischer Beweis
+
+\item[Nachteil]
+teilweise langwierig / nicht möglich
+\end{description}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Definieren Sie den Begriff „Refactoring“.
+
+\begin{antwort}
+Verbesserung der Code-/Systemstruktur mit dem Ziel einer besseren Wartbarkeit
+
+\begin{itemize}
+\item Dokumentation, Namen, Kommentare
+\item keine neuen Funktionalitäten
+\item bessere Struktur, einheitlich, einfacher
+\end{itemize}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Begründen Sie, warum bei der Entwicklung nach der Methode des
+„eXtreme Programming“ langfristig gesehen Refactorings zwingend notwendig
+werden.
+
+\begin{antwort}
+Im „eXtreme Programming“ wird das Projekt kontinuierlich aufgebaut,
+somit ist ein Refactoring, auch aufgrund des Pair-Programmings, auf
+lange Sicht gesehen notwendig.
+\end{antwort}
+
+%%
+%
+%%
+
+\item Wie wird in der Praxis während und nach erfolgtem Refactoring
+sichergestellt, dass keine neuen Defekte eingeführt werden bzw. wurden?
+
+\begin{antwort}
+Re-testing $\rightarrow$ erneute Verifikation mit Tests nach Refactoring
+\end{antwort}
+
+%%
+%
+%%
+
+\item Worin besteht der Unterschied zwischen „White-Box-Testing“ und
+„Black-Box-Testing“?
+
+\begin{antwort}
+\begin{description}
+\item[White-Box-Testing:]
+Struktur-Test $\rightarrow$ Wie funktioniert der Code?
+
+\item[Black-Box-testing:]
+Funktionstest $\rightarrow$ Das nach außen sichtbare Verhalten wird
+getestet.
+\end{description}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Nennen Sie vier Qualitätsmerkmale von Software.
+
+\begin{antwort}
+Änderbarkeit, Wartbarkeit, gute Dokumentation, Effizienz, Funktionalität
+($\rightarrow$ Korrektheit), zuverlässigkeit, Portabilität
+\end{antwort}
+
+%%
+%
+%%
+
+\item Worin besteht der Unterschied zwischen funktionalen und
+nicht-funktionalen Anforderungen?
+
+\begin{antwort}
+\item[Funktionale Anforderung:]
+Anforderung an die Funktionalität des Systems, also „Was kann es?“
+
+\item[Nicht-funktionale Anforderung:]
+Design, Programmiersprache, Performanz
+\end{antwort}
+
+%%
+%
+%%
+
+\item Was verbirgt sich hinter dem Begriff „Continuous Integration“?
+
+\begin{antwort}
+Continuous Integration: Das fertige Modul wird sofort in das bestehende
+Produkt integriert. Die Integration erfolgt also schrittweise und nicht
+erst, wenn alle Module fertig sind. Somit können auch neue
+Funktionalitäten sofort hinzugefügt werden ($rightarrow$ neue
+Programmversion).
+\end{antwort}
+
+%%
+%
+%%
+
+\item Nennen Sie sechs Herausstellungsmerkmale des „eXtreme
+Programming“ Ansatzes.
+
+\begin{antwort}
+\begin{itemize}
+\item Werte: Mut, Respekt, Einfachheit, Feedback, Kommunikation
+
+\item geringe Bedeutung von formalisiertem Vorgehen, Lösen der
+Programmieraufgabe im Vordergrund
+
+\item fortlaufende Iterationen
+
+\item Teamarbeit und Kommunikation (auch mit Kunden)
+
+\item Ziel: Software schneller und mit höherer Qualität bereitstellen,
+höhere Kundenzufriedenheit
+
+\item Continuous Integration und Testing, Prototyping
+
+\item Risikoanalysen zur Risikominimierung
+
+\item YAGNI (You ain’t gonna need it) $\rightarrow$ nur die Features,
+die gefordert sind, umsetzen; kein Vielleicht braucht man’s... “
+\end{itemize}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Was versteht man unter einem Unit-Test? Begründen Sie, warum es
+unzureichend ist, wenn eine Test-Suite ausschließlich Unit-Tests
+enthält.
+
+\begin{antwort}
+Unter einem Unit-Test versteht man den Test eines einzelnen
+Software-Moduls oder auch nur einer Methode. Dies ist allein nicht
+ausreichend, da man so nichts über das Zusammenspiel der Module aussagen
+kann.
+\end{antwort}
+
+%%
+%
+%%
+
+\item Nennen Sie jeweils eine Methodik, mit welcher in der Praxis die
+Prozesse der „Validierung“ und der „Verifikation“ durchgeführt werden.
+
+\begin{antwort}
+\begin{description}
+\item[Methodik der Verifikation:]
+Testen, wp-Kalkül, Model Checking
+
+\item[Methodik der Validierung:]
+Kundentest, Kundengespräch (Spezifiaktion durchsprechen)
+\end{description}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Grenzen Sie die Begriffe \emph{„Fault“} und \emph{„Failure“}
+voneinander ab.
+
+\begin{antwort}
+
+\begin{description}
+\item[Fault:]
+interner Fehlerzustand, der nach außen nicht nicht sichtbar werden muss,
+aber kann.
+
+\item[Failure:]
+Systemfehler / Fehlerzustand, der nach außen sichtbar wird.
+\end{description}
+
+\end{antwort}
+
+\end{itemize}
+\end{document}
