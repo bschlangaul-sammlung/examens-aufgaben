@@ -30,7 +30,7 @@ function generateQuestionPath (arg1, arg2, arg3) {
 function generateTeXMacro(exam, arg1, arg2, arg3) {
   let questionMarkup = ''
   let macroSuffix = ''
-  const examMarkup = '${exam.number} / ${exam.year} / ${exam.month} : '
+  const examMarkup = `${exam.number} / ${exam.year} / ${exam.month} :`
   if (arg1 && arg2 && arg3) {
     questionMarkup = `Thema ${arg1} Teilaufgabe ${arg2} Aufgabe ${arg3}`
     macroSuffix = 'TTA'
@@ -106,7 +106,7 @@ program
       fs.writeFileSync(questionPath, template, { encoding: 'utf-8' })
     }
     open('/usr/bin/code', questionPath)
-    console.log(generateTeXMacro(examen, arg1, arg2, arg3))
+    console.log(generateTeXMacro(exam, arg1, arg2, arg3))
   })
 
 program

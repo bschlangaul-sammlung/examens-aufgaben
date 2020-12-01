@@ -1,0 +1,119 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{syntax,mathe}
+\begin{document}
+
+\section{Aufgabe 1: „Rekursion und Induktion“}
+
+\begin{quellen}
+\item \cite[Seite 25]{aud:fs:1}
+\item \cite[Seite 2-3, Thema 1, Aufgabe 1b]{examen:66115:2014:03}
+\end{quellen}
+
+\begin{enumerate}
+\item Gegeben sei die Methode \verb|BigInteger lfBig(int n)| zur
+Berechnung der eingeschränkten Linksfakultät:
+
+\begin{minted}{java}
+import java.math.Biginteger;
+import static java.math.BigInteger.*;
+
+public class LeftFactorial {
+  // returns the left factorial !n
+  BigInteger lfBig(int n) {
+    if (n <= 0 || n >= Short.MAX_VALUE) {
+      return ZERO;
+    } else if (n == 1) {
+    return ONE;
+    } else {
+      return sub(mul(n, lfBig(n - 1)), mul(n - 1, lfBig(n - 2)));
+    }
+  }
+}
+\end{minted}
+
+Implementieren Sie unter Verwendung des Konzeptes der \emph{dynamischen
+Programmierung} die Methode \verb|BigInteger dpBig(int n)|, die jede
+$!n$
+auch bei mehrfachem Aufrufen mit dem gleichen Parameter höchstens einmal
+rekursiv berechnet. Sie dürfen der Klasse \verb|LeftFactorial| genau ein
+Attribut beliebigen Datentyps hinzufügen und die in \verb|lfBig(int)|
+verwendeten Methoden und Konstanten ebenfalls nutzen.
+
+\item Betrachten Sie nun die Methode \verb|lfLong(int)| zur Berechnung
+der vorangehend definierten Linksfakultät ohne obere Schranke. Nehmen
+Sie im Folgenden an, dass der Datentyp \verb|long| unbeschränkt ist und
+daher kein Überlauf auftritt.
+
+\begin{minted}{java}
+long lfLong(int n) {
+  if (n <= 0) {
+    return 0;
+  } else if (n == 1) {
+    return 1;
+  } else {
+    return n * lfLong(n - 1) - (n - 1) * lfLong(n - 2);
+  }
+}
+\end{minted}
+
+Beweisen Sie \emph{formal} mittels \emph{vollständiger Induktion}:
+
+\def\lf#1{\text{lfLong}(#1)}
+\def\sk#1{\sum^{#1}_{k=0}k!}
+
+\begin{displaymath}
+\forall n \geq 0: \lf{n} \equiv \sk{n-1}
+\end{displaymath}
+
+\begin{antwort}
+
+IA:
+
+\begin{displaymath}
+n=1 \Rightarrow
+\lf{1} =
+1 =
+\sk{n-1} =
+0! =
+1
+\end{displaymath}
+
+\begin{displaymath}
+n=2 \Rightarrow
+\lf{2} =
+2 \cdot \lf{1} - 1 \cdot \lf{0} =
+2 =
+\sk{1} =
+1! + 0! =
+1 + 1 =
+2
+\end{displaymath}
+
+IV:
+
+\begin{displaymath}
+\lf{n} = \sk{n-1}
+\end{displaymath}
+
+gilt:
+
+IS:
+
+\begin{equation}
+\begin{split}
+\lf{n+1} & = (n+1) \cdot \lf{n} - n \cdot \lf{n-1} \\
+& = (n+1) \cdot \sk{n-1} - n \cdot \sk{n-2} \\
+& = (n+1) \cdot \Big((n-1)! + \sk{n-2}\Big) - n \cdot \sk{n-2} \\
+& = (n+1)(n-1)! + (n+1) \cdot \sk{n-2} - n \cdot \sk{n-2} \\
+& = (n+1)(n-1)! \cdot \sk{n-2} + n \cdot \sk{n-2} - n \cdot \sk{n-2} \\
+& = (n+1)(n-1)! + \sk{n-2} \\
+& = n \cdot (n-1)! + (n-1)! + \sk{n-2} \\
+& = n \cdot (n-1)! + \sk{n-1} \\
+& = n! + \sk{n-1} \\
+& = \sk{n} \\
+& = \sk{(n+1)-1}
+\end{split}
+\end{equation}
+\end{antwort}
+\end{enumerate}
+\end{document}

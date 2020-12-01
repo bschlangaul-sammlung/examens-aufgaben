@@ -1,0 +1,122 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{}
+\begin{document}
+
+\section{Aufgabe 4: Vollständige Induktion\footcite{sosy:ab:8}}
+
+Sie dürfen im Folgenden davon ausgehen, dass keinerlei Under- oder
+Overflows auftreten.\footcite[nach Frühjahr 2017 (66115) - Thema 1,
+Aufgabe 4]{examen:66115:2017:03}
+
+\noindent
+Gegeben sei folgende rekursive Methode für $n \geq 0$:
+
+\begin{minted}{java}
+long sumOfSquares (long n) {
+  if (n == 0)
+    return 0;
+  else
+    return n * n + sumOfSquares(n - 1);
+}
+\end{minted}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Beweisen Sie formal mittels vollständiger Induktion:
+
+\begin{displaymath}
+\forall n \in \mathbb{N} : \texttt{sumOfSquares(n)} =
+\frac{n(n + 1)(2n + 1)}{6}
+\end{displaymath}
+
+\begin{antwort}
+Sei $f(n): \frac{n(n + 1)(2n + 1)}{6}$
+
+%%
+%
+%%
+
+\ueberschrift{Induktionsanfang}
+
+Für $n = 0$ gilt:
+
+$\texttt{sumOfSquares(0)} \overset{\texttt{if}}{=} 0 = f(0)$
+
+%%
+%
+%%
+
+\ueberschrift{Induktionshypothese}
+
+Für ein festes $n \in \mathbb{N}$ gelte:
+
+$\texttt{sumOfSquares(0)} = f(n)$
+
+%%
+%
+%%
+
+\ueberschrift{Induktionsschritt}
+
+% https://mathcs.org/analysis/reals/infinity/answers/sm_sq_cb.html
+
+$n \rightarrow n + 1$
+
+$\texttt{sumOfSquares(n+1)} \overset{\texttt{else}}{=}$
+
+$\texttt{(n+1)*(n+1)*sumOfSquares(n)} \overset{\texttt{I.H.}}{=}$
+
+$(n + 1) \cdot (n + 1) + f(n)$
+
+$(n + 1)^2 + \frac{n(n + 1)(2n + 1)}{6}$
+
+$\frac{6(n + 1)^2}{6} + \frac{n(n + 1)(2n + 1)}{6}$
+
+$\frac{6(n + 1)^2 + n(n + 1)(2n + 1)}{6}$
+
+$\frac{(n + 1) \cdot (6(n + 1) + n(2n + 1))}{6}$
+
+$\frac{(n + 1) \cdot (6n + 6 + 2n^2 + n))}{6}$
+
+$\frac{(n + 1) \cdot (2n^2 + 7n + 6))}{6}$
+$\frac{(n + 1) \cdot (n + 2) (2n + 3))}{6}$
+
+Neben $2n^2 + 7n + 6 = (n + 2) (2n + 3) = n \cdot 2n + 2 \cdot 2n + 3 \cdot n + 2 \cdot 6$
+
+% $\frac{6(n^2 + 2 \cdot n \cdot 1 + 1^2) + n(n + 1)(2n + 1)}{6}$
+
+% $\frac{6n^2 + 12n + 6 + n(n + 1)(2n + 1)}{6}$
+
+% $\frac{6n^2 + 12n + 6 + (n^2 + n)(2n + 1)}{6}$
+
+% $\frac{6n^2 + 12n + 6 + (n^2 + n)2n + (n^2 + n)1}{6}$
+
+% $\frac{6n^2 + 12n + 6 + 2n^3 + 2n^2 + n^2 + n}{6}$
+
+% $\frac{6n^2 + 13n + 6 + 2n^3 + 2n^2 + n^2 + n}{6}$
+
+% $\frac{9n^2 + 6 + 2n^3 + n}{6}$
+
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Beweisen Sie die Terminierung von \java{sumOfSquares(n)} für alle
+$n \geq 0$.
+
+\begin{antwort}
+Sei $T (n) = n$. Die Funktion $T (n)$ ist offenbar ganzzahlig. In jedem
+Rekursionsschritt wird $n$ um eins verringert, somit ist $T (n)$ streng
+monoton fallend. Durch die Abbruchbedingung \java{n==0} ist $T (n)$
+insbesondere nach unten beschränkt. Somit ist $T$ eine gültige
+Terminierungsfunktion.
+\end{antwort}
+
+\end{enumerate}
+\end{document}
