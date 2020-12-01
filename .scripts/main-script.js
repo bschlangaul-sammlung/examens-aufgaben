@@ -17,12 +17,33 @@ function generateExamBasePath (number, year, month) {
   return path.join(__dirname, '..', 'Staatsexamen', number, year, month)
 }
 
-function generateQuestionPath (partNo, subPartNo, questionNo) {
-  const part = `Thema-${partNo}`
-  const subPart = `Teilaufgabe-${subPartNo}`
-  const question = `Aufgabe-${questionNo}.tex`
+function generateQuestionPath (arg1, arg2, arg3) {
+  if (arg1 && arg2 && arg3) {
+    return path.join(`Thema-${arg1}`, `Teilaufgabe-${arg2}`, `Aufgabe-${arg3}.tex`)
+  } else if (arg1 && arg2 && !arg3) {
+    return path.join(`Thema-${arg1}`, `Aufgabe-${arg2}.tex`)
+  } else {
+    return `Aufgabe-${arg1}.tex`
+  }
+}
 
-  return path.join(part, subPart, question)
+function generateTeXMacro(exam, arg1, arg2, arg3) {
+  let questionMarkup = ''
+  let macroSuffix = ''
+  const examMarkup = '${exam.number} / ${exam.year} / ${exam.month} : '
+  if (arg1 && arg2 && arg3) {
+    questionMarkup = `Thema ${arg1} Teilaufgabe ${arg2} Aufgabe ${arg3}`
+    macroSuffix = 'TTA'
+  } else if (arg1 && arg2 && !arg3) {
+    questionMarkup = `Thema ${arg1} Aufgabe ${arg2}`
+    macroSuffix = 'TA'
+
+  } else {
+    questionMarkup = `Aufgabe ${arg1}`
+    macroSuffix = 'A'
+
+  }
+  return `\n\\ExamensAufgabe${macroSuffix} ${examMarkup} ${questionMarkup}`
 }
 
 function splitExamRef (ref) {
@@ -53,15 +74,24 @@ program.on('command:*', function () {
   process.exit(1)
 })
 
+function checkNumber (number) {
+  number = parseInt(number)
+  if (number) return number
+}
+
 program
-  .command('create-question <ref> <part-no> <sub-question-no> <question-no>')
+  .command('create-question <ref> <part-no> [sub-question-no] [question-no]')
   .description('Create a exam question template in the right directory folder: 66116:2020:09')
   .alias('c')
-  .action(function (ref, partNo, subPartNo, questionNo, cmdObj) {
+  .action(function (ref, arg1, arg2, arg3, cmdObj) {
+    arg1 = checkNumber(arg1)
+    arg2 = checkNumber(arg2)
+    arg3 = checkNumber(arg3)
+
     const exam = splitExamRef(ref)
     const questionPath = path.join(
       generateExamBasePath(exam.number, exam.year, exam.month),
-      generateQuestionPath(partNo, subPartNo, questionNo)
+      generateQuestionPath(arg1, arg2, arg3)
     )
 
     const template =
@@ -76,8 +106,7 @@ program
       fs.writeFileSync(questionPath, template, { encoding: 'utf-8' })
     }
     open('/usr/bin/code', questionPath)
-    console.log(`\n\\ExamensAufgabe ${exam.number} / ${exam.year} / ${exam.month} : Thema ${partNo} Teilaufgabe ${subPartNo} Aufgabe ${questionNo}`)
-
+    console.log(generateTeXMacro(examen, arg1, arg2, arg3))
   })
 
 program

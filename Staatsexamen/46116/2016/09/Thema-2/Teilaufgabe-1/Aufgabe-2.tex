@@ -1,0 +1,100 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{uml}
+\begin{document}
+
+\section{Aufgabe 2: Modellierung von Interaktionen durch Sequenzdiagramme
+\footcite[Thema 2 TA 1 Aufgabe 2]{examen:46116:2016:09}}
+
+Die Fahrtrichtung der ersten elektrischen Spielzeugeisenbahnen wurde
+häufig durch Stromunterbrechung gesteuert. Dazu betrachten wir das
+Anwendungsfall-Diagramm.
+
+\begin{center}
+\begin{tikzpicture}
+\umlactor{Spieler}
+\begin{umlsystem}[x=5]{}
+\umlusecase[name={Steuere Lokomotive}]{Steuere Lokomotive}
+\end{umlsystem}
+\umlassoc{Spieler}{Steuere Lokomotive}
+\end{tikzpicture}
+\end{center}
+
+\noindent
+An dem Anwendungsfall \emph{„Steuere Lokomotive“} sind ein Spieler, als
+Aktor außerhalb des Systems, und jeweils ein Objekt der Klassen
+\emph{Stromschalter}, \emph{Lokomotive}, \emph{Scheinwerfer} und
+\emph{Rad}, als Objekte innerhalb des Systems, beteiligt. Zur
+Vereinfachung wird nur ein Objekt der Klasse \emph{Rad} stellvertretend
+für alle vier Räder modelliert. Der Anwendungsfall zum Steuern einer
+Lokomotive wird durch folgendes Szenario beschrieben.
+
+\begin{enumerate}
+
+\item Der Spieler schaltet den Stromschalter ein, woraufhin der Schalter
+der Lokomotive \emph{Strom zuführt}.
+
+\item Die Lokomotive schickt nun den Rädern ein Signal um
+\emph{vorwärts} zu fahren.
+
+\item Dann schaltet der Spieler den Stromschalter aus, woraufhin der
+Schalter die Stromzufuhr bei der Lokomotive \emph{abstellt}.
+
+\item Daraufhin schickt die Lokomotive das Signal \emph{stop} an die
+Räder.
+
+\item Der Spieler schaltet jetzt den Stromschalter wieder ein, woraufhin
+der Schalter der Lokomotive \emph{Strom zuführt}.
+
+\item Die Lokomotive schickt den Rädern ein Signal um \emph{rückwärts}
+zu fahren.
+
+\item Nun schaltet der Spieler den Stromschalter wieder aus, woraufhin
+der Schalter die Stromzufuhr bei die Lokomotive \emph{abstellt}.
+
+\item Daraufhin schickt die Lokomotive wieder das Signal \emph{stop} an
+die Räder.
+\end{enumerate}
+
+\noindent
+Geben Sie ein Sequenzdiagramm an, das die oben beschriebenen
+Interaktionen zwischen Spieler, Stromschalter, Lokomotive und Rädern
+beschreibt.
+
+\begin{tikzpicture}
+\begin{umlseqdiag}
+\umlactor{Spieler}
+\umlobject[class=Stromschalter]{schalter}
+\umlobject[class=Lokomotive]{lok}
+\umlobject[class=Rad]{rad}
+
+\begin{umlcall}[op=einschalten()]{Spieler}{schalter}
+\begin{umlcall}[op=stromZufuehren()]{schalter}{lok}
+\begin{umlcall}[op=vorwaertsFahren()]{lok}{rad}
+\end{umlcall}
+\end{umlcall}
+\end{umlcall}
+
+\begin{umlcall}[op=ausschalten(),with return]{Spieler}{schalter}
+\begin{umlcall}[op=stromAbstellen(),with return]{schalter}{lok}
+\begin{umlcall}[op=stop(),with return]{lok}{rad}
+\end{umlcall}
+\end{umlcall}
+\end{umlcall}
+
+\begin{umlcall}[op=einschalten()]{Spieler}{schalter}
+\begin{umlcall}[op=stromZufuehren()]{schalter}{lok}
+\begin{umlcall}[op=rueckwaertsFahren()]{lok}{rad}
+\end{umlcall}
+\end{umlcall}
+\end{umlcall}
+
+\begin{umlcall}[op=ausschalten(),with return]{Spieler}{schalter}
+\begin{umlcall}[op=stromAbstellen(),with return]{schalter}{lok}
+\begin{umlcall}[op=stop(),with return]{lok}{rad}
+\end{umlcall}
+\end{umlcall}
+\end{umlcall}
+
+\end{umlseqdiag}
+\end{tikzpicture}
+\end{document}
