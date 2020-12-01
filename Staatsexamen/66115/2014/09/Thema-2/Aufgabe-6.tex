@@ -1,0 +1,75 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{mathe,syntax}
+\begin{document}
+
+\section{Herbst 2014 (66115) - Thema 2, Aufgabe 6\footcite[Aufgabe 4,
+Seite 4]{aud:ab:3}}
+
+Gegeben sei ein einfacher Sortieralgorithmus, der ein gegebenes Feld $A$
+dadurch sortiert, dass er das \emph{Minimum} $m$ von $A$ \emph{findet},
+dann das Minimum von $A$ ohne das Element $m$ usw.
+\footcite[Thema 2, Aufgabe 6, Seite 5]{examen:66115:2014:09}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Geben Sie den Algorithmus in Java an. Implementieren Sie den
+Algorithmus \emph{in situ}, d.\,h. so, dass er außer dem Eingabefeld nur
+konstanten Extraspeicher benötigt. Es steht eine Testklasse zur
+Verfügung.
+
+\begin{antwort}
+\inputcode[firstline=3]{aufgaben/aud/examen_66115_2014_09/SortierungDurchAuswaehlen}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Analysieren Sie die Laufzeit Ihres Algorithmus.
+
+\begin{antwort}
+Beim ersten Durchlauf des \emph{Selectionsort}-Algorithmus muss $n - 1$
+mal das Minimum durch Vergleich ermittel werden, beim zweiten Mal
+$n - 2$.
+Mit Hilfe der \emph{Gaußschen Summenforme}l kann die Komplexität
+gerechnet werden:
+
+\begin{displaymath}
+(n-1)+(n-2)+\dotsb+3+2+1 =
+\frac{(n-1)\cdot n}{2} =
+\frac{n^2}{2}-\frac{n}{2} \approx
+\frac{n^2}{2} \approx
+n^2
+\end{displaymath}
+
+Da es bei der Berechnung des Komplexität um die Berechnung der
+asymptotischen oberen Grenze geht, können Konstanten und die Addition,
+Subtraktion, Multiplikation und Division mit Konstanten z. b.
+$\frac{n^2}{2}$ vernachlässigt werden.
+
+Der \emph{Selectionsort}-Algorithmus hat deshalb die Komplexität
+$\mathcal{O}(n^2)$, er ist von der Ordnung
+$\mathcal{O}(n^2)$.
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Geben Sie eine Datenstruktur an, mit der Sie Ihren Algorithmus
+beschleunigen können.
+
+\begin{antwort}
+Der \emph{Selectionsort}-Algorithmus kann mit einer Min- (in diesem
+Fall) bzw. einer Max-Heap beschleunigt werden. Mit Hilfe dieser
+Datenstruktur kann sehr schnell das Minimum gefunden werden. So kann auf
+die viele Vergleiche verzichtet werden. Die Komplexität ist dann
+$\mathcal{O}(n \log n)$.
+\end{antwort}
+\end{enumerate}
+
+\end{document}

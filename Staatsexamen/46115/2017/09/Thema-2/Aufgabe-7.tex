@@ -1,0 +1,100 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{syntax}
+\usepackage{tikz}
+\usetikzlibrary{chains,fit,shapes,shapes.multipart}
+\begin{document}
+
+\section{Aufgabe zum Insertionsort}
+
+\begin{quellen}
+\item \cite[Seite 1]{aud:pu:2}
+\item \cite[Herbst 2017 (RS), Thema 2, A7]{examen:46115:2017:09}
+\end{quellen}
+
+\begin{enumerate}
+\item Führen Sie \emph{„Sortieren durch Einfügen“} lexikographisch
+aufsteigend und \emph{in-situ} (\emph{in-place}) so in einem
+Schreibtischlauf auf folgendem Feld (Array) aus, dass gleiche Elemente
+ihre relative Abfolge jederzeit beibehalten (also dass z.\,B. $A_1$
+stets vor $A_2$ im Feld steht). Jede Zeile stellt den Zustand des Feldes
+dar, nachdem das jeweils nächste Element in die Endposition verschoben
+wurde. Der bereits sortierte Teilbereich steht vor |||. Gleiche Elemente
+tragen zwecks Unterscheidung ihre \emph{„Objektidentität“} als Index
+(z.\,B. \java{"A1".equals("A2")} aber \java{"A1" != "A2"})
+
+\tikzset{
+  sorted/.style = {
+    draw,
+    line width=0.6pt,
+    inner sep=0mm
+  },
+  unsorted/.style = {
+    draw,
+    font=\tiny,
+    rectangle split,
+    rectangle split horizontal,
+    rectangle split parts=6,
+    text centered,
+    align=center
+  },
+}
+
+\def\TmpSchreibtischLauf#1#2#3#4#5#6#7{
+  \noindent
+  \begin{tikzpicture}
+  \node (qs) [unsorted] {
+  \nodepart{one} #1
+  \nodepart{two} #2
+  \nodepart{three} #3
+  \nodepart{four} #4
+  \nodepart{five} #5
+  \nodepart{six} #6
+  };
+
+  \node[sorted, fit=(qs.north west) (qs.south west) (qs.#7 split)] {};
+  \end{tikzpicture}
+}
+
+\begin{center}
+\TmpSchreibtischLauf{$L$}{$A_1$}{$B_1$}{$F$}{$A_2$}{$B_2$}{one}
+
+\TmpSchreibtischLauf{$A_1$}{$L$}{$B_1$}{$F$}{$A_2$}{$B_2$}{two}
+
+\TmpSchreibtischLauf{$A_1$}{$B_1$}{$L$}{$F$}{$A_2$}{$B_2$}{three}
+
+\TmpSchreibtischLauf{$A_1$}{$B_1$}{$F$}{$L$}{$A_2$}{$B_2$}{four}
+
+\TmpSchreibtischLauf{$A_1$}{$A_2$}{$B_1$}{$F$}{$L$}{$B_2$}{five}
+
+\begin{tikzpicture}
+\node (qs) [unsorted] {
+\nodepart{one} $A_1$
+\nodepart{two} $A_2$
+\nodepart{three} $B_1$
+\nodepart{four} $B_2$
+\nodepart{five} $F$
+\nodepart{six} $L$
+};
+
+\node[sorted, fit=(qs.north west) (qs.south west) (qs.south east)] {};
+\end{tikzpicture}
+\end{center}
+
+\item Ergänzen Sie die folgende Methode so, dass sie die Zeichenketten
+im Feld \java{a} lexikographisch aufsteigend durch Einfügen sortiert.
+Sie muss zum vorangehenden Ablauf passen, d.\,h. sie muss
+\emph{iterativ} sowie \emph{in-situ} (\emph{in-place}) arbeiten und die
+relative Reihenfolge gleicher Elemente jederzeit beibehalten. Sie dürfen
+davon ausgehen, dass kein Eintrag im Feld null ist.
+
+\begin{minted}{java}
+void sortierenDurchEinfuegen(String[] a) {
+  // Hilfsvariable:
+  String tmp;
+}
+\end{minted}
+
+\inputcode[firstline=5,lastline=16]{aufgaben/aud/examen_46115_2017_09/InsertionSort}
+
+\end{enumerate}
+\end{document}
