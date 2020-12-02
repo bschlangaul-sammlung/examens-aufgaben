@@ -1,0 +1,106 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{uml}
+\begin{document}
+
+\section{Aufgabe 2: (StEx Realschule Frühjahr 2017, Thema 1, TA 1, A3
+(erweitert)) \footcite{sosy:ab:3}}
+
+Betrachten Sie die folgenden UML-Diagrame. Sind diese korrekt? Falls
+nein, begründen Sie warum nicht. Geben Sie in diesem Fall außerdem eine
+korrigierte Version an. Falls ja, erklären Sie die inhaltliche Bedeutung
+des Diagramms.\footcite{examen:46116:2017:03}
+
+\begin{enumerate}
+\item \strut
+
+\begin{tikzpicture}
+\umlactor{Person}
+\umlactor[x=3]{Student}
+\umlextend{Person}{Student}
+\end{tikzpicture}
+
+\begin{antwort}
+\emph{Falsch}, den verwendeten „extends“-Pfeil gibt es nur zwischen
+Anwendungsfällen.
+
+\begin{tikzpicture}
+\umlactor{Person}
+\umlactor[x=3]{Student}
+\umlinherit{Student}{Person}
+\end{tikzpicture}
+\end{antwort}
+
+\item \strut
+
+\begin{tikzpicture}
+\umlsimpleclass[x=3]{Fahrzeug}
+\umlsimpleclass[x=1,y=-2]{Landfahrzeug}
+\umlsimpleclass[x=5,y=-2]{Wasserfahrzeug}
+\umlsimpleclass[x=3,y=-4]{Amphibienfahrzeug}
+
+\umlVHVinherit{Landfahrzeug}{Fahrzeug}
+\umlVHVinherit{Wasserfahrzeug}{Fahrzeug}
+\umlVHVinherit{Amphibienfahrzeug}{Wasserfahrzeug}
+\umlVHVinherit{Amphibienfahrzeug}{Landfahrzeug}
+\end{tikzpicture}
+
+\begin{antwort}
+Die dargestellte Modellierung ist \emph{korrekt}. Sowohl Land- als auch
+Wasserfahrzeuge sind Fahrzeuge und erben somit von dieser Klasse. Da
+ein Amphibienfahrzeug eine „Mischung“ aus beidem ist, erbt diese Klasse
+auch von beiden Klassen. Diese Mehrfachvererbug kann allerdings nicht
+in jeder Programmiersprache (z. B. nicht in Java) umgesetzt
+werden.
+\end{antwort}
+
+\item \strut
+
+\begin{tikzpicture}
+\umlsimpleclass{Aquarium}
+\umlsimpleclass[x=3]{Fisch}
+\umlaggreg{Fisch}{Aquarium}
+\end{tikzpicture}
+
+\begin{antwort}
+Bei der dargestellten Aggregation befindet sich die Raute an der
+\emph{falschen} Seite der Beziehung. Das Diagramm würde bedeuten, dass
+ein Fisch mehrere Aquarien enthält. Die Umkehrung ist aber korrekt:
+
+\begin{tikzpicture}
+\umlsimpleclass{Aquarium}
+\umlsimpleclass[x=3]{Fisch}
+\umlaggreg{Aquarium}{Fisch}
+\end{tikzpicture}
+\end{antwort}
+
+\item \strut
+
+\begin{tikzpicture}
+\umlsimpleclass{Auto}
+\umlsimpleclass[x=-2,y=-2]{Motor}
+\umlsimpleclass[x=2,y=-2]{Rad}
+
+\umlVHVcompo{Auto}{Motor}
+\umlVHVcompo{Auto}{Rad}
+\end{tikzpicture}
+
+\begin{antwort}
+Hier wurde für die Modellierung eine Komposition gewählt. Dies bedeutet,
+dass die Existenz der Teile vom Ganzen abhängt. Einen Raum kann es z. B.
+ohne ein Gebäude nicht geben. In diesem Fall ist die Darstellung
+\emph{falsch}, da Motor und Rad auch ohne Auto existieren können. Die
+Modellierung muss also mittels Aggregation erfolgen:
+
+\begin{tikzpicture}
+\umlsimpleclass{Auto}
+\umlsimpleclass[x=-2,y=-2]{Motor}
+\umlsimpleclass[x=2,y=-2]{Rad}
+
+\umlVHVaggreg{Auto}{Motor}
+\umlVHVaggreg{Auto}{Rad}
+\end{tikzpicture}
+\end{antwort}
+
+\end{enumerate}
+
+\end{document}
