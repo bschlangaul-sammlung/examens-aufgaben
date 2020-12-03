@@ -4,6 +4,8 @@ const path = require('path')
 const fs = require('fs')
 const childProcess = require('child_process')
 
+const glob = require('glob')
+
 function open(executable, filePath) {
   const subprocess = childProcess.spawn(executable, [filePath], {
     detached: true,
@@ -121,6 +123,25 @@ program
     } else {
       console.log(`Path ${examPath} doesn’t exist.`)
     }
+  })
+
+program
+  .command('generate-readme')
+  .description('Generate the readme file')
+  .alias('r')
+  .action(function (cmdObj) {
+    glob("**/*.tex", function (er, files) {
+      for (const file of files) {
+        const content = fs.readFileSync(file, { encoding: 'utf-8' })
+        const re = /\\index\{([^\}]*)\}/g
+        do {
+          m = re.exec(content)
+          if (m) {
+              console.log(m[1])
+          }
+        } while (m)
+      }
+    })
   })
 
 program.parse(process.argv)
