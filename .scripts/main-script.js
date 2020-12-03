@@ -6,7 +6,28 @@ const childProcess = require('child_process')
 
 const glob = require('glob')
 
-function open(executable, filePath) {
+const examTitles = {
+  46110: 'Grundlagen der Informatik (nicht vertieft)',
+  46111: 'Programmentwicklung / Systemprogrammierung / Datenbanksysteme (nicht vertieft)',
+  46112: 'Grundlagen der Informatik (nicht vertieft)',
+  46113: 'Theoretische Informatik (nicht vertieft)',
+  46114: 'Algorithmen / Datenstrukturen / Programmiermethoden (nicht vertieft)',
+  46115: 'Theoretische Informatik / Algorithmen / Datenstrukturen (nicht vertieft)',
+  46116: 'Softwaretechnologie / Datenbanksysteme (nicht vertieft)',
+  46118: 'Fachdidaktik (Mittelschulen)',
+  46119: 'Fachdidaktik (Realschulen)',
+  46121: 'Fachdidaktik (berufliche Schulen)',
+  66110: 'Automatentheorie, Algorithmische Sprache (vertieft)',
+  66111: 'Betriebssysteme / Datenbanksysteme / Rechnerarchitektur (vertieft)',
+  66112: 'Automatentheorie / Komplexität / Algorithmen (vertieft)',
+  66113: 'Rechnerarchitektur / Datenbanken / Betriebssysteme (vertieft)',
+  66114: 'Datenbank- und Betriebssysteme (vertieft)',
+  66115: 'Theoretische Informatik / Algorithmen (vertieft)',
+  66116: 'Datenbanksysteme / Softwaretechnologie (vertieft)',
+  66118: 'Fachdidaktik (Gymnasium)'
+}
+
+function open (executable, filePath) {
   const subprocess = childProcess.spawn(executable, [filePath], {
     detached: true,
     stdio: 'ignore'
@@ -29,7 +50,7 @@ function generateQuestionPath (arg1, arg2, arg3) {
   }
 }
 
-function generateTeXMacro(exam, arg1, arg2, arg3) {
+function generateTeXMacro (exam, arg1, arg2, arg3) {
   let questionMarkup = ''
   let macroSuffix = ''
   const examMarkup = `${exam.number} / ${exam.year} / ${exam.month} :`
@@ -39,11 +60,9 @@ function generateTeXMacro(exam, arg1, arg2, arg3) {
   } else if (arg1 && arg2 && !arg3) {
     questionMarkup = `Thema ${arg1} Aufgabe ${arg2}`
     macroSuffix = 'TA'
-
   } else {
     questionMarkup = `Aufgabe ${arg1}`
     macroSuffix = 'A'
-
   }
   return `\n\\ExamensAufgabe${macroSuffix} ${examMarkup} ${questionMarkup}`
 }
@@ -61,9 +80,13 @@ function splitExamRef (ref) {
   }
 }
 
-const { Command } = require('commander');
-const program = new Command();
-program.version('0.1.0');
+function formatMarkdownLink (text, relPath) {
+  return `[${text}](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/${relPath})`
+}
+
+const { Command } = require('commander')
+const program = new Command()
+program.version('0.1.0')
 
 function actionHelp () {
   console.log('Specify a subcommand.')
@@ -125,23 +148,50 @@ program
     }
   })
 
+function collectIndexes () {
+  const files = glob.sync('**/*.tex')
+  const indexes = {}
+  for (const filePath of files) {
+    const content = fs.readFileSync(filePath, { encoding: 'utf-8' })
+    const re = /\\index\{([^\}]*)\}/g
+    let match
+    do {
+      match = re.exec(content)
+      if (match) {
+        indexes[match[1]] = filePath
+      }
+    } while (match)
+  }
+  return indexes
+}
+
+function parseQuestions(relPath) {
+  const files = glob.sync('**/*.tex', { cwd: relPath })
+  console.log(files)
+}
+
 program
   .command('generate-readme')
   .description('Generate the readme file')
   .alias('r')
   .action(function (cmdObj) {
-    glob("**/*.tex", function (er, files) {
-      for (const file of files) {
-        const content = fs.readFileSync(file, { encoding: 'utf-8' })
-        const re = /\\index\{([^\}]*)\}/g
-        do {
-          m = re.exec(content)
-          if (m) {
-              console.log(m[1])
-          }
-        } while (m)
+    function fileLink (relPath, fileName) {
+      return formatMarkdownLink(fileName, path.join(relPath, fileName))
+    }
+    for (const examNumber in examTitles) {
+      console.log(`\n### ${examNumber}: ${examTitles[examNumber]}\n`)
+      const examNumberPath = path.join('Staatsexamen', examNumber)
+      const yearDirs = fs.readdirSync(examNumberPath)
+      for (const year of yearDirs) {
+        const yearPath = path.join(examNumberPath, year)
+        const monthDirs = fs.readdirSync(yearPath)
+        for (const mount of monthDirs) {
+          const monthPath = path.join(yearPath, mount)
+          console.log(`- ${fileLink(monthPath, 'Scan.pdf')} ${fileLink(monthPath, 'OCR.txt')}`)
+          parseQuestions(monthPath)
+        }
       }
-    })
+    }
   })
 
 program.parse(process.argv)
