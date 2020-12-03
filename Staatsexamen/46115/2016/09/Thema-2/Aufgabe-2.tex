@@ -1,0 +1,44 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{syntax,mathe}
+\begin{document}
+
+\section{Aufgabe 5: Komplexität \index{Komplexität}
+\footcite[entnommen aus Algorithmen und Datenstrukturen, Übungsblatt 3, Universität Würzburg]{aud:pu:7}}
+
+Geben Sie jeweils die kleinste, gerade noch passende Laufzeitkomplexität
+folgender Java-Methoden im O-Kalkül (Landau-Notation) in Abhängigkeit
+von n und ggf. der Länge der Arrays an. \footcite[Staatsexamen
+Theoretische Informatik, Algorithmen und Datenstrukturen, Realschulen,
+Herbst 2016, Thema 2, Aufgabe 2 (Auszug)]{examen:46115:2016:09}
+
+\begin{enumerate}
+\item \strut\bigskip
+
+\inputcode[firstline=5,lastline=13]{aufgaben/aud/examen_46115_2016_09/Komplexitaet}
+
+\begin{antwort}
+Die Laufzeit liegt in $\mathcal{O}(n^2)$.
+
+Begründung (nicht verlangt): Die äußere Schleife wird $n$-mal
+durchlaufen. Die innere Schleife wird dann jeweils wieder $n$-mal
+durchlaufen. Die Größe des Arrays spielt hier übrigens keine Rolle, da
+die Schleifen ohnehin immer nur bis zum Wert $n$ ausgeführt werden.
+\end{antwort}
+
+\item \strut\bigskip
+
+\inputcode[firstline=15,lastline=25]{aufgaben/aud/examen_46115_2016_09/Komplexitaet}
+
+\begin{antwort}
+Die Laufzeit liegt in $\mathcal{O}(\log(\text{keys.length}))$. Dabei ist
+keys.length die Größe des Arrays bezüglich seiner ersten Dimension.
+
+Begründung (nicht verlangt): Der Grund für diese Laufzeit ist derselbe
+wie bei der binären Suche\footcite[Seite 122 (PDF 140)]{saake}. Die
+Größe des Arrays bezüglich seiner zweiten Dimension spielt hier übrigens
+keine Rolle, da diese Dimension hier ja nur einen einzigen festen Wert
+annimmt.
+\end{antwort}
+\end{enumerate}
+
+\end{document}
