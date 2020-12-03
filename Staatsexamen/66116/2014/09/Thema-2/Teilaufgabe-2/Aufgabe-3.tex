@@ -1,0 +1,172 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{mathe,syntax,kontrollflussgraph}
+\begin{document}
+
+\section{Aufgabe 2: Kontrollflussorientiertes Testen\footcite{sosy:ab:7}}
+
+Im Folgenden ist ein Algorithmus angegeben, der für eine positive Zahl
+\java{until} die Summe aller Zahlen bildet, die kleiner als \java{until}
+und Vielfache von 4 oder 6 sind. Für nicht positive Zahlen soll 0
+zurückgegeben werden. Der Algorithmus soll also folgender Spezifikation
+genügen:
+\footcite[Herbst 2014 (66116) - Thema 2, Teilaufgabe 2, Aufgabe 3]{examen:66116:2014:09}
+
+\bigskip
+
+{\footnotesize
+\noindent
+$\texttt{until} > 0 \Rightarrow \texttt{specialSums(until)} =
+\sum \{y | 0 < y < \texttt{until} \land (y\%4 = 0 \lor y\%6 = 0)\}$
+
+\noindent
+$\texttt{until} \leq 0 \Rightarrow \texttt{specialSums(until)} = 0$
+}
+
+\bigskip\noindent
+wobei $\%$ den Modulo-Operator bezeichnet.
+
+\inputcode[firstline=4,lastline=14]{aufgaben/sosy/ab_7/Aufgabe2}
+
+\noindent
+Beachten Sie, dass der Algorithmus nicht der Spezifikation genügt. Der
+Fehler liegt in der Bedingung der for-Schleife. Der Fehler kann jedoch
+einfach korrigiert werden indem die Bedingung
+
+\begin{center}
+$i \leq \texttt{until}$ in $i < \texttt{until}$
+\end{center}
+
+geändert würde.
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+  % public static long specialSums(int until) {
+  %   long sum = 0; // 0
+  %   if (until > 0) { // 1
+  %     for (int i = 1; i <= until; i++) { // 2 // 5
+  %       if (i % 4 == 0 || i % 6 == 0) { // 3
+  %         sum += i; // 4
+  %       }
+  %     }
+  %   }
+  %   return sum; // 6
+  % }
+
+\item Zeichnen Sie das zum Programm gehörige Ablaufdiagramm.
+
+\begin{antwort}
+\begin{tikzpicture}[kontrollfluss,xscale=1,yscale=-1.5]
+\node[knoten] at (0,0.5) (0) {0}; % long sum = 0;
+\node[knoten,pin=if] at (0,1) (1) {1}; % if (until > 0)
+\node[knoten,pin=for-Bedingung] at (1,2) (2) {2}; % for (int i = 1; i <= until; i++)
+\node[knoten,pin=if] at (2,3) (3) {3}; % if (i % 4 == 0 || i % 6 == 0)
+\node[knoten,pin=sum += i] at (3,4) (4) {4}; % sum += i;
+\node[knoten,pin=i++] at (2,5) (5) {5}; % i++
+\node[knoten,pin=return sum] at (0,5.5) (6) {6}; % return sum;
+
+\draw[->] (0) -- (1);
+\draw[->] (1) -- (2) \bedingung{above right}{until > 0};
+\draw[->] (2) -- (3) \bedingung{above right}{i <= until};
+\draw[->] (3) -- (4) \bedingung{above right}{i \% 4 == 0 || i \% 6 == 0};
+\draw[->] (4) -- (5);
+\draw[->] (1) -- (6) \bedingung{left}{until <= 0};
+\draw[->] (2) -- (6);
+\draw[->] (5) -- (2);
+\draw[->] (3) -- (5);
+\end{tikzpicture}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Schreiben Sie einen Testfall, der das Kriterium „100\%
+Anweisungsüberdeckung“ erfüllt, aber den Fehler trotzdem nicht aufdeckt.
+
+\begin{antwort}
+Der Fehler fällt nur dann auf, wenn \texttt{until} durch $4$ oder $6$
+ohne Rest teilbar ist. \texttt{until = 0\%4} oder \texttt{until = 0\%6}.
+Wähle daher den Testfall $\{(1, 0)\}$. Alternativ kann für die Eingabe
+auch 2, 3, 5, 7, 9, 10, 11, 13, ... gewählt werden.
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Schreiben Sie einen Testfall, der das Kriterium „100\%
+Zweigüberdeckung“ erfüllt, aber den Fehler trotzdem nicht aufdeckt.
+
+\begin{antwort}
+Betrachte den Testfall $\{(0, 0), (5, 4)\}$.
+
+\begin{description}
+\item[erste if-Bedingung]
+Das erste Tupel mit $\text{until} = 0$ stellt sicher, dass
+die erste if-Bedingung \java{false} wird.
+
+\item[Bedingung der for-Schleife]
+Für die zweite Eingabe $\text{until} = 5$ werden für $i$ die Werte 1, 2,
+3, 4, 5, 6 angenommen. Wobei für $i = 6$ die Bedingung der for-Schleife
+\java{false} ist.
+
+\item[Binnere if-Bedingung]
+Für i = 1, 2, 3, 5 wird die innere if-Bedingung jeweils \java{false},
+für $i = 4$ wird sie \java{true}.
+\end{description}
+
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Schreiben Sie einen Testfall, der den Fehler aufdeckt. Berechnen
+Sie Anweisungsüberdeckung und Zweigüberdeckung ihres Testfalls.
+
+\begin{antwort}
+\begin{description}
+\item[Anweisungsüberdeckung]
+Wähle $\{(4, 0)\}$. Durch die fehlerhafte Bedingung in der for-Schleife
+wird der Wert $i = 4$ akzeptiert. Da alle Anweisungen ausgeführt werden,
+wird eine Anweisungsüberdeckung mit 100\% erreicht.
+
+\item[Verzweigungsüberdeckung]
+Da die erste Verzweigung nur zur Hälfte überdeckt wird und die anderen
+beiden vollständig, gilt für die Verzweigungsüberdeckung:
+
+$\frac{1+2+2}{2+2+2} = \frac{5}{6}$
+\end{description}
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item Es ist nicht immer möglich vollständige Pfadüberdeckung zu
+erreichen. Geben Sie einen gültigen Pfad des Programmes an, der nicht
+erreichbar ist. Ein Testfall kann als Menge von Paaren dargestellt
+werden, wobei jedes Paar $(I, O)$ die Eingabe $I$ und die zu dieser
+erwartete Ausgabe $O$ darstellt.
+
+\begin{antwort}
+Ein gültiger Pfad im Kontrollflussgraphen wäre \TextzeileKnoten{0} -
+\TextzeileKnoten{1} - \TextzeileKnoten{2} - \TextzeileKnoten{3} -
+\TextzeileKnoten{4} - \TextzeileKnoten{5} - \TextzeileKnoten{2} -
+\TextzeileKnoten{6}. Der Übergang von \TextzeileKnoten{3} auf
+\TextzeileKnoten{4} ist hier aber nicht möglich, da beim ersten
+Durchlaufen der for-Schleife (\TextzeileKnoten{2}) $i$ immer $1$ ist
+und $1$ weder durch $4$ noch durch $6$ teilbar ist. Somit kann die
+Bedingung des inneren ifs (\TextzeileKnoten{3}) beim ersten Durchlauf
+nie \emph{wahr} sein, womit immer der Übergang \TextzeileKnoten{3} -
+\TextzeileKnoten{5} zu Beginn genommen werden muss. Alle Pfade, die zu
+Beginn \TextzeileKnoten{3} - \TextzeileKnoten{4} enthalten, sind somit
+nicht überdeckbar.
+\end{antwort}
+
+\end{enumerate}
+\end{document}

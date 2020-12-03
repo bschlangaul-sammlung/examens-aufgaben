@@ -405,6 +405,12 @@ Materialsammlung für das Studium Lehramt Informatik
 - 2019 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66118/2019/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66118/2019/03/OCR.txt)
 - 2019 Herbst:   [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66118/2019/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66118/2019/09/OCR.txt)
 
+# Stichwort-Verzeichnis
+
+Diese Informatik-Material- und Aufgabensammlung verwendet das TeX-Makro
+`\index{}` um ein Stichwortverzeichnis zu erstellen. In dieses Makro
+kann ganz normaler Text - also auch mit Leerzeichen eingesetzt werden.
+
 # Ordner-Struktur
 
 `03` steht für Frühjahr `09` steht für Herbst

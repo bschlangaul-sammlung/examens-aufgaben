@@ -1,0 +1,72 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{cpm}
+\begin{document}
+
+\section{3. Projektmanagement\footcite{sosy:pu:4}}
+
+Betrachten Sie folgendes CPM-Netzwerk:\footcite{examen:46116:2015:03}
+
+\begin{center}
+\begin{tikzpicture}
+\ereignis{A}(0,4)
+\ereignis{B}(2,4)
+\ereignis{C}(0,2)
+\ereignis{D}(2,2)
+\ereignis{E}(4,3)
+\ereignis{F}(6,3)
+\ereignis{G}(8,3)
+\ereignis{H}(8,1)
+\ereignis{I}(10,1)
+\ereignis{J}(10,3)
+
+\vorgang(A>B){4}
+\vorgang(C>D){1}
+\vorgang(E>F){5}
+\vorgang(G>J){8}
+\vorgang(H>I){9}
+\vorgang(J>I){2}
+
+\scheinvorgang(A>C){}
+\scheinvorgang(B>E){}
+\scheinvorgang(D>E){}
+\scheinvorgang(F>G){}
+\scheinvorgang(G>H){}
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Berechnen Sie die früheste Zeit für jedes Ereignis, wobei
+angenommen wird, dass das Projekt zum Zeitpunkt 0 startet.
+
+%%
+% b)
+%%
+
+\item Setzen Sie anschließend beim letzten Ereignis die späteste Zeit
+gleich der frühesten Zeit und berechnen Sie die spätesten Zeiten.
+
+%%
+% c)
+%%
+
+\item Berechnen Sie nun für jedes Ereignis die Pufferzeiten.
+
+%%
+% d)
+%%
+
+\item Bestimmen Sie den kritischen Pfad.
+
+%%
+% e)
+%%
+
+\item Was ist ein Gantt-Diagramm? Worin unterscheidet es sich vom
+CPM-Netzwerk?
+
+\end{enumerate}
+\end{document}

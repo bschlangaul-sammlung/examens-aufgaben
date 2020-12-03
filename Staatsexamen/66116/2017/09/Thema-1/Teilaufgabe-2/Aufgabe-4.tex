@@ -1,0 +1,88 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{syntax}
+\usepackage{tabularx}
+\begin{document}
+
+\section{Aufgabe 3\footcite[Seite 3]{sosy:ab:9}}
+
+Die folgende Seite enthält Software-Quellcode, der einen Algorithmus zur
+binären Suche implementiert. Dieser ist durch Inspektion zu überprüfen.
+Im Folgenden sind die Regeln der Inspektion angegeben.
+\footcite[Thema 1, TA 2, Aufgabe 4]{examen:66116:2017:09}
+
+\noindent
+\begin{tabularx}{\linewidth}{|l|l|X|}
+\hline
+RM1 &
+(Dokumentation) &
+Jede Quellcode-Datei beginnt mit einem Kommentar, der
+den Klassennamen, Versionsinformationen, Datum und
+Urheberrechtsangaben enthält.
+\\\hline
+
+RM2 &
+(Dokumentation) &
+Jede Methode wird kommentiert. Der Kommentar enthält
+eine vollständige Beschreibung der Signatur so wie eine
+Design-by-Contract-Spezifikation.
+\\\hline
+
+RM3 &
+(Dokumentation) &
+Deklarationen von Variablen werden kommentiert.
+\\\hline
+
+RM4 &
+(Dokumentation) &
+Jede Kontrollstruktur wird kommentiert.
+\\\hline
+
+RM5 &
+(Formatierung) &
+Zwischen einem Schlüsselwort und einer Klammer steht
+ein Leerzeichen.
+\\\hline
+
+RM6 &
+(Formatierung) &
+Zwischen binären Operatoren und den Operanden stehen
+Leerzeichen.
+\\\hline
+
+RM7 &
+(Programmierung) &
+Variablen werden in der Anweisung initialisiert, in der sie
+auch deklariert werden.
+\\\hline
+
+RM8 &
+(Bezeichner) &
+Klassennamen werden groß geschrieben, Variablennamen klein.
+\\\hline
+\end{tabularx}
+
+\begin{enumerate}
+\item Überprüfen Sie durch Inspektion, ob die obigen Regeln für den
+Quellcode eingehalten wurden. Erstellen Sie eine Liste mit allen
+Verletzungen der Regeln. Geben Sie für jede Verletzung einer Regel die
+Zeilennummer, Regelnummer und Kommentar an, z.\,B.(07, RM4, while nicht
+kommentiert).[...]
+
+\item Entspricht die Methode ‘binarySearch’ ihrer Spezifikation, die
+durch Vor-und Nachbedingungen angeben ist? Geben Sie gegebenenfalls
+Korrekturen der Methode an.
+
+\item Beschreiben alle Kommentare ab Zeile 24 die Semantik des Codes
+korrekt? Geben Sie zu jedem falschen Kommentar einen korrigierten
+Kommentar mit Zeilennummer an.
+
+\item Geben Sie den Kontrollflussgraphen für die Methode ‘binarySearch’
+an.
+
+\item Geben Sie maximal drei Testfälle für die Methode ‘binarySearch’
+an, die insgesamt eine vollständige Anweisungsüberdeckung leisten.
+
+\inputcode{aufgaben/sosy/ab_9/BinarySearch}
+
+\end{enumerate}
+\end{document}

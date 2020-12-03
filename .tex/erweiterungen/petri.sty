@@ -1,0 +1,48 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-petri}[2020/12/03]
+
+\RequirePackage{tikz}
+
+\usetikzlibrary{petri,arrows.meta}
+
+\def\TmpSetKeys{%
+  \def\TmpTransitionOne{}%
+  \def\TmpTransitionTwo{}%
+  \def\TmpTransitionThree{}%
+  \def\TmpTransitionFour{}%
+  \def\TmpTransitionFive{}%
+  \def\TmpTransitionSix{}%
+  \def\TmpTransitionSeven{}%
+  \def\TmpTransitionEight{}%
+  \def\TmpTransitionNine{}%
+  \def\TmpTransitionTen{}%
+  \pgfkeys{/petri/.cd,
+    p1/.store in=\TmpPlaceOne,p1/.default=0,p1,
+    p2/.store in=\TmpPlaceTwo,p2/.default=0,p2,
+    p3/.store in=\TmpPlaceThree,p3/.default=0,p3,
+    p4/.store in=\TmpPlaceFour,p4/.default=0,p4,
+    p5/.store in=\TmpPlaceFive,p5/.default=0,p5,
+    p6/.store in=\TmpPlaceSix,p6/.default=0,p6,
+    p7/.store in=\TmpPlaceSeven,p7/.default=0,p7,
+    p8/.store in=\TmpPlaceEight,p8/.default=0,p8,
+    p9/.store in=\TmpPlaceNine,p9/.default=0,p9,
+    p10/.store in=\TmpPlaceTen,p10/.default=0,p10,
+    t1/.store in=\TmpTransitionOne,t1/.default=activated,
+    t2/.store in=\TmpTransitionTwo,t2/.default=activated,
+    t3/.store in=\TmpTransitionThree,t3/.default=activated,
+    t4/.store in=\TmpTransitionFour,t4/.default=activated,
+    t5/.store in=\TmpTransitionFive,t5/.default=activated,
+    t6/.store in=\TmpTransitionSix,t6/.default=activated,
+    t7/.store in=\TmpTransitionSeven,t7/.default=activated,
+    t8/.store in=\TmpTransitionEight,t8/.default=activated,
+    t9/.store in=\TmpTransitionNine,t9/.default=activated,
+    t10/.store in=\TmpTransitionTen,t10/.default=activated,
+    scale/.store in=\TmpScale,scale/.default=0.5,
+    x/.store in=\TmpX,x/.default=5,
+    y/.store in=\TmpY,y/.default=5,
+  }%
+}
+
+\TmpSetKeys
+
+\tikzset{activated/.style={very thick}}

@@ -1,52 +1,9 @@
 \documentclass{lehramt-informatik}
-\InformatikPakete{syntax,mathe}
-\usepackage{tikz}
+\InformatikPakete{syntax,mathe,petri}
+
 \usepackage{pifont}
 \usepackage{multicol}
 \usepackage{blkarray}
-\usetikzlibrary{petri,arrows.meta}
-
-\def\TmpSetKeys{%
-  \def\TmpTransitionOne{}%
-  \def\TmpTransitionTwo{}%
-  \def\TmpTransitionThree{}%
-  \def\TmpTransitionFour{}%
-  \def\TmpTransitionFive{}%
-  \def\TmpTransitionSix{}%
-  \def\TmpTransitionSeven{}%
-  \def\TmpTransitionEight{}%
-  \def\TmpTransitionNine{}%
-  \def\TmpTransitionTen{}%
-  \pgfkeys{/petri/.cd,
-    p1/.store in=\TmpPlaceOne,p1/.default=0,p1,
-    p2/.store in=\TmpPlaceTwo,p2/.default=0,p2,
-    p3/.store in=\TmpPlaceThree,p3/.default=0,p3,
-    p4/.store in=\TmpPlaceFour,p4/.default=0,p4,
-    p5/.store in=\TmpPlaceFive,p5/.default=0,p5,
-    p6/.store in=\TmpPlaceSix,p6/.default=0,p6,
-    p7/.store in=\TmpPlaceSeven,p7/.default=0,p7,
-    p8/.store in=\TmpPlaceEight,p8/.default=0,p8,
-    p9/.store in=\TmpPlaceNine,p9/.default=0,p9,
-    p10/.store in=\TmpPlaceTen,p10/.default=0,p10,
-    t1/.store in=\TmpTransitionOne,t1/.default=activated,
-    t2/.store in=\TmpTransitionTwo,t2/.default=activated,
-    t3/.store in=\TmpTransitionThree,t3/.default=activated,
-    t4/.store in=\TmpTransitionFour,t4/.default=activated,
-    t5/.store in=\TmpTransitionFive,t5/.default=activated,
-    t6/.store in=\TmpTransitionSix,t6/.default=activated,
-    t7/.store in=\TmpTransitionSeven,t7/.default=activated,
-    t8/.store in=\TmpTransitionEight,t8/.default=activated,
-    t9/.store in=\TmpTransitionNine,t9/.default=activated,
-    t10/.store in=\TmpTransitionTen,t10/.default=activated,
-    scale/.store in=\TmpScale,scale/.default=0.5,
-    x/.store in=\TmpX,x/.default=5,
-    y/.store in=\TmpY,y/.default=5,
-  }%
-}
-
-\TmpSetKeys
-
-\tikzset{activated/.style={very thick}}
 
 \begin{document}
 
@@ -263,6 +220,7 @@ Vorgängerstellen werden mit negativem Vorzeichen in der Spalte der
 Transition eingetragen. Die Nachfolger mit positivem. Ein  Vektor gibt
 die Anfangsmarkierung an.
 \footnote{\url{https://www.hs-augsburg.de/informatik/projekte/mebib/emiel/entw_inf/lernprogramme/petrinetze/NetzAnalyse1HTML.html}}
+
 %-----------------------------------------------------------------------
 %
 %-----------------------------------------------------------------------
@@ -554,65 +512,6 @@ Vorgang wiederholt.\footcite{wiki:erreichbarkeitsgraph}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Aufgaben}
-
-\section{Aufgabe 2: „Petri-Netze“\footcite{sosy:pu:4}}
-
-Gegeben sei das folgende Petri-Netz:\footcite[Seite 9]{examen:46116:2016:03}
-
-\begin{tikzpicture}[x=2cm,y=2cm]
-  \node[place,label=A,label=south east:1,tokens=1] at (1,2) (A) {};
-  \node[place,label=south:B] at (0,0) (B) {};
-  \node[place,label=south:C,tokens=1] at (2,0) (C) {};
-
-  \node[transition] at (1,0) {$t_1$}
-    edge[pre] node[auto]{2} (B)
-    edge[post] (C);
-
-  \node[transition] at (0,2) {$t_2$}
-    edge[pre] (A)
-    edge[post] node[auto]{2} (B);
-
-  \node[transition] at (2,2) {$t_3$}
-    edge[pre] (C)
-    edge[post] (A);
-
-  \node[transition] at (1,1) {$t_4$}
-    edge[pre] (A)
-    edge[pre] node[auto]{2} (B)
-    edge[post] (C);
-
-\end{tikzpicture}
-
-\begin{enumerate}
-
-%%
-% a)
-%%
-
-\item Erstellen Sie den zum Petri-Netz gehörenden
-Erreichbarkeitsgraphen. Die Belegungen sind jeweils in der Form [A, B,
-C] anzugeben. Beschriften Sie auch jede Kante mit der zugehörigen
-Transition. Beachten Sie die auf 1 beschränkte Kapazität von Stelle A
-oder alternativ die Inhibitor-Kante von A zu t3 (beides ist hier
-semantisch äquivalent).
-
-%%
-% b)
-%%
-
-\item Wie kann man mit Hilfe des Erreichbarkeitsgraphen feststellen, ob
-ein Petri-Netz lebendig ist?
-
-%%
-% c)
-%%
-
-\item Aufgrund von Transition t4 ist das gegebene Petri-Netz nicht stark
-lebendig. Wie müssten die Pfeilgewichte der Transition t4 verändert
-werden, damit das Petri-Netz mit der gegebenen Startmarkierung
-beschränkt bleibt und lebendig wird?
-
-\end{enumerate}
 
 %-----------------------------------------------------------------------
 %
