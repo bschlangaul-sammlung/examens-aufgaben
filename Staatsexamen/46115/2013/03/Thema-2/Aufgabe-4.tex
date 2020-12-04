@@ -1,0 +1,98 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{}
+\begin{document}
+
+\section{„Streuspeicherung“
+\index{Streutabellen (Hashing)}
+\footcite[Thema 2 Aufgabe 4 Seite 5 „Streuspeicherung“]{examen:46115:2013:03}}
+
+Die Werte $7$, $0$, $9$, $11$, $18$, $4$, $5$, $3$, $13$, $24$, $2$
+sollen in eine Hashtabelle der Größe $11$ (Fächer $0$ bis $10$)
+eingetragen werden. Die zur Hashfunktion $h(x) = (7 \cdot x) \% 11$
+gehörenden Schlüssel sind in der folgenden Tabelle bereits
+ausgerechnet:\footcite[Seite 2]{aud:pu:5}
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$x$ & 7 & 0 & 9 & 11 & 18 & 4 & 5 & 3 & 13 & 24 & 2\\\hline
+$h(x)$ & 5 & 0 & 8 & 0 & 5 & 6 & 2 & 10 & 3 & 3 & 3\\\hline
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Fügen Sie die oben genannten Schlüssel in der vorgegebenen
+Reihenfolge in einen Streuspeicher ein, welcher zur Kollisionsauflösung
+verkettete Listen verwendet, und stellen Sie die endgülttige
+Streutabelle dar.
+
+\begin{antwort}
+\begin{center}
+\begin{tabular}{l|ccccccccccc}
+Index     & 0  & 1 & 2 & 3  & 4 & 5  & 6 & 7 & 8 & 9 & 10\\\hline
+Schlüssel & 0  &   & 5 & 13 &   & 7  & 4 &   & 8 &   & 3 \\
+          & 11 &   &   & 24 &   & 18 &   &   &   &   &  \\
+          &    &   &   & 2  &   &    &   &   &   &   &  \\
+\end{tabular}
+\end{center}
+\end{antwort}
+
+%%
+% b)
+%%
+
+\item Fügen Sie die gleichen Schlüssel mit linearem Sondieren bei
+Schrittweite $+1$ zur Kollisionsauflösung in eine neue Hash-Tabelle ein.
+Geben Sie für jeden Schlüssel an, auf welche Felder beim Einfügen
+zugegriffen wird und ob Kollisionen auftreten. Geben Sie die gefüllte
+Streutabelle an.
+
+\begin{antwort}
+\begin{center}
+\begin{tabular}{l|ccccccccccc}
+Index     & 0  & 1      & 2 & 3  & 4       & 5  & 6      & 7      & 8 & 9      & 10\\\hline
+Schlüssel & 0  & $11_1$ & 5 & 13 & $24_1$  & 7  & $18_1$ & $4_1$  & 9 & $2_6$  & 3 \\
+\end{tabular}
+\end{center}
+\end{antwort}
+
+%%
+% c)
+%%
+
+\item Wie hoch ist der „Load“-Faktor (die Belegung) der Hashtabelle aus
+a) bzw. b) in Prozent? Können Sie weitere Schlüssel einfügen?
+
+\begin{antwort}
+\ueberschrift{Teilaufgabe a)}
+
+$\frac{11}{11} = 100\%$: Es können allerdings weitere Elemente eingefügt
+werden. Die Verkettung lässt einen Loadfaktor über 100\% zu. Der
+Suchaufwand wird dann jedoch größer.
+
+\ueberschrift{Teilaufgabe b)}
+
+$\frac{11}{11} = 100\%$: Es können keine weiteren Elemente eingefügt
+werden, da alle Buckets belegt sind.
+\end{antwort}
+
+%%
+% d)
+%%
+
+\item Würden Sie sich bei dieser Zahlensequenz für das Hashing-Verfahren
+nach a) oder nach b) entscheiden? Begründen Sie kurz Ihre Entscheidung.
+
+\begin{antwort}
+Das Verfahren a) scheint hier sinnvoller, da noch nicht zu viele
+Suchoperationen notwendig sind (max. 2), während bei Verfahren b) einmal
+bereits 6-mal sondiert werden muss.
+\end{antwort}
+
+\end{enumerate}
+\end{document}

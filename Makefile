@@ -13,6 +13,6 @@ install_cli:
 	cd .scripts; npm install
 
 readme:
-	.scripts/readme-from-template.sh
+	.scripts/main-script.js generate-readme
 
 .PHONY: install_tex readme git_submodule install_cli

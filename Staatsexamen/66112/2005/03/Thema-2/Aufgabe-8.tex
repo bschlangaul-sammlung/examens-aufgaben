@@ -1,0 +1,58 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{mathe}
+\begin{document}
+
+\section{Aufgabe 3: Hashing
+\index{Streutabellen (Hashing)}
+\footcite[Seite 2]{aud:pu:5}
+}
+
+Gegeben seien die folgenden Zahlen: 7, 4, 3, 5, 0, 1\footcite[Frühjahr
+2005, Thema 2, A 8]{examen:66112:2005:03}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Zeichnen Sie eine Hash-Tabelle mit 8 Zellen und tragen Sie diese
+Zahlen genau in der oben gegebenen Reihenfolge in Ihre Hash-Tabelle ein.
+Verwenden Sie dabei die Streufunktion $f(n) = n^2 \mod 7$ und eine
+Kollisionsauflösung durch lineares Sondieren.
+
+\begin{antwort}
+{
+\footnotesize
+$f(7) = 7^2 \mod 7 = 49 \mod 7 = 0$
+
+$f(4) = 4^2 \mod 7 = 16 \mod 7 = 2$
+
+$f(3) = 3^2 \mod 7 = 9 \mod 7 = 2$ lineares Sondieren: $+1 = 3$
+
+$f(5) = 5^2 \mod 7 = 25 \mod 7 = 4$
+
+$f(0) = 0^2 \mod 7 = 0 \mod 7 = 0$ lineares Sondieren: $+1 = 1$
+
+$f(1) = 1^2 \mod 7 = 1 \mod 7 = 1$ lineares Sondieren: $-1 = 0$, $-1 = 7$
+}
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\\hline
+7 & 0 & 4 & 3 & 5 &   &   & 1 \\\hline
+\end{tabular}
+
+\end{antwort}
+
+%%
+% b)
+%%
+
+\item Welcher Belegungsfaktor ist für die Streutabelle und die
+Streufunktion aus Teilaufgabe a zu erwarten, wenn sehr viele Zahlen
+eingeordnet werden und eine Kollisionsauflösung durch Verkettung
+(verzeigerte Listen) verwendet wird? Begründen Sie Ihre Antwort kurz.
+
+\end{enumerate}
+\end{document}

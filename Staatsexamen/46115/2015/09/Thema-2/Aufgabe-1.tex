@@ -1,0 +1,168 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{mathe,syntax}
+\begin{document}
+
+\section{Aufgabe 8: Hashing
+\index{Streutabellen (Hashing)}
+\footcite[entnommen aus Algorithmen und
+Datenstrukturen, Übungsblatt 5, Universität Würzburg]{aud:pu:7}}
+
+Fügen Sie die folgenden Werte in der gegebenen Reihenfolge in eine
+Streutabelle der Größe $8$ (mit den Indizes $0$ bis $7$) und der
+Streufunktion $h(x) = x \mod 8$ ein. Verwenden Sie die jeweils angegebene
+Hash-Variante bzw. Kollisionsauflösung: $15$, $3$, $9$, $23$, $1$, $8$,
+$17$, $4$ \footcite[Staatsexamen Theoretische Informatik, Algorithmen
+und Datenstrukturen, Realschulen, Herbst 2015, Thema 2, Aufgabe 1
+(Auszug)]{examen:46115:2015:09}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item \ueberschrift{Offenes Hashing}
+
+Zur Kollisionsauflösung wird Verkettung
+verwendet.
+
+\ueberschrift{Beispiel}
+
+Für die beiden Werte $8$ und $16$ würde die Lösung wie folgt aussehen:
+
+\begin{center}
+\begin{tabular}{l|cccc}
+Bucket    & 0  & 1      & 2 & $\cdots$ \\\hline
+Inhalt    & 8 \\
+          & 16 \\
+\end{tabular}
+\end{center}
+
+\begin{antwort}
+{\footnotesize
+\begin{equation*}
+\begin{aligned}
+h(15) &= 15 \mod 8 &= 7\\
+h(3)  &= 3 \mod 8  &= 3\\
+h(9)  &= 9 \mod 8  &= 1\\
+h(23) &= 23 \mod 8 &= 7\\
+h(1)  &= 1 \mod 8  &= 1\\
+h(8)  &= 8 \mod 8  &= 0\\
+h(17) &= 17 \mod 8 &= 1\\
+h(4)  &= 4 \mod 8  &= 4\\
+\end{aligned}
+\end{equation*}}
+
+\begin{center}
+\begin{tabular}{l|cccccccc}
+Bucket & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7  \\\hline
+Inhalt & 8 & 9 &   & 3 & 4 &   &   & 15 \\
+       &   & 1 &   &   &   &   &   & 23 \\
+       &   & 17 &  &   &   &   &   &    \\
+\end{tabular}
+\end{center}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item \ueberschrift{Geschlossenes Hashing}
+
+Zur Kollisionsauflösung wird lineares Sondieren (nur hochzählend) mit
+Schrittweite $+5$ verwendet.
+
+Treten beim Einfügen Kollisionen auf, dann notieren Sie die Anzahl der
+Versuche zum Ablegen des Wertes im Subskript (z.\,B. das Einfügen des
+Wertes 8 gelingt im 5. Versuch: $8_5$).
+
+\ueberschrift{Beispiel}
+
+Für die beiden Werte $8$ und $16$ würde die Lösung wie folgt aussehen:
+
+\begin{center}
+\begin{tabular}{l|ccccccc}
+Bucket    & 0  & 1      & 2 & 3 & 4 & 5 &  $\cdots$  \\\hline
+Inhalt    & 8 & &&&& $16_1$\\
+\end{tabular}
+\end{center}
+
+\begin{antwort}
+$h'(x) = x \mod 8$
+
+$h(x, i) = (h'(x) + i \cdot 5) \mod 8$
+
+\ueberschrift{Kleines Java-Hilfsprogramm zum Ausrechnen der Sondierungen}
+
+\inputcode[firstline=3]{aufgaben/aud/pu_7/aufgabe_8/Hashing}
+
+\ueberschrift{17 einfügen}
+
+\begin{center}
+\begin{tabular}{l|cccccccc}
+Bucket    & 0  & 1 & 2     & 3 & 4      & 5 & 6     & 7 \\\hline
+Inhalt    & 8  & 9 &       & 3 & $23_2$ &   & $1_2$ & 15 \\
+\end{tabular}
+\end{center}
+
+{\tiny
+\begin{equation*}
+\begin{aligned}
+\text{1. Versuch: } h(17, 0) &= (h'(17) + 0 \cdot 5) \mod 8 &= (1 + 0) \mod 8  &= 1 \mod 8  &= 1 \text{ (belegt von } 9)\\
+\text{2. Versuch: } h(17, 1) &= (h'(17) + 1 \cdot 5) \mod 8 &= (1 + 5) \mod 8  &= 6 \mod 8  &= 6 \text{ (belegt von } 1)\\
+\text{3. Versuch: } h(17, 2) &= (h'(17) + 2 \cdot 5) \mod 8 &= (1 + 10) \mod 8 &= 11 \mod 8 &= 3 \text{ (belegt von } 3)\\
+\text{4. Versuch: } h(17, 3) &= (h'(17) + 3 \cdot 5) \mod 8 &= (1 + 15) \mod 8 &= 16 \mod 8 &= 0 \text{ (belegt von } 8)\\
+\text{5. Versuch: } h(17, 4) &= (h'(17) + 4 \cdot 5) \mod 8 &= (1 + 20) \mod 8 &= 21 \mod 8 &= 5\\
+\end{aligned}
+\end{equation*}
+}
+
+\ueberschrift{4 einfügen}
+
+\begin{center}
+\begin{tabular}{l|cccccccc}
+Bucket    & 0  & 1 & 2     & 3 & 4      & 5      & 6     & 7 \\\hline
+Inhalt    & 8  & 9 &       & 3 & $23_2$ & $17_5$ & $1_2$ & 15 \\
+\end{tabular}
+\end{center}
+
+{\tiny
+\begin{equation*}
+\begin{aligned}
+\text{1. Versuch: } h(4, 0) &= (h'(4) + 0 \cdot 5) \mod 8 &= (4 + 0) \mod 8  &= 4 \text{ (belegt von } 23)\\
+\text{2. Versuch: } h(4, 1) &= (h'(4) + 1 \cdot 5) \mod 8 &= (4 + 5) \mod 8  &= 1 \text{ (belegt von } 9)\\
+\text{3. Versuch: } h(4, 2) &= (h'(4) + 2 \cdot 5) \mod 8 &= (4 + 10) \mod 8 &= 6 \text{ (belegt von } 1)\\
+\text{4. Versuch: } h(4, 3) &= (h'(4) + 3 \cdot 5) \mod 8 &= (4 + 15) \mod 8 &= 3 \text{ (belegt von } 3)\\
+\text{5. Versuch: } h(4, 4) &= (h'(4) + 4 \cdot 5) \mod 8 &= (4 + 20) \mod 8 &= 0 \text{ (belegt von } 8)\\
+\text{6. Versuch: } h(4, 5) &= (h'(4) + 5 \cdot 5) \mod 8 &= (4 + 25) \mod 8 &= 5 \text{ (belegt von } 17)\\
+\text{7. Versuch: } h(4, 6) &= (h'(4) + 6 \cdot 5) \mod 8 &= (4 + 30) \mod 8 &= 2 \\
+\end{aligned}
+\end{equation*}
+}
+
+\begin{center}
+\begin{tabular}{l|cccccccc}
+Bucket    & 0  & 1 & 2     & 3 & 4      & 5      & 6     & 7 \\\hline
+Inhalt    & 8  & 9 & $4_7$ & 3 & $23_2$ & $17_5$ & $1_2$ & 15 \\
+\end{tabular}
+\end{center}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Welches Problem tritt auf, wenn zur Kollisionsauflösung lineares
+Sondieren mit Schrittweite 4 verwendet wird? Warum ist 5 eine bessere
+Wahl?
+
+\begin{antwort}
+Beim linearen Sondieren mit der Schrittweite 4 werden nur zwei
+verschiedene Buckets erreicht, beispielsweise: 1, 5, 1, 5, etc.
+
+Beim linearen Sondieren mit der Schrittweite 5 werden nacheinander alle
+möglichen Buckets erreicht, beispielsweise: 1, 6, 3, 0, 5, 2, 7, 4.
+\end{antwort}
+
+\end{enumerate}
+\end{document}

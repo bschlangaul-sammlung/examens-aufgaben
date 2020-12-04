@@ -1,0 +1,74 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{graph,mathe}
+\begin{document}
+
+\section{Städte gemischt gerichtet / ungerichtet
+\footcite[Seite 1, Aufgabe 1: Dijkstra, Frühjahr 2004, Thema 1, A5]{aud:pu:6}
+}
+
+Ein wichtiges Problem im Bereich der Graphalgorithmen ist die Berechnung
+kürzester Wege. Gegeben sei der folgende Graph, in dem Städte durch
+Kanten verbunden sind. Die Kantengewichte geben Fahrzeiten an. Außer den
+durch Pfeile als nur in eine Richtung befahrbar gekennzeichneten Straßen
+sind alle Straßen in beiden Richtungen befahrbar.
+\footcite{examen:66112:2004:03}
+
+\graph knoten {
+  \knoten{A}(2,5)
+  \knoten{B}(3,3)
+  \knoten{C}(0,3)
+  \knoten{D}(5,1)
+  \knoten{E}(4,5)
+  \knoten{F}(7,1)
+  \knoten{G}(1,0)
+  \knoten{H}(6,4)
+} kanten {
+  \kante(A-B){$10$}
+  \kante(A-E){$40$}
+  \kante(B-G){$20$}
+  \kante(B-C){$50$}
+  \kante(B-D){$90$}
+  \kante(B-H){$90$}
+  \kante(C-G){$20$}
+  \kante(D-G){$75$}
+  \kante(D-F){$80$}
+  \kante(E-H){$5$}
+  \kante(F-H){$10$}
+  \kanteR(A>C){$70$}
+  \kanteR(H>D){$10$}
+}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Geben Sie zu dem obigen Graphen zunächst eine Darstellung als
+Adjazenzmatix an.
+
+\[
+\begin{blockarray}{ccccccccc}
+  & A  & B  & C  & D  & E  & F  & G  & H  \\
+\begin{block}{c(cccccccc)}
+A & 0  & 10 & 70 & 0  & 40 & 0  & 0  & 0  \\
+B & 10 & 0  & 50 & 90 & 0  & 0  & 20 & 90 \\
+C & 0  & 50 & 0  & 0  & 0  & 0  & 20 & 0  \\
+D & 0  & 90 & 0  & 0  & 0  & 80 & 75 & 0  \\
+E & 40 & 0  & 0  & 0  & 0  & 0  & 0  & 5  \\
+F & 0  & 0  & 0  & 80 & 0  & 0  & 0  & 10 \\
+G & 0  & 20 & 20 & 75 & 0  & 0  & 0  & 0  \\
+H & 0  & 90 & 0  & 10 & 5  & 10 & 0  & 0  \\
+\end{block}
+\end{blockarray}
+\]
+
+%%
+% b)
+%%
+
+\item Berechnen Sie nun mit Hilfe des Algorithmus von Dijkstra die
+kürzesten Wege vom Knoten A zu allen anderen Knoten.
+\end{enumerate}
+
+\end{document}
