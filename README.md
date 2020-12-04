@@ -340,7 +340,7 @@ Materialsammlung für das Studium Lehramt Informatik
 
 - 2006 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2006/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2006/03/OCR.txt) 
 - 2006 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2006/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2006/09/OCR.txt) 
-- 2007 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2007/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2007/03/OCR.txt) 
+- 2007 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2007/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2007/03/OCR.txt) Thema 2 [Aufgabe 1 (Greedy-Algorithmus)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2007/03/Thema-2/Aufgabe-1.tex)
 - 2007 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2007/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2007/09/OCR.txt) 
 - 2008 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2008/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2008/03/OCR.txt) 
 - 2008 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2008/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2008/09/OCR.txt) 
@@ -431,6 +431,8 @@ kann ganz normaler Text - also auch mit Leerzeichen eingesetzt werden.
         - Mergesort
         - Quicksort
         - Selectionsort
+    - Algorithmenmuster
+        - Greedy-Algorithmus
 - SOSY
     - UML-Diagramme
         - UML-Struktur-Diagramme

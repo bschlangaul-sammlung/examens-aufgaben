@@ -1,0 +1,168 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{}
+\begin{document}
+
+\section{Aufgabe 8: Greedy-Färben von Intervallen
+\index{Greedy-Algorithmus}
+\footcite[Thema 1 Aufgabe 8]{examen:66115:2017:09}}
+
+Sei X = (Ji,/2,..., eine Menge von n (geschlossenen) Intervallen über
+den reellen Zahlen R. Das Intervall Ij sei dabei gegeben dnrch seine
+linke Intervallgrenze Ij E R sowie seine rechte Intervallgrenze rj E R
+mit rj > Ij, d.h. Ij = [lj,rj].
+
+Wir nehmen in dieser Aufgabe der Einfachheit halber an, dass die Zahlen
+alle paarweise verschieden sind.
+
+Zwei Intervalle Ij, 1 überlappen sich gdw. sie mindestens einen Punkt
+gemeinsam haben, d.h. gdw. falls für (o.B.d.A.) Ij < 4, auch 1 < Vj
+gilt. Eine gültige Färbung von X mit c e N Farben ist eine Funktion F :
+X  (1,2,...,c) mit der Eigenschaft, dass für jedes Paar Ij,Ik von
+überlappenden Intervallen F(Ij)  F(Ik) gilt.
+
+Abbildung 1: Eine gültige Färbung von X
+
+Eine minimale gültige Färbung von X ist eine gültige Färbung mit einer
+minimalen Anzahl an Farben. Die Anzahl von Farben in einer minimalen
+gültigen Färbung von X bezeichnen wir mit x(X). Wir gehen im Folgenden
+davon aus, dass für X eine minimale gültige Färbung F* gefunden wurde.
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Nehmen wir an, dass aus X alle Intervalle einer bestimmten Farbe
+von F* gelöscht werden. Ist die so aus F* entstandene Färbung der
+übrigen Intervalle in jedem Fall immer noch eine minimale gültige
+Färbung? Begründen Sie Ihre Antwort.
+
+%%
+% 2.
+%%
+
+\item Nehmen wir an, dciss aus X ein beliebiges Intervall gelöscht wird.
+Ist die so aus F* entstehende Färbung der übrigen Intervalle in jedem
+Fall immer noch eine minimale gültige Färbung? Begründen Sie Ihre
+Antwort.
+
+%%
+% 3.
+%%
+
+\item Mit uj(X) bezeichnen wir die maximale Anzahl von Intervallen in X,
+die sich paarweise überlappen. Zeigen Sie, dass x(A) > uj(X) ist. Wir
+betrachten nun folgenden Algorithmus, der die Menge X = (F,F ■ ..,In)
+von n Intervallen einfärbt:
+
+\begin{itemize}
+\item Zunächst sortieren wir die Intervalle von X aufsteigend nach ihren
+linken Intervallgrenzen. Die Intervalle werden jetzt in dieser
+Reihenfolge nacheinander eingefärbt; ist ein Intervall dabei erst einmal
+eingefärbt, ändert sich seine Farbe nie wieder. Angenommen die sortierte
+Reihenfolge der Intervalle sei Ia(i), ■ ■ ■ , F(n)-
+
+\item Das erste Intervall F(i) erhält die Farbe 1. Für 1 < i < n
+verfahren wir im Aten Schritt zum Färben des Aten Intervalls wie folgt:
+
+Bestimme die Menge Cj aller Farben der bisher schon eingefärbten
+Intervalle die /„(p überlappen. Färbe /„-(j) dann mit der Farbe c, =
+min((l,2,..., n)\ Cj). Fortsetzung nächste Seite!
+\end{itemize}
+
+%%
+% 4.
+%%
+
+\item Begründen Sie, warum der Algorithmus immer eine gültige Färbung
+von X findet (Hinweis: Induktion).
+
+%%
+% 5.
+%%
+
+\item Zeigen Sie, dass die Anzahl an Farben, die der Algorithmus für das
+Einfärben benötigt, mindestens cü(X) ist.
+
+%%
+% 6.
+%%
+
+\item Zeigen Sie, dass die Anzahl an Farben, die der Algorithmus für das
+Einfärben benötigt, höchstens uj(X) ist.
+
+%%
+% 7.
+%%
+
+\item Begründen Sie mit Hilfe der o.g. Eigenschaften, warum der
+Algorithmus korrekt ist, d.h. immer eine minimale gültige Färbung von X
+findet.
+
+%%
+% 8.
+%%
+
+\item Wir betrachten folgenden Implementierung des Algorithmus in
+Pseudocode:
+
+% 1 Algorithmus : ColoringNumber(A'L[l,...,n], Aß[l,...,n])
+% Eingabe : Felder Xr und Xr mit den rechten und linken Intervallgrenzen.
+% Ergebnis : Minimale gültige Färbung der Intervalle.
+% 2 begin
+
+% sortiere Xr (und passe Xr an);
+% /* color[i] ist die Feirbe des Intervals i
+% */
+% initialisiere Array coZor[l,.., n];
+% // mit Nullen
+% /* lastintervalofcolor[c] ist der Index des letzten Intervals das mit c gefärbt
+% wurde
+% 5
+
+% initialisiere Array lastintervalofcolor[l,..,n];
+
+% color[l freecolor]
+% lastintervalofcolor[freecolor] •<— 1;
+% for i -k— 2 to n do
+
+% freecolorfound (— falsc]
+
+% for c ■<— 1 to maxcolor do
+
+% // mit Nullen
+
+% maxcolor <— 1;
+% freecolor <— maxcolor]
+
+% ic <— lastintervalofcolor[c]]
+% if XL] > XR[ic] then
+% /* i schneidet kein Interval der Farbe c
+
+% freecolor found
+% freecolor
+% c;
+
+% */
+
+% truc]
+
+% break;
+% /* i schneidet ein Interval der Farbe c
+
+% */
+
+% Ifreecolorfound then
+% maxcolor <— maxcolor + 1;
+% freecolor <— maxcolor]
+
+% color[i] <r- freecolor]
+% lastintervalofcolor[freecolor] ■(— i]
+% return color]
+
+Was ist die asymptotische Laufzeit dieses Algorithmus? Was ist der
+asymptotische Speicher bedarf dieses Algorithmus? Begründen Sie Ihre
+Antworten.
+\end{enumerate}
+\end{document}
