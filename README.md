@@ -289,7 +289,7 @@ Materialsammlung für das Studium Lehramt Informatik
 - 2005 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2005/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2005/03/OCR.txt) 
 - 2005 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2005/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2005/09/OCR.txt) 
 - 2006 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/03/OCR.txt) 
-- 2006 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/09/OCR.txt) Thema 1 Teilaufgabe 1 [Aufgabe 5 (Vererbung, UML-Diagramme!Klassendiagram)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/09/Thema-1/Teilaufgabe-1/Aufgabe-5.tex)
+- 2006 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/09/OCR.txt) Thema 1 Teilaufgabe 1 [Aufgabe 5 (Vererbung, Klassendiagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/09/Thema-1/Teilaufgabe-1/Aufgabe-5.tex)
 
 ### 66113: Rechnerarchitektur / Datenbanken / Betriebssysteme (vertieft)
 
@@ -411,57 +411,60 @@ Diese Informatik-Material- und Aufgabensammlung verwendet das TeX-Makro
 `\index{}` um ein Stichwortverzeichnis zu erstellen. In dieses Makro
 kann ganz normaler Text - also auch mit Leerzeichen eingesetzt werden.
 
-- DB
+Stichwörter:
+- DB:
     - Entity-Relation-Modell
     - Relationenmodell
     - Relationale Algebra
     - SQL
-    - Normalformen
+    - Normalformen:
         - Schlüssel
         - Funktionale Abhängigkeiten
-        - Normalformen
-            - Synthese-Algorithmus
+        - Synthese-Algorithmus
     - Transaktionen
-- AUD
+- OOMUP:
+    - Vererbung
+- AUD:
     - Komplexität
-    - Sortieralgorithmen
+    - Sortieralgorithmen:
         - Bubblesort
         - Heapsort
         - Insertionsort
         - Mergesort
         - Quicksort
         - Selectionsort
-    - Algorithmenmuster
+    - Algorithmenmuster:
         - Greedy-Algorithmus
         - Dynamische Programmierung
         - Backtracking
-- SOSY
-    - UML-Diagramme
-        - UML-Struktur-Diagramme
+    - Master-Theorem
+- SOSY:
+    - UML-Diagramme:
+        - UML-Struktur-Diagramme:
             - Klassendiagramm
             - Objektdiagramm
-        - UML-Verhaltens-Diagramme
-            - UML-Interaktions-Diagramme
+        - UML-Verhaltens-Diagramme:
+            - UML-Interaktions-Diagramme:
                 - Sequenzdiagramm
                 - Kommunikationsdiagramm
             - Aktivitätsdiagramm
             - Anwendungsfalldiagramm
             - Zustandsdiagramm
-    - Entwurfsmuster
-        - Erzeugungsmuster (Creational Patterns)
+    - Entwurfsmuster:
+        - Erzeugungsmuster (Creational Patterns):
             - Abstrakte Fabrik (Abstract Factory)
             - Einzelstück (Singleton)
-        - Strukturmuster (Structural Patterns)
+        - Strukturmuster (Structural Patterns):
             - Adapter
             - Dekorierer (Decorator)
             - Kompositum (Composite)
             - Stellvertreter (Proxy)
-        - Verhaltensmuster (Behavioral Patterns)
+        - Verhaltensmuster (Behavioral Patterns):
             - Beobachter (Observer)
             - Schablone (Template)
             - Wiederholer (Iterator)
             - Zustand (State)
-        - Sonstige Entwurfsmuster
+        - Sonstige Entwurfsmuster:
             - Modell-Präsentation-Steuerung (Model-View-Controller)
 
 

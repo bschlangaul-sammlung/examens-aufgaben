@@ -5,6 +5,7 @@ const fs = require('fs')
 const childProcess = require('child_process')
 
 const glob = require('glob')
+const yaml = require('js-yaml')
 
 const configPath = path.join(path.sep, 'etc', 'lehramt-informatik.config.tex')
 
@@ -42,6 +43,44 @@ const examTitles = {
 }
 
 const githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main'
+
+function parseTags () {
+  try {
+    return yaml.safeLoad(readRepoFile('Stichwörter.yml'))
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+const tagsTree = parseTags()
+
+const tagsFlat = new Set()
+
+function flattenTagsTree (tag) {
+  if (typeof tag === 'string') {
+    if (tagsFlat.has(tag)) {
+      throw Error(`Duplicate tag: ${tag}`)
+    }
+    tagsFlat.add(tag)
+  } else if (Array.isArray(tag)) {
+    for (const t of tag) {
+      flattenTagsTree(t)
+    }
+  } else {
+    for (const t in tag) {
+      flattenTagsTree(t)
+      flattenTagsTree(tag[t])
+    }
+  }
+}
+
+flattenTagsTree(tagsTree)
+
+function checkTag (tag) {
+  if (!tagsFlat.has(tag)) {
+    throw Error(`Unkown tag: ${tag}`)
+  }
+}
 
 function open (executable, filePath) {
   const subprocess = childProcess.spawn(executable, [filePath], {
@@ -176,6 +215,7 @@ function collectIndexesInFile (filePath) {
   do {
     match = re.exec(content)
     if (match) {
+      checkTag(match[1])
       indexes.push(match[1])
     }
   } while (match)
@@ -365,7 +405,7 @@ program
 
     readmeContent = readmeContent.replace('{{ staatsexamen }}', output.getString())
     //console.log(readmeContent)
-    fs.writeFileSync('README.md', readmeContent)
+    fs.writeFileSync(path.join(repositoryPath, 'README.md'), readmeContent)
   })
 
 program.parse(process.argv)
