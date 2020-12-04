@@ -150,19 +150,33 @@ program
     }
   })
 
+function collectIndexesInFile (filePath) {
+  const content = fs.readFileSync(filePath, { encoding: 'utf-8' })
+  const re = /\\index\{([^\}]*)\}/g
+  let match
+  const indexes = []
+  do {
+    match = re.exec(content)
+    if (match) {
+      indexes.push(match[1])
+    }
+  } while (match)
+  return indexes
+}
+
+function formatIndexesInFile (filePath) {
+  const indexes = collectIndexesInFile(filePath)
+  if (indexes.length > 0) {
+    return ` (${indexes.join(', ')})`
+  }
+  return ''
+}
+
 function collectIndexes () {
   const files = glob.sync('**/*.tex')
   const indexes = {}
   for (const filePath of files) {
-    const content = fs.readFileSync(filePath, { encoding: 'utf-8' })
-    const re = /\\index\{([^\}]*)\}/g
-    let match
-    do {
-      match = re.exec(content)
-      if (match) {
-        indexes[match[1]] = filePath
-      }
-    } while (match)
+    indexes[filePath] = collectIndexesInFile(filePath)
   }
   return indexes
 }
@@ -237,7 +251,8 @@ function formatQuestionsRecursive (questionsTree, examPath) {
   let output = []
   for (const title in questionsTree) {
     if (typeof questionsTree[title] === 'string') {
-      output.push(formatMarkdownLink(title, path.join(examPath, questionsTree[title])))
+      const questionPath = path.join(examPath, questionsTree[title])
+      output.push(formatMarkdownLink(title + formatIndexesInFile(questionPath), questionPath))
     } else {
       output.push(`${title} ${formatQuestionsRecursive(questionsTree[title], examPath)}`)
     }
