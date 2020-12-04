@@ -165,9 +165,70 @@ function collectIndexes () {
   return indexes
 }
 
+/**
+ * ```js
+ * [
+ *   'Thema-1/Teilaufgabe-1/Aufgabe-3.tex',
+ *   'Thema-1/Teilaufgabe-1/Aufgabe-4.tex',
+ *   'Thema-1/Teilaufgabe-2/Aufgabe-2.tex',
+ *   'Thema-1/Teilaufgabe-2/Aufgabe-4.tex',
+ *   'Thema-2/Teilaufgabe-2/Aufgabe-2.tex',
+ *   'Thema-2/Teilaufgabe-2/Aufgabe-5.tex'
+ * ]
+ * ```
+ *
+ * ```js
+ * {
+ *   'Thema 1': {
+ *     'Teilaufgabe 1': {
+ *       'Aufgabe 3': 'Thema-1/Teilaufgabe-1/Aufgabe-3.tex',
+ *       'Aufgabe 4': 'Thema-1/Teilaufgabe-1/Aufgabe-4.tex'
+ *     },
+ *     'Teilaufgabe 2': {
+ *       'Aufgabe 2': 'Thema-1/Teilaufgabe-2/Aufgabe-2.tex',
+ *       'Aufgabe 4': 'Thema-1/Teilaufgabe-2/Aufgabe-4.tex'
+ *     }
+ *   },
+ *   'Thema 2': {
+ *     'Teilaufgabe 2': {
+ *       'Aufgabe 2': 'Thema-2/Teilaufgabe-2/Aufgabe-2.tex',
+ *       'Aufgabe 5': 'Thema-2/Teilaufgabe-2/Aufgabe-5.tex'
+ *     }
+ *   }
+ * }
+ * ```
+ *
+ * @param {string} relPath
+ */
 function parseQuestions(relPath) {
+  /**
+   * Thema-1: Thema 1
+   * Teilaufgabe-2: Teilaufgabe 2
+   * Aufgabe-3.tex: Aufgabe 3
+   */
+  function makeSegmentReadable (segment) {
+    return segment.replace('-', ' ').replace('.tex', '')
+  }
   const files = glob.sync('**/*.tex', { cwd: relPath })
-  console.log(files)
+  const tree = {}
+  for (const filePath of files) {
+    if (filePath.match(/(Thema-\d\/)?(Teilaufgabe-\d\/)?Aufgabe-\d\.tex/)) {
+      const segments = filePath.split(path.sep)
+      let subTree = tree
+      for (const segment of segments) {
+        const segmentReadable = makeSegmentReadable(segment)
+        if (!subTree[segmentReadable] && segment.indexOf('.tex') === -1) {
+          subTree[segmentReadable] = {}
+        } else if (segment.indexOf('.tex') > -1) {
+          subTree[segmentReadable] = filePath
+        }
+        if (segment.indexOf('.tex') === -1) {
+          subTree = subTree[segmentReadable]
+        }
+      }
+    }
+  }
+  console.log(tree)
 }
 
 program
