@@ -234,110 +234,13 @@ public static void main(String[] arg) {
 %
 %-----------------------------------------------------------------------
 
-\section{Aufgabe 6 (Backtracking) [30 PUNKTE]\footcite{examen:66115:2018:09}}
-
-Ein sehr bekanntes Optimierungsproblem ist das sogenannte
-Rucksackproblem: Gegeben ist ein Rucksack mit der Tragfähigkeit $B$.
-Weiterhin ist eine endliche Menge von Gegenständen mit Werten und
-Gewichten gegeben. Nun soll eine Teilmenge der Gegenstände so ausgewählt
-werden, dass ihr Gesamtwert maximal ist, aber ihr Gesamtgewicht die
-Tragfähigkeit des Rucksacks nicht überschreitet.
-
-Mathematisch exakt kann das Rucksackproblem wie folgt formuliert werden:
-
-Gegeben ist eine endliche Menge von Objekten $U$. Durch eine
-Gewichtsfunktion $w : U \rightarrow \mathbb{R}^+$ wird den Objekten ein
-Gewicht und durch eine Nutzenfunktion $v : U \rightarrow \mathbb{R}^+$
-ein festgelegter Nutzwert zugeordnet.
-
-Des Weiteren gibt es eine vorgegebene Gewichtsschranke $B \in
-\mathbb{R}^+$. Gesucht ist eine Teilmenge $K \subseteq U$, die die
-Bedingung $\sum_{u \in K} w(u) \leq B$ einhält und die Zielfunktion
-$\sum_{u \in K} v(u)$ maximiert.
-
-Das Rucksackproblem ist NP-vollständig (Problemgröße ist die Anzahl der
-Objekte), sodass es an dieser Stelle wenig Sinn macht, über eine
-effiziente Lösung nachzudenken. Lösen Sie das Rucksackproblem daher
-mittels Backtracking und formulieren Sie einen entsprechenden
-Algorithmus. Gehen Sie davon aus, dass die Gewichtsschranke $B$ sowie
-die Anzahl an Objekten $N$ beliebig, aber fest vorgegeben sind.
-
-Das Programm soll folgende Ausgaben liefern:
-
-\begin{enumerate}
-\item  Maximaler Nutzwert, der durch eine Objektauswahl unter Einhaltung
-der Gewichtsschranke $B$ erreicht werden kann.
-
-\item Das durch die maximierende Objektmenge erreichte Gesamtgewicht.
-
-\item Diejenigen Objekte (Objektnummern) aus $U$, die zur Maximierung
-des Nutzwerts beigetragen haben.
-
-\end{enumerate}
-
-\begin{antwort}
-Foundations of Algorithms Using Java
-\end{antwort}
+\ExamensAufgabeTA 66115 / 2018 / 09 : Thema 2 Aufgabe 6
 
 %-----------------------------------------------------------------------
 %
 %-----------------------------------------------------------------------
 
-\section{Aufgabe 5 (Backtracking)\footcite{examen:46115:2018:09}}
-
-Das Springerproblem ist ein kombinatorisches Problem, das darin besteht,
-für einen Springer auf einem leeren Schachbrett eine Route von einem
-gegebenen Startfeld aus zu finden, auf der dieser jedes Feld des
-Schachbretts genau einmal besucht.
-
-Ein Schachbrett besteht aus 8x8 Feldern. Ein Springer kann bei einem Zug
-von einem Ausgangsfeld aus eines von maximal 8 Folgefelder betreten, wie
-dies in der folgenden Abbildung dargestellt ist. Der Springer darf
-selbstverstndlich nicht über den Rand des Schachbretts hinausspringen.
-
-Eine Lösung des Springerproblems mit Startfeld h1 sieht wie folgt aus.
-Die Felder sind in ihrer Besuchsreihenfolge durchnummeriert. Der
-Springer bewegt sich also von hi nach £2, dann von f2 nach h3 usw.
-
-\begin{tabular}{llllllll}
-41&10&29&26&49&12&31&16\\
-28&25&40&11&30&15&50&13\\
-9&42&27&56&61&48&17&32\\
-24&39&58&47&64&53&14&51\\
-43&8&55&62&57&60&33&18\\
-38&23&46&59&54&63&52&3\\
-7&44&21&36&5&2&19&34\\
-22&37&6&45&20&35&4&1\\
-\end{tabular}
-
-Formulieren Sie einen rekursiven Algorithmus zur Lösung des
-Springerproblems von einem vorgegebenen Startfeld aus. Es sollen dabei
-alle möglichen Lösungen des Springerproblems gefunden werden. Die
-Lösungen sollen durch Backtracking gefunden werden. Hierbei werden alle
-möglichen Teilrouten systematisch durchprobiert, und Teilrouten, die
-nicht zu einer Lösung des Springerproblems führen können, werden nicht
-weiterverfolgt. Dies ist durch rekursiven Aufruf einer Lésungsfunktion
-huepf(z, y, z) zu realisieren, wobei
-
-\begin{itemize}
-
-\item x und y die Koordinaten des als nächstes anzuspringenden Feldes
-sind, und
-
-\item z die aktuelle Rekursionstiefe enthält. Wenn die Rekursionstiefe
-64 erreicht und das betreffende Feld noch unbesucht ist, ist eine Lösung
-des Springerproblems gefunden.
-\end{itemize}
-
-Der initiale Aufruf Ihres Algorithmus kann beispielsweise über den Aufruf
-huepf(1,8,1)
-
-erfolgen.
-
-Wählen Sie geeignete Datenstrukturen zur Verwaltung der unbesuchten
-Felder und zum Speichern gefundener (Teil)Lösungen. Der Algorithmus soll
-eine gefundene Lösung in der oben angegebenen Form ausdrucken, also als
-Matrix mit der Besuchsreihenfolge pro Feld.
+\ExamensAufgabeTA 46115 / 2018 / 09 : Thema 2 Aufgabe 5
 
 \literatur
 

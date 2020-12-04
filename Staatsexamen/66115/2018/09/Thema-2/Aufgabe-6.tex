@@ -1,0 +1,52 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{mathe}
+\begin{document}
+
+\section{Aufgabe 6 (Backtracking)
+\index{Backtracking}
+\footcite[Thema 2 Aufgabe 6 Seite 10]{examen:66115:2018:09}
+}
+
+Ein sehr bekanntes Optimierungsproblem ist das sogenannte
+Rucksackproblem: Gegeben ist ein Rucksack mit der Tragfähigkeit $B$.
+Weiterhin ist eine endliche Menge von Gegenständen mit Werten und
+Gewichten gegeben. Nun soll eine Teilmenge der Gegenstände so ausgewählt
+werden, dass ihr Gesamtwert maximal ist, aber ihr Gesamtgewicht die
+Tragfähigkeit des Rucksacks nicht überschreitet.
+
+Mathematisch exakt kann das Rucksackproblem wie folgt formuliert werden:
+
+Gegeben ist eine endliche Menge von Objekten $U$. Durch eine
+Gewichtsfunktion $w : U \rightarrow \mathbb{R}^+$ wird den Objekten ein
+Gewicht und durch eine Nutzenfunktion $v : U \rightarrow \mathbb{R}^+$
+ein festgelegter Nutzwert zugeordnet.
+
+Des Weiteren gibt es eine vorgegebene Gewichtsschranke $B \in
+\mathbb{R}^+$. Gesucht ist eine Teilmenge $K \subseteq U$, die die
+Bedingung $\sum_{u \in K} w(u) \leq B$ einhält und die Zielfunktion
+$\sum_{u \in K} v(u)$ maximiert.
+
+Das Rucksackproblem ist NP-vollständig (Problemgröße ist die Anzahl der
+Objekte), sodass es an dieser Stelle wenig Sinn macht, über eine
+effiziente Lösung nachzudenken. Lösen Sie das Rucksackproblem daher
+mittels Backtracking und formulieren Sie einen entsprechenden
+Algorithmus. Gehen Sie davon aus, dass die Gewichtsschranke $B$ sowie
+die Anzahl an Objekten $N$ beliebig, aber fest vorgegeben sind.
+
+Das Programm soll folgende Ausgaben liefern:
+
+\begin{enumerate}
+\item  Maximaler Nutzwert, der durch eine Objektauswahl unter Einhaltung
+der Gewichtsschranke $B$ erreicht werden kann.
+
+\item Das durch die maximierende Objektmenge erreichte Gesamtgewicht.
+
+\item Diejenigen Objekte (Objektnummern) aus $U$, die zur Maximierung
+des Nutzwerts beigetragen haben.
+
+\end{enumerate}
+
+\begin{antwort}
+Foundations of Algorithms Using Java
+\end{antwort}
+\end{document}

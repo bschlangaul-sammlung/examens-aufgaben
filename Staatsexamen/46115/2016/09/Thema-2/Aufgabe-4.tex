@@ -1,0 +1,50 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{syntax,mathe}
+\begin{document}
+
+\section{Aufgabe 7: Dynamische Programmierung
+\index{Dynamische Programmierung}
+\footcite{aud:pu:7}}
+
+Mittels Dynamischer Programmierung (auch Memoization genannt) kann man
+insbesondere rekursive Lösungen auf Kosten des Speicherbedarf
+beschleunigen, indem man Zwischenergebnisse „abspeichert“ und bei
+(wiederkehrendem) Bedarf „abruft“, ohne sie erneut berechnen zu müssen.
+\footcite[Staatsexamen AuD/TI, 46115, Herbst 2016, Thema 2, A4]{examen:46115:2016:09}
+
+Gegeben sei folgende geschachtelt-rekursive Funktion für $n, m \geq 0$:
+
+\begin{equation*}
+a(n, m) =
+\begin{cases}
+n + \lfloor \frac{n}{2} \rfloor &
+\text{falls}\ m = 0\\
+
+a(1, m-1), &
+\text{falls}\ n = 0 \land m \neq 0 \\
+
+a(n + \lfloor \sqrt{a(n-1,m)} \rfloor, m - 1), &
+sonst \\
+\end{cases}
+\end{equation*}
+
+\begin{enumerate}
+\item Implementieren Sie die obige Funktion \java{a(n,m)} zunächst ohne
+weitere Optimierungen als Prozedur/Methode in einer Programmiersprache
+Ihrer Wahl.
+
+\begin{antwort}
+\inputcode[firstline=4,lastline=12]{aufgaben/aud/examen_46115_2016_09/DynamischeProgrammierung}
+\end{antwort}
+
+\item Geben Sie nun eine DP-Implementierung der Funktion \java{a(n,m)}
+an, die \java{a(n,m)} für $0 \geq n \geq 100000$ und $0 \geq m \geq 25$
+höchstens einmal gemäß obiger rekursiver Definition berechnet. Beachten
+Sie, dass Ihre Prozedur trotz/dem auch weiterhin mit $n > 100000$ und $m
+> 25$ aufgerufen werden können soll.
+
+\begin{antwort}
+\inputcode[firstline=14,lastline=34]{aufgaben/aud/examen_46115_2016_09/DynamischeProgrammierung}
+\end{antwort}
+\end{enumerate}
+\end{document}

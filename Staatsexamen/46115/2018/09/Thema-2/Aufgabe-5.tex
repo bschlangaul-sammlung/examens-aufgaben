@@ -1,0 +1,63 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{}
+\begin{document}
+
+\section{Aufgabe 5 (Backtracking)
+\index{Backtracking}
+\footcite[Thema 2 Aufgabe 5 Seite 11-12]{examen:46115:2018:09}}
+
+Das Springerproblem ist ein kombinatorisches Problem, das darin besteht,
+für einen Springer auf einem leeren Schachbrett eine Route von einem
+gegebenen Startfeld aus zu finden, auf der dieser jedes Feld des
+Schachbretts genau einmal besucht.
+
+Ein Schachbrett besteht aus 8x8 Feldern. Ein Springer kann bei einem Zug
+von einem Ausgangsfeld aus eines von maximal 8 Folgefelder betreten, wie
+dies in der folgenden Abbildung dargestellt ist. Der Springer darf
+selbstverstndlich nicht über den Rand des Schachbretts hinausspringen.
+
+Eine Lösung des Springerproblems mit Startfeld h1 sieht wie folgt aus.
+Die Felder sind in ihrer Besuchsreihenfolge durchnummeriert. Der
+Springer bewegt sich also von hi nach £2, dann von f2 nach h3 usw.
+
+\begin{tabular}{llllllll}
+41&10&29&26&49&12&31&16\\
+28&25&40&11&30&15&50&13\\
+9&42&27&56&61&48&17&32\\
+24&39&58&47&64&53&14&51\\
+43&8&55&62&57&60&33&18\\
+38&23&46&59&54&63&52&3\\
+7&44&21&36&5&2&19&34\\
+22&37&6&45&20&35&4&1\\
+\end{tabular}
+
+Formulieren Sie einen rekursiven Algorithmus zur Lösung des
+Springerproblems von einem vorgegebenen Startfeld aus. Es sollen dabei
+alle möglichen Lösungen des Springerproblems gefunden werden. Die
+Lösungen sollen durch Backtracking gefunden werden. Hierbei werden alle
+möglichen Teilrouten systematisch durchprobiert, und Teilrouten, die
+nicht zu einer Lösung des Springerproblems führen können, werden nicht
+weiterverfolgt. Dies ist durch rekursiven Aufruf einer Lésungsfunktion
+huepf(z, y, z) zu realisieren, wobei
+
+\begin{itemize}
+
+\item x und y die Koordinaten des als nächstes anzuspringenden Feldes
+sind, und
+
+\item z die aktuelle Rekursionstiefe enthält. Wenn die Rekursionstiefe
+64 erreicht und das betreffende Feld noch unbesucht ist, ist eine Lösung
+des Springerproblems gefunden.
+\end{itemize}
+
+Der initiale Aufruf Ihres Algorithmus kann beispielsweise über den Aufruf
+huepf(1,8,1)
+
+erfolgen.
+
+Wählen Sie geeignete Datenstrukturen zur Verwaltung der unbesuchten
+Felder und zum Speichern gefundener (Teil)Lösungen. Der Algorithmus soll
+eine gefundene Lösung in der oben angegebenen Form ausdrucken, also als
+Matrix mit der Besuchsreihenfolge pro Feld.
+
+\end{document}
