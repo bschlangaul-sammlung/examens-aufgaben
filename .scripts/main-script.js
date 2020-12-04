@@ -290,6 +290,10 @@ function formatExamTitle (year, month) {
   return `${year} ${monthLong}`
 }
 
+function readFile (filePath) {
+  return fs.readFileSync(filePath, { encoding: 'utf-8' })
+}
+
 program
   .command('generate-readme')
   .description('Generate the readme file')
@@ -315,9 +319,12 @@ program
 
     const output = new OutputCollector()
 
-    let readmeContent = fs.readFileSync('README_template.md', { encoding: 'utf-8' })
+    let readmeContent = readFile('README_template.md')
 
     readmeContent = replaceUrlTokens(readmeContent)
+
+    const tagsContent = readFile('Stichwörter.yml')
+    readmeContent = readmeContent.replace('{{ stichwörter }}', tagsContent)
 
     for (const examNumber in examTitles) {
       output.add(`\n### ${examNumber}: ${examTitles[examNumber]}\n`)

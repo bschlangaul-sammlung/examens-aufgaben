@@ -70,6 +70,8 @@ Diese Informatik-Material- und Aufgabensammlung verwendet das TeX-Makro
 `\index{}` um ein Stichwortverzeichnis zu erstellen. In dieses Makro
 kann ganz normaler Text - also auch mit Leerzeichen eingesetzt werden.
 
+{{ stichwörter }}
+
 # Ordner-Struktur
 
 `03` steht für Frühjahr `09` steht für Herbst

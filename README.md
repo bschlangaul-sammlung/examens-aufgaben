@@ -411,6 +411,56 @@ Diese Informatik-Material- und Aufgabensammlung verwendet das TeX-Makro
 `\index{}` um ein Stichwortverzeichnis zu erstellen. In dieses Makro
 kann ganz normaler Text - also auch mit Leerzeichen eingesetzt werden.
 
+- DB
+    - Entity-Relation-Modell
+    - Relationenmodell
+    - Relationale Algebra
+    - SQL
+    - Normalformen
+        - Schlüssel
+        - Funktionale Abhängigkeiten
+        - Normalformen
+            - Synthese-Algorithmus
+    - Transaktionen
+- AUD
+    - Komplexität
+    - Sortieralgorithmen
+        - Bubblesort
+        - Heapsort
+        - Insertionsort
+        - Mergesort
+        - Quicksort
+        - Selectionsort
+- SOSY
+    - UML-Diagramme
+        - UML-Struktur-Diagramme
+            - Klassendiagramm
+            - Objektdiagramm
+        - UML-Verhaltens-Diagramme
+            - UML-Interaktions-Diagramme
+                - Sequenzdiagramm
+                - Kommunikationsdiagramm
+            - Aktivitätsdiagramm
+            - Anwendungsfalldiagramm
+            - Zustandsdiagramm
+    - Entwurfsmuster
+        - Erzeugungsmuster (Creational Patterns)
+            - Abstrakte Fabrik (Abstract Factory)
+            - Einzelstück (Singleton)
+        - Strukturmuster (Structural Patterns)
+            - Adapter
+            - Dekorierer (Decorator)
+            - Kompositum (Composite)
+            - Stellvertreter (Proxy)
+        - Verhaltensmuster (Behavioral Patterns)
+            - Beobachter (Observer)
+            - Schablone (Template)
+            - Wiederholer (Iterator)
+            - Zustand (State)
+        - Sonstige Entwurfsmuster
+            - Modell-Präsentation-Steuerung (Model-View-Controller)
+
+
 # Ordner-Struktur
 
 `03` steht für Frühjahr `09` steht für Herbst
