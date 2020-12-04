@@ -202,7 +202,7 @@ function collectIndexes () {
  *
  * @param {string} relPath
  */
-function parseQuestions(relPath) {
+function parseQuestions (relPath) {
   /**
    * Thema-1: Thema 1
    * Teilaufgabe-2: Teilaufgabe 2
@@ -230,7 +230,23 @@ function parseQuestions(relPath) {
       }
     }
   }
-  //console.log(tree)
+  return tree
+}
+
+function formatQuestionsRecursive (questionsTree, examPath) {
+  let output = []
+  for (const title in questionsTree) {
+    if (typeof questionsTree[title] === 'string') {
+      output.push(formatMarkdownLink(title, path.join(examPath, questionsTree[title])))
+    } else {
+      output.push(`${title} ${formatQuestionsRecursive(questionsTree[title], examPath)}`)
+    }
+  }
+  return output.join(' ')
+}
+
+function formatQuestions (relPath) {
+  return formatQuestionsRecursive(parseQuestions(relPath), relPath)
 }
 
 class OutputCollector {
@@ -247,6 +263,16 @@ class OutputCollector {
   getString() {
     return this.store.join('\n')
   }
+}
+
+function formatExamTitle (year, month) {
+  let monthLong
+  if (month === '09') {
+    monthLong = 'Herbst'
+  } else {
+    monthLong = 'Frühjahr'
+  }
+  return `${year} ${monthLong}`
 }
 
 program
@@ -267,7 +293,6 @@ program
 
     function replaceUrlTokens (readmeContent) {
       for (const token in urlTokens) {
-        console.log(token)
         readmeContent = readmeContent.replace(new RegExp(`//${token}`, 'g'), urlTokens[token])
       }
       return readmeContent
@@ -286,10 +311,9 @@ program
       for (const year of yearDirs) {
         const yearPath = path.join(examNumberPath, year)
         const monthDirs = fs.readdirSync(yearPath)
-        for (const mount of monthDirs) {
-          const monthPath = path.join(yearPath, mount)
-          output.add(`- ${fileLink(monthPath, 'Scan.pdf')} ${fileLink(monthPath, 'OCR.txt')}`)
-          parseQuestions(monthPath)
+        for (const month of monthDirs) {
+          const monthPath = path.join(yearPath, month)
+          output.add(`- ${formatExamTitle(year, month)}: ${fileLink(monthPath, 'Scan.pdf')} ${fileLink(monthPath, 'OCR.txt')} ${formatQuestions(monthPath)}`)
         }
       }
     }
