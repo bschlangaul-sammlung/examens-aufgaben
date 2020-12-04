@@ -76,6 +76,10 @@ function flattenTagsTree (tag) {
 
 flattenTagsTree(tagsTree)
 
+/*******************************************************************************
+ * low level functions
+ ******************************************************************************/
+
 function checkTag (tag) {
   if (!tagsFlat.has(tag)) {
     throw Error(`Unkown tag: ${tag}`)
@@ -89,6 +93,15 @@ function open (executable, filePath) {
   })
 
   subprocess.unref()
+}
+
+function readFile (filePath) {
+  return fs.readFileSync(filePath, { encoding: 'utf-8' })
+}
+
+function readRepoFile () {
+  if (arguments[0].indexOf(repositoryPath) > -1) return readFile(path.join(...arguments))
+  return readFile(path.join(repositoryPath, ...arguments))
 }
 
 function generateExamBasePath (number, year, month) {
@@ -158,6 +171,10 @@ program.on('command:*', function () {
   process.exit(1)
 })
 
+/*******************************************************************************
+ * create-question
+ ******************************************************************************/
+
 function checkNumber (number) {
   number = parseInt(number)
   if (number) return number
@@ -193,6 +210,10 @@ program
     console.log(generateTeXMacro(exam, arg1, arg2, arg3))
   })
 
+/*******************************************************************************
+ * open-exam
+ ******************************************************************************/
+
 program
   .command('open-exam <ref>')
   .description('Open a exam scan: 66116:2020:09')
@@ -206,6 +227,10 @@ program
       console.log(`Path ${examPath} doesn’t exist.`)
     }
   })
+
+/*******************************************************************************
+ * generate-readme
+ ******************************************************************************/
 
 function collectIndexesInFile (filePath) {
   const content = readRepoFile(filePath)
@@ -238,6 +263,8 @@ function collectIndexes () {
   }
   return indexes
 }
+
+const questionPathRegExp = /(Thema-\d\/)?(Teilaufgabe-\d\/)?Aufgabe-\d\.tex$/
 
 /**
  * ```js
@@ -286,7 +313,7 @@ function parseQuestions (relPath) {
   const files = glob.sync('**/*.tex', { cwd: relPath })
   const tree = {}
   for (const filePath of files) {
-    if (filePath.match(/(Thema-\d\/)?(Teilaufgabe-\d\/)?Aufgabe-\d\.tex/)) {
+    if (filePath.match(questionPathRegExp)) {
       const segments = filePath.split(path.sep)
       let subTree = tree
       for (const segment of segments) {
@@ -310,7 +337,7 @@ function formatQuestionsRecursive (questionsTree, examPath) {
   for (const title in questionsTree) {
     if (typeof questionsTree[title] === 'string') {
       const questionPath = path.join(examPath, questionsTree[title])
-      output.push(formatMarkdownLink(title + formatIndexesInFile(questionPath), questionPath))
+      output.push(formatMarkdownLink(title + formatIndexesInFile(questionPath), questionPath.replace('.tex', '.pdf')))
     } else {
       output.push(`${title} ${formatQuestionsRecursive(questionsTree[title], examPath)}`)
     }
@@ -346,15 +373,6 @@ function formatExamTitle (year, month) {
     monthLong = 'Frühjahr'
   }
   return `${year} ${monthLong}`
-}
-
-function readFile (filePath) {
-  return fs.readFileSync(filePath, { encoding: 'utf-8' })
-}
-
-function readRepoFile () {
-  if (arguments[0].indexOf(repositoryPath) > -1) return readFile(path.join(...arguments))
-  return readFile(path.join(repositoryPath, ...arguments))
 }
 
 program
@@ -406,6 +424,35 @@ program
     readmeContent = readmeContent.replace('{{ staatsexamen }}', output.getString())
     //console.log(readmeContent)
     fs.writeFileSync(path.join(repositoryPath, 'README.md'), readmeContent)
+  })
+
+/*******************************************************************************
+ * compile-questions
+ ******************************************************************************/
+
+program
+  .command('compile-questions')
+  .description('Compile all questions')
+  .alias('q')
+  .action(function (cmdObj) {
+    const staatsexamenPath = path.join(repositoryPath, 'Staatsexamen')
+    const files = glob.sync('**/*.tex', { cwd: staatsexamenPath })
+    for (let filePath of files) {
+      filePath = path.join(staatsexamenPath, filePath)
+      if(filePath.match(questionPathRegExp)) {
+        console.log(filePath)
+        const result = childProcess.spawnSync('/usr/local/texlive/bin/x86_64-linux/latexmk', ['-shell-escape', '-cd', '--lualatex', filePath], {
+          encoding: 'utf-8'
+        })
+
+        if (result.status !== 0) {
+          console.log(result.stdout)
+          console.log(result.stderr)
+          open('/usr/bin/code', filePath)
+          throw new Error(`Error compiling ${filePath}`)
+        }
+      }
+    }
   })
 
 program.parse(process.argv)
