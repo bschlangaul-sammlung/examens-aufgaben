@@ -27,6 +27,8 @@ const examTitles = {
   66118: 'Fachdidaktik (Gymnasium)'
 }
 
+const githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main'
+
 function open (executable, filePath) {
   const subprocess = childProcess.spawn(executable, [filePath], {
     detached: true,
@@ -81,7 +83,7 @@ function splitExamRef (ref) {
 }
 
 function formatMarkdownLink (text, relPath) {
-  return `[${text}](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/${relPath})`
+  return `[${text}](${githubRawUrl}/${relPath})`
 }
 
 const { Command } = require('commander')
@@ -228,7 +230,23 @@ function parseQuestions(relPath) {
       }
     }
   }
-  console.log(tree)
+  //console.log(tree)
+}
+
+class OutputCollector {
+  constructor(verbose = false) {
+    this.store = []
+    this.verbose = verbose
+  }
+
+  add (output) {
+    if (this.verbose) console.log(output)
+    this.store.push(output)
+  }
+
+  getString() {
+    return this.store.join('\n')
+  }
 }
 
 program
@@ -239,8 +257,30 @@ program
     function fileLink (relPath, fileName) {
       return formatMarkdownLink(fileName, path.join(relPath, fileName))
     }
+
+    const urlTokens = {
+      DB: `${githubRawUrl}/01-DB`,
+      AUD: `${githubRawUrl}/02-Programmierung/02-AUD`,
+      OOMUP: `${githubRawUrl}/02-Programmierung/01-OOMUP`,
+      EXAMEN: `${githubRawUrl}/01-Staatsexamen`,
+    }
+
+    function replaceUrlTokens (readmeContent) {
+      for (const token in urlTokens) {
+        console.log(token)
+        readmeContent = readmeContent.replace(new RegExp(`//${token}`, 'g'), urlTokens[token])
+      }
+      return readmeContent
+    }
+
+    const output = new OutputCollector()
+
+    let readmeContent = fs.readFileSync('README_template.md', { encoding: 'utf-8' })
+
+    readmeContent = replaceUrlTokens(readmeContent)
+
     for (const examNumber in examTitles) {
-      console.log(`\n### ${examNumber}: ${examTitles[examNumber]}\n`)
+      output.add(`\n### ${examNumber}: ${examTitles[examNumber]}\n`)
       const examNumberPath = path.join('Staatsexamen', examNumber)
       const yearDirs = fs.readdirSync(examNumberPath)
       for (const year of yearDirs) {
@@ -248,11 +288,15 @@ program
         const monthDirs = fs.readdirSync(yearPath)
         for (const mount of monthDirs) {
           const monthPath = path.join(yearPath, mount)
-          console.log(`- ${fileLink(monthPath, 'Scan.pdf')} ${fileLink(monthPath, 'OCR.txt')}`)
+          output.add(`- ${fileLink(monthPath, 'Scan.pdf')} ${fileLink(monthPath, 'OCR.txt')}`)
           parseQuestions(monthPath)
         }
       }
     }
+
+    readmeContent = readmeContent.replace('{{ staatsexamen }}', output.getString())
+    //console.log(readmeContent)
+    fs.writeFileSync('README.md', readmeContent)
   })
 
 program.parse(process.argv)
