@@ -6,6 +6,20 @@ const childProcess = require('child_process')
 
 const glob = require('glob')
 
+const configPath = path.join(path.sep, 'etc', 'lehramt-informatik.config.tex')
+
+if (!fs.existsSync(configPath)) {
+  throw new Error(`No configuration file found: ${configPath}`)
+}
+
+function parseConfigurationFile (configPath) {
+  const configContent = readFile(configPath)
+  const match = configContent.match(/\\LehramtInformatikRepository\{(.*)\}/)
+  return match[1]
+}
+
+const repositoryPath = parseConfigurationFile(configPath)
+
 const examTitles = {
   46110: 'Grundlagen der Informatik (nicht vertieft)',
   46111: 'Programmentwicklung / Systemprogrammierung / Datenbanksysteme (nicht vertieft)',
@@ -83,11 +97,15 @@ function splitExamRef (ref) {
 }
 
 function formatMarkdownLink (text, relPath) {
+  relPath = relPath.replace(repositoryPath, '')
+  relPath = relPath.replace(/^\//, '')
   return `[${text}](${githubRawUrl}/${relPath})`
 }
 
 const { Command } = require('commander')
 const program = new Command()
+program.description(`Repository path: ${repositoryPath}`)
+program.name('lehramt-informatik.js')
 program.version('0.1.0')
 
 function actionHelp () {
@@ -151,7 +169,7 @@ program
   })
 
 function collectIndexesInFile (filePath) {
-  const content = fs.readFileSync(filePath, { encoding: 'utf-8' })
+  const content = readRepoFile(filePath)
   const re = /\\index\{([^\}]*)\}/g
   let match
   const indexes = []
@@ -294,6 +312,11 @@ function readFile (filePath) {
   return fs.readFileSync(filePath, { encoding: 'utf-8' })
 }
 
+function readRepoFile () {
+  if (arguments[0].indexOf(repositoryPath) > -1) return readFile(path.join(...arguments))
+  return readFile(path.join(repositoryPath, ...arguments))
+}
+
 program
   .command('generate-readme')
   .description('Generate the readme file')
@@ -319,16 +342,16 @@ program
 
     const output = new OutputCollector()
 
-    let readmeContent = readFile('README_template.md')
+    let readmeContent = readRepoFile('README_template.md')
 
     readmeContent = replaceUrlTokens(readmeContent)
 
-    const tagsContent = readFile('Stichwörter.yml')
+    const tagsContent = readRepoFile('Stichwörter.yml')
     readmeContent = readmeContent.replace('{{ stichwörter }}', tagsContent)
 
     for (const examNumber in examTitles) {
       output.add(`\n### ${examNumber}: ${examTitles[examNumber]}\n`)
-      const examNumberPath = path.join('Staatsexamen', examNumber)
+      const examNumberPath = path.join(repositoryPath, 'Staatsexamen', examNumber)
       const yearDirs = fs.readdirSync(examNumberPath)
       for (const year of yearDirs) {
         const yearPath = path.join(examNumberPath, year)
