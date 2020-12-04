@@ -583,74 +583,7 @@ Die Behälterklasse im Kompositumentwurfsmuster.
 %
 %-----------------------------------------------------------------------
 
-\section{Aufgabe 14: Listen\footcite[entnommen aus Algorithmen und
-Datenstrukturen, Präsenzübung 4, Universität Bayreuth]{aud:pu:7}}
-
-Betrachten Sie folgendes Klassendiagramm, das doppelt-verkettete Listen
-spezifiziert. Die Assoziation head zeigt auf das erste Element der
-Liste. Die Assoziationen \java{previous} und \java{next} zeigen auf das
-vorherige bzw. folgende Element.
-\footcite[Stex, vertieft AD, Frühjahr 05, Thema Nr. 1, Aufgabe 1]{examen:66112:2005:03}
-
-\begin{center}
-\begin{tikzpicture}[scale=0.8, transform shape]
-\tiny
-\umlclass
-{DoublyLinkedList}{}
-{
-  insert(i: Integer)\\
-  check(): Boolean
-}
-
-\umlclass[x=5]
-{ListElem}{
-  data: Integer
-}
-{
-  insert(i: Integer)\\
-}
-
-\umluniassoc[arg=head,mult=1]{DoublyLinkedList}{ListElem}
-
-\umlassoc[pos1=0.3,arg1=previous,arg2=next,mult1=1,mult2=1,angle1=-30,angle2=30,loopsize=3cm,]{ListElem}{ListElem}
-\end{tikzpicture}
-\end{center}
-
-\noindent
-Implementieren Sie die doppelt-verketteten Listen in einer geeigneten
-objektorientierten Sprache (z. B. Java oder C++), das heißt:
-
-\begin{enumerate}
-
-%%
-% (a)
-%%
-
-\item Implementieren Sie die Klasse \java{ListElem}. Die Methode
-\java{insert} ordnet eine ganze Zahl \java{i} in eine aufsteigend
-geordnete doppelt-verkettete Liste \java{l} an die korrekte Stelle ein.
-Sei z. B. das Objekt \java{l} eine Repräsentation der Liste \java{[0,
-2, 2, 6, 8]} dann liefert \java{l.insert(3)} eine Repräsentation der
-Liste \java{[0, 2, 2, 3, 6, 8]}.
-
-\begin{antwort}
-\inputcode{aufgaben/aud/examen_66112_2005_03/ListElem}
-\end{antwort}
-
-%%
-% (b)
-%%
-
-\item Implementieren Sie die Klasse \java{DoublyLinkedList}, wobei die Methode
-insert eine Zahl i in eine aufsteigend geordnete Liste einordnet. Die
-Methode check überprüft, ob eine Liste korrekt verkettet ist, d. h. ob
-für jedes ListElem-Objekt o, das über den head der Liste erreichbar ist,
-der Vorgänger des Nachfolgers von o gleich o ist.
-\end{enumerate}
-
-\begin{antwort}
-\inputcode{aufgaben/aud/examen_66112_2005_03/DoublyLinkedList}
-\end{antwort}
+\ExamensAufgabeTA 66112 / 2005 / 03 : Thema 1 Aufgabe 1
 
 \literatur
 

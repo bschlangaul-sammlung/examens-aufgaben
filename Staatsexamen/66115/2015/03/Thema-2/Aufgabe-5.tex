@@ -1,0 +1,72 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{syntax}
+\begin{document}
+
+\section{Aufgabe 4
+\index{Stapel (Stack)}
+\footcite[Frühjahr 2015 (vertieft 66115) - Thema 2, Aufgabe 5]{examen:66115:2015:03}}
+
+Gegeben seien die Standardstrukturen Stapel (Stack) und Schlange (Queue)
+mit folgenden Standardoperationen:
+
+\begin{center}
+\begin{tabular}{l|l}
+Stapel & Schlange \\\hline
+\java{boolean isEmpty()} & \java{boolean isEmpty()} \\
+\java{void push(int e)} & \java{enqueue(int e)} \\
+\java{int pop()} & \java{int dequeue()} \\
+\java{int top()} & \java{int head()} \\
+\end{tabular}
+\end{center}
+
+\noindent
+Beim Stapel gibt die Operation \java{top()} das gleiche Element wie
+\java{pop()} zurück, bei der Schlange gibt \java{head()} das gleiche
+Element wie \java{dequeue()} zurück. Im Unterschied zu \java{pop()},
+beziehungsweise \java{dequeue()}, wird das Element bei \java{top()} und
+\java{head()} nicht aus der Datenstruktur entfernt.
+
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Geben Sie in Pseudocode einen Algorithmus \java{sort(Stapel s)}
+an, der als Eingabe einen Stapel \java{s} mit \java{n} Zahlen erhält und
+die Zahlen in \java{s} sortiert. (Sie dürfen die Zahlen wahlweise
+entweder aufsteigend oder absteigend sortieren.) Verwenden Sie als
+Hilfsdatenstruktur ausschließlich eine Schlange \java{q}. Sie erhalten
+volle Punktzahl, wenn Sie außer \java{s} und \java{q} keine weiteren
+Variablen benutzen. Sie dürfen annehmen, dass alle Zahlen in \java{s}
+verschieden sind.
+
+\begin{antwort}
+\begin{minted}{md}
+q := neue Schlange
+while s not empty:
+    q.enqueue(S.pop())
+while q not empty:
+    while s not empty and s.top() < q.head():
+        q.enqueue(s.pop())
+    s.push(q.dequeue)
+\end{minted}
+
+\ueberschrift{Als Java-Code}
+
+\inputcode[firstline=5,lastline=25]{aufgaben/aud/examen_66115_2015_03/Sort}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Analysieren Sie die Laufzeit Ihrer Methode in Abhängigkeit von $n$.
+
+\begin{antwort}
+Zeitkomplexität: $\mathcal{O}(n^2)$, da es zwei ineinander
+verschachtelte \java{while}-Schleifen gibt, die von der Anzahl der
+Elemente im Stapel abhängen.
+\end{antwort}
+\end{enumerate}
+\end{document}

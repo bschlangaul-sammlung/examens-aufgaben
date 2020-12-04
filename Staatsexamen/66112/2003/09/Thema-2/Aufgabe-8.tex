@@ -1,0 +1,71 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{syntax}
+\begin{document}
+
+\section{Aufgabe 2: Suchbaum
+\index{Binärbaum}
+\footcite[Seite 1]{aud:pu:5}}
+
+\footcite[Abgewandelt von Herbst 2003, Thema 2, Aufgabe 8, Seite 8]{examen:66112:2003:09}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Implementieren Sie in einer objektorientierten Sprache einen
+binären Suchbaum für ganze Zahlen! Dazu gehören Methoden zum Setzen und
+Ausgeben der Attribute \java{zahl}, \java{linker_teilbaum} und
+\java{rechter_teilbaum}. Design: eine Klasse \java{Knoten} und eine
+Klasse \java{BinBaum}. Ein Knoten hat einen linken und einen rechten
+Nachfolger. Ein Baum verwaltet die Wurzel. Er hängt neue Knoten an und
+löscht Knoten.
+
+%%
+% (b)
+%%
+
+\item Schreiben Sie eine Methode \java{fuegeEin(...)}, die eine Zahl in
+den Baum einfügt!
+
+%%
+% (c)
+%%
+
+\item Schreiben Sie eine Methode \java{postOrder(...)}, die die Zahlen
+in der Reihenfolge postorder ausgibt!
+
+%%
+% (d)
+%%
+
+\item Ergänzen Sie Ihr Programm um die rekursiv implementierte Methode
+\java{summe(...)}, die die Summe der Zahlen des Unterbaums, dessen
+Wurzel der Knoten ist, zurückgibt! Falls der Unterbaum leer ist, ist der
+Rückgabewert 0!
+
+\begin{minted}{java}
+int summe (Knoten x)...
+\end{minted}
+
+%%
+% (e)
+%%
+
+\item Schreiben Sie eine Folge von Anweisungen, die einen Baum mit Namen
+BinBaum erzeugt und nacheinander die Zahlen 5 und 7 einfügt! In den
+binären Suchbaum werden noch die Zahlen 4, 11, 6 und 2 eingefügt.
+Zeichnen Sie den Baum, den Sie danach erhalten haben, und schreiben Sie
+die eingefügten Zahlen in der Reihenfolge der Traversierungsmöglichkeit
+\texttt{postorder} auf!
+
+%%
+% (f)
+%%
+
+\item Implementieren Sie eine Operation \java{isSorted(...)}, die für
+einen (Teil-)baum feststellt, ob er sortiert ist.
+\end{enumerate}
+
+\end{document}

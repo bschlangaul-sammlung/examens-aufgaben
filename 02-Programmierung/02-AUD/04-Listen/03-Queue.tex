@@ -86,117 +86,13 @@ Datenstruktur der Teller ist ein „Stapel”.
 %
 %-----------------------------------------------------------------------
 
-\section{Aufgabe zu Queues\footcite[Seite 1-2, Aufgabe 2: Queue Frühjahr 2007, Thema 1, A7]{aud:pu:4}}
-
-Implementieren Sie die angegebenen Methoden einer Klasse \java{Queue}
-für Warteschlangen. Eine Warteschlange soll eine unbeschränkte Anzahl
-von Elementen aufnehmen können. Elemente sollen am Ende der
-Warteschlange angefügt und am Anfang aus ihr entfernt werden. Sie können
-davon ausgehen, dass ein Klasse \java{QueueElement} mit der folgenden
-Schnittstelle bereits implementiert ist
-\footcite[Seite 3]{examen:66115:2007:03}.
-
-\inputcode[firstline=3]{aufgaben/aud/examen_66115_2007_03/QueueElement}
-
-\noindent
-Von der Klasse \java{Queue} ist folgendes gegeben:
-
-\inputcode[firstline=3,lastline=5]{aufgaben/aud/examen_66115_2007_03/Queue}
-
-\begin{enumerate}
-\item Schreiben Sie eine Methode \java{void append (Object contents)},
-die ein neues Objekt in der Warteschlange einfügt.
-
-\begin{antwort}
-\inputcode[firstline=7,lastline=17]{aufgaben/aud/examen_66115_2007_03/Queue}
-\end{antwort}
-
-\item Schreiben Sie eine Methode \java{Object remove()}, die ein Element
-aus der Warteschlange entfernt und dessen Inhalt zurückliefert.
-Berücksichtigen Sie, dass die Warteschlange leer sein könnte.
-
-\begin{antwort}
-\inputcode[firstline=20,lastline=30]{aufgaben/aud/examen_66115_2007_03/Queue}
-\end{antwort}
-
-\item Schreiben Sie eine Methode \java{boolean isEmpty()}, die
-überprüft, ob die Warteschlange leer ist.
-
-\begin{antwort}
-\inputcode[firstline=32,lastline=34]{aufgaben/aud/examen_66115_2007_03/Queue}
-\end{antwort}
-
-\end{enumerate}
+\ExamensAufgabeTA 66115 / 2007 / 03 : Thema 1 Aufgabe 7
 
 %-----------------------------------------------------------------------
 %
 %-----------------------------------------------------------------------
 
-\section{Aufgabe 4\footcite[Frühjahr 2015 (vertieft 66115) - Thema 2, Aufgabe 5]{examen:66115:2015:03}}
-
-Gegeben seien die Standardstrukturen Stapel (Stack) und Schlange (Queue)
-mit folgenden Standardoperationen:
-
-\begin{center}
-\begin{tabular}{l|l}
-Stapel & Schlange \\\hline
-\java{boolean isEmpty()} & \java{boolean isEmpty()} \\
-\java{void push(int e)} & \java{enqueue(int e)} \\
-\java{int pop()} & \java{int dequeue()} \\
-\java{int top()} & \java{int head()} \\
-\end{tabular}
-\end{center}
-
-\noindent
-Beim Stapel gibt die Operation \java{top()} das gleiche Element wie
-\java{pop()} zurück, bei der Schlange gibt \java{head()} das gleiche
-Element wie \java{dequeue()} zurück. Im Unterschied zu \java{pop()},
-beziehungsweise \java{dequeue()}, wird das Element bei \java{top()} und
-\java{head()} nicht aus der Datenstruktur entfernt.
-
-\begin{enumerate}
-
-%%
-%
-%%
-
-\item Geben Sie in Pseudocode einen Algorithmus \java{sort(Stapel s)}
-an, der als Eingabe einen Stapel \java{s} mit \java{n} Zahlen erhält und
-die Zahlen in \java{s} sortiert. (Sie dürfen die Zahlen wahlweise
-entweder aufsteigend oder absteigend sortieren.) Verwenden Sie als
-Hilfsdatenstruktur ausschließlich eine Schlange \java{q}. Sie erhalten
-volle Punktzahl, wenn Sie außer \java{s} und \java{q} keine weiteren
-Variablen benutzen. Sie dürfen annehmen, dass alle Zahlen in \java{s}
-verschieden sind.
-
-\begin{antwort}
-\begin{minted}{md}
-q := neue Schlange
-while s not empty:
-    q.enqueue(S.pop())
-while q not empty:
-    while s not empty and s.top() < q.head():
-        q.enqueue(s.pop())
-    s.push(q.dequeue)
-\end{minted}
-
-\ueberschrift{Als Java-Code}
-
-\inputcode[firstline=5,lastline=25]{aufgaben/aud/examen_66115_2015_03/Sort}
-\end{antwort}
-
-%%
-%
-%%
-
-\item Analysieren Sie die Laufzeit Ihrer Methode in Abhängigkeit von $n$.
-
-\begin{antwort}
-Zeitkomplexität: $\mathcal{O}(n^2)$, da es zwei ineinander
-verschachtelte \java{while}-Schleifen gibt, die von der Anzahl der
-Elemente im Stapel abhängen.
-\end{antwort}
-\end{enumerate}
+\ExamensAufgabeTA 66115 / 2015 / 03 : Thema 2 Aufgabe 5
 
 %-----------------------------------------------------------------------
 %
