@@ -1,0 +1,135 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{gantt,cpm}
+\begin{document}
+
+\section{Aufgabe 3: Gantt (Staatsexamen H18 T2 TA1 A1, erweiterte
+Aufgabenstellung*)
+\index{Gantt-Diagramm}
+\footcite[Seite 2]{sosy:ab:5}}
+
+Ein Team von zwei Softwareentwicklern soll ein Projekt umsetzen, das in
+sechs Arbeitspakete unterteilt ist. Die Dauer der Arbeitspakete und ihre
+Abhängigkeiten können Sie aus folgender Tabelle entnehmen:
+\footcite{examen:66116:2018:09}
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+Name & Dauer in Wochen & Abhängig von\\\hline\hline
+A1 & 2 & - \\\hline
+A2 & 5 & - \\\hline
+A3 & 2 & A1 \\\hline
+A4 & 5 & A1,A2 \\\hline
+A5 & 7 & A3 \\\hline
+A6 & 4 & A4 \\\hline
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Zeichnen Sie ein Gantt-Diagramm, das eine kürzestmögliche
+Projektabwicklung beinhaltet.
+
+\begin{antwort}
+\begin{center}
+\begin{ganttchart}[x unit=0.7cm, y unit chart=0.6cm]{1}{14}
+\gantttitlelist{1,...,14}{1} \\
+\ganttbar[name=A1]{A1}{3}{5} \\
+\ganttbar[name=A2]{A2}{1}{5} \\
+\ganttbar[name=A3]{A3}{6}{7} \\
+\ganttbar[name=A4]{A4}{6}{10} \\
+\ganttbar[name=A5]{A5}{8}{14} \\
+\ganttbar[name=A6]{A6}{11}{14}
+\ganttlink{A1}{A3}
+\ganttlink{A1}{A4}
+\ganttlink[link type=f-s]{A2}{A4}
+\ganttlink[link type=f-s]{A3}{A5}
+\ganttlink[link type=f-s]{A4}{A6}
+\end{ganttchart}
+\end{center}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Bestimmen Sie die Länge des kritischen Pfades und geben Sie an,
+welche Arbeitspakete an ihm beteiligt sind.
+
+\begin{antwort}
+Auf dem kritischen Pfad befinden die Arbeitspakete A2, A4 und A6. Die
+Länge des kritischen Pfades ist 14.
+\end{antwort}
+
+%%
+% (c*)
+%%
+
+\item Wandeln Sie das Gantt-Diagramm in ein CPM-Netzplan um.
+
+\begin{antwort}
+\begin{tikzpicture}[font=\scriptsize,scale=0.95]
+\ereignis{SP}(0,1.5)
+
+\ereignis{1A}(1.5,3)
+\ereignis{1E}(3,3)
+\ereignis{2A}(1.5,0)
+\ereignis{2E}(3,0)
+\ereignis{3A}(4.5,3)
+\ereignis{3E}(6,3)
+\ereignis{4A}(4.5,0)
+\ereignis{4E}(6,0)
+\ereignis{5A}(7.5,3)
+\ereignis{5E}(9,3)
+\ereignis{6A}(7.5,0)
+\ereignis{6E}(9,0)
+
+\ereignis{EP}(10.5,1.5)
+
+\vorgang(1A>1E){2}
+\vorgang(2A>2E){5}
+\vorgang(3A>3E){2}
+\vorgang(4A>4E){5}
+\vorgang(5A>5E){7}
+\vorgang(6A>6E){4}
+
+\scheinvorgang(1E>3A){}
+\scheinvorgang(2E>4A){}
+\scheinvorgang(1E>4A){}
+\scheinvorgang(3E>5A){}
+\scheinvorgang(4E>6A){}
+
+\scheinvorgang(SP>1A){}
+\scheinvorgang(SP>2A){}
+
+\scheinvorgang(5E>EP){}
+\scheinvorgang(6E>EP){}
+\end{tikzpicture}
+\end{antwort}
+
+%%
+% (d*)
+%%
+
+\item Berechnen Sie für jedes Ereignis den \emph{frühesten Termin} und
+den \emph{spätesten Termin} sowie die \emph{Gesamtpufferzeiten}.
+
+\begin{antwort}
+{\scriptsize
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Ergebnis &SP&1A&1E&2A&2E&3A&3E&4A&4E&5A&5E&6A&6E&EP\\\hline\hline
+$FZ_i$   &0 &0 &2 &0 &5 &2 &4 &5 &10&4 &11&10&14&14\\\hline
+$SZ_i$   &0 &3 &5 &0 &5 &5 &7 &5 &10&7 &14&10&14&14\\\hline
+$GP$     &0 &3 &3 &0 &0 &3 &3 &0 &0 &3 &3 &0 &0 &0 \\\hline
+\end{tabular}
+}
+\end{antwort}
+\end{enumerate}
+
+\end{document}

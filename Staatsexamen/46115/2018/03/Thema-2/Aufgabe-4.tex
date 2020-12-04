@@ -1,0 +1,177 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{graph}
+\begin{document}
+
+\section{Aufgabe 12: Graphen III
+\index{minimaler Spannbaum}
+\index{Algorithmus von Prim}
+\footcite[(entnommen aus Algorithmen und Datenstrukturen, Übungsblatt 7, Universität Würzburg)]{aud:pu:7}}
+
+Sei G der folgende Graph.
+\footcite[Thema 2, Aufgabe 4 (gekürzt)]{examen:46115:2018:03}
+
+\graph knoten {
+  \knoten{a}(0,4)
+  \knoten{b}(2,4)
+  \knoten{c}(0,2)
+  \knoten{d}(2,2)
+  \knoten{e}(0,0)
+  \knoten{f}(2,0)
+} kanten {
+  \kante(a-b){10}
+  \kante(a-c){8}
+  \kante(b-c){4}
+  \kante(b-d){2}
+  \kante(c-d){12}
+  \kante(c-e){3}
+  \kante(c-f){5}
+  \kante(d-f){2}
+  \kante(e-f){8}
+}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Der Algorithmus von Prim ist ein Algorithmus zur Bestimmung des
+minimalen Spannbaums in einem Graphen. Geben Sie einen anderen
+Algorithmus zur Bestimmung des minimalen Spannbaums an.
+
+\begin{antwort}
+Zum Beispiel der Algorithmus von Kruskal
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Führen Sie den Algorithmus von Prim schrittweise auf $G$ aus.
+Ausgangsknoten soll der Knoten $a$ sein. Ihre Tabelle sollte wie folgt
+beginnen:
+
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+a &
+b &
+c &
+d &
+e &
+f &
+Warteschlange\\\hline
+\end{tabular}
+
+Die Einträge der Tabelle geben an, wie weit der angegebene Knoten
+vom aktuellen Baum entfernt ist.
+
+\begin{antwort}
+\graph knoten {
+  \knoten{a}(0,4)
+  \knoten{b}(2,4)
+  \knoten{c}(0,2)
+  \knoten{d}(2,2)
+  \knoten{e}(0,0)
+  \knoten{f}(2,0)
+} kanten {
+  \kante(a-b){10}
+  \KANTE(a-c){8}
+  \KANTE(b-c){4}
+  \KANTE(b-d){2}
+  \kante(c-d){12}
+  \KANTE(c-e){3}
+  \kante(c-f){5}
+  \KANTE(d-f){2}
+  \kante(e-f){8}
+}
+
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+a &
+b &
+c &
+d &
+e &
+f &
+Warteschlange\\\hline\hline
+
+0 & % a
+$\infty$ & % b
+$\infty$ & % c
+$\infty$ & % d
+$\infty$ & % e
+$\infty$ & % f
+a \\\hline % Warteschlange
+
+0 & % a
+10 & % b
+8 & % c
+$\infty$ & % d
+$\infty$ & % e
+$\infty$ & % f
+c, b\\\hline % Warteschlange
+
+0 & % a
+4 & % b
+0 & % c
+12 & % d
+3 & % e
+5 & % f
+e, b, f, d\\\hline % Warteschlange
+
+0 & % a
+4 & % b
+0 & % c
+12 & % d
+0 & % e
+5 & % f
+b, f, d \\\hline % Warteschlange
+
+0 & % a
+0 & % b
+0 & % c
+2 & % d
+0 & % e
+5 & % f
+d, f \\\hline % Warteschlange
+
+0 & % a
+0 & % b
+0 & % c
+0 & % d
+0 & % e
+2 & % f
+f \\\hline % Warteschlange
+
+0 & % a
+0 & % b
+0 & % c
+0 & % d
+0 & % e
+0 & % f
+\\\hline % Warteschlange
+\end{tabular}
+
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Erklären Sie, warum der Kürzeste-Wege-Baum (also das gezeichnete
+Ergebnis des Dijkstra-Algorithmus) und der minimale Spannbaum nicht
+notwendigerweise identisch sind.
+
+\begin{antwort}
+Die Wahl der nächsten Kante erfolgt nach völlig verschiedenen Kriterien:
+
+\begin{itemize}
+\item Beim Kürzeste-Wege-Baum orientiert sie sich an der Entfernung der
+einzelnen Knoten vom Startknoten.
+
+\item Beim Spannbaum orientiert sie sich an der Entfernung der einzelnen
+Knoten vom bereits erschlossenen Teil des Spannbaums.
+\end{itemize}
+\end{antwort}
+\end{enumerate}
+\end{document}
