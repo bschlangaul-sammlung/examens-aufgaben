@@ -1,13 +1,13 @@
 texmf = $(HOME)/texmf
 texmftex = $(texmf)/tex
 
-all: git_submodule install_config install_cli install_tex readme
+all: install_config install_cli install_tex readme
 
-git_submodule:
-	git submodule update --init
+# git_submodule:
+# 	git submodule update --init
 
 install_config:
-	su -c "echo "\\\\def\\\\LehramtInformatikRepository{$(pwd)}" > /etc/lehramt-informatik.config.tex"
+	.scripts/install-config.sh
 
 install_cli:
 	cd .scripts; npm install
@@ -18,4 +18,4 @@ install_tex:
 readme:
 	.scripts/main-script.js generate-readme
 
-.PHONY: install_tex readme git_submodule install_cli install_config
+.PHONY: install_tex readme install_cli install_config

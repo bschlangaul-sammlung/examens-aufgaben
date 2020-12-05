@@ -574,6 +574,38 @@ stattdessen mindestens einen p-use bzw. c-use testen.
 
 \footcite[Seite 44]{sosy:fs:5}
 
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Design by Contract\footcite{wiki:design-by-contract}}
+
+Ziel des Design by contract ist das reibungslose Zusammenspiel einzelner
+Programmmodule durch die Definition formaler Verträge zur Verwendung von
+Schnittstellen, die über deren statische Definition hinausgehen.
+
+Das reibungslose Zusammenspiel der Programmmodule wird durch einen
+„Vertrag“ erreicht, der beispielsweise bei der Verwendung einer Methode
+einzuhalten ist. Dieser besteht aus
+
+\begin{description}
+\item[Vorbedingungen] (englisch precondition), also den Zusicherungen,
+die der Aufrufer einzuhalten hat
+
+\item[Nachbedingungen] (englisch postcondition), also den Zusicherungen,
+die der Aufgerufene einhalten wird, sowie den
+
+\item[Invarianten] (englisch class invariants), über alle Instanzen
+einer Klasse hinweg geltende Grundannahmen.
+\end{description}
+
+Der Vertrag kann sich auf die gesamte verfügbare Information beziehen,
+also auf Variablen- und Parameter-Inhalte ebenso wie auf Objektzustände
+des betroffenen Objekts oder anderer zugreifbarer Objekte. Sofern sich
+der Aufrufende an Vorbedingungen und Invarianten hält, können keine
+Fehler auftreten und die Methode liefert garantiert keine unerwarteten
+Ergebnisse.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Aufgaben
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,6 +1,5 @@
 \documentclass{lehramt-informatik-minimal}
-\InformatikPakete{syntax}
-\usepackage{tabularx}
+\InformatikPakete{syntax,tabelle}
 \begin{document}
 
 \section{Aufgabe 3\footcite[Seite 3]{sosy:ab:9}}
@@ -18,16 +17,17 @@ angegeben.
 \hline
 RM1 &
 (Dokumentation) &
-Jede Quellcode-Datei beginnt mit einem Kommentar, der
-den Klassennamen, Versionsinformationen, Datum und
-Urheberrechtsangaben enthält.
+Jede Quellcode-Datei beginnt mit einem Kommentar, der den Klassennamen,
+Versionsinformationen, Datum und Urheberrechtsangaben enthält.
+
 \\\hline
 
 RM2 &
 (Dokumentation) &
-Jede Methode wird kommentiert. Der Kommentar enthält
-eine vollständige Beschreibung der Signatur so wie eine
-Design-by-Contract-Spezifikation.
+Jede Methode wird kommentiert. Der Kommentar enthält eine vollständige
+Beschreibung der Signatur so wie eine
+Design-by-Contract-Spezifikation\index{Design by Contract}.
+
 \\\hline
 
 RM3 &
@@ -70,6 +70,8 @@ Klassennamen werden groß geschrieben, Variablennamen klein.
 
 \bigskip
 
+\inputcode[firstline=3]{aufgaben/sosy/examen_66116_2017_09/BinarySearch}
+
 \begin{enumerate}
 
 %%
@@ -79,8 +81,37 @@ Klassennamen werden groß geschrieben, Variablennamen klein.
 \item Überprüfen Sie durch Inspektion, ob die obigen Regeln für den
 Quellcode eingehalten wurden. Erstellen Sie eine Liste mit allen
 Verletzungen der Regeln. Geben Sie für jede Verletzung einer Regel die
-Zeilennummer, Regelnummer und Kommentar an, z.\,B.(07, RM4, while nicht
-kommentiert).[...]
+Zeilennummer, Regelnummer und Kommentar an, z.\,B. (07, RM4, while nicht
+kommentiert). Schreiben Sie nicht in den Quellcode.
+
+\begin{antwort}
+\noindent
+\begin{tabularx}{\linewidth}{|l|l|X|}
+\hline
+Zeile & Regel & Kommentar\\\hline\hline
+
+3-8 & RM1 &
+Fehlen von Versionsinformationen, Datum und Urheberrechtsangaben \\\hline
+
+11-26 & RM2 &
+Fehlen der Invariante in der Design-by-Contract-Spezifikation \\\hline
+
+36,46 & RM5 & Fehlen des Leerzeichens vor der Klammer \\\hline
+
+48 & RM6 &
+Um einen binären (zweistellige) Operator handelt es sich im
+Code-Beispiel um den Subtraktionsoperator: \java{mid-1}. Hier fehlen die
+geforderten Leerzeichen. \\\hline
+
+32 & RM7 &
+Die Variable \java{End} wird in Zeile 32 deklariert, aber erst in Zeile
+initialisiert \java{End = a.length;} \\\hline
+
+32 & RM8 &
+Die Variable \java{End} muss klein geschrieben werden. \\\hline
+\end{tabularx}
+
+\end{antwort}
 
 %%
 %
@@ -90,6 +121,30 @@ kommentiert).[...]
 die durch Vor-und Nachbedingungen angeben ist? Geben Sie gegebenenfalls
 Korrekturen der Methode an.
 
+\begin{antwort}
+\ueberschrift{Korrektur der Vorbedingung}
+
+Die Vorbedingung ist nicht erfüllt, da weder die Länge des Feldes
+\java{a} noch die Reihenfolge der Feldeinträge geprüft wurden.
+
+\begin{minted}{java}
+if (a.length <= 0) {
+  return -1;
+}
+
+for (int i = 0; i < a.length; i ++) {
+  if ( a[i] > a[i + 1]) {
+    return -1;
+  }
+}
+\end{minted}
+
+\ueberschrift{Korrektur der Nachbedingung}
+
+\java{int start} muss mit \java{0} initialisiert werden, da sonst
+\java{a[0]} vernachlässigt wird.
+\end{antwort}
+
 %%
 %
 %%
@@ -97,6 +152,31 @@ Korrekturen der Methode an.
 \item Beschreiben alle Kommentare ab Zeile 24 die Semantik des Codes
 korrekt? Geben Sie zu jedem falschen Kommentar einen korrigierten
 Kommentar mit Zeilennummer an.
+
+\begin{antwort}
+\begin{tabularx}{\linewidth}{lXX}
+Zeile & Kommentar im Code & Korrektur \\
+
+34-35 &
+\java{// Die Schleife wird verlassen, wenn keine der beiden Haelften das
+Element enthaelt.} &
+\java{// Die Schleife wird verlassen, wenn keine der beiden Haelften das
+Element enthaelt oder das Element gefunden wurde.} \\
+
+44 &
+\java{// Ausschluss der oberen Haelfte} &
+\java{// Ausschluss der unteren Haelfte} \\
+
+47 &
+\java{// Ausschluss der unteren Haelfte} &
+\java{// Ausschluss der oberen Haelfte} \\
+
+50 &
+\java{// Das gesuchte Element wird zurueckgegeben} &
+\java{// Der Index des gesuchten Elements wird zurueckgegeben} \\
+
+\end{tabularx}
+\end{antwort}
 
 %%
 %
@@ -113,7 +193,15 @@ die Methode \java{binarySearch} an.
 \java{binarySearch} an, die insgesamt eine vollständige
 Anweisungsüberdeckung\index{Vollständige Anweisungsüberdeckung} leisten.
 
-\inputcode[firstline=3]{aufgaben/sosy/ab_9/BinarySearch}
+\begin{antwort}
+Die gegebene Methode: \java{binarySearch(a[], item)}
 
+\ueberschrift{Testfall}
+
+\begin{enumerate}
+\item Testfall: \java{a[] = {1, 2, 3}, item = 4}
+\item Testfall: \java{a[] = {1, 2, 3}, item = 2}
+\end{enumerate}
+\end{antwort}
 \end{enumerate}
 \end{document}
