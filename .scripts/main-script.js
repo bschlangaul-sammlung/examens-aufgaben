@@ -236,6 +236,10 @@ program
  * generate-readme
  ******************************************************************************/
 
+function cleanTag (tag) {
+  return tag.replace(/\s+/g, ' ')
+}
+
 function collectIndexesInFile (filePath) {
   const content = readRepoFile(filePath)
   const re = /\\index\{([^\}]*)\}/g
@@ -244,8 +248,9 @@ function collectIndexesInFile (filePath) {
   do {
     match = re.exec(content)
     if (match) {
-      checkTag(match[1])
-      indexes.push(match[1])
+      const tag = cleanTag(match[1])
+      checkTag(tag)
+      indexes.push(tag)
     }
   } while (match)
   return indexes

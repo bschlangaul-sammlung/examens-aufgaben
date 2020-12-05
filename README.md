@@ -372,13 +372,13 @@ Materialsammlung für das Studium Lehramt Informatik
 - 2012 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2012/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2012/03/OCR.txt) 
 - 2012 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2012/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2012/09/OCR.txt) Thema 2 Teilaufgabe 2 [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2012/09/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf)
 - 2013 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/03/OCR.txt) 
-- 2013 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/09/OCR.txt) Thema 1 Teilaufgabe 2 [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
+- 2013 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/09/OCR.txt) Thema 1 Teilaufgabe 2 [Aufgabe 3 (Testen, Model Checking, Refactoring, EXtreme Programming, White-Box-Testing, Black-Box-Testing, Funktionale Anforderungen, Nicht-funktionale Anforderungen, Kontinuierliche Integration (Continuous Integration), EXtreme Programming, Unit-Test, wp-Kalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
 - 2014 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/03/OCR.txt) Thema 2 Teilaufgabe 2 [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf)
 - 2014 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/OCR.txt) Thema 2 Teilaufgabe 2 [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf)
 - 2015 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/OCR.txt) Thema 1 Teilaufgabe 2 [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
 - 2015 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/09/OCR.txt) Thema 2 Teilaufgabe 2 [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf)
 - 2016 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/OCR.txt) Thema 1 Teilaufgabe 1 [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.pdf) [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) Teilaufgabe 2 [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) Thema 2 Teilaufgabe 2 [Aufgabe 4 (Gantt-Diagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf)
-- 2016 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/OCR.txt) Thema 1 Teilaufgabe 1 [Aufgabe 4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) Teilaufgabe 2 [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf) Thema 2 Teilaufgabe 1 [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) Teilaufgabe 2 [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf)
+- 2016 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/OCR.txt) Thema 1 Teilaufgabe 1 [Aufgabe 4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) Teilaufgabe 2 [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf) Thema 2 Teilaufgabe 1 [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) Teilaufgabe 2 [Aufgabe 1 (Software Engineering, Agile Methoden, Spiralmodell, Nicht-funktionale Anforderungen, Entwurfsmuster, Schichtenarchitektur, Blackboard-Muster, Einbringen von Abhängigkeiten (Dependency Injection), Sequenzdiagramm, Zustandsdiagramm, Komponentendiagramm, Modell-Präsentation-Steuerung (Model-View-Controller), Einzelstück (Singleton), Kommando (Command), Validation, Verifikation)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf)
 - 2017 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/OCR.txt) Thema 2 Teilaufgabe 2 [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf) [Aufgabe 4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf)
 - 2017 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/OCR.txt) Thema 1 Teilaufgabe 2 [Aufgabe 4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf) Thema 2 Teilaufgabe 2 [Aufgabe 1 (Gantt-Diagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf) [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf)
 - 2018 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/OCR.txt) Thema 2 Teilaufgabe 1 [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) [Aufgabe 4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-4.pdf) Teilaufgabe 2 [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf) [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf)
@@ -411,92 +411,123 @@ Diese Informatik-Material- und Aufgabensammlung verwendet das TeX-Makro
 `\index{}` um ein Stichwortverzeichnis zu erstellen. In dieses Makro
 kann ganz normaler Text - also auch mit Leerzeichen eingesetzt werden.
 
+---
 Stichwörter:
-- DB:
-    - Entity-Relation-Modell
-    - Relationenmodell
-    - Relationale Algebra
-    - SQL:
-        - GROUP BY
-        - CREATE TABLE
-        - HAVING
-        - Top-N-Query
-        - DELETE
-        - WITH
-        - EXCEPT
-    - Normalformen:
-        - Schlüssel
-        - Funktionale Abhängigkeiten
-        - Synthese-Algorithmus
-        - Erste Normalform
-        - Zweite Normalform
-        - Dritte Normalform
-    - Transaktionen:
-        - Zwei-Phasen-Sperrprotokoll
-        - ACID
-        - Serialisierbarkeitsgraph
-- OOMUP:
-    - Vererbung
-- AUD:
-    - Komplexität
-    - Listen:
-        - doppelt-verkettete Liste
-        - Stapel (Stack)
-        - Warteschlange (Queue)
-    - Bäume:
-        - AVL-Baum
-        - Binärbaum
-        - Halde (Heap)
-        - B-Baum
-        - Streutabellen (Hashing)
-    - Graphen:
-        - Algorithmus von Dijkstra
-        - minimaler Spannbaum
-        - Algorithmus von Kruskal
-        - Algorithmus von Prim
-    - Sortieralgorithmen:
-        - Bubblesort
-        - Heapsort
-        - Insertionsort
-        - Mergesort
-        - Quicksort
-        - Selectionsort
-    - Algorithmenmuster:
-        - Greedy-Algorithmus
-        - Dynamische Programmierung
-        - Backtracking
-    - Master-Theorem
-- SOSY:
-    - Gantt-Diagramm
-    - Petri-Netz:
-        - Erreichbarkeitsgraph
-    - UML-Diagramme:
-        - UML-Struktur-Diagramme:
-            - Klassendiagramm
-            - Objektdiagramm
-        - UML-Verhaltens-Diagramme:
-            - UML-Interaktions-Diagramme:
-                - Sequenzdiagramm
-                - Kommunikationsdiagramm
-            - Aktivitätsdiagramm
-            - Anwendungsfalldiagramm
-            - Zustandsdiagramm
-    - Entwurfsmuster:
-        - Erzeugungsmuster (Creational Patterns):
-            - Abstrakte Fabrik (Abstract Factory)
-            - Einzelstück (Singleton)
-        - Strukturmuster (Structural Patterns):
-            - Adapter
-            - Dekorierer (Decorator)
-            - Kompositum (Composite)
-            - Stellvertreter (Proxy)
-        - Verhaltensmuster (Behavioral Patterns):
-            - Beobachter (Observer)
-            - Schablone (Template)
-            - Wiederholer (Iterator)
-            - Zustand (State)
-        - Sonstige Entwurfsmuster:
-            - Modell-Präsentation-Steuerung (Model-View-Controller)
+  - DB:
+      - Entity-Relation-Modell
+      - Relationenmodell
+      - Relationale Algebra
+      - SQL:
+          - GROUP BY
+          - CREATE TABLE
+          - HAVING
+          - Top-N-Query
+          - DELETE
+          - WITH
+          - EXCEPT
+      - Normalformen:
+          - Schlüssel
+          - Funktionale Abhängigkeiten
+          - Synthese-Algorithmus
+          - Erste Normalform
+          - Zweite Normalform
+          - Dritte Normalform
+      - Transaktionen:
+          - Zwei-Phasen-Sperrprotokoll
+          - ACID
+          - Serialisierbarkeitsgraph
+  - OOMUP:
+      - Vererbung
+  - AUD:
+      - Komplexität
+      - Listen:
+          - doppelt-verkettete Liste
+          - Stapel (Stack)
+          - Warteschlange (Queue)
+      - Bäume:
+          - AVL-Baum
+          - Binärbaum
+          - Halde (Heap)
+          - B-Baum
+          - Streutabellen (Hashing)
+      - Graphen:
+          - Algorithmus von Dijkstra
+          - minimaler Spannbaum
+          - Algorithmus von Kruskal
+          - Algorithmus von Prim
+      - Sortieralgorithmen:
+          - Bubblesort
+          - Heapsort
+          - Insertionsort
+          - Mergesort
+          - Quicksort
+          - Selectionsort
+      - Algorithmenmuster:
+          - Greedy-Algorithmus
+          - Dynamische Programmierung
+          - Backtracking
+      - Master-Theorem
+  - SOSY:
+      - Projektmanagement:
+          - Software Engineering
+          - Prozessmodelle:
+              - Wasserfallmodell
+              - Spiralmodell
+              - Agile Methoden:
+                  - Kontinuierliche Integration (Continuous Integration)
+                  - Refactoring
+              - Agile Prozesse:
+                  - EXtreme Programming
+          - Funktionale Anforderungen
+          - Nicht-funktionale Anforderungen
+      - Projektplanung:
+          - Gantt-Diagramm
+          - Petri-Netz:
+              - Erreichbarkeitsgraph
+      - Modellierung:
+          - UML-Diagramme:
+              - UML-Struktur-Diagramme:
+                  - Klassendiagramm
+                  - Objektdiagramm
+                  - Komponentendiagramm
+              - UML-Verhaltens-Diagramme:
+                  - UML-Interaktions-Diagramme:
+                      - Sequenzdiagramm
+                      - Kommunikationsdiagramm
+                  - Aktivitätsdiagramm
+                  - Anwendungsfalldiagramm
+                  - Zustandsdiagramm
+          - Entwurfsmuster:
+              - Erzeugungsmuster (Creational Patterns):
+                  - Abstrakte Fabrik (Abstract Factory)
+                  - Einzelstück (Singleton)
+              - Strukturmuster (Structural Patterns):
+                  - Adapter
+                  - Dekorierer (Decorator)
+                  - Kompositum (Composite)
+                  - Stellvertreter (Proxy)
+              - Verhaltensmuster (Behavioral Patterns):
+                  - Beobachter (Observer)
+                  - Schablone (Template)
+                  - Wiederholer (Iterator)
+                  - Zustand (State)
+                  - Kommando (Command)
+              - Sonstige Entwurfsmuster:
+                  - Modell-Präsentation-Steuerung (Model-View-Controller)
+                  - Einbringen von Abhängigkeiten (Dependency Injection)
+      - Softwarearchitektur:
+          - Blackboard-Muster
+          - Schichtenarchitektur:
+              - 2-Schichtenarchitektur
+      - Testen:
+          - Formale Verifikation
+          - Model Checking
+          - White-Box-Testing
+          - Black-Box-Testing
+          - Unit-Test
+          - wp-Kalkül
+          - Validation
+          - Verifikation
 
 
 # Ordner-Struktur
