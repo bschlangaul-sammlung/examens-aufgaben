@@ -3,7 +3,8 @@
 \begin{document}
 
 \section{Aufgabe 1: „Formale Verifikation“
-\footcite[46116 – Frühjahr 2014 – Thema 2 Teilaufgabe 1 Aufgabe 1]{examen:46116:2014:03}}
+\index{Vollständige Induktion}
+\footcite[Thema 2 Teilaufgabe 1 Aufgabe 1]{examen:46116:2014:03}}
 
 Gegeben sei folgende Methode zur Berechnung der Anzahl der notwendigen
 Züge beim Spiel \emph{„Die Türme von Hanoi“}:
@@ -39,9 +40,13 @@ Zu zeigen:
 
 \ueberschrift{I. A.} $k=0$
 
-$\text{hanoi}(0,\text{'A'},\text{'C'}) = 0$
+\begin{displaymath}
+\text{hanoi}(0,\text{'A'},\text{'C'}) = 0
+\end{displaymath}
 
-$2^0 - 1 = 1 - 1 = 0$
+\begin{displaymath}
+2^0 - 1 = 1 - 1 = 0
+\end{displaymath}
 
 %%
 %
@@ -73,13 +78,12 @@ $2^0 - 1 = 1 - 1 = 0$
 % b)
 %%
 
-\item Geben Sie eine geeignete Terminierungsfunktion an und begründen
-Sie kurz Ihre Wahl!
+\item Geben Sie eine geeignete
+Terminierungsfunktion\index{Terminierungsfunktion} an und begründen Sie
+kurz Ihre Wahl!
 
 \begin{antwort}
-Betrachte Argumentenfolge
-
-$k, k-1, k-2, \dots, 0$
+Betrachte die Argumentenfolge $k, k-1, k-2, \dots, 0$.
 
 $\Rightarrow$ Terminierungsfunktion: $T(k) = k$
 
@@ -92,8 +96,6 @@ jedem Rekursionsschritt.
 \item Bei der impliziten Annahme $k$ ist ganzzahlig und $k \geq 0$ ist
 $T(k)$ nach unten durch $0$ beschränkt.
 \end{itemize}
-
 \end{antwort}
-
 \end{enumerate}
 \end{document}
