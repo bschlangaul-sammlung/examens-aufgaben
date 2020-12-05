@@ -3,9 +3,9 @@
 \begin{document}
 
 \section{Aufgabe 2: SQL\footcite{db:pu:3}}
-
+\index{SQL}
 Gegeben sind folgende Relationen aus einem Kundenverwaltungssystem:
-\footcite[DB/ST - Herbst 2018 (nicht vertieft -46116), Thema 1, TA1, A4]{examen:46116:2018:09}
+\footcite[DB/ST - Herbst 2018 (nicht vertieft -46116), Thema 1 Teilaufgabe 1 Aufgabe 4]{examen:46116:2018:09}
 
 \begin{minted}{md}
 Kunde (ID), Vorname, Nachname, PLZ)
@@ -25,7 +25,7 @@ Geben Sie einen Datensatz, also eine Entity, nicht mehrfach aus.
 
 \item Schreiben Sie eine SQL-Anweisung, die die Tabelle \emph{„Kauf“}
 anlegt. Gehen Sie davon aus, dass die Tabellen \emph{„Kunde“} und
-\emph{„Produkt“} bereits existieren.
+\emph{„Produkt“} bereits existieren.\index{CREATE TABLE}
 
 \begin{antwort}[muster]
 \begin{minted}{sql}
@@ -88,7 +88,7 @@ enthaltener PLZ-Bereich gelten alle in der Tabelle \emph{„Kunde“}
 enthaltenen PLZs. Ein Produkt gilt als an einen PLZ-Bereich verkauft,
 sobald es von mindestens einem Kunden aus diesem PLZ-Bereich gekauft
 wurde. Produkte, die bisher noch gar nicht verkauft worden sind, müssen
-nicht berücksichtigt werden.
+nicht berücksichtigt werden.\index{HAVING}\index{EXCEPT}
 
 \begin{minted}{sql}
 SELECT PLZ
@@ -160,7 +160,7 @@ verkauften Produkte ausgibt. Ausgegeben werden sollen der Rang (1 bis
 10) und die Bezeichnung des Produkts. Gehen Sie davon aus, dass es keine
 zwei Produkte mit gleicher Verkaufszahl gibt und verwenden Sie keine
 produktspezifischen Anweisungen wie beispielsweise \verb|ROWNUM|,
-\verb|TOP| oder \verb|LIMIT|.
+\verb|TOP| oder \verb|LIMIT|.\index{Top-N-Query}\index{WITH}
 
 \begin{antwort}[muster]
 \begin{minted}{sql}
@@ -184,7 +184,7 @@ ORDER BY Rang;
 %%
 
 \item Schreiben Sie eine SQL-Anweisung, die alle Produkte löscht, die
-noch nie gekauft wurden.
+noch nie gekauft wurden.\index{DELETE}
 
 \begin{antwort}[muster]
 \begin{minted}{sql}
