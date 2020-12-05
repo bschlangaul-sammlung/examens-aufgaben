@@ -95,6 +95,10 @@ function open (executable, filePath) {
   subprocess.unref()
 }
 
+function openCode (filePath) {
+  open('/usr/bin/code', filePath)
+}
+
 function readFile (filePath) {
   return fs.readFileSync(filePath, { encoding: 'utf-8' })
 }
@@ -206,7 +210,7 @@ program
     if (!fs.existsSync(questionPath)) {
       fs.writeFileSync(questionPath, template, { encoding: 'utf-8' })
     }
-    open('/usr/bin/code', questionPath)
+    openCode(questionPath)
     console.log(generateTeXMacro(exam, arg1, arg2, arg3))
   })
 
@@ -448,10 +452,29 @@ program
         if (result.status !== 0) {
           console.log(result.stdout)
           console.log(result.stderr)
-          open('/usr/bin/code', filePath)
+          openCode(filePath)
           throw new Error(`Error compiling ${filePath}`)
         }
       }
+    }
+  })
+
+/*******************************************************************************
+ * vscode
+ ******************************************************************************/
+
+program
+  .command('vscode [glob]')
+  .description('Open in Visual Studio Code')
+  .alias('vsc')
+  .action(function (globPattern, cmdObj) {
+    if (typeof globPattern !== 'string') {
+      globPattern = '**/*.tex'
+    }
+    const files = glob.sync(globPattern)
+    for (const filePath of files) {
+      console.log(filePath)
+      openCode(filePath)
     }
   })
 
