@@ -1,0 +1,77 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{cpm,mathe}
+\begin{document}
+
+\section{E-Klausur: CPM-Netzwerk}
+
+\begin{tikzpicture}
+\ereignis{1}(0,0)
+\ereignis{2}(1,1)
+\ereignis{3}(1,-1)
+\ereignis{4}(2,0)
+\ereignis{5}(3,1)
+\ereignis{6}(4,0)
+\ereignis{7}(5,1)
+\ereignis{8}(5,-1)
+\ereignis{9}(6,0)
+
+\vorgang(1>2){3}
+\vorgang(1>3){4}
+\vorgang(2>5){1}
+\vorgang(3>4){3}
+\vorgang(3>8){5}
+\vorgang(5>6){2}
+\vorgang(6>7){1}
+\vorgang(6>8){3}
+\vorgang(7>9){1}
+\vorgang(8>9){2}
+
+\scheinvorgang(2>4){}
+\scheinvorgang(4>6){}
+\scheinvorgang(6>9){}
+\scheinvorgang(5>7){}
+\end{tikzpicture}
+
+\begin{tabular}{|l|r|r|}
+\hline
+$i$ & Nebenrechnung & $\text{FZ}_i$\\
+\hline\hline
+1             &                                                & 0 \\\hline
+2             & \f$0 + \t{3}(1-2) = 3$                         & 3 \\\hline
+3             & \f$0 + \t{4}(1-3) = 4$                 & 4 \\\hline
+4             & \f$\t{3}(1-2) + \t{0}(2-4) = 3$                & \\
+              & \f$\t{4}(1-3) + \t{3}(3-4) = 7$                & \\
+              & \f$\max(3,7)$                                  & 7 \\\hline
+5             & \f$\t{3}(1-2) + \t{1}(2-5) = 4$                 & 4 \\\hline
+6             & \f$\max(7 + 0, 4 + 2)$  & 7 \\\hline
+7             & \f$\max(4 + 0, 7 + 1)$  & 8 \\\hline
+8             & \f$\max(4 + 5, 7 + 3)$  & 10 \\\hline
+9             & \f$\max(8 + 1, 7 + 0, 10 + 2)$  & 12 \\\hline
+\end{tabular}
+
+\begin{tabular}{|l|r|r|}
+\hline
+$i$ & Nebenrechnung & $\text{SZ}_i$\\
+\hline\hline
+1             & \f$\min(4 - 3, 4 - 4)$  & 0 \\
+2             & \f$\min(5 - 1, 7 - 0)$ & 4 \\
+3             & \f$\min(10 - 5, 7 - 3)$ & 4 \\
+4             & \f$7 - 0$ & 7 \\
+5             & \f$\min(11 - 0, 7 - 2)$ & 5 \\
+6             & \f$\min(12 - 0, 11 - 1, 10 - 3)$ & 7 \\
+7             & \f$12 - 1$ & 11 \\
+8             & \f$12 - 2$ & 10 \\
+9             & \f{}siehe $\text{FZ}_9$  & 12 \\\hline
+\end{tabular}
+
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+\hline
+Ereignis         & 1 & 2 & 3 & 4 & 5 & 6 & 7  & 8  & 9 \\\hline\hline
+frühester Termin & 0 & 3 & 4 & 7 & 4 & 7 & 8  & 10 & 12 \\\hline
+spätester Termin & 0 & 4 & 4 & 7 & 5 & 7 & 11 & 10 & 12 \\\hline
+Puffer           & 0 & 1 & 0 & 0 & 1 & 0 & 3  & 0  & 0 \\\hline
+\end{tabular}
+
+Kritischer Pfad 1 3 4 6 8 9
+
+\end{document}

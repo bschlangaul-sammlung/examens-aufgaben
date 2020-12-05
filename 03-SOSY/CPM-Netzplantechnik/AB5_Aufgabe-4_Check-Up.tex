@@ -1,0 +1,290 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{cpm,gantt,mathe}
+\begin{document}
+
+\section{Aufgabe 4 (Check-Up)\footcite[Seite 2]{sosy:ab:5}}
+% korrigiert 8.9.2020
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Gegeben ist folgender (unvollständiger) CPM-Netzplan, sowie die
+frühesten und spätesten Termine und die Pufferzeiten aller Ereignisse:
+
+\begin{minipage}{4cm}
+\begin{tikzpicture}
+\ereignis{1}(0,1)
+\ereignis{2}(1,1)
+\ereignis{3}(2,2)
+\ereignis{4}(2,0)
+\ereignis{5}(3,1)
+
+\vorgang(1>2){}
+\vorgang(2>3){}
+\vorgang(2>4){}
+\vorgang(4>5){}
+\vorgang(3>5){}
+
+\scheinvorgang(3>4){}
+\end{tikzpicture}
+\end{minipage}
+%
+\begin{minipage}{5cm}
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+Ereignis         & 1 & 2 & 3 & 4 & 5 \\\hline\hline
+frühester Termin & 0 & 1 & 2 & 4 & 8 \\\hline
+spätester Termin & 0 & 1 & 2 & 5 & 8 \\\hline
+Puffer           & 0 & 0 & 0 & 1 & 0 \\\hline
+\end{tabular}
+\end{minipage}
+
+Vervollständigen Sie den CPM-Netzplan, indem Sie mit Hilfe obiger
+Tabelle die Zeiten der Vorgänge berechnen.
+
+\begin{antwort}
+\begin{tikzpicture}
+\ereignis{1}(0,1)
+\ereignis{2}(1,1)
+\ereignis{3}(2,2)
+\ereignis{4}(2,0)
+\ereignis{5}(3,1)
+
+\vorgang(1>2){1}
+\vorgang(2>3){1}
+\vorgang(2>4){3}
+\vorgang(4>5){3}
+\vorgang(3>5){6}
+
+\scheinvorgang(3>4){}
+\end{tikzpicture}
+
+%%
+%
+%%
+
+\ueberschrift{Frühester Termin/Zeitpunkt}
+
+\begin{tabular}{|l|r|r|}
+\hline
+$i$ & Nebenrechnung & $\text{FZ}_i$\\
+\hline\hline
+1             &                                                & 0 \\\hline
+2             & \f$0 + \t{1}(1-2) = 1$                         & 1 \\\hline
+3             & \f$\t{1}(1-2) + \t{1}(2-3) = 2$                & 2 \\\hline
+4             & \f$\t{1}(1-2) + \t{3}(2-4) = 4$                & \\
+              & \f$\t{1}(1-2) + \t{1}(2-3) + \t{0}(3-4) = 2$   & \\
+              & \f$\max(4,2)$                                  & 4 \\\hline
+5             & \f$\f\t{1}(1-2) + \t{1}(2-3) + \t{6}(3-5) = 8$ & \\
+              & \f$\t{1}(1-2) + \t{3}(2-4) + \t{3}(4-5) = 7$   & \\
+              & \f$\max(8,7)$                                  & 8 \\\hline
+\end{tabular}
+
+%%
+%
+%%
+
+\ueberschrift{Spätester Termin/Zeitpunkt}
+
+\begin{tabular}{|l|r|r|}
+\hline
+$i$ & Nebenrechnung & $\text{SZ}_i$\\
+\hline\hline
+1             & \f$8 - \t{6}(3-5) - \t{1}(2-3) - \t{1}(1-2) = 0$ & \\
+              & \f$8 - \t{3}(4-5) - \t{3}(2-4) - \t{1}(1-2) = 1$ & \\
+              & \f$\min(0,1)$ & 0 \\\hline
+
+2             & \f$8 - \t{6}(3-5) - \t{1}(2-3) = 1$ & \\
+              & \f$8 - \t{3}(4-5) - \t{3}(2-4) = 2$ & \\
+              & \f$\min(1,2)$ & 1 \\\hline
+
+3             & \f$8 - \t{6}(3-5) = 2$ & 2  \\\hline
+
+4             & \f$8 - \t{3}(4-5) = 5$      & 3 \\\hline
+5             & \f{}siehe $\text{FZ}_5$  & 8 \\\hline
+\end{tabular}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Bestimmen Sie zum nachfolgenden CPM-Netzplan für jedes Ereignis
+den \emph{frühesten Termin}, den \emph{spätesten Termin} sowie die
+\emph{Gesamtpufferzeit}. Geben Sie außerdem den \emph{kritischen Pfad}
+an.
+
+\begin{center}
+\begin{tikzpicture}
+\ereignis{1}(0,2)
+\ereignis{2}(2,4)
+\ereignis{3}(2,0)
+\ereignis{4}(4,2)
+\ereignis{5}(6,4)
+\ereignis{6}(6,0)
+\ereignis{7}(8,2)
+
+\vorgang(1>2){4}
+\vorgang(1>3){8}
+\vorgang(2>3){5}
+\vorgang(2>4){7}
+\vorgang(2>5){8}
+\vorgang(3>4){1}
+\vorgang(3>6){6}
+\vorgang(4>5){2}
+\vorgang(4>6){5}
+\vorgang(5>6){6}
+\vorgang(5>7){7}
+\vorgang(6>7){2}
+\end{tikzpicture}
+\end{center}
+
+\begin{antwort}
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\hline
+i             & 1 & 2 & 3  & 4 & 5  & 6  & 7  \\\hline\hline
+$\text{FZ}_i$ & 0 & 4 & 9  & 11 & 13 & 19 & 21  \\\hline
+$\text{SZ}_i$ & 0 & 4 & 10 & 11 & 13 & 19 & 21  \\\hline
+GP            & 0 & 0 & 1  & 0  & 0  & 0  & 0  \\\hline
+\end{tabular}
+
+%%
+%
+%%
+
+\ueberschrift{Frühester Termin/Zeitpunkt}
+
+\begin{tabular}{|l|r|r|}
+\hline
+$\text{FZ}_i$ & Nebenrechnung & \\
+\hline\hline
+1 &                                                                      & 0 \\\hline
+2 &                                                                      & 4 \\\hline
+3 & \f$\max(8, \v{4}(2) + 5) = \max(8, 9)$                                      & 9 \\\hline
+4 & \f$\max(\v{9}(3) + 1, \v{4}(2) + 7) = \max(10, 11)$                    & 11 \\\hline
+5 & \f$\max(\v{4}(2) + 8, \v{11}(4) + 2) = \max(12, 13)$                   & 13 \\\hline
+6 & \f$\max(\v{13}(5) + 6, \v{11}(4) + 5, \v{9}(3) + 6) = \max(19, 16, 15)$ & 19 \\\hline
+7 & \f$\max(\v{13}(5) + 7, \v{19}(6) + 2) = \max(20, 21)$                  & 21 \\\hline
+\end{tabular}
+
+%%
+%
+%%
+
+\ueberschrift{Spätester Termin/Zeitpunkt}
+
+\begin{tabular}{|l|r|r|}
+\hline
+$\text{SZ}_i$ & Nebenrechnung & \\
+\hline\hline
+1 & \f$\min(\v{4}(2) - 4, \v{10}(3) - 8) = \min(0, 2)$                    & 0 \\\hline
+2 & \f$\min(\v{13}(5) - 8, \v{11}(4) - 7, \v{10}(3) - 5) = \min(5, 4, 5)$ & 4\\\hline
+3 & \f$\min(\v{11}(4) - 1, \v{19}(6) - 6) = \min(10, 13)$                 & 10 \\\hline
+4 & \f$\min(\v{13}(5) - 2, \v{19}(6) - 5) = \min(11, 14)$                 & 11 \\\hline
+5 & \f$\min(\v{21}(7) - 7, \v{19}(6) - 6) = \min(14, 13)$                 & 13 \\\hline
+6 & \f$\v{21}(7) - 2$                                                     & 19 \\\hline
+7 & \f{}siehe $\text{FZ}_7$                                               & 21 \\\hline
+\end{tabular}
+
+%%
+%
+%%
+
+\ueberschrift{Kritischer Pfad}
+
+$1 \rightarrow 2 \rightarrow 4 \rightarrow 5 \rightarrow 6 \rightarrow 7$
+
+$\t{4}(1-2) + \t{7}(2-4) + \t{2}(4-5) + \t{6}(5-6) + \t{2}(6-7) = 21$
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8,transform shape]
+\ereignis{1}(0,2)
+\ereignis{2}(2,4)
+\ereignis{3}(2,0)
+\ereignis{4}(4,2)
+\ereignis{5}(6,4)
+\ereignis{6}(6,0)
+\ereignis{7}(8,2)
+
+\VORGANG(1>2){4}
+\vorgang(1>3){8}
+\vorgang(2>3){5}
+\VORGANG(2>4){7}
+\vorgang(2>5){8}
+\vorgang(3>4){1}
+\vorgang(3>6){6}
+\VORGANG(4>5){2}
+\vorgang(4>6){5}
+\VORGANG(5>6){6}
+\vorgang(5>7){7}
+\VORGANG(6>7){2}
+\end{tikzpicture}
+\end{center}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Konvertieren Sie das nachfolgende Gantt-Diagramm in ein
+CPM-Netzwerk. Als Hilfestellung ist die Anordnung der Ereignisse bereits
+vorgegeben.
+
+\begin{center}
+\begin{ganttchart}[x unit=1cm, y unit chart=0.8cm]{0}{9}
+\gantttitlelist{0,...,9}{1} \\
+\ganttbar[name=A]{A}{0}{2} \\
+\ganttbar[name=B]{B}{1}{4} \\
+\ganttbar[name=C]{C}{3}{4} \\
+\ganttbar[name=D]{D}{6}{8}
+
+\node at (A) {3};
+\node at (B) {4};
+\node at (C) {2};
+\node at (D) {3};
+
+\ganttlink[link type=s-s]{A}{B}
+\ganttlink[link type=f-s]{A}{C}
+\ganttlink[link type=f-f]{B}{D}
+\ganttlink[link type=s-f]{B}{C}
+\ganttlink[link type=s-s]{C}{D}
+\end{ganttchart}
+\end{center}
+
+\begin{antwort}
+\begin{center}
+\begin{tikzpicture}[scale=0.8,transform shape]
+\ereignis{SP}(-1.5,2)
+
+\ereignis{A1}(0,2)
+\ereignis{A2}(1.5,4)
+\ereignis{B1}(1.5,0)
+\ereignis{B2}(6,0)
+\ereignis{C1}(3,4)
+\ereignis{C2}(5.5,1.5)
+\ereignis{D1}(6,4)
+\ereignis{D2}(7.5,2.5)
+
+\ereignis{EP}(9,2)
+
+\vorgang(A1>A2){3}
+\vorgang(A1>B1){1}
+\vorgang(B1>B2){4}
+\vorgang(B1>C2){4}
+\vorgang(C1>C2){2}
+\vorgang(C1>D1){3}
+\vorgang(D1>D2){3}
+
+\scheinvorgang(A2>C1){}
+\scheinvorgang(B2>D2){}
+\scheinvorgang(D2>EP){}
+\scheinvorgang(C2>EP){}
+\scheinvorgang(SP>A1){}
+\end{tikzpicture}
+\end{center}
+\end{antwort}
+\end{enumerate}
+\end{document}

@@ -1,0 +1,60 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{wpkalkuel,syntax}
+\begin{document}
+
+\begin{minted}{java}
+int blub(int a) {
+  if (a > 15) {
+    a = a - 42;
+  } else {
+    a = -a;
+  }
+  return a;
+}
+\end{minted}
+
+\inputcode{aufgaben/sosy/eklausur/WPKalkuel}
+
+$\wp{}{}$
+
+$\wp{R}{a \geq 0}$
+
+$\wp{if (a > 15) \{a = a - 42;\} else \{ a = -a;\}}{a \geq 0}$
+
+$
+(a > 15 \land \wp{a = a - 42}{a \geq 0})
+\lor
+(a \leq 15 \land \wp{a = -a}{a \geq 0})
+$
+
+$
+(a > 15 \land \wp{}{a - 42 \geq 0})
+\lor
+(a \leq 15 \land \wp{}{-a \geq 0})
+$
+
+$
+(a > 15 \land a - 42 \geq 0)
+\lor
+(a \leq 15 \land -a \geq 0)
+$
+
+$
+(a > 15 \land a \geq 42)
+\lor
+(a \leq 15 \land a \leq 0)
+$
+
+$
+(a \geq 42)
+\lor
+(a \leq 0)
+$
+
+$
+a \geq 42
+\lor
+a \leq 0
+$
+
+\end{document}

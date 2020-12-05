@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik}
-\InformatikPakete{syntax,mathe}
+\InformatikPakete{syntax,mathe,wpkalkuel}
 \usepackage{array}
 \usepackage{multicol}
 
@@ -22,10 +22,6 @@
 \def\Erklaerung#1{
   \medskip
   {\footnotesize#1}
-}
-
-\def\wp#1#2{
-  \text{wp}(\texttt{\scriptsize"#1"},\thinspace #2)
 }
 
 \begin{document}
@@ -113,13 +109,13 @@ $\text{\text{wp}}(\text{„}\texttt{IF B THEN <}A_1\texttt{> ELSE <}A_2\texttt{>
 \section{Transformationen}
 
 \begin{enumerate}
-\item $\text{\text{wp}}(\texttt{""}, Q) = Q$
+\item $\wp{}{Q} = Q$
 Nichts passiert, die Vorbedingung bleibt gleich
 
-\item $\text{\text{wp}}(\texttt{"Fehler"}, Q) = \text{falsch}$
+\item $\wp{Fehler}{Q} = \text{falsch}$
 Fehler dürfen nicht auftreten
 
-\item $\text{\text{wp}}(A, Q) \land \text{\text{wp}}(A, R) = \text{\text{wp}}(A, Q \land R)$
+\item $\wp{A}{Q} \land \wp{A}{R} = \wp{A}{Q \land R}$
 Distributivität der Konjunktion
 
 \item $\text{\text{wp}}(A, Q) \lor \text{\text{wp}}(A, R) = \text{\text{wp}}(A, Q \lor R)$

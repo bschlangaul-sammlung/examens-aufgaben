@@ -1,0 +1,148 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{cpm,mathe}
+\begin{document}
+
+\section{Aufgabe 1: CPM-Netzplantechnik\footcite[Seite 1]{sosy:ab:5}}
+
+Gegeben ist das nachfolgende CPM-Netz. Gestrichelte Linien zwischen
+Ereignissen stellen Scheinvorgänge mit einer Dauer von $0$ dar.
+
+\begin{center}
+\begin{tikzpicture}
+\ereignis{1}(-1,2)
+\ereignis{2}(1,4)
+\ereignis{3}(1,0)
+\ereignis{4}(3,2)
+\ereignis{5}(5,4)
+\ereignis{6}(5,0)
+\ereignis{7}(7,2)
+\ereignis{8}(9,4)
+\ereignis{9}(9,0)
+\ereignis{10}(11,2)
+
+\vorgang(1>2){2}
+\vorgang(1>3){3}
+\vorgang(2>5){4}
+\vorgang(3>4){4}
+\vorgang(3>6){3}
+\vorgang(4>5){1}
+\vorgang(5>7){3}
+\vorgang(5>8){2}
+\vorgang(6>7){3}
+\vorgang(7>10){1}
+\vorgang(7>9){2}
+\vorgang(9>10){3}
+
+\scheinvorgang(1>4){}
+\scheinvorgang(4>6){}
+\scheinvorgang(6>9){}
+\scheinvorgang(8>10){}
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Begründen Sie, welche Scheinvorgänge aus dem Netzplan ohne
+Informationsverlust gestrichen werden könnten.
+
+\begin{antwort}
+Die Scheinvorgänge zwischen den Ereignissen $1$ und $4$ bzw. zwischen
+$6$ und $9$ können jeweils gestrichen werden, da Ereignis $4$ schon auf
+$1$ wartet (über $3$) und $9$ wartet auf $6$ (über $7$).
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Berechnen Sie für jedes Ereignis den \emph{frühesten Termin}, den
+\emph{spätesten Termin} sowie die \emph{Gesamtpufferzeiten}.
+
+\begin{antwort}
+\begin{tabular}{|l|r|r|}
+\hline
+$\text{FZ}_i$ & Nebenrechnung & \\\hline\hline
+1 &                                                       & $0$ \\\hline
+2 &                                                       & $2$ \\\hline
+3 &                                                       & $3$ \\\hline
+4 &                                                       & $7$ \\\hline
+5 & \f$\max(\v{3}(3) + 3,\v{7}(4) + 1)$                   & $8$ \\\hline
+6 & \f$\max(\v{3}(3) + 3,\v{7}(4) + 0)$                   & $7$ \\\hline
+7 & \f$\max(\v{8}(5) + 3,\v{7}(6) + 3)$                   & $11$ \\\hline
+8 & \f$\v{8}(5) + 2$                                      & $10$ \\\hline
+9 & \f$\max(\v{7}(6) + 0,\v{11}(7) + 2)$                  & $13$ \\\hline
+10 & \f$\max(\v{10}(7) + 1, \v{8}(8) + 0, \v{13}(9) + 3)$ & $16$ \\\hline
+\end{tabular}
+
+\begin{tabular}{|l|r|r|}
+\hline
+$\text{SZ}_i$ & Nebenrechnung & \\\hline\hline
+1 &                                         & $0$ \\\hline
+2 & \f$\max(\v{8}(5) - 4$                   & $4$ \\\hline
+3 & \f$\max(\v{8}(6) - 3,\v{7}(4) - 4)$     & $3$ \\\hline
+4 & \f$\max(\v{8}(5) - 1,\v{8}(6) - 0)$     & $7$ \\\hline
+5 & \f$\max(\v{16}(8) - 2,\v{11}(7) - 3)$   & $8$ \\\hline
+6 & \f$\max(\v{11}(7) - 3,\v{13}(9) - 0)$   & $8$ \\\hline
+7 & \f$\min(\v{16}(10) - 1, \v{13}(9) - 2)$ & $11$ \\\hline
+8 & \f$\v{16}(10) - 0$                      & $16$ \\\hline
+9 & \f$\v{16}(10) - 3$                      & $13$ \\\hline
+10 & \f{}siehe $\text{FZ}_10$               & $16$ \\\hline
+\end{tabular}
+
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+i             & 1 & 2  & 3   & 4  & 5  & 6  & 7  & 8  & 9  & 10 \\\hline\hline
+$\text{FZ}_i$ & 0 & 2  & 3   & 7  & 8  & 7  & 11 & 10 & 13 & 16 \\\hline
+$\text{SZ}_i$ & 0 & 4  & 3   & 7  & 8  & 8  & 11 & 16 & 13 & 16 \\\hline
+GP            & 0 & 2  & 0   & 0  & 0  & 1  & 0  & 6  & 0  & 0 \\\hline
+\end{tabular}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Bestimmen Sie den kritischen Pfad.
+
+\begin{antwort}
+$1 \rightarrow 3 \rightarrow 4 \rightarrow 5 \rightarrow 7 \rightarrow 9 \rightarrow 10$
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8,transform shape]
+\ereignis{1}(-1,2)
+\ereignis{2}(1,4)
+\ereignis{3}(1,0)
+\ereignis{4}(3,2)
+\ereignis{5}(5,4)
+\ereignis{6}(5,0)
+\ereignis{7}(7,2)
+\ereignis{8}(9,4)
+\ereignis{9}(9,0)
+\ereignis{10}(11,2)
+
+\vorgang(1>2){2}
+\VORGANG(1>3){3}
+\vorgang(2>5){4}
+\VORGANG(3>4){4}
+\vorgang(3>6){3}
+\VORGANG(4>5){1}
+\VORGANG(5>7){3}
+\vorgang(5>8){2}
+\vorgang(6>7){3}
+\vorgang(7>10){1}
+\VORGANG(7>9){2}
+\VORGANG(9>10){3}
+
+\scheinvorgang(1>4){}
+\scheinvorgang(4>6){}
+\scheinvorgang(6>9){}
+\scheinvorgang(8>10){}
+\end{tikzpicture}
+\end{center}
+\end{antwort}
+\end{enumerate}
+\end{document}
