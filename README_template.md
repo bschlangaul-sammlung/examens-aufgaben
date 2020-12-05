@@ -91,6 +91,10 @@ OCR des oben genannten Scans:
 # TeX-Klassen und Pakete installieren
 
 ```
+su -c "echo "\\\\def\\\\LehramtInformatikRepository{$(pwd)}" > /etc/lehramt-informatik.config.tex"
+```
+
+```
 make install_tex
 ```
 
