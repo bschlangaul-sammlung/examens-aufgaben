@@ -346,14 +346,34 @@ function parseQuestions (relPath) {
   return tree
 }
 
-function formatQuestionsRecursive (questionsTree, examPath) {
+function formatIndentation(level) {
+  return '\n' + ' '.repeat(4 * level) + '- '
+}
+
+/**
+ * ```md
+ * - 2015 Frühjahr: [Scan.pdf](...46116/2015/03/Scan.pdf) [OCR.txt](…46116/2015/03/OCR.txt)
+ *     - Thema 1
+ *         - Teilaufgabe 1
+ *             - [Aufgabe 3](…46116/2015/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf)
+ *         - Teilaufgabe 2
+ *             - [Aufgabe 1](…46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf)
+ *             - [Aufgabe 3](…46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
+ *```
+ *
+ * @param {object} questionsTree
+ * @param {string} examPath
+ * @param {integer} level
+ */
+function formatQuestionsRecursive (questionsTree, examPath, level = 1) {
   let output = []
+  // title: Thema 1, Teilaufgabe 2, Aufgabe 3
   for (const title in questionsTree) {
     if (typeof questionsTree[title] === 'string') {
       const questionPath = path.join(examPath, questionsTree[title])
-      output.push(formatMarkdownLink(title + formatIndexesInFile(questionPath), questionPath.replace('.tex', '.pdf')))
+      output.push(formatIndentation(level) + formatMarkdownLink(title + formatIndexesInFile(questionPath), questionPath.replace('.tex', '.pdf')))
     } else {
-      output.push(`${title} ${formatQuestionsRecursive(questionsTree[title], examPath)}`)
+      output.push(`${formatIndentation(level)}${title} ${formatQuestionsRecursive(questionsTree[title], examPath, level + 1)}`)
     }
   }
   return output.join(' ')

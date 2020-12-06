@@ -142,37 +142,132 @@ Materialsammlung für das Studium Lehramt Informatik
 ### 46115: Theoretische Informatik / Algorithmen / Datenstrukturen (nicht vertieft)
 
 - 2010 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2010/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2010/03/OCR.txt) 
-- 2011 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2011/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2011/03/OCR.txt) Thema 1 [Aufgabe 3 (B-Baum, AVL-Baum)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2011/03/Thema-1/Aufgabe-3.pdf)
+- 2011 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2011/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2011/03/OCR.txt) 
+    - Thema 1 
+        - [Aufgabe 3 (B-Baum, AVL-Baum)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2011/03/Thema-1/Aufgabe-3.pdf)
 - 2012 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2012/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2012/03/OCR.txt) 
-- 2013 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/OCR.txt) Thema 2 [Aufgabe 4 (Streutabellen (Hashing))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Thema-2/Aufgabe-4.pdf) [Aufgabe 5 (Algorithmus von Dijkstra)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Thema-2/Aufgabe-5.pdf) [Aufgabe 6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Thema-2/Aufgabe-6.pdf)
-- 2014 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/OCR.txt) Thema 1 [Aufgabe 8 (minimaler Spannbaum, Algorithmus von Kruskal)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-1/Aufgabe-8.pdf) Thema 2 [Aufgabe 4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-2/Aufgabe-4.pdf)
-- 2014 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/OCR.txt) Thema 2 [Aufgabe 3 (Binärbaum)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/Thema-2/Aufgabe-3.pdf)
+- 2013 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/OCR.txt) 
+    - Thema 2 
+        - [Aufgabe 4 (Streutabellen (Hashing))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Thema-2/Aufgabe-4.pdf) 
+        - [Aufgabe 5 (Algorithmus von Dijkstra)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Thema-2/Aufgabe-5.pdf) 
+        - [Aufgabe 6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Thema-2/Aufgabe-6.pdf)
+- 2014 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/OCR.txt) 
+    - Thema 1 
+        - [Aufgabe 8 (minimaler Spannbaum, Algorithmus von Kruskal)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-1/Aufgabe-8.pdf) 
+    - Thema 2 
+        - [Aufgabe 4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-2/Aufgabe-4.pdf)
+- 2014 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/OCR.txt) 
+    - Thema 2 
+        - [Aufgabe 3 (Binärbaum)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/Thema-2/Aufgabe-3.pdf)
 - 2015 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2015/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2015/03/OCR.txt) 
-- 2015 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2015/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2015/09/OCR.txt) Thema 2 [Aufgabe 1 (Streutabellen (Hashing))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2015/09/Thema-2/Aufgabe-1.pdf)
+- 2015 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2015/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2015/09/OCR.txt) 
+    - Thema 2 
+        - [Aufgabe 1 (Streutabellen (Hashing))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2015/09/Thema-2/Aufgabe-1.pdf)
 - 2016 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/03/OCR.txt) 
-- 2016 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/09/OCR.txt) Thema 2 [Aufgabe 2 (Komplexität)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/09/Thema-2/Aufgabe-2.pdf) [Aufgabe 4 (Dynamische Programmierung)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/09/Thema-2/Aufgabe-4.pdf)
+- 2016 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/09/OCR.txt) 
+    - Thema 2 
+        - [Aufgabe 2 (Komplexität)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/09/Thema-2/Aufgabe-2.pdf) 
+        - [Aufgabe 4 (Dynamische Programmierung)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/09/Thema-2/Aufgabe-4.pdf)
 - 2017 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/03/OCR.txt) 
-- 2017 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/09/OCR.txt) Thema 2 [Aufgabe 7](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/09/Thema-2/Aufgabe-7.pdf)
-- 2018 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/03/OCR.txt) Thema 1 [Aufgabe 6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/03/Thema-1/Aufgabe-6.pdf) Thema 2 [Aufgabe 4 (minimaler Spannbaum, Algorithmus von Prim)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/03/Thema-2/Aufgabe-4.pdf)
-- 2018 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/09/OCR.txt) Thema 2 [Aufgabe 5 (Backtracking)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/09/Thema-2/Aufgabe-5.pdf)
+- 2017 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/09/OCR.txt) 
+    - Thema 2 
+        - [Aufgabe 7](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/09/Thema-2/Aufgabe-7.pdf)
+- 2018 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/03/OCR.txt) 
+    - Thema 1 
+        - [Aufgabe 6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/03/Thema-1/Aufgabe-6.pdf) 
+    - Thema 2 
+        - [Aufgabe 4 (minimaler Spannbaum, Algorithmus von Prim)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/03/Thema-2/Aufgabe-4.pdf)
+- 2018 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/09/OCR.txt) 
+    - Thema 2 
+        - [Aufgabe 5 (Backtracking)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/09/Thema-2/Aufgabe-5.pdf)
 - 2019 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2019/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2019/03/OCR.txt) 
 
 ### 46116: Softwaretechnologie / Datenbanksysteme (nicht vertieft)
 
 - 2010 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2010/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2010/03/OCR.txt) 
 - 2011 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2011/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2011/03/OCR.txt) 
-- 2012 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/OCR.txt) Thema 1 Teilaufgabe 1 [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) Thema 2 Teilaufgabe 2 [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf)
-- 2013 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/OCR.txt) Thema 1 Teilaufgabe 2 [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf)
-- 2014 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/OCR.txt) Thema 2 Teilaufgabe 1 [Aufgabe 1 (Vollständige Induktion, Terminierungsfunktion)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf) Teilaufgabe 2 [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf) [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf)
-- 2014 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/OCR.txt) Thema 2 Teilaufgabe 1 [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf) [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf)
-- 2015 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/OCR.txt) Thema 1 Teilaufgabe 1 [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) Teilaufgabe 2 [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
-- 2015 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/OCR.txt) Thema 1 Teilaufgabe 1 [Aufgabe 3 (Gantt-Diagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) Teilaufgabe 2 [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) Thema 2 Teilaufgabe 1 [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf)
-- 2016 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/03/OCR.txt) Thema 1 Teilaufgabe 1 [Aufgabe 5 (Transaktionen, ACID, Serialisierbarkeitsgraph, Zwei-Phasen-Sperrprotokoll)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf) Thema 2 Teilaufgabe 1 [Aufgabe 2 (Petri-Netz, Erreichbarkeitsgraph)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf)
-- 2016 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/09/OCR.txt) Thema 2 Teilaufgabe 1 [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf)
-- 2017 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/OCR.txt) Thema 1 Teilaufgabe 1 [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) [Aufgabe 5 (Gantt-Diagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf)
-- 2017 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/OCR.txt) Thema 1 Teilaufgabe 1 [Aufgabe 4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) Thema 2 Teilaufgabe 1 [Aufgabe 3 (Entwurfsmuster, Klassendiagramm, Abstrakte Fabrik (Abstract Factory), Beobachter (Observer), Kompositum (Composite))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf)
-- 2018 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/03/OCR.txt) Thema 1 Teilaufgabe 1 [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf)
-- 2018 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/OCR.txt) Thema 1 Teilaufgabe 1 [Aufgabe 3 (Zustandsdiagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) [Aufgabe 4 (SQL, CREATE TABLE, HAVING, EXCEPT, Top-N-Query, WITH, DELETE)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) Teilaufgabe 2 [Aufgabe 2 (Entity-Relation-Modell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) [Aufgabe 4 (SQL, CREATE TABLE)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf) Thema 2 Teilaufgabe 2 [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf) [Aufgabe 5 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-5.pdf)
+- 2012 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/OCR.txt) 
+    - Thema 1 
+        - Teilaufgabe 1 
+            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) 
+    - Thema 2 
+        - Teilaufgabe 2 
+            - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf)
+- 2013 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/OCR.txt) 
+    - Thema 1 
+        - Teilaufgabe 2 
+            - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) 
+            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf)
+- 2014 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/OCR.txt) 
+    - Thema 2 
+        - Teilaufgabe 1 
+            - [Aufgabe 1 (Vollständige Induktion, Terminierungsfunktion)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf) 
+        - Teilaufgabe 2 
+            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf) 
+            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf)
+- 2014 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/OCR.txt) 
+    - Thema 2 
+        - Teilaufgabe 1 
+            - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf) 
+            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) 
+            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf)
+- 2015 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/OCR.txt) 
+    - Thema 1 
+        - Teilaufgabe 1 
+            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) 
+        - Teilaufgabe 2 
+            - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) 
+            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
+- 2015 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/OCR.txt) 
+    - Thema 1 
+        - Teilaufgabe 1 
+            - [Aufgabe 3 (Gantt-Diagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) 
+        - Teilaufgabe 2 
+            - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) 
+    - Thema 2 
+        - Teilaufgabe 1 
+            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) 
+            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf)
+- 2016 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/03/OCR.txt) 
+    - Thema 1 
+        - Teilaufgabe 1 
+            - [Aufgabe 5 (Transaktionen, ACID, Serialisierbarkeitsgraph, Zwei-Phasen-Sperrprotokoll)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf) 
+    - Thema 2 
+        - Teilaufgabe 1 
+            - [Aufgabe 2 (Petri-Netz, Erreichbarkeitsgraph)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf)
+- 2016 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/09/OCR.txt) 
+    - Thema 2 
+        - Teilaufgabe 1 
+            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf)
+- 2017 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/OCR.txt) 
+    - Thema 1 
+        - Teilaufgabe 1 
+            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) 
+            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) 
+            - [Aufgabe 5 (Gantt-Diagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf)
+- 2017 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/OCR.txt) 
+    - Thema 1 
+        - Teilaufgabe 1 
+            - [Aufgabe 4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) 
+    - Thema 2 
+        - Teilaufgabe 1 
+            - [Aufgabe 3 (Entwurfsmuster, Klassendiagramm, Abstrakte Fabrik (Abstract Factory), Beobachter (Observer), Kompositum (Composite))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf)
+- 2018 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/03/OCR.txt) 
+    - Thema 1 
+        - Teilaufgabe 1 
+            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf)
+- 2018 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/OCR.txt) 
+    - Thema 1 
+        - Teilaufgabe 1 
+            - [Aufgabe 3 (Zustandsdiagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) 
+            - [Aufgabe 4 (SQL, CREATE TABLE, HAVING, EXCEPT, Top-N-Query, WITH, DELETE)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) 
+        - Teilaufgabe 2 
+            - [Aufgabe 2 (Entity-Relation-Modell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) 
+            - [Aufgabe 4 (SQL, CREATE TABLE)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf) 
+    - Thema 2 
+        - Teilaufgabe 2 
+            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf) 
+            - [Aufgabe 5 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-5.pdf)
 - 2019 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2019/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2019/03/OCR.txt) 
 
 ### 46118: Fachdidaktik (Mittelschulen)
@@ -262,11 +357,13 @@ Materialsammlung für das Studium Lehramt Informatik
 - 1991 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1991/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1991/09/OCR.txt) 
 - 1993 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1993/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1993/03/OCR.txt) 
 - 1993 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1993/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1993/09/OCR.txt) 
-- 1994 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1994/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1994/03/OCR.txt) [Aufgabe 7](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1994/03/Aufgabe-7.pdf)
+- 1994 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1994/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1994/03/OCR.txt) 
+    - [Aufgabe 7](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1994/03/Aufgabe-7.pdf)
 - 1994 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1994/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1994/09/OCR.txt) 
 - 1995 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1995/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1995/03/OCR.txt) 
 - 1996 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/OCR.txt) 
-- 1996 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/OCR.txt) [Aufgabe 4 (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.pdf)
+- 1996 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/OCR.txt) 
+    - [Aufgabe 4 (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.pdf)
 - 1997 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/03/OCR.txt) 
 - 1997 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/09/OCR.txt) 
 
@@ -281,15 +378,28 @@ Materialsammlung für das Studium Lehramt Informatik
 - 2001 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2001/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2001/03/OCR.txt) 
 - 2001 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2001/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2001/09/OCR.txt) 
 - 2002 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2002/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2002/03/OCR.txt) 
-- 2002 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2002/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2002/09/OCR.txt) Thema 1 [Aufgabe 4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2002/09/Thema-1/Aufgabe-4.pdf)
+- 2002 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2002/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2002/09/OCR.txt) 
+    - Thema 1 
+        - [Aufgabe 4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2002/09/Thema-1/Aufgabe-4.pdf)
 - 2003 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2003/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2003/03/OCR.txt) 
-- 2003 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2003/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2003/09/OCR.txt) Thema 2 [Aufgabe 5](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2003/09/Thema-2/Aufgabe-5.pdf) [Aufgabe 8 (Binärbaum)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2003/09/Thema-2/Aufgabe-8.pdf)
-- 2004 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2004/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2004/03/OCR.txt) Thema 1 [Aufgabe 5](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2004/03/Thema-1/Aufgabe-5.pdf)
+- 2003 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2003/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2003/09/OCR.txt) 
+    - Thema 2 
+        - [Aufgabe 5](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2003/09/Thema-2/Aufgabe-5.pdf) 
+        - [Aufgabe 8 (Binärbaum)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2003/09/Thema-2/Aufgabe-8.pdf)
+- 2004 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2004/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2004/03/OCR.txt) 
+    - Thema 1 
+        - [Aufgabe 5](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2004/03/Thema-1/Aufgabe-5.pdf)
 - 2004 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2004/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2004/09/OCR.txt) 
-- 2005 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2005/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2005/03/OCR.txt) Thema 1 [Aufgabe 1 (doppelt-verkettete Liste, Klassendiagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2005/03/Thema-1/Aufgabe-1.pdf) Thema 2 [Aufgabe 8 (Streutabellen (Hashing))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2005/03/Thema-2/Aufgabe-8.pdf)
+- 2005 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2005/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2005/03/OCR.txt) 
+    - Thema 1 
+        - [Aufgabe 1 (doppelt-verkettete Liste, Klassendiagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2005/03/Thema-1/Aufgabe-1.pdf) 
+    - Thema 2 
+        - [Aufgabe 8 (Streutabellen (Hashing))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2005/03/Thema-2/Aufgabe-8.pdf)
 - 2005 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2005/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2005/09/OCR.txt) 
 - 2006 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/03/OCR.txt) 
-- 2006 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/09/OCR.txt) Thema 1 [Aufgabe 5 (Vererbung, Klassendiagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/09/Thema-1/Aufgabe-5.pdf)
+- 2006 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/09/OCR.txt) 
+    - Thema 1 
+        - [Aufgabe 5 (Vererbung, Klassendiagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/09/Thema-1/Aufgabe-5.pdf)
 
 ### 66113: Rechnerarchitektur / Datenbanken / Betriebssysteme (vertieft)
 
@@ -339,52 +449,155 @@ Materialsammlung für das Studium Lehramt Informatik
 ### 66115: Theoretische Informatik / Algorithmen (vertieft)
 
 - 2006 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2006/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2006/03/OCR.txt) 
-- 2006 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2006/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2006/09/OCR.txt) Thema 1 [Aufgabe 4 (AVL-Baum)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2006/09/Thema-1/Aufgabe-4.pdf)
-- 2007 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2007/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2007/03/OCR.txt) Thema 1 [Aufgabe 7 (Warteschlange (Queue))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2007/03/Thema-1/Aufgabe-7.pdf) Thema 2 [Aufgabe 1 (Greedy-Algorithmus)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2007/03/Thema-2/Aufgabe-1.pdf)
+- 2006 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2006/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2006/09/OCR.txt) 
+    - Thema 1 
+        - [Aufgabe 4 (AVL-Baum)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2006/09/Thema-1/Aufgabe-4.pdf)
+- 2007 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2007/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2007/03/OCR.txt) 
+    - Thema 1 
+        - [Aufgabe 7 (Warteschlange (Queue))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2007/03/Thema-1/Aufgabe-7.pdf) 
+    - Thema 2 
+        - [Aufgabe 1 (Greedy-Algorithmus)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2007/03/Thema-2/Aufgabe-1.pdf)
 - 2007 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2007/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2007/09/OCR.txt) 
 - 2008 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2008/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2008/03/OCR.txt) 
 - 2008 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2008/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2008/09/OCR.txt) 
 - 2009 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2009/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2009/03/OCR.txt) 
-- 2009 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2009/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2009/09/OCR.txt) Thema 2 [Aufgabe 6 (Greedy-Algorithmus)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2009/09/Thema-2/Aufgabe-6.pdf)
+- 2009 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2009/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2009/09/OCR.txt) 
+    - Thema 2 
+        - [Aufgabe 6 (Greedy-Algorithmus)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2009/09/Thema-2/Aufgabe-6.pdf)
 - 2010 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2010/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2010/03/OCR.txt) 
-- 2010 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2010/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2010/09/OCR.txt) Thema 2 [Aufgabe 3 (Streutabellen (Hashing))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2010/09/Thema-2/Aufgabe-3.pdf)
+- 2010 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2010/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2010/09/OCR.txt) 
+    - Thema 2 
+        - [Aufgabe 3 (Streutabellen (Hashing))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2010/09/Thema-2/Aufgabe-3.pdf)
 - 2011 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2011/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2011/03/OCR.txt) 
 - 2011 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2011/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2011/09/OCR.txt) 
 - 2012 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/03/OCR.txt) 
-- 2012 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/OCR.txt) Thema 2 [Aufgabe 6 (Komplexität)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-2/Aufgabe-6.pdf)
+- 2012 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/OCR.txt) 
+    - Thema 2 
+        - [Aufgabe 6 (Komplexität)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-2/Aufgabe-6.pdf)
 - 2013 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/03/OCR.txt) 
 - 2013 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/OCR.txt) 
-- 2014 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/OCR.txt) Thema 1 [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Thema-1/Aufgabe-1.pdf)
-- 2014 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/OCR.txt) Thema 2 [Aufgabe 5 (Stapel (Stack))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/Thema-2/Aufgabe-5.pdf) [Aufgabe 6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/Thema-2/Aufgabe-6.pdf)
-- 2015 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/OCR.txt) Thema 2 [Aufgabe 5 (Stapel (Stack), Komplexität)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-2/Aufgabe-5.pdf)
+- 2014 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/OCR.txt) 
+    - Thema 1 
+        - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Thema-1/Aufgabe-1.pdf)
+- 2014 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/OCR.txt) 
+    - Thema 2 
+        - [Aufgabe 5 (Stapel (Stack))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/Thema-2/Aufgabe-5.pdf) 
+        - [Aufgabe 6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/Thema-2/Aufgabe-6.pdf)
+- 2015 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/OCR.txt) 
+    - Thema 2 
+        - [Aufgabe 5 (Stapel (Stack), Komplexität)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-2/Aufgabe-5.pdf)
 - 2015 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/09/OCR.txt) 
-- 2016 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2016/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2016/03/OCR.txt) Thema 2 [Aufgabe 4 (Streutabellen (Hashing))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2016/03/Thema-2/Aufgabe-4.pdf)
+- 2016 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2016/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2016/03/OCR.txt) 
+    - Thema 2 
+        - [Aufgabe 4 (Streutabellen (Hashing))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2016/03/Thema-2/Aufgabe-4.pdf)
 - 2016 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2016/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2016/09/OCR.txt) 
-- 2017 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/OCR.txt) Thema 1 [Aufgabe 3 (Dynamische Programmierung)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Thema-1/Aufgabe-3.pdf) [Aufgabe 4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Thema-1/Aufgabe-4.pdf)
-- 2017 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/OCR.txt) Thema 1 [Aufgabe 8 (Greedy-Algorithmus)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/Thema-1/Aufgabe-8.pdf) Thema 2 [Aufgabe 8 (AVL-Baum, Halde (Heap), Binärbaum)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/Thema-2/Aufgabe-8.pdf)
-- 2018 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/03/OCR.txt) Thema 2 [Aufgabe 6 (Master-Theorem)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/03/Thema-2/Aufgabe-6.pdf)
-- 2018 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/09/OCR.txt) Thema 2 [Aufgabe 6 (Backtracking)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/09/Thema-2/Aufgabe-6.pdf)
-- 2019 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/03/OCR.txt) Thema 1 [Aufgabe 6 (Greedy-Algorithmus)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/03/Thema-1/Aufgabe-6.pdf)
-- 2019 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/OCR.txt) Thema 2 [Aufgabe 9 (Streutabellen (Hashing))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-2/Aufgabe-9.pdf)
+- 2017 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/OCR.txt) 
+    - Thema 1 
+        - [Aufgabe 3 (Dynamische Programmierung)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Thema-1/Aufgabe-3.pdf) 
+        - [Aufgabe 4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Thema-1/Aufgabe-4.pdf)
+- 2017 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/OCR.txt) 
+    - Thema 1 
+        - [Aufgabe 8 (Greedy-Algorithmus)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/Thema-1/Aufgabe-8.pdf) 
+    - Thema 2 
+        - [Aufgabe 8 (AVL-Baum, Halde (Heap), Binärbaum)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/Thema-2/Aufgabe-8.pdf)
+- 2018 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/03/OCR.txt) 
+    - Thema 2 
+        - [Aufgabe 6 (Master-Theorem)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/03/Thema-2/Aufgabe-6.pdf)
+- 2018 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/09/OCR.txt) 
+    - Thema 2 
+        - [Aufgabe 6 (Backtracking)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/09/Thema-2/Aufgabe-6.pdf)
+- 2019 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/03/OCR.txt) 
+    - Thema 1 
+        - [Aufgabe 6 (Greedy-Algorithmus)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/03/Thema-1/Aufgabe-6.pdf)
+- 2019 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/OCR.txt) 
+    - Thema 2 
+        - [Aufgabe 9 (Streutabellen (Hashing))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-2/Aufgabe-9.pdf)
 
 ### 66116: Datenbanksysteme / Softwaretechnologie (vertieft)
 
 - 2012 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2012/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2012/03/OCR.txt) 
-- 2012 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2012/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2012/09/OCR.txt) Thema 2 Teilaufgabe 2 [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2012/09/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf)
+- 2012 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2012/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2012/09/OCR.txt) 
+    - Thema 2 
+        - Teilaufgabe 2 
+            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2012/09/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf)
 - 2013 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/03/OCR.txt) 
-- 2013 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/09/OCR.txt) Thema 1 Teilaufgabe 2 [Aufgabe 3 (Testen, Model Checking, Refactoring, EXtreme Programming, White-Box-Testing, Black-Box-Testing, Funktionale Anforderungen, Nicht-funktionale Anforderungen, Kontinuierliche Integration (Continuous Integration), EXtreme Programming, Unit-Test, wp-Kalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
-- 2014 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/03/OCR.txt) Thema 2 Teilaufgabe 2 [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf)
-- 2014 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/OCR.txt) Thema 2 Teilaufgabe 2 [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf)
-- 2015 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/OCR.txt) Thema 1 Teilaufgabe 2 [Aufgabe 3 (Vererbung, Implementierung in Java, Interface, Abstrakte Klasse)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
-- 2015 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/09/OCR.txt) Thema 2 Teilaufgabe 2 [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf)
-- 2016 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/OCR.txt) Thema 1 Teilaufgabe 1 [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.pdf) [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) Teilaufgabe 2 [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) Thema 2 Teilaufgabe 2 [Aufgabe 4 (Gantt-Diagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf)
-- 2016 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/OCR.txt) Thema 1 Teilaufgabe 1 [Aufgabe 4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) Teilaufgabe 2 [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf) Thema 2 Teilaufgabe 1 [Aufgabe 2 (SQL, CREATE TABLE, CONSTRAINT, ALTER TABLE, GROUP BY, HAVING)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) Teilaufgabe 2 [Aufgabe 1 (Software Engineering, Agile Methoden, Spiralmodell, Nicht-funktionale Anforderungen, Entwurfsmuster, Schichtenarchitektur, Blackboard-Muster, Einbringen von Abhängigkeiten (Dependency Injection), Sequenzdiagramm, Zustandsdiagramm, Komponentendiagramm, Modell-Präsentation-Steuerung (Model-View-Controller), Einzelstück (Singleton), Kommando (Command), Validation, Verifikation)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf)
-- 2017 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/OCR.txt) Thema 2 Teilaufgabe 2 [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf) [Aufgabe 4 (wp-Kalkül, Invariante, Totale Korrektheit)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf)
-- 2017 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/OCR.txt) Thema 1 Teilaufgabe 2 [Aufgabe 4 (Binäre Suche, Design by Contract, Kontrollflussgraph, Vollständige Anweisungsüberdeckung)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf) Thema 2 Teilaufgabe 2 [Aufgabe 1 (Gantt-Diagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf) [Aufgabe 2 (Aktivitätsdiagramm, Klassendiagramm, Objektdiagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf)
-- 2018 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/OCR.txt) Thema 2 Teilaufgabe 1 [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) [Aufgabe 4 (Tupelkalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-4.pdf) Teilaufgabe 2 [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf) [Aufgabe 2 (Beobachter (Observer), Klassendiagramm, Implementierung in Java)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf)
-- 2018 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/09/OCR.txt) Thema 1 Teilaufgabe 1 [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) Thema 2 Teilaufgabe 1 [Aufgabe 1 (Gantt-Diagramm, CPM-Netzplantechnik)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf)
+- 2013 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/09/OCR.txt) 
+    - Thema 1 
+        - Teilaufgabe 2 
+            - [Aufgabe 3 (Testen, Model Checking, Refactoring, EXtreme Programming, White-Box-Testing, Black-Box-Testing, Funktionale Anforderungen, Nicht-funktionale Anforderungen, Kontinuierliche Integration (Continuous Integration), EXtreme Programming, Unit-Test, wp-Kalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
+- 2014 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/03/OCR.txt) 
+    - Thema 2 
+        - Teilaufgabe 2 
+            - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf)
+- 2014 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/OCR.txt) 
+    - Thema 2 
+        - Teilaufgabe 2 
+            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf)
+- 2015 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/OCR.txt) 
+    - Thema 1 
+        - Teilaufgabe 2 
+            - [Aufgabe 3 (Vererbung, Implementierung in Java, Interface, Abstrakte Klasse)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
+- 2015 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/09/OCR.txt) 
+    - Thema 2 
+        - Teilaufgabe 2 
+            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf)
+- 2016 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/OCR.txt) 
+    - Thema 1 
+        - Teilaufgabe 1 
+            - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.pdf) 
+            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) 
+        - Teilaufgabe 2 
+            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) 
+    - Thema 2 
+        - Teilaufgabe 2 
+            - [Aufgabe 4 (Gantt-Diagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf)
+- 2016 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/OCR.txt) 
+    - Thema 1 
+        - Teilaufgabe 1 
+            - [Aufgabe 4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) 
+        - Teilaufgabe 2 
+            - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) 
+            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf) 
+    - Thema 2 
+        - Teilaufgabe 1 
+            - [Aufgabe 2 (SQL, CREATE TABLE, CONSTRAINT, ALTER TABLE, GROUP BY, HAVING)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) 
+        - Teilaufgabe 2 
+            - [Aufgabe 1 (Software Engineering, Agile Methoden, Spiralmodell, Nicht-funktionale Anforderungen, Entwurfsmuster, Schichtenarchitektur, Blackboard-Muster, Einbringen von Abhängigkeiten (Dependency Injection), Sequenzdiagramm, Zustandsdiagramm, Komponentendiagramm, Modell-Präsentation-Steuerung (Model-View-Controller), Einzelstück (Singleton), Kommando (Command), Validation, Verifikation)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf)
+- 2017 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/OCR.txt) 
+    - Thema 2 
+        - Teilaufgabe 2 
+            - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf) 
+            - [Aufgabe 4 (wp-Kalkül, Invariante, Totale Korrektheit)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf)
+- 2017 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/OCR.txt) 
+    - Thema 1 
+        - Teilaufgabe 2 
+            - [Aufgabe 4 (Binäre Suche, Design by Contract, Kontrollflussgraph, Vollständige Anweisungsüberdeckung)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf) 
+    - Thema 2 
+        - Teilaufgabe 2 
+            - [Aufgabe 1 (Gantt-Diagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf) 
+            - [Aufgabe 2 (Aktivitätsdiagramm, Klassendiagramm, Objektdiagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf)
+- 2018 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/OCR.txt) 
+    - Thema 2 
+        - Teilaufgabe 1 
+            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) 
+            - [Aufgabe 4 (Tupelkalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-4.pdf) 
+        - Teilaufgabe 2 
+            - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf) 
+            - [Aufgabe 2 (Beobachter (Observer), Klassendiagramm, Implementierung in Java)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf)
+- 2018 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/09/OCR.txt) 
+    - Thema 1 
+        - Teilaufgabe 1 
+            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) 
+    - Thema 2 
+        - Teilaufgabe 1 
+            - [Aufgabe 1 (Gantt-Diagramm, CPM-Netzplantechnik)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf)
 - 2019 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/03/OCR.txt) 
-- 2019 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/OCR.txt) Thema 1 Teilaufgabe 1 [Aufgabe 4 (Zustandsdiagramm, Implementierung in Java)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) Teilaufgabe 2 [Aufgabe 2 (Entity-Relation-Modell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf)
+- 2019 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/OCR.txt) 
+    - Thema 1 
+        - Teilaufgabe 1 
+            - [Aufgabe 4 (Zustandsdiagramm, Implementierung in Java)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) 
+        - Teilaufgabe 2 
+            - [Aufgabe 2 (Entity-Relation-Modell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf)
 
 ### 66118: Fachdidaktik (Gymnasium)
 
