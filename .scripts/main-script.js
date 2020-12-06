@@ -249,7 +249,12 @@ function collectIndexesInFile (filePath) {
     match = re.exec(content)
     if (match) {
       const tag = cleanTag(match[1])
-      checkTag(tag)
+      try {
+        checkTag(tag)
+      } catch (error) {
+        openCode(filePath)
+        throw new Error(`Unknown tag ${tag} in file ${filePath}`)
+      }
       indexes.push(tag)
     }
   } while (match)
