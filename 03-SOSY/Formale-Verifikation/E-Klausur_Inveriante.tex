@@ -1,0 +1,106 @@
+
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{wpkalkuel,syntax}
+\begin{document}
+
+\inputcode[firstline=3]{aufgaben/sosy/eklausur/Invariante}
+
+\begin{description}
+\item[$I_1$:] $\text{res} = 0 \lor \text{res} = 1 - q^i$
+
+\item[$I_2$:] $\text{res} > 0$
+
+\item[$I_3$:] $\text{res} = 0 \lor \text{res} = 1 - q^{i+1}$
+
+\item[$I_4$:] $\text{res} = 1 - q^{i+1}$
+
+\item[$I_5$:] $n \geq 0$
+\end{description}
+
+\section{Code vor der Schleife}
+
+\begin{align*}
+\wp{Code vor der Schleife}{I_1}
+& \equiv \wp{res = 0; i = 0}{\text{res} = 0 \lor \text{res} = 1 - q^i} \\
+& \equiv \wp{}{0 = 0 \lor 0 = 1 - q^0} \\
+& \equiv 0 = 0 \lor 0 = 1 - q^0 \\
+& \equiv 0 = 0 \lor 0 = 1 \\
+& \equiv \text{wahr} \\
+\end{align*}
+
+\begin{align*}
+\wp{Code vor der Schleife}{I_2}
+& \equiv \wp{res = 0; i = 0}{\text{res} > 0} \\
+& \equiv \wp{i = 0}{0 > 0} \\
+& \equiv 0 > 0 \\
+& \equiv \text{falsch} \\
+\end{align*}
+
+\begin{align*}
+\wp{Code vor der Schleife}{I_3}
+& \equiv \wp{res = 0; i = 0}{\text{res} = 0 \lor \text{res} = 1 - q^{i+1}} \\
+& \equiv \wp{}{0 = 0 \lor 0 = 1 - q^{0+1}} \\
+& \equiv 0 = 0 \lor 0 = 1 - q \\
+& \equiv \text{wahr für alle } q > 0\\
+\end{align*}
+
+\begin{align*}
+\wp{Code vor der Schleife}{I_4}
+& \equiv \wp{res = 0; i = 0}{\text{res} = 1 - q^{i+1}} \\
+& \equiv \wp{}{0 = 1 - q^{0+1}} \\
+& \equiv 0 = 1 - q \\
+& \equiv \text{falsch für alle } q > 0\\
+\end{align*}
+
+\begin{align*}
+\wp{Code vor der Schleife}{I_5}
+& \equiv \wp{res = 0; i = 0}{n \geq 0} \\
+& \equiv n \geq 0 \\
+& \equiv \text{wahr für alle } n \geq 0\\
+\end{align*}
+
+\section{Code in der Schleife}
+
+Wir formulieren den Code in der Schleife etwas um:
+
+\begin{minted}{java}
+  double geoSum(int n, double q) {
+    // P: n >= 0, q > 0
+    double res = 0;
+    int i = 0;
+    while (i < n) {
+      res = res + (1 - q) * Math.pow(q, n);
+      i = i + 1;
+    }
+    return res;
+  }
+\end{minted}
+
+\begin{align*}
+&\wp{Code in der Schleife}{I_1 \land i < n}\\
+&\equiv \wp{res = res + (1-q) * Math.pow(q, n); i = i + 1;}
+{(\text{res} = 0 \lor \text{res} = 1 - q^i) \land i < n} \\
+&\equiv \wp{}
+{(\text{res} + (1-q) \cdot q^n = 0 \lor \text{res} + (1-q) \cdot q^n = 1 - q^{i + 1}) \land i + 1 < n} \\
+&\equiv
+(\text{res} + (1-q) \cdot q^n = 0 \lor \text{res} + (1-q) \cdot q^n = 1 - q^{i + 1}) \land i + 1 < n \\
+\end{align*}
+
+\begin{align*}
+&\wp{Code in der Schleife}{I_3 \land i < n}\\
+& \equiv \wp{res = res + (1-q) * Math.pow(q, n); i = i + 1;}
+{(\text{res} = 0 \lor \text{res} = 1 - q^{i+1}) \land i < n} \\
+& \equiv \wp{}
+{(\text{res} + (1-q) \cdot q^n = 0 \lor \text{res} + (1-q) \cdot q^n  = 1 - q^{i + 1 + 1}) \land i + 1 < n} \\
+& \equiv
+(\text{res} + (1-q) \cdot q^n = 0 \lor \text{res} + (1-q) \cdot q^n  = 1 - q^{i + 2}) \land i + 1 < n \\
+\end{align*}
+
+\begin{align*}
+&\wp{Code in der Schleife}{I_5 \land i < n}\\
+& \equiv \wp{res = res + (1-q) * Math.pow(q, n); i = i + 1;}{n \geq 0 \land i < n} \\
+& \equiv \wp{}{n \geq 0 \land i + 1 < n} \\
+& \equiv n \geq 0 \land i + 1 < n \\
+& \equiv \text{wahr für }n \geq 0 \land i < n - 1 \\
+\end{align*}
+\end{document}
