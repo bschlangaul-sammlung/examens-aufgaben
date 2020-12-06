@@ -2,11 +2,13 @@
 \InformatikPakete{syntax,mathe}
 \begin{document}
 
-\section{2. Anfragen\footcite{db:ab:examen-rs-2013-03}}
+\section{2. Anfragen
+\index{Relationale Algebra}
+\footcite[Thema 1 Teilaufgabe 2 Aufgabe 2]{examen:46116:2013:03}
+}
 
 Zu einer Website, auf der Besucher im Browser Online-Spiele spielen
 können, liegt das folgende relationale Schema einer Datenbank vor:
-\footcite[Theam 1 TA2. Aufgabe 2]{examen:46116:2013:03}
 
 \bigskip
 
@@ -31,6 +33,7 @@ Fremdschlüsselattribute, die auf das Attribut \emph{SNr} der Relation
 \emph{Spieler} verweisen. Beachten Sie, dass das Dauer-Attribut der
 Wettkampf-Relation die Dauer eines Wettkampfes in der Einheit Sekunden
 speichert.
+\footcite{db:ab:examen-rs-2013-03}
 
 \begin{enumerate}
 
@@ -82,9 +85,9 @@ $
 % b)
 %%
 
-\item Formulieren Sie geeignete SQL-Anfragen für die folgenden
-Teilaufgaben. Beachten Sie dabei, dass Ihre Ergebnisrelationen keine
-Duplikate enthalten sollen.
+\item Formulieren Sie geeignete SQL-Anfragen\index{SQL} für die
+folgenden Teilaufgaben. Beachten Sie dabei, dass Ihre Ergebnisrelationen
+keine Duplikate enthalten sollen.
 
 \begin{enumerate}
 
@@ -124,10 +127,10 @@ WHERE Dauer < (
 % iii.
 %%
 
-\item Geben Sie für jeden \emph{Spieler} seine \emph{SNr}, seinen \emph{Namen}, die Anzahl
-seiner Siege, die durchschnittliche Dauer seiner siegreichen Wettkämpfe
-und die Anzahl der Teams, aus denen er bereits mindestens einen Spieler
-besiegt hat, zurück.
+\item Geben Sie für jeden \emph{Spieler} seine \emph{SNr}, seinen
+\emph{Namen}, die Anzahl seiner Siege, die durchschnittliche Dauer
+seiner siegreichen Wettkämpfe und die Anzahl der Teams, aus denen er
+bereits mindestens einen Spieler besiegt hat, zurück.
 
 \begin{minted}{sql}
 SELECT
@@ -169,15 +172,14 @@ WHERE
 GROUP BY s.SNR, s.Name;
 \end{minted}
 \end{antwort}
-
 \end{enumerate}
 
 %%
 % c)
 %%
 
-\item Verwenden Sie den relationalen Tupelkalkül, um die folgenden
-Anfragen zu formulieren:
+\item Verwenden Sie den relationalen Tupelkalkül\index{Tupelkalkül}, um
+die folgenden Anfragen zu formulieren:
 
 \begin{enumerate}
 

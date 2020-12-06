@@ -155,7 +155,7 @@ OCR des oben genannten Scans:
     - Thema 1 
         - Teilaufgabe 2 
             - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) 
-            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf)
+            - [Aufgabe 2 (Relationale Algebra, SQL, Tupelkalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf)
 - 2014 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/OCR.txt) 
     - Thema 2 
         - Teilaufgabe 1 
@@ -166,7 +166,7 @@ OCR des oben genannten Scans:
 - 2014 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/OCR.txt) 
     - Thema 2 
         - Teilaufgabe 1 
-            - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf) 
+            - [Aufgabe 1 (EXtreme Programming, V-Modell, SRUM, Prototyping, Funktionale Anforderungen, Nicht-funktionale Anforderungen)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf) 
             - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) 
             - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf)
 - 2015 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/OCR.txt) 
@@ -174,14 +174,14 @@ OCR des oben genannten Scans:
         - Teilaufgabe 1 
             - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) 
         - Teilaufgabe 2 
-            - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) 
+            - [Aufgabe 1 (Relationale Algebra, SQL, GROUP BY, HAVING)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) 
             - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
 - 2015 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/OCR.txt) 
     - Thema 1 
         - Teilaufgabe 1 
             - [Aufgabe 3 (Gantt-Diagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) 
         - Teilaufgabe 2 
-            - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) 
+            - [Aufgabe 1 (Datenunabhängigkeit, Superschlüssel, Referentielle Integrität)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) 
     - Thema 2 
         - Teilaufgabe 1 
             - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) 
@@ -196,7 +196,7 @@ OCR des oben genannten Scans:
 - 2016 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/09/OCR.txt) 
     - Thema 2 
         - Teilaufgabe 1 
-            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf)
+            - [Aufgabe 2 (Sequenzdiagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf)
 - 2017 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/OCR.txt) 
     - Thema 1 
         - Teilaufgabe 1 
@@ -585,6 +585,9 @@ kann ganz normaler Text - also auch mit Leerzeichen eingesetzt werden.
 ---
 Stichwörter:
   - DB:
+      - Datenbanksystem:
+          - Referentielle Integrität
+          - Datenunabhängigkeit
       - Entity-Relation-Modell
       - Relationenmodell
       - Relationale Algebra
@@ -603,6 +606,7 @@ Stichwörter:
           - WITH
       - Normalformen:
           - Schlüssel
+          - Superschlüssel
           - Funktionale Abhängigkeiten
           - Synthese-Algorithmus
           - Erste Normalform
@@ -655,17 +659,20 @@ Stichwörter:
           - Prozessmodelle:
               - Wasserfallmodell
               - Spiralmodell
+              - V-Modell
               - Agile Methoden:
                   - Kontinuierliche Integration (Continuous Integration)
                   - Refactoring
               - Agile Prozesse:
                   - EXtreme Programming
+                  - SRUM
               - Evolutionäre Softwaremodelle
           - Funktionale Anforderungen
           - Nicht-funktionale Anforderungen
           - Pflichtenheft
           - Softwaremaße
           - Versionsverwaltungssoftware
+          - Prototyping
       - Projektplanung:
           - Gantt-Diagramm
           - Petri-Netz:
