@@ -3,7 +3,9 @@
 \usepackage{fancyvrb}
 \begin{document}
 
-\section{2. SQL und relationale Algebra\footcite{examen:66116:2016:09}}
+\section{2. SQL und relationale Algebra
+\footcite[Thema 2 Teilaufgabe 1 Aufgabe 2]{examen:66116:2016:09}
+}
 
 Gegeben sei der folgende Ausschnitt aus dem Schema einer Schulverwaltung:
 \footcite{db:ab:examen-gym-2016-09}
@@ -54,9 +56,9 @@ zu den Klassen.
 % a)
 %%
 
-\item Schreiben Sie eine SQL-Anweisung, die die Tabelle
+\item Schreiben Sie eine SQL-Anweisung\index{SQL}, die die Tabelle
 \emph{Unterricht} mit allen ihren Constraints (einschließlich
-Fremdschlüsselconstraints) anlegt.
+Fremdschlüsselconstraints) anlegt\index{CREATE TABLE}.
 
 \begin{antwort}
 Ich habe \verb|REFERENCES| bei Unterricht Schuljahr vergessen, die
@@ -95,7 +97,8 @@ CREATE TABLE Unterricht (
 
 \item Definieren Sie ein geeignetes Constraint, das sicherstellt, dass
 nur zulässige Werte im Attribut Typ der (bereits angelegten) Tabelle
-\emph{Person} eingefügt werden können.
+\emph{Person} eingefügt werden können.\index{CONSTRAINT}\index{ALTER
+TABLE}
 
 \begin{antwort}
 Ich habe \verb|REFERENCES| bei Unterricht Schuljahr vergessen, die
@@ -114,7 +117,7 @@ ALTER TABLE Person
 %%
 
 \item Schreiben Sie eine SQL-Anweisung, die die Bezeichnung der Klassen
-bestimmt, die im Schuljahr 2015 die meisten Schüler haben.
+bestimmt, die im Schuljahr 2015 die meisten Schüler haben.\index{GROUP BY}
 
 \begin{antwort}
 Falsch: \verb|ORDER BY Anzahl;|. \verb|DESC| vergessen.
@@ -158,7 +161,7 @@ WHERE NOT EXISTS(
 %%
 
 \item Schreiben Sie eine SQL-Anweisung, die die Namen aller Schüler
-bestimmt, die immer den gleichen Klassenlehrer hatten.
+bestimmt, die immer den gleichen Klassenlehrer hatten.\index{HAVING}
 
 \begin{antwort}
 \begin{minted}{sql}
