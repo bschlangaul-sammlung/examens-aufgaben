@@ -108,12 +108,12 @@ OCR des oben genannten Scans:
     - Thema 2 
         - [Aufgabe 4 (Streutabellen (Hashing))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Thema-2/Aufgabe-4.pdf) 
         - [Aufgabe 5 (Algorithmus von Dijkstra)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Thema-2/Aufgabe-5.pdf) 
-        - [Aufgabe 6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Thema-2/Aufgabe-6.pdf)
+        - [Aufgabe 6 (Heapsort)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Thema-2/Aufgabe-6.pdf)
 - 2014 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/OCR.txt) 
     - Thema 1 
         - [Aufgabe 8 (minimaler Spannbaum, Algorithmus von Kruskal)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-1/Aufgabe-8.pdf) 
     - Thema 2 
-        - [Aufgabe 4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-2/Aufgabe-4.pdf)
+        - [Aufgabe 4 (Rekursion, Implementierung in Java, Interative Realisation)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-2/Aufgabe-4.pdf)
 - 2014 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/OCR.txt) 
     - Thema 2 
         - [Aufgabe 3 (Binärbaum)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/Thema-2/Aufgabe-3.pdf)
@@ -129,10 +129,10 @@ OCR des oben genannten Scans:
 - 2017 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/03/OCR.txt) 
 - 2017 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/09/OCR.txt) 
     - Thema 2 
-        - [Aufgabe 7](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/09/Thema-2/Aufgabe-7.pdf)
+        - [Aufgabe 7 (Insertionsort, Implementierung in Java)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/09/Thema-2/Aufgabe-7.pdf)
 - 2018 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/03/OCR.txt) 
     - Thema 1 
-        - [Aufgabe 6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/03/Thema-1/Aufgabe-6.pdf) 
+        - [Aufgabe 6 (Mergesort)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/03/Thema-1/Aufgabe-6.pdf) 
     - Thema 2 
         - [Aufgabe 4 (minimaler Spannbaum, Algorithmus von Prim)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/03/Thema-2/Aufgabe-4.pdf)
 - 2018 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/09/OCR.txt) 
@@ -619,6 +619,7 @@ Stichwörter:
       - Abstrakte Klasse
   - AUD:
       - Rekursion
+      - Interative Realisation
       - Komplexität
       - Binäre Suche
       - Listen:

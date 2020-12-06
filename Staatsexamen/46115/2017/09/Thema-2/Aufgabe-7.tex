@@ -4,12 +4,10 @@
 \usetikzlibrary{chains,fit,shapes,shapes.multipart}
 \begin{document}
 
-\section{Aufgabe zum Insertionsort}
-
-\begin{quellen}
-\item \cite[Seite 1]{aud:pu:2}
-\item \cite[Herbst 2017 (RS), Thema 2 Aufgabe 7]{examen:46115:2017:09}
-\end{quellen}
+\section{Aufgabe zum InsertionSort
+\index{Insertionsort}
+\footcite[Thema 2 Aufgabe 7]{examen:46115:2017:09}
+}
 
 \begin{enumerate}
 \item Führen Sie \emph{„Sortieren durch Einfügen“} lexikographisch
@@ -21,6 +19,7 @@ dar, nachdem das jeweils nächste Element in die Endposition verschoben
 wurde. Der bereits sortierte Teilbereich steht vor |||. Gleiche Elemente
 tragen zwecks Unterscheidung ihre \emph{„Objektidentität“} als Index
 (z.\,B. \java{"A1".equals("A2")} aber \java{"A1" != "A2"})
+\footcite[Seite 1]{aud:pu:2}
 
 \tikzset{
   sorted/.style = {
@@ -80,12 +79,13 @@ tragen zwecks Unterscheidung ihre \emph{„Objektidentität“} als Index
 \end{tikzpicture}
 \end{center}
 
-\item Ergänzen Sie die folgende Methode so, dass sie die Zeichenketten
-im Feld \java{a} lexikographisch aufsteigend durch Einfügen sortiert.
-Sie muss zum vorangehenden Ablauf passen, d.\,h. sie muss
-\emph{iterativ} sowie \emph{in-situ} (\emph{in-place}) arbeiten und die
-relative Reihenfolge gleicher Elemente jederzeit beibehalten. Sie dürfen
-davon ausgehen, dass kein Eintrag im Feld null ist.
+\item Ergänzen Sie die folgende Methode\index{Implementierung in Java}
+so, dass sie die Zeichenketten im Feld \java{a} lexikographisch
+aufsteigend durch Einfügen sortiert. Sie muss zum vorangehenden Ablauf
+passen, d.\,h. sie muss \emph{iterativ} sowie \emph{in-situ}
+(\emph{in-place}) arbeiten und die relative Reihenfolge gleicher
+Elemente jederzeit beibehalten. Sie dürfen davon ausgehen, dass kein
+Eintrag im Feld null ist.
 
 \begin{minted}{java}
 void sortierenDurchEinfuegen(String[] a) {
