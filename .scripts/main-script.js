@@ -240,7 +240,7 @@ function cleanTag (tag) {
   return tag.replace(/\s+/g, ' ')
 }
 
-function collectIndexesInFile (filePath) {
+function collectIndexesOfFile (filePath) {
   const content = readRepoFile(filePath)
   const re = /\\index\{([^\}]*)\}/g
   let match
@@ -262,7 +262,7 @@ function collectIndexesInFile (filePath) {
 }
 
 function formatIndexesInFile (filePath) {
-  const indexes = collectIndexesInFile(filePath)
+  const indexes = collectIndexesOfFile(filePath)
   if (indexes.length > 0) {
     return ` (${indexes.join(', ')})`
   }
@@ -273,7 +273,7 @@ function collectIndexes () {
   const files = glob.sync('**/*.tex')
   const indexes = {}
   for (const filePath of files) {
-    indexes[filePath] = collectIndexesInFile(filePath)
+    indexes[filePath] = collectIndexesOfFile(filePath)
   }
   return indexes
 }
@@ -495,16 +495,27 @@ program
 
 program
   .command('vscode [glob]')
-  .description('Open in Visual Studio Code')
   .alias('vsc')
+  .description('Open in Visual Studio Code')
+  .option('-n, --noindex', 'Open only questions without an index macro in it.')
   .action(function (globPattern, cmdObj) {
+    function openWithLogging(filePath) {
+      console.log(filePath)
+      openCode(filePath)
+    }
+
     if (typeof globPattern !== 'string') {
       globPattern = '**/*.tex'
     }
     const files = glob.sync(globPattern)
-    for (const filePath of files) {
-      console.log(filePath)
-      openCode(filePath)
+    for (let filePath of files) {
+      filePath = path.resolve(filePath)
+      if (cmdObj.noindex) {
+        const indexes = collectIndexesOfFile(filePath)
+        if (indexes.length == 0) openWithLogging(filePath)
+      } else {
+        openWithLogging(filePath)
+      }
     }
   })
 
