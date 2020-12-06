@@ -478,11 +478,11 @@ Materialsammlung für das Studium Lehramt Informatik
 - 2013 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/OCR.txt) 
 - 2014 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/OCR.txt) 
     - Thema 1 
-        - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Thema-1/Aufgabe-1.pdf)
+        - [Aufgabe 1 (Rekursion, Vollständige Induktion)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Thema-1/Aufgabe-1.pdf)
 - 2014 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/OCR.txt) 
     - Thema 2 
         - [Aufgabe 5 (Stapel (Stack))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/Thema-2/Aufgabe-5.pdf) 
-        - [Aufgabe 6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/Thema-2/Aufgabe-6.pdf)
+        - [Aufgabe 6 (Selectionsort, Implementierung in Java, Komplexität, Halde (Heap))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/Thema-2/Aufgabe-6.pdf)
 - 2015 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/OCR.txt) 
     - Thema 2 
         - [Aufgabe 5 (Stapel (Stack), Komplexität)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-2/Aufgabe-5.pdf)
@@ -494,7 +494,7 @@ Materialsammlung für das Studium Lehramt Informatik
 - 2017 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/OCR.txt) 
     - Thema 1 
         - [Aufgabe 3 (Dynamische Programmierung)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Thema-1/Aufgabe-3.pdf) 
-        - [Aufgabe 4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Thema-1/Aufgabe-4.pdf)
+        - [Aufgabe 4 (Vollständige Induktion)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Thema-1/Aufgabe-4.pdf)
 - 2017 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/OCR.txt) 
     - Thema 1 
         - [Aufgabe 8 (Greedy-Algorithmus)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/Thema-1/Aufgabe-8.pdf) 
@@ -528,11 +528,11 @@ Materialsammlung für das Studium Lehramt Informatik
 - 2014 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/03/OCR.txt) 
     - Thema 2 
         - Teilaufgabe 2 
-            - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf)
+            - [Aufgabe 1 (Abstrakte Klasse, Interface, Implementierung in Java)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf)
 - 2014 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/OCR.txt) 
     - Thema 2 
         - Teilaufgabe 2 
-            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf)
+            - [Aufgabe 3 (Kontrollflussorientieres Testen, C0-Test Anweisungsüberdeckung (Statement Coverage), C1-Test Zweigüberdeckung (Branch Coverage))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf)
 - 2015 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/OCR.txt) 
     - Thema 1 
         - Teilaufgabe 2 
@@ -540,14 +540,14 @@ Materialsammlung für das Studium Lehramt Informatik
 - 2015 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/09/OCR.txt) 
     - Thema 2 
         - Teilaufgabe 2 
-            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf)
+            - [Aufgabe 3 (wp-Kalkül, Invariante, Terminierungsfunktion)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf)
 - 2016 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/OCR.txt) 
     - Thema 1 
         - Teilaufgabe 1 
-            - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.pdf) 
-            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) 
+            - [Aufgabe 1 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.pdf) 
+            - [Aufgabe 2 (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) 
         - Teilaufgabe 2 
-            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) 
+            - [Aufgabe 2 (Klassendiagramm, Abstrakte Fabrik (Abstract Factory), Wiederholer (Iterator), Adapter, Kompositum (Composite), Klassenadapter, Objektadapter, Implementierung in Java)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) 
     - Thema 2 
         - Teilaufgabe 2 
             - [Aufgabe 4 (Gantt-Diagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf)
@@ -556,8 +556,8 @@ Materialsammlung für das Studium Lehramt Informatik
         - Teilaufgabe 1 
             - [Aufgabe 4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) 
         - Teilaufgabe 2 
-            - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) 
-            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf) 
+            - [Aufgabe 1 (Pflichtenheft, Softwaremaße, Evolutionäre Softwaremodelle, Versionsverwaltungssoftware, Funktionale Anforderungen, Nicht-funktionale Anforderungen, Kontinuierliche Integration (Continuous Integration))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) 
+            - [Aufgabe 3 (Datenflussorientiertes Testen, Datenfluss-annotierter Kontrollflussgraph, Zyklomatische Komplexität nach Mc-Cabe, C1-Test Zweigüberdeckung (Branch Coverage), all uses)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf) 
     - Thema 2 
         - Teilaufgabe 1 
             - [Aufgabe 2 (SQL, CREATE TABLE, CONSTRAINT, ALTER TABLE, GROUP BY, HAVING)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) 
@@ -566,7 +566,7 @@ Materialsammlung für das Studium Lehramt Informatik
 - 2017 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/OCR.txt) 
     - Thema 2 
         - Teilaufgabe 2 
-            - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf) 
+            - [Aufgabe 1 (Zyklomatische Komplexität nach Mc-Cabe, Datenfluss-annotierter Kontrollflussgraph)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf) 
             - [Aufgabe 4 (wp-Kalkül, Invariante, Totale Korrektheit)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf)
 - 2017 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/OCR.txt) 
     - Thema 1 
@@ -579,15 +579,15 @@ Materialsammlung für das Studium Lehramt Informatik
 - 2018 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/OCR.txt) 
     - Thema 2 
         - Teilaufgabe 1 
-            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) 
+            - [Aufgabe 2 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) 
             - [Aufgabe 4 (Tupelkalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-4.pdf) 
         - Teilaufgabe 2 
-            - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf) 
+            - [Aufgabe 1 (Vererbung, Interface, Abstrakte Klasse, Klassendiagramm, Objektdiagramm, Sequenzdiagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf) 
             - [Aufgabe 2 (Beobachter (Observer), Klassendiagramm, Implementierung in Java)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf)
 - 2018 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/09/OCR.txt) 
     - Thema 1 
         - Teilaufgabe 1 
-            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) 
+            - [Aufgabe 2 (Klassendiagramm, Zustandsdiagramm, Zustand (State))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) 
     - Thema 2 
         - Teilaufgabe 1 
             - [Aufgabe 1 (Gantt-Diagramm, CPM-Netzplantechnik)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf)
@@ -632,15 +632,17 @@ Stichwörter:
       - Relationale Algebra
       - Tupelkalkül
       - SQL:
-          - GROUP BY
-          - CREATE TABLE
-          - HAVING
-          - Top-N-Query
-          - DELETE
-          - WITH
-          - EXCEPT
           - ALTER TABLE
           - CONSTRAINT
+          - CREATE TABLE
+          - DELETE
+          - EXCEPT
+          - GROUP BY
+          - HAVING
+          - Top-N-Query
+          - UNION
+          - VIEW
+          - WITH
       - Normalformen:
           - Schlüssel
           - Funktionale Abhängigkeiten
@@ -658,6 +660,7 @@ Stichwörter:
       - Interface
       - Abstrakte Klasse
   - AUD:
+      - Rekursion
       - Komplexität
       - Binäre Suche
       - Listen:
@@ -698,8 +701,12 @@ Stichwörter:
                   - Refactoring
               - Agile Prozesse:
                   - EXtreme Programming
+              - Evolutionäre Softwaremodelle
           - Funktionale Anforderungen
           - Nicht-funktionale Anforderungen
+          - Pflichtenheft
+          - Softwaremaße
+          - Versionsverwaltungssoftware
       - Projektplanung:
           - Gantt-Diagramm
           - Petri-Netz:
@@ -723,7 +730,9 @@ Stichwörter:
                   - Abstrakte Fabrik (Abstract Factory)
                   - Einzelstück (Singleton)
               - Strukturmuster (Structural Patterns):
-                  - Adapter
+                  - Adapter:
+                      - Klassenadapter
+                      - Objektadapter
                   - Dekorierer (Decorator)
                   - Kompositum (Composite)
                   - Stellvertreter (Proxy)
@@ -741,21 +750,38 @@ Stichwörter:
           - Schichtenarchitektur:
               - 2-Schichtenarchitektur
       - Testen:
-          - Formale Verifikation
           - Model Checking
-          - White-Box-Testing
+          - White-Box-Testing:
+              - Kontrollflussorientieres Testen:
+                  - Kontrollflussgraph
+                  - C0-Test Anweisungsüberdeckung (Statement Coverage):
+                      - Vollständige Anweisungsüberdeckung
+                  - C1-Test Zweigüberdeckung (Branch Coverage):
+                      - Verzweigungsüberdeckung
+                      - Zyklomatische Komplexität nach Mc-Cabe
+                  - C2-Test Pfadüberdeckung (Path Coverage):
+                      - C2a Vollständige Pfadüberdeckung (Full Path Coverage)
+                      - C2b Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage):
+                          - Schleife-Inneres-Überdeckung
+                      - C2c Strukturierte Pfadüberdeckung (Structured Path Coverage)
+                  - C3-Test Bedingungsüberdeckung (Condition Coverage)
+              - Datenflussorientiertes Testen:
+                  - Datenfluss-annotierter Kontrollflussgraph
+                  - all definitions
+                  - all c-uses
+                  - all p-uses
+                  - all uses
+              - Formale Verifikation:
+                  - wp-Kalkül:
+                    - Invariante
+                    - Totale Korrektheit
+                    - Terminierungsfunktion
           - Black-Box-Testing
           - Unit-Test
-          - wp-Kalkül:
-              - Invariante
-              - Totale Korrektheit
           - Validation
           - Verifikation
-          - Kontrollflussgraph
-          - Vollständige Anweisungsüberdeckung
           - Design by Contract
           - Vollständige Induktion
-          - Terminierungsfunktion
 
 
 # Ordner-Struktur

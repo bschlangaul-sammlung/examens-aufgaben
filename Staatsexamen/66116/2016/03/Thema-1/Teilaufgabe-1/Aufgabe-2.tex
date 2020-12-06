@@ -2,11 +2,14 @@
 \InformatikPakete{syntax,mathe}
 \begin{document}
 
-\section{Aufgabe 2\footcite{db:pu:3}}
+\section{Aufgabe 2
+\index{Entity-Relation-Modell}
+\footcite[Thema 1 Teilaufgabe 1 Aufgabe 2]{examen:66116:2016:03}}
 
 \noindent
 Gehen Sie dabei von dem dazugehörigen relationalen Schema aus:
-\footcite[DB/ST - Frühjahr 2016, 66116, Thema 1 Teilaufgabe 1 A 2]{examen:66116:2016:03}
+\footcite{db:pu:3}
+
 \bigskip
 
 {
@@ -32,10 +35,10 @@ und Fälle, an denen sie arbeiten, speichert:
 % (a)
 %%
 
-\item Formulieren Sie eine Anfrage in relationaler Algebra, welche den
-\emph{Vornamen} und \emph{Nachnamen} von Polizisten zurückgibt, deren
-Dienstgrad \emph{„Polizeikommissar“} ist und die mehr als 1500 Euro
-verdienen.
+\item Formulieren Sie eine Anfrage in relationaler
+Algebra\index{Relationale Algebra}, welche den \emph{Vornamen} und
+\emph{Nachnamen} von Polizisten zurückgibt, deren Dienstgrad
+\emph{„Polizeikommissar“} ist und die mehr als 1500 Euro verdienen.
 
 \begin{antwort}
 $\pi_{\text{Vorname,Nachname}}(
@@ -71,7 +74,7 @@ $
 % (c)
 %%
 
-\item Formulieren Sie eine SQL-Anfrage, welche die Anzahl der
+\item Formulieren Sie eine SQL-Anfrage\index{SQL}, welche die Anzahl der
 Polizisten ausgibt, die in der Stadt \emph{„München“} arbeiten und mit
 Nachnamen \emph{„Schmidt“} heißen.
 
@@ -117,6 +120,7 @@ ORDER BY d.Name ASC;
 \item Definieren Sie die View \emph{„Erstrebenswerte Dienstgrade“},
 welche Dienstgrade enthalten soll, die in \emph{München} mit
 durchschnittlich mehr als \emph{2500} Euro besoldet werden.
+\index{VIEW}
 
 \begin{antwort}
 \begin{minted}{sql}
@@ -146,7 +150,7 @@ beinhalten. An \emph{Vorgesetzte} sind keine Bedingungen gebunden.
 Achten Sie darauf, dass Sie nicht nur direkte Vorgesetzte, sondern alle
 Vorgesetzte innerhalb der Vorgesetzten-Hierarchie betrachten. Ordnen Sie
 ihre Ergebnismenge alphabetisch (absteigend) nach Nachnamen des
-Polizisten.
+Polizisten.\index{WITH}\index{UNION}
 
 Hinweis: Sie dürfen Views verwenden, um Teilergebnisse auszudrücken.
 
