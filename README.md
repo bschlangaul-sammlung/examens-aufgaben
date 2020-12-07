@@ -147,10 +147,10 @@ OCR des oben genannten Scans:
 - 2012 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/OCR.txt) 
     - Thema 1 
         - Teilaufgabe 1 
-            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) 
+            - [Aufgabe 3 (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) 
     - Thema 2 
         - Teilaufgabe 2 
-            - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf)
+            - [Aufgabe 1 (Klassendiagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf)
 - 2013 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/OCR.txt) 
     - Thema 1 
         - Teilaufgabe 2 
@@ -161,21 +161,21 @@ OCR des oben genannten Scans:
         - Teilaufgabe 1 
             - [Aufgabe 1 (Vollständige Induktion, Terminierungsfunktion)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf) 
         - Teilaufgabe 2 
-            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf) 
-            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf)
+            - [Aufgabe 2 (Relationale Algebra)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf) 
+            - [Aufgabe 3 (SQL, GROUP BY, HAVING)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf)
 - 2014 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/OCR.txt) 
     - Thema 2 
         - Teilaufgabe 1 
             - [Aufgabe 1 (EXtreme Programming, V-Modell, SRUM, Prototyping, Funktionale Anforderungen, Nicht-funktionale Anforderungen)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf) 
-            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) 
-            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf)
+            - [Aufgabe 2 (Prozessmodelle, Wasserfallmodell, V-Modell, Iterative Prozessmodelle)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) 
+            - [Aufgabe 3 (UML-Diagramme, Anwendungsfalldiagramm, Klassendiagramm, Objektdiagramm, Zustandsdiagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf)
 - 2015 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/OCR.txt) 
     - Thema 1 
         - Teilaufgabe 1 
             - [Aufgabe 3 (CPM-Netzplantechnik, Gantt-Diagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) 
         - Teilaufgabe 2 
             - [Aufgabe 1 (Relationale Algebra, SQL, GROUP BY, HAVING)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) 
-            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
+            - [Aufgabe 3 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
 - 2015 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/OCR.txt) 
     - Thema 1 
         - Teilaufgabe 1 
@@ -200,13 +200,13 @@ OCR des oben genannten Scans:
 - 2017 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/OCR.txt) 
     - Thema 1 
         - Teilaufgabe 1 
-            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) 
-            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) 
+            - [Aufgabe 2 (Anwendungsfalldiagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) 
+            - [Aufgabe 3 (UML-Diagramme, Klassendiagramm, Anwendungsfalldiagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) 
             - [Aufgabe 5 (Gantt-Diagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf)
 - 2017 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/OCR.txt) 
     - Thema 1 
         - Teilaufgabe 1 
-            - [Aufgabe 4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) 
+            - [Aufgabe 4 (Bubblesort, Black-Box-Testing, Anforderungsüberdeckung, Äquivalenzklassenzerlegung, Grenzwertanalyse, Kontrollflussgraph, C2a Vollständige Pfadüberdeckung (Full Path Coverage))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) 
     - Thema 2 
         - Teilaufgabe 1 
             - [Aufgabe 3 (Entwurfsmuster, Klassendiagramm, Abstrakte Fabrik (Abstract Factory), Beobachter (Observer), Kompositum (Composite))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf)
@@ -669,6 +669,7 @@ Stichwörter:
                   - EXtreme Programming
                   - SRUM
               - Evolutionäre Softwaremodelle
+              - Iterative Prozessmodelle
           - Funktionale Anforderungen
           - Nicht-funktionale Anforderungen
           - Pflichtenheft
@@ -744,8 +745,11 @@ Stichwörter:
                     - Invariante
                     - Totale Korrektheit
                     - Terminierungsfunktion
-          - Black-Box-Testing
-          - Unit-Test
+          - Black-Box-Testing:
+              - Unit-Test
+              - Anforderungsüberdeckung:
+                  - Grenzwertanalyse
+                  - Äquivalenzklassenzerlegung
           - Validation
           - Verifikation
           - Design by Contract

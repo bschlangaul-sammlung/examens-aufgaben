@@ -2,14 +2,16 @@
 \InformatikPakete{syntax}
 \begin{document}
 
-\section{Aufgabe 4: Qualitätssicherung\footcite{examen:46116:2017:09}}
+\section{Aufgabe 4: Qualitätssicherung
+\footcite{examen:46116:2017:09}
+}
 
 Ein gängiger Ansatz zur Messung der Qualität von Software ist das
 automatisierte Testen von Programmen. Im Folgenden werden praktische
 Testmethoden anhand des nachstehend angegebenen Sortieralgorithmus
 diskutiert.
 
-\ueberschrift{Algorithmus 1 Bubble Sort}
+\ueberschrift{Algorithmus 1 Bubble Sort\index{Bubblesort}}
 
 \inputcode[firstline=3]{aufgaben/sosy/examen_46116_2017_09/BubbleSort}
 
@@ -19,8 +21,9 @@ diskutiert.
 % a)
 %%
 
-\item Nennen Sie eine Art des Black-Box-Testens und beschreiben Sie
-deren Durchführung anhand des vorgegebenen Algorithmus.
+\item Nennen Sie eine Art des Black-Box-Testens\index{Black-Box-Testing}
+und beschreiben Sie deren Durchführung anhand des vorgegebenen
+Algorithmus.
 
 \begin{antwort}
 Beim Black-Box-Testen sind die Testfälle von Daten getrieben
@@ -31,9 +34,11 @@ $\Rightarrow$ Aufruf der Methoden mit verschiedenen
 Eingangsparametern und Vergleich der erhaltenen Ergebnisse mit den
 erwarteten Ergebnissen.
 
-Das Ziel ist dabei eine möglichst hohe Anforderungsüberdeckung, wobei
-man eine minimale Anzahl von Testfällen durch Äquivalenzklassenzerlegung
-(1) und Grenzwertanalyse (2) erhält.
+Das Ziel ist dabei eine möglichst hohe
+Anforderungsüberdeckung\index{Anforderungsüberdeckung}, wobei man eine
+minimale Anzahl von Testfällen durch
+Äquivalenzklassenzerlegung\index{Äquivalenzklassenzerlegung} (1) und
+Grenzwertanalyse\index{Grenzwertanalyse} (2) erhält.
 
 \begin{description}
 \item[zu (1):] Man identifiziert Bereiche von Eingabewerten, die jeweils
@@ -56,7 +61,8 @@ Array und ein absteigend sortiertes Array übergibt.
 %%
 
 \item Zeichnen Sie ein mit Zeilennummem beschriftetes
-Kontrollflussdiagramm für den oben angegebenen Sortieralgorithmus.
+Kontrollflussdiagramm\index{Kontrollflussgraph} für den oben angegebenen
+Sortieralgorithmus.
 
 \begin{antwort}
 Zur Erinnerung: Eine im Code enthaltene Wiederholung mit for muss wie
@@ -67,15 +73,17 @@ folgt im Kontrollflussgraphen „zerlegt“ werden:
 % c)
 %%
 
-\item Erklären Sie, ob eine vollständige Pfadüberdeckung für die
-gegebene Funktion möglich und sinnvoll ist.
+\item Erklären Sie, ob eine vollständige Pfadüberdeckung\index{C2a
+Vollständige Pfadüberdeckung (Full Path Coverage)} für die gegebene
+Funktion möglich und sinnvoll ist.
 
 \begin{antwort}
-Eine vollständige Pfadüberdeckung ($C_1$-Test) kann nicht erreicht werden, da die
-Bedingung der inneren Wiederholung immer wahr ist, wenn die Bedingung der
-äußeren Wiederholung wahr ist. D. h., der Pfad S-1-1-2-2-1“ kann nie gegangen
-werden. Dies wäre aber auch nicht sinnvoll, weil jeder Eintrag mit jedem anderen
-verglichen werden soll und im Fall true $\rightarrow$ false ein Durchgang ausgelassen.
+Eine vollständige Pfadüberdeckung ($C_1$-Test) kann nicht erreicht
+werden, da die Bedingung der inneren Wiederholung immer wahr ist, wenn
+die Bedingung der äußeren Wiederholung wahr ist. D. h., der Pfad
+S-1-1-2-2-1“ kann nie gegangen werden. Dies wäre aber auch nicht
+sinnvoll, weil jeder Eintrag mit jedem anderen verglichen werden soll
+und im Fall true $\rightarrow$ false ein Durchgang ausgelassen.
 \end{antwort}
 
 \end{enumerate}
