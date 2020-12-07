@@ -54,27 +54,51 @@ function parseTags () {
 
 const tagsTree = parseTags()
 
-const tagsFlat = new Set()
-
-function flattenTagsTree (tag) {
-  if (typeof tag === 'string') {
-    if (tagsFlat.has(tag)) {
-      throw Error(`Duplicate tag: ${tag}`)
+function flattenTagsTree (tree, flat) {
+  if (!flat) flat = new Set()
+  if (typeof tree === 'string') {
+    if (flat.has(tree)) {
+      throw Error(`Duplicate tag: ${tree}`)
     }
-    tagsFlat.add(tag)
-  } else if (Array.isArray(tag)) {
-    for (const t of tag) {
-      flattenTagsTree(t)
+    flat.add(tree)
+  } else if (Array.isArray(tree)) {
+    for (const t of tree) {
+      flattenTagsTree(t, flat)
     }
   } else {
-    for (const t in tag) {
-      flattenTagsTree(t)
-      flattenTagsTree(tag[t])
+    for (const t in tree) {
+      flattenTagsTree(t, flat)
+      flattenTagsTree(tree[t], flat)
+    }
+  }
+  return flat
+}
+
+const tagsFlat = flattenTagsTree(tagsTree)
+
+function getSubTagsTreeByTag (tree, tag) {
+  if (typeof tree === 'string') {
+    return
+  } else if (Array.isArray(tree)) {
+    for (const t of tree) {
+      const result = getSubTagsTreeByTag(t, tag)
+      if (result) return result
+    }
+  } else {
+    for (const t in tree) {
+      if (tag === t) {
+        return tree[t]
+      } else {
+        const result = getSubTagsTreeByTag(tree[t], tag)
+        if (result) return result
+      }
     }
   }
 }
 
-flattenTagsTree(tagsTree)
+function getFlatSubTagsByTag (tree, tag) {
+  return flattenTagsTree(getSubTagsTreeByTag(tree, tag))
+}
 
 /*******************************************************************************
  * low level functions
@@ -241,14 +265,14 @@ function cleanTag (tag) {
 }
 
 /**
- * Collect the indexes (tags) of a TeX file.
+ * Collect the tags of a TeX file.
  * @param {string} filePath
  */
-function collectIndexesOfFile (filePath) {
+function collectTagsOfFile (filePath) {
   const content = readRepoFile(filePath)
   const re = /\\index\{([^\}]*)\}/g
   let match
-  const indexes = new Set()
+  const tags = new Set()
   do {
     match = re.exec(content)
     if (match) {
@@ -259,27 +283,35 @@ function collectIndexesOfFile (filePath) {
         openCode(filePath)
         throw new Error(`Unknown tag ${tag} in file ${filePath}`)
       }
-      indexes.add(tag)
+      tags.add(tag)
     }
   } while (match)
-  return [...indexes]
+  return [...tags]
 }
 
-function formatIndexesOfFile (filePath) {
-  const indexes = collectIndexesOfFile(filePath)
-  if (indexes.length > 0) {
-    return ` (${indexes.join(', ')})`
+function formatTagsOfFile (filePath) {
+  const tags = collectTagsOfFile(filePath)
+  if (tags.length > 0) {
+    return ` (${tags.join(', ')})`
   }
   return ''
 }
 
-function collectIndexes () {
+function collectFilePathsOfTag () {
   const files = glob.sync('**/*.tex')
-  const indexes = {}
+  const tagsCollection = {}
   for (const filePath of files) {
-    indexes[filePath] = collectIndexesOfFile(filePath)
+    const tags = collectTagsOfFile(filePath)
+    for (const tag of tags) {
+      if (tagsCollection[tag]) {
+        tagsCollection[tag].push(filePath)
+      } else {
+        tagsCollection[tag] = []
+        tagsCollection[tag].push(filePath)
+      }
+    }
   }
-  return indexes
+  return tagsCollection
 }
 
 const questionPathRegExp = /(Thema-\d\/)?(Teilaufgabe-\d\/)?Aufgabe-\d\.tex$/
@@ -375,7 +407,7 @@ function formatQuestionsRecursive (questionsTree, examPath, level = 1) {
   for (const title in questionsTree) {
     if (typeof questionsTree[title] === 'string') {
       const questionPath = path.join(examPath, questionsTree[title])
-      output.push(formatIndentation(level) + formatMarkdownLink(title + formatIndexesOfFile(questionPath), questionPath.replace('.tex', '.pdf')))
+      output.push(formatIndentation(level) + formatMarkdownLink(title + formatTagsOfFile(questionPath), questionPath.replace('.tex', '.pdf')))
     } else {
       output.push(`${formatIndentation(level)}${title} ${formatQuestionsRecursive(questionsTree[title], examPath, level + 1)}`)
     }
@@ -418,6 +450,8 @@ program
   .description('Generate the readme file')
   .alias('r')
   .action(function (cmdObj) {
+    // console.log(collectFilePathsOfTag())
+    console.log(getFlatSubTagsByTag(tagsTree, 'SOSY'))
     function fileLink (relPath, fileName) {
       return formatMarkdownLink(fileName, path.join(relPath, fileName))
     }
@@ -501,7 +535,7 @@ program
   .command('vscode [glob]')
   .alias('vsc')
   .description('Open in Visual Studio Code')
-  .option('-n, --noindex', 'Open only questions without an index macro in it.')
+  .option('-n, --notag', 'Open only questions without an tag macro in it.')
   .action(function (globPattern, cmdObj) {
     function openWithLogging(filePath) {
       console.log(filePath)
@@ -514,9 +548,9 @@ program
     const files = glob.sync(globPattern)
     for (let filePath of files) {
       filePath = path.resolve(filePath)
-      if (cmdObj.noindex) {
-        const indexes = collectIndexesOfFile(filePath)
-        if (indexes.length == 0) openWithLogging(filePath)
+      if (cmdObj.notag) {
+        const tags = collectTagsOfFile(filePath)
+        if (tags.length == 0) openWithLogging(filePath)
       } else {
         openWithLogging(filePath)
       }
