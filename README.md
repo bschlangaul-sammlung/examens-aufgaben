@@ -482,7 +482,7 @@ OCR des oben genannten Scans:
 - 2013 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/09/OCR.txt) 
     - Thema 1 
         - Teilaufgabe 2 
-            - [Aufgabe 3 (Testen, Model Checking, Refactoring, EXtreme Programming, White-Box-Testing, Black-Box-Testing, Funktionale Anforderungen, Nicht-funktionale Anforderungen, Kontinuierliche Integration (Continuous Integration), EXtreme Programming, Unit-Test, wp-Kalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
+            - [Aufgabe 3 (Testen, Model Checking, Refactoring, EXtreme Programming, White-Box-Testing, Black-Box-Testing, Funktionale Anforderungen, Nicht-funktionale Anforderungen, Kontinuierliche Integration (Continuous Integration), Unit-Test, wp-Kalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
 - 2014 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/03/OCR.txt) 
     - Thema 2 
         - Teilaufgabe 2 
@@ -676,11 +676,6 @@ Stichwörter:
           - Softwaremaße
           - Versionsverwaltungssoftware
           - Prototyping
-      - Projektplanung:
-          - Gantt-Diagramm
-          - Petri-Netz:
-              - Erreichbarkeitsgraph
-          - CPM-Netzplantechnik
       - Modellierung:
           - UML-Diagramme:
               - UML-Struktur-Diagramme:
@@ -714,6 +709,11 @@ Stichwörter:
               - Sonstige Entwurfsmuster:
                   - Modell-Präsentation-Steuerung (Model-View-Controller)
                   - Einbringen von Abhängigkeiten (Dependency Injection)
+      - Projektplanung:
+          - Gantt-Diagramm
+          - Petri-Netz:
+              - Erreichbarkeitsgraph
+          - CPM-Netzplantechnik
       - Softwarearchitektur:
           - Blackboard-Muster
           - Schichtenarchitektur:

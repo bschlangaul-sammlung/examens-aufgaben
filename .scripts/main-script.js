@@ -240,11 +240,15 @@ function cleanTag (tag) {
   return tag.replace(/\s+/g, ' ')
 }
 
+/**
+ * Collect the indexes (tags) of a TeX file.
+ * @param {string} filePath
+ */
 function collectIndexesOfFile (filePath) {
   const content = readRepoFile(filePath)
   const re = /\\index\{([^\}]*)\}/g
   let match
-  const indexes = []
+  const indexes = new Set()
   do {
     match = re.exec(content)
     if (match) {
@@ -255,13 +259,13 @@ function collectIndexesOfFile (filePath) {
         openCode(filePath)
         throw new Error(`Unknown tag ${tag} in file ${filePath}`)
       }
-      indexes.push(tag)
+      indexes.add(tag)
     }
   } while (match)
-  return indexes
+  return [...indexes]
 }
 
-function formatIndexesInFile (filePath) {
+function formatIndexesOfFile (filePath) {
   const indexes = collectIndexesOfFile(filePath)
   if (indexes.length > 0) {
     return ` (${indexes.join(', ')})`
@@ -371,7 +375,7 @@ function formatQuestionsRecursive (questionsTree, examPath, level = 1) {
   for (const title in questionsTree) {
     if (typeof questionsTree[title] === 'string') {
       const questionPath = path.join(examPath, questionsTree[title])
-      output.push(formatIndentation(level) + formatMarkdownLink(title + formatIndexesInFile(questionPath), questionPath.replace('.tex', '.pdf')))
+      output.push(formatIndentation(level) + formatMarkdownLink(title + formatIndexesOfFile(questionPath), questionPath.replace('.tex', '.pdf')))
     } else {
       output.push(`${formatIndentation(level)}${title} ${formatQuestionsRecursive(questionsTree[title], examPath, level + 1)}`)
     }
