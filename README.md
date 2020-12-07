@@ -209,7 +209,9 @@ OCR des oben genannten Scans:
             - [Aufgabe 4 (Bubblesort, Black-Box-Testing, Anforderungsüberdeckung, Äquivalenzklassenzerlegung, Grenzwertanalyse, Kontrollflussgraph, C2a Vollständige Pfadüberdeckung (Full Path Coverage))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) 
     - Thema 2 
         - Teilaufgabe 1 
-            - [Aufgabe 3 (Entwurfsmuster, Klassendiagramm, Abstrakte Fabrik (Abstract Factory), Beobachter (Observer), Kompositum (Composite))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf)
+            - [Aufgabe 3 (Entwurfsmuster, Klassendiagramm, Abstrakte Fabrik (Abstract Factory), Beobachter (Observer), Kompositum (Composite))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf) 
+        - Teilaufgabe 2 
+            - [Aufgabe 4 (SQL, GROUP BY)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf)
 - 2018 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/03/OCR.txt) 
     - Thema 1 
         - Teilaufgabe 1 
@@ -320,10 +322,12 @@ OCR des oben genannten Scans:
 - 1994 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1994/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1994/09/OCR.txt) 
 - 1995 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1995/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1995/03/OCR.txt) 
 - 1996 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/OCR.txt) 
+    - [Aufgabe 2 (Entity-Relation-Modell, Verfeinertes Relationenmodell, SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/Aufgabe-2.pdf)
 - 1996 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/OCR.txt) 
     - [Aufgabe 4 (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.pdf)
 - 1997 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/03/OCR.txt) 
 - 1997 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/09/OCR.txt) 
+    - [Aufgabe 3 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/09/Aufgabe-3.pdf)
 
 ### 66112: Automatentheorie / Komplexität / Algorithmen (vertieft)
 
@@ -589,7 +593,8 @@ Stichwörter:
           - Referentielle Integrität
           - Datenunabhängigkeit
       - Entity-Relation-Modell
-      - Relationenmodell
+      - Relationenmodell:
+          - Verfeinertes Relationenmodell
       - Relationale Algebra
       - Tupelkalkül
       - SQL:

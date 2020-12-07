@@ -1,0 +1,169 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{syntax,rmodell}
+\begin{document}
+
+\section{Aufgabe 2
+\index{Entity-Relation-Modell}
+\footcite[Aufgabe 2]{examen:66111:1996:03}}
+
+Eine Universitätsdatenbanksoil folgendeDaten verwalten.
+
+\begin{itemize}
+\item Studenten (Name, Matrikelnummer, Geburtsdatum, Adressen,
+Semesteranzahl, Studiengang, Fakultät, belegte Lehrveranstaltungenund
+deren Art)
+
+\item Lehrveranstaltungen (Anfangszeit, Semester, Art (Vorlesung,
+Seminar, Übung, Praktikum) Name, Anzahl der Hörer, Nummer im
+Vorlesungsverzeichnis,Anzahl Semesterwochenstunden, Dozent, Raum)
+\end{itemize}
+
+\begin{enumerate}
+\item Entwerfen Sie ein ER-schema für diese Applikationl
+Berücksichtigen Sie dabei, dass eine Vorlesung in 2
+Unterrichtseinheitenaufgeteiiot werden kann (r.8. Mo 10.00 und Do
+14.00). B"S*nden Sie Ihren Entwurf i
+
+\item SpezifizierenSie für die Entity-TypenAttributg und zeichnen Sie
+die Schlüsselanribtrteausl
+
+\item Geben Sie ein relationalesDatenbankschemaanl
+\end{enumerate}
+
+Gegeben ist das folgende (sehr ausführliche) ER-Modell.
+\footcite[Aufgabe 2: Uni-ER-Modell]{db:ab:4}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\begin{enumerate}
+\item Erarbeiten Sie zu diesem ER-Modell das (verfeinerte) relationale
+DB-Schema!\index{Verfeinertes Relationenmodell} Geben Sie geeignete
+Domänen an.
+
+\begin{antwort}[falsch]
+\texttt{ist\_zugeordnet} muss auch aufgelöst
+werden. Falsche Notation von Fremdschlüsseln: eckige Klammern
+verwerden[].
+
+\ttfamily
+\footnotesize
+Durchführung(\liPrimaer{Zeit:DATE, RaumNr:INT}, \liFremd{Nr:INT})\\
+
+Lehrveranstaltung(\liPrimaer{Nr:INT}, Name:VARCHAR(20), SWS:INT,
+Semester:INT, Art:VARCHAR(20), \liFremd{PersNr:INT})\\
+
+Dozent(\liPrimaer{PersNr:INT}, Name:VARCHR(20),
+\liFremd{FakName:VARCHAR(40)})\\
+
+Fakultät(\liPrimaer{Name:VARCHAR(40)})\\
+
+Student(\liPrimaer{MatrNr:INT}, Name:VARCHAR(40), Geburtsdatum:DATE,
+Semesteranzahl:INT)\\
+
+Adresse(\liPrimaer{Adresse:VARCHAR(100)})\\
+
+belegt(\liFremd{Nr:INT, MatrNr:INT})\\
+
+besitzt(\liFremd{Adresse:VARCHAR(100), MatrNr:INT})\\
+
+ist\_zugeordnet(Studiengang:VARCHAR(40), \liFremd{MatrNr:INT,
+FakName:VARCHAR(40)})\\
+\end{antwort}
+
+\begin{antwort}[muster]
+\ttfamily
+\footnotesize
+Dozent(\liPrimaer{PersNr:INT}, Name:VARCHAR(20),
+\liFremd{FakName:VARCHAR(40)[Fakultät]})\\
+
+Fakultät(\liPrimaer{Name:VARCHAR(40)})\\
+
+Lehrveranstaltung(\liPrimaer{Nr:INT}, Name:VARCHAR(20), SWS:INT,
+Semester:INT, Art:VARCHAR(20), \liFremd{PersNr:INT[Dozemtn]})\\
+
+Student(\liPrimaer{MatrNr:INT}, Name:VARCHAR(40), Geburtsdatum:DATE,
+Semesteranzahl:INT, \liFremd{FakName:VARCHAR(40)[Fakultät]},
+Studiengang:VARCHAR(40))\\
+
+Adresse(\liPrimaer{Adresse:VARCHAR(100)})\\
+
+belegt(\liFremd{Nr:INT[Lehrveranstaltung], MatrNr:INT[Adresse]})\\
+
+besitzt(\liFremd{Adresse:VARCHAR(100)[Adresse], MatrNr:INT[Student]})\\
+
+Durchführung(\liPrimaer{Zeit:DATE, RaumNr:INT}, \liFremd{Nr:INT[Student]})\\
+\end{antwort}
+
+\item Welche Fremdschlüssel gibt es in diesem Schema?
+\end{enumerate}
+
+\noindent
+Es soll nun mit SQL\index{SQL} eine entsprechende relationale Datenbank
+angelegt werden. Geben Sie für folgende Aufgaben die jeweiligen
+SQL-Befehle an.
+
+\begin{enumerate}
+\setcounter{enumi}{2}
+
+\item Die Tabellenschemata von \texttt{Student} und \texttt{besitzt}
+sollen erzeugt werden.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+CREATE TABLE Fakultaet (
+  Name VARCHAR(20) PRIMARY KEY
+);
+
+CREATE TABLE Adresse (
+  Adresse VARCHAR(30) PRIMARY KEY
+);
+
+CREATE TABLE Student (
+  MatrNr INTEGER PRIMARY KEY,
+  Name VARCHAR(20) NOT NULL,
+  Geburtsdatum DATE,
+  Semesteranzahl INTEGER,
+  Fakultaetsname VARCHAR(20),
+  Studiengang VARCHAR(20),
+  FOREIGN KEY (Fakultaetsname) REFERENCES Fakultaet(Name)
+);
+
+CREATE TABLE besitzt (
+  Adresse VARCHAR(30) NOT NULL,
+  MatrNr INTEGER NOT NULL,
+  PRIMARY KEY (Adresse, MatrNr),
+  FOREIGN KEY (Adresse) REFERENCES Adresse(Adresse),
+  FOREIGN KEY (MatrNr) REFERENCES Student(MatrNr)
+);
+\end{minted}
+\end{antwort}
+
+\item Am Tabellenschema von \texttt{Student} werden zwei Änderungen
+vorgenommen:
+
+\begin{itemize}
+\item Es soll ein weiteres Attribut Vorname hinzugefügt werden.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+ALTER TABLE Student ADD COLUMN Vorname VARCHAR(20);
+\end{minted}
+\end{antwort}
+
+\item Als Integritätsbedingung wird festgelegt, dass die Semesterzahl
+kleiner als 15 sein muss.
+\end{itemize}
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+ALTER TABLE Student ADD CHECK (Semesteranzahl < 15);
+\end{minted}
+
+oder
+
+\begin{minted}{sql}
+ALTER TABLE Student ADD CONSTRAINT begrenzung_Semester CHECK (Semesteranzahl < 15);
+\end{minted}
+\end{antwort}
+
+\end{enumerate}
+\end{document}

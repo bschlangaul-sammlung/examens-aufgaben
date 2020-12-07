@@ -1,0 +1,59 @@
+\documentclass{lehramt-informatik-minimal}
+\InformatikPakete{}
+\begin{document}
+\section{3. Aufgabe (Datenbankentwurf mit Entity-Relationship-Diagrammen)
+\index{Entity-Relation-Modell}
+\footcite[Aufgabe 3]{examen:66111:1997:09}}
+
+Für ein Unternehmen soll eine Fertigungsdatenbank aufgebaut werden. Der
+Erhebungsprozess liefert folgenden Informationsbedarf:
+\footcite[Aufgabe 4]{db:ab:7}
+
+\subsection{Entity-Typen:}
+
+\begin{compactitem}
+\item ABTEILUNG mit den Attributen ANR, ANAME, AORT, MNR
+\item PERSONAL mit den Attributen PNR, NAME, BERUF
+\item MASCHINE mit den Attributen MANR, FABRIKAT, TYP, BEZ, LEISTUNG
+\item TEILE mit den Attributen LNR, BEZ, GEWICHT, FARBE, PREIS
+\end{compactitem}
+
+\subsection{Relationship-Typen:}
+
+\begin{compactitem}
+\item ABT-PERS zwischen ABTEILUNG und PERSONAL
+\item SETZT-EIN zwischen ABTEILUNG und MASCHINEN
+\item KANN-BEDIENEN zwischen PERSONAL und MASCHINEN
+\item GEEIGNET-FÜR-DIE-HERSTELLUNG-VON zwischen MASCHINEN und TEILE
+\item PRODUKTION zwischen PERSONAL, TEILE und MASCHINEN mit den Attributen
+DATUM und MENGE
+\end{compactitem}
+
+Dabei sollen folgende grundlegenden Bedingungen gelten:
+
+\begin{compactitem}
+\item Zu einer Abteilung gehört mindestens ein Beschäftigter
+
+\item Eine Person ist immer nur genau einer Abteilung zugeordnet
+
+\item Eine Maschine kann, wenn überhaupt, nur von einer Abteilung
+eingesetzt werden
+
+\item Alle anderen (Teil-)Beziehungen sind nicht weiter eingeschränkt.
+\end{compactitem}
+
+\begin{enumerate}
+\item Zeichnen Sie zu dem obigen Szenario das zugehörige ER-Diagramm.
+
+\item Legen Sie die Schlüsselkandidaten fest und zeichnen Sie diese in
+das ER-Diagramm ein. Tragen Sie die oben genannten Bedingungen mit Hilfe
+der (min, max) – Notation in das ER-Diagramm. Formulieren Sie weitere
+sinnvolle Bedingungen und tragen Sie diese ebenfalls in das Diagramm
+ein.
+\end{enumerate}
+
+Konvertieren Sie das folgende ER-Modell in ein (vereinfachtes)
+relationales Schema\index{Relationenmodell}! Geben Sie dabei geeignete
+Domänenattribute an!
+\footcite[Aufgabe 5: Fertigungsdatenbank die Zweite (Fortsetzung Staatsexamen Herbst 1997)]{db:ab:7}
+\end{document}
