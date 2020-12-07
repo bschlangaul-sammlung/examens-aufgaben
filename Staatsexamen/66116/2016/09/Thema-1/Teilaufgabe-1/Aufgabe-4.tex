@@ -2,17 +2,18 @@
 \InformatikPakete{syntax}
 \begin{document}
 
-\section{Aufgabe 1: SQL\footcite{db:pu:3}}
+\section{Aufgabe 1: SQL
+\index{SQL}
+\footcite[Thema 1 Teilaufgabe 1 Aufgabe 4]{examen:66116:2016:09}}
 
 Gegeben sind folgende Relationen aus einer Personalverwaltung:
-\footcite[DB/ST - Herbst 2016 (vertieft - 66116), Thema 1 Teilaufgabe 1 Aufgabe 4]{examen:66116:2016:09}
+\footcite{db:pu:3}
 
 \begin{minted}{md}
 Mitarbeiter (MitarbeiterID), Vorname, Nachname, Vorgesetzter[Mitarbeiter], AbteilungsID[Abteilung], Telefonnummer, Gehalt)
 Abteilung (AbteilungsID, Bezeichnung)
 \end{minted}
 
-\renewcommand{\labelenumi}{(\alph{enumi})}
 \begin{enumerate}
 
 %%
@@ -65,7 +66,7 @@ Durchschnittsgehalt der Abteilung. Gehen Sie davon dass es keine zwei
 Abteilungen mit gleichem Durchschnittsgehalt gibt. Sie können der
 Übersichtlichkeit halber Views oder With-Anweisungen verwenden.
 Verwenden Sie jedoch keine datenbanksystemspezifischen Erweiterungen wie
-\verb|limit| oder \verb|rownum|.
+\verb|limit| oder \verb|rownum|.\index{VIEW}\index{WITH}
 
 \begin{antwort}
 \begin{minted}{sql}
@@ -104,10 +105,11 @@ WHERE AbteilungsID = 42
 % (e)
 %%
 
-\item Alle \emph{Abteilungen} mit Bezeichnung \emph{„Qualitätskontrolle
-“} sollen zusammen mit den Datensätzen ihrer \emph{Mitarbeiter} gelöscht
+\item Alle \emph{Abteilungen} mit Bezeichnung
+\emph{„Qualitätskontrolle“} sollen zusammen mit den Datensätzen ihrer
+\emph{Mitarbeiter} gelöscht
 werden. \verb|ON DELETE CASCADE| ist für keine der Tabellen gesetzt.
-Schreiben Sie die zum Löschen notwendigen SQL-Anfragen.
+Schreiben Sie die zum Löschen notwendigen SQL-Anfragen.\index{DELETE}
 
 \begin{antwort}
 \begin{minted}{sql}
