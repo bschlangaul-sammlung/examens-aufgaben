@@ -30,9 +30,20 @@ kann ganz normaler Text - also auch mit Leerzeichen eingesetzt werden.
 
 {{ stichwörter }}
 
+# LaTeX
 
+## Pakete
 
-# TeX-Klassen und Pakete installieren
+Alle selbst definierten Makros und Umgebungen haben zur besseren
+Unterscheidung ein Präfix: `li` = `Lehramt Informatik`
+
+### `rmodell`: Makros und Umgebungen zum Setzen des Relationenmodells beim Thema Datenbanken.
+
+* Makro: `\liPrimaer{}`: Unterstreichung für den Primärschlüssel
+* Makro: `\liFremd{}`: Überstreichung für den Fremdschlüssel
+* Umgebung: `\begin{liRmodell} \end{liRmodell}`: Kleinere Schrift und Schreibmaschinenschrift.
+
+## TeX-Klassen und Pakete installieren
 
 ```
 su -c "echo "\\\\def\\\\LehramtInformatikRepository{$(pwd)}" > /etc/lehramt-informatik.config.tex"

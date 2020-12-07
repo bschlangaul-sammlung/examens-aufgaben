@@ -154,7 +154,7 @@ OCR des oben genannten Scans:
 - 2013 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/OCR.txt) 
     - Thema 1 
         - Teilaufgabe 2 
-            - [Aufgabe 1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) 
+            - [Aufgabe 1 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) 
             - [Aufgabe 2 (Relationale Algebra, SQL, Tupelkalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf)
 - 2014 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/OCR.txt) 
     - Thema 2 
@@ -172,7 +172,7 @@ OCR des oben genannten Scans:
 - 2015 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/OCR.txt) 
     - Thema 1 
         - Teilaufgabe 1 
-            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) 
+            - [Aufgabe 3 (CPM-Netzplantechnik, Gantt-Diagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) 
         - Teilaufgabe 2 
             - [Aufgabe 1 (Relationale Algebra, SQL, GROUP BY, HAVING)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) 
             - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
@@ -184,8 +184,8 @@ OCR des oben genannten Scans:
             - [Aufgabe 1 (Datenunabhängigkeit, Superschlüssel, Referentielle Integrität)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) 
     - Thema 2 
         - Teilaufgabe 1 
-            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) 
-            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf)
+            - [Aufgabe 2 (C1-Test Zweigüberdeckung (Branch Coverage), C2b Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage), Zyklomatische Komplexität nach Mc-Cabe, C2a Vollständige Pfadüberdeckung (Full Path Coverage), Datenfluss-annotierter Kontrollflussgraph)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) 
+            - [Aufgabe 3 (wp-Kalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf)
 - 2016 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/03/OCR.txt) 
     - Thema 1 
         - Teilaufgabe 1 
@@ -213,7 +213,7 @@ OCR des oben genannten Scans:
 - 2018 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/03/OCR.txt) 
     - Thema 1 
         - Teilaufgabe 1 
-            - [Aufgabe 3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf)
+            - [Aufgabe 3 (Klassendiagramm, Implementierung in Java, Feld (Array), main-Methode)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf)
 - 2018 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/OCR.txt) 
     - Thema 1 
         - Teilaufgabe 1 
@@ -224,7 +224,7 @@ OCR des oben genannten Scans:
             - [Aufgabe 4 (SQL, CREATE TABLE)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf) 
     - Thema 2 
         - Teilaufgabe 2 
-            - [Aufgabe 2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf) 
+            - [Aufgabe 2 (Relationale Algebra)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf) 
             - [Aufgabe 5 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-5.pdf)
 - 2019 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2019/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2019/03/OCR.txt) 
 
@@ -618,9 +618,11 @@ Stichwörter:
           - Serialisierbarkeitsgraph
   - OOMUP:
       - Vererbung
-      - Implementierung in Java
-      - Interface
-      - Abstrakte Klasse
+      - Implementierung in Java:
+          - Interface
+          - Abstrakte Klasse
+          - Feld (Array)
+          - main-Methode
   - AUD:
       - Rekursion
       - Interative Realisation
@@ -750,9 +752,20 @@ Stichwörter:
           - Vollständige Induktion
 
 
+# LaTeX
 
+## Pakete
 
-# TeX-Klassen und Pakete installieren
+Alle selbst definierten Makros und Umgebungen haben zur besseren
+Unterscheidung ein Präfix: `li` = `Lehramt Informatik`
+
+### `rmodell`: Makros und Umgebungen zum Setzen des Relationenmodells beim Thema Datenbanken.
+
+* Makro: `\liPrimaer{}`: Unterstreichung für den Primärschlüssel
+* Makro: `\liFremd{}`: Überstreichung für den Fremdschlüssel
+* Umgebung: `\begin{liRmodell} \end{liRmodell}`: Kleinere Schrift und Schreibmaschinenschrift.
+
+## TeX-Klassen und Pakete installieren
 
 ```
 su -c "echo "\\\\def\\\\LehramtInformatikRepository{$(pwd)}" > /etc/lehramt-informatik.config.tex"

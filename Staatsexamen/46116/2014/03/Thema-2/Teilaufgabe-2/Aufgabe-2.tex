@@ -1,17 +1,15 @@
 \documentclass{lehramt-informatik-minimal}
-\InformatikPakete{mathe}
-\usepackage{multicol}
-\usepackage{soul}
-
-\def\TmpUeber#1{{\setul{-0.9em}{}\ul{#1}}}
+\InformatikPakete{mathe,spalten,rmodell}
 \begin{document}
 
-\section{Aufgabe 2: Relationale Algebra\footcite{db:pu:wh}}
+\section{Aufgabe 2: Relationale Algebra
+\footcite[Thema 2 Teilaufgabe 2 Aufgabe 2]{examen:46116:2014:03}
+}
 
 Gegeben sei das folgende relationale Schema mitsamt Beispieldaten für
 eine Datenbank von Mitfahrgelegenheiten. Die Primärschlüssel-Attribute
 sind jeweils unterstrichen, Fremdschlüssel sind überstrichen.
-\footcite[DB/ST - Frühjahr 2014 (nicht vertieft -46116), Thema 2 Teilaufgabe 2 Aufgabe 2]{examen:46116:2014:03}
+\footcite{db:pu:wh}
 
 {
 \footnotesize
@@ -20,7 +18,7 @@ sind jeweils unterstrichen, Fremdschlüssel sind überstrichen.
 
 \begin{tabular}{|l|l|l|l|}
 \hline
-\ul{KID} & Name & Vorname & \TmpUeber{Stadt}\\\hline\hline
+\liPrimaer{KID} & Name & Vorname & \liFremd{Stadt}\\\hline\hline
 K1 & Meier & Stefan & S3\\\hline
 K2 & Müller & Peta & S3\\\hline
 K3 & Schmidt & Christine & S2\\\hline
@@ -31,7 +29,7 @@ K4 & Schulz & Michael & S4\\\hline
 
 \begin{tabular}{|l|l|l|}
 \hline
-\ul{SID} & SName & Bundesland\\\hline\hline
+\liPrimaer{SID} & SName & Bundesland\\\hline\hline
 S1 & Berlin & Berlin\\\hline
 S2 & Nürn & Bayern\\\hline
 S3 & Köln & Nordrhein-Wesffalen\\\hline
@@ -45,7 +43,7 @@ S5 & München & Bayer\\\hline
 
 \begin{tabular}{|l|l|l|l|l|}
 \hline
-\ul{KID} & \TmpUeber{Start} & \TmpUeber{Ziel} & \ul{Datum} & Plätze\\\hline\hline
+\liPrimaer{KID} & \liFremd{Start} & \liFremd{Ziel} & \liPrimaer{Datum} & Plätze\\\hline\hline
 K4 & S4 & S5 & 08.07.2011 & 3\\\hline
 K4 & S5 & S4 & 10.07.2011 & 3\\\hline
 K1 & S1 & S5 & 08.07.2011 & 3\\\hline
@@ -58,7 +56,7 @@ K1 & S5 & S5 & 09.07.2011 & 2\\\hline
 
 \begin{tabular}{|l|l|l|l|}
 \hline
-\ul{KID} & \TmpUeber{Start} & \TmpUeber{Ziel} & \ul{Datum}\\\hline\hline
+\liPrimaer{KID} & \liFremd{Start} & \liFremd{Ziel} & \liPrimaer{Datum}\\\hline\hline
 K2 & S4 & S5 & 08.07.2011\\\hline
 K2 & S5 & S4 & 10.07.2011\\\hline
 K3 & S2 & S3 & 08.07.2011\\\hline
@@ -173,7 +171,7 @@ Zeile mit der Petra Müller fällt weg.
 
 \begin{tabular}{|l|l|l|l|}
 \hline
-\ul{KID} & Name & Vorname & \TmpUeber{Stadt}\\\hline\hline
+\liPrimaer{KID} & Name & Vorname & \liFremd{Stadt}\\\hline\hline
 K1 & Meier & Stefan & S3\\\hline
 K3 & Schmidt & Christine & S2\\\hline
 K4 & Schulz & Michael & S4\\\hline

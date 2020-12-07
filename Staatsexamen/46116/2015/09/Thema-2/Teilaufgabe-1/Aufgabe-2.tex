@@ -49,7 +49,9 @@ Kontrollflussgraph:
 %%
 
 \item Geben Sie je einen Repräsentanten aller Pfadklassen \textbf{im
-Kontrollflussgraphen} an, die zum Erzielen einer vollständigen
+Kontrollflussgraphen} an, die zum Erzielen einer vollständigen … mit
+\textbf{minimaler} Testfallanzahl und \textbf{möglichst kurzen} Pfaden
+genügen würden.
 
 \begin{antwort}
 Bemerkung: In der Aufgabenstellung steht \emph{„Geben Sie je einen
@@ -108,7 +110,8 @@ Code möglich ist oder nicht!
 % i)
 %%
 
-\item Verzweigungsüberdeckung (Branch-Coverage, $C_1$)
+\item Verzweigungsüberdeckung (Branch-Coverage, $C_1$)\index{C1-Test
+Zweigüberdeckung (Branch Coverage)}
 
 \def\TmpPfadEins{\KnotenPfad{nI - n1 - n2 - nE}}
 \def\TmpPfadZwei{\KnotenPfad{nI - n1 - n2 - n3 - n5 - n6 - n3 - n4 - n5 - n6 - nE}}
@@ -138,7 +141,8 @@ Wiederholung)
 %%
 
 \item Schleife-Inneres-Überdeckung (Boundary-Interior-Coverage,
-$C_{\infty,2}$)
+$C_{\infty,2}$)\index{C2b Schleife-Inneres-Pfadüberdeckung
+(Boundary-Interior Path Coverage)}
 
 \begin{antwort}
 % Video ab 1:10
@@ -234,7 +238,8 @@ nicht überdeckbar, da \java{yesItIs = false}, wenn innere
 
 \item Bestimmen Sie anhand des Kontrollflussgraphen des obigen
 Code-Fragments die maximale Anzahl linear unabhängiger Programmpfade,
-also die zyklomatische Komplexität nach McCabe.
+also die zyklomatische Komplexität nach McCabe\index{Zyklomatische
+Komplexität nach Mc-Cabe}.
 
 \begin{antwort}
 $M = b + p = 3 + 1 = 4$
@@ -253,8 +258,9 @@ Zusammenhangskomponenten)
 % d)
 %%
 
-\item Kann für dieses Modul eine 100\%-ige Pfadüberdeckung erzielt
-werden? Begründen Sie kurz Ihre Antwort.
+\item Kann für dieses Modul eine 100\%-ige Pfadüberdeckung\index{C2a
+Vollständige Pfadüberdeckung (Full Path Coverage)} erzielt werden?
+Begründen Sie kurz Ihre Antwort.
 
 \begin{antwort}
 Eine 100\%-ige Pfadüberdeckung kann nicht erzielt werden, da es zum
@@ -269,9 +275,10 @@ Anzahl an Testfällen gibt.
 %%
 
 \item Übernehmen Sie den vorgegebenen Kontrollflussgraphen und
-annotieren Sie ihn mit allen relevanten Datenflussereignissen. Geben Sie
-jeweils an, ob die Verwendungen berechnend (\texttt{c-use}) oder
-prädikativ (\texttt{p-use}) sind.
+annotieren Sie ihn mit allen relevanten
+Datenflussereignissen\index{Datenfluss-annotierter Kontrollflussgraph}.
+Geben Sie jeweils an, ob die Verwendungen berechnend (\texttt{c-use})
+oder prädikativ (\texttt{p-use}) sind.
 
 \begin{antwort}
 \begin{tikzpicture}[kontrollfluss,xscale=1,yscale=-1.2]

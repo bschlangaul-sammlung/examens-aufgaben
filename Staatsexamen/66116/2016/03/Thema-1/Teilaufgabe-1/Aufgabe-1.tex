@@ -161,25 +161,25 @@ Relationenschemata an. Achten Sie dabei insbesondere darauf, dass die
 Relationenschemata keine redundanten Attribute enthalten.
 
 \begin{antwort}
-\begin{rmodell}
-Landkreis(\primaer{KFZKennzeichen}, LName, Einwohnerzahl)
+\begin{liRmodell}
+Landkreis(\liPrimaer{KFZKennzeichen}, LName, Einwohnerzahl)
 
-Jagdgebiet(\primaer{JName}, \fremd{KFZKennzeichen}[Landkreis], Gesamtfläche)
+Jagdgebiet(\liPrimaer{JName}, \liFremd{KFZKennzeichen}[Landkreis], Gesamtfläche)
 
-Jagdschein(\primaer{JSNR}, \fremd{KFZKennzeichen}[Landkreis], gültigVon, gültigBis)
+Jagdschein(\liPrimaer{JSNR}, \liFremd{KFZKennzeichen}[Landkreis], gültigVon, gültigBis)
 
-Jäger(\primaer{JNR}, \fremd{JSNR}, Name, Stadt, Straße, Hausnummer)
+Jäger(\liPrimaer{JNR}, \liFremd{JSNR}, Name, Stadt, Straße, Hausnummer)
 
-Wild(\primaer{WNR}, Art, Größe, Gewicht)
+Wild(\liPrimaer{WNR}, Art, Größe, Gewicht)
 
-Haarwild(\primaer{WNR}, GehörnTyp)
+Haarwild(\liPrimaer{WNR}, GehörnTyp)
 
-Federwild(\primaer{WNR}, Flügelspannweite)
+Federwild(\liPrimaer{WNR}, Flügelspannweite)
 
-erlegen(\fremd{JNR}[Jäger], \fremd{WNR}[Wild], \fremd{JName}[Jagdgebiet], \fremd{KFZKennzeichen}[Landkreis])
+erlegen(\liFremd{JNR}[Jäger], \liFremd{WNR}[Wild], \liFremd{JName}[Jagdgebiet], \liFremd{KFZKennzeichen}[Landkreis])
 
-beschränken(\fremd{JSNR}[Jagdschein], \fremd{JName}[Jagdgebiet], \fremd{KFZKennzeichen}[Landkreis])
-\end{rmodell}
+beschränken(\liFremd{JSNR}[Jagdschein], \liFremd{JName}[Jagdgebiet], \liFremd{KFZKennzeichen}[Landkreis])
+\end{liRmodell}
 \end{antwort}
 \end{enumerate}
 \end{document}
