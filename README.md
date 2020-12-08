@@ -819,7 +819,7 @@ git submodule update --init
 # LaTeX-Vorlage
 
 ```latex
-\documentclass{lehramt-informatik}
+\documentclass{lehramt-informatik-haupt}
 
 \begin{document}
 

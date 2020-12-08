@@ -12,11 +12,7 @@ rm -f "$HOME"/texmf/tex/lehramt-informatik*
 
 _install .tex/erweiterungen
 _install .tex/basis
-
-# Klassen
-
-cp -f .tex/lehramt-informatik.cls $HOME/texmf/tex
-cp -f .tex/lehramt-informatik-minimal.cls $HOME/texmf/tex
+_install .tex/klassen
 
 # Fremd-Pakete
 

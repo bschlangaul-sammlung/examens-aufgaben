@@ -230,7 +230,7 @@ program
     )
 
     const template =
-      '\\documentclass{lehramt-informatik-minimal}\n' +
+      '\\documentclass{lehramt-informatik-aufgabe}\n' +
       '\\InformatikPakete{}\n' +
       '\\begin{document}\n' +
       '\n' +
