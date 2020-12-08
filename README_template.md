@@ -2,7 +2,19 @@
 
 Materialsammlung für das Studium Lehramt Informatik in Bayern.
 
-## Staatsexamensaufgaben
+## Aufgaben geordnet nach Themen
+
+### Datenbanksysteme (DB)
+
+#### Entity-Relation-Modell
+
+{{ stichwort "Entity-Relation-Modell" }}
+
+#### Relationenmodell
+
+{{ stichwort "Relationenmodell" }}
+
+## Aufgaben geordnet nach Staatsexamen
 
 In diesem Repository findet Ihr viele Staatsexamensaufgaben. Von fast
 allen Staatsexamen liegt ein Scan der Angabe (`Scan.pdf`), sowie eine

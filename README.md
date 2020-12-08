@@ -2,7 +2,33 @@
 
 Materialsammlung für das Studium Lehramt Informatik in Bayern.
 
-## Staatsexamensaufgaben
+## Aufgaben geordnet nach Themen
+
+### Datenbanksysteme (DB)
+
+#### Entity-Relation-Modell
+
+- [Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.tex)
+- [Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.tex)
+- [Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-2.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-2.tex)
+- [Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-5.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-5.tex)
+- [Staatsexamen/66111/1996/03/Aufgabe-2.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/Aufgabe-2.tex)
+- [Staatsexamen/66111/1997/09/Aufgabe-3.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/09/Aufgabe-3.tex)
+- [Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.tex)
+- [Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.tex)
+- [Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex)
+- [Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-2.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-2.tex)
+
+#### Relationenmodell
+
+- [Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.tex)
+- [Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.tex)
+- [Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-5.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-5.tex)
+- [Staatsexamen/66111/1997/09/Aufgabe-3.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/09/Aufgabe-3.tex)
+- [Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.tex)
+- [Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex)
+
+## Aufgaben geordnet nach Staatsexamen
 
 In diesem Repository findet Ihr viele Staatsexamensaufgaben. Von fast
 allen Staatsexamen liegt ein Scan der Angabe (`Scan.pdf`), sowie eine

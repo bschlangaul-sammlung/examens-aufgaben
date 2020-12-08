@@ -97,7 +97,13 @@ function getSubTagsTreeByTag (tree, tag) {
 }
 
 function getFlatSubTagsByTag (tree, tag) {
-  return flattenTagsTree(getSubTagsTreeByTag(tree, tag))
+  const tagList = flattenTagsTree(getSubTagsTreeByTag(tree, tag))
+  if (tagList && Array.isArray(tagList)) {
+    tagList.push(tag)
+    return tagList
+  }
+
+  return [tag]
 }
 
 /*******************************************************************************
@@ -297,7 +303,7 @@ function formatTagsOfFile (filePath) {
   return ''
 }
 
-function collectFilePathsOfTag () {
+function generateFilePathsByTagCollection () {
   const files = glob.sync('**/*.tex')
   const tagsCollection = {}
   for (const filePath of files) {
@@ -445,13 +451,44 @@ function formatExamTitle (year, month) {
   return `${year} ${monthLong}`
 }
 
+function formatTopLevelFilePathList (filePathsList) {
+  const item = []
+  for (const filePath of filePathsList) {
+    item.push('- ' + formatMarkdownLink(filePath, filePath))
+  }
+  return item.join('\n')
+}
+
+function replaceTagsInReadme (content) {
+  return content.replace(/\{\{ stichwort "([\w\d- ]*)" \}\}/g, function(wholeMatch, foundTag) {
+    console.log(listFilePathsByTag(foundTag))
+    return formatTopLevelFilePathList(listFilePathsByTag(foundTag))
+  })
+}
+
+const filePathsByTagCollection = generateFilePathsByTagCollection()
+
+function listFilePathsByTag (tag) {
+  const flatTags = getFlatSubTagsByTag(tagsTree, tag)
+  const filePaths = new Set()
+  for (const t of flatTags) {
+    if (filePathsByTagCollection[t]) {
+      for (const filePath of filePathsByTagCollection[t]) {
+        filePaths.add(filePath)
+      }
+    }
+  }
+  return [...filePaths].sort()
+}
+
 program
   .command('generate-readme')
   .description('Generate the readme file')
   .alias('r')
   .action(function (cmdObj) {
     // console.log(collectFilePathsOfTag())
-    console.log(getFlatSubTagsByTag(tagsTree, 'SOSY'))
+
+    // console.log(getFlatSubTagsByTag(tagsTree, 'SOSY'))
     function fileLink (relPath, fileName) {
       return formatMarkdownLink(fileName, path.join(relPath, fileName))
     }
@@ -473,6 +510,8 @@ program
     const output = new OutputCollector()
 
     let readmeContent = readRepoFile('README_template.md')
+
+    readmeContent = replaceTagsInReadme(readmeContent)
 
     readmeContent = replaceUrlTokens(readmeContent)
 
