@@ -1,362 +1,350 @@
 #! /usr/bin/env node
-
-const path = require('path')
-const fs = require('fs')
-const childProcess = require('child_process')
-
-const glob = require('glob')
-const yaml = require('js-yaml')
-
-const configPath = path.join(path.sep, 'etc', 'lehramt-informatik.config.tex')
-
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
+var path = require('path');
+var fs = require('fs');
+var childProcess = require('child_process');
+var glob = require('glob');
+var yaml = require('js-yaml');
+var configPath = path.join(path.sep, 'etc', 'lehramt-informatik.config.tex');
 if (!fs.existsSync(configPath)) {
-  throw new Error(`No configuration file found: ${configPath}`)
+    throw new Error("No configuration file found: " + configPath);
 }
-
-function parseConfigurationFile (configPath) {
-  const configContent = readFile(configPath)
-  const match = configContent.match(/\\LehramtInformatikRepository\{(.*)\}/)
-  return match[1]
+function parseConfigurationFile(configPath) {
+    var configContent = readFile(configPath);
+    var match = configContent.match(/\\LehramtInformatikRepository\{(.*)\}/);
+    return match[1];
 }
-
-const repositoryPath = parseConfigurationFile(configPath)
-
-const examTitles = {
-  46110: 'Grundlagen der Informatik (nicht vertieft)',
-  46111: 'Programmentwicklung / Systemprogrammierung / Datenbanksysteme (nicht vertieft)',
-  46112: 'Grundlagen der Informatik (nicht vertieft)',
-  46113: 'Theoretische Informatik (nicht vertieft)',
-  46114: 'Algorithmen / Datenstrukturen / Programmiermethoden (nicht vertieft)',
-  46115: 'Theoretische Informatik / Algorithmen / Datenstrukturen (nicht vertieft)',
-  46116: 'Softwaretechnologie / Datenbanksysteme (nicht vertieft)',
-  46118: 'Fachdidaktik (Mittelschulen)',
-  46119: 'Fachdidaktik (Realschulen)',
-  46121: 'Fachdidaktik (berufliche Schulen)',
-  66110: 'Automatentheorie, Algorithmische Sprache (vertieft)',
-  66111: 'Betriebssysteme / Datenbanksysteme / Rechnerarchitektur (vertieft)',
-  66112: 'Automatentheorie / Komplexität / Algorithmen (vertieft)',
-  66113: 'Rechnerarchitektur / Datenbanken / Betriebssysteme (vertieft)',
-  66114: 'Datenbank- und Betriebssysteme (vertieft)',
-  66115: 'Theoretische Informatik / Algorithmen (vertieft)',
-  66116: 'Datenbanksysteme / Softwaretechnologie (vertieft)',
-  66118: 'Fachdidaktik (Gymnasium)'
-}
-
-const githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main'
-
-function parseTags () {
-  try {
-    return yaml.safeLoad(readRepoFile('Stichwortverzeichnis.yml'))
-  } catch (e) {
-    console.log(e);
-  }
-}
-
-const tagsTree = parseTags()
-
-function flattenTagsTree (tree, flat) {
-  if (!flat) flat = new Set()
-  if (typeof tree === 'string') {
-    if (flat.has(tree)) {
-      throw Error(`Duplicate tag: ${tree}`)
+var repositoryPath = parseConfigurationFile(configPath);
+var examTitles = {
+    46110: 'Grundlagen der Informatik (nicht vertieft)',
+    46111: 'Programmentwicklung / Systemprogrammierung / Datenbanksysteme (nicht vertieft)',
+    46112: 'Grundlagen der Informatik (nicht vertieft)',
+    46113: 'Theoretische Informatik (nicht vertieft)',
+    46114: 'Algorithmen / Datenstrukturen / Programmiermethoden (nicht vertieft)',
+    46115: 'Theoretische Informatik / Algorithmen / Datenstrukturen (nicht vertieft)',
+    46116: 'Softwaretechnologie / Datenbanksysteme (nicht vertieft)',
+    46118: 'Fachdidaktik (Mittelschulen)',
+    46119: 'Fachdidaktik (Realschulen)',
+    46121: 'Fachdidaktik (berufliche Schulen)',
+    66110: 'Automatentheorie, Algorithmische Sprache (vertieft)',
+    66111: 'Betriebssysteme / Datenbanksysteme / Rechnerarchitektur (vertieft)',
+    66112: 'Automatentheorie / Komplexität / Algorithmen (vertieft)',
+    66113: 'Rechnerarchitektur / Datenbanken / Betriebssysteme (vertieft)',
+    66114: 'Datenbank- und Betriebssysteme (vertieft)',
+    66115: 'Theoretische Informatik / Algorithmen (vertieft)',
+    66116: 'Datenbanksysteme / Softwaretechnologie (vertieft)',
+    66118: 'Fachdidaktik (Gymnasium)'
+};
+var githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main';
+function parseTags() {
+    try {
+        return yaml.safeLoad(readRepoFile('Stichwortverzeichnis.yml'));
     }
-    flat.add(tree)
-  } else if (Array.isArray(tree)) {
-    for (const t of tree) {
-      flattenTagsTree(t, flat)
+    catch (e) {
+        console.log(e);
     }
-  } else {
-    for (const t in tree) {
-      flattenTagsTree(t, flat)
-      flattenTagsTree(tree[t], flat)
-    }
-  }
-  return flat
 }
-
-const tagsFlat = flattenTagsTree(tagsTree)
-
-function getSubTagsTreeByTag (tree, tag) {
-  if (typeof tree === 'string') {
-    return
-  } else if (Array.isArray(tree)) {
-    for (const t of tree) {
-      const result = getSubTagsTreeByTag(t, tag)
-      if (result) return result
+var tagsTree = parseTags();
+function flattenTagsTree(tree, flat) {
+    if (!flat)
+        flat = new Set();
+    if (typeof tree === 'string') {
+        if (flat.has(tree)) {
+            throw Error("Duplicate tag: " + tree);
+        }
+        flat.add(tree);
     }
-  } else {
-    for (const t in tree) {
-      if (tag === t) {
-        return tree[t]
-      } else {
-        const result = getSubTagsTreeByTag(tree[t], tag)
-        if (result) return result
-      }
+    else if (Array.isArray(tree)) {
+        for (var _i = 0, tree_1 = tree; _i < tree_1.length; _i++) {
+            var t = tree_1[_i];
+            flattenTagsTree(t, flat);
+        }
     }
-  }
+    else {
+        for (var t in tree) {
+            flattenTagsTree(t, flat);
+            flattenTagsTree(tree[t], flat);
+        }
+    }
+    return flat;
 }
-
-function getFlatSubTagsByTag (tree, tag) {
-  const tagList = flattenTagsTree(getSubTagsTreeByTag(tree, tag))
-  if (tagList && Array.isArray(tagList)) {
-    tagList.push(tag)
-    return tagList
-  }
-
-  return [tag]
+var tagsFlat = flattenTagsTree(tagsTree);
+function getSubTagsTreeByTag(tree, tag) {
+    if (typeof tree === 'string') {
+        return;
+    }
+    else if (Array.isArray(tree)) {
+        for (var _i = 0, tree_2 = tree; _i < tree_2.length; _i++) {
+            var t = tree_2[_i];
+            var result = getSubTagsTreeByTag(t, tag);
+            if (result)
+                return result;
+        }
+    }
+    else {
+        for (var t in tree) {
+            if (tag === t) {
+                return tree[t];
+            }
+            else {
+                var result = getSubTagsTreeByTag(tree[t], tag);
+                if (result)
+                    return result;
+            }
+        }
+    }
 }
-
+function getFlatSubTagsByTag(tree, tag) {
+    var subTree = getSubTagsTreeByTag(tree, tag);
+    var tagList;
+    if (subTree) {
+        tagList = flattenTagsTree(subTree);
+    }
+    if (tagList && Array.isArray(tagList)) {
+        tagList.push(tag);
+        return tagList;
+    }
+    return [tag];
+}
 /*******************************************************************************
  * low level functions
  ******************************************************************************/
-
-function checkTag (tag) {
-  if (!tagsFlat.has(tag)) {
-    throw Error(`Unkown tag: ${tag}`)
-  }
+function checkTag(tag) {
+    if (!tagsFlat.has(tag)) {
+        throw Error("Unkown tag: " + tag);
+    }
 }
-
-function open (executable, filePath) {
-  const subprocess = childProcess.spawn(executable, [filePath], {
-    detached: true,
-    stdio: 'ignore'
-  })
-
-  subprocess.unref()
+function openWithExecutable(executable, filePath) {
+    var subprocess = childProcess.spawn(executable, [filePath], {
+        detached: true,
+        stdio: 'ignore'
+    });
+    subprocess.unref();
 }
-
-function openCode (filePath) {
-  open('/usr/bin/code', filePath)
+function openCode(filePath) {
+    openWithExecutable('/usr/bin/code', filePath);
 }
-
-function readFile (filePath) {
-  return fs.readFileSync(filePath, { encoding: 'utf-8' })
+function readFile(filePath) {
+    return fs.readFileSync(filePath, { encoding: 'utf-8' });
 }
-
-function readRepoFile () {
-  if (arguments[0].indexOf(repositoryPath) > -1) return readFile(path.join(...arguments))
-  return readFile(path.join(repositoryPath, ...arguments))
+function readRepoFile() {
+    var args = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+    }
+    if (arguments[0].indexOf(repositoryPath) > -1)
+        return readFile(path.join.apply(path, args));
+    return readFile(path.join.apply(path, __spreadArrays([repositoryPath], args)));
 }
-
-function generateExamBasePath (number, year, month) {
-  return path.join(__dirname, '..', 'Staatsexamen', number, year, month)
+function generateExamBasePath(number, year, month) {
+    return path.join(__dirname, '..', 'Staatsexamen', number, year, month);
 }
-
-function generateQuestionPath (arg1, arg2, arg3) {
-  if (arg1 && arg2 && arg3) {
-    return path.join(`Thema-${arg1}`, `Teilaufgabe-${arg2}`, `Aufgabe-${arg3}.tex`)
-  } else if (arg1 && arg2 && !arg3) {
-    return path.join(`Thema-${arg1}`, `Aufgabe-${arg2}.tex`)
-  } else {
-    return `Aufgabe-${arg1}.tex`
-  }
+function generateQuestionPath(arg1, arg2, arg3) {
+    if (arg1 && arg2 && arg3) {
+        return path.join("Thema-" + arg1, "Teilaufgabe-" + arg2, "Aufgabe-" + arg3 + ".tex");
+    }
+    else if (arg1 && arg2 && !arg3) {
+        return path.join("Thema-" + arg1, "Aufgabe-" + arg2 + ".tex");
+    }
+    else {
+        return "Aufgabe-" + arg1 + ".tex";
+    }
 }
-
-function generateTeXMacro (exam, arg1, arg2, arg3) {
-  let questionMarkup = ''
-  let macroSuffix = ''
-  const examMarkup = `${exam.number} / ${exam.year} / ${exam.month} :`
-  if (arg1 && arg2 && arg3) {
-    questionMarkup = `Thema ${arg1} Teilaufgabe ${arg2} Aufgabe ${arg3}`
-    macroSuffix = 'TTA'
-  } else if (arg1 && arg2 && !arg3) {
-    questionMarkup = `Thema ${arg1} Aufgabe ${arg2}`
-    macroSuffix = 'TA'
-  } else {
-    questionMarkup = `Aufgabe ${arg1}`
-    macroSuffix = 'A'
-  }
-  return `\n\\ExamensAufgabe${macroSuffix} ${examMarkup} ${questionMarkup}`
+function generateTeXMacro(exam, arg1, arg2, arg3) {
+    var questionMarkup = '';
+    var macroSuffix = '';
+    var examMarkup = exam.number + " / " + exam.year + " / " + exam.month + " :";
+    if (arg1 && arg2 && arg3) {
+        questionMarkup = "Thema " + arg1 + " Teilaufgabe " + arg2 + " Aufgabe " + arg3;
+        macroSuffix = 'TTA';
+    }
+    else if (arg1 && arg2 && !arg3) {
+        questionMarkup = "Thema " + arg1 + " Aufgabe " + arg2;
+        macroSuffix = 'TA';
+    }
+    else {
+        questionMarkup = "Aufgabe " + arg1;
+        macroSuffix = 'A';
+    }
+    return "\n\\ExamensAufgabe" + macroSuffix + " " + examMarkup + " " + questionMarkup;
 }
-
-function splitExamRef (ref) {
-  const exam = ref.split(':')
-  if (exam.length !== 3) {
-    console.log('Exam ref has to be in this format: 66116:2020:09')
-    process.exit(1)
-  }
-  return {
-    number: exam[0],
-    year: exam[1],
-    month: exam[2]
-  }
+function splitExamRef(ref) {
+    var exam = ref.split(':');
+    if (exam.length !== 3) {
+        console.log('Exam ref has to be in this format: 66116:2020:09');
+        process.exit(1);
+    }
+    return {
+        number: exam[0],
+        year: exam[1],
+        month: exam[2]
+    };
 }
-
-function formatMarkdownLink (text, relPath) {
-  relPath = relPath.replace(repositoryPath, '')
-  relPath = relPath.replace(/^\//, '')
-  return `[${text}](${githubRawUrl}/${relPath})`
+function formatMarkdownLink(text, relPath) {
+    relPath = relPath.replace(repositoryPath, '');
+    relPath = relPath.replace(/^\//, '');
+    return "[" + text + "](" + githubRawUrl + "/" + relPath + ")";
 }
-
-const { Command } = require('commander')
-const program = new Command()
-program.description(`Repository path: ${repositoryPath}`)
-program.name('lehramt-informatik.js')
-program.version('0.1.0')
-
-function actionHelp () {
-  console.log('Specify a subcommand.')
-  program.outputHelp()
-  process.exit(1)
+var Command = require('commander').Command;
+var program = new Command();
+program.description("Repository path: " + repositoryPath);
+program.name('lehramt-informatik.js');
+program.version('0.1.0');
+function actionHelp() {
+    console.log('Specify a subcommand.');
+    program.outputHelp();
+    process.exit(1);
 }
-
 program.on('command:*', function () {
-  console.error('Invalid command: %s\nSee --help for a list of available commands.', program.args.join(' '))
-  process.exit(1)
-})
-
+    console.error('Invalid command: %s\nSee --help for a list of available commands.', program.args.join(' '));
+    process.exit(1);
+});
 /*******************************************************************************
  * create-question
  ******************************************************************************/
-
-function checkNumber (number) {
-  number = parseInt(number)
-  if (number) return number
+function checkNumber(number) {
+    if (typeof number === 'string')
+        number = parseInt(number);
+    if (number)
+        return number;
 }
-
 program
-  .command('create-question <ref> <part-no> [sub-question-no] [question-no]')
-  .description('Create a exam question template in the right directory folder: 66116:2020:09')
-  .alias('c')
-  .action(function (ref, arg1, arg2, arg3, cmdObj) {
-    arg1 = checkNumber(arg1)
-    arg2 = checkNumber(arg2)
-    arg3 = checkNumber(arg3)
-
-    const exam = splitExamRef(ref)
-    const questionPath = path.join(
-      generateExamBasePath(exam.number, exam.year, exam.month),
-      generateQuestionPath(arg1, arg2, arg3)
-    )
-
-    const template =
-      '\\documentclass{lehramt-informatik-aufgabe}\n' +
-      '\\liLadePakete{}\n' +
-      '\\begin{document}\n' +
-      '\n' +
-      '\\end{document}\n'
-
-    fs.mkdirSync(path.dirname(questionPath), { recursive: true })
-    if (!fs.existsSync(questionPath)) {
-      fs.writeFileSync(questionPath, template, { encoding: 'utf-8' })
+    .command('create-question <ref> <part-no> [sub-question-no] [question-no]')
+    .description('Create a exam question template in the right directory folder: 66116:2020:09')
+    .alias('c')
+    .action(function (ref, arg1, arg2, arg3, cmdObj) {
+    var num1 = checkNumber(arg1);
+    var num2 = checkNumber(arg2);
+    var num3 = checkNumber(arg3);
+    if (!num1) {
+        throw Error("Undefined " + num1);
     }
-    openCode(questionPath)
-    console.log(generateTeXMacro(exam, arg1, arg2, arg3))
-  })
-
+    var exam = splitExamRef(ref);
+    var questionPath = path.join(generateExamBasePath(exam.number, exam.year, exam.month), generateQuestionPath(num1, num2, num3));
+    var template = '\\documentclass{lehramt-informatik-aufgabe}\n' +
+        '\\liLadePakete{}\n' +
+        '\\begin{document}\n' +
+        '\n' +
+        '\\end{document}\n';
+    fs.mkdirSync(path.dirname(questionPath), { recursive: true });
+    if (!fs.existsSync(questionPath)) {
+        fs.writeFileSync(questionPath, template, { encoding: 'utf-8' });
+    }
+    openCode(questionPath);
+    console.log(generateTeXMacro(exam, arg1, arg2, arg3));
+});
 /*******************************************************************************
  * open-exam
  ******************************************************************************/
-
 program
-  .command('open-exam <ref>')
-  .description('Open a exam scan: 66116:2020:09')
-  .alias('o')
-  .action(function (ref, cmdObj) {
-    const exam = splitExamRef(ref)
-    const examPath = path.join(generateExamBasePath(exam.number, exam.year, exam.month), 'Scan.pdf')
+    .command('open-exam <ref>')
+    .description('Open a exam scan: 66116:2020:09')
+    .alias('o')
+    .action(function (ref, cmdObj) {
+    var exam = splitExamRef(ref);
+    var examPath = path.join(generateExamBasePath(exam.number, exam.year, exam.month), 'Scan.pdf');
     if (fs.existsSync(examPath)) {
-      open('/usr/bin/xdg-open', examPath)
-    } else {
-      console.log(`Path ${examPath} doesn’t exist.`)
+        openWithExecutable('/usr/bin/xdg-open', examPath);
     }
-  })
-
+    else {
+        console.log("Path " + examPath + " doesn\u2019t exist.");
+    }
+});
 /*******************************************************************************
  * generate-readme
  ******************************************************************************/
-
-function cleanTag (tag) {
-  return tag.replace(/\s+/g, ' ')
+function cleanTag(tag) {
+    return tag.replace(/\s+/g, ' ');
 }
-
 function assembleMacroRegExp(macroName) {
-  return new RegExp('\\' + macroName + '\{([^\}]*)\}', 'g')
+    return new RegExp('\\' + macroName + '\{([^\}]*)\}', 'g');
 }
-
 /**
  * Collect the tags of a content string.
  *
  * @param {string} content - The content of a TeX file.
  */
-function collectTagsOfContent (content) {
-  const re = assembleMacroRegExp('index')
-  let match
-  const tags = new Set()
-  do {
-    match = re.exec(content)
-    if (match) {
-      const tag = cleanTag(match[1])
-      try {
-        checkTag(tag)
-      } catch (error) {
-        openCode(filePath)
-        throw new Error(`Unknown tag ${tag} in file ${filePath}`)
-      }
-      tags.add(tag)
-    }
-  } while (match)
-  return [...tags]
+function collectTagsOfContent(content) {
+    var re = assembleMacroRegExp('index');
+    var match;
+    var tags = new Set();
+    do {
+        match = re.exec(content);
+        if (match) {
+            var tag = cleanTag(match[1]);
+            try {
+                checkTag(tag);
+            }
+            catch (error) {
+                throw new Error("Unknown tag " + tag + " in file " + content);
+            }
+            tags.add(tag);
+        }
+    } while (match);
+    return Array.from(tags);
 }
-
-function getContentOfTexMacro(macroName, markup) {
-  const regExp = assembleMacroRegExp(macroName)
-  const match = regExp.exec(markup)
-  if (match) return match[1]
-}
-
 /**
  * Collect the tags of a TeX file.
  * @param {string} filePath
  */
-function collectTagsOfFile (filePath) {
-  return collectTagsOfContent(readRepoFile(filePath))
+function collectTagsOfFile(filePath) {
+    return collectTagsOfContent(readRepoFile(filePath));
 }
-
-function formatTagsOfFile (filePath) {
-  const tags = collectTagsOfFile(filePath)
-  return formatTags (tags)
+function getContentOfTexMacro(macroName, markup) {
+    var regExp = assembleMacroRegExp(macroName);
+    var match = regExp.exec(markup);
+    if (match)
+        return match[1];
 }
-
-function formatTags (tagsList) {
-  if (tagsList.length > 0) {
-    return ` (${tagsList.join(', ')})`
-  }
-  return ''
+function formatTagsOfFile(filePath) {
+    var tags = collectTagsOfFile(filePath);
+    return formatTags(tags);
 }
-
-function generateQuestionTitleFromPath (filePath) {
-  const content = readRepoFile(filePath)
-  const tags = formatTags(collectTagsOfContent(content))
-  const title = getContentOfTexMacro('liAufgabenTitel', content)
-  let prefix
-  if (title) {
-    prefix = title
-  } else {
-    prefix = 'Aufgabe'
-  }
-  return formatMarkdownLink(`${prefix}${tags}`, filePath)
-}
-
-function generateFilePathsByTagCollection () {
-  const files = glob.sync('**/*.tex')
-  const tagsCollection = {}
-  for (const filePath of files) {
-    const tags = collectTagsOfFile(filePath)
-    for (const tag of tags) {
-      if (tagsCollection[tag]) {
-        tagsCollection[tag].push(filePath)
-      } else {
-        tagsCollection[tag] = []
-        tagsCollection[tag].push(filePath)
-      }
+function formatTags(tagsList) {
+    if (tagsList.length > 0) {
+        return " (" + tagsList.join(', ') + ")";
     }
-  }
-  return tagsCollection
+    return '';
 }
-
-const questionPathRegExp = /(Thema-\d\/)?(Teilaufgabe-\d\/)?Aufgabe-\d\.tex$/
-
+function generateQuestionTitleFromPath(filePath) {
+    var content = readRepoFile(filePath);
+    var tags = formatTags(collectTagsOfContent(content));
+    var title = getContentOfTexMacro('liAufgabenTitel', content);
+    var prefix;
+    if (title) {
+        prefix = title;
+    }
+    else {
+        prefix = 'Aufgabe';
+    }
+    return formatMarkdownLink("" + prefix + tags, filePath);
+}
+function generateFilePathsByTagCollection() {
+    var files = glob.sync('**/*.tex', { cwd: repositoryPath });
+    var tagsCollection = {};
+    for (var _i = 0, files_1 = files; _i < files_1.length; _i++) {
+        var filePath = files_1[_i];
+        var tags = collectTagsOfFile(filePath);
+        for (var _a = 0, tags_1 = tags; _a < tags_1.length; _a++) {
+            var tag = tags_1[_a];
+            if (tagsCollection[tag]) {
+                tagsCollection[tag].push(filePath);
+            }
+            else {
+                tagsCollection[tag] = [];
+                tagsCollection[tag].push(filePath);
+            }
+        }
+    }
+    return tagsCollection;
+}
+var questionPathRegExp = /(Thema-\d\/)?(Teilaufgabe-\d\/)?Aufgabe-\d\.tex$/;
 /**
  * ```js
  * [
@@ -392,41 +380,42 @@ const questionPathRegExp = /(Thema-\d\/)?(Teilaufgabe-\d\/)?Aufgabe-\d\.tex$/
  *
  * @param {string} relPath
  */
-function parseQuestions (relPath) {
-  /**
-   * Thema-1: Thema 1
-   * Teilaufgabe-2: Teilaufgabe 2
-   * Aufgabe-3.tex: Aufgabe 3
-   */
-  function makeSegmentReadable (segment) {
-    return segment.replace('-', ' ').replace('.tex', '')
-  }
-  const files = glob.sync('**/*.tex', { cwd: relPath })
-  const tree = {}
-  for (const filePath of files) {
-    if (filePath.match(questionPathRegExp)) {
-      const segments = filePath.split(path.sep)
-      let subTree = tree
-      for (const segment of segments) {
-        const segmentReadable = makeSegmentReadable(segment)
-        if (!subTree[segmentReadable] && segment.indexOf('.tex') === -1) {
-          subTree[segmentReadable] = {}
-        } else if (segment.indexOf('.tex') > -1) {
-          subTree[segmentReadable] = filePath
-        }
-        if (segment.indexOf('.tex') === -1) {
-          subTree = subTree[segmentReadable]
-        }
-      }
+function parseQuestions(relPath) {
+    /**
+     * Thema-1: Thema 1
+     * Teilaufgabe-2: Teilaufgabe 2
+     * Aufgabe-3.tex: Aufgabe 3
+     */
+    function makeSegmentReadable(segment) {
+        return segment.replace('-', ' ').replace('.tex', '');
     }
-  }
-  return tree
+    var files = glob.sync('**/*.tex', { cwd: relPath });
+    var tree = {};
+    for (var _i = 0, files_2 = files; _i < files_2.length; _i++) {
+        var filePath = files_2[_i];
+        if (filePath.match(questionPathRegExp)) {
+            var segments = filePath.split(path.sep);
+            var subTree = tree;
+            for (var _a = 0, segments_1 = segments; _a < segments_1.length; _a++) {
+                var segment = segments_1[_a];
+                var segmentReadable = makeSegmentReadable(segment);
+                if (!subTree[segmentReadable] && segment.indexOf('.tex') === -1) {
+                    subTree[segmentReadable] = {};
+                }
+                else if (segment.indexOf('.tex') > -1) {
+                    subTree[segmentReadable] = filePath;
+                }
+                if (segment.indexOf('.tex') === -1) {
+                    subTree = subTree[segmentReadable];
+                }
+            }
+        }
+    }
+    return tree;
 }
-
 function formatIndentation(level) {
-  return '\n' + ' '.repeat(4 * level) + '- '
+    return '\n' + ' '.repeat(4 * level) + '- ';
 }
-
 /**
  * ```md
  * - 2015 Frühjahr: [Scan.pdf](...46116/2015/03/Scan.pdf) [OCR.txt](…46116/2015/03/OCR.txt)
@@ -442,173 +431,165 @@ function formatIndentation(level) {
  * @param {string} examPath
  * @param {integer} level
  */
-function formatQuestionsRecursive (questionsTree, examPath, level = 1) {
-  let output = []
-  // title: Thema 1, Teilaufgabe 2, Aufgabe 3
-  for (const title in questionsTree) {
-    if (typeof questionsTree[title] === 'string') {
-      const questionPath = path.join(examPath, questionsTree[title])
-      output.push(formatIndentation(level) + formatMarkdownLink(title + formatTagsOfFile(questionPath), questionPath.replace('.tex', '.pdf')))
-    } else {
-      output.push(`${formatIndentation(level)}${title} ${formatQuestionsRecursive(questionsTree[title], examPath, level + 1)}`)
-    }
-  }
-  return output.join(' ')
-}
-
-function formatQuestions (relPath) {
-  return formatQuestionsRecursive(parseQuestions(relPath), relPath)
-}
-
-class OutputCollector {
-  constructor(verbose = false) {
-    this.store = []
-    this.verbose = verbose
-  }
-
-  add (output) {
-    if (this.verbose) console.log(output)
-    this.store.push(output)
-  }
-
-  getString() {
-    return this.store.join('\n')
-  }
-}
-
-function formatExamTitle (year, month) {
-  let monthLong
-  if (month === '09') {
-    monthLong = 'Herbst'
-  } else {
-    monthLong = 'Frühjahr'
-  }
-  return `${year} ${monthLong}`
-}
-
-function formatTopLevelFilePathList (filePathsList) {
-  const item = []
-  for (const filePath of filePathsList) {
-    item.push('- ' + generateQuestionTitleFromPath(filePath))
-  }
-  return item.join('\n')
-}
-
-function replaceTagsInReadme (content) {
-  return content.replace(/\{\{ stichwort "([\w\d- ]*)" \}\}/g, function(wholeMatch, foundTag) {
-    return formatTopLevelFilePathList(listFilePathsByTag(foundTag))
-  })
-}
-
-const filePathsByTagCollection = generateFilePathsByTagCollection()
-
-function listFilePathsByTag (tag) {
-  const flatTags = getFlatSubTagsByTag(tagsTree, tag)
-  const filePaths = new Set()
-  for (const t of flatTags) {
-    if (filePathsByTagCollection[t]) {
-      for (const filePath of filePathsByTagCollection[t]) {
-        filePaths.add(filePath)
-      }
-    }
-  }
-  return [...filePaths].sort()
-}
-
-program
-  .command('generate-readme')
-  .description('Generate the readme file')
-  .alias('r')
-  .action(function (cmdObj) {
-    function fileLink (relPath, fileName) {
-      return formatMarkdownLink(fileName, path.join(relPath, fileName))
-    }
-
-    const output = new OutputCollector()
-
-    let readmeContent = readRepoFile('README_template.md')
-
-    readmeContent = replaceTagsInReadme(readmeContent)
-
-    const tagsContent = readRepoFile('Stichwortverzeichnis.yml')
-    readmeContent = readmeContent.replace('{{ stichwortverzeichnis }}', tagsContent)
-
-    for (const examNumber in examTitles) {
-      output.add(`\n### ${examNumber}: ${examTitles[examNumber]}\n`)
-      const examNumberPath = path.join(repositoryPath, 'Staatsexamen', examNumber)
-      const yearDirs = fs.readdirSync(examNumberPath)
-      for (const year of yearDirs) {
-        const yearPath = path.join(examNumberPath, year)
-        const monthDirs = fs.readdirSync(yearPath)
-        for (const month of monthDirs) {
-          const monthPath = path.join(yearPath, month)
-          output.add(`- ${formatExamTitle(year, month)}: ${fileLink(monthPath, 'Scan.pdf')} ${fileLink(monthPath, 'OCR.txt')} ${formatQuestions(monthPath)}`)
+function formatQuestionsRecursive(questionsTree, examPath, level) {
+    if (level === void 0) { level = 1; }
+    var output = [];
+    // title: Thema 1, Teilaufgabe 2, Aufgabe 3
+    for (var title in questionsTree) {
+        if (typeof questionsTree[title] === 'string') {
+            var questionPath = path.join(examPath, questionsTree[title]);
+            output.push(formatIndentation(level) + formatMarkdownLink(title + formatTagsOfFile(questionPath), questionPath.replace('.tex', '.pdf')));
         }
-      }
+        else {
+            output.push("" + formatIndentation(level) + title + " " + formatQuestionsRecursive(questionsTree[title], examPath, level + 1));
+        }
     }
-
-    readmeContent = readmeContent.replace('{{ staatsexamen }}', output.getString())
+    return output.join(' ');
+}
+function formatQuestions(relPath) {
+    return formatQuestionsRecursive(parseQuestions(relPath), relPath);
+}
+var OutputCollector = /** @class */ (function () {
+    function OutputCollector(verbose) {
+        if (verbose === void 0) { verbose = false; }
+        this.store = [];
+        this.verbose = verbose;
+    }
+    OutputCollector.prototype.add = function (output) {
+        if (this.verbose)
+            console.log(output);
+        this.store.push(output);
+    };
+    OutputCollector.prototype.getString = function () {
+        return this.store.join('\n');
+    };
+    return OutputCollector;
+}());
+function formatExamTitle(year, month) {
+    var monthLong;
+    if (month === '09') {
+        monthLong = 'Herbst';
+    }
+    else {
+        monthLong = 'Frühjahr';
+    }
+    return year + " " + monthLong;
+}
+function formatTopLevelFilePathList(filePathsList) {
+    var item = [];
+    for (var _i = 0, filePathsList_1 = filePathsList; _i < filePathsList_1.length; _i++) {
+        var filePath = filePathsList_1[_i];
+        item.push('- ' + generateQuestionTitleFromPath(filePath));
+    }
+    return item.join('\n');
+}
+function replaceTagsInReadme(content) {
+    return content.replace(/\{\{ stichwort "([\w\d- ]*)" \}\}/g, function (wholeMatch, foundTag) {
+        return formatTopLevelFilePathList(listFilePathsByTag(foundTag));
+    });
+}
+var filePathsByTagCollection = generateFilePathsByTagCollection();
+function listFilePathsByTag(tag) {
+    var flatTags = getFlatSubTagsByTag(tagsTree, tag);
+    var filePaths = new Set();
+    for (var _i = 0, flatTags_1 = flatTags; _i < flatTags_1.length; _i++) {
+        var t = flatTags_1[_i];
+        if (filePathsByTagCollection[t]) {
+            for (var _a = 0, _b = filePathsByTagCollection[t]; _a < _b.length; _a++) {
+                var filePath = _b[_a];
+                filePaths.add(filePath);
+            }
+        }
+    }
+    return Array.from(filePaths).sort();
+}
+program
+    .command('generate-readme')
+    .description('Generate the readme file')
+    .alias('r')
+    .action(function (cmdObj) {
+    function fileLink(relPath, fileName) {
+        return formatMarkdownLink(fileName, path.join(relPath, fileName));
+    }
+    var output = new OutputCollector();
+    var readmeContent = readRepoFile('README_template.md');
+    readmeContent = replaceTagsInReadme(readmeContent);
+    var tagsContent = readRepoFile('Stichwortverzeichnis.yml');
+    readmeContent = readmeContent.replace('{{ stichwortverzeichnis }}', tagsContent);
+    for (var examNumber in examTitles) {
+        output.add("\n### " + examNumber + ": " + examTitles[examNumber] + "\n");
+        var examNumberPath = path.join(repositoryPath, 'Staatsexamen', examNumber);
+        var yearDirs = fs.readdirSync(examNumberPath);
+        for (var _i = 0, yearDirs_1 = yearDirs; _i < yearDirs_1.length; _i++) {
+            var year = yearDirs_1[_i];
+            var yearPath = path.join(examNumberPath, year);
+            var monthDirs = fs.readdirSync(yearPath);
+            for (var _a = 0, monthDirs_1 = monthDirs; _a < monthDirs_1.length; _a++) {
+                var month = monthDirs_1[_a];
+                var monthPath = path.join(yearPath, month);
+                output.add("- " + formatExamTitle(year, month) + ": " + fileLink(monthPath, 'Scan.pdf') + " " + fileLink(monthPath, 'OCR.txt') + " " + formatQuestions(monthPath));
+            }
+        }
+    }
+    readmeContent = readmeContent.replace('{{ staatsexamen }}', output.getString());
     //console.log(readmeContent)
-    fs.writeFileSync(path.join(repositoryPath, 'README.md'), readmeContent)
-  })
-
+    fs.writeFileSync(path.join(repositoryPath, 'README.md'), readmeContent);
+});
 /*******************************************************************************
  * compile-questions
  ******************************************************************************/
-
 program
-  .command('compile-questions')
-  .description('Compile all questions')
-  .alias('q')
-  .action(function (cmdObj) {
-    const staatsexamenPath = path.join(repositoryPath, 'Staatsexamen')
-    const files = glob.sync('**/*.tex', { cwd: staatsexamenPath })
-    for (let filePath of files) {
-      filePath = path.join(staatsexamenPath, filePath)
-      if(filePath.match(questionPathRegExp)) {
-        console.log(filePath)
-        const result = childProcess.spawnSync('/usr/local/texlive/bin/x86_64-linux/latexmk', ['-shell-escape', '-cd', '--lualatex', filePath], {
-          encoding: 'utf-8'
-        })
-
-        if (result.status !== 0) {
-          console.log(result.stdout)
-          console.log(result.stderr)
-          openCode(filePath)
-          throw new Error(`Error compiling ${filePath}`)
+    .command('compile-questions')
+    .description('Compile all questions')
+    .alias('q')
+    .action(function (cmdObj) {
+    var staatsexamenPath = path.join(repositoryPath, 'Staatsexamen');
+    var files = glob.sync('**/*.tex', { cwd: staatsexamenPath });
+    for (var _i = 0, files_3 = files; _i < files_3.length; _i++) {
+        var filePath = files_3[_i];
+        filePath = path.join(staatsexamenPath, filePath);
+        if (filePath.match(questionPathRegExp)) {
+            console.log(filePath);
+            var result = childProcess.spawnSync('/usr/local/texlive/bin/x86_64-linux/latexmk', ['-shell-escape', '-cd', '--lualatex', filePath], {
+                encoding: 'utf-8'
+            });
+            if (result.status !== 0) {
+                console.log(result.stdout);
+                console.log(result.stderr);
+                openCode(filePath);
+                throw new Error("Error compiling " + filePath);
+            }
         }
-      }
     }
-  })
-
+});
 /*******************************************************************************
  * vscode
  ******************************************************************************/
-
 program
-  .command('vscode [glob]')
-  .alias('vsc')
-  .description('Open in Visual Studio Code')
-  .option('-n, --notag', 'Open only questions without an tag macro in it.')
-  .action(function (globPattern, cmdObj) {
+    .command('vscode [glob]')
+    .alias('vsc')
+    .description('Open in Visual Studio Code')
+    .option('-n, --notag', 'Open only questions without an tag macro in it.')
+    .action(function (globPattern, cmdObj) {
     function openWithLogging(filePath) {
-      console.log(filePath)
-      openCode(filePath)
+        console.log(filePath);
+        openCode(filePath);
     }
-
     if (typeof globPattern !== 'string') {
-      globPattern = '**/*.tex'
+        globPattern = '**/*.tex';
     }
-    const files = glob.sync(globPattern)
-    for (let filePath of files) {
-      filePath = path.resolve(filePath)
-      if (cmdObj.notag) {
-        const tags = collectTagsOfFile(filePath)
-        if (tags.length == 0) openWithLogging(filePath)
-      } else {
-        openWithLogging(filePath)
-      }
+    var files = glob.sync(globPattern);
+    for (var _i = 0, files_4 = files; _i < files_4.length; _i++) {
+        var filePath = files_4[_i];
+        filePath = path.resolve(filePath);
+        if (cmdObj.notag) {
+            var tags = collectTagsOfFile(filePath);
+            if (tags.length == 0)
+                openWithLogging(filePath);
+        }
+        else {
+            openWithLogging(filePath);
+        }
     }
-  })
-
-program.parse(process.argv)
+});
+program.parse(process.argv);

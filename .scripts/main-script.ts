@@ -23,7 +23,7 @@ function parseConfigurationFile (configPath: string): string {
 
 const repositoryPath = parseConfigurationFile(configPath)
 
-const examTitles = {
+const examTitles: { [key: number]: string } = {
   46110: 'Grundlagen der Informatik (nicht vertieft)',
   46111: 'Programmentwicklung / Systemprogrammierung / Datenbanksysteme (nicht vertieft)',
   46112: 'Grundlagen der Informatik (nicht vertieft)',
@@ -41,7 +41,7 @@ const examTitles = {
   66114: 'Datenbank- und Betriebssysteme (vertieft)',
   66115: 'Theoretische Informatik / Algorithmen (vertieft)',
   66116: 'Datenbanksysteme / Softwaretechnologie (vertieft)',
-  66118: 'Fachdidaktik (Gymnasium)'
+  66118: 'Fachdidaktik (Gymnasium)',
 }
 
 const githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main'
@@ -123,7 +123,7 @@ function checkTag (tag: string): void {
   }
 }
 
-function open (executable: string, filePath: string): void {
+function openWithExecutable (executable: string, filePath: string): void {
   const subprocess = childProcess.spawn(executable, [filePath], {
     detached: true,
     stdio: 'ignore'
@@ -133,7 +133,7 @@ function open (executable: string, filePath: string): void {
 }
 
 function openCode (filePath: string) {
-  open('/usr/bin/code', filePath)
+  openWithExecutable('/usr/bin/code', filePath)
 }
 
 function readFile (filePath: string) {
@@ -149,7 +149,7 @@ function generateExamBasePath (number: string, year: string, month: string): str
   return path.join(__dirname, '..', 'Staatsexamen', number, year, month)
 }
 
-function generateQuestionPath (arg1: string, arg2?: string, arg3?: string): string {
+function generateQuestionPath (arg1: number, arg2?: number, arg3?: number): string {
   if (arg1 && arg2 && arg3) {
     return path.join(`Thema-${arg1}`, `Teilaufgabe-${arg2}`, `Aufgabe-${arg3}.tex`)
   } else if (arg1 && arg2 && !arg3) {
@@ -233,14 +233,18 @@ program
   .description('Create a exam question template in the right directory folder: 66116:2020:09')
   .alias('c')
   .action(function (ref: string, arg1: string, arg2: string, arg3: string, cmdObj: object): void {
-    arg1 = checkNumber(arg1)
-    arg2 = checkNumber(arg2)
-    arg3 = checkNumber(arg3)
+    const num1 = checkNumber(arg1)
+    const num2 = checkNumber(arg2)
+    const num3 = checkNumber(arg3)
+
+    if (!num1) {
+      throw Error(`Undefined ${num1}`)
+    }
 
     const exam = splitExamRef(ref)
     const questionPath = path.join(
       generateExamBasePath(exam.number, exam.year, exam.month),
-      generateQuestionPath(arg1, arg2, arg3)
+      generateQuestionPath(num1, num2, num3)
     )
 
     const template =
@@ -266,11 +270,11 @@ program
   .command('open-exam <ref>')
   .description('Open a exam scan: 66116:2020:09')
   .alias('o')
-  .action(function (ref, cmdObj) {
+  .action(function (ref: string, cmdObj: object): void {
     const exam = splitExamRef(ref)
     const examPath = path.join(generateExamBasePath(exam.number, exam.year, exam.month), 'Scan.pdf')
     if (fs.existsSync(examPath)) {
-      open('/usr/bin/xdg-open', examPath)
+      openWithExecutable('/usr/bin/xdg-open', examPath)
     } else {
       console.log(`Path ${examPath} doesn’t exist.`)
     }
@@ -304,18 +308,12 @@ function collectTagsOfContent (content: string) {
       try {
         checkTag(tag)
       } catch (error) {
-        throw new Error(`Unknown tag ${tag} in file ${filePath}`)
+        throw new Error(`Unknown tag ${tag} in file ${content}`)
       }
       tags.add(tag)
     }
   } while (match)
-  return [...tags]
-}
-
-function getContentOfTexMacro(macroName: string, markup: string) {
-  const regExp = assembleMacroRegExp(macroName)
-  const match = regExp.exec(markup)
-  if (match) return match[1]
+  return Array.from(tags)
 }
 
 /**
@@ -326,19 +324,25 @@ function collectTagsOfFile (filePath: string) {
   return collectTagsOfContent(readRepoFile(filePath))
 }
 
+function getContentOfTexMacro(macroName: string, markup: string) {
+  const regExp = assembleMacroRegExp(macroName)
+  const match = regExp.exec(markup)
+  if (match) return match[1]
+}
+
 function formatTagsOfFile (filePath: string) {
   const tags = collectTagsOfFile(filePath)
   return formatTags (tags)
 }
 
-function formatTags (tagsList) {
+function formatTags (tagsList: string[]): string {
   if (tagsList.length > 0) {
     return ` (${tagsList.join(', ')})`
   }
   return ''
 }
 
-function generateQuestionTitleFromPath (filePath) {
+function generateQuestionTitleFromPath (filePath: string): string {
   const content = readRepoFile(filePath)
   const tags = formatTags(collectTagsOfContent(content))
   const title = getContentOfTexMacro('liAufgabenTitel', content)
@@ -352,7 +356,7 @@ function generateQuestionTitleFromPath (filePath) {
 }
 
 function generateFilePathsByTagCollection (): StringObject {
-  const files = glob.sync('**/*.tex')
+  const files = glob.sync('**/*.tex', { cwd: repositoryPath })
   const tagsCollection: StringObject = {}
   for (const filePath of files) {
     const tags = collectTagsOfFile(filePath)
@@ -436,7 +440,7 @@ function parseQuestions (relPath: string) {
   return tree
 }
 
-function formatIndentation(level) {
+function formatIndentation(level: number): string {
   return '\n' + ' '.repeat(4 * level) + '- '
 }
 
@@ -455,7 +459,7 @@ function formatIndentation(level) {
  * @param {string} examPath
  * @param {integer} level
  */
-function formatQuestionsRecursive (questionsTree, examPath, level = 1) {
+function formatQuestionsRecursive (questionsTree: StringObject, examPath: string, level: number = 1): string {
   let output = []
   // title: Thema 1, Teilaufgabe 2, Aufgabe 3
   for (const title in questionsTree) {
@@ -517,7 +521,7 @@ function replaceTagsInReadme (content: string): string {
 
 const filePathsByTagCollection = generateFilePathsByTagCollection()
 
-function listFilePathsByTag (tag) {
+function listFilePathsByTag (tag: string): string[] {
   const flatTags = getFlatSubTagsByTag(tagsTree, tag)
   const filePaths = new Set<string>()
   for (const t of flatTags) {
@@ -527,7 +531,7 @@ function listFilePathsByTag (tag) {
       }
     }
   }
-  return [...filePaths].sort()
+  return Array.from(filePaths).sort()
 }
 
 program
