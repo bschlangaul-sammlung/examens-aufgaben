@@ -461,7 +461,6 @@ function formatTopLevelFilePathList (filePathsList) {
 
 function replaceTagsInReadme (content) {
   return content.replace(/\{\{ stichwort "([\w\d- ]*)" \}\}/g, function(wholeMatch, foundTag) {
-    console.log(listFilePathsByTag(foundTag))
     return formatTopLevelFilePathList(listFilePathsByTag(foundTag))
   })
 }
@@ -486,25 +485,8 @@ program
   .description('Generate the readme file')
   .alias('r')
   .action(function (cmdObj) {
-    // console.log(collectFilePathsOfTag())
-
-    // console.log(getFlatSubTagsByTag(tagsTree, 'SOSY'))
     function fileLink (relPath, fileName) {
       return formatMarkdownLink(fileName, path.join(relPath, fileName))
-    }
-
-    const urlTokens = {
-      DB: `${githubRawUrl}/01-DB`,
-      AUD: `${githubRawUrl}/02-Programmierung/02-AUD`,
-      OOMUP: `${githubRawUrl}/02-Programmierung/01-OOMUP`,
-      EXAMEN: `${githubRawUrl}/01-Staatsexamen`,
-    }
-
-    function replaceUrlTokens (readmeContent) {
-      for (const token in urlTokens) {
-        readmeContent = readmeContent.replace(new RegExp(`//${token}`, 'g'), urlTokens[token])
-      }
-      return readmeContent
     }
 
     const output = new OutputCollector()
@@ -512,8 +494,6 @@ program
     let readmeContent = readRepoFile('README_template.md')
 
     readmeContent = replaceTagsInReadme(readmeContent)
-
-    readmeContent = replaceUrlTokens(readmeContent)
 
     const tagsContent = readRepoFile('Stichwörter.yml')
     readmeContent = readmeContent.replace('{{ stichwörter }}', tagsContent)
