@@ -6,5 +6,5 @@ Setzen von Aufgabensammlungen, Theorie-Zusammenfassungen etc.]
 \RequirePackage{lehramt-informatik-basis}
 
 % Formatierung muss vor literatur sein, sonst Option clash
-\InformatikPakete{formatierung,literatur,makros}
+\liLadePakete{formatierung,literatur,makros}
 \RequirePackage{standalone}

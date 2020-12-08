@@ -44,12 +44,44 @@ kann ganz normaler Text - also auch mit Leerzeichen eingesetzt werden.
 
 # LaTeX
 
-## Pakete
+Alle eigenen LaTeX-Klassen- und Pakete haben das Präfix
+`lehramt-informatik-` im Namen. Wird hier von `rmodell.sty` gesprochen,
+so heißt das gemeinte Paket `lehramt-informatik-rmodell.sty`.
+`haupt.cls` bedeutete beispielsweise die Klasse
+`lehramt-informatik-haupt.cls`.
 
 Alle selbst definierten Makros und Umgebungen haben zur besseren
 Unterscheidung ein Präfix: `li` = `Lehramt Informatik`
 
-### `rmodell`: Makros und Umgebungen zum Setzen des Relationenmodells beim Thema Datenbanken.
+## Klassen
+
+### `haupt.cls`
+
+Haupt-Klasse zum Setzen von Aufgabensammlungen,
+Theorie-Zusammenfassungen etc.
+
+### `aufgabe.cls`
+
+Minimale Klasse zu Setzen einer Aufgabe
+
+Einige Funktionen wie z. B. die Bibliotheks-Unterstützung sind
+herausgepachted, um Aufgaben schnell kompilieren zu können.
+
+In den Aufgaben dürfen keine zusätzlichen Pakete mit Hilfe von
+`\usepackage{}` geladen werden, denn jede einzelne Aufgabe soll in ein
+größeres Dokument durch das Paket `standalone` eingebunden werden
+können. `standalone` ignoiert die Präabeln vor `\begin{document}`.
+Werden zusätzliche Pakete benötigt, muss ein projekteigenes Paket im
+Ordner `.tex/erweiterungen` angelegt werden. Mit dem Makro
+`\liLadePakete{er,rmodell}` können die Pakete in `.tex/erweiterungen`
+dann geladen werden.
+
+## Pakete
+
+### `rmodell.sty`
+
+Makros und Umgebungen zum Setzen des Relationenmodells beim Thema
+Datenbanken.
 
 * Makro: `\liPrimaer{}`: Unterstreichung für den Primärschlüssel
 * Makro: `\liFremd{}`: Überstreichung für den Fremdschlüssel

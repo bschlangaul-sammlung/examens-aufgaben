@@ -231,7 +231,7 @@ program
 
     const template =
       '\\documentclass{lehramt-informatik-aufgabe}\n' +
-      '\\InformatikPakete{}\n' +
+      '\\liLadePakete{}\n' +
       '\\begin{document}\n' +
       '\n' +
       '\\end{document}\n'
