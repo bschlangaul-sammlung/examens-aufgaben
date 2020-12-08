@@ -70,7 +70,7 @@ herausgepachted, um Aufgaben schnell kompilieren zu können.
 In den Aufgaben dürfen keine zusätzlichen Pakete mit Hilfe von
 `\usepackage{}` geladen werden, denn jede einzelne Aufgabe soll in ein
 größeres Dokument durch das Paket `standalone` eingebunden werden
-können. `standalone` ignoiert die Präabeln vor `\begin{document}`.
+können. `standalone` ignoriert die Präabeln vor `\begin{document}`.
 Werden zusätzliche Pakete benötigt, muss ein projekteigenes Paket im
 Ordner `.tex/erweiterungen` angelegt werden. Mit dem Makro
 `\liLadePakete{er,rmodell}` können die Pakete in `.tex/erweiterungen`
@@ -86,6 +86,16 @@ Datenbanken.
 * Makro: `\liPrimaer{}`: Unterstreichung für den Primärschlüssel
 * Makro: `\liFremd{}`: Überstreichung für den Fremdschlüssel
 * Umgebung: `\begin{liRmodell} \end{liRmodell}`: Kleinere Schrift und Schreibmaschinenschrift.
+
+### `syntax.sty`
+
+Ein Hüll-Paket um `minted`, das sich um die Syntax-Hervorhebung des
+Java-Codes kümmert.
+
+### `uml.sty`
+
+Ein Hüll-Paket um `tikz-uml`, das einige Design-Einstellungen vornimmt
+und manche Erweiterung bereitstellt
 
 ## TeX-Klassen und Pakete installieren
 
