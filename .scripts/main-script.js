@@ -46,7 +46,7 @@ const githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-inform
 
 function parseTags () {
   try {
-    return yaml.safeLoad(readRepoFile('Stichwörter.yml'))
+    return yaml.safeLoad(readRepoFile('Stichwortverzeichnis.yml'))
   } catch (e) {
     console.log(e);
   }
@@ -495,8 +495,8 @@ program
 
     readmeContent = replaceTagsInReadme(readmeContent)
 
-    const tagsContent = readRepoFile('Stichwörter.yml')
-    readmeContent = readmeContent.replace('{{ stichwörter }}', tagsContent)
+    const tagsContent = readRepoFile('Stichwortverzeichnis.yml')
+    readmeContent = readmeContent.replace('{{ stichwortverzeichnis }}', tagsContent)
 
     for (const examNumber in examTitles) {
       output.add(`\n### ${examNumber}: ${examTitles[examNumber]}\n`)

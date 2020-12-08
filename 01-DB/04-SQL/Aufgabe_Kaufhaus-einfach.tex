@@ -1,0 +1,189 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{Kaufhausdatenbank (einfach)}
+\section{Kaufhausdatenbank - einfacher Einstieg
+\index{SQL}
+\footcite{db:ab:2}
+}
+
+Die relationale Datenbank eines Kaufhauses enthält folgende Tabelle mit
+dem Namen „Artikel“:
+
+\begin{tabular}{llll}
+ArtNr & Bezeichnung  & Verkaufspreis & Einkaufspreis \\
+95    & Kamm         & 1.25          & 0.80          \\
+97    & Kamm         & 0.99          & 0.75          \\
+507   & Seife        & 3.93          & 2.45          \\
+1056  & Zwieback     & 1.20          & 0.90          \\
+1401  & Räucherlachs & 4.90          & 3.60          \\
+2045  & Herrenhose   & 37.25         & 24.45         \\
+2046  & Herrenhose   & 20.00         & 17.00         \\
+2340  & Sommerkleid  & 94.60         & 71.50
+\end{tabular}
+
+Formulieren Sie mit Hilfe von SQL folgende Anfragen:
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Gesucht sind alle Informationen über Herrenhose und Sommerkleid!
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT *
+FROM Artikel
+WHERE
+  Bezeichnung = 'Herrenhose' OR
+  Bezeichnung = 'Sommerkleid';
+\end{minted}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Welche Artikelnummer hat der Zwieback?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT ArtNr
+FROM Artikel
+WHERE
+  Bezeichnung = 'Zwieback';
+\end{minted}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Welche Waren (Artikelnummer und Verkaufspreis) werden für mehr als
+25€ verkauft?
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT ArtNr, Verkaufspreis
+FROM Artikel
+WHERE Verkaufspreis > 25.00;
+\end{minted}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Welche Artikel (Angabe der Bezeichnung) bietet das Kaufhaus an?
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT DISTINCT Bezeichnung
+FROM Artikel;
+\end{minted}
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item Gesucht sind die Artikelnummern aller Artikel mit Ausnahme der
+Artikelnummer 2046.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT ArtNr
+FROM Artikel
+WHERE NOT (ArtNr = 2046);
+\end{minted}
+\end{antwort}
+
+%%
+% (f)
+%%
+
+\item Gib die Artikelnummern und die Verkaufspreise aller Herrenhosen
+aus, die für höchstens 25€ verkauft werden! Der Spaltenname für die
+Verkaufspreise soll in der Ergebnistabelle „Sonderangebot“ heißen.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT ArtNr, Verkaufspreis AS Sonderangebot
+FROM Artikel
+WHERE Bezeichnung = 'Herrenhose' AND Verkaufspreis <= 25;
+\end{minted}
+\end{antwort}
+
+%%
+% (g)
+%%
+
+\item Gib Artikelnummer und Verkaufspreis aller Artikel aus, die im
+Einkauf zwischen 80 Cent und 5€ kosten.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT ArtNr, Verkaufspreis
+FROM Artikel
+WHERE Einkaufspreis BETWEEN 0.80 AND 5.00;
+\end{minted}
+\end{antwort}
+
+\end{enumerate}
+
+\begin{minted}{sql}
+-- AB 2 AB 7
+
+-- sudo mysql  < Kaufhaus.sql
+-- DROP DATABASE IF EXISTS Kaufhaus;
+-- CREATE DATABASE Kaufhaus;
+-- USE Kaufhaus;
+
+CREATE TABLE Artikel (
+  ArtNr INTEGER PRIMARY KEY NOT NULL,
+  Bezeichnung VARCHAR(100) NOT NULL,
+  Verkaufspreis FLOAT(2),
+  Einkaufspreis FLOAT(2)
+);
+
+CREATE TABLE Abteilung (
+  Abteilungsname VARCHAR(60) NOT NULL,
+  Stockwerk VARCHAR(10) NOT NULL,
+  Abteilungsleiter VARCHAR(100),
+  PRIMARY KEY (Abteilungsname, Stockwerk)
+);
+
+CREATE TABLE Bestand (
+  Abteilungsname VARCHAR(100) REFERENCES Abteilung(Abteilungsname),
+  ArtNr INTEGER REFERENCES Artikel(ArtNr),
+  Vorrat INTEGER,
+  PRIMARY KEY (Abteilungsname, ArtNr)
+);
+
+-- Artikel
+
+INSERT INTO Artikel VALUES (95, 'Kamm', 1.25, 0.80);
+INSERT INTO Artikel VALUES (97, 'Kamm', 0.99, 0.75);
+INSERT INTO Artikel VALUES (507, 'Seife', 3.93, 2.45);
+INSERT INTO Artikel VALUES (1056, 'Zwieback', 1.20, 0.90);
+INSERT INTO Artikel VALUES (1401, 'Räucherlachs', 4.90, 3.60);
+INSERT INTO Artikel VALUES (2045, 'Herrenhose', 37.25, 24.45);
+INSERT INTO Artikel VALUES (2046, 'Herrenhose', 20.00, 17.00);
+INSERT INTO Artikel VALUES (2340, 'Sommerkleid', 94.60, 71.50);
+
+-- Abteilung
+
+INSERT INTO Abteilung VALUES ('Lebensmittel', 'I', 'Josef Kunz');
+INSERT INTO Abteilung VALUES ('Lebensmittel', 'EG', 'Monika Stiehl');
+INSERT INTO Abteilung VALUES ('Textilien', 'II', 'Monika Stiehl');
+
+-- Bestand
+
+INSERT INTO Bestand VALUES ('Lebensmittel', 1056, 129);
+INSERT INTO Bestand VALUES ('Lebensmittel', 1401, 200);
+INSERT INTO Bestand VALUES ('Textilien', 2045, 14);
+\end{minted}
+
+\end{document}

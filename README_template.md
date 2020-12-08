@@ -39,8 +39,14 @@ OCR des oben genannten Scans:
 Diese Informatik-Material- und Aufgabensammlung verwendet das TeX-Makro
 `\index{}` um ein Stichwortverzeichnis zu erstellen. In dieses Makro
 kann ganz normaler Text - also auch mit Leerzeichen eingesetzt werden.
+Die einzelnen Stichwörter werden in der YAML-Datei
+`Stichwortverzeichnis.yml` hinterlegt. Ein Stichwort muss eindeutig
+sein, d. h. es darf nicht doppelt vorkommen. Durch die YAML-Syntax kann
+die hierarchische Struktur des Verzeichnisses besser verwaltet werden.
+Alle Stichwörter beginnen mit `- `, damit die YAML-Datei hier unten
+als Markdown-Liste eingebettet werden kann.
 
-{{ stichwörter }}
+{{ stichwortverzeichnis }}
 
 # LaTeX
 
@@ -76,7 +82,21 @@ Ordner `.tex/erweiterungen` angelegt werden. Mit dem Makro
 `\liLadePakete{er,rmodell}` können die Pakete in `.tex/erweiterungen`
 dann geladen werden.
 
+Mit dem Makro `\liAufgabenTitel{}` kann einer Aufgabe ein prägnanter
+kurzer Titel gegeben werden.
+
 ## Pakete
+
+### `makros.sty`
+
+Eine Sammlung von häufig verwendeten Makros und Umgebungen, die
+thematisch zu keinem anderen Paket passen
+
+* Makro: `\liPseudoUeberschrift{}`: Text, der sich wie eine Überschrift
+  verhält.
+* Makro: `\liBeschriftung{}`: Ähnlich dem Makro
+  `\liPseudoUeberschrift{}`. Am Ende des Textes wird ein
+  Doppelpunktzeichen angehängt.
 
 ### `rmodell.sty`
 
