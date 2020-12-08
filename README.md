@@ -8,25 +8,42 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 
 #### Entity-Relation-Modell
 
-- [Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.tex)
-- [Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.tex)
-- [Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-2.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-2.tex)
-- [Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-5.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-5.tex)
-- [Staatsexamen/66111/1996/03/Aufgabe-2.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/Aufgabe-2.tex)
-- [Staatsexamen/66111/1997/09/Aufgabe-3.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/09/Aufgabe-3.tex)
-- [Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.tex)
-- [Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.tex)
-- [Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex)
-- [Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-2.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-2.tex)
+- [Aufgabe (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.tex)
+- [Aufgabe (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.tex)
+- [Aufgabe (Entity-Relation-Modell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-2.tex)
+- [Aufgabe (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-5.tex)
+- [Aufgabe (Entity-Relation-Modell, Verfeinertes Relationenmodell, SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/Aufgabe-2.tex)
+- [Aufgabe (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/09/Aufgabe-3.tex)
+- [Aufgabe (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.tex)
+- [Aufgabe (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.tex)
+- [Aufgabe (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex)
+- [Aufgabe (Entity-Relation-Modell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-2.tex)
 
 #### Relationenmodell
 
-- [Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.tex)
-- [Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.tex)
-- [Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-5.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-5.tex)
-- [Staatsexamen/66111/1997/09/Aufgabe-3.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/09/Aufgabe-3.tex)
-- [Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.tex)
-- [Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex)
+- [Aufgabe (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.tex)
+- [Aufgabe (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.tex)
+- [Aufgabe (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-5.tex)
+- [Aufgabe (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/09/Aufgabe-3.tex)
+- [Aufgabe (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.tex)
+- [Aufgabe (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex)
+
+#### SQL
+
+- [Kaufhausdatenbank (einfach) (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01-DB/04-SQL/Aufgabe_Kaufhaus-einfach.tex)
+- [Kaufhausdatenbank (reloaded) (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01-DB/04-SQL/Aufgabe_Kaufhaus-reloaded.tex)
+- [Aufgabe (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Thema-1/Teilaufgabe-1/Aufgabe-3.tex)
+- [Aufgabe (Relationale Algebra, SQL, Tupelkalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-2.tex)
+- [Aufgabe (SQL, GROUP BY, HAVING)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-3.tex)
+- [Computer „Chiemsee“ (Relationale Algebra, SQL, GROUP BY, HAVING)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-1.tex)
+- [Aufgabe (SQL, GROUP BY)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-2/Teilaufgabe-2/Aufgabe-4.tex)
+- [Aufgabe (SQL, CREATE TABLE, HAVING, EXCEPT, Top-N-Query, WITH, DELETE)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-4.tex)
+- [Aufgabe (SQL, CREATE TABLE)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-4.tex)
+- [Aufgabe (Entity-Relation-Modell, Verfeinertes Relationenmodell, SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/Aufgabe-2.tex)
+- [Aufgabe (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.tex)
+- [Aufgabe (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.tex)
+- [Aufgabe (SQL, VIEW, WITH, DELETE)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.tex)
+- [Aufgabe (SQL, CREATE TABLE, CONSTRAINT, ALTER TABLE, GROUP BY, HAVING)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.tex)
 
 ## Aufgaben geordnet nach Staatsexamen
 

@@ -14,6 +14,10 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 
 {{ stichwort "Relationenmodell" }}
 
+#### SQL
+
+{{ stichwort "SQL" }}
+
 ## Aufgaben geordnet nach Staatsexamen
 
 In diesem Repository findet Ihr viele Staatsexamensaufgaben. Von fast

@@ -270,13 +270,17 @@ function cleanTag (tag) {
   return tag.replace(/\s+/g, ' ')
 }
 
+function assembleMacroRegExp(macroName) {
+  return new RegExp('\\' + macroName + '\{([^\}]*)\}', 'g')
+}
+
 /**
- * Collect the tags of a TeX file.
- * @param {string} filePath
+ * Collect the tags of a content string.
+ *
+ * @param {string} content - The content of a TeX file.
  */
-function collectTagsOfFile (filePath) {
-  const content = readRepoFile(filePath)
-  const re = /\\index\{([^\}]*)\}/g
+function collectTagsOfContent (content) {
+  const re = assembleMacroRegExp('index')
   let match
   const tags = new Set()
   do {
@@ -295,12 +299,43 @@ function collectTagsOfFile (filePath) {
   return [...tags]
 }
 
+function getContentOfTexMacro(macroName, markup) {
+  const regExp = assembleMacroRegExp(macroName)
+  const match = regExp.exec(markup)
+  if (match) return match[1]
+}
+
+/**
+ * Collect the tags of a TeX file.
+ * @param {string} filePath
+ */
+function collectTagsOfFile (filePath) {
+  return collectTagsOfContent(readRepoFile(filePath))
+}
+
 function formatTagsOfFile (filePath) {
   const tags = collectTagsOfFile(filePath)
-  if (tags.length > 0) {
-    return ` (${tags.join(', ')})`
+  return formatTags (tags)
+}
+
+function formatTags (tagsList) {
+  if (tagsList.length > 0) {
+    return ` (${tagsList.join(', ')})`
   }
   return ''
+}
+
+function generateQuestionTitleFromPath (filePath) {
+  const content = readRepoFile(filePath)
+  const tags = formatTags(collectTagsOfContent(content))
+  const title = getContentOfTexMacro('liAufgabenTitel', content)
+  let prefix
+  if (title) {
+    prefix = title
+  } else {
+    prefix = 'Aufgabe'
+  }
+  return formatMarkdownLink(`${prefix}${tags}`, filePath)
 }
 
 function generateFilePathsByTagCollection () {
@@ -454,7 +489,7 @@ function formatExamTitle (year, month) {
 function formatTopLevelFilePathList (filePathsList) {
   const item = []
   for (const filePath of filePathsList) {
-    item.push('- ' + formatMarkdownLink(filePath, filePath))
+    item.push('- ' + generateQuestionTitleFromPath(filePath))
   }
   return item.join('\n')
 }
