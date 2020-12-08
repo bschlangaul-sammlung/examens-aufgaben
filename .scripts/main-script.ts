@@ -44,6 +44,57 @@ const examTitles: { [key: number]: string } = {
   66118: 'Fachdidaktik (Gymnasium)',
 }
 
+class Aufgabe {
+  pfad: string
+  inhalt?: string
+
+  stichwörter?: string[]
+  titel?: string
+
+  constructor(pfad: string) {
+    this.pfad = path.join(repositoryPath, pfad)
+    if (fs.existsSync(this.pfad)) {
+      this.inhalt = readRepoFile(this.pfad)
+      if (this.inhalt) {
+        this.stichwörter = collectTagsOfContent(this.inhalt)
+        this.titel = getContentOfTexMacro('liAufgabenTitel', this.inhalt)
+      }
+    }
+  }
+
+  get titelFormatiert (): string {
+    let präfix: string
+    let stichwörter: string = ''
+    if (this.titel) {
+      präfix = this.titel
+    } else {
+      präfix = 'Aufgabe'
+    }
+
+    if (this.stichwörter) {
+      stichwörter = formatTags(this.stichwörter)
+    }
+    return `${präfix}${stichwörter}`
+  }
+
+  get markdownLink (): string {
+    return formatMarkdownLink(this.titelFormatiert, this.pfad)
+  }
+}
+
+class ExamensAufgabe extends Aufgabe {
+  nummer?: number
+  jahr?: number
+  monat?: number
+  thema?: number
+  teilaufgabe?: number
+  aufgabe?: number
+
+  constructor(pfad: string) {
+    super(pfad)
+  }
+}
+
 const githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main'
 
 function parseTags () {
@@ -508,7 +559,8 @@ function formatExamTitle (year: string, month: string) {
 function formatTopLevelFilePathList (filePathsList: string[]): string {
   const item = []
   for (const filePath of filePathsList) {
-    item.push('- ' + generateQuestionTitleFromPath(filePath))
+    const aufgabe = new Aufgabe(filePath)
+    item.push('- ' + aufgabe.markdownLink)
   }
   return item.join('\n')
 }

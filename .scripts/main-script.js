@@ -1,4 +1,17 @@
 #! /usr/bin/env node
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __spreadArrays = (this && this.__spreadArrays) || function () {
     for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
     for (var r = Array(s), k = 0, i = 0; i < il; i++)
@@ -39,8 +52,54 @@ var examTitles = {
     66114: 'Datenbank- und Betriebssysteme (vertieft)',
     66115: 'Theoretische Informatik / Algorithmen (vertieft)',
     66116: 'Datenbanksysteme / Softwaretechnologie (vertieft)',
-    66118: 'Fachdidaktik (Gymnasium)'
+    66118: 'Fachdidaktik (Gymnasium)',
 };
+var Aufgabe = /** @class */ (function () {
+    function Aufgabe(pfad) {
+        this.pfad = path.join(repositoryPath, pfad);
+        if (fs.existsSync(this.pfad)) {
+            this.inhalt = readRepoFile(this.pfad);
+            console.log(this.inhalt);
+            if (this.inhalt) {
+                this.stichwörter = collectTagsOfContent(this.inhalt);
+                this.titel = getContentOfTexMacro('liAufgabenTitel', this.inhalt);
+            }
+        }
+    }
+    Object.defineProperty(Aufgabe.prototype, "titelFormatiert", {
+        get: function () {
+            var präfix;
+            var stichwörter = '';
+            if (this.titel) {
+                präfix = this.titel;
+            }
+            else {
+                präfix = 'Aufgabe';
+            }
+            if (this.stichwörter) {
+                stichwörter = formatTags(this.stichwörter);
+            }
+            return "" + präfix + stichwörter;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Aufgabe.prototype, "markdownLink", {
+        get: function () {
+            return formatMarkdownLink(this.titelFormatiert, this.pfad);
+        },
+        enumerable: false,
+        configurable: true
+    });
+    return Aufgabe;
+}());
+var ExamensAufgabe = /** @class */ (function (_super) {
+    __extends(ExamensAufgabe, _super);
+    function ExamensAufgabe(pfad) {
+        return _super.call(this, pfad) || this;
+    }
+    return ExamensAufgabe;
+}(Aufgabe));
 var githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main';
 function parseTags() {
     try {
@@ -479,7 +538,8 @@ function formatTopLevelFilePathList(filePathsList) {
     var item = [];
     for (var _i = 0, filePathsList_1 = filePathsList; _i < filePathsList_1.length; _i++) {
         var filePath = filePathsList_1[_i];
-        item.push('- ' + generateQuestionTitleFromPath(filePath));
+        var aufgabe = new Aufgabe(filePath);
+        item.push('- ' + aufgabe.markdownLink);
     }
     return item.join('\n');
 }
