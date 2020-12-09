@@ -1,13 +1,13 @@
 #! /usr/bin/env node
 
-const path = require('path')
-const fs = require('fs')
-const childProcess = require('child_process')
+import path from 'path'
+import fs from 'fs'
+import childProcess from 'child_process'
 
-const glob = require('glob')
-const yaml = require('js-yaml')
+import glob from 'glob'
+import yaml from 'js-yaml'
 
-type StringObject = { [key: string]: any }
+interface StringObject { [key: string]: any }
 
 const configPath = path.join(path.sep, 'etc', 'lehramt-informatik.config.tex')
 
@@ -18,6 +18,7 @@ if (!fs.existsSync(configPath)) {
 function parseConfigurationFile (configPath: string): string {
   const configContent = readFile(configPath)
   const match = configContent.match(/\\LehramtInformatikRepository\{(.*)\}/)
+  if (!match) throw new Error(`Konfigurations-Datei nicht gefunden: ${configPath}`)
   return match[1]
 }
 
@@ -41,7 +42,7 @@ const examTitles: { [key: number]: string } = {
   66114: 'Datenbank- und Betriebssysteme (vertieft)',
   66115: 'Theoretische Informatik / Algorithmen (vertieft)',
   66116: 'Datenbanksysteme / Softwaretechnologie (vertieft)',
-  66118: 'Fachdidaktik (Gymnasium)',
+  66118: 'Fachdidaktik (Gymnasium)'
 }
 
 class Aufgabe {
@@ -51,7 +52,7 @@ class Aufgabe {
   stichwörter?: string[]
   titel?: string
 
-  constructor(pfad: string) {
+  constructor (pfad: string) {
     this.pfad = path.join(repositoryPath, pfad)
     if (fs.existsSync(this.pfad)) {
       this.inhalt = readRepoFile(this.pfad)
@@ -99,7 +100,7 @@ class ExamensAufgabe extends Aufgabe {
 
   static pfadRegExp: RegExp = /(?<nummer>\d{5})\/(?<jahr>\d{4})\/(?<monat>\d{2})\/(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/
 
-  constructor(pfad: string) {
+  constructor (pfad: string) {
     super(pfad)
     const match = pfad.match(ExamensAufgabe.pfadRegExp)
     if (!match || !match.groups) {
@@ -114,7 +115,7 @@ class ExamensAufgabe extends Aufgabe {
     if (gruppen.teilaufgabe) this.teilaufgabe = parseInt(gruppen.teilaufgabe)
   }
 
-  static istExamensAufgabe(pfad: string): boolean {
+  static istExamensAufgabe (pfad: string): boolean {
     if (pfad.match(this.pfadRegExp)) {
       return true
     }
@@ -144,15 +145,16 @@ class ExamensAufgabe extends Aufgabe {
 
 const githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main'
 
-function parseTags () {
+function parseTags (): StringObject {
   try {
-    return yaml.safeLoad(readRepoFile('Stichwortverzeichnis.yml'))
+    return <StringObject> yaml.safeLoad(readRepoFile('Stichwortverzeichnis.yml'))
   } catch (e) {
-    console.log(e);
+    console.log(e)
+    return {}
   }
 }
 
-const tagsTree: StringObject = parseTags()
+const tagsTree = parseTags()
 
 type TagsTreeInput = StringObject | StringObject[] | string
 
@@ -180,7 +182,7 @@ const tagsFlat: Set<string> = flattenTagsTree(tagsTree)
 
 function getSubTagsTreeByTag (tree: TagsTreeInput, tag: string): TagsTreeInput | undefined {
   if (typeof tree === 'string') {
-    return
+
   } else if (Array.isArray(tree)) {
     for (const t of tree) {
       const result = getSubTagsTreeByTag(t, tag)
@@ -321,8 +323,7 @@ program.on('command:*', function () {
  ******************************************************************************/
 
 function checkNumber (number: string | number): number | undefined {
-  if (typeof number === 'string')
-  number = parseInt(number)
+  if (typeof number === 'string') { number = parseInt(number) }
   if (number) return number
 }
 
@@ -386,7 +387,7 @@ function cleanTag (tag: string): string {
   return tag.replace(/\s+/g, ' ')
 }
 
-function assembleMacroRegExp(macroName: String): RegExp {
+function assembleMacroRegExp (macroName: String): RegExp {
   return new RegExp('\\' + macroName + '\{([^\}]*)\}', 'g')
 }
 
@@ -422,7 +423,7 @@ function collectTagsOfFile (filePath: string) {
   return collectTagsOfContent(readRepoFile(filePath))
 }
 
-function getContentOfTexMacro(macroName: string, markup: string) {
+function getContentOfTexMacro (macroName: string, markup: string) {
   const regExp = assembleMacroRegExp(macroName)
   const match = regExp.exec(markup)
   if (match) return match[1]
@@ -430,7 +431,7 @@ function getContentOfTexMacro(macroName: string, markup: string) {
 
 function formatTagsOfFile (filePath: string) {
   const tags = collectTagsOfFile(filePath)
-  return formatTags (tags)
+  return formatTags(tags)
 }
 
 function formatTags (tagsList: string[]): string {
@@ -538,7 +539,7 @@ function parseQuestions (relPath: string) {
   return tree
 }
 
-function formatIndentation(level: number): string {
+function formatIndentation (level: number): string {
   return '\n' + ' '.repeat(4 * level) + '- '
 }
 
@@ -558,7 +559,7 @@ function formatIndentation(level: number): string {
  * @param {integer} level
  */
 function formatQuestionsRecursive (questionsTree: StringObject, examPath: string, level: number = 1): string {
-  let output = []
+  const output = []
   // title: Thema 1, Teilaufgabe 2, Aufgabe 3
   for (const title in questionsTree) {
     if (typeof questionsTree[title] === 'string') {
@@ -578,7 +579,7 @@ function formatQuestions (relPath: string): string {
 class OutputCollector {
   store: string[]
   verbose: boolean
-  constructor(verbose = false) {
+  constructor (verbose = false) {
     this.store = []
     this.verbose = verbose
   }
@@ -588,7 +589,7 @@ class OutputCollector {
     this.store.push(output)
   }
 
-  getString() {
+  getString () {
     return this.store.join('\n')
   }
 }
@@ -619,7 +620,7 @@ function formatTopLevelFilePathList (filePathsList: string[]): string {
 }
 
 function replaceTagsInReadme (content: string): string {
-  return content.replace(/\{\{ stichwort "([\w\d- ]*)" \}\}/g, function(wholeMatch, foundTag) {
+  return content.replace(/\{\{ stichwort "([\w\d- ]*)" \}\}/g, function (wholeMatch, foundTag) {
     return formatTopLevelFilePathList(listFilePathsByTag(foundTag))
   })
 }
@@ -672,7 +673,7 @@ program
     }
 
     readmeContent = readmeContent.replace('{{ staatsexamen }}', output.getString())
-    //console.log(readmeContent)
+    // console.log(readmeContent)
     fs.writeFileSync(path.join(repositoryPath, 'README.md'), readmeContent)
   })
 
@@ -689,7 +690,7 @@ program
     const files = glob.sync('**/*.tex', { cwd: staatsexamenPath })
     for (let filePath of files) {
       filePath = path.join(staatsexamenPath, filePath)
-      if(filePath.match(questionPathRegExp)) {
+      if (filePath.match(questionPathRegExp)) {
         console.log(filePath)
         const result = childProcess.spawnSync('/usr/local/texlive/bin/x86_64-linux/latexmk', ['-shell-escape', '-cd', '--lualatex', filePath], {
           encoding: 'utf-8'
@@ -715,7 +716,7 @@ program
   .description('Open in Visual Studio Code')
   .option('-n, --notag', 'Open only questions without an tag macro in it.')
   .action(function (globPattern: string, cmdObj: StringObject): void {
-    function openWithLogging(filePath: string) {
+    function openWithLogging (filePath: string) {
       console.log(filePath)
       openCode(filePath)
     }

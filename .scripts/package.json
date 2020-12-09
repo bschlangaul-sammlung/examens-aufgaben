@@ -12,11 +12,13 @@
     "js-yaml": "^3.14.0"
   },
   "devDependencies": {
-    "@types/node": "^14.14.11"
+    "@types/node": "^14.14.11",
+    "@types/glob": "5.0.35",
+    "@types/js-yaml": "3.11.1"
   },
   "scripts": {
-    "build": "tsc --target ES5 main-script.ts",
-    "install": "sudo rm -f /usr/local/bin/lehramt-informatik.js; sudo ln -s $(pwd)/main-script.js /usr/local/bin/lehramt-informatik.js; sudo rm -f /usr/local/bin/i; sudo ln -s $(pwd)/main-script.js /usr/local/bin/i"
+    "build": "tsc --target ES5 --outDir dist --esModuleInterop src/main.ts; npm run install",
+    "install": "sudo rm -f /usr/local/bin/lehramt-informatik.js; sudo chmod a+x dist/main.js; sudo ln -s $(pwd)/dist/main.js /usr/local/bin/lehramt-informatik.js; sudo rm -f /usr/local/bin/i; sudo ln -s $(pwd)/dist/main.js /usr/local/bin/i"
   },
   "author": "",
   "license": "ISC"

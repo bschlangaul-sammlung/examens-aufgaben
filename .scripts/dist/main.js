@@ -1,4 +1,5 @@
 #! /usr/bin/env node
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -19,18 +20,24 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
             r[k] = a[j];
     return r;
 };
-var path = require('path');
-var fs = require('fs');
-var childProcess = require('child_process');
-var glob = require('glob');
-var yaml = require('js-yaml');
-var configPath = path.join(path.sep, 'etc', 'lehramt-informatik.config.tex');
-if (!fs.existsSync(configPath)) {
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var path_1 = __importDefault(require("path"));
+var fs_1 = __importDefault(require("fs"));
+var child_process_1 = __importDefault(require("child_process"));
+var glob_1 = __importDefault(require("glob"));
+var js_yaml_1 = __importDefault(require("js-yaml"));
+var configPath = path_1.default.join(path_1.default.sep, 'etc', 'lehramt-informatik.config.tex');
+if (!fs_1.default.existsSync(configPath)) {
     throw new Error("No configuration file found: " + configPath);
 }
 function parseConfigurationFile(configPath) {
     var configContent = readFile(configPath);
     var match = configContent.match(/\\LehramtInformatikRepository\{(.*)\}/);
+    if (!match)
+        throw new Error("Konfigurations-Datei nicht gefunden: " + configPath);
     return match[1];
 }
 var repositoryPath = parseConfigurationFile(configPath);
@@ -52,12 +59,12 @@ var examTitles = {
     66114: 'Datenbank- und Betriebssysteme (vertieft)',
     66115: 'Theoretische Informatik / Algorithmen (vertieft)',
     66116: 'Datenbanksysteme / Softwaretechnologie (vertieft)',
-    66118: 'Fachdidaktik (Gymnasium)',
+    66118: 'Fachdidaktik (Gymnasium)'
 };
 var Aufgabe = /** @class */ (function () {
     function Aufgabe(pfad) {
-        this.pfad = path.join(repositoryPath, pfad);
-        if (fs.existsSync(this.pfad)) {
+        this.pfad = path_1.default.join(repositoryPath, pfad);
+        if (fs_1.default.existsSync(this.pfad)) {
             this.inhalt = readRepoFile(this.pfad);
             if (this.inhalt) {
                 this.stichwörter = collectTagsOfContent(this.inhalt);
@@ -167,10 +174,11 @@ var ExamensAufgabe = /** @class */ (function (_super) {
 var githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main';
 function parseTags() {
     try {
-        return yaml.safeLoad(readRepoFile('Stichwortverzeichnis.yml'));
+        return js_yaml_1.default.safeLoad(readRepoFile('Stichwortverzeichnis.yml'));
     }
     catch (e) {
         console.log(e);
+        return {};
     }
 }
 var tagsTree = parseTags();
@@ -200,7 +208,6 @@ function flattenTagsTree(tree, flat) {
 var tagsFlat = flattenTagsTree(tagsTree);
 function getSubTagsTreeByTag(tree, tag) {
     if (typeof tree === 'string') {
-        return;
     }
     else if (Array.isArray(tree)) {
         for (var _i = 0, tree_2 = tree; _i < tree_2.length; _i++) {
@@ -244,7 +251,7 @@ function checkTag(tag) {
     }
 }
 function openWithExecutable(executable, filePath) {
-    var subprocess = childProcess.spawn(executable, [filePath], {
+    var subprocess = child_process_1.default.spawn(executable, [filePath], {
         detached: true,
         stdio: 'ignore'
     });
@@ -254,7 +261,7 @@ function openCode(filePath) {
     openWithExecutable('/usr/bin/code', filePath);
 }
 function readFile(filePath) {
-    return fs.readFileSync(filePath, { encoding: 'utf-8' });
+    return fs_1.default.readFileSync(filePath, { encoding: 'utf-8' });
 }
 function readRepoFile() {
     var args = [];
@@ -262,18 +269,18 @@ function readRepoFile() {
         args[_i] = arguments[_i];
     }
     if (arguments[0].indexOf(repositoryPath) > -1)
-        return readFile(path.join.apply(path, args));
-    return readFile(path.join.apply(path, __spreadArrays([repositoryPath], args)));
+        return readFile(path_1.default.join.apply(path_1.default, args));
+    return readFile(path_1.default.join.apply(path_1.default, __spreadArrays([repositoryPath], args)));
 }
 function generateExamBasePath(number, year, month) {
-    return path.join(__dirname, '..', 'Staatsexamen', number, year, month);
+    return path_1.default.join(__dirname, '..', 'Staatsexamen', number, year, month);
 }
 function generateQuestionPath(arg1, arg2, arg3) {
     if (arg1 && arg2 && arg3) {
-        return path.join("Thema-" + arg1, "Teilaufgabe-" + arg2, "Aufgabe-" + arg3 + ".tex");
+        return path_1.default.join("Thema-" + arg1, "Teilaufgabe-" + arg2, "Aufgabe-" + arg3 + ".tex");
     }
     else if (arg1 && arg2 && !arg3) {
-        return path.join("Thema-" + arg1, "Aufgabe-" + arg2 + ".tex");
+        return path_1.default.join("Thema-" + arg1, "Aufgabe-" + arg2 + ".tex");
     }
     else {
         return "Aufgabe-" + arg1 + ".tex";
@@ -332,8 +339,9 @@ program.on('command:*', function () {
  * create-question
  ******************************************************************************/
 function checkNumber(number) {
-    if (typeof number === 'string')
+    if (typeof number === 'string') {
         number = parseInt(number);
+    }
     if (number)
         return number;
 }
@@ -349,15 +357,15 @@ program
         throw Error("Undefined " + num1);
     }
     var exam = splitExamRef(ref);
-    var questionPath = path.join(generateExamBasePath(exam.number, exam.year, exam.month), generateQuestionPath(num1, num2, num3));
+    var questionPath = path_1.default.join(generateExamBasePath(exam.number, exam.year, exam.month), generateQuestionPath(num1, num2, num3));
     var template = '\\documentclass{lehramt-informatik-aufgabe}\n' +
         '\\liLadePakete{}\n' +
         '\\begin{document}\n' +
         '\n' +
         '\\end{document}\n';
-    fs.mkdirSync(path.dirname(questionPath), { recursive: true });
-    if (!fs.existsSync(questionPath)) {
-        fs.writeFileSync(questionPath, template, { encoding: 'utf-8' });
+    fs_1.default.mkdirSync(path_1.default.dirname(questionPath), { recursive: true });
+    if (!fs_1.default.existsSync(questionPath)) {
+        fs_1.default.writeFileSync(questionPath, template, { encoding: 'utf-8' });
     }
     openCode(questionPath);
     console.log(generateTeXMacro(exam, arg1, arg2, arg3));
@@ -371,8 +379,8 @@ program
     .alias('o')
     .action(function (ref, cmdObj) {
     var exam = splitExamRef(ref);
-    var examPath = path.join(generateExamBasePath(exam.number, exam.year, exam.month), 'Scan.pdf');
-    if (fs.existsSync(examPath)) {
+    var examPath = path_1.default.join(generateExamBasePath(exam.number, exam.year, exam.month), 'Scan.pdf');
+    if (fs_1.default.existsSync(examPath)) {
         openWithExecutable('/usr/bin/xdg-open', examPath);
     }
     else {
@@ -449,7 +457,7 @@ function generateQuestionTitleFromPath(filePath) {
     return formatMarkdownLink("" + prefix + tags, filePath);
 }
 function generateFilePathsByTagCollection() {
-    var files = glob.sync('**/*.tex', { cwd: repositoryPath });
+    var files = glob_1.default.sync('**/*.tex', { cwd: repositoryPath });
     var tagsCollection = {};
     for (var _i = 0, files_1 = files; _i < files_1.length; _i++) {
         var filePath = files_1[_i];
@@ -512,12 +520,12 @@ function parseQuestions(relPath) {
     function makeSegmentReadable(segment) {
         return segment.replace('-', ' ').replace('.tex', '');
     }
-    var files = glob.sync('**/*.tex', { cwd: relPath });
+    var files = glob_1.default.sync('**/*.tex', { cwd: relPath });
     var tree = {};
     for (var _i = 0, files_2 = files; _i < files_2.length; _i++) {
         var filePath = files_2[_i];
         if (filePath.match(questionPathRegExp)) {
-            var segments = filePath.split(path.sep);
+            var segments = filePath.split(path_1.default.sep);
             var subTree = tree;
             for (var _a = 0, segments_1 = segments; _a < segments_1.length; _a++) {
                 var segment = segments_1[_a];
@@ -560,7 +568,7 @@ function formatQuestionsRecursive(questionsTree, examPath, level) {
     // title: Thema 1, Teilaufgabe 2, Aufgabe 3
     for (var title in questionsTree) {
         if (typeof questionsTree[title] === 'string') {
-            var questionPath = path.join(examPath, questionsTree[title]);
+            var questionPath = path_1.default.join(examPath, questionsTree[title]);
             output.push(formatIndentation(level) + formatMarkdownLink(title + formatTagsOfFile(questionPath), questionPath.replace('.tex', '.pdf')));
         }
         else {
@@ -639,7 +647,7 @@ program
     .alias('r')
     .action(function (cmdObj) {
     function fileLink(relPath, fileName) {
-        return formatMarkdownLink(fileName, path.join(relPath, fileName));
+        return formatMarkdownLink(fileName, path_1.default.join(relPath, fileName));
     }
     var output = new OutputCollector();
     var readmeContent = readRepoFile('README_template.md');
@@ -648,22 +656,22 @@ program
     readmeContent = readmeContent.replace('{{ stichwortverzeichnis }}', tagsContent);
     for (var examNumber in examTitles) {
         output.add("\n### " + examNumber + ": " + examTitles[examNumber] + "\n");
-        var examNumberPath = path.join(repositoryPath, 'Staatsexamen', examNumber);
-        var yearDirs = fs.readdirSync(examNumberPath);
+        var examNumberPath = path_1.default.join(repositoryPath, 'Staatsexamen', examNumber);
+        var yearDirs = fs_1.default.readdirSync(examNumberPath);
         for (var _i = 0, yearDirs_1 = yearDirs; _i < yearDirs_1.length; _i++) {
             var year = yearDirs_1[_i];
-            var yearPath = path.join(examNumberPath, year);
-            var monthDirs = fs.readdirSync(yearPath);
+            var yearPath = path_1.default.join(examNumberPath, year);
+            var monthDirs = fs_1.default.readdirSync(yearPath);
             for (var _a = 0, monthDirs_1 = monthDirs; _a < monthDirs_1.length; _a++) {
                 var month = monthDirs_1[_a];
-                var monthPath = path.join(yearPath, month);
+                var monthPath = path_1.default.join(yearPath, month);
                 output.add("- " + formatExamTitle(year, month) + ": " + fileLink(monthPath, 'Scan.pdf') + " " + fileLink(monthPath, 'OCR.txt') + " " + formatQuestions(monthPath));
             }
         }
     }
     readmeContent = readmeContent.replace('{{ staatsexamen }}', output.getString());
-    //console.log(readmeContent)
-    fs.writeFileSync(path.join(repositoryPath, 'README.md'), readmeContent);
+    // console.log(readmeContent)
+    fs_1.default.writeFileSync(path_1.default.join(repositoryPath, 'README.md'), readmeContent);
 });
 /*******************************************************************************
  * compile-questions
@@ -673,14 +681,14 @@ program
     .description('Compile all questions')
     .alias('q')
     .action(function (cmdObj) {
-    var staatsexamenPath = path.join(repositoryPath, 'Staatsexamen');
-    var files = glob.sync('**/*.tex', { cwd: staatsexamenPath });
+    var staatsexamenPath = path_1.default.join(repositoryPath, 'Staatsexamen');
+    var files = glob_1.default.sync('**/*.tex', { cwd: staatsexamenPath });
     for (var _i = 0, files_3 = files; _i < files_3.length; _i++) {
         var filePath = files_3[_i];
-        filePath = path.join(staatsexamenPath, filePath);
+        filePath = path_1.default.join(staatsexamenPath, filePath);
         if (filePath.match(questionPathRegExp)) {
             console.log(filePath);
-            var result = childProcess.spawnSync('/usr/local/texlive/bin/x86_64-linux/latexmk', ['-shell-escape', '-cd', '--lualatex', filePath], {
+            var result = child_process_1.default.spawnSync('/usr/local/texlive/bin/x86_64-linux/latexmk', ['-shell-escape', '-cd', '--lualatex', filePath], {
                 encoding: 'utf-8'
             });
             if (result.status !== 0) {
@@ -708,10 +716,10 @@ program
     if (typeof globPattern !== 'string') {
         globPattern = '**/*.tex';
     }
-    var files = glob.sync(globPattern);
+    var files = glob_1.default.sync(globPattern);
     for (var _i = 0, files_4 = files; _i < files_4.length; _i++) {
         var filePath = files_4[_i];
-        filePath = path.resolve(filePath);
+        filePath = path_1.default.resolve(filePath);
         if (cmdObj.notag) {
             var tags = collectTagsOfFile(filePath);
             if (tags.length == 0)
