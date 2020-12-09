@@ -18,6 +18,24 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 
 {{ stichwort "SQL" }}
 
+### Programmierung
+
+#### Objektorientierte Modellierung und Programmierung (OOMUP)
+
+#### Algorithmen und Datenstrukturen (AUD)
+
+##### Rekursion
+
+{{ stichwort "Rekursion" }}
+
+##### Suche
+
+{{ stichwort "Suche" }}
+
+##### Sortieralgorithmen
+
+{{ stichwort "Sortieralgorithmen" }}
+
 ## Aufgaben geordnet nach Staatsexamen
 
 In diesem Repository findet Ihr viele Staatsexamensaufgaben. Von fast

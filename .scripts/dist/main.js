@@ -29,6 +29,7 @@ var fs_1 = __importDefault(require("fs"));
 var child_process_1 = __importDefault(require("child_process"));
 var glob_1 = __importDefault(require("glob"));
 var js_yaml_1 = __importDefault(require("js-yaml"));
+var Command = require('commander').Command;
 var configPath = path_1.default.join(path_1.default.sep, 'etc', 'lehramt-informatik.config.tex');
 if (!fs_1.default.existsSync(configPath)) {
     throw new Error("No configuration file found: " + configPath);
@@ -40,7 +41,7 @@ function parseConfigurationFile(configPath) {
         throw new Error("Konfigurations-Datei nicht gefunden: " + configPath);
     return match[1];
 }
-var repositoryPath = parseConfigurationFile(configPath);
+var repositoryPfad = parseConfigurationFile(configPath);
 var examTitles = {
     46110: 'Grundlagen der Informatik (nicht vertieft)',
     46111: 'Programmentwicklung / Systemprogrammierung / Datenbanksysteme (nicht vertieft)',
@@ -63,7 +64,7 @@ var examTitles = {
 };
 var Aufgabe = /** @class */ (function () {
     function Aufgabe(pfad) {
-        this.pfad = path_1.default.join(repositoryPath, pfad);
+        this.pfad = Aufgabe.normalisierePfad(pfad);
         if (fs_1.default.existsSync(this.pfad)) {
             this.inhalt = readRepoFile(this.pfad);
             if (this.inhalt) {
@@ -72,6 +73,12 @@ var Aufgabe = /** @class */ (function () {
             }
         }
     }
+    Aufgabe.normalisierePfad = function (pfad) {
+        if (pfad.indexOf(repositoryPfad) > -1) {
+            return pfad;
+        }
+        return path_1.default.join(repositoryPfad, pfad);
+    };
     Object.defineProperty(Aufgabe.prototype, "titelFormatiert", {
         get: function () {
             var präfix;
@@ -102,7 +109,7 @@ var Aufgabe = /** @class */ (function () {
     });
     Object.defineProperty(Aufgabe.prototype, "markdownLink", {
         get: function () {
-            return formatMarkdownLink(this.titelFormatiert, this.pfad);
+            return generiereMarkdownLink(this.titelFormatiert, this.pfad);
         },
         enumerable: false,
         configurable: true
@@ -161,9 +168,17 @@ var ExamensAufgabe = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
+    ExamensAufgabe.prototype.gibTitelNurAufgabe = function (alsMarkdownLink) {
+        if (alsMarkdownLink === void 0) { alsMarkdownLink = false; }
+        var ausgabe = "Aufgabe " + this.aufgabe + this.stichwörterFormatiert;
+        if (alsMarkdownLink) {
+            return generiereMarkdownLink(ausgabe, this.pfad);
+        }
+        return ausgabe;
+    };
     Object.defineProperty(ExamensAufgabe.prototype, "markdownLink", {
         get: function () {
-            return formatMarkdownLink(this.titelKurz, this.pfad);
+            return generiereMarkdownLink(this.titelKurz, this.pfad);
         },
         enumerable: false,
         configurable: true
@@ -268,9 +283,9 @@ function readRepoFile() {
     for (var _i = 0; _i < arguments.length; _i++) {
         args[_i] = arguments[_i];
     }
-    if (arguments[0].indexOf(repositoryPath) > -1)
+    if (arguments[0].indexOf(repositoryPfad) > -1)
         return readFile(path_1.default.join.apply(path_1.default, args));
-    return readFile(path_1.default.join.apply(path_1.default, __spreadArrays([repositoryPath], args)));
+    return readFile(path_1.default.join.apply(path_1.default, __spreadArrays([repositoryPfad], args)));
 }
 function generateExamBasePath(number, year, month) {
     return path_1.default.join(__dirname, '..', 'Staatsexamen', number, year, month);
@@ -316,21 +331,28 @@ function splitExamRef(ref) {
         month: exam[2]
     };
 }
-function formatMarkdownLink(text, relPath) {
-    relPath = relPath.replace(repositoryPath, '');
-    relPath = relPath.replace(/^\//, '');
-    return "[" + text + "](" + githubRawUrl + "/" + relPath + ")";
+function generiereMarkdownLink(text, pfad, einstellung) {
+    var linkePdf = true;
+    var alsMarkdownLink = true;
+    if (einstellung) {
+        if (einstellung.linkePdf !== undefined)
+            linkePdf = einstellung.linkePdf;
+        if (einstellung.alsMarkdownLink !== undefined)
+            alsMarkdownLink = einstellung.alsMarkdownLink;
+    }
+    pfad = pfad.replace(repositoryPfad, '');
+    pfad = pfad.replace(/^\//, '');
+    if (linkePdf)
+        pfad = pfad.replace(/\.[\w]+$/, '.pdf');
+    if (alsMarkdownLink) {
+        return "[" + text + "](" + githubRawUrl + "/" + pfad + ")";
+    }
+    return text;
 }
-var Command = require('commander').Command;
 var program = new Command();
-program.description("Repository path: " + repositoryPath);
+program.description("Repository path: " + repositoryPfad);
 program.name('lehramt-informatik.js');
 program.version('0.1.0');
-function actionHelp() {
-    console.log('Specify a subcommand.');
-    program.outputHelp();
-    process.exit(1);
-}
 program.on('command:*', function () {
     console.error('Invalid command: %s\nSee --help for a list of available commands.', program.args.join(' '));
     process.exit(1);
@@ -433,31 +455,14 @@ function getContentOfTexMacro(macroName, markup) {
     if (match)
         return match[1];
 }
-function formatTagsOfFile(filePath) {
-    var tags = collectTagsOfFile(filePath);
-    return formatTags(tags);
-}
 function formatTags(tagsList) {
     if (tagsList.length > 0) {
         return " (" + tagsList.join(', ') + ")";
     }
     return '';
 }
-function generateQuestionTitleFromPath(filePath) {
-    var content = readRepoFile(filePath);
-    var tags = formatTags(collectTagsOfContent(content));
-    var title = getContentOfTexMacro('liAufgabenTitel', content);
-    var prefix;
-    if (title) {
-        prefix = title;
-    }
-    else {
-        prefix = 'Aufgabe';
-    }
-    return formatMarkdownLink("" + prefix + tags, filePath);
-}
 function generateFilePathsByTagCollection() {
-    var files = glob_1.default.sync('**/*.tex', { cwd: repositoryPath });
+    var files = glob_1.default.sync('**/*.tex', { cwd: repositoryPfad });
     var tagsCollection = {};
     for (var _i = 0, files_1 = files; _i < files_1.length; _i++) {
         var filePath = files_1[_i];
@@ -568,8 +573,9 @@ function formatQuestionsRecursive(questionsTree, examPath, level) {
     // title: Thema 1, Teilaufgabe 2, Aufgabe 3
     for (var title in questionsTree) {
         if (typeof questionsTree[title] === 'string') {
-            var questionPath = path_1.default.join(examPath, questionsTree[title]);
-            output.push(formatIndentation(level) + formatMarkdownLink(title + formatTagsOfFile(questionPath), questionPath.replace('.tex', '.pdf')));
+            var aufgabenPfad = path_1.default.join(examPath, questionsTree[title]);
+            var aufgabe = new ExamensAufgabe(aufgabenPfad);
+            output.push(formatIndentation(level) + aufgabe.gibTitelNurAufgabe(true));
         }
         else {
             output.push("" + formatIndentation(level) + title + " " + formatQuestionsRecursive(questionsTree[title], examPath, level + 1));
@@ -646,8 +652,8 @@ program
     .description('Generate the readme file')
     .alias('r')
     .action(function (cmdObj) {
-    function fileLink(relPath, fileName) {
-        return formatMarkdownLink(fileName, path_1.default.join(relPath, fileName));
+    function fileLink(relPath, fileName, einstellungen) {
+        return generiereMarkdownLink(fileName, path_1.default.join(relPath, fileName), einstellungen);
     }
     var output = new OutputCollector();
     var readmeContent = readRepoFile('README_template.md');
@@ -656,7 +662,7 @@ program
     readmeContent = readmeContent.replace('{{ stichwortverzeichnis }}', tagsContent);
     for (var examNumber in examTitles) {
         output.add("\n### " + examNumber + ": " + examTitles[examNumber] + "\n");
-        var examNumberPath = path_1.default.join(repositoryPath, 'Staatsexamen', examNumber);
+        var examNumberPath = path_1.default.join(repositoryPfad, 'Staatsexamen', examNumber);
         var yearDirs = fs_1.default.readdirSync(examNumberPath);
         for (var _i = 0, yearDirs_1 = yearDirs; _i < yearDirs_1.length; _i++) {
             var year = yearDirs_1[_i];
@@ -665,13 +671,13 @@ program
             for (var _a = 0, monthDirs_1 = monthDirs; _a < monthDirs_1.length; _a++) {
                 var month = monthDirs_1[_a];
                 var monthPath = path_1.default.join(yearPath, month);
-                output.add("- " + formatExamTitle(year, month) + ": " + fileLink(monthPath, 'Scan.pdf') + " " + fileLink(monthPath, 'OCR.txt') + " " + formatQuestions(monthPath));
+                output.add("- " + formatExamTitle(year, month) + ": " + fileLink(monthPath, 'Scan.pdf') + " " + fileLink(monthPath, 'OCR.txt', { linkePdf: false }) + " " + formatQuestions(monthPath));
             }
         }
     }
     readmeContent = readmeContent.replace('{{ staatsexamen }}', output.getString());
     // console.log(readmeContent)
-    fs_1.default.writeFileSync(path_1.default.join(repositoryPath, 'README.md'), readmeContent);
+    fs_1.default.writeFileSync(path_1.default.join(repositoryPfad, 'README.md'), readmeContent);
 });
 /*******************************************************************************
  * compile-questions
@@ -681,7 +687,7 @@ program
     .description('Compile all questions')
     .alias('q')
     .action(function (cmdObj) {
-    var staatsexamenPath = path_1.default.join(repositoryPath, 'Staatsexamen');
+    var staatsexamenPath = path_1.default.join(repositoryPfad, 'Staatsexamen');
     var files = glob_1.default.sync('**/*.tex', { cwd: staatsexamenPath });
     for (var _i = 0, files_3 = files; _i < files_3.length; _i++) {
         var filePath = files_3[_i];

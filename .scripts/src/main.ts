@@ -7,6 +7,8 @@ import childProcess from 'child_process'
 import glob from 'glob'
 import yaml from 'js-yaml'
 
+const { Command } = require('commander')
+
 interface StringObject { [key: string]: any }
 
 const configPath = path.join(path.sep, 'etc', 'lehramt-informatik.config.tex')
@@ -22,7 +24,7 @@ function parseConfigurationFile (configPath: string): string {
   return match[1]
 }
 
-const repositoryPath = parseConfigurationFile(configPath)
+const repositoryPfad = parseConfigurationFile(configPath)
 
 const examTitles: { [key: number]: string } = {
   46110: 'Grundlagen der Informatik (nicht vertieft)',
@@ -53,7 +55,7 @@ class Aufgabe {
   titel?: string
 
   constructor (pfad: string) {
-    this.pfad = path.join(repositoryPath, pfad)
+    this.pfad = Aufgabe.normalisierePfad(pfad)
     if (fs.existsSync(this.pfad)) {
       this.inhalt = readRepoFile(this.pfad)
       if (this.inhalt) {
@@ -61,6 +63,13 @@ class Aufgabe {
         this.titel = getContentOfTexMacro('liAufgabenTitel', this.inhalt)
       }
     }
+  }
+
+  static normalisierePfad (pfad: string): string {
+    if (pfad.indexOf(repositoryPfad) > -1) {
+      return pfad
+    }
+    return path.join(repositoryPfad, pfad)
   }
 
   get titelFormatiert (): string {
@@ -86,7 +95,7 @@ class Aufgabe {
   }
 
   get markdownLink (): string {
-    return formatMarkdownLink(this.titelFormatiert, this.pfad)
+    return generiereMarkdownLink(this.titelFormatiert, this.pfad)
   }
 }
 
@@ -138,8 +147,16 @@ class ExamensAufgabe extends Aufgabe {
     return `${this.examensReferenz} ${this.aufgabenReferenz}${this.stichwörterFormatiert}`
   }
 
+  gibTitelNurAufgabe (alsMarkdownLink: boolean = false): string {
+    const ausgabe = `Aufgabe ${this.aufgabe}${this.stichwörterFormatiert}`
+    if (alsMarkdownLink) {
+      return generiereMarkdownLink(ausgabe, this.pfad)
+    }
+    return ausgabe
+  }
+
   get markdownLink (): string {
-    return formatMarkdownLink(this.titelKurz, this.pfad)
+    return generiereMarkdownLink(this.titelKurz, this.pfad)
   }
 }
 
@@ -241,8 +258,8 @@ function readFile (filePath: string) {
 }
 
 function readRepoFile (...args: string[]) {
-  if (arguments[0].indexOf(repositoryPath) > -1) return readFile(path.join(...args))
-  return readFile(path.join(repositoryPath, ...args))
+  if (arguments[0].indexOf(repositoryPfad) > -1) return readFile(path.join(...args))
+  return readFile(path.join(repositoryPfad, ...args))
 }
 
 function generateExamBasePath (number: string, year: string, month: string): string {
@@ -295,23 +312,31 @@ function splitExamRef (ref: string) {
   }
 }
 
-function formatMarkdownLink (text: string, relPath: string): string {
-  relPath = relPath.replace(repositoryPath, '')
-  relPath = relPath.replace(/^\//, '')
-  return `[${text}](${githubRawUrl}/${relPath})`
+interface MarkdownLinkEinstellung {
+  alsMarkdownLink?: boolean
+  linkePdf?: boolean
 }
 
-const { Command } = require('commander')
+function generiereMarkdownLink (text: string, pfad: string, einstellung?: MarkdownLinkEinstellung): string {
+  let linkePdf = true
+  let alsMarkdownLink = true
+  if (einstellung) {
+    if (einstellung.linkePdf !== undefined) linkePdf = einstellung.linkePdf
+    if (einstellung.alsMarkdownLink !== undefined) alsMarkdownLink = einstellung.alsMarkdownLink
+  }
+  pfad = pfad.replace(repositoryPfad, '')
+  pfad = pfad.replace(/^\//, '')
+  if (linkePdf) pfad = pfad.replace(/\.[\w]+$/, '.pdf')
+  if (alsMarkdownLink) {
+    return `[${text}](${githubRawUrl}/${pfad})`
+  }
+  return text
+}
+
 const program = new Command()
-program.description(`Repository path: ${repositoryPath}`)
+program.description(`Repository path: ${repositoryPfad}`)
 program.name('lehramt-informatik.js')
 program.version('0.1.0')
-
-function actionHelp () {
-  console.log('Specify a subcommand.')
-  program.outputHelp()
-  process.exit(1)
-}
 
 program.on('command:*', function () {
   console.error('Invalid command: %s\nSee --help for a list of available commands.', program.args.join(' '))
@@ -429,11 +454,6 @@ function getContentOfTexMacro (macroName: string, markup: string) {
   if (match) return match[1]
 }
 
-function formatTagsOfFile (filePath: string) {
-  const tags = collectTagsOfFile(filePath)
-  return formatTags(tags)
-}
-
 function formatTags (tagsList: string[]): string {
   if (tagsList.length > 0) {
     return ` (${tagsList.join(', ')})`
@@ -441,21 +461,8 @@ function formatTags (tagsList: string[]): string {
   return ''
 }
 
-function generateQuestionTitleFromPath (filePath: string): string {
-  const content = readRepoFile(filePath)
-  const tags = formatTags(collectTagsOfContent(content))
-  const title = getContentOfTexMacro('liAufgabenTitel', content)
-  let prefix
-  if (title) {
-    prefix = title
-  } else {
-    prefix = 'Aufgabe'
-  }
-  return formatMarkdownLink(`${prefix}${tags}`, filePath)
-}
-
 function generateFilePathsByTagCollection (): StringObject {
-  const files = glob.sync('**/*.tex', { cwd: repositoryPath })
+  const files = glob.sync('**/*.tex', { cwd: repositoryPfad })
   const tagsCollection: StringObject = {}
   for (const filePath of files) {
     const tags = collectTagsOfFile(filePath)
@@ -563,8 +570,9 @@ function formatQuestionsRecursive (questionsTree: StringObject, examPath: string
   // title: Thema 1, Teilaufgabe 2, Aufgabe 3
   for (const title in questionsTree) {
     if (typeof questionsTree[title] === 'string') {
-      const questionPath = path.join(examPath, questionsTree[title])
-      output.push(formatIndentation(level) + formatMarkdownLink(title + formatTagsOfFile(questionPath), questionPath.replace('.tex', '.pdf')))
+      const aufgabenPfad = path.join(examPath, questionsTree[title])
+      const aufgabe = new ExamensAufgabe(aufgabenPfad)
+      output.push(formatIndentation(level) + aufgabe.gibTitelNurAufgabe(true))
     } else {
       output.push(`${formatIndentation(level)}${title} ${formatQuestionsRecursive(questionsTree[title], examPath, level + 1)}`)
     }
@@ -645,8 +653,8 @@ program
   .description('Generate the readme file')
   .alias('r')
   .action(function (cmdObj: object) {
-    function fileLink (relPath: string, fileName: string): string {
-      return formatMarkdownLink(fileName, path.join(relPath, fileName))
+    function fileLink (relPath: string, fileName: string, einstellungen?: MarkdownLinkEinstellung): string {
+      return generiereMarkdownLink(fileName, path.join(relPath, fileName), einstellungen)
     }
 
     const output = new OutputCollector()
@@ -660,21 +668,21 @@ program
 
     for (const examNumber in examTitles) {
       output.add(`\n### ${examNumber}: ${examTitles[examNumber]}\n`)
-      const examNumberPath = path.join(repositoryPath, 'Staatsexamen', examNumber)
+      const examNumberPath = path.join(repositoryPfad, 'Staatsexamen', examNumber)
       const yearDirs = fs.readdirSync(examNumberPath)
       for (const year of yearDirs) {
         const yearPath = path.join(examNumberPath, year)
         const monthDirs = fs.readdirSync(yearPath)
         for (const month of monthDirs) {
           const monthPath = path.join(yearPath, month)
-          output.add(`- ${formatExamTitle(year, month)}: ${fileLink(monthPath, 'Scan.pdf')} ${fileLink(monthPath, 'OCR.txt')} ${formatQuestions(monthPath)}`)
+          output.add(`- ${formatExamTitle(year, month)}: ${fileLink(monthPath, 'Scan.pdf')} ${fileLink(monthPath, 'OCR.txt', { linkePdf: false })} ${formatQuestions(monthPath)}`)
         }
       }
     }
 
     readmeContent = readmeContent.replace('{{ staatsexamen }}', output.getString())
     // console.log(readmeContent)
-    fs.writeFileSync(path.join(repositoryPath, 'README.md'), readmeContent)
+    fs.writeFileSync(path.join(repositoryPfad, 'README.md'), readmeContent)
   })
 
 /*******************************************************************************
@@ -686,7 +694,7 @@ program
   .description('Compile all questions')
   .alias('q')
   .action(function (cmdObj: object) {
-    const staatsexamenPath = path.join(repositoryPath, 'Staatsexamen')
+    const staatsexamenPath = path.join(repositoryPfad, 'Staatsexamen')
     const files = glob.sync('**/*.tex', { cwd: staatsexamenPath })
     for (let filePath of files) {
       filePath = path.join(staatsexamenPath, filePath)
