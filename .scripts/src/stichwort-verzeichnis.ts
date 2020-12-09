@@ -1,7 +1,9 @@
 
 import yaml from 'js-yaml'
+import glob from 'glob'
 
-import { leseRepoDatei } from './helfer'
+import { leseRepoDatei, repositoryPfad } from './helfer'
+import { Aufgabe, ladeAufgabe } from './aufgabe'
 
 interface Baum {
   [key: string]: Baum | true
@@ -18,13 +20,17 @@ class StichwortBaum {
     this.baum = this.normalisiereBaum(roherBaum)
   }
 
-  existiertStichwort(stichwort: string): boolean {
+  fügeStichwortSicherHinzu(stichwort: string): boolean {
     if (this.flach.has(stichwort)) {
       throw Error(`Doppeltes Stichwort: ${stichwort}`)
     } else {
       this.flach.add(stichwort)
       return false
     }
+  }
+
+  existiertStichwort(stichwort: string): boolean {
+    return this.flach.has(stichwort)
   }
 
   /**
@@ -38,7 +44,7 @@ class StichwortBaum {
   normalisiereBaum (eingang: any, ausgang?: Baum): Baum {
     if (!ausgang) ausgang = {}
     if (typeof eingang === 'string') {
-      if (!this.existiertStichwort(eingang)) {
+      if (!this.fügeStichwortSicherHinzu(eingang)) {
         ausgang[eingang] = true
       }
     } else if (Array.isArray(eingang)) {
@@ -47,7 +53,7 @@ class StichwortBaum {
       }
     } else if (typeof eingang === 'object') {
       for (const stichwort in eingang) {
-        if (!this.existiertStichwort(stichwort)) {
+        if (!this.fügeStichwortSicherHinzu(stichwort)) {
           ausgang[stichwort] = this.normalisiereBaum(eingang[stichwort])
         }
       }
@@ -59,15 +65,15 @@ class StichwortBaum {
 
   gibUnterBaum (stichwort: string, baum?: Baum): Baum | boolean {
     if (!baum) baum = this.baum
-    for (const s in this.baum) {
+    for (const s in baum) {
       if (s === stichwort) {
-        if (typeof this.baum[s] === 'boolean') {
+        if (typeof baum[s] === 'boolean') {
           return true
         } else {
-          return <Baum> this.baum[s]
+          return <Baum> baum[s]
         }
-      } else if (typeof this.baum[s] === 'object') {
-        const ergebnis = this.gibUnterBaum(stichwort, <Baum> this.baum[s])
+      } else if (typeof baum[s] === 'object') {
+        const ergebnis = this.gibUnterBaum(stichwort, <Baum> baum[s])
         if (ergebnis) return ergebnis
       }
     }
@@ -106,3 +112,55 @@ class StichwortBaum {
 }
 
 export const stichwortBaum = new StichwortBaum()
+
+class StichwortVerzeichnis {
+  verzeichnis: { [schlüssel: string]: Set<Aufgabe> }
+  aufgaben: { [dateiPfad: string]: Aufgabe }
+
+  constructor () {
+    const dateien = glob.sync('**/*.tex', { cwd: repositoryPfad })
+    this.verzeichnis = {}
+    this.aufgaben = {}
+    for (const pfad of dateien) {
+      const aufgabe = this.ladeAufgabe(pfad)
+      for (const stichwort of aufgabe.stichwörter) {
+        if (!stichwortBaum.existiertStichwort(stichwort)) {
+          throw new Error(`Das Stichwort „${stichwort}“ in der Datei „${pfad}“ gibt es nicht.`)
+        }
+        if (this.verzeichnis[stichwort]) {
+          this.verzeichnis[stichwort].add(aufgabe)
+        } else {
+          this.verzeichnis[stichwort] = new Set<Aufgabe>()
+          this.verzeichnis[stichwort].add(aufgabe)
+        }
+      }
+    }
+  }
+
+  ladeAufgabe (pfad: string): Aufgabe {
+    if (this.aufgaben[pfad]) return this.aufgaben[pfad]
+    const aufgabe = ladeAufgabe(pfad)
+    this.aufgaben[pfad] = aufgabe
+    return aufgabe
+  }
+
+  gibAufgabenMitStichwort (stichwort: string): Set<Aufgabe>  {
+    if (this.verzeichnis[stichwort]) {
+      return this.verzeichnis[stichwort]
+    }
+    return new Set<Aufgabe>()
+  }
+
+  gibAufgabenMitStichwortUnterBaum (stichwort: string): Set<Aufgabe> {
+    const stichwörter = stichwortBaum.gibFlacheListe(stichwort)
+    const aufgaben = new Set<Aufgabe>()
+    for (const stichwort of stichwörter) {
+      for (const aufgabe of this.gibAufgabenMitStichwort(stichwort)) {
+        aufgaben.add(aufgabe)
+      }
+    }
+    return aufgaben
+  }
+}
+
+export const stichwortVerzeichnis = new StichwortVerzeichnis()

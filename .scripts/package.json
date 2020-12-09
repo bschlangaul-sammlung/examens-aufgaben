@@ -19,7 +19,7 @@
   },
   "scripts": {
     "test": "npm run build; mocha",
-    "build": "tsc --target ES5 --outDir dist --esModuleInterop src/main.ts; npm run install",
+    "build": "tsc --target ES5 --outDir dist --esModuleInterop --downlevelIteration src/main.ts; npm run install",
     "install": "sudo rm -f /usr/local/bin/lehramt-informatik.js; sudo chmod a+x dist/main.js; sudo ln -s $(pwd)/dist/main.js /usr/local/bin/lehramt-informatik.js; sudo rm -f /usr/local/bin/i; sudo ln -s $(pwd)/dist/main.js /usr/local/bin/i"
   },
   "author": "",

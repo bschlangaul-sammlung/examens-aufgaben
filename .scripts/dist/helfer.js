@@ -1,19 +1,33 @@
 "use strict";
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spread = (this && this.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+    return ar;
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.leseRepoDatei = exports.repositoryPfad = exports.leseDatei = void 0;
+exports.generiereMarkdownLink = exports.leseRepoDatei = exports.repositoryPfad = exports.leseDatei = void 0;
 var fs_1 = __importDefault(require("fs"));
 var path_1 = __importDefault(require("path"));
 var konfigurationsDateiPfad = path_1.default.join(path_1.default.sep, 'etc', 'lehramt-informatik.config.tex');
+var githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main';
 function leseDatei(pfad) {
     return fs_1.default.readFileSync(pfad, { encoding: 'utf-8' });
 }
@@ -32,7 +46,26 @@ function leseRepoDatei() {
         args[_i] = arguments[_i];
     }
     if (arguments[0].indexOf(exports.repositoryPfad) > -1)
-        return leseDatei(path_1.default.join.apply(path_1.default, args));
-    return leseDatei(path_1.default.join.apply(path_1.default, __spreadArrays([exports.repositoryPfad], args)));
+        return leseDatei(path_1.default.join.apply(path_1.default, __spread(args)));
+    return leseDatei(path_1.default.join.apply(path_1.default, __spread([exports.repositoryPfad], args)));
 }
 exports.leseRepoDatei = leseRepoDatei;
+function generiereMarkdownLink(text, pfad, einstellung) {
+    var linkePdf = true;
+    var alsMarkdownLink = true;
+    if (einstellung) {
+        if (einstellung.linkePdf !== undefined)
+            linkePdf = einstellung.linkePdf;
+        if (einstellung.alsMarkdownLink !== undefined)
+            alsMarkdownLink = einstellung.alsMarkdownLink;
+    }
+    pfad = pfad.replace(exports.repositoryPfad, '');
+    pfad = pfad.replace(/^\//, '');
+    if (linkePdf)
+        pfad = pfad.replace(/\.[\w]+$/, '.pdf');
+    if (alsMarkdownLink) {
+        return "[" + text + "](" + githubRawUrl + "/" + pfad + ")";
+    }
+    return text;
+}
+exports.generiereMarkdownLink = generiereMarkdownLink;

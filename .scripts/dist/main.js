@@ -13,12 +13,36 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
+var __values = (this && this.__values) || function(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+};
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spread = (this && this.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+    return ar;
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -32,7 +56,6 @@ var glob_1 = __importDefault(require("glob"));
 var js_yaml_1 = __importDefault(require("js-yaml"));
 var commander_1 = require("commander");
 var stichwort_verzeichnis_1 = require("./stichwort-verzeichnis");
-console.log(stichwort_verzeichnis_1.stichwortBaum);
 var configPath = path_1.default.join(path_1.default.sep, 'etc', 'lehramt-informatik.config.tex');
 if (!fs_1.default.existsSync(configPath)) {
     throw new Error("No configuration file found: " + configPath);
@@ -201,6 +224,7 @@ function parseTags() {
 }
 var tagsTree = parseTags();
 function flattenTagsTree(tree, flat) {
+    var e_1, _a;
     if (!flat)
         flat = new Set();
     if (typeof tree === 'string') {
@@ -210,9 +234,18 @@ function flattenTagsTree(tree, flat) {
         flat.add(tree);
     }
     else if (Array.isArray(tree)) {
-        for (var _i = 0, tree_1 = tree; _i < tree_1.length; _i++) {
-            var t = tree_1[_i];
-            flattenTagsTree(t, flat);
+        try {
+            for (var tree_1 = __values(tree), tree_1_1 = tree_1.next(); !tree_1_1.done; tree_1_1 = tree_1.next()) {
+                var t = tree_1_1.value;
+                flattenTagsTree(t, flat);
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (tree_1_1 && !tree_1_1.done && (_a = tree_1.return)) _a.call(tree_1);
+            }
+            finally { if (e_1) throw e_1.error; }
         }
     }
     else {
@@ -225,14 +258,24 @@ function flattenTagsTree(tree, flat) {
 }
 var tagsFlat = flattenTagsTree(tagsTree);
 function getSubTagsTreeByTag(tree, tag) {
+    var e_2, _a;
     if (typeof tree === 'string') {
     }
     else if (Array.isArray(tree)) {
-        for (var _i = 0, tree_2 = tree; _i < tree_2.length; _i++) {
-            var t = tree_2[_i];
-            var result = getSubTagsTreeByTag(t, tag);
-            if (result)
-                return result;
+        try {
+            for (var tree_2 = __values(tree), tree_2_1 = tree_2.next(); !tree_2_1.done; tree_2_1 = tree_2.next()) {
+                var t = tree_2_1.value;
+                var result = getSubTagsTreeByTag(t, tag);
+                if (result)
+                    return result;
+            }
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (tree_2_1 && !tree_2_1.done && (_a = tree_2.return)) _a.call(tree_2);
+            }
+            finally { if (e_2) throw e_2.error; }
         }
     }
     else {
@@ -287,8 +330,8 @@ function leseRepoDatei() {
         args[_i] = arguments[_i];
     }
     if (arguments[0].indexOf(repositoryPfad) > -1)
-        return readFile(path_1.default.join.apply(path_1.default, args));
-    return readFile(path_1.default.join.apply(path_1.default, __spreadArrays([repositoryPfad], args)));
+        return readFile(path_1.default.join.apply(path_1.default, __spread(args)));
+    return readFile(path_1.default.join.apply(path_1.default, __spread([repositoryPfad], args)));
 }
 exports.leseRepoDatei = leseRepoDatei;
 function generateExamBasePath(number, year, month) {
@@ -466,21 +509,40 @@ function formatTags(tagsList) {
     return '';
 }
 function generateFilePathsByTagCollection() {
+    var e_3, _a, e_4, _b;
     var files = glob_1.default.sync('**/*.tex', { cwd: repositoryPfad });
     var tagsCollection = {};
-    for (var _i = 0, files_1 = files; _i < files_1.length; _i++) {
-        var filePath = files_1[_i];
-        var tags = collectTagsOfFile(filePath);
-        for (var _a = 0, tags_1 = tags; _a < tags_1.length; _a++) {
-            var tag = tags_1[_a];
-            if (tagsCollection[tag]) {
-                tagsCollection[tag].push(filePath);
+    try {
+        for (var files_1 = __values(files), files_1_1 = files_1.next(); !files_1_1.done; files_1_1 = files_1.next()) {
+            var filePath = files_1_1.value;
+            var tags = collectTagsOfFile(filePath);
+            try {
+                for (var tags_1 = (e_4 = void 0, __values(tags)), tags_1_1 = tags_1.next(); !tags_1_1.done; tags_1_1 = tags_1.next()) {
+                    var tag = tags_1_1.value;
+                    if (tagsCollection[tag]) {
+                        tagsCollection[tag].push(filePath);
+                    }
+                    else {
+                        tagsCollection[tag] = [];
+                        tagsCollection[tag].push(filePath);
+                    }
+                }
             }
-            else {
-                tagsCollection[tag] = [];
-                tagsCollection[tag].push(filePath);
+            catch (e_4_1) { e_4 = { error: e_4_1 }; }
+            finally {
+                try {
+                    if (tags_1_1 && !tags_1_1.done && (_b = tags_1.return)) _b.call(tags_1);
+                }
+                finally { if (e_4) throw e_4.error; }
             }
         }
+    }
+    catch (e_3_1) { e_3 = { error: e_3_1 }; }
+    finally {
+        try {
+            if (files_1_1 && !files_1_1.done && (_a = files_1.return)) _a.call(files_1);
+        }
+        finally { if (e_3) throw e_3.error; }
     }
     return tagsCollection;
 }
@@ -521,6 +583,7 @@ var questionPathRegExp = /(Thema-\d\/)?(Teilaufgabe-\d\/)?Aufgabe-\d\.tex$/;
  * @param {string} relPath
  */
 function parseQuestions(relPath) {
+    var e_5, _a, e_6, _b;
     /**
      * Thema-1: Thema 1
      * Teilaufgabe-2: Teilaufgabe 2
@@ -531,25 +594,43 @@ function parseQuestions(relPath) {
     }
     var files = glob_1.default.sync('**/*.tex', { cwd: relPath });
     var tree = {};
-    for (var _i = 0, files_2 = files; _i < files_2.length; _i++) {
-        var filePath = files_2[_i];
-        if (filePath.match(questionPathRegExp)) {
-            var segments = filePath.split(path_1.default.sep);
-            var subTree = tree;
-            for (var _a = 0, segments_1 = segments; _a < segments_1.length; _a++) {
-                var segment = segments_1[_a];
-                var segmentReadable = makeSegmentReadable(segment);
-                if (!subTree[segmentReadable] && segment.indexOf('.tex') === -1) {
-                    subTree[segmentReadable] = {};
+    try {
+        for (var files_2 = __values(files), files_2_1 = files_2.next(); !files_2_1.done; files_2_1 = files_2.next()) {
+            var filePath = files_2_1.value;
+            if (filePath.match(questionPathRegExp)) {
+                var segments = filePath.split(path_1.default.sep);
+                var subTree = tree;
+                try {
+                    for (var segments_1 = (e_6 = void 0, __values(segments)), segments_1_1 = segments_1.next(); !segments_1_1.done; segments_1_1 = segments_1.next()) {
+                        var segment = segments_1_1.value;
+                        var segmentReadable = makeSegmentReadable(segment);
+                        if (!subTree[segmentReadable] && segment.indexOf('.tex') === -1) {
+                            subTree[segmentReadable] = {};
+                        }
+                        else if (segment.indexOf('.tex') > -1) {
+                            subTree[segmentReadable] = filePath;
+                        }
+                        if (segment.indexOf('.tex') === -1) {
+                            subTree = subTree[segmentReadable];
+                        }
+                    }
                 }
-                else if (segment.indexOf('.tex') > -1) {
-                    subTree[segmentReadable] = filePath;
-                }
-                if (segment.indexOf('.tex') === -1) {
-                    subTree = subTree[segmentReadable];
+                catch (e_6_1) { e_6 = { error: e_6_1 }; }
+                finally {
+                    try {
+                        if (segments_1_1 && !segments_1_1.done && (_b = segments_1.return)) _b.call(segments_1);
+                    }
+                    finally { if (e_6) throw e_6.error; }
                 }
             }
         }
+    }
+    catch (e_5_1) { e_5 = { error: e_5_1 }; }
+    finally {
+        try {
+            if (files_2_1 && !files_2_1.done && (_a = files_2.return)) _a.call(files_2);
+        }
+        finally { if (e_5) throw e_5.error; }
     }
     return tree;
 }
@@ -616,67 +697,74 @@ function formatExamTitle(year, month) {
     }
     return year + " " + monthLong;
 }
-function formatTopLevelFilePathList(filePathsList) {
+function generiereMarkdownAufgabenListe(aufgabenListe) {
+    var e_7, _a;
     var item = [];
-    for (var _i = 0, filePathsList_1 = filePathsList; _i < filePathsList_1.length; _i++) {
-        var filePath = filePathsList_1[_i];
-        var aufgabe = void 0;
-        if (ExamensAufgabe.istExamensAufgabe(filePath)) {
-            aufgabe = new ExamensAufgabe(filePath);
+    try {
+        for (var aufgabenListe_1 = __values(aufgabenListe), aufgabenListe_1_1 = aufgabenListe_1.next(); !aufgabenListe_1_1.done; aufgabenListe_1_1 = aufgabenListe_1.next()) {
+            var aufgabe = aufgabenListe_1_1.value;
+            item.push('- ' + aufgabe.markdownLink);
         }
-        else {
-            aufgabe = new Aufgabe(filePath);
+    }
+    catch (e_7_1) { e_7 = { error: e_7_1 }; }
+    finally {
+        try {
+            if (aufgabenListe_1_1 && !aufgabenListe_1_1.done && (_a = aufgabenListe_1.return)) _a.call(aufgabenListe_1);
         }
-        item.push('- ' + aufgabe.markdownLink);
+        finally { if (e_7) throw e_7.error; }
     }
     return item.join('\n');
 }
-function replaceTagsInReadme(content) {
-    return content.replace(/\{\{ stichwort "([\w\d- ]*)" \}\}/g, function (wholeMatch, foundTag) {
-        return formatTopLevelFilePathList(listFilePathsByTag(foundTag));
+function ersetzeStichwörterInReadme(inhalt) {
+    return inhalt.replace(/\{\{ stichwort "([\w\d- ]*)" \}\}/g, function (wholeMatch, stichwort) {
+        return generiereMarkdownAufgabenListe(stichwort_verzeichnis_1.stichwortVerzeichnis.gibAufgabenMitStichwortUnterBaum(stichwort));
     });
-}
-var filePathsByTagCollection = generateFilePathsByTagCollection();
-function listFilePathsByTag(tag) {
-    var flatTags = getFlatSubTagsByTag(tagsTree, tag);
-    var filePaths = new Set();
-    for (var _i = 0, flatTags_1 = flatTags; _i < flatTags_1.length; _i++) {
-        var t = flatTags_1[_i];
-        if (filePathsByTagCollection[t]) {
-            for (var _a = 0, _b = filePathsByTagCollection[t]; _a < _b.length; _a++) {
-                var filePath = _b[_a];
-                filePaths.add(filePath);
-            }
-        }
-    }
-    return Array.from(filePaths).sort();
 }
 program
     .command('generate-readme')
     .description('Generate the readme file')
     .alias('r')
     .action(function (cmdObj) {
+    var e_8, _a, e_9, _b;
     function fileLink(relPath, fileName, einstellungen) {
         return generiereMarkdownLink(fileName, path_1.default.join(relPath, fileName), einstellungen);
     }
     var output = new OutputCollector();
     var readmeContent = leseRepoDatei('README_template.md');
-    readmeContent = replaceTagsInReadme(readmeContent);
+    readmeContent = ersetzeStichwörterInReadme(readmeContent);
     var tagsContent = leseRepoDatei('Stichwortverzeichnis.yml');
     readmeContent = readmeContent.replace('{{ stichwortverzeichnis }}', tagsContent);
     for (var examNumber in examTitles) {
         output.add("\n### " + examNumber + ": " + examTitles[examNumber] + "\n");
         var examNumberPath = path_1.default.join(repositoryPfad, 'Staatsexamen', examNumber);
         var yearDirs = fs_1.default.readdirSync(examNumberPath);
-        for (var _i = 0, yearDirs_1 = yearDirs; _i < yearDirs_1.length; _i++) {
-            var year = yearDirs_1[_i];
-            var yearPath = path_1.default.join(examNumberPath, year);
-            var monthDirs = fs_1.default.readdirSync(yearPath);
-            for (var _a = 0, monthDirs_1 = monthDirs; _a < monthDirs_1.length; _a++) {
-                var month = monthDirs_1[_a];
-                var monthPath = path_1.default.join(yearPath, month);
-                output.add("- " + formatExamTitle(year, month) + ": " + fileLink(monthPath, 'Scan.pdf') + " " + fileLink(monthPath, 'OCR.txt', { linkePdf: false }) + " " + formatQuestions(monthPath));
+        try {
+            for (var yearDirs_1 = (e_8 = void 0, __values(yearDirs)), yearDirs_1_1 = yearDirs_1.next(); !yearDirs_1_1.done; yearDirs_1_1 = yearDirs_1.next()) {
+                var year = yearDirs_1_1.value;
+                var yearPath = path_1.default.join(examNumberPath, year);
+                var monthDirs = fs_1.default.readdirSync(yearPath);
+                try {
+                    for (var monthDirs_1 = (e_9 = void 0, __values(monthDirs)), monthDirs_1_1 = monthDirs_1.next(); !monthDirs_1_1.done; monthDirs_1_1 = monthDirs_1.next()) {
+                        var month = monthDirs_1_1.value;
+                        var monthPath = path_1.default.join(yearPath, month);
+                        output.add("- " + formatExamTitle(year, month) + ": " + fileLink(monthPath, 'Scan.pdf') + " " + fileLink(monthPath, 'OCR.txt', { linkePdf: false }) + " " + formatQuestions(monthPath));
+                    }
+                }
+                catch (e_9_1) { e_9 = { error: e_9_1 }; }
+                finally {
+                    try {
+                        if (monthDirs_1_1 && !monthDirs_1_1.done && (_b = monthDirs_1.return)) _b.call(monthDirs_1);
+                    }
+                    finally { if (e_9) throw e_9.error; }
+                }
             }
+        }
+        catch (e_8_1) { e_8 = { error: e_8_1 }; }
+        finally {
+            try {
+                if (yearDirs_1_1 && !yearDirs_1_1.done && (_a = yearDirs_1.return)) _a.call(yearDirs_1);
+            }
+            finally { if (e_8) throw e_8.error; }
         }
     }
     readmeContent = readmeContent.replace('{{ staatsexamen }}', output.getString());
@@ -691,23 +779,33 @@ program
     .description('Compile all questions')
     .alias('q')
     .action(function (cmdObj) {
+    var e_10, _a;
     var staatsexamenPath = path_1.default.join(repositoryPfad, 'Staatsexamen');
     var files = glob_1.default.sync('**/*.tex', { cwd: staatsexamenPath });
-    for (var _i = 0, files_3 = files; _i < files_3.length; _i++) {
-        var filePath = files_3[_i];
-        filePath = path_1.default.join(staatsexamenPath, filePath);
-        if (filePath.match(questionPathRegExp)) {
-            console.log(filePath);
-            var result = child_process_1.default.spawnSync('/usr/local/texlive/bin/x86_64-linux/latexmk', ['-shell-escape', '-cd', '--lualatex', filePath], {
-                encoding: 'utf-8'
-            });
-            if (result.status !== 0) {
-                console.log(result.stdout);
-                console.log(result.stderr);
-                openCode(filePath);
-                throw new Error("Error compiling " + filePath);
+    try {
+        for (var files_3 = __values(files), files_3_1 = files_3.next(); !files_3_1.done; files_3_1 = files_3.next()) {
+            var filePath = files_3_1.value;
+            filePath = path_1.default.join(staatsexamenPath, filePath);
+            if (filePath.match(questionPathRegExp)) {
+                console.log(filePath);
+                var result = child_process_1.default.spawnSync('/usr/local/texlive/bin/x86_64-linux/latexmk', ['-shell-escape', '-cd', '--lualatex', filePath], {
+                    encoding: 'utf-8'
+                });
+                if (result.status !== 0) {
+                    console.log(result.stdout);
+                    console.log(result.stderr);
+                    openCode(filePath);
+                    throw new Error("Error compiling " + filePath);
+                }
             }
         }
+    }
+    catch (e_10_1) { e_10 = { error: e_10_1 }; }
+    finally {
+        try {
+            if (files_3_1 && !files_3_1.done && (_a = files_3.return)) _a.call(files_3);
+        }
+        finally { if (e_10) throw e_10.error; }
     }
 });
 /*******************************************************************************
@@ -719,6 +817,7 @@ program
     .description('Open in Visual Studio Code')
     .option('-n, --notag', 'Open only questions without an tag macro in it.')
     .action(function (globPattern, cmdObj) {
+    var e_11, _a;
     function openWithLogging(filePath) {
         console.log(filePath);
         openCode(filePath);
@@ -727,17 +826,26 @@ program
         globPattern = '**/*.tex';
     }
     var files = glob_1.default.sync(globPattern);
-    for (var _i = 0, files_4 = files; _i < files_4.length; _i++) {
-        var filePath = files_4[_i];
-        filePath = path_1.default.resolve(filePath);
-        if (cmdObj.notag) {
-            var tags = collectTagsOfFile(filePath);
-            if (tags.length == 0)
+    try {
+        for (var files_4 = __values(files), files_4_1 = files_4.next(); !files_4_1.done; files_4_1 = files_4.next()) {
+            var filePath = files_4_1.value;
+            filePath = path_1.default.resolve(filePath);
+            if (cmdObj.notag) {
+                var tags = collectTagsOfFile(filePath);
+                if (tags.length == 0)
+                    openWithLogging(filePath);
+            }
+            else {
                 openWithLogging(filePath);
+            }
         }
-        else {
-            openWithLogging(filePath);
+    }
+    catch (e_11_1) { e_11 = { error: e_11_1 }; }
+    finally {
+        try {
+            if (files_4_1 && !files_4_1.done && (_a = files_4.return)) _a.call(files_4);
         }
+        finally { if (e_11) throw e_11.error; }
     }
 });
 program.parse(process.argv);

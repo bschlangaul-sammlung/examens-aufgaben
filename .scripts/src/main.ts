@@ -9,9 +9,7 @@ import yaml from 'js-yaml'
 
 import { Command } from 'commander'
 
-import { stichwortBaum } from './stichwort-verzeichnis'
-
-console.log(stichwortBaum)
+import { stichwortVerzeichnis } from './stichwort-verzeichnis'
 
 interface StringObject { [key: string]: any }
 
@@ -616,40 +614,18 @@ function formatExamTitle (year: string, month: string) {
   return `${year} ${monthLong}`
 }
 
-function formatTopLevelFilePathList (filePathsList: string[]): string {
+function generiereMarkdownAufgabenListe (aufgabenListe: Set<Aufgabe>): string {
   const item = []
-  for (const filePath of filePathsList) {
-    let aufgabe
-    if (ExamensAufgabe.istExamensAufgabe(filePath)) {
-      aufgabe = new ExamensAufgabe(filePath)
-    } else {
-      aufgabe = new Aufgabe(filePath)
-    }
-
+  for (const aufgabe of aufgabenListe) {
     item.push('- ' + aufgabe.markdownLink)
   }
   return item.join('\n')
 }
 
-function replaceTagsInReadme (content: string): string {
-  return content.replace(/\{\{ stichwort "([\w\d- ]*)" \}\}/g, function (wholeMatch, foundTag) {
-    return formatTopLevelFilePathList(listFilePathsByTag(foundTag))
+function ersetzeStichwörterInReadme (inhalt: string): string {
+  return inhalt.replace(/\{\{ stichwort "([\w\d- ]*)" \}\}/g, function (wholeMatch, stichwort) {
+    return generiereMarkdownAufgabenListe(stichwortVerzeichnis.gibAufgabenMitStichwortUnterBaum(stichwort))
   })
-}
-
-const filePathsByTagCollection = generateFilePathsByTagCollection()
-
-function listFilePathsByTag (tag: string): string[] {
-  const flatTags = getFlatSubTagsByTag(tagsTree, tag)
-  const filePaths = new Set<string>()
-  for (const t of flatTags) {
-    if (filePathsByTagCollection[t]) {
-      for (const filePath of filePathsByTagCollection[t]) {
-        filePaths.add(filePath)
-      }
-    }
-  }
-  return Array.from(filePaths).sort()
 }
 
 program
@@ -665,7 +641,7 @@ program
 
     let readmeContent = leseRepoDatei('README_template.md')
 
-    readmeContent = replaceTagsInReadme(readmeContent)
+    readmeContent = ersetzeStichwörterInReadme(readmeContent)
 
     const tagsContent = leseRepoDatei('Stichwortverzeichnis.yml')
     readmeContent = readmeContent.replace('{{ stichwortverzeichnis }}', tagsContent)
