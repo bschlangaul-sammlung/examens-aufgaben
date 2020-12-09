@@ -57,58 +57,58 @@ var StichwortBaum = /** @class */ (function () {
         }
         return ausgang;
     };
+    StichwortBaum.prototype.gibUnterBaum = function (stichwort, baum) {
+        if (!baum)
+            baum = this.baum;
+        for (var s in this.baum) {
+            if (s === stichwort) {
+                if (typeof this.baum[s] === 'boolean') {
+                    return true;
+                }
+                else {
+                    return this.baum[s];
+                }
+            }
+            else if (typeof this.baum[s] === 'object') {
+                var ergebnis = this.gibUnterBaum(stichwort, this.baum[s]);
+                if (ergebnis)
+                    return ergebnis;
+            }
+        }
+        return false;
+    };
+    StichwortBaum.prototype.verflacheBaum = function (baum, flacherBaum) {
+        if (!flacherBaum)
+            flacherBaum = new Set();
+        for (var s in baum) {
+            if (baum[s] === true) {
+                flacherBaum.add(s);
+            }
+            else {
+                flacherBaum.add(s);
+                this.verflacheBaum(baum[s], flacherBaum);
+            }
+        }
+        return flacherBaum;
+    };
+    /**
+     * Das übergebene Stichwort ist in der flachen Stichwortliste enthalten.
+     * @param stichwort
+     */
+    StichwortBaum.prototype.gibFlacheListe = function (stichwort) {
+        var unterBaum = this.gibUnterBaum(stichwort);
+        if (!unterBaum) {
+            return new Set();
+        }
+        else if (unterBaum === true) {
+            return new Set([stichwort]);
+        }
+        else {
+            var flacheListe = this.verflacheBaum(unterBaum);
+            flacheListe.add(stichwort);
+            return flacheListe;
+        }
+    };
     return StichwortBaum;
 }());
 exports.stichwortBaum = new StichwortBaum();
-// const tagsTree = parseTags()
-// type TagsTreeInput = StringObject | StringObject[] | string
-// function flattenTagsTree (tree: TagsTreeInput, flat?: Set<string>): Set<string> {
-//   if (!flat) flat = new Set()
-//   if (typeof tree === 'string') {
-//     if (flat.has(tree)) {
-//       throw Error(`Duplicate tag: ${tree}`)
-//     }
-//     flat.add(tree)
-//   } else if (Array.isArray(tree)) {
-//     for (const t of tree) {
-//       flattenTagsTree(t, flat)
-//     }
-//   } else {
-//     for (const t in tree) {
-//       flattenTagsTree(t, flat)
-//       flattenTagsTree(tree[t], flat)
-//     }
-//   }
-//   return flat
-// }
-// const tagsFlat: Set<string> = flattenTagsTree(tagsTree)
-// function getSubTagsTreeByTag (tree: TagsTreeInput, tag: string): TagsTreeInput | undefined {
-//   if (typeof tree === 'string') {
-//   } else if (Array.isArray(tree)) {
-//     for (const t of tree) {
-//       const result = getSubTagsTreeByTag(t, tag)
-//       if (result) return result
-//     }
-//   } else {
-//     for (const t in tree) {
-//       if (tag === t) {
-//         return tree[t]
-//       } else {
-//         const result = getSubTagsTreeByTag(tree[t], tag)
-//         if (result) return result
-//       }
-//     }
-//   }
-// }
-// function getFlatSubTagsByTag (tree: TagsTreeInput, tag: string): string[] {
-//   const subTree = getSubTagsTreeByTag(tree, tag)
-//   let tagList
-//   if (subTree) {
-//     tagList = flattenTagsTree(subTree)
-//   }
-//   if (tagList && Array.isArray(tagList)) {
-//     tagList.push(tag)
-//     return tagList
-//   }
-//   return [tag]
-// }
