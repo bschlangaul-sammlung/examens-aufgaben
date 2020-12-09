@@ -59,7 +59,6 @@ var Aufgabe = /** @class */ (function () {
         this.pfad = path.join(repositoryPath, pfad);
         if (fs.existsSync(this.pfad)) {
             this.inhalt = readRepoFile(this.pfad);
-            console.log(this.inhalt);
             if (this.inhalt) {
                 this.stichwörter = collectTagsOfContent(this.inhalt);
                 this.titel = getContentOfTexMacro('liAufgabenTitel', this.inhalt);
@@ -84,6 +83,16 @@ var Aufgabe = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    Object.defineProperty(Aufgabe.prototype, "stichw\u00F6rterFormatiert", {
+        get: function () {
+            if (this.stichwörter && this.stichwörter.length > 0) {
+                return " (" + this.stichwörter.join(', ') + ")";
+            }
+            return '';
+        },
+        enumerable: false,
+        configurable: true
+    });
     Object.defineProperty(Aufgabe.prototype, "markdownLink", {
         get: function () {
             return formatMarkdownLink(this.titelFormatiert, this.pfad);
@@ -96,8 +105,63 @@ var Aufgabe = /** @class */ (function () {
 var ExamensAufgabe = /** @class */ (function (_super) {
     __extends(ExamensAufgabe, _super);
     function ExamensAufgabe(pfad) {
-        return _super.call(this, pfad) || this;
+        var _this = _super.call(this, pfad) || this;
+        var match = pfad.match(ExamensAufgabe.pfadRegExp);
+        if (!match || !match.groups) {
+            throw new Error("Konnten den Examenspfad nicht lesen: " + pfad);
+        }
+        var gruppen = match.groups;
+        _this.nummer = parseInt(gruppen.nummer);
+        _this.jahr = parseInt(gruppen.jahr);
+        _this.monat = parseInt(gruppen.monat);
+        _this.aufgabe = parseInt(gruppen.aufgabe);
+        if (gruppen.thema)
+            _this.thema = parseInt(gruppen.thema);
+        if (gruppen.teilaufgabe)
+            _this.teilaufgabe = parseInt(gruppen.teilaufgabe);
+        return _this;
     }
+    ExamensAufgabe.istExamensAufgabe = function (pfad) {
+        if (pfad.match(this.pfadRegExp)) {
+            return true;
+        }
+        return false;
+    };
+    Object.defineProperty(ExamensAufgabe.prototype, "examensReferenz", {
+        get: function () {
+            return this.nummer + ":" + this.jahr + ":" + this.monat.toString().padStart(2, '0');
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(ExamensAufgabe.prototype, "aufgabenReferenz", {
+        get: function () {
+            var output = [];
+            if (this.thema)
+                output.push("T" + this.thema);
+            if (this.teilaufgabe)
+                output.push("TA" + this.teilaufgabe);
+            output.push("A" + this.aufgabe);
+            return output.join(' ');
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(ExamensAufgabe.prototype, "titelKurz", {
+        get: function () {
+            return this.examensReferenz + " " + this.aufgabenReferenz + this.stichwörterFormatiert;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(ExamensAufgabe.prototype, "markdownLink", {
+        get: function () {
+            return formatMarkdownLink(this.titelKurz, this.pfad);
+        },
+        enumerable: false,
+        configurable: true
+    });
+    ExamensAufgabe.pfadRegExp = /(?<nummer>\d{5})\/(?<jahr>\d{4})\/(?<monat>\d{2})\/(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/;
     return ExamensAufgabe;
 }(Aufgabe));
 var githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main';
@@ -538,7 +602,13 @@ function formatTopLevelFilePathList(filePathsList) {
     var item = [];
     for (var _i = 0, filePathsList_1 = filePathsList; _i < filePathsList_1.length; _i++) {
         var filePath = filePathsList_1[_i];
-        var aufgabe = new Aufgabe(filePath);
+        var aufgabe = void 0;
+        if (ExamensAufgabe.istExamensAufgabe(filePath)) {
+            aufgabe = new ExamensAufgabe(filePath);
+        }
+        else {
+            aufgabe = new Aufgabe(filePath);
+        }
         item.push('- ' + aufgabe.markdownLink);
     }
     return item.join('\n');

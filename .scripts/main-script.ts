@@ -77,21 +77,68 @@ class Aufgabe {
     return `${präfix}${stichwörter}`
   }
 
+  get stichwörterFormatiert (): string {
+    if (this.stichwörter && this.stichwörter.length > 0) {
+      return ` (${this.stichwörter.join(', ')})`
+    }
+    return ''
+  }
+
   get markdownLink (): string {
     return formatMarkdownLink(this.titelFormatiert, this.pfad)
   }
 }
 
 class ExamensAufgabe extends Aufgabe {
-  nummer?: number
-  jahr?: number
-  monat?: number
+  nummer: number
+  jahr: number
+  monat: number
   thema?: number
   teilaufgabe?: number
-  aufgabe?: number
+  aufgabe: number
+
+  static pfadRegExp: RegExp = /(?<nummer>\d{5})\/(?<jahr>\d{4})\/(?<monat>\d{2})\/(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/
 
   constructor(pfad: string) {
     super(pfad)
+    const match = pfad.match(ExamensAufgabe.pfadRegExp)
+    if (!match || !match.groups) {
+      throw new Error(`Konnten den Examenspfad nicht lesen: ${pfad}`)
+    }
+    const gruppen = match.groups
+    this.nummer = parseInt(gruppen.nummer)
+    this.jahr = parseInt(gruppen.jahr)
+    this.monat = parseInt(gruppen.monat)
+    this.aufgabe = parseInt(gruppen.aufgabe)
+    if (gruppen.thema) this.thema = parseInt(gruppen.thema)
+    if (gruppen.teilaufgabe) this.teilaufgabe = parseInt(gruppen.teilaufgabe)
+  }
+
+  static istExamensAufgabe(pfad: string): boolean {
+    if (pfad.match(this.pfadRegExp)) {
+      return true
+    }
+    return false
+  }
+
+  get examensReferenz (): string {
+    return `${this.nummer}:${this.jahr}:${this.monat.toString().padStart(2, '0')}`
+  }
+
+  get aufgabenReferenz (): string {
+    const output = []
+    if (this.thema) output.push(`T${this.thema}`)
+    if (this.teilaufgabe) output.push(`TA${this.teilaufgabe}`)
+    output.push(`A${this.aufgabe}`)
+    return output.join(' ')
+  }
+
+  get titelKurz (): string {
+    return `${this.examensReferenz} ${this.aufgabenReferenz}${this.stichwörterFormatiert}`
+  }
+
+  get markdownLink (): string {
+    return formatMarkdownLink(this.titelKurz, this.pfad)
   }
 }
 
@@ -559,7 +606,13 @@ function formatExamTitle (year: string, month: string) {
 function formatTopLevelFilePathList (filePathsList: string[]): string {
   const item = []
   for (const filePath of filePathsList) {
-    const aufgabe = new Aufgabe(filePath)
+    let aufgabe
+    if (ExamensAufgabe.istExamensAufgabe(filePath)) {
+      aufgabe = new ExamensAufgabe(filePath)
+    } else {
+      aufgabe = new Aufgabe(filePath)
+    }
+
     item.push('- ' + aufgabe.markdownLink)
   }
   return item.join('\n')
