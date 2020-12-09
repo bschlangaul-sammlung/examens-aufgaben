@@ -24,12 +24,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.leseRepoDatei = void 0;
 var path_1 = __importDefault(require("path"));
 var fs_1 = __importDefault(require("fs"));
 var child_process_1 = __importDefault(require("child_process"));
 var glob_1 = __importDefault(require("glob"));
 var js_yaml_1 = __importDefault(require("js-yaml"));
-var Command = require('commander').Command;
+var commander_1 = require("commander");
+var stichwort_verzeichnis_1 = require("./stichwort-verzeichnis");
+console.log(stichwort_verzeichnis_1.stichwortBaum);
 var configPath = path_1.default.join(path_1.default.sep, 'etc', 'lehramt-informatik.config.tex');
 if (!fs_1.default.existsSync(configPath)) {
     throw new Error("No configuration file found: " + configPath);
@@ -66,7 +69,7 @@ var Aufgabe = /** @class */ (function () {
     function Aufgabe(pfad) {
         this.pfad = Aufgabe.normalisierePfad(pfad);
         if (fs_1.default.existsSync(this.pfad)) {
-            this.inhalt = readRepoFile(this.pfad);
+            this.inhalt = leseRepoDatei(this.pfad);
             if (this.inhalt) {
                 this.stichwörter = collectTagsOfContent(this.inhalt);
                 this.titel = getContentOfTexMacro('liAufgabenTitel', this.inhalt);
@@ -189,7 +192,7 @@ var ExamensAufgabe = /** @class */ (function (_super) {
 var githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main';
 function parseTags() {
     try {
-        return js_yaml_1.default.safeLoad(readRepoFile('Stichwortverzeichnis.yml'));
+        return js_yaml_1.default.safeLoad(leseRepoDatei('Stichwortverzeichnis.yml'));
     }
     catch (e) {
         console.log(e);
@@ -278,7 +281,7 @@ function openCode(filePath) {
 function readFile(filePath) {
     return fs_1.default.readFileSync(filePath, { encoding: 'utf-8' });
 }
-function readRepoFile() {
+function leseRepoDatei() {
     var args = [];
     for (var _i = 0; _i < arguments.length; _i++) {
         args[_i] = arguments[_i];
@@ -287,6 +290,7 @@ function readRepoFile() {
         return readFile(path_1.default.join.apply(path_1.default, args));
     return readFile(path_1.default.join.apply(path_1.default, __spreadArrays([repositoryPfad], args)));
 }
+exports.leseRepoDatei = leseRepoDatei;
 function generateExamBasePath(number, year, month) {
     return path_1.default.join(__dirname, '..', 'Staatsexamen', number, year, month);
 }
@@ -349,7 +353,7 @@ function generiereMarkdownLink(text, pfad, einstellung) {
     }
     return text;
 }
-var program = new Command();
+var program = new commander_1.Command();
 program.description("Repository path: " + repositoryPfad);
 program.name('lehramt-informatik.js');
 program.version('0.1.0');
@@ -447,7 +451,7 @@ function collectTagsOfContent(content) {
  * @param {string} filePath
  */
 function collectTagsOfFile(filePath) {
-    return collectTagsOfContent(readRepoFile(filePath));
+    return collectTagsOfContent(leseRepoDatei(filePath));
 }
 function getContentOfTexMacro(macroName, markup) {
     var regExp = assembleMacroRegExp(macroName);
@@ -656,9 +660,9 @@ program
         return generiereMarkdownLink(fileName, path_1.default.join(relPath, fileName), einstellungen);
     }
     var output = new OutputCollector();
-    var readmeContent = readRepoFile('README_template.md');
+    var readmeContent = leseRepoDatei('README_template.md');
     readmeContent = replaceTagsInReadme(readmeContent);
-    var tagsContent = readRepoFile('Stichwortverzeichnis.yml');
+    var tagsContent = leseRepoDatei('Stichwortverzeichnis.yml');
     readmeContent = readmeContent.replace('{{ stichwortverzeichnis }}', tagsContent);
     for (var examNumber in examTitles) {
         output.add("\n### " + examNumber + ": " + examTitles[examNumber] + "\n");

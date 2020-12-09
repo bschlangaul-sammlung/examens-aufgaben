@@ -7,7 +7,11 @@ import childProcess from 'child_process'
 import glob from 'glob'
 import yaml from 'js-yaml'
 
-const { Command } = require('commander')
+import { Command } from 'commander'
+
+import { stichwortBaum } from './stichwort-verzeichnis'
+
+console.log(stichwortBaum)
 
 interface StringObject { [key: string]: any }
 
@@ -57,7 +61,7 @@ class Aufgabe {
   constructor (pfad: string) {
     this.pfad = Aufgabe.normalisierePfad(pfad)
     if (fs.existsSync(this.pfad)) {
-      this.inhalt = readRepoFile(this.pfad)
+      this.inhalt = leseRepoDatei(this.pfad)
       if (this.inhalt) {
         this.stichwörter = collectTagsOfContent(this.inhalt)
         this.titel = getContentOfTexMacro('liAufgabenTitel', this.inhalt)
@@ -164,7 +168,7 @@ const githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-inform
 
 function parseTags (): StringObject {
   try {
-    return <StringObject> yaml.safeLoad(readRepoFile('Stichwortverzeichnis.yml'))
+    return <StringObject> yaml.safeLoad(leseRepoDatei('Stichwortverzeichnis.yml'))
   } catch (e) {
     console.log(e)
     return {}
@@ -257,7 +261,7 @@ function readFile (filePath: string) {
   return fs.readFileSync(filePath, { encoding: 'utf-8' })
 }
 
-function readRepoFile (...args: string[]) {
+export function leseRepoDatei (...args: string[]) {
   if (arguments[0].indexOf(repositoryPfad) > -1) return readFile(path.join(...args))
   return readFile(path.join(repositoryPfad, ...args))
 }
@@ -445,7 +449,7 @@ function collectTagsOfContent (content: string) {
  * @param {string} filePath
  */
 function collectTagsOfFile (filePath: string) {
-  return collectTagsOfContent(readRepoFile(filePath))
+  return collectTagsOfContent(leseRepoDatei(filePath))
 }
 
 function getContentOfTexMacro (macroName: string, markup: string) {
@@ -659,11 +663,11 @@ program
 
     const output = new OutputCollector()
 
-    let readmeContent = readRepoFile('README_template.md')
+    let readmeContent = leseRepoDatei('README_template.md')
 
     readmeContent = replaceTagsInReadme(readmeContent)
 
-    const tagsContent = readRepoFile('Stichwortverzeichnis.yml')
+    const tagsContent = leseRepoDatei('Stichwortverzeichnis.yml')
     readmeContent = readmeContent.replace('{{ stichwortverzeichnis }}', tagsContent)
 
     for (const examNumber in examTitles) {
