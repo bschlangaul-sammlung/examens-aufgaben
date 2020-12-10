@@ -22,21 +22,21 @@ var glob_1 = __importDefault(require("glob"));
 var commander_1 = require("commander");
 var stichwort_verzeichnis_1 = require("./stichwort-verzeichnis");
 var aufgabe_1 = require("./aufgabe");
-var staatsexamen_1 = require("./staatsexamen");
+var examen_1 = require("./examen");
 var helfer_1 = require("./helfer");
 var aufgaben_vorlage_1 = require("./aufgaben-vorlage");
 /*******************************************************************************
  * low level functions
  ******************************************************************************/
-function openWithExecutable(executable, filePath) {
+function öffneProgramm(executable, filePath) {
     var subprocess = child_process_1.default.spawn(executable, [filePath], {
         detached: true,
         stdio: 'ignore'
     });
     subprocess.unref();
 }
-function openCode(filePath) {
-    openWithExecutable('/usr/bin/code', filePath);
+function öffneVSCode(filePath) {
+    öffneProgramm('/usr/bin/code', filePath);
 }
 function generateExamBasePath(number, year, month) {
     return path_1.default.join(helfer_1.repositoryPfad, 'Staatsexamen', number, year, month);
@@ -116,7 +116,7 @@ program
             titel: titel
         });
     }
-    openCode(pfad);
+    öffneVSCode(pfad);
 });
 program
     .command('erzeuge-examens-aufgabe <referenz> <thema> [teilaufgabe] [aufgabe]')
@@ -134,7 +134,7 @@ program
     aufgaben_vorlage_1.erzeugeAufgabenVorlage(questionPath, {
         zitatReferenz: ref
     });
-    openCode(questionPath);
+    öffneVSCode(questionPath);
     console.log(generateTeXMacro(exam, arg1, arg2, arg3));
 });
 /*******************************************************************************
@@ -148,7 +148,7 @@ program
     var exam = splitExamRef(ref);
     var examPath = path_1.default.join(generateExamBasePath(exam.number, exam.year, exam.month), 'Scan.pdf');
     if (fs_1.default.existsSync(examPath)) {
-        openWithExecutable('/usr/bin/xdg-open', examPath);
+        öffneProgramm('/usr/bin/xdg-open', examPath);
     }
     else {
         console.log("Path " + examPath + " doesn\u2019t exist.");
@@ -189,7 +189,7 @@ program
     readmeContent = ersetzeStichwörterInReadme(readmeContent);
     var tagsContent = helfer_1.leseRepoDatei('Stichwortverzeichnis.yml');
     readmeContent = readmeContent.replace('{{ stichwortverzeichnis }}', tagsContent);
-    readmeContent = readmeContent.replace('{{ staatsexamen }}', staatsexamen_1.generiereExamensÜbersicht());
+    readmeContent = readmeContent.replace('{{ staatsexamen }}', examen_1.generiereExamensÜbersicht());
     // console.log(readmeContent)
     fs_1.default.writeFileSync(path_1.default.join(helfer_1.repositoryPfad, 'README.md'), readmeContent);
 });
@@ -216,7 +216,7 @@ program
                 if (result.status !== 0) {
                     console.log(result.stdout);
                     console.log(result.stderr);
-                    openCode(filePath);
+                    öffneVSCode(filePath);
                     throw new Error("Error compiling " + filePath);
                 }
             }
@@ -242,7 +242,7 @@ program
     var e_3, _a;
     function openWithLogging(filePath) {
         console.log(filePath);
-        openCode(filePath);
+        öffneVSCode(filePath);
     }
     if (typeof globPattern !== 'string') {
         globPattern = '**/*.tex';

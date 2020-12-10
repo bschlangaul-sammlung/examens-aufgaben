@@ -83,7 +83,7 @@ var ExamensAufgabe = /** @class */ (function (_super) {
         var _this = _super.call(this, pfad) || this;
         var match = pfad.match(ExamensAufgabe.pfadRegExp);
         if (!match || !match.groups) {
-            throw new Error("Konnten den Examenspfad nicht lesen: " + pfad);
+            throw new Error("Konnten den Pfad der Examensaufgabe nicht lesen: " + pfad);
         }
         var gruppen = match.groups;
         _this.nummer = parseInt(gruppen.nummer);

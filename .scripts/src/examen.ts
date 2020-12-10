@@ -5,6 +5,76 @@ import glob from 'glob'
 import { ExamensAufgabe } from './aufgabe'
 import { repositoryPfad, generiereMarkdownLink, MarkdownLinkEinstellung } from './helfer'
 
+class Examen {
+  nummer: number
+  jahr: number
+  monat: number
+
+  static regExp: RegExp = /^.*(?<nummer>\d{5})\/(?<jahr>\d{4})\/(?<monat>\d{2})\/.*$/
+
+  constructor(nummer: number, jahr: number, monat: number) {
+    this.nummer = nummer
+    this.jahr = jahr
+    this.monat = monat
+  }
+
+  get jahreszeit (): string {
+    if (this.monat === 3) {
+      return 'Frühjahr'
+    } else if (this.monat === 9) {
+      return 'Herbst'
+    }
+    throw new Error(`Die Monatsangabe in der Klasse Staatsexamen darf nur 3 oder 9 lauten.`)
+  }
+
+  get monatMitNullen (): string {
+    return this.monat.toString().padStart(2, '0')
+  }
+
+  get referenz (): string {
+    return `${this.nummer}:${this.jahr}:${this.monatMitNullen}`
+  }
+
+  static erzeugeExamenDurchTextArgumente (nummer: string, jahr: string, monat: string) {
+    return new Examen(parseInt(nummer), parseInt(jahr), parseInt(monat))
+  }
+
+  static erzeugeExamenVonPfad (pfad: string) {
+    const match = pfad.match(Examen.regExp)
+    if (!match || !match.groups) {
+      throw new Error(`Konnten den Examenspfad nicht lesen: ${pfad}`)
+    }
+    const gruppen = match.groups
+    return Examen.erzeugeExamenDurchTextArgumente(gruppen.nummer, gruppen.jahr, gruppen.monat)
+  }
+
+  static erzeugeExamenVonReferenz (referenz: string) {
+    const ergebnis = referenz.split(':')
+    if (ergebnis.length !== 3) {
+      throw new Error('Eine Staatsexamens-Referenz muss in diesem Format sein: 66116:2020:09')
+    }
+    return Examen.erzeugeExamenDurchTextArgumente(ergebnis[0], ergebnis[1], ergebnis[2])
+  }
+}
+
+export class ExamenSammlung {
+  private speicher: { [referenz: string]: Examen }
+
+  constructor () {
+    const dateien = glob.sync('**/Scan.pdf', { cwd: repositoryPfad })
+    this.speicher = {}
+
+    for (const pfad of dateien) {
+      const examen = Examen.erzeugeExamenVonPfad(pfad)
+      this.speicher[examen.referenz] = examen
+    }
+  }
+
+  gibDurchReferenz (referenz: string): Examen {
+    return this.speicher[referenz]
+  }
+}
+
 const titel: { [key: number]: string } = {
   46110: 'Grundlagen der Informatik (nicht vertieft)',
   46111: 'Programmentwicklung / Systemprogrammierung / Datenbanksysteme (nicht vertieft)',
@@ -63,9 +133,9 @@ interface ExamensAufgabeBaum {
  * }
  * ```
  *
- * @param {string} relPath
+ * @param {string} relativerPfad
  */
-function leseAufgaben (relPath: string): ExamensAufgabeBaum {
+function leseAufgaben (relativerPfad: string): ExamensAufgabeBaum {
   /**
    * Thema-1: Thema 1
    * Teilaufgabe-2: Teilaufgabe 2
@@ -74,7 +144,7 @@ function leseAufgaben (relPath: string): ExamensAufgabeBaum {
   function macheSegmenteLesbar (segment: string): string {
     return segment.replace('-', ' ').replace('.tex', '')
   }
-  const dateien = glob.sync('**/*.tex', { cwd: relPath })
+  const dateien = glob.sync('**/*.tex', { cwd: relativerPfad })
   const baum: ExamensAufgabeBaum = {}
   for (const pfad of dateien) {
     if (pfad.match(/(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/)) {

@@ -10,7 +10,7 @@ import { Command } from 'commander'
 
 import { stichwortVerzeichnis } from './stichwort-verzeichnis'
 import { Aufgabe, ExamensAufgabe } from './aufgabe'
-import { generiereExamensÜbersicht } from './staatsexamen'
+import { generiereExamensÜbersicht } from './examen'
 import { repositoryPfad, leseRepoDatei } from './helfer'
 import { erzeugeAufgabenVorlage } from './aufgaben-vorlage'
 
@@ -18,7 +18,7 @@ import { erzeugeAufgabenVorlage } from './aufgaben-vorlage'
  * low level functions
  ******************************************************************************/
 
-function openWithExecutable (executable: string, filePath: string): void {
+function öffneProgramm (executable: string, filePath: string): void {
   const subprocess = childProcess.spawn(executable, [filePath], {
     detached: true,
     stdio: 'ignore'
@@ -27,8 +27,8 @@ function openWithExecutable (executable: string, filePath: string): void {
   subprocess.unref()
 }
 
-function openCode (filePath: string) {
-  openWithExecutable('/usr/bin/code', filePath)
+function öffneVSCode (filePath: string) {
+  öffneProgramm('/usr/bin/code', filePath)
 }
 
 function generateExamBasePath (number: string, year: string, month: string): string {
@@ -116,7 +116,7 @@ program
         titel
       })
     }
-    openCode(pfad)
+    öffneVSCode(pfad)
   })
 
 program
@@ -141,7 +141,7 @@ program
     erzeugeAufgabenVorlage(questionPath, {
       zitatReferenz: ref
     })
-    openCode(questionPath)
+    öffneVSCode(questionPath)
     console.log(generateTeXMacro(exam, arg1, arg2, arg3))
   })
 
@@ -157,7 +157,7 @@ program
     const exam = splitExamRef(ref)
     const examPath = path.join(generateExamBasePath(exam.number, exam.year, exam.month), 'Scan.pdf')
     if (fs.existsSync(examPath)) {
-      openWithExecutable('/usr/bin/xdg-open', examPath)
+      öffneProgramm('/usr/bin/xdg-open', examPath)
     } else {
       console.log(`Path ${examPath} doesn’t exist.`)
     }
@@ -220,7 +220,7 @@ program
         if (result.status !== 0) {
           console.log(result.stdout)
           console.log(result.stderr)
-          openCode(filePath)
+          öffneVSCode(filePath)
           throw new Error(`Error compiling ${filePath}`)
         }
       }
@@ -239,7 +239,7 @@ program
   .action(function (globPattern: string, cmdObj: { [schlüssel: string]: any }): void {
     function openWithLogging (filePath: string) {
       console.log(filePath)
-      openCode(filePath)
+      öffneVSCode(filePath)
     }
 
     if (typeof globPattern !== 'string') {

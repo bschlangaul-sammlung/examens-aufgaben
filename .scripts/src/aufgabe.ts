@@ -72,7 +72,7 @@ export class ExamensAufgabe extends Aufgabe {
     super(pfad)
     const match = pfad.match(ExamensAufgabe.pfadRegExp)
     if (!match || !match.groups) {
-      throw new Error(`Konnten den Examenspfad nicht lesen: ${pfad}`)
+      throw new Error(`Konnten den Pfad der Examensaufgabe nicht lesen: ${pfad}`)
     }
     const gruppen = match.groups
     this.nummer = parseInt(gruppen.nummer)
