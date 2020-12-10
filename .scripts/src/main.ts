@@ -168,8 +168,10 @@ program
  ******************************************************************************/
 
 function generiereMarkdownAufgabenListe (aufgabenListe: Set<Aufgabe>): string {
+  const aufgaben = Array.from(aufgabenListe)
+  aufgaben.sort(Aufgabe.vergleichePfade)
   const item = []
-  for (const aufgabe of aufgabenListe) {
+  for (const aufgabe of aufgaben) {
     item.push('- ' + aufgabe.markdownLink)
   }
   return item.join('\n')

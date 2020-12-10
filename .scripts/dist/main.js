@@ -159,17 +159,19 @@ program
  ******************************************************************************/
 function generiereMarkdownAufgabenListe(aufgabenListe) {
     var e_1, _a;
+    var aufgaben = Array.from(aufgabenListe);
+    aufgaben.sort(aufgabe_1.Aufgabe.vergleichePfade);
     var item = [];
     try {
-        for (var aufgabenListe_1 = __values(aufgabenListe), aufgabenListe_1_1 = aufgabenListe_1.next(); !aufgabenListe_1_1.done; aufgabenListe_1_1 = aufgabenListe_1.next()) {
-            var aufgabe = aufgabenListe_1_1.value;
+        for (var aufgaben_1 = __values(aufgaben), aufgaben_1_1 = aufgaben_1.next(); !aufgaben_1_1.done; aufgaben_1_1 = aufgaben_1.next()) {
+            var aufgabe = aufgaben_1_1.value;
             item.push('- ' + aufgabe.markdownLink);
         }
     }
     catch (e_1_1) { e_1 = { error: e_1_1 }; }
     finally {
         try {
-            if (aufgabenListe_1_1 && !aufgabenListe_1_1.done && (_a = aufgabenListe_1.return)) _a.call(aufgabenListe_1);
+            if (aufgaben_1_1 && !aufgaben_1_1.done && (_a = aufgaben_1.return)) _a.call(aufgaben_1);
         }
         finally { if (e_1) throw e_1.error; }
     }

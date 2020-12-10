@@ -54,6 +54,16 @@ export class Aufgabe {
   get markdownLink (): string {
     return generiereMarkdownLink(this.titelFormatiert, this.pfad)
   }
+
+  static vergleichePfade(a: Aufgabe, b: Aufgabe): number {
+    if (a.pfad < b. pfad) {
+      return -1
+    }
+    if (a.pfad > b.pfad) {
+      return 1
+    }
+    return 0
+  }
 }
 
 export class ExamensAufgabe extends Aufgabe {

@@ -74,6 +74,15 @@ var Aufgabe = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    Aufgabe.vergleichePfade = function (a, b) {
+        if (a.pfad < b.pfad) {
+            return -1;
+        }
+        if (a.pfad > b.pfad) {
+            return 1;
+        }
+        return 0;
+    };
     return Aufgabe;
 }());
 exports.Aufgabe = Aufgabe;
