@@ -10,7 +10,8 @@ import yaml from 'js-yaml'
 import { Command } from 'commander'
 
 import { stichwortVerzeichnis } from './stichwort-verzeichnis'
-import { ExamensAufgabe, Aufgabe } from './aufgabe'
+import { Aufgabe } from './aufgabe'
+import { generiereExamensÜbersicht } from './staatsexamen'
 
 interface StringObject { [key: string]: any }
 
@@ -28,27 +29,6 @@ function parseConfigurationFile (configPath: string): string {
 }
 
 const repositoryPfad = parseConfigurationFile(configPath)
-
-const examTitles: { [key: number]: string } = {
-  46110: 'Grundlagen der Informatik (nicht vertieft)',
-  46111: 'Programmentwicklung / Systemprogrammierung / Datenbanksysteme (nicht vertieft)',
-  46112: 'Grundlagen der Informatik (nicht vertieft)',
-  46113: 'Theoretische Informatik (nicht vertieft)',
-  46114: 'Algorithmen / Datenstrukturen / Programmiermethoden (nicht vertieft)',
-  46115: 'Theoretische Informatik / Algorithmen / Datenstrukturen (nicht vertieft)',
-  46116: 'Softwaretechnologie / Datenbanksysteme (nicht vertieft)',
-  46118: 'Fachdidaktik (Mittelschulen)',
-  46119: 'Fachdidaktik (Realschulen)',
-  46121: 'Fachdidaktik (berufliche Schulen)',
-  66110: 'Automatentheorie, Algorithmische Sprache (vertieft)',
-  66111: 'Betriebssysteme / Datenbanksysteme / Rechnerarchitektur (vertieft)',
-  66112: 'Automatentheorie / Komplexität / Algorithmen (vertieft)',
-  66113: 'Rechnerarchitektur / Datenbanken / Betriebssysteme (vertieft)',
-  66114: 'Datenbank- und Betriebssysteme (vertieft)',
-  66115: 'Theoretische Informatik / Algorithmen (vertieft)',
-  66116: 'Datenbanksysteme / Softwaretechnologie (vertieft)',
-  66118: 'Fachdidaktik (Gymnasium)'
-}
 
 const githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main'
 
@@ -169,27 +149,6 @@ function splitExamRef (ref: string) {
   }
 }
 
-interface MarkdownLinkEinstellung {
-  alsMarkdownLink?: boolean
-  linkePdf?: boolean
-}
-
-function generiereMarkdownLink (text: string, pfad: string, einstellung?: MarkdownLinkEinstellung): string {
-  let linkePdf = true
-  let alsMarkdownLink = true
-  if (einstellung) {
-    if (einstellung.linkePdf !== undefined) linkePdf = einstellung.linkePdf
-    if (einstellung.alsMarkdownLink !== undefined) alsMarkdownLink = einstellung.alsMarkdownLink
-  }
-  pfad = pfad.replace(repositoryPfad, '')
-  pfad = pfad.replace(/^\//, '')
-  if (linkePdf) pfad = pfad.replace(/\.[\w]+$/, '.pdf')
-  if (alsMarkdownLink) {
-    return `[${text}](${githubRawUrl}/${pfad})`
-  }
-  return text
-}
-
 const program = new Command()
 program.description(`Repository path: ${repositoryPfad}`)
 program.name('lehramt-informatik.js')
@@ -307,138 +266,6 @@ function collectTagsOfFile (filePath: string) {
 
 const questionPathRegExp = /(Thema-\d\/)?(Teilaufgabe-\d\/)?Aufgabe-\d\.tex$/
 
-/**
- * ```js
- * [
- *   'Thema-1/Teilaufgabe-1/Aufgabe-3.tex',
- *   'Thema-1/Teilaufgabe-1/Aufgabe-4.tex',
- *   'Thema-1/Teilaufgabe-2/Aufgabe-2.tex',
- *   'Thema-1/Teilaufgabe-2/Aufgabe-4.tex',
- *   'Thema-2/Teilaufgabe-2/Aufgabe-2.tex',
- *   'Thema-2/Teilaufgabe-2/Aufgabe-5.tex'
- * ]
- * ```
- *
- * ```js
- * {
- *   'Thema 1': {
- *     'Teilaufgabe 1': {
- *       'Aufgabe 3': 'Thema-1/Teilaufgabe-1/Aufgabe-3.tex',
- *       'Aufgabe 4': 'Thema-1/Teilaufgabe-1/Aufgabe-4.tex'
- *     },
- *     'Teilaufgabe 2': {
- *       'Aufgabe 2': 'Thema-1/Teilaufgabe-2/Aufgabe-2.tex',
- *       'Aufgabe 4': 'Thema-1/Teilaufgabe-2/Aufgabe-4.tex'
- *     }
- *   },
- *   'Thema 2': {
- *     'Teilaufgabe 2': {
- *       'Aufgabe 2': 'Thema-2/Teilaufgabe-2/Aufgabe-2.tex',
- *       'Aufgabe 5': 'Thema-2/Teilaufgabe-2/Aufgabe-5.tex'
- *     }
- *   }
- * }
- * ```
- *
- * @param {string} relPath
- */
-function parseQuestions (relPath: string) {
-  /**
-   * Thema-1: Thema 1
-   * Teilaufgabe-2: Teilaufgabe 2
-   * Aufgabe-3.tex: Aufgabe 3
-   */
-  function makeSegmentReadable (segment: string): string {
-    return segment.replace('-', ' ').replace('.tex', '')
-  }
-  const files = glob.sync('**/*.tex', { cwd: relPath })
-  const tree = {}
-  for (const filePath of files) {
-    if (filePath.match(questionPathRegExp)) {
-      const segments = filePath.split(path.sep)
-      let subTree: StringObject = tree
-      for (const segment of segments) {
-        const segmentReadable = makeSegmentReadable(segment)
-        if (!subTree[segmentReadable] && segment.indexOf('.tex') === -1) {
-          subTree[segmentReadable] = {}
-        } else if (segment.indexOf('.tex') > -1) {
-          subTree[segmentReadable] = filePath
-        }
-        if (segment.indexOf('.tex') === -1) {
-          subTree = subTree[segmentReadable]
-        }
-      }
-    }
-  }
-  return tree
-}
-
-function formatIndentation (level: number): string {
-  return '\n' + ' '.repeat(4 * level) + '- '
-}
-
-/**
- * ```md
- * - 2015 Frühjahr: [Scan.pdf](...46116/2015/03/Scan.pdf) [OCR.txt](…46116/2015/03/OCR.txt)
- *     - Thema 1
- *         - Teilaufgabe 1
- *             - [Aufgabe 3](…46116/2015/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf)
- *         - Teilaufgabe 2
- *             - [Aufgabe 1](…46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf)
- *             - [Aufgabe 3](…46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
- *```
- *
- * @param {object} questionsTree
- * @param {string} examPath
- * @param {integer} level
- */
-function formatQuestionsRecursive (questionsTree: StringObject, examPath: string, level: number = 1): string {
-  const output = []
-  // title: Thema 1, Teilaufgabe 2, Aufgabe 3
-  for (const title in questionsTree) {
-    if (typeof questionsTree[title] === 'string') {
-      const aufgabenPfad = path.join(examPath, questionsTree[title])
-      const aufgabe = new ExamensAufgabe(aufgabenPfad)
-      output.push(formatIndentation(level) + aufgabe.gibTitelNurAufgabe(true))
-    } else {
-      output.push(`${formatIndentation(level)}${title} ${formatQuestionsRecursive(questionsTree[title], examPath, level + 1)}`)
-    }
-  }
-  return output.join(' ')
-}
-
-function formatQuestions (relPath: string): string {
-  return formatQuestionsRecursive(parseQuestions(relPath), relPath)
-}
-
-class OutputCollector {
-  store: string[]
-  verbose: boolean
-  constructor (verbose = false) {
-    this.store = []
-    this.verbose = verbose
-  }
-
-  add (output: string) {
-    if (this.verbose) console.log(output)
-    this.store.push(output)
-  }
-
-  getString () {
-    return this.store.join('\n')
-  }
-}
-
-function formatExamTitle (year: string, month: string) {
-  let monthLong
-  if (month === '09') {
-    monthLong = 'Herbst'
-  } else {
-    monthLong = 'Frühjahr'
-  }
-  return `${year} ${monthLong}`
-}
-
 function generiereMarkdownAufgabenListe (aufgabenListe: Set<Aufgabe>): string {
   const item = []
   for (const aufgabe of aufgabenListe) {
@@ -458,12 +285,6 @@ program
   .description('Generate the readme file')
   .alias('r')
   .action(function (cmdObj: object) {
-    function fileLink (relPath: string, fileName: string, einstellungen?: MarkdownLinkEinstellung): string {
-      return generiereMarkdownLink(fileName, path.join(relPath, fileName), einstellungen)
-    }
-
-    const output = new OutputCollector()
-
     let readmeContent = leseRepoDatei('README_template.md')
 
     readmeContent = ersetzeStichwörterInReadme(readmeContent)
@@ -471,21 +292,7 @@ program
     const tagsContent = leseRepoDatei('Stichwortverzeichnis.yml')
     readmeContent = readmeContent.replace('{{ stichwortverzeichnis }}', tagsContent)
 
-    for (const examNumber in examTitles) {
-      output.add(`\n### ${examNumber}: ${examTitles[examNumber]}\n`)
-      const examNumberPath = path.join(repositoryPfad, 'Staatsexamen', examNumber)
-      const yearDirs = fs.readdirSync(examNumberPath)
-      for (const year of yearDirs) {
-        const yearPath = path.join(examNumberPath, year)
-        const monthDirs = fs.readdirSync(yearPath)
-        for (const month of monthDirs) {
-          const monthPath = path.join(yearPath, month)
-          output.add(`- ${formatExamTitle(year, month)}: ${fileLink(monthPath, 'Scan.pdf')} ${fileLink(monthPath, 'OCR.txt', { linkePdf: false })} ${formatQuestions(monthPath)}`)
-        }
-      }
-    }
-
-    readmeContent = readmeContent.replace('{{ staatsexamen }}', output.getString())
+    readmeContent = readmeContent.replace('{{ staatsexamen }}', generiereExamensÜbersicht())
     // console.log(readmeContent)
     fs.writeFileSync(path.join(repositoryPfad, 'README.md'), readmeContent)
   })

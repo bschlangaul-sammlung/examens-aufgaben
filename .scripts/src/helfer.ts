@@ -23,7 +23,7 @@ export function leseRepoDatei (...args: string[]) {
   return leseDatei(path.join(repositoryPfad, ...args))
 }
 
-interface MarkdownLinkEinstellung {
+export interface MarkdownLinkEinstellung {
   alsMarkdownLink?: boolean
   linkePdf?: boolean
 }
