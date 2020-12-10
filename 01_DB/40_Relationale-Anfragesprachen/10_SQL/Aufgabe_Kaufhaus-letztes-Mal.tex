@@ -1,0 +1,69 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{Kaufhaus zum letzten Mal!}
+
+\section{Aufgabe 3: Kaufhaus zum letzten Mal!
+\index{SQL}
+\footcite{db:ab:7}}
+
+Gegeben ist wieder die Kaufhaus-Datenbank. Wie lauten die SQL-Befehle
+für folgende Sichten?
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Sicht \verb|view1|: Gesucht sind alle Informationen zu Artikeln,
+an denen das Kaufhaus mehr als 35\% verdient.
+
+\begin{antwort}[falsch]
+Da stimmt irgendwas nicht mit er Mathematik
+\begin{minted}{sql}
+CREATE VIEW view1 AS
+SELECT *
+FROM Artikel
+WHERE 1 - Einkaufspreis / Verkaufspreis >= 0.35;
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+CREATE VIEW view1 AS
+SELECT *
+FROM Artikel
+WHERE Verkaufspreis > 1.35 * Einkaufspreis;
+\end{minted}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Sicht \verb|view2|: Gesucht sind alle Informationen zu Artikeln,
+an denen das Kaufhaus mehr als 35\% verdient und die für höchstens 50 €
+verkauft werden.
+
+\begin{antwort}[richtig]
+Wahrscheinlich soll mit der View weitergemacht werden.
+\begin{minted}{sql}
+CREATE VIEW view2 AS
+SELECT *
+FROM Artikel
+WHERE Verkaufspreis > 1.35 * Einkaufspreis AND Verkaufspreis <= 50;
+\end{minted}
+\end{antwort}
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+CREATE VIEW view2 AS
+SELECT *
+FROM view1
+WHERE Verkaufspreis <= 50;
+\end{minted}
+\end{antwort}
+\end{enumerate}
+
+\end{document}

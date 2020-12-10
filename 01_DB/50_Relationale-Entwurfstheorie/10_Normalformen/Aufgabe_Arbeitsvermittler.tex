@@ -1,0 +1,138 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Arbeitsvermittler}
+
+\section{Aufgabe 6: Normalformen
+\index{Normalformen}
+\footcite{db:ab:7}}
+
+Ein privater Arbeitsvermittler legt eine relationale Datenbank an, in
+der u.a. die folgenden Informationen gespeichert werden:
+
+Zu jeder gemeldeten offenen Stelle werden der Name und die Adresse des
+Arbeitgebers gespeichert, ebenso die genaue Stellenbezeichnung, das
+Jahresgehalt und das Datum, ab dem die Stelle zu besetzen ist. Außerdem
+wird vermerkt, ob es sich um eine befristete oder unbefristete
+Anstellung handelt. Verschiedene Arbeitgeber können Stellen mit
+derselben Stellenbezeichnung anbieten, ebenfalls kann ein Arbeitgeber
+mehrere Niederlassungen haben.
+
+Aus der Adresse kann nicht auf den Namen des Arbeitgebers geschlossen
+werden (Beispiel Bürohochhaus). Ein Arbeitgeber hat jedoch nicht mehrere
+Niederlassungen am selben Ort. Außerdem sei der Einfachheit halber
+vorausgesetzt, dass jeder Arbeitgeber pro Niederlassung nur eine Stelle
+mit einer bestimmten Bezeichnung zu vergeben hat, und jeder Bewerber nur
+einmal vermittelt wird. Aus der Stellenbezeichnung lässt sich bereits
+ersehen, ob die Stelle befristet ist oder nicht. Des Weiteren weist eine
+Stellenbezeichnung darauf hin, welcher Branchenbezeichnung sie
+zuzuordnen ist.
+
+Von jedem Arbeitsuchenden werden der Name und die Adresse, die
+Telefonnummer, der erlernte Beruf und das Geburtsdatum des Bewerbers
+gespeichert. Zusätzlich soll direkt abrufbar sein, ob der Bewerber
+bereits älter als 25 Jahre (schwer zu vermitteln!) ist. Als Kriterium
+gilt dabei der Zeitpunkt der Meldung beim Arbeitsvermittler und nicht
+der Zeitpunkt eines möglichen Stellenantritts.
+
+Aus diesen Vorgaben ergibt sich (beispielsweise) folgendes relationales
+Schema (Relationen mindestens in 1.NF):
+
+\begin{itemize}
+\item \textbf{Stellen}: Stellenbezeichnung, AG-Name, AG-Adresse, Gehalt,
+Einstellungsdatum, befristet
+
+\item \textbf{Bewerber}: Name, Adresse, Gebdatum, Beruf, TelNr,
+Antrittsdatum, aelter25
+
+\item \textbf{Branche}: Branchenbezeichnung, Bedarf
+
+\item \textbf{gehoert\_zu}: Stellenbezeichnung, AG-Name, AG-Adresse,
+Branchenbezeichnung
+
+\item \textbf{vermittelt}: Stellenbezeichnung, AG-Name, AG-Adresse,
+Name, Adresse
+\end{itemize}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Welche funktionalen Abhängigkeiten\index{Funktionale
+Abhängigkeiten} gibt es bzgl. der einzelnen Relationen?
+
+\begin{antwort}[muster]
+\begin{itemize}
+\item \textbf{Stellen}: \\
+Stellenbezeichnung, AG-Name, AG-Adresse $\rightarrow$ Gehalt \\
+Stellenbezeichnung, AG-Name, AG-Adresse $\rightarrow$ Einstellungsdatum \\
+Stellenbezeichnung $\rightarrow$ befristet
+
+\item \textbf{Bewerber}: \\
+Name, Adresse $\rightarrow$ Gebdatum \\
+Name, Adresse $\rightarrow$ Beruf \\
+Name, Adresse $\rightarrow$ TelNr \\
+Name, Adresse $\rightarrow$ Antrittsdatum \\
+Name, Adresse $\rightarrow$ aelter25 \\
+Name, Gebdatum $\rightarrow$ aelter25
+
+\item \textbf{Branche}: \\
+Branchenbezeichnung $\rightarrow$ Bedarf
+
+\item \textbf{gehoert\_zu}: \\
+Stellenbezeichnung $\rightarrow$ Branchenbezeichnung
+
+\item \textbf{vermittelt}: \\
+Stellenbezeichnung, AG-Name, AG-Adresse $\rightarrow$ Name \\
+Stellenbezeichnung, AG-Name, AG-Adresse $\rightarrow$ Adresse \\
+Name, Adresse $\rightarrow$ Stellenbezeichnung \\
+Name, Adresse $\rightarrow$ AG-Name \\
+Name, Adresse $\rightarrow$ AG-Adresse
+\end{itemize}
+
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Wie lauten die Schlüsselkandidaten\index{Schlüsselkandidat} der
+einzelnen Relationen?
+
+\begin{antwort}[muster]
+\begin{itemize}
+\item \textbf{Stellen}: \\
+\{ Stellenbezeichnung, AG-Name, AG-Adresse \}
+
+\item \textbf{Bewerber}: \\
+\{ Name, Adresse \}
+
+\item \textbf{Branche}: \\
+\{ Branchenbezeichnung \}
+
+\item \textbf{gehoert\_zu}: \\
+\{ Stellenbezeichnung, AG-Name, AG-Adresse \}
+
+\item \textbf{vermittelt}: \\
+\{ Stellenbezeichnung, AG-Name, AG-Adresse \}, \{ Name, Adresse \} \\
+\end{itemize}
+
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Überprüfen Sie, welche Normalformen bei den einzelnen
+Relationenschemata vorliegen!
+
+%%
+% (d)
+%%
+
+\item Überführen Sie die Relationenschemata in die 3. Normalform!
+\index{Synthese-Algorithmus}
+\end{enumerate}
+\end{document}

@@ -1,5 +1,11 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Supermarkt}
 
-\section{Aufgabe 5 (Check-Up)\footcite{db:ab:6}}
+\section{Aufgabe 5 (Check-Up)
+\footcite{db:ab:6}
+}
 
 \newcommand{\tmptt}[1]{%
   {%
@@ -56,9 +62,10 @@ EP „Bestdat“ steht für Bestelldatum, „EP“ für Einkaufspreis
 %%
 
 \item Erläutern Sie, warum nur Relationen mit einem zusammengesetzten
-Schlüsselkandidaten die 2. Normalform verletzen können!
+Schlüsselkandidaten die 2. Normalform\index{Zweite Normalform} verletzen
+können!
 
-\begin{mdframed}
+\begin{antwort}
 Eine Relation ist genau dann in der zweiten Normalform, wenn kein
 Nichtprimärattribut funktional von einer echten Teilmenge eines
 Schlüsselkandidaten abhängt.
@@ -71,15 +78,16 @@ Bei nicht zusammengesetzten Schlüsselkandidaten, d. h.
 Schlüsselkandidaten mit nur einem Attribut, können Nichtprimärattribute
 nur von diesem einen Schlüsselkandidaten abhängen,
 sonst wäre es ja kein Schlüsselkandidat / Primär\-schlüssel.
-\end{mdframed}
+\end{antwort}
 
 %%
 % (b)
 %%
 
-\item Finden Sie den einzigen Schlüsselkandidaten von ARTBEST.
+\item Finden Sie den einzigen
+Schlüsselkandidaten\index{Schlüsselkandidat} von ARTBEST.
 
-\begin{mdframed}
+\begin{antwort}
 Ich wähle \texttt{ArtNr, Lieferant, BestDat} aus, da diese Attribute auf
 keiner rechten Seite einer FD vorkommen. Außerdem wähle ich \texttt{EP}
 aus, da \texttt{EP} in keiner FD vorkommt.
@@ -161,7 +169,7 @@ mehr weiter \\verkleinert werden. Er ist bereits minimal. \texttt{ArtNr,
 Lieferant, BestDat, EP} ist der einzige Schlüsselkandidat und damit
 der Primärschlüssel.
 
-\end{mdframed}
+\end{antwort}
 
 %%
 % (c)
@@ -171,7 +179,7 @@ der Primärschlüssel.
 Zeigen Sie anhand obiger Relation \texttt{ARTBEST} zwei mögliche
 Anomalien auf, die bei fehlender Normalisierung auftreten können.
 
-\begin{mdframed}
+\begin{antwort}
 In der dritten Normalform darf kein Nichtschlüsselattribut von einem
 Schlüsselkandidaten transitiv abhängen. In der Relation \texttt{ARTBEST}
 hängt \texttt{HerstTel} funkional von \texttt{Hersteller} und
@@ -184,18 +192,18 @@ Schlüsselkandidaten \texttt{ArtNr, Lieferant, BestDat, EP} ab.
 $\rightarrow$ \texttt{Hersteller}
 $\rightarrow$ \texttt{HerstTel}
 
-\subsection*{Update-Anomalie}
+\subsection*{Update-Anomalie}\index{Update-Anomalie}
 
 Es kann zur Update-Anomalie kommen. Ändert sich zum Beispiel die
 Telefonnummer eines Herstellers, so müssen in allen
 Datensätzen die Telefonnummer geändert werden.
 
-\subsection*{Delete-Anomalie}
+\subsection*{Delete-Anomalie}\index{Delete-Anomalie}
 
 Wird die Datenbank aufgeräumt, d. h. alte Bestellungen gelöscht,
-so verschindet auch die Hersteller-Telefonnumer von manchen
+so verschwindet auch die Hersteller-Telefonnumer von manchen
 Herstelllern.
-\end{mdframed}
+\end{antwort}
 
 %%
 % (d)
@@ -203,9 +211,9 @@ Herstelllern.
 
 \item Überführen Sie das obige Relationenschema schrittweise in die 3.
 Normalform! Erläutern Sie die dazu durchzuführenden Schritte jeweils
-kurz!
+kurz!\index{Synthese-Algorithmus}
 
-\begin{mdframed}
+\begin{antwort}
 
 \begin{enumerate}
 \item Kanonische Überdeckung
@@ -309,7 +317,7 @@ Attribut \tmptt{EP} bisher in keiner Relation vor.
   R5(ArtNr, Lieferant, BestDat, EP)
 }
 
-\item Erfernung überflüssiger Teilschemata
+\item Entfernung überflüssiger Teilschemata
 
 Nicht zu tun.
 
@@ -325,7 +333,7 @@ Ergebnis:
   R5(ArtNr, Lieferant, BestDat, EP)
 }
 
-\end{mdframed}
+\end{antwort}
 
 %%
 % (e)
@@ -335,7 +343,7 @@ Ergebnis:
 nachteilig auf die Geschwindigkeit der Anfragebearbeitung auswirken kann
 und wie darauf reagiert werden kann!
 
-\begin{mdframed}
+\begin{antwort}
 Eine vollständige Normalisierung hat den Effekt, dass die Daten auf mehr
 Relation bzw. Tabellen aufgeteilt werden. In der Regel geht damit
 einher, dass bei Abfragen mehr Joins durchgeführt werden müssen, was
@@ -344,6 +352,6 @@ einhergeht.
 
 Man könnte auf eine Normalisierung verzichten, oder nur teilweise
 normalisieren und somit zwischen Performance und Redundanz abwägen.
-\end{mdframed}
-
+\end{antwort}
 \end{enumerate}
+\end{document}
