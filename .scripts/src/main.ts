@@ -31,7 +31,7 @@ function openCode (filePath: string) {
 }
 
 function generateExamBasePath (number: string, year: string, month: string): string {
-  return path.join(__dirname, '..', 'Staatsexamen', number, year, month)
+  return path.join(repositoryPfad, 'Staatsexamen', number, year, month)
 }
 
 function generateQuestionPath (arg1: number, arg2?: number, arg3?: number): string {

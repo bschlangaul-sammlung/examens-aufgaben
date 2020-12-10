@@ -16,6 +16,6 @@ install_tex:
 	.tex/install.sh
 
 readme:
-	.scripts/main-script.js generate-readme
+	.scripts/dist/main.js generate-readme
 
 .PHONY: install_tex readme install_cli install_config

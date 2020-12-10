@@ -38,7 +38,7 @@ function openCode(filePath) {
     openWithExecutable('/usr/bin/code', filePath);
 }
 function generateExamBasePath(number, year, month) {
-    return path_1.default.join(__dirname, '..', 'Staatsexamen', number, year, month);
+    return path_1.default.join(helfer_1.repositoryPfad, 'Staatsexamen', number, year, month);
 }
 function generateQuestionPath(arg1, arg2, arg3) {
     if (arg1 && arg2 && arg3) {

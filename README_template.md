@@ -120,6 +120,13 @@ thematisch zu keinem anderen Paket passen
   `\liPseudoUeberschrift{}`. Am Ende des Textes wird ein
   Doppelpunktzeichen angehängt.
 
+### `normalformen.sty`
+
+Hilfsmakros zum Setzen von Normalformen, Funktionalen Abhänigkeiten,
+Attributhülle
+
+* Makro: `\liFA #1 > #2`: Funktionale Abhängigkeit
+
 ### `rmodell.sty`
 
 Makros und Umgebungen zum Setzen des Relationenmodells beim Thema

@@ -1,0 +1,16 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-normalformen}[2020/12/10
+Hilfsmakros zum Setzen von Normalformen, Funktionalen Abhänigkeiten,
+Attributhülle]
+\RequirePackage{amsmath}
+\directlua{
+  normalformen = require('lehramt-informatik-normalformen')
+}
+
+\def\liTeilen#1{
+  \directlua{tex.print(normalformen.teilen('#1'))}
+}
+
+\def\liFA#1 > #2 {
+  $\{\text{\liTeilen{#1}}\} \rightarrow \{\text{\liTeilen{#2}}\}$
+}

@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe,spalten,rmodell}
+\liLadePakete{mathe,spalten,rmodell,syntax}
 \begin{document}
 
 \section{Aufgabe 2: Relationale Algebra
@@ -201,4 +201,92 @@ K4 & S4 & 2 \\\hline
 \end{antwort}
 \end{itemize}
 \end{enumerate}
+
+\begin{minted}{SQL}
+CREATE TABLE `Anfrage` (
+  `KID` varchar(100) NOT NULL,
+  `Start` varchar(100) DEFAULT NULL,
+  `Ziel` varchar(100) DEFAULT NULL,
+  `Datum` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `Anfrage` (`KID`, `Start`, `Ziel`, `Datum`) VALUES
+('K2', 'S4', 'S5', '2011-07-05'),
+('K2', 'S4', 'S5', '2011-07-08'),
+('K3', 'S2', 'S3', '2011-07-08'),
+('K2', 'S5', 'S4', '2011-07-10'),
+('K3', 'S3', 'S2', '2011-07-10'),
+('K2', 'S5', 'S4', '2011-07-17');
+
+CREATE TABLE `Angebot` (
+  `KID` varchar(100) NOT NULL,
+  `Start` varchar(100) DEFAULT NULL,
+  `Ziel` varchar(100) DEFAULT NULL,
+  `Datum` date NOT NULL,
+  `Plätze` int(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `Angebot` (`KID`, `Start`, `Ziel`, `Datum`, `Plätze`) VALUES
+('K1', 'S1', 'S5', '2011-07-08', 3),
+('K4', 'S4', 'S5', '2011-07-08', 3),
+('K1', 'S5', 'S4', '2011-07-09', 2),
+('K4', 'S5', 'S4', '2011-07-10', 3),
+('K3', 'S2', 'S3', '2011-07-15', 1),
+('K4', 'S4', 'S1', '2011-07-15', 3);
+
+CREATE TABLE `Kunde` (
+  `KID` varchar(100) NOT NULL,
+  `Name` varchar(100) DEFAULT NULL,
+  `Vorname` varchar(100) DEFAULT NULL,
+  `Stadt` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `Kunde` (`KID`, `Name`, `Vorname`, `Stadt`) VALUES
+('K1', 'Meier', 'Stefan', 'S3'),
+('K2', 'Müller', 'Petra', 'S3'),
+('K3', 'Schmidt', 'Christine', 'S2'),
+('K4', 'Schulz', 'Michael', 'S4');
+
+CREATE TABLE `Stadt` (
+  `SID` varchar(100) NOT NULL,
+  `SName` varchar(100) NOT NULL,
+  `Bundesland` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `Stadt` (`SID`, `SName`, `Bundesland`) VALUES
+('S1', 'Berlin', 'Berlin'),
+('S2', 'Nürnberg', 'Bayern'),
+('S3', 'Köln', 'NRW'),
+('S4', 'Stuttgart', 'BW'),
+('S5', 'München', 'Bayern');
+
+ALTER TABLE `Anfrage`
+  ADD PRIMARY KEY (`Datum`,`KID`),
+  ADD KEY `Start` (`Start`),
+  ADD KEY `Ziel` (`Ziel`);
+
+ALTER TABLE `Angebot`
+  ADD PRIMARY KEY (`Datum`,`KID`),
+  ADD KEY `Start` (`Start`),
+  ADD KEY `Ziel` (`Ziel`);
+
+ALTER TABLE `Kunde`
+  ADD PRIMARY KEY (`KID`),
+  ADD KEY `Stadt` (`Stadt`);
+
+ALTER TABLE `Stadt`
+  ADD PRIMARY KEY (`SID`);
+
+ALTER TABLE `Anfrage`
+  ADD CONSTRAINT `Anfrage_ibfk_1` FOREIGN KEY (`Start`) REFERENCES `Stadt` (`SID`),
+  ADD CONSTRAINT `Anfrage_ibfk_2` FOREIGN KEY (`Ziel`) REFERENCES `Stadt` (`SID`);
+
+ALTER TABLE `Angebot`
+  ADD CONSTRAINT `Angebot_ibfk_1` FOREIGN KEY (`Start`) REFERENCES `Stadt` (`SID`),
+  ADD CONSTRAINT `Angebot_ibfk_2` FOREIGN KEY (`Ziel`) REFERENCES `Stadt` (`SID`);
+
+ALTER TABLE `Kunde`
+  ADD CONSTRAINT `Kunde_ibfk_1` FOREIGN KEY (`Stadt`) REFERENCES `Stadt` (`SID`);
+\end{minted}
+
 \end{document}

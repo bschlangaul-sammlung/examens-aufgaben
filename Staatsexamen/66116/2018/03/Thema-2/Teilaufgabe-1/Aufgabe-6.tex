@@ -1,0 +1,41 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{normalformen}
+\begin{document}
+
+\section{Aufgabe 6: Normalformen\footcite{examen:66116:2018:03}}
+
+Gegeben sei das Relationenschema R(A,B,C,D,E,F), sowie die Menge der
+zugehörigen funktionalen Abhängigkeiten F' \footcite{db:pu:wh}
+
+\begin{itemize}
+\item \liFA C > B
+\item \liFA B > A
+\item \liFA CE > D
+\item \liFA E > F
+\item \liFA CE > F
+\item \liFA C > A
+\end{itemize}
+
+\begin{enumerate}
+\item Bestimmen Sie den Schlüsselkandidaten der Relation R und begründen
+Sie, warum es keine weiteren Schlüsselkandidaten gibt.
+
+\begin{antwort}
+ C und E müssen immer Teil des Schlüsselkandidaten
+AttrHull(F, \{C, E\} = \{C, E, B, A, D, F\})
+
+-> Superschlüssel
+-> Schlüsselkandidat, weil minimal denn C und E müssen immer Teil sein.
+-> kein anderer SK möglich, weil C und E immer Teil sein müssen.
+
+Sie selbst aber schon minimal sind.
+\end{antwort}
+
+\item Überführen Sie das Relationenschema R mit Hilfe des
+Synthesealgorithmus\index{Synthese-Algorithmus} in die dritte
+Normalform\index{Dritte Normalform}. Führen Sie hierfür jeden der vier
+Schritte durch und kennzeichnen Sie Stellen, bei denen nichts zu tun
+ist.
+\end{enumerate}
+
+\end{document}

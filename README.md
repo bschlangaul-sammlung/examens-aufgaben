@@ -40,8 +40,8 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 - [46116:2017:09 T2 TA2 A4 (SQL, GROUP BY)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf)
 - [66111:1996:09 A4 (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.pdf)
 - [66116:2016:03 T1 TA1 A2 (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf)
-- [Kaufhausdatenbank (einfach) (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01-DB/04-SQL/Aufgabe_Kaufhaus-einfach.pdf)
-- [Kaufhausdatenbank (reloaded) (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01-DB/04-SQL/Aufgabe_Kaufhaus-reloaded.pdf)
+- [Kaufhausdatenbank (einfach) (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01-DB/04_SQL/Aufgabe_Kaufhaus-einfach.pdf)
+- [Kaufhausdatenbank (reloaded) (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01-DB/04_SQL/Aufgabe_Kaufhaus-reloaded.pdf)
 - [46116:2012:03 T1 TA1 A3 (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf)
 - [46116:2013:03 T1 TA2 A2 (Relationale Algebra, SQL, Tupelkalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf)
 - [66111:1996:03 A2 (Entity-Relation-Modell, Verfeinertes Relationenmodell, SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/Aufgabe-2.pdf)
@@ -613,6 +613,7 @@ OCR des oben genannten Scans:
         - Teilaufgabe 1 
             - [Aufgabe 2 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) 
             - [Aufgabe 4 (Tupelkalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-4.pdf) 
+            - [Aufgabe 6 (Synthese-Algorithmus, Dritte Normalform)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-6.pdf) 
         - Teilaufgabe 2 
             - [Aufgabe 1 (Vererbung, Interface, Abstrakte Klasse, Klassendiagramm, Objektdiagramm, Sequenzdiagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf) 
             - [Aufgabe 2 (Beobachter (Observer), Klassendiagramm, Implementierung in Java)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf)
@@ -885,6 +886,13 @@ thematisch zu keinem anderen Paket passen
 * Makro: `\liBeschriftung{}`: Ähnlich dem Makro
   `\liPseudoUeberschrift{}`. Am Ende des Textes wird ein
   Doppelpunktzeichen angehängt.
+
+### `normalformen.sty`
+
+Hilfsmakros zum Setzen von Normalformen, Funktionalen Abhänigkeiten,
+Attributhülle
+
+* Makro: `\liFA #1 > #2`: Funktionale Abhängigkeit
 
 ### `rmodell.sty`
 
