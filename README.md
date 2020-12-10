@@ -8,6 +8,7 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 
 #### Entity-Relation-Modell
 
+- [Multiple-Choice (Entity-Relation-Modell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/20_Datenbankentwurf/01_Entity-Relation-Modell/Aufgabe_Multiple-Choice.pdf)
 - [Olympische Spiele (Entity-Relation-Modell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/20_Datenbankentwurf/01_Entity-Relation-Modell/Aufgabe_Olympische-Spiele.pdf)
 - [46116:2013:03 T1 TA2 A1 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf)
 - [46116:2015:03 T1 TA2 A3 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
@@ -42,7 +43,10 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 - [46116:2017:09 T2 TA2 A4 (SQL, GROUP BY)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf)
 - [66111:1996:09 A4 (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.pdf)
 - [66116:2016:03 T1 TA1 A2 (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf)
+- [Kaufhaus again (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-again.pdf)
 - [Kaufhausdatenbank (einfach) (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-einfach.pdf)
+- [Kaufhaus zum letzten Mal! (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-letztes-Mal.pdf)
+- [noch mal Kaufhaus... (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-nochmal.pdf)
 - [Kaufhausdatenbank (reloaded) (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-reloaded.pdf)
 - [SQL abstrakt (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_SQL-abstract.pdf)
 - [46116:2012:03 T1 TA1 A3 (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf)
@@ -695,11 +699,16 @@ als Markdown-Liste eingebettet werden kann.
     - Normalformen:
         - Schlüssel
         - Superschlüssel
+        - Schlüsselkandidat
         - Funktionale Abhängigkeiten
         - Synthese-Algorithmus
         - Erste Normalform
         - Zweite Normalform
         - Dritte Normalform
+        - Anomalien:
+            - Update-Anomalie
+            - Insert-Anomalie
+            - Delete-Anomalie
     - Transaktionsverwaltung:
         - Transaktionen
         - Zwei-Phasen-Sperrprotokoll
@@ -707,6 +716,7 @@ als Markdown-Liste eingebettet werden kann.
         - Serialisierbarkeitsgraph
         - Dirty-Read
         - Lost-Update
+        - Deadlock
 - OOMUP:
     - Vererbung
     - Implementierung in Java:
