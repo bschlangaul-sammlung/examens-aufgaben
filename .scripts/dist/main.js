@@ -178,7 +178,7 @@ function generiereMarkdownAufgabenListe(aufgabenListe) {
     return item.join('\n');
 }
 function ersetzeStichwörterInReadme(inhalt) {
-    return inhalt.replace(/\{\{ stichwort "([\w\d- ]*)" \}\}/g, function (wholeMatch, stichwort) {
+    return inhalt.replace(/\{\{ stichwort "([^"]*)" \}\}/g, function (wholeMatch, stichwort) {
         return generiereMarkdownAufgabenListe(stichwort_verzeichnis_1.stichwortVerzeichnis.gibAufgabenMitStichwortUnterBaum(stichwort));
     });
 }

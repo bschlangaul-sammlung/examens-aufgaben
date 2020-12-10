@@ -178,7 +178,7 @@ function generiereMarkdownAufgabenListe (aufgabenListe: Set<Aufgabe>): string {
 }
 
 function ersetzeStichwörterInReadme (inhalt: string): string {
-  return inhalt.replace(/\{\{ stichwort "([\w\d- ]*)" \}\}/g, function (wholeMatch, stichwort) {
+  return inhalt.replace(/\{\{ stichwort "([^"]*)" \}\}/g, function (wholeMatch, stichwort) {
     return generiereMarkdownAufgabenListe(stichwortVerzeichnis.gibAufgabenMitStichwortUnterBaum(stichwort))
   })
 }

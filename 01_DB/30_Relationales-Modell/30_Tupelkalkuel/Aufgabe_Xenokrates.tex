@@ -1,0 +1,38 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe}
+\begin{document}
+\liAufgabenTitel{Xenokrates}
+
+\section{Übungen der TU München
+\index{Tupelkalkül}
+\footcite{net:pdf:tum:db-tutor-uebung}
+}
+
+Lösen Sie die Aufgaben im Tupel- und Domänenkalkül:
+
+\begin{enumerate}
+\item Geben Sie alle Vorlesungen an, die der Student
+\emph{Xenokrates} gehört hat.
+
+\begin{antwort}[muster]
+$\{
+  v |
+  v \in Vorlesungen \land
+  \exists h \in hoeren(
+    v.VorlNr = h.VorlNr \land
+    \exists s \in Studenten(
+      h.MatrNr = s.MatrNr \land s.Name = \mlq Xenokrates \mrq
+    )
+  )
+\}
+$
+\end{antwort}
+
+\item Geben Sie die Titel der direkten Voraussetzungen für die
+Vorlesung Wissenschaftstheorie an.
+
+\item Geben Sie Paare von Studenten(-Namen) an, die sich aus
+der Vorlesung Grundzüge kennen.
+
+\end{enumerate}
+\end{document}

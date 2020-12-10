@@ -50,7 +50,9 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 
 #### Tupelkalkül
 
-{{ stichwort "Tupelkalkül" }}
+- [Xenokrates (Tupelkalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/30_Tupelkalkuel/Aufgabe_Xenokrates.pdf)
+- [46116:2013:03 T1 TA2 A2 (Relationale Algebra, SQL, Tupelkalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf)
+- [66116:2018:03 T2 TA1 A4 (Tupelkalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-4.pdf)
 
 ### SQL
 
