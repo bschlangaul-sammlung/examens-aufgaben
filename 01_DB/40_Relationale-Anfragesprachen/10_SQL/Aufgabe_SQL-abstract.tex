@@ -1,0 +1,207 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{SQL abstrakt}
+
+\section{Aufgabe 3: SQL abstrakt...
+\index{SQL}
+\footcite{db:ab:3}
+}
+
+Gegeben sind die drei Tabellen TAB1, TAB2 und TAB3:
+
+\liPseudoUeberschrift{TAB1}
+
+\begin{tabular}{lll}
+A&B&C\\
+1&2&3\\
+4&5&6\\
+7&8&9\\
+\end{tabular}
+
+\liPseudoUeberschrift{TAB2}
+
+\begin{tabular}{ll}
+A&B\\
+1&4\\
+3&7\\
+\end{tabular}
+
+\liPseudoUeberschrift{TAB3}
+
+\begin{tabular}{ll}
+A&B\\
+1&2\\
+9&6\\
+3&3\\
+9&2\\
+2&7\\
+7&4\\
+9&4\\
+3&7\\
+\end{tabular}
+
+\bigskip
+
+Geben Sie die Ergebnistabellen der folgenden Aussagen an:
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item
+
+\begin{minted}{sql}
+SELECT A FROM TAB3 WHERE B = 4 OR B = 7 ORDER BY A;
+\end{minted}
+
+\begin{antwort}[muster]
+\begin{tabular}{l}
+A\\
+2\\
+7\\
+9\\
+3\\
+\end{tabular}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item
+
+\begin{minted}{sql}
+SELECT * FROM TAB3 WHERE NOT (B = 7) ORDER BY A ASC, B
+DESC;
+\end{minted}
+
+\begin{antwort}[muster]
+\begin{tabular}{ll}
+A&B\\
+1&2\\
+3&3\\
+7&4\\
+9&6\\
+9&4\\
+9&2\\
+\end{tabular}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item
+
+\begin{minted}{sql}
+SELECT COUNT(DISTINCT A) FROM TAB3 WHERE B >= 3;
+\end{minted}
+
+\begin{antwort}[muster]
+4
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item
+
+\begin{minted}{sql}
+SELECT A, COUNT(*), SUM (B), MAX(A), AVG(B) FROM TAB3
+GROUP BY A;
+\end{minted}
+
+\begin{antwort}
+\begin{tabular}{lllll}
+A&Count&SumB&MaxA&AvgB\\
+1&1&2&1&2\\
+2&1&7&2&7\\
+3&2&10&3&5\\
+7&1&4&7&4\\
+9&3&12&9&4\\
+\end{tabular}
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item
+
+\begin{minted}{sql}
+SELECT TAB1.*, TAB2.* FROM TAB1, TAB2;
+\end{minted}
+
+\begin{antwort}
+\begin{tabular}{lllll}
+TAB1.A&TAB1.B&TAB1.C&TAB2.A&TAB2.B\\
+1&2&3&1&4\\
+4&5&6&1&4\\
+7&8&9&1&4\\
+1&2&3&3&7\\
+4&5&6&3&7\\
+7&8&9&3&7\\
+\end{tabular}
+\end{antwort}
+
+%%
+% (f)
+%%
+
+\item
+
+\begin{minted}{sql}
+SELECT TAB1.*, TAB2.* FROM TAB1, TAB2 WHERE TAB1.A =
+TAB2.B;
+\end{minted}
+
+\begin{antwort}
+\begin{tabular}{lllll}
+TAB1.A&TAB1.B&TAB1.C&TAB2.A&TAB2.B\\
+4&5&6&1&4\\
+7&8&9&3&7\\
+\end{tabular}
+\end{antwort}
+
+%%
+% (g)
+%%
+
+\item
+
+\begin{minted}{sql}
+SELECT TAB1.*, TAB2.* FROM TAB1, TAB2 WHERE TAB1.A =
+TAB2.B AND TAB2.A = 3;
+\end{minted}
+
+\begin{antwort}
+\begin{tabular}{lllll}
+TAB1.A&TAB1.B&TAB1.C&TAB2.A&TAB2.B\\
+7&8&9&3&7\\
+\end{tabular}
+\end{antwort}
+
+%%
+% (h)
+%%
+
+\item
+
+\begin{minted}{sql}
+SELECT TAB1.A, TAB1.C, TAB2.A FROM TAB1, TAB2 WHERE
+TAB1.A = TAB2.B AND TAB2.A = 3;
+\end{minted}
+
+\begin{antwort}
+\begin{tabular}{lll}
+TAB1.A&TAB1.C&TAB2.A\\
+7&9&3\\
+\end{tabular}
+\end{antwort}
+
+\end{enumerate}
+\end{document}
