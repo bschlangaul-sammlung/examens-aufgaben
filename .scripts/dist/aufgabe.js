@@ -170,6 +170,17 @@ var ExamensAufgabe = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
+    ExamensAufgabe.erzeugePfad = function (arg1, arg2, arg3) {
+        if (arg1 && arg2 && arg3) {
+            return path_1.default.join("Thema-" + arg1, "Teilaufgabe-" + arg2, "Aufgabe-" + arg3 + ".tex");
+        }
+        else if (arg1 && arg2 && !arg3) {
+            return path_1.default.join("Thema-" + arg1, "Aufgabe-" + arg2 + ".tex");
+        }
+        else {
+            return "Aufgabe-" + arg1 + ".tex";
+        }
+    };
     ExamensAufgabe.pfadRegExp = /(?<nummer>\d{5})\/(?<jahr>\d{4})\/(?<monat>\d{2})\/(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/;
     ExamensAufgabe.schwacherPfadRegExp = /(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/;
     return ExamensAufgabe;

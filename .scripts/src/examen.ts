@@ -1,7 +1,15 @@
+import path from 'path'
+
 import glob from 'glob'
 
 import { repositoryPfad } from './helfer'
 import { Aufgabe } from './aufgabe'
+
+export interface ExamenReferenz {
+  nummer: string
+  jahr: string
+  monat: string
+}
 
 export class Examen {
   nummer: number
@@ -16,6 +24,10 @@ export class Examen {
     this.nummer = nummer
     this.jahr = jahr
     this.monat = monat
+  }
+
+  get pfad (): string {
+    return path.join(repositoryPfad, Examen.erzeugePfad(this.nummer, this.jahr, this.monatMitNullen), 'Scan.pdf')
   }
 
   get jahreszeit (): string {
@@ -67,6 +79,23 @@ export class Examen {
       throw new Error('Eine Staatsexamens-Referenz muss in diesem Format sein: 66116:2020:09')
     }
     return Examen.erzeugeExamenDurchTextArgumente(ergebnis[0], ergebnis[1], ergebnis[2])
+  }
+
+  static erzeugePfad (nummer: string | number, jahr: string | number, monat: string | number) {
+    return path.join('Staatsexamen', `${nummer}`, `${jahr}`, `${monat}`)
+  }
+
+  static teileReferenz (referenz: string): ExamenReferenz {
+    const tmp = referenz.split(':')
+    if (tmp.length !== 3) {
+      console.log('Exam ref has to be in this format: 66116:2020:09')
+      process.exit(1)
+    }
+    return {
+      nummer: tmp[0],
+      jahr: tmp[1],
+      monat: tmp[2]
+    }
   }
 }
 

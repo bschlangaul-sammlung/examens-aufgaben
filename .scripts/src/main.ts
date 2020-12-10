@@ -10,9 +10,11 @@ import { Command } from 'commander'
 
 import { Aufgabe, ExamensAufgabe } from './aufgabe'
 import { repositoryPfad } from './helfer'
+import { examenSammlung } from './sammlung'
 
 import { erzeugeAufgabenVorlage } from './aktionen/erzeuge-aufgaben-vorlage'
 import { erzeugeReadme } from './aktionen/erzeuge-readme'
+import { erzeugeExamensAufgabeVorlage } from './aktionen/erzeuge-examens-aufgabe-vorlage'
 
 /*******************************************************************************
  * low level functions
@@ -31,56 +33,6 @@ function öffneVSCode (filePath: string) {
   öffneProgramm('/usr/bin/code', filePath)
 }
 
-function generateExamBasePath (number: string, year: string, month: string): string {
-  return path.join(repositoryPfad, 'Staatsexamen', number, year, month)
-}
-
-function generateQuestionPath (arg1: number, arg2?: number, arg3?: number): string {
-  if (arg1 && arg2 && arg3) {
-    return path.join(`Thema-${arg1}`, `Teilaufgabe-${arg2}`, `Aufgabe-${arg3}.tex`)
-  } else if (arg1 && arg2 && !arg3) {
-    return path.join(`Thema-${arg1}`, `Aufgabe-${arg2}.tex`)
-  } else {
-    return `Aufgabe-${arg1}.tex`
-  }
-}
-
-interface Exam {
-  number: string
-  year: string
-  month: string
-}
-
-function generateTeXMacro (exam: Exam, arg1: string, arg2?: string, arg3?: string) {
-  let questionMarkup = ''
-  let macroSuffix = ''
-  const examMarkup = `${exam.number} / ${exam.year} / ${exam.month} :`
-  if (arg1 && arg2 && arg3) {
-    questionMarkup = `Thema ${arg1} Teilaufgabe ${arg2} Aufgabe ${arg3}`
-    macroSuffix = 'TTA'
-  } else if (arg1 && arg2 && !arg3) {
-    questionMarkup = `Thema ${arg1} Aufgabe ${arg2}`
-    macroSuffix = 'TA'
-  } else {
-    questionMarkup = `Aufgabe ${arg1}`
-    macroSuffix = 'A'
-  }
-  return `\n\\ExamensAufgabe${macroSuffix} ${examMarkup} ${questionMarkup}`
-}
-
-function splitExamRef (ref: string) {
-  const exam = ref.split(':')
-  if (exam.length !== 3) {
-    console.log('Exam ref has to be in this format: 66116:2020:09')
-    process.exit(1)
-  }
-  return {
-    number: exam[0],
-    year: exam[1],
-    month: exam[2]
-  }
-}
-
 const program = new Command()
 program.description(`Repository path: ${repositoryPfad}`)
 program.name('lehramt-informatik.js')
@@ -90,15 +42,6 @@ program.on('command:*', function () {
   console.error('Invalid command: %s\nSee --help for a list of available commands.', program.args.join(' '))
   process.exit(1)
 })
-
-/*******************************************************************************
- * create-question
- ******************************************************************************/
-
-function checkNumber (number: string | number): number | undefined {
-  if (typeof number === 'string') { number = parseInt(number) }
-  if (number) return number
-}
 
 program
   .command('erzeuge-aufgabe [titel]')
@@ -123,59 +66,29 @@ program
   .command('erzeuge-examens-aufgabe <referenz> <thema> [teilaufgabe] [aufgabe]')
   .description('Erzeuge eine Examensaufgabe im Verzeichnis „Staatsexamen“.')
   .alias('e')
-  .action(function (ref: string, arg1: string, arg2: string, arg3: string, cmdObj: object): void {
-    const num1 = checkNumber(arg1)
-    const num2 = checkNumber(arg2)
-    const num3 = checkNumber(arg3)
-
-    if (!num1) {
-      throw Error(`Undefined ${num1}`)
-    }
-
-    const exam = splitExamRef(ref)
-    const questionPath = path.join(
-      generateExamBasePath(exam.number, exam.year, exam.month),
-      generateQuestionPath(num1, num2, num3)
-    )
-
-    erzeugeAufgabenVorlage(questionPath, {
-      zitatReferenz: ref
-    })
-    öffneVSCode(questionPath)
-    console.log(generateTeXMacro(exam, arg1, arg2, arg3))
+  .action(function (ref: string, arg1: string, arg2: string, arg3: string): void {
+    const pfad = erzeugeExamensAufgabeVorlage(ref, arg1, arg2, arg3)
+    öffneVSCode(pfad)
   })
-
-/*******************************************************************************
- * open-exam
- ******************************************************************************/
 
 program
   .command('oeffne-examen <referenz>')
   .description('Öffne eine Staatsexamen mit der Referenz, z. B. 66116:2020:09')
   .alias('o')
   .action(function (ref: string, cmdObj: object): void {
-    const exam = splitExamRef(ref)
-    const examPath = path.join(generateExamBasePath(exam.number, exam.year, exam.month), 'Scan.pdf')
-    if (fs.existsSync(examPath)) {
-      öffneProgramm('/usr/bin/xdg-open', examPath)
+    const examen = examenSammlung.gibDurchReferenz(ref)
+    if (fs.existsSync(examen.pfad)) {
+      öffneProgramm('/usr/bin/xdg-open', examen.pfad)
     } else {
-      console.log(`Path ${examPath} doesn’t exist.`)
+      console.log(`Path ${examen.pfad} doesn’t exist.`)
     }
   })
-
-/*******************************************************************************
- * generate-readme
- ******************************************************************************/
 
 program
   .command('generiere-readme')
   .description('Generiere die README-Datei')
   .alias('r')
   .action(erzeugeReadme)
-
-/*******************************************************************************
- * compile-questions
- ******************************************************************************/
 
 program
   .command('kompiliere-aufgaben')

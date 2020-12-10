@@ -22,8 +22,10 @@ var glob_1 = __importDefault(require("glob"));
 var commander_1 = require("commander");
 var aufgabe_1 = require("./aufgabe");
 var helfer_1 = require("./helfer");
+var sammlung_1 = require("./sammlung");
 var erzeuge_aufgaben_vorlage_1 = require("./aktionen/erzeuge-aufgaben-vorlage");
 var erzeuge_readme_1 = require("./aktionen/erzeuge-readme");
+var erzeuge_examens_aufgabe_vorlage_1 = require("./aktionen/erzeuge-examens-aufgabe-vorlage");
 /*******************************************************************************
  * low level functions
  ******************************************************************************/
@@ -37,50 +39,6 @@ function öffneProgramm(executable, filePath) {
 function öffneVSCode(filePath) {
     öffneProgramm('/usr/bin/code', filePath);
 }
-function generateExamBasePath(number, year, month) {
-    return path_1.default.join(helfer_1.repositoryPfad, 'Staatsexamen', number, year, month);
-}
-function generateQuestionPath(arg1, arg2, arg3) {
-    if (arg1 && arg2 && arg3) {
-        return path_1.default.join("Thema-" + arg1, "Teilaufgabe-" + arg2, "Aufgabe-" + arg3 + ".tex");
-    }
-    else if (arg1 && arg2 && !arg3) {
-        return path_1.default.join("Thema-" + arg1, "Aufgabe-" + arg2 + ".tex");
-    }
-    else {
-        return "Aufgabe-" + arg1 + ".tex";
-    }
-}
-function generateTeXMacro(exam, arg1, arg2, arg3) {
-    var questionMarkup = '';
-    var macroSuffix = '';
-    var examMarkup = exam.number + " / " + exam.year + " / " + exam.month + " :";
-    if (arg1 && arg2 && arg3) {
-        questionMarkup = "Thema " + arg1 + " Teilaufgabe " + arg2 + " Aufgabe " + arg3;
-        macroSuffix = 'TTA';
-    }
-    else if (arg1 && arg2 && !arg3) {
-        questionMarkup = "Thema " + arg1 + " Aufgabe " + arg2;
-        macroSuffix = 'TA';
-    }
-    else {
-        questionMarkup = "Aufgabe " + arg1;
-        macroSuffix = 'A';
-    }
-    return "\n\\ExamensAufgabe" + macroSuffix + " " + examMarkup + " " + questionMarkup;
-}
-function splitExamRef(ref) {
-    var exam = ref.split(':');
-    if (exam.length !== 3) {
-        console.log('Exam ref has to be in this format: 66116:2020:09');
-        process.exit(1);
-    }
-    return {
-        number: exam[0],
-        year: exam[1],
-        month: exam[2]
-    };
-}
 var program = new commander_1.Command();
 program.description("Repository path: " + helfer_1.repositoryPfad);
 program.name('lehramt-informatik.js');
@@ -89,16 +47,6 @@ program.on('command:*', function () {
     console.error('Invalid command: %s\nSee --help for a list of available commands.', program.args.join(' '));
     process.exit(1);
 });
-/*******************************************************************************
- * create-question
- ******************************************************************************/
-function checkNumber(number) {
-    if (typeof number === 'string') {
-        number = parseInt(number);
-    }
-    if (number)
-        return number;
-}
 program
     .command('erzeuge-aufgabe [titel]')
     .description('Erzeuge eine Aufgabe im aktuellen Arbeitsverzeichnis.')
@@ -121,49 +69,28 @@ program
     .command('erzeuge-examens-aufgabe <referenz> <thema> [teilaufgabe] [aufgabe]')
     .description('Erzeuge eine Examensaufgabe im Verzeichnis „Staatsexamen“.')
     .alias('e')
-    .action(function (ref, arg1, arg2, arg3, cmdObj) {
-    var num1 = checkNumber(arg1);
-    var num2 = checkNumber(arg2);
-    var num3 = checkNumber(arg3);
-    if (!num1) {
-        throw Error("Undefined " + num1);
-    }
-    var exam = splitExamRef(ref);
-    var questionPath = path_1.default.join(generateExamBasePath(exam.number, exam.year, exam.month), generateQuestionPath(num1, num2, num3));
-    erzeuge_aufgaben_vorlage_1.erzeugeAufgabenVorlage(questionPath, {
-        zitatReferenz: ref
-    });
-    öffneVSCode(questionPath);
-    console.log(generateTeXMacro(exam, arg1, arg2, arg3));
+    .action(function (ref, arg1, arg2, arg3) {
+    var pfad = erzeuge_examens_aufgabe_vorlage_1.erzeugeExamensAufgabeVorlage(ref, arg1, arg2, arg3);
+    öffneVSCode(pfad);
 });
-/*******************************************************************************
- * open-exam
- ******************************************************************************/
 program
     .command('oeffne-examen <referenz>')
     .description('Öffne eine Staatsexamen mit der Referenz, z. B. 66116:2020:09')
     .alias('o')
     .action(function (ref, cmdObj) {
-    var exam = splitExamRef(ref);
-    var examPath = path_1.default.join(generateExamBasePath(exam.number, exam.year, exam.month), 'Scan.pdf');
-    if (fs_1.default.existsSync(examPath)) {
-        öffneProgramm('/usr/bin/xdg-open', examPath);
+    var examen = sammlung_1.examenSammlung.gibDurchReferenz(ref);
+    if (fs_1.default.existsSync(examen.pfad)) {
+        öffneProgramm('/usr/bin/xdg-open', examen.pfad);
     }
     else {
-        console.log("Path " + examPath + " doesn\u2019t exist.");
+        console.log("Path " + examen.pfad + " doesn\u2019t exist.");
     }
 });
-/*******************************************************************************
- * generate-readme
- ******************************************************************************/
 program
     .command('generiere-readme')
     .description('Generiere die README-Datei')
     .alias('r')
     .action(erzeuge_readme_1.erzeugeReadme);
-/*******************************************************************************
- * compile-questions
- ******************************************************************************/
 program
     .command('kompiliere-aufgaben')
     .description('Kompiliere alle TeX-Dateien der Aufgaben.')

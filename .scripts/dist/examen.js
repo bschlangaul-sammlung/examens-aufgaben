@@ -15,6 +15,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.examensTitel = exports.ExamenSammlung = exports.Examen = void 0;
+var path_1 = __importDefault(require("path"));
 var glob_1 = __importDefault(require("glob"));
 var helfer_1 = require("./helfer");
 var Examen = /** @class */ (function () {
@@ -24,6 +25,13 @@ var Examen = /** @class */ (function () {
         this.jahr = jahr;
         this.monat = monat;
     }
+    Object.defineProperty(Examen.prototype, "pfad", {
+        get: function () {
+            return path_1.default.join(helfer_1.repositoryPfad, Examen.erzeugePfad(this.nummer, this.jahr, this.monatMitNullen), 'Scan.pdf');
+        },
+        enumerable: false,
+        configurable: true
+    });
     Object.defineProperty(Examen.prototype, "jahreszeit", {
         get: function () {
             if (this.monat === 3) {
@@ -83,6 +91,21 @@ var Examen = /** @class */ (function () {
             throw new Error('Eine Staatsexamens-Referenz muss in diesem Format sein: 66116:2020:09');
         }
         return Examen.erzeugeExamenDurchTextArgumente(ergebnis[0], ergebnis[1], ergebnis[2]);
+    };
+    Examen.erzeugePfad = function (nummer, jahr, monat) {
+        return path_1.default.join('Staatsexamen', "" + nummer, "" + jahr, "" + monat);
+    };
+    Examen.teileReferenz = function (referenz) {
+        var tmp = referenz.split(':');
+        if (tmp.length !== 3) {
+            console.log('Exam ref has to be in this format: 66116:2020:09');
+            process.exit(1);
+        }
+        return {
+            nummer: tmp[0],
+            jahr: tmp[1],
+            monat: tmp[2]
+        };
     };
     Examen.regExp = /^.*(?<nummer>\d{5})\/(?<jahr>\d{4})\/(?<monat>\d{2})\/.*$/;
     return Examen;

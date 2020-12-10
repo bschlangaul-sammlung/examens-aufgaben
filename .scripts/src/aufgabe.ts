@@ -135,6 +135,16 @@ export class ExamensAufgabe extends Aufgabe {
   get markdownLink (): string {
     return generiereMarkdownLink(this.titelKurz, this.pfad)
   }
+
+  static erzeugePfad (arg1: number, arg2?: number, arg3?: number): string {
+    if (arg1 && arg2 && arg3) {
+      return path.join(`Thema-${arg1}`, `Teilaufgabe-${arg2}`, `Aufgabe-${arg3}.tex`)
+    } else if (arg1 && arg2 && !arg3) {
+      return path.join(`Thema-${arg1}`, `Aufgabe-${arg2}.tex`)
+    } else {
+      return `Aufgabe-${arg1}.tex`
+    }
+  }
 }
 
 export class AufgabenSammlung {

@@ -21,11 +21,7 @@ describe('stichwort-verzeichnis.js', function() {
 
   describe('Klasse StichwortVerzeichnis()', function () {
     it('Attribut verzeichnis', function() {
-      assert.ok(stichwortVerzeichnis.verzeichnis['DB'])
-    })
-
-    it('Attribut aufgaben', function() {
-      assert.ok(stichwortVerzeichnis.aufgaben['Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-2.tex'])
+      assert.ok(stichwortVerzeichnis.verzeichnis['SQL'])
     })
 
     it('Methode gibAufgabenMitStichwort()', function () {
