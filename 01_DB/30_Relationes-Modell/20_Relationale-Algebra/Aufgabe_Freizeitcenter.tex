@@ -1,5 +1,11 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe}
+\begin{document}
+\liAufgabenTitel{Freizeitcenter}
 
-\section{Aufgabe 5: Freizeitcenter (Check-Up)}
+\section{Aufgabe 5: Freizeitcenter (Check-Up)
+\index{Relationale Algebra}
+\footcite{db:ab:4}}
 
 Gegeben ist das Datenbankschema „Freizeitcenter“ mit folgender
 Ausprägung:
@@ -18,8 +24,6 @@ der Buchungsbeginn.
 Tischtennis
 \end{itemize}
 
-\renewcommand{\labelenumi}{(\alph{enumi})}
-\renewcommand{\labelenumii}{(\roman{enumii})}
 \begin{enumerate}
 
 %%
@@ -39,7 +43,7 @@ Sie die Ergebnisrelation an!
   \sigma_{\text{Beruf}=\mlq \text{Student} \mrq} (\text{Spieler})
 )$
 
-\begin{mdframed}
+\begin{antwort}
 Es sollen die Nachnamen aller Studenten ausgegeben werden, die im
 Freizeitcenter registriert sind.
 
@@ -49,7 +53,7 @@ Freizeitcenter registriert sind.
 Klein\\\hline
 \end{tabular}
 
-\end{mdframed}
+\end{antwort}
 
 %%
 % (ii)
@@ -61,7 +65,7 @@ Klein\\\hline
   \text{Preis}
 )$
 
-\begin{mdframed}
+\begin{antwort}
 Der gegebene Term gibt nichts aus, da die Relation \emph{Spieler} und
 \emph{Preis} kein gemeinsames Attribut haben. Es kann kein Naturaljoin
 statt finden.
@@ -91,7 +95,7 @@ Schüler & 17:00 & 22:00 & 20 \\
 \hline
 \end{tabular}
 
-\end{mdframed}
+\end{antwort}
 
 %%
 % (iii)
@@ -103,7 +107,7 @@ Schüler & 17:00 & 22:00 & 20 \\
   \text{Spieler}
 )$
 
-\begin{mdframed}
+\begin{antwort}
 Es werden der Nachname und der Vorname von allen Mitglieder des
 Freizeitcenters eingezeigt, die der Preisstufe 1 und 2 angehören und
 deshalb nicht mehr als 20 Euro zahlen müssen.
@@ -118,7 +122,7 @@ Beutlin & Hein\\
 \hline
 \end{tabular}
 
-\end{mdframed}
+\end{antwort}
 
 %%
 % (iv)
@@ -133,7 +137,7 @@ Beutlin & Hein\\
 )
 \end{multline*}
 
-\begin{mdframed}
+\begin{antwort}
 Es wird der Name der/des SpielerIn, die Buchung (Court-ID) und die Zeit
 von allen Tischtennis-Buchungen ausgegeben.
 
@@ -177,7 +181,7 @@ Beutlin & 21 & 16:00 \\
 Klein & 24 & 12:00 \\
 \hline
 \end{tabular}
-\end{mdframed}
+\end{antwort}
 
 \end{enumerate}
 
@@ -196,13 +200,13 @@ Klein & 24 & 12:00 \\
 \item Gesucht sind die Spieler-IDs der Personen, die einen Squash-Court
 gebucht haben.
 
-\begin{mdframed}
+\begin{antwort}
 $\pi_{\text{Spieler}}(
   \sigma_{\text{Typ} = \mlq \text{Squash} \mrq} (\text{Court})
     \bowtie_{\text{Court.ID} = \text{Buchung.Court-ID}}
   \text{Buchung}
 )$
-\end{mdframed}
+\end{antwort}
 
 %%
 % (ii)
@@ -210,13 +214,13 @@ $\pi_{\text{Spieler}}(
 
 \item In welche Preisstufe fällt Frau Tyrell?
 
-\begin{mdframed}
+\begin{antwort}
 $\pi_{\text{PS}}(
   \sigma_{\text{Name} = \mlq \text{Tyrell} \mrq} (\text{Spieler})
     \bowtie
   \text{Preisstufe}
 )$
-\end{mdframed}
+\end{antwort}
 
 %%
 % (iii)
@@ -224,9 +228,9 @@ $\pi_{\text{PS}}(
 
 \item Gesucht sind die Nummern der Courts, die nicht benutzt werden.
 
-\begin{mdframed}
+\begin{antwort}
 $\pi_{\text{ID}}(\text{Court}) - \pi_{\text{Court-ID}}(\text{Buchung})$
-\end{mdframed}
+\end{antwort}
 
 %%
 % (iv)
@@ -235,7 +239,7 @@ $\pi_{\text{ID}}(\text{Court}) - \pi_{\text{Court-ID}}(\text{Buchung})$
 \item Welche Berufe üben die Personen aus, die zwischen 9 und 12 Uhr
 einen Court gebucht haben?
 
-\begin{mdframed}
+\begin{antwort}
 $
   \pi_{\text{Beruf}}(
     \sigma_{\text{Zeit} \geq 9 \land \text{Zeit} \leq 11}(\text{Buchung})
@@ -243,7 +247,7 @@ $
     \text{Spieler}
   )
 $
-\end{mdframed}
+\end{antwort}
 
 %%
 % (v)
@@ -252,7 +256,7 @@ $
 \item Gesucht sind Name und Vorname der Spieler, die für mehr als eine
 Stunde gebucht haben.
 
-\begin{mdframed}
+\begin{antwort}
 \begin{multline*}
   \pi_{\text{Name, Vorname}}(\\
     \text{Buchung}\\
@@ -262,8 +266,7 @@ Stunde gebucht haben.
     \text{Spieler}\\
   )
 \end{multline*}
-\end{mdframed}
-
+\end{antwort}
 \end{enumerate}
-
 \end{enumerate}
+\end{document}

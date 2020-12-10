@@ -1,5 +1,9 @@
-
-\section{Aufgabe 4: SQL (Stex RS DB, Herbst 2015, Thema Nr. 1, Aufgabe 4) (Check-Up)}
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{rmodell,syntax,mathe}
+\begin{document}
+\liAufgabenTitel{Versicherungsgesellschaft „Insurance Pro“}
+\section{Aufgabe 4: SQL (Check-Up)
+\footcite[Thema 1 Teilaufgabe 2 Aufgabe 4]{46116:2015:09}}
 
 Das Datenbankschema der Versicherungsgesellschaft „Insurance Pro“
 enthält sowohl Kunden- als auch Mitarbeiterdaten, sowie Informationen
@@ -11,29 +15,29 @@ Fremdschlüssel und PS für Primärschlüssel steht:
 {
 \ttfamily
 \noindent
-Versicherungsnehmer (\underline{KNr}, Name, Anschrift, Geburtsdatum)\\
+Versicherungsnehmer (\liPrimaer{KNr}, Name, Anschrift, Geburtsdatum)\\
 
 \noindent
-Fahrzeug (\underline{Kennzeichen}, Farbe, Fahrzeugtyp)\\
+Fahrzeug (\liPrimaer{Kennzeichen}, Farbe, Fahrzeugtyp)\\
 
 \noindent
-Mitarbeiter (\underline{MNr}, Name, Kontaktdaten, \dashuline{Abteilung},
+Mitarbeiter (\liPrimaer{MNr}, Name, Kontaktdaten, \liFremd{Abteilung},
 Leiter)\\
 
 \noindent
-Abteilung (\underline{ANr}, Bezeichnung, Ort)\\
+Abteilung (\liPrimaer{ANr}, Bezeichnung, Ort)\\
 
 \noindent
-Versicherungsvertrag (\underline{VNr}, Abschlussdatum, Art,
-\dashuline{Versicherungsnehmer}, \dashuline{Fahrzeug},
-\dashuline{Mitarbeiter})\\
+Versicherungsvertrag (\liPrimaer{VNr}, Abschlussdatum, Art,
+\liFremd{Versicherungsnehmer}, \liFremd{Fahrzeug},
+\liFremd{Mitarbeiter})\\
 
 \noindent
-Schadensfall (\underline{SNr}, Datum, Gesamtschaden, Beschreibung,
-\dashuline{Mitarbeiter})\\
+Schadensfall (\liPrimaer{SNr}, Datum, Gesamtschaden, Beschreibung,
+\liFremd{Mitarbeiter})\\
 
 \noindent
-Beteiligung (\dashuline{Schadensfall}, \dashuline{Fahrzeug},
+Beteiligung (\liFremd{Schadensfall}, \liFremd{Fahrzeug},
 Fahrzeugschaden)}
 
 \bigskip
@@ -170,5 +174,5 @@ Es ist nicht genau angegeben, nach was sortiert werden soll. Ich
 sortiere nach Anzahl an Schadensfällen, weil dass meiner Meinung nach am
 meisten Sinn macht.
 \end{mdframed}
-
 \end{enumerate}
+\end{document}

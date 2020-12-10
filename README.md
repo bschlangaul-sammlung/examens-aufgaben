@@ -8,6 +8,7 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 
 #### Entity-Relation-Modell
 
+- [Olympische Spiele (Entity-Relation-Modell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/20_Datenbankentwurf/01_Entity-Relation-Modell/Aufgabe_Olympische-Spiele.pdf)
 - [46116:2013:03 T1 TA2 A1 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf)
 - [46116:2015:03 T1 TA2 A3 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
 - [46116:2018:09 T1 TA2 A2 (Entity-Relation-Modell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf)
@@ -43,6 +44,7 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 - [66116:2016:03 T1 TA1 A2 (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf)
 - [Kaufhausdatenbank (einfach) (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-einfach.pdf)
 - [Kaufhausdatenbank (reloaded) (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-reloaded.pdf)
+- [SQL abstrakt (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_SQL-abstract.pdf)
 - [46116:2012:03 T1 TA1 A3 (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf)
 - [46116:2013:03 T1 TA2 A2 (Relationale Algebra, SQL, Tupelkalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf)
 - [66111:1996:03 A2 (Entity-Relation-Modell, Verfeinertes Relationenmodell, SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/Aufgabe-2.pdf)
@@ -253,6 +255,7 @@ OCR des oben genannten Scans:
             - [Aufgabe 3 (Gantt-Diagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) 
         - Teilaufgabe 2 
             - [Aufgabe 1 (Datenunabhängigkeit, Superschlüssel, Referentielle Integrität)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) 
+            - [Aufgabe 4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf) 
     - Thema 2 
         - Teilaufgabe 1 
             - [Aufgabe 2 (C1-Test Zweigüberdeckung (Branch Coverage), C2b Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage), Zyklomatische Komplexität nach Mc-Cabe, C2a Vollständige Pfadüberdeckung (Full Path Coverage), Datenfluss-annotierter Kontrollflussgraph)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) 

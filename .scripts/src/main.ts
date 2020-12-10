@@ -113,7 +113,6 @@ program
     const pfad = path.join(process.cwd(), `${dateiName}.tex`)
     if (!fs.existsSync(pfad)) {
       erzeugeAufgabenVorlage(pfad, {
-        zitatReferenz: 'ref',
         titel
       })
     }

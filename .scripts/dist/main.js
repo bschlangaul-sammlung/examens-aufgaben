@@ -113,7 +113,6 @@ program
     var pfad = path_1.default.join(process.cwd(), dateiName + ".tex");
     if (!fs_1.default.existsSync(pfad)) {
         aufgaben_vorlage_1.erzeugeAufgabenVorlage(pfad, {
-            zitatReferenz: 'ref',
             titel: titel
         });
     }
