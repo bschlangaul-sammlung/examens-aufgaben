@@ -1,0 +1,81 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{spalten}
+\begin{document}
+\liAufgabenTitel{Tabelle TAB}
+
+\section{Aufgabe „Tabelle TAB“
+\index{Transaktionsverwaltung}
+\footcite{db:ab:6}}
+
+Die Transaktionen eines Transaktionsprogramms besteht aus SQL-Befehlen.
+Die Transaktionen T1 und T2 arbeiten auf der Tabelle TAB.
+
+\begin{multicols}{2}
+\liPseudoUeberschrift{Transaktion T1}
+
+\begin{tabular}{|l|}
+\hline
+BOT                   \\\hline
+SELECT FROM TAB       \\\hline
+NEUF:-F+5             \\\hline
+UPDATE TAB SET F=NEUF \\\hline
+COMMIT WORK           \\\hline
+\end{tabular}
+
+\liPseudoUeberschrift{Transaktion T2}
+
+\begin{tabular}{|l|}
+\hline
+BOT                   \\\hline
+SELECT FROM TAB       \\\hline
+NEUF:-F*2             \\\hline
+UPDATE TAB SET F=NEUF \\\hline
+COMMIT WORK           \\\hline
+\end{tabular}
+\end{multicols}
+
+\noindent
+Die quasiparallele Abarbeitung erfolgt in folgenden Schritten:
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+Schritt & T1                    & T2                    \\\hline
+1       &                       & BOT                   \\\hline
+2       & BOT                   &                       \\\hline
+3       & SELCT F FROM TAB      &                       \\\hline
+4       &                       & SELECT F FROM TAB     \\\hline
+5       &                       & NEUF := F*2           \\\hline
+6       & NEUF := F+5           &                       \\\hline
+7       & UPDATE TAB SET F=NEUF &                       \\\hline
+8       & COMMIT WORK           &                       \\\hline
+9       &                       & UPDATE TAB SET F=NEUF \\\hline
+10      &                       & COMMIT WORK           \\\hline
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Ist die (quasiparallele) Bearbeitung der Transaktionen korrekt?
+Begründung!\index{Lost-Update}
+
+\begin{antwort}
+Nein, es liegt ein Lost-Update-Fehlerfall vor. In Schritt 3 bzw. 4
+lesen T1 bzw. T2 denselben Wert aus der Tabelle TAB. Der von T1 in
+Schritt 7 in die Tabelle zurückgeschriebene Wert wird in Schritt 9 von
+T2 überschrieben.
+\end{antwort}
+
+%%
+%
+%%
+
+\item Konstruieren Sie unter Verwendung von T1 und T2 einen
+Dirty-Read-Fehlerfall.
+\index{Dirty-Read}
+\end{enumerate}
+\end{document}

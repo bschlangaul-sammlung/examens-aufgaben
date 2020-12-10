@@ -9,95 +9,11 @@
 %
 %-----------------------------------------------------------------------
 
-\section{Aufgabe 3}
-
-Die Transaktionen eines Transaktionsprogramms besteht aus SQL-Befehlen.
-Die Transaktionen T1 und T2 arbeiten auf der Tabelle TAB.
-
-\begin{tabular}{l}
-Transaktion T1        \\
-Bot                   \\
-SELECT FROM TAB       \\
-NEUF:-F+5             \\
-UPDATE TAB SET F=NEUF \\
-COMMIT WORK
-\end{tabular}
-
-\begin{tabular}{l}
-Transaktion T2        \\
-Bot                   \\
-SELECT FROM TAB       \\
-NEUF:-F*2             \\
-UPDATE TAB SET F=NEUF \\
-COMMIT WORK
-\end{tabular}
-
-Die quasiparallele Abarbeitung erfolgt in folgenden Schritten:
-
-\begin{tabular}{lll}
-Schritt & T1                    & T2                    \\
-1       &                       & Bot                   \\
-2       & BOT                   &                       \\
-3       & SELCT F FROM TAB      &                       \\
-4       &                       & SELECT F FROM TAB     \\
-5       &                       & NEUF := F*2           \\
-6       & NEUF := F+5           &                       \\
-7       & UPDATE TAB SET F=NEUF &                       \\
-8       & COMMIT WORK           &                       \\
-9       &                       & UPDATE TAB SET F=NEUF \\
-10      &                       & COMMIT WORK
-\end{tabular}
-
-\begin{enumerate}
-
-%%
-%
-%%
-
-\item Ist die (quasiparallele) Bearbeitung der Transaktionen korrekt?
-Begründung!
-
-%%
-%
-%%
-
-\item Konstruieren Sie unter Verwendung von T1 und T2 einen
-Dirty-Read-Fehlerfall.
-\end{enumerate}
 
 %-----------------------------------------------------------------------
 %
 %-----------------------------------------------------------------------
 
-\section{Aufgabe 4: ACID}
-
-Beurteilen Sie kurz folgende Aussagen oder Fragen unter
-ACID-Gesichtspunkten!
-
-\begin{enumerate}
-
-%%
-% (a)
-%%
-
-\item Seit dem Abort meiner Transaktion sind deren Änderungen überhaupt
-nicht mehr vorhanden!
-
-%%
-% (b)
-%%
-
-\item Leider wurde die erfolgreich abgeschlossene Transaktion
-zurückgesetzt, da das DBS abgestürzt ist.
-
-%%
-% (c)
-%%
-
-\item Eine andere Transaktion hat Änderungen meiner Transaktion
-überschrieben. Darf ich jetzt meine Transaktion überhaupt noch beenden
-oder muss ich sie abbrechen?
-\end{enumerate}
 
 %-----------------------------------------------------------------------
 %

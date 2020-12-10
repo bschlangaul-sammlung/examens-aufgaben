@@ -700,10 +700,13 @@ als Markdown-Liste eingebettet werden kann.
         - Erste Normalform
         - Zweite Normalform
         - Dritte Normalform
-    - Transaktionen:
+    - Transaktionsverwaltung:
+        - Transaktionen
         - Zwei-Phasen-Sperrprotokoll
         - ACID
         - Serialisierbarkeitsgraph
+        - Dirty-Read
+        - Lost-Update
 - OOMUP:
     - Vererbung
     - Implementierung in Java:

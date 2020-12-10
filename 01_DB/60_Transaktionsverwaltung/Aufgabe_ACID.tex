@@ -1,0 +1,62 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{ACID}
+
+\section{ACID und Transaktionen
+\index{Transaktionen}
+\footcite{db:ab:6}}
+
+Beurteilen Sie kurz folgende Aussagen oder Fragen unter
+ACID-Gesichtspunkten!
+\footnote{\url{http://wwwlgis.informatik.uni-kl.de/archiv/wwwdvs.informatik.uni-kl.de/courses/DBSREAL/SS2003/Uebungen/Blatt.01.half.pdf}}\index{ACID}
+% https://studylibde.com/doc/6009293/%C3%BCbungsblatt-1-%E2%80%93-l%C3%B6sung
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Seit dem Abort meiner Transaktion sind deren Änderungen überhaupt
+nicht mehr vorhanden!
+
+\begin{antwort}
+Das entspricht der Forderung \emph{Atomicity}, da entweder alle Aktionen
+oder keine Aktion einer Transaktion ausgeführt werden soll(en). Bei
+Abbruch einer Transaktion werden die bereits abgearbeiteten Aktionen
+dieser Transaktion zurückgesetzt.
+
+Man könnte man auch noch die \emph{Consistency} nennen, da diese nur
+durch vollständige Transaktionen gesichert werden kann.
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Leider wurde die erfolgreich abgeschlossene Transaktion
+zurückgesetzt, da das DBS abgestürzt ist.
+
+\begin{antwort}
+Das widerspricht der Forderung \emph{Durability}, da erfolgreich
+abgeschlossene Transaktionen permanent, d.\,h. dauerhaft, abgespeichert
+werden müssen.
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Eine andere Transaktion hat Änderungen meiner Transaktion
+überschrieben. Darf ich jetzt meine Transaktion überhaupt noch beenden
+oder muss ich sie abbrechen?
+
+\begin{antwort}
+Das widerspricht der Forderung \emph{Isolation}. Parallel ablaufende
+Transaktionen dürfen sich nicht beeinflussen, wenn dies also wie hier
+geschildert der Fall ist, dann muss die Transaktion abgebrochen werden.
+\end{antwort}
+
+\end{enumerate}
+
+\end{document}
