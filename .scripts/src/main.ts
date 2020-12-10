@@ -122,7 +122,7 @@ program
 program
   .command('erzeuge-examens-aufgabe <referenz> <thema> [teilaufgabe] [aufgabe]')
   .description('Erzeuge eine Examensaufgabe im Verzeichnis „Staatsexamen“.')
-  .alias('c')
+  .alias('e')
   .action(function (ref: string, arg1: string, arg2: string, arg3: string, cmdObj: object): void {
     const num1 = checkNumber(arg1)
     const num2 = checkNumber(arg2)
@@ -150,8 +150,8 @@ program
  ******************************************************************************/
 
 program
-  .command('open-exam <ref>')
-  .description('Open a exam scan: 66116:2020:09')
+  .command('oeffne-examen <referenz>')
+  .description('Öffne eine Staatsexamen mit der Referenz, z. B. 66116:2020:09')
   .alias('o')
   .action(function (ref: string, cmdObj: object): void {
     const exam = splitExamRef(ref)
@@ -184,20 +184,20 @@ function ersetzeStichwörterInReadme (inhalt: string): string {
 }
 
 program
-  .command('generate-readme')
-  .description('Generate the readme file')
+  .command('generiere-readme')
+  .description('Generiere die README-Datei')
   .alias('r')
   .action(function (cmdObj: object) {
-    let readmeContent = leseRepoDatei('README_template.md')
+    let inhalt = leseRepoDatei('README_template.md')
 
-    readmeContent = ersetzeStichwörterInReadme(readmeContent)
+    inhalt = ersetzeStichwörterInReadme(inhalt)
 
-    const tagsContent = leseRepoDatei('Stichwortverzeichnis.yml')
-    readmeContent = readmeContent.replace('{{ stichwortverzeichnis }}', tagsContent)
+    const stichwörterInhalt = leseRepoDatei('Stichwortverzeichnis.yml')
+    inhalt = inhalt.replace('{{ stichwortverzeichnis }}', stichwörterInhalt)
 
-    readmeContent = readmeContent.replace('{{ staatsexamen }}', generiereExamensÜbersicht())
+    inhalt = inhalt.replace('{{ staatsexamen }}', generiereExamensÜbersicht())
     // console.log(readmeContent)
-    fs.writeFileSync(path.join(repositoryPfad, 'README.md'), readmeContent)
+    fs.writeFileSync(path.join(repositoryPfad, 'README.md'), inhalt)
   })
 
 /*******************************************************************************
@@ -205,9 +205,9 @@ program
  ******************************************************************************/
 
 program
-  .command('compile-questions')
-  .description('Compile all questions')
-  .alias('q')
+  .command('kompiliere-aufgaben')
+  .description('Kompiliere alle TeX-Dateien der Aufgaben.')
+  .alias('k')
   .action(function (cmdObj: object) {
     const staatsexamenPath = path.join(repositoryPfad, 'Staatsexamen')
     const files = glob.sync('**/*.tex', { cwd: staatsexamenPath })
@@ -234,27 +234,27 @@ program
  ******************************************************************************/
 
 program
-  .command('vscode [glob]')
-  .alias('vsc')
-  .description('Open in Visual Studio Code')
-  .option('-n, --notag', 'Open only questions without an tag macro in it.')
+  .command('code [glob]')
+  .alias('c')
+  .description('Öffne die mit glob spezifizierten Dateien in Visual Studio Code')
+  .option('-n, --kein-index', 'Öffne nur die Dateien, die keinen Index haben.')
   .action(function (globPattern: string, cmdObj: { [schlüssel: string]: any }): void {
-    function openWithLogging (filePath: string) {
-      console.log(filePath)
-      öffneVSCode(filePath)
+    function öffneMitAusgabe (pfad: string) {
+      console.log(pfad)
+      öffneVSCode(pfad)
     }
 
     if (typeof globPattern !== 'string') {
       globPattern = '**/*.tex'
     }
-    const files = glob.sync(globPattern)
-    for (let filePath of files) {
-      filePath = path.resolve(filePath)
-      if (cmdObj.notag) {
-        const aufgabe = new Aufgabe(filePath)
-        if (aufgabe.stichwörter.length == 0) openWithLogging(filePath)
+    const dateien = glob.sync(globPattern)
+    for (let dateiPfad of dateien) {
+      dateiPfad = path.resolve(dateiPfad)
+      if (cmdObj.keinindex) {
+        const aufgabe = new Aufgabe(dateiPfad)
+        if (aufgabe.stichwörter.length == 0) öffneMitAusgabe(dateiPfad)
       } else {
-        openWithLogging(filePath)
+        öffneMitAusgabe(dateiPfad)
       }
     }
   })

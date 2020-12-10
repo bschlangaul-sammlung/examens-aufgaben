@@ -121,7 +121,7 @@ program
 program
     .command('erzeuge-examens-aufgabe <referenz> <thema> [teilaufgabe] [aufgabe]')
     .description('Erzeuge eine Examensaufgabe im Verzeichnis „Staatsexamen“.')
-    .alias('c')
+    .alias('e')
     .action(function (ref, arg1, arg2, arg3, cmdObj) {
     var num1 = checkNumber(arg1);
     var num2 = checkNumber(arg2);
@@ -141,8 +141,8 @@ program
  * open-exam
  ******************************************************************************/
 program
-    .command('open-exam <ref>')
-    .description('Open a exam scan: 66116:2020:09')
+    .command('oeffne-examen <referenz>')
+    .description('Öffne eine Staatsexamen mit der Referenz, z. B. 66116:2020:09')
     .alias('o')
     .action(function (ref, cmdObj) {
     var exam = splitExamRef(ref);
@@ -183,25 +183,25 @@ function ersetzeStichwörterInReadme(inhalt) {
     });
 }
 program
-    .command('generate-readme')
-    .description('Generate the readme file')
+    .command('generiere-readme')
+    .description('Generiere die README-Datei')
     .alias('r')
     .action(function (cmdObj) {
-    var readmeContent = helfer_1.leseRepoDatei('README_template.md');
-    readmeContent = ersetzeStichwörterInReadme(readmeContent);
-    var tagsContent = helfer_1.leseRepoDatei('Stichwortverzeichnis.yml');
-    readmeContent = readmeContent.replace('{{ stichwortverzeichnis }}', tagsContent);
-    readmeContent = readmeContent.replace('{{ staatsexamen }}', examen_1.generiereExamensÜbersicht());
+    var inhalt = helfer_1.leseRepoDatei('README_template.md');
+    inhalt = ersetzeStichwörterInReadme(inhalt);
+    var stichwörterInhalt = helfer_1.leseRepoDatei('Stichwortverzeichnis.yml');
+    inhalt = inhalt.replace('{{ stichwortverzeichnis }}', stichwörterInhalt);
+    inhalt = inhalt.replace('{{ staatsexamen }}', examen_1.generiereExamensÜbersicht());
     // console.log(readmeContent)
-    fs_1.default.writeFileSync(path_1.default.join(helfer_1.repositoryPfad, 'README.md'), readmeContent);
+    fs_1.default.writeFileSync(path_1.default.join(helfer_1.repositoryPfad, 'README.md'), inhalt);
 });
 /*******************************************************************************
  * compile-questions
  ******************************************************************************/
 program
-    .command('compile-questions')
-    .description('Compile all questions')
-    .alias('q')
+    .command('kompiliere-aufgaben')
+    .description('Kompiliere alle TeX-Dateien der Aufgaben.')
+    .alias('k')
     .action(function (cmdObj) {
     var e_2, _a;
     var staatsexamenPath = path_1.default.join(helfer_1.repositoryPfad, 'Staatsexamen');
@@ -236,38 +236,38 @@ program
  * vscode
  ******************************************************************************/
 program
-    .command('vscode [glob]')
-    .alias('vsc')
-    .description('Open in Visual Studio Code')
-    .option('-n, --notag', 'Open only questions without an tag macro in it.')
+    .command('code [glob]')
+    .alias('c')
+    .description('Öffne die mit glob spezifizierten Dateien in Visual Studio Code')
+    .option('-n, --kein-index', 'Öffne nur die Dateien, die keinen Index haben.')
     .action(function (globPattern, cmdObj) {
     var e_3, _a;
-    function openWithLogging(filePath) {
-        console.log(filePath);
-        öffneVSCode(filePath);
+    function öffneMitAusgabe(pfad) {
+        console.log(pfad);
+        öffneVSCode(pfad);
     }
     if (typeof globPattern !== 'string') {
         globPattern = '**/*.tex';
     }
-    var files = glob_1.default.sync(globPattern);
+    var dateien = glob_1.default.sync(globPattern);
     try {
-        for (var files_2 = __values(files), files_2_1 = files_2.next(); !files_2_1.done; files_2_1 = files_2.next()) {
-            var filePath = files_2_1.value;
-            filePath = path_1.default.resolve(filePath);
-            if (cmdObj.notag) {
-                var aufgabe = new aufgabe_1.Aufgabe(filePath);
+        for (var dateien_1 = __values(dateien), dateien_1_1 = dateien_1.next(); !dateien_1_1.done; dateien_1_1 = dateien_1.next()) {
+            var dateiPfad = dateien_1_1.value;
+            dateiPfad = path_1.default.resolve(dateiPfad);
+            if (cmdObj.keinindex) {
+                var aufgabe = new aufgabe_1.Aufgabe(dateiPfad);
                 if (aufgabe.stichwörter.length == 0)
-                    openWithLogging(filePath);
+                    öffneMitAusgabe(dateiPfad);
             }
             else {
-                openWithLogging(filePath);
+                öffneMitAusgabe(dateiPfad);
             }
         }
     }
     catch (e_3_1) { e_3 = { error: e_3_1 }; }
     finally {
         try {
-            if (files_2_1 && !files_2_1.done && (_a = files_2.return)) _a.call(files_2);
+            if (dateien_1_1 && !dateien_1_1.done && (_a = dateien_1.return)) _a.call(dateien_1);
         }
         finally { if (e_3) throw e_3.error; }
     }
