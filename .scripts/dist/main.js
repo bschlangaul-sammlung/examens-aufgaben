@@ -11,104 +11,22 @@ var __values = (this && this.__values) || function(o) {
     };
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 };
-var __read = (this && this.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
-var __spread = (this && this.__spread) || function () {
-    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
-    return ar;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.leseRepoDatei = void 0;
 var path_1 = __importDefault(require("path"));
 var fs_1 = __importDefault(require("fs"));
 var child_process_1 = __importDefault(require("child_process"));
 var glob_1 = __importDefault(require("glob"));
-var js_yaml_1 = __importDefault(require("js-yaml"));
 var commander_1 = require("commander");
 var stichwort_verzeichnis_1 = require("./stichwort-verzeichnis");
+var aufgabe_1 = require("./aufgabe");
 var staatsexamen_1 = require("./staatsexamen");
-var configPath = path_1.default.join(path_1.default.sep, 'etc', 'lehramt-informatik.config.tex');
-if (!fs_1.default.existsSync(configPath)) {
-    throw new Error("No configuration file found: " + configPath);
-}
-function parseConfigurationFile(configPath) {
-    var configContent = readFile(configPath);
-    var match = configContent.match(/\\LehramtInformatikRepository\{(.*)\}/);
-    if (!match)
-        throw new Error("Konfigurations-Datei nicht gefunden: " + configPath);
-    return match[1];
-}
-var repositoryPfad = parseConfigurationFile(configPath);
-var githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main';
-function parseTags() {
-    try {
-        return js_yaml_1.default.safeLoad(leseRepoDatei('Stichwortverzeichnis.yml'));
-    }
-    catch (e) {
-        console.log(e);
-        return {};
-    }
-}
-var tagsTree = parseTags();
-function flattenTagsTree(tree, flat) {
-    var e_1, _a;
-    if (!flat)
-        flat = new Set();
-    if (typeof tree === 'string') {
-        if (flat.has(tree)) {
-            throw Error("Duplicate tag: " + tree);
-        }
-        flat.add(tree);
-    }
-    else if (Array.isArray(tree)) {
-        try {
-            for (var tree_1 = __values(tree), tree_1_1 = tree_1.next(); !tree_1_1.done; tree_1_1 = tree_1.next()) {
-                var t = tree_1_1.value;
-                flattenTagsTree(t, flat);
-            }
-        }
-        catch (e_1_1) { e_1 = { error: e_1_1 }; }
-        finally {
-            try {
-                if (tree_1_1 && !tree_1_1.done && (_a = tree_1.return)) _a.call(tree_1);
-            }
-            finally { if (e_1) throw e_1.error; }
-        }
-    }
-    else {
-        for (var t in tree) {
-            flattenTagsTree(t, flat);
-            flattenTagsTree(tree[t], flat);
-        }
-    }
-    return flat;
-}
-var tagsFlat = flattenTagsTree(tagsTree);
+var helfer_1 = require("./helfer");
 /*******************************************************************************
  * low level functions
  ******************************************************************************/
-function checkTag(tag) {
-    if (!tagsFlat.has(tag)) {
-        throw Error("Unkown tag: " + tag);
-    }
-}
 function openWithExecutable(executable, filePath) {
     var subprocess = child_process_1.default.spawn(executable, [filePath], {
         detached: true,
@@ -119,19 +37,6 @@ function openWithExecutable(executable, filePath) {
 function openCode(filePath) {
     openWithExecutable('/usr/bin/code', filePath);
 }
-function readFile(filePath) {
-    return fs_1.default.readFileSync(filePath, { encoding: 'utf-8' });
-}
-function leseRepoDatei() {
-    var args = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        args[_i] = arguments[_i];
-    }
-    if (arguments[0].indexOf(repositoryPfad) > -1)
-        return readFile(path_1.default.join.apply(path_1.default, __spread(args)));
-    return readFile(path_1.default.join.apply(path_1.default, __spread([repositoryPfad], args)));
-}
-exports.leseRepoDatei = leseRepoDatei;
 function generateExamBasePath(number, year, month) {
     return path_1.default.join(__dirname, '..', 'Staatsexamen', number, year, month);
 }
@@ -177,7 +82,7 @@ function splitExamRef(ref) {
     };
 }
 var program = new commander_1.Command();
-program.description("Repository path: " + repositoryPfad);
+program.description("Repository path: " + helfer_1.repositoryPfad);
 program.name('lehramt-informatik.js');
 program.version('0.1.0');
 program.on('command:*', function () {
@@ -239,46 +144,8 @@ program
 /*******************************************************************************
  * generate-readme
  ******************************************************************************/
-function cleanTag(tag) {
-    return tag.replace(/\s+/g, ' ');
-}
-function assembleMacroRegExp(macroName) {
-    return new RegExp('\\' + macroName + '\{([^\}]*)\}', 'g');
-}
-/**
- * Collect the tags of a content string.
- *
- * @param {string} content - The content of a TeX file.
- */
-function collectTagsOfContent(content) {
-    var re = assembleMacroRegExp('index');
-    var match;
-    var tags = new Set();
-    do {
-        match = re.exec(content);
-        if (match) {
-            var tag = cleanTag(match[1]);
-            try {
-                checkTag(tag);
-            }
-            catch (error) {
-                throw new Error("Unknown tag " + tag + " in file " + content);
-            }
-            tags.add(tag);
-        }
-    } while (match);
-    return Array.from(tags);
-}
-/**
- * Collect the tags of a TeX file.
- * @param {string} filePath
- */
-function collectTagsOfFile(filePath) {
-    return collectTagsOfContent(leseRepoDatei(filePath));
-}
-var questionPathRegExp = /(Thema-\d\/)?(Teilaufgabe-\d\/)?Aufgabe-\d\.tex$/;
 function generiereMarkdownAufgabenListe(aufgabenListe) {
-    var e_2, _a;
+    var e_1, _a;
     var item = [];
     try {
         for (var aufgabenListe_1 = __values(aufgabenListe), aufgabenListe_1_1 = aufgabenListe_1.next(); !aufgabenListe_1_1.done; aufgabenListe_1_1 = aufgabenListe_1.next()) {
@@ -286,12 +153,12 @@ function generiereMarkdownAufgabenListe(aufgabenListe) {
             item.push('- ' + aufgabe.markdownLink);
         }
     }
-    catch (e_2_1) { e_2 = { error: e_2_1 }; }
+    catch (e_1_1) { e_1 = { error: e_1_1 }; }
     finally {
         try {
             if (aufgabenListe_1_1 && !aufgabenListe_1_1.done && (_a = aufgabenListe_1.return)) _a.call(aufgabenListe_1);
         }
-        finally { if (e_2) throw e_2.error; }
+        finally { if (e_1) throw e_1.error; }
     }
     return item.join('\n');
 }
@@ -305,13 +172,13 @@ program
     .description('Generate the readme file')
     .alias('r')
     .action(function (cmdObj) {
-    var readmeContent = leseRepoDatei('README_template.md');
+    var readmeContent = helfer_1.leseRepoDatei('README_template.md');
     readmeContent = ersetzeStichwörterInReadme(readmeContent);
-    var tagsContent = leseRepoDatei('Stichwortverzeichnis.yml');
+    var tagsContent = helfer_1.leseRepoDatei('Stichwortverzeichnis.yml');
     readmeContent = readmeContent.replace('{{ stichwortverzeichnis }}', tagsContent);
     readmeContent = readmeContent.replace('{{ staatsexamen }}', staatsexamen_1.generiereExamensÜbersicht());
     // console.log(readmeContent)
-    fs_1.default.writeFileSync(path_1.default.join(repositoryPfad, 'README.md'), readmeContent);
+    fs_1.default.writeFileSync(path_1.default.join(helfer_1.repositoryPfad, 'README.md'), readmeContent);
 });
 /*******************************************************************************
  * compile-questions
@@ -321,14 +188,14 @@ program
     .description('Compile all questions')
     .alias('q')
     .action(function (cmdObj) {
-    var e_3, _a;
-    var staatsexamenPath = path_1.default.join(repositoryPfad, 'Staatsexamen');
+    var e_2, _a;
+    var staatsexamenPath = path_1.default.join(helfer_1.repositoryPfad, 'Staatsexamen');
     var files = glob_1.default.sync('**/*.tex', { cwd: staatsexamenPath });
     try {
         for (var files_1 = __values(files), files_1_1 = files_1.next(); !files_1_1.done; files_1_1 = files_1.next()) {
             var filePath = files_1_1.value;
             filePath = path_1.default.join(staatsexamenPath, filePath);
-            if (filePath.match(questionPathRegExp)) {
+            if (filePath.match(aufgabe_1.ExamensAufgabe.schwacherPfadRegExp)) {
                 console.log(filePath);
                 var result = child_process_1.default.spawnSync('/usr/local/texlive/bin/x86_64-linux/latexmk', ['-shell-escape', '-cd', '--lualatex', filePath], {
                     encoding: 'utf-8'
@@ -342,12 +209,12 @@ program
             }
         }
     }
-    catch (e_3_1) { e_3 = { error: e_3_1 }; }
+    catch (e_2_1) { e_2 = { error: e_2_1 }; }
     finally {
         try {
             if (files_1_1 && !files_1_1.done && (_a = files_1.return)) _a.call(files_1);
         }
-        finally { if (e_3) throw e_3.error; }
+        finally { if (e_2) throw e_2.error; }
     }
 });
 /*******************************************************************************
@@ -359,7 +226,7 @@ program
     .description('Open in Visual Studio Code')
     .option('-n, --notag', 'Open only questions without an tag macro in it.')
     .action(function (globPattern, cmdObj) {
-    var e_4, _a;
+    var e_3, _a;
     function openWithLogging(filePath) {
         console.log(filePath);
         openCode(filePath);
@@ -373,8 +240,8 @@ program
             var filePath = files_2_1.value;
             filePath = path_1.default.resolve(filePath);
             if (cmdObj.notag) {
-                var tags = collectTagsOfFile(filePath);
-                if (tags.length == 0)
+                var aufgabe = new aufgabe_1.Aufgabe(filePath);
+                if (aufgabe.stichwörter.length == 0)
                     openWithLogging(filePath);
             }
             else {
@@ -382,12 +249,12 @@ program
             }
         }
     }
-    catch (e_4_1) { e_4 = { error: e_4_1 }; }
+    catch (e_3_1) { e_3 = { error: e_3_1 }; }
     finally {
         try {
             if (files_2_1 && !files_2_1.done && (_a = files_2.return)) _a.call(files_2);
         }
-        finally { if (e_4) throw e_4.error; }
+        finally { if (e_3) throw e_3.error; }
     }
 });
 program.parse(process.argv);

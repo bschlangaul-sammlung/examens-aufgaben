@@ -66,6 +66,8 @@ export class ExamensAufgabe extends Aufgabe {
 
   static pfadRegExp: RegExp = /(?<nummer>\d{5})\/(?<jahr>\d{4})\/(?<monat>\d{2})\/(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/
 
+  static schwacherPfadRegExp: RegExp =  /(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/
+
   constructor (pfad: string) {
     super(pfad)
     const match = pfad.match(ExamensAufgabe.pfadRegExp)

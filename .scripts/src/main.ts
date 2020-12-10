@@ -5,77 +5,17 @@ import fs from 'fs'
 import childProcess from 'child_process'
 
 import glob from 'glob'
-import yaml from 'js-yaml'
 
 import { Command } from 'commander'
 
 import { stichwortVerzeichnis } from './stichwort-verzeichnis'
-import { Aufgabe } from './aufgabe'
+import { Aufgabe, ExamensAufgabe } from './aufgabe'
 import { generiereExamensÜbersicht } from './staatsexamen'
-
-interface StringObject { [key: string]: any }
-
-const configPath = path.join(path.sep, 'etc', 'lehramt-informatik.config.tex')
-
-if (!fs.existsSync(configPath)) {
-  throw new Error(`No configuration file found: ${configPath}`)
-}
-
-function parseConfigurationFile (configPath: string): string {
-  const configContent = readFile(configPath)
-  const match = configContent.match(/\\LehramtInformatikRepository\{(.*)\}/)
-  if (!match) throw new Error(`Konfigurations-Datei nicht gefunden: ${configPath}`)
-  return match[1]
-}
-
-const repositoryPfad = parseConfigurationFile(configPath)
-
-const githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main'
-
-function parseTags (): StringObject {
-  try {
-    return <StringObject> yaml.safeLoad(leseRepoDatei('Stichwortverzeichnis.yml'))
-  } catch (e) {
-    console.log(e)
-    return {}
-  }
-}
-
-const tagsTree = parseTags()
-
-type TagsTreeInput = StringObject | StringObject[] | string
-
-function flattenTagsTree (tree: TagsTreeInput, flat?: Set<string>): Set<string> {
-  if (!flat) flat = new Set()
-  if (typeof tree === 'string') {
-    if (flat.has(tree)) {
-      throw Error(`Duplicate tag: ${tree}`)
-    }
-    flat.add(tree)
-  } else if (Array.isArray(tree)) {
-    for (const t of tree) {
-      flattenTagsTree(t, flat)
-    }
-  } else {
-    for (const t in tree) {
-      flattenTagsTree(t, flat)
-      flattenTagsTree(tree[t], flat)
-    }
-  }
-  return flat
-}
-
-const tagsFlat: Set<string> = flattenTagsTree(tagsTree)
+import { repositoryPfad, leseRepoDatei } from './helfer'
 
 /*******************************************************************************
  * low level functions
  ******************************************************************************/
-
-function checkTag (tag: string): void {
-  if (!tagsFlat.has(tag)) {
-    throw Error(`Unkown tag: ${tag}`)
-  }
-}
 
 function openWithExecutable (executable: string, filePath: string): void {
   const subprocess = childProcess.spawn(executable, [filePath], {
@@ -88,15 +28,6 @@ function openWithExecutable (executable: string, filePath: string): void {
 
 function openCode (filePath: string) {
   openWithExecutable('/usr/bin/code', filePath)
-}
-
-function readFile (filePath: string) {
-  return fs.readFileSync(filePath, { encoding: 'utf-8' })
-}
-
-export function leseRepoDatei (...args: string[]) {
-  if (arguments[0].indexOf(repositoryPfad) > -1) return readFile(path.join(...args))
-  return readFile(path.join(repositoryPfad, ...args))
 }
 
 function generateExamBasePath (number: string, year: string, month: string): string {
@@ -224,48 +155,6 @@ program
  * generate-readme
  ******************************************************************************/
 
-function cleanTag (tag: string): string {
-  return tag.replace(/\s+/g, ' ')
-}
-
-function assembleMacroRegExp (macroName: String): RegExp {
-  return new RegExp('\\' + macroName + '\{([^\}]*)\}', 'g')
-}
-
-/**
- * Collect the tags of a content string.
- *
- * @param {string} content - The content of a TeX file.
- */
-function collectTagsOfContent (content: string) {
-  const re = assembleMacroRegExp('index')
-  let match
-  const tags = new Set<string>()
-  do {
-    match = re.exec(content)
-    if (match) {
-      const tag = cleanTag(match[1])
-      try {
-        checkTag(tag)
-      } catch (error) {
-        throw new Error(`Unknown tag ${tag} in file ${content}`)
-      }
-      tags.add(tag)
-    }
-  } while (match)
-  return Array.from(tags)
-}
-
-/**
- * Collect the tags of a TeX file.
- * @param {string} filePath
- */
-function collectTagsOfFile (filePath: string) {
-  return collectTagsOfContent(leseRepoDatei(filePath))
-}
-
-const questionPathRegExp = /(Thema-\d\/)?(Teilaufgabe-\d\/)?Aufgabe-\d\.tex$/
-
 function generiereMarkdownAufgabenListe (aufgabenListe: Set<Aufgabe>): string {
   const item = []
   for (const aufgabe of aufgabenListe) {
@@ -310,7 +199,7 @@ program
     const files = glob.sync('**/*.tex', { cwd: staatsexamenPath })
     for (let filePath of files) {
       filePath = path.join(staatsexamenPath, filePath)
-      if (filePath.match(questionPathRegExp)) {
+      if (filePath.match(ExamensAufgabe.schwacherPfadRegExp)) {
         console.log(filePath)
         const result = childProcess.spawnSync('/usr/local/texlive/bin/x86_64-linux/latexmk', ['-shell-escape', '-cd', '--lualatex', filePath], {
           encoding: 'utf-8'
@@ -335,7 +224,7 @@ program
   .alias('vsc')
   .description('Open in Visual Studio Code')
   .option('-n, --notag', 'Open only questions without an tag macro in it.')
-  .action(function (globPattern: string, cmdObj: StringObject): void {
+  .action(function (globPattern: string, cmdObj: { [schlüssel: string]: any }): void {
     function openWithLogging (filePath: string) {
       console.log(filePath)
       openCode(filePath)
@@ -348,8 +237,8 @@ program
     for (let filePath of files) {
       filePath = path.resolve(filePath)
       if (cmdObj.notag) {
-        const tags = collectTagsOfFile(filePath)
-        if (tags.length == 0) openWithLogging(filePath)
+        const aufgabe = new Aufgabe(filePath)
+        if (aufgabe.stichwörter.length == 0) openWithLogging(filePath)
       } else {
         openWithLogging(filePath)
       }

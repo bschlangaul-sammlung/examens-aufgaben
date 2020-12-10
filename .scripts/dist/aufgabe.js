@@ -145,6 +145,7 @@ var ExamensAufgabe = /** @class */ (function (_super) {
         configurable: true
     });
     ExamensAufgabe.pfadRegExp = /(?<nummer>\d{5})\/(?<jahr>\d{4})\/(?<monat>\d{2})\/(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/;
+    ExamensAufgabe.schwacherPfadRegExp = /(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/;
     return ExamensAufgabe;
 }(Aufgabe));
 exports.ExamensAufgabe = ExamensAufgabe;
