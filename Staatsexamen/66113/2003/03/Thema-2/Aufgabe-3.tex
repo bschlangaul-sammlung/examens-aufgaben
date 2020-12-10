@@ -1,0 +1,146 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{Universitätsverwaltung}
+
+\section{Aufgabe 3: SQL
+\index{SQL}
+\footcite[Thema 2 Aufgabe 3]{66113:2003:03}
+}
+
+Gegeben sei folgendes relationales Schema, das eine
+Universitätsverwaltung modelliert:
+\footcite[Aufgabe 3: SQL]{db:pu:2}
+
+\begin{minted}{md}
+Studenten {[MatrNr:integer, Name:string, Semester:integer]}
+Vorlesungen {[VorlNr:integer, Titel:string, SWS:integer, gelesenVon:integer]}
+Professoren {[PersNr:integer, Name:string, Rang:string, Raum:integer] }
+hoeren {[MatrNr:integer, VorlNr:integer]}
+voraussetzen {[VorgaengerVorlNr:integer, NachfolgerVorlNr:integer]}
+pruefen {[MatrNr:integer, VorlNr:integer, PrueferPersNr:integer, Note:decimal]}
+\end{minted}
+
+\noindent
+Formulieren Sie die folgenden Anfragen in SQL:
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Alle Studenten, die den Professor \emph{Kant} aus einer Vorlesung
+kennen.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT DISTINCT s.Name
+FROM Studenten s, Professoren p, hoeren h, Vorlesungen v
+WHERE
+  p.Name = 'Kant' AND
+  v.gelesenVon = p.PersNr AND
+  s.MatrNr = h.MatrNr AND
+  h.VorlNr = h.VorlNr
+\end{minted}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Geben Sie eine Liste der Professoren (Name, PersNr) mit ihrem
+Lehrdeputat (Summe der SWS der gelesenen Vorlesungen) aus. Ordnen Sie
+diese Liste so, dass sie absteigend nach Lehrdeputat sortiert ist! Bei
+gleicher Lehrtätigkeit dann noch aufsteigend nach dem Namen des
+Professors/der Professorin.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT p.Name, p.PersNr, SUM(v.SWS) AS Lehrdeputat
+FROM Vorlesung v, Professoren p
+WHERE v.gelesenVon = p.PersNr
+GROUP BY p.Name, p.PersNr
+ORDER BY Lehrdeputat DESC, p.Name ASC;
+\end{minted}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Geben Sie eine Liste der Studenten (Name, MatrNr, Semester) aus,
+die mindestens zwei Vorlesungen bei \emph{Kant} gehört haben.
+
+\begin{antwort}[muster]
+\subsection*{Mit einer VIEW}
+
+\begin{minted}{sql}
+CREATE VIEW hoertKant AS
+  SELECT s.Name, s.MatrNr, s.Semester, v.VorlNr
+  FROM Studenten s, hoeren h, Vorlesungen v, Professoren p
+  WHERE
+    s.MatrNr = h.MatrNr AND
+    h.VorlNr = v.VorlNr AND
+    v.gelesenVon = p.PersNr AND
+    p.Name = 'Kant';
+\end{minted}
+
+\begin{minted}{sql}
+SELECT DISTINCT h1.Name, h2.MatrNr, h1.Semester
+FROM hoertKant h1, hoertKant h2
+WHERE h1.MatrNr = h2.MatrNr AND h1.VorlNr <> h2.VorlNr;
+\end{minted}
+
+oder:
+
+\begin{minted}{sql}
+SELECT DISTINCT Name, MatrNr, Semester
+FROM hoertKant
+GROUP BY Name, MatrNr, Semester
+HAVING COUNT(VorlNr) > 1;
+\end{minted}
+
+\subsection*{In einer Abfrage}
+
+\begin{minted}{sql}
+SELECT s.Name, s.MatrNr, s.Semester
+FROM Studenten s, hoeren h, Vorlesungen v, Professoren p
+WHERE
+  s.MatrNr = h.MatrNr AND
+  h.VorlNr = v.VorlNr AND
+  v.gelesenVon = p.PersNr AND
+  p.Name = 'Kant'
+GROUP BY s.MatrNr, s.Name, s.Semster
+HAVING COUNT(s.MatrNr) > 1;
+\end{minted}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Geben Sie eine Liste der Semesterbesten (MatrNr und
+Notendurchschnitt) aus.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+CREATE VIEW Notenschnitte AS (
+  SELECT p.MatrNr, s.Name, s.Semester, AVG(Note) AS Durchschnitt
+  FROM Studenten s, pruefen p
+  WHERE s.MatrNr = p.MatrNr
+  GROUP BY p.MatrNr, s.Name, s.Semester
+);
+
+SELECT a.Durchschnitt, a.MatrNr, a.Semester
+FROM Notenschnitte a, Notenschnitte b
+WHERE
+  a.Durchschnitt >= b.Durchschnitt
+  a.Semster = b.Semster
+GROUP BY a.Durchschnitt, a.MatrNr, a.Semester
+HAVING COUNT(*) < 2;
+\end{minted}
+\end{antwort}
+
+\end{enumerate}
+\end{document}

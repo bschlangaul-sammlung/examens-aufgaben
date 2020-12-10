@@ -33,6 +33,7 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 
 #### SQL
 
+- [Bands (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Bands.pdf)
 - [Kaufhaus again (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-again.pdf)
 - [Kaufhausdatenbank (einfach) (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-einfach.pdf)
 - [Kaufhaus zum letzten Mal! (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-letztes-Mal.pdf)
@@ -49,6 +50,8 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 - [46116:2018:09 T2 TA2 A3 (SQL, CREATE TABLE, INSERT, ALTER TABLE, UPDATE, DELETE, VIEW, GROUP BY, DROP TABLE)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf)
 - [66111:1996:03 A2 (Entity-Relation-Modell, Verfeinertes Relationenmodell, SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/Aufgabe-2.pdf)
 - [66111:1996:09 A4 (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.pdf)
+- [66113:2003:03 T1 A5 (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Thema-1/Aufgabe-5.pdf)
+- [66113:2003:03 T2 A3 (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Thema-2/Aufgabe-3.pdf)
 - [66116:2016:03 T1 TA1 A2 (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf)
 - [66116:2016:09 T1 TA1 A4 (SQL, VIEW, WITH, DELETE)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf)
 - [66116:2016:09 T2 TA1 A2 (SQL, CREATE TABLE, CONSTRAINT, ALTER TABLE, GROUP BY, HAVING)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf)
@@ -455,6 +458,10 @@ OCR des oben genannten Scans:
 - 2002 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2002/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2002/03/OCR.txt) 
 - 2002 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2002/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2002/09/OCR.txt) 
 - 2003 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/OCR.txt) 
+    - Thema 1 
+        - [Aufgabe 5 (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Thema-1/Aufgabe-5.pdf) 
+    - Thema 2 
+        - [Aufgabe 3 (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Thema-2/Aufgabe-3.pdf)
 - 2003 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/09/OCR.txt) 
 - 2004 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2004/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2004/03/OCR.txt) 
 - 2004 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2004/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2004/09/OCR.txt) 

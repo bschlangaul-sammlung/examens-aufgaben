@@ -1,0 +1,288 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{Bands}
+
+\section{Aufgabe 1: SQL Einstieg
+\index{SQL}
+\footcite{db:pu:2}}
+
+Gegeben ist folgende Datenbank: \bigskip
+
+{
+\ttfamily
+\noindent
+Album (Titel, Typ, Firma, Preis, \underline{ANr})\\
+\noindent
+herausgegeben (\underline{BName}, \underline{ANr}, Jahr)\\
+\noindent
+Band (\underline{BName}, Musikrichtung, Gruendungsjahr, Aktiv)\\
+\noindent
+Musiker (Vorname, Name, GebJahr, BName, \underline{ID})\\
+}
+
+\noindent
+Beantworten Sie folgende Fragen durch geeignete SQL-Anfragen.
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Welche Alben wurden von der Firma „Col“ herausgegeben?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT a.Titel
+FROM Album a
+WHERE a.Firma = 'Col';
+\end{minted}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Welche Alben wurden 1990 von \emph{„Black Sabbath“}
+veröffentlicht?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT a.Titel
+FROM ALBUM a, herausgegeben h
+WHERE
+  a.ANr = h.ANr AND
+  h.BName = 'Black Sabbath' AND
+  h.Jahr = 1990;
+\end{minted}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Welche Band veröffentlichte das Album \emph{„Sin After Sin“}?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT h.BName
+FROM herausgegeben h, Album a
+WHERE
+  a.ANr = h.ANr AND
+  a.Titel = 'Sin After Sin';
+\end{minted}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item In welcher Band spielt „Ozzy Osbourne“?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT BName
+FROM Musiker
+WHERE
+  Name = 'Osbourne' AND
+  Vorname = 'Ozzy';
+\end{minted}
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item Welche Bands wurden vor \emph{1980} gegründet, spielen
+\emph{Hardrock} und sind nicht bei \emph{Col} unter Vertrag?
+
+\begin{antwort}[muster]
+Joins sind teuer: zuerst Bedingungen
+
+\begin{minted}{sql}
+SELECT DISTINCT b.BName
+FROM Band b, herausgegeben h, Album a
+WHERE
+  b.Musikrichtung = 'Hardrock' AND
+  a.Firma != 'Col' AND
+  b.Gruendungsjahr < 1980 AND
+  b.BName = h.BName AND
+  h.ANr = a.ANr;
+\end{minted}
+\end{antwort}
+
+%%
+% (f)
+%%
+
+\item Wie viele Alben mit einem Preis von unter 10€ sind
+gelistet?
+
+\begin{antwort}[muster]
+Nicht \verb|COUNT(a.Titel)|: doppelte werden nur 1 mal gezählt
+
+\begin{minted}{sql}
+SELECT COUNT(*) AS Anzahl
+FROM Album a
+WHERE a.Preis < 10;
+\end{minted}
+\end{antwort}
+
+%%
+% (g)
+%%
+
+\item Welche Musiker spielen in einer Hardrock Band
+(alphabetisch nach Name)?
+
+\begin{antwort}[muster]
+\verb|DISTINCT|: keine Duplicate. \verb|DISTINCT| ist \verb|GROUP BY|
+vorzuziehen
+
+\begin{minted}{sql}
+SELECT DISTINCT m.Name, m.Vorname
+FROM Musiker m, Band b
+WHERE
+  m.BName = b.BName AND
+  b.Musikrichtung = 'Hardrock'
+ORDER BY m.Name, m.Vorname;
+\end{minted}
+\end{antwort}
+
+%%
+% (h)
+%%
+
+\item Wie viele Alben hat jede Band veröffentlicht (Bandname,
+Anzahl der Alben)?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT BName, COUNT(*) AS AnzahlAlben
+FROM herausgegeben
+GROUP by BName;
+\end{minted}
+\end{antwort}
+
+%%
+% (i)
+%%
+
+\item Gib alle verschiedenen \emph{Namen} der \emph{Musiker} aufsteigend
+sortiert aus, die in \emph{aktiven} Bands spielen.
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT DISTINCT m.Name, m.Vorname
+FROM Band b, Musiker m
+WHERE
+  b.BName = m.BName AND
+  b.aktiv = 1
+ORDER By m.Name, m.Vorname ASC;
+\end{minted}
+\end{antwort}
+
+%%
+% (j)
+%%
+
+\item Welche Musiker spielen in einer Band, die keine Alben vor
+\emph{1970} veröffentlicht hat?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT DISTINCT m.Name
+FROM Musiker m
+WHERE
+  m.BName NOT IN (SELECT BName FROM herausgegeben WHERE Jahr < 1970);
+\end{minted}
+\end{antwort}
+
+%%
+% k)
+%%
+
+\item Welche \emph{Musiker} spielen in einer Band, in der es
+mindestens ein \emph{jüngeres} Bandmitglied gibt?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT DISTINCT a.Vorname, a.Name
+FROM Musiker a, Musiker b
+WHERE a.BName = b.BName
+AND a.GebJahr < b.GebJahr;
+\end{minted}
+\end{antwort}
+
+\end{enumerate}
+\end{document}
+
+\begin{minted}{sql}
+-- sudo mysql < Musik.sql
+DROP DATABASE IF EXISTS Musik;
+CREATE DATABASE Musik;
+USE Musik;
+
+CREATE TABLE Album (
+  ANr int(11) PRIMARY KEY,
+  Titel varchar(20) NOT NULL,
+  Typ varchar(20),
+  Firma varchar(20),
+  Preis decimal(5,0)
+);
+
+CREATE TABLE Band (
+  BName varchar(20) PRIMARY KEY,
+  Musikrichtung varchar(20),
+  Gruendungsjahr int(11),
+  Aktiv tinyint(1)
+);
+
+CREATE TABLE herausgegeben (
+  ANr int(11) REFERENCES Album(ANr),
+  BName varchar(20) REFERENCES Band(BName),
+  Jahr int(11),
+  PRIMARY KEY (ANr, BName)
+);
+
+CREATE TABLE Musiker (
+  ID int(11) PRIMARY KEY,
+  Vorname varchar(20),
+  Name varchar(20),
+  GebJahr int(11),
+  BName varchar(20) REFERENCES Band(BName)
+);
+
+INSERT INTO Album (ANr, Titel, Typ, Firma, Preis) VALUES
+(1, 'Sin after sin', NULL, 'CBS', '16'),
+(2, 'Highway to hell', NULL, 'Atlantic Records', '20'),
+(3, 'Metallica', NULL, 'Electra Records', '17'),
+(4, 'Paranoid', NULL, 'Vertigo Records', '15'),
+(5, 'High Hopes', NULL, 'Col', '14'),
+(6, 'Tyr', NULL, 'I.R.S. Records', '9');
+
+INSERT INTO Band (BName, Musikrichtung, Gruendungsjahr, Aktiv) VALUES
+('ACDC', 'Hardrock', 1973, 1),
+('Black Sabbath', 'Hardrock', 1969, 0),
+('Bruce Springsteen', 'Rock', 1971, 1),
+('Judas Priest', 'Heavy Metal', 1969, 1),
+('Lynyrd Skynyrd', 'Southern Rock', 1964, 1),
+('Metallica', 'Heavy Metal', 1981, 1);
+
+INSERT INTO herausgegeben (ANr, BName, Jahr) VALUES
+(1, 'Judas Priest', 1977),
+(2, 'ACDC', 1979),
+(3, 'Metallica', 1999),
+(4, 'Black Sabbath', 1970),
+(6, 'Black Sabbath', 1990);
+
+INSERT INTO Musiker (ID, Vorname, Name, GebJahr, BName) VALUES
+(1, 'Ozzy', 'Osbourne', 1948, 'Black Sabbath'),
+(2, 'Bruce', 'Springsteen', 1949, 'Bruce Springsteen'),
+(3, 'Matt', 'Chamberlain', 1967, 'Bruce Springsteen'),
+(4, 'Angus', 'Young', 1955, 'ACDC'),
+(5, 'Kirk', 'Hammett', 1962, 'Metallica'),
+(6, 'Malcom', 'Young', 1953, 'ACDC'),
+(7, 'Robert', 'Trujillo', 1964, 'Metallica');
+\end{minted}

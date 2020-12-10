@@ -1,0 +1,299 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{Mitarbeiterverwaltung}
+
+\section{Aufgabe 5: SQL
+\index{SQL}
+\footcite[Thema 1 Aufgabe 5]{66113:2003:03}}
+
+Gegeben seien die folgenden drei Relationen. Diese Relationen erfassen
+die Mitarbeiterverwaltung eines Unternehmens. Schlüssel sind fett
+dargestellt und Fremdschlüssel sind kursiv dargestellt. So werden
+Mitarbeiter, Abteilungen und Unternehmen jeweils durch ihre Nummer
+identifiziert. AbtNr ist die Nummer der Abteilung, in der ein
+Mitarbeiter arbeitet. Manager ist die Nummer des Mitarbeiters, der die
+Abteilung leitet. \verb|UntNr| ist die Nummer des Unternehmens, dem eine
+Abteilung zugeordnet ist.
+\footcite[Aufgabe 2: SQL]{db:pu:2}
+
+\begin{minted}{md}
+Mitarbeiter(Nummer, Name, Alter, Gehalt, AbtNr)
+Abteilung(Nummer, Name, Budget, Manager, UntNr)
+Unternehmen(Nummer, Name, Adresse)
+\end{minted}
+\begin{enumerate}
+
+% a)
+\item Wie hoch ist das Durchschnittsalter der Abteilung
+„Personal Care“ im Unternehmen „Test.com“?
+
+\begin{antwort}[muster]
+\verb|GROUP BY| nicht nötig, \verb|AS| nicht vergessen.
+
+\begin{minted}{sql}
+SELECT AVG(m.Alter) AS Durchschnittsalter
+FROM Unternehmen u, Abteiltung a, Mitarbeiter m
+WHERE
+  a.Name = 'Personal Care' AND
+  u.Name = 'Test.com' AND
+  u.Nummer = a.UntNr AND
+  m.AbtNr = a.Nummer;
+\end{minted}
+\end{antwort}
+
+%%
+% b)
+%%
+
+\item Geben Sie für jedes Unternehmen das Durchschnittsalter
+der Mitarbeiter an!
+
+\begin{antwort}[muster]
+
+Statt \verb|a.UntNr| kann \verb|u.Nummer| verwendet werden.
+\verb|a.UntNr| nur deshalb, weil man dann eventuell den Join über die
+Unternehmenstabelle sparen kann.
+
+Alles was ausgegeben werden soll, muss auch in \verb|GROUP BY| enthalten
+sein.
+
+\begin{minted}{sql}
+SELECT a.UntNr, u.Name, AVG(m.Alter) as Durchschnittsalter
+FROM Unternehmen u, Abteiltung a, Mitarbeiter m
+WHERE
+  u.Nummer = a.UntNr AND
+  m.AbtNr = a.Nummer
+GROUP BY a.UntNr, u.Name;
+\end{minted}
+\end{antwort}
+
+%%
+% c)
+%%
+
+\item Wie viele Mitarbeiter im Unternehmen „Test.com“ sind
+älter als ihr Chef? (D.h. sind älter als der Manager der Abteilung, in
+der sie arbeiten.)
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT COUNT(*)
+FROM Mitarbeiter m, Abteilung a, Unternehmer u
+WHERE
+  m.AbtNr = a.Nummer AND
+  a.UntNr = u.Nummer AND
+  u.Name = 'Test.com'
+AND m.Alter > (
+  SELECT ma.Alter
+  FROM Mitarbeiter ma, Abteilung ab
+  WHERE
+    ma.Nummer = ab.Manager AND
+    a.Nummer = ab.Nummer
+);
+\end{minted}
+
+oder einfacher:
+
+\begin{minted}{sql}
+SELECT COUNT(*)
+FROM Mitarbeiter m, Abteilung a, Unternehmer u
+WHERE
+  m.AbtNr = a.Nummer AND
+  a.UntNr = u.Nummer AND
+  u.Name = 'Test.com'
+AND m.Alter > (
+  SELECT ma.Alter
+  FROM Mitarbeiter ma
+  WHERE ma.Nummer = a.Manager
+);
+\end{minted}
+
+Alternativ Lösung ohne Unterabfragem, mit Self join:
+
+\begin{minted}{sql}
+SELECT  COUNT(*)
+FROM Mitarbeiter m, Abteilung a, Unternehmer u, Mitarbeiter m2
+WHERE
+  m.AbtNr = a.Nummer AND
+  a.UntNr = u.Nummer AND
+  u.Name = 'Test.com' AND
+  a.Manager = m2.Nummer AND
+  m.Alter > m2.Atler;
+\end{minted}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Welche Abteilungen haben ein geringeres Budget als die
+Summe der Gehälter der Mitarbeiter, die in der Abteilung arbeiten?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+SELECT a.Name, a.Nummer
+FROM Abteilung a
+WHERE a.Budget < (
+  SELECT SUM(m.Gehalt)
+  FROM Mitarbeiter m
+  WHERE a.Nummer = m.AbtNr
+);
+\end{minted}
+
+Ohne Unterabfrage
+
+\begin{minted}{sql}
+SELECT a.Name, a.Nummer
+FROM Abteilung a, Mitarbeiter m
+WHERE a.Nummer = m.AbtNr
+GROUP BY a.Nummer, a.Name, a.Budget
+HAVING a.Budget < SUM(m.Gehalt);
+\end{minted}
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item Versetzen Sie den Mitarbeiter „Wagner“ in die Abteilung „Personal
+Care“!
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+UPDATE Mitarbeiter m
+SET AbtNr = (
+  SELECT a.Nummer FROM
+  Abteilung a
+  WHERE a.Name = 'Personal Care'
+)
+WHERE m.Name = 'Wagner';
+\end{minted}
+\end{antwort}
+
+%%
+% (f)
+%%
+
+\item Löschen Sie die Abteilung „Personal Care“ mit allen ihren
+Mitarbeitern!
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+DELETE FROM Mitarbeiter
+WHERE AbtNr = (
+  SELECT a.Nummer
+  FROM Abteilung a
+  WHERE a.Name = 'Personal Care'
+);
+
+DELETE FROM Abteilung
+WHERE Name = 'Personal Care';
+\end{minted}
+\end{antwort}
+
+%%
+% (g)
+%%
+
+\item Geben Sie den Managern aller Abteilungen, die ihr Budget nicht
+überziehen, eine 10 Prozent Gehaltserhöhung. (Das Budget ist überzogen,
+wenn die Gehälter der Mitarbeiter höher sind als das Budget der
+Abteilung.) Zusatzfrage: Was passiert mit Mitarbeitern, die Manager von
+mehreren Abteilungen sind?
+
+\begin{antwort}[muster]
+\begin{minted}{sql}
+CREATE VIEW LowBudget AS (
+  SELECT Nummer
+  FROM Abteilung
+  WHERE Nummer NOT IN (
+    SELECT a.Nummer
+    FROM Abteilung a
+    WHERE
+      a.Budget < (
+        SELECT SUM(Gehalt)
+        FROM Mitarbeiter m Abteilung A
+        WHERE m.AbtNr = A.Nummer AND
+        a.Nummer = A.Nummer
+    )
+  )
+)
+
+UPDATE Mitarbeiter
+SET Gehalt = 1.1 * Gehalt
+WHERE Nummer IN (
+  SELECT Manager
+  FROM LowBudget, Abteilung
+  WHERE LowBudget.Manager = Abteilung.Nummer
+)
+\end{minted}
+\end{antwort}
+\end{enumerate}
+
+\begin{minted}{SQL}
+TABLE `abteilung` (
+  `Nummer` int(11) NOT NULL,
+  `Name` varchar(20) DEFAULT NULL,
+  `Budget` float DEFAULT NULL,
+  `Manager` varchar(20) NOT NULL,
+  `UntNr` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `abteilung` (`Nummer`, `Name`, `Budget`, `Manager`, `UntNr`) VALUES
+(1, 'Personal_Care', 20000, 'Huber', 1),
+(11, 'Tequilla_Mix', 50000, 'Taylor', 2),
+(21, 'Nerds', 500, 'Gates', 3);
+
+CREATE TABLE `mitarbeiter` (
+  `Nummer` int(11) NOT NULL,
+  `Name` varchar(20) NOT NULL,
+  `Alter` int(11) NOT NULL,
+  `Gehalt` float NOT NULL,
+  `AbtNr` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `mitarbeiter` (`Nummer`, `Name`, `Alter`, `Gehalt`, `AbtNr`) VALUES
+(1, 'Müller', 30, 30000, 1),
+(2, 'Huber', 45, 80000, 1),
+(3, 'Habermeier', 62, 40000, 1),
+(4, 'Leifsson', 27, 50000, 1),
+(5, 'Taylor', 37, 85000, 11),
+(6, 'Smith', 61, 34000, 11),
+(7, 'Pitt', 36, 40000, 11),
+(8, 'Thompson', 54, 52000, 11),
+(9, 'Gates', 69, 15000000, 21),
+(10, 'Zuckerberg', 36, 10000000, 21),
+(11, 'Jobs', 99, 14000000, 21),
+(12, 'Nakamoto', 66, 5000000, 21);
+
+CREATE TABLE `unternehmen` (
+  `Nummer` int(11) NOT NULL,
+  `Name` varchar(20) DEFAULT NULL,
+  `Adresse` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `unternehmen` (`Nummer`, `Name`, `Adresse`) VALUES
+(1, 'Test.com', 'Alter Hafen 11'),
+(2, 'Party.de', 'Technostraße 3'),
+(3, 'IT.ch', 'Sequelweg 1');
+
+ALTER TABLE `abteilung`
+  ADD PRIMARY KEY (`Nummer`),
+  ADD KEY `UntNr` (`UntNr`);
+
+ALTER TABLE `mitarbeiter`
+  ADD PRIMARY KEY (`Nummer`),
+  ADD KEY `AbtNr` (`AbtNr`);
+
+ALTER TABLE `unternehmen`
+  ADD PRIMARY KEY (`Nummer`);
+
+ALTER TABLE `abteilung`
+  ADD CONSTRAINT `abteilung_ibfk_1` FOREIGN KEY (`UntNr`) REFERENCES `unternehmen` (`Nummer`);
+
+ALTER TABLE `mitarbeiter`
+  ADD CONSTRAINT `mitarbeiter_ibfk_1` FOREIGN KEY (`AbtNr`) REFERENCES `abteilung` (`Nummer`);
+COMMIT;
+\end{minted}
+\end{document}

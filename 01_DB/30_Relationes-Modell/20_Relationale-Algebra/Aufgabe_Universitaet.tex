@@ -1,0 +1,48 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe,syntax}
+\begin{document}
+\liAufgabenTitel{Universität}
+
+\section{Aufgabe 5: Relationale Algebra
+\index{Relationale Algebra}
+\footcite{db:pu:2}}
+
+\begin{minted}{md}
+Studenten {[MatrNr:integer, Name:string, Semester:integer]}
+Vorlesungen {[VorlNr:integer, Titel:string, SWS:integer, gelesenVon:integer] }
+Professoren {[PersNr:integer, Name:string, Rang:string, Raum:integer] }
+hoeren {[MatrNr:integer, VorlNr:integer]}
+voraussetzen {[VorgaengerVorlNr:integer, NachfolgerVorlNr:integer]}
+pruefen {[MatrNr:integer, VorlNr:integer, PrueferPersNr:integer, Note:decimal]}
+\end{minted}
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Geben Sie verbal an, welches Ergebnis folgende SQL-Anfrage
+liefert:
+
+\begin{antwort}[muster]
+Liste mit zwei unterschiedliche Studenten, die in derselben
+Vorlesung waren.
+\end{antwort}
+
+%
+\item Geben Sie einen Relationenalgebra-Ausdruck für diese Anfrage an.
+Dieser Ausdruck sollte keine Kreuzprodukte (nur Joins) enthalten.
+
+\begin{antwort}[muster]
+\begin{multline*}
+\pi_{s_1.\text{Name},s_2.\text{Name}}\\
+(\\
+  (\rho_{s_1} (\text{Studenten}) \bowtie \rho_{h_1} (\text{hoeren}))\\
+  \bowtie_{(h_1.\text{VorlNr} = h_2.\text{VorlNr} \land s_1.\text{MatrNr} <> s_2.\text{MatrNr})}\\
+  (\rho_{s_2} (\text{Studenten}) \bowtie \rho_{h_2} (\text{hoeren}))\\
+)
+\end{multline*}
+\end{antwort}
+
+\end{enumerate}
+\end{document}
