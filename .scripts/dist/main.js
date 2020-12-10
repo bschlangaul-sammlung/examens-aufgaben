@@ -24,6 +24,7 @@ var stichwort_verzeichnis_1 = require("./stichwort-verzeichnis");
 var aufgabe_1 = require("./aufgabe");
 var staatsexamen_1 = require("./staatsexamen");
 var helfer_1 = require("./helfer");
+var aufgaben_vorlage_1 = require("./aufgaben-vorlage");
 /*******************************************************************************
  * low level functions
  ******************************************************************************/
@@ -100,8 +101,27 @@ function checkNumber(number) {
         return number;
 }
 program
-    .command('create-question <ref> <part-no> [sub-question-no] [question-no]')
-    .description('Create a exam question template in the right directory folder: 66116:2020:09')
+    .command('erzeuge-aufgabe [titel]')
+    .description('Erzeuge eine Aufgabe im aktuellen Arbeitsverzeichnis.')
+    .alias('a')
+    .action(function (titel, cmdObj) {
+    var dateiName = 'Aufgabe_';
+    if (titel) {
+        var titelRein = titel.replace(/\s+/g, '-');
+        dateiName = "" + dateiName + titelRein;
+    }
+    var pfad = path_1.default.join(process.cwd(), dateiName + ".tex");
+    if (!fs_1.default.existsSync(pfad)) {
+        aufgaben_vorlage_1.erzeugeAufgabenVorlage(pfad, {
+            zitatReferenz: 'ref',
+            titel: titel
+        });
+    }
+    openCode(pfad);
+});
+program
+    .command('erzeuge-examens-aufgabe <referenz> <thema> [teilaufgabe] [aufgabe]')
+    .description('Erzeuge eine Examensaufgabe im Verzeichnis „Staatsexamen“.')
     .alias('c')
     .action(function (ref, arg1, arg2, arg3, cmdObj) {
     var num1 = checkNumber(arg1);
@@ -112,15 +132,9 @@ program
     }
     var exam = splitExamRef(ref);
     var questionPath = path_1.default.join(generateExamBasePath(exam.number, exam.year, exam.month), generateQuestionPath(num1, num2, num3));
-    var template = '\\documentclass{lehramt-informatik-aufgabe}\n' +
-        '\\liLadePakete{}\n' +
-        '\\begin{document}\n' +
-        '\n' +
-        '\\end{document}\n';
-    fs_1.default.mkdirSync(path_1.default.dirname(questionPath), { recursive: true });
-    if (!fs_1.default.existsSync(questionPath)) {
-        fs_1.default.writeFileSync(questionPath, template, { encoding: 'utf-8' });
-    }
+    aufgaben_vorlage_1.erzeugeAufgabenVorlage(questionPath, {
+        zitatReferenz: ref
+    });
     openCode(questionPath);
     console.log(generateTeXMacro(exam, arg1, arg2, arg3));
 });

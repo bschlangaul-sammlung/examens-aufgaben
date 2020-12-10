@@ -12,6 +12,7 @@ import { stichwortVerzeichnis } from './stichwort-verzeichnis'
 import { Aufgabe, ExamensAufgabe } from './aufgabe'
 import { generiereExamensÜbersicht } from './staatsexamen'
 import { repositoryPfad, leseRepoDatei } from './helfer'
+import { erzeugeAufgabenVorlage } from './aufgaben-vorlage'
 
 /*******************************************************************************
  * low level functions
@@ -100,8 +101,28 @@ function checkNumber (number: string | number): number | undefined {
 }
 
 program
-  .command('create-question <ref> <part-no> [sub-question-no] [question-no]')
-  .description('Create a exam question template in the right directory folder: 66116:2020:09')
+  .command('erzeuge-aufgabe [titel]')
+  .description('Erzeuge eine Aufgabe im aktuellen Arbeitsverzeichnis.')
+  .alias('a')
+  .action(function (titel: string, cmdObj: object): void {
+    let dateiName = 'Aufgabe_'
+    if (titel) {
+      const titelRein = titel.replace(/\s+/g, '-')
+      dateiName = `${dateiName}${titelRein}`
+    }
+    const pfad = path.join(process.cwd(), `${dateiName}.tex`)
+    if (!fs.existsSync(pfad)) {
+      erzeugeAufgabenVorlage(pfad, {
+        zitatReferenz: 'ref',
+        titel
+      })
+    }
+    openCode(pfad)
+  })
+
+program
+  .command('erzeuge-examens-aufgabe <referenz> <thema> [teilaufgabe] [aufgabe]')
+  .description('Erzeuge eine Examensaufgabe im Verzeichnis „Staatsexamen“.')
   .alias('c')
   .action(function (ref: string, arg1: string, arg2: string, arg3: string, cmdObj: object): void {
     const num1 = checkNumber(arg1)
@@ -118,17 +139,9 @@ program
       generateQuestionPath(num1, num2, num3)
     )
 
-    const template =
-      '\\documentclass{lehramt-informatik-aufgabe}\n' +
-      '\\liLadePakete{}\n' +
-      '\\begin{document}\n' +
-      '\n' +
-      '\\end{document}\n'
-
-    fs.mkdirSync(path.dirname(questionPath), { recursive: true })
-    if (!fs.existsSync(questionPath)) {
-      fs.writeFileSync(questionPath, template, { encoding: 'utf-8' })
-    }
+    erzeugeAufgabenVorlage(questionPath, {
+      zitatReferenz: ref
+    })
     openCode(questionPath)
     console.log(generateTeXMacro(exam, arg1, arg2, arg3))
   })
