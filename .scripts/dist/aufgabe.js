@@ -115,9 +115,6 @@ var ExamensAufgabe = /** @class */ (function (_super) {
             throw new Error("Konnten den Pfad der Examensaufgabe nicht lesen: " + pfad);
         }
         var gruppen = match.groups;
-        _this.nummer = parseInt(gruppen.nummer);
-        _this.jahr = parseInt(gruppen.jahr);
-        _this.monat = parseInt(gruppen.monat);
         _this.aufgabe = parseInt(gruppen.aufgabe);
         if (gruppen.thema)
             _this.thema = parseInt(gruppen.thema);
@@ -133,7 +130,7 @@ var ExamensAufgabe = /** @class */ (function (_super) {
     };
     Object.defineProperty(ExamensAufgabe.prototype, "examensReferenz", {
         get: function () {
-            return this.nummer + ":" + this.jahr + ":" + this.monat.toString().padStart(2, '0');
+            return this.examen.referenz;
         },
         enumerable: false,
         configurable: true

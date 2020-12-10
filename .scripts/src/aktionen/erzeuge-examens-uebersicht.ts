@@ -4,7 +4,7 @@ import fs from 'fs'
 import { examensTitel } from '../examen'
 import { ExamensAufgabe } from '../aufgabe'
 import { repositoryPfad, generiereMarkdownLink, MarkdownLinkEinstellung } from '../helfer'
-import { aufgabenSammlung } from '../sammlung'
+import { aufgabenSammlung, examenSammlung } from '../sammlung'
 import glob from 'glob'
 
 interface ExamensAufgabeBaum {
@@ -133,16 +133,6 @@ class AusgabeSammler {
   }
 }
 
-function formatExamTitle (year: string, month: string) {
-  let monthLong
-  if (month === '09') {
-    monthLong = 'Herbst'
-  } else {
-    monthLong = 'Frühjahr'
-  }
-  return `${year} ${monthLong}`
-}
-
 function erzeugeDateiLink (relPath: string, fileName: string, einstellungen?: MarkdownLinkEinstellung): string {
   return generiereMarkdownLink(fileName, path.join(relPath, fileName), einstellungen)
 }
@@ -157,8 +147,9 @@ export function generiereExamensÜbersicht () {
       const jahrPfad = path.join(nummernPfad, jahr)
       const monatsVerzeichnisse = fs.readdirSync(jahrPfad)
       for (const monat of monatsVerzeichnisse) {
+        const examen = examenSammlung.gib(nummer, jahr, monat)
         const monatsPfad = path.join(jahrPfad, monat)
-        ausgabe.add(`- ${formatExamTitle(jahr, monat)}: ${erzeugeDateiLink(monatsPfad, 'Scan.pdf')} ${erzeugeDateiLink(monatsPfad, 'OCR.txt', { linkePdf: false })} ${generiereAufgabenBaum(monatsPfad)}`)
+        ausgabe.add(`- ${examen.jahrJahreszeit}: ${erzeugeDateiLink(monatsPfad, 'Scan.pdf')} ${erzeugeDateiLink(monatsPfad, 'OCR.txt', { linkePdf: false })} ${generiereAufgabenBaum(monatsPfad)}`)
       }
     }
   }

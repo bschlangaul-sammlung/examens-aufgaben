@@ -27,6 +27,10 @@ export class Examen {
     throw new Error(`Die Monatsangabe in der Klasse Staatsexamen darf nur 3 oder 9 lauten.`)
   }
 
+  get jahrJahreszeit (): string {
+    return `${this.jahr} ${this.jahreszeit}`
+  }
+
   get monatMitNullen (): string {
     return this.monat.toString().padStart(2, '0')
   }
@@ -77,6 +81,10 @@ export class ExamenSammlung {
       const examen = Examen.erzeugeExamenVonPfad(pfad)
       this.speicher[examen.referenz] = examen
     }
+  }
+
+  gib (nummer: string, jahr: string, monat: string): Examen {
+    return this.gibDurchReferenz(`${nummer}:${jahr}:${monat}`)
   }
 
   gibDurchPfad (pfad: string): Examen {

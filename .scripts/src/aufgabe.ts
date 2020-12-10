@@ -78,9 +78,6 @@ export class Aufgabe {
 }
 
 export class ExamensAufgabe extends Aufgabe {
-  nummer: number
-  jahr: number
-  monat: number
   thema?: number
   teilaufgabe?: number
   aufgabe: number
@@ -99,9 +96,6 @@ export class ExamensAufgabe extends Aufgabe {
       throw new Error(`Konnten den Pfad der Examensaufgabe nicht lesen: ${pfad}`)
     }
     const gruppen = match.groups
-    this.nummer = parseInt(gruppen.nummer)
-    this.jahr = parseInt(gruppen.jahr)
-    this.monat = parseInt(gruppen.monat)
     this.aufgabe = parseInt(gruppen.aufgabe)
     if (gruppen.thema) this.thema = parseInt(gruppen.thema)
     if (gruppen.teilaufgabe) this.teilaufgabe = parseInt(gruppen.teilaufgabe)
@@ -115,7 +109,7 @@ export class ExamensAufgabe extends Aufgabe {
   }
 
   get examensReferenz (): string {
-    return `${this.nummer}:${this.jahr}:${this.monat.toString().padStart(2, '0')}`
+    return this.examen.referenz
   }
 
   get aufgabenReferenz (): string {

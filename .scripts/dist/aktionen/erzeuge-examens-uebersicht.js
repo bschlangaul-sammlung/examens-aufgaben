@@ -161,16 +161,6 @@ var AusgabeSammler = /** @class */ (function () {
     };
     return AusgabeSammler;
 }());
-function formatExamTitle(year, month) {
-    var monthLong;
-    if (month === '09') {
-        monthLong = 'Herbst';
-    }
-    else {
-        monthLong = 'Frühjahr';
-    }
-    return year + " " + monthLong;
-}
 function erzeugeDateiLink(relPath, fileName, einstellungen) {
     return helfer_1.generiereMarkdownLink(fileName, path_1.default.join(relPath, fileName), einstellungen);
 }
@@ -189,8 +179,9 @@ function generiereExamensÜbersicht() {
                 try {
                     for (var monatsVerzeichnisse_1 = (e_4 = void 0, __values(monatsVerzeichnisse)), monatsVerzeichnisse_1_1 = monatsVerzeichnisse_1.next(); !monatsVerzeichnisse_1_1.done; monatsVerzeichnisse_1_1 = monatsVerzeichnisse_1.next()) {
                         var monat = monatsVerzeichnisse_1_1.value;
+                        var examen = sammlung_1.examenSammlung.gib(nummer, jahr, monat);
                         var monatsPfad = path_1.default.join(jahrPfad, monat);
-                        ausgabe.add("- " + formatExamTitle(jahr, monat) + ": " + erzeugeDateiLink(monatsPfad, 'Scan.pdf') + " " + erzeugeDateiLink(monatsPfad, 'OCR.txt', { linkePdf: false }) + " " + generiereAufgabenBaum(monatsPfad));
+                        ausgabe.add("- " + examen.jahrJahreszeit + ": " + erzeugeDateiLink(monatsPfad, 'Scan.pdf') + " " + erzeugeDateiLink(monatsPfad, 'OCR.txt', { linkePdf: false }) + " " + generiereAufgabenBaum(monatsPfad));
                     }
                 }
                 catch (e_4_1) { e_4 = { error: e_4_1 }; }

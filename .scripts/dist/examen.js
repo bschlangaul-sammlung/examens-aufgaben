@@ -37,6 +37,13 @@ var Examen = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    Object.defineProperty(Examen.prototype, "jahrJahreszeit", {
+        get: function () {
+            return this.jahr + " " + this.jahreszeit;
+        },
+        enumerable: false,
+        configurable: true
+    });
     Object.defineProperty(Examen.prototype, "monatMitNullen", {
         get: function () {
             return this.monat.toString().padStart(2, '0');
@@ -101,6 +108,9 @@ var ExamenSammlung = /** @class */ (function () {
             finally { if (e_1) throw e_1.error; }
         }
     }
+    ExamenSammlung.prototype.gib = function (nummer, jahr, monat) {
+        return this.gibDurchReferenz(nummer + ":" + jahr + ":" + monat);
+    };
     ExamenSammlung.prototype.gibDurchPfad = function (pfad) {
         return this.gibDurchReferenz(Examen.gibReferenzVonPfad(pfad));
     };
