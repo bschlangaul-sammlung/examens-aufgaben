@@ -2,9 +2,11 @@
 
 Materialsammlung für das Studium Lehramt Informatik in Bayern.
 
-## Aufgaben geordnet nach Themen
+# Aufgaben geordnet nach Themen
 
-### Datenbanksysteme (DB)
+## Datenbanksysteme (DB)
+
+### Datenbankentwurf
 
 #### Entity-Relation-Modell
 
@@ -21,6 +23,8 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 - [66116:2018:03 T2 TA1 A2 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf)
 - [66116:2019:09 T1 TA2 A2 (Entity-Relation-Modell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf)
 
+### Relationales Modell
+
 #### Relationenmodell
 
 - [46116:2013:03 T1 TA2 A1 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf)
@@ -31,7 +35,24 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 - [66116:2016:03 T1 TA1 A1 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.pdf)
 - [66116:2018:03 T2 TA1 A2 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf)
 
-#### SQL
+#### Relationale Algebra
+
+- [Division (Relationale Algebra)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Division.pdf)
+- [Freizeitcenter (Relationale Algebra)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Freizeitcenter.pdf)
+- [Universität (Relationale Algebra)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Universitaet.pdf)
+- [Wassned (Relationale Algebra)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Wassned.pdf)
+- [46116:2013:03 T1 TA2 A2 (Relationale Algebra, SQL, Tupelkalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf)
+- [46116:2014:03 T2 TA2 A2 (Relationale Algebra)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf)
+- [46116:2015:03 T1 TA2 A1 (Relationale Algebra, SQL, GROUP BY, HAVING)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf)
+- [46116:2018:09 T2 TA2 A2 (Relationale Algebra)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf)
+- [66111:1996:09 A4 (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.pdf)
+- [66116:2016:03 T1 TA1 A2 (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf)
+
+#### Tupelkalkül
+
+{{ stichwort "Tupelkalkül" }}
+
+### SQL
 
 - [Bands (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Bands.pdf)
 - [Kaufhaus again (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-again.pdf)
@@ -56,22 +77,40 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 - [66116:2016:09 T1 TA1 A4 (SQL, VIEW, WITH, DELETE)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf)
 - [66116:2016:09 T2 TA1 A2 (SQL, CREATE TABLE, CONSTRAINT, ALTER TABLE, GROUP BY, HAVING)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf)
 
-### Programmierung
+### Relationale Entwurfstheorie
 
-#### Objektorientierte Modellierung und Programmierung (OOMUP)
+#### Normalformen
 
-#### Algorithmen und Datenstrukturen (AUD)
+- [Arbeitsvermittler (Normalformen, Funktionale Abhängigkeiten, Schlüsselkandidat, Synthese-Algorithmus)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/50_Relationale-Entwurfstheorie/10_Normalformen/Aufgabe_Arbeitsvermittler.pdf)
+- [Supermarkt (Zweite Normalform, Schlüsselkandidat, Update-Anomalie, Delete-Anomalie, Synthese-Algorithmus)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/50_Relationale-Entwurfstheorie/10_Normalformen/Aufgabe_Supermarkt.pdf)
+- [46116:2015:09 T1 TA2 A1 (Datenunabhängigkeit, Superschlüssel, Referentielle Integrität)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf)
+- [66111:1994:03 A7 (Synthese-Algorithmus, Dritte Normalform)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1994/03/Aufgabe-7.pdf)
+- [66111:1996:09 A4 (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.pdf)
+- [66116:2018:03 T2 TA1 A6 (Synthese-Algorithmus, Dritte Normalform)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-6.pdf)
 
-##### Rekursion
+### Transaktionsverwaltung
+
+- [ACID (Transaktionen, ACID)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/60_Transaktionsverwaltung/Aufgabe_ACID.pdf)
+- [PKW (Transaktionen, Deadlock)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/60_Transaktionsverwaltung/Aufgabe_PKW.pdf)
+- [Tabelle TAB (Transaktionsverwaltung, Lost-Update, Dirty-Read)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/60_Transaktionsverwaltung/Aufgabe_Tabelle-TAB.pdf)
+- [46116:2016:03 T1 TA1 A5 (Transaktionen, ACID, Serialisierbarkeitsgraph, Zwei-Phasen-Sperrprotokoll)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf)
+
+## Programmierung
+
+### Objektorientierte Modellierung und Programmierung (OOMUP)
+
+### Algorithmen und Datenstrukturen (AUD)
+
+#### Rekursion
 
 - [46115:2014:03 T2 A4 (Rekursion, Implementierung in Java, Interative Realisation)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-2/Aufgabe-4.pdf)
 - [66115:2014:03 T1 A1 (Rekursion, Vollständige Induktion)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Thema-1/Aufgabe-1.pdf)
 
-##### Suche
+#### Suche
 
 - [66116:2017:09 T1 TA2 A4 (Binäre Suche, Design by Contract, Kontrollflussgraph, Vollständige Anweisungsüberdeckung)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf)
 
-##### Sortieralgorithmen
+#### Sortieralgorithmen
 
 - [46115:2013:03 T2 A6 (Heapsort)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Thema-2/Aufgabe-6.pdf)
 - [46115:2016:09 T2 A2 (Komplexität)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/09/Thema-2/Aufgabe-2.pdf)
@@ -82,7 +121,7 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 - [66115:2014:09 T2 A6 (Selectionsort, Implementierung in Java, Komplexität, Halde (Heap))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/Thema-2/Aufgabe-6.pdf)
 - [66115:2015:03 T2 A5 (Stapel (Stack), Komplexität)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-2/Aufgabe-5.pdf)
 
-## Aufgaben geordnet nach Staatsexamen
+# Aufgaben geordnet nach Staatsexamen
 
 In diesem Repository findet Ihr viele Staatsexamensaufgaben. Von fast
 allen Staatsexamen liegt ein Scan der Angabe (`Scan.pdf`), sowie eine

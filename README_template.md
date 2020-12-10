@@ -2,41 +2,63 @@
 
 Materialsammlung für das Studium Lehramt Informatik in Bayern.
 
-## Aufgaben geordnet nach Themen
+# Aufgaben geordnet nach Themen
 
-### Datenbanksysteme (DB)
+## Datenbanksysteme (DB)
+
+### Datenbankentwurf
 
 #### Entity-Relation-Modell
 
 {{ stichwort "Entity-Relation-Modell" }}
 
+### Relationales Modell
+
 #### Relationenmodell
 
 {{ stichwort "Relationenmodell" }}
 
-#### SQL
+#### Relationale Algebra
+
+{{ stichwort "Relationale Algebra" }}
+
+#### Tupelkalkül
+
+{{ stichwort "Tupelkalkül" }}
+
+### SQL
 
 {{ stichwort "SQL" }}
 
-### Programmierung
+### Relationale Entwurfstheorie
 
-#### Objektorientierte Modellierung und Programmierung (OOMUP)
+#### Normalformen
 
-#### Algorithmen und Datenstrukturen (AUD)
+{{ stichwort "Normalformen" }}
 
-##### Rekursion
+### Transaktionsverwaltung
+
+{{ stichwort "Transaktionsverwaltung" }}
+
+## Programmierung
+
+### Objektorientierte Modellierung und Programmierung (OOMUP)
+
+### Algorithmen und Datenstrukturen (AUD)
+
+#### Rekursion
 
 {{ stichwort "Rekursion" }}
 
-##### Suche
+#### Suche
 
 {{ stichwort "Suche" }}
 
-##### Sortieralgorithmen
+#### Sortieralgorithmen
 
 {{ stichwort "Sortieralgorithmen" }}
 
-## Aufgaben geordnet nach Staatsexamen
+# Aufgaben geordnet nach Staatsexamen
 
 In diesem Repository findet Ihr viele Staatsexamensaufgaben. Von fast
 allen Staatsexamen liegt ein Scan der Angabe (`Scan.pdf`), sowie eine
