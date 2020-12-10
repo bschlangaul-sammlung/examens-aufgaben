@@ -1,6 +1,6 @@
 var assert = require('assert');
 
-const { stichwortBaum, stichwortVerzeichnis } = require('../dist/stichwort-verzeichnis.js')
+const { stichwortBaum, stichwortVerzeichnis } = require('../dist/sammlung.js')
 
 const { ExamenSammlung } = require('../dist/examen.js')
 

@@ -14,11 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.stichwortVerzeichnis = exports.stichwortBaum = void 0;
+exports.StichwortVerzeichnis = exports.StichwortBaum = void 0;
 var js_yaml_1 = __importDefault(require("js-yaml"));
 var glob_1 = __importDefault(require("glob"));
 var helfer_1 = require("./helfer");
-var aufgabe_1 = require("./aufgabe");
 var StichwortBaum = /** @class */ (function () {
     function StichwortBaum() {
         this.flach = new Set();
@@ -137,38 +136,41 @@ var StichwortBaum = /** @class */ (function () {
     };
     return StichwortBaum;
 }());
-exports.stichwortBaum = new StichwortBaum();
+exports.StichwortBaum = StichwortBaum;
 var StichwortVerzeichnis = /** @class */ (function () {
-    function StichwortVerzeichnis() {
+    function StichwortVerzeichnis(stichwortBaum, aufgabenSammlung) {
         var e_2, _a, e_3, _b;
+        this.stichwortBaum = stichwortBaum;
+        this.aufgabenSammlung = aufgabenSammlung;
         var dateien = glob_1.default.sync('**/*.tex', { cwd: helfer_1.repositoryPfad });
         this.verzeichnis = {};
-        this.aufgaben = {};
         try {
             for (var dateien_1 = __values(dateien), dateien_1_1 = dateien_1.next(); !dateien_1_1.done; dateien_1_1 = dateien_1.next()) {
                 var pfad = dateien_1_1.value;
-                var aufgabe = this.ladeAufgabe(pfad);
-                try {
-                    for (var _c = (e_3 = void 0, __values(aufgabe.stichwörter)), _d = _c.next(); !_d.done; _d = _c.next()) {
-                        var stichwort = _d.value;
-                        if (!exports.stichwortBaum.existiertStichwort(stichwort)) {
-                            throw new Error("Das Stichwort \u201E" + stichwort + "\u201C in der Datei \u201E" + pfad + "\u201C gibt es nicht.");
-                        }
-                        if (this.verzeichnis[stichwort]) {
-                            this.verzeichnis[stichwort].add(aufgabe);
-                        }
-                        else {
-                            this.verzeichnis[stichwort] = new Set();
-                            this.verzeichnis[stichwort].add(aufgabe);
-                        }
-                    }
-                }
-                catch (e_3_1) { e_3 = { error: e_3_1 }; }
-                finally {
+                if (this.aufgabenSammlung.istAufgabenPfad(pfad)) {
+                    var aufgabe = this.aufgabenSammlung.gib(pfad);
                     try {
-                        if (_d && !_d.done && (_b = _c.return)) _b.call(_c);
+                        for (var _c = (e_3 = void 0, __values(aufgabe.stichwörter)), _d = _c.next(); !_d.done; _d = _c.next()) {
+                            var stichwort = _d.value;
+                            if (!stichwortBaum.existiertStichwort(stichwort)) {
+                                throw new Error("Das Stichwort \u201E" + stichwort + "\u201C in der Datei \u201E" + pfad + "\u201C gibt es nicht.");
+                            }
+                            if (this.verzeichnis[stichwort]) {
+                                this.verzeichnis[stichwort].add(aufgabe);
+                            }
+                            else {
+                                this.verzeichnis[stichwort] = new Set();
+                                this.verzeichnis[stichwort].add(aufgabe);
+                            }
+                        }
                     }
-                    finally { if (e_3) throw e_3.error; }
+                    catch (e_3_1) { e_3 = { error: e_3_1 }; }
+                    finally {
+                        try {
+                            if (_d && !_d.done && (_b = _c.return)) _b.call(_c);
+                        }
+                        finally { if (e_3) throw e_3.error; }
+                    }
                 }
             }
         }
@@ -180,13 +182,6 @@ var StichwortVerzeichnis = /** @class */ (function () {
             finally { if (e_2) throw e_2.error; }
         }
     }
-    StichwortVerzeichnis.prototype.ladeAufgabe = function (pfad) {
-        if (this.aufgaben[pfad])
-            return this.aufgaben[pfad];
-        var aufgabe = aufgabe_1.ladeAufgabe(pfad);
-        this.aufgaben[pfad] = aufgabe;
-        return aufgabe;
-    };
     StichwortVerzeichnis.prototype.gibAufgabenMitStichwort = function (stichwort) {
         if (this.verzeichnis[stichwort]) {
             return this.verzeichnis[stichwort];
@@ -195,7 +190,7 @@ var StichwortVerzeichnis = /** @class */ (function () {
     };
     StichwortVerzeichnis.prototype.gibAufgabenMitStichwortUnterBaum = function (stichwort) {
         var e_4, _a, e_5, _b;
-        var stichwörter = exports.stichwortBaum.gibFlacheListe(stichwort);
+        var stichwörter = this.stichwortBaum.gibFlacheListe(stichwort);
         var aufgaben = new Set();
         try {
             for (var stichwörter_1 = __values(stichwörter), stichwörter_1_1 = stichwörter_1.next(); !stichwörter_1_1.done; stichwörter_1_1 = stichwörter_1.next()) {
@@ -226,4 +221,4 @@ var StichwortVerzeichnis = /** @class */ (function () {
     };
     return StichwortVerzeichnis;
 }());
-exports.stichwortVerzeichnis = new StichwortVerzeichnis();
+exports.StichwortVerzeichnis = StichwortVerzeichnis;

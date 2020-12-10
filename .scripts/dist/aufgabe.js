@@ -12,13 +12,25 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __values = (this && this.__values) || function(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ladeAufgabe = exports.ExamensAufgabe = exports.Aufgabe = void 0;
+exports.AufgabenSammlung = exports.ExamensAufgabe = exports.Aufgabe = void 0;
 var path_1 = __importDefault(require("path"));
 var fs_1 = __importDefault(require("fs"));
+var glob_1 = __importDefault(require("glob"));
 var helfer_1 = require("./helfer");
 var tex_1 = require("./tex");
 var Aufgabe = /** @class */ (function () {
@@ -38,6 +50,12 @@ var Aufgabe = /** @class */ (function () {
             return pfad;
         }
         return path_1.default.join(helfer_1.repositoryPfad, pfad);
+    };
+    Aufgabe.istAufgabe = function (pfad) {
+        if (pfad.match(Aufgabe.pfadRegExp)) {
+            return true;
+        }
+        return false;
     };
     Object.defineProperty(Aufgabe.prototype, "titelFormatiert", {
         get: function () {
@@ -83,13 +101,15 @@ var Aufgabe = /** @class */ (function () {
         }
         return 0;
     };
+    Aufgabe.pfadRegExp = /.*Aufgabe_.*\.tex/;
     return Aufgabe;
 }());
 exports.Aufgabe = Aufgabe;
 var ExamensAufgabe = /** @class */ (function (_super) {
     __extends(ExamensAufgabe, _super);
-    function ExamensAufgabe(pfad) {
+    function ExamensAufgabe(pfad, examen) {
         var _this = _super.call(this, pfad) || this;
+        _this.examen = examen;
         var match = pfad.match(ExamensAufgabe.pfadRegExp);
         if (!match || !match.groups) {
             throw new Error("Konnten den Pfad der Examensaufgabe nicht lesen: " + pfad);
@@ -106,7 +126,7 @@ var ExamensAufgabe = /** @class */ (function (_super) {
         return _this;
     }
     ExamensAufgabe.istExamensAufgabe = function (pfad) {
-        if (pfad.match(this.pfadRegExp)) {
+        if (pfad.match(ExamensAufgabe.pfadRegExp)) {
             return true;
         }
         return false;
@@ -158,12 +178,44 @@ var ExamensAufgabe = /** @class */ (function (_super) {
     return ExamensAufgabe;
 }(Aufgabe));
 exports.ExamensAufgabe = ExamensAufgabe;
-function ladeAufgabe(pfad) {
-    if (ExamensAufgabe.istExamensAufgabe(pfad)) {
-        return new ExamensAufgabe(pfad);
+var AufgabenSammlung = /** @class */ (function () {
+    function AufgabenSammlung(examenSammlung) {
+        var e_1, _a;
+        this.examenSammlung = examenSammlung;
+        this.aufgaben = {};
+        var dateien = glob_1.default.sync('**/*.tex', { cwd: helfer_1.repositoryPfad });
+        this.aufgaben = {};
+        try {
+            for (var dateien_1 = __values(dateien), dateien_1_1 = dateien_1.next(); !dateien_1_1.done; dateien_1_1 = dateien_1.next()) {
+                var pfad = dateien_1_1.value;
+                var aufgabe = this.erzeugeAufgabe(pfad);
+                if (aufgabe) {
+                    this.aufgaben[helfer_1.macheRelativenPfad(pfad)] = aufgabe;
+                }
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (dateien_1_1 && !dateien_1_1.done && (_a = dateien_1.return)) _a.call(dateien_1);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
     }
-    else {
-        return new Aufgabe(pfad);
-    }
-}
-exports.ladeAufgabe = ladeAufgabe;
+    AufgabenSammlung.prototype.istAufgabenPfad = function (pfad) {
+        return ExamensAufgabe.istExamensAufgabe(pfad) || Aufgabe.istAufgabe(pfad);
+    };
+    AufgabenSammlung.prototype.erzeugeAufgabe = function (pfad) {
+        if (ExamensAufgabe.istExamensAufgabe(pfad)) {
+            return new ExamensAufgabe(pfad, this.examenSammlung.gibDurchPfad(pfad));
+        }
+        else if (Aufgabe.istAufgabe(pfad)) {
+            return new Aufgabe(pfad);
+        }
+    };
+    AufgabenSammlung.prototype.gib = function (pfad) {
+        return this.aufgaben[helfer_1.macheRelativenPfad(pfad)];
+    };
+    return AufgabenSammlung;
+}());
+exports.AufgabenSammlung = AufgabenSammlung;

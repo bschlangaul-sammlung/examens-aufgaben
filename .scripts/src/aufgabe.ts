@@ -1,8 +1,10 @@
 import path from 'path'
 import fs from 'fs'
+import glob from 'glob'
 
-import { leseRepoDatei, repositoryPfad, generiereMarkdownLink } from './helfer'
+import { leseRepoDatei, repositoryPfad, generiereMarkdownLink, macheRelativenPfad } from './helfer'
 import { sammleStichwörter, gibInhaltEinesTexMakros } from './tex'
+import { Examen, ExamenSammlung } from './examen'
 
 export class Aufgabe {
   pfad: string
@@ -10,6 +12,8 @@ export class Aufgabe {
 
   stichwörter: string[] = []
   titel?: string
+
+  static pfadRegExp: RegExp = /.*Aufgabe_.*\.tex/
 
   constructor (pfad: string) {
     this.pfad = Aufgabe.normalisierePfad(pfad)
@@ -27,6 +31,13 @@ export class Aufgabe {
       return pfad
     }
     return path.join(repositoryPfad, pfad)
+  }
+
+  static istAufgabe (pfad: string): boolean {
+    if (pfad.match(Aufgabe.pfadRegExp)) {
+      return true
+    }
+    return false
   }
 
   get titelFormatiert (): string {
@@ -74,12 +85,15 @@ export class ExamensAufgabe extends Aufgabe {
   teilaufgabe?: number
   aufgabe: number
 
+  examen: Examen
+
   static pfadRegExp: RegExp = /(?<nummer>\d{5})\/(?<jahr>\d{4})\/(?<monat>\d{2})\/(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/
 
   static schwacherPfadRegExp: RegExp =  /(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/
 
-  constructor (pfad: string) {
+  constructor (pfad: string, examen: Examen) {
     super(pfad)
+    this.examen = examen
     const match = pfad.match(ExamensAufgabe.pfadRegExp)
     if (!match || !match.groups) {
       throw new Error(`Konnten den Pfad der Examensaufgabe nicht lesen: ${pfad}`)
@@ -94,7 +108,7 @@ export class ExamensAufgabe extends Aufgabe {
   }
 
   static istExamensAufgabe (pfad: string): boolean {
-    if (pfad.match(this.pfadRegExp)) {
+    if (pfad.match(ExamensAufgabe.pfadRegExp)) {
       return true
     }
     return false
@@ -129,10 +143,37 @@ export class ExamensAufgabe extends Aufgabe {
   }
 }
 
-export function ladeAufgabe (pfad: string): Aufgabe {
-  if (ExamensAufgabe.istExamensAufgabe(pfad)) {
-    return new ExamensAufgabe(pfad)
-  } else {
-    return new Aufgabe(pfad)
+export class AufgabenSammlung {
+  aufgaben: { [pfad: string]: Aufgabe }
+
+  examenSammlung: ExamenSammlung
+
+  constructor (examenSammlung: ExamenSammlung) {
+    this.examenSammlung = examenSammlung
+    this.aufgaben = {}
+    const dateien = glob.sync('**/*.tex', { cwd: repositoryPfad })
+    this.aufgaben = {}
+    for (const pfad of dateien) {
+      const aufgabe = this.erzeugeAufgabe(pfad)
+      if (aufgabe) {
+        this.aufgaben[macheRelativenPfad(pfad)] = aufgabe
+      }
+    }
+  }
+
+  istAufgabenPfad (pfad: string): boolean {
+    return ExamensAufgabe.istExamensAufgabe(pfad) || Aufgabe.istAufgabe(pfad)
+  }
+
+  erzeugeAufgabe (pfad: string): Aufgabe | undefined {
+    if (ExamensAufgabe.istExamensAufgabe(pfad)) {
+      return new ExamensAufgabe(pfad, this.examenSammlung.gibDurchPfad(pfad))
+    } else if (Aufgabe.istAufgabe(pfad)) {
+      return new Aufgabe(pfad)
+    }
+  }
+
+  gib (pfad: string): Aufgabe {
+    return this.aufgaben[macheRelativenPfad(pfad)]
   }
 }

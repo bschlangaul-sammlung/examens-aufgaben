@@ -18,6 +18,11 @@ function leseKonfigurationsDatei (pfad: string): string {
 
 export const repositoryPfad = leseKonfigurationsDatei(konfigurationsDateiPfad)
 
+export function macheRelativenPfad (pfad: string): string {
+  pfad = pfad.replace(repositoryPfad, '')
+  return pfad.replace(/^\//, '')
+}
+
 export function leseRepoDatei (...args: string[]) {
   if (arguments[0].indexOf(repositoryPfad) > -1) return leseDatei(path.join(...args))
   return leseDatei(path.join(repositoryPfad, ...args))

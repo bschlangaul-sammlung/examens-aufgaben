@@ -23,7 +23,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generiereMarkdownLink = exports.leseRepoDatei = exports.repositoryPfad = exports.leseDatei = void 0;
+exports.generiereMarkdownLink = exports.leseRepoDatei = exports.macheRelativenPfad = exports.repositoryPfad = exports.leseDatei = void 0;
 var fs_1 = __importDefault(require("fs"));
 var path_1 = __importDefault(require("path"));
 var konfigurationsDateiPfad = path_1.default.join(path_1.default.sep, 'etc', 'lehramt-informatik.config.tex');
@@ -40,6 +40,11 @@ function leseKonfigurationsDatei(pfad) {
     return match[1];
 }
 exports.repositoryPfad = leseKonfigurationsDatei(konfigurationsDateiPfad);
+function macheRelativenPfad(pfad) {
+    pfad = pfad.replace(exports.repositoryPfad, '');
+    return pfad.replace(/^\//, '');
+}
+exports.macheRelativenPfad = macheRelativenPfad;
 function leseRepoDatei() {
     var args = [];
     for (var _i = 0; _i < arguments.length; _i++) {

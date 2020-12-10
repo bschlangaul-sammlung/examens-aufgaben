@@ -17,29 +17,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.generiereExamensÜbersicht = void 0;
 var path_1 = __importDefault(require("path"));
 var fs_1 = __importDefault(require("fs"));
+var examen_1 = require("../examen");
+var helfer_1 = require("../helfer");
+var sammlung_1 = require("../sammlung");
 var glob_1 = __importDefault(require("glob"));
-var aufgabe_1 = require("./aufgabe");
-var helfer_1 = require("./helfer");
-var titel = {
-    46110: 'Grundlagen der Informatik (nicht vertieft)',
-    46111: 'Programmentwicklung / Systemprogrammierung / Datenbanksysteme (nicht vertieft)',
-    46112: 'Grundlagen der Informatik (nicht vertieft)',
-    46113: 'Theoretische Informatik (nicht vertieft)',
-    46114: 'Algorithmen / Datenstrukturen / Programmiermethoden (nicht vertieft)',
-    46115: 'Theoretische Informatik / Algorithmen / Datenstrukturen (nicht vertieft)',
-    46116: 'Softwaretechnologie / Datenbanksysteme (nicht vertieft)',
-    46118: 'Fachdidaktik (Mittelschulen)',
-    46119: 'Fachdidaktik (Realschulen)',
-    46121: 'Fachdidaktik (berufliche Schulen)',
-    66110: 'Automatentheorie, Algorithmische Sprache (vertieft)',
-    66111: 'Betriebssysteme / Datenbanksysteme / Rechnerarchitektur (vertieft)',
-    66112: 'Automatentheorie / Komplexität / Algorithmen (vertieft)',
-    66113: 'Rechnerarchitektur / Datenbanken / Betriebssysteme (vertieft)',
-    66114: 'Datenbank- und Betriebssysteme (vertieft)',
-    66115: 'Theoretische Informatik / Algorithmen (vertieft)',
-    66116: 'Datenbanksysteme / Softwaretechnologie (vertieft)',
-    66118: 'Fachdidaktik (Gymnasium)'
-};
 /**
  * ```js
  * [
@@ -73,9 +54,9 @@ var titel = {
  * }
  * ```
  *
- * @param {string} relPath
+ * @param {string} relativerPfad
  */
-function leseAufgaben(relPath) {
+function leseAufgaben(relativerPfad) {
     var e_1, _a, e_2, _b;
     /**
      * Thema-1: Thema 1
@@ -85,7 +66,7 @@ function leseAufgaben(relPath) {
     function macheSegmenteLesbar(segment) {
         return segment.replace('-', ' ').replace('.tex', '');
     }
-    var dateien = glob_1.default.sync('**/*.tex', { cwd: relPath });
+    var dateien = glob_1.default.sync('**/*.tex', { cwd: relativerPfad });
     var baum = {};
     try {
         for (var dateien_1 = __values(dateien), dateien_1_1 = dateien_1.next(); !dateien_1_1.done; dateien_1_1 = dateien_1.next()) {
@@ -149,14 +130,14 @@ function generiereAufgabenRekursiv(aufgabenBaum, pfad, ebene) {
     if (ebene === void 0) { ebene = 1; }
     var ausgabe = [];
     // title: Thema 1, Teilaufgabe 2, Aufgabe 3
-    for (var titel_1 in aufgabenBaum) {
-        if (typeof aufgabenBaum[titel_1] === 'string') {
-            var aufgabenPfad = path_1.default.join(pfad, aufgabenBaum[titel_1]);
-            var aufgabe = new aufgabe_1.ExamensAufgabe(aufgabenPfad);
+    for (var titel in aufgabenBaum) {
+        if (typeof aufgabenBaum[titel] === 'string') {
+            var aufgabenPfad = path_1.default.join(pfad, aufgabenBaum[titel]);
+            var aufgabe = sammlung_1.aufgabenSammlung.gib(aufgabenPfad);
             ausgabe.push(erzeugeEinrückung(ebene) + aufgabe.gibTitelNurAufgabe(true));
         }
         else {
-            ausgabe.push("" + erzeugeEinrückung(ebene) + titel_1 + " " + generiereAufgabenRekursiv(aufgabenBaum[titel_1], pfad, ebene + 1));
+            ausgabe.push("" + erzeugeEinrückung(ebene) + titel + " " + generiereAufgabenRekursiv(aufgabenBaum[titel], pfad, ebene + 1));
         }
     }
     return ausgabe.join(' ');
@@ -196,8 +177,8 @@ function erzeugeDateiLink(relPath, fileName, einstellungen) {
 function generiereExamensÜbersicht() {
     var e_3, _a, e_4, _b;
     var ausgabe = new AusgabeSammler();
-    for (var nummer in titel) {
-        ausgabe.add("\n### " + nummer + ": " + titel[nummer] + "\n");
+    for (var nummer in examen_1.examensTitel) {
+        ausgabe.add("\n### " + nummer + ": " + examen_1.examensTitel[nummer] + "\n");
         var nummernPfad = path_1.default.join(helfer_1.repositoryPfad, 'Staatsexamen', nummer);
         var jahrVerzeichnisse = fs_1.default.readdirSync(nummernPfad);
         try {

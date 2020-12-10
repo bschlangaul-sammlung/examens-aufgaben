@@ -20,11 +20,10 @@ var fs_1 = __importDefault(require("fs"));
 var child_process_1 = __importDefault(require("child_process"));
 var glob_1 = __importDefault(require("glob"));
 var commander_1 = require("commander");
-var stichwort_verzeichnis_1 = require("./stichwort-verzeichnis");
 var aufgabe_1 = require("./aufgabe");
-var examen_1 = require("./examen");
 var helfer_1 = require("./helfer");
-var aufgaben_vorlage_1 = require("./aufgaben-vorlage");
+var erzeuge_aufgaben_vorlage_1 = require("./aktionen/erzeuge-aufgaben-vorlage");
+var erzeuge_readme_1 = require("./aktionen/erzeuge-readme");
 /*******************************************************************************
  * low level functions
  ******************************************************************************/
@@ -112,7 +111,7 @@ program
     }
     var pfad = path_1.default.join(process.cwd(), dateiName + ".tex");
     if (!fs_1.default.existsSync(pfad)) {
-        aufgaben_vorlage_1.erzeugeAufgabenVorlage(pfad, {
+        erzeuge_aufgaben_vorlage_1.erzeugeAufgabenVorlage(pfad, {
             titel: titel
         });
     }
@@ -131,7 +130,7 @@ program
     }
     var exam = splitExamRef(ref);
     var questionPath = path_1.default.join(generateExamBasePath(exam.number, exam.year, exam.month), generateQuestionPath(num1, num2, num3));
-    aufgaben_vorlage_1.erzeugeAufgabenVorlage(questionPath, {
+    erzeuge_aufgaben_vorlage_1.erzeugeAufgabenVorlage(questionPath, {
         zitatReferenz: ref
     });
     öffneVSCode(questionPath);
@@ -157,44 +156,11 @@ program
 /*******************************************************************************
  * generate-readme
  ******************************************************************************/
-function generiereMarkdownAufgabenListe(aufgabenListe) {
-    var e_1, _a;
-    var aufgaben = Array.from(aufgabenListe);
-    aufgaben.sort(aufgabe_1.Aufgabe.vergleichePfade);
-    var item = [];
-    try {
-        for (var aufgaben_1 = __values(aufgaben), aufgaben_1_1 = aufgaben_1.next(); !aufgaben_1_1.done; aufgaben_1_1 = aufgaben_1.next()) {
-            var aufgabe = aufgaben_1_1.value;
-            item.push('- ' + aufgabe.markdownLink);
-        }
-    }
-    catch (e_1_1) { e_1 = { error: e_1_1 }; }
-    finally {
-        try {
-            if (aufgaben_1_1 && !aufgaben_1_1.done && (_a = aufgaben_1.return)) _a.call(aufgaben_1);
-        }
-        finally { if (e_1) throw e_1.error; }
-    }
-    return item.join('\n');
-}
-function ersetzeStichwörterInReadme(inhalt) {
-    return inhalt.replace(/\{\{ stichwort "([^"]*)" \}\}/g, function (wholeMatch, stichwort) {
-        return generiereMarkdownAufgabenListe(stichwort_verzeichnis_1.stichwortVerzeichnis.gibAufgabenMitStichwortUnterBaum(stichwort));
-    });
-}
 program
     .command('generiere-readme')
     .description('Generiere die README-Datei')
     .alias('r')
-    .action(function (cmdObj) {
-    var inhalt = helfer_1.leseRepoDatei('README_template.md');
-    inhalt = ersetzeStichwörterInReadme(inhalt);
-    var stichwörterInhalt = helfer_1.leseRepoDatei('Stichwortverzeichnis.yml');
-    inhalt = inhalt.replace('{{ stichwortverzeichnis }}', stichwörterInhalt);
-    inhalt = inhalt.replace('{{ staatsexamen }}', examen_1.generiereExamensÜbersicht());
-    // console.log(readmeContent)
-    fs_1.default.writeFileSync(path_1.default.join(helfer_1.repositoryPfad, 'README.md'), inhalt);
-});
+    .action(erzeuge_readme_1.erzeugeReadme);
 /*******************************************************************************
  * compile-questions
  ******************************************************************************/
@@ -203,7 +169,7 @@ program
     .description('Kompiliere alle TeX-Dateien der Aufgaben.')
     .alias('k')
     .action(function (cmdObj) {
-    var e_2, _a;
+    var e_1, _a;
     var staatsexamenPath = path_1.default.join(helfer_1.repositoryPfad, 'Staatsexamen');
     var files = glob_1.default.sync('**/*.tex', { cwd: staatsexamenPath });
     try {
@@ -224,12 +190,12 @@ program
             }
         }
     }
-    catch (e_2_1) { e_2 = { error: e_2_1 }; }
+    catch (e_1_1) { e_1 = { error: e_1_1 }; }
     finally {
         try {
             if (files_1_1 && !files_1_1.done && (_a = files_1.return)) _a.call(files_1);
         }
-        finally { if (e_2) throw e_2.error; }
+        finally { if (e_1) throw e_1.error; }
     }
 });
 /*******************************************************************************
@@ -241,7 +207,7 @@ program
     .description('Öffne die mit glob spezifizierten Dateien in Visual Studio Code')
     .option('-n, --kein-index', 'Öffne nur die Dateien, die keinen Index haben.')
     .action(function (globPattern, cmdObj) {
-    var e_3, _a;
+    var e_2, _a;
     function öffneMitAusgabe(pfad) {
         console.log(pfad);
         öffneVSCode(pfad);
@@ -264,12 +230,12 @@ program
             }
         }
     }
-    catch (e_3_1) { e_3 = { error: e_3_1 }; }
+    catch (e_2_1) { e_2 = { error: e_2_1 }; }
     finally {
         try {
             if (dateien_1_1 && !dateien_1_1.done && (_a = dateien_1.return)) _a.call(dateien_1);
         }
-        finally { if (e_3) throw e_3.error; }
+        finally { if (e_2) throw e_2.error; }
     }
 });
 program.parse(process.argv);

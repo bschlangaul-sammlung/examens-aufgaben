@@ -8,11 +8,11 @@ import glob from 'glob'
 
 import { Command } from 'commander'
 
-import { stichwortVerzeichnis } from './stichwort-verzeichnis'
 import { Aufgabe, ExamensAufgabe } from './aufgabe'
-import { generiereExamensÜbersicht } from './examen'
-import { repositoryPfad, leseRepoDatei } from './helfer'
-import { erzeugeAufgabenVorlage } from './aufgaben-vorlage'
+import { repositoryPfad } from './helfer'
+
+import { erzeugeAufgabenVorlage } from './aktionen/erzeuge-aufgaben-vorlage'
+import { erzeugeReadme } from './aktionen/erzeuge-readme'
 
 /*******************************************************************************
  * low level functions
@@ -167,38 +167,11 @@ program
  * generate-readme
  ******************************************************************************/
 
-function generiereMarkdownAufgabenListe (aufgabenListe: Set<Aufgabe>): string {
-  const aufgaben = Array.from(aufgabenListe)
-  aufgaben.sort(Aufgabe.vergleichePfade)
-  const item = []
-  for (const aufgabe of aufgaben) {
-    item.push('- ' + aufgabe.markdownLink)
-  }
-  return item.join('\n')
-}
-
-function ersetzeStichwörterInReadme (inhalt: string): string {
-  return inhalt.replace(/\{\{ stichwort "([^"]*)" \}\}/g, function (wholeMatch, stichwort) {
-    return generiereMarkdownAufgabenListe(stichwortVerzeichnis.gibAufgabenMitStichwortUnterBaum(stichwort))
-  })
-}
-
 program
   .command('generiere-readme')
   .description('Generiere die README-Datei')
   .alias('r')
-  .action(function (cmdObj: object) {
-    let inhalt = leseRepoDatei('README_template.md')
-
-    inhalt = ersetzeStichwörterInReadme(inhalt)
-
-    const stichwörterInhalt = leseRepoDatei('Stichwortverzeichnis.yml')
-    inhalt = inhalt.replace('{{ stichwortverzeichnis }}', stichwörterInhalt)
-
-    inhalt = inhalt.replace('{{ staatsexamen }}', generiereExamensÜbersicht())
-    // console.log(readmeContent)
-    fs.writeFileSync(path.join(repositoryPfad, 'README.md'), inhalt)
-  })
+  .action(erzeugeReadme)
 
 /*******************************************************************************
  * compile-questions

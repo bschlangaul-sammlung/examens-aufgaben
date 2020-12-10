@@ -1,15 +1,14 @@
-
 import yaml from 'js-yaml'
 import glob from 'glob'
 
 import { leseRepoDatei, repositoryPfad } from './helfer'
-import { Aufgabe, ladeAufgabe } from './aufgabe'
+import { Aufgabe, AufgabenSammlung } from './aufgabe'
 
 interface Baum {
   [key: string]: Baum | true
 }
 
-class StichwortBaum {
+export class StichwortBaum {
   baum: Baum
   flach: Set<string>
 
@@ -111,37 +110,32 @@ class StichwortBaum {
   }
 }
 
-export const stichwortBaum = new StichwortBaum()
-
-class StichwortVerzeichnis {
+export class StichwortVerzeichnis {
   verzeichnis: { [schlüssel: string]: Set<Aufgabe> }
-  aufgaben: { [dateiPfad: string]: Aufgabe }
+  stichwortBaum: StichwortBaum
+  aufgabenSammlung: AufgabenSammlung
 
-  constructor () {
+  constructor (stichwortBaum: StichwortBaum, aufgabenSammlung: AufgabenSammlung) {
+    this.stichwortBaum = stichwortBaum
+    this.aufgabenSammlung = aufgabenSammlung
     const dateien = glob.sync('**/*.tex', { cwd: repositoryPfad })
     this.verzeichnis = {}
-    this.aufgaben = {}
     for (const pfad of dateien) {
-      const aufgabe = this.ladeAufgabe(pfad)
-      for (const stichwort of aufgabe.stichwörter) {
-        if (!stichwortBaum.existiertStichwort(stichwort)) {
-          throw new Error(`Das Stichwort „${stichwort}“ in der Datei „${pfad}“ gibt es nicht.`)
-        }
-        if (this.verzeichnis[stichwort]) {
-          this.verzeichnis[stichwort].add(aufgabe)
-        } else {
-          this.verzeichnis[stichwort] = new Set<Aufgabe>()
-          this.verzeichnis[stichwort].add(aufgabe)
+      if (this.aufgabenSammlung.istAufgabenPfad(pfad)) {
+        const aufgabe = this.aufgabenSammlung.gib(pfad)
+        for (const stichwort of aufgabe.stichwörter) {
+          if (!stichwortBaum.existiertStichwort(stichwort)) {
+            throw new Error(`Das Stichwort „${stichwort}“ in der Datei „${pfad}“ gibt es nicht.`)
+          }
+          if (this.verzeichnis[stichwort]) {
+            this.verzeichnis[stichwort].add(aufgabe)
+          } else {
+            this.verzeichnis[stichwort] = new Set<Aufgabe>()
+            this.verzeichnis[stichwort].add(aufgabe)
+          }
         }
       }
     }
-  }
-
-  ladeAufgabe (pfad: string): Aufgabe {
-    if (this.aufgaben[pfad]) return this.aufgaben[pfad]
-    const aufgabe = ladeAufgabe(pfad)
-    this.aufgaben[pfad] = aufgabe
-    return aufgabe
   }
 
   gibAufgabenMitStichwort (stichwort: string): Set<Aufgabe>  {
@@ -152,7 +146,7 @@ class StichwortVerzeichnis {
   }
 
   gibAufgabenMitStichwortUnterBaum (stichwort: string): Set<Aufgabe> {
-    const stichwörter = stichwortBaum.gibFlacheListe(stichwort)
+    const stichwörter = this.stichwortBaum.gibFlacheListe(stichwort)
     const aufgaben = new Set<Aufgabe>()
     for (const stichwort of stichwörter) {
       for (const aufgabe of this.gibAufgabenMitStichwort(stichwort)) {
@@ -162,5 +156,3 @@ class StichwortVerzeichnis {
     return aufgaben
   }
 }
-
-export const stichwortVerzeichnis = new StichwortVerzeichnis()
