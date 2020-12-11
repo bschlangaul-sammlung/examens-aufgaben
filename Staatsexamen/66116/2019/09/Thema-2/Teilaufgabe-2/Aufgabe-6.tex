@@ -1,0 +1,98 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Vermischte Datenbank-Fragen}
+\section{Aufgabe 6: (Vermischte Fragen)
+\index{Datenbank-Übersicht}
+\footcite[Thema 2 Teilaufgabe 2 Aufgabe 6]{66116:2019:09}}
+
+Begründen oder erläutern Sie Ihre Antworten.
+
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Erklären Sie kurz den Unterschied zwischen einem
+Natural-Join\index{Natural-Join} und einem Equi-Join\index{Equi-Join}.
+
+\begin{antwort}
+Ein Natural Join ist eine Kombination von zwei Tabellen, in denen
+Spalten gleichen Namens existieren. Die Werte in diesen Spalten werden
+sodann auf Übereinstimmungen geprüft (analog Equi-Join). Einige
+Datenbanksysteme erkennen das Schlüsselwort NATURAL und eliminieren
+entsprechend automatisch doppelte Spalten.
+
+Während beim Kreuzprodukt keinerlei Anforderungen an die Kombination der
+Datensätze gestellt werden, führt der Equi-Join eine solche ein: Die
+Gleichheit von zwei Spalten.
+
+\liFussnoteLink{wiki.selfhtml.org}{https://wiki.selfhtml.org/wiki/Datenbank/Einführung_in_Joins}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Erläutern Sie kurz was man unter einem
+Theta-Join\index{Theta-Join} versteht.
+
+\begin{antwort}
+Ein Theta-Join ist eine Verbindung von Relationen bezüglich beliebiger
+Attribute und mit einem Selektionsprädikat.
+\liFussnoteUrl{https://www.datenbank-grundlagen.de/theta-join.html}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Was versteht man unter Unionkompatibilität? Nennen Sie drei
+SQL-Operatoren welche Unionkompatibilität voraussetzen.
+
+\begin{antwort}
+Bestimmte Operationen der relationalen Algebra wie Vereinigung,
+Schnitt und Differenz verlangen Unionkompatibilität.
+Unionkompatibilität ist eine Eigenschaft des Schemas einer Relation.
+Zwei Relationen $R$ und $S$ sind genau dann union-kompatibel, wenn
+folgende Bedingungen erfüllt sind:
+
+\begin{enumerate}
+\item Die Relationen R und S besitzen dieselbe Stelligkeit n, d.\,h. sie
+haben die selbe Anzahl von Spalten.
+
+\item Für alle Spalten der Relationen gilt, dass die Domäne der $i$-ten
+Spalte der Relation $R$ mit dem Typ der $i$-ten Spalte der Relation $S$
+übereinstimmt ($0 < i < n$).
+\end{enumerate}
+
+Die Namen der Attribute spielen dabei keine Rolle.
+\liFussnoteUrl{https://studylibde.com/doc/1441274/übungstool-für-relationale-algebra}
+
+\liPseudoUeberschrift{SQL-Operatoren mit Unionkompatibilität}
+
+\begin{itemize}
+\item UNION\index{UNION}
+\item INTERSECT\index{INTERSECT}
+\item EXCEPT\index{EXCEPT}
+\end{itemize}
+\end{antwort}
+
+\item Erläutern Sie Backward und Forward Recovery und grenzen Sie diese
+voneinander ab.
+
+\item Erklären Sie das Zwei-Phasen-Freigabe-Protokoll.
+
+\item Erläutern Sie Partial Undo / Redo und Global Undo / Redo und deren
+Bedeutung für die Umsetzung des ACID-Prinzips. Geben Sie zu jeder dieser
+Konzepte an, ob System-, Programm- oder Gerätefehler damit korrigiert
+werden können.
+
+\item Erklären Sie das WAL-Prinzip (Write ahead logging)!
+
+\item Erklären Sie den Begriff „Datenbankindex“ und nennen Sie zwei
+häufige Arten.
+\end{enumerate}
+
+\end{document}

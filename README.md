@@ -9,6 +9,12 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 Das Kapitel „Datenbanksysteme“ ist in etwa so gegliedert wie das
 Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 
+### Übersicht
+
+- [„Drei-Schichten-Modell“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/10_Uebersicht/Aufgabe_Drei-Schichten-Modell.pdf) (Drei-Schichten-Modell)
+- [Examen 46116 Herbst 2015 T1 TA2 A1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) (Datenunabhängigkeit, Superschlüssel, Referentielle Integrität)
+- [„Vermischte Datenbank-Fragen“ Examen 66116 Herbst 2019 T2 TA2 A6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf) (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)
+
 ### Datenbankentwurf
 
 #### Entity-Relation-Modell
@@ -61,6 +67,7 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 - [Examen 46116 Herbst 2018 T2 TA2 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf) (Relationale Algebra)
 - [Examen 66111 Herbst 1996 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.pdf) (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)
 - [Examen 66116 Frühjahr 2016 T1 TA1 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)
+- [„Vermischte Datenbank-Fragen“ Examen 66116 Herbst 2019 T2 TA2 A6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf) (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)
 
 #### Tupelkalkül
 
@@ -93,6 +100,8 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 - [Examen 66116 Frühjahr 2016 T1 TA1 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)
 - [Examen 66116 Herbst 2016 T1 TA1 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) (SQL, VIEW, WITH, DELETE)
 - [Examen 66116 Herbst 2016 T2 TA1 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) (SQL, CREATE TABLE, CONSTRAINT, ALTER TABLE, GROUP BY, HAVING)
+- [„Vermischte Datenbank-Fragen“ Examen 66116 Herbst 2019 T2 TA2 A6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf) (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)
+- [„Formel-1-Rennen“ Examen 66116 Herbst 2019 T2 TA2 A7](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf) (SQL)
 
 ### Relationale Entwurfstheorie
 
@@ -705,7 +714,11 @@ OCR des oben genannten Scans:
         - Teilaufgabe 1 
             - [Aufgabe 4 (Zustandsdiagramm, Implementierung in Java)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) 
         - Teilaufgabe 2 
-            - [Aufgabe 2 (Entity-Relation-Modell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf)
+            - [Aufgabe 2 (Entity-Relation-Modell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) 
+    - Thema 2 
+        - Teilaufgabe 2 
+            - [Aufgabe 6 (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf) 
+            - [Aufgabe 7 (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf)
 
 ### 66118: Fachdidaktik (Gymnasium)
 
@@ -744,6 +757,7 @@ als Markdown-Liste eingebettet werden kann.
         - Referentielle Integrität
         - Datenunabhängigkeit
         - Drei-Schichten-Modell
+        - Unionkompatibilität
     - Datenbankentwurf:
         - Entity-Relation-Modell:
             - IS-A
@@ -751,7 +765,10 @@ als Markdown-Liste eingebettet werden kann.
         - Relationenmodell:
             - Verfeinertes Relationenmodell
             - Kartesisches Produkt
-        - Relationale Algebra
+        - Relationale Algebra:
+            - Equi-Join
+            - Natural-Join
+            - Theta-Join
         - Tupelkalkül
     - Relationale Anfragesprachen:
         - SQL:
@@ -759,16 +776,17 @@ als Markdown-Liste eingebettet werden kann.
             - CONSTRAINT
             - CREATE TABLE
             - DELETE
+            - DROP TABLE
             - EXCEPT
             - GROUP BY
             - HAVING
             - INSERT
+            - INTERSECT
             - Top-N-Query
             - UNION
+            - UPDATE
             - VIEW
             - WITH
-            - UPDATE
-            - DROP TABLE
     - Relationale Entwurfstheorie:
         - Normalformen:
             - Schlüssel
@@ -981,6 +999,9 @@ thematisch zu keinem anderen Paket passen
 * Makro: `\liBeschriftung{}`: Ähnlich dem Makro
   `\liPseudoUeberschrift{}`. Am Ende des Textes wird ein
   Doppelpunktzeichen angehängt.
+* Makro: `\liFussnoteUrl{url}`: Eine HTTP-URL als Fußnote setzen.
+* Makro: `\liFussnoteLink{text}{url}`: Eine Link, d. h. einen Link-Text
+  und eine URL als Fußnote setzen.
 
 ### `normalformen.sty`
 

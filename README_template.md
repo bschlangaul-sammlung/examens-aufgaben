@@ -9,6 +9,10 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 Das Kapitel „Datenbanksysteme“ ist in etwa so gegliedert wie das
 Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 
+### Übersicht
+
+{{ stichwort "Datenbank-Übersicht" }}
+
 ### Datenbankentwurf
 
 #### Entity-Relation-Modell
@@ -144,6 +148,9 @@ thematisch zu keinem anderen Paket passen
 * Makro: `\liBeschriftung{}`: Ähnlich dem Makro
   `\liPseudoUeberschrift{}`. Am Ende des Textes wird ein
   Doppelpunktzeichen angehängt.
+* Makro: `\liFussnoteUrl{url}`: Eine HTTP-URL als Fußnote setzen.
+* Makro: `\liFussnoteLink{text}{url}`: Eine Link, d. h. einen Link-Text
+  und eine URL als Fußnote setzen.
 
 ### `normalformen.sty`
 

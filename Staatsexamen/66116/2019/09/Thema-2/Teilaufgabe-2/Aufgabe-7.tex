@@ -1,0 +1,41 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Formel-1-Rennen}
+\section{Aufgabe 7: (SQL)
+\index{SQL}
+\footcite{66116:2019:09}}
+
+Aufgabe 7: (SQL) (18 Punkte)
+Gegeben sind folgende Relationen aus einem Verwaltungssystem für die jährlichen Formel 1-Rennen:
+
+Strecke (Strecken ID, Streckenname, Land, Lange)
+
+Fahrer(Fahrer ID, Fahrername, Nation, Rennstall)
+Rennen(Strecken\_ID, Jahr, Wetter)
+
+FK (Strecken ID) referenziert Strecke(Strecken\_ID)
+Rennteilnahme(Fahrer ID, Strecken\_ID, Jahr, Rundenbestzeit, Gesamtzeit,
+
+disqualifiziert)
+FK (Fahrer ID) referenziert Fahrer(Fahrer\_ ID)
+FK (Strecken\_ ID, Jahr) referenziert Rennen (Strecken \_ID, Jahr)
+
+Der Einfachheit halber wird angenommen, dass Fahrer den Rennstall nicht wechseln können. Das
+Attribut „disqualifiziert“ kann die Ausprägungen „ja“ und „nein“ haben. Formulieren Sie folgende
+Abfragen in SQL. Vermeiden Sie nach Möglichkeit übermäßige Nutzung von Joins und Views.
+
+a) [3 Punkte] Geben Sie für jeden Fahrer seine ID sowie die Anzahl seiner Disqualifikationen in den
+Jahren 2005 bis 2017 aus. Ordnen Sie die Ausgabe absteigend nach der Anzahl der
+Disqualifikationen.
+
+b) [4 Punkte] Gesucht sind alle Länder, aus denen noch nie ein Fahrer disqualifiziert wurde.
+
+c) [8 Punkte] Gesucht sind die ersten fünf Plätze des Rennens von 2011 in „Abu Dhabi“
+(Streckenname). Die Ausgabe soll nach der Platzierung absteigend erfolgen. Geben Sie Fahrer \_ID,
+Fahrername, Nation und Rennstall mit aus.
+
+d) [3 Punkte] Führen Sie eine neue Spalte Gehalt in die Tabelle Fahrer ein. Da sich die Prämien für
+die Fahrer nach einem Rennstallwechsel ändern, soll ein Trigger geschrieben werden, mit dem das
+Gehalt des betreffenden Fahrers um 10\% angehoben wird.
+\end{document}
