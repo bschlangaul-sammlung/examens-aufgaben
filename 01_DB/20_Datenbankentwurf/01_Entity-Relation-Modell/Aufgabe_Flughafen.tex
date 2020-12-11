@@ -1,0 +1,235 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,er,mathe,rmodell}
+\begin{document}
+\liAufgabenTitel{Flughafen}
+
+\section{Flughafen ER-Modell und Relationenmodell
+\index{Entity-Relation-Modell}
+\footcite[Aufgabe 1: Wiederholung ER-Modell und Relationenmodell]{db:ab:klausurvorbereitung}}
+
+Für einen Flughafen soll eine Datenbank für folgendes Szenario
+entwickelt werden: Von den \textbf{Fluggesellschaften} sollen
+\emph{Name} und \emph{Hauptsitz} abgespeichert werden. Der
+Gesellschaftsname ist dabei eindeutig. Die Gesellschaften sind
+Eigentümer von Flugzeugen. Wichtig ist, seit wann das Flugzeug für die
+Gesellschaft im Einsatz ist und wie viele Flugzeuge die Gesellschaft
+insgesamt besitzt.
+
+Die \textbf{Flugzeuge} tragen eine eindeutige \emph{FZ-Nr}.
+Weiterhin soll auch der \textbf{Typ} des Flugzeuges mit
+\emph{Sitzplatzanzahl} und \emph{Größe der Besatzung} abrufbar sein.
+
+Für einen \textbf{Flug} setzt eine Fluggesellschaft ein Flugzeug ein.
+Dabei muss dieses Flugzeug aber nicht Eigentum der Fluggesellschaft
+sein. Der Flug hat eine \emph{Flug-Nr}. Bezüglich eines Fluges sind
+\emph{Flug-Nr}, \emph{Abflugzeit} und \emph{Zielflughafen} abzuspeichern.
+
+Ein \textbf{Passagier} kann Flüge buchen. Von den Passagieren müssen
+\emph{Name} und \emph{Gebdat} bekannt sein. Dabei ist aber davon
+auszugehen, dass es Passagiere mit gleichem Namen und gleichem
+Gebdat geben kann.
+
+Bei der \textbf{Buchung} wird dem Passagier eine \emph{Sitzplatz-Nr}
+zugeteilt. Für jeden Flug muss die Anzahl der gebuchten Plätze
+feststellbar sein.
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Erstellen Sie ein ER-Diagramm! Verarbeiten Sie dabei nur die
+unbedingt notwendigen Informationen. Geben Sie an, wie die nicht im
+ER-Modell „auftauchenden“ Informationen bestimmt werden können.
+
+\begin{antwort}
+\begin{center}
+\begin{tikzpicture}[er2,scale=0.7,transform shape]
+\node[entity] (Fluggesellschaft) {Fluggesellschaft};
+\node[attribute, left of=Fluggesellschaft] {Name} edge (Fluggesellschaft);
+\node[attribute, above of=Fluggesellschaft] {Hauptsitz} edge (Fluggesellschaft);
+
+\node[relationship,right of=Fluggesellschaft] (besitzt) {besitzt} edge (Fluggesellschaft);
+
+\node[entity,right of=besitzt] (Flugzeug) {Flugzeug} edge (besitzt);
+\node[attribute, above left of=Flugzeug] {FZ-Nr} edge (Flugzeug);
+\node[attribute, above of=Flugzeug] {Typ} edge (Flugzeug);
+\node[attribute, above right of=Flugzeug] {Sitzplatzanzahl} edge (Flugzeug);
+\node[attribute, right of=Flugzeug] {Besatzung} edge (Flugzeug);
+
+\node[entity,below of=Flugzeug] (Flug) {Flug};
+
+\node[relationship,below of=besitzt] (setztEin) {setztEin}
+  edge (Flug)
+  edge (Flugzeug)
+  edge (Fluggesellschaft);
+
+\node[relationship,right of=Flug] (bucht) {bucht}
+  edge (Flug);
+
+\node[entity,below of=Flug] (Passagier) {Passagier}
+  edge (bucht);
+\node[attribute, left of=Passagier] {Name} edge (Passagier);
+\node[attribute, below left of=Passagier] {Gebdat} edge (Passagier);
+\node[attribute, below of=Passagier] {PasID} edge (Passagier);
+\end{tikzpicture}
+\end{center}
+
+%\includegraphics[width=\linewidth]{Aufgabe-1_muster}
+
+Wie viele Flugzeuge eine Fluggesellschaft besitzt ergibt sich nicht
+direkt aus dem ER-Modell, sondern kann später durch eine einfache
+SQL-Abfrage ermittelt werden:
+
+\begin{minted}{sql}
+SELECT FluggesellschaftName, COUNT (*) AS Anzahl
+FROM Eigentuemer_von
+GROUP BY FluggesellschaftName;
+\end{minted}
+
+Auch die Anzahl der gebuchten Sitze pro Flug lässt sich durch eine
+SQL-Abfrage ermit- teln:
+
+\begin{minted}{sql}
+SELECT Flug-Nr, COUNT (*) AS Anzahl
+FROM bucht
+GROUP BY Flug-Nr;
+\end{minted}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Legen Sie die Primärschlüssel fest. Begründen Sie Ihre
+Entscheidung, falls Sie zusätzliche künstliche Schlüssel einfügen.
+
+\begin{antwort}[richtig]
+Pass-Nr weil Geburtstdatum und Namen zusammen nicht
+eindeutig ist.
+\end{antwort}
+
+\begin{antwort}[muster]
+Von einem Passagier werden nur Name und Gebdat gespeichert. Da
+diese beiden nicht eindeutig sind, können sie nicht als Primärschlüssel
+verwendet werden. Folglich muss ein künstlicher Schlüssel eingeführt
+werden, die \verb|Passagier-Nr|. \verb|Typ-Nr| des Flugzeugtyps sollte
+auch gespeichert werden, da Personalzahl und Sitzplatzzahl nicht
+eindeutig sind.
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Geben Sie die Funktionalitäten an!
+
+%%
+% (d)
+%%
+
+\item Erstellen Sie nun ein zu dieser Modellierung passendes
+Relationenschema! Markieren Sie Schlüssel und Fremdschlüssel.
+
+\begin{antwort}[richtig]
+\verb|angehoeren| wird aufgelöst: \verb|Typ-Nr[Flugzeugtyp]| nach
+\verb|Flugzeug|
+
+\verb|besitzen| wird aufgelöst: \verb|FGName[Fluggesellschaft]| nach
+\verb|Flugzeug|
+
+\verb|fliegen| wird aufgelöst: \verb|FGName[Fluggesellschaft]|
+\verb|FZ-Nr[Flugzeug]| nach \verb|Flug|
+
+\bigskip
+
+{
+\footnotesize\ttfamily
+Fluggesellschaft(\liPrimaer{FGName}, Hauptsitz)
+
+Flug(\liPrimaer{Flug-Nr}, Abflugzeit, Zielflughafen,
+\liFremd{FGName[Fluggesellschaft]},
+\liFremd{FZ-Nr[Flugzeug]})
+
+Flugzeug(\liPrimaer{FZ-Nr},
+\liFremd{FGName[Fluggesellschaft]},
+DatumErsterEinsatz,
+\liFremd{Typ-Nr[Flugzeugtyp]})
+
+Flugzeugtyp(\liPrimaer{Typ-Nr}, SitzplatzAnzahl, GroesseBesatzung)
+
+Passagier(\liPrimaer{Pass-Nr}, Name, Gebdat)
+
+buchen(\liFremd{Pass-Nr[Passagier]},
+\liFremd{Flug-Nr[Flug]}, Sitzplatz-Nr)
+}
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item Finden Sie nun jeweils eine Datenbank-Anfrage (in SQL und in
+relationaler Algebra) zur Lösung der folgenden Problemstellungen:
+
+\renewcommand{\labelenumii}{\alph{enumii}.}
+\begin{enumerate}
+
+%%
+% a.
+%%
+
+\item Die Fluggesellschaft „Never-Come-Back-Airlines“ (NCA) will wissen,
+ob (und wenn ja bei welchem Flug) heute Abend Passagiere (Name,
+Sitzplatz-Nr) mit einem ihrer Flugzeuge unterwegs sind, die heute
+Geburtstag haben (GebDat = TODAY).
+
+\begin{antwort}[richtig]
+$
+\pi_{\text{Name,Sitzplatz-Nr}}(
+  \sigma_{\text{GebDat} = \text{TODAY}}(\text{Passagier})
+  \bowtie
+  \text{buchen}\\
+  \bowtie
+  \sigma_{\text{Name} = \mlq \text{Never-Come-Back-Airlines} \mrq \land \text{Abflugzeit} > \text{18.00}}(\text{Flug})
+)
+$
+
+\begin{minted}{sql}
+SELECT p.Name, p.Sitzplatz-Nr
+FROM Passagier p, Flug f, buchen b
+WHERE
+  f.Name = 'Never-Come-Back-Airlines' AND
+  f.Abflugzeit > 18.00 AND
+  p.Gebdat = TODAY AND
+  f.Flug-Nr = b.Flug-Nr AND
+  b.Pass-Nr = p.Pass-Nr;
+\end{minted}
+\end{antwort}
+
+%%
+% b.
+%%
+
+\item Ein Passagier möchte erfahren, welcher Flug (Flug-Nr, FZ-Nr,
+Abflugzeit, FGName) derjenige mit dem „modernsten“ Flugzeug ist, der
+nach „London“ geht.
+
+\begin{minted}{sql}
+SELECT f.Flug-Nr, f.FZ-Nr, f.Abflugzeit, f.FGName
+FROM Flug f, Flugzeug fz
+WHERE
+  f.FZ-Nr = fz.FZ-Nr AND
+  f.Zielflughafen = 'London' AND
+  fz.DatumErsterEinsatz = (
+    SELECT MAX(Flugzeug.DatumErsterEinsatz)
+    FROM Flug, Flugzeug
+    WHERE
+      Flug.Zielflughafen = 'London' AND
+      Flug.FZ-Nr = Flugzeug.FZ-Nr
+  )
+\end{minted}
+\end{enumerate}
+\end{enumerate}
+\end{document}

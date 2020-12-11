@@ -6,6 +6,9 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 
 ## Datenbanksysteme (DB)
 
+Das Kapitel „Datenbanksysteme“ ist in etwa so gegliedert wie das
+Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
+
 ### Datenbankentwurf
 
 #### Entity-Relation-Modell

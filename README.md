@@ -6,12 +6,18 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 
 ## Datenbanksysteme (DB)
 
+Das Kapitel „Datenbanksysteme“ ist in etwa so gegliedert wie das
+Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
+
 ### Datenbankentwurf
 
 #### Entity-Relation-Modell
 
+- [„Firma“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/20_Datenbankentwurf/01_Entity-Relation-Modell/Aufgabe_Firma.pdf) (Entity-Relation-Modell)
+- [„Flughafen“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/20_Datenbankentwurf/01_Entity-Relation-Modell/Aufgabe_Flughafen.pdf) (Entity-Relation-Modell)
 - [„Multiple-Choice“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/20_Datenbankentwurf/01_Entity-Relation-Modell/Aufgabe_Multiple-Choice.pdf) (Entity-Relation-Modell)
 - [„Olympische Spiele“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/20_Datenbankentwurf/01_Entity-Relation-Modell/Aufgabe_Olympische-Spiele.pdf) (Entity-Relation-Modell)
+- [„Fahrzeug“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/10_Relationenmodell/Aufgabe_Fahrzeug.pdf) (IS-A, Relationenmodell)
 - [„Rennstall“ Examen 46116 Frühjahr 2013 T1 TA2 A1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) (Entity-Relation-Modell, Relationenmodell)
 - [„Konsulat“ Examen 46116 Frühjahr 2015 T1 TA2 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf) (Entity-Relation-Modell, Relationenmodell)
 - [Examen 46116 Herbst 2018 T1 TA2 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) (Entity-Relation-Modell)
@@ -27,6 +33,10 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 
 #### Relationenmodell
 
+- [„Bus-Unternehmen“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/10_Relationenmodell/Aufgabe_Bus-Unternehmen.pdf) (Relationenmodell)
+- [„Fahrzeug“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/10_Relationenmodell/Aufgabe_Fahrzeug.pdf) (IS-A, Relationenmodell)
+- [„Krankenhaus“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/10_Relationenmodell/Aufgabe_Krankenhaus.pdf) (Verfeinertes Relationenmodell)
+- [„Süße Produktion“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/10_Relationenmodell/Aufgabe_Suesse-Produktion.pdf) (Relationenmodell, Kartesisches Produkt)
 - [„Rennstall“ Examen 46116 Frühjahr 2013 T1 TA2 A1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) (Entity-Relation-Modell, Relationenmodell)
 - [„Konsulat“ Examen 46116 Frühjahr 2015 T1 TA2 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf) (Entity-Relation-Modell, Relationenmodell)
 - [Examen 46116 Herbst 2018 T2 TA2 A5](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-5.pdf) (Entity-Relation-Modell, Relationenmodell)
@@ -88,6 +98,7 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 - [Examen 46116 Herbst 2015 T1 TA2 A1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) (Datenunabhängigkeit, Superschlüssel, Referentielle Integrität)
 - [Examen 66111 Frühjahr 1994 A7](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1994/03/Aufgabe-7.pdf) (Synthese-Algorithmus, Dritte Normalform)
 - [Examen 66111 Herbst 1996 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.pdf) (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)
+- [„Nachteile vollständige Normalisierung“ Examen 66113 Herbst 2003 T2 A1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/09/Thema-2/Aufgabe-1.pdf) (Normalformen)
 - [Examen 66116 Frühjahr 2018 T2 TA1 A6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-6.pdf) (Synthese-Algorithmus, Dritte Normalform)
 
 ### Transaktionsverwaltung
@@ -504,6 +515,8 @@ OCR des oben genannten Scans:
     - Thema 2 
         - [Aufgabe 3 (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Thema-2/Aufgabe-3.pdf)
 - 2003 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/09/OCR.txt) 
+    - Thema 2 
+        - [Aufgabe 1 (Normalformen)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/09/Thema-2/Aufgabe-1.pdf)
 - 2004 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2004/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2004/03/OCR.txt) 
 - 2004 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2004/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2004/09/OCR.txt) 
 - 2005 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2005/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2005/03/OCR.txt) 
@@ -721,42 +734,49 @@ Alle Stichwörter beginnen mit `- `, damit die YAML-Datei hier unten
 als Markdown-Liste eingebettet werden kann.
 
 - DB:
-    - Datenbanksystem:
+    - Datenbank-Übersicht:
+        - Datenbanksystem
         - Referentielle Integrität
         - Datenunabhängigkeit
-    - Entity-Relation-Modell
-    - Relationenmodell:
-        - Verfeinertes Relationenmodell
-    - Relationale Algebra
-    - Tupelkalkül
-    - SQL:
-        - ALTER TABLE
-        - CONSTRAINT
-        - CREATE TABLE
-        - DELETE
-        - EXCEPT
-        - GROUP BY
-        - HAVING
-        - INSERT
-        - Top-N-Query
-        - UNION
-        - VIEW
-        - WITH
-        - UPDATE
-        - DROP TABLE
-    - Normalformen:
-        - Schlüssel
-        - Superschlüssel
-        - Schlüsselkandidat
-        - Funktionale Abhängigkeiten
-        - Synthese-Algorithmus
-        - Erste Normalform
-        - Zweite Normalform
-        - Dritte Normalform
-        - Anomalien:
-            - Update-Anomalie
-            - Insert-Anomalie
-            - Delete-Anomalie
+    - Datenbankentwurf:
+        - Entity-Relation-Modell:
+            - IS-A
+    - Relationales Modell:
+        - Relationenmodell:
+            - Verfeinertes Relationenmodell
+            - Kartesisches Produkt
+        - Relationale Algebra
+        - Tupelkalkül
+    - Relationale Anfragesprachen:
+        - SQL:
+            - ALTER TABLE
+            - CONSTRAINT
+            - CREATE TABLE
+            - DELETE
+            - EXCEPT
+            - GROUP BY
+            - HAVING
+            - INSERT
+            - Top-N-Query
+            - UNION
+            - VIEW
+            - WITH
+            - UPDATE
+            - DROP TABLE
+    - Relationale Entwurfstheorie:
+        - Normalformen:
+            - Schlüssel
+            - Superschlüssel
+            - Schlüsselkandidat
+            - Funktionale Abhängigkeiten
+            - Synthese-Algorithmus
+            - Erste Normalform
+            - Zweite Normalform
+            - Dritte Normalform
+            - Anomalien:
+                - Update-Anomalie
+                - Insert-Anomalie
+                - Delete-Anomalie
     - Transaktionsverwaltung:
         - Transaktionen
         - Zwei-Phasen-Sperrprotokoll
