@@ -8,6 +8,17 @@ Datenbanken.]
 
 \def\liFremd#1{{\setul{-0.9em}{}\ul{#1}}}
 
+\ExplSyntaxOn
 \NewDocumentEnvironment { liRmodell }
 { +b }
-{{\noindent\footnotesize\ttfamily#1}} {}
+{
+  \bigskip
+  {
+    \setlength{\parindent}{0pt}
+    \footnotesize
+    \ttfamily
+    #1
+  }
+  \bigskip
+} {}
+\ExplSyntaxOff

@@ -79,20 +79,85 @@ Die Namen der Attribute spielen dabei keine Rolle.
 \end{itemize}
 \end{antwort}
 
+%%
+%
+%%
+
 \item Erläutern Sie Backward und Forward Recovery und grenzen Sie diese
 voneinander ab.
 
+%%
+%
+%%
+
 \item Erklären Sie das Zwei-Phasen-Freigabe-Protokoll.
+
+%%
+%
+%%
 
 \item Erläutern Sie Partial Undo / Redo und Global Undo / Redo und deren
 Bedeutung für die Umsetzung des ACID-Prinzips. Geben Sie zu jeder dieser
 Konzepte an, ob System-, Programm- oder Gerätefehler damit korrigiert
 werden können.
 
+%%
+%
+%%
+
 \item Erklären Sie das WAL-Prinzip (Write ahead logging)!
+
+\begin{antwort}
+Das sogenannte write ahead logging (WAL) ist ein Verfahren der
+Datenbanktechnologie, das zur Gewährleistung der Atomarität und
+Dauerhaftigkeit von Transaktionen beiträgt. Es besagt, dass
+Modifikationen vor dem eigentlichen Schreiben (dem Einbringen in die
+Datenbank) protokolliert werden müssen.
+
+Durch das WAL-Prinzip wird ein sogenanntes „update-in-place“ ermöglicht,
+d.\,h. die alte Version eines Datensatzes wird durch die neue Version an
+gleicher Stelle überschrieben. Das hat vor allem den Vorteil, dass
+Indexstrukturen bei Änderungsoperationen nicht mit aktualisiert werden
+müssen, weil die geänderten Datensätze immer noch an der gleichen Stelle
+zu finden sind. Die vorherige Protokollierung einer Änderung ist
+erforderlich, um im Fehlerfall die Wiederholbarkeit der Änderung
+sicherstellen zu können.
+\footcite{wiki:wal-prinzip}
+\end{antwort}
+
+%%
+%
+%%
 
 \item Erklären Sie den Begriff „Datenbankindex“ und nennen Sie zwei
 häufige Arten.
+
+\begin{antwort}
+Ein Datenbankindex ist eine von der Datenstruktur getrennte
+Index\-struktur in einer Datenbank, die die Suche und das Sortieren nach
+bestimmten Feldern beschleunigt.
+\footcite{wiki:datenbankindex}
+
+\liPseudoUeberschrift{Gruppierte Indizes (Clustered Index)}
+
+Bei der Verwendung eines gruppierten Index werden die Daten\-sätze
+entsprechend der Sortierreihenfolge ihres Index-Schlüssels gespeich\-ert.
+Wird für eine Tabelle beispielsweise eine Primärschlüssel-Spalte „NR“
+angelegt, so stellt diese den Index-Schlüssel dar. Pro Tabelle kann nur
+ein gruppierter Index erstellt werden. Dieser kann jedoch aus mehreren
+Spalten zusammengesetzt sein.
+
+\liPseudoUeberschrift{Nicht-gruppierte Indizes (Nonclustered Index)}
+
+Besitzt eine Tabelle einen gruppierten Index, so können weitere
+nicht-gruppierte Indizes angelegt werden. Dabei zeigen die Einträge des
+Index auf den Speicherbereich des gesamten Datensatzes. Die Verwendung
+eines nicht-gruppierten Index bietet sich an, wenn regel\-mäßig nach
+bestimmten Werten in einer Spalte gesucht wird z.\-B. dem Namen eines
+Kunden.
+\liFussnoteUrl{https://www.datenbanken-verstehen.de/datenmodellierung/datenbank-index}
+\end{antwort}
+
 \end{enumerate}
 
 \end{document}

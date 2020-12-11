@@ -464,6 +464,35 @@ gesammelt werden
 \end{itemize}
 \end{itemize}
 
+\section{Das WAL-Prinzip\footcite[Kapitel 10.3.5 Seite 318]{kemper}}
+
+Wir hatten gerade bemerkt, dass die Log-Einträge spätestens dann
+geschrieben werden müssen, wenn sich der zur Verfügung stehende
+Ringpuffer gefüllt hat. Bei der von uns zugrundegelegten
+Systemkonfiguration (force, steal, und update-in-place) ist aber
+zusätzlich unabdingbar, das sogenannte WAL-Prinzip (Write Ahead Log)
+einzuhalten. Dafür gibt es zwei Regeln, die beide befolgt werden müssen:
+
+\begin{enumerate}
+\item Bevor eine Transaktion festgeschrieben (committed) wird, müssen
+alle „zu ihr gehörenden“ Log-Einträge ausgeschrieben werden.
+
+\item Bevor eine modifizierte Seite ausgelagert werden darf, müssen alle
+Log-Einträge, die zu dieser Seite gehören, in das temporäre und das
+Log-Archiv ausgeschrieben werden.
+\end{enumerate}
+
+Die erste Regel des WAL-Prinzips ist notwendig, um erfolgreich
+abgeschlossene Transaktionen nach einem Fehler nachvollziehen (Redo) zu
+können. Die zweite Regel wird benötigt, um im Fehlerfall die Änderungen
+nicht abgeschlossener Transaktionen aus den modifizierten Seiten der
+materialisierten Datenbasis entfernen zu können.
+
+Beim WAL-Prinzip schreibt man natürlich alle Log-Einträge bis zu dem
+letzten notwendigen aus — d.\,h. man übergeht keine Log-Einträge, die von
+Regel 1. und 2. nicht erfasst sind. Dies ist essentiell, um die
+chronologische Reihenfolge der LogEinträge im Ringpuffer zu wahren.
+
 \literatur
 
 \end{document}
