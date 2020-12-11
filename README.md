@@ -10,92 +10,92 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 
 #### Entity-Relation-Modell
 
-- [Multiple-Choice (Entity-Relation-Modell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/20_Datenbankentwurf/01_Entity-Relation-Modell/Aufgabe_Multiple-Choice.pdf)
-- [Olympische Spiele (Entity-Relation-Modell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/20_Datenbankentwurf/01_Entity-Relation-Modell/Aufgabe_Olympische-Spiele.pdf)
-- [46116:2013:03 T1 TA2 A1 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf)
-- [46116:2015:03 T1 TA2 A3 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
-- [46116:2018:09 T1 TA2 A2 (Entity-Relation-Modell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf)
-- [46116:2018:09 T2 TA2 A5 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-5.pdf)
-- [66111:1996:03 A2 (Entity-Relation-Modell, Verfeinertes Relationenmodell, SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/Aufgabe-2.pdf)
-- [66111:1997:09 A3 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/09/Aufgabe-3.pdf)
-- [66116:2016:03 T1 TA1 A1 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.pdf)
-- [66116:2016:03 T1 TA1 A2 (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf)
-- [66116:2018:03 T2 TA1 A2 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf)
-- [66116:2019:09 T1 TA2 A2 (Entity-Relation-Modell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf)
+- [„Multiple-Choice“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/20_Datenbankentwurf/01_Entity-Relation-Modell/Aufgabe_Multiple-Choice.pdf) (Entity-Relation-Modell)
+- [„Olympische Spiele“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/20_Datenbankentwurf/01_Entity-Relation-Modell/Aufgabe_Olympische-Spiele.pdf) (Entity-Relation-Modell)
+- [„Rennstall“ Examen 46116 Frühjahr 2013 T1 TA2 A1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) (Entity-Relation-Modell, Relationenmodell)
+- [„Konsulat“ Examen 46116 Frühjahr 2015 T1 TA2 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf) (Entity-Relation-Modell, Relationenmodell)
+- [Examen 46116 Herbst 2018 T1 TA2 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) (Entity-Relation-Modell)
+- [Examen 46116 Herbst 2018 T2 TA2 A5](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-5.pdf) (Entity-Relation-Modell, Relationenmodell)
+- [Examen 66111 Frühjahr 1996 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/Aufgabe-2.pdf) (Entity-Relation-Modell, Verfeinertes Relationenmodell, SQL)
+- [Examen 66111 Herbst 1997 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/09/Aufgabe-3.pdf) (Entity-Relation-Modell, Relationenmodell)
+- [Examen 66116 Frühjahr 2016 T1 TA1 A1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.pdf) (Entity-Relation-Modell, Relationenmodell)
+- [Examen 66116 Frühjahr 2016 T1 TA1 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)
+- [Examen 66116 Frühjahr 2018 T2 TA1 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) (Entity-Relation-Modell, Relationenmodell)
+- [Examen 66116 Herbst 2019 T1 TA2 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) (Entity-Relation-Modell)
 
 ### Relationales Modell
 
 #### Relationenmodell
 
-- [46116:2013:03 T1 TA2 A1 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf)
-- [46116:2015:03 T1 TA2 A3 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
-- [46116:2018:09 T2 TA2 A5 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-5.pdf)
-- [66111:1996:03 A2 (Entity-Relation-Modell, Verfeinertes Relationenmodell, SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/Aufgabe-2.pdf)
-- [66111:1997:09 A3 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/09/Aufgabe-3.pdf)
-- [66116:2016:03 T1 TA1 A1 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.pdf)
-- [66116:2018:03 T2 TA1 A2 (Entity-Relation-Modell, Relationenmodell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf)
+- [„Rennstall“ Examen 46116 Frühjahr 2013 T1 TA2 A1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) (Entity-Relation-Modell, Relationenmodell)
+- [„Konsulat“ Examen 46116 Frühjahr 2015 T1 TA2 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf) (Entity-Relation-Modell, Relationenmodell)
+- [Examen 46116 Herbst 2018 T2 TA2 A5](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-5.pdf) (Entity-Relation-Modell, Relationenmodell)
+- [Examen 66111 Frühjahr 1996 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/Aufgabe-2.pdf) (Entity-Relation-Modell, Verfeinertes Relationenmodell, SQL)
+- [Examen 66111 Herbst 1997 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/09/Aufgabe-3.pdf) (Entity-Relation-Modell, Relationenmodell)
+- [Examen 66116 Frühjahr 2016 T1 TA1 A1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.pdf) (Entity-Relation-Modell, Relationenmodell)
+- [Examen 66116 Frühjahr 2018 T2 TA1 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) (Entity-Relation-Modell, Relationenmodell)
 
 #### Relationale Algebra
 
-- [Division (Relationale Algebra)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Division.pdf)
-- [Freizeitcenter (Relationale Algebra)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Freizeitcenter.pdf)
-- [Universität (Relationale Algebra)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Universitaet.pdf)
-- [Wassned (Relationale Algebra)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Wassned.pdf)
-- [46116:2013:03 T1 TA2 A2 (Relationale Algebra, SQL, Tupelkalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf)
-- [46116:2014:03 T2 TA2 A2 (Relationale Algebra)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf)
-- [46116:2015:03 T1 TA2 A1 (Relationale Algebra, SQL, GROUP BY, HAVING)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf)
-- [46116:2018:09 T2 TA2 A2 (Relationale Algebra)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf)
-- [66111:1996:09 A4 (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.pdf)
-- [66116:2016:03 T1 TA1 A2 (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf)
+- [„Division“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Division.pdf) (Relationale Algebra)
+- [„Freizeitcenter“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Freizeitcenter.pdf) (Relationale Algebra)
+- [„Universität“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Universitaet.pdf) (Relationale Algebra)
+- [„Wassned“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Wassned.pdf) (Relationale Algebra)
+- [Examen 46116 Frühjahr 2013 T1 TA2 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) (Relationale Algebra, SQL, Tupelkalkül)
+- [Examen 46116 Frühjahr 2014 T2 TA2 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf) (Relationale Algebra)
+- [„Computer „Chiemsee““ Examen 46116 Frühjahr 2015 T1 TA2 A1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) (Relationale Algebra, SQL, GROUP BY, HAVING)
+- [Examen 46116 Herbst 2018 T2 TA2 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf) (Relationale Algebra)
+- [Examen 66111 Herbst 1996 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.pdf) (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)
+- [Examen 66116 Frühjahr 2016 T1 TA1 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)
 
 #### Tupelkalkül
 
-- [Xenokrates (Tupelkalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/30_Tupelkalkuel/Aufgabe_Xenokrates.pdf)
-- [46116:2013:03 T1 TA2 A2 (Relationale Algebra, SQL, Tupelkalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf)
-- [66116:2018:03 T2 TA1 A4 (Tupelkalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-4.pdf)
+- [„Xenokrates“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/30_Tupelkalkuel/Aufgabe_Xenokrates.pdf) (Tupelkalkül)
+- [Examen 46116 Frühjahr 2013 T1 TA2 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) (Relationale Algebra, SQL, Tupelkalkül)
+- [Examen 66116 Frühjahr 2018 T2 TA1 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-4.pdf) (Tupelkalkül)
 
 ### SQL
 
-- [Bands (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Bands.pdf)
-- [Kaufhaus again (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-again.pdf)
-- [Kaufhausdatenbank (einfach) (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-einfach.pdf)
-- [Kaufhaus zum letzten Mal! (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-letztes-Mal.pdf)
-- [noch mal Kaufhaus... (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-nochmal.pdf)
-- [Kaufhausdatenbank (reloaded) (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-reloaded.pdf)
-- [SQL abstrakt (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_SQL-abstract.pdf)
-- [46116:2012:03 T1 TA1 A3 (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf)
-- [46116:2013:03 T1 TA2 A2 (Relationale Algebra, SQL, Tupelkalkül)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf)
-- [46116:2014:03 T2 TA2 A3 (SQL, GROUP BY, HAVING)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf)
-- [46116:2015:03 T1 TA2 A1 (Relationale Algebra, SQL, GROUP BY, HAVING)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf)
-- [46116:2017:09 T2 TA2 A4 (SQL, GROUP BY)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf)
-- [46116:2018:09 T1 TA1 A4 (SQL, CREATE TABLE, HAVING, EXCEPT, Top-N-Query, WITH, DELETE)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf)
-- [46116:2018:09 T1 TA2 A4 (SQL, CREATE TABLE)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf)
-- [46116:2018:09 T2 TA2 A3 (SQL, CREATE TABLE, INSERT, ALTER TABLE, UPDATE, DELETE, VIEW, GROUP BY, DROP TABLE)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf)
-- [66111:1996:03 A2 (Entity-Relation-Modell, Verfeinertes Relationenmodell, SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/Aufgabe-2.pdf)
-- [66111:1996:09 A4 (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.pdf)
-- [66113:2003:03 T1 A5 (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Thema-1/Aufgabe-5.pdf)
-- [66113:2003:03 T2 A3 (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Thema-2/Aufgabe-3.pdf)
-- [66116:2016:03 T1 TA1 A2 (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf)
-- [66116:2016:09 T1 TA1 A4 (SQL, VIEW, WITH, DELETE)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf)
-- [66116:2016:09 T2 TA1 A2 (SQL, CREATE TABLE, CONSTRAINT, ALTER TABLE, GROUP BY, HAVING)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf)
+- [„Bands“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Bands.pdf) (SQL)
+- [„Kaufhaus again“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-again.pdf) (SQL)
+- [„Kaufhausdatenbank (einfach)“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-einfach.pdf) (SQL)
+- [„Kaufhaus zum letzten Mal!“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-letztes-Mal.pdf) (SQL)
+- [„noch mal Kaufhaus...“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-nochmal.pdf) (SQL)
+- [„Kaufhausdatenbank (reloaded)“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-reloaded.pdf) (SQL)
+- [„SQL abstrakt“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_SQL-abstract.pdf) (SQL)
+- [Examen 46116 Frühjahr 2012 T1 TA1 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) (SQL)
+- [Examen 46116 Frühjahr 2013 T1 TA2 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) (Relationale Algebra, SQL, Tupelkalkül)
+- [Examen 46116 Frühjahr 2014 T2 TA2 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf) (SQL, GROUP BY, HAVING)
+- [„Computer „Chiemsee““ Examen 46116 Frühjahr 2015 T1 TA2 A1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) (Relationale Algebra, SQL, GROUP BY, HAVING)
+- [Examen 46116 Herbst 2017 T2 TA2 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf) (SQL, GROUP BY)
+- [Examen 46116 Herbst 2018 T1 TA1 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) (SQL, CREATE TABLE, HAVING, EXCEPT, Top-N-Query, WITH, DELETE)
+- [Examen 46116 Herbst 2018 T1 TA2 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf) (SQL, CREATE TABLE)
+- [Examen 46116 Herbst 2018 T2 TA2 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf) (SQL, CREATE TABLE, INSERT, ALTER TABLE, UPDATE, DELETE, VIEW, GROUP BY, DROP TABLE)
+- [Examen 66111 Frühjahr 1996 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/Aufgabe-2.pdf) (Entity-Relation-Modell, Verfeinertes Relationenmodell, SQL)
+- [Examen 66111 Herbst 1996 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.pdf) (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)
+- [„Mitarbeiterverwaltung“ Examen 66113 Frühjahr 2003 T1 A5](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Thema-1/Aufgabe-5.pdf) (SQL)
+- [„Universitätsverwaltung“ Examen 66113 Frühjahr 2003 T2 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Thema-2/Aufgabe-3.pdf) (SQL)
+- [Examen 66116 Frühjahr 2016 T1 TA1 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)
+- [Examen 66116 Herbst 2016 T1 TA1 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) (SQL, VIEW, WITH, DELETE)
+- [Examen 66116 Herbst 2016 T2 TA1 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) (SQL, CREATE TABLE, CONSTRAINT, ALTER TABLE, GROUP BY, HAVING)
 
 ### Relationale Entwurfstheorie
 
 #### Normalformen
 
-- [Arbeitsvermittler (Normalformen, Funktionale Abhängigkeiten, Schlüsselkandidat, Synthese-Algorithmus)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/50_Relationale-Entwurfstheorie/10_Normalformen/Aufgabe_Arbeitsvermittler.pdf)
-- [Supermarkt (Zweite Normalform, Schlüsselkandidat, Update-Anomalie, Delete-Anomalie, Synthese-Algorithmus)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/50_Relationale-Entwurfstheorie/10_Normalformen/Aufgabe_Supermarkt.pdf)
-- [46116:2015:09 T1 TA2 A1 (Datenunabhängigkeit, Superschlüssel, Referentielle Integrität)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf)
-- [66111:1994:03 A7 (Synthese-Algorithmus, Dritte Normalform)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1994/03/Aufgabe-7.pdf)
-- [66111:1996:09 A4 (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.pdf)
-- [66116:2018:03 T2 TA1 A6 (Synthese-Algorithmus, Dritte Normalform)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-6.pdf)
+- [„Arbeitsvermittler“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/50_Relationale-Entwurfstheorie/10_Normalformen/Aufgabe_Arbeitsvermittler.pdf) (Normalformen, Funktionale Abhängigkeiten, Schlüsselkandidat, Synthese-Algorithmus)
+- [„Supermarkt“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/50_Relationale-Entwurfstheorie/10_Normalformen/Aufgabe_Supermarkt.pdf) (Zweite Normalform, Schlüsselkandidat, Update-Anomalie, Delete-Anomalie, Synthese-Algorithmus)
+- [Examen 46116 Herbst 2015 T1 TA2 A1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) (Datenunabhängigkeit, Superschlüssel, Referentielle Integrität)
+- [Examen 66111 Frühjahr 1994 A7](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1994/03/Aufgabe-7.pdf) (Synthese-Algorithmus, Dritte Normalform)
+- [Examen 66111 Herbst 1996 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.pdf) (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)
+- [Examen 66116 Frühjahr 2018 T2 TA1 A6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-6.pdf) (Synthese-Algorithmus, Dritte Normalform)
 
 ### Transaktionsverwaltung
 
-- [ACID (Transaktionen, ACID)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/60_Transaktionsverwaltung/Aufgabe_ACID.pdf)
-- [PKW (Transaktionen, Deadlock)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/60_Transaktionsverwaltung/Aufgabe_PKW.pdf)
-- [Tabelle TAB (Transaktionsverwaltung, Lost-Update, Dirty-Read)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/60_Transaktionsverwaltung/Aufgabe_Tabelle-TAB.pdf)
-- [46116:2016:03 T1 TA1 A5 (Transaktionen, ACID, Serialisierbarkeitsgraph, Zwei-Phasen-Sperrprotokoll)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf)
+- [„ACID“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/60_Transaktionsverwaltung/Aufgabe_ACID.pdf) (Transaktionen, ACID)
+- [„PKW“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/60_Transaktionsverwaltung/Aufgabe_PKW.pdf) (Transaktionen, Deadlock)
+- [„Tabelle TAB“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/60_Transaktionsverwaltung/Aufgabe_Tabelle-TAB.pdf) (Transaktionsverwaltung, Lost-Update, Dirty-Read)
+- [Examen 46116 Frühjahr 2016 T1 TA1 A5](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf) (Transaktionen, ACID, Serialisierbarkeitsgraph, Zwei-Phasen-Sperrprotokoll)
 
 ## Programmierung
 
@@ -105,23 +105,23 @@ Materialsammlung für das Studium Lehramt Informatik in Bayern.
 
 #### Rekursion
 
-- [46115:2014:03 T2 A4 (Rekursion, Implementierung in Java, Interative Realisation)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-2/Aufgabe-4.pdf)
-- [66115:2014:03 T1 A1 (Rekursion, Vollständige Induktion)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Thema-1/Aufgabe-1.pdf)
+- [Examen 46115 Frühjahr 2014 T2 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-2/Aufgabe-4.pdf) (Rekursion, Implementierung in Java, Interative Realisation)
+- [Examen 66115 Frühjahr 2014 T1 A1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Thema-1/Aufgabe-1.pdf) (Rekursion, Vollständige Induktion)
 
 #### Suche
 
-- [66116:2017:09 T1 TA2 A4 (Binäre Suche, Design by Contract, Kontrollflussgraph, Vollständige Anweisungsüberdeckung)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf)
+- [Examen 66116 Herbst 2017 T1 TA2 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf) (Binäre Suche, Design by Contract, Kontrollflussgraph, Vollständige Anweisungsüberdeckung)
 
 #### Sortieralgorithmen
 
-- [46115:2013:03 T2 A6 (Heapsort)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Thema-2/Aufgabe-6.pdf)
-- [46115:2016:09 T2 A2 (Komplexität)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/09/Thema-2/Aufgabe-2.pdf)
-- [46115:2017:09 T2 A7 (Insertionsort, Implementierung in Java)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/09/Thema-2/Aufgabe-7.pdf)
-- [46115:2018:03 T1 A6 (Mergesort)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/03/Thema-1/Aufgabe-6.pdf)
-- [46116:2017:09 T1 TA1 A4 (Bubblesort, Black-Box-Testing, Anforderungsüberdeckung, Äquivalenzklassenzerlegung, Grenzwertanalyse, Kontrollflussgraph, C2a Vollständige Pfadüberdeckung (Full Path Coverage))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf)
-- [66115:2012:09 T2 A6 (Komplexität)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-2/Aufgabe-6.pdf)
-- [66115:2014:09 T2 A6 (Selectionsort, Implementierung in Java, Komplexität, Halde (Heap))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/Thema-2/Aufgabe-6.pdf)
-- [66115:2015:03 T2 A5 (Stapel (Stack), Komplexität)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-2/Aufgabe-5.pdf)
+- [Examen 46115 Frühjahr 2013 T2 A6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Thema-2/Aufgabe-6.pdf) (Heapsort)
+- [Examen 46115 Herbst 2016 T2 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/09/Thema-2/Aufgabe-2.pdf) (Komplexität)
+- [Examen 46115 Herbst 2017 T2 A7](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/09/Thema-2/Aufgabe-7.pdf) (Insertionsort, Implementierung in Java)
+- [Examen 46115 Frühjahr 2018 T1 A6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/03/Thema-1/Aufgabe-6.pdf) (Mergesort)
+- [Examen 46116 Herbst 2017 T1 TA1 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) (Bubblesort, Black-Box-Testing, Anforderungsüberdeckung, Äquivalenzklassenzerlegung, Grenzwertanalyse, Kontrollflussgraph, C2a Vollständige Pfadüberdeckung (Full Path Coverage))
+- [Examen 66115 Herbst 2012 T2 A6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-2/Aufgabe-6.pdf) (Komplexität)
+- [Examen 66115 Herbst 2014 T2 A6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/Thema-2/Aufgabe-6.pdf) (Selectionsort, Implementierung in Java, Komplexität, Halde (Heap))
+- [Examen 66115 Frühjahr 2015 T2 A5](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-2/Aufgabe-5.pdf) (Stapel (Stack), Komplexität)
 
 # Aufgaben geordnet nach Staatsexamen
 

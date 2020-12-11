@@ -41,18 +41,14 @@ export class Aufgabe {
   }
 
   get titelFormatiert (): string {
-    let präfix: string
-    let stichwörter: string = ''
+    let titel: string
     if (this.titel) {
-      präfix = this.titel
+      titel = `„${this.titel}“`
     } else {
-      präfix = 'Aufgabe'
+      titel = 'Aufgabe'
     }
 
-    if (this.stichwörter) {
-      stichwörter = this.stichwörterFormatiert
-    }
-    return `${präfix}${stichwörter}`
+    return titel
   }
 
   get stichwörterFormatiert (): string {
@@ -63,7 +59,7 @@ export class Aufgabe {
   }
 
   get markdownLink (): string {
-    return generiereMarkdownLink(this.titelFormatiert, this.pfad)
+    return generiereMarkdownLink(this.titelFormatiert, this.pfad) + this.stichwörterFormatiert
   }
 
   static vergleichePfade(a: Aufgabe, b: Aufgabe): number {
@@ -122,7 +118,9 @@ export class ExamensAufgabe extends Aufgabe {
   }
 
   get titelKurz (): string {
-    return `${this.examensReferenz} ${this.aufgabenReferenz}${this.stichwörterFormatiert}`
+    let ausgabe = `${this.examen.titelKurz} ${this.aufgabenReferenz}`
+    if (this.titel) return `„${this.titel}“ ${ausgabe}`
+    return ausgabe
   }
 
   gibTitelNurAufgabe (alsMarkdownLink: boolean = false): string {
@@ -134,7 +132,7 @@ export class ExamensAufgabe extends Aufgabe {
   }
 
   get markdownLink (): string {
-    return generiereMarkdownLink(this.titelKurz, this.pfad)
+    return generiereMarkdownLink(this.titelKurz, this.pfad) + this.stichwörterFormatiert
   }
 
   static erzeugePfad (arg1: number, arg2?: number, arg3?: number): string {

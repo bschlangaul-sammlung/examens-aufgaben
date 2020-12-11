@@ -51,6 +51,10 @@ export class Examen {
     return `${this.nummer}:${this.jahr}:${this.monatMitNullen}`
   }
 
+  get titelKurz (): string {
+    return `Examen ${this.nummer} ${this.jahreszeit} ${this.jahr}`
+  }
+
   static erzeugeExamenDurchTextArgumente (nummer: string, jahr: string, monat: string) {
     return new Examen(parseInt(nummer), parseInt(jahr), parseInt(monat))
   }

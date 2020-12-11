@@ -59,18 +59,14 @@ var Aufgabe = /** @class */ (function () {
     };
     Object.defineProperty(Aufgabe.prototype, "titelFormatiert", {
         get: function () {
-            var präfix;
-            var stichwörter = '';
+            var titel;
             if (this.titel) {
-                präfix = this.titel;
+                titel = "\u201E" + this.titel + "\u201C";
             }
             else {
-                präfix = 'Aufgabe';
+                titel = 'Aufgabe';
             }
-            if (this.stichwörter) {
-                stichwörter = this.stichwörterFormatiert;
-            }
-            return "" + präfix + stichwörter;
+            return titel;
         },
         enumerable: false,
         configurable: true
@@ -87,7 +83,7 @@ var Aufgabe = /** @class */ (function () {
     });
     Object.defineProperty(Aufgabe.prototype, "markdownLink", {
         get: function () {
-            return helfer_1.generiereMarkdownLink(this.titelFormatiert, this.pfad);
+            return helfer_1.generiereMarkdownLink(this.titelFormatiert, this.pfad) + this.stichwörterFormatiert;
         },
         enumerable: false,
         configurable: true
@@ -151,7 +147,10 @@ var ExamensAufgabe = /** @class */ (function (_super) {
     });
     Object.defineProperty(ExamensAufgabe.prototype, "titelKurz", {
         get: function () {
-            return this.examensReferenz + " " + this.aufgabenReferenz + this.stichwörterFormatiert;
+            var ausgabe = this.examen.titelKurz + " " + this.aufgabenReferenz;
+            if (this.titel)
+                return "\u201E" + this.titel + "\u201C " + ausgabe;
+            return ausgabe;
         },
         enumerable: false,
         configurable: true
@@ -166,7 +165,7 @@ var ExamensAufgabe = /** @class */ (function (_super) {
     };
     Object.defineProperty(ExamensAufgabe.prototype, "markdownLink", {
         get: function () {
-            return helfer_1.generiereMarkdownLink(this.titelKurz, this.pfad);
+            return helfer_1.generiereMarkdownLink(this.titelKurz, this.pfad) + this.stichwörterFormatiert;
         },
         enumerable: false,
         configurable: true

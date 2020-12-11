@@ -66,6 +66,13 @@ var Examen = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    Object.defineProperty(Examen.prototype, "titelKurz", {
+        get: function () {
+            return "Examen " + this.nummer + " " + this.jahreszeit + " " + this.jahr;
+        },
+        enumerable: false,
+        configurable: true
+    });
     Examen.erzeugeExamenDurchTextArgumente = function (nummer, jahr, monat) {
         return new Examen(parseInt(nummer), parseInt(jahr), parseInt(monat));
     };
