@@ -1,0 +1,251 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe,syntax}
+\begin{document}
+\liAufgabenTitel{Bundesliga-Datenbank}
+
+\section{Bundesliga-Datenbank
+\index{Relationale Algebra}
+\index{SQL}
+\footcite[Aufgabe 4: Relationale Algebra und SQL]{db:ab:7}}
+
+Gegeben sei die folgende Bundesliga-Datenbank, in der die Vereine,
+Spiele, Trainer und Spieler mit ihren Einsätzen für die laufende Saison
+verwaltet werden:
+
+\begin{itemize}
+\item VEREIN (VNAME, ORT, PRÄSIDENT)
+\item SPIELE (HEIM, GAST, RESULTAT, ZUSCHAUER, TERMIN, SPIELTAG, H-TRAINER,
+G-TRAINER)
+\item SPIELER (SPNR, NAME, VORNAME, VEREIN, ALTER, GEHALT, GEB-ORT)
+\item TRAINER (TRNR, NAME, VORNAME, VEREIN, ALTER, GEHALT, GEB-ORT)
+\item EINSATZ (HEIM, GAST, SPNR, VON, BIS, TORE, KARTE)
+\end{itemize}
+
+\begin{enumerate}
+\item Zeichnen Sie das „zugehörige“ ER-Modell!
+\index{Entity-Relation-Modell}
+
+\item Formulieren Sie folgende Anfragen in relationaler Algebra und in
+SQL:
+
+\begin{itemize}
+\item Welche Spieler haben beim Spiel TSV 1860 München – FC Bayern
+München mitgewirkt?
+
+\begin{antwort}
+$\pi_{\text{NAME,VORNAME}}(
+  \text{Spieler}
+  \bowtie
+  (\sigma_{
+    \text{HEIM} = \mlq \text{TSV 1860 München} \mrq \land
+    \text{GAST} = \mlq \text{FC Bayern München} \mrq
+  }(\text{Einsatz}))
+)$
+
+\begin{minted}{sql}
+SELECT NAME, VORNAME FROM Spieler, Einsatz,
+WHERE
+  HEIM = 'TSV 1860 München' AND GAST = 'FC Bayern München' AND
+  Einsatz.SPNR = Spieler.SPNR;
+\end{minted}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Welche Spiele sind 2 : 0 ausgegangen?
+
+\begin{antwort}
+$\pi_{\text{HEIM},\text{GAST},\text{SPIELTAG}}(\sigma_{\text{RESULTAT} = \mlq 2 : 0 \mrq}(\text{SPIELE}))$
+
+\begin{minted}{sql}
+SELECT HEIM, GAST, SPIELTAG FROM SPIELE
+WHERE RESULTAT = '2 : 0';
+\end{minted}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Welche Spieler spielen in einem Verein ihres Geburtsortes?
+
+\begin{antwort}
+$\pi_{\text{NAME},\text{VORNAME}}(
+  \text{VEREIN}
+  \bowtie_{\text{VEREIN.ORT} = \text{SPIELER.GEB-ORT} \land \text{SPIELER.VEREIN} = \text{VEREIN.VNAME}}
+  \text{SPIELER}
+)$
+
+\begin{minted}{sql}
+SELECT NAME, VORNAME
+FROM SPIELER, VEREIN
+WHERE VEREIN.ORT = SPIELER.GEB-ORT AND SPIELER.VEREIN = VEREIN.VNAME;
+\end{minted}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Welche Spieler vom 1. FC Köln haben alle Spiele mitgemacht?
+
+\begin{antwort}
+\def\tmpkoeln{\mlq \text{1. FC Köln} \mrq}
+
+\begin{multline*}
+\pi_{\text{NAME,VORNAME}}(\\
+  \sigma_{\text{VEREIN} = \tmpkoeln}(\text{SPIELER})\\
+  \bowtie\\
+  (
+    \pi_{\text{HEIM,GAST,SPNR}}(\sigma_{\text{HEIM} = \tmpkoeln \lor \text{GAST} = \tmpkoeln}(\text{EINSATZ}))\\
+    \div\\
+    \pi_{\text{HEIM,GAST}}(\sigma_{\text{HEIM} = \tmpkoeln \lor \text{GAST} = \tmpkoeln}(\text{SPIELE}))
+  )
+)
+\end{multline*}
+
+\begin{minted}{sql}
+SELECT NAME, VORNAME
+FROM SPIELER
+WHERE VEREIN = '1. FC Koeln' AND SPNR IN (
+  SELECT SPNR
+  FROM EINSATZ
+  WHERE HEIM = '1. FC Koeln' OR GAST = '1. FC Koeln'
+  GROUP BY SPNR
+  HAVING COUNT(*) = (
+    SELECT COUNT(*)
+    FROM SPIELE
+    WHERE HEIM = '1. FC Koeln' OR GAST = '1. FC Koeln'
+  )
+);
+\end{minted}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Wie heißen die Präsidenten der Vereine, die zur Zeit einen Trainer
+beschäftigen, der jünger ist als der älteste Spieler, der beim Verein
+beschäftigt ist?
+
+\begin{antwort}
+\begin{multline*}
+\pi_{\text{PRÄSIDENT}}(\\
+  \text{VEREIN}\\
+  \bowtie\\
+  \pi_{\text{VEREIN}}(\\
+    \text{TRAINER}\\
+    \bowtie_{
+      \text{TRAINER.ALTER} < \text{SPIELTER.ALTER} \land
+      \text{TRAINER.VEREIN} = \text{SPIELER.VEREIN}
+    }\\
+    \text{SPIELER}\\
+  )\\
+)
+\end{multline*}
+
+\begin{minted}{sql}
+SELECT PRÄSIDENT
+FROM VEREIN, SPIELER, TRAINER
+WHERE
+  VEREIN.VNAME = SPIELER.VEREIN AND
+  VEREIN.VNAME = VEREIN.TRAINER AND
+  TRAINER.ALTER < SPIELER.ALTER;
+\end{minted}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Welche Spieler haben bisher noch nie gespielt?
+
+\begin{antwort}
+$\pi_{\text{SPNR}}(\text{SPIELER}) - \pi_{\text{SPNR}}(\text{EINSATZ})$
+
+\begin{minted}{sql}
+SELECT SPNR FROM SPIELER
+EXCEPT
+SELECT SPNR FROM EINSATZ;
+\end{minted}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Welche Spieler haben bisher noch kein Tor geschossen?
+
+\begin{antwort}
+$\pi_{\text{SPNR}}(\text{SPIELER}) -
+\pi_{\text{SPNR}}(\sigma_{\text{TORE} > 0}(\text{EINSATZ}))$
+
+\begin{minted}{sql}
+SELECT SPNR FROM SPIELER
+EXCEPT
+SELECT SPNR FROM EINSATZ WHERE TORE > 0;
+\end{minted}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Welcher Trainer hat schon mehr als einen Verein trainiert? Welche
+Vereine haben schon mehrere Trainer gehabt?
+
+%%
+%
+%%
+
+\begin{antwort}
+Vereine:
+
+\begin{minted}{sql}
+SELECT HEIM FROM SPIELE l, SPIELE r
+WHERE l.HEIM = r.HEIM AND NOT (l.H-TRAINER = r.H-TRAINER)
+UNION
+SELECT GAST FROM SPIELE l, SPIELE r
+WHERE l.GAST = r.GAST AND NOT (l.G-TRAINER = r.G-TRAINER)
+UNION
+SELECT HEIM FROM SPIELE l, SPIELE r
+WHERE l.HEIM = r.GAST AND NOT (l.H-TRAINER = r.G-TRAINER)
+\end{minted}
+
+Trainer:
+
+\begin{minted}{sql}
+SELECT H-TRAINER FROM SPIELE l, SPIELE r
+WHERE l.H-TRAINER = r.HEIM AND NOT (l.HEIM = r.HEIM)
+UNION
+SELECT G-TRAINER FROM SPIELE l, SPIELE r
+WHERE l.G-TRAINER = r.G-TRAINER AND NOT (l.GAST = r.GAST)
+UNION
+SELECT H-TRAINER FROM SPIELE l, SPIELE r
+WHERE l.H-TRAINER = r.G-TRAINER AND NOT (l.H-TRAINER = r.G-TRAINER)
+\end{minted}
+\end{antwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\item Welche Spiele am 10. Spieltag hatten mehr als 30.000 Zuschauer?
+
+\begin{antwort}
+$\pi_{\text{HEIM,GAST}}(
+  \sigma_{\text{ZUSCHAUER} > 30000 \land \text{SPIELTAG} = 10}(\text{SPIELE})
+)$
+
+\begin{minted}{sql}
+SELECT HEIM, GAST
+  FROM SPIELE
+  WHERE ZUSCHAUER > 30000 AND SPIELTAG = 10;
+\end{minted}
+\end{antwort}
+\end{itemize}
+\end{enumerate}
+\end{document}

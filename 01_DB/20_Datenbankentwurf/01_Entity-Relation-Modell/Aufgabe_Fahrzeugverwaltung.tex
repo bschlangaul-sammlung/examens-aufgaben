@@ -1,0 +1,108 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{er}
+\begin{document}
+\liAufgabenTitel{Fahrzeugverwaltung}
+
+\section{Fahrzeugverwaltung
+\index{Entity-Relation-Modell}
+\footcite[Seite 2-3, Aufgabe 4: Fahrzeugverwaltung]{db:ab:1}}
+
+Gegeben ist das folgende ER-Modell der Fahrzeugverwaltung einer Firma:
+
+\begin{tikzpicture}[scale=0.8, transform shape]
+\node[entity] (Fahrer) at (0,0) {Fahrer};
+\node[entity] (Fahrzeug) at (5,0) {Fahrzeug};
+\node[entity] (Abteilung) at (10,0) {Abteilung};
+\node[entity] (Garage) at (5,-4) {Garage};
+
+\node[relationship,align=center] (Fahrerlaubnis) at (2.5,0) {Fahrer-\\laubnis}
+  edge (Fahrer)
+  edge (Fahrzeug);
+
+\node[relationship] (gehoert) at (7.5,0) {gehoert}
+  edge (Fahrzeug)
+  edge (Abteilung);
+
+\node[relationship] (stehtIn) at (5,-2) {stehtIn}
+  edge (Fahrzeug)
+  edge (Garage);
+\end{tikzpicture}
+
+\noindent
+Die Attribute wurden aus Einfachheitsgründen weggelassen. Es gelten
+folgende Bedingungen:
+
+\begin{itemize}
+
+\item Jedes Fahrzeug gehört zu höchstens einer Abteilung, wobei aber
+jede Abteilung mindestens ein Fahrzeug hat.
+
+\item Für fast alle Fahrzeuge gibt es eine (fest zugeordnete)
+Einzelgarage. Jede dieser Garagen ist belegt.
+
+\item Für jedes Fahrzeug muss es mindestens drei Personen mit einer
+entsprechenden Fahrerlaubnis geben. Ansonsten gibt es keine
+Einschränkung.
+\end{itemize}
+
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Geben Sie gemäß obiger Bedingungen geeignete Funktionalitäten in
+der (min, max)-Notation an.
+
+\begin{antwort}
+\begin{tikzpicture}[scale=0.8, transform shape]
+\node[entity] (Fahrer) at (0,0) {Fahrer};
+\node[entity] (Fahrzeug) at (6,0) {Fahrzeug};
+\node[entity] (Abteilung) at (12,0) {Abteilung};
+\node[entity] (Garage) at (6,-4) {Garage};
+
+\node[relationship,align=center] (Fahrerlaubnis) at (3,0) {Fahrer-\\laubnis}
+  edge node[auto,swap] {(0,*)} (Fahrer)
+  edge node[auto,swap] {(3,*)} (Fahrzeug);
+
+\node[relationship] (gehoert) at (9,0) {gehoert}
+  edge node[auto,swap] {(0,1)} (Fahrzeug)
+  edge node[auto,swap] {(1,*)} (Abteilung);
+
+\node[relationship] (stehtIn) at (6,-2) {stehtIn}
+  edge node[auto,swap] {(0,1)} (Fahrzeug)
+  edge node[auto,swap] {(1,1)} (Garage);
+\end{tikzpicture}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Wie lauten die entsprechenden Funktionalitätsangaben (z.B. 1:1,
+n:m etc.)?
+
+\begin{antwort}
+\begin{tikzpicture}[scale=0.8, transform shape]
+\node[entity] (Fahrer) at (0,0) {Fahrer};
+\node[entity] (Fahrzeug) at (6,0) {Fahrzeug};
+\node[entity] (Abteilung) at (12,0) {Abteilung};
+\node[entity] (Garage) at (6,-4) {Garage};
+
+\node[relationship,align=center] (Fahrerlaubnis) at (3,0) {Fahrer-\\laubnis}
+  edge node[auto,swap] {n} (Fahrer)
+  edge node[auto,swap] {m} (Fahrzeug);
+
+\node[relationship] (gehoert) at (9,0) {gehoert}
+  edge node[auto,swap] {n} (Fahrzeug)
+  edge node[auto,swap] {1} (Abteilung);
+
+\node[relationship] (stehtIn) at (6,-2) {stehtIn}
+  edge node[auto,swap] {1} (Fahrzeug)
+  edge node[auto,swap] {1} (Garage);
+\end{tikzpicture}
+\end{antwort}
+
+\end{enumerate}
+
+\end{document}

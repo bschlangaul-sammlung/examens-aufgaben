@@ -1,0 +1,84 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{er}
+\begin{document}
+\liAufgabenTitel{DBTec}
+
+\section{Aufgabe 3: DBTec
+\index{Entity-Relation-Modell}
+\footcite{db:ab:1}}
+
+Die Firma \emph{DBTec} fertigt verschiedene Geräte. Für die betriebliche
+Organisation dieser Firma soll eine relationale Datenbank eingesetzt
+werden. Dabei gilt folgendes:
+% Entity: Bauteil
+Jedes \mpEntity{Bauteil}, das verwendet wird, hat eine eindeutige
+\mpAttribute{Nummer} und eine \mpAttribute{Bezeichnung}, die allerdings
+für mehrere verschiedene Bauteile gleich sein kann. Von jedem Teil
+werden außerdem der \mpAttribute{Name des Herstellers}, der
+\mpAttribute{Einkaufspreis} pro Stück und der am Lager vorhandene
+\mpAttribute{Vorrat} gespeichert.
+
+% Entity: Gerät
+Jedes herzustellende \mpEntity{Gerät} hat eine eindeutige
+\mpAttribute{Bezeichnung}. Auch von jedem schon gefertigten Gerätetyp
+soll der aktuelle \mpAttribute{Lagerbestand} gespeichert werden, ebenso
+wie der \mpAttribute{Verkaufspreis} des Gerätes. In unserem fiktiven
+Betrieb gilt die Regelung, dass Maschinen, die mehr als 1000,- EUR
+kosten, unentgeltlich an die Kunden ausgeliefert werden; für Geräte, die
+weniger kosten, ist zusätzlich zum Preis eine gerätespezifische
+\mpAttribute{Anliefergebühr} zu entrichten. In der Datenbank ist
+ebenfalls zu speichern, welche Bauteile für welche Geräte
+\mpRelationship{benötigt} werden. Es gibt Bauteile, die für mehrere
+Geräte verwendet werden.
+
+% Entity: Kunde
+Von jedem \mpEntity{Kunden} werden der \mpAttribute{Name}, die
+\mpAttribute{Adresse} und die \mpAttribute{Branche} gespeichert. Es kann
+verschiedene Kunden mit demselben Namen oder derselben Adresse geben.
+% Relationship: betreutKunde
+Außerdem ist zu jedem Kunden vermerkt, wer aus unserer Firma für die
+entsprechende \mpRelationship{Kundenbetreuung zuständig} ist.
+% Relationship: beliefert
+Natürlich ist auch zu speichern, welche Kunden mit welchen Geräten
+\mpRelationship{beliefert} werden. Es kann sein, dass gewissen Kunden
+für bestimmte Geräte \mpAttribute{Sonderkonditionen} eingeräumt worden
+sind, dies soll ggf. ebenfalls in der Datenbank vermerkt werden.
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Bestimmen Sie die Entity- und die Relationship-Typen mit ihren
+Attributen und zeichnen Sie ein mögliches Entity-Relationship-Diagramm!
+
+%%
+% (b)
+%%
+
+\item Bestimmen Sie zu allen Entity-Typen einen Primärschlüssel und
+tragen Sie diese in das Modell ein.
+
+%%
+% (c)
+%%
+
+\item Bestimmen Sie die Funktionalitäten (1:1, 1:n, n:m) der
+Relationship-Typen und tragen Sie diese in das Modell ein.
+
+%%
+% (d)
+%%
+
+\item In der Firma wird ein neues Betreuungssystem eingeführt. Jeder
+\mpEntity{Kundenbetreuer} ist für die Kunden eines festgelegten Bezirks
+\mpRelationship{zuständig}. Die \mpEntity{Bezirke} sind
+\mpAttribute{durchnummeriert}. Für jeden Bezirk existiert eine
+\mpAttribute{Beschreibung}, die nicht näher festgelegt ist. Erweitern
+Sie Ihr ER-Modell aus Teilaufgabe a) entsprechend. Bezirke werden nur
+festgelegt, wenn es dazu auch Kunden gibt.
+
+\end{enumerate}
+
+\end{document}

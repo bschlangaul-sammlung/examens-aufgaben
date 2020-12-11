@@ -13,11 +13,14 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 
 #### Entity-Relation-Modell
 
+- [„DBTec“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/20_Datenbankentwurf/01_Entity-Relation-Modell/Aufgabe_DBTec.pdf) (Entity-Relation-Modell)
+- [„Fahrzeugverwaltung“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/20_Datenbankentwurf/01_Entity-Relation-Modell/Aufgabe_Fahrzeugverwaltung.pdf) (Entity-Relation-Modell)
 - [„Firma“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/20_Datenbankentwurf/01_Entity-Relation-Modell/Aufgabe_Firma.pdf) (Entity-Relation-Modell)
 - [„Flughafen“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/20_Datenbankentwurf/01_Entity-Relation-Modell/Aufgabe_Flughafen.pdf) (Entity-Relation-Modell)
 - [„Multiple-Choice“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/20_Datenbankentwurf/01_Entity-Relation-Modell/Aufgabe_Multiple-Choice.pdf) (Entity-Relation-Modell)
 - [„Olympische Spiele“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/20_Datenbankentwurf/01_Entity-Relation-Modell/Aufgabe_Olympische-Spiele.pdf) (Entity-Relation-Modell)
 - [„Fahrzeug“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/10_Relationenmodell/Aufgabe_Fahrzeug.pdf) (IS-A, Relationenmodell)
+- [„Bundesliga-Datenbank“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Bundesliga-Datenbank.pdf) (Relationale Algebra, SQL, Entity-Relation-Modell)
 - [„Rennstall“ Examen 46116 Frühjahr 2013 T1 TA2 A1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) (Entity-Relation-Modell, Relationenmodell)
 - [„Konsulat“ Examen 46116 Frühjahr 2015 T1 TA2 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf) (Entity-Relation-Modell, Relationenmodell)
 - [Examen 46116 Herbst 2018 T1 TA2 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) (Entity-Relation-Modell)
@@ -47,6 +50,7 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 
 #### Relationale Algebra
 
+- [„Bundesliga-Datenbank“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Bundesliga-Datenbank.pdf) (Relationale Algebra, SQL, Entity-Relation-Modell)
 - [„Division“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Division.pdf) (Relationale Algebra)
 - [„Freizeitcenter“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Freizeitcenter.pdf) (Relationale Algebra)
 - [„Universität“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Universitaet.pdf) (Relationale Algebra)
@@ -66,6 +70,7 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 
 ### SQL
 
+- [„Bundesliga-Datenbank“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Bundesliga-Datenbank.pdf) (Relationale Algebra, SQL, Entity-Relation-Modell)
 - [„Bands“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Bands.pdf) (SQL)
 - [„Kaufhaus again“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-again.pdf) (SQL)
 - [„Kaufhausdatenbank (einfach)“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-einfach.pdf) (SQL)
@@ -738,6 +743,7 @@ als Markdown-Liste eingebettet werden kann.
         - Datenbanksystem
         - Referentielle Integrität
         - Datenunabhängigkeit
+        - Drei-Schichten-Modell
     - Datenbankentwurf:
         - Entity-Relation-Modell:
             - IS-A
