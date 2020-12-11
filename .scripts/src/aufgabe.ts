@@ -91,6 +91,7 @@ export class ExamensAufgabe extends Aufgabe {
   constructor (pfad: string, examen: Examen) {
     super(pfad)
     this.examen = examen
+    examen.aufgaben[pfad] = this
     const treffer = pfad.match(ExamensAufgabe.pfadRegExp)
     if (!treffer || !treffer.groups) {
       throw new Error(`Konnten den Pfad der Examensaufgabe nicht lesen: ${pfad}`)

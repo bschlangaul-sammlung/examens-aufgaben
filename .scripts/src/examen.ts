@@ -16,7 +16,7 @@ export class Examen {
   jahr: number
   monat: number
 
-  aufgaben: Aufgabe[] = []
+  aufgaben: { [pfad: string]: Aufgabe } = {}
 
   static regExp: RegExp = /^.*(?<nummer>\d{5})\/(?<jahr>\d{4})\/(?<monat>\d{2})\/.*$/
 

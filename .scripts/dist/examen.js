@@ -20,7 +20,7 @@ var glob_1 = __importDefault(require("glob"));
 var helfer_1 = require("./helfer");
 var Examen = /** @class */ (function () {
     function Examen(nummer, jahr, monat) {
-        this.aufgaben = [];
+        this.aufgaben = {};
         this.nummer = nummer;
         this.jahr = jahr;
         this.monat = monat;

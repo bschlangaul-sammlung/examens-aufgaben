@@ -110,6 +110,7 @@ var ExamensAufgabe = /** @class */ (function (_super) {
     function ExamensAufgabe(pfad, examen) {
         var _this = _super.call(this, pfad) || this;
         _this.examen = examen;
+        examen.aufgaben[pfad] = _this;
         var treffer = pfad.match(ExamensAufgabe.pfadRegExp);
         if (!treffer || !treffer.groups) {
             throw new Error("Konnten den Pfad der Examensaufgabe nicht lesen: " + pfad);
