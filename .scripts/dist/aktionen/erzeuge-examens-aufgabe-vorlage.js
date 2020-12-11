@@ -9,42 +9,42 @@ var helfer_1 = require("../helfer");
 var aufgabe_1 = require("../aufgabe");
 var examen_1 = require("../examen");
 var erzeuge_aufgaben_vorlage_1 = require("./erzeuge-aufgaben-vorlage");
-function überprüfeNummer(number) {
-    if (typeof number === 'string') {
-        number = parseInt(number);
+function überprüfeNummer(nummer) {
+    if (typeof nummer === 'string') {
+        nummer = parseInt(nummer);
     }
-    if (number)
-        return number;
+    if (nummer)
+        return nummer;
 }
-function erzeugeTeXMakro(exam, arg1, arg2, arg3) {
-    var questionMarkup = '';
-    var macroSuffix = '';
-    var examMarkup = exam.nummer + " / " + exam.jahr + " / " + exam.monat + " :";
+function erzeugeTeXMakro(referenz, arg1, arg2, arg3) {
+    var aufgabe = '';
+    var suffix = '';
+    var examen = referenz.nummer + " / " + referenz.jahr + " / " + referenz.monat + " :";
     if (arg1 && arg2 && arg3) {
-        questionMarkup = "Thema " + arg1 + " Teilaufgabe " + arg2 + " Aufgabe " + arg3;
-        macroSuffix = 'TTA';
+        aufgabe = "Thema " + arg1 + " Teilaufgabe " + arg2 + " Aufgabe " + arg3;
+        suffix = 'TTA';
     }
     else if (arg1 && arg2 && !arg3) {
-        questionMarkup = "Thema " + arg1 + " Aufgabe " + arg2;
-        macroSuffix = 'TA';
+        aufgabe = "Thema " + arg1 + " Aufgabe " + arg2;
+        suffix = 'TA';
     }
     else {
-        questionMarkup = "Aufgabe " + arg1;
-        macroSuffix = 'A';
+        aufgabe = "Aufgabe " + arg1;
+        suffix = 'A';
     }
-    return "\n\\ExamensAufgabe" + macroSuffix + " " + examMarkup + " " + questionMarkup;
+    return "\n\\ExamensAufgabe" + suffix + " " + examen + " " + aufgabe;
 }
-function erzeugeExamensAufgabeVorlage(ref, arg1, arg2, arg3) {
+function erzeugeExamensAufgabeVorlage(referenz, arg1, arg2, arg3) {
     var num1 = überprüfeNummer(arg1);
     var num2 = überprüfeNummer(arg2);
     var num3 = überprüfeNummer(arg3);
     if (!num1) {
         throw Error("Undefined " + num1);
     }
-    var examenReferenz = examen_1.Examen.teileReferenz(ref);
+    var examenReferenz = examen_1.Examen.teileReferenz(referenz);
     var pfad = path_1.default.join(helfer_1.repositoryPfad, examen_1.Examen.erzeugePfad(examenReferenz.nummer, examenReferenz.jahr, examenReferenz.monat), aufgabe_1.ExamensAufgabe.erzeugePfad(num1, num2, num3));
     erzeuge_aufgaben_vorlage_1.erzeugeAufgabenVorlage(pfad, {
-        zitatReferenz: ref
+        zitatReferenz: referenz
     });
     console.log(erzeugeTeXMakro(examenReferenz, arg1, arg2, arg3));
     return pfad;

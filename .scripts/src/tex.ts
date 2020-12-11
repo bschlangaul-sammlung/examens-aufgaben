@@ -8,10 +8,10 @@ function säubereStichwort (stichwort: string): string {
   return stichwort.replace(/\s+/g, ' ')
 }
 
-export function gibInhaltEinesTexMakros (macroName: string, markup: string): string | undefined {
-  const regExp = assembleMacroRegExp(macroName)
-  const match = regExp.exec(markup)
-  if (match) return match[1]
+export function gibInhaltEinesTexMakros (makroName: string, markup: string): string | undefined {
+  const regExp = assembleMacroRegExp(makroName)
+  const übereinstimmung = regExp.exec(markup)
+  if (übereinstimmung) return übereinstimmung[1]
 }
 
 /**
@@ -22,15 +22,15 @@ export function gibInhaltEinesTexMakros (macroName: string, markup: string): str
  */
 export function sammleStichwörter (inhalt: string) {
   const re = assembleMacroRegExp('index')
-  let match
+  let übereinstimmung
   const stichwörter = new Set<string>()
   do {
-    match = re.exec(inhalt)
-    if (match) {
-      const stichwort = säubereStichwort(match[1])
+    übereinstimmung = re.exec(inhalt)
+    if (übereinstimmung) {
+      const stichwort = säubereStichwort(übereinstimmung[1])
       stichwörter.add(stichwort)
     }
-  } while (match)
+  } while (übereinstimmung)
   return Array.from(stichwörter)
 }
 

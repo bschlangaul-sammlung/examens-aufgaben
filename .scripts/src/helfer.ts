@@ -10,10 +10,10 @@ export function leseDatei (pfad: string) {
 }
 
 function leseKonfigurationsDatei (pfad: string): string {
-  const configContent = leseDatei(pfad)
-  const match = configContent.match(/\\LehramtInformatikRepository\{(.*)\}/)
-  if (!match) throw new Error(`Konfigurations-Datei nicht gefunden: ${pfad}`)
-  return match[1]
+  const inhalt = leseDatei(pfad)
+  const treffer = inhalt.match(/\\LehramtInformatikRepository\{(.*)\}/)
+  if (!treffer) throw new Error(`Konfigurations-Datei nicht gefunden: ${pfad}`)
+  return treffer[1]
 }
 
 export const repositoryPfad = leseKonfigurationsDatei(konfigurationsDateiPfad)
@@ -24,7 +24,7 @@ export function macheRelativenPfad (pfad: string): string {
 }
 
 export function leseRepoDatei (...args: string[]) {
-  if (arguments[0].indexOf(repositoryPfad) > -1) return leseDatei(path.join(...args))
+  if (args[0].indexOf(repositoryPfad) > -1) return leseDatei(path.join(...args))
   return leseDatei(path.join(repositoryPfad, ...args))
 }
 

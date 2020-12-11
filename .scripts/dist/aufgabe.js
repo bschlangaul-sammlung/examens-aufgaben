@@ -110,11 +110,11 @@ var ExamensAufgabe = /** @class */ (function (_super) {
     function ExamensAufgabe(pfad, examen) {
         var _this = _super.call(this, pfad) || this;
         _this.examen = examen;
-        var match = pfad.match(ExamensAufgabe.pfadRegExp);
-        if (!match || !match.groups) {
+        var treffer = pfad.match(ExamensAufgabe.pfadRegExp);
+        if (!treffer || !treffer.groups) {
             throw new Error("Konnten den Pfad der Examensaufgabe nicht lesen: " + pfad);
         }
-        var gruppen = match.groups;
+        var gruppen = treffer.groups;
         _this.aufgabe = parseInt(gruppen.aufgabe);
         if (gruppen.thema)
             _this.thema = parseInt(gruppen.thema);

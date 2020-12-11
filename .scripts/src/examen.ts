@@ -56,20 +56,20 @@ export class Examen {
   }
 
   static erzeugeExamenVonPfad (pfad: string) {
-    const match = pfad.match(Examen.regExp)
-    if (!match || !match.groups) {
+    const treffer = pfad.match(Examen.regExp)
+    if (!treffer || !treffer.groups) {
       throw new Error(`Konnten den Examenspfad nicht lesen: ${pfad}`)
     }
-    const gruppen = match.groups
+    const gruppen = treffer.groups
     return Examen.erzeugeExamenDurchTextArgumente(gruppen.nummer, gruppen.jahr, gruppen.monat)
   }
 
   static gibReferenzVonPfad (pfad: string) {
-    const match = pfad.match(Examen.regExp)
-    if (!match || !match.groups) {
+    const treffer = pfad.match(Examen.regExp)
+    if (!treffer || !treffer.groups) {
       throw new Error(`Konnten den Examenspfad nicht lesen: ${pfad}`)
     }
-    const gruppen = match.groups
+    const gruppen = treffer.groups
     return `${gruppen.nummer}:${gruppen.jahr}:${gruppen.monat}`
   }
 

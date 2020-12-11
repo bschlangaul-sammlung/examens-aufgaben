@@ -39,15 +39,15 @@ function öffneProgramm(executable, filePath) {
 function öffneVSCode(filePath) {
     öffneProgramm('/usr/bin/code', filePath);
 }
-var program = new commander_1.Command();
-program.description("Repository path: " + helfer_1.repositoryPfad);
-program.name('lehramt-informatik.js');
-program.version('0.1.0');
-program.on('command:*', function () {
-    console.error('Invalid command: %s\nSee --help for a list of available commands.', program.args.join(' '));
+var programm = new commander_1.Command();
+programm.description("Repository-Pfad: " + helfer_1.repositoryPfad);
+programm.name('lehramt-informatik.js');
+programm.version('0.1.0');
+programm.on('command:*', function () {
+    console.error('Ungültiger Befehlt: %s\nBenutze das Argument --help, um eine Liste der verfügbaren Befehle anzuzeigen.', programm.args.join(' '));
     process.exit(1);
 });
-program
+programm
     .command('erzeuge-aufgabe [titel]')
     .description('Erzeuge eine Aufgabe im aktuellen Arbeitsverzeichnis.')
     .alias('a')
@@ -65,7 +65,7 @@ program
     }
     öffneVSCode(pfad);
 });
-program
+programm
     .command('erzeuge-examens-aufgabe <referenz> <thema> [teilaufgabe] [aufgabe]')
     .description('Erzeuge eine Examensaufgabe im Verzeichnis „Staatsexamen“.')
     .alias('e')
@@ -73,9 +73,9 @@ program
     var pfad = erzeuge_examens_aufgabe_vorlage_1.erzeugeExamensAufgabeVorlage(ref, arg1, arg2, arg3);
     öffneVSCode(pfad);
 });
-program
+programm
     .command('oeffne-examen <referenz>')
-    .description('Öffne eine Staatsexamen mit der Referenz, z. B. 66116:2020:09')
+    .description('Öffne eine Staatsexamen durch die Referenz, z. B. 66116:2020:09.')
     .alias('o')
     .action(function (ref, cmdObj) {
     var examen = sammlung_1.examenSammlung.gibDurchReferenz(ref);
@@ -86,33 +86,33 @@ program
         console.log("Path " + examen.pfad + " doesn\u2019t exist.");
     }
 });
-program
+programm
     .command('generiere-readme')
-    .description('Generiere die README-Datei')
+    .description('Erzeuge die README-Datei.')
     .alias('r')
     .action(erzeuge_readme_1.erzeugeReadme);
-program
+programm
     .command('kompiliere-aufgaben')
     .description('Kompiliere alle TeX-Dateien der Aufgaben.')
     .alias('k')
     .action(function (cmdObj) {
     var e_1, _a;
     var staatsexamenPath = path_1.default.join(helfer_1.repositoryPfad, 'Staatsexamen');
-    var files = glob_1.default.sync('**/*.tex', { cwd: staatsexamenPath });
+    var dateien = glob_1.default.sync('**/*.tex', { cwd: staatsexamenPath });
     try {
-        for (var files_1 = __values(files), files_1_1 = files_1.next(); !files_1_1.done; files_1_1 = files_1.next()) {
-            var filePath = files_1_1.value;
-            filePath = path_1.default.join(staatsexamenPath, filePath);
-            if (filePath.match(aufgabe_1.ExamensAufgabe.schwacherPfadRegExp)) {
-                console.log(filePath);
-                var result = child_process_1.default.spawnSync('/usr/local/texlive/bin/x86_64-linux/latexmk', ['-shell-escape', '-cd', '--lualatex', filePath], {
+        for (var dateien_1 = __values(dateien), dateien_1_1 = dateien_1.next(); !dateien_1_1.done; dateien_1_1 = dateien_1.next()) {
+            var pfad = dateien_1_1.value;
+            pfad = path_1.default.join(staatsexamenPath, pfad);
+            if (pfad.match(aufgabe_1.ExamensAufgabe.schwacherPfadRegExp)) {
+                console.log(pfad);
+                var ergebnis = child_process_1.default.spawnSync('/usr/local/texlive/bin/x86_64-linux/latexmk', ['-shell-escape', '-cd', '--lualatex', pfad], {
                     encoding: 'utf-8'
                 });
-                if (result.status !== 0) {
-                    console.log(result.stdout);
-                    console.log(result.stderr);
-                    öffneVSCode(filePath);
-                    throw new Error("Error compiling " + filePath);
+                if (ergebnis.status !== 0) {
+                    console.log(ergebnis.stdout);
+                    console.log(ergebnis.stderr);
+                    öffneVSCode(pfad);
+                    throw new Error("Die Datei \u201E" + pfad + "\u201C konnte nicht kompiliert werden.");
                 }
             }
         }
@@ -120,7 +120,7 @@ program
     catch (e_1_1) { e_1 = { error: e_1_1 }; }
     finally {
         try {
-            if (files_1_1 && !files_1_1.done && (_a = files_1.return)) _a.call(files_1);
+            if (dateien_1_1 && !dateien_1_1.done && (_a = dateien_1.return)) _a.call(dateien_1);
         }
         finally { if (e_1) throw e_1.error; }
     }
@@ -128,24 +128,24 @@ program
 /*******************************************************************************
  * vscode
  ******************************************************************************/
-program
+programm
     .command('code [glob]')
     .alias('c')
     .description('Öffne die mit glob spezifizierten Dateien in Visual Studio Code')
     .option('-n, --kein-index', 'Öffne nur die Dateien, die keinen Index haben.')
-    .action(function (globPattern, cmdObj) {
+    .action(function (globMuster, cmdObj) {
     var e_2, _a;
     function öffneMitAusgabe(pfad) {
         console.log(pfad);
         öffneVSCode(pfad);
     }
-    if (typeof globPattern !== 'string') {
-        globPattern = '**/*.tex';
+    if (typeof globMuster !== 'string') {
+        globMuster = '**/*.tex';
     }
-    var dateien = glob_1.default.sync(globPattern);
+    var dateien = glob_1.default.sync(globMuster);
     try {
-        for (var dateien_1 = __values(dateien), dateien_1_1 = dateien_1.next(); !dateien_1_1.done; dateien_1_1 = dateien_1.next()) {
-            var dateiPfad = dateien_1_1.value;
+        for (var dateien_2 = __values(dateien), dateien_2_1 = dateien_2.next(); !dateien_2_1.done; dateien_2_1 = dateien_2.next()) {
+            var dateiPfad = dateien_2_1.value;
             dateiPfad = path_1.default.resolve(dateiPfad);
             if (cmdObj.keinindex) {
                 var aufgabe = new aufgabe_1.Aufgabe(dateiPfad);
@@ -160,9 +160,9 @@ program
     catch (e_2_1) { e_2 = { error: e_2_1 }; }
     finally {
         try {
-            if (dateien_1_1 && !dateien_1_1.done && (_a = dateien_1.return)) _a.call(dateien_1);
+            if (dateien_2_1 && !dateien_2_1.done && (_a = dateien_2.return)) _a.call(dateien_2);
         }
         finally { if (e_2) throw e_2.error; }
     }
 });
-program.parse(process.argv);
+programm.parse(process.argv);

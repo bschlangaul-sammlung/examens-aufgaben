@@ -9,15 +9,15 @@ import { generiereExamensÜbersicht } from './erzeuge-examens-uebersicht'
 function generiereMarkdownAufgabenListe (aufgabenListe: Set<Aufgabe>): string {
   const aufgaben = Array.from(aufgabenListe)
   aufgaben.sort(Aufgabe.vergleichePfade)
-  const item = []
+  const teil = []
   for (const aufgabe of aufgaben) {
-    item.push('- ' + aufgabe.markdownLink)
+    teil.push('- ' + aufgabe.markdownLink)
   }
-  return item.join('\n')
+  return teil.join('\n')
 }
 
 function ersetzeStichwörterInReadme (inhalt: string): string {
-  return inhalt.replace(/\{\{ stichwort "([^"]*)" \}\}/g, function (wholeMatch, stichwort) {
+  return inhalt.replace(/\{\{ stichwort "([^"]*)" \}\}/g, function (treffer, stichwort) {
     return generiereMarkdownAufgabenListe(stichwortVerzeichnis.gibAufgabenMitStichwortUnterBaum(stichwort))
   })
 }

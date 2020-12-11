@@ -8,11 +8,11 @@ function assembleMacroRegExp(macroName) {
 function säubereStichwort(stichwort) {
     return stichwort.replace(/\s+/g, ' ');
 }
-function gibInhaltEinesTexMakros(macroName, markup) {
-    var regExp = assembleMacroRegExp(macroName);
-    var match = regExp.exec(markup);
-    if (match)
-        return match[1];
+function gibInhaltEinesTexMakros(makroName, markup) {
+    var regExp = assembleMacroRegExp(makroName);
+    var übereinstimmung = regExp.exec(markup);
+    if (übereinstimmung)
+        return übereinstimmung[1];
 }
 exports.gibInhaltEinesTexMakros = gibInhaltEinesTexMakros;
 /**
@@ -23,15 +23,15 @@ exports.gibInhaltEinesTexMakros = gibInhaltEinesTexMakros;
  */
 function sammleStichwörter(inhalt) {
     var re = assembleMacroRegExp('index');
-    var match;
+    var übereinstimmung;
     var stichwörter = new Set();
     do {
-        match = re.exec(inhalt);
-        if (match) {
-            var stichwort = säubereStichwort(match[1]);
+        übereinstimmung = re.exec(inhalt);
+        if (übereinstimmung) {
+            var stichwort = säubereStichwort(übereinstimmung[1]);
             stichwörter.add(stichwort);
         }
-    } while (match);
+    } while (übereinstimmung);
     return Array.from(stichwörter);
 }
 exports.sammleStichwörter = sammleStichwörter;

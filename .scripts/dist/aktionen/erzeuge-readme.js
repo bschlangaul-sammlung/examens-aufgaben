@@ -25,11 +25,11 @@ function generiereMarkdownAufgabenListe(aufgabenListe) {
     var e_1, _a;
     var aufgaben = Array.from(aufgabenListe);
     aufgaben.sort(aufgabe_1.Aufgabe.vergleichePfade);
-    var item = [];
+    var teil = [];
     try {
         for (var aufgaben_1 = __values(aufgaben), aufgaben_1_1 = aufgaben_1.next(); !aufgaben_1_1.done; aufgaben_1_1 = aufgaben_1.next()) {
             var aufgabe = aufgaben_1_1.value;
-            item.push('- ' + aufgabe.markdownLink);
+            teil.push('- ' + aufgabe.markdownLink);
         }
     }
     catch (e_1_1) { e_1 = { error: e_1_1 }; }
@@ -39,10 +39,10 @@ function generiereMarkdownAufgabenListe(aufgabenListe) {
         }
         finally { if (e_1) throw e_1.error; }
     }
-    return item.join('\n');
+    return teil.join('\n');
 }
 function ersetzeStichwörterInReadme(inhalt) {
-    return inhalt.replace(/\{\{ stichwort "([^"]*)" \}\}/g, function (wholeMatch, stichwort) {
+    return inhalt.replace(/\{\{ stichwort "([^"]*)" \}\}/g, function (treffer, stichwort) {
         return generiereMarkdownAufgabenListe(sammlung_1.stichwortVerzeichnis.gibAufgabenMitStichwortUnterBaum(stichwort));
     });
 }

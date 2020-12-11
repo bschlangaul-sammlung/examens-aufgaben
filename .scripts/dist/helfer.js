@@ -33,11 +33,11 @@ function leseDatei(pfad) {
 }
 exports.leseDatei = leseDatei;
 function leseKonfigurationsDatei(pfad) {
-    var configContent = leseDatei(pfad);
-    var match = configContent.match(/\\LehramtInformatikRepository\{(.*)\}/);
-    if (!match)
+    var inhalt = leseDatei(pfad);
+    var treffer = inhalt.match(/\\LehramtInformatikRepository\{(.*)\}/);
+    if (!treffer)
         throw new Error("Konfigurations-Datei nicht gefunden: " + pfad);
-    return match[1];
+    return treffer[1];
 }
 exports.repositoryPfad = leseKonfigurationsDatei(konfigurationsDateiPfad);
 function macheRelativenPfad(pfad) {
@@ -50,7 +50,7 @@ function leseRepoDatei() {
     for (var _i = 0; _i < arguments.length; _i++) {
         args[_i] = arguments[_i];
     }
-    if (arguments[0].indexOf(exports.repositoryPfad) > -1)
+    if (args[0].indexOf(exports.repositoryPfad) > -1)
         return leseDatei(path_1.default.join.apply(path_1.default, __spread(args)));
     return leseDatei(path_1.default.join.apply(path_1.default, __spread([exports.repositoryPfad], args)));
 }

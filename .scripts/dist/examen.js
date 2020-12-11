@@ -70,19 +70,19 @@ var Examen = /** @class */ (function () {
         return new Examen(parseInt(nummer), parseInt(jahr), parseInt(monat));
     };
     Examen.erzeugeExamenVonPfad = function (pfad) {
-        var match = pfad.match(Examen.regExp);
-        if (!match || !match.groups) {
+        var treffer = pfad.match(Examen.regExp);
+        if (!treffer || !treffer.groups) {
             throw new Error("Konnten den Examenspfad nicht lesen: " + pfad);
         }
-        var gruppen = match.groups;
+        var gruppen = treffer.groups;
         return Examen.erzeugeExamenDurchTextArgumente(gruppen.nummer, gruppen.jahr, gruppen.monat);
     };
     Examen.gibReferenzVonPfad = function (pfad) {
-        var match = pfad.match(Examen.regExp);
-        if (!match || !match.groups) {
+        var treffer = pfad.match(Examen.regExp);
+        if (!treffer || !treffer.groups) {
             throw new Error("Konnten den Examenspfad nicht lesen: " + pfad);
         }
-        var gruppen = match.groups;
+        var gruppen = treffer.groups;
         return gruppen.nummer + ":" + gruppen.jahr + ":" + gruppen.monat;
     };
     Examen.erzeugeExamenVonReferenz = function (referenz) {

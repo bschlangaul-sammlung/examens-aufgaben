@@ -6,29 +6,29 @@ import { Examen, ExamenReferenz } from '../examen'
 
 import { erzeugeAufgabenVorlage } from './erzeuge-aufgaben-vorlage'
 
-function überprüfeNummer (number: string | number): number | undefined {
-  if (typeof number === 'string') { number = parseInt(number) }
-  if (number) return number
+function überprüfeNummer (nummer: string | number): number | undefined {
+  if (typeof nummer === 'string') { nummer = parseInt(nummer) }
+  if (nummer) return nummer
 }
 
-function erzeugeTeXMakro (exam: ExamenReferenz, arg1: string, arg2?: string, arg3?: string) {
-  let questionMarkup = ''
-  let macroSuffix = ''
-  const examMarkup = `${exam.nummer} / ${exam.jahr} / ${exam.monat} :`
+function erzeugeTeXMakro (referenz: ExamenReferenz, arg1: string, arg2?: string, arg3?: string) {
+  let aufgabe = ''
+  let suffix = ''
+  const examen = `${referenz.nummer} / ${referenz.jahr} / ${referenz.monat} :`
   if (arg1 && arg2 && arg3) {
-    questionMarkup = `Thema ${arg1} Teilaufgabe ${arg2} Aufgabe ${arg3}`
-    macroSuffix = 'TTA'
+    aufgabe = `Thema ${arg1} Teilaufgabe ${arg2} Aufgabe ${arg3}`
+    suffix = 'TTA'
   } else if (arg1 && arg2 && !arg3) {
-    questionMarkup = `Thema ${arg1} Aufgabe ${arg2}`
-    macroSuffix = 'TA'
+    aufgabe = `Thema ${arg1} Aufgabe ${arg2}`
+    suffix = 'TA'
   } else {
-    questionMarkup = `Aufgabe ${arg1}`
-    macroSuffix = 'A'
+    aufgabe = `Aufgabe ${arg1}`
+    suffix = 'A'
   }
-  return `\n\\ExamensAufgabe${macroSuffix} ${examMarkup} ${questionMarkup}`
+  return `\n\\ExamensAufgabe${suffix} ${examen} ${aufgabe}`
 }
 
-export  function erzeugeExamensAufgabeVorlage (ref: string, arg1: string, arg2: string, arg3: string): string {
+export  function erzeugeExamensAufgabeVorlage (referenz: string, arg1: string, arg2: string, arg3: string): string {
   const num1 = überprüfeNummer(arg1)
   const num2 = überprüfeNummer(arg2)
   const num3 = überprüfeNummer(arg3)
@@ -37,7 +37,7 @@ export  function erzeugeExamensAufgabeVorlage (ref: string, arg1: string, arg2: 
     throw Error(`Undefined ${num1}`)
   }
 
-  const examenReferenz = Examen.teileReferenz(ref)
+  const examenReferenz = Examen.teileReferenz(referenz)
   const pfad = path.join(
     repositoryPfad,
     Examen.erzeugePfad(examenReferenz.nummer, examenReferenz.jahr, examenReferenz.monat),
@@ -45,7 +45,7 @@ export  function erzeugeExamensAufgabeVorlage (ref: string, arg1: string, arg2: 
   )
 
   erzeugeAufgabenVorlage(pfad, {
-    zitatReferenz: ref
+    zitatReferenz: referenz
   })
   console.log(erzeugeTeXMakro(examenReferenz, arg1, arg2, arg3))
 
