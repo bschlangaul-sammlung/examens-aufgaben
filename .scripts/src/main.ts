@@ -15,6 +15,7 @@ import { examenSammlung } from './sammlung'
 import { erzeugeAufgabenVorlage } from './aktionen/erzeuge-aufgaben-vorlage'
 import { erzeugeReadme } from './aktionen/erzeuge-readme'
 import { erzeugeExamensAufgabeVorlage } from './aktionen/erzeuge-examens-aufgabe-vorlage'
+import { führeSqlAus } from './aktionen/fuehre-sql-aus'
 
 /*******************************************************************************
  * low level functions
@@ -114,6 +115,12 @@ programm
       }
     }
   })
+
+  programm
+  .command('sql <tex-datei>')
+  .description('Führe SQL-Code in einer TeX-Datei aus. Der Code muss in \\begin{minted}{sql}…\\end{minted} eingerahmt sein.')
+  .alias('s')
+  .action(führeSqlAus)
 
 programm
   .command('code [glob]')

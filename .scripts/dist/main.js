@@ -26,6 +26,7 @@ var sammlung_1 = require("./sammlung");
 var erzeuge_aufgaben_vorlage_1 = require("./aktionen/erzeuge-aufgaben-vorlage");
 var erzeuge_readme_1 = require("./aktionen/erzeuge-readme");
 var erzeuge_examens_aufgabe_vorlage_1 = require("./aktionen/erzeuge-examens-aufgabe-vorlage");
+var fuehre_sql_aus_1 = require("./aktionen/fuehre-sql-aus");
 /*******************************************************************************
  * low level functions
  ******************************************************************************/
@@ -125,6 +126,11 @@ programm
         finally { if (e_1) throw e_1.error; }
     }
 });
+programm
+    .command('sql <tex-datei>')
+    .description('Führe SQL-Code in einer TeX-Datei aus. Der Code muss in \\begin{minted}{sql}…\\end{minted} eingerahmt sein.')
+    .alias('s')
+    .action(fuehre_sql_aus_1.führeSqlAus);
 programm
     .command('code [glob]')
     .alias('c')
