@@ -2,7 +2,7 @@ import path from 'path'
 import fs from 'fs'
 import glob from 'glob'
 
-import { leseRepoDatei, repositoryPfad, generiereMarkdownLink, macheRelativenPfad } from './helfer'
+import { leseRepoDatei, repositoryPfad, generiereLink, macheRelativenPfad } from './helfer'
 import { sammleStichwörter, gibInhaltEinesTexMakros } from './tex'
 import { Examen, ExamenSammlung } from './examen'
 
@@ -58,8 +58,8 @@ export class Aufgabe {
     return ''
   }
 
-  get markdownLink (): string {
-    return generiereMarkdownLink(this.titelFormatiert, this.pfad) + this.stichwörterFormatiert
+  get link (): string {
+    return generiereLink(this.titelFormatiert, this.pfad, path.basename(this.pfad)) + this.stichwörterFormatiert
   }
 
   static vergleichePfade (a: Aufgabe, b: Aufgabe): number {
@@ -126,13 +126,18 @@ export class ExamensAufgabe extends Aufgabe {
   gibTitelNurAufgabe (alsMarkdownLink: boolean = false): string {
     const ausgabe = `Aufgabe ${this.aufgabe}${this.stichwörterFormatiert}`
     if (alsMarkdownLink) {
-      return generiereMarkdownLink(ausgabe, this.pfad)
+      return generiereLink(ausgabe, this.pfad, this.dateiName)
     }
     return ausgabe
   }
 
-  get markdownLink (): string {
-    return generiereMarkdownLink(this.titelKurz, this.pfad) + this.stichwörterFormatiert
+  get dateiName () {
+    const aufgabenReferenz = this.aufgabenReferenz.replace(/ /g, '-')
+    return `${this.examen.dateiName}_${aufgabenReferenz}`
+  }
+
+  get link (): string {
+    return generiereLink(this.titelKurz, this.pfad, this.dateiName) + this.stichwörterFormatiert
   }
 
   static erzeugePfad (arg1: number, arg2?: number, arg3?: number): string {

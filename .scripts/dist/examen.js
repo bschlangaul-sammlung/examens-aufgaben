@@ -45,6 +45,13 @@ var Examen = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    Object.defineProperty(Examen.prototype, "dateiName", {
+        get: function () {
+            return "Staatsexamen-Informatik_" + this.nummer + "-" + this.jahr + "-" + this.jahreszeit;
+        },
+        enumerable: false,
+        configurable: true
+    });
     Object.defineProperty(Examen.prototype, "jahrJahreszeit", {
         get: function () {
             return this.jahr + " " + this.jahreszeit;
@@ -105,7 +112,7 @@ var Examen = /** @class */ (function () {
     Examen.teileReferenz = function (referenz) {
         var tmp = referenz.split(':');
         if (tmp.length !== 3) {
-            console.log('Exam ref has to be in this format: 66116:2020:09');
+            console.log('Eine Staatsexamens-Referenz muss in diesem Format sein: 66116:2020:09');
             process.exit(1);
         }
         return {

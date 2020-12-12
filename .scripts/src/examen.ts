@@ -39,6 +39,10 @@ export class Examen {
     throw new Error('Die Monatsangabe in der Klasse Staatsexamen darf nur 3 oder 9 lauten.')
   }
 
+  get dateiName (): string {
+    return `Staatsexamen-Informatik_${this.nummer}-${this.jahr}-${this.jahreszeit}`
+  }
+
   get jahrJahreszeit (): string {
     return `${this.jahr} ${this.jahreszeit}`
   }
@@ -92,7 +96,7 @@ export class Examen {
   static teileReferenz (referenz: string): ExamenReferenz {
     const tmp = referenz.split(':')
     if (tmp.length !== 3) {
-      console.log('Exam ref has to be in this format: 66116:2020:09')
+      console.log('Eine Staatsexamens-Referenz muss in diesem Format sein: 66116:2020:09')
       process.exit(1)
     }
     return {

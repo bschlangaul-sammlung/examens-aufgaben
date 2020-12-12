@@ -3,7 +3,7 @@ import fs from 'fs'
 
 import { examensTitel } from '../examen'
 import { ExamensAufgabe } from '../aufgabe'
-import { repositoryPfad, generiereMarkdownLink, MarkdownLinkEinstellung } from '../helfer'
+import { repositoryPfad, generiereLink, LinkEinstellung } from '../helfer'
 import { aufgabenSammlung, examenSammlung } from '../sammlung'
 import glob from 'glob'
 
@@ -133,8 +133,8 @@ class AusgabeSammler {
   }
 }
 
-function erzeugeDateiLink (relPath: string, fileName: string, einstellungen?: MarkdownLinkEinstellung): string {
-  return generiereMarkdownLink(fileName, path.join(relPath, fileName), einstellungen)
+function erzeugeDateiLink (pfad: string, dateiName: string, downloadDateiName: string, einstellungen?: LinkEinstellung): string {
+  return generiereLink(dateiName, path.join(pfad, dateiName), downloadDateiName, einstellungen)
 }
 
 export function generiereExamensÜbersicht () {
@@ -149,7 +149,9 @@ export function generiereExamensÜbersicht () {
       for (const monat of monatsVerzeichnisse) {
         const examen = examenSammlung.gib(nummer, jahr, monat)
         const monatsPfad = path.join(jahrPfad, monat)
-        ausgabe.add(`- ${examen.jahrJahreszeit}: ${erzeugeDateiLink(monatsPfad, 'Scan.pdf')} ${erzeugeDateiLink(monatsPfad, 'OCR.txt', { linkePdf: false })} ${generiereAufgabenBaum(monatsPfad)}`)
+        const scanLink = erzeugeDateiLink(monatsPfad, 'Scan.pdf', `${examen.dateiName}_Scan.pdf`)
+        const ocrLink = erzeugeDateiLink(monatsPfad, 'OCR.txt', `${examen.dateiName}_OCR.txt`, { linkePdf: false })
+        ausgabe.add(`- ${examen.jahrJahreszeit}: ${scanLink} ${ocrLink} ${generiereAufgabenBaum(monatsPfad)}`)
       }
     }
   }

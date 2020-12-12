@@ -28,22 +28,31 @@ export function leseRepoDatei (...args: string[]) {
   return leseDatei(path.join(repositoryPfad, ...args))
 }
 
-export interface MarkdownLinkEinstellung {
-  alsMarkdownLink?: boolean
+export interface LinkEinstellung {
+  alsLink?: boolean
   linkePdf?: boolean
+  alsHtml?: boolean
 }
 
-export function generiereMarkdownLink (text: string, pfad: string, einstellung?: MarkdownLinkEinstellung): string {
+export function generiereLink (text: string, pfad: string, dateiName: string, einstellung?: LinkEinstellung): string {
   let linkePdf = true
-  let alsMarkdownLink = true
+  let alsLink = true
+  let alsHtml = true
   if (einstellung) {
     if (einstellung.linkePdf !== undefined) linkePdf = einstellung.linkePdf
-    if (einstellung.alsMarkdownLink !== undefined) alsMarkdownLink = einstellung.alsMarkdownLink
+    if (einstellung.alsLink !== undefined) alsLink = einstellung.alsLink
+    if (einstellung.alsHtml !== undefined) alsHtml = einstellung.alsHtml
   }
   pfad = pfad.replace(repositoryPfad, '')
   pfad = pfad.replace(/^\//, '')
   if (linkePdf) pfad = pfad.replace(/\.[\w]+$/, '.pdf')
-  if (alsMarkdownLink) {
+
+  if (alsLink) {
+    if (alsHtml) {
+      const erweiterung = pfad.split('.').pop()
+      dateiName = dateiName.replace(/\.[a-z]{3,5}$/, '')
+      return `<a href="${githubRawUrl}/${pfad})" download="${dateiName}.${erweiterung}">${text}</a>`
+    }
     return `[${text}](${githubRawUrl}/${pfad})`
   }
   return text

@@ -11,7 +11,7 @@ function generiereMarkdownAufgabenListe (aufgabenListe: Set<Aufgabe>): string {
   aufgaben.sort(Aufgabe.vergleichePfade)
   const teil = []
   for (const aufgabe of aufgaben) {
-    teil.push('- ' + aufgabe.markdownLink)
+    teil.push('- ' + aufgabe.link)
   }
   return teil.join('\n')
 }

@@ -23,7 +23,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generiereMarkdownLink = exports.leseRepoDatei = exports.macheRelativenPfad = exports.repositoryPfad = exports.leseDatei = void 0;
+exports.generiereLink = exports.leseRepoDatei = exports.macheRelativenPfad = exports.repositoryPfad = exports.leseDatei = void 0;
 var fs_1 = __importDefault(require("fs"));
 var path_1 = __importDefault(require("path"));
 var konfigurationsDateiPfad = path_1.default.join(path_1.default.sep, 'etc', 'lehramt-informatik.config.tex');
@@ -55,22 +55,30 @@ function leseRepoDatei() {
     return leseDatei(path_1.default.join.apply(path_1.default, __spread([exports.repositoryPfad], args)));
 }
 exports.leseRepoDatei = leseRepoDatei;
-function generiereMarkdownLink(text, pfad, einstellung) {
+function generiereLink(text, pfad, dateiName, einstellung) {
     var linkePdf = true;
-    var alsMarkdownLink = true;
+    var alsLink = true;
+    var alsHtml = true;
     if (einstellung) {
         if (einstellung.linkePdf !== undefined)
             linkePdf = einstellung.linkePdf;
-        if (einstellung.alsMarkdownLink !== undefined)
-            alsMarkdownLink = einstellung.alsMarkdownLink;
+        if (einstellung.alsLink !== undefined)
+            alsLink = einstellung.alsLink;
+        if (einstellung.alsHtml !== undefined)
+            alsHtml = einstellung.alsHtml;
     }
     pfad = pfad.replace(exports.repositoryPfad, '');
     pfad = pfad.replace(/^\//, '');
     if (linkePdf)
         pfad = pfad.replace(/\.[\w]+$/, '.pdf');
-    if (alsMarkdownLink) {
+    if (alsLink) {
+        if (alsHtml) {
+            var erweiterung = pfad.split('.').pop();
+            dateiName = dateiName.replace(/\.[a-z]{3,5}$/, '');
+            return "<a href=\"" + githubRawUrl + "/" + pfad + ")\" download=\"" + dateiName + "." + erweiterung + "\">" + text + "</a>";
+        }
         return "[" + text + "](" + githubRawUrl + "/" + pfad + ")";
     }
     return text;
 }
-exports.generiereMarkdownLink = generiereMarkdownLink;
+exports.generiereLink = generiereLink;

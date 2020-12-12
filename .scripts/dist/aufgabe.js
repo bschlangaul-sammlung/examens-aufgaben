@@ -81,9 +81,9 @@ var Aufgabe = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
-    Object.defineProperty(Aufgabe.prototype, "markdownLink", {
+    Object.defineProperty(Aufgabe.prototype, "link", {
         get: function () {
-            return helfer_1.generiereMarkdownLink(this.titelFormatiert, this.pfad) + this.stichwörterFormatiert;
+            return helfer_1.generiereLink(this.titelFormatiert, this.pfad, path_1.default.basename(this.pfad)) + this.stichwörterFormatiert;
         },
         enumerable: false,
         configurable: true
@@ -159,13 +159,21 @@ var ExamensAufgabe = /** @class */ (function (_super) {
         if (alsMarkdownLink === void 0) { alsMarkdownLink = false; }
         var ausgabe = "Aufgabe " + this.aufgabe + this.stichwörterFormatiert;
         if (alsMarkdownLink) {
-            return helfer_1.generiereMarkdownLink(ausgabe, this.pfad);
+            return helfer_1.generiereLink(ausgabe, this.pfad, this.dateiName);
         }
         return ausgabe;
     };
-    Object.defineProperty(ExamensAufgabe.prototype, "markdownLink", {
+    Object.defineProperty(ExamensAufgabe.prototype, "dateiName", {
         get: function () {
-            return helfer_1.generiereMarkdownLink(this.titelKurz, this.pfad) + this.stichwörterFormatiert;
+            var aufgabenReferenz = this.aufgabenReferenz.replace(/ /g, '-');
+            return this.examen.dateiName + "_" + aufgabenReferenz;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(ExamensAufgabe.prototype, "link", {
+        get: function () {
+            return helfer_1.generiereLink(this.titelKurz, this.pfad, this.dateiName) + this.stichwörterFormatiert;
         },
         enumerable: false,
         configurable: true
