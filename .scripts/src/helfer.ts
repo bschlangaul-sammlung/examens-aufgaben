@@ -24,7 +24,7 @@ export function macheRelativenPfad (pfad: string): string {
 }
 
 export function leseRepoDatei (...args: string[]) {
-  if (args[0].indexOf(repositoryPfad) > -1) return leseDatei(path.join(...args))
+  if (args[0].includes(repositoryPfad)) return leseDatei(path.join(...args))
   return leseDatei(path.join(repositoryPfad, ...args))
 }
 

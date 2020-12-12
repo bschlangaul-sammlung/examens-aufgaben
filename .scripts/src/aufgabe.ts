@@ -27,7 +27,7 @@ export class Aufgabe {
   }
 
   static normalisierePfad (pfad: string): string {
-    if (pfad.indexOf(repositoryPfad) > -1) {
+    if (pfad.includes(repositoryPfad)) {
       return pfad
     }
     return path.join(repositoryPfad, pfad)
@@ -62,8 +62,8 @@ export class Aufgabe {
     return generiereMarkdownLink(this.titelFormatiert, this.pfad) + this.stichwörterFormatiert
   }
 
-  static vergleichePfade(a: Aufgabe, b: Aufgabe): number {
-    if (a.pfad < b. pfad) {
+  static vergleichePfade (a: Aufgabe, b: Aufgabe): number {
+    if (a.pfad < b.pfad) {
       return -1
     }
     if (a.pfad > b.pfad) {
@@ -82,7 +82,7 @@ export class ExamensAufgabe extends Aufgabe {
 
   static pfadRegExp: RegExp = /(?<nummer>\d{5})\/(?<jahr>\d{4})\/(?<monat>\d{2})\/(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/
 
-  static schwacherPfadRegExp: RegExp =  /(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/
+  static schwacherPfadRegExp: RegExp = /(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/
 
   constructor (pfad: string, examen: Examen) {
     super(pfad)
@@ -118,7 +118,7 @@ export class ExamensAufgabe extends Aufgabe {
   }
 
   get titelKurz (): string {
-    let ausgabe = `${this.examen.titelKurz} ${this.aufgabenReferenz}`
+    const ausgabe = `${this.examen.titelKurz} ${this.aufgabenReferenz}`
     if (this.titel) return `„${this.titel}“ ${ausgabe}`
     return ausgabe
   }

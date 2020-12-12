@@ -46,7 +46,7 @@ var Aufgabe = /** @class */ (function () {
         }
     }
     Aufgabe.normalisierePfad = function (pfad) {
-        if (pfad.indexOf(helfer_1.repositoryPfad) > -1) {
+        if (pfad.includes(helfer_1.repositoryPfad)) {
             return pfad;
         }
         return path_1.default.join(helfer_1.repositoryPfad, pfad);

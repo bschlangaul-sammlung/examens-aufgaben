@@ -40,7 +40,7 @@ var Examen = /** @class */ (function () {
             else if (this.monat === 9) {
                 return 'Herbst';
             }
-            throw new Error("Die Monatsangabe in der Klasse Staatsexamen darf nur 3 oder 9 lauten.");
+            throw new Error('Die Monatsangabe in der Klasse Staatsexamen darf nur 3 oder 9 lauten.');
         },
         enumerable: false,
         configurable: true

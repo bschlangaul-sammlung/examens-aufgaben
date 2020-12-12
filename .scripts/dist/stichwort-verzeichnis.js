@@ -23,7 +23,7 @@ var StichwortBaum = /** @class */ (function () {
         this.flach = new Set();
         var roherBaum = js_yaml_1.default.safeLoad(helfer_1.leseRepoDatei('Stichwortverzeichnis.yml'));
         if (!roherBaum)
-            throw new Error("Konnte die Konfigurationsdatei nicht lesen");
+            throw new Error('Konnte die Konfigurationsdatei nicht lesen');
         this.baum = this.normalisiereBaum(roherBaum);
     }
     StichwortBaum.prototype.fügeStichwortSicherHinzu = function (stichwort) {

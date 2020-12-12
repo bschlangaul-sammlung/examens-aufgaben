@@ -50,7 +50,7 @@ function leseRepoDatei() {
     for (var _i = 0; _i < arguments.length; _i++) {
         args[_i] = arguments[_i];
     }
-    if (args[0].indexOf(exports.repositoryPfad) > -1)
+    if (args[0].includes(exports.repositoryPfad))
         return leseDatei(path_1.default.join.apply(path_1.default, __spread(args)));
     return leseDatei(path_1.default.join.apply(path_1.default, __spread([exports.repositoryPfad], args)));
 }

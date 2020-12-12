@@ -182,7 +182,7 @@ programm
     .alias('t')
     .description('TXT aus einer PDF-Datei exportieren.')
     .action(function (datei) {
-    if (datei.indexOf('.pdf') > -1) {
+    if (datei.includes('.pdf')) {
         console.log(datei);
         var txt = datei.replace('.pdf', '.txt');
         if (!fs_1.default.existsSync(txt)) {
@@ -202,13 +202,13 @@ programm
         '--sidecar',
         "" + datei,
         datei,
-        datei,
+        datei
     ]);
 });
 programm
     .command('rotiere-pdf <pdf-datei>')
     .alias('r')
-    .description('Texterkennung in einer PDF-Datei durchführen.')
+    .description('PDF-Datei rotieren.')
     .action(function (datei) {
     child_process_1.default.spawnSync('pdftk', [
         datei,

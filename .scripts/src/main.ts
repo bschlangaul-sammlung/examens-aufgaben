@@ -116,7 +116,7 @@ programm
     }
   })
 
-  programm
+programm
   .command('sql <tex-datei>')
   .description('Führe SQL-Code in einer TeX-Datei aus. Der Code muss in \\begin{minted}{sql}…\\end{minted} eingerahmt sein.')
   .alias('s')
@@ -164,7 +164,7 @@ programm
   .alias('t')
   .description('TXT aus einer PDF-Datei exportieren.')
   .action(function (datei: string): void {
-    if (datei.indexOf('.pdf') > -1) {
+    if (datei.includes('.pdf')) {
       console.log(datei)
       const txt = datei.replace('.pdf', '.txt')
       if (!fs.existsSync(txt)) {
@@ -184,7 +184,7 @@ programm
       '-l', 'deu+eng',
       '--sidecar', `${datei}`,
       datei,
-      datei,
+      datei
     ])
   })
 

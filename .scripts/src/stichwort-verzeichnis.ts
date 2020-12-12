@@ -12,14 +12,14 @@ export class StichwortBaum {
   baum: Baum
   flach: Set<string>
 
-  constructor() {
+  constructor () {
     this.flach = new Set<string>()
     const roherBaum = yaml.safeLoad(leseRepoDatei('Stichwortverzeichnis.yml'))
-    if (!roherBaum) throw new Error(`Konnte die Konfigurationsdatei nicht lesen`)
+    if (!roherBaum) throw new Error('Konnte die Konfigurationsdatei nicht lesen')
     this.baum = this.normalisiereBaum(roherBaum)
   }
 
-  fügeStichwortSicherHinzu(stichwort: string): boolean {
+  fügeStichwortSicherHinzu (stichwort: string): boolean {
     if (this.flach.has(stichwort)) {
       throw Error(`Doppeltes Stichwort: ${stichwort}`)
     } else {
@@ -28,7 +28,7 @@ export class StichwortBaum {
     }
   }
 
-  existiertStichwort(stichwort: string): boolean {
+  existiertStichwort (stichwort: string): boolean {
     return this.flach.has(stichwort)
   }
 
@@ -138,7 +138,7 @@ export class StichwortVerzeichnis {
     }
   }
 
-  gibAufgabenMitStichwort (stichwort: string): Set<Aufgabe>  {
+  gibAufgabenMitStichwort (stichwort: string): Set<Aufgabe> {
     if (this.verzeichnis[stichwort]) {
       return this.verzeichnis[stichwort]
     }

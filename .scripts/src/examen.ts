@@ -20,7 +20,7 @@ export class Examen {
 
   static regExp: RegExp = /^.*(?<nummer>\d{5})\/(?<jahr>\d{4})\/(?<monat>\d{2})\/.*$/
 
-  constructor(nummer: number, jahr: number, monat: number) {
+  constructor (nummer: number, jahr: number, monat: number) {
     this.nummer = nummer
     this.jahr = jahr
     this.monat = monat
@@ -36,7 +36,7 @@ export class Examen {
     } else if (this.monat === 9) {
       return 'Herbst'
     }
-    throw new Error(`Die Monatsangabe in der Klasse Staatsexamen darf nur 3 oder 9 lauten.`)
+    throw new Error('Die Monatsangabe in der Klasse Staatsexamen darf nur 3 oder 9 lauten.')
   }
 
   get jahrJahreszeit (): string {
@@ -104,7 +104,7 @@ export class Examen {
 }
 
 export class ExamenSammlung {
-  private speicher: { [referenz: string]: Examen }
+  private readonly speicher: { [referenz: string]: Examen }
 
   constructor () {
     const dateien = glob.sync('**/Scan.pdf', { cwd: repositoryPfad })
