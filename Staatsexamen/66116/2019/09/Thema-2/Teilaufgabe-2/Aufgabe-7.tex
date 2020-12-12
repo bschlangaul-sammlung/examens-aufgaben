@@ -98,8 +98,9 @@ INSERT INTO Rennteilnahme VALUES
   (1, 11, 2011, 2.001, 90.001, FALSE),
   (2, 11, 2011, 2.002, 90.002, FALSE),
   (3, 11, 2011, 2.003, 90.003, FALSE),
-  (4, 11, 2011, 2.004, 90.004, FALSE),
+  (4, 11, 2011, 2.004, 89.999, FALSE),
   (5, 11, 2011, 2.005, 90.005, FALSE),
+  (6, 11, 2011, 2.005, 99.009, FALSE),
   (4, 10, 2006, 2.782, 90.005, TRUE),
   (3, 10, 2006, 2.298, 90.005, TRUE),
   (3, 9, 2009, 2.253, 90.005, TRUE),
@@ -109,13 +110,6 @@ INSERT INTO Rennteilnahme VALUES
 
 \end{minted}
 \index{SQL mit Übungsdatenbank}
-
-\begin{minted}{sql}
-SELECT * from Fahrer;
-SELECT * from Strecke;
-SELECT * from Rennen;
-SELECT * from Rennteilnahme;
-\end{minted}
 
 \noindent
 Der Einfachheit halber wird angenommen, dass Fahrer den Rennstall nicht
@@ -140,10 +134,37 @@ ORDER BY anzahl_disqualifikationen DESC;
 \item Gesucht sind alle Länder, aus denen noch nie ein Fahrer
 disqualifiziert wurde.
 
+\begin{antwort}
+\begin{minted}{sql}
+SELECT Nation FROM Fahrer GROUP BY Nation
+EXCEPT
+SELECT f.Nation FROM Fahrer f, Rennteilnahme t
+WHERE f.Fahrer_ID = t.Fahrer_ID AND t.disqualifiziert = TRUE
+GROUP BY f.Nation;
+\end{minted}
+\end{antwort}
+
 \item Gesucht sind die ersten fünf Plätze des Rennens von 2011 in „Abu
 Dhabi“ (Streckenname). Die Ausgabe soll nach der Platzierung absteigend
 erfolgen. Geben Sie Fahrer\_ID, Fahrername, Nation und Rennstall mit
 aus.
+
+\begin{antwort}
+Mit LIMIT
+\begin{minted}{sql}
+SELECT f.Fahrer_ID, f.Fahrername, f.Nation, f.Rennstall
+FROM Fahrer f, Rennteilnahme t, Strecke s
+WHERE
+  f.FAHRER_ID = t.Fahrer_ID AND
+  s.Strecken_ID = t.Strecken_ID AND
+  s.Streckenname = 'Abu Dhabi' AND
+  t.Jahr = 2011
+ORDER BY t.Gesamtzeit ASC LIMIT 5;
+\end{minted}
+
+Als Top-N-Query?
+
+\end{antwort}
 
 \item Führen Sie eine neue Spalte Gehalt in die Tabelle Fahrer ein. Da
 sich die Prämien für die Fahrer nach einem Rennstallwechsel ändern, soll
