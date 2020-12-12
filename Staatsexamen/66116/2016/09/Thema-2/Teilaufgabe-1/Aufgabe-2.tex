@@ -2,6 +2,7 @@
 \liLadePakete{mathe,syntax}
 \usepackage{fancyvrb}
 \begin{document}
+\liAufgabenTitel{Schulverwaltung}
 
 \section{2. SQL und relationale Algebra
 \footcite[Thema 2 Teilaufgabe 1 Aufgabe 2]{examen:66116:2016:09}
@@ -40,6 +41,57 @@ Klassenverband : {[
 ]}
 \end{Verbatim}
 
+% Datenbankname: schulverwaltung
+\begin{minted}{sql}
+CREATE TABLE Person (
+  ID INTEGER PRIMARY KEY,
+  Name VARCHAR(255),
+  Wohnort VARCHAR(255),
+  Typ CHAR(1) CHECK(Typ in ('S', 'L'))
+);
+
+CREATE TABLE Klasse (
+  Klassenbezeichnung VARCHAR(20),
+  Schuljahr INTEGER,
+  Klassenlehrer INTEGER REFERENCES Person(ID),
+  PRIMARY KEY (Klassenbezeichnung, Schuljahr)
+);
+
+CREATE TABLE Klassenverband (
+  Schüler INTEGER REFERENCES Person(ID),
+  Klassenbezeichnung VARCHAR(20),
+  Schuljahr INTEGER,
+  PRIMARY KEY (Schüler, Schuljahr)
+);
+
+CREATE TABLE Unterricht (
+  Klassenbezeichnung VARCHAR(20),
+  Schuljahr INTEGER,
+  Lehrer INTEGER REFERENCES Person(ID),
+  Fach VARCHAR(100),
+  CONSTRAINT Unterricht_PK
+    PRIMARY KEY (Klassenbezeichnung, Schuljahr, Lehrer, Fach)
+);
+
+INSERT INTO Person VALUES
+  (1, 'Lehrer Ludwig', 'München', 'L'),
+  (2, 'Schüler Max', 'München', 'S'),
+  (3, 'Schülerin Maria', 'München', 'S'),
+  (4, 'Schülerin Eva', 'Starnberg', 'S'),
+  (5, 'Lehrerin Walter', 'München', 'L');
+
+INSERT INTO Klasse VALUES
+  ('1a', 2015, 1),
+  ('1a', 2014, 1),
+  ('1b', 2015, 5);
+
+INSERT INTO Klassenverband VALUES
+  (2, '1a', 2015),
+  (3, '1a', 2015),
+  (4, '1b', 2015);
+\end{minted}
+\index{SQL mit Übungsdatenbank}
+
 \noindent
 Hierbei enthält die Tabelle \emph{Person} Informationen über Lehrer (Typ
 ’L’) und Schüler (Typ ’S’); andere Werte für Typ sind nicht zulässig.
@@ -61,26 +113,22 @@ zu den Klassen.
 Fremdschlüsselconstraints) anlegt\index{CREATE TABLE}.
 
 \begin{antwort}
-Ich habe \verb|REFERENCES| bei Unterricht Schuljahr vergessen, die
-referenzierten Tabellen \verb|Person| und \verb|Klasse| wurden in der
-Musterlösung auch nicht angelegt.
-
 \begin{minted}{sql}
-CREATE TABLE Person(
+CREATE TABLE IF NOT EXISTS Person(
   ID INTEGER PRIMARY KEY,
   Name VARCHAR(255),
   Wohnort VARCHAR(255),
   Typ CHAR(1) CHECK(Typ in ('S', 'L'))
 );
 
-CREATE TABLE Klasse(
+CREATE TABLE IF NOT EXISTS Klasse(
   Klassenbezeichnung VARCHAR(20),
   Schuljahr INTEGER,
   Klassenlehrer INTEGER REFERENCES Person(ID),
   PRIMARY KEY (Klassenbezeichnung, Schuljahr)
 );
 
-CREATE TABLE Unterricht (
+CREATE TABLE IF NOT EXISTS Unterricht (
   Klassenbezeichnung VARCHAR(20) REFERENCES Klasse(Klassenbezeichnung),
   Schuljahr INTEGER REFERENCES Klasse(Schuljahr),
   Lehrer INTEGER REFERENCES Person(ID),
