@@ -35,8 +35,8 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/09/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66111-1997-Herbst_A3">Examen 66111 Herbst 1997 A3</a> (Entity-Relation-Modell, Relationenmodell)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2016-Frühjahr_T1-TA1-A1">Examen 66116 Frühjahr 2016 T1 TA1 A1</a> (Entity-Relation-Modell, Relationenmodell)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2016-Frühjahr_T1-TA1-A2">„Polizei“ Examen 66116 Frühjahr 2016 T1 TA1 A2</a> (Entity-Relation-Modell, SQL mit Übungsdatenbank, Relationale Algebra, SQL, VIEW, WITH, UNION)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2018-Frühjahr_T2-TA1-A2">Examen 66116 Frühjahr 2018 T2 TA1 A2</a> (Entity-Relation-Modell, Relationenmodell)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A2">Examen 66116 Herbst 2019 T1 TA2 A2</a> (Entity-Relation-Modell)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2018-Frühjahr_T2-TA1-A2">„Zirkus“ Examen 66116 Frühjahr 2018 T2 TA1 A2</a> (Entity-Relation-Modell, Relationenmodell)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A2">„Schule Hogwarts aus Harry Potter“ Examen 66116 Herbst 2019 T1 TA2 A2</a> (Entity-Relation-Modell)
 
 ### Relationales Modell
 
@@ -52,7 +52,7 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66111-1996-Frühjahr_A2">Examen 66111 Frühjahr 1996 A2</a> (Entity-Relation-Modell, Verfeinertes Relationenmodell, SQL)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/09/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66111-1997-Herbst_A3">Examen 66111 Herbst 1997 A3</a> (Entity-Relation-Modell, Relationenmodell)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2016-Frühjahr_T1-TA1-A1">Examen 66116 Frühjahr 2016 T1 TA1 A1</a> (Entity-Relation-Modell, Relationenmodell)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2018-Frühjahr_T2-TA1-A2">Examen 66116 Frühjahr 2018 T2 TA1 A2</a> (Entity-Relation-Modell, Relationenmodell)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2018-Frühjahr_T2-TA1-A2">„Zirkus“ Examen 66116 Frühjahr 2018 T2 TA1 A2</a> (Entity-Relation-Modell, Relationenmodell)
 
 #### Relationale Algebra
 
@@ -139,7 +139,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1994/03/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66111-1994-Frühjahr_A7">Examen 66111 Frühjahr 1994 A7</a> (Synthese-Algorithmus, Dritte Normalform)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66111-1996-Herbst_A4">Examen 66111 Herbst 1996 A4</a> (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/09/Thema-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66113-2003-Herbst_T2-A1">„Nachteile vollständige Normalisierung“ Examen 66113 Herbst 2003 T2 A1</a> (Normalformen)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2018-Frühjahr_T2-TA1-A6">Examen 66116 Frühjahr 2018 T2 TA1 A6</a> (Synthese-Algorithmus, Dritte Normalform)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2018-Frühjahr_T2-TA1-A6">„Synthese-Algorithmus bei Relationenschema A-F“ Examen 66116 Frühjahr 2018 T2 TA1 A6</a> (Synthese-Algorithmus, Dritte Normalform)
 
 ### Transaktionsverwaltung
 
@@ -738,7 +738,7 @@ OCR des oben genannten Scans:
 - 2019 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Scan.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/OCR.txt" download="Staatsexamen-Informatik_66116-2019-Herbst_OCR">OCR.txt</a> 
     - Thema 1 
         - Teilaufgabe 1 
-            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA1-A4">Aufgabe 4 (Zustandsdiagramm, Implementierung in Java)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA1-A4">Aufgabe 4 (Zustand (State), Zustandsdiagramm, Implementierung in Java)</a> 
         - Teilaufgabe 2 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A2">Aufgabe 2 (Entity-Relation-Modell)</a> 
     - Thema 2 
