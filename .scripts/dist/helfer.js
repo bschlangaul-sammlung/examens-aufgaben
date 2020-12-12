@@ -75,7 +75,7 @@ function generiereLink(text, pfad, dateiName, einstellung) {
         if (alsHtml) {
             var erweiterung = pfad.split('.').pop();
             dateiName = dateiName.replace(/\.[a-z]{3,5}$/, '');
-            return "<a href=\"" + githubRawUrl + "/" + pfad + ")\" download=\"" + dateiName + "." + erweiterung + "\">" + text + "</a>";
+            return "<a href=\"" + githubRawUrl + "/" + pfad + "\" download=\"" + dateiName + "." + erweiterung + "\">" + text + "</a>";
         }
         return "[" + text + "](" + githubRawUrl + "/" + pfad + ")";
     }
