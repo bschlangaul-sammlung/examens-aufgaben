@@ -132,7 +132,7 @@ ORDER BY anzahl_disqualifikationen DESC;
 \end{antwort}
 
 \item Gesucht sind alle Länder, aus denen noch nie ein Fahrer
-disqualifiziert wurde.
+disqualifiziert wurde.\index{EXCEPT}
 
 \begin{antwort}
 \begin{minted}{sql}
@@ -155,21 +155,82 @@ Mit LIMIT
 SELECT f.Fahrer_ID, f.Fahrername, f.Nation, f.Rennstall
 FROM Fahrer f, Rennteilnahme t, Strecke s
 WHERE
-  f.FAHRER_ID = t.Fahrer_ID AND
+  f.Fahrer_ID = t.Fahrer_ID AND
   s.Strecken_ID = t.Strecken_ID AND
   s.Streckenname = 'Abu Dhabi' AND
   t.Jahr = 2011
 ORDER BY t.Gesamtzeit ASC LIMIT 5;
 \end{minted}
 
-Als Top-N-Query?
+Als Top-N-Query\index{Top-N-Query}:
 
+\begin{minted}{sql}
+CREATE VIEW Rennen_Abu_Dhabi AS
+  SELECT f.Fahrer_ID, f.Fahrername, f.Nation, f.Rennstall, t.Gesamtzeit
+  FROM Fahrer f, Rennteilnahme t, Strecke s
+  WHERE
+    f.Fahrer_ID = t.Fahrer_ID AND
+    s.Strecken_ID = t.Strecken_ID AND
+    s.Streckenname = 'Abu Dhabi' AND
+    t.Jahr = 2011
+  ORDER BY t.Gesamtzeit ASC;
+
+SELECT a.Fahrer_ID, a.Fahrername, a.Nation, a.Rennstall
+FROM Rennen_Abu_Dhabi a, Rennen_Abu_Dhabi b
+WHERE
+  a.Gesamtzeit >= b.Gesamtzeit
+GROUP BY a.Fahrer_ID, a.Fahrername, a.Nation, a.Rennstall, a.Gesamtzeit
+HAVING COUNT(*) <= 5
+ORDER BY a.Gesamtzeit;
+\end{minted}
 \end{antwort}
 
-\item Führen Sie eine neue Spalte Gehalt in die Tabelle Fahrer ein. Da
-sich die Prämien für die Fahrer nach einem Rennstallwechsel ändern, soll
-ein Trigger geschrieben werden, mit dem das Gehalt des betreffenden
-Fahrers um 10\% angehoben wird.
+\item Führen Sie eine neue Spalte \texttt{Gehalt} in die Tabelle
+\texttt{Fahrer} ein. Da sich die Prämien für die Fahrer nach einem
+Rennstallwechsel ändern, soll ein Trigger geschrieben werden, mit dem
+das Gehalt des betreffenden Fahrers um 10\% angehoben wird.
+\index{ALTER TABLE}
+\index{TRIGGER}
+
+\begin{antwort}
+Lösung für PostgreSQL:
+
+\begin{minted}{sql}
+ALTER TABLE Fahrer ADD Gehalt numeric(12,2);
+
+UPDATE Fahrer SET Gehalt = 1000000 WHERE Fahrer_ID = 1;
+UPDATE Fahrer SET Gehalt = 2000000 WHERE Fahrer_ID = 2;
+UPDATE Fahrer SET Gehalt = 3000000 WHERE Fahrer_ID = 3;
+UPDATE Fahrer SET Gehalt = 4000000 WHERE Fahrer_ID = 4;
+UPDATE Fahrer SET Gehalt = 5000000 WHERE Fahrer_ID = 5;
+UPDATE Fahrer SET Gehalt = 6000000 WHERE Fahrer_ID = 6;
+UPDATE Fahrer SET Gehalt = 7000000 WHERE Fahrer_ID = 7;
+UPDATE Fahrer SET Gehalt = 8000000 WHERE Fahrer_ID = 8;
+UPDATE Fahrer SET Gehalt = 9000000 WHERE Fahrer_ID = 9;
+UPDATE Fahrer SET Gehalt = 10000000 WHERE Fahrer_ID = 10;
+
+CREATE FUNCTION trigger_function()
+  RETURNS TRIGGER
+  LANGUAGE PLPGSQL
+AS $$
+  BEGIN
+    UPDATE Fahrer
+      SET gehalt = gehalt * 1.1
+      WHERE Fahrer_ID = NEW.Fahrer_ID;
+    RETURN NEW;
+  END;
+$$;
+
+CREATE TRIGGER mehr_gehalt
+  AFTER UPDATE OF Rennstall ON Fahrer
+  FOR EACH ROW EXECUTE PROCEDURE trigger_function();
+
+-- Test:
+SELECT * FROM FAHRER WHERE Fahrer_ID = 1;
+UPDATE Fahrer SET Rennstall = 'Red Bull' WHERE Fahrer_ID = 1;
+SELECT * FROM FAHRER WHERE Fahrer_ID = 1;
+\end{minted}
+\end{antwort}
 \end{enumerate}
 
 \end{document}
