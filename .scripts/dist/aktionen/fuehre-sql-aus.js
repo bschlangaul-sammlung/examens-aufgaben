@@ -34,29 +34,31 @@ var TexDateiMitSql = /** @class */ (function () {
     TexDateiMitSql.prototype.schreibeTemporäreSqlDatei = function (bezeichner, inhalt) {
         fs_1.default.writeFileSync(this.pfad + "_" + bezeichner + "_tmp.sql", inhalt);
     };
-    TexDateiMitSql.prototype.führePostgresqlAus = function (datei) {
+    TexDateiMitSql.prototype.führePostgresqlAus = function (datei, redselig) {
+        if (redselig === void 0) { redselig = true; }
         var pygmentize = child_process_1.default.spawnSync('/usr/local/bin/pygmentize', ['-l', 'sql', datei], { encoding: 'utf-8' });
-        console.log(pygmentize.stdout);
-        var prozess = child_process_1.default.spawnSync('/usr/bin/sudo', [
-            'PGPASSWORD=postgres',
-            '-u', 'postgres',
-            'psql',
+        if (redselig)
+            console.log(pygmentize.stdout);
+        var prozess = child_process_1.default.spawnSync('/usr/bin/psql', [
             '--quiet',
-            '-f', datei
-        ], { shell: '/usr/bin/zsh', encoding: 'utf-8' });
+            '-f', datei,
+            '-v', 'ON_ERROR_STOP=1',
+        ], { encoding: 'utf-8', env: { PGPASSWORD: 'postgresql' }, uid: 137, gid: 146 });
         if (prozess.status !== 0) {
             console.log(prozess.stderr);
             console.log(prozess.stdout);
             throw new Error('Postgresql wurde mit einem Fehler beendet.');
         }
         else {
-            console.log(prozess.stdout);
+            if (redselig)
+                console.log(prozess.stdout);
         }
     };
     TexDateiMitSql.prototype.erzeugeDatenbank = function () {
-        this.führePostgresqlAus(this.gibTemporärenErzeugungsPfad());
+        this.führePostgresqlAus(this.gibTemporärenErzeugungsPfad(), false);
     };
     TexDateiMitSql.prototype.führeAnfrageAus = function (anfragenNummer) {
+        this.erzeugeDatenbank();
         console.log(chalk_1.default.red("Anfrage Nummer " + anfragenNummer + ":\n"));
         this.führePostgresqlAus(this.gibTemporärenAnfragenPfad(anfragenNummer));
     };
@@ -110,11 +112,15 @@ var TexDateiMitSql = /** @class */ (function () {
     };
     return TexDateiMitSql;
 }());
-function führeSqlAus(pfad) {
+function führeSqlAus(pfad, cmdObj) {
     var datei = new TexDateiMitSql(pfad);
     datei.findeAnfragen();
-    datei.erzeugeDatenbank();
-    datei.führeAlleAnfragenAus();
+    if (cmdObj.anfrage) {
+        datei.führeAnfrageAus(parseInt(cmdObj.anfrage));
+    }
+    else {
+        datei.führeAlleAnfragenAus();
+    }
     datei.aufräumen();
 }
 exports.führeSqlAus = führeSqlAus;

@@ -41,31 +41,30 @@ class TexDateiMitSql {
     fs.writeFileSync(`${this.pfad}_${bezeichner}_tmp.sql`, inhalt)
   }
 
-  private führePostgresqlAus (datei: string) {
+  private führePostgresqlAus (datei: string, redselig: boolean = true) {
     const pygmentize = childProcess.spawnSync('/usr/local/bin/pygmentize', ['-l', 'sql', datei], { encoding: 'utf-8' })
-    console.log(pygmentize.stdout)
-    const prozess = childProcess.spawnSync('/usr/bin/sudo',
+    if (redselig) console.log(pygmentize.stdout)
+    const prozess = childProcess.spawnSync('/usr/bin/psql',
     [
-      'PGPASSWORD=postgres',
-      '-u', 'postgres',
-      'psql',
       '--quiet',
-      '-f', datei
-    ], { shell: '/usr/bin/zsh', encoding: 'utf-8' })
+      '-f', datei,
+      '-v', 'ON_ERROR_STOP=1',
+    ], {  encoding: 'utf-8', env: { PGPASSWORD: 'postgresql' }, uid: 137, gid: 146 })
     if (prozess.status !== 0) {
       console.log(prozess.stderr)
       console.log(prozess.stdout)
       throw new Error('Postgresql wurde mit einem Fehler beendet.')
     } else {
-      console.log(prozess.stdout)
+      if (redselig) console.log(prozess.stdout)
     }
   }
 
   erzeugeDatenbank () {
-    this.führePostgresqlAus(this.gibTemporärenErzeugungsPfad())
+    this.führePostgresqlAus(this.gibTemporärenErzeugungsPfad(), false)
   }
 
-  private führeAnfrageAus(anfragenNummer: number): void {
+  führeAnfrageAus(anfragenNummer: number): void {
+    this.erzeugeDatenbank()
     console.log(chalk.red(`Anfrage Nummer ${anfragenNummer}:\n`))
     this.führePostgresqlAus(this.gibTemporärenAnfragenPfad(anfragenNummer))
   }
@@ -126,10 +125,14 @@ class TexDateiMitSql {
   }
 }
 
-export function führeSqlAus (pfad: string): void {
+export function führeSqlAus (pfad: string, cmdObj: { [optionen: string]: any }): void {
   const datei = new TexDateiMitSql(pfad)
   datei.findeAnfragen()
-  datei.erzeugeDatenbank()
-  datei.führeAlleAnfragenAus()
+  if (cmdObj.anfrage) {
+    datei.führeAnfrageAus(parseInt(cmdObj.anfrage))
+  } else {
+    datei.führeAlleAnfragenAus()
+  }
+
   datei.aufräumen()
 }

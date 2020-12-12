@@ -14,6 +14,41 @@ Mitarbeiter (MitarbeiterID), Vorname, Nachname, Vorgesetzter[Mitarbeiter], Abtei
 Abteilung (AbteilungsID, Bezeichnung)
 \end{minted}
 
+% Datenbankname: Personalverwaltung
+\begin{minted}{sql}
+CREATE TABLE Abteilung(
+  AbteilungsID Integer PRIMARY KEY,
+  Bezeichnung VARCHAR(30)
+);
+
+CREATE TABLE Mitarbeiter(
+  MitarbeiterID Integer PRIMARY KEY,
+  Vorname VARCHAR(30),
+  Nachname VARCHAR(30),
+  Vorgesetzter Integer REFERENCES Mitarbeiter(MitarbeiterID),
+  AbteilungsID Integer REFERENCES Abteilung(AbteilungsID),
+  Telefonnummer Integer,
+  Gehalt double precision
+);
+
+INSERT INTO Abteilung VALUES
+  (1, 'Buchhaltung'),
+  (2, 'Geschaeftemacher'),
+  (3, 'Buchhaltung'),
+  (4, 'Qualitaetskontrolle'),
+  (5, 'Qualitaetskontrolle');
+
+INSERT INTO Mitarbeiter VALUES
+  (1, 'Hans', 'Meier', 11, 1, 2313432, 12345),
+  (2, 'Fred', 'Maier', 11, 2, 233413432, 1233),
+  (11, 'Hans', 'Mueller', NULL, 3, 3432, 1230454),
+  (3, 'Hans', 'Fuchs', 2, 1, 2313344, 2345),
+  (4, 'Fred', 'Hase', 11, 2, 432, 12334),
+  (12, 'Gerd', 'Mueller', NULL, 3, 345552, 154),
+  (6, 'Juergen', 'Schmidt', 12, 5, 97854, 6654);
+\end{minted}
+\index{SQL mit Übungstabelle}
+
 \begin{enumerate}
 
 %%
@@ -31,7 +66,7 @@ SELECT Vorname, Nachname
 FROM Mitarbeiter m, Abteilung a
 WHERE
   m.AbteilungsID = a.AbteilungsID AND
-  a.Bezeichung = 'Buchhaltung'
+  a.Bezeichnung = 'Buchhaltung'
 ORDER BY m.MitarbeiterID DESC;
 \end{minted}
 \end{antwort}
@@ -75,14 +110,14 @@ SELECT Abteilung.AbteilungsID, Bezeichnung,
   AVG (Gehalt) AS Durchschnittsgehalt
 FROM Mitarbeiter, Abteilung
 WHERE Mitarbeiter.AbteilungsID = Abteilung.AbteilungsID
-GROUP BY Abteilung.AbteilungsID, Bezeichnung
+GROUP BY Abteilung.AbteilungsID, Bezeichnung;
 
 SELECT a.Bezeichnung, a.Durchschnittsgehalt, COUNT (*) AS Rang
 FROM Durchschnittsgehaelter a, Durchschnittsgehaelter b
 WHERE a.Durchschnittsgehalt <= b.Durchschnittsgehalt
 GROUP BY a.AbteilungsID, a.Bezeichnung, a.Durchschnittsgehalt
 HAVING COUNT (*) <= 10
-ORDER BY Rang ASC
+ORDER BY Rang ASC;
 \end{minted}
 \end{antwort}
 
@@ -97,7 +132,7 @@ aus der Abteilung mit der AbteilungsID 42 um 5\% erhöht.
 \begin{minted}{sql}
 UPDATE Mitarbeiter
 SET Gehalt = 1.05 * Gehalt
-WHERE AbteilungsID = 42
+WHERE AbteilungsID = 42;
 \end{minted}
 \end{antwort}
 
@@ -114,7 +149,7 @@ Schreiben Sie die zum Löschen notwendigen SQL-Anfragen.\index{DELETE}
 \begin{antwort}
 \begin{minted}{sql}
 DELETE FROM Mitarbeiter
-WHERE AbteilungsID ANY (
+WHERE AbteilungsID = ANY (
   SELECT a.AbteilungsID
   FROM Abteilung a
   WHERE a.Bezeichnung = 'Qualitaetskontrolle'
@@ -148,48 +183,12 @@ explizit mit \verb|SELECT| die Spalten auswählen,
 die man lesen können soll (auf nicht angegebene Spalten ist kein Zugriff
 möglich)
 
+% SELECT rolname FROM pg_roles;
 \begin{minted}{sql}
 GRANT SELECT (Vorname, Nachname, Telefonnummer)
-ON Mitarbeiter TO alle anderen Mitarbeiter
+ON Mitarbeiter TO postgres;
 \end{minted}
 \end{antwort}
 \end{enumerate}
-
-\begin{minted}{sql}
--- sudo mysql  < Personalverwaltung.sql
-DROP DATABASE IF EXISTS Personalverwaltung;
-CREATE DATABASE Personalverwaltung;
-USE Personalverwaltung;
-
-CREATE TABLE Mitarbeiter(
-MitarbeiterID Integer PRIMARY KEY,
-Vorname VARCHAR(30),
-Nachname VARCHAR(30),
-Vorgesetzter Integer REFERENCES Mitarbeiter(MitarbeiterID),
-AbteilungsID Integer REFERENCES Abteilung(AbteilungsID),
-Telefonnummer Long,
-Gehalt Double
-);
-
-CREATE TABLE Abteilung(
-AbteilungsID Integer PRIMARY KEY,
-Bezeichnung VARCHAR(30)
-);
-
-INSERT INTO Abteilung VALUES (1,"Buchhaltung");
-INSERT INTO Abteilung VALUES (2,'Geschaeftemacher');
-INSERT INTO Abteilung VALUES (3,"Buchhaltung");
-INSERT INTO Abteilung VALUES (4, "Qualitaetskontrolle");
-INSERT INTO Abteilung VALUES (5, "Qualitaetskontrolle");
-
-INSERT INTO Mitarbeiter VALUES (1,"Hans", 'Meier', 11, 1, 2313432, 12345);
-INSERT INTO Mitarbeiter VALUES (2,"Fred", 'Maier', 11, 2, 233413432, 1233);
-INSERT INTO Mitarbeiter VALUES (11,"Hans", 'Mueller', NULL,3, 3432, 1230454);
-INSERT INTO Mitarbeiter VALUES (3,"Hans", 'Fuchs', 2, 1, 2313344, 2345);
-INSERT INTO Mitarbeiter VALUES (4,"Fred", 'Hase', 11, 2, 432, 12334);
-INSERT INTO Mitarbeiter VALUES (12,"Gerd", 'Mueller', NULL,3, 345552, 154);
-INSERT INTO Mitarbeiter VALUES (5, "Josef", "Huber", 12, 4, 786787, 3443);
-INSERT INTO Mitarbeiter VALUES (6, "Juergen", "Schmidt", 12, 5, 97854, 6654);
-\end{minted}
 
 \end{document}

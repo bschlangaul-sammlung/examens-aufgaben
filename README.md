@@ -61,6 +61,7 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 - [„Freizeitcenter“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Freizeitcenter.pdf) (Relationale Algebra)
 - [„Universität“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Universitaet.pdf) (Relationale Algebra)
 - [„Wassned“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Wassned.pdf) (Relationale Algebra)
+- [„Kaufhaus“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus.pdf) (SQL, SQL mit Übungstabelle, Relationale Algebra)
 - [Examen 46116 Frühjahr 2013 T1 TA2 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) (Relationale Algebra, SQL, Tupelkalkül)
 - [Examen 46116 Frühjahr 2014 T2 TA2 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf) (Relationale Algebra)
 - [„Computer „Chiemsee““ Examen 46116 Frühjahr 2015 T1 TA2 A1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) (Relationale Algebra, SQL, GROUP BY, HAVING)
@@ -78,12 +79,8 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 ### SQL
 
 - [„Bundesliga-Datenbank“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Bundesliga-Datenbank.pdf) (Relationale Algebra, SQL, Entity-Relation-Modell)
-- [„Bands“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Bands.pdf) (SQL)
-- [„Kaufhaus again“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-again.pdf) (SQL)
-- [„Kaufhausdatenbank (einfach)“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-einfach.pdf) (SQL)
-- [„Kaufhaus zum letzten Mal!“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-letztes-Mal.pdf) (SQL)
-- [„noch mal Kaufhaus...“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-nochmal.pdf) (SQL)
-- [„Kaufhausdatenbank (reloaded)“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus-reloaded.pdf) (SQL)
+- [„Bands“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Bands.pdf) (SQL, SQL mit Übungstabelle)
+- [„Kaufhaus“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus.pdf) (SQL, SQL mit Übungstabelle, Relationale Algebra)
 - [„SQL abstrakt“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_SQL-abstract.pdf) (SQL)
 - [Examen 46116 Frühjahr 2012 T1 TA1 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) (SQL)
 - [Examen 46116 Frühjahr 2013 T1 TA2 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) (Relationale Algebra, SQL, Tupelkalkül)
@@ -98,7 +95,7 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 - [„Mitarbeiterverwaltung“ Examen 66113 Frühjahr 2003 T1 A5](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Thema-1/Aufgabe-5.pdf) (SQL)
 - [„Universitätsverwaltung“ Examen 66113 Frühjahr 2003 T2 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Thema-2/Aufgabe-3.pdf) (SQL)
 - [Examen 66116 Frühjahr 2016 T1 TA1 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)
-- [Examen 66116 Herbst 2016 T1 TA1 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) (SQL, VIEW, WITH, DELETE)
+- [Examen 66116 Herbst 2016 T1 TA1 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) (SQL, SQL mit Übungstabelle, VIEW, WITH, DELETE)
 - [Examen 66116 Herbst 2016 T2 TA1 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) (SQL, CREATE TABLE, CONSTRAINT, ALTER TABLE, GROUP BY, HAVING)
 - [„Vermischte Datenbank-Fragen“ Examen 66116 Herbst 2019 T2 TA2 A6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf) (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)
 - [„Formel-1-Rennen“ Examen 66116 Herbst 2019 T2 TA2 A7](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf) (SQL)
@@ -670,7 +667,7 @@ OCR des oben genannten Scans:
 - 2016 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/OCR.txt) 
     - Thema 1 
         - Teilaufgabe 1 
-            - [Aufgabe 4 (SQL, VIEW, WITH, DELETE)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) 
+            - [Aufgabe 4 (SQL, SQL mit Übungstabelle, VIEW, WITH, DELETE)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) 
         - Teilaufgabe 2 
             - [Aufgabe 1 (Pflichtenheft, Softwaremaße, Evolutionäre Softwaremodelle, Versionsverwaltungssoftware, Funktionale Anforderungen, Nicht-funktionale Anforderungen, Kontinuierliche Integration (Continuous Integration))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) 
             - [Aufgabe 3 (Datenflussorientiertes Testen, Datenfluss-annotierter Kontrollflussgraph, Zyklomatische Komplexität nach Mc-Cabe, C1-Test Zweigüberdeckung (Branch Coverage), all uses)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf) 
@@ -787,6 +784,7 @@ als Markdown-Liste eingebettet werden kann.
             - UPDATE
             - VIEW
             - WITH
+            - SQL mit Übungstabelle
     - Relationale Entwurfstheorie:
         - Normalformen:
             - Schlüssel

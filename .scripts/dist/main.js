@@ -130,6 +130,8 @@ programm
     .command('sql <tex-datei>')
     .description('Führe SQL-Code in einer TeX-Datei aus. Der Code muss in \\begin{minted}{sql}…\\end{minted} eingerahmt sein.')
     .alias('s')
+    .option('-a, --anfrage <nummer>', 'Führe nur die Anfrage mit der gegebenen Nummer aus.')
+    .option('-n, --nicht-loeschen', 'Die Datenbank und die temporären SQL-Dateien am Ende der Ausführung nicht löschen.')
     .action(fuehre_sql_aus_1.führeSqlAus);
 programm
     .command('code [glob]')
