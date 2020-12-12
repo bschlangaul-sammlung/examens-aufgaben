@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{rmodell}
+\liLadePakete{rmodell,syntax}
 
 \begin{document}
 \liAufgabenTitel{Formel-1-Rennen}
@@ -11,7 +11,7 @@ Gegeben sind folgende Relationen aus einem Verwaltungssystem für die
 jährlichen Formel-1-Rennen:
 
 \begin{liRmodell}
-Strecke (\liPrimaer{Strecken\_ID}, Streckenname, Land, Lange)
+Strecke(\liPrimaer{Strecken\_ID}, Streckenname, Land, Länge)
 
 Fahrer(\liPrimaer{Fahrer\_ID}, Fahrername, Nation, Rennstall)
 
@@ -23,6 +23,100 @@ disqualifiziert)
 FK (Strecken\_ID, Jahr) referenziert Rennen (Strecken\_ID, Jahr)
 \end{liRmodell}
 
+% Datenbankname: formel1
+\begin{minted}{sql}
+CREATE TABLE Fahrer (
+  Fahrer_ID integer PRIMARY KEY,
+  Fahrername varchar(100) NOT NULL,
+  Nation varchar(100) NOT NULL,
+  Rennstall varchar(100) NOT NULL
+);
+
+CREATE TABLE Strecke (
+  Strecken_ID integer PRIMARY KEY,
+  Streckenname varchar(100) NOT NULL,
+  Land varchar(100) NOT NULL,
+  Länge numeric(5,3) NOT NULL
+);
+
+CREATE TABLE Rennen (
+  Strecken_ID integer REFERENCES Strecke(Strecken_ID),
+  Jahr integer NOT NULL,
+  Wetter varchar(10) NOT NULL,
+  PRIMARY KEY (Strecken_ID, Jahr)
+);
+
+CREATE TABLE Rennteilnahme (
+  Fahrer_ID integer REFERENCES Fahrer(Fahrer_ID),
+  Strecken_ID integer REFERENCES Strecke(Strecken_ID),
+  Jahr integer NOT NULL,
+  Rundenbestzeit numeric(5,3) NOT NULL,
+  Gesamtzeit numeric(5,3) NOT NULL,
+  disqualifiziert boolean NOT NULL,
+  PRIMARY KEY (Fahrer_ID, Strecken_ID, Jahr)
+);
+
+INSERT INTO Fahrer VALUES
+  (1, 'Kimi Räikkönen', 'Finnland', 'Alfa Romeo'),
+  (2, 'Rubens Barrichello', 'Brasilien', 'Brawn'),
+  (3, 'Fernando Alonso', 'Spanien', 'Ferrari'),
+  (4, 'Michael Schumacher', 'Deutschland', 'Ferrari'),
+  (5, 'Jenson Button', 'Vereinigtes Königreich Großbritannien', 'McLaren'),
+  (6, 'Felipe Massa', 'Brasilien', 'Ferrari'),
+  (7, 'Lewis Hamilton', 'Vereinigtes Königreich Großbritannien', 'Williams'),
+  (8, 'Riccardo Patrese', 'Italien', 'Williams'),
+  (9, 'Sebastian Vettel', 'Deutschland', 'Ferrari'),
+  (10, 'Jarno Trulli', 'Italien', 'Toyota');
+
+INSERT INTO Strecke VALUES
+  (1, 'Autodromo Nazionale Monza', 'Italien', 5.793),
+  (2, 'Circuit de Monaco', 'Monaco', 3.340),
+  (3, 'Silverstone Circuit', 'Vereinigtes Königreich', 5.891),
+  (4, 'Circuit de Spa-Francorchamps', 'Belgien', 7.004),
+  (5, 'Circuit Gilles-Villeneuve', 'Kanada', 4.361),
+  (6, 'Nürburgring', 'Deutschland', 5.148),
+  (7, 'Hockenheimring', 'Deutschland', 4.574),
+  (8, 'Interlagos', 'Brasilien', 4.309),
+  (9, 'Hungaroring', 'Ungarn', 4.381),
+  (10, 'Red Bull Ring', 'Österreich', 5.942),
+  (11, 'Abu Dhabi', 'Abu Dhabi', 5.554);
+
+INSERT INTO Rennen VALUES
+  (11, 2011, 'sonnig'),
+  (10, 2006, 'sonnig'),
+  (9, 2007, 'regnerisch'),
+  (8, 2008, 'regnerisch'),
+  (7, 2009, 'sonnig'),
+  (6, 2010, 'regnerisch'),
+  (5, 2011, 'sonnig'),
+  (4, 2012, 'sonnig'),
+  (3, 2013, 'sonnig'),
+  (2, 2014, 'regnerisch'),
+  (1, 2015, 'regnerisch');
+
+INSERT INTO Rennteilnahme VALUES
+  (1, 11, 2011, 2.001, 90.001, FALSE),
+  (2, 11, 2011, 2.002, 90.002, FALSE),
+  (3, 11, 2011, 2.003, 90.003, FALSE),
+  (4, 11, 2011, 2.004, 90.004, FALSE),
+  (5, 11, 2011, 2.005, 90.005, FALSE),
+  (4, 10, 2006, 2.782, 90.005, TRUE),
+  (3, 10, 2006, 2.298, 90.005, TRUE),
+  (3, 9, 2009, 2.253, 90.005, TRUE),
+  (2, 10, 2006, 2.005, 90.005, TRUE),
+  (2, 9, 2009, 3.298, 90.342, TRUE),
+  (2, 8, 2008, 4.782, 78.005, TRUE);
+
+\end{minted}
+\index{SQL mit Übungsdatenbank}
+
+\begin{minted}{sql}
+SELECT * from Fahrer;
+SELECT * from Strecke;
+SELECT * from Rennen;
+SELECT * from Rennteilnahme;
+\end{minted}
+
 \noindent
 Der Einfachheit halber wird angenommen, dass Fahrer den Rennstall nicht
 wechseln können. Das Attribut „disqualifiziert“ kann die Ausprägungen
@@ -33,6 +127,15 @@ Vermeiden Sie nach Möglichkeit übermäßige Nutzung von Joins und Views.
 \item Geben Sie für jeden Fahrer seine ID sowie die Anzahl seiner
 Disqualifikationen in den Jahren 2005 bis 2017 aus. Ordnen Sie die
 Ausgabe absteigend nach der Anzahl der Disqualifikationen.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT Fahrer_ID, COUNT(disqualifiziert) as anzahl_disqualifikationen FROM Rennteilnahme
+WHERE disqualifiziert = TRUE
+GROUP BY Fahrer_ID, disqualifiziert
+ORDER BY anzahl_disqualifikationen DESC;
+\end{minted}
+\end{antwort}
 
 \item Gesucht sind alle Länder, aus denen noch nie ein Fahrer
 disqualifiziert wurde.

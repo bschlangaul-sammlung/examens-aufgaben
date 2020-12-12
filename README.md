@@ -100,6 +100,7 @@ Hier alle Aufgaben mit einer Übungsdatenbank:
 - [„Kaufhaus“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus.pdf) (SQL, SQL mit Übungsdatenbank, Relationale Algebra)
 - [„Mitfahrgelegenheiten“ Examen 46116 Frühjahr 2014 T2 TA2 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf) (SQL, SQL mit Übungsdatenbank, GROUP BY, HAVING)
 - [„Personalverwaltung“ Examen 66116 Herbst 2016 T1 TA1 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) (SQL, SQL mit Übungsdatenbank, VIEW, WITH, DELETE)
+- [„Formel-1-Rennen“ Examen 66116 Herbst 2019 T2 TA2 A7](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf) (SQL, SQL mit Übungsdatenbank)
 
 Weitere Aufgaben zum Thema „SQL“:
 
@@ -123,7 +124,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - [„Personalverwaltung“ Examen 66116 Herbst 2016 T1 TA1 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) (SQL, SQL mit Übungsdatenbank, VIEW, WITH, DELETE)
 - [Examen 66116 Herbst 2016 T2 TA1 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) (SQL, CREATE TABLE, CONSTRAINT, ALTER TABLE, GROUP BY, HAVING)
 - [„Vermischte Datenbank-Fragen“ Examen 66116 Herbst 2019 T2 TA2 A6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf) (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)
-- [„Formel-1-Rennen“ Examen 66116 Herbst 2019 T2 TA2 A7](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf) (SQL)
+- [„Formel-1-Rennen“ Examen 66116 Herbst 2019 T2 TA2 A7](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf) (SQL, SQL mit Übungsdatenbank)
 
 ### Relationale Entwurfstheorie
 
@@ -740,7 +741,7 @@ OCR des oben genannten Scans:
     - Thema 2 
         - Teilaufgabe 2 
             - [Aufgabe 6 (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf) 
-            - [Aufgabe 7 (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf)
+            - [Aufgabe 7 (SQL, SQL mit Übungsdatenbank)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf)
 
 ### 66118: Fachdidaktik (Gymnasium)
 
