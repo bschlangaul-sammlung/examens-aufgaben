@@ -33,7 +33,29 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 
 {{ stichwort "Tupelkalkül" }}
 
-### SQL
+### Relationale Anfragesprachen
+
+#### SQL
+
+Zu einige Aufgaben gibt es eine Übungsdatenbank. Der SQL-Code
+zur Erzeugung der Datenbank ist in die TeX-Dateien eingebunden und
+umrahmt durch die `minted`-Umgebung. Außerdem ist der Umgebung
+ein Kommentar vorangestellt. Mit Hilfe dieses Kommentars kann
+das NodeJS-Skript `lehramt-informatik.js` eine temporäre Datenbank
+mit dem Namen `name` erzeugen.
+
+```latex
+% Datenbankname: name
+\begin{minted}{sql}
+CREATE TABLE
+\end{minted}
+```
+
+Hier alle Aufgaben mit einer Übungsdatenbank:
+
+{{ stichwort "SQL mit Übungsdatenbank" }}
+
+Weitere Aufgaben zum Thema „SQL“:
 
 {{ stichwort "SQL" }}
 
