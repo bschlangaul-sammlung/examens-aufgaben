@@ -1,6 +1,6 @@
 import childProcess from 'child_process'
 import fs from 'fs'
-import path from 'path'
+import chalk from 'chalk'
 
 import { leseDatei } from '../helfer'
 
@@ -33,17 +33,24 @@ class TexDateiMitSql {
     return this.gibTemporärenPfad(`erzeugung`)
   }
 
+  private gibTemporärenLöschungsPfad(): string {
+    return this.gibTemporärenPfad(`loeschung`)
+  }
+
   private schreibeTemporäreSqlDatei(bezeichner: string, inhalt: string): void {
     fs.writeFileSync(`${this.pfad}_${bezeichner}_tmp.sql`, inhalt)
   }
 
   private führePostgresqlAus (datei: string) {
+    const pygmentize = childProcess.spawnSync('/usr/local/bin/pygmentize', ['-l', 'sql', datei], { encoding: 'utf-8' })
+    console.log(pygmentize.stdout)
     const prozess = childProcess.spawnSync('/usr/bin/sudo',
     [
       'PGPASSWORD=postgres',
       '-u', 'postgres',
       'psql',
-      '-f', path.resolve(datei)
+      '--quiet',
+      '-f', datei
     ], { shell: '/usr/bin/zsh', encoding: 'utf-8' })
     if (prozess.status !== 0) {
       console.log(prozess.stderr)
@@ -51,8 +58,6 @@ class TexDateiMitSql {
       throw new Error('Postgresql wurde mit einem Fehler beendet.')
     } else {
       console.log(prozess.stdout)
-      console.log(prozess.stderr)
-
     }
   }
 
@@ -60,9 +65,14 @@ class TexDateiMitSql {
     this.führePostgresqlAus(this.gibTemporärenErzeugungsPfad())
   }
 
+  private führeAnfrageAus(anfragenNummer: number): void {
+    console.log(chalk.red(`Anfrage Nummer ${anfragenNummer}:\n`))
+    this.führePostgresqlAus(this.gibTemporärenAnfragenPfad(anfragenNummer))
+  }
+
   führeAlleAnfragenAus () {
     for (let index = 1; index <= this.anzahlAnfragen; index++) {
-      this.führePostgresqlAus(this.gibTemporärenAnfragenPfad(index))
+      this.führeAnfrageAus(index)
     }
   }
 
@@ -87,14 +97,17 @@ class TexDateiMitSql {
     return datenbankName
   }
 
-  findeAnfragen () {
+  erzeugeLöschungsCode (): void {
+    this.schreibeTemporäreSqlDatei('loeschung', `DROP DATABASE IF EXISTS ${this.datenbankName};\n`)
+  }
+
+  findeAnfragen (): void {
     const re = /\\begin\{minted\}\{sql\}(.*?)\\end\{minted\}/gs
     let übereinstimmung
     let zähler = 0
     do {
       übereinstimmung = re.exec(this.inhalt)
       if (übereinstimmung) {
-        console.log(übereinstimmung[1])
         zähler++
         this.schreibeTemporäreSqlDatei(this.gibAnfrageBezeichner(zähler), `\\c ${this.datenbankName} \n` + übereinstimmung[1])
       }
@@ -102,15 +115,21 @@ class TexDateiMitSql {
     this.anzahlAnfragen = zähler
   }
 
+  aufräumen (): void {
+    this.erzeugeLöschungsCode()
+    this.führePostgresqlAus(this.gibTemporärenLöschungsPfad())
+    fs.unlinkSync(this.gibTemporärenErzeugungsPfad())
+    for (let index = 1; index <= this.anzahlAnfragen; index++) {
+      fs.unlinkSync(this.gibTemporärenAnfragenPfad(index))
+    }
+    fs.unlinkSync(this.gibTemporärenLöschungsPfad())
+  }
 }
 
-export function führeSqlAus (pfad: string) {
-
+export function führeSqlAus (pfad: string): void {
   const datei = new TexDateiMitSql(pfad)
   datei.findeAnfragen()
   datei.erzeugeDatenbank()
   datei.führeAlleAnfragenAus()
-
-  //childProcess.spawnSync('postgresql')
-
+  datei.aufräumen()
 }
