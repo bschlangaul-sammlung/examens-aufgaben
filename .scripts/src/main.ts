@@ -151,4 +151,54 @@ programm
     }
   })
 
+programm
+  .command('ungerade-loeschen')
+  .alias('u')
+  .description('Ungerade Seiten in einer PDF-Datei löschen.')
+  .action(function (): void {
+    // pdftk A=Scan.pdf cat Aodd output odd.pdf
+  })
+
+programm
+  .command('txt-exportieren <pdf-datei>')
+  .alias('t')
+  .description('TXT aus einer PDF-Datei exportieren.')
+  .action(function (datei: string): void {
+    if (datei.indexOf('.pdf') > -1) {
+      console.log(datei)
+      const txt = datei.replace('.pdf', '.txt')
+      if (!fs.existsSync(txt)) {
+        childProcess.spawnSync('pdftotext', [datei])
+      }
+    }
+  })
+
+programm
+  .command('ocr <pdf-datei>')
+  .alias('o')
+  .description('Texterkennung in einer PDF-Datei durchführen.')
+  .action(function (datei: string): void {
+    childProcess.spawnSync('ocrmypdf', [
+      '--deskew',
+      '--rotate-pages',
+      '-l', 'deu+eng',
+      '--sidecar', `${datei}`,
+      datei,
+      datei,
+    ])
+  })
+
+programm
+  .command('rotiere-pdf <pdf-datei>')
+  .alias('r')
+  .description('PDF-Datei rotieren.')
+  .action(function (datei: string): void {
+    childProcess.spawnSync('pdftk', [
+      datei,
+      'cat',
+      '1-endeast', 'output',
+      '--sidecar', `${datei}_rotated.pdf`
+    ])
+  })
+
 programm.parse(process.argv)

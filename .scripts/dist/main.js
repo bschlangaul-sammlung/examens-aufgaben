@@ -170,4 +170,52 @@ programm
         finally { if (e_2) throw e_2.error; }
     }
 });
+programm
+    .command('ungerade-loeschen')
+    .alias('u')
+    .description('Ungerade Seiten in einer PDF-Datei löschen.')
+    .action(function () {
+    // pdftk A=Scan.pdf cat Aodd output odd.pdf
+});
+programm
+    .command('txt-exportieren <pdf-datei>')
+    .alias('t')
+    .description('TXT aus einer PDF-Datei exportieren.')
+    .action(function (datei) {
+    if (datei.indexOf('.pdf') > -1) {
+        console.log(datei);
+        var txt = datei.replace('.pdf', '.txt');
+        if (!fs_1.default.existsSync(txt)) {
+            child_process_1.default.spawnSync('pdftotext', [datei]);
+        }
+    }
+});
+programm
+    .command('ocr <pdf-datei>')
+    .alias('o')
+    .description('Texterkennung in einer PDF-Datei durchführen.')
+    .action(function (datei) {
+    child_process_1.default.spawnSync('ocrmypdf', [
+        '--deskew',
+        '--rotate-pages',
+        '-l', 'deu+eng',
+        '--sidecar',
+        "" + datei,
+        datei,
+        datei,
+    ]);
+});
+programm
+    .command('rotiere-pdf <pdf-datei>')
+    .alias('r')
+    .description('Texterkennung in einer PDF-Datei durchführen.')
+    .action(function (datei) {
+    child_process_1.default.spawnSync('pdftk', [
+        datei,
+        'cat',
+        '1-endeast', 'output',
+        '--sidecar',
+        datei + "_rotated.pdf"
+    ]);
+});
 programm.parse(process.argv);

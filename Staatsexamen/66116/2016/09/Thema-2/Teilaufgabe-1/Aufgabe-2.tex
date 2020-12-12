@@ -78,7 +78,8 @@ INSERT INTO Person VALUES
   (2, 'Schüler Max', 'München', 'S'),
   (3, 'Schülerin Maria', 'München', 'S'),
   (4, 'Schülerin Eva', 'Starnberg', 'S'),
-  (5, 'Lehrerin Walter', 'München', 'L');
+  (5, 'Lehrerin Walter', 'München', 'L'),
+  (6, 'Schüler Karl', 'München', 'S');
 
 INSERT INTO Klasse VALUES
   ('1a', 2015, 1),
@@ -88,7 +89,9 @@ INSERT INTO Klasse VALUES
 INSERT INTO Klassenverband VALUES
   (2, '1a', 2015),
   (3, '1a', 2015),
-  (4, '1b', 2015);
+  (4, '1b', 2015),
+  (6, '1a', 2015),
+  (6, '1a', 2014);
 \end{minted}
 \index{SQL mit Übungsdatenbank}
 
@@ -216,10 +219,10 @@ bestimmt, die immer den gleichen Klassenlehrer hatten.\index{HAVING}
 SELECT s.Name
 FROM Person s, Klasse k, Klassenverband v
 WHERE
-  s.ID = v.Schueler AND
   v.Klassenbezeichnung = k.Klassenbezeichnung AND
-  v.Schuler = s.ID
-GROUP BY k.Klassenlehrer, v.Schueler
+  k.Schuljahr = v.Schuljahr AND
+  v.Schüler = s.ID
+GROUP BY s.ID, s.Name
 HAVING COUNT(*) = 1
 \end{minted}
 \end{antwort}
@@ -233,14 +236,13 @@ bestimmt, die mindestens einmal in der gleichen Klasse waren. Es genügt
 dabei, wenn Sie die ID der Schüler bestimmen.
 
 \begin{antwort}
-Ich habe Schuljahr zum joinen vergessen.
 \begin{minted}{sql}
 SELECT DISTINCT s1.ID, s2.ID
 FROM Klassenverband s1, Klassenverband s2
 WHERE
   s1.Schuljahr = s2.Schuljahr AND
   s1.Schueler <> s2.Schueler AND
-  s1.Klassenbezeichung = s2. Klassenbezeichnung;
+  s1.Klassenbezeichung = s2.Klassenbezeichnung;
 \end{minted}
 \end{antwort}
 
