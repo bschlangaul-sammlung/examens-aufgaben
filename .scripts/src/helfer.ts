@@ -51,7 +51,7 @@ export function generiereLink (text: string, pfad: string, dateiName: string, ei
     if (alsHtml) {
       const erweiterung = pfad.split('.').pop()
       dateiName = dateiName.replace(/\.[a-z]{3,5}$/, '')
-      return `<a href="${githubRawUrl}/${pfad}" download="${dateiName}.${erweiterung}">${text}</a>`
+      return `<a href="${githubRawUrl}/${pfad}" download="${dateiName}">${text}</a>`
     }
     return `[${text}](${githubRawUrl}/${pfad})`
   }
