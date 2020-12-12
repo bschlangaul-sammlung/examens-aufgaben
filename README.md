@@ -34,7 +34,7 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 - [Examen 66111 Frühjahr 1996 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/Aufgabe-2.pdf) (Entity-Relation-Modell, Verfeinertes Relationenmodell, SQL)
 - [Examen 66111 Herbst 1997 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/09/Aufgabe-3.pdf) (Entity-Relation-Modell, Relationenmodell)
 - [Examen 66116 Frühjahr 2016 T1 TA1 A1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.pdf) (Entity-Relation-Modell, Relationenmodell)
-- [Examen 66116 Frühjahr 2016 T1 TA1 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)
+- [„Polizei“ Examen 66116 Frühjahr 2016 T1 TA1 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)
 - [Examen 66116 Frühjahr 2018 T2 TA1 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) (Entity-Relation-Modell, Relationenmodell)
 - [Examen 66116 Herbst 2019 T1 TA2 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) (Entity-Relation-Modell)
 
@@ -67,7 +67,7 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 - [„Computer „Chiemsee““ Examen 46116 Frühjahr 2015 T1 TA2 A1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) (Relationale Algebra, SQL, GROUP BY, HAVING)
 - [Examen 46116 Herbst 2018 T2 TA2 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf) (Relationale Algebra)
 - [Examen 66111 Herbst 1996 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.pdf) (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)
-- [Examen 66116 Frühjahr 2016 T1 TA1 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)
+- [„Polizei“ Examen 66116 Frühjahr 2016 T1 TA1 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)
 - [„Vermischte Datenbank-Fragen“ Examen 66116 Herbst 2019 T2 TA2 A6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf) (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)
 
 #### Tupelkalkül
@@ -99,6 +99,7 @@ Hier alle Aufgaben mit einer Übungsdatenbank:
 - [„Bands“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Bands.pdf) (SQL, SQL mit Übungsdatenbank)
 - [„Kaufhaus“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus.pdf) (SQL, SQL mit Übungsdatenbank, Relationale Algebra)
 - [„Mitfahrgelegenheiten“ Examen 46116 Frühjahr 2014 T2 TA2 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf) (SQL, SQL mit Übungsdatenbank, GROUP BY, HAVING)
+- [„Mitarbeiterverwaltung“ Examen 66113 Frühjahr 2003 T1 A5](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Thema-1/Aufgabe-5.pdf) (SQL, SQL mit Übungsdatenbank)
 - [„Personalverwaltung“ Examen 66116 Herbst 2016 T1 TA1 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) (SQL, SQL mit Übungsdatenbank, VIEW, WITH, DELETE)
 - [„Formel-1-Rennen“ Examen 66116 Herbst 2019 T2 TA2 A7](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf) (SQL, SQL mit Übungsdatenbank)
 
@@ -118,9 +119,9 @@ Weitere Aufgaben zum Thema „SQL“:
 - [Examen 46116 Herbst 2018 T2 TA2 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf) (SQL, CREATE TABLE, INSERT, ALTER TABLE, UPDATE, DELETE, VIEW, GROUP BY, DROP TABLE)
 - [Examen 66111 Frühjahr 1996 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/Aufgabe-2.pdf) (Entity-Relation-Modell, Verfeinertes Relationenmodell, SQL)
 - [Examen 66111 Herbst 1996 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.pdf) (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)
-- [„Mitarbeiterverwaltung“ Examen 66113 Frühjahr 2003 T1 A5](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Thema-1/Aufgabe-5.pdf) (SQL)
+- [„Mitarbeiterverwaltung“ Examen 66113 Frühjahr 2003 T1 A5](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Thema-1/Aufgabe-5.pdf) (SQL, SQL mit Übungsdatenbank)
 - [„Universitätsverwaltung“ Examen 66113 Frühjahr 2003 T2 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Thema-2/Aufgabe-3.pdf) (SQL)
-- [Examen 66116 Frühjahr 2016 T1 TA1 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)
+- [„Polizei“ Examen 66116 Frühjahr 2016 T1 TA1 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) (Entity-Relation-Modell, Relationale Algebra, SQL, VIEW, WITH, UNION)
 - [„Personalverwaltung“ Examen 66116 Herbst 2016 T1 TA1 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) (SQL, SQL mit Übungsdatenbank, VIEW, WITH, DELETE)
 - [Examen 66116 Herbst 2016 T2 TA1 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) (SQL, CREATE TABLE, CONSTRAINT, ALTER TABLE, GROUP BY, HAVING)
 - [„Vermischte Datenbank-Fragen“ Examen 66116 Herbst 2019 T2 TA2 A6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf) (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)
@@ -548,7 +549,7 @@ OCR des oben genannten Scans:
 - 2002 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2002/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2002/09/OCR.txt) 
 - 2003 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/OCR.txt) 
     - Thema 1 
-        - [Aufgabe 5 (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Thema-1/Aufgabe-5.pdf) 
+        - [Aufgabe 5 (SQL, SQL mit Übungsdatenbank)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Thema-1/Aufgabe-5.pdf) 
     - Thema 2 
         - [Aufgabe 3 (SQL)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Thema-2/Aufgabe-3.pdf)
 - 2003 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/09/OCR.txt) 

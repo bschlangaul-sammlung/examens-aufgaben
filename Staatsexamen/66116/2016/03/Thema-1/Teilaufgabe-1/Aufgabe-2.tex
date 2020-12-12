@@ -1,6 +1,7 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{syntax,mathe}
 \begin{document}
+\liAufgabenTitel{Polizei}
 
 \section{Aufgabe 2
 \index{Entity-Relation-Modell}
@@ -24,6 +25,73 @@ Vorgesetzte: \{[\underline{PersNr}, PersNr, Vorgesetzter]\}
 }
 
 \bigskip
+
+% Datenbankname: polizei
+\begin{minted}{sql}
+CREATE TABLE Fall (
+  AkZ VARCHAR (30) PRIMARY KEY,
+  Titel VARCHAR (30),
+  Beschreibung VARCHAR (50),
+  Status VARCHAR (30)
+);
+
+CREATE TABLE Dienststelle (
+  DSID INTEGER PRIMARY KEY,
+  Name VARCHAR (50),
+  Strasse VARCHAR (30),
+  HausNr VARCHAR (30),
+  Stadt VARCHAR (30)
+);
+
+CREATE TABLE Polizist (
+  PersNr INTEGER Primary KEY,
+  DSID INTEGER REFERENCES Dienststelle(DSID),
+  Vorname VARCHAR (30),
+  Nachname VARCHAR (30),
+  Dienstgrad VARCHAR (30),
+  Gehalt INT
+);
+
+CREATE TABLE Arbeitet_An (
+  PersNr INTEGER References Polizist(PersNr),
+  AkZ VARCHAR (30) References Fall(AkZ),
+  Von DATE,
+  Bis DATE,
+  PRIMARY KEY (PersNr, AkZ)
+);
+
+CREATE TABLE Vorgesetzte (
+  PersNr INTEGER References Polizist(PersNr),
+  PersNr_Vorgesetzter INTEGER References Polizist(PersNr),
+  PRIMARY KEY (PersNr, PersNr_Vorgesetzter)
+);
+
+INSERT INTO Dienststelle VALUES
+  (10, 'Dienstelle München (Marienplatz)', NULL, NULL, 'München'),
+  (11, 'Dienststelle Nürnberg (Mitte)', NULL, NULL, 'Nürnberg'),
+  (12, 'Dieststelle Augsburg Ost', NULL, NULL, 'Augsburg');
+
+INSERT INTO Polizist VALUES
+  (1, 10, 'Hans', 'Müller', 'Polizeimeister', 40000),
+  (2, 11, 'Josef', 'Fischer', 'Polizeihauptmeister', 45000),
+  (3, 10, 'Andreas', 'Schmidt', 'Polizeikommisar', 50000),
+  (4, 12, 'Stefan', 'Hoffmann', 'Polizeidirektor', 70000),
+  (5, 11, 'Sebastian', 'Wagner', 'Polizeioberkommisar', 60000);
+
+INSERT INTO Fall VALUES
+  ('VR30932', 'Mord im Fussballstadion', 'Toter BVB-Fan', 'bearbeitet'),
+  ('XZ1508', 'Steuerhinterziehung', 'Durchsuchung eines Hauses', 'bearbeitet');
+
+INSERT INTO Arbeitet_An VALUES
+  (1, 'VR30932', '2012-02-15', '2012-04-12'),
+  (2, 'XZ1508', '2012-02-13', '2012-02-15');
+
+INSERT INTO Vorgesetzte VALUES
+  (1,3),
+  (1,4),
+  (2,5),
+  (2,4);
+\end{minted}
 
 \noindent
 Gegeben sei folgendes ER-Modell, welches Polizisten, deren Dienststelle
@@ -84,7 +152,7 @@ SELECT COUNT(*) AS Anzahl_Polizisten
 FROM Polizist p, Dienststelle d
 WHERE
   p.DSID = d.DSID AND
-  d.Name = 'München' AND
+  d.Stadt = 'München' AND
   p.Nachname = 'Schmidt';
 \end{minted}
 \end{antwort}
@@ -102,13 +170,13 @@ enthalten sind.
 \begin{antwort}
 \begin{minted}{sql}
 SELECT DISTINCT d.Name
-FROM Dienstelle d, Polizist p, Arbeitet_an a
+FROM Dienststelle d, Polizist p, Arbeitet_an a
 WHERE
   a.AkZ = 'XZ1508' AND
   p.PersNr = a.PersNr AND
   p.DSID = d.DSID AND
-  a.Von >= '14.02.2012' AND
-  a.Bis <= '14.02.2012' AND
+  a.Von >= '2012-02-14' AND
+  a.Bis <= '2012-02-14'
 ORDER BY d.Name ASC;
 \end{minted}
 \end{antwort}
@@ -125,14 +193,14 @@ durchschnittlich mehr als \emph{2500} Euro besoldet werden.
 \begin{antwort}
 \begin{minted}{sql}
 CREATE VIEW ErstrebenswerteDienstgrade AS (
-  SELECT DISTINCT d.Dienstgrad
+  SELECT DISTINCT p.Dienstgrad
   FROM Polizist p, Dienststelle d
   WHERE
     p.DSID = d.DSID AND
-    d.Dienststelle = 'München';
+    d.Stadt = 'München'
   GROUP BY Dienstgrad
-  HAVING (AVG(Gehalt) > 2500);
-)
+  HAVING (AVG(Gehalt) > 2500)
+);
 \end{minted}
 \end{antwort}
 
@@ -157,20 +225,20 @@ Hinweis: Sie dürfen Views verwenden, um Teilergebnisse auszudrücken.
 \begin{antwort}
 
 \begin{minted}{sql}
-WITH RECURSIVE meins (PersNr, VN, NN, DG, VN_VG, NN_VG, DG_VG)
-  SELECT PersNr, Vorname as VN, Nachname AS VN, Dienstgrad AS DG_VG
-  FROM Polizist p1, Fall f, Arbeitet_An a, Polizist p2
+WITH RECURSIVE meins (PersNr, VN, NN, DG, VN_VG, NN_VG, DG_VG) AS (
+SELECT p1.PersNr, p1.Vorname as VN, p1.Nachname AS VN, p1.Dienstgrad AS DG_VG
+  FROM Polizist p1, Fall f, Arbeitet_An a, Polizist p2, Vorgesetzte v
   WHERE
     p1.PersNr = a.PersNr AND
     a.AkZ = f.Akz AND
-    f.Titel CONTAINS "Fussball" AND
-    p1.Vorgesetzter = p2.PersNr
+    f.Titel LIKE '%Fussball%' AND
+    v.PersNr_Vorgesetzter = p2.PersNr
   UNION ALL
   SELECT m.PersNr, m.Vorname, m.Nachname, p.Vorname AS VN,
     p.Nachname AS VN, p.Dienstgrad AS DG_VG
   FROM meins m, Polizist p, Vorgesetzte v
-  WHERE m.PersNr = v.PersNr AND p.PersNr_Vorgesetzter = p.PersNr;
-
+  WHERE m.PersNr = v.PersNr AND p.PersNr_Vorgesetzter = p.PersNr
+)
 SELECT VN, NN, NN, DG, VN_DG, NN_VG, DG_VG
 FROM meins
 ORDER BY NN DESC;
@@ -178,65 +246,4 @@ ORDER BY NN DESC;
 \end{antwort}
 \end{enumerate}
 
-\begin{minted}{sql}
-CREATE TABLE Dienststelle(
-DSID INT PRIMARY KEY,
-Name VARCHAR (30),
-Strasse VARCHAR (30),
-HausNr VARCHAR (30),
-Stadt VARCHAR (30));
-
-INSERT INTO Dienststelle VALUES
-(10, 'Stadt Mitte', NULL, NULL, 'Muenchen'),
-(11, 'Stadt Mitte', NULL, NULL, 'Nuernberg'),
-(12, 'Stadt Mitte', NULL, NULL, 'Augsburg');
-
-CREATE TABLE Polizist(
-PersNr INT Primary KEY,
-DSID INT REFERENCES Dienststelle(DSID),
-Vorname VARCHAR (30),
-Nachname VARCHAR (30),
-Dienstgrad VARCHAR (30),
-Gehalt INT);
-
-INSERT INTO Polizist
-VALUES
-(1, 10, 'Hans', 'Müller', 'Polizeimeister', 40000),
-(2, 11, 'Josef', 'Fischer', 'Polizeihauptmeister', 45000),
-(3, 10, 'Andreas', 'Schmidt', 'Polizeikommisar', 50000),
-(4, 12, 'Stefan', 'Hoffmann', 'Polizeidirektor', 70000),
-(5, 11, 'Sebastian', 'Wagner', 'Polizeioberkommisar', 60000);
-
-CREATE TABLE Fall(
-AkZ VARCHAR (30) PRIMARY KEY,
-Titel VARCHAR (30),
-Beschreibung VARCHAR (50),
-Status VARCHAR (30));
-
-INSERT INTO Fall
-VALUES
-('VR30932', 'Mord im Fussballstadion', 'Toter BVB-Fan', 'bearbeitet');
-
-CREATE TABLE Arbeitet_An(
-PersNr INT References Polizist(PersNr),
-AkZ VARCHAR (30) References Fall(AkZ),
-Von DATE,
-Bis DATE,
-PRIMARY KEY (PersNr, AkZ));
-
-INSERT INTO Arbeitet_An VALUES
-(1, 'VR30932', '2012-02-15', '2012-04-12'),
-(2, 'VR30932', '2012-02-15', '2012-04-12');
-
-CREATE TABLE Vorgesetzte(
-PersNr INT References Polizist(PersNr),
-PersNr_Vorgesetzter INT References Polizist(PersNr),
-PRIMARY KEY (PersNr, PersNr_Vorgesetzter));
-
-INSERT INTO Vorgesetzte VALUES
-(1,3),
-(1,4),
-(2,5),
-(2,4);
-\end{minted}
 \end{document}
