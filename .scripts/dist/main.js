@@ -138,6 +138,7 @@ programm
     .alias('c')
     .description('Öffne die mit glob spezifizierten Dateien in Visual Studio Code')
     .option('-n, --kein-index', 'Öffne nur die Dateien, die keinen Index haben.')
+    .option('-t, --kein-titel', 'Öffne nur die Dateien, die keinen Titel haben. \\liAufgabenTitel{}.')
     .action(function (globMuster, cmdObj) {
     var e_2, _a;
     function öffneMitAusgabe(pfad) {
@@ -152,10 +153,11 @@ programm
         for (var dateien_2 = __values(dateien), dateien_2_1 = dateien_2.next(); !dateien_2_1.done; dateien_2_1 = dateien_2.next()) {
             var dateiPfad = dateien_2_1.value;
             dateiPfad = path_1.default.resolve(dateiPfad);
-            if (cmdObj.keinindex) {
+            if (cmdObj.keinIndex || cmdObj.keinTitel) {
                 var aufgabe = new aufgabe_1.Aufgabe(dateiPfad);
-                if (aufgabe.stichwörter.length == 0)
+                if ((cmdObj.keinIndex && aufgabe.stichwörter.length == 0) || (cmdObj.keinTitel && !aufgabe.titel)) {
                     öffneMitAusgabe(dateiPfad);
+                }
             }
             else {
                 öffneMitAusgabe(dateiPfad);

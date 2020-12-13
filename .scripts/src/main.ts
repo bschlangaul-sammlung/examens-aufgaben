@@ -130,6 +130,8 @@ programm
   .alias('c')
   .description('Öffne die mit glob spezifizierten Dateien in Visual Studio Code')
   .option('-n, --kein-index', 'Öffne nur die Dateien, die keinen Index haben.')
+  .option('-t, --kein-titel', 'Öffne nur die Dateien, die keinen Titel haben. \\liAufgabenTitel{}.')
+
   .action(function (globMuster: string, cmdObj: { [schlüssel: string]: any }): void {
     function öffneMitAusgabe (pfad: string) {
       console.log(pfad)
@@ -142,9 +144,11 @@ programm
     const dateien = glob.sync(globMuster)
     for (let dateiPfad of dateien) {
       dateiPfad = path.resolve(dateiPfad)
-      if (cmdObj.keinindex) {
+      if (cmdObj.keinIndex || cmdObj.keinTitel) {
         const aufgabe = new Aufgabe(dateiPfad)
-        if (aufgabe.stichwörter.length == 0) öffneMitAusgabe(dateiPfad)
+        if ((cmdObj.keinIndex && aufgabe.stichwörter.length == 0) || (cmdObj.keinTitel && !aufgabe.titel)) {
+          öffneMitAusgabe(dateiPfad)
+        }
       } else {
         öffneMitAusgabe(dateiPfad)
       }

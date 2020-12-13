@@ -87,6 +87,36 @@ Weitere Aufgaben zum Thema „SQL“:
 
 {{ stichwort "Sortieralgorithmen" }}
 
+## Softwaresysteme (SOSY)
+
+### Projektmanagement
+
+{{ stichwort "Projektmanagement" }}
+
+### Modellierung
+
+#### UML-Diagramme
+
+{{ stichwort "UML-Diagramme" }}
+
+### Entwurfsmuster
+
+{{ stichwort "Entwurfsmuster" }}
+
+### Projektplanung
+
+{{ stichwort "Projektplanung" }}
+
+### Softwarearchitektur
+
+{{ stichwort "Softwarearchitektur" }}
+
+### Testen
+
+{{ stichwort "Testen" }}
+
+
+
 # Aufgaben geordnet nach Staatsexamen
 
 In diesem Repository findet Ihr viele Staatsexamensaufgaben. Von fast
