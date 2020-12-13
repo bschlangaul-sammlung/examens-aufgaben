@@ -186,8 +186,9 @@ Attributhülle
 Makros und Umgebungen zum Setzen des Relationenmodells beim Thema
 Datenbanken.
 
-* Makro: `\liPrimaer{}`: Unterstreichung für den Primärschlüssel
-* Makro: `\liFremd{}`: Überstreichung für den Fremdschlüssel
+* Makro: `\liPrimaer{text}`: Unterstreichung für den Primärschlüssel
+* Makro: `\liFremd{text}`: Überstreichung für den Fremdschlüssel
+* Makro: `\liAttribut{text}`: Gleiche Schrift wie Umgebung `liRmodell`
 * Umgebung: `\begin{liRmodell} \end{liRmodell}`: Kleinere Schrift und Schreibmaschinenschrift.
 
 ### `syntax.sty`

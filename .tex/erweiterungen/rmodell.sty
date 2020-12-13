@@ -8,17 +8,26 @@ Datenbanken.]
 
 \def\liFremd#1{{\setul{-0.9em}{}\ul{#1}}}
 
+\def\li@Rmodell@Schrift{\footnotesize\ttfamily}
+
 \ExplSyntaxOn
 \NewDocumentEnvironment { liRmodell }
 { +b }
 {
-  \bigskip
+  \medskip
   {
     \setlength{\parindent}{0pt}
-    \footnotesize
-    \ttfamily
-    #1
+    \li@Rmodell@Schrift#1
+
   }
-  \bigskip
+  \medskip
 } {}
 \ExplSyntaxOff
+
+\def\liRelation#1#2{
+\noindent
+#1 : \{[ #2 ]\}
+\par
+}
+
+\def\liAttribut#1{{\li@Rmodell@Schrift#1}}

@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{er}
 \begin{document}
 \liAufgabenTitel{Krankenhaus}
 
@@ -9,5 +9,68 @@
 
 Überführen Sie folgendes ER-Diagramm in ein (verfeinertes)
 Relationenschema!
+
+\begin{tikzpicture}[nearer]
+\node[entity] (Station) {Station};
+\node[attribute,above left=0.5cm of Station] {\key{Nr}}
+  edge (Station.west);
+\node[attribute,left=0.5cm of Station] {Name}
+  edge (Station.west);
+\node[attribute,below left=0.5cm of Station] {Bettenanzahl}
+  edge (Station.west);
+
+\node[relationship,above right=of Station] (leitet) {leitet}
+  edge node[auto]{(1,1)} (Station);
+
+\node[relationship,below right=of Station] (arbeitetAuf) {arbeitetAuf}
+  edge node[auto]{(1,n)} (Station);
+
+\node[entity,far,right=of Station] (Arzt) {Arzt}
+  edge node[auto]{(0,1)} (leitet)
+  edge node[auto]{(1,1)} (arbeitetAuf);
+  \node[attribute,above right=0.5cm of Arzt] {\key{PersNr}}
+    edge (Arzt.east);
+  \node[attribute,right=0.5cm of Arzt] {Name}
+    edge (Arzt.east);
+  \node[attribute,below right=0.5cm of Arzt] {Fachrichtung}
+    edge (Arzt.east);
+
+\node[relationship,below=of Station] (liegtAuf) {liegtAuf}
+  edge node[auto]{(0,*)} (Station);
+
+\node[entity,below=1cm of liegtAuf] (Patient) {Patient}
+  edge node[auto]{(1,1)} (liegtAuf);
+  \node[attribute,above left=0.5cm of Patient] {\key{PatNr}}
+    edge (Patient.west);
+  \node[attribute,left=0.5cm of Patient] {Name}
+    edge (Patient.west);
+  \node[attribute,below left=0.5cm of Patient] {Adresse}
+    edge (Patient.west);
+  \node[attribute,below=1cm of Patient,text width=2cm,align=center] {Kranken\-versicherung}
+    edge (Patient);
+
+\node[relationship,below=of Arzt] (behandelt) {behandelt}
+  edge node[auto,swap]{(0,*)} (Arzt)
+  edge node[auto,swap]{(1,*)} (Patient);
+
+\node[entity,far,below=1cm of behandelt] (Behandlung) {Behandlung}
+  edge node[auto]{(0,*)} (behandelt);
+  \node[attribute,above right=0.5cm of Behandlung] {\key{Code}}
+    edge (Behandlung.east);
+  \node[attribute,right=0.5cm of Behandlung] {Name}
+    edge (Behandlung.east);
+  \node[attribute,below right=0.5cm of Behandlung] {Leistungspunkte}
+    edge (Behandlung.east);
+
+\node[relationship,below left=0.8cm of Behandlung] (benötigt) {benötigt}
+  edge node[auto]{(0,*)} (Behandlung);
+
+\node[entity,far,below=1.5cm of Behandlung] (Gerät) {Gerät}
+  edge node[auto]{(1,*)} (benötigt);
+  \node[attribute,right=0.5cm of Gerät] {\key{Typ}}
+    edge (Gerät);
+  \node[attribute,below=0.5cm of Gerät] {Einsatzkosten}
+    edge (Gerät);
+\end{tikzpicture}
 
 \end{document}

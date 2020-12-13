@@ -1,0 +1,99 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{er,rmodell}
+\begin{document}
+\liAufgabenTitel{Tutor}
+
+\section{
+\index{Relationenmodell}
+Aufgabe zum Relationenmodell
+\footcite[Aufgabe 5: ER-Tutor]{db:ab:1}}
+
+\begin{center}
+\begin{tikzpicture}[er2]
+\node[entity] (kurs) {Kurs};
+\node[attribute,far,left of=kurs] {Kursname} edge(kurs);
+\node[attribute,right of=kurs] {KursNr} edge(kurs);
+
+\node[relationship,below of=kurs,node distance=6em] (betreut) {betreut} edge node[auto] {1} (kurs);
+\node[attribute,far,left of=betreut]{Sprechstunde} edge(betreut);
+
+\node[entity,below of=betreut,node distance=6em] (tutor) {Tutor} edge node[auto] {1} (betreut);
+\node[attribute,left of=tutor] {PersNr} edge(tutor);
+\node[attribute,right of=tutor] {Büro} edge(tutor);
+\node[attribute,below of=tutor,node distance=4em] {Name} edge(tutor);
+\end{tikzpicture}
+\end{center}
+
+Beim obenstehenden ER-Modell gilt:
+
+\begin{itemize}
+\item Ein Tutor kann durch seine Personalnummer oder durch die
+Kombination aus Name und Büro(-nummer) identifiziert werden.
+
+\item Bei den Kursen ist sowohl Kursname als auch Kursnummer eindeutig.
+\end{itemize}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Überführen Sie die Entity-Typen Kurs und Tutor in entsprechende
+Relationen. Legen Sie für jede der Relationen einen Primärschlüssel
+fest.
+
+\begin{antwort}
+\begin{liRmodell}
+\liRelation{Kurs}{\liPrimaer{KursNr}, Kursname}
+
+\liRelation{Tutor}{\liPrimaer{PersNr}, Name, Buero}
+\end{liRmodell}
+
+bzw.
+
+\begin{liRmodell}
+\liRelation{Kurs}{KursNr, \liPrimaer{Kursname}}
+
+\liRelation{Tutor}{PersNr, \liPrimaer{Name, Buero}}
+\end{liRmodell}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Für die Konvertierung des Relationship-Typen betreut gibt es –
+unabhängig von den gewählten Primärschlüsseln in Aufgabe a – mehrere
+Möglichkeiten. Geben Sie alle möglichen Relationen (mit Festlegung des
+Primärschlüssels) an.
+
+\begin{antwort}
+Bei der Konvertierung des Relationship-Typ betreut enthält die
+ent\-sprech\-ende Relation jeweils einen Schlüsselkandidaten der
+Relationen Kurs und Tutor. Aufgrund der Aufgabenstellung besitzen beide
+Relationen zwei Schlüsselkandidaten
+
+\begin{itemize}
+\item Kurs: \liPrimaer{KursNr} und \liPrimaer{Kursname}
+\item Tutor: \liPrimaer{PersNr} und \liPrimaer{Name, Büro}
+\end{itemize}
+
+Da es sich um eine 1:1-Beziehung handelt, sind die ausgewählten
+Schlüsselkandidaten gleichzeitig Schlüsselkandidaten von betreut. Einer
+der beiden wird als Primärschlüssel ausgewählt. Es gibt folglich acht
+mögliche Relationen:
+
+\begin{liRmodell}
+\liRelation{betreut}{\liPrimaer{PersNr}, KursNr, Sprechstunde)}
+\liRelation{betreut}{PersNr, \liPrimaer{KursNr}, Sprechstunde)}
+\liRelation{betreut}{\liPrimaer{PersNr}, Kursname, Sprechstunde)}
+\liRelation{betreut}{PersNr, \liPrimaer{Kursname}, Sprechstunde)}
+\liRelation{betreut}{\liPrimaer{Name, Büro}, KursNr, Sprechstunde)}
+\liRelation{betreut}{Name, Büro, \liPrimaer{KursNr}, Sprechstunde)}
+\liRelation{betreut}{\liPrimaer{Name, Büro}, Kursname, Sprechstunde)}
+\liRelation{betreut}{Name, Büro, \liPrimaer{Kursname}, Sprechstunde)}
+\end{liRmodell}
+\end{antwort}
+\end{enumerate}
+\end{document}

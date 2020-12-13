@@ -45,7 +45,9 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/10_Relationenmodell/Aufgabe_Bus-Unternehmen.pdf" download="Aufgabe_Bus-Unternehmen">„Bus-Unternehmen“</a> (Relationenmodell)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/10_Relationenmodell/Aufgabe_Fahrzeug.pdf" download="Aufgabe_Fahrzeug">„Fahrzeug“</a> (IS-A, Relationenmodell)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/10_Relationenmodell/Aufgabe_Krankenhaus.pdf" download="Aufgabe_Krankenhaus">„Krankenhaus“</a> (Verfeinertes Relationenmodell)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/10_Relationenmodell/Aufgabe_Mitarbeiter-Projekte.pdf" download="Aufgabe_Mitarbeiter-Projekte">„Mitarbeiter-Projekte einer Abteilung“</a> (Relationenmodell, Verfeinertes Relationenmodell)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/10_Relationenmodell/Aufgabe_Suesse-Produktion.pdf" download="Aufgabe_Suesse-Produktion">„Süße Produktion“</a> (Relationenmodell, Kartesisches Produkt)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/10_Relationenmodell/Aufgabe_Tutor.pdf" download="Aufgabe_Tutor">„Tutor“</a> (Relationenmodell)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46116-2013-Frühjahr_T1-TA2-A1">„Rennstall“ Examen 46116 Frühjahr 2013 T1 TA2 A1</a> (Entity-Relation-Modell, Relationenmodell)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2015-Frühjahr_T1-TA2-A3">„Konsulat“ Examen 46116 Frühjahr 2015 T1 TA2 A3</a> (Entity-Relation-Modell, Relationenmodell)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_46116-2018-Herbst_T2-TA2-A5">Examen 46116 Herbst 2018 T2 TA2 A5</a> (Entity-Relation-Modell, Relationenmodell)
@@ -1050,8 +1052,9 @@ Attributhülle
 Makros und Umgebungen zum Setzen des Relationenmodells beim Thema
 Datenbanken.
 
-* Makro: `\liPrimaer{}`: Unterstreichung für den Primärschlüssel
-* Makro: `\liFremd{}`: Überstreichung für den Fremdschlüssel
+* Makro: `\liPrimaer{text}`: Unterstreichung für den Primärschlüssel
+* Makro: `\liFremd{text}`: Überstreichung für den Fremdschlüssel
+* Makro: `\liAttribut{text}`: Gleiche Schrift wie Umgebung `liRmodell`
 * Umgebung: `\begin{liRmodell} \end{liRmodell}`: Kleinere Schrift und Schreibmaschinenschrift.
 
 ### `syntax.sty`
