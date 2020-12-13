@@ -42,14 +42,16 @@ class TexDateiMitSql {
   }
 
   private führePostgresqlAus (datei: string, redselig: boolean = true) {
-    const pygmentize = childProcess.spawnSync('/usr/local/bin/pygmentize', ['-l', 'sql', datei], { encoding: 'utf-8' })
+    const pygmentize = childProcess.spawnSync('pygmentize', ['-l', 'sql', datei], { encoding: 'utf-8' })
     if (redselig) console.log(pygmentize.stdout)
-    const prozess = childProcess.spawnSync('/usr/bin/psql',
+    const prozess = childProcess.spawnSync('sudo',
     [
+      '-u', 'postgres',
+      'psql',
       '--quiet',
       '-f', datei,
       '-v', 'ON_ERROR_STOP=1',
-    ], {  encoding: 'utf-8', env: { PGPASSWORD: 'postgresql' }, uid: 137, gid: 146 })
+    ], { encoding: 'utf-8', env: { PGPASSWORD: 'postgres' }, shell: '/usr/bin/zsh' })
     if (prozess.status !== 0) {
       console.log(prozess.stderr)
       console.log(prozess.stdout)
@@ -133,6 +135,7 @@ export function führeSqlAus (pfad: string, cmdObj: { [optionen: string]: any })
   } else {
     datei.führeAlleAnfragenAus()
   }
-
-  datei.aufräumen()
+  if (!cmdObj.nichtLoeschen) {
+    datei.aufräumen()
+  }
 }

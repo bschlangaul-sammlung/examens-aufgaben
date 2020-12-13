@@ -36,14 +36,16 @@ var TexDateiMitSql = /** @class */ (function () {
     };
     TexDateiMitSql.prototype.führePostgresqlAus = function (datei, redselig) {
         if (redselig === void 0) { redselig = true; }
-        var pygmentize = child_process_1.default.spawnSync('/usr/local/bin/pygmentize', ['-l', 'sql', datei], { encoding: 'utf-8' });
+        var pygmentize = child_process_1.default.spawnSync('pygmentize', ['-l', 'sql', datei], { encoding: 'utf-8' });
         if (redselig)
             console.log(pygmentize.stdout);
-        var prozess = child_process_1.default.spawnSync('/usr/bin/psql', [
+        var prozess = child_process_1.default.spawnSync('sudo', [
+            '-u', 'postgres',
+            'psql',
             '--quiet',
             '-f', datei,
             '-v', 'ON_ERROR_STOP=1',
-        ], { encoding: 'utf-8', env: { PGPASSWORD: 'postgresql' }, uid: 137, gid: 146 });
+        ], { encoding: 'utf-8', env: { PGPASSWORD: 'postgres' }, shell: '/usr/bin/zsh' });
         if (prozess.status !== 0) {
             console.log(prozess.stderr);
             console.log(prozess.stdout);
@@ -121,6 +123,8 @@ function führeSqlAus(pfad, cmdObj) {
     else {
         datei.führeAlleAnfragenAus();
     }
-    datei.aufräumen();
+    if (!cmdObj.nichtLoeschen) {
+        datei.aufräumen();
+    }
 }
 exports.führeSqlAus = führeSqlAus;

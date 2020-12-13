@@ -1,12 +1,13 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{syntax,rmodell}
 \begin{document}
+\liAufgabenTitel{Universitätsdatenbank}
 
 \section{Aufgabe 2
 \index{Entity-Relation-Modell}
 \footcite[Aufgabe 2]{examen:66111:1996:03}}
 
-Eine Universitätsdatenbanksoil folgendeDaten verwalten.
+Eine Universitätsdatenbank soll folgende Daten verwalten.
 
 \begin{itemize}
 \item Studenten (Name, Matrikelnummer, Geburtsdatum, Adressen,
@@ -27,7 +28,7 @@ Unterrichtseinheitenaufgeteiiot werden kann (r.8. Mo 10.00 und Do
 \item SpezifizierenSie für die Entity-TypenAttributg und zeichnen Sie
 die Schlüsselanribtrteausl
 
-\item Geben Sie ein relationalesDatenbankschemaanl
+\item Geben Sie ein relationales Datenbankschema anl
 \end{enumerate}
 
 Gegeben ist das folgende (sehr ausführliche) ER-Modell.
@@ -39,37 +40,7 @@ Gegeben ist das folgende (sehr ausführliche) ER-Modell.
 DB-Schema!\index{Verfeinertes Relationenmodell} Geben Sie geeignete
 Domänen an.
 
-\begin{antwort}[falsch]
-\texttt{ist\_zugeordnet} muss auch aufgelöst
-werden. Falsche Notation von Fremdschlüsseln: eckige Klammern
-verwerden[].
-
-\ttfamily
-\footnotesize
-Durchführung(\liPrimaer{Zeit:DATE, RaumNr:INT}, \liFremd{Nr:INT})\\
-
-Lehrveranstaltung(\liPrimaer{Nr:INT}, Name:VARCHAR(20), SWS:INT,
-Semester:INT, Art:VARCHAR(20), \liFremd{PersNr:INT})\\
-
-Dozent(\liPrimaer{PersNr:INT}, Name:VARCHR(20),
-\liFremd{FakName:VARCHAR(40)})\\
-
-Fakultät(\liPrimaer{Name:VARCHAR(40)})\\
-
-Student(\liPrimaer{MatrNr:INT}, Name:VARCHAR(40), Geburtsdatum:DATE,
-Semesteranzahl:INT)\\
-
-Adresse(\liPrimaer{Adresse:VARCHAR(100)})\\
-
-belegt(\liFremd{Nr:INT, MatrNr:INT})\\
-
-besitzt(\liFremd{Adresse:VARCHAR(100), MatrNr:INT})\\
-
-ist\_zugeordnet(Studiengang:VARCHAR(40), \liFremd{MatrNr:INT,
-FakName:VARCHAR(40)})\\
-\end{antwort}
-
-\begin{antwort}[muster]
+\begin{antwort}
 \ttfamily
 \footnotesize
 Dozent(\liPrimaer{PersNr:INT}, Name:VARCHAR(20),
@@ -107,7 +78,8 @@ SQL-Befehle an.
 \item Die Tabellenschemata von \texttt{Student} und \texttt{besitzt}
 sollen erzeugt werden.
 
-\begin{antwort}[muster]
+\begin{antwort}
+% Datenbankname: universitaetsdatenbank
 \begin{minted}{sql}
 CREATE TABLE Fakultaet (
   Name VARCHAR(20) PRIMARY KEY
@@ -134,6 +106,9 @@ CREATE TABLE besitzt (
   FOREIGN KEY (Adresse) REFERENCES Adresse(Adresse),
   FOREIGN KEY (MatrNr) REFERENCES Student(MatrNr)
 );
+
+INSERT INTO Adresse VALUES ('Kaulbacherstraße 3');
+
 \end{minted}
 \end{antwort}
 
@@ -143,7 +118,7 @@ vorgenommen:
 \begin{itemize}
 \item Es soll ein weiteres Attribut Vorname hinzugefügt werden.
 
-\begin{antwort}[muster]
+\begin{antwort}
 \begin{minted}{sql}
 ALTER TABLE Student ADD COLUMN Vorname VARCHAR(20);
 \end{minted}
@@ -153,7 +128,7 @@ ALTER TABLE Student ADD COLUMN Vorname VARCHAR(20);
 kleiner als 15 sein muss.
 \end{itemize}
 
-\begin{antwort}[muster]
+\begin{antwort}
 \begin{minted}{sql}
 ALTER TABLE Student ADD CHECK (Semesteranzahl < 15);
 \end{minted}
