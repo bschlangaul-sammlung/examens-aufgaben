@@ -1,0 +1,122 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Fluginformationssystem}
+\section{6. Relationale Anfragen in SQL
+\index{SQL}
+\footcite{66116:2017:09}}
+
+Folgende Tabellen veranschaulichen eine Ausprägung eines Fluginformationssystems:
+
+\liPseudoUeberschrift{Flughäfen}
+
+\begin{tabular}{lll}
+Code &
+Stadt &
+Transferzeit (min)\\
+
+LHR &
+London &
+30\\
+
+LGW &
+London &
+20\\
+
+JFK &
+New York City &
+60\\
+
+EWR &
+New York City &
+35\\
+
+MUC &
+München &
+30\\
+
+FRA &
+Frankfurt &
+45\\
+
+\end{tabular}
+
+\liPseudoUeberschrift{Verbindungen}
+
+\begin{tabular}{llllll}
+ID &
+Von &
+Nach &
+Linie &
+Abflug (MEZ) &
+Ankunft (MEZ)\\
+
+410 &
+MUC &
+FRA &
+LH &
+2016-02-24 07:00:00 &
+2016-02-24 08:10:00\\
+
+411 &
+MUC &
+FRA &
+LH &
+2016-02-24 08:00:00 &
+2016-02-24 09:10:00\\
+
+412 &
+FRA &
+JFK &
+LH &
+2016-02-24 10:50:00 &
+2016-02-24 19:50:00\\
+\end{tabular}
+
+\liPseudoUeberschrift{Hinweise}
+
+\begin{itemize}
+\item Formulieren Sie alle Abfragen in SQL-92 (insbesondere sind
+LIMIT, TOP, FETCH FIRST, ROWNUM und dergleichen nicht erlaubt).
+
+\item Alle Datum/Zeit-Angaben erlauben arithmetische Operationen,
+beispielsweise wird bei der Operation \texttt{ankunf} +
+\texttt{transferzeit} die \texttt{transferzeit} auf den Zeitstempel
+\texttt{ankunft} addiert.
+
+\item Es müssen keine Zeitverschiebungen berücksichtigt werden. Alle
+Zeitstempel sind in MEZ.
+
+\end{itemize}
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Ermitteln Sie die Städte, in denen es mehr als einen Flughafen
+gibt.
+
+%%
+% 2.
+%%
+
+\item Ermitteln Sie die Städte,in denen man mit der Linie „LH" an
+mind.zwei verschiedenen Flughäfen landen kann.
+
+%%
+% 3.
+%%
+
+\item Ermitteln Sie die Flugzeit des kürzesten Direktflugs von München
+nach London.
+
+%%
+% 4.
+%%
+
+\item Ermitteln Sie die kürzeste Roundtrip-Zeit(nur Direktflüge)zwischen
+den Flughäfen FRA und JFK (Transferzeit am Flughafen JFK beachten).
+\end{enumerate}
+\end{document}

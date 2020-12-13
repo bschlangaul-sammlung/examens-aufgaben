@@ -47,9 +47,9 @@ var TexDateiMitSql = /** @class */ (function () {
             '-v', 'ON_ERROR_STOP=1',
         ], { encoding: 'utf-8', env: { PGPASSWORD: 'postgres' }, shell: '/usr/bin/zsh' });
         if (prozess.status !== 0) {
-            console.log(prozess.stderr);
-            console.log(prozess.stdout);
-            throw new Error('Postgresql wurde mit einem Fehler beendet.');
+            console.log(chalk_1.default.red(prozess.stderr));
+            console.log(chalk_1.default.red(prozess.stdout));
+            //throw new Error('Postgresql wurde mit einem Fehler beendet.')
         }
         else {
             if (redselig)

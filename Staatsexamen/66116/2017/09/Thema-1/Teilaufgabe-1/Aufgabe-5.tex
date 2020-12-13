@@ -1,0 +1,111 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{SQL-Syntax-Überprüfung}
+\section{5. Schemadefinition
+\index{SQL}
+\footcite{66116:2017:09}}
+
+Gegeben ist die folgende Definition zweier Tabellen:
+
+% Datenbankname: r
+\begin{minted}{sql}
+CREATE TABLE R2 (
+  b integer not null,
+  c integer unique,
+  primary key (b)
+);
+
+CREATE TABLE R1 (
+  a integer not null,
+  b integer references R2,
+  primary key (a)
+);
+\end{minted}
+\index{CREATE TABLE}
+
+Geben Sie jeweils an, ob das Statement syntaktisch korrekt ist und ob es
+von der gegebenen Datenbank ausgeführt werden kann.
+
+Beantworten Sie jede der folgenden Fragen unabhängig von allen anderen,
+d.\,h. es liegt immer das hier gezeigte Schema vor undd alle Relationen
+sind leer.
+
+\begin{enumerate}
+\item
+
+\begin{minted}{sql}
+DELETE FROM R1;
+\end{minted}
+\index{DELETE}
+
+\begin{antwort}
+korrekt
+\end{antwort}
+
+\item
+
+\begin{minted}{sql}
+INSERT INTO R2 VALUES (1,1);
+INSERT INTO R1 VALUES (1,1);
+INSERT INTO R1 VALUES (2,1);
+INSERT INTO R1 VALUES (3,1);
+\end{minted}
+\index{INSERT}
+
+\begin{antwort}
+korrekt
+\end{antwort}
+
+\item \strut
+
+\begin{minted}{sql}
+INSERT INTO R2 VALUES (1,1);
+INSERT INTO R2 VALUES (2,2);
+INSERT INTO R1 VALUES (1,1);
+DELETE FROM R2 WHERE b=a;
+\end{minted}
+
+\begin{antwort}
+falsch: Fehlermeldung \texttt{column "a" does not exist}
+
+\begin{minted}{sql}
+INSERT INTO R2 VALUES (1,1);
+INSERT INTO R2 VALUES (2,2);
+INSERT INTO R1 VALUES (1,1);
+-- Wir löschen von R1 weil R2 auf R1 referenziert
+-- b kann nur mit Integer verglichen werden.
+DELETE FROM R1 WHERE b=1;
+\end{minted}
+\end{antwort}
+
+\item \strut
+
+\begin{minted}{sql}
+INSERT INTO R1 SELECT * FROM R1;
+\end{minted}
+
+\begin{antwort}
+korrekt
+\end{antwort}
+
+\item \strut
+
+\begin{minted}{sql}
+DROP TABLE R2 FROM DATABASE;
+\end{minted}
+\index{DROP TABLE}
+
+\begin{antwort}
+falsch: Fehlermeldung \texttt{ERROR:  syntax error at or near "FROM"}
+
+Müsste so lauten:
+
+\begin{minted}{sql}
+-- Zuerst R1 löschen, wegen der Referenz
+DROP TABLE R1;
+DROP TABLE R2;
+\end{minted}
+\end{antwort}
+\end{enumerate}
+\end{document}
