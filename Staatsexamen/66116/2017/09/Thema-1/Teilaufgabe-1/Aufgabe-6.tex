@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{syntax}
 \begin{document}
 \liAufgabenTitel{Fluginformationssystem}
 \section{6. Relationale Anfragen in SQL
@@ -38,7 +38,6 @@ München &
 FRA &
 Frankfurt &
 45\\
-
 \end{tabular}
 
 \liPseudoUeberschrift{Verbindungen}
@@ -70,7 +69,7 @@ FRA &
 JFK &
 LH &
 2016-02-24 10:50:00 &
-2016-02-24 19:50:00\\
+2016-02-24 19:50:00 \\
 \end{tabular}
 
 \liPseudoUeberschrift{Hinweise}
@@ -86,8 +85,42 @@ beispielsweise wird bei der Operation \texttt{ankunf} +
 
 \item Es müssen keine Zeitverschiebungen berücksichtigt werden. Alle
 Zeitstempel sind in MEZ.
-
 \end{itemize}
+
+% Datenbankname: fluginformationssystem
+\begin{minted}{sql}
+CREATE TABLE Flughaefen (
+  Code varchar(3) PRIMARY KEY,
+  Stadt varchar(20),
+  Transferzeit integer
+);
+
+CREATE TABLE Verbindungen (
+  ID integer PRIMARY KEY,
+  Von varchar(3) REFERENCES Flughaefen(Code),
+  Nach varchar(3) REFERENCES Flughaefen(Code),
+  Linie varchar(20),
+  Abflug timestamp,
+  Ankunft timestamp
+);
+
+INSERT INTO Flughaefen VALUES
+  ('LHR', 'London', 30),
+  ('LGW', 'London', 20),
+  ('JFK', 'New York City', 60),
+  ('EWR', 'New York City', 35),
+  ('MUC', 'München', 30),
+  ('FRA', 'Frankfurt', 45);
+
+INSERT INTO Verbindungen VALUES
+  (410, 'MUC', 'FRA', 'LH', '2016-02-24 07:00:00', '2016-02-24 08:10:00'),
+  (411, 'MUC', 'FRA', 'LH', '2016-02-24 08:00:00', '2016-02-24 09:10:00'),
+  (412, 'FRA', 'JFK', 'LH', '2016-02-24 10:50:00', '2016-02-24 19:50:00'),
+  (413, 'MUC', 'LHR', 'LH', '2016-02-24 10:00:00', '2016-02-24 12:10:00'),
+  (414, 'MUC', 'LGW', 'LH', '2016-02-24 11:00:00', '2016-02-24 13:20:00'),
+  (415, 'MUC', 'LHR', 'LH', '2016-02-24 12:00:00', '2016-02-24 14:00:00');
+\end{minted}
+\index{SQL mit Übungsdatenbank}
 
 \begin{enumerate}
 
@@ -98,25 +131,66 @@ Zeitstempel sind in MEZ.
 \item Ermitteln Sie die Städte, in denen es mehr als einen Flughafen
 gibt.
 
+\begin{antwort}
+\begin{minted}{sql}
+SELECT Stadt FROM Flughaefen
+GROUP BY Stadt
+HAVING count(Stadt) > 1;
+\end{minted}
+\end{antwort}
+
 %%
 % 2.
 %%
 
-\item Ermitteln Sie die Städte,in denen man mit der Linie „LH" an
-mind.zwei verschiedenen Flughäfen landen kann.
+\item Ermitteln Sie die Städte, in denen man mit der Linie „LH“ an
+mindestens zwei verschiedenen Flughäfen landen kann.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT Stadt FROM Flughaefen
+WHERE Stadt IN (
+  SELECT Stadt FROM Flughaefen, Verbindungen
+  WHERE
+    Code = Nach AND
+    Linie = 'LH'
+  GROUP BY Stadt
+)
+GROUP BY Stadt
+HAVING COUNT(Stadt) > 1;
+\end{minted}
+\end{antwort}
 
 %%
 % 3.
 %%
 
 \item Ermitteln Sie die Flugzeit des kürzesten Direktflugs von München
-nach London.
+nach London.\index{Top-N-Query}
+
+\begin{antwort}
+\begin{minted}{sql}
+CREATE VIEW Flugdauer AS
+  SELECT ID, Ankunft - Abflug AS Dauer FROM Flughaefen v, Flughaefen n, Verbindungen
+  WHERE
+    n.Code = Nach AND
+    v.Code = Von AND
+    v.Stadt = 'München' AND
+    n.Stadt = 'London';
+
+SELECT a.Dauer FROM Flugdauer a, Flugdauer b
+WHERE a.Dauer >= b.Dauer
+GROUP BY a.Dauer
+HAVING COUNT(*) <= 1;
+\end{minted}
+\end{antwort}
 
 %%
 % 4.
 %%
 
-\item Ermitteln Sie die kürzeste Roundtrip-Zeit(nur Direktflüge)zwischen
-den Flughäfen FRA und JFK (Transferzeit am Flughafen JFK beachten).
+\item Ermitteln Sie die kürzeste Roundtrip-Zeit (nur Direktflüge)
+zwischen den Flughäfen FRA und JFK (Transferzeit am Flughafen JFK
+beachten).
 \end{enumerate}
 \end{document}
