@@ -1,0 +1,589 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{tabelle}
+\begin{document}
+\liAufgabenTitel{Teacher-Data}
+
+\section{Use Case\footcite{sosy:ab:2}}
+
+Das Entwicklerteam von Teacher-Data hat einen neuen Auftrag bekommen.
+Sie sollen für die Automaten-Videothek DVDRental die Software
+entwickeln. Nach den ersten Gesprächen konnten folgende Informationen
+zusammengetragen werden:
+
+\begin{itemize}
+\item DVD-Verleih-Automat:
+
+\begin{itemize}
+\item Der Kunde soll einfach, schnell und günstig am Automaten 24
+Stunden, sieben Tage die Woche DVDs ausleihen können. Der Kunde hat des
+Weiteren die Möglichkeit, Filme vorab über das Internet zu reservieren.
+In der DVD-Verleihstation gibt es drei verschiedene Automaten (siehe
+Zeichnung).
+
+\item Um DVDs ausleihen zu können, müssen sich Neukunden während der
+Service- und Anmeldezeiten der DVD-Verleihstation bei einem Mitarbeiter
+anmelden. Dabei werden die benötigten Daten (\emph{Name},
+\emph{Vorname}, \emph{Geburtsdatum}, \emph{Anschrift},
+\emph{Personalausweisnummer}, \emph{Guthaben}, \emph{Kennwort}) des
+Kunden aufgenommen und im System gespeichert. Zur persönlichen
+Identifikation des Kunden wird anschließend der Fingerabdruck am
+Automaten eingelesen. Der Kunde bekommt eine Magnetkarte ausgehändigt,
+um sich an den Automaten anmelden zu können.
+
+\item Beim DVD-Ausleih muss sich der Kunde mit der Magnetkarte und
+seinem Fingerabdruck am Automaten für die Filmauswahl identifizieren. Am
+Eingabe-Terminal hat der Kunde die Möglichkeit Filme nach \emph{Genre},
+\emph{Schauspieler}, \emph{Titel}, \emph{TOP-10},
+\emph{Neuerscheinungen} und \emph{Stichworten} zu suchen. Suchergebnisse
+werden mit folgenden Informationen auf dem Display präsentiert:
+\emph{Titel des Films}, \emph{Regisseur}, \emph{Hauptdarsteller},
+\emph{Kurzbeschreibung}, \emph{Erscheinungsjahr}, \emph{Altersfreigabe}
+und \emph{Verfügbarkeit}. Nach der Wahl eines Films, erhält der Kunde
+seine Magnetkarte zurück und kann den Film am Automaten für die Ausund
+Rückgabe nach erneuter Identifikation durch die Karte und den
+Fingerabdruck abholen. Die DVD wird über den Ausgabeschacht ausgegeben.
+
+\item Bei der Rückgabe einer DVD muss sich der Kunde am Automaten für
+die Aus- und Rückgabe von Filmen mit der Magnetkarte und seinem
+Fingerabdruck am Automaten identifizieren. Nach erfolgreicher
+Identifikation führt der Kunde die DVD in den Rückgabeschacht ein. Der
+Automat liest daraufhin den Barcode auf der DVD und sortiert diese
+eigenständig wieder ein und bucht die Leihgebühr vom Guthaben auf der
+Karte ab.
+
+\item Das Guthaben kann am Automaten zum Aufladen des Guthabens
+aufgeladen werden. Nach Eingabe der Kundenkarte können Münzen (5, 10,
+20, 50 Cent, 1 und 2€) und Scheine (5, 10, 20, 50€) bar eingezahlt
+werden. Bei einem Betrag von 20€ gibt es einen Bonus von 3€, bei 30€
+einen von 5€ und bei einem von 50€ von 10€. Die Karte wird bei beendeter
+Geldeingabe nach Drücken des roten Knopfes wieder ausgeworfen.
+
+\item Reservierung von Filmen über das Internet: Nach erfolgreicher
+Anmeldung mit Kundennummer und Geheimzahl auf der betreibereigenen
+Homepage kann der Kunde nach \emph{Genre}, \emph{Schauspieler},
+\emph{Titel}, \emph{TOP-10}, \emph{Neuerscheinungen} und
+\emph{Stichworten} Filme suchen. Suchergebnisse werden mit folgenden
+Informationen präsentiert: \emph{Titel des Films}, \emph{Regisseur},
+\emph{Hauptdarsteller}, \emph{Kurzbeschreibung},
+\emph{Erscheinungsjahr}, \emph{Altersfreigabe} und \emph{Verfügbarkeit}.
+Der Kunde kann nach der Suche einzelne Filme reservieren, die er
+innerhalb von zwei Stunden abholen muss. Sollte dies nicht in dem
+Zeitraum geschehen, so werden die Filme nach zwei Stunden wieder zum
+Ausleihen freigegeben.
+\end{itemize}
+
+\item Weitere Rahmenbedingungen:
+
+\begin{itemize}
+
+\item Wird die Kundenkarte im Automaten vergessen, so wird sie zur
+Sicherheit automatisch eingezogen und kann während der Servicezeiten
+wieder abgeholt werden.
+
+\item Die maximale Leihdauer beträgt 10 Tage.
+
+\item Hat der Kunde versehentlich den falschen Film ausgeliehen, so kann
+er diese bis 10 Minuten nach Ausgabe der DVD ohne Berechnung einer
+Leihgebühr wieder am Automaten zurückgeben.
+
+\item Die Leihgebühr für jeden angefangenen Tag (24h) beträgt 2€.
+
+\item Zu jedem Film gibt es mehrere Exemplare.
+
+\item Die Ausgabe und Einsortierung von DVDs übernimmt ein
+DVD-Archiv-Roboter, der über eine Schnittstelle angesteuert werden muss.
+\end{itemize}
+
+\end{itemize}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Identifizieren Sie die Aktoren des oben beschriebenen Systems.
+
+\begin{antwort}
+Kunde, Service-Mitarbeiter, Wartung, DVD-Archiv-Roboter
+\end{antwort}
+
+%%
+% b)
+%%
+
+\item Identifizieren Sie die nicht-funktionalen\index{Nicht-funktionale
+Anforderungen} und funktionalen Anforderungen\index{Funktionale
+Anforderungen} (als Use Cases).
+
+\begin{antwort}
+\begin{description}
+\item[Nicht-funktional:] Bedienoberfläche Web / Automat gleich, einfache
+Handhabbarkeit, schnell, Dauerbetrieb, Ausfallquote, Leihdauer
+
+\item[Funktional:] Geldkarte aufladen, Film suchen, Film auswählen, Film
+entnehmen, Film zurückgeben, Kunden aufnehmen, Film reservieren
+\end{description}
+\end{antwort}
+
+\item Geben Sie eine formale Beschreibung für drei Use Cases an.
+Orientieren können Sie sich an folgendem Beispiel:
+
+\begin{antwort}
+\liPseudoUeberschrift{Geldkarte aufladen}
+
+\begin{tabularx}{\linewidth}{p{3cm}X}
+Use Case: &
+Geldkarte aufladen \\
+
+Ziel: &
+Auf der Geldkarte befindet sich ein gewünschter Be-trag an Geld. \\
+
+Kategorie: & primär \\
+
+Vorbedingung: & Geldkarte befindet sich im Automaten. \\
+
+Nachbedingung Erfolg: &
+Auf der Geldkarte befindet sich der gewünschte Betrag. \\
+
+Nachbedingung Fehlschlag: &
+Betrag auf der Karte ist der gleiche wie davor  $\rightarrow$
+Fehlermeldung \\
+
+Akteure: & Kunde \\
+
+Auslösendes Ereignis: &
+Geldkarte wird in den Automaten zum Aufladen des Guthabens geschoben. \\
+Beschreibung: &
+\begin{enumerate}
+\item Kunde schiebt Karte in den Automaten.
+\item Kunde wirft Münzen oder gibt einen Geldschein ein.
+\item Kunde drückt Knopf zum Auswerfen der Karte.
+\item Karte wird ausgegeben.
+\end{enumerate}
+\\
+
+Erweiterungen: &
+Schein oder Münze wird nicht akzeptiert. $\rightarrow$ Fehlermeldung \\
+
+Alternativen: & Mindest-Guthaben auf der Karte \\
+\end{tabularx}
+
+\liPseudoUeberschrift{Film suchen}
+
+\begin{tabularx}{\linewidth}{p{3cm}X}
+\footnotesize
+Use Case: & Film suchen \\
+
+Ziel: & Anzeigen des gesuchten Films \\
+
+Kategorie: & primär \\
+
+Vorbedingung: &
+Kunde hat sich mit Magnetkarte und Fingerabdruck identifiziert. \\
+
+Nachbedingung Erfolg: & Eine Liste von Filmen wird angezeigt. \\
+
+Nachbedingung Fehlschlag: &
+Kein Film gefunden  $\rightarrow$ Fehlermeldung \\
+
+Akteure: & Kunde \\
+
+Auslösendes Ereignis: & Kunde will einen Film ausleihen. \\
+
+Beschreibung: &
+Kunde gibt Genre, Schauspieler, Titel oder Stichwort ein oder lässt sich
+Neuerscheinungen und TOP10 auflisten. \\
+
+Erweiterungen: & – \\
+Alternativen: & Vorgaben von weiteren Suchkriterien
+\end{tabularx}
+
+\liPseudoUeberschrift{Kunden aufnehmen}
+
+\begin{tabularx}{\linewidth}{p{3cm}X}
+Use Case: & Kunden aufnehmen \\
+
+Ziel: & Kunde ist in der Kundendatei. \\
+
+Kategorie: & primär \\
+
+Vorbedingung: & Kunde ist noch nicht in der Kundendatei vorhanden. \\
+
+Nachbedingung Erfolg: &
+Kunde ist als Mitglied in der Kundendatei aufgenommen. \\
+
+Nachbedingung Fehlschlag: &
+Kunde kann nicht in die Datei aufgenommen werden. \\
+
+Akteure: & Kunde, Service-Mitarbeiter \\
+
+Auslösendes Ereignis: &
+Kunde stellt zu den Öffnungszeiten bei einem Service-Mitarbeiter einen
+Mitgliedsantrag. \\
+
+Beschreibung: &
+
+\begin{enumerate}
+\item Kunde meldet sich zu den Öffnungszeiten bei einem
+Service-Mitarbeiter an.
+
+\item Service-Mitarbeiter erfasst nötige Daten (Name, Vorname,
+Geburtsdatum, Anschrift, Personalausweisnummer, Kennwort).
+
+\item Service-Mitarbeiter kassiert einen Startbetrag und erfasst ihn bei
+den Kundendaten.
+
+\item Der Fingerabdruck des Kunden wird erfasst und gespeichert.
+
+\item Kunde bekommt eine Magnetkarte mit seinen Daten.
+\end{enumerate}
+
+\\
+Erweiterungen: & - \\
+Alternativen: &
+Kunde ist bereits im System und lässt nur die Kundendaten ändern.
+\end{tabularx}
+\end{antwort}
+
+%%
+% d)
+%%
+
+\item Verfeinern Sie nun die Use Cases, indem Sie ähnliche Teile
+identifizieren und daraus weitere Use Cases bilden.
+
+\begin{antwort}
+Identifizierung des Kunden an den Automaten, Filmsuche
+\end{antwort}
+
+%%
+% e)
+%%
+
+\item Nennen Sie mindestens drei offene Fragen, die in einem weiteren
+Gespräch mit dem Kunden noch geklärt werden müssten.\footnote{Quelle:
+Universität Stuttgart, Institut für Automatisierungs- und
+Softwaretechnik Prof. Dr.-Ing. Dr. h. c. P. Göhner}
+
+\begin{antwort}
+\begin{itemize}
+\item Was passiert nach der maximlaen Leihdauer?
+\item Was passiert, wenn der Finger nicht zur Karte passt?
+\item Was passiert mit defekten DVDs?
+\item Was passiert bei Rückgabe der falschen DVD?
+\end{itemize}
+\end{antwort}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Wasserfallmodell
+\footcite[Seite 1]{sosy:ab:1}}
+
+Die Firma Teacher-Data soll für einen Auftraggeber ein
+Informationssystem entwickeln. Das Entwicklerteam entscheidet sich, nach
+dem \emph{Wasserfallmodell} vorzugehen.
+\index{Wasserfallmodell}
+
+\begin{enumerate}
+\item Geben Sie an, welche \emph{Phasen} dabei durchlaufen werden und
+erläutern Sie kurz deren \emph{Zweck / Intention / Aufgabe}.
+
+\begin{antwort}
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Problem- und Systemanalyse
+
+Grobe Formulierung der Ziele (z. B. Einsatzplattform Windows,
+einheitliche Software zur Unterstützung des Verkaufs, …)
+
+\begin{itemize}
+\item Erfassung des Problembereichs (z. B. Interaktion zwischen Händler
+und Hersteller soll komplett über das Netz funktionieren.)
+
+\item Machbarkeitsstudie (z. B. Händler sind bereit, sich an das zu
+entwickelnde System anzupassen.)
+
+\item Analyse des Ist-Zustandes (z. B. Händler A bietet Interface X
+wohingegen Händler B Interface Z bietet. Es wird bereits teilweise bei
+Händler C über das Netz bestellt. …)
+
+\item Anforderungsspezifikation (Lastenheft) (z. B. Einheitliche
+Oberfläche für alle Benutzer beim Hersteller, möglichst wenige
+Veränderungen für die Mitarbeiter (= schnelle Eingewöhnungsphase) …)
+
+\item Systemspezifikation (Pflichtenheft) (z. B. soll der Ablauf eines
+Kaufvorgangs folgendermaßen aussehen: Händlerauswahl, Bestellung,
+Abrechnung … Die Benutzeroberfläche soll folgende Informationen
+anzeigen: Lieferstatus, ….)
+\end{itemize}
+
+%%
+%
+%%
+
+\item Systementwurf
+
+\begin{itemize}
+\item Systemarchitektur (z. B. Klassendiagramm, Festlegung von
+Komponenten …)
+
+\item Schnittstellen der Komponenten festlegen (z. B. Datenbank,
+Middleware, …)
+
+\item Modulkonzept (z. B. Modulstruktur und Art der Module (funktional,
+prozedural, objektorientiert)
+
+\item Definition der Einzelschnittstellen (z. B. Interfaces und
+abstrakte Klassen in Java)
+\end{itemize}
+
+%%
+%
+%%
+
+\item Implementierung
+
+\begin{itemize}
+\item Strukturierung der Komponenten in Module (z. B. Klassenrümpfe)
+
+\item Spezifikation einzelner Module (z. B. exakte Beschreibung eines
+Moduls)
+
+\item Codierung, Generierung, Wiederverwendung einzelner Module (z. B.
+Methoden in Klassen, …)
+\end{itemize}
+
+%%
+%
+%%
+
+\item Integration und Test
+
+\begin{itemize}
+\item Integration von Modulen (z. B. Zusammensetzen von Datenbank und
+Applikation zum Server)
+
+\item Integration von Komponenten (z. B. Einsetzen von Client und Server
+ins Gesamtsystem.)
+
+\item Testen und Verifikation (z. B. Testen, ob die Implementierung
+zusammen mit der Umgebung funktioniert. Zusichern, dass gewisse
+Eigenschaften gültig sind.)
+\end{itemize}
+
+%%
+%
+%%
+
+\item Wartung und Weiterentwicklung
+
+\begin{itemize}
+\item Wartung (z. B. Korrektur eines Fehlers im Programm, Portierung auf
+anderes Betriebssystem, …)
+
+\item Erweitern der Funktionalität (z. B. Einbeziehen einer neuen Option
+im Geschäftsprozess)
+
+\item Anpassung der Funktionalität (z. B. Anpassung an Änderung im
+Geschäftsprozess)
+\end{itemize}
+
+\end{enumerate}
+
+\end{antwort}
+
+\item Während des Entwicklungsprozesses werden nach und nach im
+Folgenden aufgelistete Teilprodukte entstehen. Ordnen Sie diese den
+jeweiligen Phasen zu.
+
+\begin{itemize}
+\item Schätzung der Entwicklungskosten
+\item Dokumentation der Änderungen nach Produktabnahme
+\item Pflichtenheft
+\item Beschreibung der Datenstruktur in der Datenbank
+\item Integration von Modulen/Komponenten
+\item Betriebsbereites Informationssystem
+\item Beschreibung der Schnittstelle einzelner Softwarekomponenten
+\item Quellcode für die GUI
+\item Durchführbarkeitsstudie
+\item Systemarchitektur
+\end{itemize}
+
+\begin{antwort}
+\def\TmpPhase#1{$\rightarrow$ \emph{#1}}
+\begin{itemize}
+\item Schätzung der Entwicklungskosten \TmpPhase{Anforderungsdefinition}
+\item Dokumentation der Änderungen nach Produktabnahme \TmpPhase{Betrieb und Wartung}
+\item Pflichtenheft \TmpPhase{Anforderungsdefinition}
+\item Beschreibung der Datenstruktur in der Datenbank \TmpPhase{System- und Softwareentwurf}
+\item Integration von Modulen/Komponenten \TmpPhase{Integration und Systemtest}
+\item Betriebsbereites Informationssystem \TmpPhase{Betrieb und Wartung}
+\item Beschreibung der Schnittstelle einzelner Softwarekomponenten \TmpPhase{System- und Softwareentwurf}
+\item Quellcode für die GUI \TmpPhase{Implementierung und Komponententest}
+\item Durchführbarkeitsstudie \TmpPhase{Anforderungsdefinition}
+\item Systemarchitektur \TmpPhase{System- und Softwareentwurf}
+\end{itemize}
+\end{antwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Vorgehensmodelle
+\footcite[Seite 2]{sosy:ab:1}}
+
+Dem Team von Teacher-Data kommen Zweifel, ob die Entscheidung für das
+Wasserfallmodell für die Umsetzung des Informationssystems richtig war,
+oder ob ein anderes Vorgehen eventuell besser wäre. Beurteilen und
+vergleichen Sie die Vorgehensmodelle
+
+\begin{itemize}
+\item Wasserfallmodell\index{Wasserfallmodell}
+\item Spiralmodell\index{Spiralmodell}
+\item V-Modell\index{V-Modell}
+\item Evolutionäres Modell\index{Evolutionäre Softwaremodelle} oder
+Inkrementelles Modell\index{Inkrementelle Prozessmodelle}
+\item agile Entwicklung, wie z. B. Scrum\index{SCRUM}
+\end{itemize}
+
+\noindent
+nach den folgenden Gesichtspunkten:
+
+\begin{enumerate}
+\item Größe des Entwicklerteams
+\item Komplexität des Projekts
+\item Bekanntheit der Anforderungen
+\item Änderung der Anforderungen
+\item Zeitspielraum (Time-to-Market; was muss bis wann fertig sein?)
+\item Dokumentation
+\item IT-Kenntnisse des Kunden
+\item Durchschnittliche Anzahl an Iterationen
+\end{enumerate}
+
+\begin{antwort}
+\noindent
+{\tiny
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X||>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+&
+Wasserfallmodell &
+Spiralmodell &
+V-Modell &
+evolutionär / inkrementell &
+agil
+\\\hline\hline
+
+Größe des Entwicklerteams &
+diskutiert die Projektgröße nicht & % Wasserfallmodell
+mittlere Teams & % Spiralmodell
+mittlere und große Teams & % V-Modell
+diskutiert die Projektgröße nicht & % evolutionär / inkrementell
+ca. 3-9 Entwickler (ohne Product Owner und Scrum Master) % agil
+\\\hline
+
+Komplexität des Projekts &
+einfache Projekte mit stabilen Anforderungen &
+einfache Projekte mit stabilen Anforderungen; Anforderungen können
+jedoch in den Iterationen angepasst werden. & % Spiralmodell
+komplexe Projekte; bei einfachen Projekten relativ viel bürokratischer
+Overhead. & % V-Modell
+große, lange und komplexe Projekte & % evolutionär / inkrementell
+hohe Komplexität möglich % agil
+\\\hline
+
+Bekanntheit der Anforderungen &
+Alle Anforderungen müssen zu Beginn des Projekts bekannt sein.
+& % Wasserfallmodell
+Es muss eine initiale Menge von Anforderung bekannt sein. Der Kunde
+kann die Anforderungen aber aufgrund von Prototypen erweitern.
+& % Spiralmodell
+evolutionär: Alle Anforderungen müssen zu Beginn des Projekts bekannt
+sein. inkrementell: Anforderungen müssen nicht von Anfang an bekannt
+sein. & % V-Modell
+Anforderungen müssen von Anfang an bekannt sein.
+& % evolutionär / inkrementell
+Es muss eine initiale Menge von Anforderung bekannt sein. Der Kunde
+kann die Anforderungen aber laufend erweitern / ggf. ändern. % agil
+\\\hline
+
+Änderungen der Anforderungen &
+Schwer möglich. Durch den strikten Top-Down-Ansatz von der Anforderung
+hin zum Code zieht eine Änderung einen tiefen Eingriff in den
+Prozess mit sich. & % Wasserfallmodell
+Gut möglich. In jeder Runde der Spirale können die Anforderungen neu
+definiert werden. & % Spiralmodell
+Schwer möglich → strikter Top-Down-Ansatz & % V-Modell
+evolutionär: häufige Änderungen möglich. inkrementell: Änderungen
+teilweise möglich. & % evolutionär / inkrementell
+rasche Anpassung an neue Anforderungen möglich (deshalb agil!) % agil
+\\\hline
+
+Zeitspielraum &
+Wenig Spielraum. Üblicher weise muss der ganze Prozess durchlaufen
+werden. Es ist höchstens möglich, den Prozess zu beschleunigen,
+indem man Anforderungen streicht. Es wird also alles zum Schluss
+fertig. & % Wasserfallmodell
+Relativ flexibel. Sobald ein Prototyp existiert, der akzeptabel ist,
+kann dieser auf den Markt gebracht werden. & % Spiralmodell
+Wenig Spielraum (vgl. Wasserfallmodell) & % V-Modell
+Einsatzfähige Produkte in kurzen Zeitabständen, daher relativ
+flexibel. & % evolutionär / inkrementell
+Unterteilung in Sprints, daher schnell lauffähige Prototyoen vorhanden.
+Bei der Planung des nächsten Sprints kann auf neue zeitliche
+Gegebenheiten relativ flexibel eingegangen werden. % agil
+\\\hline
+
+Dokumentation &
+Viel Dokumentation – Für jede Phase wird eine komplette Dokumentation
+erstellt. & % Wasserfallmodell
+Sehr viel Dokumentation – In jedem Zyklus werden alle Phasen
+(inkl. Dokumentation) durchlaufen, aber nur im Umfang des
+Prototypen. Es werden alle Artefakte und Tätigkeiten dokumentiert.
+& % Spiralmodell
+Viel Dokumentation – Gerade in den ersten Phasen wird sehr viel über
+die Software schriftlich festgehalten. Aber auch für die anderen
+Phasen wird eine komplette Dokumentation erstellt.
+& % evolutionär / inkrementell
+&
+Anforderungsdokumentation ist sehr wichtig. Ansonsten ist
+funktionierende Software höher zu bewerten als eine umfangreiche
+Dokumentation. % agil
+\\\hline
+
+ITKenntnisse des Kunden &
+Wenig Kenntnisse nötig. Meistens schreibt der Kunde das Lastenheft und
+der Entwickler versucht dieses dann in einem Pflichtenheft
+umzusetzen. Wenn das Lastenheft vom Entwickler als machbar
+befunden wird, bekommt der Kunde das fertige Produkt.
+& % Wasserfallmodell
+Wenig Kenntnisse nötig. – Kunde sieht immer nur die fertigen Prototypen
+und äußert dann seine Wünsche. & % Spiralmodell
+Wenig Kenntnisse nötig (vgl. Wasserfallmodell) & % V-Modell
+Wenig Kenntnisse nötig & % evolutionär / inkrementell
+Wenig Kenntnisse nötig, aber von Vorteil, da enge Zusammenarbeit mit
+dem Kunden % agil
+\\\hline
+
+Durchschnittliche Anzahl an Iterationen &
+vgl. V-Modell & % Wasserfallmodell
+ca. 3-5 Iterationen & % Spiralmodell
+Nur lange Zyklen. – Mit dem V-Modell sind nur sehr lange Zyklen
+handhabbar, da immer wieder der ganze Entwicklungsprozess durchlaufen
+werden muss. & % V-Modell
+& % evolutionär / inkrementell
+variable Anzahl an Sprints, je nach Projektgröße % agil
+\\\hline
+\end{tabularx}
+}
+\end{antwort}
+
+\end{document}
