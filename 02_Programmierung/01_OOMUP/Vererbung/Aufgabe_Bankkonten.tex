@@ -1,21 +1,11 @@
-\documentclass{lehramt-informatik-haupt}
+\documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{syntax,uml}
-
 \begin{document}
+\liAufgabenTitel{Bankkonten}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Theorie-Teil
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\chapter{Objektorientierung}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Aufgaben
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\chapter{Aufgaben}
-
-\section{Bankverwaltung\footcite[Seite 60, Oldenburg, Informatik II, S. 128]{oomup:fs:3}}
+\section{Vererbung: Generalisierung und Spezialisierung
+\index{Vererbung}
+\footcite[Seite 60, Oldenburg, Informatik II, S. 128]{oomup:fs:3}}
 
 Eine kleine Bank bietet drei Arten von Konten an: Girokonten, Sparkonten
 und Geschäftskonten. Alle drei Kontoarten haben die Methoden
@@ -41,9 +31,11 @@ Parameter mitgegeben.
 % a
 %%
 
-\item Überlege dir, welche Konten Generalisierungen bzw.
-Spezialisierungen anderer Konten sind. Warum ist es sinnvoll, eine
-Klasse Konto als oberste Klasse Generalisierungshierarchie einzuführen?
+\item Überlege dir, welche Konten
+Generalisierungen\index{Generalisierung} bzw.
+Spezialisierungen\index{Spezialisierung} anderer Konten sind. Warum ist
+es sinnvoll, eine Klasse Konto als oberste Klasse
+Generalisierungshierarchie einzuführen?
 
 \begin{antwort}
 Da alle Konten die Methoden \java{einzahlen()}, \java{abheben()} und
@@ -59,8 +51,9 @@ Oberklasse \java{Konto} auszulagern (Generalisierung).
 % b
 %%
 
-\item Entwirf ein Klassendiagramm für die Klassen \java{Konto},
-\java{Girokonto}, \java{Sparkonto}, \java{Geschaeftskonto}.
+\item Entwirf ein Klassendiagramm\index{Klassendiagramm} für die Klassen
+\java{Konto}, \java{Girokonto}, \java{Sparkonto},
+\java{Geschaeftskonto}.
 
 \begin{antwort}
 Da das Geschäftskonto genauso wie das Girokonto einen Dispokredit
@@ -113,8 +106,8 @@ Verfügung stehenden Methoden dafür verwenden.
 % c
 %%
 
-\item Implementiere die Klassen in einem eigenen Projekt und teste die
-vorhandenen Methoden.
+\item Implementiere\index{Implementierung in Java} die Klassen in einem
+eigenen Projekt und teste die vorhandenen Methoden.
 
 \begin{antwort}
 \inputcode[firstline=3]{aufgaben/oomup/pu_3/bankverwaltung/Konto}
@@ -124,7 +117,4 @@ vorhandenen Methoden.
 \end{antwort}
 
 \end{enumerate}
-
-\literatur
-
 \end{document}

@@ -101,6 +101,7 @@ Hier alle Aufgaben mit einer Übungsdatenbank:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Bands.pdf" download="Aufgabe_Bands">„Bands“</a> (SQL, SQL mit Übungsdatenbank)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus.pdf" download="Aufgabe_Kaufhaus">„Kaufhaus“</a> (SQL, SQL mit Übungsdatenbank, Relationale Algebra)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2014-Frühjahr_T2-TA2-A3">„Mitfahrgelegenheiten“ Examen 46116 Frühjahr 2014 T2 TA2 A3</a> (SQL, SQL mit Übungsdatenbank, GROUP BY, HAVING)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46116-2018-Herbst_T1-TA1-A4">„Kundenverwaltungssystem“ Examen 46116 Herbst 2018 T1 TA1 A4</a> (SQL, SQL mit Übungsdatenbank, CREATE TABLE, HAVING, EXCEPT, Top-N-Query, WITH, DELETE)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2018-Herbst_T2-TA2-A3">„Schuldatenbank“ Examen 46116 Herbst 2018 T2 TA2 A3</a> (SQL, SQL mit Übungsdatenbank, CREATE TABLE, INSERT, ALTER TABLE, UPDATE, DELETE, VIEW, GROUP BY, DROP TABLE)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Thema-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66113-2003-Frühjahr_T1-A5">„Mitarbeiterverwaltung“ Examen 66113 Frühjahr 2003 T1 A5</a> (SQL, SQL mit Übungsdatenbank)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2016-Frühjahr_T1-TA1-A2">„Polizei“ Examen 66116 Frühjahr 2016 T1 TA1 A2</a> (Entity-Relation-Modell, SQL mit Übungsdatenbank, Relationale Algebra, SQL, VIEW, WITH, UNION)
@@ -120,7 +121,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2014-Frühjahr_T2-TA2-A3">„Mitfahrgelegenheiten“ Examen 46116 Frühjahr 2014 T2 TA2 A3</a> (SQL, SQL mit Übungsdatenbank, GROUP BY, HAVING)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46116-2015-Frühjahr_T1-TA2-A1">„Computer „Chiemsee““ Examen 46116 Frühjahr 2015 T1 TA2 A1</a> (Relationale Algebra, SQL, GROUP BY, HAVING)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46116-2017-Herbst_T2-TA2-A4">„Turmspringen“ Examen 46116 Herbst 2017 T2 TA2 A4</a> (SQL, GROUP BY)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46116-2018-Herbst_T1-TA1-A4">„Kundenverwaltungssystem“ Examen 46116 Herbst 2018 T1 TA1 A4</a> (SQL, CREATE TABLE, HAVING, EXCEPT, Top-N-Query, WITH, DELETE)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46116-2018-Herbst_T1-TA1-A4">„Kundenverwaltungssystem“ Examen 46116 Herbst 2018 T1 TA1 A4</a> (SQL, SQL mit Übungsdatenbank, CREATE TABLE, HAVING, EXCEPT, Top-N-Query, WITH, DELETE)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46116-2018-Herbst_T1-TA2-A4">„Kundenverwaltungssystem“ Examen 46116 Herbst 2018 T1 TA2 A4</a> (SQL, CREATE TABLE)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2018-Herbst_T2-TA2-A3">„Schuldatenbank“ Examen 46116 Herbst 2018 T2 TA2 A3</a> (SQL, SQL mit Übungsdatenbank, CREATE TABLE, INSERT, ALTER TABLE, UPDATE, DELETE, VIEW, GROUP BY, DROP TABLE)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/03/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66111-1996-Frühjahr_A2">„Universitätsdatenbank“ Examen 66111 Frühjahr 1996 A2</a> (Entity-Relation-Modell, Verfeinertes Relationenmodell, SQL)
@@ -184,6 +185,7 @@ Weitere Aufgaben zum Thema „SQL“:
 
 ### Projektmanagement
 
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/01_Projektmanagement/Aufgabe_Allgemeine-Software-Technik.pdf" download="Aufgabe_Allgemeine-Software-Technik">„Multiple-Choice Allgemeine Software-Technologie“</a> (EXtreme Programming, V-Modell, Wasserfallmodell, SCRUM, Prototyping, Unit-Test, Anforderungsanalyse)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/01_Projektmanagement/Aufgabe_Teacher-Data.pdf" download="Aufgabe_Teacher-Data">„Teacher-Data“</a> (Nicht-funktionale Anforderungen, Funktionale Anforderungen, Wasserfallmodell, Spiralmodell, V-Modell, Evolutionäre Softwaremodelle, Inkrementelle Prozessmodelle, SCRUM)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46116-2014-Herbst_T2-TA1-A1">„Multiple-Choice“ Examen 46116 Herbst 2014 T2 TA1 A1</a> (EXtreme Programming, V-Modell, SCRUM, Prototyping, Funktionale Anforderungen, Nicht-funktionale Anforderungen)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_46116-2014-Herbst_T2-TA1-A2">„Vorgehensmodelle“ Examen 46116 Herbst 2014 T2 TA1 A2</a> (Prozessmodelle, Wasserfallmodell, V-Modell, Iterative Prozessmodelle)
@@ -195,6 +197,8 @@ Weitere Aufgaben zum Thema „SQL“:
 
 #### UML-Diagramme
 
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/01_OOMUP/Diagramme/Aufgabe_Alle-UML-Diagramme.pdf" download="Aufgabe_Alle-UML-Diagramme">„Alle UML-Diagramme“</a> (UML-Diagramme, Klassendiagramm, Objektdiagramm, Zustandsdiagramm, Sequenzdiagramm, Aktivitätsdiagramm, Anwendungsfalldiagramm, Kommunikationsdiagramm)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/01_OOMUP/Vererbung/Aufgabe_Bankkonten.pdf" download="Aufgabe_Bankkonten">„Bankkonten“</a> (Vererbung, Generalisierung, Spezialisierung, Klassendiagramm, Implementierung in Java)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/02_Modellierung/Aufgabe_DVD-Automat.pdf" download="Aufgabe_DVD-Automat">„DVD-Automat“</a> (Zustandsdiagramm, Aktivitätsdiagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46116-2012-Frühjahr_T2-TA2-A1">„Hotel-Verwaltung“ Examen 46116 Frühjahr 2012 T2 TA2 A1</a> (Klassendiagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2014-Herbst_T2-TA1-A3">„Bestellsystem“ Examen 46116 Herbst 2014 T2 TA1 A3</a> (UML-Diagramme, Anwendungsfalldiagramm, Klassendiagramm, Objektdiagramm, Zustandsdiagramm)
@@ -226,6 +230,7 @@ Weitere Aufgaben zum Thema „SQL“:
 
 ### Projektplanung
 
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/03_Projektplanung/CPM-Netzplantechnik/Aufgabe_CPM-Netzwerk.pdf" download="Aufgabe_CPM-Netzwerk">„CPM-Netzwerk“</a> (CPM-Netzplantechnik)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2015-Frühjahr_T1-TA1-A3">„Gantt und CPM“ Examen 46116 Frühjahr 2015 T1 TA1 A3</a> (CPM-Netzplantechnik, Gantt-Diagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2015-Herbst_T1-TA1-A3">„Gantt und PERT“ Examen 46116 Herbst 2015 T1 TA1 A3</a> (Gantt-Diagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_46116-2016-Frühjahr_T2-TA1-A2">„Petri-Netz“ Examen 46116 Frühjahr 2016 T2 TA1 A2</a> (Petri-Netz, Erreichbarkeitsgraph)
@@ -241,6 +246,7 @@ Weitere Aufgaben zum Thema „SQL“:
 
 ### Testen
 
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/01_Projektmanagement/Aufgabe_Allgemeine-Software-Technik.pdf" download="Aufgabe_Allgemeine-Software-Technik">„Multiple-Choice Allgemeine Software-Technologie“</a> (EXtreme Programming, V-Modell, Wasserfallmodell, SCRUM, Prototyping, Unit-Test, Anforderungsanalyse)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46116-2014-Frühjahr_T2-TA1-A1">„Hanoi“ Examen 46116 Frühjahr 2014 T2 TA1 A1</a> (Vollständige Induktion, Terminierungsfunktion)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_46116-2015-Herbst_T2-TA1-A2">„Methode „isPalindrom()““ Examen 46116 Herbst 2015 T2 TA1 A2</a> (C1-Test Zweigüberdeckung (Branch Coverage), C2b Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage), Zyklomatische Komplexität nach Mc-Cabe, C2a Vollständige Pfadüberdeckung (Full Path Coverage), Datenfluss-annotierter Kontrollflussgraph)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2015-Herbst_T2-TA1-A3">„ASCII“ Examen 46116 Herbst 2015 T2 TA1 A3</a> (wp-Kalkül)
@@ -478,7 +484,7 @@ OCR des oben genannten Scans:
     - Thema 1 
         - Teilaufgabe 1 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2018-Herbst_T1-TA1-A3">Aufgabe 3 (Zustandsdiagramm)</a> 
-            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46116-2018-Herbst_T1-TA1-A4">Aufgabe 4 (SQL, CREATE TABLE, HAVING, EXCEPT, Top-N-Query, WITH, DELETE)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46116-2018-Herbst_T1-TA1-A4">Aufgabe 4 (SQL, SQL mit Übungsdatenbank, CREATE TABLE, HAVING, EXCEPT, Top-N-Query, WITH, DELETE)</a> 
         - Teilaufgabe 2 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_46116-2018-Herbst_T1-TA2-A2">Aufgabe 2 (Entity-Relation-Modell)</a> 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46116-2018-Herbst_T1-TA2-A4">Aufgabe 4 (SQL, CREATE TABLE)</a> 
@@ -926,7 +932,9 @@ als Markdown-Liste eingebettet werden kann.
         - Lost-Update
         - Deadlock
 - OOMUP:
-    - Vererbung
+    - Vererbung:
+        - Generalisierung
+        - Spezialisierung
     - Implementierung in Java:
         - Interface
         - Abstrakte Klasse
@@ -981,8 +989,9 @@ als Markdown-Liste eingebettet werden kann.
             - Evolutionäre Softwaremodelle
             - Inkrementelle Prozessmodelle
             - Iterative Prozessmodelle
-        - Funktionale Anforderungen
-        - Nicht-funktionale Anforderungen
+        - Anforderungsanalyse:
+            - Funktionale Anforderungen
+            - Nicht-funktionale Anforderungen
         - Pflichtenheft
         - Softwaremaße
         - Versionsverwaltungssoftware
@@ -1105,6 +1114,16 @@ Mit dem Makro `\liAufgabenTitel{}` kann einer Aufgabe ein prägnanter
 kurzer Titel gegeben werden.
 
 ## Pakete
+
+### `checkbox.sty`
+
+Zum Setzen von Multiple-Choice-Fragen. Simulation von Kästchen zum
+ankreuzen.
+
+* Makro: `\liRichtig`: Angekreuztes Kästchen (nur innerhalb der
+  `itemize`-Umgebung zu verwenden.)
+* Makro: `\liFalsch`: Nicht angekreuztes Kästchen (nur innerhalb der
+  `itemize`-Umgebung zu verwenden.)
 
 ### `makros.sty`
 

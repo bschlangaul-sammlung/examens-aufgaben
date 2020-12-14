@@ -1,9 +1,14 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{cpm,mathe}
+\liLadePakete{cpm,mathe,checkbox}
 \begin{document}
+\liAufgabenTitel{CPM-Netzwerk}
 
-\section{E-Klausur: CPM-Netzwerk}
+\section{CPM-Netzwerk
+\index{CPM-Netzplantechnik}
+\footcite{sosy:e-klausur}
+}
 
+\begin{center}
 \begin{tikzpicture}
 \ereignis{1}(0,0)
 \ereignis{2}(1,1)
@@ -31,7 +36,33 @@
 \scheinvorgang(6>9){}
 \scheinvorgang(5>7){}
 \end{tikzpicture}
+\end{center}
 
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Welche Scheinvorgänge könnten aus dem Netzwerk entfernt werden,
+ohne dass Informationen verloren gehen?
+
+\begin{itemize}
+\liRichtig 2 $\rightarrow$ 4
+\liFalsch 4 $\rightarrow$ 6
+\liRichtig 5 $\rightarrow$ 7
+\liRichtig 6 $\rightarrow$ 9
+\end{itemize}
+
+%%
+%
+%%
+
+\item Berechnen Sie für jedes Ereignis den frühesten Termin, wobei
+angenommen wird, dass das Projekt zum Zeitpunkt 0 startet.
+
+\begin{antwort}
+\begin{center}
 \begin{tabular}{|l|r|r|}
 \hline
 $i$ & Nebenrechnung & $\text{FZ}_i$\\
@@ -48,7 +79,19 @@ $i$ & Nebenrechnung & $\text{FZ}_i$\\
 8             & \f$\max(4 + 5, 7 + 3)$  & 10 \\\hline
 9             & \f$\max(8 + 1, 7 + 0, 10 + 2)$  & 12 \\\hline
 \end{tabular}
+\end{center}
+\end{antwort}
 
+%%
+%
+%%
+
+\item Berechnen Sie für jedes Ereignis auch die spätesten Zeiten, indem
+Sie für das letzte Ereignis den frühesten Termin als spätesten Termin
+ansetzen.
+
+\begin{antwort}
+\begin{center}
 \begin{tabular}{|l|r|r|}
 \hline
 $i$ & Nebenrechnung & $\text{SZ}_i$\\
@@ -63,7 +106,17 @@ $i$ & Nebenrechnung & $\text{SZ}_i$\\
 8             & \f$12 - 2$ & 10 \\
 9             & \f{}siehe $\text{FZ}_9$  & 12 \\\hline
 \end{tabular}
+\end{center}
+\end{antwort}
 
+%%
+%
+%%
+
+\item Geben Sie nun die Pufferzeiten der Ereignisse an.
+
+\begin{antwort}
+\begin{center}
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
 \hline
 Ereignis         & 1 & 2 & 3 & 4 & 5 & 6 & 7  & 8  & 9 \\\hline\hline
@@ -71,7 +124,15 @@ frühester Termin & 0 & 3 & 4 & 7 & 4 & 7 & 8  & 10 & 12 \\\hline
 spätester Termin & 0 & 4 & 4 & 7 & 5 & 7 & 11 & 10 & 12 \\\hline
 Puffer           & 0 & 1 & 0 & 0 & 1 & 0 & 3  & 0  & 0 \\\hline
 \end{tabular}
+\end{center}
+\end{antwort}
 
-Kritischer Pfad 1 3 4 6 8 9
+\item Wie verläuft der kritische Pfad durch das Netzwerk?
+
+\begin{antwort}
+1 3 4 6 8 9
+\end{antwort}
+
+\end{enumerate}
 
 \end{document}

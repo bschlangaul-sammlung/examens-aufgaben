@@ -190,6 +190,16 @@ kurzer Titel gegeben werden.
 
 ## Pakete
 
+### `checkbox.sty`
+
+Zum Setzen von Multiple-Choice-Fragen. Simulation von Kästchen zum
+ankreuzen.
+
+* Makro: `\liRichtig`: Angekreuztes Kästchen (nur innerhalb der
+  `itemize`-Umgebung zu verwenden.)
+* Makro: `\liFalsch`: Nicht angekreuztes Kästchen (nur innerhalb der
+  `itemize`-Umgebung zu verwenden.)
+
 ### `makros.sty`
 
 Eine Sammlung von häufig verwendeten Makros und Umgebungen, die
