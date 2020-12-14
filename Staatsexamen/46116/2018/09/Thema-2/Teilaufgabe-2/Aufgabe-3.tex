@@ -133,7 +133,7 @@ Nein, denn die Spalte, die Primärschlüssel heißt Schüler und nicht
 SchülerID. Außerdem existiert bereits ein Schuüler mit der ID 6.
 \end{antwort}
 
-\begin{antwort}[muster]
+\begin{antwort}
 nein, SchülerID muss als Primärschlüssel eindeutig sein und ist bereits vergeben
 \end{antwort}
 
@@ -148,7 +148,7 @@ da die Spalte SchülerID von Noten auf den Fremdschlüssel Schüler aus
 der Schülertabelle verweist.
 \end{antwort}
 
-\begin{antwort}[muster]
+\begin{antwort}
 nein, Schüler mit der ID 9 existiert noch nicht, sodass diese Noten
 nicht eingetragen werden können, da Integritätsbedingungen nicht erfüllt
 (SchülerID ist Fremdschlüssel), zudem fehlt das Datum. Da es sich
@@ -177,7 +177,7 @@ ALTER TABLE Schüler ALTER COLUMN Vorname ADD UNIQUE;
 \end{minted}
 \end{antwort}
 
-\begin{antwort}[muster]
+\begin{antwort}
 \begin{minted}{sql}
 ALTER TABLE Schüler
 ADD CONSTRAINT Vorname_eindeutig UNIQUE (Vorname, Klasse);
@@ -197,7 +197,7 @@ WHERE Vorname = 'Tim' AND Nachname = 'Weber' AND SchülerID = 5;
 \end{minted}
 \end{antwort}
 
-\begin{antwort}[muster]
+\begin{antwort}
 \begin{minted}{sql}
 UPDATE Schüler
 SET Klasse = '4C' WHERE SchülerID = 5;
@@ -221,7 +221,7 @@ denn der Fremdschlüssel SchülerID verweist auf den Primärschlüssel
 SchülerID in Schüler.
 \end{antwort}
 
-\begin{antwort}[muster]
+\begin{antwort}
 Löschen aller Noten von Laura Müller, falls ON DELETE CASCADE gesetzt.
 Oder es müssen erst alle Fremdschlüsselverweise auf diese SchülerID in
 Noten gelöscht werden
@@ -233,7 +233,7 @@ Beachten Sie die Gewichte der Noten.
 \index{VIEW}
 \index{GROUP BY}
 
-\begin{antwort}[muster]
+\begin{antwort}
 \begin{minted}{sql}
 CREATE VIEW DurchschnittsNoten AS (
   (SELECT s.Klasse, n.Schulfach, (SUM(n.Note * n.Gewicht) / SUM(n.Gesicht)) AS Durchschnittsnote
@@ -247,7 +247,7 @@ CREATE VIEW DurchschnittsNoten AS (
 \item Geben Sie den Befehl an, der die komplette Tabelle „Noten“ löscht.
 \index{DROP TABLE}
 
-\begin{antwort}[muster]
+\begin{antwort}
 \begin{minted}{sql}
 DROP TABLE Noten;
 \end{minted}
@@ -284,7 +284,7 @@ WHERE Schulfach = 'Mathematik';
 
 Musterlösung nimmt View zu hand.
 
-\begin{antwort}[muster]
+\begin{antwort}
 \begin{minted}{sql}
 SELECT AVG(Note) AS durchschnittlicheNote
 FROM DurchschnittsNoten
@@ -299,7 +299,7 @@ WHERE Schulfach = 'Mathematik';
 \item Berechnen Sie die Anzahl der Schüler, die im Fach Mathematik am
 23.09.2017 eine Schulaufgabe (d.h. Gewicht=2) geschrieben haben.
 
-\begin{antwort}[muster]
+\begin{antwort}
 Ich habe in der WHERE Klauses das Schulfach vergessen. Sonst richtig.
 Außerdem habe ich das Datum einfach übernommen.
 \begin{minted}{sql}
@@ -316,7 +316,7 @@ WHERE Datum = 2017-09-23 AND Gewichtung = 2 AND Schulfach = 'Mathematik';
 \item Geben Sie die SchülerID aller Schüler zurück, die im Fach
 Mathematik mindestens drei mal die Schulnote 6 geschrieben haben.
 
-\begin{antwort}[muster]
+\begin{antwort}
 \begin{minted}{sql}
 SELECT SchülerID
 FROM Noten
@@ -333,7 +333,7 @@ HAVING COUNT(*) >= 3;
 \item Gesucht ist der Notendurchschnitt bezüglich jedes Fachs der Klasse
 „4A“.
 
-\begin{antwort}[muster]
+\begin{antwort}
 \begin{minted}{sql}
 SELECT n.Schulfach, AVG (n.Note)
 FROM Schüler s, Noten n
@@ -365,7 +365,7 @@ FROM
 Schüler NATURAL JOIN Noten;
 \end{minted}
 
-\begin{antwort}[muster]
+\begin{antwort}
 1 $\rightarrow$ 4A von Laura Müller
 \end{antwort}
 
@@ -375,7 +375,7 @@ FROM
 Noten, Schüler;
 \end{minted}
 
-\begin{antwort}[muster]
+\begin{antwort}
 32 $\rightarrow$ Kreuzprodukt, zählt alle Einträge in Klasse
 \end{antwort}
 
@@ -385,7 +385,7 @@ FROM
 Schüler NATURAL LEFT OUTER JOIN Noten;
 \end{minted}
 
-\begin{antwort}[muster]
+\begin{antwort}
 4 $\rightarrow$ null-Werte nicht mitgezählt, 4 Noten von Laura
 \end{antwort}
 
@@ -395,7 +395,7 @@ FROM
 Schüler NATURAL LEFT OUTER JOIN Noten;
 \end{minted}
 
-\begin{antwort}[muster]
+\begin{antwort}
 11 $\rightarrow$ alle Schüler, Laura dabei 4-mal, weil 4 Noten
 \end{antwort}
 \end{enumerate}

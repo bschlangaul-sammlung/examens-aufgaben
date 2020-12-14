@@ -1,18 +1,92 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
+\liLadePakete{syntax,rmodell}
 \begin{document}
 \liAufgabenTitel{Kundenverwaltungssystem}
 
 \section{Aufgabe 2: SQL\footcite{db:pu:3}}
 \index{SQL}
 Gegeben sind folgende Relationen aus einem Kundenverwaltungssystem:
-\footcite[DB/ST - Herbst 2018 (nicht vertieft -46116), Thema 1 Teilaufgabe 1 Aufgabe 4]{examen:46116:2018:09}
+\footcite[Thema 1 Teilaufgabe 1 Aufgabe 4]{examen:46116:2018:09}
 
-\begin{minted}{md}
-Kunde (ID), Vorname, Nachname, PLZ)
-Produkt (GTIN, Bezeichnung, Bruttopreis, MWStSatz)
-Kauf (ID[Kunde], GTIN[Produkt], Datum, Menge)
+\begin{liRmodell}
+\liRelation{Kunde}{\liPrimaer{ID}, Vorname, Nachname, PLZ}
+\liRelation{Produkt}{\liPrimaer{GTIN}, Bezeichnung, Bruttopreis, MWStSatz)}
+\liRelation{Kauf}{\liPrimaer{ID[Kunde], GTIN[Produkt], Datum}, Menge}
+\end{liRmodell}
+
+% Datenbankname: kundenverwaltungssystem
+\begin{minted}{sql}
+CREATE TABLE Kunde(
+	ID INTEGER PRIMARY KEY,
+	Vorname VARCHAR(30),
+	Nachname VARCHAR(30),
+	PLZ INTEGER
+);
+
+CREATE TABLE Produkt(
+	GTIN INTEGER PRIMARY KEY,
+	Bezeichnung VARCHAR(40),
+	Bruttopreis NUMERIC(7,2),
+	MWStSatz INTEGER
+);
+
+CREATE TABLE Kauf(
+  ID INTEGER REFERENCES Kunde(ID),
+  GTIN INTEGER REFERENCES Produkt(GTIN),
+  Datum DATE,
+  Menge INTEGER,
+  PRIMARY KEY (ID, GTIN, Datum)
+);
+
+INSERT INTO Kunde VALUES
+  (1, 'Max', 'Mustermann',91052),
+  (2, 'Erika', 'Musterfrau',91052),
+  (3, 'Max', 'Meyer',91058),
+  (4, 'Hans', 'Schmidt',91054),
+  (5, 'Eva', 'Müller',91056),
+  (6, 'Hanna', 'Winter',20251),
+  (7, 'Bert', 'Sommer',20251),
+  (8, 'Jakob', 'Sommer',20251);
+
+INSERT INTO Produkt VALUES
+  (123, 'Buch', 12.30,19),
+  (124, 'Kaffee', 4.30,7),
+  (125, 'Pullover', 36.40,19),
+  (113, 'Heft', 2.30,19),
+  (023, 'Honig', 3.20,7),
+  (155, 'T-Shirt', 19.30,19),
+  (189, 'Nudeln', 1.30,7),
+  (004, 'Sonnenbrille', 40.60,19),
+  (324, 'Hammer', 22.80,19),
+  (112, 'Topf', 50.20,19),
+  (453, 'Klopapier', 3.30,7),
+  (765, 'Duschgel', 1.89,19),
+  (889, 'Deko', 5.89,19);
+
+INSERT INTO Kauf VALUES
+  (1, 123, '2019-04-11', 1),
+  (1, 124, '2019-04-11', 21),
+  (1, 125, '2019-04-11', 1),
+  (1, 765, '2019-04-11', 4),
+  (1, 453, '2019-04-11', 1),
+  (1, 324, '2019-04-11', 3),
+  (1, 113, '2019-04-11', 2),
+  (1, 023, '2019-04-11', 1),
+  (1, 189, '2019-04-11', 1),
+  (1, 112, '2019-04-11', 7),
+  (1, 155, '2019-04-11', 7),
+  (1, 004, '2019-05-11', 6),
+  (7, 112, '2019-04-11', 7),
+  (5, 112, '2019-04-11', 7),
+  (8, 112, '2019-06-23', 5),
+  (8, 112, '2019-04-12', 3),
+  (2, 112, '2019-04-23', 1),
+  (2, 112, '2019-08-11', 8),
+  (4, 112, '2019-10-10', 2),
+  (2, 453, '2019-09-24', 4),
+  (4, 004, '2019-07-30', 9);
 \end{minted}
+\index{SQL mit Übungsdatenbank}
 
 Verwenden Sie im Folgenden nur Standard-SQL und keine
 produktspezifischen Erweiterungen. Sie dürfen bei Bedarf Views anlegen.
@@ -28,9 +102,9 @@ Geben Sie einen Datensatz, also eine Entity, nicht mehrfach aus.
 anlegt. Gehen Sie davon aus, dass die Tabellen \emph{„Kunde“} und
 \emph{„Produkt“} bereits existieren.\index{CREATE TABLE}
 
-\begin{antwort}[muster]
+\begin{antwort}
 \begin{minted}{sql}
-CREATE TABLE Kauf (
+CREATE TABLE IF NOT EXISTS Kauf (
   ID INTEGER REFERENCES Kunde(ID),
   GTIN INTEGER REFERENCES Produkt(GTIN),
   Datum DATE,
@@ -49,7 +123,7 @@ CREATE TABLE Kauf (
 \emph{20251} ausgibt, absteigend sortiert nach \emph{Nachname} und bei
 gleichen \emph{Nachnamen}, absteigend nach \emph{Vorname}.
 
-\begin{antwort}[muster]
+\begin{antwort}
 \begin{minted}{sql}
 SELECT Vorname, Nachname
 FROM Kunde
@@ -68,7 +142,7 @@ als 10 unterschiedlichen Produkten den \emph{Nachnamen} des
 Einkauf ist definiert als Menge aller Produkte, die ein bestimmter Kunde
 an einem bestimmten Datum kauft.
 
-\begin{antwort}[muster]
+\begin{antwort}
 \begin{minted}{sql}
 SELECT Nachname, SUM(Bruttopreis * Menge)
 FROM Kunde k, Produkt p, Kauf x
@@ -102,7 +176,7 @@ HAVING NOT EXISTS (
 );
 \end{minted}
 
-\begin{antwort}[muster]
+\begin{antwort}
 in Mysql gibt es kein EXCEPT
 
 \begin{minted}{sql}
@@ -116,7 +190,7 @@ WHERE k.ID = x.ID)
 \end{minted}
 \end{antwort}
 
-\begin{antwort}[muster]
+\begin{antwort}
 \begin{minted}{sql}
 WITH tmp AS (
   SELECT x.GTIN, k.PLZ
@@ -163,7 +237,7 @@ zwei Produkte mit gleicher Verkaufszahl gibt und verwenden Sie keine
 produktspezifischen Anweisungen wie beispielsweise \verb|ROWNUM|,
 \verb|TOP| oder \verb|LIMIT|.\index{Top-N-Query}\index{WITH}
 
-\begin{antwort}[muster]
+\begin{antwort}
 \begin{minted}{sql}
 WITH Gesamtverkauf AS
 (SELECT k.GTIN, Bezeichnung, SUM (Menge) AS Gesamtmenge)
@@ -187,7 +261,7 @@ ORDER BY Rang;
 \item Schreiben Sie eine SQL-Anweisung, die alle Produkte löscht, die
 noch nie gekauft wurden.\index{DELETE}
 
-\begin{antwort}[muster]
+\begin{antwort}
 \begin{minted}{sql}
 DELETE FROM Produkt
 WHERE GTIN NOT IN
@@ -198,79 +272,5 @@ WHERE GTIN NOT IN
 \end{minted}
 \end{antwort}
 \end{enumerate}
-
-\begin{minted}{sql}
--- sudo mysql < Kundenverwaltungssystem.sql
-DROP DATABASE IF EXISTS Kundenverwaltungssystem;
-CREATE DATABASE Kundenverwaltungssystem;
-USE Kundenverwaltungssystem;
-
-CREATE TABLE Kunde(
-	ID INTEGER PRIMARY KEY,
-	Vorname VARCHAR(30),
-	Nachname VARCHAR(30),
-	PLZ INTEGER
-);
-
-CREATE TABLE Produkt(
-	GTIN INTEGER PRIMARY KEY,
-	Bezeichnung VARCHAR(40),
-	Bruttopreis DOUBLE,
-	MWStSatz INTEGER
-);
-
-CREATE TABLE Kauf(
-  ID INTEGER REFERENCES Kunde(ID),
-  GTIN INTEGER REFERENCES Produkt(GTIN),
-  Datum DATE,
-  Menge INTEGER,
-  PRIMARY KEY (ID, GTIN, Datum)
-);
-
-INSERT INTO Kunde VALUES (1, 'Max', 'Mustermann',91052);
-INSERT INTO Kunde VALUES (2, 'Erika', 'Musterfrau',91052);
-INSERT INTO Kunde VALUES (3, 'Max', 'Meyer',91058);
-INSERT INTO Kunde VALUES (4, 'Hans', 'Schmidt',91054);
-INSERT INTO Kunde VALUES (5, 'Eva', 'Müller',91056);
-INSERT INTO Kunde VALUES (6, 'Hanna', 'Winter',20251);
-INSERT INTO Kunde VALUES (7, 'Bert', 'Sommer',20251);
-INSERT INTO Kunde VALUES (8, 'Jakob', 'Sommer',20251);
-
-INSERT INTO Produkt VALUES (123, 'Buch', 12.30,19);
-INSERT INTO Produkt VALUES (124, 'Kaffee', 4.30,7);
-INSERT INTO Produkt VALUES (125, 'Pullover', 36.40,19);
-INSERT INTO Produkt VALUES (113, 'Heft', 2.30,19);
-INSERT INTO Produkt VALUES (023, 'Honig', 3.20,7);
-INSERT INTO Produkt VALUES (155, 'T-Shirt', 19.30,19);
-INSERT INTO Produkt VALUES (189, 'Nudeln', 1.30,7);
-INSERT INTO Produkt VALUES (004, 'Sonnenbrille', 40.60,19);
-INSERT INTO Produkt VALUES (324, 'Hammer', 22.80,19);
-INSERT INTO Produkt VALUES (112, 'Topf', 50.20,19);
-INSERT INTO Produkt VALUES (453, 'Klopapier', 3.30,7);
-INSERT INTO Produkt VALUES (765, 'Duschgel', 1.89,19);
-INSERT INTO Produkt VALUES (889, 'Deko', 5.89,19);
-
-INSERT INTO Kauf VALUES(1,123,'2019-04-11',1);
-INSERT INTO Kauf VALUES(1,124,'2019-04-11',21);
-INSERT INTO Kauf VALUES(1,125,'2019-04-11',1);
-INSERT INTO Kauf VALUES(1,765,'2019-04-11',4);
-INSERT INTO Kauf VALUES(1,453,'2019-04-11',1);
-INSERT INTO Kauf VALUES(1,324,'2019-04-11',3);
-INSERT INTO Kauf VALUES(1,113,'2019-04-11',2);
-INSERT INTO Kauf VALUES(1,023,'2019-04-11',1);
-INSERT INTO Kauf VALUES(1,189,'2019-04-11',1);
-INSERT INTO Kauf VALUES(1,112,'2019-04-11',7);
-INSERT INTO Kauf VALUES(1,155,'2019-04-11',7);
-INSERT INTO Kauf VALUES(1,004,'2019-05-11',6);
-INSERT INTO Kauf VALUES(7,112,'2019-04-11',7);
-INSERT INTO Kauf VALUES(5,112,'2019-04-11',7);
-INSERT INTO Kauf VALUES(8,112,'2019-06-23',5);
-INSERT INTO Kauf VALUES(8,112,'2019-04-12',3);
-INSERT INTO Kauf VALUES(2,112,'2019-04-23',1);
-INSERT INTO Kauf VALUES(2,112,'2019-08-11',8);
-INSERT INTO Kauf VALUES(4,112,'2019-10-10',2);
-INSERT INTO Kauf VALUES(2,453,'2019-09-24',4);
-INSERT INTO Kauf VALUES(4,004,'2019-07-30',9);
-\end{minted}
 
 \end{document}
