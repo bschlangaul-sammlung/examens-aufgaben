@@ -1,10 +1,11 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{er}
+\liLadePakete{er,rmodell}
 \begin{document}
+\liAufgabenTitel{Schulverwaltung}
 
-\section{Aufgabe 1: ER-Modell\footcite{db:pu:wh}}
-
-\def\TmpUeber#1{{\setul{-0.9em}{}\ul{#1}}}
+\section{Aufgabe 1: ER-Modell
+\footcite[DB/ST - Herbst 2018 (nicht vertieft - 46116), Thema 2 Teilaufgabe 2 Aufgabe 5]{examen:46116:2018:09}
+}
 
 Überführen Sie das Datenbankschema in ein
 ER-Diagramm\index{Entity-Relation-Modell}. Verwenden Sie hierfür die
@@ -18,7 +19,7 @@ Gegeben sei das folgende Datenbankschema, wobei Primärschlüssel
 unterstrichen und Fremdschlüssel überstrichen sind. Die von einem
 Fremdschlüssel referenzierte Relation ist in eckigen Klammem nach dem
 Fremdschlüsselattribut angegeben.
-\footcite[DB/ST - Herbst 2018 (nicht vertieft - 46116), Thema 2 Teilaufgabe 2 Aufgabe 5]{examen:46116:2018:09}
+\footcite{db:pu:wh}
 
 \bigskip
 
@@ -27,37 +28,37 @@ Fremdschlüsselattribut angegeben.
   \ttfamily
   \footnotesize
   Schüler (%
-    \ul{SchülerID},
+    \liPrimaer{SchülerID},
     SVorname,
     SNachname,
-    \TmpUeber{KlassenID}[Klassen],
+    \liFremd{KlassenID}[Klassen],
     Geburtsdatum%
   )\\\\
   Lehrer (%
-    \ul{LehrerID},
+    \liPrimaer{LehrerID},
     LVorname,
     LNachname%
   )\\\\
   Klassen (%
-    \ul{KlassenID},
+    \liPrimaer{KlassenID},
     Klassenstufe,
     Buchstabe%
   )\\\\
   Unterrichtsfächer (%
-    \ul{FachID},
+    \liPrimaer{FachID},
     Name%
   )\\\\
   Noten (%
-    \ul{NotenID},
-    \TmpUeber{SchülerID}[Schüler],
-    \TmpUeber{FachID}[Unterrichtsfächer],
+    \liPrimaer{NotenID},
+    \liFremd{SchülerID}[Schüler],
+    \liFremd{FachID}[Unterrichtsfächer],
     Note,
     Gewicht%
   )\\\\
   LehrerUnterrichtet (%
-    \TmpUeber{LehrerID}[Lehrer],
-    \ul{KlassenID}[Klassen],
-    \ul{FachID}[Unterrichtsfächer]%
+    \liFremd{LehrerID}[Lehrer],
+    \liPrimaer{KlassenID}[Klassen],
+    \liPrimaer{FachID}[Unterrichtsfächer]%
   )\\\\
 }
 
@@ -87,7 +88,7 @@ Fremdschlüsselattribut angegeben.
 \begin{center}
 \begin{tikzpicture}[er2,scale=0.5,transform shape]
 \node[entity] (Schüler) {Schüler};
-\node[attribute,below left of=Schüler,near]{\ul{SchülerID}} edge (Schüler);
+\node[attribute,below left of=Schüler,near]{\liPrimaer{SchülerID}} edge (Schüler);
 \node[attribute,left of=Schüler]{SVorname} edge (Schüler);
 \node[attribute,above left of=Schüler,near]{SNachname} edge (Schüler);
 \node[attribute,above right of=Schüler]{Geburstdatum} edge (Schüler);
@@ -102,7 +103,7 @@ Fremdschlüsselattribut angegeben.
 \node[attribute,below right of=Lehrer,node distance=5em] {LehrerID} edge (Lehrer);
 
 \node[entity,right of=Lehrer,farer] (Klassen) {Klassen};
-\node[attribute,right of=Klassen]{\ul{KlassenID}} edge (Klassen);
+\node[attribute,right of=Klassen]{\liPrimaer{KlassenID}} edge (Klassen);
 \node[attribute,below right of=Klassen,near]{Klassenstufe} edge (Klassen);
 \node[attribute,above right of=Klassen,near]{Buchstabe} edge (Klassen);
 

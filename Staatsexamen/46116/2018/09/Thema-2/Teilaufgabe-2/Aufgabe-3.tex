@@ -1,6 +1,7 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{syntax}
 \begin{document}
+\liAufgabenTitel{Schuldatenbank}
 
 \section{Aufgabe 3
 \index{SQL}
@@ -10,9 +11,9 @@
 Gegeben sei das folgende Datenbank-Schema, das für die Speicherung der
 Daten einer Schule entworfen wurde, zusammen mit einem Teil seiner
 Ausprägung. Die Primärschlüssel-Attribute sind jeweils unterstrichen.
-\footcite{db:ab3}
+\footcite{db:ab:3}
 
-Die Relation \emph{Schueler} enthält allgemeine Daten zu den
+Die Relation \emph{Schüler} enthält allgemeine Daten zu den
 Schülerinnen und Schülern. Schülerinnen und Schüler nehmen an Prüfungen
 in verschiedenen Unterrichtsfächern teil und erhalten dadurch Noten.
 Diese werden in der Relation \emph{Noten} abgespeichert. Prüfungen haben
@@ -20,29 +21,66 @@ ein unterschiedliches Gewicht. Beispielsweise hat ein mündliches
 Ausfragen oder eine Extemporale das Gewicht 1, während eine Schulaufgabe
 das Gewicht 2 hat.
 
-Schueler:
+Schüler:
 
 \begin{tabular}{llll}
-SchuelerID & Vorname & Nachname  & Klasse \\
-1        & Laura   & Müller    & 4A     \\
-2        & Linus   & Schmidt   & 4A     \\
-3        & Jonas   & Schneider & 4A     \\
-4        & Liam    & Fischer   & 4B     \\
-5        & Tim     & Weber     & 4B     \\
-6        & Lea     & Becker    & 4B     \\
-7        & Emilia  & Klein     & 4C     \\
-8        & Julia   & Wolf      & 4C
+SchülerID  & Vorname & Nachname  & Klasse \\
+1          & Laura   & Müller    & 4A     \\
+2          & Linus   & Schmidt   & 4A     \\
+3          & Jonas   & Schneider & 4A     \\
+4          & Liam    & Fischer   & 4B     \\
+5          & Tim     & Weber     & 4B     \\
+6          & Lea     & Becker    & 4B     \\
+7          & Emilia  & Klein     & 4C     \\
+8          & Julia   & Wolf      & 4C
 \end{tabular}
 
 Noten:
 
 \begin{tabular}{lllll}
-SchuelerID {[}Schueler{]} & Schulfach  & Note & Gewicht & Datum      \\
-1                         & Mathematik & 3    & 2       & 23.09.2017 \\
-1                         & Mathematik & 1    & 1       & 03.10.2017 \\
-1                         & Mathematik & 2    & 2       & 15.10.2017 \\
-1                         & Mathematik & 4    & 1       & 11.11.2017
+SchülerID {[}Schüler{]} & Schulfach  & Note & Gewicht & Datum      \\
+1                       & Mathematik & 3    & 2       & 23.09.2017 \\
+1                       & Mathematik & 1    & 1       & 03.10.2017 \\
+1                       & Mathematik & 2    & 2       & 15.10.2017 \\
+1                       & Mathematik & 4    & 1       & 11.11.2017
 \end{tabular}
+
+% Datenbankname: schuldatenbank
+\begin{minted}{sql}
+CREATE TABLE Schüler (
+  SchülerID INTEGER PRIMARY KEY NOT NULL,
+  Vorname VARCHAR(20),
+  Nachname VARCHAR(20),
+  Klasse VARCHAR(5)
+);
+
+CREATE TABLE Noten (
+  SchülerID INTEGER NOT NULL,
+  Schulfach VARCHAR(20),
+  Note INTEGER,
+  Gewicht INTEGER,
+  Datum DATE,
+  PRIMARY KEY (SchülerID, Schulfach, Datum),
+  FOREIGN KEY (SchülerID) REFERENCES Schüler(SchülerID)
+);
+
+INSERT INTO Schüler VALUES
+  (1, 'Laura', 'Müller', '4A'),
+  (2, 'Linus', 'Schmidt', '4A'),
+  (3, 'Jonas', 'Schneider', '4A'),
+  (4, 'Liam', 'Fischer', '4B'),
+  (5, 'Tim', 'Weber', '4B'),
+  (6, 'Lea', 'Becker', '4B'),
+  (7, 'Emilia', 'Klein', '4C'),
+  (8, 'Julia', 'Wolf', '4C');
+
+INSERT INTO Noten VALUES
+  (1, 'Mathematik', 3, 2, '23.09.2017'),
+  (1, 'Mathematik', 1, 1, '03.10.2017'),
+  (1, 'Mathematik', 2, 2, '15.10.2017'),
+  (1, 'Mathematik', 4, 1, '11.11.2017');
+\end{minted}
+\index{SQL mit Übungsdatenbank}
 
 \begin{enumerate}
 
@@ -53,27 +91,26 @@ SchuelerID {[}Schueler{]} & Schulfach  & Note & Gewicht & Datum      \\
 \item Geben Sie die SQL-Befehle an, die notwendig sind, um die oben
 dargestellten Tabellen in einer SQL-Datenbank anzulegen.
 \index{CREATE TABLE}
-\begin{antwort}[muster]
-Ich hatte den Primärschlüssel aus der Tabelle Noten übersehen.
+
+\begin{antwort}
 \begin{minted}{sql}
-CREATE TABLE Schuler (
-  Schueler INTEGER PRIMARY NOT NULL,
+CREATE TABLE IF NOT EXISTS Schüler (
+  SchülerID INTEGER PRIMARY KEY NOT NULL,
   Vorname VARCHAR(20),
   Nachname VARCHAR(20),
   Klasse VARCHAR(5)
 );
 
-CREATE TABLE Noten (
-  SchuelerID INTEGER NOT NULL,
+CREATE TABLE IF NOT EXISTS Noten (
+  SchülerID INTEGER NOT NULL,
   Schulfach VARCHAR(20),
   Note INTEGER,
   Gewicht INTEGER,
   Datum DATE,
-  PRIMARY(SchuelerID, Schulfach, Datum),
-  FOREIGN KEY (SchuelerID) REFERENCES Schueler(Schueler)
+  PRIMARY KEY (SchülerID, Schulfach, Datum),
+  FOREIGN KEY (SchülerID) REFERENCES Schüler(SchülerID)
 );
 \end{minted}
-
 \end{antwort}
 
 %%
@@ -87,34 +124,34 @@ verarbeitet werden können und begründen Sie Ihre Antwort kurz.
 
 \begin{minted}{sql}
 INSERT INTO
-Schueler (SchuelerID, Vorname, Nachname, Klasse)
-VALUES (6, "Johannes", "Schmied", "4C");
+Schüler (SchülerID, Vorname, Nachname, Klasse)
+VALUES (9, 'Johannes', 'Schmied', '4C');
 \end{minted}
 
 \begin{antwort}[richtig]
-Nein, denn die Spalte, die Primärschlüssel heißt Schueler und nicht
-SchuelerID. Außerdem existiert bereits ein Schuüler mit der ID 6.
+Nein, denn die Spalte, die Primärschlüssel heißt Schüler und nicht
+SchülerID. Außerdem existiert bereits ein Schuüler mit der ID 6.
 \end{antwort}
 
 \begin{antwort}[muster]
-nein, SchuelerID muss als Primärschlüssel eindeutig sein und ist bereits vergeben
+nein, SchülerID muss als Primärschlüssel eindeutig sein und ist bereits vergeben
 \end{antwort}
 
 \begin{minted}{sql}
-INSERT INTO Noten VALUES (9, "Chemie", 1, 2);
+INSERT INTO Noten VALUES (6, 'Chemie', 1, 2, '1.4.2020');
 \end{minted}
 
 \begin{antwort}[richtig]
 Nein, Datum ist zwingend nötig, da es im Primärschlüssel enthalten ist.
-Es gibt keine Schuler mit der ID 9. Der müsste vorher angelegt sein,
-da die Spalte SchuelerID von Noten auf den Fremdschlüssel Schueler aus
-der Schuelertabelle verweist.
+Es gibt keine Schüler mit der ID 9. Der müsste vorher angelegt sein,
+da die Spalte SchülerID von Noten auf den Fremdschlüssel Schüler aus
+der Schülertabelle verweist.
 \end{antwort}
 
 \begin{antwort}[muster]
-nein, Schueler mit der ID 9 existiert noch nicht, sodass diese Noten
+nein, Schüler mit der ID 9 existiert noch nicht, sodass diese Noten
 nicht eingetragen werden können, da Integritätsbedingungen nicht erfüllt
-(SchuelerID ist Fremdschlüssel), zudem fehlt das Datum. Da es sich
+(SchülerID ist Fremdschlüssel), zudem fehlt das Datum. Da es sich
 hier um ein Schlüsselattribut handelt, kann es nicht NULL sein.
 \end{antwort}
 
@@ -136,38 +173,38 @@ durchführt.
 
 \begin{antwort}[falsch]
 \begin{minted}{sql}
-ALTER TABLE Schueler ALTER COLUMN Vorname ADD UNIQUE;
+ALTER TABLE Schüler ALTER COLUMN Vorname ADD UNIQUE;
 \end{minted}
 \end{antwort}
 
 \begin{antwort}[muster]
 \begin{minted}{sql}
-ALTER TABLE Schueler
+ALTER TABLE Schüler
 ADD CONSTRAINT Vorname_eindeutig UNIQUE (Vorname, Klasse);
 \end{minted}
 \end{antwort}
 
-\item Der Schüler Tim Weber (SchuelerID: 5) wechselt die Klasse. Geben
+\item Der Schüler Tim Weber (SchülerID: 5) wechselt die Klasse. Geben
 Sie den SQL-Befehl an, der den genannten Schüler in die Klasse “4C“
 überführt.
 \index{UPDATE}
 
 \begin{antwort}[richtig]
 \begin{minted}{sql}
-UPDATE Schuler
+UPDATE Schüler
 SET Klasse = '4C'
-WHERE Vorname = 'Tim' AND Nachname = 'Weber' AND SchuelerID = 5;
+WHERE Vorname = 'Tim' AND Nachname = 'Weber' AND SchülerID = 5;
 \end{minted}
 \end{antwort}
 
 \begin{antwort}[muster]
 \begin{minted}{sql}
-UPDATE Schuler
-SET Klasse = '4C' WHERE SchuelerID = 5;
+UPDATE Schüler
+SET Klasse = '4C' WHERE SchülerID = 5;
 \end{minted}
 \end{antwort}
 
-\item Die Schülerin Laura Müller (SchuelerID: 1) zieht um und wechselt
+\item Die Schülerin Laura Müller (SchülerID: 1) zieht um und wechselt
 die Schule. Löschen Sie die Schülerin aus der Datenbank. Nennen Sie
 einen möglichen Effekt, welcher bei der Verwendung von Primär- und
 Fremdschlüsseln auftreten kann.
@@ -175,18 +212,18 @@ Fremdschlüsseln auftreten kann.
 
 \begin{antwort}[richtig]
 \begin{minted}{sql}
-DELETE FROM Noten WHERE SchuelerID = 1;
-DELETE FROM Schueler WHERE Schueler = 1
+DELETE FROM Noten WHERE SchülerID = 1;
+DELETE FROM Schüler WHERE Schüler = 1
 \end{minted}
 
 Es könnte passieren, dass man vergisst die Einträge in Noten zu löschen,
-denn der Fremdschlüssel SchuelerID verweist auf den Primärschlüssel
-SchuelerID in Schuler.
+denn der Fremdschlüssel SchülerID verweist auf den Primärschlüssel
+SchülerID in Schüler.
 \end{antwort}
 
 \begin{antwort}[muster]
 Löschen aller Noten von Laura Müller, falls ON DELETE CASCADE gesetzt.
-Oder es müssen erst alle Fremdschlüsselverweise auf diese SchuelerID in
+Oder es müssen erst alle Fremdschlüsselverweise auf diese SchülerID in
 Noten gelöscht werden
 \end{antwort}
 
@@ -200,8 +237,8 @@ Beachten Sie die Gewichte der Noten.
 \begin{minted}{sql}
 CREATE VIEW DurchschnittsNoten AS (
   (SELECT s.Klasse, n.Schulfach, (SUM(n.Note * n.Gewicht) / SUM(n.Gesicht)) AS Durchschnittsnote
-  FROM Noten n, Schueler s
-  WHERE s.SchulerID = n.SchuelerID AND n.Gewicht = 1
+  FROM Noten n, Schüler s
+  WHERE s.SchülerID = n.SchülerID AND n.Gewicht = 1
   GROUP BY s.Klasse, n.Schulfach)
 );
 \end{minted}
@@ -266,7 +303,7 @@ WHERE Schulfach = 'Mathematik';
 Ich habe in der WHERE Klauses das Schulfach vergessen. Sonst richtig.
 Außerdem habe ich das Datum einfach übernommen.
 \begin{minted}{sql}
-SELECT COUNT(SchuelerID) AS AnzahlSchueler
+SELECT COUNT(SchülerID) AS AnzahlSchüler
 FROM Noten
 WHERE Datum = 2017-09-23 AND Gewichtung = 2 AND Schulfach = 'Mathematik';
 \end{minted}
@@ -276,15 +313,15 @@ WHERE Datum = 2017-09-23 AND Gewichtung = 2 AND Schulfach = 'Mathematik';
 %
 %%
 
-\item Geben Sie die SchuelerID aller Schüler zurück, die im Fach
+\item Geben Sie die SchülerID aller Schüler zurück, die im Fach
 Mathematik mindestens drei mal die Schulnote 6 geschrieben haben.
 
 \begin{antwort}[muster]
 \begin{minted}{sql}
-SELECT SchuelerID
+SELECT SchülerID
 FROM Noten
 WHERE Schulfach = 'Mathematik' AND Note = 6
-GROUP BY SchuelerID
+GROUP BY SchülerID
 HAVING COUNT(*) >= 3;
 \end{minted}
 \end{antwort}
@@ -299,8 +336,8 @@ HAVING COUNT(*) >= 3;
 \begin{antwort}[muster]
 \begin{minted}{sql}
 SELECT n.Schulfach, AVG (n.Note)
-FROM Schueler s, Noten n
-WHERE s.SchuelerID = n.SchuelerID AND s.Klasse = ’4 A ’
+FROM Schüler s, Noten n
+WHERE s.SchülerID = n.SchülerID AND s.Klasse = ’4 A ’
 GROUP BY n.Schulfach
 \end{minted}
 
@@ -325,7 +362,7 @@ SQL-Befehle für die gegebene Ausprägung zurückliefern.
 \begin{minted}{sql}
 SELECT COUNT(DISTINCT Klasse)
 FROM
-Schueler NATURAL JOIN Noten;
+Schüler NATURAL JOIN Noten;
 \end{minted}
 
 \begin{antwort}[muster]
@@ -335,7 +372,7 @@ Schueler NATURAL JOIN Noten;
 \begin{minted}{sql}
 SELECT COUNT(all Klasse)
 FROM
-Noten, Schueler;
+Noten, Schüler;
 \end{minted}
 
 \begin{antwort}[muster]
@@ -345,7 +382,7 @@ Noten, Schueler;
 \begin{minted}{sql}
 SELECT COUNT(Note)
 FROM
-Schueler NATURAL LEFT OUTER JOIN Noten;
+Schüler NATURAL LEFT OUTER JOIN Noten;
 \end{minted}
 
 \begin{antwort}[muster]
@@ -355,7 +392,7 @@ Schueler NATURAL LEFT OUTER JOIN Noten;
 \begin{minted}{sql}
 SELECT COUNT(*)
 FROM
-Schueler NATURAL LEFT OUTER JOIN Noten;
+Schüler NATURAL LEFT OUTER JOIN Noten;
 \end{minted}
 
 \begin{antwort}[muster]
