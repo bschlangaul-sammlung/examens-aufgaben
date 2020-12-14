@@ -73,6 +73,10 @@ Weitere Aufgaben zum Thema „SQL“:
 
 ### Objektorientierte Modellierung und Programmierung (OOMUP)
 
+#### Vererbung
+
+{{ stichwort "Vererbung" }}
+
 ### Algorithmen und Datenstrukturen (AUD)
 
 #### Rekursion

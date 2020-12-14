@@ -159,6 +159,14 @@ Weitere Aufgaben zum Thema „SQL“:
 
 ### Objektorientierte Modellierung und Programmierung (OOMUP)
 
+#### Vererbung
+
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/01_OOMUP/Vererbung/Aufgabe_Bankkonten.pdf" download="Aufgabe_Bankkonten">„Bankkonten“</a> (Vererbung, Generalisierung, Spezialisierung, Klassendiagramm, Implementierung in Java)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2002/09/Thema-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66112-2002-Herbst_T1-A4">Examen 66112 Herbst 2002 T1 A4</a> (Vererbung, Abstrakte Klasse, Implementierung in Java, Klassendiagramm)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/09/Thema-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66112-2006-Herbst_T1-A5">Examen 66112 Herbst 2006 T1 A5</a> (Vererbung, Klassendiagramm)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2015-Frühjahr_T1-TA2-A3">„Kunden und Angestellte einer Firma“ Examen 66116 Frühjahr 2015 T1 TA2 A3</a> (Vererbung, Implementierung in Java, Interface, Abstrakte Klasse)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2018-Frühjahr_T2-TA2-A1">„UML-Diagramme entspreched Java-Code zeichnen“ Examen 66116 Frühjahr 2018 T2 TA2 A1</a> (Vererbung, Interface, Abstrakte Klasse, Klassendiagramm, Objektdiagramm, Sequenzdiagramm)
+
 ### Algorithmen und Datenstrukturen (AUD)
 
 #### Rekursion
@@ -199,6 +207,7 @@ Weitere Aufgaben zum Thema „SQL“:
 
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/01_OOMUP/Diagramme/Aufgabe_Alle-UML-Diagramme.pdf" download="Aufgabe_Alle-UML-Diagramme">„Alle UML-Diagramme“</a> (UML-Diagramme, Klassendiagramm, Objektdiagramm, Zustandsdiagramm, Sequenzdiagramm, Aktivitätsdiagramm, Anwendungsfalldiagramm, Kommunikationsdiagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/01_OOMUP/Vererbung/Aufgabe_Bankkonten.pdf" download="Aufgabe_Bankkonten">„Bankkonten“</a> (Vererbung, Generalisierung, Spezialisierung, Klassendiagramm, Implementierung in Java)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/01_OOMUP/Vererbung/Aufgabe_Kleintierpraxis.pdf" download="Aufgabe_Kleintierpraxis">„Kleintierpraxis“</a> (Klassendiagramm, Implementierung in Java)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/02_Modellierung/Aufgabe_DVD-Automat.pdf" download="Aufgabe_DVD-Automat">„DVD-Automat“</a> (Zustandsdiagramm, Aktivitätsdiagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46116-2012-Frühjahr_T2-TA2-A1">„Hotel-Verwaltung“ Examen 46116 Frühjahr 2012 T2 TA2 A1</a> (Klassendiagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2014-Herbst_T2-TA1-A3">„Bestellsystem“ Examen 46116 Herbst 2014 T2 TA1 A3</a> (UML-Diagramme, Anwendungsfalldiagramm, Klassendiagramm, Objektdiagramm, Zustandsdiagramm)
