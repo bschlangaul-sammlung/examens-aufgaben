@@ -1,6 +1,7 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{syntax,mathe}
 \begin{document}
+\liAufgabenTitel{Master-Theorem und Methode „m()“}
 
 \section{Beispiel-Aufgabe zum Master-Theorem \index{Master-Theorem}
 \footcite[Seite 39 (PDF 26)]{aud:fs:2}
@@ -18,7 +19,7 @@ Rechenschritten von \java{m} in Abhängigkeit von der Länge
 \begin{minted}{java}
 public static int m(int[] r, int lo, int hi) {
   if (lo < 8 || hi <= 10 || lo >= r.length || hi > r.length) {
-  throw new IllegalArgumentException();
+    throw new IllegalArgumentException();
   }
 
   if (hi - lo == 1) {
