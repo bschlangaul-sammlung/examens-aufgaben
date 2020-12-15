@@ -1,0 +1,151 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,rmodell}
+\begin{document}
+\liAufgabenTitel{Game of Thrones}
+\section{
+\index{SQL}
+\footcite{66116:2019:09}}
+
+Formulieren Sie folgende Anfragen in SQL gegen die angegebene Datenbank
+aus einer imaginären Serie.
+
+\begin{liRmodell}
+\liRelation{Figur}{\liPrimaer{Id}, Name, Schwertkunst, Lebendig, Titel}
+
+\liRelation{gehört\_zu}{\liPrimaer{Id, Familie},
+FK (Id) references Figur(Id),
+FK (Familie) references Familie(Id) }
+
+\liRelation{Familie}{\liPrimaer{Id}, Name, Reichtum, Anführer}
+
+\liRelation{Drache}{\liPrimaer{Name}, Lebendig}
+
+\liRelation{besitzt}{\liPrimaer{Id, Name},
+FK (Id) references Figur(Id),
+FK (Name) references Drache(Name)}
+
+\liRelation{Festung}{\liPrimaer{Name}, Ort, Ruine}
+
+\liRelation{besetzt}{\liPrimaer{Familie, Festung},
+FK (Familie) references Familie(Id),
+FK (Festung) references Festung(Name)}
+
+\liRelation{lebt}{\liPrimaer{Id, Name},
+FK (Id) references Figur(Id),
+FK (Name) references Festung(Name)}
+\end{liRmodell}
+
+% Datenbankname: game_of_thrones
+\begin{minted}{sql}
+CREATE TABLE Figur (
+  Id integer PRIMARY KEY,
+  Name varchar(20),
+  Schwertkunst integer,
+  Lebendig boolean,
+  Titel varchar(50)
+);
+
+INSERT INTO Figur VALUES
+  (1, 'Eddard Stark', 5, FALSE, 'Lord von Winterfell'),
+  (2, 'Rodd Stark', 4, FALSE, 'Lord von Winterfell'),
+  (3, 'Tywin Lennister', 5, FALSE, 'Lord von Casterlystein'),
+  (4, 'Cersei Lennister', 2, TRUE, 'Lady von Casterlystein');
+
+CREATE TABLE Familie (
+  Id integer PRIMARY KEY,
+  Name varchar(20),
+  Reichtum numeric(11,2),
+  Anführer varchar(20)
+);
+
+CREATE TABLE gehört_zu (
+  Id integer REFERENCES Figur(id),
+  Familie integer REFERENCES Familie(id)
+);
+
+CREATE TABLE Drache (
+  Name varchar(20) PRIMARY KEY,
+  Lebendig boolean
+);
+
+CREATE TABLE besitzt (
+  Id integer REFERENCES Figur(Id),
+  Name varchar(20) REFERENCES Drache(Name)
+);
+
+CREATE TABLE Festung (
+  Name varchar(20) PRIMARY KEY,
+  Ort varchar(20),
+  Ruine boolean
+);
+
+INSERT INTO Festung VALUES
+  ('Roter Bergfried', 'Königsmund', FALSE);
+
+CREATE TABLE besetzt (
+  Familie integer REFERENCES Familie(Id),
+  Festung varchar(20) REFERENCES Festung(Name)
+);
+
+CREATE TABLE lebt (
+  Id integer REFERENCES Figur(Id),
+  Name varchar(20) REFERENCES Festung(Name)
+);
+
+INSERT INTO lebt VALUES (
+  4, 'Roter Bergfried'
+);
+\end{minted}
+\index{SQL mit Übungsdatenbank}
+
+\begin{enumerate}
+\item Geben Sie für alle Figuren an, wie oft alle vorhandenen Titel
+vorkommen.
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT
+  Name,
+  Titel,
+  (SELECT COUNT(*) FROM Figur g WHERE g.Titel = f.Titel) AS Anzahl_Titel
+FROM Figur f;
+\end{minted}
+\end{antwort}
+
+\item Welche Figuren (Name ist gesucht) kommen aus „Kings Landing“?
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT
+  f.Name
+FROM
+  Figur f,
+  Festung b,
+  lebt l
+WHERE
+  b.Name = l.Name AND
+  f.Id = l.Id AND
+  b.Ort = 'Königsmund';
+\end{minted}
+\end{antwort}
+
+\item Geben Sie für jede Familie (Name) die Anzahl der zugehörigen
+Charaktere und Festungen an.
+
+\item Gesucht sind die besten fünf Schwertkämpfer aus Festungen aus dem
+Ort „Westeros“. Es soll der Name, die Schwertkunst und die Platzierung
+ausgegeben werden. Die Ausgabe soll nach der Platzierung sortiert
+erfolgen.
+
+\item Schreiben Sie eine Anfrage, die alle Figuren löscht, die tot sind.
+Das Attribut Lebendig kann dabei die Optionen „ja“ und „nein“ annehmen.
+
+\item Löschen Sie die Spalten „Lebendig“ aus der Datenbank.
+
+\item Erstellen Sie eine weitere Tabelle mit dem Namen Waffen, welche
+genau diese auflistet. Eine Waffe ist genau einer Figur zugeordnet, hat
+einen eindeutigen Namen und eine Stärke zwischen 0 und 5. Wählen Sie
+sinnvolle Typen für die Attribute.
+\end{enumerate}
+
+\end{document}
