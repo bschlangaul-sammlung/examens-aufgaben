@@ -1,9 +1,9 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax,mathe}
+\liLadePakete{syntax,mathe,wpkalkuel}
 \begin{document}
 
 \begin{enumerate}
-\item Gegeben sei folgende Methode:
+\item Gegeben sei folgende Methode:\footcite{sosy:e-klausur}
 
 \inputcode[firstline=3,lastline=11]{aufgaben/sosy/totale_korrektheit/GeoSum}
 
@@ -14,7 +14,6 @@ Weisen Sie mittels vollständiger Induktion nach, dass
 \end{displaymath}
 
 Dabei können Sie davon ausgehen, dass $q > 0$, $ n \in \mathbb{N}_0$
-\end{enumerate}
 
 Manuelle Rückmeldung:
 Beim Induktionsanfang fehlt ein f(0) oder Ähnliches (je nachdem, wie
@@ -54,4 +53,63 @@ f(n+1): \text{geoSum}(n + 1, q)
 
 \end{antwort}
 
+%%
+%
+%%
+
+\item Gegeben sei die folgende Methode:
+
+\inputcode[firstline=4,lastline=11]{aufgaben/sosy/totale_korrektheit/Blub}
+
+Berechnen Sie hierzu das folgende Kalkül:
+
+\begin{displaymath}
+\wp{R}{a \geq 0}
+\end{displaymath}
+
+\begin{antwort}
+$\wp{R}{a \geq 0}$
+
+\MatheEquiv{
+  \wp{if (a > 15) \{a = a - 42;\} else \{ a = -a;\}}{a \geq 0}
+}
+
+\MatheEquiv{
+  (a > 15 \land \wp{a = a - 42}{a \geq 0})
+  \lor
+  (a \leq 15 \land \wp{a = -a}{a \geq 0})
+}
+
+\MatheEquiv{
+  (a > 15 \land \wp{}{a - 42 \geq 0})
+  \lor
+  (a \leq 15 \land \wp{}{-a \geq 0})
+}
+
+\MatheEquiv{
+  (a > 15 \land a - 42 \geq 0)
+  \lor
+  (a \leq 15 \land -a \geq 0)
+}
+
+\MatheEquiv{
+  (a > 15 \land a \geq 42)
+  \lor
+  (a \leq 15 \land a \leq 0)
+}
+
+\MatheEquiv{
+  (a \geq 42)
+  \lor
+  (a \leq 0)
+}
+
+\MatheEquiv{
+  a \geq 42
+  \lor
+  a \leq 0
+}
+
+\end{antwort}
+\end{enumerate}
 \end{document}
