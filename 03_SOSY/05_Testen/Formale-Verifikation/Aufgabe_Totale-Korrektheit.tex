@@ -1,0 +1,57 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,mathe}
+\begin{document}
+
+\begin{enumerate}
+\item Gegeben sei folgende Methode:
+
+\inputcode[firstline=3,lastline=11]{aufgaben/sosy/totale_korrektheit/GeoSum}
+
+Weisen Sie mittels vollständiger Induktion nach, dass
+
+\begin{displaymath}
+\text{geoSum}(n,q) = 1 - q^{n+1}
+\end{displaymath}
+
+Dabei können Sie davon ausgehen, dass $q > 0$, $ n \in \mathbb{N}_0$
+\end{enumerate}
+
+Manuelle Rückmeldung:
+Beim Induktionsanfang fehlt ein f(0) oder Ähnliches (je nachdem, wie
+
+Also ist
+
+du die Funktion nennen möchtest) (-1 BE) Du musst ja zeigen, dass für
+n=0 der Programmcode und die Formel auf das gleiche Ergebnis kommen.
+Beim Induktionsschritt fehlt der "Start" mit dem Programmcode, der ist
+nur in der Behauptung vorhanden. Du musst da näher am Programmcode
+bleiben als bei mathematischen Beispielen (vgl. Aufgabe mit Türme von
+Hanoi) (- 1 BE) Sonst sehr schön!
+
+\begin{antwort}
+\liPseudoUeberschrift{Induktionsanfang}
+
+\begin{displaymath}
+f(0): \text{geoSum}(0, q) = 1 - q^{0+1} = 1 - q^1 = 1 - q
+\end{displaymath}
+
+\liPseudoUeberschrift{Induktionsvoraussetzung}
+
+\begin{displaymath}
+f(n): \text{geoSum}(n, q) = 1 - q^{n+1}
+\end{displaymath}
+
+\liPseudoUeberschrift{Induktionsschritt}
+
+\begin{align*}
+f(n+1): \text{geoSum}(n + 1, q)
+& = (1 - q)^{(n + 1) + 1} + \text{geoSum}(n, q) \\
+& = (1 - q)^{n + 1 + 1} + (1 - q)^{n + 1} \\
+& = 1-q^{n+1} + q^{n+1} \cdot (1-q) \\
+& = 1-q^{n+1}+q^{n+1}-q^{n+2} \\
+& = 1-q^{(n+1)+1}
+\end{align*}
+
+\end{antwort}
+
+\end{document}
