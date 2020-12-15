@@ -10,3 +10,6 @@ Setzen einer Aufgabe]
 
 % Momentan nur ein Dummy Makro
 \def\liAufgabenTitel#1{}
+
+% Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
+\RequirePackage[ngerman]{babel}
