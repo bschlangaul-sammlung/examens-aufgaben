@@ -1,0 +1,158 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,kontrollflussgraph}
+\begin{document}
+\liAufgabenTitel{Größter gemeinsamer Teiler}
+
+\section{White-Box-Test\footcite{sosy:e-klausur}}
+
+Gegeben sei folgende Methode:
+
+\inputcode[firstline=4,lastline=12]{aufgaben/sosy/white_box/WhiteBox}
+
+\begin{enumerate}
+\item Erstellen Sie den zur Methode gehörenden datenflussannotierten
+Kontrollflussgraphen.\index{Datenfluss-annotierter Kontrollflussgraph}
+
+\begin{antwort}
+\begin{tikzpicture}[kontrollfluss,xscale=1,yscale=-1.2]
+\node[knoten] at (0,0) (nS) {S}; % public int ggT(int a, int b) {
+\node[knoten] at (0,1) (n1) {1}; % int result = 1;
+\node[knoten] at (0,2) (n2) {2}; % in der for: int i = 1;
+\node[knoten] at (0,3) (n3) {3}; % in der for: i <= Math.min(a, b);
+\node[knoten] at (0,4) (n4) {4}; % if((a % 1 == 0) & (b % i == 0)) {
+\node[knoten] at (1,5) (n5) {5}; % result = i;
+\node[knoten] at (0,6) (n6) {6}; % i++
+\node[knoten] at (0,7) (nE) {E}; % return result;
+
+\draw[->] (nS) -- (n1);
+\draw[->] (n1) -- (n2);
+\draw[->] (n2) -- (n3);
+\draw[->] (n3) -- node[name=n3n4]{} (n4);
+\draw[->] (n4) -- node[name=n4n5]{} (n5);
+\draw[->] (n4) -- node[name=n4n6]{} (n6);
+\draw[->] (n5) -- (n6);
+\draw[->] (n6) -- (nE);
+\draw[->] (n3) -- (2,3) -- node[name=n3nE]{} (2,7) -- (nE);
+\draw[->] (n6) -- (-2,6) -- (-2,3) -- (n3);
+
+\node[usebox] at (2,0) {def(a, b)} edge[dashed] (nS);
+\node[usebox] at (2,1) {def(result)} edge[dashed] (n1);
+\node[usebox] at (2,2) {def(i)} edge[dashed] (n2);
+
+\node[usebox] at (3,3) {p-use(i), c-use(a, b)} edge[dashed] (n3n4.center) edge[dashed] (n3nE.center);
+\node[usebox] at (-5,4) {p-use(a, b, i)} edge[dashed] (n4n5.center) edge[dashed] (n4n6.center);
+
+\node[usebox] at (3,5) {def(result), c-use(i)} edge[dashed] (n5);
+
+\node[usebox] at (3,6) {def(i), c-use(i)} edge[dashed] (n6);
+\node[usebox] at (-1,8) {c-use(result)} edge[dashed] (nE);
+\end{tikzpicture}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Geben Sie die zyklomatische Komplexität $M$ nach McCabe der
+Methode \java{ggT} an. (Nur das Ergebnis!)
+\index{Zyklomatische Komplexität nach Mc-Cabe}
+
+\begin{antwort}
+Berechnung durch Anzahl Binärverzweigungen $b$ ($p$ Anzahl der
+Zusammenhangskomponenten des Kontrollflussgraphen)
+
+\begin{displaymath}
+M = b + p
+\end{displaymath}
+
+$\rightarrow M = 2 + 1 = 3$
+
+\noindent
+oder durch Anzahl Kanten $e$ und Knoten $n$
+
+\begin{displaymath}
+M = e - n + 2p
+\end{displaymath}
+
+$\rightarrow M = 9 - 8 + 2 \cdot 1 = 3$
+\end{antwort}
+
+\item Geben Sie je einen Repräsentanten aller Pfadklassen im
+Kontrollflussgraphen an, die zum Erzielen einer vollständigen
+Schleifen-Inneres-Überdeckung (Boundary-Interior-Coverage) genügen
+würden.
+\index{C2b Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage)}
+
+\begin{antwort}
+\liPseudoUeberschrift{Äußere Pfade}
+
+\begin{itemize}
+\item S 1 2 3 E
+\end{itemize}
+
+\liPseudoUeberschrift{Grenzpfade}
+
+\begin{itemize}
+\item S 1 2 3 4 5 6 3 E
+\item S 1 2 3 4 6 3 E
+\end{itemize}
+
+\liPseudoUeberschrift{Innere Pfade}
+
+\begin{itemize}
+\item S 1 2 3 4 5 6 3 4 5 6 3 E
+\item S 1 2 3 4 6 3 4 6 3 E
+\item S 1 2 3 4 5 6 3 4 6 3 E
+\item S 1 2 3 4 6 3 4 5 6 3 E
+\end{itemize}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Geben Sie an, welche der Pfade aus der vorherigen Aufgabe nicht
+überdeckbar ("feasible") sind und begründen Sie dies.
+
+\begin{antwort}
+\liPseudoUeberschrift{Äußere Pfade}
+
+\begin{description}
+\item[S 1 2 3 E]
+ja, z. B. \java{ggT(-1, -2)}.
+\end{description}
+
+\liPseudoUeberschrift{Grenzpfade}
+
+\begin{description}
+\item[S 1 2 3 4 5 6 3 E]
+ja, z. B. \java{ggT(10, 20)}.
+
+\item[S 1 2 3 4 6 3 E]
+ja, z. B. \java{ggT(1, 2)}.
+\end{description}
+
+\liPseudoUeberschrift{Innere Pfade}
+
+\begin{description}
+\item[S 1 2 3 4 5 6 3 4 5 6 3 E]
+ja, z. B. \java{ggT(2, 2)}.
+
+\item[S 1 2 3 4 6 3 4 6 3 E]
+nicht feasible, da geteilt durch eins immer Modulo 0 ergibt, egal welche
+Zahl a oder b hat. Bei der ersten Schleifenwiederholung wird immer die
+innere If-Verzweigung genommen.
+
+\item[S 1 2 3 4 5 6 3 4 6 3 E]
+ja, z. B. \java{ggT(2, 3)}.
+
+\item[S 1 2 3 4 6 3 4 5 6 3 E]
+nicht feasible, da geteilt durch eins immer Modulo 0 ergibt, egal welche
+Zahl a oder b hat. Bei der ersten Schleifenwiederholung wird immer die
+innere If-Verzweigung genommen.
+\end{description}
+\end{antwort}
+
+\end{enumerate}
+
+\end{document}
