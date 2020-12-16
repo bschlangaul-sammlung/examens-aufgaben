@@ -1,0 +1,77 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe,normalformen}
+\begin{document}
+\liAufgabenTitel{Relation-MNVTPPN}
+
+\section{Zusatzaufgabe 1 (wird nicht in der Übung
+besprochen)
+\index{Synthese-Algorithmus}
+\footcite{db:pdf:tum:uebung-08}}
+
+Betrachten Sie ein abstraktes Relationenschema $R = \{M, N, V, T, P,
+PN\}$ mit den FDs
+
+\begin{compactitem}
+\item $M \rightarrow M$
+\item $M \rightarrow N$
+\item $V \rightarrow T, P, PN$
+\item $P \rightarrow PN$
+\end{compactitem}
+
+\begin{enumerate}
+\item Bestimmen Sie alle Kandidatenschlüssel.
+
+\begin{antwort}
+V kommt auf keiner rechten Seite der FDs vor.
+
+$\text{AttrHuell}(R, \liK{V}) = \{V, T, P, PN\} \neq  R$
+
+$\text{AttrHuell}(R, \liK{V, M}) = \{V, M, N, T, P, PN\} = R$
+
+$\text{AttrHuell}(R, \liK{V, P}) = \{V, P, T, PN\} \neq R$
+
+$V, M$ ist Schlüsselkandidat
+\end{antwort}
+
+\item In welcher Normalform befindet sich die Relation?
+
+\begin{antwort}
+1NF weil nichtprimäre Attribute von einer echten Teilmenge des
+Schlüsselkandidaten abhängen (z. B. $M \rightarrow N$).
+\end{antwort}
+
+\item Bestimmen Sie zu den gebenen FDs die kanonische Überdeckung.
+
+\begin{antwort}
+
+\begin{enumerate}
+\item Linkreduktion bleibt aus
+
+\item Rechtsreduktion: PN ist doppelt
+
+$\text{AttrHuell}(R - (V \rightarrow T, P, PN) \cup (V \rightarrow T, P), \{V\}) = \{V, T, P, PN\}$
+
+\begin{compactitem}
+\item $M \rightarrow M$
+\item $M \rightarrow N$
+\item $V \rightarrow T, P$
+\item $P \rightarrow PN$
+\end{compactitem}
+\item Leere Klausel streichen
+
+\item Vereinigung
+
+\begin{compactitem}
+\item $M \rightarrow N$
+\item $V \rightarrow T, P$
+\item $P \rightarrow PN$
+\end{compactitem}
+
+\end{enumerate}
+
+\end{antwort}
+
+\item Falls nötig, überführen Sie die Relation verlustfrei und
+abhängigkeitsbewahrend in die dritte Normalform.
+\end{enumerate}
+\end{document}

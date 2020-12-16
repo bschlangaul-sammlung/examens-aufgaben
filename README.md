@@ -147,11 +147,15 @@ Weitere Aufgaben zum Thema „SQL“:
 #### Normalformen
 
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/50_Relationale-Entwurfstheorie/10_Normalformen/Aufgabe_Arbeitsvermittler.pdf" download="Aufgabe_Arbeitsvermittler">„Arbeitsvermittler“</a> (Normalformen, Funktionale Abhängigkeiten, Schlüsselkandidat, Synthese-Algorithmus)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/50_Relationale-Entwurfstheorie/10_Normalformen/Aufgabe_Drei-Schemata.pdf" download="Aufgabe_Drei-Schemata">„Drei-Schemata“</a> (Boyce-Codd-Normalform, Dritte Normalform, Zweite Normalform, Synthese-Algorithmus)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/50_Relationale-Entwurfstheorie/10_Normalformen/Aufgabe_Kanonische-Ueberdeckung-Kemper.pdf" download="Aufgabe_Kanonische-Ueberdeckung-Kemper">„Kanonische Überdeckung (Kemper)“</a> (Kanonische Überdeckung)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/50_Relationale-Entwurfstheorie/10_Normalformen/Aufgabe_Relation-A-H.pdf" download="Aufgabe_Relation-A-H">„Relation A-H“</a> (Synthese-Algorithmus)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/50_Relationale-Entwurfstheorie/10_Normalformen/Aufgabe_Relation-MNVTPPN.pdf" download="Aufgabe_Relation-MNVTPPN">„Relation-MNVTPPN“</a> (Synthese-Algorithmus)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/50_Relationale-Entwurfstheorie/10_Normalformen/Aufgabe_Supermarkt.pdf" download="Aufgabe_Supermarkt">„Supermarkt“</a> (Zweite Normalform, Schlüsselkandidat, Update-Anomalie, Delete-Anomalie, Synthese-Algorithmus)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46116-2015-Herbst_T1-TA2-A1">„Theoriefragen Datenbank“ Examen 46116 Herbst 2015 T1 TA2 A1</a> (Datenunabhängigkeit, Superschlüssel, Referentielle Integrität)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1994/03/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66111-1994-Frühjahr_A7">„Studentenbibliothek“ Examen 66111 Frühjahr 1994 A7</a> (Synthese-Algorithmus, Dritte Normalform)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66111-1996-Herbst_A4">„Gebrauchtwagen“ Examen 66111 Herbst 1996 A4</a> (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/09/Thema-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66113-2003-Herbst_T2-A1">„Nachteile vollständige Normalisierung“ Examen 66113 Herbst 2003 T2 A1</a> (Normalformen)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/09/Thema-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66113-2003-Herbst_T2-A1">„Nachteile vollständige Normalisierung“ Examen 66113 Herbst 2003 T2 A1</a> (Normalformen, Synthese-Algorithmus)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2018-Frühjahr_T2-TA1-A6">„Synthese-Algorithmus bei Relationenschema A-F“ Examen 66116 Frühjahr 2018 T2 TA1 A6</a> (Synthese-Algorithmus, Dritte Normalform)
 
 ### Transaktionsverwaltung
@@ -670,7 +674,7 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/03/Thema-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66113-2003-Frühjahr_T2-A3">Aufgabe 3 (SQL)</a>
 - 2003 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/09/Scan.pdf" download="Staatsexamen-Informatik_66113-2003-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/09/OCR.txt" download="Staatsexamen-Informatik_66113-2003-Herbst_OCR">OCR.txt</a> 
     - Thema 2 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/09/Thema-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66113-2003-Herbst_T2-A1">Aufgabe 1 (Normalformen)</a>
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2003/09/Thema-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66113-2003-Herbst_T2-A1">Aufgabe 1 (Normalformen, Synthese-Algorithmus)</a>
 - 2004 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2004/03/Scan.pdf" download="Staatsexamen-Informatik_66113-2004-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2004/03/OCR.txt" download="Staatsexamen-Informatik_66113-2004-Frühjahr_OCR">OCR.txt</a> 
 - 2004 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2004/09/Scan.pdf" download="Staatsexamen-Informatik_66113-2004-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2004/09/OCR.txt" download="Staatsexamen-Informatik_66113-2004-Herbst_OCR">OCR.txt</a> 
 - 2005 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2005/03/Scan.pdf" download="Staatsexamen-Informatik_66113-2005-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66113/2005/03/OCR.txt" download="Staatsexamen-Informatik_66113-2005-Frühjahr_OCR">OCR.txt</a> 
@@ -949,10 +953,12 @@ als Markdown-Liste eingebettet werden kann.
             - Superschlüssel
             - Schlüsselkandidat
             - Funktionale Abhängigkeiten
+            - Kanonische Überdeckung
             - Synthese-Algorithmus
             - Erste Normalform
             - Zweite Normalform
             - Dritte Normalform
+            - Boyce-Codd-Normalform
             - Anomalien:
                 - Update-Anomalie
                 - Insert-Anomalie

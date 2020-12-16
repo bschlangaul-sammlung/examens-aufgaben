@@ -1,0 +1,67 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe,normalformen}
+\begin{document}
+\liAufgabenTitel{Drei-Schemata}
+
+\section{Normalformen Einstieg
+\footcite[Seite 1, Aufgabe 1: Normalformen Einstieg]{db:pu:4}
+}
+
+Es seien folgende Relationenschemata mit den jeweiligen Mengen
+funktionaler Abhängigkeiten gegeben:
+
+$S_1 \{P, Q, R\}$ mit
+$F_1 = \{P Q \rightarrow R, P R \rightarrow Q, QR \rightarrow P \}$
+
+$S_2 \{P, R, S, T \}$ mit
+$F_2 = \{P S \rightarrow T \}$
+
+$S_3 \{P, S, U \}$ mit
+$F_3 = \{\}$
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Welche der drei Schemata sind in
+BCNF\index{Boyce-Codd-Normalform}, welche in 3NF\index{Dritte
+Normalform}, welche in 2NF\index{Zweite Normalform}? Begründe!
+
+\begin{antwort}
+\begin{itemize}
+\item $S_1$: BCNF
+
+\item $S_2$: 1NF aber nicht 2NF
+
+\item $S_3$: BCNF
+\end{itemize}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Wenden Sie auf ($S_2$, $F_2$) den
+Synthesealgorithmus\index{Synthese-Algorithmus} an, und bestimmen Sie
+auch die Mengen aller nichttrivialen einfachen funktionalen
+Abhängigkeiten, die über den erhaltenen Teilrelationen gelten. Ihr
+Lösungsweg muss nachvollziehbar sein.
+
+\begin{antwort}
+PS -> T (ist schon kanonische Überdeckung)
+
+2. Schritt
+
+R1 (P, S, T)
+
+3. Schritt
+
+R1 (P, S, T) mit F21 = {PS->}
+R2 (P, S, R) mit F22 = {}
+
+\end{antwort}
+
+\end{enumerate}
+\end{document}

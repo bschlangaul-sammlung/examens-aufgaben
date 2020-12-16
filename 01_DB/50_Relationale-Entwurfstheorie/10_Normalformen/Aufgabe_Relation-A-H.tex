@@ -1,0 +1,141 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{normalformen}
+\begin{document}
+\liAufgabenTitel{Relation A-H}
+
+\section{Synthesealgorithmus
+\index{Synthese-Algorithmus}
+\footcite[Seite 1, Aufgabe 2: Synthesealgorithmus]{db:pu:4}
+}
+
+Überführen Sie das Relationenschema mit Hilfe des Synthesealgorithmus in
+die 3. Normalform!
+
+$R(A, B, C, D, E, F, G, H)$
+
+\begin{compactitem}
+\item $F \rightarrow E$
+\item $A \rightarrow B, D$
+\item $AE \rightarrow D$
+\item $A \rightarrow E, F$
+\item $AG \rightarrow H$
+\end{compactitem}
+
+\begin{antwort}
+
+\begin{enumerate}
+
+\item Kanonische Überdeckung
+
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item 1. Linksreduktion:
+
+Wir betrachten nur die zusammengesetzten Attribute:
+
+\begin{itemize}
+\item $AE \rightarrow D$:
+
+$\liAH{F, \{A\}} = \{A, E, F, B, \textbf{D}\}$ \\
+$\textit{AttrHüll}(F, \{E\}) = \{E\}$
+
+\item $AG \rightarrow H$:
+
+$\textit{AttrHüll}(F, \{A\}) = \{A, E, F, B, D\}$ \\
+$\textit{AttrHüll}(F, \{G\}) = \{G\}$
+\end{itemize}
+
+\textbf{FDs}
+
+\begin{compactitem}
+\item $F \rightarrow E$
+\item $A \rightarrow B, D$
+\item $A \rightarrow D$
+\item $A \rightarrow E, F$
+\item $AG \rightarrow H$
+\end{compactitem}
+
+%%
+%
+%%
+
+\item 2. Rechtsreduktion:
+
+Nur die Attribute betrachten, die rechts doppelt vorkommen:
+
+$E$:
+
+$\textit{AttrHüll}(F - \{F \rightarrow E\}, \{F\}) = \{F\}$ \\
+$\textit{AttrHüll}(F - \{A \rightarrow E\}, \{A\}) = \{A, B, D, F, \textbf{E}\}$
+
+$D$:
+
+$\textit{AttrHüll}(F - \{A \rightarrow D\}, \{A\}) = \{A, B, \textbf{D}, F, E\}$
+
+$A \rightarrow D$ kann wegen der Armstrongschen Dekompositionsregel
+weggelassen werden. Wenn gilt $A \rightarrow B, D$, dann gilt auch $A
+\rightarrow B$ und $A \rightarrow D$
+
+\textbf{FDs}
+
+\begin{compactitem}
+\item $F \rightarrow E$
+\item $A \rightarrow B, D$
+\item $A \rightarrow \emptyset$
+\item $A \rightarrow F$
+\item $AG \rightarrow H$
+\end{compactitem}
+
+\item 3. Leere Klauseln streichen:
+
+\begin{compactitem}
+\item $F \rightarrow E$
+\item $A \rightarrow B, D$
+\item $A \rightarrow F$
+\item $AG \rightarrow H$
+\end{compactitem}
+
+\item 4. Vereinigung
+
+\begin{compactitem}
+\item $F \rightarrow E$
+\item $A \rightarrow B, D, F$
+\item $AG \rightarrow H$
+\end{compactitem}
+
+Jetzt die weiteren Hauptschritte:
+
+\end{enumerate}
+
+\item Neues Relationenschema
+
+\begin{compactitem}
+\item $R1(F, E)$
+\item $R2(A, B, D, F)$
+\item $R3(A, G, H)$
+\end{compactitem}
+
+\item Hinzufügen einer Relation
+
+Schlüsselkandidaten hinzufügen, falls nicht vorhanden:
+$R4(A, C, G)$
+
+\begin{compactitem}
+\item $R1(F, E)$
+\item $R2(A, B, D, F)$
+\item $R3(A, G, H)$
+\item $R4(A, C, G)$
+\end{compactitem}
+
+\item Entfernen überflüssiger Teilschemata
+
+nichts zu tun
+
+\end{enumerate}
+\end{antwort}
+
+\end{document}
