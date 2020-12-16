@@ -1,0 +1,117 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe,tabelle,syntax}
+\begin{document}
+\liAufgabenTitel{Grundwissen}
+
+\section{Aufgabe 1: Grundwissen\footcite[Seite 1]{sosy:ab:8}}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Geben Sie zwei verschiedene Möglichkeiten der formalen
+Verifikation\index{Formale Verifikation} an.
+
+\begin{antwort}
+\begin{itemize}
+\item 1. Möglichkeit: formale Verifikation mittels \emph{vollständiger
+Induktion} (eignet sich bei \emph{rekursiven} Programmen).
+
+\item 2. Möglichkeit: formale Verifikation mittels
+\emph{wp-Kalkül}\index{wp-Kalkül} oder
+\emph{Hoare-Kalkül}\index{Hoare-Kalkül} (eignet sich bei
+\emph{iterativen} Programmen).
+\end{itemize}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Erläutern Sie den Unterschied von partieller\index{Partielle
+Korrektheit} und totaler Korrektheit\index{Totale Korrektheit}.
+
+\begin{antwort}
+\begin{itemize}
+\item partielle Korrektheit:
+
+Das Programm verhält sich spezifikationsgemäß, \emph{falls} es
+terminiert.
+
+\item totale Korrektheit:
+
+Das Programm verhält sich spezifikationsgemäß und es \emph{terminiert
+immer}.
+\end{itemize}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Gegeben sei die Anweisungssequenz $A$. Sei $P$ die Vorbedingung
+und $Q$ die Nachbedingung dieser Sequenz. Erläutern Sie, wie man die
+(partielle) Korrektheit dieses Programmes nachweisen kann.
+
+\begin{antwort}
+\begin{tabular}{p{4cm}ll}
+Vorgehen & Horare-Kalkül & \text{wp}-Kalkül \\
+
+Wenn die Vorbedingung $P$ zutrifft, gilt nach der Ausführung der
+Anweisungssequenz $A$ die Nachbedingung $Q$. &
+
+$\{P\}A\{Q\}$ &
+
+$P \Rightarrow \text{\text{wp}}(A,Q)$
+
+\end{tabular}
+\end{antwort}
+
+%%
+% (d)
+%%
+
+\item Gegeben sei nun folgendes Programm:
+
+\begin{minted}{python}
+A_1
+while(b):
+    A_2
+A_3
+\end{minted}
+
+wobei $A_1$, $A_2$, $A_3$ Anweisungssequenzen sind. Sei $P$ die
+Vorbedingung und $Q$ die Nachbedingung des Programms. Die
+Schleifeninvariante\index{Invariante} der while-Schleife wird mit $I$
+bezeichnet. Erläutern Sie, wie man die (partielle) Korrektheit dieses
+Programmes nachweisen kann.
+
+\begin{antwort}
+\begin{tabular}{>{\raggedright\arraybackslash}p{4cm}ll}
+Vorgehen & Horare-Kalkül & \text{wp}-Kalkül \\\hline\hline
+
+Die Invariante $I$ gilt vor Schleifeneintritt. &
+$\{P\} A_1 \{I\}$ &
+$P \Rightarrow \text{\text{wp}}(A_1,I)$\\\hline
+
+$I$ ist invariant, d. h. $I$ gilt nach jedem Schleifendurchlauf.&
+$\{I \land b\} A_2 \{I\}$ &
+$I \land b \Rightarrow \text{\text{wp}}(A_2, I)$\\\hline
+
+Die Nachbedingung $Q$ wird erfüllt.&
+$\{I \land \neg b\} A_3 \{Q\}$ &
+$I \land \neg b \Rightarrow \text{\text{wp}}(A_3, I)$\\
+\end{tabular}
+\end{antwort}
+
+%%
+% (e)
+%%
+
+\item Beschreiben Sie, welche Vorraussetzungen eine
+Terminierungsfunktion\index{Terminierungsfunktion} erfüllen muss, damit
+die totale Korrektheit gezeigt werden kann.
+\end{enumerate}
+\end{document}

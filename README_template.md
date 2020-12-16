@@ -119,8 +119,6 @@ Weitere Aufgaben zum Thema „SQL“:
 
 {{ stichwort "Testen" }}
 
-
-
 # Aufgaben geordnet nach Staatsexamen
 
 In diesem Repository findet Ihr viele Staatsexamensaufgaben. Von fast

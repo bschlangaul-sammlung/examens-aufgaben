@@ -109,7 +109,7 @@ Hier alle Aufgaben mit einer Übungsdatenbank:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2016-Herbst_T1-TA1-A4">„Personalverwaltung“ Examen 66116 Herbst 2016 T1 TA1 A4</a> (SQL, SQL mit Übungsdatenbank, VIEW, WITH, DELETE)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2016-Herbst_T2-TA1-A2">„Schulverwaltung“ Examen 66116 Herbst 2016 T2 TA1 A2</a> (SQL mit Übungsdatenbank, SQL, CREATE TABLE, CONSTRAINT, ALTER TABLE, GROUP BY, HAVING)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-1/Teilaufgabe-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2017-Herbst_T1-TA1-A6">„Fluginformationssystem“ Examen 66116 Herbst 2017 T1 TA1 A6</a> (SQL, SQL mit Übungsdatenbank, Top-N-Query)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A3">„Game of Thrones“ Examen 66116 Herbst 2019 T1 TA2 A3</a> (SQL, SQL mit Übungsdatenbank, Korrelierte Anfrage, DROP COLUMN, ALTER TABLE, BETWEEN, CHECK, REFERENCES, NOT NULL)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A3">„Game of Thrones“ Examen 66116 Herbst 2019 T1 TA2 A3</a> (SQL, SQL mit Übungsdatenbank, Korrelierte Anfrage, DELETE, DROP COLUMN, ALTER TABLE, BETWEEN, CHECK, REFERENCES, NOT NULL)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A7">„Formel-1-Rennen“ Examen 66116 Herbst 2019 T2 TA2 A7</a> (SQL, SQL mit Übungsdatenbank, EXCEPT, Top-N-Query, ALTER TABLE, TRIGGER)
 
 Weitere Aufgaben zum Thema „SQL“:
@@ -136,7 +136,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2016-Herbst_T2-TA1-A2">„Schulverwaltung“ Examen 66116 Herbst 2016 T2 TA1 A2</a> (SQL mit Übungsdatenbank, SQL, CREATE TABLE, CONSTRAINT, ALTER TABLE, GROUP BY, HAVING)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66116-2017-Herbst_T1-TA1-A5">„SQL-Syntax-Überprüfung“ Examen 66116 Herbst 2017 T1 TA1 A5</a> (SQL, CREATE TABLE, DELETE, INSERT, DROP TABLE)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-1/Teilaufgabe-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2017-Herbst_T1-TA1-A6">„Fluginformationssystem“ Examen 66116 Herbst 2017 T1 TA1 A6</a> (SQL, SQL mit Übungsdatenbank, Top-N-Query)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A3">„Game of Thrones“ Examen 66116 Herbst 2019 T1 TA2 A3</a> (SQL, SQL mit Übungsdatenbank, Korrelierte Anfrage, DROP COLUMN, ALTER TABLE, BETWEEN, CHECK, REFERENCES, NOT NULL)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A3">„Game of Thrones“ Examen 66116 Herbst 2019 T1 TA2 A3</a> (SQL, SQL mit Übungsdatenbank, Korrelierte Anfrage, DELETE, DROP COLUMN, ALTER TABLE, BETWEEN, CHECK, REFERENCES, NOT NULL)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A6">„Vermischte Datenbank-Fragen“ Examen 66116 Herbst 2019 T2 TA2 A6</a> (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A7">„Formel-1-Rennen“ Examen 66116 Herbst 2019 T2 TA2 A7</a> (SQL, SQL mit Übungsdatenbank, EXCEPT, Top-N-Query, ALTER TABLE, TRIGGER)
 
@@ -200,6 +200,7 @@ Weitere Aufgaben zum Thema „SQL“:
 
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/01_Projektmanagement/Aufgabe_Allgemeine-Software-Technik.pdf" download="Aufgabe_Allgemeine-Software-Technik">„Multiple-Choice Allgemeine Software-Technologie“</a> (EXtreme Programming, V-Modell, Wasserfallmodell, SCRUM, Prototyping, Unit-Test, Anforderungsanalyse)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/01_Projektmanagement/Aufgabe_Teacher-Data.pdf" download="Aufgabe_Teacher-Data">„Teacher-Data“</a> (Nicht-funktionale Anforderungen, Funktionale Anforderungen, Wasserfallmodell, Spiralmodell, V-Modell, Evolutionäre Softwaremodelle, Inkrementelle Prozessmodelle, SCRUM)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/05_Testen/Black_White-Box-Test/Aufgabe_Grundwissen.pdf" download="Aufgabe_Grundwissen">„Grundwissen“</a> (White-Box-Testing, Black-Box-Testing, Funktionalorienteres Testen, V-Modell)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46116-2014-Herbst_T2-TA1-A1">„Multiple-Choice“ Examen 46116 Herbst 2014 T2 TA1 A1</a> (EXtreme Programming, V-Modell, SCRUM, Prototyping, Funktionale Anforderungen, Nicht-funktionale Anforderungen)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_46116-2014-Herbst_T2-TA1-A2">„Vorgehensmodelle“ Examen 46116 Herbst 2014 T2 TA1 A2</a> (Prozessmodelle, Wasserfallmodell, V-Modell, Iterative Prozessmodelle)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2013-Herbst_T1-TA2-A3">„Vermischte Softwaresysteme-Fragen“ Examen 66116 Herbst 2013 T1 TA2 A3</a> (Testen, Model Checking, Refactoring, EXtreme Programming, White-Box-Testing, Black-Box-Testing, Funktionale Anforderungen, Nicht-funktionale Anforderungen, Kontinuierliche Integration (Continuous Integration), Unit-Test, wp-Kalkül)
@@ -261,6 +262,11 @@ Weitere Aufgaben zum Thema „SQL“:
 ### Testen
 
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/01_Projektmanagement/Aufgabe_Allgemeine-Software-Technik.pdf" download="Aufgabe_Allgemeine-Software-Technik">„Multiple-Choice Allgemeine Software-Technologie“</a> (EXtreme Programming, V-Modell, Wasserfallmodell, SCRUM, Prototyping, Unit-Test, Anforderungsanalyse)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/05_Testen/Black_White-Box-Test/Aufgabe_Groesster-gemeinsamer-Teiler.pdf" download="Aufgabe_Groesster-gemeinsamer-Teiler">„Größter gemeinsamer Teiler“</a> (Datenfluss-annotierter Kontrollflussgraph, Zyklomatische Komplexität nach Mc-Cabe, C2b Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage))
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/05_Testen/Black_White-Box-Test/Aufgabe_Grundwissen.pdf" download="Aufgabe_Grundwissen">„Grundwissen“</a> (White-Box-Testing, Black-Box-Testing, Funktionalorienteres Testen, V-Modell)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/05_Testen/Black_White-Box-Test/Aufgabe_Methode-log.pdf" download="Aufgabe_Methode-log">„Methode „log()““</a> (Überdeckbarkeit, C2b Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage))
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/05_Testen/Formale-Verifikation/Aufgabe_Grundwissen.pdf" download="Aufgabe_Grundwissen">„Grundwissen“</a> (Formale Verifikation, wp-Kalkül, Hoare-Kalkül, Partielle Korrektheit, Totale Korrektheit, Invariante, Terminierungsfunktion)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/05_Testen/Formale-Verifikation/Aufgabe_Methode-f.pdf" download="Aufgabe_Methode-f">„Methode „f()““</a> (wp-Kalkül)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46116-2014-Frühjahr_T2-TA1-A1">„Hanoi“ Examen 46116 Frühjahr 2014 T2 TA1 A1</a> (Vollständige Induktion, Terminierungsfunktion)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_46116-2015-Herbst_T2-TA1-A2">„Methode „isPalindrom()““ Examen 46116 Herbst 2015 T2 TA1 A2</a> (C1-Test Zweigüberdeckung (Branch Coverage), C2b Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage), Zyklomatische Komplexität nach Mc-Cabe, C2a Vollständige Pfadüberdeckung (Full Path Coverage), Datenfluss-annotierter Kontrollflussgraph)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2015-Herbst_T2-TA1-A3">„ASCII“ Examen 46116 Herbst 2015 T2 TA1 A3</a> (wp-Kalkül)
@@ -276,8 +282,6 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2017-Frühjahr_T2-TA2-A1">„Methode „binToInt()“ und Kontrollflussgraph“ Examen 66116 Frühjahr 2017 T2 TA2 A1</a> (Zyklomatische Komplexität nach Mc-Cabe, Datenfluss-annotierter Kontrollflussgraph)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2017-Frühjahr_T2-TA2-A4">„wp-Kalkül mit Invariante bei Methode „mul()““ Examen 66116 Frühjahr 2017 T2 TA2 A4</a> (wp-Kalkül, Invariante, Totale Korrektheit)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2017-Herbst_T1-TA2-A4">„Code-Inspection bei Binärer Suche“ Examen 66116 Herbst 2017 T1 TA2 A4</a> (Binäre Suche, Design by Contract, Kontrollflussgraph, Vollständige Anweisungsüberdeckung)
-
-
 
 # Aufgaben geordnet nach Staatsexamen
 
@@ -849,7 +853,7 @@ OCR des oben genannten Scans:
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA1-A4">Aufgabe 4 (Zustand (State), Zustandsdiagramm, Implementierung in Java)</a> 
         - Teilaufgabe 2 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A2">Aufgabe 2 (Entity-Relation-Modell)</a> 
-            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A3">Aufgabe 3 (SQL, SQL mit Übungsdatenbank, Korrelierte Anfrage, DROP COLUMN, ALTER TABLE, BETWEEN, CHECK, REFERENCES, NOT NULL)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A3">Aufgabe 3 (SQL, SQL mit Übungsdatenbank, Korrelierte Anfrage, DELETE, DROP COLUMN, ALTER TABLE, BETWEEN, CHECK, REFERENCES, NOT NULL)</a> 
     - Thema 2 
         - Teilaufgabe 2 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A6">Aufgabe 6 (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)</a> 
@@ -1065,6 +1069,7 @@ als Markdown-Liste eingebettet werden kann.
         - Model Checking
         - White-Box-Testing:
             - Kontrollflussorientieres Testen:
+                - Überdeckbarkeit
                 - Kontrollflussgraph
                 - C0-Test Anweisungsüberdeckung (Statement Coverage):
                     - Vollständige Anweisungsüberdeckung
@@ -1087,9 +1092,12 @@ als Markdown-Liste eingebettet werden kann.
                 - wp-Kalkül:
                   - Invariante
                   - Totale Korrektheit
+                  - Partielle Korrektheit
                   - Terminierungsfunktion
+                - Hoare-Kalkül
         - Black-Box-Testing:
             - Unit-Test
+            - Funktionalorienteres Testen
             - Anforderungsüberdeckung:
                 - Grenzwertanalyse
                 - Äquivalenzklassenzerlegung
