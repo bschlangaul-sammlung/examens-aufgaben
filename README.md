@@ -109,7 +109,7 @@ Hier alle Aufgaben mit einer Übungsdatenbank:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2016-Herbst_T1-TA1-A4">„Personalverwaltung“ Examen 66116 Herbst 2016 T1 TA1 A4</a> (SQL, SQL mit Übungsdatenbank, VIEW, WITH, DELETE)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2016-Herbst_T2-TA1-A2">„Schulverwaltung“ Examen 66116 Herbst 2016 T2 TA1 A2</a> (SQL mit Übungsdatenbank, SQL, CREATE TABLE, CONSTRAINT, ALTER TABLE, GROUP BY, HAVING)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-1/Teilaufgabe-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2017-Herbst_T1-TA1-A6">„Fluginformationssystem“ Examen 66116 Herbst 2017 T1 TA1 A6</a> (SQL, SQL mit Übungsdatenbank, Top-N-Query)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A3">„Game of Thrones“ Examen 66116 Herbst 2019 T1 TA2 A3</a> (SQL, SQL mit Übungsdatenbank)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A3">„Game of Thrones“ Examen 66116 Herbst 2019 T1 TA2 A3</a> (SQL, SQL mit Übungsdatenbank, Korrelierte Anfrage, DROP COLUMN, ALTER TABLE, BETWEEN, CHECK, REFERENCES, NOT NULL)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A7">„Formel-1-Rennen“ Examen 66116 Herbst 2019 T2 TA2 A7</a> (SQL, SQL mit Übungsdatenbank, EXCEPT, Top-N-Query, ALTER TABLE, TRIGGER)
 
 Weitere Aufgaben zum Thema „SQL“:
@@ -136,7 +136,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2016-Herbst_T2-TA1-A2">„Schulverwaltung“ Examen 66116 Herbst 2016 T2 TA1 A2</a> (SQL mit Übungsdatenbank, SQL, CREATE TABLE, CONSTRAINT, ALTER TABLE, GROUP BY, HAVING)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66116-2017-Herbst_T1-TA1-A5">„SQL-Syntax-Überprüfung“ Examen 66116 Herbst 2017 T1 TA1 A5</a> (SQL, CREATE TABLE, DELETE, INSERT, DROP TABLE)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-1/Teilaufgabe-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2017-Herbst_T1-TA1-A6">„Fluginformationssystem“ Examen 66116 Herbst 2017 T1 TA1 A6</a> (SQL, SQL mit Übungsdatenbank, Top-N-Query)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A3">„Game of Thrones“ Examen 66116 Herbst 2019 T1 TA2 A3</a> (SQL, SQL mit Übungsdatenbank)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A3">„Game of Thrones“ Examen 66116 Herbst 2019 T1 TA2 A3</a> (SQL, SQL mit Übungsdatenbank, Korrelierte Anfrage, DROP COLUMN, ALTER TABLE, BETWEEN, CHECK, REFERENCES, NOT NULL)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A6">„Vermischte Datenbank-Fragen“ Examen 66116 Herbst 2019 T2 TA2 A6</a> (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A7">„Formel-1-Rennen“ Examen 66116 Herbst 2019 T2 TA2 A7</a> (SQL, SQL mit Übungsdatenbank, EXCEPT, Top-N-Query, ALTER TABLE, TRIGGER)
 
@@ -849,7 +849,7 @@ OCR des oben genannten Scans:
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA1-A4">Aufgabe 4 (Zustand (State), Zustandsdiagramm, Implementierung in Java)</a> 
         - Teilaufgabe 2 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A2">Aufgabe 2 (Entity-Relation-Modell)</a> 
-            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A3">Aufgabe 3 (SQL, SQL mit Übungsdatenbank)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A3">Aufgabe 3 (SQL, SQL mit Übungsdatenbank, Korrelierte Anfrage, DROP COLUMN, ALTER TABLE, BETWEEN, CHECK, REFERENCES, NOT NULL)</a> 
     - Thema 2 
         - Teilaufgabe 2 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A6">Aufgabe 6 (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)</a> 
@@ -908,22 +908,30 @@ als Markdown-Liste eingebettet werden kann.
     - Relationale Anfragesprachen:
         - SQL:
             - ALTER TABLE
+            - BETWEEN
+            - CHECK
             - CONSTRAINT
             - CREATE TABLE
             - DELETE
+            - DROP COLUMN
             - DROP TABLE
             - EXCEPT
             - GROUP BY
             - HAVING
             - INSERT
             - INTERSECT
+            - Korrelierte Anfrage
+            - Nicht-korrelierte Anfrage
+            - NOT NULL
+            - PRIMARY KEY
+            - REFERENCES
+            - SQL mit Übungsdatenbank
             - Top-N-Query
+            - TRIGGER
             - UNION
             - UPDATE
             - VIEW
             - WITH
-            - SQL mit Übungsdatenbank
-            - TRIGGER
     - Relationale Entwurfstheorie:
         - Normalformen:
             - Schlüssel

@@ -2,7 +2,7 @@
 \liLadePakete{syntax,rmodell}
 \begin{document}
 \liAufgabenTitel{Game of Thrones}
-\section{
+\section{Aufgabe 3
 \index{SQL}
 \footcite{66116:2019:09}}
 
@@ -58,10 +58,20 @@ CREATE TABLE Familie (
   Anführer varchar(20)
 );
 
+INSERT INTO Familie VALUES
+  (1, 'Haus Stark', 76873.12, 'Eddard Stark'),
+  (2, 'Haus Lennister', 82345.43, 'Tywin Lennister');
+
 CREATE TABLE gehört_zu (
   Id integer REFERENCES Figur(id),
   Familie integer REFERENCES Familie(id)
 );
+
+INSERT INTO gehört_zu VALUES
+  (1, 1),
+  (2, 1),
+  (3, 2),
+  (4, 2);
 
 CREATE TABLE Drache (
   Name varchar(20) PRIMARY KEY,
@@ -75,17 +85,24 @@ CREATE TABLE besitzt (
 
 CREATE TABLE Festung (
   Name varchar(20) PRIMARY KEY,
-  Ort varchar(20),
+  Ort varchar(30),
   Ruine boolean
 );
 
 INSERT INTO Festung VALUES
-  ('Roter Bergfried', 'Königsmund', FALSE);
+  ('Roter Bergfried', 'Königsmund', FALSE),
+  ('Casterlystein', 'Meer der Abenddämmerung', FALSE),
+  ('Winterfell', 'Norden', FALSE);
 
 CREATE TABLE besetzt (
   Familie integer REFERENCES Familie(Id),
   Festung varchar(20) REFERENCES Festung(Name)
 );
+
+INSERT INTO besetzt VALUES
+  (1, 'Winterfell'),
+  (2, 'Roter Bergfried'),
+  (2, 'Casterlystein');
 
 CREATE TABLE lebt (
   Id integer REFERENCES Figur(Id),
@@ -99,8 +116,14 @@ INSERT INTO lebt VALUES (
 \index{SQL mit Übungsdatenbank}
 
 \begin{enumerate}
+
+%%
+%
+%%
+
 \item Geben Sie für alle Figuren an, wie oft alle vorhandenen Titel
 vorkommen.
+\index{Korrelierte Anfrage}
 
 \begin{antwort}
 \begin{minted}{sql}
@@ -111,6 +134,10 @@ SELECT
 FROM Figur f;
 \end{minted}
 \end{antwort}
+
+%%
+%
+%%
 
 \item Welche Figuren (Name ist gesucht) kommen aus „Kings Landing“?
 
@@ -129,23 +156,79 @@ WHERE
 \end{minted}
 \end{antwort}
 
+%%
+%
+%%
+
 \item Geben Sie für jede Familie (Name) die Anzahl der zugehörigen
 Charaktere und Festungen an.
+\index{Korrelierte Anfrage}
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT
+  f.Name,
+  (SELECT COUNT(*) FROM Figur fi, gehört_zu ge WHERE fi.id = ge.id AND ge.Familie = f.id) AS Anzahl_Charaktere,
+  (SELECT COUNT(*) FROM Festung fe, besetzt be WHERE fe.Name = be.Festung AND be.Familie = f.id) AS Anzahl_Festungen
+FROM
+  Familie f;
+\end{minted}
+\end{antwort}
+
+%%
+%
+%%
 
 \item Gesucht sind die besten fünf Schwertkämpfer aus Festungen aus dem
 Ort „Westeros“. Es soll der Name, die Schwertkunst und die Platzierung
 ausgegeben werden. Die Ausgabe soll nach der Platzierung sortiert
 erfolgen.
 
+%%
+%
+%%
+
 \item Schreiben Sie eine Anfrage, die alle Figuren löscht, die tot sind.
 Das Attribut Lebendig kann dabei die Optionen „ja“ und „nein“ annehmen.
 
-\item Löschen Sie die Spalten „Lebendig“ aus der Datenbank.
+%%
+%
+%%
 
-\item Erstellen Sie eine weitere Tabelle mit dem Namen Waffen, welche
-genau diese auflistet. Eine Waffe ist genau einer Figur zugeordnet, hat
-einen eindeutigen Namen und eine Stärke zwischen 0 und 5. Wählen Sie
-sinnvolle Typen für die Attribute.
+\item Löschen Sie die Spalten „Lebendig“ aus der Datenbank.
+\index{DROP COLUMN}\index{ALTER TABLE}
+
+\begin{antwort}
+\begin{minted}{sql}
+ALTER TABLE Figur DROP COLUMN Lebendig;
+ALTER TABLE Drache DROP COLUMN Lebendig;
+\end{minted}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Erstellen Sie eine weitere Tabelle mit dem Namen \emph{Waffen},
+welche genau diese auflistet. Eine Waffe ist genau einer Figur
+zugeordnet, hat einen eindeutigen Namen und eine Stärke zwischen 0 und
+5. Wählen Sie sinnvolle Typen für die Attribute.
+\index{BETWEEN}\index{CHECK}\index{REFERENCES}\index{NOT NULL}
+
+\begin{minted}{sql}
+CREATE TABLE Waffen (
+  Name varchar(20) PRIMARY KEY,
+  Figur integer NOT NULL REFERENCES Figur(Id),
+  Stärke integer NOT NULL CHECK(Stärke BETWEEN 0 AND 5));
+
+-- Sollte funktionieren:
+INSERT INTO Waffen VALUES
+  ('Axt', 1, 5);
+
+-- Sollte Fehler ausgeben:
+-- INSERT INTO Waffen VALUES
+--  ('Schleuder', 1, 6);
+\end{minted}
 \end{enumerate}
 
 \end{document}
