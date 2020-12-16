@@ -1,0 +1,108 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{Nikolaus}
+
+\section{Das Haus des Nikolaus
+\index{Backtracking}
+\footcite[Seite 2-3]{aud:ab:3}
+}
+
+\begin{exkurs}[Quelle]
+Diese Aufgabe stammt von der Website oberstufeninformatik.de. Die
+Materialien sind nicht Freeware, sondern Beerware. Voraussetzung für
+den Einsatz ist, dass der Benutzer ein Bier zum Wohle des Autors Horst
+Gierhardt trinkt \footcite{net:pdf:nikolaus}.
+\end{exkurs}
+
+\noindent
+Hier ist das \emph{„Haus des Nikolaus“} mit einer bestimmten
+Nummerierung der Eckpunkte vorgegeben. Es sollen alle Lösungen zum
+Zeichnen der Figur in einem Zug gefunden werden. Eine Lösung könnte dann
+in der Form 123451352 ausgegeben werden. Das Programm soll eine einfache
+Anpassung an andere Graphen ermöglichen. Der Ausschluss von gespiegelten
+Lösungen ist nicht gefordert.
+
+Eine Lösung lässt sich nach dem Prinzip \emph{Versuch und Testen}
+ermitteln. Eine vermutete Teillösung muss wieder verworfen werden, wenn
+ein Test ihre Ungültigkeit nachgewiesen hat. Man nennt diesen Ansatz
+deshalb auch \emph{Rückverfolgen} oder \emph{Backtracking}. Mit diesem
+Ansatz lassen sich eine ganze Reihe von Problemen in der Informatik sehr
+elegant formulieren und lösen. Hier eine kleine Auswahl (Genaueres dazu
+später):
+
+\begin{description}
+\item[Acht-Damen-Problem:] Acht Damen sollen so auf ein Schachbrett
+gestellt werden, dass keine Dame eine andere bedroht.
+
+\item[Vier-Farben-Problem:] Eine Landkarte soll mit vier Farben so
+gefärbt werden, dass benachbarte Länder immer unterschiedliche Farben
+bekommen.
+
+\item[Labyrinth-Problem:] Ein Labyrinth mit Sackgassen und Verzweigungen
+ist zu durch- laufen, um den Ausgang zu finden.
+\end{description}
+
+\noindent
+Konkreter:
+
+\begin{enumerate}
+\item Man versucht, eine Kante (Verbindungsstrecke) zu zeichnen, wenn
+sie zulässig ist oder noch nicht gezeichnet wurde.
+
+\item Ist das nicht möglich, muss die zuletzt gezeichnete Kante gelöscht
+werden.
+
+\item  Ist es möglich, dann hat man das Problem um eine Stufe
+vereinfacht.
+
+\item  Hat man durch dieses Verfahren insgesamt 8 Kanten zeichnen
+können, hat man eine Lösung gefunden. Jetzt löscht man wieder die
+zuletzt gezeichnete Kante und sucht nach weiteren Lösungen.
+\end{enumerate}
+
+\subsection{Realisierung des Programms}
+
+\subsubsection{Datenstrukturen}
+
+Die folgende Tabelle gibt an, welche Verbindungslinien zulässig sind
+(durch X markiert). Die erste Zeile bedeutet also, dass von Punkt 1 zu
+den Punkten 2, 3 und 5 Strecken gezeichnet werden dürfen. Eine solche
+Tabelle heißt auch Adjazenzmatrix (von adjazieren; lat.: anwohnen,
+anliegen). Eine solche Tabelle lässt sich durch \java{boolean[][]
+kanteZulaessig}; in einem zweidimensionalen Feld speichern. Eine
+entsprechende Tabelle \java{boolean[][] kanteGezeichnet;} erfasst dann die
+schon gezeichneten Kanten. In einem weiteren eindimensionalen Feld
+wird jeweils eine Lösung erfasst.
+
+\subsubsection{Methoden}
+
+Es bieten sich folgende Methoden zur Strukturierung des Programmes an:
+
+\begin{enumerate}
+\item \java{void initArrays()}
+\item \java{void zeichneKante(int von, int nach)}
+\item \java{void loescheKante(int von, int nach)}
+\item \java{void loesungAusgeben()}
+\item \java{void versucheKanteZuZeichnen(int start)}: Die rekursive
+Methode soll vom Punkt start weitere Kanten zeichen.
+
+\item Das Hauptprogramm:
+
+\begin{minted}{java}
+public static void main(String[] arg) {
+  initArrays();
+  for (int punktNr=1; punktNr<=maxPunktAnz; punktNr++) {
+    loesungsWeg[0] = punktNr; // Startpunkt eintragen
+    versucheKanteZuZeichnen(punktNr);
+  } // for punktNr
+  Out.println();
+  Out.println("Es ergaben sich " + loesungsAnzahl + " Loesungen.");
+} // main
+\end{minted}
+
+\end{enumerate}
+
+\inputcode[firstline=3]{aufgaben/aud/ab_3/Nikolaus}
+
+\end{document}

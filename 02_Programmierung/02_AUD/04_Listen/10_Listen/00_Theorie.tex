@@ -1,0 +1,259 @@
+\documentclass{lehramt-informatik-haupt}
+\liLadePakete{syntax,uml,mathe}
+
+\usepackage{tikz-cd}
+\usepackage{tabularx}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Listen}
+
+\begin{quellen}
+\cite[Kapitel 6.2.1.2, Seite 180-181]{schneider}
+\cite[Kapitel 13.2 Verkettete Listen Seite 323-330 (PDF 339-346)]{saake}
+\cite[Kapitel 13.3 Doppelt verkette Liste, Seite 323-330 (PDF 339-346)]{saake}
+
+\end{quellen}
+
+Eine Liste ist eine Zusammenfassung von Daten gleicher Struktur. Listen
+sind aus mehreren Elementen aufgebaut. Listen sind eine \memph{rekursive
+Datenstruktur}. Rekursive Datenstrukturen sind \memph{dynamisch}, da zur
+Laufzeit \memph{neue Elemente} erzeugt und \memph{hinzugefügt} werden
+können.
+
+Jedes Element enthält einen Inhalt (beliebiger Datentyp). Jedes Element
+einer Liste beinhaltet zudem einen \memph{Verweis} auf das
+\memph{nächste Listenelement} (Zeiger), also auf ein Objekt derselben
+Klasse. Diese Struktur nennt man rekursiv.
+
+\section{Rekursive Definition}
+
+Eine Liste ist entweder eine \memph{leere Liste} oder besteht aus
+\memph{Kopfelement und Restliste}. Der Zeiger des letzten Elements zeigt
+auf \memph{NIL(Not In List)}
+
+\section{Operationen:}
+
+\begin{compactitem}
+\item Einfügen eines Elements (Aufbau)
+\item Entfernen eines Elements (Abbau)
+\item Suchen eines Elements
+\end{compactitem}
+
+\section{Liste vs. Array}
+
+Beim Array muss bei der Deklaration die Länge angegeben werden, diese
+ist unveränderlich, die Liste wächst hingegen dynamisch. Beim Array
+ist der direkte Zugriff auf die Einzelelemente möglich, durch die Liste
+muss iteriert werden.
+\footcite[Seite 4]{aud:fs:4}
+
+\newcommand\tmpelement[1]{%
+  \tikz{
+    \node[
+      draw,
+      inner sep=2pt,
+      minimum width=8mm,
+      outer sep=0,
+      text height=1.5ex,
+      text depth=.3ex,
+    ](a){#1}
+  }
+  \tikz{
+    \node[
+      draw,
+      inner sep=2pt,
+      minimum width=3mm,
+      outer sep=0,
+      text height=1.5ex,
+      text depth=.3ex,
+    ](a){}
+  }
+}
+
+\begin{tikzcd}
+\arrow[r,-to]{}{Start} &
+  \tmpelement{1. Inhalt} \arrow[r,-to]{}{Next} &
+  \tmpelement{2. Inhalt} \arrow[r,-to]{}{Next} &
+  \tmpelement{3. Inhalt} \arrow[r]{}{NIL} &
+\varnothing
+\end{tikzcd}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Löschen eines inneren Listenelements}
+
+Vom Vorgängerelement muss der Zeiger „nächstes Element“auf das
+Folgeelement gesetzt werden. Das zu löschende Element wird später vom
+Garbage Collector aufgeräumt.
+\footcite[Seite 9-10]{aud:fs:4}
+
+\begin{minted}{java}
+while (element.next_element != NULL) { // Ende der Liste?
+  if (element.next_element.wert != a) // Zu löschen?
+    element = element.next_element; // Nein? Weitersuchen!
+  else
+    element.next_element=element.next_element.next_element; // Ja? Next-Zeiger anpassen!
+}
+\end{minted}
+
+\section{Einfügen eines Listenelements}
+
+Vom neuen Element muss der Zeiger „nächstes Element“ auf das
+„Nachfolgeelement“ gesetzt werden. Vom „Vorgängerelement“ muss der
+Zeiger „nächstes Element“auf das neue Element gesetzt werden.
+\footcite[Seite 11-12]{aud:fs:4}
+
+\begin{minted}{java}
+if (element.next_element.wert < a) // Einfügestelle erreicht?
+  element = element.next_element; // Nein? Weitersuchen!
+else {
+  new_element.next_element = element.next_element; // Ja? Einfügen!
+  element.next_element = new_element;
+}
+\end{minted}
+
+%%
+%
+%%
+
+\subsection{Definition des Knoten}
+
+\inputcode[firstline=15,lastline=49]{liste/saake/Liste}
+\footcite[Seite 326]{saake}
+
+%%
+%
+%%
+
+\subsection{Definition der Liste}
+
+\inputcode[firstline=53,lastline=125]{liste/saake/Liste}
+\footcite[Seite 327-329]{saake}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Das Kompositum}
+
+Das Kompositum (englisch \emph{composite} oder \emph{whole-part}) ist
+ein Entwurfsmuster aus dem Bereich der Softwareentwicklung. Das
+Kompositionsmuster (\emph{composite pattern}) wird angewendet, um
+\emph{Teil-Ganzes-Hierarchien} zu repräsentieren, indem Objekte zu
+\emph{Baumstrukturen} zusammengefügt werden. Die Grundidee des
+Kompositionsmusters ist, in einer \emph{abstrakten Klasse} sowohl
+\emph{primitive Objekte} als auch ihre \emph{Behälter} zu
+repräsentieren. Somit können sowohl einzelne Objekte als auch ihre
+Kompositionen \emph{einheitlich behandelt} werden.
+\footcite{aud:fs:4}
+
+Ein anderes Beispiel sind die \emph{Klassendefinitionen} der
+\emph{grafischen Benutzeroberfläche von Java}. Alle Elemente wie
+Schaltflächen und Textfelder sind \emph{Spezialisierungen der Klasse
+Component}. Die Behälter für diese Elemente sind aber ebenfalls
+Spezialisierungen derselben Klasse. Mit anderen Worten: Alle
+Standardelemente werden wesentlich durch eine einzige
+(Kompositum-)Klasse definiert.
+\footcite{wiki:kompositum}
+
+\begin{center}
+\begin{tikzpicture}
+\umlclass[x=2.5,y=3,type=abstract]{Komponente}{}{+ agiere()}
+\umlclass[x=0]{Blatt}{}{+ agiere()}
+\umlclass[x=5]{Kompositum}{}{
+  + agiere()\\
+  + fügeKindHinzu()\\
+  + entferneKind()\\
+  + gibKind()
+}
+
+\umlVHVinherit{Kompositum}{Komponente}
+\umlVHVinherit{Blatt}{Komponente}
+\umlHVHaggreg[anchor1=east,arm1=1.5cm,arg1=eltern,mult1=1,arg2=kind,mult2=0..*,pos2=2.9,pos1=0.4]{Kompositum}{Komponente}
+
+\end{tikzpicture}
+\end{center}
+
+Details zum Nachlesen: Klett: Informatik 4, S.27 - 29
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Listen im Vergleich}
+
+\begin{tabularx}{\linewidth}{|l|X|X|}
+
+\hline
+%%
+%
+%%
+
+\textbf{Merkmal} & \textbf{Liste} & \textbf{Array}
+\\
+\hline\hline
+
+%%
+%
+%%
+
+\textbf{Speicherverhalten} &
+
+Speicherung einer variablen Anzahl verketteter Elemente. Listengröße
+während des Programmablaufs änderbar &
+
+Speicherung einer festen Anzahl zusammengehörender Element. Arraygröße
+während des Programmablaufs nicht änderbar.
+
+\\
+\hline
+
+%%
+%
+%%
+
+\textbf{Zugriffszeit} &
+
+Jedes Element muss nacheinander durchlaufen werden $\rightarrow$ langsam
+&
+
+Jedes Element ist durch einen Index direkt abrufbar $\rightarrow$
+schnell
+
+\\
+\hline
+
+%%
+%
+%%
+
+\textbf{Datensortierung} &
+
+Unkompliziert duch Änderung der Verkettung $\rightarrow$
+Daten bleiben an ihrem Speicherort &
+
+Kompliziert durch Datenaustausch $\rightarrow$
+Speicherort der Daten ändert sich
+
+\\
+\hline
+
+\textbf{Wahlfreier Zugriff} &
+
+wahlfreier Zugriff über den Index &
+
+keine wahlfreier Zugriff, sondern \emph{sequential access}, je länger
+die Liste, umso länger dauert der Zugriff (im \emph{average} und
+\emph{worst case})
+
+\end{tabularx}
+\footcite[Seite 8]{aud:fs:4}
+
+\end{document}

@@ -1,0 +1,96 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Speicherung-Dateisystem}
+
+\section{Aufgabe 2: ddi.cs.fau.de
+\index{Datenbank-Übersicht}
+\footcite[Seite 1]{db:ab:1}}
+
+Zur Speicherung von Daten kann ein Dateisystem verwendet werden.
+Betrachten Sie die Informationsseiten der Didaktik der Informatik an der
+FAU im Internet (https: //ddi.cs.fau.de/). Gehen Sie davon aus, dass für
+jede Seite, die Sie betrachten, eine Datei existiert, in der die auf der
+Seite sichtbaren Informationen gespeichert sind.
+\footcite[Seite 19-20]{winter}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Warum ist diese Art der Datenabspeicherung nicht besonders
+günstig?
+
+\begin{antwort}
+Redundanz:
+
+In dieser Art zu speichern sind viele Redundanzen enthalten. So muss
+beispielsweise das Menü mit den HTML-Links auf jeder Seite gespeichert
+sein, um durch die Seite navigieren zu können.
+
+Beschränkte Zugriffsmöglichkeit:
+
+Die Daten können nur
+schlecht maschinell abgefragt werden. Sie können nur einzeln im Browser
+aufgerufen werden.
+
+Beschränkte Zugriffskontrolle:
+
+Die HTML-Seiten können entweder als ganze Seite unter einen
+Passwortschutz gestellt werden oder vollkommen öffentlich ins Netz
+gestellt werden. So können einzelene Informationen auf den Seite, wie
+zum Beispiel die Raumnummer nicht einzelen in ihrer Sichtbarkeit
+beeinflusst werden.
+\end{antwort}
+
+\begin{antwort}
+Die gleiche Information kommt auf sehr vielen verschiedenen Seiten vor!
+Damit muss dieselbe Information in unterschiedlichen Dateien
+abgespeichert werden, d. h. ein Großteil der Information ist redundant
+gespeichert.
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Es wird angenommen, dass folgende Aktualisierungen durchgeführt
+werden müssen:
+
+\begin{itemize}
+\item Die Mitarbeiter haben sich geändert.
+\item Das Projekt „AMI – Agile Methoden im Informatikunterricht“ ist
+abgeschlossen. Alle diesbezüglichen Informationen sollen deshalb
+gelöscht werden.
+\end{itemize}
+
+\item Zu welchem Problemen kann es dabei (aufgrund der Datenspeicherung)
+kommen?
+
+\begin{antwort}
+Nicht aus alle Seiten werden die Links zur der Unterseite Projekt „AMI“
+entfernt. Es kann zur Inkonsistenz kommen.
+
+Mitarbeiterinformationen wie auch die Daten des Kurses sind redundant
+gespeichert. Änderungen oder Löschungen müssen deshalb in allen Dateien
+erfolgen, in denen die entsprechenden Informationen gespeichert sind.
+Bei vielen Dateien hat man aber in der Regel keinen Überblick, wo eine
+bestimmte Information überall abgespeichert ist. Dies kann sehr leicht
+zu einem inkonsistenten, d. h. nicht stimmigen, Datenbestand führen.
+Konkret können beispielsweise folgende Probleme auftreten:
+
+\begin{itemize}
+\item Die Änderung der Mitarbeiter wird an einer Stelle vergessen, d. h.
+dass z. B. Dr. X noch Anfragen und E-Mails an die Adresse X@fau.de
+bekommt, obwohl er schon längst ausgeschieden ist und die o. g.
+E-Mail-Adresse nicht mehr existiert.
+
+\item Zum Löschen der AMI-Seite müssen die zentrale Projektseite und
+alle Links gelöscht werden. Die Löschung eines Link auf die zentrale
+Projektseite wird vergessen, d. h. man bekommt einen „toten“ Link.
+\end{itemize}
+\end{antwort}
+\end{enumerate}
+\end{document}

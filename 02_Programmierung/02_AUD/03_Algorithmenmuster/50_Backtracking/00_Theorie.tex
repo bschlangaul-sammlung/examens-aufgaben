@@ -1,0 +1,60 @@
+\documentclass{lehramt-informatik-haupt}
+\liLadePakete{syntax,mathe}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Backtracking}
+
+\begin{quellen}
+\item \cite[Seite 15-21 (PDF 13-19)]{aud:fs:3}
+\item \cite[Seite 222-230 (PDF 240-248)]{saake}
+\item \cite{wiki:backtracking}
+\end{quellen}
+
+\noindent
+Das Backtracking ist ein wichtiges Algorithmenmuster für Such- und
+Optimierungsprobleme. Das Backtracking realisiert eine allgemeine
+systematische Suchtechnik, die einen \memph{vorgegebenen Lösungsraum
+komplett} bearbeitet.
+
+Der Begriff \emph{Backtracking} kommt daher, dass man bei der Suche in
+\memph{Sackgassen} gerät und dann wieder zur nächsten noch nicht
+bearbeiteten Abzweigung zurückgeht, bis man alle Verzweigungen
+abgearbeitet hat.
+\footcite[Seite 222 (PDF 240)]{saake}
+
+\section{Idee des Backtracking:}
+
+Der Algorithmus wird so lange ausführen, bis man an eine Grenze kommt
+Wenn das der Fall ist, geht man zurück zum letzten Schritt
+und testet andere Folgeschritte. Man versucht, gültige Teillösung zu
+finden und auf dieser den restlichen Weg zum Ziel aufzubauen. Wenn das
+nicht möglich ist, versucht man andere Teillösung zu finden.
+\footcite[Seite 18 - 19 (PDF 15-19)]{aud:fs:3}
+
+\section{Funktionsweise\footcite[Seite 17 (PDF 15)]{aud:fs:3}} Das
+Backtracking läuft fast immer nach demselben Schema ab. Wenn man sich
+passende Methoden definiert, kann man für die Implementierung oft
+dasselbe Grundgerüst verwenden. Die erforderlichen Methoden sind:
+
+\begin{description}
+\item[isFinal()] überprüft, ob eine Lösung gefunden wurde, z.\,B.: ist
+ein Sudoku vollständig gefüllt?
+
+\item[getExtensions()] gibt alle möglichen Erweiterungen zurück, z.\,B.:
+alle erlaubte Zahlen für das aktuelle Feld
+
+\item[apply()] verändert den aktuellen Zustand, z.\,B.: schreibe die
+aktuelle Zahl ins aktuelle Feld
+
+\item[revert()] stellt den vorherigen Zustand wieder her, z.\,B.: lösche
+die letzte Zahl aus dem aktuellen Feld
+\end{description}
+
+\literatur
+
+\end{document}

@@ -1,0 +1,205 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,uml}
+\begin{document}
+\liAufgabenTitel{Playlist}
+
+\section{Musikliste
+\footcite[Seite 1-2, Aufgaben 1-3]{aud:ab:4}}
+
+\subsection{Aufgabe 1}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8, transform shape]
+\tiny
+\umlclass
+{MusikListe}
+{
+  int anzahl
+}
+{
+  void setzeErsten(Knoten e)\\
+  int aktualisiereAnzahl()\\
+  String gibMusikstückListe()\\
+  Knoten entnimmOben()\\
+  Knoten gibKnoten()
+}
+
+\umlclass[x=6]
+{Knoten}
+{
+}
+{
+  Knoten gibNächsten()\\
+  void setzeNächsten(Knoten k)\\
+  MusikStück gibMusikstück()
+}
+
+\umlclass[x=13]
+{MusikStueck}
+{
+  String titel
+}
+{
+  String gibTitel()
+}
+
+\umlaggreg[mult1=1,mult2=1,arg={verwaltet \LeserichtungRechts}]{Knoten}{MusikStueck}
+
+% \umlaggreg[
+%   angle1=10,
+%   angle2=90,
+%   loopsize=3cm,
+%   mult1=1,
+%   mult2=0..1,
+%   pos1=0.05,
+%   pos2=0.95,
+%   arg1={nächster \LeserichtungRechts},
+% ]{Knoten}{Knoten}
+
+\umlassoc[arg1=erster \LeserichtungRechts, pos1=0.4]{MusikListe}{Knoten}
+
+\end{tikzpicture}
+\end{center}
+
+Das Klassendiagramm zeigt den Aufbau einer Playlist.
+
+\begin{enumerate}
+\item Implementieren Sie das Klassendiagramm.
+
+\begin{antwort}
+\liPseudoUeberschrift{Klasse „MusikListe“}
+\inputcode[firstline=3,lastline=66]{aufgaben/aud/ab_4/musikliste/MusikListe}
+
+\liPseudoUeberschrift{Klasse „Knoten“}
+\inputcode[firstline=3,lastline=24]{aufgaben/aud/ab_4/musikliste/Knoten}
+
+\liPseudoUeberschrift{Klasse „MusikStueck“}
+\inputcode[firstline=3]{aufgaben/aud/ab_4/musikliste/MusikStueck}
+\end{antwort}
+
+\item Schreiben Sie eine Testklasse, in der Sie eine Playlist mit
+mindestens vier Liedern erstellen.
+
+\begin{antwort}
+\inputcode[firstline=3,lastline=16]{aufgaben/aud/ab_4/musikliste/TestKlasse}
+\end{antwort}
+\end{enumerate}
+
+\subsection{Aufgabe 2}
+
+Die Playlist aus Aufgabe 1 soll nun erweitert werden. Aktualisieren Sie
+Ihren Code entsprechend!
+\index{Einfach-verkettete Liste}
+
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Bisher wurde das erste Element der Musikliste in einer öffentlich
+sichtbaren Variable gespeichert, dies ist jedoch nicht sinnvoll.
+Erstellen Sie eine Methode \java{setzeErsten()}, mit der anstatt dessen
+die Liste der erstellten Musikstücke angesprochen werden kann.
+\index{Implementierung in Java}
+
+\begin{antwort}
+\inputcode[firstline=12,lastline=13]{aufgaben/aud/ab_4/musikliste/MusikListe}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Außerdem wird ein Attribut \java{anzahl} benötigt, dass mit Hilfe
+der Methode \java{aktualisiereAnzahl()} auf dem aktuellen Stand
+gehalten werden kann.
+
+\begin{antwort}
+\inputcode[firstline=14,lastline=15]{aufgaben/aud/ab_4/musikliste/MusikListe}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Eine weitere Methode \java{gibMusikstückListe()} soll die Titel
+aller Lieder in der Liste als \java{String} zurückgeben.
+
+\begin{antwort}
+\inputcode[firstline=32,lastline=43]{aufgaben/aud/ab_4/musikliste/MusikListe}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Mit \java{entnimmOben()} soll der erste Titel aus der Liste
+entnommen werden können.
+
+\begin{antwort}
+\inputcode[firstline=45,lastline=53]{aufgaben/aud/ab_4/musikliste/MusikListe}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Es soll der Titel des Musikstücks ermittelt werden, das an einer
+bestimmten Position in der Musikliste abgespeichert ist. Implementieren
+Sie dazu die Methode \java{gibKnoten()}.
+
+\begin{antwort}
+\inputcode[firstline=55,lastline=66]{aufgaben/aud/ab_4/musikliste/MusikListe}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Die Musikliste soll nun in eine doppelt verkettete Liste umgebaut
+werden. Fügen Sie entsprechende Attribute, getter- und setter-Methoden
+hinzu.
+\index{doppelt-verkettete Liste}
+
+\begin{antwort}
+\inputcode[firstline=5,lastline=5]{aufgaben/aud/ab_4/musikliste/Knoten}
+\inputcode[firstline=22,lastline=28]{aufgaben/aud/ab_4/musikliste/Knoten}
+\end{antwort}
+
+%%
+%
+%%
+
+\item Testen Sie die Funktionalität der neuen Methoden in Ihrer
+Testklasse.
+
+\begin{antwort}
+\inputcode[firstline=17,lastline=29]{aufgaben/aud/ab_4/musikliste/TestKlasse}
+\end{antwort}
+
+\end{enumerate}
+
+\subsection{Rekursion}
+
+Die Anzahl der Titel in der Musikliste aus Aufgabe 1 kann auch unter
+Verwendung einer rekursiven Methode ermittelt werden. Implementieren Sie
+eine Methode \java{zaehleEintraege()}, die analog zu
+\java{aktualisiereAnzahl()} angibt, wie viele Titel in der Musikliste
+gespeichert sind, dies aber rekursiv ermittelt! Testen Sie diese Methode
+in der Testklasse. Hinweis: Um für die gesamte Musikliste aufgerufen
+werden zu können, muss diese Methode in der Musikliste selbst und auch
+in der Klasse Knoten existieren!
+\index{Rekursion}
+
+\begin{antwort}
+\liPseudoUeberschrift{Klasse „MusikListe“}
+\inputcode[firstline=68,lastline=74]{aufgaben/aud/ab_4/musikliste/MusikListe}
+
+\liPseudoUeberschrift{Klasse „Knoten“}
+\inputcode[firstline=34,lastline=40]{aufgaben/aud/ab_4/musikliste/Knoten}
+
+\liPseudoUeberschrift{Klasse „TestKlasse“}
+\inputcode[firstline=30,lastline=20]{aufgaben/aud/ab_4/musikliste/TestKlasse}
+\end{antwort}
+\end{document}

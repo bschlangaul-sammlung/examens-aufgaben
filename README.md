@@ -12,6 +12,8 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 ### Übersicht
 
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/10_Uebersicht/Aufgabe_Drei-Schichten-Modell.pdf" download="Aufgabe_Drei-Schichten-Modell">„Drei-Schichten-Modell“</a> (Drei-Schichten-Modell)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/10_Uebersicht/Aufgabe_Speicherung-Dateisystem.pdf" download="Aufgabe_Speicherung-Dateisystem">„Speicherung-Dateisystem“</a> (Datenbank-Übersicht)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/10_Uebersicht/Aufgabe_Terminologie.pdf" download="Aufgabe_Terminologie">„Terminologie“</a> (Datenbanksystem, Datenbank, Datenbankmanagementsystem)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46116-2015-Herbst_T1-TA2-A1">„Theoriefragen Datenbank“ Examen 46116 Herbst 2015 T1 TA2 A1</a> (Datenunabhängigkeit, Superschlüssel, Referentielle Integrität)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A6">„Vermischte Datenbank-Fragen“ Examen 66116 Herbst 2019 T2 TA2 A6</a> (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)
 
@@ -176,6 +178,8 @@ Weitere Aufgaben zum Thema „SQL“:
 
 #### Rekursion
 
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/03_Algorithmenmuster/50_Backtracking/Aufgabe_Methode-fill.pdf" download="Aufgabe_Methode-fill">„Methode „fill()““</a> (Backtracking, Rekursion)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/04_Listen/10_Listen/Aufgabe_Playlist.pdf" download="Aufgabe_Playlist">„Playlist“</a> (Einfach-verkettete Liste, Implementierung in Java, doppelt-verkettete Liste, Rekursion)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46115-2014-Frühjahr_T2-A4">„Binomialkoeffizient“ Examen 46115 Frühjahr 2014 T2 A4</a> (Rekursion, Implementierung in Java, Interative Realisation)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2014-Frühjahr_T1-A1">„Klasse „LeftFactorial“ und Methode „lfBig()““ Examen 66115 Frühjahr 2014 T1 A1</a> (Rekursion, Vollständige Induktion)
 
@@ -236,6 +240,7 @@ Weitere Aufgaben zum Thema „SQL“:
 
 ### Entwurfsmuster
 
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/04_Listen/10_Listen/Aufgabe_Woerterbuch.pdf" download="Aufgabe_Woerterbuch">„Wörterbuch“</a> (Einfach-verkettete Liste, Kompositum (Composite))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2017-Herbst_T2-TA1-A3">„Entwurfsmuster bei Bankkonten, Hockeyspiel, Dateisystem“ Examen 46116 Herbst 2017 T2 TA1 A3</a> (Entwurfsmuster, Klassendiagramm, Abstrakte Fabrik (Abstract Factory), Beobachter (Observer), Kompositum (Composite))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2016-Frühjahr_T1-TA2-A2">„Entwurfsmuster in UML-Diagramm erkennen“ Examen 66116 Frühjahr 2016 T1 TA2 A2</a> (Klassendiagramm, Abstrakte Fabrik (Abstract Factory), Wiederholer (Iterator), Adapter, Kompositum (Composite), Klassenadapter, Objektadapter, Implementierung in Java)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2016-Herbst_T2-TA2-A1">„Wahrheitsgehalt-Tabelle Software Engineering“ Examen 66116 Herbst 2016 T2 TA2 A1</a> (Software Engineering, Agile Methoden, Spiralmodell, Nicht-funktionale Anforderungen, Entwurfsmuster, Schichtenarchitektur, Blackboard-Muster, Einbringen von Abhängigkeiten (Dependency Injection), Sequenzdiagramm, Zustandsdiagramm, Komponentendiagramm, Modell-Präsentation-Steuerung (Model-View-Controller), Einzelstück (Singleton), Kommando (Command), Validation, Verifikation)
@@ -892,6 +897,8 @@ als Markdown-Liste eingebettet werden kann.
 
 - DB:
     - Datenbank-Übersicht:
+        - Datenbank
+        - Datenbankmanagementsystem
         - Datenbanksystem
         - Referentielle Integrität
         - Datenunabhängigkeit
@@ -985,6 +992,7 @@ als Markdown-Liste eingebettet werden kann.
         - Dynamische Programmierung
         - Backtracking
     - Listen:
+        - Einfach-verkettete Liste
         - doppelt-verkettete Liste
         - Stapel (Stack)
         - Warteschlange (Queue)

@@ -1,0 +1,50 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{uml}
+\begin{document}
+\liAufgabenTitel{Maut}
+
+\section{Aufgabe zu Heterogenen Listen
+\index{Einfach-verkettete Liste}
+\footcite[Seite 1, Aufgabe 1: Heterogene Liste]{aud:pu:4}}
+
+Für die Umsetzung der Maut auf deutschen Autobahnen soll eine
+Java-basierte Lösung entworfen werden. Dazu sollen alle Fahrzeuge, die
+von einer Mautbrücken erfasst werden, in einer \emph{einfach verketteten
+Liste} abgelegt werden. Um einen besseren Überblick über die Einnahmen
+zu erhalten, soll zwischen \emph{LKWs}, \emph{PKWs} und
+\emph{Motorrädern} unterschieden werden. Als Informatiker schlagen Sie
+eine \emph{heterogene Liste} zur Realisierung vor. Notieren Sie unter
+Verwendung des \emph{Entwurfsmusters Kompositum} ein entsprechendes
+\emph{Klassendiagramm} zur Realisierung der Lösung für eine Mautbrücke.
+Auf die Angabe von Attributen und Methoden kann verzichtet werden.
+Kennzeichen Sie in Ihrem Klassendiagramm die \emph{abstrakten Klassen}
+und benennen Sie die bestehenden \emph{Beziehungen}.
+\index{Implementierung in Java}
+
+\begin{center}
+\begin{tikzpicture}
+\umlsimpleclass[type=abstract,x=4.5,y=5]{Listenelement}
+\umlsimpleclass[x=3,y=3]{Abschluss}
+\umlsimpleclass[x=6,y=3]{Datenknoten}
+\umlsimpleclass[x=0,y=5]{Mautbrücke}
+\umlassoc[mult2=1,arg2=erster\LeserichtungRechts{},pos2=0.7]{Mautbrücke}{Listenelement}
+\umlinherit{Abschluss}{Listenelement}
+\umlinherit{Datenknoten}{Listenelement}
+
+\umlsimpleclass[type=abstract,x=5,y=2]{Fahrzeug}
+\umlsimpleclass[x=3,y=0]{Motorrad}
+\umlsimpleclass[x=5,y=0]{PKW}
+\umlsimpleclass[x=7,y=0]{LKW}
+\umlinherit{PKW}{Fahrzeug}
+\umlinherit{Motorrad}{Fahrzeug}
+\umlinherit{LKW}{Fahrzeug}
+
+% \umlHVHassoc[
+%   anchor1=east,
+%   anchor2=east,
+%   arm1=3cm,arg1=\LeserichtungLinks{}enthält,pos1=0.3,mult1=1,
+%   arg2=\LeserichtungLinks{}nächster,pos2=2.7,mult2=1
+% ]{Fahrzeug}{Listenelement}
+\end{tikzpicture}
+\end{center}
+\end{document}

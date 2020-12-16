@@ -1,0 +1,66 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,mathe}
+\begin{document}
+\liAufgabenTitel{Wechselgeld}
+
+\section{Wechselgeldalgorithmus
+\index{Greedy-Algorithmus}
+\footcite{net:html:wikiversity:wechselgeld}}
+
+Als Beispiel nehmen wir die Herausgabe von Wechselgeld auf Beträge unter
+1€. Verfügbar sind die Münzen mit den Werten 50ct, 10ct, 5ct, 2ct, 1ct.
+Unser Ziel ist, so wenig Münzen wie möglich in das Portemonnaie zu
+bekommen.
+%
+Ein Beispiel: $78ct = 50 + 2 \cdot 10 + 5 + 2 + 1$
+%
+Es wird jeweils immer die größte Münze unter dem Zielwert genommen und
+von diesem abgezogen. Das wird so lange durchgeführt, bis der Zielwert
+Null ist.
+
+%%
+%
+%%
+
+\subsection{Formalisierung}
+
+Gesucht ist ein Algorithmus der folgende Eigenschaften beschreibt.
+Bei der \emph{Eingabe} muss gelten:
+
+\bigskip
+
+\begin{compactenum}
+\item dass die eingegebene Zahl eine natürliche Zahl ist, also
+$\text{betrag} > 0$
+
+\item dass eine Menge von Münzwerten zur Verfügung steht $
+\text{münzen}=\{c_1,...,c_n\}$ z.\,B. $\{1,2,5,10,20,50\}$
+\end{compactenum}
+
+\bigskip
+
+\noindent
+Die \emph{Ausgabe} besteht dann aus ganzen Zahlen
+$\text{wechselgeld}[1], \ldots ,\text{wechselgeld}[n]$.
+Dabei ist $\text{wechselgeld}[i] $ die Anzahl der Münzen
+des Münzwertes für $ c_i $ für $ i=1,\ldots,n $ und haben die
+Eigenschaften:
+
+\bigskip
+
+\begin{compactenum}
+\item $\text{wechselgeld}[1] \cdot c_1 + \ldots +
+\text{wechselgeld}[n] \cdot c_n = \text{betrag}$
+
+\item $\text{wechselgeld}[1] + \ldots + \text{wechselgeld}[n] $
+ist minimal unter allen Lösungen für 1.
+\end{compactenum}
+
+%%
+%
+%%
+
+\begin{antwort}
+\inputcode[firstline=3]{muster/Wechselgeld}
+\end{antwort}
+\end{document}
