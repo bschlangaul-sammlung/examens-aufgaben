@@ -12,14 +12,15 @@
 % (a)
 %%
 
-\item Sortieren Sie die unten angegebenen Funktionen der
-O-Klassen $O(a(n))$, $O(b(n))$, $O(e(n))$, $O(d(n))$ und $O(e(n))$
-bezüglich ihrer Teilmengenbeziehungen. Nutzen Sie ausschließlich die
-echte Teilmenge C sowie die Gleichheit = für die Beziehung zwischen den
+\item Sortieren Sie die unten angegebenen Funktionen der O-Klassen
+$\mathcal{O}(a(n))$, $\mathcal{O}(b(n))$, $\mathcal{O}(e(n))$,
+$\mathcal{O}(d(n))$ und $\mathcal{O}(e(n))$ bezüglich ihrer
+Teilmengenbeziehungen. Nutzen Sie ausschließlich die echte Teilmenge
+$\subset$ sowie die Gleichheit $=$ für die Beziehung zwischen den
 Mengen. Folgendes Beispiel illustriert diese Schreibweise für einige
-Funktionen fı bis fs (diese haben nichts mit den unten angegebenen
-Funktionen zu tun):
-siehe \url{http://www.s-inf.de/Skripte/DaStru.2012-SS-Katoen.(KK).Klausur1MitLoesung.pdf}
+Funktionen $f_1$ bis $f_5$ (diese haben nichts mit den unten angegebenen
+Funktionen zu tun): siehe
+\url{http://www.s-inf.de/Skripte/DaStru.2012-SS-Katoen.(KK).Klausur1MitLoesung.pdf}
 
 \begin{displaymath}
 \mathcal{O}(f_4 (n)) \subset \mathcal{O}(f_3(n)) = \mathcal{O}(f_5(n)) \subset \mathcal{O}(f_1(n)) = \mathcal{O}(f_2(n))
@@ -36,8 +37,24 @@ Die angegebenen Beziehungen müssen weder bewiesen noch begründet werden.
 \end{itemize}
 
 \begin{antwort}
+\begin{align*}
+a(n) &= n^2 \cdot \log_2(n) + 42 &&= n\\
+b(n) &= 2^n + n^4 &&= 2^n\\
+c(n) &= 2^{2 \cdot n} &&=2^{2 \cdot n}\\
+d(n) &= 2^{n+3} &&= 2^n\\
+e(n) &= \sqrt{n^5}\\
+\end{align*}
+
 \begin{displaymath}
-\mathcal{O}(a (n)) \subset \mathcal{O}(e(n)) = \mathcal{O}(b(n)) = \mathcal{O}(d(n)) \subset \mathcal{O}(c(n))
+\mathcal{O}(a (n)) \subset \mathcal{O}(e(n)) \subset \mathcal{O}(b(n)) = \mathcal{O}(d(n)) \subset \mathcal{O}(c(n))
+\end{displaymath}
+
+\begin{displaymath}
+\mathcal{O}(n^2 \cdot \log_2(n) + 42) \subset
+\mathcal{O}(\sqrt{n^5}) \subset
+\mathcal{O}(2^n + n^4) =
+\mathcal{O}(2^{n+3}) \subset
+\mathcal{O}(2^{2 \cdot n})
 \end{displaymath}
 \end{antwort}
 
