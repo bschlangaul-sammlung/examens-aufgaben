@@ -3,36 +3,19 @@
 import path from 'path'
 import fs from 'fs'
 import childProcess from 'child_process'
-
 import glob from 'glob'
 
 import { Command } from 'commander'
 
 import { Aufgabe, ExamensAufgabe } from './aufgabe'
-import { repositoryPfad } from './helfer'
+import { repositoryPfad, öffneProgramm, öffneVSCode } from './helfer'
 import { examenSammlung } from './sammlung'
 
 import { erzeugeAufgabenVorlage } from './aktionen/erzeuge-aufgaben-vorlage'
 import { erzeugeReadme } from './aktionen/erzeuge-readme'
 import { erzeugeExamensAufgabeVorlage } from './aktionen/erzeuge-examens-aufgabe-vorlage'
 import { führeSqlAus } from './aktionen/fuehre-sql-aus'
-
-/*******************************************************************************
- * low level functions
- ******************************************************************************/
-
-function öffneProgramm (executable: string, filePath: string): void {
-  const subprocess = childProcess.spawn(executable, [filePath], {
-    detached: true,
-    stdio: 'ignore'
-  })
-
-  subprocess.unref()
-}
-
-function öffneVSCode (filePath: string) {
-  öffneProgramm('/usr/bin/code', filePath)
-}
+import { öffneDurchBibtex } from './aktionen/oeffne-durch-bibtex'
 
 const programm = new Command()
 programm.description(`Repository-Pfad: ${repositoryPfad}`)
@@ -204,5 +187,11 @@ programm
       '--sidecar', `${datei}_rotated.pdf`
     ])
   })
+
+programm
+  .command('oeffne-bibtex <referenz>')
+  .alias('b')
+  .description('Öffne Datei durch eine Bibtex-Referenz, z. B. db:ab:1.')
+  .action(öffneDurchBibtex)
 
 programm.parse(process.argv)

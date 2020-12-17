@@ -27,19 +27,7 @@ var erzeuge_aufgaben_vorlage_1 = require("./aktionen/erzeuge-aufgaben-vorlage");
 var erzeuge_readme_1 = require("./aktionen/erzeuge-readme");
 var erzeuge_examens_aufgabe_vorlage_1 = require("./aktionen/erzeuge-examens-aufgabe-vorlage");
 var fuehre_sql_aus_1 = require("./aktionen/fuehre-sql-aus");
-/*******************************************************************************
- * low level functions
- ******************************************************************************/
-function öffneProgramm(executable, filePath) {
-    var subprocess = child_process_1.default.spawn(executable, [filePath], {
-        detached: true,
-        stdio: 'ignore'
-    });
-    subprocess.unref();
-}
-function öffneVSCode(filePath) {
-    öffneProgramm('/usr/bin/code', filePath);
-}
+var oeffne_durch_bibtex_1 = require("./aktionen/oeffne-durch-bibtex");
 var programm = new commander_1.Command();
 programm.description("Repository-Pfad: " + helfer_1.repositoryPfad);
 programm.name('lehramt-informatik.js');
@@ -64,7 +52,7 @@ programm
             titel: titel
         });
     }
-    öffneVSCode(pfad);
+    helfer_1.öffneVSCode(pfad);
 });
 programm
     .command('erzeuge-examens-aufgabe <referenz> <thema> [teilaufgabe] [aufgabe]')
@@ -72,7 +60,7 @@ programm
     .alias('e')
     .action(function (ref, arg1, arg2, arg3) {
     var pfad = erzeuge_examens_aufgabe_vorlage_1.erzeugeExamensAufgabeVorlage(ref, arg1, arg2, arg3);
-    öffneVSCode(pfad);
+    helfer_1.öffneVSCode(pfad);
 });
 programm
     .command('oeffne-examen <referenz>')
@@ -81,7 +69,7 @@ programm
     .action(function (ref, cmdObj) {
     var examen = sammlung_1.examenSammlung.gibDurchReferenz(ref);
     if (fs_1.default.existsSync(examen.pfad)) {
-        öffneProgramm('/usr/bin/xdg-open', examen.pfad);
+        helfer_1.öffneProgramm('/usr/bin/xdg-open', examen.pfad);
     }
     else {
         console.log("Path " + examen.pfad + " doesn\u2019t exist.");
@@ -112,7 +100,7 @@ programm
                 if (ergebnis.status !== 0) {
                     console.log(ergebnis.stdout);
                     console.log(ergebnis.stderr);
-                    öffneVSCode(pfad);
+                    helfer_1.öffneVSCode(pfad);
                     throw new Error("Die Datei \u201E" + pfad + "\u201C konnte nicht kompiliert werden.");
                 }
             }
@@ -143,7 +131,7 @@ programm
     var e_2, _a;
     function öffneMitAusgabe(pfad) {
         console.log(pfad);
-        öffneVSCode(pfad);
+        helfer_1.öffneVSCode(pfad);
     }
     if (typeof globMuster !== 'string') {
         globMuster = '**/*.tex';
@@ -220,4 +208,9 @@ programm
         datei + "_rotated.pdf"
     ]);
 });
+programm
+    .command('oeffne-bibtex <referenz>')
+    .alias('b')
+    .description('Öffne Datei durch eine Bibtex-Referenz, z. B. db:ab:1.')
+    .action(oeffne_durch_bibtex_1.öffneDurchBibtex);
 programm.parse(process.argv);

@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import childProcess from 'child_process'
 
 const konfigurationsDateiPfad = path.join(path.sep, 'etc', 'lehramt-informatik.config.tex')
 
@@ -26,6 +27,11 @@ export function macheRelativenPfad (pfad: string): string {
 export function leseRepoDatei (...args: string[]) {
   if (args[0].includes(repositoryPfad)) return leseDatei(path.join(...args))
   return leseDatei(path.join(repositoryPfad, ...args))
+}
+
+export function macheRepoPfad (...args: string[]) {
+  if (args[0].includes(repositoryPfad)) return path.join(...args)
+  return path.join(repositoryPfad, ...args)
 }
 
 export interface LinkEinstellung {
@@ -56,4 +62,17 @@ export function generiereLink (text: string, pfad: string, dateiName: string, ei
     return `[${text}](${githubRawUrl}/${pfad})`
   }
   return text
+}
+
+export function öffneProgramm (executable: string, filePath: string): void {
+  const subprocess = childProcess.spawn(executable, [filePath], {
+    detached: true,
+    stdio: 'ignore'
+  })
+
+  subprocess.unref()
+}
+
+export function öffneVSCode (filePath: string) {
+  öffneProgramm('/usr/bin/code', filePath)
 }

@@ -23,9 +23,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generiereLink = exports.leseRepoDatei = exports.macheRelativenPfad = exports.repositoryPfad = exports.leseDatei = void 0;
+exports.öffneVSCode = exports.öffneProgramm = exports.generiereLink = exports.macheRepoPfad = exports.leseRepoDatei = exports.macheRelativenPfad = exports.repositoryPfad = exports.leseDatei = void 0;
 var fs_1 = __importDefault(require("fs"));
 var path_1 = __importDefault(require("path"));
+var child_process_1 = __importDefault(require("child_process"));
 var konfigurationsDateiPfad = path_1.default.join(path_1.default.sep, 'etc', 'lehramt-informatik.config.tex');
 var githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main';
 function leseDatei(pfad) {
@@ -55,6 +56,16 @@ function leseRepoDatei() {
     return leseDatei(path_1.default.join.apply(path_1.default, __spread([exports.repositoryPfad], args)));
 }
 exports.leseRepoDatei = leseRepoDatei;
+function macheRepoPfad() {
+    var args = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+    }
+    if (args[0].includes(exports.repositoryPfad))
+        return path_1.default.join.apply(path_1.default, __spread(args));
+    return path_1.default.join.apply(path_1.default, __spread([exports.repositoryPfad], args));
+}
+exports.macheRepoPfad = macheRepoPfad;
 function generiereLink(text, pfad, dateiName, einstellung) {
     var linkePdf = true;
     var alsLink = true;
@@ -82,3 +93,15 @@ function generiereLink(text, pfad, dateiName, einstellung) {
     return text;
 }
 exports.generiereLink = generiereLink;
+function öffneProgramm(executable, filePath) {
+    var subprocess = child_process_1.default.spawn(executable, [filePath], {
+        detached: true,
+        stdio: 'ignore'
+    });
+    subprocess.unref();
+}
+exports.öffneProgramm = öffneProgramm;
+function öffneVSCode(filePath) {
+    öffneProgramm('/usr/bin/code', filePath);
+}
+exports.öffneVSCode = öffneVSCode;
