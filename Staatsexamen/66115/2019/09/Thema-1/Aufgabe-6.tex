@@ -19,9 +19,10 @@ echte Teilmenge C sowie die Gleichheit = für die Beziehung zwischen den
 Mengen. Folgendes Beispiel illustriert diese Schreibweise für einige
 Funktionen fı bis fs (diese haben nichts mit den unten angegebenen
 Funktionen zu tun):
+siehe \url{http://www.s-inf.de/Skripte/DaStru.2012-SS-Katoen.(KK).Klausur1MitLoesung.pdf}
 
 \begin{displaymath}
-O(f_4 (n)) \subset O(f_3(n)) = O(f_5(n)) \subset O(f_1(n)) = O(f_2(n))
+\mathcal{O}(f_4 (n)) \subset \mathcal{O}(f_3(n)) = \mathcal{O}(f_5(n)) \subset \mathcal{O}(f_1(n)) = \mathcal{O}(f_2(n))
 \end{displaymath}
 
 Die angegebenen Beziehungen müssen weder bewiesen noch begründet werden.
@@ -33,6 +34,12 @@ Die angegebenen Beziehungen müssen weder bewiesen noch begründet werden.
 \item $d(n) = 2^{n+3}$
 \item $e(n) = \sqrt{n^5}$
 \end{itemize}
+
+\begin{antwort}
+\begin{displaymath}
+\mathcal{O}(a (n)) \subset \mathcal{O}(e(n)) = \mathcal{O}(b(n)) = \mathcal{O}(d(n)) \subset \mathcal{O}(c(n))
+\end{displaymath}
+\end{antwort}
 
 %%
 % (b)
@@ -47,20 +54,20 @@ der O-Notation oder widerlegen Sie sie.
 % (i)
 %%
 
-\item Ofn - log,n) C O(n - (log, n)*)
+\item $\mathcal{O}(n \cdot \log_2 n) \subseteq \mathcal{O}(n \cdot (\log_2 n)^2)$
 
 %%
 % (ii)
 %%
 
-\item 2”*! € O(2")
+\item $2^{(n+1)} \in \mathcal{O}(n \cdot \log_2 n)$
 \end{enumerate}
 
 %%
 % (c)
 %%
 
-\item Bestimmen Sie eine asymptotische Lösung (in ©-Schreibweise) für
+\item Bestimmen Sie eine asymptotische Lösung (in $\Theta$-Schreibweise) für
 die folgende Rekursionsgleichung:
 
 \begin{enumerate}
@@ -69,13 +76,13 @@ die folgende Rekursionsgleichung:
 % (i)
 %%
 
-\item (i) [8 Punkte] T(n) =4-T(8) +n’
+\item $T(n) = 4 \cdot T(\frac{n}{2}) + n^2$
 
 %%
 % (ii)
 %%
 
-\item (ii) [8 Punkte] T(n) =T(2)+3n’+n
+\item $T(n) =  T(\frac{n}{2}) +\frac{n}{2} n^2 + n$
 \end{enumerate}
 
 \end{enumerate}
