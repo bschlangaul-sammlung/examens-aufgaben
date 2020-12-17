@@ -182,17 +182,24 @@ Weitere Aufgaben zum Thema „SQL“:
 
 #### Rekursion
 
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/20_Selectionsort/Aufgabe_iterativ-rekursiv.pdf" download="Aufgabe_iterativ-rekursiv">„iterativ-rekursiv“</a> (Selectionsort, Iterative Realisation, Rekursion)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/03_Algorithmenmuster/50_Backtracking/Aufgabe_Methode-fill.pdf" download="Aufgabe_Methode-fill">„Methode „fill()““</a> (Backtracking, Rekursion)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/04_Listen/10_Listen/Aufgabe_Playlist.pdf" download="Aufgabe_Playlist">„Playlist“</a> (Einfach-verkettete Liste, Implementierung in Java, doppelt-verkettete Liste, Rekursion)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46115-2014-Frühjahr_T2-A4">„Binomialkoeffizient“ Examen 46115 Frühjahr 2014 T2 A4</a> (Rekursion, Implementierung in Java, Interative Realisation)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46115-2014-Frühjahr_T2-A4">„Binomialkoeffizient“ Examen 46115 Frühjahr 2014 T2 A4</a> (Rekursion, Implementierung in Java, Iterative Realisation)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2014-Frühjahr_T1-A1">„Klasse „LeftFactorial“ und Methode „lfBig()““ Examen 66115 Frühjahr 2014 T1 A1</a> (Rekursion, Vollständige Induktion)
 
 #### Suche
 
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/10_Suchalgorithmen/Aufgabe_Methode-sucheBinaer.pdf" download="Aufgabe_Methode-sucheBinaer">„Methode „sucheBinaer()““</a> (Binäre Suche)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2017-Herbst_T1-TA2-A4">„Code-Inspection bei Binärer Suche“ Examen 66116 Herbst 2017 T1 TA2 A4</a> (Binäre Suche, Design by Contract, Kontrollflussgraph, Vollständige Anweisungsüberdeckung)
 
 #### Sortieralgorithmen
 
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/10_Algorithmische-Komplexitaet/Aufgabe_Algorithmen-Vergleich.pdf" download="Aufgabe_Algorithmen-Vergleich">„Algorithmen-Vergleich“</a> (Komplexität)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/10_Algorithmische-Komplexitaet/Aufgabe_Klasse-QueueElement.pdf" download="Aufgabe_Klasse-QueueElement">„Klasse-QueueElement“</a> (Komplexität)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/10_Algorithmische-Komplexitaet/Aufgabe_Methode-magicStaff.pdf" download="Aufgabe_Methode-magicStaff">„Methode „magicStaff()““</a> (Komplexität)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/10_Algorithmische-Komplexitaet/Aufgabe_mehrere-Funktionen.pdf" download="Aufgabe_mehrere-Funktionen">„mehrere-Funktionen“</a> (Komplexität)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/20_Selectionsort/Aufgabe_iterativ-rekursiv.pdf" download="Aufgabe_iterativ-rekursiv">„iterativ-rekursiv“</a> (Selectionsort, Iterative Realisation, Rekursion)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_46115-2013-Frühjahr_T2-A6">„Schreibtischlauf Haldensortierung“ Examen 46115 Frühjahr 2013 T2 A6</a> (Heapsort)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/09/Thema-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_46115-2016-Herbst_T2-A2">„Methoden „matrixSumme()“ und „find()““ Examen 46115 Herbst 2016 T2 A2</a> (Komplexität)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/09/Thema-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_46115-2017-Herbst_T2-A7">Examen 46115 Herbst 2017 T2 A7</a> (Insertionsort, Implementierung in Java)
@@ -201,6 +208,8 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T2-A6">„limes“ Examen 66115 Herbst 2012 T2 A6</a> (Komplexität)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2014-Herbst_T2-A6">„Selectionsort“ Examen 66115 Herbst 2014 T2 A6</a> (Selectionsort, Implementierung in Java, Komplexität, Halde (Heap))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T2-A5">„Sortieren mit Stapel“ Examen 66115 Frühjahr 2015 T2 A5</a> (Stapel (Stack), Komplexität)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T1-A5">„Notation des Informatik-Duden“ Examen 66115 Herbst 2019 T1 A5</a> (Quicksort)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T1-A6">„Sortieren von O-Klassen“ Examen 66115 Herbst 2019 T1 A6</a> (Komplexität)
 
 ## Softwaresysteme (SOSY)
 
@@ -403,7 +412,7 @@ OCR des oben genannten Scans:
     - Thema 1 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-1/Aufgabe-8.pdf" download="Staatsexamen-Informatik_46115-2014-Frühjahr_T1-A8">Aufgabe 8 (minimaler Spannbaum, Algorithmus von Kruskal)</a> 
     - Thema 2 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46115-2014-Frühjahr_T2-A4">Aufgabe 4 (Rekursion, Implementierung in Java, Interative Realisation)</a>
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46115-2014-Frühjahr_T2-A4">Aufgabe 4 (Rekursion, Implementierung in Java, Iterative Realisation)</a>
 - 2014 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/Scan.pdf" download="Staatsexamen-Informatik_46115-2014-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/OCR.txt" download="Staatsexamen-Informatik_46115-2014-Herbst_OCR">OCR.txt</a> 
     - Thema 2 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/Thema-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46115-2014-Herbst_T2-A3">Aufgabe 3 (Binärbaum)</a>
@@ -770,6 +779,9 @@ OCR des oben genannten Scans:
     - Thema 1 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/03/Thema-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2019-Frühjahr_T1-A6">Aufgabe 6 (Greedy-Algorithmus)</a>
 - 2019 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Scan.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/OCR.txt" download="Staatsexamen-Informatik_66115-2019-Herbst_OCR">OCR.txt</a> 
+    - Thema 1 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T1-A5">Aufgabe 5 (Quicksort)</a> 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T1-A6">Aufgabe 6 (Komplexität)</a> 
     - Thema 2 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-2/Aufgabe-9.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T2-A9">Aufgabe 9 (Streutabellen (Hashing))</a>
 
@@ -982,7 +994,7 @@ als Markdown-Liste eingebettet werden kann.
         - main-Methode
 - AUD:
     - Rekursion:
-        - Interative Realisation
+        - Iterative Realisation
     - Suche:
         - Binäre Suche
     - Sortieralgorithmen:

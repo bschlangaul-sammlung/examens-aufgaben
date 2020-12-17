@@ -1,0 +1,35 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{Klasse-QueueElement}
+
+\section{Aufgabe zur Komplexität
+\index{Komplexität}
+\footcite[Seite 3]{aud:pu:2}}
+
+\noindent
+Der Konstruktor \java{QueueElement(...)} und die Methode
+\java{setNext(...)} sowie \java{getNext(...)} haben $\mathcal{O}(1)$.
+Gib die Zeitkomplexität der Methode \java{append(int content)} an, die
+einer Schlange ein neues Element anhängt.
+
+\begin{minted}{java}
+public void append(int contents) {
+QueueElement newElement = new QueueElement(contents) ;
+  if (first == 0) {
+    first = newElement;
+    last = newElement;
+  } else {
+    last.setNext(newElement); // neues Element hinten anhaengen
+    last = last.getNext(); // angehaengtes Element ist Letztes
+  }
+}
+\end{minted}
+
+\begin{antwort}
+Das Anhängen eines neuen Elements in die gegebene Warteschlange hat
+konstanten Rechenzeitbedarf $\mathcal{O}(1)$, egal wie lange die
+Schlange ist, da man das letzte Element direkt ansprechen kann.
+\end{antwort}
+
+\end{document}
