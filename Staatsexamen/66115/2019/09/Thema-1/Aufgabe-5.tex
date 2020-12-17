@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
+\liLadePakete{syntax,mathe}
 \begin{document}
 \liAufgabenTitel{Notation des Informatik-Duden}
 \section{Aufgabe 5 (Sortierverfahren)
@@ -97,6 +97,8 @@ ersetzt durch die Bedingung $j \geq i$. Ist der Algorithmus weiterhin
 korrekt? Begründen Sie Ihre Antwort.
 
 \begin{antwort}
+geht, dauert aber länger
+
 \begin{minted}{md}
 quicksort(0, 6)
 27 32 3 6 17 44 42
@@ -183,6 +185,26 @@ x: 3
 \item Wie muss das Feld A gestaltet sein, damit der Algorithmus mit der
 geringsten Anzahl von Schritten terminiert? Betrachten Sie dazu vor
 allem Zeile 7. Begründen Sie Ihre Antwort und geben Sie ein Beispiel.
+
+\begin{antwort}
+Im Worst Case (schlechtesten Fall) wird das Pivotelement stets so
+gewählt, dass es das größte oder das kleinste Element der Liste ist.
+Dies ist etwa der Fall, wenn als Pivotelement stets das Element am Ende
+der Liste gewählt wird und die zu sortierende Liste bereits sortiert
+vorliegt. Die zu untersuchende Liste wird dann in jedem
+Rekursionsschritt nur um eins kleiner und die Zeitkomplexität wird
+beschrieben durch $\mathcal {O}(n^{2})$. Die Anzahl der Vergleiche ist
+in diesem Fall ${\tfrac {n\cdot \left(n+1\right)}{2}}-1={\tfrac
+{n^{2}}{2}}+{\tfrac {n}{2}}-1$.
+
+Die Länge der jeweils längeren Teilliste beim rekursiven Aufrufe ist
+nämlich im Schnitt  $\textstyle {\frac {2}{n}}\sum \limits _{i={\frac
+{n}{2}}}^{n-1}i={\frac {3}{4}}n-{\frac {2}{4}}$ und die Tiefe der
+Rekursion damit in  ${\mathcal {O}}(\log(n)).$ Im Average Case ist die
+Anzahl der Vergleiche etwa $2\cdot \log(2)\cdot (n+1)\cdot \log
+_{2}(n)\approx 1,39\cdot (n+1)\cdot \log _{2}(n)$.
+\footcite{wiki:quicksort}
+\end{antwort}
 
 \item Die rekursiven Aufrufe in den Zeilen 16 und 17 des Algorithmus
 werden zur Laufzeit des Computers auf dem Stack verwaltet. Die Anzahl
