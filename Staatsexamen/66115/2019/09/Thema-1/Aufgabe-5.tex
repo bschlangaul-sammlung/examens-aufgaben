@@ -1,0 +1,194 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{Notation des Informatik-Duden}
+\section{Aufgabe 5 (Sortierverfahren)
+\index{Quicksort}
+\footcite{66115:2019:09}}
+
+In der folgenden Aufgabe soll ein Feld A von ganzen Zahlen aufsteigend
+sortiert werden. Das Feld habe n Elemente A[0] bis A[n-1]. Der folgende
+Algorithmus (in der Notation des Informatik-Duden) sei gegeben:
+
+\begin{minted}{python}
+procedure quicksort(links, rechts : integer)
+var i, j, x : integer;
+begin
+  i := links;
+  j := rechts;
+  if j > i then begin
+    x := A[links];
+    repeat
+      while A[i] < x do i := i+1;
+      while A[j] > x do j := j-1;
+      if i < j then begin
+        tmp := A[i]; A[i] := A[j]; A[j] := tmp;
+        i := i+1; j := j-1;:
+      end
+    until i > j;
+    quicksort(links, j);
+    quicksort(i, rechts);
+  end
+end
+\end{minted}
+
+\liPseudoUeberschrift{Umsetzung in Java:}
+
+\inputcode[firstline=6,lastline=32]{examen/examen_66115_2019_09/QuickSort}
+
+Der initiale Aufruf der Prozedur lautet:
+
+\begin{minted}{python}
+quicksort(0,n-1)
+\end{minted}
+
+\begin{enumerate}
+
+\item Sortieren Sie das folgende Feld der Länge 7 mittels des
+Algorithmus. Notieren Sie jeweils alle Aufrufe der Prozedur quicksort
+mit den konkreten Parameterwerten. Geben Sie zudem für jeden Aufruf der
+Prozedur den Wert des in Zeile 7 gewählten Elements an.
+
+\begin{center}
+27 13 21 3 6 17 44 42
+\end{center}
+
+\begin{antwort}
+\begin{minted}{md}
+quicksort(0, 6)
+27 32 3 6 17 44 42
+x: 27
+quicksort(0, 2)
+17 6 3 32 27 44 42
+x: 17
+quicksort(0, 1)
+3 6 17 32 27 44 42
+x: 3
+quicksort(0, -1)
+3 6 17 32 27 44 42
+quicksort(1, 1)
+3 6 17 32 27 44 42
+quicksort(2, 2)
+3 6 17 32 27 44 42
+quicksort(3, 6)
+3 6 17 32 27 44 42
+x: 32
+quicksort(3, 3)
+3 6 17 27 32 44 42
+quicksort(4, 6)
+3 6 17 27 32 44 42
+x: 32
+quicksort(4, 3)
+3 6 17 27 32 44 42
+quicksort(5, 6)
+3 6 17 27 32 44 42
+x: 44
+quicksort(5, 5)
+3 6 17 27 32 42 44
+quicksort(6, 6)
+3 6 17 27 32 42 44
+3 6 17 27 32 42 44
+\end{minted}
+
+\end{antwort}
+
+\item Angenommen, die Bedingung $j > i$ in Zeile 6 des Algorithmus wird
+ersetzt durch die Bedingung $j \geq i$. Ist der Algorithmus weiterhin
+korrekt? Begründen Sie Ihre Antwort.
+
+\begin{antwort}
+\begin{minted}{md}
+quicksort(0, 6)
+27 32 3 6 17 44 42
+x: 27
+quicksort(0, 2)
+17 6 3 32 27 44 42
+x: 17
+quicksort(0, 1)
+3 6 17 32 27 44 42
+x: 3
+quicksort(0, -1)
+3 6 17 32 27 44 42
+quicksort(1, 1)
+3 6 17 32 27 44 42
+x: 6
+quicksort(1, 0)
+3 6 17 32 27 44 42
+quicksort(2, 1)
+3 6 17 32 27 44 42
+quicksort(2, 2)
+3 6 17 32 27 44 42
+x: 17
+quicksort(2, 1)
+3 6 17 32 27 44 42
+quicksort(3, 2)
+3 6 17 32 27 44 42
+quicksort(3, 6)
+3 6 17 32 27 44 42
+x: 32
+quicksort(3, 3)
+3 6 17 27 32 44 42
+x: 27
+quicksort(3, 2)
+3 6 17 27 32 44 42
+quicksort(4, 3)
+3 6 17 27 32 44 42
+quicksort(4, 6)
+3 6 17 27 32 44 42
+x: 32
+quicksort(4, 3)
+3 6 17 27 32 44 42
+quicksort(5, 6)
+3 6 17 27 32 44 42
+x: 44
+quicksort(5, 5)
+3 6 17 27 32 42 44
+x: 42
+quicksort(5, 4)
+3 6 17 27 32 42 44
+quicksort(6, 5)
+3 6 17 27 32 42 44
+quicksort(6, 6)
+3 6 17 27 32 42 44
+x: 44
+quicksort(6, 5)
+3 6 17 27 32 42 44
+quicksort(7, 6)
+3 6 17 27 32 42 44
+3 6 17 27 32 42 44
+\end{minted}
+\end{antwort}
+
+\item Angenommen, die Bedingung $i \leq j$ in Zeile 11 des Algorithmus wird
+ersetzt durch die Bedingung $i < j$. Ist der Algorithmus weiterhin
+korrekt? Begründen Sie Ihre Antwort.
+
+\begin{antwort}
+bleibt hängen
+
+\begin{minted}{md}
+quicksort(0, 6)
+27 32 3 6 17 44 42
+x: 27
+quicksort(0, 2)
+17 6 3 32 27 44 42
+x: 17
+quicksort(0, 1)
+3 6 17 32 27 44 42
+x: 3
+\end{minted}
+
+\end{antwort}
+
+\item Wie muss das Feld A gestaltet sein, damit der Algorithmus mit der
+geringsten Anzahl von Schritten terminiert? Betrachten Sie dazu vor
+allem Zeile 7. Begründen Sie Ihre Antwort und geben Sie ein Beispiel.
+
+\item Die rekursiven Aufrufe in den Zeilen 16 und 17 des Algorithmus
+werden zur Laufzeit des Computers auf dem Stack verwaltet. Die Anzahl
+der Aufrufe von quicksort auf dem Stack abhängig von der Eingabegröße n
+sei mit s(n) bezeichnet. Geben Sie die Komplexitätsklasse von s(n) für
+den schlimmsten möglichen Fall an. Begründen Sie Ihre Antwort.
+\end{enumerate}
+
+\end{document}
