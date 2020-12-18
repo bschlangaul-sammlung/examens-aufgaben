@@ -1,0 +1,290 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe}
+\begin{document}
+\liAufgabenTitel{Modulo 11 und 17}
+
+\section{Aufgabe zum Hashing
+\index{Streutabellen (Hashing)}
+\footcite[Seite 1]{aud:ab:5}}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Ist $h(k) = k^2 \mod 11$ eine gut gewählte
+Hashfunktion\index{Hashfunktion}? Begründen Sie Ihre Antwort.
+
+Tipp: Berechnen Sie zunächst $h(k)$ für $0 \leq k < 11$. Überlegen Sie
+dann, welche Werte $h(k')$ für $k' = a \cdot 11 + k$ mit $a > 0$ und $0
+\leq k < 11$ annehmen kann.
+
+\begin{antwort}
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+$k$ & $h(k)$\\\hline\hline
+0 & 0\\\hline
+1 & 1\\\hline
+2 & 4\\\hline
+3 & 9\\\hline
+4 & 5\\\hline
+5 & 3\\\hline
+6 & 3\\\hline
+7 & 5\\\hline
+8 & 9\\\hline
+9 & 4\\\hline
+10 & 1\\\hline
+\end{tabular}
+\end{center}
+
+Nein, $h$ ist keine gute Hashfunktion. Betrachten wir zunächst die
+Wertetabelle von $h$ für $0 \leq k < 11$ . Wir erhalten
+
+Wir sehen, dass nie die Werte $2$, $6$, $7$, $8$ und $10$ eingenommen
+werden. Man könnte nun noch hoffen, dass das vielleicht für irgendein
+größeres $k$ der Fall ist, dem ist jedoch nicht so. Wir können uns
+leicht davon überzeugen, dass für ein beliebiges $k' = a \cdot 11 + k$
+mit $a > 0$ und $0 \leq k < 11$ folgendes gilt:
+
+\begin{align*}
+h(k')
+  &= (k')^2 mod 11\\
+  &= (a \cdot 11 + k)^2 mod 11\\
+  &= (a^2 \cdot 11^2 + 2ak \cdot 11 + k^2) mod 11\\
+  &= (k^2) mod 11\\
+  &= h(k)
+\end{align*}
+
+Somit haben wir die Berechnung des Hashwertes für ein beliebiges $k'$
+auf die Berechnung des Hashwertes für ein $k < 11$ zurückgeführt, was
+impliziert, dass kein Schlüssel jemals auf etwas anderes als $0$, $1$,
+$3$, $4$, $5$ oder $9$ abgebildet werden kann.
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item  Die Schlüssel $23$, $57$, $26$, $6$, $77$, $43$, $74$, $60$, $9$,
+$91$ sollen in dieser Reihenfolge mit der Hashfunktion $h(k) = k \mod
+17$ in eine Hashtabelle der Länge $17$ eingefügt werden.
+
+\begin{antwort}
+\begin{exkurs}[Sondieren]
+\begin{description}
+\item[separate Verkettung]
+Kollisionsauflösung durch Verkettung (separate chaining): Jedes Bucket
+speichert mit Hilfe einer dynamischen Datenstruktur (Liste, Baum,
+weitere Streutabelle, ...) alle Elemente mit dem entsprechenden
+Hashwert.\footcite[Seite 32]{aud:fs:tafeluebung-10}
+
+\item[lineares Sondieren]
+es wird um ein konstantes Intervall verschoben nach einer freien Stelle
+gesucht. Meistens wird die Intervallgröße auf 1 festgelegt.
+
+\item[quadratisches Sondieren]
+Nach jedem erfolglosen Suchschritt wird das Intervall
+quadriert.\footcite{wiki:hashtabelle}
+\end{description}
+\end{exkurs}
+\end{antwort}
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Verwenden Sie separate Verkettung zur Kollisionsauflösung.
+\index{Separate Verkettung}
+
+\begin{antwort}
+Nebenrechnung:
+
+$17 \cdot 1 = 17$\\
+$17 \cdot 2 = 34$\\
+$17 \cdot 3 = 51$\\
+$17 \cdot 4 = 68$\\
+$17 \cdot 5 = 85$
+
+Modulo-Berechnung der gegebenen Zahlen:
+
+$23 \mod 17 = \textbf{6} \text{ da } 23 : 17 = 1 \text{, Rest } 6 \text{ da } 23 = 1 \cdot 17 + 6$\\
+$57 \mod 17 = 57 - 3 \cdot 17 = 57 - 51 = \textbf{6}$\\
+$26 \mod 17 = 26 - 17 = \textbf{9}$\\
+$6 \mod 17 = 6 - 0 \cdot 17 = \textbf{6}$\\
+$77 \mod 17 = 77 - 4 \cdot 17 = 77 - 68 = \textbf{9}$\\
+$43 \mod 17 = \textbf{9}$\\
+$74 \mod 17 = \textbf{6}$\\
+$60 \mod 17 = \textbf{9}$\\
+$9 \mod 17 = \textbf{9}$\\
+$91 \mod 17 = \textbf{6}$\\
+
+{
+\setlength{\tabcolsep}{2pt}
+\footnotesize
+\begin{tabular}{r|ccccccccccccccccc}
+Index & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 \\\hline
+Schlüssel &&&&&&&23&&&26&&&&&&&\\
+          &&&&&&&57&&&77&&&&&&&\\
+          &&&&&&&6 &&&43&&&&&&&\\
+          &&&&&&&74&&&60&&&&&&&\\
+          &&&&&&&91&&&9 &&&&&&&\\
+\end{tabular}
+}
+\end{antwort}
+
+%%
+% 2.
+%%
+
+\item Verwenden Sie lineares Sondieren zur Kollisionsauflösung.
+\index{Lineares Sondieren}
+
+\def\tmp#1{{\tiny($#1$)}}
+
+\begin{antwort}
+\def\tmp#1{{\footnotesize#1}}
+
+Die Hashfunkion lautet:
+
+\tmp{$h'(k) = k \mod 17$}
+
+Die verwendete Hashfunktion beim linearen Sondieren:
+
+\tmp{$h(k, i) = (h'(k) - i) \mod 17$}
+
+\bigskip
+
+Es ergeben sich folgende Sondierungsfolgen:
+{
+\setlength{\tabcolsep}{2pt}
+\footnotesize
+
+\begin{tabular}{r|ccccccccc}
+Schlüssel & \multicolumn{6}{l}{Index}\\\hline
+23 & 6\\
+57 & 6 & 5\\
+26 & 9\\
+6  & 6 & 5 & 4\\
+77 & 9 & 8\\
+43 & 9 & 8 & 7\\
+74 & 6 & 5 & 4 & 3 \\
+60 & 9 & 8 & 7 & 6 & 5 & 4 & 3 & 2\\
+9  & 9 & 8 & 7 & 6 & 5 & 4 & 3 & 2 & 1 \\
+91 & 6 & 5 & 4 & 3 & 2 & 1\\
+\end{tabular}
+
+Damit ergibt sich folgende Hashtabelle:
+
+\begin{tabular}{r|ccccccccccccccccc}
+Index & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 \\\hline
+Schlüssel &91&9&60&74&6&57&23&43&77&26&&&&&&&\\
+\end{tabular}
+}
+\end{antwort}
+
+%%
+% 3.
+%%
+
+\item Verwenden Sie quadratisches Sondieren zur Kollisionsauflösung.
+\index{Quadratisches Sondieren}
+
+\begin{antwort}
+
+\def\tmp#1{{\footnotesize#1}}
+
+Die Hashfunkion lautet:
+
+\tmp{$h'(k) = k \mod 17$}
+
+Die verwendete Hashfunktion beim quadratischen Sondieren:
+
+\tmp{$h(k, i) = (h'(k) + i^2) \mod 17$}
+
+\bigskip
+
+Am Beispiel von zwei Schlüsseln werden die Sondierungsfolgen berechnet:
+
+\bigskip
+
+\liPseudoUeberschrift{$h'(23) = 6$}
+
+\begin{enumerate}
+\item Sondierungsfolge: \\
+\tmp{$h(23, 0) = (h'(23) + 0^2) \mod 17 = (6 + 0) \mod 17 = 6 \mod 17 = \textbf{6}$}
+
+\item Sondierungsfolge: \\
+\tmp{$h(23, 1) = (h'(23) + 1^2) \mod 17 = (6 + 1) \mod 17 = 7 \mod 17 = \textbf{7}$}
+
+\item Sondierungsfolge: \\
+\tmp{$h(23, 2) = (h'(23) + 2^2) \mod 17 = (6 + 4) \mod 17 = 10 \mod 17 = \textbf{10}$}
+
+\item Sondierungsfolge: \\
+\tmp{$h(23, 3) = (h'(23) + 3^2) \mod 17 = (6 + 9) \mod 17 = 15 \mod 17 = \textbf{15}$}
+
+\item Sondierungsfolge: \\
+\tmp{$h(23, 4) = (h'(23) + 4^2) \mod 17 = (6 + 16) \mod 17 = 22 \mod 17 = \textbf{5}$}
+\end{enumerate}
+
+\bigskip
+
+\liPseudoUeberschrift{$h'(26) = 9$}
+
+\begin{enumerate}
+\item Sondierungsfolge: \\
+\tmp{$h(26, 0) = (h'(26) + 0^2) \mod 17 = (9 + 0) \mod 17 = 9 \mod 17 = \textbf{9}$}
+
+\item Sondierungsfolge: \\
+\tmp{$h(26, 1) = (h'(26) + 1^2) \mod 17 = (9 + 1) \mod 17 = 10 \mod 17 = \textbf{10}$}
+
+\item Sondierungsfolge: \\
+\tmp{$h(26, 2) = (h'(26) + 2^2) \mod 17 = (9 + 4) \mod 17 = 13 \mod 17 = \textbf{13}$}
+
+\item Sondierungsfolge: \\
+\tmp{$h(26, 3) = (h'(26) + 3^2) \mod 17 = (9 + 9) \mod 17 = 18 \mod 17 = \textbf{1}$}
+
+\item Sondierungsfolge: \\
+\tmp{$h(26, 4) = (h'(26) + 4^2) \mod 17 = (9 + 16) \mod 17 = 25 \mod 17 = \textbf{8}$}
+
+\item Sondierungsfolge: \\
+\tmp{$h(26, 5) = (h'(26) + 5^2) \mod 17 = (9 + 25) \mod 17 = 34 \mod 17 = \textbf{0}$}
+\end{enumerate}
+
+\bigskip
+
+Es ergeben sich folgende Sondierungsfolgen:
+
+{
+\setlength{\tabcolsep}{2pt}
+\footnotesize
+
+\begin{tabular}{r|cccccc}
+Schlüssel & \multicolumn{6}{l}{Index}\\\hline
+23 & 6\\
+57 & 6 & 7\\
+26 & 9\\
+6  & 6 & 7 & 10 \\
+77 & 9 & 10 & 13 \\
+43 & 9 & 10 & 13 & 1 \\
+74 & 6 & 7 & 10 & 15\\
+60 & 9 & 10 & 13 & 1 & 8 \\
+9  & 9 & 10 & 13 & 1 & 8 & 0\\
+91 & 6 & 7 & 10 & 15 & 5\\
+\end{tabular}
+
+Damit ergibt sich folgende Hashtabelle:
+
+\begin{tabular}{r|ccccccccccccccccc}
+Index & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 \\\hline
+Schlüssel &9&43&&&&91&23&57&60&26&6&&&77&&74&\\
+\end{tabular}
+}
+\end{antwort}
+\end{enumerate}
+\end{enumerate}
+\end{document}

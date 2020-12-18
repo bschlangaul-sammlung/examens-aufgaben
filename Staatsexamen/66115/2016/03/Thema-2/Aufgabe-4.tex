@@ -7,7 +7,7 @@
 \index{Streutabellen (Hashing)}
 \footcite[Thema 2 Aufgabe 4 Seite 7]{examen:66115:2016:03}}
 
-Betrachte eine Hashtabelle der Größe m = 10.
+Betrachte eine Hashtabelle der Größe $m = 10$.
 
 \begin{enumerate}
 
@@ -16,23 +16,63 @@ Betrachte eine Hashtabelle der Größe m = 10.
 %%
 
 \item Welche der folgenden Hashfunktionen ist für Hashing mit
-verketteten Listen am besten geeignet? Begründen Sie Ihre Wahl!
+verketteten Listen\index{Separate Verkettung} am besten geeignet?
+Begründen Sie Ihre Wahl!
 
 \begin{enumerate}
 \item $h_1(x) = (4x + 3) \mod m$
-\item $h_2(x) = (3x + 3) \mod m$.
+
+\begin{antwort}
+\begin{description}
+\item[1] $h_1(1) = (4 \cdot 1 + 3) \mod 10 = 7$
+\item[2] $h_1(2) = (4 \cdot 2 + 3) \mod 10 = 1$
+\item[3] $h_1(3) = (4 \cdot 3 + 3) \mod 10 = 5$
+\item[4] $h_1(4) = (4 \cdot 4 + 3) \mod 10 = 9$
+\item[5] $h_1(5) = (4 \cdot 5 + 3) \mod 10 = 3$
+\item[6] $h_1(6) = (4 \cdot 6 + 3) \mod 10 = 7$
+\item[7] $h_1(7) = (4 \cdot 7 + 3) \mod 10 = 1$
+\item[8] $h_1(8) = (4 \cdot 8 + 3) \mod 10 = 5$
+\item[9] $h_1(9) = (4 \cdot 9 + 3) \mod 10 = 9$
+\item[10] $h_1(10) = (4 \cdot 10 + 3) \mod 10 = 3$
+\end{description}
+\end{antwort}
+
+\item $h_2(x) = (3x + 3) \mod m$
+
+\begin{antwort}
+\begin{description}
+\item[1] $h_2(1) = (3 \cdot 1 + 3) \mod 10 = 6$
+\item[2] $h_2(2) = (3 \cdot 2 + 3) \mod 10 = 9$
+\item[3] $h_2(3) = (3 \cdot 3 + 3) \mod 10 = 2$
+\item[4] $h_2(4) = (3 \cdot 4 + 3) \mod 10 = 5$
+\item[5] $h_2(5) = (3 \cdot 5 + 3) \mod 10 = 8$
+\item[6] $h_2(6) = (3 \cdot 6 + 3) \mod 10 = 1$
+\item[7] $h_2(7) = (3 \cdot 7 + 3) \mod 10 = 4$
+\item[8] $h_2(8) = (3 \cdot 8 + 3) \mod 10 = 7$
+\item[9] $h_2(9) = (3 \cdot 9 + 3) \mod 10 = 0$
+\item[10] $h_2(10) = (3 \cdot 10 + 3) \mod 10 = 3$
+\end{description}
+\end{antwort}
 \end{enumerate}
+
+\begin{antwort}
+Damit die verketteten Listen möglichst klein bleiben, ist eine möglichst
+gleichmäßige Verteilung der Schlüssel in die Buckets anzustreben. $h_2$
+ist dafür besser geeignet als $h_1$, da $h_2$ in alle Buckets Schlüssel
+ablegt, $h_1$ jedoch nur in Buckets mit ungerader Zahl.
+\end{antwort}
 
 %%
 % b)
 %%
 
 \item Welche der folgenden Hashfunktionen ist für Hashing mit offener
-Adressierung am besten geeignet? Begründen Sie Ihre Wahl!
+Adressierung\index{Offene Adressierung} am besten geeignet? Begründen
+Sie Ihre Wahl!
 
 \begin{enumerate}
 \item $h_1(x,i) = (7 \cdot x + i \cdot m) \mod m$
-\item $h_2(x,i) = (7 \cdot x + i \cdot (m - 1)) \mod m$.
+\item $h_2(x,i) = (7 \cdot x + i \cdot (m - 1)) \mod m$
 \end{enumerate}
 \end{enumerate}
 

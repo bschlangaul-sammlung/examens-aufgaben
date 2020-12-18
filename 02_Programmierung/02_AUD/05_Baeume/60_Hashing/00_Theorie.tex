@@ -1,0 +1,214 @@
+\documentclass{lehramt-informatik-haupt}
+\liLadePakete{syntax,mathe}
+\usepackage{amsmath}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Hashing}
+
+\begin{quellen}
+\item \cite[Kapitel 6.3.3 Streutabellen (Hashing), Seite
+188-189]{schneider}
+\item \cite[Seite 22-39]{aud:fs:tafeluebung-10}
+\item \cite[Seite 419-439]{saake}
+\item \cite{wiki:hashtabelle}
+\end{quellen}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Grundlagen}
+Das Ziel von Hashing ist einerseits einen \memph{extrem großen
+Schlüsselraum} auf einen vernünftig \memph{kleinen Bereich von ganzen
+Zahlen} abzubilden und andererseits dass \memph{zwei Schlüssel auf die
+selbe Zahl} abgebildet werden, soll möglichst \memph{unwahrscheinlich}
+sein.\footnote{Seite 4
+\url{https://moves.rwth-aachen.de/wp-content/uploads/SS15/dsal/lec13.pdf}}
+
+Daten werden in einer \memph{Streu(wert)tabelle} (hash table) abgelegt.
+Aufgrund des wahlfreien Zugriffs eignen sich Felder zum Abspeichern der
+Daten.
+%
+Eine \memph{Hashfunktion} $h$ bildet ein Datenelement auf einen
+\memph{Hashwert} ab. Das Datenelement benötigt dazu einen
+\memph{Schlüssel} (key), der das Element eindeutig identifiziert. Der
+Hashwert wird als Index in dem Feld verwendet. Das Datenelement wird
+im entsprechenden \memph{Bucket} der Tabelle gespeichert.
+%
+Bei der \memph{Suche} nach einem Element mit \memph{bekanntem Schlüssel}
+wird der Index mittels der Hashfunktion bestimmt. Dies geschieht mit
+\memph{konstantem Aufwand}.
+%
+Der Aufwand des Nachschlagens an entsprechender Stelle ist abhängig von
+der \emph{Organisationsform}.
+\footcite[Seite 25]{aud:fs:tafeluebung-10}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Kollisionen}
+
+Da Hashfunktionen im Allgemeinen  \memph{nicht eindeutig (injektiv)}
+sind, können zwei unterschiedliche Schlüssel zum selben Hash-Wert, also
+zum selben Feld in der Tabelle, führen. Dieses Ereignis wird als
+\memph{Kollision} bezeichnet. In diesem Fall muss die Hashtabelle
+mehrere Werte in demselben Bucket aufnehmen.
+
+Eine Kollision benötigt bei der Suche eine spezielle Behandlung durch
+das Verfahren: Zunächst wird aus einem Suchschlüssel wieder ein Hashwert
+berechnet, der den Bucket des gesuchten Datenobjektes bestimmt; dann
+muss noch durch direkten Vergleich des Suchschlüssels mit den Objekten
+im Bucket das gesuchte Ziel bestimmt werden.
+
+Zur Behandlung von Kollisionen werden kollidierte Daten nach einer
+\memph{Ausweichstrategie in alternativen Feldern} oder in einer Liste
+gespeichert. Schlimmstenfalls können Kollisionen zu einer Entartung der
+Hashtabelle führen, wenn wenige Hashwerte sehr vielen Objekten
+zugewiesen wurden, während andere Hashwerte unbenutzt bleiben.
+Kollisionsauflösungsstrategien
+
+Um das Kollisions-Problem zu handhaben, gibt es diverse
+Kollisionsauflösungsstrategien.
+
+%%
+%
+%%
+
+\subsection{geschlossenes Hashing mit offener Adressierung}
+
+Wenn dabei ein Eintrag an einer schon belegten Stelle in der
+Tabelle abgelegt werden soll, wird stattdessen eine \memph{andere freie
+Stelle genommen}. Häufig werden drei Varianten unterschieden:
+
+\subsubsection{lineares Sondieren}
+
+es wird um ein \memph{konstantes Intervall} verschoben nach einer freien
+Stelle gesucht. Meistens wird die Intervallgröße auf 1 festgelegt.
+
+\subsubsection{quadratisches Sondieren}
+
+Nach jedem erfolglosen Suchschritt wird das \memph{Intervall quadriert}.
+
+\liPseudoUeberschrift{Beispiele}
+
+\begin{itemize}
+
+%%
+%
+%%
+
+\item \liPseudoUeberschrift{nach Foliensatz der TU Braunschweig}
+\footnote{Seite 25\url{https://www.ibr.cs.tu-bs.de/courses/ws0708/aud/skript/hash.np.pdf}}
+
+\liPseudoUeberschrift{Formel}
+
+$h(k, i) := h'(k) + (-1)^{i+1} \cdot \left\lfloor \frac{i+1}{2}\right\rfloor ^2 \mod m$
+
+$k$, $k+1^2$, $k-1^2$, $k+2^2$, $k-2^2$,
+$\ldots$
+$k+(\frac{m-1}{2})^2$, $k-(\frac{m-1}{2})^2 \bmod m$
+
+\liPseudoUeberschrift{Werte}
+
+$m=19$, d. h. das Feld (die Tabelle) hat die Index-Nummern 0 bis 18.
+$k = h(x) = 7$
+
+\liPseudoUeberschrift{Sondierungsfolgen}
+
+\def\tmp#1{{\tiny#1}}
+
+\begin{tabular}{|l|l|l|l|}
+i & Rechnung & Ergebnis & Index in der Tabelle\\\hline\hline
+0 & $7 + 0^2$ & 7 & 7\\
+1 & $7 + 1^2$ & 8 & 8\\
+1 & $7 - 1^2$ & 6 & 6\\
+2 & $7 + 2^2$ & 11 & 11\\
+2 & $7 - 2^2$ & 3 & 2 \\
+3 & $7 + 3^2 = 7 + 9$  & 16 & 16 \\
+
+3 & $7 - 3^2 = 7 - 9$  & -2 &
+17 \tmp{($19-2=10$) oder ($0 \rightarrow 0$, $-1 \rightarrow 18$, $-2 \rightarrow 17$)}
+\\
+
+4 & $7 + 4^2 = 7 + 16$  & 23 &
+4 \tmp{($23-19=4$) oder ($19 \rightarrow 0$, $20 \rightarrow 1$, $21 \rightarrow 2$, $22 \rightarrow 3$, $23 \rightarrow 4$)}
+\\
+
+4 & $7 - 4^2 = 7 - 16$  & -9 &
+10 \tmp{($19-9=10$) oder ($0 \rightarrow 0$, $-1 \rightarrow 18$, $-2 \rightarrow 17$, $\cdots$, $-9 \rightarrow 10$)}
+\\
+
+5 & $7 + 5^2 = 7 + 25$  & 32 & 13 \tmp{($32-19=13$)} \\
+5 & $7 - 5^2 = 7 - 25$  & -18 & 1 \tmp{($19-18=1$)}\\
+\end{tabular}
+
+%%
+%
+%%
+
+\item \liPseudoUeberschrift{nach Foliensatz der RWTH Aachen}
+\footnote{Seite 19 \url{https://moves.rwth-aachen.de/wp-content/uploads/SS15/dsal/lec13.pdf}}
+
+$h'(k) = k \mod 11$
+
+$h(k, i) = (h'(k) + i + 3i^2) \mod 11$
+
+$h'(17) = 17 \mod 11 = 6$
+
+\liPseudoUeberschrift{Sondierungsfolgen}
+
+$h(17, 0) = (17 + 0 + 3 \cdot 0^2) \mod 11 = 6$
+
+$h(17, 1) = (17 + 1 + 3 \cdot 1^2) \mod 11 = 21 \mod 11 = 10$
+
+$h(17, 2) = (17 + 2 + 3 \cdot 2^2) \mod 11 = 31 \mod 11 = 31 - 2 \cdot 11 = 9$
+
+$h(17, 3) = (17 + 3 + 3 \cdot 3^2) \mod 11 = 47 \mod 11 = 47 - 4 \cdot 11 = 3$
+
+\end{itemize}
+
+\subsubsection{doppeltes Hashen}
+
+eine \memph{weitere Hash-Funktion} liefert das Intervall.
+
+%%
+%
+%%
+
+\subsection{offenes Hashing mit geschlossener Adressierung}
+
+Anstelle der gesuchten Daten enthält die Hashtabelle hier
+\memph{Behälter} (englisch \memph{Buckets}), die alle Daten mit gleichem
+Hash-Wert aufnehmen. Es müssen die \memph{Elemente im Behälter
+durchsucht werden}. Oft wird die Verkettung durch eine lineare Liste pro
+Behälter realisiert.
+\footcite{wiki:hashtabelle}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Die Divisionsrestmethode\footcite{wiki:divisionsrestmethode}}
+
+Die Divisionsrestmethode - auch Modulo genannt liefert eine
+Hashfunktion. Die Funktion lautet:  $h(k)=k{\bmod {m}}$. $m$ ist die
+Größe der Hashtabelle. Die Hash-Funktion kann sehr schnell berechnet
+werden. Die Wahl der Tabellengröße $m$ beeinflusst die
+Kollisionswahrscheinlichkeit der Funktionswerte von $h$. Für
+praxisrelevante Anwendungen liefert die Wahl einer Primzahl für $m$.
+
+\section{Belegungsfaktor\footcite[Seite 29]{aud:fs:tafeluebung-10}}
+
+$\text{Belegungsfaktor} =
+\frac{\text{Anzahl tatsächlich eingetragenen Schlüssel}}
+{\text{Anzahl Hashwerte}}$
+
+\literatur
+
+\end{document}
