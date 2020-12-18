@@ -1,0 +1,48 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Tupelidentifikator}
+
+\section{Aufgabe 3: Physische Datenorganisation, TID
+\index{Physische Datenorganisation}
+\footcite[Thema 1 Teilaufgabe 2 Aufgabe 4]{46116:2017:03}
+}
+
+\begin{enumerate}
+\item Erläutern Sie in ein bis zwei Sätzen, aus welchen zwei Teilen
+sich ein TID (Tupelidentifikator) zusammensetzt.
+
+\begin{antwort}
+Seitennummer (Seiten bzw. Blöcke sind größere Speichereinheiten auf der
+Platte) Relative Indexposition innerhalb der Seite
+\end{antwort}
+
+\item Erläutern Sie in ein bis zwei Sätzen das Vorgehen, wenn ein
+durch einen TID adressierter Satz innerhalb einer Seite verschoben
+werden muss.
+
+\begin{antwort}
+Satzverschiebung innerhalb einer Seite bleibt ohne Auswirkungen auf TID,
+\end{antwort}
+
+\item Erläutern Sie in ein bis zwei Sätzen das Vorgehen, wenn ein
+durch einen TID adressierter Satz erstmalig in eine andere Seite
+verschoben werden muss.
+
+\begin{antwort}
+wird ein Satz auf eine andere Seite migriert, wird eine
+„Stellvertreter-TID“ zum Verweis auf den neuen Speicherort verwendet.
+Die eigentliche TID-Adresse bleibt stabil
+\end{antwort}
+
+\item Erläutern Sie in zwei bis drei Sätzen das Vorgehen, wenn ein
+durch einen TID adressierter und bereits einmal über Seitengrenzen
+hinweg verschobener Satz erneut in eine andere Seite verschoben werden
+muss.\footcite{db:pu:3}
+
+\begin{antwort}
+Es wird eine neue stellvertreter TID aktualisiert.
+\end{antwort}
+\end{enumerate}
+
+\end{document}

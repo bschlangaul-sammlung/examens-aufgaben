@@ -34,9 +34,22 @@ var BibtexReferenzZuDateiKonverter = /** @class */ (function () {
         for (var key in entries) {
             var entry = entries[key];
             if (entry.unexpected_fields && entry.unexpected_fields.file) {
-                this.index[entry.entry_key] = entry.unexpected_fields.file;
+                this.index[entry.entry_key] = this.findeMehrerePdfDatien(entry.unexpected_fields.file);
             }
         }
+    };
+    /**
+     *
+     * @param eingabe z. B. AB1_Grundlagen.pdf AB1_Grundlagen_Lsg.pdf
+     */
+    BibtexReferenzZuDateiKonverter.prototype.findeMehrerePdfDatien = function (eingabe) {
+        var ergebnis = eingabe.split('.pdf');
+        ergebnis = ergebnis.map(function (dateiBasisName) {
+            return dateiBasisName.trim().replace(/^, +/, '');
+        }).filter(function (dateiBasisName) {
+            return dateiBasisName ? true : false;
+        });
+        return ergebnis;
     };
     BibtexReferenzZuDateiKonverter.prototype.gibDateiNameDurchReferenz = function (referenz) {
         if (this.index[referenz]) {
@@ -46,9 +59,9 @@ var BibtexReferenzZuDateiKonverter = /** @class */ (function () {
     return BibtexReferenzZuDateiKonverter;
 }());
 function öffneDurchBibtex(referenz) {
-    var e_1, _a;
+    var e_1, _a, e_2, _b;
     var bibDateien = glob_1.default.sync('**/*.bib', { cwd: helfer_1.repositoryPfad });
-    var externeDateien = glob_1.default.sync('**/*', { cwd: basisPfadExterneDateien });
+    var externeDateien = glob_1.default.sync('**/*.pdf', { cwd: basisPfadExterneDateien });
     var konverter = new BibtexReferenzZuDateiKonverter();
     try {
         for (var bibDateien_1 = __values(bibDateien), bibDateien_1_1 = bibDateien_1.next(); !bibDateien_1_1.done; bibDateien_1_1 = bibDateien_1.next()) {
@@ -63,17 +76,32 @@ function öffneDurchBibtex(referenz) {
         }
         finally { if (e_1) throw e_1.error; }
     }
-    var dateiName = konverter.gibDateiNameDurchReferenz(referenz);
-    if (dateiName) {
-        externeDateien.filter(function (externeDateiPfad) {
-            if (externeDateiPfad.includes(dateiName)) {
-                console.log(externeDateiPfad);
-                helfer_1.öffneProgramm('xdg-open', path_1.default.join(basisPfadExterneDateien, externeDateiPfad));
-            }
-        });
+    var dateiNamen = konverter.gibDateiNameDurchReferenz(referenz);
+    if (!dateiNamen) {
+        console.log('Keine Datei gefunden');
     }
     else {
-        console.log('Keine Datei gefunden');
+        var _loop_1 = function (dateiName) {
+            externeDateien.filter(function (externerDateiPfad) {
+                if (externerDateiPfad.includes(dateiName + ".pdf")) {
+                    console.log("\u00D6ffne Datei: " + externerDateiPfad);
+                    helfer_1.öffneProgramm('xdg-open', path_1.default.join(basisPfadExterneDateien, externerDateiPfad));
+                }
+            });
+        };
+        try {
+            for (var dateiNamen_1 = __values(dateiNamen), dateiNamen_1_1 = dateiNamen_1.next(); !dateiNamen_1_1.done; dateiNamen_1_1 = dateiNamen_1.next()) {
+                var dateiName = dateiNamen_1_1.value;
+                _loop_1(dateiName);
+            }
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (dateiNamen_1_1 && !dateiNamen_1_1.done && (_b = dateiNamen_1.return)) _b.call(dateiNamen_1);
+            }
+            finally { if (e_2) throw e_2.error; }
+        }
     }
 }
 exports.öffneDurchBibtex = öffneDurchBibtex;
