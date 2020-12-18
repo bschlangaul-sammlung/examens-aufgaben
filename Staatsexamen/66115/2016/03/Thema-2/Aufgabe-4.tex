@@ -74,6 +74,25 @@ Sie Ihre Wahl!
 \item $h_1(x,i) = (7 \cdot x + i \cdot m) \mod m$
 \item $h_2(x,i) = (7 \cdot x + i \cdot (m - 1)) \mod m$
 \end{enumerate}
-\end{enumerate}
 
+\begin{antwort}
+$h_2(x,i)$ ist besser geeignet. $h_1$ sondiert immer im selben Bucket,
+$(i \cdot m) \mod m$ heben sich gegenseitig auf,
+zum Beispiel ergibt:
+
+\begin{itemize}
+\item $h_1(3,0) = (7 \cdot 3 + 0 \cdot 10) \mod 10 = 1$
+\item $h_1(3,1) = (7 \cdot 3 + 1 \cdot 10) \mod 10 = 1$
+\item $h_1(3,2) = (7 \cdot 3 + 2 \cdot 10) \mod 10 = 1$
+\end{itemize}
+
+Während hingegen $h_2$ verschiedene Buckets belegt.
+
+\begin{itemize}
+\item $h_2(3,0) = (7 \cdot 3 + 0 \cdot 9) \mod 10 = 1$
+\item $h_2(3,1) = (7 \cdot 3 + 1 \cdot 9) \mod 10 = 0$
+\item $h_2(3,2) = (7 \cdot 3 + 2 \cdot 9) \mod 10 = 9$
+\end{itemize}
+\end{antwort}
+\end{enumerate}
 \end{document}
