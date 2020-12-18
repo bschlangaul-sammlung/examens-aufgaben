@@ -15,6 +15,7 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/10_Uebersicht/Aufgabe_Speicherung-Dateisystem.pdf" download="Aufgabe_Speicherung-Dateisystem">„Speicherung-Dateisystem“</a> (Datenbank-Übersicht)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/10_Uebersicht/Aufgabe_Terminologie.pdf" download="Aufgabe_Terminologie">„Terminologie“</a> (Datenbanksystem, Datenbank, Datenbankmanagementsystem)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46116-2015-Herbst_T1-TA2-A1">„Theoriefragen Datenbank“ Examen 46116 Herbst 2015 T1 TA2 A1</a> (Datenunabhängigkeit, Superschlüssel, Referentielle Integrität)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46116-2017-Frühjahr_T1-TA2-A4">„Tupelidentifikator“ Examen 46116 Frühjahr 2017 T1 TA2 A4</a> (Physische Datenorganisation)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A6">„Vermischte Datenbank-Fragen“ Examen 66116 Herbst 2019 T2 TA2 A6</a> (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)
 
 ### Datenbankentwurf
@@ -254,6 +255,7 @@ Weitere Aufgaben zum Thema „SQL“:
 ### Entwurfsmuster
 
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/04_Listen/10_Listen/Aufgabe_Woerterbuch.pdf" download="Aufgabe_Woerterbuch">„Wörterbuch“</a> (Einfach-verkettete Liste, Kompositum (Composite))
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/03_Projektplanung/Entwurfsmuster/Aufgabe_Grundwissen.pdf" download="Aufgabe_Grundwissen">„Grundwissen“</a> (Entwurfsmuster)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2017-Herbst_T2-TA1-A3">„Entwurfsmuster bei Bankkonten, Hockeyspiel, Dateisystem“ Examen 46116 Herbst 2017 T2 TA1 A3</a> (Entwurfsmuster, Klassendiagramm, Abstrakte Fabrik (Abstract Factory), Beobachter (Observer), Kompositum (Composite))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2016-Frühjahr_T1-TA2-A2">„Entwurfsmuster in UML-Diagramm erkennen“ Examen 66116 Frühjahr 2016 T1 TA2 A2</a> (Klassendiagramm, Abstrakte Fabrik (Abstract Factory), Wiederholer (Iterator), Adapter, Kompositum (Composite), Klassenadapter, Objektadapter, Implementierung in Java)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2016-Herbst_T2-TA2-A1">„Wahrheitsgehalt-Tabelle Software Engineering“ Examen 66116 Herbst 2016 T2 TA2 A1</a> (Software Engineering, Agile Methoden, Spiralmodell, Nicht-funktionale Anforderungen, Entwurfsmuster, Schichtenarchitektur, Blackboard-Muster, Einbringen von Abhängigkeiten (Dependency Injection), Sequenzdiagramm, Zustandsdiagramm, Komponentendiagramm, Modell-Präsentation-Steuerung (Model-View-Controller), Einzelstück (Singleton), Kommando (Command), Validation, Verifikation)
@@ -502,7 +504,9 @@ OCR des oben genannten Scans:
         - Teilaufgabe 1 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_46116-2017-Frühjahr_T1-TA1-A2">Aufgabe 2 (Anwendungsfalldiagramm)</a> 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2017-Frühjahr_T1-TA1-A3">Aufgabe 3 (UML-Diagramme, Klassendiagramm, Anwendungsfalldiagramm)</a> 
-            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_46116-2017-Frühjahr_T1-TA1-A5">Aufgabe 5 (Gantt-Diagramm)</a>
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_46116-2017-Frühjahr_T1-TA1-A5">Aufgabe 5 (Gantt-Diagramm)</a> 
+        - Teilaufgabe 2 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46116-2017-Frühjahr_T1-TA2-A4">Aufgabe 4 (Physische Datenorganisation)</a>
 - 2017 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Scan.pdf" download="Staatsexamen-Informatik_46116-2017-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/OCR.txt" download="Staatsexamen-Informatik_46116-2017-Herbst_OCR">OCR.txt</a> 
     - Thema 1 
         - Teilaufgabe 1 
@@ -920,6 +924,7 @@ als Markdown-Liste eingebettet werden kann.
         - Datenunabhängigkeit
         - Drei-Schichten-Modell
         - Unionkompatibilität
+        - Physische Datenorganisation
     - Datenbankentwurf:
         - Entity-Relation-Modell:
             - IS-A
@@ -984,6 +989,9 @@ als Markdown-Liste eingebettet werden kann.
         - Lost-Update
         - Deadlock
 - OOMUP:
+    - Objektorientierung:
+        - Klasse
+        - Objekt
     - Vererbung:
         - Generalisierung
         - Spezialisierung

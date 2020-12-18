@@ -1,0 +1,69 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{uml,syntax}
+\begin{document}
+\liAufgabenTitel{Klassendiagramm und Implementierung}
+
+\section{Klassendiagramm und Implementierung
+\index{Binärbaum}
+\footcite[Aufgabe 1: Binärbaum, Seite 1]{aud:pu:5}}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Erstellen Sie ein Klassendiagramm für einen Binärbaum.
+
+\begin{antwort}
+\liPseudoUeberschrift{einfacher Binärbaum}
+
+\begin{tikzpicture}
+\umlsimpleclass{Binärbaum}
+\umlclass[x=4]{Knoten}{wert}{}
+\umlaggreg[mult=0..1,arg=wurzel,pos=0.6]{Binärbaum}{Knoten}
+\umlaggreg[mult=0..2,pos=0.8]{Knoten}{Knoten}
+\end{tikzpicture}
+
+\liPseudoUeberschrift{Binärbaum mit Kompositum}
+
+\begin{tikzpicture}
+\umlsimpleclass[x=-1,y=5]{Binärbaum}
+\umlsimpleclass[x=3,y=5,type=abstrakt]{Baumelement}
+\umlsimpleclass[x=1,y=3]{Abschluss}
+\umlsimpleclass[x=5,y=3]{Datenknoten}
+\umlsimpleclass[x=5,y=1]{Inhalt}
+
+\umlassoc[mult2=1,stereo=wurzel \LeserichtungRechts]{Binärbaum}{Baumelement}
+\umlVHVinherit{Abschluss}{Baumelement}
+\umlVHVinherit{Datenknoten}{Baumelement}
+
+\umlaggreg[mult=1]{Datenknoten}{Inhalt}
+\umlVHaggreg[mult2=2,pos2=1.8,anchor1=50]{Datenknoten}{Baumelement}
+\end{tikzpicture}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Entwerfen Sie eine mögliche Implementierung zur Erzeugung eines
+binären Baumes in Java.
+
+\begin{antwort}
+\liPseudoUeberschrift{einfacher Binärbaum}
+
+\inputcode[firstline=3]{baum/einfach/Baum}
+\inputcode[firstline=3]{baum/einfach/Knoten}
+
+\liPseudoUeberschrift{Binärbaum mit Kompositum}
+
+\inputcode[firstline=3]{baum/kompositum/Ahnenbaum}
+\inputcode[firstline=3]{baum/kompositum/Baumelement}
+\inputcode[firstline=3]{baum/kompositum/Abschluss}
+\inputcode[firstline=3]{baum/kompositum/Datenknoten}
+\inputcode[firstline=3]{baum/kompositum/Person}
+\end{antwort}
+\end{enumerate}
+
+\end{document}

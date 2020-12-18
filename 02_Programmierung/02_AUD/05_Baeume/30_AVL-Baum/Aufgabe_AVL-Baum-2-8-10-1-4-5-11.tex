@@ -1,0 +1,41 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{baum}
+\begin{document}
+\liAufgabenTitel{AVL-Baum-2-8-10-1-4-5-11}
+
+\section{AVL-Baum
+\index{AVL-Baum}
+\footcite{aud:e-klausur}}
+
+Fügen Sie die Zahlen 2, 8, 10, 1, 4, 5, 11 in der vorgegebenen
+Reihenfolge in einen AVL-Baum ein. Wie sieht der finale AVL-Baum aus?
+
+\begin{antwort}
+\begin{description}
+\item[2:] ist die Wurzel
+\item[8:] rechts an 2
+\item[10:] rechts an 8, dann Links-Rotation
+\item[1:] links an 2
+\item[4:] rechts an 2
+\item[5:] rechts an 4, dann Links-Rechts-Rotation.
+\item[11:] rechts an 10
+\end{description}
+
+\begin{tikzpicture}[binaerer baum]
+\Tree
+[.4
+  [.2
+    [.1 ]
+    \edge[blank]; \node[blank]{};
+  ]
+  [.8
+    [.5 ]
+    [.10
+      \edge[blank]; \node[blank]{};
+      [.11 ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{antwort}
+\end{document}
