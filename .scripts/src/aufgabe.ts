@@ -2,7 +2,7 @@ import path from 'path'
 import fs from 'fs'
 import glob from 'glob'
 
-import { leseRepoDatei, repositoryPfad, generiereLink, macheRelativenPfad } from './helfer'
+import { leseRepoDatei, repositoryPfad, generiereLink, macheRelativenPfad, zeigeFehler } from './helfer'
 import { sammleStichwörter, gibInhaltEinesTexMakros } from './tex'
 import { Examen, ExamenSammlung } from './examen'
 
@@ -90,7 +90,7 @@ export class ExamensAufgabe extends Aufgabe {
     examen.aufgaben[pfad] = this
     const treffer = pfad.match(ExamensAufgabe.pfadRegExp)
     if (!treffer || !treffer.groups) {
-      throw new Error(`Konnten den Pfad der Examensaufgabe nicht lesen: ${pfad}`)
+     zeigeFehler(`Konnten den Pfad der Examensaufgabe nicht lesen: ${pfad}`)
     }
     const gruppen = treffer.groups
     this.aufgabe = parseInt(gruppen.aufgabe)

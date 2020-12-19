@@ -266,6 +266,7 @@ Weitere Aufgaben zum Thema „SQL“:
 
 ### Projektplanung
 
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/03_Projektplanung/CPM-Netzplantechnik/Aufgabe_CPM-Gantt.pdf" download="Aufgabe_CPM-Gantt">„CPM und Gantt“</a> (CPM-Netzplantechnik)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/03_Projektplanung/CPM-Netzplantechnik/Aufgabe_CPM-Netzwerk.pdf" download="Aufgabe_CPM-Netzwerk">„CPM-Netzwerk“</a> (CPM-Netzplantechnik)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2015-Frühjahr_T1-TA1-A3">„Gantt und CPM“ Examen 46116 Frühjahr 2015 T1 TA1 A3</a> (CPM-Netzplantechnik, Gantt-Diagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2015-Herbst_T1-TA1-A3">„Gantt und PERT“ Examen 46116 Herbst 2015 T1 TA1 A3</a> (Gantt-Diagramm)

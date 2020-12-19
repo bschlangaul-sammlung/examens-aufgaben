@@ -109,7 +109,7 @@ var ExamensAufgabe = /** @class */ (function (_super) {
         examen.aufgaben[pfad] = _this;
         var treffer = pfad.match(ExamensAufgabe.pfadRegExp);
         if (!treffer || !treffer.groups) {
-            throw new Error("Konnten den Pfad der Examensaufgabe nicht lesen: " + pfad);
+            helfer_1.zeigeFehler("Konnten den Pfad der Examensaufgabe nicht lesen: " + pfad);
         }
         var gruppen = treffer.groups;
         _this.aufgabe = parseInt(gruppen.aufgabe);

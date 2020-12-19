@@ -40,7 +40,7 @@ var Examen = /** @class */ (function () {
             else if (this.monat === 9) {
                 return 'Herbst';
             }
-            throw new Error('Die Monatsangabe in der Klasse Staatsexamen darf nur 3 oder 9 lauten.');
+            helfer_1.zeigeFehler('Die Monatsangabe in der Klasse Staatsexamen darf nur 3 oder 9 lauten.');
         },
         enumerable: false,
         configurable: true
@@ -86,7 +86,7 @@ var Examen = /** @class */ (function () {
     Examen.erzeugeExamenVonPfad = function (pfad) {
         var treffer = pfad.match(Examen.regExp);
         if (!treffer || !treffer.groups) {
-            throw new Error("Konnten den Examenspfad nicht lesen: " + pfad);
+            helfer_1.zeigeFehler("Konnten den Examenspfad nicht lesen: " + pfad);
         }
         var gruppen = treffer.groups;
         return Examen.erzeugeExamenDurchTextArgumente(gruppen.nummer, gruppen.jahr, gruppen.monat);
@@ -94,7 +94,7 @@ var Examen = /** @class */ (function () {
     Examen.gibReferenzVonPfad = function (pfad) {
         var treffer = pfad.match(Examen.regExp);
         if (!treffer || !treffer.groups) {
-            throw new Error("Konnten den Examenspfad nicht lesen: " + pfad);
+            helfer_1.zeigeFehler("Konnten den Examenspfad nicht lesen: " + pfad);
         }
         var gruppen = treffer.groups;
         return gruppen.nummer + ":" + gruppen.jahr + ":" + gruppen.monat;
@@ -102,7 +102,7 @@ var Examen = /** @class */ (function () {
     Examen.erzeugeExamenVonReferenz = function (referenz) {
         var ergebnis = referenz.split(':');
         if (ergebnis.length !== 3) {
-            throw new Error('Eine Staatsexamens-Referenz muss in diesem Format sein: 66116:2020:09');
+            helfer_1.zeigeFehler('Eine Staatsexamens-Referenz muss in diesem Format sein: 66116:2020:09');
         }
         return Examen.erzeugeExamenDurchTextArgumente(ergebnis[0], ergebnis[1], ergebnis[2]);
     };

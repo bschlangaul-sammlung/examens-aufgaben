@@ -2,7 +2,7 @@ import childProcess from 'child_process'
 import fs from 'fs'
 import chalk from 'chalk'
 
-import { leseDatei } from '../helfer'
+import { leseDatei, zeigeFehler } from '../helfer'
 
 class TexDateiMitSql {
   pfad: string
@@ -55,7 +55,7 @@ class TexDateiMitSql {
     if (prozess.status !== 0) {
       console.log(chalk.red(prozess.stderr))
       console.log(chalk.red(prozess.stdout))
-      //throw new Error('Postgresql wurde mit einem Fehler beendet.')
+      //zeigeFehler('Postgresql wurde mit einem Fehler beendet.')
     } else {
       if (redselig) console.log(prozess.stdout)
     }
@@ -87,7 +87,7 @@ class TexDateiMitSql {
     const regExp = /% ?Datenbankname: ?(\w+).*?\\begin\{minted\}\{sql\}(.*?)\\end\{minted\}/gs
     const datenbank = regExp.exec(this.inhalt)
     if (!datenbank) {
-      throw new Error('Keine Erzeugungs-Code gefunden: % Datenbankname: Name\\begin{minted}{sql}…\\end{minted}')
+      zeigeFehler('Keine Erzeugungs-Code gefunden: % Datenbankname: Name\\begin{minted}{sql}…\\end{minted}')
     }
     // postgresql \c funktioniert nur mit klein geschriebenen Datenbank-Namen
     const datenbankName = datenbank[1].toLowerCase()

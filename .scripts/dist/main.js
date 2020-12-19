@@ -101,7 +101,7 @@ programm
                     console.log(ergebnis.stdout);
                     console.log(ergebnis.stderr);
                     helfer_1.öffneVSCode(pfad);
-                    throw new Error("Die Datei \u201E" + pfad + "\u201C konnte nicht kompiliert werden.");
+                    helfer_1.zeigeFehler("Die Datei \u201E" + pfad + "\u201C konnte nicht kompiliert werden.");
                 }
             }
         }

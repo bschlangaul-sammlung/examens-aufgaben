@@ -49,7 +49,7 @@ var TexDateiMitSql = /** @class */ (function () {
         if (prozess.status !== 0) {
             console.log(chalk_1.default.red(prozess.stderr));
             console.log(chalk_1.default.red(prozess.stdout));
-            //throw new Error('Postgresql wurde mit einem Fehler beendet.')
+            //zeigeFehler('Postgresql wurde mit einem Fehler beendet.')
         }
         else {
             if (redselig)
@@ -78,7 +78,7 @@ var TexDateiMitSql = /** @class */ (function () {
         var regExp = /% ?Datenbankname: ?(\w+).*?\\begin\{minted\}\{sql\}(.*?)\\end\{minted\}/gs;
         var datenbank = regExp.exec(this.inhalt);
         if (!datenbank) {
-            throw new Error('Keine Erzeugungs-Code gefunden: % Datenbankname: Name\\begin{minted}{sql}…\\end{minted}');
+            helfer_1.zeigeFehler('Keine Erzeugungs-Code gefunden: % Datenbankname: Name\\begin{minted}{sql}…\\end{minted}');
         }
         // postgresql \c funktioniert nur mit klein geschriebenen Datenbank-Namen
         var datenbankName = datenbank[1].toLowerCase();

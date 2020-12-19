@@ -2,7 +2,7 @@ import path from 'path'
 
 import glob from 'glob'
 
-import { repositoryPfad } from './helfer'
+import { repositoryPfad, zeigeFehler } from './helfer'
 import { Aufgabe } from './aufgabe'
 
 export interface ExamenReferenz {
@@ -36,7 +36,7 @@ export class Examen {
     } else if (this.monat === 9) {
       return 'Herbst'
     }
-    throw new Error('Die Monatsangabe in der Klasse Staatsexamen darf nur 3 oder 9 lauten.')
+    zeigeFehler('Die Monatsangabe in der Klasse Staatsexamen darf nur 3 oder 9 lauten.')
   }
 
   get dateiName (): string {
@@ -66,7 +66,7 @@ export class Examen {
   static erzeugeExamenVonPfad (pfad: string) {
     const treffer = pfad.match(Examen.regExp)
     if (!treffer || !treffer.groups) {
-      throw new Error(`Konnten den Examenspfad nicht lesen: ${pfad}`)
+     zeigeFehler(`Konnten den Examenspfad nicht lesen: ${pfad}`)
     }
     const gruppen = treffer.groups
     return Examen.erzeugeExamenDurchTextArgumente(gruppen.nummer, gruppen.jahr, gruppen.monat)
@@ -75,7 +75,7 @@ export class Examen {
   static gibReferenzVonPfad (pfad: string) {
     const treffer = pfad.match(Examen.regExp)
     if (!treffer || !treffer.groups) {
-      throw new Error(`Konnten den Examenspfad nicht lesen: ${pfad}`)
+     zeigeFehler(`Konnten den Examenspfad nicht lesen: ${pfad}`)
     }
     const gruppen = treffer.groups
     return `${gruppen.nummer}:${gruppen.jahr}:${gruppen.monat}`
@@ -84,7 +84,7 @@ export class Examen {
   static erzeugeExamenVonReferenz (referenz: string) {
     const ergebnis = referenz.split(':')
     if (ergebnis.length !== 3) {
-      throw new Error('Eine Staatsexamens-Referenz muss in diesem Format sein: 66116:2020:09')
+     zeigeFehler('Eine Staatsexamens-Referenz muss in diesem Format sein: 66116:2020:09')
     }
     return Examen.erzeugeExamenDurchTextArgumente(ergebnis[0], ergebnis[1], ergebnis[2])
   }

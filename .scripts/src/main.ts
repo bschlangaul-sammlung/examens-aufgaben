@@ -8,7 +8,7 @@ import glob from 'glob'
 import { Command } from 'commander'
 
 import { Aufgabe, ExamensAufgabe } from './aufgabe'
-import { repositoryPfad, öffneProgramm, öffneVSCode } from './helfer'
+import { repositoryPfad, öffneProgramm, öffneVSCode, zeigeFehler } from './helfer'
 import { examenSammlung } from './sammlung'
 
 import { erzeugeAufgabenVorlage } from './aktionen/erzeuge-aufgaben-vorlage'
@@ -93,7 +93,7 @@ programm
           console.log(ergebnis.stdout)
           console.log(ergebnis.stderr)
           öffneVSCode(pfad)
-          throw new Error(`Die Datei „${pfad}“ konnte nicht kompiliert werden.`)
+          zeigeFehler(`Die Datei „${pfad}“ konnte nicht kompiliert werden.`)
         }
       }
     }

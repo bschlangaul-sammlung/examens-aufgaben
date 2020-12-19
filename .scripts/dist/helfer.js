@@ -23,21 +23,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.öffneVSCode = exports.öffneProgramm = exports.generiereLink = exports.macheRepoPfad = exports.leseRepoDatei = exports.macheRelativenPfad = exports.repositoryPfad = exports.leseDatei = void 0;
+exports.öffneVSCode = exports.öffneProgramm = exports.generiereLink = exports.macheRepoPfad = exports.leseRepoDatei = exports.macheRelativenPfad = exports.repositoryPfad = exports.zeigeFehler = exports.leseDatei = void 0;
 var fs_1 = __importDefault(require("fs"));
 var path_1 = __importDefault(require("path"));
 var child_process_1 = __importDefault(require("child_process"));
+var chalk_1 = __importDefault(require("chalk"));
 var konfigurationsDateiPfad = path_1.default.join(path_1.default.sep, 'etc', 'lehramt-informatik.config.tex');
 var githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main';
 function leseDatei(pfad) {
     return fs_1.default.readFileSync(pfad, { encoding: 'utf-8' });
 }
 exports.leseDatei = leseDatei;
+function zeigeFehler(meldung) {
+    console.error(chalk_1.default.red(meldung));
+    process.exit(1);
+}
+exports.zeigeFehler = zeigeFehler;
 function leseKonfigurationsDatei(pfad) {
     var inhalt = leseDatei(pfad);
     var treffer = inhalt.match(/\\LehramtInformatikRepository\{(.*)\}/);
     if (!treffer)
-        throw new Error("Konfigurations-Datei nicht gefunden: " + pfad);
+        zeigeFehler("Konfigurations-Datei nicht gefunden: " + pfad);
     return treffer[1];
 }
 exports.repositoryPfad = leseKonfigurationsDatei(konfigurationsDateiPfad);
@@ -93,15 +99,15 @@ function generiereLink(text, pfad, dateiName, einstellung) {
     return text;
 }
 exports.generiereLink = generiereLink;
-function öffneProgramm(executable, filePath) {
-    var subprocess = child_process_1.default.spawn(executable, [filePath], {
+function öffneProgramm(programm, pfad) {
+    var subprocess = child_process_1.default.spawn(programm, [pfad], {
         detached: true,
         stdio: 'ignore'
     });
     subprocess.unref();
 }
 exports.öffneProgramm = öffneProgramm;
-function öffneVSCode(filePath) {
-    öffneProgramm('/usr/bin/code', filePath);
+function öffneVSCode(pfad) {
+    öffneProgramm('/usr/bin/code', macheRepoPfad(pfad));
 }
 exports.öffneVSCode = öffneVSCode;

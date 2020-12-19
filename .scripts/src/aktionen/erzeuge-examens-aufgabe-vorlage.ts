@@ -1,6 +1,6 @@
 import path from 'path'
 
-import { repositoryPfad } from '../helfer'
+import { repositoryPfad, zeigeFehler } from '../helfer'
 import { ExamensAufgabe } from '../aufgabe'
 import { Examen, ExamenReferenz } from '../examen'
 
@@ -34,7 +34,7 @@ export  function erzeugeExamensAufgabeVorlage (referenz: string, arg1: string, a
   const num3 = überprüfeNummer(arg3)
 
   if (!num1) {
-    throw Error(`Undefined ${num1}`)
+    zeigeFehler(`Undefined ${num1}`)
   }
 
   const examenReferenz = Examen.teileReferenz(referenz)

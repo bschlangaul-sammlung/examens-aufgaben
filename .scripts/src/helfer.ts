@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import childProcess from 'child_process'
+import chalk from 'chalk'
 
 const konfigurationsDateiPfad = path.join(path.sep, 'etc', 'lehramt-informatik.config.tex')
 
@@ -10,10 +11,15 @@ export function leseDatei (pfad: string) {
   return fs.readFileSync(pfad, { encoding: 'utf-8' })
 }
 
+export function zeigeFehler (meldung: string): never {
+  console.error(chalk.red(meldung))
+  process.exit(1)
+}
+
 function leseKonfigurationsDatei (pfad: string): string {
   const inhalt = leseDatei(pfad)
   const treffer = inhalt.match(/\\LehramtInformatikRepository\{(.*)\}/)
-  if (!treffer) throw new Error(`Konfigurations-Datei nicht gefunden: ${pfad}`)
+  if (!treffer) zeigeFehler(`Konfigurations-Datei nicht gefunden: ${pfad}`)
   return treffer[1]
 }
 
@@ -64,15 +70,14 @@ export function generiereLink (text: string, pfad: string, dateiName: string, ei
   return text
 }
 
-export function öffneProgramm (executable: string, filePath: string): void {
-  const subprocess = childProcess.spawn(executable, [filePath], {
+export function öffneProgramm (programm: string, pfad: string): void {
+  const subprocess = childProcess.spawn(programm, [pfad], {
     detached: true,
     stdio: 'ignore'
   })
-
   subprocess.unref()
 }
 
-export function öffneVSCode (filePath: string) {
-  öffneProgramm('/usr/bin/code', filePath)
+export function öffneVSCode (pfad: string) {
+  öffneProgramm('/usr/bin/code', macheRepoPfad(pfad))
 }

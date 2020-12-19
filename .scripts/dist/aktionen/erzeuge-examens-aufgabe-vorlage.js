@@ -39,7 +39,7 @@ function erzeugeExamensAufgabeVorlage(referenz, arg1, arg2, arg3) {
     var num2 = überprüfeNummer(arg2);
     var num3 = überprüfeNummer(arg3);
     if (!num1) {
-        throw Error("Undefined " + num1);
+        helfer_1.zeigeFehler("Undefined " + num1);
     }
     var examenReferenz = examen_1.Examen.teileReferenz(referenz);
     var pfad = path_1.default.join(helfer_1.repositoryPfad, examen_1.Examen.erzeugePfad(examenReferenz.nummer, examenReferenz.jahr, examenReferenz.monat), aufgabe_1.ExamensAufgabe.erzeugePfad(num1, num2, num3));

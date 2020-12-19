@@ -18,17 +18,18 @@ exports.StichwortVerzeichnis = exports.StichwortBaum = void 0;
 var js_yaml_1 = __importDefault(require("js-yaml"));
 var glob_1 = __importDefault(require("glob"));
 var helfer_1 = require("./helfer");
+var string_similarity_1 = require("string-similarity");
 var StichwortBaum = /** @class */ (function () {
     function StichwortBaum() {
         this.flach = new Set();
         var roherBaum = js_yaml_1.default.safeLoad(helfer_1.leseRepoDatei('Stichwortverzeichnis.yml'));
         if (!roherBaum)
-            throw new Error('Konnte die Konfigurationsdatei nicht lesen');
+            helfer_1.zeigeFehler('Konnte die Konfigurationsdatei nicht lesen');
         this.baum = this.normalisiereBaum(roherBaum);
     }
     StichwortBaum.prototype.fügeStichwortSicherHinzu = function (stichwort) {
         if (this.flach.has(stichwort)) {
-            throw Error("Doppeltes Stichwort: " + stichwort);
+            helfer_1.zeigeFehler("Doppeltes Stichwort: " + stichwort);
         }
         else {
             this.flach.add(stichwort);
@@ -78,7 +79,7 @@ var StichwortBaum = /** @class */ (function () {
             }
         }
         else {
-            throw new Error("Unbekannter Datentyp f\u00FCr den Stichwortbaum: " + ausgang);
+            helfer_1.zeigeFehler("Unbekannter Datentyp f\u00FCr den Stichwortbaum: " + ausgang);
         }
         return ausgang;
     };
@@ -134,6 +135,10 @@ var StichwortBaum = /** @class */ (function () {
             return flacheListe;
         }
     };
+    StichwortBaum.prototype.findeÄhnliches = function (suche) {
+        var ergebnis = string_similarity_1.findBestMatch(suche, Array.from(this.flach));
+        return ergebnis.bestMatch.target;
+    };
     return StichwortBaum;
 }());
 exports.StichwortBaum = StichwortBaum;
@@ -153,7 +158,9 @@ var StichwortVerzeichnis = /** @class */ (function () {
                         for (var _c = (e_3 = void 0, __values(aufgabe.stichwörter)), _d = _c.next(); !_d.done; _d = _c.next()) {
                             var stichwort = _d.value;
                             if (!stichwortBaum.existiertStichwort(stichwort)) {
-                                throw new Error("Das Stichwort \u201E" + stichwort + "\u201C in der Datei \u201E" + pfad + "\u201C gibt es nicht.");
+                                helfer_1.öffneVSCode(pfad);
+                                console.log('Möglicherweise war dieses Stichwort gemeint: ' + this.stichwortBaum.findeÄhnliches(stichwort));
+                                helfer_1.zeigeFehler("Das Stichwort \u201E" + stichwort + "\u201C in der Datei \u201E" + pfad + "\u201C gibt es nicht.");
                             }
                             if (this.verzeichnis[stichwort]) {
                                 this.verzeichnis[stichwort].add(aufgabe);
