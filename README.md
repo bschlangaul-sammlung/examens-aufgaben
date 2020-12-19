@@ -274,8 +274,14 @@ Weitere Aufgaben zum Thema „SQL“:
 
 ### Projektplanung
 
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/03_Projektplanung/CPM-Netzplantechnik/Aufgabe_CPM-Gantt.pdf" download="Aufgabe_CPM-Gantt">„CPM und Gantt“</a> (CPM-Netzplantechnik)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/03_Projektplanung/CPM-Netzplantechnik/Aufgabe_CPM-Netzwerk.pdf" download="Aufgabe_CPM-Netzwerk">„CPM-Netzwerk“</a> (CPM-Netzplantechnik)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/03_Projektplanung/10_Petri-Netze/Aufgabe_Alles.pdf" download="Aufgabe_Alles">„Alles“</a> (Petri-Netz)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/03_Projektplanung/10_Petri-Netze/Aufgabe_Begriffe.pdf" download="Aufgabe_Begriffe">„Begriffe“</a> (Petri-Netz, Beschränktheit, Lebendigkeit, Verklemmungsfreiheit, Umkehrbarkeit)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/03_Projektplanung/10_Petri-Netze/Aufgabe_Modellierung.pdf" download="Aufgabe_Modellierung">„Modellierung“</a> (Petri-Netz)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/03_Projektplanung/10_Petri-Netze/Aufgabe_Rechnen.pdf" download="Aufgabe_Rechnen">„Rechnen“</a> (Petri-Netz)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/03_Projektplanung/20_CPM-Netzplantechnik/Aufgabe_CPM-Gantt.pdf" download="Aufgabe_CPM-Gantt">„CPM und Gantt“</a> (CPM-Netzplantechnik)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/03_Projektplanung/20_CPM-Netzplantechnik/Aufgabe_CPM-Netzwerk.pdf" download="Aufgabe_CPM-Netzwerk">„CPM-Netzwerk“</a> (CPM-Netzplantechnik)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/03_Projektplanung/20_CPM-Netzplantechnik/Aufgabe_CPM-Scheinvorgang.pdf" download="Aufgabe_CPM-Scheinvorgang">„CPM mit Scheinvorgang“</a> (CPM-Netzplantechnik)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/03_Projektplanung/30_Gantt/Aufgabe_Anordnungsbeziehungen.pdf" download="Aufgabe_Anordnungsbeziehungen">„Anordnungsbeziehungen“</a> (Gantt-Diagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2015-Frühjahr_T1-TA1-A3">„Gantt und CPM“ Examen 46116 Frühjahr 2015 T1 TA1 A3</a> (CPM-Netzplantechnik, Gantt-Diagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2015-Herbst_T1-TA1-A3">„Gantt und PERT“ Examen 46116 Herbst 2015 T1 TA1 A3</a> (Gantt-Diagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_46116-2016-Frühjahr_T2-TA1-A2">„Petri-Netz“ Examen 46116 Frühjahr 2016 T2 TA1 A2</a> (Petri-Netz, Erreichbarkeitsgraph)
@@ -423,10 +429,12 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_46115-2013-Frühjahr_T2-A6">Aufgabe 6 (Heapsort)</a>
 - 2014 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Scan.pdf" download="Staatsexamen-Informatik_46115-2014-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/OCR.txt" download="Staatsexamen-Informatik_46115-2014-Frühjahr_OCR">OCR.txt</a> 
     - Thema 1 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-1/Aufgabe-8.pdf" download="Staatsexamen-Informatik_46115-2014-Frühjahr_T1-A8">Aufgabe 8 (minimaler Spannbaum, Algorithmus von Kruskal)</a> 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-1/Aufgabe-8.pdf" download="Staatsexamen-Informatik_46115-2014-Frühjahr_T1-A8">Aufgabe 8 (Minimaler Spannbaum, Algorithmus von Kruskal)</a> 
     - Thema 2 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46115-2014-Frühjahr_T2-A4">Aufgabe 4 (Rekursion, Implementierung in Java, Iterative Realisation)</a>
 - 2014 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/Scan.pdf" download="Staatsexamen-Informatik_46115-2014-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/OCR.txt" download="Staatsexamen-Informatik_46115-2014-Herbst_OCR">OCR.txt</a> 
+    - Thema 1 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/Thema-1/Aufgabe-8.pdf" download="Staatsexamen-Informatik_46115-2014-Herbst_T1-A8">Aufgabe 8 (Tiefensuche, Stapel (Stack))</a> 
     - Thema 2 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/Thema-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46115-2014-Herbst_T2-A3">Aufgabe 3 (Binärbaum)</a>
 - 2015 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2015/03/Scan.pdf" download="Staatsexamen-Informatik_46115-2015-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2015/03/OCR.txt" download="Staatsexamen-Informatik_46115-2015-Frühjahr_OCR">OCR.txt</a> 
@@ -446,7 +454,7 @@ OCR des oben genannten Scans:
     - Thema 1 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/03/Thema-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_46115-2018-Frühjahr_T1-A6">Aufgabe 6 (Mergesort)</a> 
     - Thema 2 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/03/Thema-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46115-2018-Frühjahr_T2-A4">Aufgabe 4 (minimaler Spannbaum, Algorithmus von Prim)</a>
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/03/Thema-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46115-2018-Frühjahr_T2-A4">Aufgabe 4 (Minimaler Spannbaum, Algorithmus von Prim)</a>
 - 2018 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/09/Scan.pdf" download="Staatsexamen-Informatik_46115-2018-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/09/OCR.txt" download="Staatsexamen-Informatik_46115-2018-Herbst_OCR">OCR.txt</a> 
     - Thema 2 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/09/Thema-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_46115-2018-Herbst_T2-A5">Aufgabe 5 (Backtracking)</a>
@@ -1057,9 +1065,11 @@ als Markdown-Liste eingebettet werden kann.
             - Offene Adressierung
     - Graphen:
         - Algorithmus von Dijkstra
-        - minimaler Spannbaum
+        - Minimaler Spannbaum
         - Algorithmus von Kruskal
         - Algorithmus von Prim
+        - Tiefensuche
+        - Breitensuche
     - Master-Theorem
 - SOSY:
     - Projektmanagement:
@@ -1121,6 +1131,10 @@ als Markdown-Liste eingebettet werden kann.
         - Gantt-Diagramm
         - Petri-Netz:
             - Erreichbarkeitsgraph
+            - Beschränktheit
+            - Lebendigkeit
+            - Verklemmungsfreiheit
+            - Umkehrbarkeit
         - CPM-Netzplantechnik
     - Softwarearchitektur:
         - Blackboard-Muster
@@ -1293,12 +1307,6 @@ git submodule update --init
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Thema des Theorie-Teils}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Aufgaben
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\chapter{Aufgaben}
 
 \literatur
 

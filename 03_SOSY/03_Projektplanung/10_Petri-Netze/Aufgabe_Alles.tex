@@ -1,0 +1,168 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{petri,spalten,mathe}
+\begin{document}
+\liAufgabenTitel{Alles}
+
+\section{Aufgabe 5 (Check-Up)
+\index{Petri-Netz}
+\footcite[Seite 3]{sosy:ab:4}}
+% korrigiert 8.9.2020
+
+Gegeben Sei das folgende Petri-Netz:
+
+\def\TmpCheckup#1{
+  \TmpSetKeys%
+  \pgfkeys{/petri/.cd,#1}%
+  \begin{tikzpicture}
+  \node at (-0.25,-0.25) {};
+  \node at (\TmpX,\TmpY) {};
+
+  \begin{scope}[transform canvas={scale=\TmpScale},x=1cm,y=1cm,]
+    \node[place,tokens=\TmpPlaceOne,label=$p_1$] at (0,3) (p1) {};
+    \node[place,tokens=\TmpPlaceTwo,label=$p_2$] at (6,3) (p2) {};
+    \node[place,tokens=\TmpPlaceThree,label=south:$p_3$] at (3,0) (p3) {};
+
+    \node[transition,\TmpTransitionOne] at (1.5,1.5) {$t_1$} edge[pre] (p3) edge[post] (p1);
+    \node[transition,\TmpTransitionTwo] at (3,3) {$t_2$} edge[pre] (p1) edge[pre] (p2) edge[post] node[auto]{2} (p3);
+    \node[transition,\TmpTransitionThree] at (4.5,1.5) {$t_3$} edge[pre] (p3) edge[post] (p2);
+    \node[transition,\TmpTransitionFour] at (6,0) {$t_4$} edge[pre] (p2) edge[post] (p3);
+    \node[transition,\TmpTransitionFive] at (0,0) {$t_5$} edge[pre] (p1) edge[post] (p3);
+  \end{scope}
+  \end{tikzpicture}
+}
+
+\begin{center}
+\TmpCheckup{x=6.4,y=4,scale=1,p3=2}
+\end{center}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Zeichnen Sie den Erreichbarkeitsgraphen des Petri-Netzes.
+
+\begin{antwort}
+\begin{multicols}{2}
+\setlength{\parindent}{0cm}
+(0,0,2):
+
+\TmpCheckup{x=3.2,y=2,scale=0.5,p3=2,t1,t3}
+
+(1,0,1):
+
+\TmpCheckup{x=3.2,y=2,scale=0.5,p1=1,p3=1,t1,t3,t5}
+
+(0,1,1):
+
+\TmpCheckup{x=3.2,y=2,scale=0.5,p1=0,p2=1,p3=1,t1,t3,t4}
+
+(1,1,0):
+
+\TmpCheckup{x=3.2,y=2,scale=0.5,p1=1,p2=1,p3=0,t2,t4,t5}
+\end{multicols}
+
+\begin{center}
+\begin{tikzpicture}[x=2cm,y=2cm]
+\def\pfeil#1#2#3#4{\draw[->] (#1) -- (#2) node[pos=0.5,auto,sloped,#4]{#3};}
+\node at (2,3) (002) {(0,0,2)};
+\node at (1,2) (101) {(1,0,1)};
+\node at (3,2) (011) {(0,1,1)};
+\node at (2,1) (110) {(1,1,0)};
+
+\pfeil{002}{110}{$t_1$, $t_3$}{}
+
+\draw[->,rounded corners=2cm] (110) -- (-0.2,2) -- (002) node[pos=0.2,sloped,auto,swap]{$t_2$};
+\draw[->,rounded corners=2cm] (110) -- (4.3,2) -- (002) node[pos=0.4,sloped,auto,swap]{$t_4,t_5$};
+
+% 002 <-> 011
+\pfeil{002}{011}{$t_3$}{}
+\draw[->] (011) edge[bend left=20] (002); \node at (2.2,2.4) {$t_4$};
+
+% 002 <-> 101
+\pfeil{002}{101}{$t_1$}{}
+\draw[->] (101) edge[bend right=20] (002); \node at (1.85,2.4) {$t_5$};
+
+% 101 <-> 011
+\draw[->] (101) -- node[sloped,auto,swap]{$t_3$} (110);
+\draw[->] (110) edge[bend left=20] (011); \node at (2.2,1.6) {$t_5$};
+
+% 011 <-> 110
+\draw[->] (011) -- node[sloped,auto,swap]{$t_1$} (110);
+\draw[->] (110) edge[bend right=20] (101); \node at (1.85,1.6) {$t_4$};
+\end{tikzpicture}
+\end{center}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Begründen Sie anhand des Erreichbarkeitsgraphen, ob das Petri-Netz
+lebendig, umkehrbar und/oder verklemmungsfrei ist.
+
+\begin{antwort}
+
+\begin{description}
+\item[lebenig]
+Ja. Es gibt im Erreichbarkeitsgraphen keine Senke, also keinen Zustand,
+aus dem man nicht mehr heraus kommt.
+
+\item[umkehrbar]
+Im Erreichbarkeitsgraphen kommt man von (0,0,2) auf verschiedenen Wegen
+wieder zurück zu (0,0,2). Man kann sich unendlich oft im Graph bewegen.
+Die Anfangsmarkierung kann wieder erreicht werden ($t_1
+\rightarrow t_3 \rightarrow t_2$ oder $t_1 \rightarrow t_3 \rightarrow
+t_5 \rightarrow t_4$).
+
+\item[verklemmungsfrei] Ja. Es gibt im Erreichbarkeitsgraphen keine
+Senke, also keinen Zustand, aus dem man nicht mehr herauskommt.
+\end{description}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Geben Sie die Darstellungsmatrix $A$ sowie den Belegungsvektor $v$
+an und berechnen Sie damit die Belegung nach Schaltung von $t_1
+\rightarrow t_3 \rightarrow t_2$.
+
+\begin{antwort}
+\begin{displaymath}
+A =
+\begin{blockarray}{cccccc}
+      & t_1 & t_2 & t_3 & t_4 & t_5 \\
+  \begin{block}{c(ccccc)}
+  p_1 & 1   & -1  & 0   & 0   & -1  \\
+  p_2 & 0   & -1  & 1   & -1  & 0   \\
+  p_3 & -1  & 2   & -1  & 1   & 1   \\
+  \end{block}
+\end{blockarray}
+\enspace
+,
+\enspace
+v =
+\left(
+  \begin{array}{c}
+  0 \\
+  0 \\
+  2
+  \end{array}
+\right)
+\end{displaymath}
+
+\begin{displaymath}
+v_\text{neu} =
+v +
+A \cdot \left(\begin{array}{c}1\\0\\0\\0\\0\end{array}\right) +
+A \cdot \left(\begin{array}{c}0\\0\\1\\0\\0\end{array}\right) +
+A \cdot \left(\begin{array}{c}0\\1\\0\\0\\0\end{array}\right) =
+\left(\begin{array}{c}0\\0\\2\end{array}\right) = v
+\end{displaymath}
+\end{antwort}
+
+\end{enumerate}
+
+\end{document}

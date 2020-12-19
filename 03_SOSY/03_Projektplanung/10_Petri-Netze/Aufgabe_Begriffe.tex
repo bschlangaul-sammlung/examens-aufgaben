@@ -1,0 +1,280 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{petri}
+\begin{document}
+\liAufgabenTitel{Begriffe}
+
+\section{Aufgabe 1: Begriffe
+\index{Petri-Netz}
+\footcite[Seite 1]{sosy:ab:4}}
+
+Begründen Sie, welche der folgenden Petri-Netze
+
+%%
+%
+%%
+
+\def\TmpA#1{
+  \TmpSetKeys%
+  \pgfkeys{/petri/.cd,#1}%
+  \begin{tikzpicture}
+  \node at (-0.25,-0.25) {};
+  \node at (\TmpX,\TmpY) {};
+
+  \begin{scope}[transform canvas={scale=\TmpScale},x=2cm,y=2cm,]
+    \node[place,tokens=\TmpPlaceOne,label=$p_1$] at (0,1) (p1) {};
+    \node[place,tokens=\TmpPlaceTwo,label=$p_2$] at (2,2) (p2) {};
+    \node[place,tokens=\TmpPlaceThree,label=east:$p_3$] at (2,0) (p3) {};
+
+    \node[transition,label=east:$t_1$,\TmpTransitionOne] at (2,1) {}
+      edge[pre] (p2)
+      edge[post] (p3);
+    \node[transition,label=$t_2$,\TmpTransitionTwo] at (1,1.5) {}
+      edge[pre] (p1)
+      edge[post] (p2);
+    \node[transition,label=$t_3$,\TmpTransitionThree] at (1,0.5) {}
+      edge[pre] (p3)
+      edge[post] (p1);
+    \node[transition,label=$t_4$,\TmpTransitionFour] at (1,1) {}
+      edge[pre] (p2)
+      edge[pre] (p3)
+      edge[post] (p1);
+  \end{scope}
+  \end{tikzpicture}
+}
+
+%%
+%
+%%
+
+\def\TmpB#1{
+  \TmpSetKeys%
+  \pgfkeys{/petri/.cd,#1}%
+  \begin{tikzpicture}
+  \node at (-0.25,-0.25) {};
+  \node at (\TmpX,\TmpY) {};
+
+  \begin{scope}[transform canvas={scale=\TmpScale},x=2cm,y=2cm,]
+    \node[place,tokens=\TmpPlaceOne,label=$p_1$] at (0,2) (p1) {};
+    \node[place,tokens=\TmpPlaceTwo,label=$p_2$] at (0,0) (p2) {2019};
+    \node[place,tokens=\TmpPlaceThree,label=east:$p_3$] at (2,1) (p3) {};
+
+    \node[transition,label=east:$t_1$,\TmpTransitionOne] at (1,1.5) {}
+      edge[pre] (p3)
+      edge[post] (p1);
+    \node[transition,label=$t_2$,\TmpTransitionTwo] at (1,1) {}
+      edge[pre] (p1)
+      edge[pre] (p2)
+      edge[post] (p3);
+    \node[transition,label=$t_3$,\TmpTransitionThree] at (1,0.5) {}
+      edge[pre] (p2)
+      edge[post] (p2)
+      edge[post] (p3);
+  \end{scope}
+  \end{tikzpicture}
+}
+
+%%
+%
+%%
+
+\def\TmpC#1{%
+  \TmpSetKeys%
+  \pgfkeys{/petri/.cd,#1}%
+  \begin{tikzpicture}
+    \node at (-0.25,-0.25) {};
+    \node at (\TmpX,\TmpY) {};
+    \begin{scope}[transform canvas={scale=\TmpScale},x=2cm,y=2cm,]
+    \node[place,tokens=\TmpPlaceOne,label=west:$p_1$] at (0,4) (p1) {};
+    \node[place,tokens=\TmpPlaceTwo,label=west:$p_2$] at (0,2) (p2) {};
+    \node[place,tokens=\TmpPlaceThree,label=west:$p_3$] at (0,0) (p3) {};
+    \node[place,tokens=\TmpPlaceFour,label=$p_4$] at (1,2) (p4) {};
+    \node[place,tokens=\TmpPlaceFive,label=east:$p_5$] at (3,0) (p5) {};
+    \node[place,tokens=\TmpPlaceSix,label=east:$p_6$] at (3,2) (p6) {};
+    \node[place,tokens=\TmpPlaceSeven,label=east:$p_7$] at (3,4) (p7) {};
+
+    \node[transition,label=west:$t_1$,\TmpTransitionOne] at (0,3) {}
+      edge[pre] (p1)
+      edge[post] node[auto] {2} (p2) edge[post] (p4);
+
+    \node[transition,label=$t_2$,\TmpTransitionTwo] at (2,4) {}
+      edge[pre] (p7)
+      edge[post] (p1);
+
+    \node[transition,label=south:$t_3$,\TmpTransitionThree] at (2,0) {}
+      edge[pre] (p3)
+      edge[post] (p5) edge[post] (p6);
+
+    \node[transition,label=$t_4$,\TmpTransitionFour] at (2,2) {}
+      edge[pre] node[auto] {2} (p6)
+      edge[post] (p4);
+
+    \node[transition,label=west:$t_5$,\TmpTransitionFive] at (0,1) {}
+      edge[pre] (p2) edge[pre] (p4)
+      edge[post] (p3);
+
+    \node[transition,label=east:$t_6$,\TmpTransitionSix] at (3,1) {}
+      edge[pre] (p5)
+      edge[post] (p6);
+
+    \node[transition,label=east:$t_7$,\TmpTransitionSeven] at (3,3) {}
+      edge[pre] (p6)
+      edge[post] (p7) edge[post] (p1);
+    \end{scope}
+  \end{tikzpicture}%
+}
+
+\def\TmpD#1{
+  \TmpSetKeys%
+  \pgfkeys{/petri/.cd,#1}%
+  \begin{tikzpicture}
+    \node at (-0.25,-0.25) {};
+    \node at (\TmpX,\TmpY) {};
+    \begin{scope}[transform canvas={scale=\TmpScale},x=2cm,y=2cm,]
+    \node[place,tokens=\TmpPlaceOne,label=west:$p_1$] at (0,2) (p1) {};
+    \node[place,tokens=\TmpPlaceTwo,label=$p_2$] at (2,2) (p2) {};
+    \node[place,tokens=\TmpPlaceThree,label=$p_3$] at (4,2) (p3) {};
+    \node[place,tokens=\TmpPlaceFour,label=east:$p_4$] at (6,2) (p4) {};
+    \node[place,tokens=\TmpPlaceFive,label=east:$p_5$] at (6,0) (p5) {};
+    \node[place,tokens=\TmpPlaceSix,label=$p_6$] at (4,0) (p6) {};
+    \node[place,tokens=\TmpPlaceSeven,label=$p_7$] at (2,0) (p7) {};
+    \node[place,tokens=\TmpPlaceEight,label=west:$p_8$] at (0,0) (p8) {};
+    \node[place,tokens=\TmpPlaceNine,label=$p_9$] at (4,1) (p9) {};
+    \node[place,tokens=\TmpPlaceTen,label=$p_{10}$] at (2,1) (p10) {};
+
+    \node[transition,label=$t_1$,\TmpTransitionOne] at (1,2) {}
+      edge[pre] (p1) edge[pre] (p10)
+      edge[post] (p2);
+    \node[transition,label=$t_2$,\TmpTransitionTwo] at (3,2) {}
+      edge[pre] (p2) edge[pre] (p9)
+      edge[post] (p10) edge[post] (p3);
+    \node[transition,label=$t_3$,\TmpTransitionThree] at (5,2) {}
+      edge[pre] (p3)
+      edge[post] (p9) edge[post] (p4);
+    \node[transition,label=east:$t_4$,\TmpTransitionFour] at (6,1) {}
+      edge[pre] (p4)
+      edge[post] (p5);
+    \node[transition,label=$t_5$,\TmpTransitionFive] at (5,0) {}
+      edge[pre] (p5) edge[pre] (p9)
+      edge[post] (p6);
+    \node[transition,label=$t_6$,\TmpTransitionSix] at (3,0) {}
+      edge[pre] (p6) edge[pre] (p10)
+      edge[post] (p7) edge[post] (p9);
+    \node[transition,label=$t_7$,\TmpTransitionSeven] at (1,0) {}
+      edge[pre] (p7)
+      edge[post] (p10) edge[post] (p8);
+    \node[transition,label=west:$t_8$,\TmpTransitionEight] at (0,1) {}
+      edge[pre] (p8)
+      edge[post] (p1);
+    \end{scope}
+  \end{tikzpicture}
+}
+\begin{enumerate}
+\item beschränkt\index{Beschränktheit}
+\item lebendig\index{Lebendigkeit}
+\item verklemmungsfrei\index{Verklemmungsfreiheit}
+\item umkehrbar\index{Umkehrbarkeit}
+\end{enumerate}
+
+\begin{enumerate}
+\item \TmpA{x=3.3,y=2.5,scale=0.7,p2=2}
+\item \TmpB{x=3.3,y=2.5,scale=0.7}
+\item \TmpC{x=3.3,y=5.5,scale=0.7,p1=1}
+\item \TmpD{x=3.3,y=3,scale=0.7,p1=2,p5=2,p9=1,p10=1}
+
+\end{enumerate}
+
+\begin{antwort}
+
+\liPseudoUeberschrift{(a)}
+
+\tikzset{/petri/.cd,x=2,y=2,scale=0.45}
+
+\noindent
+\TmpA{p2=2,t1,}
+%
+\TmpA{p2=1,p3=1,t1,t3,t4,}
+%
+\TmpA{p1=1,p3=1,t2,t3,}
+%
+\TmpA{p1=1,p2=1,t1,t2,}
+
+\begin{description}
+\item[beschränkt] ja, $M = 2$.
+
+\item[lebendig] Nein, die Transition $t_4$ kann maximal einmal schalten
+(z. B. $t_1 \rightarrow t_4$)
+
+\item[verklemmungsfrei] Ja, mit $t_1 \rightarrow t_3 \rightarrow  t_2$
+ist ein Zyklus gegeben.
+
+\item[umkehrbar] Nein, nachdem $t_4$ einmal geschaltet hat, wird dem
+Petri-Netz eine Markierung entzogen, welche nie wieder erzeugt werden
+kann.
+\end{description}
+
+\liPseudoUeberschrift{(b)}
+
+\begin{description}
+\item[beschränkt] Nein, solange in $p_2$ mindestens eine Markierung ist,
+kann $t_3$ beliebig oft schalten und somit die Anzahl der Markierungen
+in $p_3$ beliebig erhöhen.
+
+\item[lebendig] Nein, da es nicht verklemmungsfrei ist.
+
+\item[verklemmungsfrei] Nein, nachdem 2019 mal $t_2$ und anschließend
+$t_1$ geschaltet haben, befindet sich in $p_2$ keine Marke mehr. Daher
+können weder $t_2$ noch $t_3$ schalten.
+
+\item[umkehrbar]
+Nein, da es nicht verklemmungsfrei ist.
+\end{description}
+
+\liPseudoUeberschrift{(c)}
+
+\begin{description}
+\item[beschränkt] Nein, $t_1 \rightarrow t_5 \rightarrow t_3 \rightarrow
+t_6 \rightarrow t_7 \rightarrow t_2$ bildet einen Zyklus, der nach jedem
+Umlauf die Anzahl der Marken in $p_1$ um eins erhöht.
+
+\item[lebendig] Nein, da es nicht verklemmungsfrei ist.
+
+\item[verklemmungsfrei] Nein, die Schaltfolge $t_1 \rightarrow t_5
+\rightarrow t_3 \rightarrow t_6 \rightarrow t_4 \rightarrow t_5
+\rightarrow t_3 \rightarrow t_6 \rightarrow t_4$ führt zu einer
+Verklemmung.
+
+\item[umkehrbar] Nein, da es nicht verklemmungsfrei ist.
+
+\end{description}
+
+\tikzset{/petri/.cd,x=3.3,y=4.3,scale=0.45}
+
+\noindent
+\TmpC{p1=1,t1}
+\TmpC{p2=2,p4=1,t5}
+\TmpC{p2=1,p3=1,t3}
+\TmpC{p2=1,p5=1,p6=1,t4,t7,t6}
+\TmpC{p1=1,p2=1,p7=1,p6=1,t1,t2,t4,t5,t7}
+\TmpC{p1=2,p2=1,p7=1,t1,t2,t5,t7}
+
+\liPseudoUeberschrift{(d)}
+
+\begin{description}
+\item[beschränkt] Ja, mit M = 4.
+
+\item[lebendig] Ja.
+
+\item[verklemmungsfrei] Ja.
+
+\item[umkehrbar] Ja.
+\end{description}
+
+\end{antwort}
+
+\noindent
+sind.
+%
+Im Falle der Beschränktheit soll ein minimales $M$ gefunden werden,
+sodass jede Stelle zu jedem möglichen Zeitpunkt höchstens $M$ Marken
+enthält.
+\end{document}

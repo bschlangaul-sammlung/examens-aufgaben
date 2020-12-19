@@ -279,12 +279,6 @@ git submodule update --init
 
 \chapter{Thema des Theorie-Teils}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Aufgaben
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\chapter{Aufgaben}
-
 \literatur
 
 \end{document}

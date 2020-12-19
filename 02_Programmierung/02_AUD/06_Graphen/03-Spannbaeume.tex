@@ -124,9 +124,9 @@ Der Algorithmus von Prim dient ebenfalls der Bestimmung eines minimalen
 Spannbaums, erreicht jedoch sein Ziel durch eine unterschiedliche
 Vorgehensweise.
 
-Der \memph{Teilgraphen} $T$ wird \memph{schrittweise vergrößert}, bis
+Der \memph{Teilgraph} $T$ wird \memph{schrittweise vergrößert}, bis
 dieser ein Spannbaum ist. Der Algorithmus benötigt einen
-\memph{konkreten Startpunkt}. Es wird die die \memph{günstigste} von
+\memph{konkreten Startpunkt}. Es wird die \memph{günstigste} von
 einem Teilgraphen $T$ \memph{ausgehende Kante ausgewählt} und zu diesem
 Spannbaum hinzugefügt. Der Algorithmus fügt jede Kante und deren
 Endknoten zur Lösung hinzu, die mit allen zuvor gewählten Kanten keinen
@@ -163,111 +163,6 @@ EG & $9$\\\hline
 \end{tabular}
 \end{center}
 \end{minipage}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Aufgaben
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\chapter{Aufgaben}
-
-\ExamensAufgabeTA 46115 / 2014 / 03 : Thema 1 Aufgabe 8
-
-%-----------------------------------------------------------------------
-%
-%-----------------------------------------------------------------------
-
-\ExamensAufgabeTA 46115 / 2018 / 03 : Thema 2 Aufgabe 4
-
-%-----------------------------------------------------------------------
-%
-%-----------------------------------------------------------------------
-
-\section{Spannbaum\footcite[Aufgabe 6]{aud:e-klausur}}
-
-Ermitteln Sie einen minimalen Spannbaum des vorliegenden Graphen. Nutzen
-Sie den \emph{Knoten A als Startknoten} in ihrem Algorithmus.
-
-\graph knoten {
-  \knoten{A}(0,5)
-  \knoten{B}(8,5)
-  \knoten{C}(4,4)
-  \knoten{D}(2,3)
-  \knoten{E}(6,3)
-  \knoten{F}(4,1)
-  \knoten{G}(0,0)
-  \knoten{H}(8,0)
-} kanten {
-  \kante(A-B){5}
-  \kante(A-C){8}
-  \kante(A-D){7}
-  \kante(A-G){1}
-  \kante(B-C){2}
-  \kante(B-E){7}
-  \kante(B-H){2}
-  \kante(C-D){1}
-  \kante(C-E){3}
-  \kante(C-F){6}
-  \kante(D-F){2}
-  \kante(D-G){8}
-  \kante(E-H){6}
-  \kante(F-E){5}
-  \kante(F-H){3}
-  \kante(G-F){5}
-  \kante(G-H){4}
-}
-
-\begin{enumerate}
-\item Welches Gewicht hat der Spannbaum insgesamt?
-
-\begin{antwort}
-\graph knoten {
-  \knoten{A}(0,5)
-  \knoten{B}(8,5)
-  \knoten{C}(4,4)
-  \knoten{D}(2,3)
-  \knoten{E}(6,3)
-  \knoten{F}(4,1)
-  \knoten{G}(0,0)
-  \knoten{H}(8,0)
-} kanten {
-  \kante(A-B){5}
-  \kante(A-C){8}
-  \kante(A-D){7}
-  \KANTE(A-G){1}
-  \KANTE(B-C){2}
-  \kante(B-E){7}
-  \KANTE(B-H){2}
-  \KANTE(C-D){1}
-  \KANTE(C-E){3}
-  \kante(C-F){6}
-  \KANTE(D-F){2}
-  \kante(D-G){8}
-  \kante(E-H){6}
-  \kante(F-E){5}
-  \kante(F-H){3}
-  \kante(G-F){5}
-  \KANTE(G-H){4}
-}
-
-\begin{center}
-\begin{tabular}{|l|l|r|}
-\hline
-Kante & & Gewicht\\\hline\hline
-AG, CD     & $2 \times 1$ & $2$\\
-BD, BH, DF & $3 \times 2$ & $6$\\
-CE         & $1 \times 3$ & $3$\\
-GH         & $1 \times 4$ & $4$\\\hline
-           &              & $15$\\\hline
-\end{tabular}
-\end{center}
-\end{antwort}
-
-\item Welchen Algorithmus haben Sie zur Ermittlung eingesetzt?
-
-\begin{antwort}
-Kruskal
-\end{antwort}
-\end{enumerate}
 
 \literatur
 
