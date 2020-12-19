@@ -1,0 +1,40 @@
+\documentclass{lehramt-informatik-haupt}
+\liLadePakete{syntax}
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Felder}
+
+\section{Initialsierung
+\footcite[Seite 46]{oomup:fs:3}}
+
+Oft sind die zu speichernden Werte erst zur Laufzeit bekannt. In diesem
+Fall kann man Platz für eine festgelegte Anzahl an Elementen
+reservieren.
+
+\texttt{<Datentyp>[] <Bezeichner> = new <Datentype>[<Anzahl>];}
+
+Die Anzahl kann ein beliebiger Ausdruck sein, der zu einem \java{int}
+ausgewerte wird. So angelegte Felder werden mit \memph{0-wertigen Einträgen}
+gefüllt. Zum Beispiel:
+
+\begin{minted}{java}
+boolean[] korrigiert = new boolean[23];
+// -> {false, false, ..., false}
+\end{minted}
+
+\begin{minted}{java}
+boolean[] noten = new int[6];
+// -> {0, 0, 0, 0, 0, 0}
+\end{minted}
+
+Die Größe eines einmal angelegten Feldes kann nicht mehr verändert
+werden. Wieviele Elemente in einem Feld Platz haben, kann mit dem
+Attribut \texttt{.length} abgefragt werden.
+
+\literatur
+
+\end{document}

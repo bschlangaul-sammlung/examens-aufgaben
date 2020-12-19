@@ -1,0 +1,57 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,mathe}
+\begin{document}
+\liAufgabenTitel{Potenz}
+
+\section{Potenz
+\index{Rekursion}
+\footcite[Aufgabe 2: Rekursion, Seite 2]{aud:ab:1}}
+
+Gegeben ist folgende Methode.
+
+\inputcode[firstline=5,lastline=12]{aufgaben/aud/ab_1/Rekursion}
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Beschreiben Sie kurz, woran man erkennt, dass es sich bei der
+gegebenen Methode um eine rekursive Methode handelt. Gehen Sie dabei auf
+wichtige Bestandteile der rekursiven Methode ein.
+
+\begin{antwort}
+Die Methode mit dem Namen \java{function} ruft sich in der letzten
+Code-Zeile selbst auf. Außerdem gibt es eine Abbruchbedingung
+(\java{if (e == 1) { return b * 1; }}), womit verhindert wird, dass die
+Rekursion unendlich weiter läuft.
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Geben Sie die Rekursionsvorschrift für die Methode \java{function}
+an. Denken Sie dabei an die Angabe der Zahlenbereiche!
+
+\begin{antwort}
+\begin{equation*}
+\text{int function(int b, int e)} =
+\begin{cases}
+\text{return b*1}, & \text{falls e = 1}.\\
+\text{return b*function(b,e-1)}, & \text{falls e > 1}.
+\end{cases}
+\end{equation*}
+\end{antwort}
+
+%%
+% (c)
+%%
+
+\item Erklären Sie kurz, was die Methode \java{function} berechnet.
+
+\begin{antwort}
+Die Methode \java{function} berechnet die Potenz $b^e$.
+\end{antwort}
+\end{enumerate}
+\end{document}

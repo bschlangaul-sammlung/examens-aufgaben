@@ -183,6 +183,10 @@ Weitere Aufgaben zum Thema „SQL“:
 
 #### Rekursion
 
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/01_Rekursion/Aufgabe_Feld-Invertierer.pdf" download="Aufgabe_Feld-Invertierer">„Feld-Invertierer“</a> (Rekursion)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/01_Rekursion/Aufgabe_Fibonacci-Fakultaet.pdf" download="Aufgabe_Fibonacci-Fakultaet">„Fibonacci Fakultät“</a> (Rekursion)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/01_Rekursion/Aufgabe_Potenz.pdf" download="Aufgabe_Potenz">„Potenz“</a> (Rekursion)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/01_Rekursion/Aufgabe_Rater.pdf" download="Aufgabe_Rater">„Rater“</a> (Rekursion)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/20_Selectionsort/Aufgabe_iterativ-rekursiv.pdf" download="Aufgabe_iterativ-rekursiv">„iterativ-rekursiv“</a> (Selectionsort, Iterative Realisation, Rekursion)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/03_Algorithmenmuster/50_Backtracking/Aufgabe_Methode-fill.pdf" download="Aufgabe_Methode-fill">„Methode „fill()““</a> (Backtracking, Rekursion)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/04_Listen/10_Listen/Aufgabe_Playlist.pdf" download="Aufgabe_Playlist">„Playlist“</a> (Einfach-verkettete Liste, Implementierung in Java, doppelt-verkettete Liste, Rekursion)
