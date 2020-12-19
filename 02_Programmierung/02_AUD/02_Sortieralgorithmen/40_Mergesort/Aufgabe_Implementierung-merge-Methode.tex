@@ -1,0 +1,78 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,mathe}
+\begin{document}
+\liAufgabenTitel{Implementierung der merge-Methode}
+
+\section{Implementierung der \java{merge}-Methode, Berechnung der
+Zeitkomplexität
+\index{Mergesort}
+\footcite[Seite 2, Aufgabe 3: Mergesort]{aud:ab:7}
+}
+
+Das Sortierverfahren \emph{Mergesort}, das nach der Strategie
+\emph{Divide-and-Conquer} arbeitet, sortiert eine Sequenz, indem die
+Sequenz in zwei Teile zerlegt wird, die dann einzeln sortiert und wieder
+zu einer sortierten Sequenz zusammengemischt werden (to merge =
+zusammenmischen, verschmelzen).
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Gegeben seien folgende Methoden:
+
+\inputcode[firstline=13,lastline=31]{aufgaben/aud/ab_7/mergesort/Mergesort}
+
+Schreiben Sie die Methode \java{public int[] merge (int[] s, int[] r)},
+die die beiden aufsteigend sortierten Sequenzen \java{s} und \java{r} zu
+einer aufsteigend sortierten Sequenz zusammenmischt.
+
+\begin{antwort}
+\inputcode[firstline=33,lastline=60]{aufgaben/aud/ab_7/mergesort/Mergesort}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Analysieren Sie die Zeitkomplexität von \java{mergesort}.
+
+\begin{antwort}
+$O(n \cdot \log n)$
+
+\liPseudoUeberschrift{Erklärung}
+
+Mergesort ist ein stabiles Sortierverfahren, vorausgesetzt der
+Merge-Schritt ist korrekt implementiert. Seine Komplexität beträgt im
+Worst-, Best- und Average-Case in Landau-Notation ausgedrückt stets $O(n
+\cdot \log n)$. Für die Laufzeit $T(n)$ von Mergesort bei $n$ zu
+sortierenden Elementen gilt die Rekursionsformel
+
+\begin{align*}
+T(n) & = \\
+     & T\left(\left\lfloor\frac{n}{2}\right\rfloor\right) + && \text{Aufwand, 1. Teil zu sortieren}\\
+     & T\left(\left\lceil\frac{n}{2}\right\rceil\right) + && \text{Aufwand, 2. Teil zu sortieren}\\
+     & \mathcal{O}(n) && \text{Aufwand, beide Teile zu verschmelzen}\\
+\end{align*}
+
+mit dem Rekursionsanfang $T(1) = 1$.
+
+Nach dem Master-Theorem kann die Rekursionsformel durch
+
+\begin{displaymath}
+2T\left(\left\lfloor\frac{n}{2}\right\rfloor\right) + n
+\end{displaymath}
+
+bzw.
+
+\begin{displaymath}
+2T\left(\left\lceil\frac{n}{2}\right\rceil\right) + n
+\end{displaymath}
+
+approximiert werden mit jeweils der Lösung $T(n) = O(n \cdot \log n)$.
+\end{antwort}
+
+\end{enumerate}
+\end{document}

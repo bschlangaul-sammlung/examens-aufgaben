@@ -1,0 +1,62 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{Flughafen}
+
+\section{Listen
+\index{Warteschlange (Queue)}
+\footcite[Aufgabe 3]{aud:e-klausur}}
+
+Am Nürnberger Flughafen starten und landen täglich viele Flugzeuge. Der
+Flughafen verfügt jedoch nur über eine einzige Start- bzw. Landebahn,
+sodass Starts und Landungen gemeinsam koordiniert werden müssen. Für die
+interne Verwaltung, welcher Flieger als nächstes bearbeitet werden soll,
+wird eine neue Software entwickelt. Sie haben die Aufgabe einen Teil
+dieser Software zu erstellen.
+
+Das folgende UML-Klassendiagramm gibt einen Überblick über den für Sie
+relevanten Teil der Software:
+
+Implementieren Sie die beiden Methoden addNewFlight(Flug) und
+addEmergency(Flug) der Klasse Warteschlange!
+
+\begin{itemize}
+\item In der Methode \java{addNewFlight}
+
+\begin{itemize}
+\item soll ein neu übergebener Flug der Warteschlange hinzugefügt werden.
+\end{itemize}
+
+\item In der Methode \java{addEmergency}
+
+\begin{itemize}
+\item soll für den übergebenen Flug überprüft werden, ob der Flug
+bereits in der Warteschlange vorkommt oder ob es sich um einen komplet
+neuen Flug handelt.
+
+\item soll der Notfall die erste Priorität in der Warteschlange
+erhalten, d.h. zwingend als nächstes abgearbeitet werden.
+
+\item soll die korrekte Funktionalität der Warteschlange weiterhin
+gegeben sein.
+\end{itemize}
+\end{itemize}
+
+Jeder Flug wird in der Warteschlange mit einem eigenen Ticket verwaltet.
+Die Funktionalitäten der Tickets und der Flüge entnehmen Sie dem
+Quelltext.
+
+\begin{antwort}
+\liPseudoUeberschrift{Klasse „Flug“}
+
+\inputcode[firstline=3]{aufgaben/aud/e_klausur/flughafen/Flug}
+
+\liPseudoUeberschrift{Klasse „Ticket“}
+
+\inputcode[firstline=3]{aufgaben/aud/e_klausur/flughafen/Ticket}
+
+\liPseudoUeberschrift{Klasse „Warteschlange“}
+
+\inputcode[firstline=3]{aufgaben/aud/e_klausur/flughafen/Warteschlange}
+\end{antwort}
+\end{document}

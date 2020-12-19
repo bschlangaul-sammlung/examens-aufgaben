@@ -1,0 +1,73 @@
+\documentclass{lehramt-informatik-haupt}
+\liLadePakete{syntax,sortieren,mathe}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{MergeSort: Sortieren durch Verschmelzen}
+
+\begin{quellen}
+\item \cite[Seite 50]{aud:fs:tafeluebung-11}
+\item \cite[Seite 131-135(PDF 149-153)]{saake}
+\item \cite{wiki:mergesort}
+\item \cite[6.4.2 Effiziente Sortierverfahren, Seite 192]{schneider}
+\end{quellen}
+
+\begin{center}
+\def\myNodes{}
+\begin{forest}
+  /tikz/arrows=->, /tikz/>=latex, /tikz/nodes={draw},
+  for tree={delay={sort}}, sort level=2
+[38 27 43 3 9 82 10
+  [38 27 43 3
+    [38 27 [39][27]]
+    [43 3 [43][3]]
+  ]
+  [9 82 10
+    [9 82 [9] [82]]
+    [10 [10]]
+  ]
+]
+%
+\coordinate (m) at (!|-!\forestOnes);
+\myNodes
+\end{forest}
+\end{center}
+
+\begin{itemize}
+\item Funtionsweise:
+
+\begin{itemize}
+\item Listen mit maximal \emph{einem} Element sind \emph{trivialerweise sortiert}
+\item falls zu sortierende Liste mehr als ein Element beinhaltet:
+
+\begin{itemize}
+\item \emph{teile} Liste in zwei kleinere Listen auf
+\item verfahre \emph{rekursiv} mit den beiden Teillisten
+\item \emph{verschmelze} die zwei rekursiv sortierten Listen
+\item dabei Sortierung in verschmolzener Liste beibehalten
+\end{itemize}
+\end{itemize}
+
+$\rightarrow$ Teile-Und-Herrsche
+\item Eigenschaften von MergeSort:
+
+\begin{itemize}
+\item Laufzeitkomplexität:
+$\mathcal{O}(n \cdot log(n))$ (im Best-, Average- und Worst-Case)
+\item bei geeigneter „Verschmelzung“ \emph{stabile} Sortierung
+\item durch Rekursion wachsender Aufrufstapel
+$\rightarrow$ \emph{out-of-place}
+\end{itemize}
+
+\end{itemize}
+
+\inputcode[firstline=14,lastline=61]{sortier/MergeSort}
+\footcite[Seite 134 (PDF 152)]{saake}
+
+\literatur
+
+\end{document}

@@ -1,0 +1,40 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-hanoi}[2020/12/19 Paket zum Setzen
+von Hanoi-Grafiken]
+% https://kleinco.de/latex-snippets/7/tikz-towers-of-hanoi-illustration-for-latex-documents/
+
+\RequirePackage{tikz}
+\RequirePackage{xcolor}
+
+\def\li@mset #1[#2]=#3{%
+	\expandafter\xdef\csname #1#2\endcsname{#3}
+}
+\def\li@mget #1[#2]{%
+	\csname #1#2\endcsname
+}
+\def\li@minc #1[#2]+=#3{%
+	\pgfmathparse{\li@mget #1[#2]+#3}%
+	\li@mset #1[#2]=\pgfmathresult
+}
+
+\def\liHanoi#1#2{
+  \edef\li@numdiscs{#1}
+  \def\li@sequence{#2}
+  \begin{tikzpicture}[line width=4mm,brown!40,line cap=round,xscale=3]
+    % init colors
+    \foreach[count=\j] \c in {red,green!80!black,blue,orange,violet,gray,yellow!80!black,purple,cyan,black}
+    \li@mset col[\j]={\c};
+    % draw poles and init pole counters
+    \foreach \j in {1,2,3}{
+      \li@mset pos[\j]=0
+      \draw (\j,-.5) -- +(0, .5 + .5*\li@numdiscs);
+    }
+    % draw base
+    \draw (.5,-.5) -- +(3,0);
+    % draw discs
+    \foreach[count=\k] \i/\j in \li@sequence{
+      \draw[draw={\li@mget col[\i]}] (\j,\li@mget pos[\j]) +(-.4*\i/\li@numdiscs,0) -- +(.4*\i/\li@numdiscs,0) node[pos=.5,white,font=\sffamily] {\i};
+      \li@minc pos[\j]+={.5}
+    }
+  \end{tikzpicture}
+}

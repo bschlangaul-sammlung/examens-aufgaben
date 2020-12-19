@@ -1,0 +1,90 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{spalten,syntax}
+\begin{document}
+\liAufgabenTitel{Sortier-Vorlage}
+
+\section{Aufgabe 2: Sortieren\footcite{aud:ab:2}}
+
+Für diese Aufgabe wird die Vorlage Sortieralgorithmen benötigt, die auf
+dem Beiblatt genauer erklärt wird.\footnote{Diese Aufgabe stammt aus dem
+Übungsblatt 1 zu Algorithmen und Datenstrukturen von Prof. Dr. Martin
+Hennecke und Rainer Gall an der Universität Würzburg und wurde
+dankenswerterweise zur Verwendung in diesem Aufgabenblatt zur Verfügung
+gestellt.}
+
+Die fertigen Methoden sollen in der Lage sein, beliebige Arrays zu
+sortieren. Im gelben Textfeld des Eingabefensters soll dabei wieder
+ausführlich und nachvollziehbar angezeigt werden, wie die jeweilige
+Methode vorgeht. Beispielsweise so:
+
+{
+\tiny
+\begin{multicols}{2}
+\begin{verbatim}
+Führe die Methode selectionSort() aus:
+Sortiere dieses Feld: 5, 3, 17, 7, 42, 23
+Der Marker liegt bei: 5
+Das Maximum liegt bei: 4
+Diese beiden Elemente werden nun vertauscht.
+Ergebnis dieser Runde: 5, 3, 17, 7, 23, 42
+Der Marker liegt bei: 4
+Das Maximum liegt bei: 4
+Diese beiden Elemente werden nun vertauscht.
+Ergebnis dieser Runde: 5, 3, 17, 7, 23, 42
+Der Marker liegt bei: 3
+Das Maximum liegt bei: 2
+Diese beiden Elemente werden nun vertauscht.
+Ergebnis dieser Runde: 5, 3, 7, 17, 23, 42
+Der Marker liegt bei: 2
+Das Maximum liegt bei: 2
+Diese beiden Elemente werden nun vertauscht.
+Ergebnis dieser Runde: 5, 3, 7, 17, 23, 42
+Der Marker liegt bei: 1
+Das Maximum liegt bei: 0
+Diese beiden Elemente werden nun vertauscht.
+Ergebnis dieser Runde: 3, 5, 7, 17, 23, 42
+Der Marker liegt bei: 0
+Das Maximum liegt bei: 0
+Diese beiden Elemente werden nun vertauscht.
+Ergebnis dieser Runde: 3, 5, 7, 17, 23, 42
+\end{verbatim}
+
+\begin{verbatim}
+Führe die Methode bubbleSort() aus:
+Sortiere dieses Feld: 5, 3, 17, 7, 42, 23
+Das Element an der Stelle 0 ist größer als sein Nachfolger.
+Diese beiden werden nun vertauscht.
+Ergebnis dieser Runde: 3, 5, 17, 7, 42, 23
+Das Element an der Stelle 2 ist größer als sein Nachfolger.
+Diese beiden werden nun vertauscht.
+Ergebnis dieser Runde: 3, 5, 7, 17, 42, 23
+Das Element an der Stelle 4 ist größer als sein Nachfolger.
+Diese beiden werden nun vertauscht.
+Ergebnis dieser Runde: 3, 5, 7, 17, 23, 42
+\end{verbatim}
+\end{multicols}
+}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Vervollständige die Methode \java{selectionSort()}.\index{Selectionsort}
+
+\begin{antwort}
+\inputcode[firstline=65,lastline=91]{aufgaben/aud/ab_2/Sortieralgorithmen}
+\end{antwort}
+
+%%
+% (b)
+%%
+
+\item Vervollständige die Methode \java{bubbleSort()}.\index{Bubblesort}
+
+\begin{antwort}
+\inputcode[firstline=93,lastline=118]{aufgaben/aud/ab_2/Sortieralgorithmen}
+\end{antwort}
+\end{enumerate}
+\end{document}

@@ -202,6 +202,13 @@ ankreuzen.
 * Makro: `\liFalsch`: Nicht angekreuztes Kästchen (nur innerhalb der
   `itemize`-Umgebung zu verwenden.)
 
+### `hanoi.sty`
+
+Paket zum Setzen von Hanoi-Grafiken
+
+* Makro: `\liHanoi{anzahl-scheiben}{gewicht-scheibe/turm-nr,gewicht-scheibe/turm-nr}`,
+  z. B.: `\liHanoi{4}{4/1,3/1,2/3,1/2}`
+
 ### `makros.sty`
 
 Eine Sammlung von häufig verwendeten Makros und Umgebungen, die

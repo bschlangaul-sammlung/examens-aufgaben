@@ -1,0 +1,44 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,hanoi}
+\begin{document}
+\liAufgabenTitel{Hanoi}
+
+% https://www.yumpu.com/de/document/read/17936712/ubungen-zum-prasenzmodul-algorithmen-und-datenstrukturen
+\section{Türme von Hanoi
+\index{Teile-und-Herrsche (Divide-and-Conquer)}
+\footcite[Seite 1, Aufgabe 2: Türme von Hanoi]{aud:ab:7}
+}
+
+Betrachten wir das folgende Spiel (Türme von Hanoi), das aus drei Stäben
+1, 2 und 3 besteht, die senkrecht im Boden befestigt sind. Weiter gibt
+es n kreisförmige Scheiben mit einem Loch im Mittelpunkt, so dass man
+sie auf die Stäbe stecken kann. Dabei haben die Scheiben verschiedene
+Radien, alle sind unterschiedlich groß. Zu Beginn stecken alle Scheiben
+auf dem Stab 1, wobei immer eine kleinere auf einer größeren liegt. Das
+Ziel des Spiels ist es nun, die Scheiben so umzuordnen, dass sie in der
+gleichen Reihenfolge auf dem Stab 3 liegen. Dabei darf immer nur eine
+Scheibe bewegt werden und es darf nie eine größere auf einer kleineren
+Scheibe liegen. Stab 2 darf dabei als Hilfsstab verwendet werden.
+
+Ein Beispiel für 4 Scheiben finden Sie in folgendem Bild:
+
+\centerline{\liHanoi{4}{4/1,3/1,2/3,1/2}}
+
+Entwerfen Sie mit Hilfe der Vorlage eine varibale Simulation der Türme von Hanoi.
+
+\begin{enumerate}
+\item Ein ELEMENT hat immer einen Wert (Integer) und kennt das
+Nachfolgende Element, wobei immer nur das jeweilige Element auf seinen
+Wert und seinen Nachfolger zugreifen darf
+
+\item Ein Turm ist einem Stack (Kellerspeicher) nachempfunden und kennt
+somit nur das erste Element. Hinweis: Beachten Sie, dass nur kleinere
+Elemente auf den bisherigen Stack gelegt werden können
+
+\item In der Klasse HANOI müssen Sie nur die Methode \java{public void
+hanoi (int n, TURM quelle, TURM ziel, TURM hilfe)} implementieren. Die
+anderen Methoden sind zur Veranschaulichung des Spiels! Entwerfen Sie
+eine rekursive Methode die einen Turm der Höhe n vom Stab quelle auf den
+Stab ziel transportiert und den Stab hilfe als Hilfsstab verwendet.
+\end{enumerate}
+\end{document}

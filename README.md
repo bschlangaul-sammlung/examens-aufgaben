@@ -205,6 +205,10 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/10_Algorithmische-Komplexitaet/Aufgabe_Methode-magicStaff.pdf" download="Aufgabe_Methode-magicStaff">„Methode „magicStaff()““</a> (Komplexität)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/10_Algorithmische-Komplexitaet/Aufgabe_mehrere-Funktionen.pdf" download="Aufgabe_mehrere-Funktionen">„mehrere-Funktionen“</a> (Komplexität)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/20_Selectionsort/Aufgabe_iterativ-rekursiv.pdf" download="Aufgabe_iterativ-rekursiv">„iterativ-rekursiv“</a> (Selectionsort, Iterative Realisation, Rekursion)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/40_Mergesort/Aufgabe_Implementierung-merge-Methode.pdf" download="Aufgabe_Implementierung-merge-Methode">„Implementierung der merge-Methode“</a> (Mergesort)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/Aufgabe_Haendisch-Quick-Mergesort.pdf" download="Aufgabe_Haendisch-Quick-Mergesort">„Händisch Quick- und Mergesort“</a> (Mergesort, Quicksort)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/Aufgabe_Haendisches-Sortieren.pdf" download="Aufgabe_Haendisches-Sortieren">„Händisches Sortieren“</a> (Bubblesort, Mergesort, Quicksort)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/Aufgabe_Sortier-Vorlage.pdf" download="Aufgabe_Sortier-Vorlage">„Sortier-Vorlage“</a> (Selectionsort, Bubblesort)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_46115-2013-Frühjahr_T2-A6">„Schreibtischlauf Haldensortierung“ Examen 46115 Frühjahr 2013 T2 A6</a> (Heapsort)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/09/Thema-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_46115-2016-Herbst_T2-A2">„Methoden „matrixSumme()“ und „find()““ Examen 46115 Herbst 2016 T2 A2</a> (Komplexität)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/09/Thema-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_46115-2017-Herbst_T2-A7">Examen 46115 Herbst 2017 T2 A7</a> (Insertionsort, Implementierung in Java)
@@ -287,6 +291,7 @@ Weitere Aufgaben zum Thema „SQL“:
 
 ### Testen
 
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/10_Vollstaendige-Induktion/Aufgabe_Gausssche-Summenformel.pdf" download="Aufgabe_Gausssche-Summenformel">„Gaußsche Summenformel“</a> (Vollständige Induktion)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/01_Projektmanagement/Aufgabe_Allgemeine-Software-Technik.pdf" download="Aufgabe_Allgemeine-Software-Technik">„Multiple-Choice Allgemeine Software-Technologie“</a> (EXtreme Programming, V-Modell, Wasserfallmodell, SCRUM, Prototyping, Unit-Test, Anforderungsanalyse)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/05_Testen/Black_White-Box-Test/Aufgabe_Groesster-gemeinsamer-Teiler.pdf" download="Aufgabe_Groesster-gemeinsamer-Teiler">„Größter gemeinsamer Teiler“</a> (Datenfluss-annotierter Kontrollflussgraph, Zyklomatische Komplexität nach Mc-Cabe, C2b Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/05_Testen/Black_White-Box-Test/Aufgabe_Grundwissen.pdf" download="Aufgabe_Grundwissen">„Grundwissen“</a> (White-Box-Testing, Black-Box-Testing, Funktionalorienteres Testen, V-Modell)
@@ -669,6 +674,8 @@ OCR des oben genannten Scans:
     - Thema 2 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2005/03/Thema-2/Aufgabe-8.pdf" download="Staatsexamen-Informatik_66112-2005-Frühjahr_T2-A8">Aufgabe 8 (Streutabellen (Hashing))</a>
 - 2005 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2005/09/Scan.pdf" download="Staatsexamen-Informatik_66112-2005-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2005/09/OCR.txt" download="Staatsexamen-Informatik_66112-2005-Herbst_OCR">OCR.txt</a> 
+    - Thema 2 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2005/09/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66112-2005-Herbst_T2-A6">Aufgabe 6 (B-Baum)</a>
 - 2006 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/03/Scan.pdf" download="Staatsexamen-Informatik_66112-2006-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/03/OCR.txt" download="Staatsexamen-Informatik_66112-2006-Frühjahr_OCR">OCR.txt</a> 
 - 2006 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/09/Scan.pdf" download="Staatsexamen-Informatik_66112-2006-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/09/OCR.txt" download="Staatsexamen-Informatik_66112-2006-Herbst_OCR">OCR.txt</a> 
     - Thema 1 
@@ -752,7 +759,8 @@ OCR des oben genannten Scans:
 - 2012 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2012-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/03/OCR.txt" download="Staatsexamen-Informatik_66115-2012-Frühjahr_OCR">OCR.txt</a> 
 - 2012 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Scan.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/OCR.txt" download="Staatsexamen-Informatik_66115-2012-Herbst_OCR">OCR.txt</a> 
     - Thema 2 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T2-A6">Aufgabe 6 (Komplexität)</a>
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T2-A6">Aufgabe 6 (Komplexität)</a> 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T2-A7">Aufgabe 7 (Halde (Heap))</a>
 - 2013 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2013-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/03/OCR.txt" download="Staatsexamen-Informatik_66115-2013-Frühjahr_OCR">OCR.txt</a> 
 - 2013 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/Scan.pdf" download="Staatsexamen-Informatik_66115-2013-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/OCR.txt" download="Staatsexamen-Informatik_66115-2013-Herbst_OCR">OCR.txt</a> 
 - 2014 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2014-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/OCR.txt" download="Staatsexamen-Informatik_66115-2014-Frühjahr_OCR">OCR.txt</a> 
@@ -824,6 +832,8 @@ OCR des oben genannten Scans:
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2015-Frühjahr_T1-TA2-A3">Aufgabe 3 (Vererbung, Implementierung in Java, Interface, Abstrakte Klasse)</a>
 - 2015 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/09/Scan.pdf" download="Staatsexamen-Informatik_66116-2015-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/09/OCR.txt" download="Staatsexamen-Informatik_66116-2015-Herbst_OCR">OCR.txt</a> 
     - Thema 2 
+        - Teilaufgabe 1 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2015-Herbst_T2-TA1-A3">Aufgabe 3 (B-Baum)</a> 
         - Teilaufgabe 2 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2015-Herbst_T2-TA2-A3">Aufgabe 3 (wp-Kalkül, Invariante, Terminierungsfunktion)</a>
 - 2016 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Scan.pdf" download="Staatsexamen-Informatik_66116-2016-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/OCR.txt" download="Staatsexamen-Informatik_66116-2016-Frühjahr_OCR">OCR.txt</a> 
@@ -1026,6 +1036,7 @@ als Markdown-Liste eingebettet werden kann.
         - Greedy-Algorithmus
         - Dynamische Programmierung
         - Backtracking
+        - Teile-und-Herrsche (Divide-and-Conquer)
     - Listen:
         - Einfach-verkettete Liste
         - doppelt-verkettete Liste
@@ -1205,6 +1216,13 @@ ankreuzen.
   `itemize`-Umgebung zu verwenden.)
 * Makro: `\liFalsch`: Nicht angekreuztes Kästchen (nur innerhalb der
   `itemize`-Umgebung zu verwenden.)
+
+### `hanoi.sty`
+
+Paket zum Setzen von Hanoi-Grafiken
+
+* Makro: `\liHanoi{anzahl-scheiben}{gewicht-scheibe/turm-nr,gewicht-scheibe/turm-nr}`,
+  z. B.: `\liHanoi{4}{4/1,3/1,2/3,1/2}`
 
 ### `makros.sty`
 

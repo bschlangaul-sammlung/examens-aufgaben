@@ -152,63 +152,6 @@ Bei einer Min-Heap wird mit dem kleineren Kind getauscht, bei einer
 Max-Heap mit dem größeren Kind.
 \footcite[Seite 28]{aud:fs:tafeluebung-11}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Aufgaben
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\chapter{Aufgaben}
-
-\section{Zeichnen der Heap
-\footcite[Seite 4, Aufgabe 7: Heap (H 2012 (66115) - T2, A7, a/ii)]{aud:ab:7}}
-
-Fügen Sie nacheinander die Zahlen \texttt{3}, \texttt{5}, \texttt{1},
-\texttt{2}, \texttt{4} in einen leeren Heap ein. Geben Sie die
-Ergebnisse an (Zeichnung).
-
-\begin{figure}[H]
-\begin{minipage}[t][5cm][b]{0.32\linewidth}
-\begin{tikzpicture}[binaerer baum]
-\Tree
-[.\node(3){3};
-      [.\node(5){5}; ]
-      \edge[blank]; \node[blank]{};
-]
-\draw[dotted,<->] (3) .. controls +(west:1) .. (5);
-\end{tikzpicture}
-\caption{Erstellen einer Max.-Halde, einfügen von 3 und 5, Versickern notwendig
-}
-\end{minipage}
-%
-\begin{minipage}[t][5cm][b]{0.32\linewidth}
-\begin{tikzpicture}[binaerer baum]
-\Tree
-[.5
-  [.\node(3){3};
-    [.2 ]
-    [.\node(4){4}; ]
-  ]
-  [.1 ]
-]
-\draw[dotted,<->] (3) .. controls +(east:0.5) .. (4);
-\end{tikzpicture}
-\caption{Einfügen von 1 und 2 ohne Änderungen, Einfügen von 4, versickern notwendig}
-\end{minipage}
-%
-\begin{minipage}[t][5cm][b]{0.32\linewidth}
-\begin{tikzpicture}[binaerer baum]
-\Tree
-[.5
-  [.4
-    [.2 ]
-    [.3 ]
-  ]
-  [.1 ]
-]
-\end{tikzpicture}
-\caption{Fertiger Heap}
-\end{minipage}
-\end{figure}
-
 \literatur
 
 \end{document}
