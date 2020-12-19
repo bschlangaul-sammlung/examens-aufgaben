@@ -1,0 +1,46 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{graph}
+\begin{document}
+\liAufgabenTitel{Graph A-I}
+
+\section{Dijkstra-Algorithmus
+\index{Algorithmus von Dijkstra}
+\footcite[Aufgabe 4]{aud:e-klausur}
+}
+
+Führen Sie auf dem gegebenen Graphen die Suche nach der kürzesten
+Distanz aller Knoten zum Startknoten A mit dem Algorithmus von Dijkstra
+durch. Tragen Sie die Abarbeitungsreihenfolge, den unmittelbaren
+Vorgängerknoten, sowie die ermittelte kürzeste Distanz für jeden Knoten
+ein! Bei gleichen Distanzen arbeiten Sie die Knoten in lexikalischer
+Reihenfolge ab.
+
+\graph knoten {
+  \knoten{A}(1,4)
+  \knoten{B}(3,5)
+  \knoten{C}(3,3)
+  \knoten{D}(0,2)
+  \knoten{E}(5,5)
+  \knoten{F}(5,1)
+  \knoten{G}(3,0)
+  \knoten{H}(6,3)
+  \knoten{I}(8,4)
+} kanten {
+  \kante(A-B){2}
+  \kante(A-C){5}
+  \kante(A-D){2}
+  \kante(B-C){3}
+  \kante(B-E){1}
+  \kante(C-D){3}
+  \kante(C-E){1}
+  \kante(C-F){1}
+  \kante(C-H){1}
+  \kante(D-G){2}
+  \kante(E-I){7}
+  \kante(F-G){2}
+  \kante(F-H){3}
+  \kante(F-H){3}
+  \kante(H-I){1}
+}
+
+\end{document}

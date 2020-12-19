@@ -255,6 +255,7 @@ Weitere Aufgaben zum Thema „SQL“:
 ### Entwurfsmuster
 
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/04_Listen/10_Listen/Aufgabe_Woerterbuch.pdf" download="Aufgabe_Woerterbuch">„Wörterbuch“</a> (Einfach-verkettete Liste, Kompositum (Composite))
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/03_Projektplanung/Entwurfsmuster/90_Kompositium/Aufgabe_Grafik.pdf" download="Aufgabe_Grafik">„Grafik“</a> (Kompositum (Composite))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/03_Projektplanung/Entwurfsmuster/Aufgabe_Grundwissen.pdf" download="Aufgabe_Grundwissen">„Grundwissen“</a> (Entwurfsmuster)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2017-Herbst_T2-TA1-A3">„Entwurfsmuster bei Bankkonten, Hockeyspiel, Dateisystem“ Examen 46116 Herbst 2017 T2 TA1 A3</a> (Entwurfsmuster, Klassendiagramm, Abstrakte Fabrik (Abstract Factory), Beobachter (Observer), Kompositum (Composite))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2016-Frühjahr_T1-TA2-A2">„Entwurfsmuster in UML-Diagramm erkennen“ Examen 66116 Frühjahr 2016 T1 TA2 A2</a> (Klassendiagramm, Abstrakte Fabrik (Abstract Factory), Wiederholer (Iterator), Adapter, Kompositum (Composite), Klassenadapter, Objektadapter, Implementierung in Java)
@@ -762,7 +763,9 @@ OCR des oben genannten Scans:
 - 2015 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/09/Scan.pdf" download="Staatsexamen-Informatik_66115-2015-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/09/OCR.txt" download="Staatsexamen-Informatik_66115-2015-Herbst_OCR">OCR.txt</a> 
 - 2016 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2016/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2016-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2016/03/OCR.txt" download="Staatsexamen-Informatik_66115-2016-Frühjahr_OCR">OCR.txt</a> 
     - Thema 2 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2016/03/Thema-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66115-2016-Frühjahr_T2-A4">Aufgabe 4 (Streutabellen (Hashing))</a>
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2016/03/Thema-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66115-2016-Frühjahr_T2-A4">Aufgabe 4 (Streutabellen (Hashing), Separate Verkettung, Offene Adressierung)</a> 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2016/03/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2016-Frühjahr_T2-A6">Aufgabe 6 (Algorithmus von Dijkstra)</a> 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2016/03/Thema-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66115-2016-Frühjahr_T2-A7">Aufgabe 7 (Bäume, Rot-Schwarz-Baum, AVL-Baum, Halde (Heap), B-Baum, R-Baum)</a>
 - 2016 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2016/09/Scan.pdf" download="Staatsexamen-Informatik_66115-2016-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2016/09/OCR.txt" download="Staatsexamen-Informatik_66115-2016-Herbst_OCR">OCR.txt</a> 
 - 2017 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2017-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/OCR.txt" download="Staatsexamen-Informatik_66115-2017-Frühjahr_OCR">OCR.txt</a> 
     - Thema 1 
@@ -808,6 +811,7 @@ OCR des oben genannten Scans:
 - 2014 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/Scan.pdf" download="Staatsexamen-Informatik_66116-2014-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/OCR.txt" download="Staatsexamen-Informatik_66116-2014-Herbst_OCR">OCR.txt</a> 
     - Thema 2 
         - Teilaufgabe 2 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2014-Herbst_T2-TA2-A2">Aufgabe 2</a> 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2014-Herbst_T2-TA2-A3">Aufgabe 3 (Kontrollflussorientieres Testen, C0-Test Anweisungsüberdeckung (Statement Coverage), C1-Test Zweigüberdeckung (Branch Coverage))</a>
 - 2015 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Scan.pdf" download="Staatsexamen-Informatik_66116-2015-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/OCR.txt" download="Staatsexamen-Informatik_66116-2015-Frühjahr_OCR">OCR.txt</a> 
     - Thema 1 
@@ -1027,7 +1031,14 @@ als Markdown-Liste eingebettet werden kann.
         - Binärbaum
         - Halde (Heap)
         - B-Baum
-        - Streutabellen (Hashing)
+        - Rot-Schwarz-Baum
+        - R-Baum
+        - Streutabellen (Hashing):
+            - Hashfunktion
+            - Separate Verkettung
+            - Lineares Sondieren
+            - Quadratisches Sondieren
+            - Offene Adressierung
     - Graphen:
         - Algorithmus von Dijkstra
         - minimaler Spannbaum

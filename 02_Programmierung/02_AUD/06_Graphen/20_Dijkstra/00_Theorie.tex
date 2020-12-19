@@ -1,0 +1,72 @@
+\documentclass{lehramt-informatik-haupt}
+\liLadePakete{syntax,mathe,graph}
+\usepackage{blkarray}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Der Algorithmus von Dijkstra}
+
+\noindent
+Der Algorithmus von Dijkstra bestimmt den \memph{kürzesten Pfad}
+zwischen einem Startknoten und einem oder mehreren Zielknoten in einem
+gewichteten Graphen.
+%
+Es handelt sich um einen \memph{gierigen} Algorithmus: in jedem Schritt
+wird der am nächsten gelegene Knoten besucht. Der untersuchte Graph kann
+\memph{gerichtet oder ungerichtet} sein. Die \memph{Kantengewichte}
+müssen jedoch \memph{alle positiv} sein.
+\footcite[Seite 11]{aud:fs:6}
+
+\begin{center}
+Laufzeit: $\mathcal{O}(\log(|V|) \times |V| + |E|)$
+\end{center}
+
+\subsection{Pseudocode}
+
+für alle Knoten gespeichern: Distanz, Vorgänger und „besucht“-Markierung
+
+\begin{itemize}
+\item Initialisierung:
+
+\begin{itemize}
+\item Startknoten mit Distanz $0$, alle anderen Knoten mit Distanz
+$\infty$
+
+\item markiere alle Knoten als unbesucht
+\end{itemize}
+
+\item solange es noch unbesuchte Knoten im Graphen gibt:
+
+\begin{itemize}
+\item wähle den Knoten $v$ mit der geringsten Distanz (zum Startknoten)
+aus (Min-Heap)
+
+\item markiere diesen Knoten $v$ als besucht
+
+\item für alle unbesuchten Nachbarn $u$ des aktuellen Knoten $v$
+
+\begin{itemize}
+\item berechne die Länge des Pfades über $v$ nach $u$: Gewicht $=$ Pfad
+vom Startknoten nach v $+$ Gewicht der Kante ($v$, $u$)
+
+\item falls das berechnete Gewicht kleiner als die gespeicherte Distanz
+ist, dann
+
+\begin{enumerate}
+\item aktualisiere die Distanz auf den neuen Wert
+\item speichere Knoten $v$ als Vorgänger von $u$
+\footcite[Seite 12]{aud:fs:6}
+\end{enumerate}
+\end{itemize}
+\end{itemize}
+\end{itemize}
+
+\inputcode[firstline=15]{graph/Dijkstra}
+
+\literatur
+
+\end{document}

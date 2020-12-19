@@ -1,0 +1,72 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe,graph}
+\begin{document}
+\liAufgabenTitel{Karlsruhe nach Kassel}
+
+\section{Dijkstra Algorithmus
+\index{Algorithmus von Dijkstra}
+\footcite[Thema 2 Aufgabe 6 Seite 9]{examen:66115:2016:03}}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Berechnen Sie für folgenden Graphen den kürzesten Weg von
+Karlsruhe nach Kassel und dokumentieren Sie den Berechnungsweg:
+
+Verwendete Abkürzungen:
+
+\begin{itemize}
+\item Augsburg = A
+\item Erfurt = EF
+\item Frankfurt = F
+\item Karlsruhe = KA
+\item Kassel = KS
+\item Mannheim = MA
+\item München = M
+\item Nürnberg = N
+\item Stuttgart = S
+\item Würzburg = WÜ
+\end{itemize}
+
+Zahl = Zahl in Kilometern
+
+\begin{center}
+\graph knoten {
+  \knoten{A}(3,1)
+  \knoten{E}(2,3)
+  \knoten{F}(4,7)
+  \knoten{KA}(0,2)
+  \knoten{KS}(9,6)
+  \knoten{M}(6,1)
+  \knoten{MA}(0,6)
+  \knoten{N}(6,3)
+  \knoten{S}(7,5)
+  \knoten{W}(4,5)
+} kanten {
+  \kante(A-KA){250}
+  \kante(A-M){84}
+  \kante(E-W){186}
+  \kante(F-KS){173}
+  \kante(F-MA){85}
+  \kante(F-W){217}
+  \kante(M-KS){502}
+  \kante(M-N){167}
+  \kante(MA-KA){80}
+  \kante(N-S){183}
+  \kante(N-W){103}
+}
+\end{center}
+
+%%
+% b)
+%%
+
+\item Könnte man den Dijkstra Algorithmus auch benutzen, um das
+Travelling-Salesman Problem zu lösen?
+
+\end{enumerate}
+
+\end{document}
