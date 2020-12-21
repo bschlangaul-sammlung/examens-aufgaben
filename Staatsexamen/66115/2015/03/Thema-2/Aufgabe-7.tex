@@ -1,0 +1,55 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{}
+\section{Aufgabe 7
+\index{Algorithmus von Dijkstra}
+\footcite{66115:2015:03}}
+
+Auf folgendem ungerichteten, gewichteten Graphen wurde der
+Dijkstra-Algorithmus (wie auf der nächsten Seite beschrieben)
+ausgeführt, doch wir wissen lediglich, welcher Knoten als letztes
+schwarz (black) wurde (Nr. 8) und was seine Distanz zum Startknoten (Nr.
+1) ist. Die Gewichte der Kanten sind angegeben.
+
+Finden Sie zunächst den Startknoten, nummerieren Sie anschließend die
+Knoten in der Reihenfolge, in der sie schwarz wurden, und geben Sie in
+jedem Knoten die Distanz zum Startknoten an.
+
+Hinweis: Der Startknoten ist eindeutig.
+
+Dijkstra(WeightedGraph G, Vertex s)
+
+\begin{minted}{md}
+Initialize(G, s);
+S=ß;
+Q = new PriorityQueue(V, d) ;
+while not Q.Empty() do
+  u = Q.ExtractMin() ;
+  S = S U {u};
+  foreach v € Adj[u| do
+    Relax(u, v; w);
+
+  u.color = black;
+\end{minted}
+
+Initialize(Graph G, Vertex s)
+
+\begin{minted}{md}
+foreach u € V do
+  u.color = white;
+  u.d = 00;
+s.color = gray;
+s.d = 0;
+\end{minted}
+
+Relax(u, v; w)
+
+\begin{minted}{md}
+if v.d> u.d+ w(u,v) then
+  v.color = gray;
+  v.d = u.d + w(u,v);
+  Q.DecreaseKey(v, v.d);
+\end{minted}
+
+\end{document}
