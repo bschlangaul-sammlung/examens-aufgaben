@@ -139,11 +139,16 @@ programm
   })
 
 programm
-  .command('ungerade-loeschen')
-  .alias('u')
-  .description('Ungerade Seiten in einer PDF-Datei löschen.')
-  .action(function (): void {
-    // pdftk A=Scan.pdf cat Aodd output odd.pdf
+  .command('seiten-loeschen <pdf-datei>')
+  .alias('l')
+  .description('Gerade Seiten in einer PDF-Datei löschen. Die erste, dritte Seite etc. bleibt bestehen.')
+  .action(function (datei: string): void {
+    childProcess.spawnSync('pdftk', [
+      `A=${datei}`,
+      'cat',
+      'Aodd', 'output',
+      `${datei}_ungerade.pdf`
+    ])
   })
 
 programm
