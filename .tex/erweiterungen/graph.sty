@@ -2,6 +2,8 @@
 \ProvidesPackage{lehramt-informatik-graph}[2020/06/09]
 \RequirePackage{tikz}
 \RequirePackage{blkarray}
+\RequirePackage{xparse}
+
 \usetikzlibrary{arrows.meta}
 
 \def\graph knoten #1 kanten #2 {
@@ -48,3 +50,6 @@
 \def\KANTE(#1-#2)#3{
   \path[ultra thick] (#1) edge node {#3} (#2);
 }
+
+%% Dummy-Umgebung, zum Parsen durch Java gedacht.
+\NewDocumentEnvironment { liEinfachesGraphenFormat }{ +b } {} {}
