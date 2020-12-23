@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{normalformen}
 \begin{document}
 \liAufgabenTitel{Relation A-F}
 \section{DB.3 (Funktionale Abhängigkeiten und Zerlegungen)
@@ -8,11 +8,15 @@
 
 Gegeben sei das Relationenschema R=(U, F) mit der Attributmenge
 
-U={A, B,C, D, E}
+\begin{center}
+\liAttributMenge{U}{A, B, C, D, E}
+\end{center}
 
 und der folgenden Menge F von funktionalen Abhängigkeiten:
 
-F={A-B, ABC > D,D-> BC}.
+\begin{center}
+\liFunktionaleAbhaengigkeiten{F}{\lifa A > B, \lifa ABC > D, \lifa D > BC {}}
+\end{center}
 
 \begin{enumerate}
 
@@ -34,7 +38,7 @@ Begründung) sowie die Nichtschlüsselattribute an.
 %%
 
 \item Geben Sie eine Basis G von F an. Zerlegen Sie R mittels des
-Synthesealgorithmus in ein 3NF—Datenbankschema. Es genügt, die
+Synthesealgorithmus in ein 3NF-Datenbankschema. Es genügt, die
 resultierenden Attributmengen anzugeben.
 \end{enumerate}
 
