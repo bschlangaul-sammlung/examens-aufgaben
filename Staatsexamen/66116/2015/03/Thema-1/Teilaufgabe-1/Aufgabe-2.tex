@@ -21,38 +21,58 @@ Auszeichnung\_Stück (CD\_ID, Position, Typ).
 \begin{minted}{sql}
 CREATE TABLE Interpret (
   Interpreten_ID integer PRIMARY KEY,
-  Name varchar(20),
+  Name varchar(40),
   Bühnenstart date,
   Geschäftsadresse varchar(100)
 );
 
 CREATE TABLE CD (
   CD_ID integer PRIMARY KEY,
-  Name,
-  Interpreten_ID,
-  Erscheinungsdatum
+  Name varchar(20),
+  Interpreten_ID integer,
+  Erscheinungsdatum date
 );
 
 CREATE TABLE Musikstück (
   CD_ID integer,
-  Position,
-  Titel,
-  Länge
+  Position integer,
+  Titel varchar(50),
+  Länge integer
 );
 
 CREATE TABLE Auszeichnung_CD (
   CD_ID integer,
-  Typ
+  Typ varchar(20)
 );
 
 CREATE TABLE Auszeichnung_Stück (
   CD_ID integer,
-  Position,
-  Typ
+  Position integer,
+  Typ varchar(20)
 );
 
-INSERT INTO Interpret VALUES (1, 'Adele', '2005-01-01', 'London');
+INSERT INTO Interpret VALUES
+  (1, 'Adele', '2005-01-01', 'London'),
+  (2, 'Michael Jackson', '1971-01-01', 'Neverland Ranch'),
+  (3, 'Gensis', '1967-01-01', 'Godalming');
+
+INSERT INTO CD VALUES
+  (1, 'Adele 19', 1, '2008-01-28'),
+  (2, 'Adele 21', 1, '2011-01-19'),
+  (3, 'Adele 25', 1, '2015-11-20'),
+  (4, 'Thriller', 2, '1982-11-30');
+
+INSERT INTO Musikstück VALUES
+  (4, 1, 'Wanna Be Startin’ Somethin’', 363),
+  (4, 5, 'Beat It’ Somethin’', 258);
+
+INSERT INTO Auszeichnung_CD VALUES
+  (1, 'Gold');
+
+INSERT INTO Auszeichnung_Stück VALUES
+  (4, 5, 'Diamant');
 \end{minted}
+\index{SQL mit Übungsdatenbank}
 
 \begin{enumerate}
 
@@ -63,44 +83,115 @@ INSERT INTO Interpret VALUES (1, 'Adele', '2005-01-01', 'London');
 \item Welche CDs hat „Adele“ herausgebracht? Geben Sie die Namen der CDs
 aus.
 
+\begin{antwort}
 \begin{minted}{sql}
-SELECT * from Interpret;
+SELECT c.Name DISTINICT
+FROM CD c, Interpret i
+WHERE
+  i.Interpreten_ID = c.Interpreten_ID AND
+  i.name = 'Adele';
 \end{minted}
+\end{antwort}
 
 %%
 % b)
 %%
 
 \item Geben Sie für alle Interpreten - gegeben durch die ID und den
-Namen - die Anzahl ihrer veröffentlichten CDs an.
+Namen - die Anzahl ihrer veröffentlichten CDs an.\index{GROUP BY}
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT i.Interpreten_ID, i.Name, COUNT(*)
+FROM Interpret i, CD c
+WHERE
+  i.Interpreten_ID = c.Interpreten_ID
+GROUP BY i.Interpreten_ID, i.Name;
+\end{minted}
+\end{antwort}
 
 %%
 % c)
 %%
 
 \item Geben Sie die Länge des längsten Musikstücks auf der CD mit dem
-Namen „Thriller“ des Interpreten „Michael Jackson“ an.
+Namen „Thriller“ des Interpreten „Michael Jackson“ an.\index{MAX}
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT MAX(m.Länge)
+FROM Interpret i, CD c, Musikstück m
+WHERE
+  m.CD_ID = c.CD_ID AND
+  i.Name = 'Michael Jackson' AND
+  c.Name = 'Thriller';
+\end{minted}
+\end{antwort}
 
 %%
 % d)
 %%
 
 \item Geben Sie die Namen aller Interpreten aus, die eine Auszeichnung
-für eine CD oder eines ihrer Musikstücke bekommen haben.
+für eine CD oder eines ihrer Musikstücke bekommen haben.\index{OR}
+
+\begin{antwort}
+\begin{minted}{sql}
+SELECT i.Name
+FROM Auszeichnung_CD acd, Auszeichnung_Stück ast, CD c, Interpret i
+WHERE
+  (acd.CD_ID = c.CD_ID OR ast.CD_ID = c.CD_ID) AND
+  c.Interpreten_ID = i.Interpreten_ID;
+\end{minted}
+\end{antwort}
 
 %%
 % e)
 %%
 
 \item Fügen Sie ein, dass „Adele“ einen „Emmy“ für ihre CD mit dem Namen
-„Adele 21“ bekommen hat.
+„Adele 21“ bekommen hat.\index{INSERT}
+
+\begin{antwort}
+\begin{minted}{sql}
+INSERT INTO Auszeichnung_CD VALUES
+  (
+    (
+      SELECT c.CD_ID
+      FROM CD c, Interpret i
+      WHERE
+        c.Name = 'Adele 21' AND
+        i.Interpreten_ID = c.Interpreten_ID AND
+        i.Name = 'Adele'
+    ),
+    'Emmy'
+  );
+
+-- Test
+SELECT * from Auszeichnung_CD;
+\end{minted}
+\end{antwort}
 
 %%
 % f)
 %%
 
 \item Ändern Sie die Geschäftsadresse von „Genesis“ auf „Hollywood
-Boulevard 13, Los Angeles“.
+Boulevard 13, Los Angeles“.\index{UPDATE}
+
+\begin{antwort}
+\begin{minted}{sql}
+-- Test
+SELECT * FROM Interpret;
+
+UPDATE Interpret
+SET Geschäftsadresse = 'Hollywood Boulevard 13, Los Angeles'
+WHERE Name = 'Gensis';
+
+-- Test
+SELECT * FROM Interpret;
+\end{minted}
+\end{antwort}
 
 \end{enumerate}
 
