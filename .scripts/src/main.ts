@@ -15,7 +15,7 @@ import { erzeugeAufgabenVorlage } from './aktionen/erzeuge-aufgaben-vorlage'
 import { erzeugeReadme } from './aktionen/erzeuge-readme'
 import { erzeugeExamensAufgabeVorlage } from './aktionen/erzeuge-examens-aufgabe-vorlage'
 import { führeSqlAus } from './aktionen/fuehre-sql-aus'
-import { öffneDurchBibtex } from './aktionen/oeffne-durch-bibtex'
+import { öffne } from './aktionen/oeffne'
 
 const programm = new Command()
 programm.description(`Repository-Pfad: ${repositoryPfad}`)
@@ -56,15 +56,14 @@ programm
   })
 
 programm
-  .command('oeffne-examen <referenz>')
-  .description('Öffne eine Staatsexamen durch die Referenz, z. B. 66116:2020:09.')
+  .command('oeffne <referenz...>')
+  .description('Öffne eine Staatsexamen oder andere Materialien durch die Referenz, z. B. 66116:2020:09.')
   .alias('o')
-  .action(function (ref: string, cmdObj: object): void {
-    const examen = examenSammlung.gibDurchReferenz(ref)
-    if (fs.existsSync(examen.pfad)) {
-      öffneProgramm('/usr/bin/xdg-open', examen.pfad)
+  .action(function (referenz: string[], cmdObj: object): void {
+    if (referenz.length === 1) {
+      öffne(referenz[0])
     } else {
-      console.log(`Path ${examen.pfad} doesn’t exist.`)
+      öffne(referenz.join(':'))
     }
   })
 
@@ -192,11 +191,5 @@ programm
       '--sidecar', `${datei}_rotated.pdf`
     ])
   })
-
-programm
-  .command('oeffne-bibtex <referenz>')
-  .alias('b')
-  .description('Öffne Datei durch eine Bibtex-Referenz, z. B. db:ab:1.')
-  .action(öffneDurchBibtex)
 
 programm.parse(process.argv)

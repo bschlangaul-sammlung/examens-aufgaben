@@ -1,1 +1,1 @@
-declare module 'biblatex-csl-converter'
+declare module '*'
