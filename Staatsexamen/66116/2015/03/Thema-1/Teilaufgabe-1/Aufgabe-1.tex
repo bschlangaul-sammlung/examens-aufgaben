@@ -1,0 +1,63 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{}
+\section{
+\index{Entity-Relation-Modell}
+\footcite{66116:2015:03}}
+
+DB.1 (Datenmodellierung: ER-Modell, SQL)
+
+In einer Musik-Datenbank sollen folgende Informationen zu Interpreten und deren CDs modelliert
+“werden: ‘ ‘ "
+
+- Zu einem Interpreten soll eine eindeutige ID, der Name, das Jahr seines Bühnenstarts, seine Geschäftsadresse sowie sein Musikgenre angegeben sein. Das Musikgenre kann mehrere Werte umfassen (mehrwertiges Attribut).
+
+- Eine CD hat eine eindeutige ID, einen Namen (Titel), einen Interpreten, ein Erscheinungsdatum
+und bis zu 20 Positionen (Musikstücke). An jeder Position steht ein Musikstück. Für dieses ist der
+Titel und die Länge in Sekunden angegeben.
+
+- Eine CD kann Auszeichnungen - z. B. vom Typ goldene Schallplatte oder Emmy bekommen.
+Ebenso kann auch ein einzelnes Musikstück Auszeichnungen bekommen.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item  Modellieren Sie das oben dargestellte Szenario möglichst
+vollständig in einem ER-Modell. Verwenden Sie, wann immer möglich,
+(binäre oder auch höherstellige) Relationships. Modellieren Sie
+Musikstücke in einem schwachen Entity-Typen.
+
+%%
+% b)
+%%
+
+\item Übertragen Sie Ihr ER-Modell - bis auf die Typen zu den
+Auszeichnungen - ins relationale Datenmodell. Erstellen Sie dazu
+Tabellen mit Hilfe von CREATE TABLE-Statements in Sov. Berücksichtigen
+Sie die Fremdschlüsselbeziehungen.
+
+%%
+% c)
+%%
+
+\item Es soll die Integritätsbedingung eingehalten werden, so dass die
+Anzahl der Positionen auf einer CD höchstens 20 ist. Schreiben Sie ein
+SELECT-Statement, das diese Integritätsbedin. gung überprüft, indem es
+die verletzenden CDs ausgibt.
+
+%%
+% d)
+%%
+
+\item Geben Sie geeignete INSERT-Statements an, die in alle beteiligten
+Tabellen jeweils mindestens ein Tupel einfügen, so dass alle
+Integritätsbedingungen erfüllt sind, nachdem alle Einfü- gungen
+ausgeführt wurden. Lediglich zu den Auszeichnungen müssen keine Tupel
+eingefügt werden.
+\end{enumerate}
+
+\end{document}

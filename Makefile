@@ -10,7 +10,7 @@ install_config:
 	.scripts/install-config.sh
 
 install_cli:
-	cd .scripts; npm run build
+	cd .scripts; npm install; npm run build
 
 install_tex:
 	.tex/install.sh

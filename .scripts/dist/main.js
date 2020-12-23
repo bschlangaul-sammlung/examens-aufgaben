@@ -22,12 +22,11 @@ var glob_1 = __importDefault(require("glob"));
 var commander_1 = require("commander");
 var aufgabe_1 = require("./aufgabe");
 var helfer_1 = require("./helfer");
-var sammlung_1 = require("./sammlung");
 var erzeuge_aufgaben_vorlage_1 = require("./aktionen/erzeuge-aufgaben-vorlage");
 var erzeuge_readme_1 = require("./aktionen/erzeuge-readme");
 var erzeuge_examens_aufgabe_vorlage_1 = require("./aktionen/erzeuge-examens-aufgabe-vorlage");
 var fuehre_sql_aus_1 = require("./aktionen/fuehre-sql-aus");
-var oeffne_durch_bibtex_1 = require("./aktionen/oeffne-durch-bibtex");
+var oeffne_1 = require("./aktionen/oeffne");
 var programm = new commander_1.Command();
 programm.description("Repository-Pfad: " + helfer_1.repositoryPfad);
 programm.name('lehramt-informatik.js');
@@ -63,16 +62,15 @@ programm
     helfer_1.öffneVSCode(pfad);
 });
 programm
-    .command('oeffne-examen <referenz>')
-    .description('Öffne eine Staatsexamen durch die Referenz, z. B. 66116:2020:09.')
+    .command('oeffne <referenz...>')
+    .description('Öffne eine Staatsexamen oder andere Materialien durch die Referenz, z. B. 66116:2020:09.')
     .alias('o')
-    .action(function (ref, cmdObj) {
-    var examen = sammlung_1.examenSammlung.gibDurchReferenz(ref);
-    if (fs_1.default.existsSync(examen.pfad)) {
-        helfer_1.öffneProgramm('/usr/bin/xdg-open', examen.pfad);
+    .action(function (referenz, cmdObj) {
+    if (referenz.length === 1) {
+        oeffne_1.öffne(referenz[0]);
     }
     else {
-        console.log("Path " + examen.pfad + " doesn\u2019t exist.");
+        oeffne_1.öffne(referenz.join(':'));
     }
 });
 programm
@@ -213,9 +211,4 @@ programm
         datei + "_rotated.pdf"
     ]);
 });
-programm
-    .command('oeffne-bibtex <referenz>')
-    .alias('b')
-    .description('Öffne Datei durch eine Bibtex-Referenz, z. B. db:ab:1.')
-    .action(oeffne_durch_bibtex_1.öffneDurchBibtex);
 programm.parse(process.argv);
