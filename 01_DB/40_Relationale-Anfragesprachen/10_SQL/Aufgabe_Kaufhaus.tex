@@ -285,22 +285,14 @@ VALUES (2, 'Bürste');
 neu in das Sortiment aufgenommen. Eine Artikelnummer wurde noch nicht
 festgelegt.
 
-\begin{antwort}[falsch]
-Artikelnummer ist noch nicht festgelegt.
-\begin{minted}{sql}
-INSERT INTO Artikel
-VALUES (2342, 'Damenhose', 89.00, 60.50);
-\end{minted}
-\end{antwort}
-
 \begin{antwort}
-ArtNr ist der Primärschlüssel der Tabelle Artikel. Bei Eingabe eines
-neuen Datensatzes müssen mindestens die Werte aller Attribute, die zum
-Primärschlüssel gehören, angegeben werden. Da aber im Fall der Damenhose
-die Artikelnummer noch nicht festgelegt ist, ist eine Eingabe der
-Damenhose-Daten in die Tabelle Artikel nicht möglich. Hinweis: Denken
-Sie also immer daran, dass bei Einfügen von Datensätzen der
-Primärschlüssel keine NULL-Werte enthalten darf!
+\texttt{ArtNr} ist der Primärschlüssel der Tabelle \texttt{Artikel}. Bei
+Eingabe eines neuen Datensatzes müssen mindestens die Werte aller
+Attribute, die zum Primärschlüssel gehören, angegeben werden. Da aber im
+Fall der Damenhose die Artikelnummer noch nicht festgelegt ist, ist eine
+Eingabe der Damenhose-Daten in die Tabelle Artikel nicht möglich.
+Hinweis: Denken Sie also immer daran, dass bei Einfügen von Datensätzen
+der Primärschlüssel keine NULL-Werte enthalten darf!
 \end{antwort}
 
 %%
@@ -339,13 +331,6 @@ WHERE Abteilungsnahme = 'Lebensmittel';
 \item Die Abteilung Feinkost hat einen Bestand von 150
 Räucherlachspackungen.
 
-\begin{antwort}[falsch]
-vergessen Wert in Abteilung einzutragen
-\begin{minted}{sql}
-INSERT INTO Bestand VALUES ('Feinkost', 1401, 150);
-\end{minted}
-\end{antwort}
-
 \begin{antwort}
 Die Attribute ArtNr und Abteilungsname der Tabelle
 Bestand sind Fremdschlüssel. Ein neuer Datensatz darf in die Tabelle nur
@@ -368,7 +353,6 @@ INSERT INTO Abteilung (Abteilungsname) VALUES ('Feinkost');
 INSERT INTO Bestand VALUES ('Feinkost', 1401, 150);
 \end{minted}
 \end{antwort}
-
 \end{enumerate}
 
 %%
@@ -405,7 +389,6 @@ SELECT * FROM Abteilung
 WHERE Stockwerk = 'II' OR Abteilungsleiter = 'Monika Stiehl';
 \end{minted}
 \end{antwort}
-
 \end{enumerate}
 
 %%
@@ -428,11 +411,6 @@ FROM Abteilung
 WHERE NOT (Abteilungsname = 'Kosmetik');
 \end{minted}
 
-\begin{antwort}[richtig]
-Es werden alle Abteilungsleiter aus der Abteilungsleiter der
-Kosmetik-Abteilung aufgelistet.
-\end{antwort}
-
 \begin{antwort}
 Gesucht sind die Namen aller Abteilungsleiter mit Ausnahme der
 Kosmetik-Abteilung. Duplikate sollen eliminiert werden.
@@ -450,11 +428,6 @@ FROM Bestand
 WHERE Abteilungsname = "Lebensmittel" AND Vorrat <= 100;
 \end{minted}
 
-\begin{antwort}[richtig]
-Gesucht sind die Artikelnummer aller Artikel von denen 100 oder weniger
-Bestand vorhanden ist und die aus der Abteilung Lebensmittel stammen.
-\end{antwort}
-
 \begin{antwort}
 Gesucht sind die Nummern der Artikel, von denen in der
 Lebensmittelabteilung maximal 100 vorrätig sind.
@@ -464,7 +437,8 @@ Lebensmittelabteilung maximal 100 vorrätig sind.
 
 \item Interpretieren Sie nun die obigen Tabellen als Repräsentationen
 der drei Relationen Artikel, Abteilung und Bestand. Bestimmen Sie die
-Ergebnisrelationen folgender relationaler Ausdrücke\index{Relationale Algebra}:
+Ergebnisrelationen folgender relationaler Ausdrücke\index{Relationale
+Algebra}:
 
 \begin{enumerate}
 
@@ -602,14 +576,6 @@ Sommerkleid  & 71.50
 
 \item Wie viele Packungen Zwieback sind noch vorrätig?
 
-\begin{antwort}[richtig]
-\begin{minted}{sql}
-SELECT b.Vorrat
-FROM Bestand b JOIN Artikel a ON b.ArtNr = a.ArtNr
-WHERE a.Bezeichnung = 'Zwieback'
-\end{minted}
-\end{antwort}
-
 \begin{antwort}
 Hinweis: In obigem Lösungsansatz wird berücksichtigt, dass ein Artikel,
 hier der Zwieback, in mehreren Abteilungen verkauft werden kann. Geht
@@ -637,7 +603,6 @@ Bestand.Abteilungsname = Abteilung.Abteilungsname AND
 Artikel.Bezeichnung = 'Räucherlachs';
 \end{minted}
 \end{antwort}
-
 \end{itemize}
 
 %%
@@ -691,21 +656,6 @@ FROM Artikel WHERE ArtNr in (
 \item Welche Produkte (Angabe der Bezeichnung) werden im Erdgeschoss
 verkauft?
 
-\begin{antwort}[falsch]
-Fragestellung: Es sollen geschachtelte SQL-Anfragen verwendet werden.
-\verb|DISTINCT| vergessen
-\begin{minted}{sql}
-SELECT Bezeichnung
-FROM Artikel
-WHERE ArtNr in (
-  SELECT ArtNr
-  FROM Abteilung, Bestand
-  WHERE Abteilung.Abteilungsname = Bestand.Abteilungsname AND
-    Abteilung.Stockwerk = 'EG'
-);
-\end{minted}
-\end{antwort}
-
 \begin{antwort}
 \begin{minted}{sql}
 SELECT DISTINCT Bezeichnung
@@ -729,33 +679,6 @@ WHERE ArtNr in (
 \item Gib die Namen aller Abteilungsleiter aus, in deren Abteilungen von
 jedem Artikel weniger als 100 Exemplare vorrätig sind!
 
-\begin{antwort}[richtig]
-\begin{minted}{sql}
-SELECT DISTINCT Abteilungsleiter
-FROM Abteilung
-WHERE Abteilungsname IN (
-  SELECT Abteilungsname
-  FROM Bestand
-  GROUP BY Abteilungsname
-  HAVING MAX(Vorrat) < 100
-);
-\end{minted}
-\end{antwort}
-
-\begin{antwort}[richtig]
-\begin{minted}{sql}
-SELECT DISTINCT Abteilungsleiter
-FROM Abteilung
-WHERE Abteilungsname NOT IN (
-  SELECT Abteilungsname
-  FROM Bestand
-  WHERE Vorrat >= 100
-);
-\end{minted}
-\end{antwort}
-
-oder:
-
 \begin{antwort}
 \begin{minted}{sql}
 SELECT DISTINCT Abteilungsleiter
@@ -778,21 +701,8 @@ WHERE NOT EXISTS (
 geschachtelten SQL Anfrage! (Gib die Bezeichnungen und die
 Artikelnummern aller Artikel aus, die nicht mehr als der Artikel mit der
 Artikelnummer 1401 kosten!)
-\begin{antwort}[falsch]
-Irgendwie habe ich über Bezeichnung gejoint, was nicht nötig ist.
-\begin{minted}{sql}
-SELECT a1.Bezeichnung, a1.ArtNr as Artikelnummer
-FROM Artikel a1, Artikel a2, Bestand b
-WHERE
-  b.ArtNr = a1.ArtNr AND
-  a2.ArtNr = a1.ArtNr AND
-  a2.ArtNr = 1401 AND
-  a1.Verkaufspreis <= a2.Verkaufspreis;
-\end{minted}
-\end{antwort}
 
 \begin{antwort}
-Irgendwie habe ich über Bezeichnung gejoint, was nicht nötig ist.
 \begin{minted}{sql}
 SELECT a.Bezeichnung, a.ArtNr as Artikelnummer
 FROM Artikel a, Artikel b
@@ -923,16 +833,6 @@ Abteilungen angeboten? Die Ausgabe soll absteigend nach der
 Artikelnummer sortiert werden. Bei gleicher Artikelnummer sollen die
 betroffenen Abteilungen alphabetisch aufgelistet werden.
 
-\begin{antwort}[richtig]
-Viel zu kompliziert. Geht ohne Joins
-\begin{minted}{sql}
-SELECT Artikel.ArtNr AS Artikelnummer, Abteilungsname
-FROM Artikel, Bestand WHERE
-  Bestand.ArtNr = Artikel.ArtNr
-ORDER BY Artikel.ArtNr DESC, Abteilungsname ASC;
-\end{minted}
-\end{antwort}
-
 \begin{antwort}
 \begin{minted}{sql}
 SELECT ArtNr, Abteilungsname
@@ -1024,15 +924,6 @@ ORDER BY Bezeichnung, Verkaufspreis DESC;
 noch mindestens 130 Exemplare vorrätig sind, die Artikelnummer und den
 aktuellen Vorrat aus!
 
-\begin{antwort}[falsch]
-Derselbe Artikel kann in mehreren Abteilungen angeboten werden.
-\begin{minted}{sql}
-SELECT ArtNr, Vorrat
-FROM Bestand
-WHERE Vorrat >= 130;
-\end{minted}
-\end{antwort}
-
 \begin{antwort}
 \begin{minted}{sql}
 SELECT ArtNr, SUM(Vorrat)
@@ -1059,16 +950,6 @@ HAVING SUM(Vorrat) >= 130;
 \item Sicht \verb|view1|: Gesucht sind alle Informationen zu Artikeln,
 an denen das Kaufhaus mehr als 35\% verdient.
 
-\begin{antwort}[falsch]
-Da stimmt irgendwas nicht mit er Mathematik
-\begin{minted}{sql}
-CREATE VIEW view1 AS
-SELECT *
-FROM Artikel
-WHERE 1 - Einkaufspreis / Verkaufspreis >= 0.35;
-\end{minted}
-\end{antwort}
-
 \begin{antwort}
 \begin{minted}{sql}
 CREATE VIEW view1 AS
@@ -1086,16 +967,6 @@ WHERE Verkaufspreis > 1.35 * Einkaufspreis;
 an denen das Kaufhaus mehr als 35\% verdient und die für höchstens 50 €
 verkauft werden.
 
-\begin{antwort}[richtig]
-Wahrscheinlich soll mit der View weitergemacht werden.
-\begin{minted}{sql}
-CREATE VIEW view2 AS
-SELECT *
-FROM Artikel
-WHERE Verkaufspreis > 1.35 * Einkaufspreis AND Verkaufspreis <= 50;
-\end{minted}
-\end{antwort}
-
 \begin{antwort}
 \begin{minted}{sql}
 CREATE VIEW view2 AS
@@ -1105,5 +976,4 @@ WHERE Verkaufspreis <= 50;
 \end{minted}
 \end{antwort}
 \end{enumerate}
-
 \end{document}

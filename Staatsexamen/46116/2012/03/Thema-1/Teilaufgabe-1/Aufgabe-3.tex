@@ -60,23 +60,6 @@ WHERE
 
 \item Hans Meier aus der Abteilung C4 zieht von München nach Erlangen um.
 
-\begin{antwort}[falsch]
-Zu komplitziert möglicherweise falsch
-\begin{minted}{sql}
-UPDATE Angesteller
-SET Ort = 'Erlangen'
-WHERE PersNr IN (
-  SELECT PersNr
-  FROM Angestellter an, Abteilung ab
-  WHERE
-    an.AbtNr = ab.AbtNr AND
-    an.Name = 'Hans Meier' AND
-    an.Ort = 'München' AND
-    ab.Name = 'C4'
-);
-\end{minted}
-\end{antwort}
-
 \begin{antwort}
 \begin{minted}{sql}
 UPDATE Angestellter SET Ort = "Erlangen"
