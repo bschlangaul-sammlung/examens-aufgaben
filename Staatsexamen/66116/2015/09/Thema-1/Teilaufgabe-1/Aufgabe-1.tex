@@ -1,0 +1,50 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Online-Auktionshaus}
+\section{1. Modellierung
+\index{Entity-Relation-Modell}
+\footcite{66116:2015:09}}
+
+Wir wollen eine relationale Datenbankstruktur für ein
+Online-Auktionshaus modellieren.
+
+Das Auktionshaus hat Mitglieder. Diese Mitglieder haben Kundennummern,
+Namen und Adressen. Sie können Verkäufer und/oder Käufer sein. Verkäufer
+können eine Laden-URL (eine Subdomain) erhalten, die zu einer Seite mit
+ihren aktuellen Auktionen führt. Verkäufer können neue Auktionen
+starten. Die Auktionen eines Verkäufers werden durchnummeriert. Diese
+Auktionsnummer ist nur je Verkäufer eindeutig. Jede Auktion hat ein
+Mindestgebot und eine Ablaufzeit.
+
+Auf Auktionen können Gebote abgegeben werden. Die Gebote auf eine
+Auktion werden nach ihrem Eintreffen nummeriert. Diese Nummer ist nur
+innerhalb einer Auktion eindeutig. Zu einem Gebot werden noch die Zeit
+des Gebots sowie der gebotene Geldbetrag angegeben. Die Gebote werden
+von Käufern abgegeben. Jedes Gebot muss einem Käufer zugeordnet sein.
+
+Jede Auktion besteht aus einer Menge von Artikeln, aber aus mindestens
+einem. Artikel haben eine Beschreibung und können und über ihre
+Artikel-ID identifiziert werden. Zur Katalogisierung der Artikel gibt es
+Kategorien. Kategorien haben eine eindeutige ID und einen Namen. Jede
+Kategorie kann Subkategorien besitzen. Auch Subkategorien sind
+Kategorien (und können damit weitere Subkategorien besitzen). Jeder
+Artikel kann beliebig vielen Kategorien zugeordnet werden.
+
+Entwerfen Sie für das beschriebene Szenario ein ER-Diagramm. Bestimmen
+Sie hierzu:
+
+\begin{itemize}
+\item die Entity-Typen, die Relationship-Typen und jeweils deren
+Attribute,
+
+\item ein passendes ER-Diagramm,
+
+\item die Primärschlüssel der Entity-Typen, welche Sie anschließend in
+das ER-Diagramm eintragen,
+
+\item die Funktionalitäten der Relationship-Typen, welche Sie ebenfalls
+in das ER-Diagramm eintragen.
+\end{itemize}
+
+\end{document}

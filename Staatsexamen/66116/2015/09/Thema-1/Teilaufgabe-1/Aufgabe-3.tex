@@ -1,0 +1,89 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Vater und Mutter}
+\section{3.SQL
+\index{SQL}
+\footcite{66116:2015:09}}
+
+Gegeben seien folgende Relationen:
+Mensch(ID, MutterID, VaterID)
+Mann(ID)
+
+Frau(ID)
+
+Das zugehörige ER-Modell für dieses relationale Datenbankschema sieht
+folgendermaßen aus:
+
+Disjunkte
+Spezialisierung
+
+Bearbeiten Sie folgende Teilaufgaben:
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Finden Sie die Töchter der Frau mit ID 42.
+
+%%
+% b)
+%%
+
+\item Gibt es Männer, die ihre eigenen Großväter sind? Formulieren Sie eine
+geeignete SQL-Anfrage.
+
+%%
+% c)
+%%
+
+\item Definieren Sie eine View VaterKind (VaterID; KindID), die allen
+Vätern (VaterID) ihre Kinder (KinderID) zuordnet. Diese View darf keine
+NULL-Werte enthalten.
+
+%%
+% d)
+%%
+
+\item Verwenden Sie die View aus c), um alle Väter zurückzugeben,
+absteigend geordnet nach der Anzahl ihrer Kinder.
+
+%%
+% e)
+%%
+
+\item Hugo möchte mit folgender Anfrage auf Basis der View aus c) alle
+kinderlosen Männer erhalten:
+
+SELECT VaterID
+
+FROM VaterKind
+
+GROUP BY VaterID
+
+HAVING COUNT(KindID) = 0
+
+\begin{enumerate}
+
+%%
+% i.
+%%
+
+\item Was ist das Ergebnis von Hugos Anfrage und warum?
+
+%%
+% ii.
+%%
+
+\item Formulieren Sie eine Anfrage, die tatsächlich alle kinderlosen
+Männer zurückliefert.
+
+\end{enumerate}
+
+\end{enumerate}
+
+Hinweis: Denken Sie daran, dass SQL auch Mengenoperationen kennt.
+
+\end{document}
