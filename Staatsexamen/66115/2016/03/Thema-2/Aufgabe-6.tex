@@ -33,32 +33,54 @@ Verwendete Abkürzungen:
 
 Zahl = Zahl in Kilometern
 
-\begin{center}
-\graph knoten {
-  \knoten{A}(3,1)
-  \knoten{E}(2,3)
-  \knoten{F}(4,7)
-  \knoten{KA}(0,2)
-  \knoten{KS}(9,6)
-  \knoten{M}(6,1)
-  \knoten{MA}(0,6)
-  \knoten{N}(6,3)
-  \knoten{S}(7,5)
-  \knoten{W}(4,5)
-} kanten {
-  \kante(A-KA){250}
-  \kante(A-M){84}
-  \kante(E-W){186}
-  \kante(F-KS){173}
-  \kante(F-MA){85}
-  \kante(F-W){217}
-  \kante(M-KS){502}
-  \kante(M-N){167}
-  \kante(MA-KA){80}
-  \kante(N-S){183}
-  \kante(N-W){103}
-}
-\end{center}
+\begin{liEinfachesGraphenFormat}
+A: 3 1
+E: 2 3
+F: 4 7
+KA: 0 2
+KS: 9 6
+M: 6 1
+MA: 0 6
+N: 6 3
+S: 7 5
+W: 4 5
+A -- KA: 250
+A -- M: 84
+E -- W: 186
+F -- KS: 173
+F -- MA: 85
+F -- W: 217
+M -- KS: 502
+M -- N: 167
+MA -- KA: 80
+N -- S: 183
+N -- W: 103
+\end{liEinfachesGraphenFormat}
+
+\begin{tikzpicture}
+\node[li graph knoten] (A) at (3,1) {A};
+\node[li graph knoten] (E) at (2,3) {E};
+\node[li graph knoten] (F) at (4,7) {F};
+\node[li graph knoten] (KA) at (0,2) {KA};
+\node[li graph knoten] (KS) at (9,6) {KS};
+\node[li graph knoten] (M) at (6,1) {M};
+\node[li graph knoten] (MA) at (0,6) {MA};
+\node[li graph knoten] (N) at (6,3) {N};
+\node[li graph knoten] (S) at (7,5) {S};
+\node[li graph knoten] (W) at (4,5) {W};
+
+\path[li graph kante] (A) edge node {250} (KA);
+\path[li graph kante] (A) edge node {84} (M);
+\path[li graph kante] (E) edge node {186} (W);
+\path[li graph kante] (F) edge node {173} (KS);
+\path[li graph kante] (F) edge node {85} (MA);
+\path[li graph kante] (F) edge node {217} (W);
+\path[li graph kante] (M) edge node {502} (KS);
+\path[li graph kante] (M) edge node {167} (N);
+\path[li graph kante] (MA) edge node {80} (KA);
+\path[li graph kante] (N) edge node {183} (S);
+\path[li graph kante] (N) edge node {103} (W);
+\end{tikzpicture}
 
 %%
 % b)
