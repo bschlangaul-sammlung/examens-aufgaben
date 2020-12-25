@@ -128,31 +128,20 @@ Schüler (SchülerID, Vorname, Nachname, Klasse)
 VALUES (9, 'Johannes', 'Schmied', '4C');
 \end{minted}
 
-\begin{antwort}[richtig]
+\begin{antwort}
 Nein, denn die Spalte, die Primärschlüssel heißt Schüler und nicht
 SchülerID. Außerdem existiert bereits ein Schuüler mit der ID 6.
-\end{antwort}
-
-\begin{antwort}
-nein, SchülerID muss als Primärschlüssel eindeutig sein und ist bereits vergeben
 \end{antwort}
 
 \begin{minted}{sql}
 INSERT INTO Noten VALUES (6, 'Chemie', 1, 2, '1.4.2020');
 \end{minted}
 
-\begin{antwort}[richtig]
+\begin{antwort}
 Nein, Datum ist zwingend nötig, da es im Primärschlüssel enthalten ist.
 Es gibt keine Schüler mit der ID 9. Der müsste vorher angelegt sein,
 da die Spalte SchülerID von Noten auf den Fremdschlüssel Schüler aus
 der Schülertabelle verweist.
-\end{antwort}
-
-\begin{antwort}
-nein, Schüler mit der ID 9 existiert noch nicht, sodass diese Noten
-nicht eingetragen werden können, da Integritätsbedingungen nicht erfüllt
-(SchülerID ist Fremdschlüssel), zudem fehlt das Datum. Da es sich
-hier um ein Schlüsselattribut handelt, kann es nicht NULL sein.
 \end{antwort}
 
 %%
@@ -171,12 +160,6 @@ auf Datenbankebene verhindert werden. Dabei sollen die Primärschlüssel
 nicht verändert werden. Geben Sie den Befehl an, der diese Änderung
 durchführt.
 
-\begin{antwort}[falsch]
-\begin{minted}{sql}
-ALTER TABLE Schüler ALTER COLUMN Vorname ADD UNIQUE;
-\end{minted}
-\end{antwort}
-
 \begin{antwort}
 \begin{minted}{sql}
 ALTER TABLE Schüler
@@ -189,18 +172,11 @@ Sie den SQL-Befehl an, der den genannten Schüler in die Klasse “4C“
 überführt.
 \index{UPDATE}
 
-\begin{antwort}[richtig]
+\begin{antwort}
 \begin{minted}{sql}
 UPDATE Schüler
 SET Klasse = '4C'
 WHERE Vorname = 'Tim' AND Nachname = 'Weber' AND SchülerID = 5;
-\end{minted}
-\end{antwort}
-
-\begin{antwort}
-\begin{minted}{sql}
-UPDATE Schüler
-SET Klasse = '4C' WHERE SchülerID = 5;
 \end{minted}
 \end{antwort}
 
@@ -209,17 +185,6 @@ die Schule. Löschen Sie die Schülerin aus der Datenbank. Nennen Sie
 einen möglichen Effekt, welcher bei der Verwendung von Primär- und
 Fremdschlüsseln auftreten kann.
 \index{DELETE}
-
-\begin{antwort}[richtig]
-\begin{minted}{sql}
-DELETE FROM Noten WHERE SchülerID = 1;
-DELETE FROM Schüler WHERE Schüler = 1
-\end{minted}
-
-Es könnte passieren, dass man vergisst die Einträge in Noten zu löschen,
-denn der Fremdschlüssel SchülerID verweist auf den Primärschlüssel
-SchülerID in Schüler.
-\end{antwort}
 
 \begin{antwort}
 Löschen aller Noten von Laura Müller, falls ON DELETE CASCADE gesetzt.
