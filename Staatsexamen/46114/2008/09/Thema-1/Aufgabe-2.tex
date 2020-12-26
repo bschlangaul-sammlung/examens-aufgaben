@@ -1,0 +1,92 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{graph}
+\begin{document}
+\liAufgabenTitel{Dijkstra}
+\section{Aufgabe 2
+\index{Algorithmus von Dijkstra}
+\footcite{46114:2008:09}}
+
+Gegeben sei folgender Graph:
+
+\begin{tabbing}
+\hspace{1cm} \= \hspace{3cm} \kill
+V: \> \{a, b, c, d, e\} \\
+E: \> a $\rightarrow$ a, b \\
+\> b $\rightarrow$ b, d, e \\
+\> c $\rightarrow$ c, d \\
+\> d $\rightarrow$ a, e \\
+\end{tabbing}
+
+\begin{liEinfachesGraphenFormat}
+a: 0 0
+b: 1 1
+c: 4 1
+d: 3 0
+e: 2 2
+a -- b
+b -- d
+b -- e
+c -- d
+d -- e
+d -- a
+\end{liEinfachesGraphenFormat}
+
+\begin{center}
+\begin{tikzpicture}[li graph]
+\node (a) at (0,0) {a};
+\node (b) at (1,1) {b};
+\node (c) at (4,1) {c};
+\node (d) at (3,0) {d};
+\node (e) at (2,2) {e};
+
+\path[li graph kante] (a) edge (b);
+\path[li graph kante] (b) edge (d);
+\path[li graph kante] (b) edge (e);
+\path[li graph kante] (c) edge (d);
+\path[li graph kante] (d) edge (a);
+\path[li graph kante] (d) edge (e);
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Stellen Sie den Graphen grafisch dar!
+
+%%
+% b)
+%%
+
+\item Berechnen Sie mit dem Algorithmus von Dijkstra schrittweise die Länge der kürzesten
+Pfade ab dem Knoten a! Nehmen Sie dazu an, dass alle Kantengewichte 1 sind. Erstellen
+Sie eine Tabelle gemäß folgendem Muster:
+
+ausgewählt |a| b c d e
+
+Ergebnis:
+
+Hinweis: Nur mit Angabe der jeweiligen Zwischenschritte gibt es Punkte. Es reicht also
+nicht, nur das Endergebnis hinzuschreiben.
+
+%%
+% c)
+%%
+
+\item Welchen Aufwand hat der Algorithmus von Dijkstra bei Graphen mit
+|V| Knoten und |E| Kanten,
+
+\begin{itemize}
+\item wenn die Kantengewichte alle 1 sind? Mit welcher Datenstruktur und
+welchem Vorgehen lässt sich der Aufwand in diesem Fall reduzieren (mit
+kurzer Begründung)?
+
+\item wenn die Kantengewichte beliebig sind und als Datenstruktur eine
+Halde verwendet wird (mit kurzer Begründung)?
+\end{itemize}
+
+\end{enumerate}
+
+\end{document}
