@@ -44,11 +44,58 @@ Reihenfolge ab.
 }
 
 \begin{liEinfachesGraphenFormat}
-v: A 1 2
+A: 1 4
+B: 3 5
+C: 3 3
+D: 0 2
+E: 5 5
+F: 5 1
+G: 3 0
+H: 6 3
+I: 8 4
+A -- B: 2
+A -- C: 5
+A -- D: 2
+B -- C: 3
+B -- E
+C -- D: 3
+C -- E
+C -- F
+C -- H
+D -- G: 2
+E -- I: 7
+F -- G: 2
+F -- H: 3
+H -- I
 \end{liEinfachesGraphenFormat}
 
-\begin{liEinfachesGraphenFormat}
-v: B 1 2
-\end{liEinfachesGraphenFormat}
+Als TikZ-Umgebung
+
+\begin{tikzpicture}
+\node[li graph knoten] (A) at (1,4) {A};
+\node[li graph knoten] (B) at (3,5) {B};
+\node[li graph knoten] (C) at (3,3) {C};
+\node[li graph knoten] (D) at (0,2) {D};
+\node[li graph knoten] (E) at (5,5) {E};
+\node[li graph knoten] (F) at (5,1) {F};
+\node[li graph knoten] (G) at (3,0) {G};
+\node[li graph knoten] (H) at (6,3) {H};
+\node[li graph knoten] (I) at (8,4) {I};
+
+\path[li graph kante] (A) edge node {2} (B);
+\path[li graph kante] (A) edge node {5} (C);
+\path[li graph kante] (A) edge node {2} (D);
+\path[li graph kante] (B) edge node {3} (C);
+\path[li graph kante] (B) edge (E);
+\path[li graph kante] (C) edge node {3} (D);
+\path[li graph kante] (C) edge (E);
+\path[li graph kante] (C) edge (F);
+\path[li graph kante] (C) edge (H);
+\path[li graph kante] (D) edge node {2} (G);
+\path[li graph kante] (E) edge node {7} (I);
+\path[li graph kante] (F) edge node {2} (G);
+\path[li graph kante] (F) edge node {3} (H);
+\path[li graph kante] (H) edge (I);
+\end{tikzpicture}
 
 \end{document}

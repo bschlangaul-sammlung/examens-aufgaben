@@ -417,6 +417,8 @@ OCR des oben genannten Scans:
 - 2005 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46114/2005/03/Scan.pdf" download="Staatsexamen-Informatik_46114-2005-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46114/2005/03/OCR.txt" download="Staatsexamen-Informatik_46114-2005-Frühjahr_OCR">OCR.txt</a> 
 - 2005 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46114/2005/09/Scan.pdf" download="Staatsexamen-Informatik_46114-2005-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46114/2005/09/OCR.txt" download="Staatsexamen-Informatik_46114-2005-Herbst_OCR">OCR.txt</a> 
 - 2006 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46114/2006/03/Scan.pdf" download="Staatsexamen-Informatik_46114-2006-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46114/2006/03/OCR.txt" download="Staatsexamen-Informatik_46114-2006-Frühjahr_OCR">OCR.txt</a> 
+    - Thema 2 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46114/2006/03/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_46114-2006-Frühjahr_T2-A6">Aufgabe 6 (Graphen, Adjazenzmatrix)</a>
 - 2006 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46114/2006/09/Scan.pdf" download="Staatsexamen-Informatik_46114-2006-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46114/2006/09/OCR.txt" download="Staatsexamen-Informatik_46114-2006-Herbst_OCR">OCR.txt</a> 
 - 2007 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46114/2007/03/Scan.pdf" download="Staatsexamen-Informatik_46114-2007-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46114/2007/03/OCR.txt" download="Staatsexamen-Informatik_46114-2007-Frühjahr_OCR">OCR.txt</a> 
 - 2007 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46114/2007/09/Scan.pdf" download="Staatsexamen-Informatik_46114-2007-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46114/2007/09/OCR.txt" download="Staatsexamen-Informatik_46114-2007-Herbst_OCR">OCR.txt</a> 
@@ -1101,6 +1103,8 @@ als Markdown-Liste eingebettet werden kann.
         - Algorithmus von Prim
         - Tiefensuche
         - Breitensuche
+        - Adjazenzmatrix
+        - Adjazenzliste
     - Master-Theorem
 - SOSY:
     - Projektmanagement:
