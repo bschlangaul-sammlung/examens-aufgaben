@@ -2,9 +2,6 @@
 \ProvidesPackage{lehramt-informatik-syntax}[2020/06/10 Ein Hüll-Paket um
 `minted`, das sich um die Syntax-Hervorhebung des Java-Codes kümmert.]
 \RequirePackage{xparse}
-%-----------------------------------------------------------------------
-% minted
-%-----------------------------------------------------------------------
 
 \RequirePackage{minted}
 % pygmentize -L styles
@@ -18,26 +15,18 @@
   fontsize=\footnotesize,
 }
 
-%%
-% \java
-%%
-\def\java#1{\mintinline{java}|#1|}
+\def\liJavaCode#1{\mintinline{java}|#1|}
 
-%%
-% \latex
-%%
-\def\latex#1{\mintinline{latex}|#1|}
+\def\liLatexCode{#1{\mintinline{latex}|#1|}
 
-%%
-% \inputjava
-%%
-\NewDocumentCommand{\inputjava}{O{} m }{
+\NewDocumentCommand{\li@binde@java@ein}{O{} m }{
   \inputminted[#1]{java}{#2.java}
 }
 
-%%
-% \inputjava
-%%
-\NewDocumentCommand{\inputcode}{O{} m }{
-  \inputminted[#1]{java}{\LehramtInformatikRepository/Code/src/main/java/org/bschlangaul/#2.java}
+\NewDocumentCommand{\liJavaDatei}{O{} m }{
+  \li@binde@java@ein[#1]{\LehramtInformatikRepository/Code/src/main/java/org/bschlangaul/#2}
+}
+
+\NewDocumentCommand{\liJavaTestDatei}{O{} m }{
+  \li@binde@java@ein[#1]{\LehramtInformatikRepository/Code/src/test/java/org/bschlangaul/#2}
 }

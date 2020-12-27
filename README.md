@@ -1315,7 +1315,18 @@ Datenbanken.
 ### `syntax.sty`
 
 Ein Hüll-Paket um `minted`, das sich um die Syntax-Hervorhebung des
-Java-Codes kümmert.
+Java-Codes kümmert. Um das Paket `minted` benutzen zu können, muss
+`pygmentize` installiert sein. Außerdem müssen die TeX-Dateien mit der
+Kommandozeilen-Option `--shell-escape` kompiliert werden.
+
+* Makro: `\liJavaCode`: Im Zeilenfluss einen kurzen
+  Java-Code-Ausschnitt setzen.
+* Makro: `\liLatexCode`: Im Zeilenfluss einen kurzen
+  LaTeX-Code-Ausschnitt setzen.
+* Makro: `\liJavaDatei`: Eine komplette Java-Datei einbinden, die
+  Verzeichnis `./Code/src/main/java/org/bschlangaul` liegt.
+* Makro: `\liJavaTestDatei`: Eine komplette Java-Test-Datei einbinden,
+  die Verzeichnis `./Code/src/test/java/org/bschlangaul` liegt.
 
 ### `uml.sty`
 

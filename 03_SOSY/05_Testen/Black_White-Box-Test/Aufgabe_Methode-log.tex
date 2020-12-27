@@ -8,7 +8,7 @@
 Gegeben sei folgende Methode und ihr Kontrollflussgraph:
 
 \begin{multicols}{2}
-\inputcode[firstline=4,lastline=16]{aufgaben/sosy/ab_7/Aufgabe3}
+\liJavaDatei[firstline=4,lastline=16]{aufgaben/sosy/ab_7/Aufgabe3}
 
 \begin{tikzpicture}[kontrollfluss,xscale=1,yscale=-0.8]
 \node[knoten] at (0,0) (S) {S};
@@ -56,33 +56,33 @@ gleichzeitig $2$ und ungerade sein.
 \node[knoten] at (0,0) (S) {S};
 
 \node[knoten,pin={
-  \java{int x = y; int z = 0;}
+  \liJavaCode{int x = y; int z = 0;}
 }] at (0,1) (1) {1};
 
 \node[knoten,pin={
     [pin distance=1cm]
-    5:\java{while (x > 1)}
+    5:\liJavaCode{while (x > 1)}
 }] at (0,2) (2) {2};
 
 \node[knoten,pin={
   [pin distance=2cm]
-  \java{if (x \% 2 == 0)}
+  \liJavaCode{if (x \% 2 == 0)}
 }] at (0,3) (3) {3};
 
 \node[knoten,pin={
   [pin distance=1cm]
-  180:\java{z++; x /= 2;}
+  180:\liJavaCode{z++; x /= 2;}
 }] at (-1,4) (4) {4};
 
 \node[knoten,pin={
   [pin distance=1cm]
-  \java{x--;}
+  \liJavaCode{x--;}
 }] at (1,4) (5) {5};
 
 \node[knoten] at (0,5) (6) {6};
 \node[knoten] at (0,6) (7) {7};
 \node[knoten,pin={
-  -90:\java{return z;}
+  -90:\liJavaCode{return z;}
 }] at (0,7) (E) {E};
 
 \draw[->] (S) -- (1);

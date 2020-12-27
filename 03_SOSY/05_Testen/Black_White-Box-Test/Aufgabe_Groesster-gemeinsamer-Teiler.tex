@@ -7,7 +7,7 @@
 
 Gegeben sei folgende Methode:
 
-\inputcode[firstline=4,lastline=12]{aufgaben/sosy/white_box/WhiteBox}
+\liJavaDatei[firstline=4,lastline=12]{aufgaben/sosy/white_box/WhiteBox}
 
 \begin{enumerate}
 \item Erstellen Sie den zur Methode gehörenden datenflussannotierten
@@ -54,7 +54,7 @@ Kontrollflussgraphen.\index{Datenfluss-annotierter Kontrollflussgraph}
 %%
 
 \item Geben Sie die zyklomatische Komplexität $M$ nach McCabe der
-Methode \java{ggT} an. (Nur das Ergebnis!)
+Methode \liJavaCode{ggT} an. (Nur das Ergebnis!)
 \index{Zyklomatische Komplexität nach Mc-Cabe}
 
 \begin{antwort}
@@ -119,24 +119,24 @@ würden.
 
 \begin{description}
 \item[S 1 2 3 E]
-ja, z. B. \java{ggT(-1, -2)}.
+ja, z. B. \liJavaCode{ggT(-1, -2)}.
 \end{description}
 
 \liPseudoUeberschrift{Grenzpfade}
 
 \begin{description}
 \item[S 1 2 3 4 5 6 3 E]
-ja, z. B. \java{ggT(10, 20)}.
+ja, z. B. \liJavaCode{ggT(10, 20)}.
 
 \item[S 1 2 3 4 6 3 E]
-ja, z. B. \java{ggT(1, 2)}.
+ja, z. B. \liJavaCode{ggT(1, 2)}.
 \end{description}
 
 \liPseudoUeberschrift{Innere Pfade}
 
 \begin{description}
 \item[S 1 2 3 4 5 6 3 4 5 6 3 E]
-ja, z. B. \java{ggT(2, 2)}.
+ja, z. B. \liJavaCode{ggT(2, 2)}.
 
 \item[S 1 2 3 4 6 3 4 6 3 E]
 nicht feasible, da geteilt durch eins immer Modulo 0 ergibt, egal welche
@@ -144,7 +144,7 @@ Zahl a oder b hat. Bei der ersten Schleifenwiederholung wird immer die
 innere If-Verzweigung genommen.
 
 \item[S 1 2 3 4 5 6 3 4 6 3 E]
-ja, z. B. \java{ggT(2, 3)}.
+ja, z. B. \liJavaCode{ggT(2, 3)}.
 
 \item[S 1 2 3 4 6 3 4 5 6 3 E]
 nicht feasible, da geteilt durch eins immer Modulo 0 ergibt, egal welche

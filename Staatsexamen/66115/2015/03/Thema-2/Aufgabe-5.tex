@@ -13,19 +13,19 @@ mit folgenden Standardoperationen:
 \begin{center}
 \begin{tabular}{l|l}
 Stapel & Schlange \\\hline
-\java{boolean isEmpty()} & \java{boolean isEmpty()} \\
-\java{void push(int e)} & \java{enqueue(int e)} \\
-\java{int pop()} & \java{int dequeue()} \\
-\java{int top()} & \java{int head()} \\
+\liJavaCode{boolean isEmpty()} & \liJavaCode{boolean isEmpty()} \\
+\liJavaCode{void push(int e)} & \liJavaCode{enqueue(int e)} \\
+\liJavaCode{int pop()} & \liJavaCode{int dequeue()} \\
+\liJavaCode{int top()} & \liJavaCode{int head()} \\
 \end{tabular}
 \end{center}
 
 \noindent
-Beim Stapel gibt die Operation \java{top()} das gleiche Element wie
-\java{pop()} zurück, bei der Schlange gibt \java{head()} das gleiche
-Element wie \java{dequeue()} zurück. Im Unterschied zu \java{pop()},
-beziehungsweise \java{dequeue()}, wird das Element bei \java{top()} und
-\java{head()} nicht aus der Datenstruktur entfernt.
+Beim Stapel gibt die Operation \liJavaCode{top()} das gleiche Element wie
+\liJavaCode{pop()} zurück, bei der Schlange gibt \liJavaCode{head()} das gleiche
+Element wie \liJavaCode{dequeue()} zurück. Im Unterschied zu \liJavaCode{pop()},
+beziehungsweise \liJavaCode{dequeue()}, wird das Element bei \liJavaCode{top()} und
+\liJavaCode{head()} nicht aus der Datenstruktur entfernt.
 
 \begin{enumerate}
 
@@ -33,13 +33,13 @@ beziehungsweise \java{dequeue()}, wird das Element bei \java{top()} und
 %
 %%
 
-\item Geben Sie in Pseudocode einen Algorithmus \java{sort(Stapel s)}
-an, der als Eingabe einen Stapel \java{s} mit \java{n} Zahlen erhält und
-die Zahlen in \java{s} sortiert. (Sie dürfen die Zahlen wahlweise
+\item Geben Sie in Pseudocode einen Algorithmus \liJavaCode{sort(Stapel s)}
+an, der als Eingabe einen Stapel \liJavaCode{s} mit \liJavaCode{n} Zahlen erhält und
+die Zahlen in \liJavaCode{s} sortiert. (Sie dürfen die Zahlen wahlweise
 entweder aufsteigend oder absteigend sortieren.) Verwenden Sie als
-Hilfsdatenstruktur ausschließlich eine Schlange \java{q}. Sie erhalten
-volle Punktzahl, wenn Sie außer \java{s} und \java{q} keine weiteren
-Variablen benutzen. Sie dürfen annehmen, dass alle Zahlen in \java{s}
+Hilfsdatenstruktur ausschließlich eine Schlange \liJavaCode{q}. Sie erhalten
+volle Punktzahl, wenn Sie außer \liJavaCode{s} und \liJavaCode{q} keine weiteren
+Variablen benutzen. Sie dürfen annehmen, dass alle Zahlen in \liJavaCode{s}
 verschieden sind.
 
 \begin{antwort}
@@ -55,7 +55,7 @@ while q not empty:
 
 \liPseudoUeberschrift{Als Java-Code}
 
-\inputcode[firstline=5,lastline=25]{aufgaben/aud/examen_66115_2015_03/Sort}
+\liJavaDatei[firstline=5,lastline=25]{aufgaben/aud/examen_66115_2015_03/Sort}
 \end{antwort}
 
 %%
@@ -67,7 +67,7 @@ Abhängigkeit von $n$.
 
 \begin{antwort}
 Zeitkomplexität: $\mathcal{O}(n^2)$, da es zwei ineinander
-verschachtelte \java{while}-Schleifen gibt, die von der Anzahl der
+verschachtelte \liJavaCode{while}-Schleifen gibt, die von der Anzahl der
 Elemente im Stapel abhängen.
 \end{antwort}
 \end{enumerate}

@@ -84,7 +84,7 @@ gmx.net & Index 1 \\\hline
 
 \noindent
 Um zu einer URL die IP zu finden, berechnet man zunächst mittels der
-Funktion \java{hash()} den entsprechenden Streuwert, entnimmt dann den
+Funktion \liJavaCode{hash()} den entsprechenden Streuwert, entnimmt dann den
 Index der Tabelle URL und sucht schließlich an entsprechender Stelle in
 der Tabelle IP die IP-Adresse.
 
@@ -121,45 +121,45 @@ public int hash(String url) {/* calculates hash-value h, >=0 */}
 % i)
 %%
 
-\item Prüfen Sie in einer Methode \java{boolean exists(int h)} der
-Klasse \java{zone}, ob bereits mindestens ein Eintrag für einen
-gegebenen Streuwert vorhanden ist. Falls \java{h} größer ist als die
+\item Prüfen Sie in einer Methode \liJavaCode{boolean exists(int h)} der
+Klasse \liJavaCode{zone}, ob bereits mindestens ein Eintrag für einen
+gegebenen Streuwert vorhanden ist. Falls \liJavaCode{h} größer ist als die
 derzeitige Größe der Streutabelle, existiert der Eintrag nicht.
 
 \begin{antwort}
-\inputcode[firstline=56,lastline=76]{examen/examen_66115_2013_03/Zone}
+\liJavaDatei[firstline=56,lastline=76]{examen/examen_66115_2013_03/Zone}
 \end{antwort}
 
 %%
 % ii)
 %%
 
-\item Die Methode \java{int getIndex (string url, ArrayList<String>
+\item Die Methode \liJavaCode{int getIndex (string url, ArrayList<String>
 urlList)} soll den Index einer URL in der Kollisionsliste berechnen. Ist
-die URL in der Kollisionsliste nicht vorhanden, soll \java{-1}
+die URL in der Kollisionsliste nicht vorhanden, soll \liJavaCode{-1}
 zurückgeliefert werden.
 
 \begin{antwort}
-\inputcode[firstline=68,lastline=88]{examen/examen_66115_2013_03/Zone}
+\liJavaDatei[firstline=68,lastline=88]{examen/examen_66115_2013_03/Zone}
 \end{antwort}
 
 %%
 % iii)
 %%
 
-\item Ergänzen Sie die Klasse Zone um eine Methode \java{String lookup
-(String url)}, die in der Streutabelle die IP-Adresse zur \java{url}
+\item Ergänzen Sie die Klasse Zone um eine Methode \liJavaCode{String lookup
+(String url)}, die in der Streutabelle die IP-Adresse zur \liJavaCode{url}
 zurückgibt. Wird eine nicht vorhandene Adresse abgerufen, wird eine
 Fehlermeldung zurückgegeben.
 
 \begin{antwort}
-\inputcode[firstline=90,lastline=104]{examen/examen_66115_2013_03/Zone}
+\liJavaDatei[firstline=90,lastline=104]{examen/examen_66115_2013_03/Zone}
 \end{antwort}
 
 \end{enumerate}
 \end{enumerate}
 
 \begin{antwort}
-\inputcode[firstline=3]{examen/examen_66115_2013_03/Zone}
+\liJavaTestDatei[firstline=3]{examen/examen_66115_2013_03/ZoneTest}
 \end{antwort}
 \end{document}

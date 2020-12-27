@@ -10,19 +10,19 @@
 
 Es soll eine (kleine) Anwendung entwickelt werden, in der ein Zähler in
 1-er Schritten von 5000 bis 0 herunterzählt. Der Zähler soll als Objekt
-der Klasse \java{Countdown} realisiert werden, die in UML-Notation
+der Klasse \liJavaCode{Countdown} realisiert werden, die in UML-Notation
 dargestellt ist. Das Attribut value soll den aktuellen Zählerstand
 speichern, der mit dem Konstruktor zu initialisieren ist. Die Methode
-\java{getValue} soll den aktuellen Zählerstand liefern und die Methode
-\java{countdown} soll den Zähler von 5000 bis 0 herunterzählen.
+\liJavaCode{getValue} soll den aktuellen Zählerstand liefern und die Methode
+\liJavaCode{countdown} soll den Zähler von 5000 bis 0 herunterzählen.
 
 Der jeweilige Zählerstand soll von einem Objekt der in untenstehender
-Abbildung angegebenen Klasse \java{Display} am Bildschirm ausgegeben
-werden. Bei der Konstruktion eines \java{Display}-Objekts soll es mit
-einem \java{Countdown}-Objekt verbunden werden, indem dessen Referenz
-unter \java{myCountdown} abgespeichert wird. Die Methode \java{update}
-soll den aktuellen Zählerstand vom \java{Countdown}-Objekt holen und mit
-\java{System.out.println} am Bildschirm ausgeben. Dies soll zu Beginn
+Abbildung angegebenen Klasse \liJavaCode{Display} am Bildschirm ausgegeben
+werden. Bei der Konstruktion eines \liJavaCode{Display}-Objekts soll es mit
+einem \liJavaCode{Countdown}-Objekt verbunden werden, indem dessen Referenz
+unter \liJavaCode{myCountdown} abgespeichert wird. Die Methode \liJavaCode{update}
+soll den aktuellen Zählerstand vom \liJavaCode{Countdown}-Objekt holen und mit
+\liJavaCode{System.out.println} am Bildschirm ausgeben. Dies soll zu Beginn
 des Zählprozesses und nach jeder Änderung des Zählerstands erfolgen.
 
 \begin{center}
@@ -45,8 +45,8 @@ des Zählprozesses und nach jeder Änderung des Zählerstands erfolgen.
 \end{center}
 
 \noindent
-Damit das \java{Display}-Objekt über Zählerstände des
-\java{Countdown}-Objekts informiert wird, soll das Observer-Pattern
+Damit das \liJavaCode{Display}-Objekt über Zählerstände des
+\liJavaCode{Countdown}-Objekts informiert wird, soll das Observer-Pattern
 angewendet werden. Untenstehende Abbildung zeigt die im Observer-Pattern
 vorkommenden abstrakten Klassen. (Kursivschreibweise bedeutet abstrakte
 Klasse bzw. abstrakte Methode.)
@@ -73,15 +73,15 @@ Klasse bzw. abstrakte Methode.)
 % a)
 %%
 
-\item Welche Wirkung haben die Methoden \java{attach} und \java{notify}
+\item Welche Wirkung haben die Methoden \liJavaCode{attach} und \liJavaCode{notify}
 gemäß der Idee des Observer-Patterns?
 
 \begin{antwort}
-Das beobachtete Objekt bietet mit der Methode \java{attach} einen
+Das beobachtete Objekt bietet mit der Methode \liJavaCode{attach} einen
 Mechanismus, um Beobachter anzumelden und diese über Änderungen zu
 informieren.
 
-Mit der Methode \java{notify} werden alle Beobachter benachrichtigt,
+Mit der Methode \liJavaCode{notify} werden alle Beobachter benachrichtigt,
 wenn sich das beobachtete Objekt ändert.
 \end{antwort}
 
@@ -89,15 +89,15 @@ wenn sich das beobachtete Objekt ändert.
 % b)
 %%
 
-\item Welche der beiden Klassen \java{Display} und \java{Countdown} aus
-obenstehender Abbildung spielt die Rolle eines \java{Subject} und welche
-die Rolle eines \java{Observer}?
+\item Welche der beiden Klassen \liJavaCode{Display} und \liJavaCode{Countdown} aus
+obenstehender Abbildung spielt die Rolle eines \liJavaCode{Subject} und welche
+die Rolle eines \liJavaCode{Observer}?
 
 \begin{antwort}
-Die Klasse \java{Countdown} spielt die Rolle des \java{Subject}s, also
+Die Klasse \liJavaCode{Countdown} spielt die Rolle des \liJavaCode{Subject}s, also
 des Gegenstands, der beobachtet wird.
 
-Die Klasse \java{Display} spielt die Rolle eines \java{Observer}, also
+Die Klasse \liJavaCode{Display} spielt die Rolle eines \liJavaCode{Observer}, also
 die Rolle eines Beobachters.
 \end{antwort}
 
@@ -167,14 +167,14 @@ Idee des Observer-Patterns implementiert.
 \end{itemize}
 
 Geben Sie auf dieser Grundlage eine Implementierung der beiden Klassen
-\java{Display} und \java{Countdown} an, so dass das gewünschte
+\liJavaCode{Display} und \liJavaCode{Countdown} an, so dass das gewünschte
 Verhalten, d.\,h. Anzeige der Zählerstände und Herunterzählen des
-Zählers, realisiert wird. Die Methoden der Klassen \java{Subject} und
-\java{Observer} sind dabei auf geeignete Weise zu verwenden bzw. zu
+Zählers, realisiert wird. Die Methoden der Klassen \liJavaCode{Subject} und
+\liJavaCode{Observer} sind dabei auf geeignete Weise zu verwenden bzw. zu
 implementieren. Geben Sie die verwendete Programmiersprache an.
 
 \begin{antwort}
-\def\TmpCode#1{\inputcode[firstline=3]{aufgaben/sosy/examen_66116_2018_03/#1}}
+\def\TmpCode#1{\liJavaDatei[firstline=3]{aufgaben/sosy/examen_66116_2018_03/#1}}
 \TmpCode{Client}
 \TmpCode{Subject}
 \TmpCode{Observer}
