@@ -43,7 +43,7 @@ feststellbar sein.
 unbedingt notwendigen Informationen. Geben Sie an, wie die nicht im
 ER-Modell „auftauchenden“ Informationen bestimmt werden können.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{center}
 \begin{tikzpicture}[er2,scale=0.7,transform shape]
 \node[entity] (Fluggesellschaft) {Fluggesellschaft};
@@ -96,7 +96,7 @@ SELECT Flug-Nr, COUNT (*) AS Anzahl
 FROM bucht
 GROUP BY Flug-Nr;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (b)
@@ -105,14 +105,14 @@ GROUP BY Flug-Nr;
 \item Legen Sie die Primärschlüssel fest. Begründen Sie Ihre
 Entscheidung, falls Sie zusätzliche künstliche Schlüssel einfügen.
 
-\begin{antwort}
+\begin{liAntwort}
 Von einem Passagier werden nur Name und Gebdat gespeichert. Da
 diese beiden nicht eindeutig sind, können sie nicht als Primärschlüssel
 verwendet werden. Folglich muss ein künstlicher Schlüssel eingeführt
 werden, die \verb|Passagier-Nr|. \verb|Typ-Nr| des Flugzeugtyps sollte
 auch gespeichert werden, da Personalzahl und Sitzplatzzahl nicht
 eindeutig sind.
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (c)
@@ -127,7 +127,7 @@ eindeutig sind.
 \item Erstellen Sie nun ein zu dieser Modellierung passendes
 Relationenschema! Markieren Sie Schlüssel und Fremdschlüssel.
 
-\begin{antwort}
+\begin{liAntwort}
 \verb|angehoeren| wird aufgelöst: \verb|Typ-Nr[Flugzeugtyp]| nach
 \verb|Flugzeug|
 
@@ -159,7 +159,7 @@ Passagier(\liPrimaer{Pass-Nr}, Name, Gebdat)
 buchen(\liFremd{Pass-Nr[Passagier]},
 \liFremd{Flug-Nr[Flug]}, Sitzplatz-Nr)
 }
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (e)
@@ -180,7 +180,7 @@ ob (und wenn ja bei welchem Flug) heute Abend Passagiere (Name,
 Sitzplatz-Nr) mit einem ihrer Flugzeuge unterwegs sind, die heute
 Geburtstag haben (GebDat = TODAY).
 
-\begin{antwort}
+\begin{liAntwort}
 $
 \pi_{\text{Name,Sitzplatz-Nr}}(
   \sigma_{\text{GebDat} = \text{TODAY}}(\text{Passagier})
@@ -201,7 +201,7 @@ WHERE
   f.Flug-Nr = b.Flug-Nr AND
   b.Pass-Nr = p.Pass-Nr;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % b.

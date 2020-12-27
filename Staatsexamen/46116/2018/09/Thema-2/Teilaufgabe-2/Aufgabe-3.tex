@@ -92,7 +92,7 @@ INSERT INTO Noten VALUES
 dargestellten Tabellen in einer SQL-Datenbank anzulegen.
 \index{CREATE TABLE}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 CREATE TABLE IF NOT EXISTS Schüler (
   SchülerID INTEGER PRIMARY KEY NOT NULL,
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS Noten (
   FOREIGN KEY (SchülerID) REFERENCES Schüler(SchülerID)
 );
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (b)
@@ -128,21 +128,21 @@ Schüler (SchülerID, Vorname, Nachname, Klasse)
 VALUES (9, 'Johannes', 'Schmied', '4C');
 \end{minted}
 
-\begin{antwort}
+\begin{liAntwort}
 Nein, denn die Spalte, die Primärschlüssel heißt Schüler und nicht
 SchülerID. Außerdem existiert bereits ein Schuüler mit der ID 6.
-\end{antwort}
+\end{liAntwort}
 
 \begin{minted}{sql}
 INSERT INTO Noten VALUES (6, 'Chemie', 1, 2, '1.4.2020');
 \end{minted}
 
-\begin{antwort}
+\begin{liAntwort}
 Nein, Datum ist zwingend nötig, da es im Primärschlüssel enthalten ist.
 Es gibt keine Schüler mit der ID 9. Der müsste vorher angelegt sein,
 da die Spalte SchülerID von Noten auf den Fremdschlüssel Schüler aus
 der Schülertabelle verweist.
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (c)
@@ -160,25 +160,25 @@ auf Datenbankebene verhindert werden. Dabei sollen die Primärschlüssel
 nicht verändert werden. Geben Sie den Befehl an, der diese Änderung
 durchführt.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 ALTER TABLE Schüler
 ADD CONSTRAINT Vorname_eindeutig UNIQUE (Vorname, Klasse);
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 \item Der Schüler Tim Weber (SchülerID: 5) wechselt die Klasse. Geben
 Sie den SQL-Befehl an, der den genannten Schüler in die Klasse “4C“
 überführt.
 \index{UPDATE}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 UPDATE Schüler
 SET Klasse = '4C'
 WHERE Vorname = 'Tim' AND Nachname = 'Weber' AND SchülerID = 5;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 \item Die Schülerin Laura Müller (SchülerID: 1) zieht um und wechselt
 die Schule. Löschen Sie die Schülerin aus der Datenbank. Nennen Sie
@@ -186,11 +186,11 @@ einen möglichen Effekt, welcher bei der Verwendung von Primär- und
 Fremdschlüsseln auftreten kann.
 \index{DELETE}
 
-\begin{antwort}
+\begin{liAntwort}
 Löschen aller Noten von Laura Müller, falls ON DELETE CASCADE gesetzt.
 Oder es müssen erst alle Fremdschlüsselverweise auf diese SchülerID in
 Noten gelöscht werden
-\end{antwort}
+\end{liAntwort}
 
 \item Erstellen Sie eine View „DurchschnittsNoten“, die die folgenden
 Spalten beinhaltet: Klasse, Schulfach, Durchschnittsnote Hinweis:
@@ -198,7 +198,7 @@ Beachten Sie die Gewichte der Noten.
 \index{VIEW}
 \index{GROUP BY}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 CREATE VIEW DurchschnittsNoten AS (
   (SELECT s.Klasse, n.Schulfach, (SUM(n.Note * n.Gewicht) / SUM(n.Gesicht)) AS Durchschnittsnote
@@ -207,16 +207,16 @@ CREATE VIEW DurchschnittsNoten AS (
   GROUP BY s.Klasse, n.Schulfach)
 );
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 \item Geben Sie den Befehl an, der die komplette Tabelle „Noten“ löscht.
 \index{DROP TABLE}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 DROP TABLE Noten;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 \end{itemize}
 
@@ -239,23 +239,23 @@ vergeben wird.
 
 Hinweis: Das Gewicht ist bei dieser Anfrage nicht relevant
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT AVG(Note)
 FROM Noten
 WHERE Schulfach = 'Mathematik';
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 Musterlösung nimmt View zu hand.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT AVG(Note) AS durchschnittlicheNote
 FROM DurchschnittsNoten
 WHERE Schulfach = 'Mathematik';
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 %
@@ -264,7 +264,7 @@ WHERE Schulfach = 'Mathematik';
 \item Berechnen Sie die Anzahl der Schüler, die im Fach Mathematik am
 23.09.2017 eine Schulaufgabe (d.h. Gewicht=2) geschrieben haben.
 
-\begin{antwort}
+\begin{liAntwort}
 Ich habe in der WHERE Klauses das Schulfach vergessen. Sonst richtig.
 Außerdem habe ich das Datum einfach übernommen.
 \begin{minted}{sql}
@@ -272,7 +272,7 @@ SELECT COUNT(SchülerID) AS AnzahlSchüler
 FROM Noten
 WHERE Datum = 2017-09-23 AND Gewichtung = 2 AND Schulfach = 'Mathematik';
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 %
@@ -281,7 +281,7 @@ WHERE Datum = 2017-09-23 AND Gewichtung = 2 AND Schulfach = 'Mathematik';
 \item Geben Sie die SchülerID aller Schüler zurück, die im Fach
 Mathematik mindestens drei mal die Schulnote 6 geschrieben haben.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT SchülerID
 FROM Noten
@@ -289,7 +289,7 @@ WHERE Schulfach = 'Mathematik' AND Note = 6
 GROUP BY SchülerID
 HAVING COUNT(*) >= 3;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 %
@@ -298,7 +298,7 @@ HAVING COUNT(*) >= 3;
 \item Gesucht ist der Notendurchschnitt bezüglich jedes Fachs der Klasse
 „4A“.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT n.Schulfach, AVG (n.Note)
 FROM Schüler s, Noten n
@@ -314,7 +314,7 @@ SELECT Schulfach, durchschnittlicheNote,
 FROM DurchschnittsNoten
 WHERE Klasse = '4a';
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 \end{itemize}
 
 %%
@@ -330,9 +330,9 @@ FROM
 Schüler NATURAL JOIN Noten;
 \end{minted}
 
-\begin{antwort}
+\begin{liAntwort}
 1 $\rightarrow$ 4A von Laura Müller
-\end{antwort}
+\end{liAntwort}
 
 \begin{minted}{sql}
 SELECT COUNT(all Klasse)
@@ -340,9 +340,9 @@ FROM
 Noten, Schüler;
 \end{minted}
 
-\begin{antwort}
+\begin{liAntwort}
 32 $\rightarrow$ Kreuzprodukt, zählt alle Einträge in Klasse
-\end{antwort}
+\end{liAntwort}
 
 \begin{minted}{sql}
 SELECT COUNT(Note)
@@ -350,9 +350,9 @@ FROM
 Schüler NATURAL LEFT OUTER JOIN Noten;
 \end{minted}
 
-\begin{antwort}
+\begin{liAntwort}
 4 $\rightarrow$ null-Werte nicht mitgezählt, 4 Noten von Laura
-\end{antwort}
+\end{liAntwort}
 
 \begin{minted}{sql}
 SELECT COUNT(*)
@@ -360,8 +360,8 @@ FROM
 Schüler NATURAL LEFT OUTER JOIN Noten;
 \end{minted}
 
-\begin{antwort}
+\begin{liAntwort}
 11 $\rightarrow$ alle Schüler, Laura dabei 4-mal, weil 4 Noten
-\end{antwort}
+\end{liAntwort}
 \end{enumerate}
 \end{document}

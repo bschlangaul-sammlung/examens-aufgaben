@@ -83,7 +83,7 @@ INSERT INTO Auszeichnung_Stück VALUES
 \item Welche CDs hat „Adele“ herausgebracht? Geben Sie die Namen der CDs
 aus.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT c.Name DISTINICT
 FROM CD c, Interpret i
@@ -91,7 +91,7 @@ WHERE
   i.Interpreten_ID = c.Interpreten_ID AND
   i.name = 'Adele';
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % b)
@@ -100,7 +100,7 @@ WHERE
 \item Geben Sie für alle Interpreten - gegeben durch die ID und den
 Namen - die Anzahl ihrer veröffentlichten CDs an.\index{GROUP BY}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT i.Interpreten_ID, i.Name, COUNT(*)
 FROM Interpret i, CD c
@@ -108,7 +108,7 @@ WHERE
   i.Interpreten_ID = c.Interpreten_ID
 GROUP BY i.Interpreten_ID, i.Name;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % c)
@@ -117,7 +117,7 @@ GROUP BY i.Interpreten_ID, i.Name;
 \item Geben Sie die Länge des längsten Musikstücks auf der CD mit dem
 Namen „Thriller“ des Interpreten „Michael Jackson“ an.\index{MAX}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT MAX(m.Länge)
 FROM Interpret i, CD c, Musikstück m
@@ -126,7 +126,7 @@ WHERE
   i.Name = 'Michael Jackson' AND
   c.Name = 'Thriller';
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % d)
@@ -135,7 +135,7 @@ WHERE
 \item Geben Sie die Namen aller Interpreten aus, die eine Auszeichnung
 für eine CD oder eines ihrer Musikstücke bekommen haben.\index{OR}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT i.Name
 FROM Auszeichnung_CD acd, Auszeichnung_Stück ast, CD c, Interpret i
@@ -143,7 +143,7 @@ WHERE
   (acd.CD_ID = c.CD_ID OR ast.CD_ID = c.CD_ID) AND
   c.Interpreten_ID = i.Interpreten_ID;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % e)
@@ -152,7 +152,7 @@ WHERE
 \item Fügen Sie ein, dass „Adele“ einen „Emmy“ für ihre CD mit dem Namen
 „Adele 21“ bekommen hat.\index{INSERT}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 INSERT INTO Auszeichnung_CD VALUES
   (
@@ -170,7 +170,7 @@ INSERT INTO Auszeichnung_CD VALUES
 -- Test
 SELECT * from Auszeichnung_CD;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % f)
@@ -179,7 +179,7 @@ SELECT * from Auszeichnung_CD;
 \item Ändern Sie die Geschäftsadresse von „Genesis“ auf „Hollywood
 Boulevard 13, Los Angeles“.\index{UPDATE}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 -- Test
 SELECT * FROM Interpret;
@@ -191,7 +191,7 @@ WHERE Name = 'Gensis';
 -- Test
 SELECT * FROM Interpret;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 \end{enumerate}
 

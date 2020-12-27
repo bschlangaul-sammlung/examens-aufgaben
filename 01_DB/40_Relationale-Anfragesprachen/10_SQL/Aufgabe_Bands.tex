@@ -98,13 +98,13 @@ Beantworten Sie folgende Fragen durch geeignete SQL-Anfragen.
 
 \item Welche Alben wurden von der Firma „Col“ herausgegeben?
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT a.Titel
 FROM Album a
 WHERE a.Firma = 'Col';
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (b)
@@ -113,7 +113,7 @@ WHERE a.Firma = 'Col';
 \item Welche Alben wurden 1990 von \emph{„Black Sabbath“}
 veröffentlicht?
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT a.Titel
 FROM ALBUM a, herausgegeben h
@@ -122,7 +122,7 @@ WHERE
   h.BName = 'Black Sabbath' AND
   h.Jahr = 1990;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (c)
@@ -130,7 +130,7 @@ WHERE
 
 \item Welche Band veröffentlichte das Album \emph{„Sin After Sin“}?
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT h.BName
 FROM herausgegeben h, Album a
@@ -138,7 +138,7 @@ WHERE
   a.ANr = h.ANr AND
   a.Titel = 'Sin After Sin';
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (d)
@@ -146,7 +146,7 @@ WHERE
 
 \item In welcher Band spielt „Ozzy Osbourne“?
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT BName
 FROM Musiker
@@ -154,7 +154,7 @@ WHERE
   Name = 'Osbourne' AND
   Vorname = 'Ozzy';
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (e)
@@ -163,7 +163,7 @@ WHERE
 \item Welche Bands wurden vor \emph{1980} gegründet, spielen
 \emph{Hardrock} und sind nicht bei \emph{Col} unter Vertrag?
 
-\begin{antwort}
+\begin{liAntwort}
 Joins sind teuer: zuerst Bedingungen
 
 \begin{minted}{sql}
@@ -176,7 +176,7 @@ WHERE
   b.BName = h.BName AND
   h.ANr = a.ANr;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (f)
@@ -185,7 +185,7 @@ WHERE
 \item Wie viele Alben mit einem Preis von unter 10€ sind
 gelistet?
 
-\begin{antwort}
+\begin{liAntwort}
 Nicht \verb|COUNT(a.Titel)|: doppelte werden nur 1 mal gezählt
 
 \begin{minted}{sql}
@@ -193,7 +193,7 @@ SELECT COUNT(*) AS Anzahl
 FROM Album a
 WHERE a.Preis < 10;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (g)
@@ -202,7 +202,7 @@ WHERE a.Preis < 10;
 \item Welche Musiker spielen in einer Hardrock Band
 (alphabetisch nach Name)?
 
-\begin{antwort}
+\begin{liAntwort}
 \verb|DISTINCT|: keine Duplicate. \verb|DISTINCT| ist \verb|GROUP BY|
 vorzuziehen
 
@@ -214,7 +214,7 @@ WHERE
   b.Musikrichtung = 'Hardrock'
 ORDER BY m.Name, m.Vorname;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (h)
@@ -223,13 +223,13 @@ ORDER BY m.Name, m.Vorname;
 \item Wie viele Alben hat jede Band veröffentlicht (Bandname,
 Anzahl der Alben)?
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT BName, COUNT(*) AS AnzahlAlben
 FROM herausgegeben
 GROUP by BName;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (i)
@@ -238,7 +238,7 @@ GROUP by BName;
 \item Gib alle verschiedenen \emph{Namen} der \emph{Musiker} aufsteigend
 sortiert aus, die in \emph{aktiven} Bands spielen.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT DISTINCT m.Name, m.Vorname
 FROM Band b, Musiker m
@@ -247,7 +247,7 @@ WHERE
   b.aktiv = 1
 ORDER By m.Name, m.Vorname ASC;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (j)
@@ -256,14 +256,14 @@ ORDER By m.Name, m.Vorname ASC;
 \item Welche Musiker spielen in einer Band, die keine Alben vor
 \emph{1970} veröffentlicht hat?
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT DISTINCT m.Name
 FROM Musiker m
 WHERE
   m.BName NOT IN (SELECT BName FROM herausgegeben WHERE Jahr < 1970);
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % k)
@@ -272,14 +272,14 @@ WHERE
 \item Welche \emph{Musiker} spielen in einer Band, in der es
 mindestens ein \emph{jüngeres} Bandmitglied gibt?
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT DISTINCT a.Vorname, a.Name
 FROM Musiker a, Musiker b
 WHERE a.BName = b.BName
 AND a.GebJahr < b.GebJahr;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}

@@ -62,7 +62,7 @@ geändert würde.
 
 \item Zeichnen Sie das zum Programm gehörige Ablaufdiagramm.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{tikzpicture}[kontrollfluss,xscale=1,yscale=-1.5]
 \node[knoten] at (0,0.5) (0) {0}; % long sum = 0;
 \node[knoten,pin=if] at (0,1) (1) {1}; % if (until > 0)
@@ -82,7 +82,7 @@ geändert würde.
 \draw[->] (5) -- (2);
 \draw[->] (3) -- (5);
 \end{tikzpicture}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (b)
@@ -92,12 +92,12 @@ geändert würde.
 Anweisungsüberdeckung“ erfüllt, aber den Fehler trotzdem nicht aufdeckt.
 \index{C0-Test Anweisungsüberdeckung (Statement Coverage)}
 
-\begin{antwort}
+\begin{liAntwort}
 Der Fehler fällt nur dann auf, wenn \texttt{until} durch $4$ oder $6$
 ohne Rest teilbar ist. \texttt{until = 0\%4} oder \texttt{until = 0\%6}.
 Wähle daher den Testfall $\{(1, 0)\}$. Alternativ kann für die Eingabe
 auch 2, 3, 5, 7, 9, 10, 11, 13, ... gewählt werden.
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (c)
@@ -107,7 +107,7 @@ auch 2, 3, 5, 7, 9, 10, 11, 13, ... gewählt werden.
 Zweigüberdeckung“ erfüllt, aber den Fehler trotzdem nicht aufdeckt.
 \index{C1-Test Zweigüberdeckung (Branch Coverage)}
 
-\begin{antwort}
+\begin{liAntwort}
 Betrachte den Testfall $\{(0, 0), (5, 4)\}$.
 
 \begin{description}
@@ -125,7 +125,7 @@ Für i = 1, 2, 3, 5 wird die innere if-Bedingung jeweils \liJavaCode{false},
 für $i = 4$ wird sie \liJavaCode{true}.
 \end{description}
 
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (d)
@@ -134,7 +134,7 @@ für $i = 4$ wird sie \liJavaCode{true}.
 \item Schreiben Sie einen Testfall, der den Fehler aufdeckt. Berechnen
 Sie Anweisungsüberdeckung und Zweigüberdeckung ihres Testfalls.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{description}
 \item[Anweisungsüberdeckung]
 Wähle $\{(4, 0)\}$. Durch die fehlerhafte Bedingung in der for-Schleife
@@ -147,7 +147,7 @@ beiden vollständig, gilt für die Verzweigungsüberdeckung:
 
 $\frac{1+2+2}{2+2+2} = \frac{5}{6}$
 \end{description}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (e)
@@ -159,7 +159,7 @@ erreichbar ist. Ein Testfall kann als Menge von Paaren dargestellt
 werden, wobei jedes Paar $(I, O)$ die Eingabe $I$ und die zu dieser
 erwartete Ausgabe $O$ darstellt.
 
-\begin{antwort}
+\begin{liAntwort}
 Ein gültiger Pfad im Kontrollflussgraphen wäre \TextzeileKnoten{0} -
 \TextzeileKnoten{1} - \TextzeileKnoten{2} - \TextzeileKnoten{3} -
 \TextzeileKnoten{4} - \TextzeileKnoten{5} - \TextzeileKnoten{2} -
@@ -172,7 +172,7 @@ nie \emph{wahr} sein, womit immer der Übergang \TextzeileKnoten{3} -
 \TextzeileKnoten{5} zu Beginn genommen werden muss. Alle Pfade, die zu
 Beginn \TextzeileKnoten{3} - \TextzeileKnoten{4} enthalten, sind somit
 nicht überdeckbar.
-\end{antwort}
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}

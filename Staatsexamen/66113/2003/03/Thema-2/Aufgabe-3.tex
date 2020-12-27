@@ -33,7 +33,7 @@ Formulieren Sie die folgenden Anfragen in SQL:
 \item Alle Studenten, die den Professor \emph{Kant} aus einer Vorlesung
 kennen.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT DISTINCT s.Name
 FROM Studenten s, Professoren p, hoeren h, Vorlesungen v
@@ -43,7 +43,7 @@ WHERE
   s.MatrNr = h.MatrNr AND
   h.VorlNr = h.VorlNr
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (b)
@@ -55,7 +55,7 @@ diese Liste so, dass sie absteigend nach Lehrdeputat sortiert ist! Bei
 gleicher Lehrtätigkeit dann noch aufsteigend nach dem Namen des
 Professors/der Professorin.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT p.Name, p.PersNr, SUM(v.SWS) AS Lehrdeputat
 FROM Vorlesung v, Professoren p
@@ -63,7 +63,7 @@ WHERE v.gelesenVon = p.PersNr
 GROUP BY p.Name, p.PersNr
 ORDER BY Lehrdeputat DESC, p.Name ASC;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (c)
@@ -72,7 +72,7 @@ ORDER BY Lehrdeputat DESC, p.Name ASC;
 \item Geben Sie eine Liste der Studenten (Name, MatrNr, Semester) aus,
 die mindestens zwei Vorlesungen bei \emph{Kant} gehört haben.
 
-\begin{antwort}
+\begin{liAntwort}
 \subsection*{Mit einer VIEW}
 
 \begin{minted}{sql}
@@ -114,7 +114,7 @@ WHERE
 GROUP BY s.MatrNr, s.Name, s.Semster
 HAVING COUNT(s.MatrNr) > 1;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (d)
@@ -123,7 +123,7 @@ HAVING COUNT(s.MatrNr) > 1;
 \item Geben Sie eine Liste der Semesterbesten (MatrNr und
 Notendurchschnitt) aus.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 CREATE VIEW Notenschnitte AS (
   SELECT p.MatrNr, s.Name, s.Semester, AVG(Note) AS Durchschnitt
@@ -140,7 +140,7 @@ WHERE
 GROUP BY a.Durchschnitt, a.MatrNr, a.Semester
 HAVING COUNT(*) < 2;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}

@@ -22,7 +22,7 @@ Begründen Sie Ihre Wahl!
 \begin{enumerate}
 \item $h_1(x) = (4x + 3) \mod m$
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{description}
 \item[1] $h_1(1) = (4 \cdot 1 + 3) \mod 10 = 7$
 \item[2] $h_1(2) = (4 \cdot 2 + 3) \mod 10 = 1$
@@ -35,11 +35,11 @@ Begründen Sie Ihre Wahl!
 \item[9] $h_1(9) = (4 \cdot 9 + 3) \mod 10 = 9$
 \item[10] $h_1(10) = (4 \cdot 10 + 3) \mod 10 = 3$
 \end{description}
-\end{antwort}
+\end{liAntwort}
 
 \item $h_2(x) = (3x + 3) \mod m$
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{description}
 \item[1] $h_2(1) = (3 \cdot 1 + 3) \mod 10 = 6$
 \item[2] $h_2(2) = (3 \cdot 2 + 3) \mod 10 = 9$
@@ -52,15 +52,15 @@ Begründen Sie Ihre Wahl!
 \item[9] $h_2(9) = (3 \cdot 9 + 3) \mod 10 = 0$
 \item[10] $h_2(10) = (3 \cdot 10 + 3) \mod 10 = 3$
 \end{description}
-\end{antwort}
+\end{liAntwort}
 \end{enumerate}
 
-\begin{antwort}
+\begin{liAntwort}
 Damit die verketteten Listen möglichst klein bleiben, ist eine möglichst
 gleichmäßige Verteilung der Schlüssel in die Buckets anzustreben. $h_2$
 ist dafür besser geeignet als $h_1$, da $h_2$ in alle Buckets Schlüssel
 ablegt, $h_1$ jedoch nur in Buckets mit ungerader Zahl.
-\end{antwort}
+\end{liAntwort}
 
 %%
 % b)
@@ -75,7 +75,7 @@ Sie Ihre Wahl!
 \item $h_2(x,i) = (7 \cdot x + i \cdot (m - 1)) \mod m$
 \end{enumerate}
 
-\begin{antwort}
+\begin{liAntwort}
 $h_2(x,i)$ ist besser geeignet. $h_1$ sondiert immer im selben Bucket,
 $(i \cdot m) \mod m$ heben sich gegenseitig auf,
 zum Beispiel ergibt:
@@ -93,6 +93,6 @@ Während hingegen $h_2$ verschiedene Buckets belegt.
 \item $h_2(3,1) = (7 \cdot 3 + 1 \cdot 9) \mod 10 = 0$
 \item $h_2(3,2) = (7 \cdot 3 + 2 \cdot 9) \mod 10 = 9$
 \end{itemize}
-\end{antwort}
+\end{liAntwort}
 \end{enumerate}
 \end{document}

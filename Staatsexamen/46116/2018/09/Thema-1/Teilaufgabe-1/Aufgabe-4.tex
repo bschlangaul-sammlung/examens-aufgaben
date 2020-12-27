@@ -102,7 +102,7 @@ Geben Sie einen Datensatz, also eine Entity, nicht mehrfach aus.
 anlegt. Gehen Sie davon aus, dass die Tabellen \emph{„Kunde“} und
 \emph{„Produkt“} bereits existieren.\index{CREATE TABLE}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 CREATE TABLE IF NOT EXISTS Kauf (
   ID INTEGER REFERENCES Kunde(ID),
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS Kauf (
   PRIMARY KEY (ID, GTIN, Datum)
 );
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (b)
@@ -123,14 +123,14 @@ CREATE TABLE IF NOT EXISTS Kauf (
 \emph{20251} ausgibt, absteigend sortiert nach \emph{Nachname} und bei
 gleichen \emph{Nachnamen}, absteigend nach \emph{Vorname}.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT Vorname, Nachname
 FROM Kunde
 WHERE PLZ = 20251
 ORDER BY Nachname DESC, Vorname DESC;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (c)
@@ -142,7 +142,7 @@ als 10 unterschiedlichen Produkten den \emph{Nachnamen} des
 Einkauf ist definiert als Menge aller Produkte, die ein bestimmter Kunde
 an einem bestimmten Datum kauft.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT Nachname, SUM(Bruttopreis * Menge)
 FROM Kunde k, Produkt p, Kauf x
@@ -150,7 +150,7 @@ WHERE k.ID = x.ID AND p.GTIN = x.GTIN
 GROUP BY Datum, Nachname, k.ID
 HAVING COUNT (*) > 10;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (d)
@@ -176,7 +176,7 @@ HAVING NOT EXISTS (
 );
 \end{minted}
 
-\begin{antwort}
+\begin{liAntwort}
 in Mysql gibt es kein EXCEPT
 
 \begin{minted}{sql}
@@ -188,9 +188,9 @@ EXCEPT
 FROM Kunde k, Kauf x
 WHERE k.ID = x.ID)
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 WITH tmp AS (
   SELECT x.GTIN, k.PLZ
@@ -224,7 +224,7 @@ GROUP BY x.GTIN, k.PLZ)
 
 Statt WITH koennen auch VIEWs erstellt werden !
 Eine Konstruktion mit NOT IN sollte auch moeglich sein
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (e)
@@ -237,7 +237,7 @@ zwei Produkte mit gleicher Verkaufszahl gibt und verwenden Sie keine
 produktspezifischen Anweisungen wie beispielsweise \verb|ROWNUM|,
 \verb|TOP| oder \verb|LIMIT|.\index{Top-N-Query}\index{WITH}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 WITH Gesamtverkauf AS
 (SELECT k.GTIN, Bezeichnung, SUM (Menge) AS Gesamtmenge)
@@ -252,7 +252,7 @@ GROUP BY g1.GTIN, g1.Bezeichnung
 HAVING COUNT (*) <=10
 ORDER BY Rang;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (f)
@@ -261,7 +261,7 @@ ORDER BY Rang;
 \item Schreiben Sie eine SQL-Anweisung, die alle Produkte löscht, die
 noch nie gekauft wurden.\index{DELETE}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 DELETE FROM Produkt
 WHERE GTIN NOT IN
@@ -270,7 +270,7 @@ WHERE GTIN NOT IN
   FROM Kauf
 );
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 \end{enumerate}
 
 \end{document}

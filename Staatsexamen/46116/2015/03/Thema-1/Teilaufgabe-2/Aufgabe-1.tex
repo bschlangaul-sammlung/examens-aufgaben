@@ -30,9 +30,9 @@ an:
 
 \item Geben Sie die IP-Adresse des Computers mit Namen „Chiemsee“ aus.
 
-\begin{antwort}
+\begin{liAntwort}
 $\pi_{\text{IP}}(\sigma_{\text{Name} = \text{Chiemsee}}(\text{Computer}))$
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (b)
@@ -41,7 +41,7 @@ $\pi_{\text{IP}}(\sigma_{\text{Name} = \text{Chiemsee}}(\text{Computer}))$
 \item Geben Sie 2er-Tupel von IP-Adressen der Computer am selben
 Standort aus.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{multline*}
 \pi_{\text{c1.IP},\text{c2.IP}}(
   \sigma_{\text{c1.Standort} = \text{c2.Standort}}(\\
@@ -51,7 +51,7 @@ Standort aus.
   )
 )
 \end{multline*}
-\end{antwort}
+\end{liAntwort}
 \end{enumerate}
 
 %%
@@ -68,11 +68,11 @@ Standort aus.
 
 \item Geben Sie die IP-Adressen der Rechner am Standort „Büro2“ aus.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT IP FROM Computer WHERE Standort = 'Büro2';
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (b)
@@ -81,11 +81,11 @@ SELECT IP FROM Computer WHERE Standort = 'Büro2';
 \item Geben Sie alle Computer-Namen in aufsteigender Ordnung mit ihren
 IP-Adressen aus.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT Name, IP FROM Computer ORDER BY Name ASC;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (c)
@@ -94,13 +94,13 @@ SELECT Name, IP FROM Computer ORDER BY Name ASC;
 \item Geben Sie für jeden Hersteller die Anzahl der unterschiedlichen
 Modelle aus.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT COUNT(DISTINCT Modell), Hersteller
 FROM Computer
 GROUP BY Hersteller;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (d)
@@ -110,22 +110,22 @@ GROUP BY Hersteller;
 unterschiedliche Modelle hat, die Anzahl der unterschiedlichen Modelle
 aus.\index{GROUP BY}\index{HAVING}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT Hersteller, COUNT(*) FROM Modelle GROUP BY Hersteller HAVING COUNT(*) > 1;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 oder
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT COUNT(DISTINCT Modell), Hersteller
 FROM Computer
 GROUP BY Hersteller
 HAVING COUNT(DISTINCT Modell) >= 2;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 \end{enumerate}
 \end{enumerate}
 

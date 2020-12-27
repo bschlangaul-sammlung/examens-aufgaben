@@ -76,14 +76,14 @@ Klasse bzw. abstrakte Methode.)
 \item Welche Wirkung haben die Methoden \liJavaCode{attach} und \liJavaCode{notify}
 gemäß der Idee des Observer-Patterns?
 
-\begin{antwort}
+\begin{liAntwort}
 Das beobachtete Objekt bietet mit der Methode \liJavaCode{attach} einen
 Mechanismus, um Beobachter anzumelden und diese über Änderungen zu
 informieren.
 
 Mit der Methode \liJavaCode{notify} werden alle Beobachter benachrichtigt,
 wenn sich das beobachtete Objekt ändert.
-\end{antwort}
+\end{liAntwort}
 
 %%
 % b)
@@ -93,13 +93,13 @@ wenn sich das beobachtete Objekt ändert.
 obenstehender Abbildung spielt die Rolle eines \liJavaCode{Subject} und welche
 die Rolle eines \liJavaCode{Observer}?
 
-\begin{antwort}
+\begin{liAntwort}
 Die Klasse \liJavaCode{Countdown} spielt die Rolle des \liJavaCode{Subject}s, also
 des Gegenstands, der beobachtet wird.
 
 Die Klasse \liJavaCode{Display} spielt die Rolle eines \liJavaCode{Observer}, also
 die Rolle eines Beobachters.
-\end{antwort}
+\end{liAntwort}
 
 %%
 % c)
@@ -111,7 +111,7 @@ entsprechend der Idee des Observer-Patterns, zusammenfügt. Es reicht die
 Klassen und deren Beziehungen anzugeben. Eine nochmalige Nennung der
 Attribute und Methoden ist nicht notwendig.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{tikzpicture}
 \umlclass[type=abstract]{Subject}{}{
   +attach(o: Observer)\\
@@ -139,7 +139,7 @@ Attribute und Methoden ist nicht notwendig.
 \umlinherit{Countdown}{Subject}
 \umlinherit{Display}{Observer}
 \end{tikzpicture}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % d)
@@ -173,13 +173,13 @@ Zählers, realisiert wird. Die Methoden der Klassen \liJavaCode{Subject} und
 \liJavaCode{Observer} sind dabei auf geeignete Weise zu verwenden bzw. zu
 implementieren. Geben Sie die verwendete Programmiersprache an.
 
-\begin{antwort}
+\begin{liAntwort}
 \def\TmpCode#1{\liJavaDatei[firstline=3]{aufgaben/sosy/examen_66116_2018_03/#1}}
 \TmpCode{Client}
 \TmpCode{Subject}
 \TmpCode{Observer}
 \TmpCode{Countdown}
 \TmpCode{Display}
-\end{antwort}
+\end{liAntwort}
 \end{enumerate}
 \end{document}

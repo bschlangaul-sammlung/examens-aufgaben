@@ -34,14 +34,14 @@ Springer ist in Zentimeter angegeben.
 \item Welche Springer sind größer als 1,80 m? Schreiben Sie eine
 SQL-Anweisung, welche in der Ausgabe mit dem größten Springer beginnt.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT Vorname, Nachname
 FROM Springer
 WHERE Koerpergroesse > 180
 ORDER BY Koerpergroesse DESC;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (b)
@@ -51,7 +51,7 @@ ORDER BY Koerpergroesse DESC;
 Schwierigkeit von unter 6 gezeigt? Schreiben Sie eine SQL-Anweisung,
 welche Startnummer und Nachname dieser Springer ausgibt.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT Springer.Startnummer, Springer.Nachname
 FROM Springer, Sprung, springt
@@ -61,7 +61,7 @@ WHERE
   springt.Durchgang = 1
   Sprung.Schwierigkeit < 6;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (c)
@@ -78,11 +78,11 @@ WHERE springt.Startnummer = s.Startnummer
 GROUP BY springt.Startnummer, s.Nachname, s.Vorname
 \end{minted}
 
-\begin{antwort}
+\begin{liAntwort}
 Die Abfrage gibt die Startnummer, den Nachnamen, den Vornamen und
 die Anzahl der Sprünge, d. h. die Anzahl der Durchgänge der
 einzelnen Springer an.
-\end{antwort}
+\end{liAntwort}
 
 \item Gesucht ist die „durchschnittliche Körpergröße“ all der Springer,
 die vor dem 01.01.2000 geboren wurden. Formulieren Sie eine
@@ -90,7 +90,7 @@ die vor dem 01.01.2000 geboren wurden. Formulieren Sie eine
 durchschnittlichen Körpergröße genau diesen Namen „durchschnittliche
 Körpergröße“ haben soll.
 
-\begin{antwort}
+\begin{liAntwort}
 Umlaute und Leerzeichen sind bei Spaltenbeschriftungen nicht erlaubt.
 
 \begin{minted}{sql}
@@ -98,15 +98,15 @@ SELECT AVG(Koerpergroesse) AS durchschnittliche_Koerpergroesse
 FROM SPRINGER
 WHERE Geburtsdatum < DATE('2000-01-01');
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT AVG(Koerpergroesse) AS durchschnittliche_Koerpergroesse
 FROM SPRINGER
 WHERE Geburtsdatum < '01.01.2001';
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}

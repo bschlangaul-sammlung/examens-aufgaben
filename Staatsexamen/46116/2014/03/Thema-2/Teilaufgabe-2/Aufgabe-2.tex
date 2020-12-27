@@ -76,9 +76,9 @@ relationaler Algebra:
 \begin{itemize}
 \item Finden Sie die Namen aller Städte in Bayern!
 
-\begin{antwort}
+\begin{liAntwort}
 $\pi_{\text{SName}}(\sigma_{\text{Bundesland} = \text{Bayern}}(\text{Stadt}))$
-\end{antwort}
+\end{liAntwort}
 
 %%
 %
@@ -87,11 +87,11 @@ $\pi_{\text{SName}}(\sigma_{\text{Bundesland} = \text{Bayern}}(\text{Stadt}))$
 \item Finden Sie die SIDs aller Städte, für die weder als Start noch als
 Ziel eine Anfrage vorliegt!
 
-\begin{antwort}
+\begin{liAntwort}
 $
 \pi_{\text{SID}}(\text{Stadt}) - \pi_{\text{Start}}(\text{Anfage}) - \pi_{\text{Ziel}}(\text{Anfrage})
 $
-\end{antwort}
+\end{liAntwort}
 
 %%
 %
@@ -100,7 +100,7 @@ $
 \item Finden Sie alle IDs von Kunden, welche eine Fahrt in ihrer
 Heimatstadt starten.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{multline*}
 \pi_{\text{KID}}(\\
   \text{Kunde} \bowtie_{\text{Kunde.KID} = \text{Anfrage.KID} \land \text{Kunde.Stadt} = \text{Anfrage.Stadt}} \text{Anfrage}
@@ -110,7 +110,7 @@ Heimatstadt starten.
   \text{Kunde} \bowtie_{\text{Kunde.KID} = \text{Angebot.KID} \land \text{Kunde.Stadt} = \text{Angebot.Stadt}} \text{Angebot}
   )
 \end{multline*}
-\end{antwort}
+\end{liAntwort}
 
 %%
 %
@@ -119,7 +119,7 @@ Heimatstadt starten.
 \item Geben Sie das Datum aller angebotenen Fahrten von München nach
 Stuttgart aus!
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{multline*}
 \pi_{\text{Datum}}(\\
   (\text{Angebot} \bowtie_{\text{Start} = \text{SID} \land \text{SName} = \mlq\text{München}\mrq} \text{Stadt})\\
@@ -127,11 +127,11 @@ Stuttgart aus!
   \text{Stadt}\\
 )
 \end{multline*}
-\end{antwort}
+\end{liAntwort}
 
 Variante 2:
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{multline*}
 \pi_{\text{Datum}}(\\
   \sigma_{
@@ -149,7 +149,7 @@ Variante 2:
   )
 )
 \end{multline*}
-\end{antwort}
+\end{liAntwort}
 
 %%
 %
@@ -167,7 +167,7 @@ Ausdrücke der relationalen Algebra als Tabellen an:
 \begin{itemize}
 \item $\pi_{\text{KID}} (\text{Angebot}) \bowtie \text{Kunde}$
 
-\begin{antwort}
+\begin{liAntwort}
 Zeile mit der Petra Müller fällt weg.
 
 \begin{tabular}{|l|l|l|l|}
@@ -177,7 +177,7 @@ K1 & Meier & Stefan & S3\\\hline
 K3 & Schmidt & Christine & S2\\\hline
 K4 & Schulz & Michael & S4\\\hline
 \end{tabular}
-\end{antwort}
+\end{liAntwort}
 
 %%
 %
@@ -188,7 +188,7 @@ K4 & Schulz & Michael & S4\\\hline
 \bowtie_{\text{Kunde.Stadt} = \text{Angebot.Ziel}}
 \pi_{\text{Plaetze}} (\text{Angebot})$
 
-\begin{antwort}
+\begin{liAntwort}
 
 \begin{tabular}{|l|l|l|}
 \hline
@@ -198,7 +198,7 @@ K2 & S3 & 1 \\\hline
 K4 & S4 & 1 \\\hline
 K4 & S4 & 2 \\\hline
 \end{tabular}
-\end{antwort}
+\end{liAntwort}
 \end{itemize}
 \end{enumerate}
 

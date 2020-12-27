@@ -51,7 +51,7 @@ Gegeben Sei folgende Methode und ihr Kontrollflussgraph:
 \item Geben Sie je einen Repräsentanten aller Pfadklassen im
 Kontrollflussgraphen an, die zum Erzielen einer vollständigen
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{tikzpicture}[kontrollfluss,xscale=1,yscale=-1.2]
 \node[knoten] at (0,0) (nS) {nS};
 
@@ -104,7 +104,7 @@ Kontrollflussgraphen an, die zum Erzielen einer vollständigen
 \draw[->] (n1) -- (-2,1) -- (nE) \KanteWahr{left};
 \draw[->] (n8) -- (2,6) -- (2,3) -- (n3);
 \end{tikzpicture}
-\end{antwort}
+\end{liAntwort}
 
 \def\r#1{\textcolor{red}{#1}}
 \def\g#1{\textcolor{green}{#1}}
@@ -117,13 +117,13 @@ Kontrollflussgraphen an, die zum Erzielen einer vollständigen
 
 \item Verzweigungsüberdeckung
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{description}
 \item[p1 (Pfad 1)] S 1 E
 \item[p2] S 1 2 3 4 E
 \item[p3] S 1 2 3 5 \r{7} 8 3 5 \g{6} 8 3 5 \g{6} E
 \end{description}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (ii)
@@ -131,7 +131,7 @@ Kontrollflussgraphen an, die zum Erzielen einer vollständigen
 
 \item Schleife-Inneres-Überdeckung
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{description}
 \item[Äußere Pfade (äußere Pfade):]
 
@@ -167,7 +167,7 @@ innerhalb des Schleifenrumpfes wieder alle Pfade!)
 \item[p12] S 1 2 3 5 \g{6} 8 3 5 \r{7} 8 3 5 \g{6} E
 \end{description}
 \end{description}
-\end{antwort}
+\end{liAntwort}
 \end{enumerate}
 
 mit minimaler Testfallanzahl genügen würden.
@@ -181,7 +181,7 @@ tatsächlich überdeckbar („feasible“)? Falls der Pfad ausführbar ist,
 geben Sie bitte den Testfall an, andernfalls begründen Sie kurz,
 weshalb der Pfad nicht überdeckbar ist.
 
-\begin{antwort}
+\begin{liAntwort}
 Erweitere Methode, die die Knotennamen ausgibt:
 
 \liJavaDatei[firstline=23]{aufgaben/sosy/ab_7/Aufgabe5}
@@ -241,7 +241,7 @@ p12 &
 S 1 2 3 5 \g{6} 8 3 5 \r{7} 8 3 5 \g{6} E &
 \liJavaCode{binToInt("x10");} \\
 \end{tabular}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (c)
@@ -251,7 +251,7 @@ S 1 2 3 5 \g{6} 8 3 5 \r{7} 8 3 5 \g{6} E &
 linear unabhängiger Programmpfade, also die zyklomatische Komplexität
 nach Mc-Cabe.\index{Zyklomatische Komplexität nach Mc-Cabe}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{description}
 \item[Binärverzweigungen] 4
 \item[Knoten] 10
@@ -277,7 +277,7 @@ M
 &= 13 - 10 + 2 \cdot 1 \\
 &= 5
 \end{align*}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (d)
@@ -286,9 +286,9 @@ M
 \item Kann für dieses Modul eine 100\%-ige Pfadüberdeckung erzielt
 werden? Begründen Sie kurz Ihre Antwort.
 
-\begin{antwort}
+\begin{liAntwort}
 Nein, da \textbf{p2} nicht überdeckbar ist.
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (e)
@@ -299,7 +299,7 @@ Datenfluss-Annotation\index{Datenfluss-annotierter Kontrollflussgraph}
 (\texttt{defs} bzw. \texttt{uses}) für jede betroffene Variable in der
 zeitlichen Reihenfolge ihres Auftretens zur Laufzeit an.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{tikzpicture}[kontrollfluss,xscale=1,yscale=-1.2]
 \node[knoten] at (0,0) (nS) {nS};
 \node[knoten] at (0,1) (n1) {n1};
@@ -341,7 +341,7 @@ zeitlichen Reihenfolge ihres Auftretens zur Laufzeit an.
 \node[usebox] at (-4.5,4.5) {p-use(ch)} edge[dashed] (n6n8.center) edge[dashed] (n6nE.center);
 
 \end{tikzpicture}
-\end{antwort}
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}

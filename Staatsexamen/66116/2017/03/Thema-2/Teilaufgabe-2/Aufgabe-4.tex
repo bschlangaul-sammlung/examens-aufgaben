@@ -43,7 +43,7 @@ Betrachten Sie dazu die folgenden drei Prädikate\index{Invariante}:
 \item Beweisen Sie formal für jedes der drei Prädikate, ob es
 unmittelbar vor Betreten der Schleife in \liJavaCode{mul} gilt oder nicht.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{align*}
 \wp{Code vor der Schleife}{I_1}
 & \equiv \wp{int z = 0, i = 0;}{z + i \cdot y = x \cdot y} \\
@@ -67,7 +67,7 @@ unmittelbar vor Betreten der Schleife in \liJavaCode{mul} gilt oder nicht.
 & \equiv x \cdot y = x \cdot y \\
 & \equiv \text{wahr} \\
 \end{align*}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (b)
@@ -76,7 +76,7 @@ unmittelbar vor Betreten der Schleife in \liJavaCode{mul} gilt oder nicht.
 \item Weisen Sie formal nach, welche der drei Prädikate Invarianten des
 Schleifenrumpfs in \liJavaCode{mul} sind oder welche nicht.
 
-\begin{antwort}
+\begin{liAntwort}
 Für den Nachweis muss der Code etwas umformuliert werden:
 
 \begin{minted}{java}
@@ -120,7 +120,7 @@ int mul (int x , int y) {
 & \equiv z + 2 \cdot y + x \cdot y - i \cdot y = x \cdot y \land i + 1 \neq x \\
 & \equiv \text{wahr} \\
 \end{align*}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (c)
@@ -129,7 +129,7 @@ int mul (int x , int y) {
 \item Beweisen Sie formal, aus welchen der drei Prädikate die
 Nachbedingung gefolgert werden darf bzw. nicht gefolgert werden kann.
 
-\begin{antwort}
+\begin{liAntwort}
 
 $I_1 := z + i \cdot y = x \cdot y$
 $I_2 := \text{false}$
@@ -162,7 +162,7 @@ $I_3 := z + (x - i) \cdot y = x \cdot y$
 & \equiv Q \\
 \end{align*}
 
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (d)
@@ -172,13 +172,13 @@ $I_3 := z + (x - i) \cdot y = x \cdot y$
 Korrektheit} der Methode \liJavaCode{mul}. Zeigen Sie dazu auch die
 Terminierung der Methode.
 
-\begin{antwort}
+\begin{liAntwort}
 Aus den Teilaufgaben folgt der Beweis der partiellen Korrektheit mit
 Hilfe der Invariante $i_3$. $i$ steigt streng monoton von $0$ an so
 lange gilt $i \neq x$. $i = x$ ist die Abbruchbedingung für die bedingte
 Wiederholung. Dann terminiert die Methode. Die Methode \liJavaCode{mul} ist
 also total korrekt.
-\end{antwort}
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}

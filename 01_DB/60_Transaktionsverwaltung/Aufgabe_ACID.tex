@@ -20,7 +20,7 @@ ACID-Gesichtspunkten!
 \item Seit dem Abort meiner Transaktion sind deren Änderungen überhaupt
 nicht mehr vorhanden!
 
-\begin{antwort}
+\begin{liAntwort}
 Das entspricht der Forderung \emph{Atomicity}, da entweder alle Aktionen
 oder keine Aktion einer Transaktion ausgeführt werden soll(en). Bei
 Abbruch einer Transaktion werden die bereits abgearbeiteten Aktionen
@@ -28,7 +28,7 @@ dieser Transaktion zurückgesetzt.
 
 Man könnte man auch noch die \emph{Consistency} nennen, da diese nur
 durch vollständige Transaktionen gesichert werden kann.
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (b)
@@ -37,11 +37,11 @@ durch vollständige Transaktionen gesichert werden kann.
 \item Leider wurde die erfolgreich abgeschlossene Transaktion
 zurückgesetzt, da das DBS abgestürzt ist.
 
-\begin{antwort}
+\begin{liAntwort}
 Das widerspricht der Forderung \emph{Durability}, da erfolgreich
 abgeschlossene Transaktionen permanent, d.\,h. dauerhaft, abgespeichert
 werden müssen.
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (c)
@@ -51,11 +51,11 @@ werden müssen.
 überschrieben. Darf ich jetzt meine Transaktion überhaupt noch beenden
 oder muss ich sie abbrechen?
 
-\begin{antwort}
+\begin{liAntwort}
 Das widerspricht der Forderung \emph{Isolation}. Parallel ablaufende
 Transaktionen dürfen sich nicht beeinflussen, wenn dies also wie hier
 geschildert der Fall ist, dann muss die Transaktion abgebrochen werden.
-\end{antwort}
+\end{liAntwort}
 
 \end{enumerate}
 

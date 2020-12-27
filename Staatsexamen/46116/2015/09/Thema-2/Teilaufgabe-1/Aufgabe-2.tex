@@ -50,7 +50,7 @@ Kontrollflussgraphen} an, die zum Erzielen einer vollständigen … mit
 \textbf{minimaler} Testfallanzahl und \textbf{möglichst kurzen} Pfaden
 genügen würden.
 
-\begin{antwort}
+\begin{liAntwort}
 Bemerkung: In der Aufgabenstellung steht \emph{„Geben Sie je einen
 Repräsentanten aller Pfadklassen \textbf{im Kontrollflussgraphen} an,
 [...] “.} Das bedeutet, dass es hier erstmal egal ist, ob ein Pfad im
@@ -99,7 +99,7 @@ Code möglich ist oder nicht!
 \draw[->] (n3) edge[dashed,bend right] node[bedingung,right]{false} (n5);
 \end{tikzpicture}
 
-\end{antwort}
+\end{liAntwort}
 
 \begin{enumerate}
 
@@ -113,7 +113,7 @@ Zweigüberdeckung (Branch Coverage)}
 \def\TmpPfadEins{\KnotenPfad{nI - n1 - n2 - nE}}
 \def\TmpPfadZwei{\KnotenPfad{nI - n1 - n2 - n3 - n5 - n6 - n3 - n4 - n5 - n6 - nE}}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{description}
 % Video:
 \item[Pfad 1 (p1)]
@@ -131,7 +131,7 @@ Zweigüberdeckung (Branch Coverage)}
 Wiederholung)
 \end{description}
 
-\end{antwort}
+\end{liAntwort}
 
 %%
 % ii)
@@ -141,7 +141,7 @@ Wiederholung)
 $C_{\infty,2}$)\index{C2b Schleife-Inneres-Pfadüberdeckung
 (Boundary-Interior Path Coverage)}
 
-\begin{antwort}
+\begin{liAntwort}
 % Video ab 1:10
 \begin{description}
 \item[ohne Ausführung der Wiederholung (äußere Pfade):]
@@ -191,7 +191,7 @@ innerhalb des Schleifenrumpfes wieder alle Pfade!)
 (\TmpFalsch, \TmpFalsch)
 \end{description}
 \end{description}
-\end{antwort}
+\end{liAntwort}
 \end{enumerate}
 
 mit \textbf{minimaler} Testfallanzahl und \textbf{möglichst kurzen}
@@ -207,7 +207,7 @@ $C_{\infty,2}$-Überdeckung sind mittels Testfällen tatsächlich
 Sie den zugehörigen Testfall an - andernfalls begründen Sie kurz,
 weshalb der Pfad nicht überdeckbar ist.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{description}
 \item[p1] \liJavaCode{s = "a";}
 
@@ -227,7 +227,7 @@ nicht überdeckbar, da \liJavaCode{yesItIs = false}, wenn innere
 
 \item[p7] \liJavaCode{s = "abba";}
 \end{description}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % c)
@@ -238,7 +238,7 @@ Code-Fragments die maximale Anzahl linear unabhängiger Programmpfade,
 also die zyklomatische Komplexität nach McCabe\index{Zyklomatische
 Komplexität nach Mc-Cabe}.
 
-\begin{antwort}
+\begin{liAntwort}
 $M = b + p = 3 + 1 = 4$
 
 ($b$: Anzahl Binärverzweigungen, $p$: Anzahl Zusammenhangskomponenten)
@@ -249,7 +249,7 @@ $M = e - n + 2p = 10 - 8 + 2 = 4$
 
 ($e$: Anzahl Kanten, $n$: Anzahl Knoten, $p$: Anzahl
 Zusammenhangskomponenten)
-\end{antwort}
+\end{liAntwort}
 
 %%
 % d)
@@ -259,13 +259,13 @@ Zusammenhangskomponenten)
 Vollständige Pfadüberdeckung (Full Path Coverage)} erzielt werden?
 Begründen Sie kurz Ihre Antwort.
 
-\begin{antwort}
+\begin{liAntwort}
 Eine 100\%-ige Pfadüberdeckung kann nicht erzielt werden, da es zum
 einen unüberdeckbare Pfade gibt (vgl. Teilaufgabe b). Zum anderen ist
 das Testen aller Testfälle nicht möglich, da die Anzahl an Zeichen des
 übergebenen Wortes nicht begrenzt ist und es somit eine unendliche
 Anzahl an Testfällen gibt.
-\end{antwort}
+\end{liAntwort}
 
 %%
 % e)
@@ -277,7 +277,7 @@ Datenflussereignissen\index{Datenfluss-annotierter Kontrollflussgraph}.
 Geben Sie jeweils an, ob die Verwendungen berechnend (\texttt{c-use})
 oder prädikativ (\texttt{p-use}) sind.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{tikzpicture}[kontrollfluss,xscale=1,yscale=-1.2]
 \node[knoten] at (0,0) (nI) {nI};
 \node[knoten] at (0,1) (n1) {n1};
@@ -305,7 +305,7 @@ oder prädikativ (\texttt{p-use}) sind.
 \node[usebox] at (4,5) {def(s), c-use(s)} edge[dotted] (n5);
 \node[usebox] at (4,7) {c-use(yesItIs)} edge[dotted] (nE);
 \end{tikzpicture}
-\end{antwort}
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}

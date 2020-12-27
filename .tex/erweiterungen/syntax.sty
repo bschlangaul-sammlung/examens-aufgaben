@@ -17,16 +17,12 @@
 
 \def\liJavaCode#1{\mintinline{java}|#1|}
 
-\def\liLatexCode{#1{\mintinline{latex}|#1|}
+\def\liLatexCode#1{\mintinline{latex}|#1|}
 
-\NewDocumentCommand{\li@binde@java@ein}{O{} m }{
-  \inputminted[#1]{java}{#2.java}
+\NewDocumentCommand{\liJavaDatei}{ O{} m }{
+  \inputminted[#1]{java}{\LehramtInformatikRepository/Code/src/main/java/org/bschlangaul/#2.java}
 }
 
-\NewDocumentCommand{\liJavaDatei}{O{} m }{
-  \li@binde@java@ein[#1]{\LehramtInformatikRepository/Code/src/main/java/org/bschlangaul/#2}
-}
-
-\NewDocumentCommand{\liJavaTestDatei}{O{} m }{
-  \li@binde@java@ein[#1]{\LehramtInformatikRepository/Code/src/test/java/org/bschlangaul/#2}
+\NewDocumentCommand{\liJavaTestDatei}{ O{} m }{
+  \inputminted[#1]{java}{\LehramtInformatikRepository/Code/src/test/java/org/bschlangaul/#2.java}
 }

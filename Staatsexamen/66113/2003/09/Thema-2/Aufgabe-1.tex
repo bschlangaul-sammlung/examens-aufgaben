@@ -32,7 +32,7 @@ Kunden eines Versandhauses:
 \item Erläutern Sie, warum nur Relationen mit einem zusammengesetzten
 Schlüsselkandidaten die 2. Normalform verletzen können!
 
-\begin{antwort}
+\begin{liAntwort}
 
 Ist der Schlüsselkandidat ein-elementig, so müssen sämtliche Attribute
 zwangsläufig voll funktional von diesem Schlüsselkandidaten abhängig
@@ -41,7 +41,7 @@ bei atomaren Attributwerten und nur ein-elementigen Schlüsselkandidaten
 immer gegeben ist. Bei zusammengesetzten Schlüsselkandidaten kann die 2.
 NF hingegen verletzt werden, da es sein kann, dass ein
 Nicht-Schlüsselattribut nur von Schlüsselkandidaten abhängig ist.
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (b)
@@ -50,13 +50,13 @@ Nicht-Schlüsselattribut nur von Schlüsselkandidaten abhängig ist.
 \item Geben Sie für obige Datenbank alle vollen funktionalen
 Abhängigkeiten (einschließlich der transitiven) an?
 
-\begin{antwort}
+\begin{liAntwort}
 \ttfamily
 \begin{compactitem}
 \item RNR $\rightarrow$ KDNR, Name, Adresse, Positionen, Datum, Betrag
 \item KDNR $\rightarrow$ Name, Adresse
 \end{compactitem}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (c)
@@ -66,7 +66,7 @@ Abhängigkeiten (einschließlich der transitiven) an?
 Zeigen Sie anhand obiger Relation „Rechnung“ zwei mögliche Anomalien
 auf, die bei fehlender Normalisierung auftreten können.
 
-\begin{antwort}
+\begin{liAntwort}
 Die Attribute \texttt{Name} und \texttt{Adresse} sind transitiv
 (\texttt{RNR $\rightarrow$ KDNR $\rightarrow$ Name, Adresse})
 vom Schlüssel \texttt{RNR} abhängig!
@@ -85,7 +85,7 @@ eingefügt werden, wenn auch eine offene Rechnung vorliegt
 Kundendaten von Meier aus München verloren.
 \end{description}
 
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (d)
@@ -95,7 +95,7 @@ Kundendaten von Meier aus München verloren.
 Erläutern Sie die dazu durchzuführenden Schritte jeweils kurz!
 \index{Synthese-Algorithmus}
 
-\begin{antwort}
+\begin{liAntwort}
 
 Rechnung:
 
@@ -125,19 +125,19 @@ Kunde:
 
 Die transitiven Abhängigkeiten sind zu entfernen, dadurch wird die neue
 Relation „Kunde“ mit KDNR als Primärschlüssel geschaffen.
-\end{antwort}
+\end{liAntwort}
 
 Erläutern Sie, inwiefern sich eine vollständige Normalisierung
 nachteilig auf die Geschwindigkeit der Anfragebearbeitung auswirken kann
 und wie darauf reagiert werden kann!
 \footcite[Aufgabe 10: Nachteile der Normalisierung]{db:ab:klausurvorbereitung}
 
-\begin{antwort}
+\begin{liAntwort}
 Durch die vielen Tabellen sind schon bei einfacheren Anfragen schnell
 Joins notwendig, was bei komplexeren Anfragen und großen Datenmengen zu
 einigem Rechenaufwand führen kann. Hier ist es sinnvoll, zuerst eine
 Selektion zu treffen, anstatt in einem einfachen Kreuzprodukt
 auch sämtliche sinnlose Tupel miteinander zu verknüpfen.
-\end{antwort}
+\end{liAntwort}
 \end{enumerate}
 \end{document}

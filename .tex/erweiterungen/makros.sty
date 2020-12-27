@@ -67,11 +67,11 @@ anderen Paket passen]
 %-----------------------------------------------------------------------
 
 %%
-% \begin{antwort}
+% \begin{liAntwort}
 %%
 \RequirePackage{xparse}
 \ExplSyntaxOn
-\NewDocumentEnvironment{antwort} { O{standard} }
+\NewDocumentEnvironment{ liAntwort } { O{standard} }
 {
   \str_case:nn {#1}
   {
@@ -98,6 +98,10 @@ anderen Paket passen]
   \fi
   \begin{mdframed}
 }
+{\end{mdframed}}
+
+\NewDocumentEnvironment{ liAdditum } { }
+{\begin{mdframed}[backgroundcolor=yellow!5]}
 {\end{mdframed}}
 
 %%

@@ -71,7 +71,7 @@ Betrachten Sie dazu die folgenden drei Prädikate:
 \item Beweisen Sie formal für jedes der drei Prädikate, ob es
 unmittelbar vor Betreten der Schleife in \liJavaCode{mul} gilt oder nicht.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{align*}
 \wp{Code vor der Schleife}{I_1}
 & \equiv \wp{int z = 0, i = 0;}{z + i \cdot y = x \cdot y} \\
@@ -99,7 +99,7 @@ $I_2$ gilt nicht, da sie immer \texttt{false} zurück gibt.
 \end{align*}
 
 $I_3$ gilt unmittelbar vor Betreten der Schleife.
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (b)
@@ -108,7 +108,7 @@ $I_3$ gilt unmittelbar vor Betreten der Schleife.
 \item Weisen Sie formal nach, welche der drei Prädikate Invarianten des
 Schleifenrumpfs in \liJavaCode{mul} sind oder welche nicht.
 
-\begin{antwort}
+\begin{liAntwort}
 Dass $I_1$ und $I_2$ nicht gelten, wurde in der Teilaufgabe a) bereits
 gezeigt.
 
@@ -137,7 +137,7 @@ int mul (int x , int y) {
 & \equiv z + (x - i) \cdot y = x \cdot y \land i + 1 \neq x \\
 & \equiv I_3 \land \text{Schleifenbedingung}\\
 \end{align*}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (c)
@@ -146,7 +146,7 @@ int mul (int x , int y) {
 \item Beweisen Sie formal, aus welchen der drei Prädikate die
 Nachbedingung gefolgert werden darf bzw. nicht gefolgert werden kann.
 
-\begin{antwort}
+\begin{liAntwort}
 Dass $I_1$ und $I_2$ nicht gelten, wurde in der Teilaufgabe a) bereits
 gezeigt.
 
@@ -160,7 +160,7 @@ gezeigt.
 & \equiv z = x \cdot y \\
 & \equiv Q \\
 \end{align*}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (d)
@@ -169,7 +169,7 @@ gezeigt.
 \item Skizzieren Sie den Beweis der totalen Korrektheit der Methode
 \liJavaCode{mul}. Zeigen Sie dazu auch die Terminierung der Methode.
 
-\begin{antwort}
+\begin{liAntwort}
 Aus den Teilaufgaben folgt der Beweis der partiellen Korrektheit mit
 Hilfe der Invariante $I_3$.
 
@@ -178,7 +178,7 @@ ganzzahlig (int). $i$ steigt streng monoton von $0$ an so lange gilt $i
 \neq x$. $i = x$ ist die Abbruchbedingung für die bedingte Wiederholung.
 Dann terminiert die Methode. Die Methode \liJavaCode{mul} ist also total
 korrekt.
-\end{antwort}
+\end{liAntwort}
 \end{enumerate}
 
 \end{document}

@@ -61,7 +61,7 @@ INSERT INTO Mitarbeiter VALUES
 Bezeichnung \emph{„Buchhaltung“} ausgibt, absteigend sortiert nach
 \emph{Mitarbeiter-ID}.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT Vorname, Nachname
 FROM Mitarbeiter m, Abteilung a
@@ -70,7 +70,7 @@ WHERE
   a.Bezeichnung = 'Buchhaltung'
 ORDER BY m.MitarbeiterID DESC;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (b)
@@ -82,13 +82,13 @@ ausgibt. Mitarbeiter ohne Vorgesetzten sollen in der Ausgabe ebenfalls
 enthalten sein. In diesem Fall soll der Nachname des Vorgesetzten NULL
 sein.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT m.Nachname AS Mitarbeiter, v.Nachname AS Vorgesetzter
 FROM Mitarbeiter m LEFT OUTER JOIN Mitarbeiter v
 ON m.Vorgesetzter = v.MitarbeiterID;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (c)
@@ -104,7 +104,7 @@ Abteilungen mit gleichem Durchschnittsgehalt gibt. Sie können der
 Verwenden Sie jedoch keine datenbanksystemspezifischen Erweiterungen wie
 \verb|limit| oder \verb|rownum|.\index{VIEW}\index{WITH}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 CREATE VIEW Durchschnittsgehaelter AS
 SELECT Abteilung.AbteilungsID, Bezeichnung,
@@ -120,7 +120,7 @@ GROUP BY a.AbteilungsID, a.Bezeichnung, a.Durchschnittsgehalt
 HAVING COUNT (*) <= 10
 ORDER BY Rang ASC;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (d)
@@ -129,13 +129,13 @@ ORDER BY Rang ASC;
 \item Schreiben Sie eine SQL-Anfrage, die das Gehalt aller Mitarbeiter
 aus der Abteilung mit der AbteilungsID 42 um 5\% erhöht.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 UPDATE Mitarbeiter
 SET Gehalt = 1.05 * Gehalt
 WHERE AbteilungsID = 42;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (e)
@@ -147,7 +147,7 @@ WHERE AbteilungsID = 42;
 werden. \verb|ON DELETE CASCADE| ist für keine der Tabellen gesetzt.
 Schreiben Sie die zum Löschen notwendigen SQL-Anfragen.\index{DELETE}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 DELETE FROM Mitarbeiter
 WHERE AbteilungsID = ANY (
@@ -159,7 +159,7 @@ WHERE AbteilungsID = ANY (
 DELETE FROM Abteilung
 WHERE Bezeichnung = 'Qualitaetskontrolle';
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (f)
@@ -172,7 +172,7 @@ eine Möglichkeit, wie dies in einem Datenbanksystem realisiert werden
 kann, ohne die gegebenen Relationen, die Tabellen als abgelegt sind, zu
 verändern. Sie brauchen hierzu keinen SQL-Code schreiben.
 
-\begin{antwort}
+\begin{liAntwort}
 VIEW Erstellen, die zwar Namen und ID der anderen Mitarbeiter, sowie
 ihre Telefonnummern enthält (evtl. auch Abteilungsbezeichnung und ID),
 aber eben nicht das Gehalt: Mitarbeiter arbeiten auf eingeschränkter
@@ -189,7 +189,7 @@ möglich)
 GRANT SELECT (Vorname, Nachname, Telefonnummer)
 ON Mitarbeiter TO postgres;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 \end{enumerate}
 
 \end{document}

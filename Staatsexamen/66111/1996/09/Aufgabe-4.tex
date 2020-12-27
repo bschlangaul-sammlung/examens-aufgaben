@@ -37,7 +37,7 @@ Algebra\index{Relationale Algebra} und SQL\index{SQL}!
 
 \item Bestimmen Sie alle Modelle mit mehr als 60 PS
 
-\begin{antwort}
+\begin{liAntwort}
 \liPseudoUeberschrift{Relationale Algebra}
 $\pi_{mnr}(\sigma_{ps > 60}(Modelle))$
 
@@ -45,7 +45,7 @@ $\pi_{mnr}(\sigma_{ps > 60}(Modelle))$
 \begin{minted}{sql}
 SELECT mnr FROM Modelle WHERE ps > 60;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (b)
@@ -53,7 +53,7 @@ SELECT mnr FROM Modelle WHERE ps > 60;
 
 \item Bestimmen Sie die Typen aller Modelle des Herstellers VW.
 
-\begin{antwort}
+\begin{liAntwort}
 \liPseudoUeberschrift{Relationale Algebra}
 
 $\pi_{typ}(Modelle \bowtie \sigma_{hersteller = \mlq vw \mrq}
@@ -71,7 +71,7 @@ FROM Modelle m, Hersteller h
 WHERE h.hnr = m.hnr AND
 h.hersteller = 'VV';
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (c)
@@ -80,7 +80,7 @@ h.hersteller = 'VV';
 \item Bestimmen Sie die Nummern aller Modelle des Herstellers Opel, von
 denen tatsächlich Fahrzeuge auf Lager sind
 
-\begin{antwort}
+\begin{liAntwort}
 \liPseudoUeberschrift{Relationale Algebra}
 
 $\pi_{mnr}(
@@ -95,7 +95,7 @@ SELECT DISTINCT m.mnr
 FROM Modelle m, Hersteller h, Fahrzeuge f
 WHERE f.mnr = m.mnr AND m.hnr = h.hnr AND h.hersteller = 'Opel';
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 \end{enumerate}
 

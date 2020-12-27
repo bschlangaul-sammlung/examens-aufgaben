@@ -264,7 +264,7 @@ F = \{ \\
 
 \item Zeigen Sie: ${C, E}$ ist der einzige Schlüsselkandidat von $R$.
 
-\begin{antwort}
+\begin{liAntwort}
 A, G, D kommen auf keiner linken Seite vor
 
 $AttrHull(F, \{C, E\}) = R$
@@ -272,9 +272,9 @@ $AttrHull(F, \{C, E\}) = R$
 $AttrHull(F, \{C\}) = \{B\} != R$
 
 $AttrHull(F, \{E\}) = \{E, D\} != R$
-\end{antwort}
+\end{liAntwort}
 
-\begin{antwort}
+\begin{liAntwort}
 
 $C$ und $E$ kommen auf keiner rechten Seite der FDs aus $F$ vor, d.h.
 $C$ und $E$ müssen Teil jedes Schlüsselkandidaten sein.
@@ -301,7 +301,7 @@ nicht der einzige Superschlüssel, auch \{A, B, C, D, E, G\} wäre ein
 Superschlüssel!
 \end{itemize}
 
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (b)
@@ -309,13 +309,13 @@ Superschlüssel!
 
 \item Ist $R$ in 2NF?
 
-\begin{antwort}
+\begin{liAntwort}
 Ist nicht in der 2NF, denn $D$ hängt von $E$ ab, also von einer
 echten Teilmenge des Schlüsselkandidaten $\{C, E\}$. Das gleiche gilt
 für die FD $C \rightarrow B$.
-\end{antwort}
+\end{liAntwort}
 
-\begin{antwort}
+\begin{liAntwort}
 $R$ ist nicht in 2NF, denn:
 
 Betrachte $E \rightarrow D$: $D$ ist ein Nicht-Schlüsselattribut und $E$
@@ -345,7 +345,7 @@ $R2(C, B, A)$,
 $R3(E, D)$
 \end{itemize}
 
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (c)
@@ -361,7 +361,7 @@ F = \{ \\
 \}
 \end{multline}
 
-\begin{antwort}
+\begin{liAntwort}
 Kanonische Überdeckung
 
 \begin{enumerate}
@@ -377,9 +377,9 @@ unter ausschließlicher Verwendung der restlichen FD aus der
 entsprechenden linken Seite abgeleitet werden.
 \end{enumerate}
 
-\end{antwort}
+\end{liAntwort}
 
-\begin{antwort}
+\begin{liAntwort}
 Vorgehen: Entsprechen die hier abgebildeten Funktionalen Abhängigkeiten
 bereits einer kanonischen Überdeckung von F oder nicht?
 
@@ -412,7 +412,7 @@ $\Rightarrow$ $B \rightarrow A$ ist nicht redundant
 F ist bereits minimal.
 \end{itemize}
 
-\end{antwort}
+\end{liAntwort}
 
 \end{enumerate}
 
@@ -476,9 +476,9 @@ $Buchungsdatum$.
 
 \item Begründe, dass diese Tabelle in 1. Normalform vorliegt.
 
-\begin{antwort}
+\begin{liAntwort}
 Es gibt nur atomare Werte. Alle Attributewerte sind atomar.
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (b)
@@ -487,11 +487,11 @@ Es gibt nur atomare Werte. Alle Attributewerte sind atomar.
 \item Erläutere, warum nur Tabellen mit zusammengesetzem Primärschlüssel
 die zweite Normalform verletzen können.
 
-\begin{antwort}
+\begin{liAntwort}
 Nur bei Tabellen mit zusammegesetzten Primärschlüssel kann es vorkommen,
 dass ein Nichtschlüssel-Attribute von einer echten Teilmenge des
 Primärschlüssel voll funktional abhängt.
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (c)
@@ -499,14 +499,14 @@ Primärschlüssel voll funktional abhängt.
 
 \item Zeige mögliche Anomalien auf, die hier auftreten können.
 
-\begin{antwort}
+\begin{liAntwort}
 Löschanomalie, z. B.
 
 Updateanomalie, z. B. Chomsky zieht um
 
 Insert-Anomalie, z. B. Kunde kann sich nicht registrieren ohne
 dass ein Buchung stattfand.
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (d)
@@ -514,13 +514,13 @@ dass ein Buchung stattfand.
 
 \item Überführe das Schema in die 2. Normalform.
 
-\begin{antwort}
+\begin{liAntwort}
 MobilRent(\underline{KdNr, Buchungsdatum}, Fahrzeug, Typ, Tarifgruppe, Tage,Rückgabestation, Stationsleiter)
 
 Kunden(\underline{Kdnr}, Name, Wohnort)
 
 Aktion(\underline{Buchungsdatum}, Aktion)
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (3)
@@ -528,7 +528,7 @@ Aktion(\underline{Buchungsdatum}, Aktion)
 
 \item Überführe das Schema in die 3. Normalform.
 
-\begin{antwort}
+\begin{liAntwort}
 Kunden(\underline{Kdnr}, Name, Wohnort)
 
 Aktion(\underline{Buchungsdatum}, Aktion)
@@ -540,7 +540,7 @@ Tarifgruppen(\underline{Typ}, Tarifgruppe)
 Stationsleiter(\underline{Rückgabestation}, Stationsleiter)
 
 MobilRent(\underline{KdNr, Buchungsdatum}, Fahrzeug, Tage, Rückgabestation)
-\end{antwort}
+\end{liAntwort}
 \end{enumerate}
 
 %-----------------------------------------------------------------------
@@ -574,7 +574,7 @@ Deutscher      & Lindenstraße & Passau  & A4    & Informatik  \\
 \item Geben Sie - orientiert an der obigen Tabelle - ein Beispiel für
 eine mögliche Änderungsanomalie an!
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{description}
 \item[Update-Anomalie] Die Abteilung A4 wird umbenannt, beispielsweise
 in Softwareabteilung. Die Änderung wird aus Versehen nicht in allen
@@ -592,7 +592,7 @@ Attribut Name sicher in jedem Schlüsselkandidaten enthalten sein muss,
 kann der Wert von Name keinen Nullwert enthalten. Das Tupel kann nicht
 eingefügt werden.
 \end{description}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (b)
@@ -603,7 +603,7 @@ sich aus Ihrer Analyse des Anwendungsbereiches ergeben. (Triviale
 Abhängigkeiten brauchen nicht angegeben werden.) Begründen Sie Ihre
 Entscheidung kurz.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{itemize}
 \item $AbtNr \rightarrow Bezeichnung$ \\
 Die Abteilungsnummer ist eindeutig (als „künstliches“
@@ -632,7 +632,7 @@ $F = \{
 \}$
 \end{itemize}
 
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (c)
@@ -650,9 +650,9 @@ Attributhülle
 
 \item $AttrHull(F, \{Name, Bezeichnung\})$
 
-\begin{antwort}
+\begin{liAntwort}
 $AttrHull(F, \{Name, Bezeichnung\}) = \{Name, Bezeichnung\}$
-\end{antwort}
+\end{liAntwort}
 
 %%
 % 2.
@@ -660,9 +660,9 @@ $AttrHull(F, \{Name, Bezeichnung\}) = \{Name, Bezeichnung\}$
 
 \item $AttrHull(F, \{Name, AbtNr\})$
 
-\begin{antwort}
+\begin{liAntwort}
 $AttrHull(F, \{Name, AbtNr\}) = \{Name, AbtNr, Strasse, Ort, Bezeichnung\}$
-\end{antwort}
+\end{liAntwort}
 \end{enumerate}
 
 %%
@@ -672,9 +672,9 @@ $AttrHull(F, \{Name, AbtNr\}) = \{Name, AbtNr, Strasse, Ort, Bezeichnung\}$
 \item Ist ${Name, Bezeichnung}$ (bzw. ${Name, AbtNr}$ ein Superschlüssel
 der Relation Abteilungsmitarbeiter? Kurze Begründung!
 
-\begin{antwort}
+\begin{liAntwort}
 ${Name, AbtNr}$
-\end{antwort}
+\end{liAntwort}
 
 \end{enumerate}
 
@@ -697,7 +697,7 @@ F = \{ \\
 \}
 \end{multline*}
 
-\begin{antwort}
+\begin{liAntwort}
 
 \begin{enumerate}
 \item Linksreduktion
@@ -726,7 +726,7 @@ schon minimal
 
 \end{enumerate}
 
-\end{antwort}
+\end{liAntwort}
 
 %-----------------------------------------------------------------------
 %

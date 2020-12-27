@@ -109,7 +109,7 @@ Algebra\index{Relationale Algebra}, welche den \emph{Vornamen} und
 \emph{Nachnamen} von Polizisten zurückgibt, deren Dienstgrad
 \emph{„Polizeikommissar“} ist und die mehr als 1500 Euro verdienen.
 
-\begin{antwort}
+\begin{liAntwort}
 $\pi_{\text{Vorname,Nachname}}(
   \sigma_{
     \text{Dienstgrad} = \mlq \text{Polizeikommissar} \mrq
@@ -117,7 +117,7 @@ $\pi_{\text{Vorname,Nachname}}(
     \text{Gehalt} > 1500
   }(\text{Polizist})
 )$
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (b)
@@ -127,7 +127,7 @@ $\pi_{\text{Vorname,Nachname}}(
 \emph{Titel} der \emph{Fälle} ausgibt, die von \emph{Polizisten} mit dem
 \emph{Nachnamen} \emph{„Mayer“} bearbeitet wurden.
 
-\begin{antwort}
+\begin{liAntwort}
 $
 \pi_{\text{Titel}}(
   \sigma_{\text{Nachname} = \mlq \text{Mayer} \mrq}(\text{Polizist})
@@ -137,7 +137,7 @@ $
   \text{Fall}
 )
 $
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (c)
@@ -147,7 +147,7 @@ $
 Polizisten ausgibt, die in der Stadt \emph{„München“} arbeiten und mit
 Nachnamen \emph{„Schmidt“} heißen.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT COUNT(*) AS Anzahl_Polizisten
 FROM Polizist p, Dienststelle d
@@ -156,7 +156,7 @@ WHERE
   d.Stadt = 'München' AND
   p.Nachname = 'Schmidt';
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (d)
@@ -168,7 +168,7 @@ dem \emph{XZ1508} beteiligt waren. Ordnen Sie die Ergebnismenge
 alphabetisch (aufsteigend) und achten Sie darauf, dass keine Duplikate
 enthalten sind.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT DISTINCT d.Name
 FROM Dienststelle d, Polizist p, Arbeitet_an a
@@ -180,7 +180,7 @@ WHERE
   a.Bis <= '2012-02-14'
 ORDER BY d.Name ASC;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (e)
@@ -191,7 +191,7 @@ welche Dienstgrade enthalten soll, die in \emph{München} mit
 durchschnittlich mehr als \emph{2500} Euro besoldet werden.
 \index{VIEW}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 CREATE VIEW ErstrebenswerteDienstgrade AS (
   SELECT DISTINCT p.Dienstgrad
@@ -203,7 +203,7 @@ CREATE VIEW ErstrebenswerteDienstgrade AS (
   HAVING (AVG(Gehalt) > 2500)
 );
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (f)
@@ -223,7 +223,7 @@ Polizisten.\index{WITH}\index{UNION}
 
 Hinweis: Sie dürfen Views verwenden, um Teilergebnisse auszudrücken.
 
-\begin{antwort}
+\begin{liAntwort}
 
 \begin{minted}{sql}
 WITH RECURSIVE meins (PersNr, VN, NN, DG, VN_VG, NN_VG, DG_VG) AS (
@@ -244,7 +244,7 @@ SELECT VN, NN, NN, DG, VN_DG, NN_VG, DG_VG
 FROM meins
 ORDER BY NN DESC;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 \end{enumerate}
 
 \end{document}

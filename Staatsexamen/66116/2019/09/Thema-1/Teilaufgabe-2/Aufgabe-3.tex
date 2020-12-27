@@ -133,7 +133,7 @@ INSERT INTO lebt VALUES
 vorkommen.
 \index{Korrelierte Anfrage}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT
   Name,
@@ -141,7 +141,7 @@ SELECT
   (SELECT COUNT(*) FROM Figur g WHERE g.Titel = f.Titel) AS Anzahl_Titel
 FROM Figur f;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 %
@@ -149,7 +149,7 @@ FROM Figur f;
 
 \item Welche Figuren (Name ist gesucht) kommen aus „Kings Landing“?
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT
   f.Name
@@ -162,7 +162,7 @@ WHERE
   f.Id = l.Id AND
   b.Ort = 'Königsmund';
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 %
@@ -172,7 +172,7 @@ WHERE
 Charaktere und Festungen an.
 \index{Korrelierte Anfrage}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT
   f.Name,
@@ -181,7 +181,7 @@ SELECT
 FROM
   Familie f;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 %
@@ -192,7 +192,7 @@ Ort „Westeros“. Es soll der Name, die Schwertkunst und die Platzierung
 ausgegeben werden. Die Ausgabe soll nach der Platzierung sortiert
 erfolgen.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 -- Problem: Es gibt 3 mal 3. Platz und nicht 3 mal 1. Platz
 SELECT f1.Name, f1.Schwertkunst, COUNT(*) FROM Figur f1, Figur f2
@@ -201,7 +201,7 @@ GROUP BY f1.Name, f1.Schwertkunst
 ORDER BY COUNT(*)
 LIMIT 5;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 %
@@ -211,7 +211,7 @@ LIMIT 5;
 Das Attribut \emph{Lebendig} kann dabei die Optionen „ja“ und „nein“
 annehmen.\index{DELETE}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 -- Nur zu Testzwecken auflisten:
 SELECT * FROM Figur;
@@ -233,7 +233,7 @@ DELETE FROM Figur WHERE Lebendig = FALSE;
 SELECT * FROM Figur;
 SELECT * FROM gehört_zu;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 %
@@ -242,12 +242,12 @@ SELECT * FROM gehört_zu;
 \item Löschen Sie die Spalten „Lebendig“ aus der Datenbank.
 \index{DROP COLUMN}\index{ALTER TABLE}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 ALTER TABLE Figur DROP COLUMN Lebendig;
 ALTER TABLE Drache DROP COLUMN Lebendig;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 %
@@ -259,7 +259,7 @@ zugeordnet, hat einen eindeutigen Namen und eine Stärke zwischen 0 und
 5. Wählen Sie sinnvolle Typen für die Attribute.
 \index{BETWEEN}\index{CHECK}\index{REFERENCES}\index{NOT NULL}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 CREATE TABLE Waffen (
   Name varchar(20) PRIMARY KEY,
@@ -275,6 +275,6 @@ INSERT INTO Waffen VALUES
 -- INSERT INTO Waffen VALUES
 --  ('Schleuder', 1, 6);
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 \end{enumerate}
 \end{document}

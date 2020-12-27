@@ -53,13 +53,13 @@ die folgenden Teilaufgaben:
 \item Geben Sie die \emph{Namen} der \emph{Minispiele} zurück, die zur
 \emph{Kategorie} \emph{„Denkspiele“} zählen.
 
-\begin{antwort}
+\begin{liAntwort}
 $
 \pi_{\text{Name}}(
   \sigma_{\text{Kategorie} = \mlq \text{Denkspiele} \mrq}(\text{Minispiele})
 )
 $
-\end{antwort}
+\end{liAntwort}
 
 %%
 % ii.
@@ -70,7 +70,7 @@ Spieler zurück, die in einem Minispiel des Typs
 \emph{„Geschicklichkeitsspiel“} gewonnen haben.
 \end{enumerate}
 
-\begin{antwort}
+\begin{liAntwort}
 $
 \pi_{\text{Spieler.Name,Spieler.Email}}(
   \sigma_{\text{Kategorie} = \mlq \text{Geschicklichkeitsspiel} \mrq}(\text{Minispiele})
@@ -80,7 +80,7 @@ $
   \text{Spieler}
 )
 $
-\end{antwort}
+\end{liAntwort}
 
 %%
 % b)
@@ -99,13 +99,13 @@ keine Duplikate enthalten sollen.
 \item Geben Sie jede Spielekategorie aus, für die ein Minispiel der
 Schwierigkeitsstufe sehr schwer vorhanden ist.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT DISTINCT Kategorie
 FROM Minispiel
 WHERE Schwierigkeit = 'sehr schwer';
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % ii.
@@ -114,7 +114,7 @@ WHERE Schwierigkeit = 'sehr schwer';
 \item Geben Sie die Wettkämpfe aus, deren Dauer unter der
 durchschnittlichen Dauer der Wettkämpfe liegt.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT WNr
 FROM Wettkampf
@@ -122,7 +122,7 @@ WHERE Dauer < (
   SELECT AVG(Dauer) FROM Wettkampf
 );
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % iii.
@@ -158,7 +158,7 @@ SELECT
 FROM Spieler;
 \end{minted}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT
   s.SNR,
@@ -172,7 +172,7 @@ WHERE
   g.SNr = w.Geschlagener
 GROUP BY s.SNR, s.Name;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 \end{enumerate}
 
 %%

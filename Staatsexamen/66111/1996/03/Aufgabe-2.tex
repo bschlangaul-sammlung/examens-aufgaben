@@ -40,7 +40,7 @@ Gegeben ist das folgende (sehr ausführliche) ER-Modell.
 DB-Schema!\index{Verfeinertes Relationenmodell} Geben Sie geeignete
 Domänen an.
 
-\begin{antwort}
+\begin{liAntwort}
 \ttfamily
 \footnotesize
 Dozent(\liPrimaer{PersNr:INT}, Name:VARCHAR(20),
@@ -62,7 +62,7 @@ belegt(\liFremd{Nr:INT[Lehrveranstaltung], MatrNr:INT[Adresse]})\\
 besitzt(\liFremd{Adresse:VARCHAR(100)[Adresse], MatrNr:INT[Student]})\\
 
 Durchführung(\liPrimaer{Zeit:DATE, RaumNr:INT}, \liFremd{Nr:INT[Student]})\\
-\end{antwort}
+\end{liAntwort}
 
 \item Welche Fremdschlüssel gibt es in diesem Schema?
 \end{enumerate}
@@ -78,7 +78,7 @@ SQL-Befehle an.
 \item Die Tabellenschemata von \texttt{Student} und \texttt{besitzt}
 sollen erzeugt werden.
 
-\begin{antwort}
+\begin{liAntwort}
 % Datenbankname: universitaetsdatenbank
 \begin{minted}{sql}
 CREATE TABLE Fakultaet (
@@ -110,7 +110,7 @@ CREATE TABLE besitzt (
 INSERT INTO Adresse VALUES ('Kaulbacherstraße 3');
 
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 \item Am Tabellenschema von \texttt{Student} werden zwei Änderungen
 vorgenommen:
@@ -118,17 +118,17 @@ vorgenommen:
 \begin{itemize}
 \item Es soll ein weiteres Attribut Vorname hinzugefügt werden.
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 ALTER TABLE Student ADD COLUMN Vorname VARCHAR(20);
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 \item Als Integritätsbedingung wird festgelegt, dass die Semesterzahl
 kleiner als 15 sein muss.
 \end{itemize}
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 ALTER TABLE Student ADD CHECK (Semesteranzahl < 15);
 \end{minted}
@@ -138,7 +138,7 @@ oder
 \begin{minted}{sql}
 ALTER TABLE Student ADD CONSTRAINT begrenzung_Semester CHECK (Semesteranzahl < 15);
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}

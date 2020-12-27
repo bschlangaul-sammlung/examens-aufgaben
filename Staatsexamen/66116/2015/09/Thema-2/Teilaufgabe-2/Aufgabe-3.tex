@@ -80,7 +80,7 @@ Korrektheit der Methode mittels wp-Kalkül sinnvolle Schleifeninvariante?
 \item $(\text{df} + x)!! = n!! \land x \geq 0$
 \end{itemize}
 
-\begin{antwort}
+\begin{liAntwort}
 Zunächst wird der Code in einen äquivalenten Code mit while-Schleife
 umgewandelt:
 
@@ -103,7 +103,7 @@ d.\,h. $(\text{df} + x)!! = (1 + n)!!$. Jedoch ist offenbar $(1 + n)!!
 \not = n!!$. Nach dem Ausschlussprinzip ist es daher die dritte
 Bedingung: $I \equiv (\text{df} + x)!! = n!! \land x \geq 0$.
 
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (b)
@@ -112,7 +112,7 @@ Bedingung: $I \equiv (\text{df} + x)!! = n!! \land x \geq 0$.
 Bedingung unmittelbar vor Beginn der Schleife gilt, wenn zu Beginn der
 Methode die Anfangsbedingung $P$ gilt.
 
-\begin{antwort}
+\begin{liAntwort}
 Zu zeigen $P \Rightarrow \wp{Code vor der Schleife}{I}$
 
 \begin{align*}
@@ -126,7 +126,7 @@ Zu zeigen $P \Rightarrow \wp{Code vor der Schleife}{I}$
 \end{align*}
 
 Insbesondere folgt damit die Behauptung.
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (c)
@@ -135,7 +135,7 @@ Insbesondere folgt damit die Behauptung.
 \item Zeigen Sie formal mittels wp-Kalkül, dass die von Ihnen gewählte
 Bedingung tatsächlich eine Invariante der Schleife ist.
 
-\begin{antwort}
+\begin{liAntwort}
 zu zeigen: $I \land \text{Schleifenbedingung} \Rightarrow \wp{Code in der Schleife}{I}$
 
 Bevor wir dies beweisen, zeigen wir erst $x \cdot (x − 2)!! = x!!$.
@@ -182,7 +182,7 @@ Dies benutzen wir nun, um den eigentlichen Beweis zu führen:
 & \equiv I \land x > 1 \\
 & \equiv I \land \text{Schleifenbedingung} \\
 \end{align*}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (d)
@@ -199,13 +199,13 @@ Nachbedingung $Q$ erfüllt wird.
 eine Terminierungsfunktion\index{Terminierungsfunktion} an und begründen
 Sie kurz ihre Wahl.
 
-\begin{antwort}
+\begin{liAntwort}
 Sei $T (x) := x$. $T$ ist offenbar ganzzahlig. Da $x$ in jedem
 Schleifendurchlauf um $2$ verringert wird, ist $T$ streng monoton
 fallend. Aus der Schleifeninvariante folgt $x \geq 0$ und daher ist $x$
 auch nach unten beschränkt. Damit folgt $I \Rightarrow T \geq 0$ und $T$
 ist eine gültige Terminierungsfunktion.
-\end{antwort}
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}

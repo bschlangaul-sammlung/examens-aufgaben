@@ -79,7 +79,7 @@ INSERT INTO mitarbeiter (Nummer, Name, Alter, Gehalt, AbtNr) VALUES
 \item Wie hoch ist das Durchschnittsalter der Abteilung
 „Personal Care“ im Unternehmen „Test.com“?
 
-\begin{antwort}
+\begin{liAntwort}
 \verb|GROUP BY| nicht nötig, \verb|AS| nicht vergessen.
 
 \begin{minted}{sql}
@@ -91,7 +91,7 @@ WHERE
   u.Nummer = a.UntNr AND
   m.AbtNr = a.Nummer;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % b)
@@ -100,7 +100,7 @@ WHERE
 \item Geben Sie für jedes Unternehmen das Durchschnittsalter
 der Mitarbeiter an!
 
-\begin{antwort}
+\begin{liAntwort}
 
 Statt \verb|a.UntNr| kann \verb|u.Nummer| verwendet werden.
 \verb|a.UntNr| nur deshalb, weil man dann eventuell den Join über die
@@ -117,7 +117,7 @@ WHERE
   m.AbtNr = a.Nummer
 GROUP BY a.UntNr, u.Name;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % c)
@@ -127,7 +127,7 @@ GROUP BY a.UntNr, u.Name;
 älter als ihr Chef? (D.h. sind älter als der Manager der Abteilung, in
 der sie arbeiten.)
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT COUNT(*)
 FROM Mitarbeiter m, Abteilung a, Unternehmen u
@@ -172,7 +172,7 @@ WHERE
   a.Manager = m2.Nummer AND
   m.Alter > m2.Atler;
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (d)
@@ -181,7 +181,7 @@ WHERE
 \item Welche Abteilungen haben ein geringeres Budget als die
 Summe der Gehälter der Mitarbeiter, die in der Abteilung arbeiten?
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 SELECT a.Name, a.Nummer
 FROM Abteilung a
@@ -201,7 +201,7 @@ WHERE a.Nummer = m.AbtNr
 GROUP BY a.Nummer, a.Name, a.Budget
 HAVING a.Budget < SUM(m.Gehalt);
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (e)
@@ -210,7 +210,7 @@ HAVING a.Budget < SUM(m.Gehalt);
 \item Versetzen Sie den Mitarbeiter „Wagner“ in die Abteilung „Personal
 Care“!
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 UPDATE Mitarbeiter m
 SET AbtNr = (
@@ -220,7 +220,7 @@ SET AbtNr = (
 )
 WHERE m.Name = 'Wagner';
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (f)
@@ -229,7 +229,7 @@ WHERE m.Name = 'Wagner';
 \item Löschen Sie die Abteilung „Personal Care“ mit allen ihren
 Mitarbeitern!
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 DELETE FROM Mitarbeiter
 WHERE AbtNr = (
@@ -241,7 +241,7 @@ WHERE AbtNr = (
 DELETE FROM Abteilung
 WHERE Name = 'Personal Care';
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 
 %%
 % (g)
@@ -253,7 +253,7 @@ wenn die Gehälter der Mitarbeiter höher sind als das Budget der
 Abteilung.) Zusatzfrage: Was passiert mit Mitarbeitern, die Manager von
 mehreren Abteilungen sind?
 
-\begin{antwort}
+\begin{liAntwort}
 \begin{minted}{sql}
 CREATE VIEW LowBudget AS (
   SELECT Nummer
@@ -279,7 +279,7 @@ WHERE Nummer IN (
   WHERE LowBudget.Manager = Abteilung.Nummer
 )
 \end{minted}
-\end{antwort}
+\end{liAntwort}
 \end{enumerate}
 
 \end{document}
