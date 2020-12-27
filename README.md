@@ -1290,13 +1290,13 @@ thematisch zu keinem anderen Paket passen
   `\liPseudoUeberschrift{}`. Am Ende des Textes wird ein
   Doppelpunktzeichen angehängt.
 * Makro: `\liFussnoteUrl{url}`: Eine HTTP-URL als Fußnote setzen.
-* Makro: `\liFussnoteLink{text}{url}`: Eine Link, d. h. einen Link-Text
+* Makro: `\liFussnoteLink{text}{url}`: Einen Link, d. h. einen Link-Text
   und eine URL als Fußnote setzen.
 * Umgebung: `\begin{liAntwort} \end{liAntwort}`: Zum Setzen von
   Antworten. Sie werden mit einem Kasten umgeben. Könnten eventuell
   ausgeblendet werden, wenn man nur die Lösung sehen will.
 * Umgebung: `\begin{liAdditum} \end{liAdditum}`: Zusätzliches Material
-  bei Aufgaben, dass zum Lösen der Aufgaben nicht unbedingt nötig ist,
+  bei Aufgaben, das zum Lösen der Aufgaben nicht unbedingt nötig ist,
   z. b. Hintergrundinformation, Test-Dateien, komplette Code-Dateien.
 
 ### `normalformen.sty`
