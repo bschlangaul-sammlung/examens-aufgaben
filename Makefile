@@ -12,6 +12,11 @@ install_config:
 install_cli:
 	cd .scripts; npm install; npm run build
 
+build: build_cli
+
+build_cli:
+	cd .scripts; npm run build
+
 install_tex:
 	.tex/install.sh
 

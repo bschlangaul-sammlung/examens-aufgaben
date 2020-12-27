@@ -8,8 +8,7 @@ import glob from 'glob'
 import { Command } from 'commander'
 
 import { Aufgabe, ExamensAufgabe } from './aufgabe'
-import { repositoryPfad, öffneProgramm, öffneVSCode, zeigeFehler } from './helfer'
-import { examenSammlung } from './sammlung'
+import { repositoryPfad, öffneVSCode, zeigeFehler, leseDatei, schreibeDatei } from './helfer'
 
 import { erzeugeAufgabenVorlage } from './aktionen/erzeuge-aufgaben-vorlage'
 import { erzeugeReadme } from './aktionen/erzeuge-readme'
@@ -190,6 +189,16 @@ programm
       '1-endeast', 'output',
       '--sidecar', `${datei}_rotated.pdf`
     ])
+  })
+
+programm
+  .command('enumerate-item <tex-datei>')
+  .alias('ei')
+  .description('a) b) ... i) iii) durch \\item ersetzen.')
+  .action(function (dateiPfad: string): void {
+    let inhalt = leseDatei(dateiPfad)
+    inhalt = inhalt.replace(/\n([abcdefgiv]+\)\s*)/g, '\n%%\n% $1\n%%\n\n\\item ')
+    schreibeDatei(dateiPfad, inhalt)
   })
 
 programm.parse(process.argv)

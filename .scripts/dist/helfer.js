@@ -23,7 +23,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.öffneVSCode = exports.öffneProgramm = exports.generiereLink = exports.macheRepoPfad = exports.leseRepoDatei = exports.macheRelativenPfad = exports.repositoryPfad = exports.zeigeFehler = exports.leseDatei = void 0;
+exports.öffneVSCode = exports.öffneProgramm = exports.generiereLink = exports.macheRepoPfad = exports.leseRepoDatei = exports.macheRelativenPfad = exports.repositoryPfad = exports.zeigeFehler = exports.schreibeDatei = exports.leseDatei = void 0;
 var fs_1 = __importDefault(require("fs"));
 var path_1 = __importDefault(require("path"));
 var child_process_1 = __importDefault(require("child_process"));
@@ -34,6 +34,10 @@ function leseDatei(pfad) {
     return fs_1.default.readFileSync(pfad, { encoding: 'utf-8' });
 }
 exports.leseDatei = leseDatei;
+function schreibeDatei(pfad, inhalt) {
+    return fs_1.default.writeFileSync(pfad, inhalt, { encoding: 'utf-8' });
+}
+exports.schreibeDatei = schreibeDatei;
 function zeigeFehler(meldung) {
     console.error(chalk_1.default.red(meldung));
     process.exit(1);

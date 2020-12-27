@@ -784,6 +784,8 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T2-A6">Aufgabe 6 (Komplexität)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T2-A7">Aufgabe 7 (Halde (Heap))</a>
 - 2013 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2013-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/03/OCR.txt" download="Staatsexamen-Informatik_66115-2013-Frühjahr_OCR">OCR.txt</a> 
+    - Thema 1 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/03/Thema-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2013-Frühjahr_T1-A6">Aufgabe 6 (Streutabellen (Hashing))</a>
 - 2013 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/Scan.pdf" download="Staatsexamen-Informatik_66115-2013-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/OCR.txt" download="Staatsexamen-Informatik_66115-2013-Herbst_OCR">OCR.txt</a> 
     - Thema 2 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/Thema-2/Aufgabe-9.pdf" download="Staatsexamen-Informatik_66115-2013-Herbst_T2-A9">Aufgabe 9 (Algorithmus von Dijkstra)</a>
@@ -1267,6 +1269,8 @@ ankreuzen.
   `itemize`-Umgebung zu verwenden.)
 * Makro: `\liFalsch`: Nicht angekreuztes Kästchen (nur innerhalb der
   `itemize`-Umgebung zu verwenden.)
+
+### `grafik.sty`
 
 ### `hanoi.sty`
 

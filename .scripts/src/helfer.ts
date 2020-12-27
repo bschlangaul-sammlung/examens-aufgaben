@@ -11,6 +11,10 @@ export function leseDatei (pfad: string) {
   return fs.readFileSync(pfad, { encoding: 'utf-8' })
 }
 
+export function schreibeDatei (pfad: string, inhalt: string) {
+  return fs.writeFileSync(pfad, inhalt, { encoding: 'utf-8' })
+}
+
 export function zeigeFehler (meldung: string): never {
   console.error(chalk.red(meldung))
   process.exit(1)

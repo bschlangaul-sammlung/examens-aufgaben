@@ -1,0 +1,157 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,grafik}
+\begin{document}
+\liAufgabenTitel{IP und ULR mit Hashes}
+\section{Aufgabe 6 Streutabellen (Hash-Tables)
+\index{Streutabellen (Hashing)}
+\footcite{66115:2013:03}}
+
+Um die URL (zum Beispiel google.de) und die zugehörige IP des Servers
+(hier 173.194.69.9) zu verwalten, werden Streutabellen verwendet, die
+eine bestimmte Zone von Adressen abbilden. Die Streutabellen werden als
+zwei dynamische Arrays (in Java: ArrayLists) realisiert. Kollisionen
+innerhalb einer Zone werden ebenfalls in dynamischen Arrays verwaltet.
+
+\usetikzlibrary {shapes.multipart,positioning}
+
+\def\TmpTabelle#1#2#3{
+  \node[tabelle,label=270:#1] (#1) at (#2,#3) {
+    Streuwert 0
+    \nodepart[text height=3cm]{two}Streuwert 1
+    \nodepart{three}…
+    \nodepart{four}Streuwert 45
+  };
+}
+
+\def\TmpListeEintrag#1#2#3#4#5{
+  \node[liste,#5=of #1] (#4) {#2\nodepart{two}Index #3};
+  \draw (#4) -- (#1);
+}
+
+\begin{center}
+\begin{tikzpicture}[
+  scale=0.7,transform shape,
+  li hash/.style={
+    rectangle split,
+    draw,
+    anchor=center
+  },
+  liste/.style={
+    li hash,
+    rectangle split parts=2,
+    rectangle split horizontal,
+  },
+  tabelle/.style={
+    li hash,
+    rectangle split parts=4,
+    inner ysep=4mm,
+    inner xsep=3mm,
+  }
+]
+
+\TmpTabelle{url}{2}{0}
+
+\node[rotate=90] at (4.5,0){Zone};
+
+\TmpTabelle{ip}{7}{0}
+
+\TmpListeEintrag{url.one west}{google.de}{0}{google}{left}
+\TmpListeEintrag{url.two west}{bayern.de}{0}{bayern}{left}
+
+\TmpListeEintrag{ip.one east}{173.194.69.9}{0}{173}{right}
+\TmpListeEintrag{ip.two east}{195.200.71.7}{0}{195}{right}
+
+\node[left=3.5cm of url.four east] (facebook) {
+\begin{tabular}{|c|c|}
+\hline
+facebook.com & Index 0 \\\hline
+gmx.net & Index 1 \\\hline
+\end{tabular}
+};
+\draw (facebook) -- (url.four west);
+
+\node[right=1cm of ip.four east] (69) {
+\begin{tabular}{|c|c|}
+\hline
+69.171.229.1 & Index 0 \\\hline
+213.165.64.7 & Index 1 \\\hline
+\end{tabular}
+};
+\draw (69) -- (ip.four east);
+
+\end{tikzpicture}
+\end{center}
+
+\noindent
+Um zu einer URL die IP zu finden, berechnet man zunächst mittels der
+Funktion \java{hash()} den entsprechenden Streuwert, entnimmt dann den
+Index der Tabelle URL und sucht schließlich an entsprechender Stelle in
+der Tabelle IP die IP-Adresse.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Erläutern Sie am vorgestellten Beispiel, wie ein Hash-Verfahren
+zum Speichern großer Datenmengen prinzipiell funktioniert und welche
+Voraussetzungen und Bedingungen daran geknüpft sind.
+
+%%
+% b)
+%%
+
+\item Nun implementieren Sie Teile dieser IP- und URL-Verwaltung in
+einer objektorientierten Sprache Ihrer Wahl. Verwenden Sie dabei die
+folgende Klasse (die Vorgaben sind in der Sprache Java gehalten):
+
+\begin{minted}{java}
+class Zone {
+private ArrayList<ArrayList<String>> urlList =
+  new ArrayList<ArrayList<String>>();
+private ArrayList<ArrayList<String>> ipList =
+  new ArrayList<ArrayList<String>>();
+public int hash(String url) {/* calculates hash-value h, >=0 */}
+}
+\end{minted}
+
+\begin{enumerate}
+%%
+% i)
+%%
+
+\item Prüfen Sie in einer Methode \java{boolean exists(int h)} der
+Klasse \java{zone}, ob bereits mindestens ein Eintrag für einen
+gegebenen Streuwert vorhanden ist. Falls \java{h} größer ist als die
+derzeitige Größe der Streutabelle, existiert der Eintrag nicht.
+
+\begin{antwort}
+\inputcode{examen/examen_66115_2013_03/Zone}
+\end{antwort}
+
+%%
+% ii)
+%%
+
+\item Die Methode \java{int getIndex (string url, ArrayList<String>
+urlList)} soll den Index einer URL in der Kollisionsliste berechnen. Ist
+die URL in der Kollisionsliste nicht vorhanden, soll \java{-1}
+zurückgeliefert werden.
+
+\begin{antwort}
+\inputcode{examen/examen_66115_2013_03/Zone}
+\end{antwort}
+
+%%
+% iii)
+%%
+
+\item Ergänzen Sie die Klasse Zone um eine Methode \java{String lookup
+(String url)}, die in der Streutabelle die IP-Adresse zur \java{url}
+zurückgibt. Wird eine nicht vorhandene Adresse abgerufen, wird eine
+Fehlermeldung zurückgegeben.
+
+\end{enumerate}
+\end{enumerate}
+\end{document}

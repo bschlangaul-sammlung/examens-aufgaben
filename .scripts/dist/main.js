@@ -211,4 +211,13 @@ programm
         datei + "_rotated.pdf"
     ]);
 });
+programm
+    .command('enumerate-item <tex-datei>')
+    .alias('ei')
+    .description('a) b) ... i) iii) durch \\item ersetzen.')
+    .action(function (dateiPfad) {
+    var inhalt = helfer_1.leseDatei(dateiPfad);
+    inhalt = inhalt.replace(/\n([abcdefgiv]+\)\s*)/g, '\n%%\n% $1\n%%\n\n\\item ');
+    helfer_1.schreibeDatei(dateiPfad, inhalt);
+});
 programm.parse(process.argv);

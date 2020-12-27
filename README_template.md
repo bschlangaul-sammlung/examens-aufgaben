@@ -202,6 +202,8 @@ ankreuzen.
 * Makro: `\liFalsch`: Nicht angekreuztes Kästchen (nur innerhalb der
   `itemize`-Umgebung zu verwenden.)
 
+### `grafik.sty`
+
 ### `hanoi.sty`
 
 Paket zum Setzen von Hanoi-Grafiken
