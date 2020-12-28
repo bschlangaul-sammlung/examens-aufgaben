@@ -1,9 +1,9 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
+\liLadePakete{syntax,uml}
 \begin{document}
 \liAufgabenTitel{Dateisystem: Implementierung durch Kompositum}
 \section{Aufgabe 1: (Modellierung und Muster)
-\index{Entwurfsmuster}
+\index{Entwurfsmuster}\index{Kompositum (Composite)}
 \footcite{66116:2019:09}}
 
 Hierarchische Dateisysteme bestehen aus den FileSystemElements Ordner,
@@ -28,6 +28,37 @@ UML-Klassendiagramm. Benennen Sie die Rollen von Assoziationen und geben
 Sie alle Kardinalitäten an. Ihre Lösung soll mindestens eine sinnvolle
 Spezialisierungsbeziehung enthalten.\index{Klassendiagramm}
 
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}
+\umlclass[x=0,y=3,type=abstract]{Element}
+{}
+{+ delete()}
+
+\umlclass[x=-3]{Link}
+{}
+{+ delete()}
+
+\umlclass[x=0]{File}
+{}
+{+ delete()}
+
+\umlclass[x=3]{Directory}
+{}
+{+ delete()}
+
+\umlVHVinherit{Directory}{Element}
+\umlVHVinherit{File}{Element}
+\umlVHVinherit{Link}{Element}
+\umlHVHaggreg[%
+  anchor1=east,arm1=1.5cm,arg1=parent,mult1=1,pos1=0.4,
+  arg2=children,mult2=0..*,pos2=2.85,]{Directory}{Element}
+
+\umlHVHuniassoc[anchor2=west,arm1=-1cm,anchor1=west,arg2=linkedElement,pos2=2.7]{Link}{Element}
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
+
 %%
 % b)
 %%
@@ -39,6 +70,18 @@ jedes Elements als Parameter an den Konstruktor; der Elternordner des
 Root-Ordners kann dabei als \liJavaCode{null} implementiert werden.
 Dokumentieren Sie Ihren Code.
 \index{Implementierung in Java}
+
+\begin{liAntwort}
+
+\liFussnoteLink{TU Darmstadt: Dr. Michael Eichberg - Case Study Using
+the Composite and Proxy Design
+Patterns}{https://www.stg.tu-darmstadt.de/media/st/teaching/courses/ws2009/material_eise/20100120c_casestudydesigningtheapiforaccessingafilesystemcompositeandproxypattern.pdf}
+
+\liJavaDatei[firstline=3]{examen/examen_66116_2019_09/file_system/Element}
+\liJavaDatei[firstline=3]{examen/examen_66116_2019_09/file_system/Directory}
+\liJavaDatei[firstline=3]{examen/examen_66116_2019_09/file_system/File}
+\liJavaDatei[firstline=3]{examen/examen_66116_2019_09/file_system/Link}
+\end{liAntwort}
 
 %%
 % c)
@@ -56,6 +99,11 @@ die Kette der verwiesenen Elemente gelöscht. Bedenken Sie, dass die
 Löschung eines Elements immer auch Konsequenzen für den dieses Element
 beinhaltenden Ordner hat. Es gibt keinen Punktabzug, wenn Sie die
 Löschung des Root-Ordners nicht zulassen.
+\index{Rekursion}
+
+\begin{liAntwort}
+Siehe Antwort zu Aufgabe b)
+\end{liAntwort}
 
 %%
 % d)
