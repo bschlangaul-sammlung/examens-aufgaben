@@ -1,0 +1,113 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{Dateisystem: Implementierung durch Kompositum}
+\section{Aufgabe 1: (Modellierung und Muster)
+\index{Entwurfsmuster}
+\footcite{66116:2019:09}}
+
+Hierarchische Dateisysteme bestehen aus den FileSystemElements Ordner,
+Dateien und Verweise. Ein Ordner kann seinerseits Ordner, Dateien und
+Verweise beinhalten; jedem Ordner ist bekannt, welche Elemente
+(children) er enthält. Mit Ausnahme des Root-Ordners auf der obersten
+Hierarchieebene ist jeder Ordner, jede Datei und jeder Verweis Element
+eines Elternordners. Jedem Element ist bekannt, was sein Elternordner
+ist (parent). Ein Verweis verweist auf einen Verweis, eine Datei oder
+einen Ordner (link). Wenn ein Ordner gelöscht wird, werden alle seine
+Bestandteile ggf. rekursiv ebenfalls gelöscht. Sie dürfen die Lösungen
+für Aufgabenteil b) und c) in einem gemeinsamen Code kombinieren.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Modellieren Sie diesen Sachverhalt mit einem
+UML-Klassendiagramm. Benennen Sie die Rollen von Assoziationen und geben
+Sie alle Kardinalitäten an. Ihre Lösung soll mindestens eine sinnvolle
+Spezialisierungsbeziehung enthalten.\index{Klassendiagramm}
+
+%%
+% b)
+%%
+
+\item Implementieren Sie das Klassendiagramm als Java- oder
+C++-Programm. Jedes Element des Dateisystems soll mindestens über ein
+Attribut \liJavaCode{name} verfügen. Übergeben Sie den Elternordner
+jedes Elements als Parameter an den Konstruktor; der Elternordner des
+Root-Ordners kann dabei als \liJavaCode{null} implementiert werden.
+Dokumentieren Sie Ihren Code.
+\index{Implementierung in Java}
+
+%%
+% c)
+%%
+
+\item Ordnen Sie eine Methode \liJavaCode{delete}, die Dateien, Ordner
+und Verweise rekursiv löscht, einer oder mehreren geeigneten Klassen zu
+und implementieren Sie sie. Zeigen Sie die Löschung jedes Elements durch
+eine Textausgabe von \liJavaCode{name} an. \liJavaCode{toString()}
+müssen Sie dabei nicht implementieren. Gehen Sie davon aus, dass
+Verweis- und Ordnerstrukturen azyklisch sind und dass jedes Element des
+Dateisystems höchstens einmal existiert. Wenn ein Verweis gelöscht wird,
+wird sowohl der Verweis als auch das verwiesene Element bzw. transitiv
+die Kette der verwiesenen Elemente gelöscht. Bedenken Sie, dass die
+Löschung eines Elements immer auch Konsequenzen für den dieses Element
+beinhaltenden Ordner hat. Es gibt keinen Punktabzug, wenn Sie die
+Löschung des Root-Ordners nicht zulassen.
+
+%%
+% d)
+%%
+
+\item Was kann im Fall von \liJavaCode{delete} passieren,
+wenn die Linkstruktur zyklisch ist oder die Ordnerstruktur zyklisch ist?
+Kann es zu diesen Problemen auch dann führen, wenn weder die
+Linkstruktur zyklisch ist, noch die Ordnerstruktur zyklisch ist? Wie
+kann man im Programm das Problem lösen, falls man Zyklizitäten zulassen
+möchte?
+
+%%
+% e)
+%%
+
+\item Was ist ein Design Pattern? Nennen Sie drei Beispiele und
+erläutern Sie sie kurz. Welches Design Pattern bietet sich für die
+Behandlung von hierarchischen Teil-Ganzes-Beziehungen an, wie sie im
+Beispiel des Dateisystems vorliegen?
+
+\begin{liAntwort}
+Design Pattern sind wiederkehrende, geprüfte, bewährte Lösungsschablonen
+für typische Probleme.
+
+\liPseudoUeberschrift{Drei Beispiele}
+
+\begin{description}
+\item[Einzelstück (Singleton)]
+Stellt sicher, dass nur \emph{genau eine Instanz einer Klasse} erzeugt
+wird.
+\footcite[Seite 38]{eilebrecht}
+
+\item[Beobachter (Observer)]
+Das Observer-Muster ermöglicht einem oder mehreren Objekten, automatisch
+auf die \emph{Zustandsänderung} eines bestimmten Objekts \emph{zu
+reagieren}, um den eigenen Zustand anzupassen.
+\footcite[Seite 70]{eilebrecht}
+
+\item[Stellvertreter (Proxy)]
+Ein Proxy stellt einen Platzhalter für eine andere Komponente (Objekt)
+dar und kontrolliert den Zugang zum echten Objekt.
+\footcite[Seite 89]{eilebrecht}
+\end{description}
+
+Für hierarchischen Teil-Ganzes-Beziehungen eigent sich das Kompositum
+(Composite). Es ermöglicht die Gleichbehandlung von Einzelelementen und
+Elementgruppierungen in einer verschachtelten Struktur (z. B. Baum),
+sodass aus Sicht des Clients keine explizite Unterscheidung notwendig
+ist.
+\end{liAntwort}
+
+\end{enumerate}
+
+\end{document}
