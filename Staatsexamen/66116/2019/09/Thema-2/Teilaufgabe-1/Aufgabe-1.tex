@@ -118,6 +118,23 @@ Linkstruktur zyklisch ist, noch die Ordnerstruktur zyklisch ist? Wie
 kann man im Programm das Problem lösen, falls man Zyklizitäten zulassen
 möchte?
 
+\begin{liAntwort}
+Falls die Link- oder Ordnerstruktur zyklisch ist, kann es aufgrund der
+Rekursion zu einer Endlosschleife kommen. Diese Problem tritt bei
+azyklischen Strukturen nicht auf, weil der rekursive Löschvorgang beim
+letzten Element abgebrochen wird (Abbruchbedingung).
+
+Das Problem kann zum Beispiel durch ein neues Attribut
+\liJavaCode{gelöscht} in der Klasse \liJavaCode{Link} oder
+\liJavaCode{Directory} gelöst werden. Dieses Attribut wird auf
+\liJavaCode{true} gesetzt, bevor es in die Rekursion einsteigt. Rufen
+sich die Klassen wegen der Zyklizität selbst wieder auf, kommt es durch
+entsprechende IF-Bedingungen zum Abbruch.
+
+Außerdem ist ein Zähler denkbar, der sich bei jeder Rekursion hochsetzt
+und ab einem gewissen Grenzwert zum Abbruch führt.
+\end{liAntwort}
+
 %%
 % e)
 %%
