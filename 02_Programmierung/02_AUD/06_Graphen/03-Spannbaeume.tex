@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-\liLadePakete{graph}
+\liLadePakete{graph,pseudo}
 
 \usetikzlibrary{arrows.meta}
 
@@ -54,6 +54,27 @@ wird \memph{über die sortierten Kanten iteriert}. Wenn eine
 Pfad vorheriger Kanten \memph{verbunden} sind, wird diese Kante zum
 minimaler Spannbäume \memph{hinzugenommen}.
 \footcite{wiki:kruskal}
+
+\begin{algorithm}[H]
+\KwData{$G = (V,E,w)$: ein zusammenhängender, ungerichteter, kantengewichteter Graph
+kruskal(G)}
+
+$E'\leftarrow \emptyset $\;
+$L\leftarrow E$\;
+
+Sortiere die Kanten in L aufsteigend nach ihrem Kantengewicht.\;
+\While{$L \neq \emptyset $}{
+  wähle eine Kante $e\in L$ mit kleinstem Kantengewicht\;
+  entferne die Kante e aus L\;
+
+  \If{der Graph $(V, E' \cup \lbrace e\rbrace)$ keinen Kreis enthält}{
+    $E'\leftarrow E'\cup \lbrace e\rbrace $\;
+  }
+}
+
+\KwResult{$M = (V,E')$ ist ein minimaler Spannbaum von G.}
+\caption{Minimaler Spannbaum nach Kruskal\footcite{wiki:kruskal}}
+\end{algorithm}
 
 \def\TmpGraph#1{
   \graph knoten {

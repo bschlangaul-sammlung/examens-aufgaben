@@ -1314,6 +1314,10 @@ Attributhülle
   in einzelne Buchstaben zerteilt. z. B. `\liFA AB > CD` ergibt `A, B -> C, D`.
   Soll nicht aufgeteilt werden, einfach ein Komma anhängen.
 
+### `pseudo.sty`
+
+Paket zum Setzen von Pseudo-Code, Hüll-Paket um `algorithm2e`.
+
 ### `rmodell.sty`
 
 Makros und Umgebungen zum Setzen des Relationenmodells beim Thema
