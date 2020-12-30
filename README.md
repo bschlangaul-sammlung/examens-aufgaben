@@ -202,6 +202,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/04_Listen/10_Listen/Aufgabe_Playlist.pdf" download="Aufgabe_Playlist">„Playlist“</a> (Einfach-verkettete Liste, Implementierung in Java, doppelt-verkettete Liste, Rekursion)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46115-2014-Frühjahr_T2-A4">„Binomialkoeffizient“ Examen 46115 Frühjahr 2014 T2 A4</a> (Rekursion, Implementierung in Java, Iterative Realisation)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2014-Frühjahr_T1-A1">„Klasse „LeftFactorial“ und Methode „lfBig()““ Examen 66115 Frühjahr 2014 T1 A1</a> (Rekursion, Vollständige Induktion)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA1-A1">„Dateisystem: Implementierung durch Kompositum“ Examen 66116 Herbst 2019 T2 TA1 A1</a> (Entwurfsmuster, Kompositum (Composite), Klassendiagramm, Implementierung in Java, Rekursion)
 
 #### Suche
 
@@ -269,6 +270,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2018-Frühjahr_T2-TA2-A2">„Countdown und Observer“ Examen 66116 Frühjahr 2018 T2 TA2 A2</a> (Beobachter (Observer), Klassendiagramm, Implementierung in Java)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2018-Herbst_T1-TA1-A2">„Beatles“ Examen 66116 Herbst 2018 T1 TA1 A2</a> (Zustand (State), Klassendiagramm, Zustandsdiagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA1-A4">„Zustand-Entwurfsmuster bei Verwaltung von Prozessen “ Examen 66116 Herbst 2019 T1 TA1 A4</a> (Zustand (State), Zustandsdiagramm, Implementierung in Java)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA1-A1">„Dateisystem: Implementierung durch Kompositum“ Examen 66116 Herbst 2019 T2 TA1 A1</a> (Entwurfsmuster, Kompositum (Composite), Klassendiagramm, Implementierung in Java, Rekursion)
 
 ### Entwurfsmuster
 
@@ -281,6 +283,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2018-Frühjahr_T2-TA2-A2">„Countdown und Observer“ Examen 66116 Frühjahr 2018 T2 TA2 A2</a> (Beobachter (Observer), Klassendiagramm, Implementierung in Java)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2018-Herbst_T1-TA1-A2">„Beatles“ Examen 66116 Herbst 2018 T1 TA1 A2</a> (Zustand (State), Klassendiagramm, Zustandsdiagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA1-A4">„Zustand-Entwurfsmuster bei Verwaltung von Prozessen “ Examen 66116 Herbst 2019 T1 TA1 A4</a> (Zustand (State), Zustandsdiagramm, Implementierung in Java)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA1-A1">„Dateisystem: Implementierung durch Kompositum“ Examen 66116 Herbst 2019 T2 TA1 A1</a> (Entwurfsmuster, Kompositum (Composite), Klassendiagramm, Implementierung in Java, Rekursion)
 
 ### Projektplanung
 
@@ -809,7 +812,7 @@ OCR des oben genannten Scans:
 - 2016 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2016/09/Scan.pdf" download="Staatsexamen-Informatik_66115-2016-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2016/09/OCR.txt" download="Staatsexamen-Informatik_66115-2016-Herbst_OCR">OCR.txt</a> 
 - 2017 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2017-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/OCR.txt" download="Staatsexamen-Informatik_66115-2017-Frühjahr_OCR">OCR.txt</a> 
     - Thema 1 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2017-Frühjahr_T1-A1">Aufgabe 1 (Algorithmus von Dijkstra)</a> 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2017-Frühjahr_T1-A1">Aufgabe 1 (Algorithmus von Dijkstra, Algorithmus von Kruskal)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Thema-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2017-Frühjahr_T1-A3">Aufgabe 3 (Dynamische Programmierung)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Thema-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66115-2017-Frühjahr_T1-A4">Aufgabe 4 (Vollständige Induktion)</a>
 - 2017 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/Scan.pdf" download="Staatsexamen-Informatik_66115-2017-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/OCR.txt" download="Staatsexamen-Informatik_66115-2017-Herbst_OCR">OCR.txt</a> 
@@ -832,6 +835,7 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T1-A5">Aufgabe 5 (Quicksort)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T1-A6">Aufgabe 6 (Komplexität)</a> 
     - Thema 2 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-2/Aufgabe-8.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T2-A8">Aufgabe 8 (Minimaler Spannbaum)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-2/Aufgabe-9.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T2-A9">Aufgabe 9 (Streutabellen (Hashing))</a>
 
 ### 66116: Datenbanksysteme / Softwaretechnologie (vertieft)
@@ -942,6 +946,8 @@ OCR des oben genannten Scans:
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A2">Aufgabe 2 (Entity-Relation-Modell)</a> 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A3">Aufgabe 3 (SQL, SQL mit Übungsdatenbank, Korrelierte Anfrage, DELETE, DROP COLUMN, ALTER TABLE, BETWEEN, CHECK, REFERENCES, NOT NULL)</a> 
     - Thema 2 
+        - Teilaufgabe 1 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA1-A1">Aufgabe 1 (Entwurfsmuster, Kompositum (Composite), Klassendiagramm, Implementierung in Java, Rekursion)</a> 
         - Teilaufgabe 2 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A6">Aufgabe 6 (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)</a> 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A7">Aufgabe 7 (SQL, SQL mit Übungsdatenbank, EXCEPT, Top-N-Query, ALTER TABLE, TRIGGER)</a>

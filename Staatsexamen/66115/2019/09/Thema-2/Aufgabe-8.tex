@@ -1,0 +1,85 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{graph}
+\begin{document}
+\liAufgabenTitel{Graph a-h}
+\section{Aufgabe 8 (Minimaler Spannbaum)
+\index{Minimaler Spannbaum}
+\footcite{66115:2019:09}}
+
+Gegeben Sei der folgende ungerichtete Graph mit Kantengewichten.
+
+\begin{liGraphenFormat}
+a: 0 0
+b: 0 1
+c: 0 2
+d: 1 0
+e: 1 2
+f: 1.5 1
+g: 2 0
+h: 2 2
+a -- b: 7
+a -- d: 1
+b -- c: 6
+b -- d: 4
+b -- e: 9
+c -- e: 8
+d -- e: 13
+d -- f: 12
+d -- g: 5
+e -- f: 10
+e -- h: 2
+f -- g: 11
+g -- h: 3
+\end{liGraphenFormat}
+
+\begin{center}
+\begin{tikzpicture}[li graph,x=3cm,y=2cm]
+\node (a) at (0,0) {a};
+\node (b) at (0,1) {b};
+\node (c) at (0,2) {c};
+\node (d) at (1,0) {d};
+\node (e) at (1,2) {e};
+\node (f) at (1.5,1) {f};
+\node (g) at (2,0) {g};
+\node (h) at (2,2) {h};
+
+\path[li graph kante] (a) edge node {7} (b);
+\path[li graph kante] (a) edge (d);
+\path[li graph kante] (b) edge node {6} (c);
+\path[li graph kante] (b) edge node {4} (d);
+\path[li graph kante] (b) edge node {9} (e);
+\path[li graph kante] (c) edge node {8} (e);
+\path[li graph kante] (d) edge node {13} (e);
+\path[li graph kante] (d) edge node {12} (f);
+\path[li graph kante] (d) edge node {5} (g);
+\path[li graph kante] (e) edge node {10} (f);
+\path[li graph kante] (e) edge node {2} (h);
+\path[li graph kante] (f) edge node {11} (g);
+\path[li graph kante] (g) edge node {3} (h);
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+%%
+% (a)
+%%
+
+\item Zeichnen Sie den (hier eindeutigen) minimalen Spannbaum.
+
+%%
+% (b)
+%%
+
+\item Geben Sie sowohl für den Algorithmus von Jarnik-Prim als auch für
+den Algorithmus von Kruskal die Reihenfolge an, in der die Kanten
+hinzugefügt werden. Starten Sie für den Algorithmus von Jarnik-Prim beim
+Knoten $a$.
+
+Übernehmen Sie den Graph auf Ihre Bearbeitung und füllen Sie hierzu das
+Tupel jeder Kante - aus dem MST in der Form $(n, m)$ aus, wobei die
+Kante $e$ vom Algorithmus von Jarnik-Prim als $n$’te Kante und vom
+Algorithmus von Kruskal als $m$’te Kante hinzugefügt wird. Lassen Sie
+andere Tupel unausgefüllt.
+\end{enumerate}
+
+\end{document}
