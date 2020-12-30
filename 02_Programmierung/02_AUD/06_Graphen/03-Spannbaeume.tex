@@ -52,7 +52,7 @@ Spannbäume. Dazu werden die Kanten in der \memph{ersten Phase}
 wird \memph{über die sortierten Kanten iteriert}. Wenn eine
 \memph{Kante} zwei Knoten verbindet, die \memph{noch nicht} durch einen
 Pfad vorheriger Kanten \memph{verbunden} sind, wird diese Kante zum
-minimaler Spannbäume \memph{hinzugenommen}.
+minimalen Spannbaum \memph{hinzugenommen}.
 \footcite{wiki:kruskal}
 
 \begin{algorithm}[H]
@@ -75,6 +75,28 @@ Sortiere die Kanten in L aufsteigend nach ihrem Kantengewicht.\;
 \KwResult{$M = (V,E')$ ist ein minimaler Spannbaum von G.}
 \caption{Minimaler Spannbaum nach Kruskal\footcite{wiki:kruskal}}
 \end{algorithm}
+
+\graph knoten {
+  \knoten{A}(0,5)
+  \knoten{B}(2,4)
+  \knoten{C}(5,5)
+  \knoten{D}(0,2)
+  \knoten{E}(4,2)
+  \knoten{F}(2,1)
+  \knoten{G}(5,0)
+} kanten {
+  \kante(A-B){7}
+  \kante(A-D){5}
+  \kante(B-C){8}
+  \kante(B-D){9}
+  \kante(B-E){7}
+  \kante(C-E){5}
+  \kante(D-E){15}
+  \kante(D-F){6}
+  \kante(E-F){8}
+  \kante(E-G){9}
+  \kante(F-G){11}
+}
 
 \def\TmpGraph#1{
   \graph knoten {
