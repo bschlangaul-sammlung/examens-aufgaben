@@ -18,48 +18,53 @@ Triathlon-Wettbewerben.
 
 \begin{liProjektSprache}{RelationenSchema}
 Athlet (ID*, Vorname, Nachname)
-Ergebnis (Athlet[Athlet]*, Wettbewerb[Wettbewerb]*, Laufzeit)
-Wettbewerb (Name*, Schwimmzeit, Radzeit, Jahr)
+Ergebnis (Athlet[Athlet]*, Wettbewerb[Wettbewerb]*, Schwimmzeit {NOT NULL}, Radzeit, Laufzeit)
+Wettbewerb (Name*, Jahr)
 \end{liProjektSprache}
 
 \begin{liRmodell}
 \liRelation{Athlet}{\liPrimaer{ID}, Vorname, Nachname}
-\liRelation{Ergebnis}{\liFremd{Athlet[Athlet]}, \liFremd{Wettbewerb[Wettbewerb]}, Laufzeit}
-\liRelation{Wettbewerb}{\liPrimaer{Name}, Schwimmzeit, Radzeit, Jahr}
+\liRelation{Ergebnis}{\liFremd{Athlet[Athlet]}, \liFremd{Wettbewerb[Wettbewerb]}, Schwimmzeit, Radzeit, Laufzeit}
+\liRelation{Wettbewerb}{\liPrimaer{Name}, Jahr}
 \end{liRmodell}
 
-% Übungsdatenbank:
+% Datenbankname: db
 \begin{minted}{sql}
 CREATE TABLE Athlet (
-  ID integer PRIMARY KEY,
-  Vorname varchar(20),
-  Nachname varchar(20)
-);
-
-CREATE TABLE Ergebnis (
-  Athlet integer REFERENCES Athlet(ID),
-  Wettbewerb integer REFERENCES Wettbewerb(Name),
-  Laufzeit integer,
-  PRIMARY KEY (Athlet, Wettbewerb)
+  ID INTEGER PRIMARY KEY,
+  Vorname VARCHAR(20),
+  Nachname VARCHAR(20)
 );
 
 CREATE TABLE Wettbewerb (
-  Name varchar(20) PRIMARY KEY,
-  Schwimmzeit integer,
-  Radzeit integer,
-  Jahr integer
+  Name VARCHAR(40) PRIMARY KEY,
+  Jahr INTEGER
+);
+
+CREATE TABLE Ergebnis (
+  Athlet INTEGER REFERENCES Athlet(ID),
+  Wettbewerb VARCHAR(40) REFERENCES Wettbewerb(Name),
+  Schwimmzeit INTEGER NOT NULL,
+  Radzeit INTEGER,
+  Laufzeit INTEGER,
+  PRIMARY KEY (Athlet, Wettbewerb)
 );
 
 INSERT INTO Athlet VALUES
-  ();
-
-INSERT INTO Ergebnis VALUES
-  ();
+  (12, 'Mitch', 'Kibby');
 
 INSERT INTO Wettbewerb VALUES
-  ();
-\end{minted}
+  ('Zürichsee', 2018),
+  ('Ironman Vichy', 2018),
+  ('Challenge Walchsee', 2018),
+  ('Triathlon Alpe d’Huez', 2017);
 
+INSERT INTO Ergebnis VALUES
+  (12, 'Zürichsee', 3601, 3602, 3603);
+\end{minted}
+\index{SQL mit Übungsdatenbank}
+
+\noindent
 Verwenden Sie im Folgenden nur Standard-SQL und keine
 produktspezifischen Erweiterungen. Sie dürfen bei Bedarf Views anlegen.
 Geben Sie einen Datensatz, also eine Entity, nicht mehrfach aus.
@@ -71,15 +76,42 @@ Geben Sie einen Datensatz, also eine Entity, nicht mehrfach aus.
 %%
 
 \item Schreiben Sie eine SQL-Anweisung, die die Tabelle „Ergebnis“
-anlegt. Gehen Sie davon aus, dass die Tabellen „Athlet“ und „Wettbewerb
-“ bereits existieren. Verwenden Sie sinnvolle Datentypen.
+anlegt. Gehen Sie davon aus, dass die Tabellen „Athlet“ und
+„Wettbewerb“ bereits existieren. Verwenden Sie sinnvolle Datentypen.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+CREATE TABLE IF NOT EXISTS Ergebnis (
+  Athlet INTEGER REFERENCES Athlet(ID),
+  Wettbewerb INTEGER REFERENCES Wettbewerb(Name),
+  Schwimmzeit INTEGER NOT NULL,
+  Radzeit INTEGER,
+  Laufzeit INTEGER,
+  PRIMARY KEY (Athlet, Wettbewerb)
+);
+\end{minted}
+\end{liAntwort}
 
 %%
 % b)
 %%
 
 \item Schreiben Sie eine SQL-Anweisung, die die Radzeit des Teilnehmers
-mit der ID 12 beim: Wettbewerb „Zürichsee“ um eins erhöht.
+mit der ID 12 beim Wettbewerb „Zürichsee“ um eins erhöht.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+-- Nur für Test-Zwecke
+SELECT * FROM Ergebnis WHERE Athlet = 12 AND Wettbewerb = 'Zürichsee';
+
+UPDATE Ergebnis
+SET Radzeit = Radzeit + 1
+WHERE Athlet = 12 AND Wettbewerb = 'Zürichsee';
+
+-- Nur für Test-Zwecke
+SELECT * FROM Ergebnis WHERE Athlet = 12 AND Wettbewerb = 'Zürichsee';
+\end{minted}
+\end{liAntwort}
 
 %%
 % c)
@@ -87,6 +119,15 @@ mit der ID 12 beim: Wettbewerb „Zürichsee“ um eins erhöht.
 
 \item Schreiben Sie eine SQL-Anweisung, die die Namen aller Wettbewerbe
 des Jahres 2018 ausgibt, absteigend sortiert nach Name.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT Name
+FROM Wettbewerb
+WHERE Jahr = 2018
+ORDER BY Name DESC;
+\end{minted}
+\end{liAntwort}
 
 %%
 % d)
