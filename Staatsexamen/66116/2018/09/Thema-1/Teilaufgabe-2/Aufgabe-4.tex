@@ -51,6 +51,9 @@ CREATE TABLE Ergebnis (
 );
 
 INSERT INTO Athlet VALUES
+  (1, 'Boris', 'Stein'),
+  (2, 'Trevor', 'Wurtele'),
+  (3, 'Reichelt', 'Horst'),
   (12, 'Mitch', 'Kibby');
 
 INSERT INTO Wettbewerb VALUES
@@ -60,7 +63,13 @@ INSERT INTO Wettbewerb VALUES
   ('Triathlon Alpe d’Huez', 2017);
 
 INSERT INTO Ergebnis VALUES
-  (12, 'Zürichsee', 3601, 3602, 3603);
+  (1, 'Zürichsee', 14, 10, 11),
+  (2, 'Zürichsee', 13, 10, 11),
+  (3, 'Zürichsee', 12, 10, 11),
+  (12, 'Zürichsee', 11, 10, 11),
+  (2, 'Challenge Walchsee', 12, 10, 11),
+  (3, 'Challenge Walchsee', 11, 10, 11),
+  (12, 'Triathlon Alpe d’Huez', 9, 10, 11);
 \end{minted}
 \index{SQL mit Übungsdatenbank}
 
@@ -98,6 +107,7 @@ CREATE TABLE IF NOT EXISTS Ergebnis (
 
 \item Schreiben Sie eine SQL-Anweisung, die die Radzeit des Teilnehmers
 mit der ID 12 beim Wettbewerb „Zürichsee“ um eins erhöht.
+\index{UPDATE}
 
 \begin{liAntwort}
 \begin{minted}{sql}
@@ -119,6 +129,7 @@ SELECT * FROM Ergebnis WHERE Athlet = 12 AND Wettbewerb = 'Zürichsee';
 
 \item Schreiben Sie eine SQL-Anweisung, die die Namen aller Wettbewerbe
 des Jahres 2018 ausgibt, absteigend sortiert nach Name.
+\index{DESC}
 
 \begin{liAntwort}
 \begin{minted}{sql}
@@ -135,6 +146,16 @@ ORDER BY Name DESC;
 
 \item Schreiben Sie eine SQL-Anweisung, die die Namen aller Wettbewerbe
 ausgibt, in der die durchschnittliche Schwimmzeit größer als 10 ist.
+\index{AVG}\index{GROUP BY}\index{HAVING}
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT Wettbewerb, AVG(Schwimmzeit)
+FROM Ergebnis
+GROUP BY Wettbewerb
+HAVING AVG(Schwimmzeit) > 10;
+\end{minted}
+\end{liAntwort}
 
 %%
 % e)
@@ -142,6 +163,16 @@ ausgibt, in der die durchschnittliche Schwimmzeit größer als 10 ist.
 
 \item Schreiben Sie eine SQL-Anweisung, die die IDs aller Athleten
 ausgibt, die im Jahr 2017 an keinem Wettbewerb teilgenommen haben.
+\index{EXCEPT}
+
+\begin{liAntwort}
+\begin{minted}{sql}
+(SELECT DISTINCT Athlet FROM Ergebnis)
+EXCEPT
+(SELECT DISTINCT Athlet FROM Ergebnis e, Wettbewerb w
+WHERE e.Wettbewerb = w.name AND w.Jahr = 2017);
+\end{minted}
+\end{liAntwort}
 
 %%
 % f)
@@ -153,6 +184,11 @@ jeweiligen Wettbewerb die kürzeste Gesamtzeit erreicht haben. Die
 Gesamtzeit ist die Summe aus Schwimmzeit, Radzeit und Laufzeit. Falls
 zwei Athleten in einem Wettbewerb die gleiche Gesamtzeit erreichen, sind
 beide Sieger.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+\end{minted}
+\end{liAntwort}
 
 %%
 % g)
@@ -166,13 +202,23 @@ zwei Athleten die gleiche Schwimmzeit haben und verwenden Sie keine
 produktspezifischen Anweisungen wie beispielsweise rownum, top oder
 limit.
 
+\begin{liAntwort}
+\begin{minted}{sql}
+\end{minted}
+\end{liAntwort}
+
 %%
 % h)
 %%
 
 \item Schreiben Sie einen Trigger, der beim Einfügen neuer Tupel in die
-Tabelle „Ergebnis“ die Schwimmzeit auf den Wert O setzt, falls diese
+Tabelle „Ergebnis“ die Schwimmzeit auf den Wert 0 setzt, falls diese
 negativ ist.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+\end{minted}
+\end{liAntwort}
 
 \end{enumerate}
 
