@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{rmodell,syntax}
 \begin{document}
 \liAufgabenTitel{Triathlon}
 \section{Aufgabe 4: SQL
@@ -21,6 +21,44 @@ Athlet (ID*, Vorname, Nachname)
 Ergebnis (Athlet[Athlet]*, Wettbewerb[Wettbewerb]*, Laufzeit)
 Wettbewerb (Name*, Schwimmzeit, Radzeit, Jahr)
 \end{liProjektSprache}
+
+\begin{liRmodell}
+\liRelation{Athlet}{\liPrimaer{ID}, Vorname, Nachname}
+\liRelation{Ergebnis}{\liFremd{Athlet[Athlet]}, \liFremd{Wettbewerb[Wettbewerb]}, Laufzeit}
+\liRelation{Wettbewerb}{\liPrimaer{Name}, Schwimmzeit, Radzeit, Jahr}
+\end{liRmodell}
+
+% Übungsdatenbank:
+\begin{minted}{sql}
+CREATE TABLE Athlet (
+  ID integer PRIMARY KEY,
+  Vorname varchar(20),
+  Nachname varchar(20)
+);
+
+CREATE TABLE Ergebnis (
+  Athlet integer REFERENCES Athlet(ID),
+  Wettbewerb integer REFERENCES Wettbewerb(Name),
+  Laufzeit integer,
+  PRIMARY KEY (Athlet, Wettbewerb)
+);
+
+CREATE TABLE Wettbewerb (
+  Name varchar(20) PRIMARY KEY,
+  Schwimmzeit integer,
+  Radzeit integer,
+  Jahr integer
+);
+
+INSERT INTO Athlet VALUES
+  ();
+
+INSERT INTO Ergebnis VALUES
+  ();
+
+INSERT INTO Wettbewerb VALUES
+  ();
+\end{minted}
 
 Verwenden Sie im Folgenden nur Standard-SQL und keine
 produktspezifischen Erweiterungen. Sie dürfen bei Bedarf Views anlegen.
