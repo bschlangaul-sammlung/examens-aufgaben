@@ -1,0 +1,100 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Triathlon}
+\section{Aufgabe 4: SQL
+\index{SQL}
+\footcite{66116:2018:09}}
+
+Gegeben sind folgende Relationen aus einer Datenbank zur Verwaltung von
+Triathlon-Wettbewerben.
+
+% Athlet (ID, Vorname, Nachname)
+
+% Ergebnis (Athlet [Athlet], Wettbewerb [Wettbewerb], Schwimmzeit, Radzeit,
+% Laufzeit); Schwimmzeit NOT NULL
+
+% Wettbewerb (Name, Jahr)
+
+\begin{liProjektSprache}{RelationenSchema}
+Athlet (ID*, Vorname, Nachname)
+Ergebnis (Athlet[Athlet]*, Wettbewerb[Wettbewerb]*, Laufzeit)
+Wettbewerb (Name*, Schwimmzeit, Radzeit, Jahr)
+\end{liProjektSprache}
+
+Verwenden Sie im Folgenden nur Standard-SQL und keine
+produktspezifischen Erweiterungen. Sie dürfen bei Bedarf Views anlegen.
+Geben Sie einen Datensatz, also eine Entity, nicht mehrfach aus.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Tabelle „Ergebnis“
+anlegt. Gehen Sie davon aus, dass die Tabellen „Athlet“ und „Wettbewerb
+“ bereits existieren. Verwenden Sie sinnvolle Datentypen.
+
+%%
+% b)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Radzeit des Teilnehmers
+mit der ID 12 beim: Wettbewerb „Zürichsee“ um eins erhöht.
+
+%%
+% c)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Namen aller Wettbewerbe
+des Jahres 2018 ausgibt, absteigend sortiert nach Name.
+
+%%
+% d)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Namen aller Wettbewerbe
+ausgibt, in der die durchschnittliche Schwimmzeit größer als 10 ist.
+
+%%
+% e)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die IDs aller Athleten
+ausgibt, die im Jahr 2017 an keinem Wettbewerb teilgenommen haben.
+
+%%
+% f)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Nachnamen aller Athleten
+ausgibt, die mindestens 10 Wettbewerbe gewonnen haben, das heißt im
+jeweiligen Wettbewerb die kürzeste Gesamtzeit erreicht haben. Die
+Gesamtzeit ist die Summe aus Schwimmzeit, Radzeit und Laufzeit. Falls
+zwei Athleten in einem Wettbewerb die gleiche Gesamtzeit erreichen, sind
+beide Sieger.
+
+%%
+% g)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Top-Ten der Athleten mit
+der schnellsten Schwimmzeit des Wettbewerbs „Paris“ ausgibt. Ausgegeben
+werden sollen die Platzierung (1 bis 10) und der Nachname des Athleten,
+aufsteigend sortiert nach Platzierung. Gehen Sie davon aus, dass keine
+zwei Athleten die gleiche Schwimmzeit haben und verwenden Sie keine
+produktspezifischen Anweisungen wie beispielsweise rownum, top oder
+limit.
+
+%%
+% h)
+%%
+
+\item Schreiben Sie einen Trigger, der beim Einfügen neuer Tupel in die
+Tabelle „Ergebnis“ die Schwimmzeit auf den Wert O setzt, falls diese
+negativ ist.
+
+\end{enumerate}
+
+\end{document}

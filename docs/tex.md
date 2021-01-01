@@ -80,6 +80,12 @@ thematisch zu keinem anderen Paket passen
 * Umgebung: `\begin{liAdditum} \end{liAdditum}`: Zusätzliches Material
   bei Aufgaben, das zum Lösen der Aufgaben nicht unbedingt nötig ist,
   z. b. Hintergrundinformation, Test-Dateien, komplette Code-Dateien.
+* Umgebung: `\begin{liProjektSprache}{NameProjektSprache}
+  \end{liProjektSprache}`: Zum Einbetten
+  von projekteigenen Minisprachen/DSLs (Domain-specific language)
+  (z. B. RelationenSchema). Der Inhalt
+  der Umgebung wird nicht von TeX kompiliert, sondern von dem
+  Java-Kommandozeilen-Programm `didaktik.java` verarbeitet.
 
 ### `normalformen.sty`
 

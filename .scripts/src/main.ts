@@ -197,7 +197,7 @@ programm
   .description('a) b) ... i) iii) durch \\item ersetzen.')
   .action(function (dateiPfad: string): void {
     let inhalt = leseDatei(dateiPfad)
-    inhalt = inhalt.replace(/\n(\(?[abcdefgiv]+\)\s*)/g, '\n%%\n% $1\n%%\n\n\\item ')
+    inhalt = inhalt.replace(/\n(\(?[abcdefghijv]+\)\s*)/g, '\n%%\n% $1\n%%\n\n\\item ')
     schreibeDatei(dateiPfad, inhalt)
   })
 
