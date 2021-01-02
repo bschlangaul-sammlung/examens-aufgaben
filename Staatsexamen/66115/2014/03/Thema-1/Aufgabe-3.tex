@@ -1,0 +1,74 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{baum}
+\begin{document}
+\liAufgabenTitel{}
+\section{Aufgabe 3: „AVL-Bäume“
+\index{AVL-Baum}
+\footcite{66115:2014:03}}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Fügen Sie die Zahlen (7, 6, 2, 1, 5, 3, 8, 4) in dieser
+Reihenfolge in einen anfangs leeren AVL Baum ein. Stellen Sie die AVL
+Eigenschaft ggf. nach jedem Einfügen mit geeigneten Rotationen wieder
+her. Zeichnen Sie den AVL Baum einmal vor und einmal nach jeder
+einzelnen Rotation.
+
+\begin{liProjektSprache}{Baum}
+baum avl (
+  setze: 7 6 2 1 5 3 8 4;
+  drucke;
+)
+\end{liProjektSprache}
+
+\begin{tikzpicture}[binaerer baum]
+\Tree
+[.5
+  [.2
+    [.1 ]
+    [.3
+      \edge[blank]; \node[blank]{};
+      [.4 ]
+    ]
+  ]
+  [.7
+    [.6 ]
+    [.8 ]
+  ]
+]
+\end{tikzpicture}
+
+%%
+% b)
+%%
+
+\item Entfernen Sie den jeweils markierten Knoten aus den folgenden
+AVL-Bäumen. Stellen Sie die AVL-Eigenschaft ggf. durch geeignete
+Rotationen wieder her. Zeichnen Sie nur den resultierenden Baum.
+
+\begin{enumerate}
+
+%%
+% i)
+%%
+
+\item Baum 1:
+
+%%
+% ii)
+%%
+
+\item Baum 2:
+
+%%
+% ii)
+%%
+
+\item Baum 3:
+\end{enumerate}
+\end{enumerate}
+\end{document}
