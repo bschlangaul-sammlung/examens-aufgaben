@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-\liLadePakete{mathe,baum,syntax}
+\liLadePakete{mathe,baum,syntax,spalten}
 \usepackage{xparse}
 
 \begin{document}
@@ -42,6 +42,55 @@ Knoten muss die AVL-Eigenschaft durch \memph{Rotationen}
 wiederhergestellt werden.
 \footcite[Seite 22 (PDF 16)]{aud:fs:5}
 
+\begin{liProjektSprache}{Baum}
+baum binär (
+  setze: 1 2 3 4 5;
+  drucke;
+)
+
+baum avl (
+  setze: 1 2 3 4 5;
+  drucke;
+)
+\end{liProjektSprache}
+
+\begin{multicols}{2}
+\liPseudoUeberschrift{Binärer Suchbaum}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.1
+  \edge[blank]; \node[blank]{};
+  [.2
+    \edge[blank]; \node[blank]{};
+    [.3
+      \edge[blank]; \node[blank]{};
+      [.4
+        \edge[blank]; \node[blank]{};
+        [.5 ]
+      ]
+    ]
+  ]
+]
+\end{tikzpicture}
+
+\columnbreak
+
+\liPseudoUeberschrift{AVL-Baum}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=1]{2};
+  [.\node[label=0]{1}; ]
+  [.\node[label=0]{4};
+    [.\node[label=0]{3}; ]
+    [.\node[label=0]{5}; ]
+  ]
+]
+\end{tikzpicture}
+
+\end{multicols}
+
 %-----------------------------------------------------------------------
 %
 %-----------------------------------------------------------------------
@@ -49,18 +98,28 @@ wiederhergestellt werden.
 \section{Rotationsregeln}
 
 \begin{center}
-Balance-Faktor $=$ Knotenzahl rechter Teilbaum $-$ Knotenzahl linker Teilbaum
+$b$ (Balance-Faktor) $=$ Knotenzahl rechter Teilbaum $-$ Knotenzahl linker Teilbaum
 \end{center}
 
-Rotationsregeln:
-bO= „oberer“ Wurzelknoten, bU = Kindknoten von bO
+\begin{description}
+\item[$bO =$] Balance-Faktor des „oberen“ Wurzelknotens
+\item[$bU =$] Balance-Faktor des Kindknoten von $bO$
+\end{description}
 
-\begin{itemize}
-\item bO = -2, bU = -1  Rechtsrotation (Rechtsdrehung um bO)
-\item bO = +2, bU = +1  Linksrotation (Linksdrehung um bO)
-\item bO = -2, bU = +1  Links-Rechts-Rotation (Linksdrehung um bU, dann Rechtsdrehung um bO)
-\item bO = +2, bU = -1  Rechts-Links-Rotation (Rechtsdrehung um bU, dann Linksdrehung um bO)
-\end{itemize}
+\noindent
+\begin{tabular}{l|l}
+$bO = -2$, $bU = -1$ &
+Rechtsrotation (Rechtsdrehung um $bO$) \\
+
+$bO = +2$, $bU = +1$ &
+Linksrotation (Linksdrehung um $bO$) \\
+
+$bO = -2$, $bU = +1$ &
+Links-Rechts-Rotation (Linksdrehung um $bU$, dann Rechtsdrehung um $bO$) \\
+
+$bO = +2$, $bU = -1$ &
+Rechts-Links-Rotation (Rechtsdrehung um $bU$, dann Linksdrehung um $bO$) \\
+\end{tabular}
 
 %%
 %
@@ -68,7 +127,7 @@ bO= „oberer“ Wurzelknoten, bU = Kindknoten von bO
 
 \subsection{Linksrotation}
 
-\liJavaDatei[firstline=147,lastline=152]{baum/AVLBaum}
+\liJavaDatei[firstline=70,lastline=78]{baum/AVLBaum}
 
 %%
 %
@@ -76,10 +135,12 @@ bO= „oberer“ Wurzelknoten, bU = Kindknoten von bO
 
 \subsection{Rechtsrotation}
 
-\liJavaDatei[firstline=160,lastline=165]{baum/AVLBaum}
+\liJavaDatei[firstline=60,lastline=68]{baum/AVLBaum}
 
 Kindknoten, die nach der Drehung „im Weg stehen“, werden „umgeklappt“,
 also vom linken zum rechten Kind der nächsten Ebene und umgekehrt
+
+\liJavaDatei[firstline=3]{baum/AVLBaum}
 
 \literatur
 

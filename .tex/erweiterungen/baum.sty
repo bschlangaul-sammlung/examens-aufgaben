@@ -1,16 +1,17 @@
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesPackage{lehramt-informatik-bbaum}[2020/06/13]
+\ProvidesPackage{lehramt-informatik-bbaum}[2020/06/13 Zum Setzen von
+Binär- und AVL-Bäumen. Hüll-Paket um TikZ and tikz-qtree.]
 
 \RequirePackage{tikz}
 
-% für binaerer baum
+% für li binaer baum
 \RequirePackage{tikz-qtree}
 
 % Für b baum
 \usetikzlibrary{shapes.multipart}
 
 \tikzset{
-  binaerer baum/.style={
+  li binaer baum/.style={
     shorten <=2pt,
     shorten >=2pt,
     ->,
@@ -27,6 +28,12 @@
       edge from parent path={(\tikzparentnode) -- (\tikzchildnode)}
     },
     level distance=1cm,
+    every label/.style={
+      gray,
+      font=\footnotesize,
+      label position=5,
+      label distance=-0.1cm,
+    }
   },
   bbaum node/.style={
     rectangle split parts=10,

@@ -42,6 +42,12 @@ kurzer Titel gegeben werden.
 
 ## Pakete
 
+### `baum.sty`
+
+Zum Setzen von Binär- und AVL-Bäumen. Hüll-Paket um TikZ and tikz-qtree.
+
+* TikZ-Stil: `li binaer baum`: Knoten als Kreise, Kanten als Pfeile.
+
 ### `checkbox.sty`
 
 Zum Setzen von Multiple-Choice-Fragen. Simulation von Kästchen zum
