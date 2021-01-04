@@ -62,11 +62,12 @@ anderen Paket passen]
 
 \def\hinweis#1{{\footnotesize[#1]}}
 
-\NewDocumentEnvironment { liProjektSprache }{ m +b } {} {}
-
 %-----------------------------------------------------------------------
 % Environments
 %-----------------------------------------------------------------------
+
+\NewDocumentEnvironment { liProjektSprache }{ o +b } {} {}
+\NewDocumentEnvironment { liEinbettung }{ o +b } {#2} {}
 
 %%
 % \begin{liAntwort}
@@ -165,6 +166,18 @@ anderen Paket passen]
   \textbf{Lernkarteikarte:~#1}\par%
   \noindent%
   #2
+  \end{mdframed}
+} {}
+
+\NewDocumentEnvironment { liDiagramm }{ m +b }
+{
+  \begin{mdframed}[backgroundcolor=white!0]
+  \small
+  \noindent%
+  \textit{#1}:
+  \begin{center}
+  #2
+  \end{center}
   \end{mdframed}
 } {}
 

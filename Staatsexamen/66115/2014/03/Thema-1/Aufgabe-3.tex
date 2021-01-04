@@ -25,23 +25,6 @@ baum avl (
 )
 \end{liProjektSprache}
 
-\begin{tikzpicture}[li binaer baum]
-\Tree
-[.5
-  [.2
-    [.1 ]
-    [.3
-      \edge[blank]; \node[blank]{};
-      [.4 ]
-    ]
-  ]
-  [.7
-    [.6 ]
-    [.8 ]
-  ]
-]
-\end{tikzpicture}
-
 %%
 % b)
 %%
@@ -58,17 +41,70 @@ Rotationen wieder her. Zeichnen Sie nur den resultierenden Baum.
 
 \item Baum 1:
 
+\begin{liProjektSprache}{Baum}
+baum avl (
+  setze: 5 2 10 1 3 8 12 4 6 9 11 13 7 14;
+  drucke;
+)
+\end{liProjektSprache}
+
 %%
 % ii)
 %%
 
 \item Baum 2:
 
+\begin{liProjektSprache}{Baum}
+baum avl (
+  setze: 6 2 8 1 4 7 3 5;
+  drucke;
+)
+\end{liProjektSprache}
+
 %%
 % ii)
 %%
 
 \item Baum 3:
+
+\begin{liProjektSprache}{Baum}[bii]
+baum avl (
+  setze: 10 5 12 2 8 11 13 1 4 6 9 14 3 7;
+  drucke;
+)
+\end{liProjektSprache}
+
+\begin{liEinbettung}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{10};
+  [.\node[label=0]{5};
+    [.\node[label=1]{2};
+      [.\node[label=0]{1}; ]
+      [.\node[label=-1]{4};
+        [.\node[label=0]{3}; ]
+        \edge[blank]; \node[blank]{};
+      ]
+    ]
+    [.\node[label=-1]{8};
+      [.\node[label=1]{6};
+        \edge[blank]; \node[blank]{};
+        [.\node[label=0]{7}; ]
+      ]
+      [.\node[label=0]{9}; ]
+    ]
+  ]
+  [.\node[label=1]{12};
+    [.\node[label=0]{11}; ]
+    [.\node[label=1]{13};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{14}; ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liEinbettung}
+
 \end{enumerate}
 \end{enumerate}
 \end{document}

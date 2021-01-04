@@ -92,6 +92,9 @@ thematisch zu keinem anderen Paket passen
   (z. B. RelationenSchema). Der Inhalt
   der Umgebung wird nicht von TeX kompiliert, sondern von dem
   Java-Kommandozeilen-Programm `didaktik.java` verarbeitet.
+* Umgebung: `\begin{liDiagramm}{beschriftung}\end{liDiagramm}`: Zu
+  setzen einer Graphik bzw eines Diagramms.
+
 
 ### `normalformen.sty`
 
