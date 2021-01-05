@@ -200,5 +200,131 @@ baum avl (
 ]
 \end{tikzpicture}
 \end{center}
+
+\begin{liDiagramm}{Löschen von „1“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=1]{7};
+  [.\node[label=2]{2};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=1]{4};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{6}; ]
+    ]
+  ]
+  [.\node[label=1]{23};
+    [.\node[label=1]{10};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{17}; ]
+    ]
+    [.\node[label=1]{25};
+      [.\node[label=0]{24}; ]
+      [.\node[label=1]{26};
+        \edge[blank]; \node[blank]{};
+        [.\node[label=0]{30}; ]
+      ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=2]{7};
+  [.\node[label=0]{4};
+    [.\node[label=0]{2}; ]
+    [.\node[label=0]{6}; ]
+  ]
+  [.\node[label=1]{23};
+    [.\node[label=1]{10};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{17}; ]
+    ]
+    [.\node[label=1]{25};
+      [.\node[label=0]{24}; ]
+      [.\node[label=1]{26};
+        \edge[blank]; \node[blank]{};
+        [.\node[label=0]{30}; ]
+      ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{23};
+  [.\node[label=0]{7};
+    [.\node[label=0]{4};
+      [.\node[label=0]{2}; ]
+      [.\node[label=0]{6}; ]
+    ]
+    [.\node[label=1]{10};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{17}; ]
+    ]
+  ]
+  [.\node[label=1]{25};
+    [.\node[label=0]{24}; ]
+    [.\node[label=1]{26};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{30}; ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Löschen von „23“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{24};
+  [.\node[label=0]{7};
+    [.\node[label=0]{4};
+      [.\node[label=0]{2}; ]
+      [.\node[label=0]{6}; ]
+    ]
+    [.\node[label=1]{10};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{17}; ]
+    ]
+  ]
+  [.\node[label=2]{25};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=1]{26};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{30}; ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{24};
+  [.\node[label=0]{7};
+    [.\node[label=0]{4};
+      [.\node[label=0]{2}; ]
+      [.\node[label=0]{6}; ]
+    ]
+    [.\node[label=1]{10};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{17}; ]
+    ]
+  ]
+  [.\node[label=0]{26};
+    [.\node[label=0]{25}; ]
+    [.\node[label=0]{30}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
 \end{enumerate}
 \end{document}
