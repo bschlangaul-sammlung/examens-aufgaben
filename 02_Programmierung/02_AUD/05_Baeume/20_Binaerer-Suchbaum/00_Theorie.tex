@@ -85,23 +85,41 @@ Anordnung von \verb|7, 3, 6, 9, 2, 9, 5, 1| in einem int-Baum
 %
 %%
 
-\subsection{Traversierung eines Baums (7, 3, 6, 9, 2, 8, 5, 1)}
+\subsection{Traversierung eines Baums}
 
-Es gibt drei verschiedene Möglichkeiten einen binären Baum zu
+Es gibt verschiedene Möglichkeiten einen binären Baum zu
 traversieren:
 
 \begin{itemize}
 \item \texttt{preorder}:
+
 besuche die Wurzel, dann den linken Unterbaum, dann den rechten
 Unterbaum; auch: WLR
 
+\liJavaDatei[firstline=54,lastline=68]{baum/BinaerBaum}
+
 \item \texttt{inorder}:
+
 besuche den linken Unterbaum, dann die Wurzel, dann den rechten
 Unterbaum;
 auch: LWR
+
+\liJavaDatei[firstline=36,lastline=52]{baum/BinaerBaum}
+
 \item \texttt{postorder}:
+
 besuche den linken Unterbaum, dann den rechten, dann die Wurzel;
 auch: LRW
+
+\liJavaDatei[firstline=70,lastline=84]{baum/BinaerBaum}
+
+\item \texttt{levelorder}:
+
+Beginnend bei der Baumwurzel werden die
+Ebenen von links nach rechts durchlaufen.
+
+\liJavaDatei[firstline=86,lastline=107]{baum/BinaerBaum}
+
 \end{itemize}
 
 \begin{center}
@@ -131,6 +149,7 @@ auch: LRW
 \texttt{preorder} & \texttt{7 3 2 1 6 5 9 8} \\
 \texttt{inorder} & \texttt{1 2 3 5 6 7 8 9} \\
 \texttt{postorder} & \texttt{1 2 5 6 3 8 9 7} \\
+\texttt{levelorder} & \texttt{7 3 9 2 6 8 1 5} \\
 \end{tabular}
 \end{center}
 
@@ -138,7 +157,32 @@ auch: LRW
 %
 %-----------------------------------------------------------------------
 
-\section{Entfernen eines Elements}
+\section{Löschen eines Knotens}
+
+Die komplizierteste Operation im binären Suchbaum ist das Löschen. Dies
+liegt daran, dass beim Entfernen eines inneren Knotens einer der beiden
+Teilbäume des Knotens „hochgezogen“ und gegebenenfalls umgeordnet werden
+muss.
+
+Grundsätzlich müssen beim Löschen eines Knotens drei Fälle
+berücksichtigt werden:
+
+\begin{enumerate}
+\item Der Knoten ist ein \memph{Blatt}. Dieser Fall ist der einfachste,
+da hier nur der Elternknoten zu bestimmen ist und dessen Verweis auf den
+Knoten entfernt werden muss.
+
+\item Der Knoten besitzt nur \memph{einen Kindknoten}. In diesem Fall
+ist der Verweis vom Elternknoten auf den Kindknoten des zulöschenden
+Knotens umzulenken.
+
+\item Der Knoten ist ein innerer Knoten mit \memph{zwei Kindknoten}.
+Hierbei muss der Knoten durch den am weitesten links stehenden Knoten
+des rechten Teilbaumes ersetzt werden, da dieser in der
+Sortierreihenfolge der nächste Knoten ist. Alternativ kann auch der am
+weitestens rechts stehende Knoten des linken Teilbaumes verwendet
+werden.\footcite[364]{saake}
+\end{enumerate}
 
 %%
 %

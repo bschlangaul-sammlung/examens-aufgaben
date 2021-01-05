@@ -121,6 +121,10 @@ $bO = +2$, $bU = -1$ &
 Rechts-Links-Rotation (Rechtsdrehung um $bU$, dann Linksdrehung um $bO$) \\
 \end{tabular}
 
+Die Kindknoten, die nach der Drehung „im Weg stehen“, werden
+„umgeklappt“, also vom linken zum rechten Kind der nächsten Ebene
+„umgehängt“ und umgekehrt.
+
 %%
 %
 %%
@@ -336,6 +340,18 @@ Rechts-Links-Rotation (Rechtsdrehung um $bU$, dann Linksdrehung um $bO$) \\
 \end{liDiagramm}
 \end{multicols}
 
+\section{Löschen}
+
+Um einen Schlüsselwert in einem AVL-Baum zu löschen, wird der
+\memph{Löschalgorithmus der binären Suchbäume} angewendet. Wie beim
+Einfügen in AVL-Bäumen muss der Suchbaum nun gegebenenfalls
+\memph{rebalanciert} werden. Dazu wird der Weg vom Elternknoten des
+gelöschten Knotens zur Wurzel zurückgelaufen und die Balance jedes
+Knotens überprüft. Wenn der gelöschte Schlüsselwert in einem Knoten mit
+zwei Nachfolgern gespeichert war, muss bei Elternknoten des
+symmetrischen Nachfolgers begonnen werden. \liFussnoteLink{Universität
+Würzburg}{https://www1.pub.informatik.uni-wuerzburg.de/databases/Binaere_Suchbaeume/avl_trees/dictionary/delete.html}
+
 %%
 %
 %%
@@ -351,9 +367,6 @@ Rechts-Links-Rotation (Rechtsdrehung um $bU$, dann Linksdrehung um $bO$) \\
 \subsection{Rechtsrotation}
 
 \liJavaDatei[firstline=60,lastline=68]{baum/AVLBaum}
-
-Kindknoten, die nach der Drehung „im Weg stehen“, werden „umgeklappt“,
-also vom linken zum rechten Kind der nächsten Ebene und umgekehrt
 
 \liJavaDatei[firstline=3]{baum/AVLBaum}
 
