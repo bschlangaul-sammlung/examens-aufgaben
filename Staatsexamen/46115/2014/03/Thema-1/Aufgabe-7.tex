@@ -1,0 +1,81 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{baum}
+\begin{document}
+\liAufgabenTitel{Heap und binärer Suchbaum und AVL Baum}
+\section{Aufgabe 7 Heap und binärer Suchbaum und AVL Baum
+\index{Halde (Heap)}\index{Binärbaum}\index{AVL-Baum}
+\footcite{46115:2014:03}}
+
+Fügen Sie nacheinander die Zahlen 11, 1, 2, 13, 9, 10, 7, 5
+
+\begin{liProjektSprache}{Baum}
+baum binär (
+  setzte: 11 1 2 13 9 10 7 5;
+  drucke;
+)
+\end{liProjektSprache}
+
+\begin{enumerate}
+
+%%
+% (i)
+%%
+
+\item in einen leeren binären Suchbaum und zeichnen Sie den Suchbaum
+jeweils nach dem Einfügen von „9“ und „5“
+
+\begin{liDiagramm}{Nach Einfügen von „9“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.11
+  [.1
+    \edge[blank]; \node[blank]{};
+    [.2
+      \edge[blank]; \node[blank]{};
+      [.9 ]
+    ]
+  ]
+  [.13 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „5“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.11
+  [.1
+    \edge[blank]; \node[blank]{};
+    [.2
+      \edge[blank]; \node[blank]{};
+      [.9
+        [.7
+          [.5 ]
+          \edge[blank]; \node[blank]{};
+        ]
+        [.10 ]
+      ]
+    ]
+  ]
+  [.13 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+%%
+% (ii)
+%%
+
+\item in einen leeren Min-Heap ein, der bzgl. „$\leq$“ angeordnet ist und
+geben Sie den Heap nach „9“ und nach „5“ an
+
+%%
+% (ii)
+%%
+
+\item in einen leeren AVL-Baum ein! Geben Sie den AVL Baum nach „2“ und
+„5“ an und beschreiben Sie die ggf. notwendigen Rotationen beim Einfügen
+dieser beiden Elemente!
+\end{enumerate}
+
+\end{document}
