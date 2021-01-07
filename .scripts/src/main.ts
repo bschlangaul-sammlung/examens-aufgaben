@@ -15,6 +15,7 @@ import { erzeugeReadme } from './aktionen/erzeuge-readme'
 import { erzeugeExamensAufgabeVorlage } from './aktionen/erzeuge-examens-aufgabe-vorlage'
 import { führeSqlAus } from './aktionen/fuehre-sql-aus'
 import { öffne } from './aktionen/oeffne'
+import { generiereExamenSammlungPdf } from './aktionen/erzeuge-examens-uebersicht'
 
 const programm = new Command()
 programm.description(`Repository-Pfad: ${repositoryPfad}`)
@@ -199,6 +200,14 @@ programm
     let inhalt = leseDatei(dateiPfad)
     inhalt = inhalt.replace(/\n(\(?[abcdefghijv]+\)\s*)/g, '\n%%\n% $1\n%%\n\n\\item ')
     schreibeDatei(dateiPfad, inhalt)
+  })
+
+programm
+  .command('examen-sammlung')
+  .alias('es')
+  .description('PDFs in denen mehrere PDFs zusammengefügt sind.')
+  .action(function (): void {
+    generiereExamenSammlungPdf()
   })
 
 programm.parse(process.argv)

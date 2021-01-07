@@ -27,6 +27,7 @@ var erzeuge_readme_1 = require("./aktionen/erzeuge-readme");
 var erzeuge_examens_aufgabe_vorlage_1 = require("./aktionen/erzeuge-examens-aufgabe-vorlage");
 var fuehre_sql_aus_1 = require("./aktionen/fuehre-sql-aus");
 var oeffne_1 = require("./aktionen/oeffne");
+var erzeuge_examens_uebersicht_1 = require("./aktionen/erzeuge-examens-uebersicht");
 var programm = new commander_1.Command();
 programm.description("Repository-Pfad: " + helfer_1.repositoryPfad);
 programm.name('lehramt-informatik.js');
@@ -219,5 +220,12 @@ programm
     var inhalt = helfer_1.leseDatei(dateiPfad);
     inhalt = inhalt.replace(/\n(\(?[abcdefghijv]+\)\s*)/g, '\n%%\n% $1\n%%\n\n\\item ');
     helfer_1.schreibeDatei(dateiPfad, inhalt);
+});
+programm
+    .command('examen-sammlung')
+    .alias('es')
+    .description('PDFs in denen mehrere PDFs zusammengefügt sind.')
+    .action(function () {
+    erzeuge_examens_uebersicht_1.generiereExamenSammlungPdf();
 });
 programm.parse(process.argv);
