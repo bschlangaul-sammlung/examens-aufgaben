@@ -1,0 +1,226 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{baum}
+\begin{document}
+\liAufgabenTitel{Gegener Baum erweitern und Knoten entfernen}
+\section{Aufgabe 7 (AVL-Bäume)
+\index{AVL-Baum}
+\footcite{66115:2019:09}}
+
+Fügen Sie (manuell) nacheinander die Zahlen 20, 31, 2, 17, 7 in
+folgenden AVL-Baum ein. Löschen Sie anschließend aus dem entstandenen
+Baum nacheinander 14 und 25.
+
+\begin{center}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node{10};
+  [.\node{5}; ]
+  [.\node{25};
+    [.\node{14}; ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{center}
+
+\noindent
+Zeichnen Sie jeweils direkt nach jeder einzelnen Operation zum Einfügen
+oder Löschen eines Knotens, sowie nach jeder elementaren Rotation den
+entstehenden Baum. Insbesondere sind evtl. anfallende Doppelrotationen
+in zwei Schritten darzustellen. Geben Sie zudem an jedem Knoten die
+Balancewerte an.
+
+\begin{liDiagramm}{Nach Einfügen von „20“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=2]{10};
+  [.\node[label=0]{5}; ]
+  [.\node[label=-2]{25};
+    [.\node[label=1]{14};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{20}; ]
+    ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=2]{10};
+  [.\node[label=0]{5}; ]
+  [.\node[label=-2]{25};
+    [.\node[label=-1]{20};
+      [.\node[label=0]{14}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Rechtsrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=1]{10};
+  [.\node[label=0]{5}; ]
+  [.\node[label=0]{20};
+    [.\node[label=0]{14}; ]
+    [.\node[label=0]{25}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „31“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=2]{10};
+  [.\node[label=0]{5}; ]
+  [.\node[label=1]{20};
+    [.\node[label=0]{14}; ]
+    [.\node[label=1]{25};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{31}; ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{20};
+  [.\node[label=0]{10};
+    [.\node[label=0]{5}; ]
+    [.\node[label=0]{14}; ]
+  ]
+  [.\node[label=1]{25};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=0]{31}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „2“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{20};
+  [.\node[label=-1]{10};
+    [.\node[label=-1]{5};
+      [.\node[label=0]{2}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.\node[label=0]{14}; ]
+  ]
+  [.\node[label=1]{25};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=0]{31}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „17“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{20};
+  [.\node[label=0]{10};
+    [.\node[label=-1]{5};
+      [.\node[label=0]{2}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.\node[label=1]{14};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{17}; ]
+    ]
+  ]
+  [.\node[label=1]{25};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=0]{31}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „7“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{20};
+  [.\node[label=0]{10};
+    [.\node[label=0]{5};
+      [.\node[label=0]{2}; ]
+      [.\node[label=0]{7}; ]
+    ]
+    [.\node[label=1]{14};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{17}; ]
+    ]
+  ]
+  [.\node[label=1]{25};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=0]{31}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\liPseudoUeberschrift{Löschen}
+
+\begin{liDiagramm}{Nach Löschen von „14“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{20};
+  [.\node[label=-1]{10};
+    [.\node[label=0]{5};
+      [.\node[label=0]{2}; ]
+      [.\node[label=0]{7}; ]
+    ]
+    [.\node[label=0]{17}; ]
+  ]
+  [.\node[label=1]{25};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=0]{31}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Löschen von „25“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-2]{20};
+  [.\node[label=-1]{10};
+    [.\node[label=0]{5};
+      [.\node[label=0]{2}; ]
+      [.\node[label=0]{7}; ]
+    ]
+    [.\node[label=0]{17}; ]
+  ]
+  [.\node[label=0]{31}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Rechtsrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{10};
+  [.\node[label=0]{5};
+    [.\node[label=0]{2}; ]
+    [.\node[label=0]{7}; ]
+  ]
+  [.\node[label=0]{20};
+    [.\node[label=0]{17}; ]
+    [.\node[label=0]{31}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\end{document}
