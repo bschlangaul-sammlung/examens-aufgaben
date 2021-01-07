@@ -1,0 +1,73 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{uml}
+\begin{document}
+\liAufgabenTitel{Gasthausen}
+\section{Essen in Gasthausen
+\index{Klassendiagramm}
+\footcite{[Seite 4-5]{net:pdf:wikiversity:klassendiagramm}}}
+
+% https://upload.wikimedia.org/wikiversity/de/b/b9/Klassendiagramme.pdf
+
+\section{Essen in Gasthausen}
+
+In diesem kleinen Städtchen gibt es fünf Restaurants, aber egal, ob es
+sich um ein 2*-Restaurant, oder um ein 5*-Restaurant handelt, alle haben
+Gemeinsamkeiten. In jedem Restaurant sind mehrere \textbf{Mitarbeiter}
+angestellt. Im kleinsten Restaurant nur zwei, aber im größten verdienen
+16 Mitarbeiter ihr Geld. Die Mitarbeiter bekommen in jedem Restaurant
+ein anderes \emph{Gehalt}, aber alle machen ihre Arbeit. Die
+\textbf{Kellner}
+\emph{nehmen bestellungen entgegen}, \emph{servieren das Essen} und
+\emph{kassieren das Geld} von den Gästen. Jeder Kellner gibt die
+Bestellungen der Gäste an die Köche weiter. Die \textbf{Köche} kennen
+verschiedene \textbf{Rezepte}, nach denen sie die \textbf{Menüs} dann
+zubereiten. Jedes Menü hat einen anderen \emph{Preis}, aber es besteht
+nach Tradition immer aus einem \textbf{Salat} und einer
+\textbf{Hauptspeise}. An manchen Tagen ist kein \textbf{Gast} da. Dann
+werden Sie in ganz familiärem Rahmen bewirtet. Aber auch an guten Tagen
+gibt es, bei 100 Plätzen im größten Restaurant, sicher für jeden
+hungrigen Gast einen \textbf{Platz}. Wer in Gasthausen Essen geht sollte
+hungrig sein! Natürlich hat jeder Gast unterschiedlich viel Geld zur
+Verfügung, aber bei entsprechender Wahl des Restaurants reicht es sicher
+für sein Lieblingsessen.
+
+\begin{tikzpicture}[scale=0.8, transform shape]
+\umlclass[x=0,y=5]{Restaurant}{- anzahlSterne: int}{}
+
+\umlclass[x=8,y=5]{Mitarbeiter}{
+- gehalt: double
+}{}
+
+\umlclass
+[below left=0.5cm and -1cm of Mitarbeiter]
+{Kellner}{}
+{
+  + nehmeBestellungenAuf()\\
+  + serviereEssen()\\
+  + kassiereGeld()
+}
+
+\umlclass[below right=0.5cm and -1cm of Mitarbeiter]{Koch}{}{}
+
+\umlclass[below left=0.5cm and 0cm of Restaurant]{Sitzplatz}{}{}
+
+\umlclass[x=8cm,y=0cm]{Menü}{- preis: float}{}
+\umlsimpleclass[below left=0.5cm of Menü]{Salat}
+\umlsimpleclass[below right=0.5cm of Menü]{Hauptspeise}
+\umlcompo[mult1=1,mult2=1]{Menü}{Salat}
+\umlcompo[mult1=1,mult2=1]{Menü}{Hauptspeise}
+
+\umlclass{Gast}{
+  hungrig: boolean = true\\
+  lieblingsEssen: String\\
+  geld: double
+}{}
+
+\umlassoc[mult1=2..16,mult2=5,stereo=beschäftigt]{Mitarbeiter}{Restaurant}
+\umlassoc[mult1=0..100,mult2=0..5,stereo=besucht]{Gast}{Restaurant}
+\umlassoc[stereo=bedient]{Kellner}{Gast}
+\umlassoc[stereo=bestellt]{Gast}{Menü}
+\umlassoc[stereo=Bestellung weiter geben]{Kellner}{Koch}
+
+\end{tikzpicture}
+\end{document}
