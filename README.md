@@ -448,6 +448,7 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_46115-2013-Frühjahr_T2-A6">Aufgabe 6 (Heapsort)</a>
 - 2014 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Scan.pdf" download="Staatsexamen-Informatik_46115-2014-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/OCR.txt" download="Staatsexamen-Informatik_46115-2014-Frühjahr_OCR">OCR.txt</a> 
     - Thema 1 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-1/Aufgabe-7.pdf" download="Staatsexamen-Informatik_46115-2014-Frühjahr_T1-A7">Aufgabe 7 (Halde (Heap), Binärbaum, AVL-Baum)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-1/Aufgabe-8.pdf" download="Staatsexamen-Informatik_46115-2014-Frühjahr_T1-A8">Aufgabe 8 (Minimaler Spannbaum, Algorithmus von Kruskal)</a> 
     - Thema 2 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46115-2014-Frühjahr_T2-A4">Aufgabe 4 (Rekursion, Implementierung in Java, Iterative Realisation)</a>
@@ -468,6 +469,7 @@ OCR des oben genannten Scans:
 - 2017 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/03/Scan.pdf" download="Staatsexamen-Informatik_46115-2017-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/03/OCR.txt" download="Staatsexamen-Informatik_46115-2017-Frühjahr_OCR">OCR.txt</a> 
 - 2017 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/09/Scan.pdf" download="Staatsexamen-Informatik_46115-2017-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/09/OCR.txt" download="Staatsexamen-Informatik_46115-2017-Herbst_OCR">OCR.txt</a> 
     - Thema 2 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/09/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_46115-2017-Herbst_T2-A6">Aufgabe 6 (Halde (Heap))</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2017/09/Thema-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_46115-2017-Herbst_T2-A7">Aufgabe 7 (Insertionsort, Implementierung in Java)</a>
 - 2018 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/03/Scan.pdf" download="Staatsexamen-Informatik_46115-2018-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2018/03/OCR.txt" download="Staatsexamen-Informatik_46115-2018-Frühjahr_OCR">OCR.txt</a> 
     - Thema 1 
@@ -793,6 +795,8 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/03/Thema-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2013-Frühjahr_T1-A6">Aufgabe 6 (Streutabellen (Hashing))</a>
 - 2013 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/Scan.pdf" download="Staatsexamen-Informatik_66115-2013-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/OCR.txt" download="Staatsexamen-Informatik_66115-2013-Herbst_OCR">OCR.txt</a> 
     - Thema 2 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/Thema-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66115-2013-Herbst_T2-A7">Aufgabe 7 (Binärbaum, Halde (Heap))</a> 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/Thema-2/Aufgabe-8.pdf" download="Staatsexamen-Informatik_66115-2013-Herbst_T2-A8">Aufgabe 8 (AVL-Baum)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/Thema-2/Aufgabe-9.pdf" download="Staatsexamen-Informatik_66115-2013-Herbst_T2-A9">Aufgabe 9 (Algorithmus von Dijkstra)</a>
 - 2014 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2014-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/OCR.txt" download="Staatsexamen-Informatik_66115-2014-Frühjahr_OCR">OCR.txt</a> 
     - Thema 1 

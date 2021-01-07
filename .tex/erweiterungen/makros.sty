@@ -103,8 +103,13 @@ anderen Paket passen]
 }
 {\end{mdframed}}
 
-\NewDocumentEnvironment{ liAdditum } { }
-{\begin{mdframed}[backgroundcolor=yellow!5]}
+\NewDocumentEnvironment{ liAdditum } { o }
+{
+  \begin{mdframed}[backgroundcolor=yellow!5]
+  \IfNoValueTF {#1}
+  { \liPseudoUeberschrift{Additum} }
+  { \liPseudoUeberschrift{Additum:~#1} }
+}
 {\end{mdframed}}
 
 %%
