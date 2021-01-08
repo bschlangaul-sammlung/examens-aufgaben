@@ -163,7 +163,6 @@ export function generiereExamensÜbersicht () {
 export function generiereExamenSammlungPdf () {
   for (const nummer in examensTitel) {
     const ausgabe = new AusgabeSammler()
-    const titel = `${nummer}: ${examensTitel[nummer]}`
     const nummernPfad = path.join(repositoryPfad, 'Staatsexamen', nummer)
     const jahrVerzeichnisse = fs.readdirSync(nummernPfad)
     for (const jahr of jahrVerzeichnisse) {
@@ -172,12 +171,12 @@ export function generiereExamenSammlungPdf () {
         const monatsVerzeichnisse = fs.readdirSync(jahrPfad)
         for (const monat of monatsVerzeichnisse) {
           const examen = examenSammlung.gib(nummer, jahr, monat)
-          ausgabe.add(`\n\\section{${examen.jahreszeit} ${examen.jahr}}`)
+          ausgabe.add(`\n\\liTrennSeite{${examen.jahreszeit} ${examen.jahr}}`)
 
           let scanPfad = macheRelativenPfad(path.join(jahrPfad, monat, 'Scan.pdf'))
-          scanPfad = scanPfad.replace(`Staatsexamen/${nummer}/`, '')
+          //scanPfad = scanPfad.replace(`Staatsexamen/${nummer}/`, '')
 
-          const includePdf = `\\includepdf[pages={1-}]{${scanPfad}}`
+          const includePdf = `\\liBindePdfEin{${scanPfad}}`
           ausgabe.add(includePdf)
         }
       }
@@ -185,10 +184,10 @@ export function generiereExamenSammlungPdf () {
     const ergebnis = ausgabe.gibText()
 
     const texMarkup = `\\documentclass{lehramt-informatik-examen-sammlung}
-\\title{Einzelprüfungsnummer ${nummer}\\\\${examensTitel[nummer]}}
+\\liPruefungsNummer{${nummer}}
+\\liPruefungsTitel{${examensTitel[nummer]}}
+
 \\begin{document}
-\\maketitle
-\\tableofcontents
 ${ergebnis}
 \\end{document}`
     schreibeDatei(macheRepoPfad('Staatsexamen', nummer, 'Examensammlung.tex'), texMarkup)

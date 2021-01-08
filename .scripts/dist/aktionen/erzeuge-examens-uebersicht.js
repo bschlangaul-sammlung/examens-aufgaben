@@ -212,7 +212,6 @@ function generiereExamenSammlungPdf() {
     var e_5, _a, e_6, _b;
     for (var nummer in examen_1.examensTitel) {
         var ausgabe = new AusgabeSammler();
-        var titel = nummer + ": " + examen_1.examensTitel[nummer];
         var nummernPfad = path_1.default.join(helfer_1.repositoryPfad, 'Staatsexamen', nummer);
         var jahrVerzeichnisse = fs_1.default.readdirSync(nummernPfad);
         try {
@@ -225,10 +224,10 @@ function generiereExamenSammlungPdf() {
                         for (var monatsVerzeichnisse_2 = (e_6 = void 0, __values(monatsVerzeichnisse)), monatsVerzeichnisse_2_1 = monatsVerzeichnisse_2.next(); !monatsVerzeichnisse_2_1.done; monatsVerzeichnisse_2_1 = monatsVerzeichnisse_2.next()) {
                             var monat = monatsVerzeichnisse_2_1.value;
                             var examen = sammlung_1.examenSammlung.gib(nummer, jahr, monat);
-                            ausgabe.add("\n\\section{" + examen.jahreszeit + " " + examen.jahr + "}");
+                            ausgabe.add("\n\\liTrennSeite{" + examen.jahreszeit + " " + examen.jahr + "}");
                             var scanPfad = helfer_1.macheRelativenPfad(path_1.default.join(jahrPfad, monat, 'Scan.pdf'));
-                            scanPfad = scanPfad.replace("Staatsexamen/" + nummer + "/", '');
-                            var includePdf = "\\includepdf[pages={1-}]{" + scanPfad + "}";
+                            //scanPfad = scanPfad.replace(`Staatsexamen/${nummer}/`, '')
+                            var includePdf = "\\liBindePdfEin{" + scanPfad + "}";
                             ausgabe.add(includePdf);
                         }
                     }
@@ -250,7 +249,7 @@ function generiereExamenSammlungPdf() {
             finally { if (e_5) throw e_5.error; }
         }
         var ergebnis = ausgabe.gibText();
-        var texMarkup = "\\documentclass{lehramt-informatik-examen-sammlung}\n\\title{Einzelpr\u00FCfungsnummer " + nummer + "\\\\" + examen_1.examensTitel[nummer] + "}\n\\begin{document}\n\\maketitle\n\\tableofcontents\n" + ergebnis + "\n\\end{document}";
+        var texMarkup = "\\documentclass{lehramt-informatik-examen-sammlung}\n\\liPruefungsNummer{" + nummer + "}\n\\liPruefungsTitel{" + examen_1.examensTitel[nummer] + "}\n\n\\begin{document}\n" + ergebnis + "\n\\end{document}";
         helfer_1.schreibeDatei(helfer_1.macheRepoPfad('Staatsexamen', nummer, 'Examensammlung.tex'), texMarkup);
     }
 }
