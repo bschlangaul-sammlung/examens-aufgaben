@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{uml}
+\liLadePakete{uml,syntax}
 \begin{document}
 \liAufgabenTitel{Firmenstruktur}
 \section{1 Firmenstruktur
@@ -22,10 +22,11 @@
 \end{center}
 
 \noindent
-Eine Firma besteht aus null oder mehr Abteilungen, von denen jede null
-oder mehr Angestellte hat. Da sowohl die Abteilungen als auch deren
-Angestellten geordnet sind, sind Angestellte insgesamt geordnet. Sie
-haben durchgehende, ganzzahlige IDs, die bei 1 beginnen.
+Eine Firma besteht aus \liJavaCode{null} oder mehr Abteilungen, von
+denen jede \liJavaCode{null} oder mehr Angestellte hat. Da sowohl die
+Abteilungen als auch deren Angestellten geordnet sind, sind Angestellte
+insgesamt geordnet. Sie haben durchgehende, ganzzahlige IDs, die bei 1
+beginnen.
 
 \begin{enumerate}
 
@@ -34,10 +35,12 @@ haben durchgehende, ganzzahlige IDs, die bei 1 beginnen.
 %%
 
 \item Erstellen Sie exemplarisch ein Objektdiagramm: Stellen Sie eine
-Firma mit dem Instanznamen f und den zwei Abteilungen „Produktion“ (Name
-p) und „Marketing“ (Name m) dar. Die Produktion hat zwei Angestellte,
-Marketing hat einen Angestellten. Die Angestellten haben die Namen a1,
-a2, und a3.
+Firma mit dem Instanznamen \liJavaCode{f} und den zwei Abteilungen
+„Produktion“ (Name \liJavaCode{p}) und „Marketing“ (Name \liJavaCode{m})
+dar. Die Produktion hat zwei Angestellte, Marketing hat einen
+Angestellten. Die Angestellten haben die Namen \liJavaCode{a1},
+\liJavaCode{a2}, und \liJavaCode{a3}.
+\index{Objektdiagramm}
 
 \begin{liAntwort}
 Die Instanzbezeichnung müsste noch unterstrichen werden. Das geht aber
@@ -72,12 +75,18 @@ leider mit TikZ-UML nicht.
 \item Implementieren Sie das Klassendiagramm in Java oder in einer
 anderen geeigneten objektorientierten Programmiersprache Ihrer Wahl.
 Beachten Sie, dass die Assoziationen bidirektional und geordnet sind.
-Die beiden Methoden der Klasse Firma sollen dabei folgendes Verhalten
-haben:
+Die beiden Methoden der Klasse \liJavaCode{Firma} sollen dabei folgendes
+Verhalten haben:
 
-- Die Methode erzeugelDs sorgt dafür, dass die IDs wieder korrekt
-zugewiesen sind. Die alten IDs können beliebig geändert werden, solange
-das Endergebnis wieder den obenstehenden Kriterien genügt.
+Die Methode \liJavaCode{erzeugeIDs} sorgt dafür, dass die IDs wieder
+korrekt zugewiesen sind. Die alten IDs können beliebig geändert werden,
+solange das Endergebnis wieder den obenstehenden Kriterien genügt.
+
+\begin{liAntwort}
+\liJavaDatei[firstline=3]{examen/examen_46116/jahr_2011/fruehjahr/Firma}
+\liJavaDatei[firstline=3]{examen/examen_46116/jahr_2011/fruehjahr/Abteilung}
+\liJavaDatei[firstline=3]{examen/examen_46116/jahr_2011/fruehjahr/Angestellter}
+\end{liAntwort}
 
 %%
 % c)
@@ -85,11 +94,32 @@ das Endergebnis wieder den obenstehenden Kriterien genügt.
 
 \item Angestellte sollen in Manager und einfache Angestellte unterteilt
 werden. Zeichnen Sie ein Klassendiagramm mit der Oberklasse
-Angestellterund den zwei Unterklassen Manager und EinfacherAngestellter.
-Die Klasse Angestellter soll nicht instantiierbar sein und erzwingen,
-dass die Methode getPosition() (öffentlich, ohne Argumente, Rückgabewert
-String) von allen konkreten Unterklassen implementiert wird. Manager und
-EinfacherAngestellter sollen instantiierbar sein.
+\liJavaCode{Angestellter} und den zwei Unterklassen \liJavaCode{Manager}
+und \liJavaCode{EinfacherAngestellter}. Die Klasse
+\liJavaCode{Angestellter} soll nicht instantiierbar sein und erzwingen,
+dass die Methode \liJavaCode{getPosition()} (öffentlich, ohne Argumente,
+Rückgabewert \liJavaCode{String}) von allen konkreten Unterklassen
+implementiert wird. \liJavaCode{Manager} und
+\liJavaCode{EinfacherAngestellter} sollen instantiierbar sein.
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}
+
+\umlclass[x=0,y=0,type=abstract]{Angestellter}{\textit{+ getPosition(): String}}{}
+\umlclass[x=-3,y=-3]{Manager}{
++ Manager()\\
++ getPosition(): String}{}
+
+\umlclass[x=3,y=-3]{EinfacherAngestellter}{
++ EinfacherAngestellter()\\
++ getPosition(): String}{}
+
+\umlVHVinherit{Manager}{Angestellter}
+\umlVHVinherit{EinfacherAngestellter}{Angestellter}
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
 
 %%
 % d)
@@ -99,6 +129,9 @@ EinfacherAngestellter sollen instantiierbar sein.
 Klasse und in deren Unterklassen dieselbe Signatur hat, aber in den
 Unterklassen unterschiedlich implementiert ist?
 
+\begin{liAntwort}
+Abstrakte Methode
+\end{liAntwort}
 \end{enumerate}
 
 \end{document}
