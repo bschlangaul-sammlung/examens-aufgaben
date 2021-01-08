@@ -3,8 +3,8 @@ texmftex = $(texmf)/tex
 
 all: install_config install_cli install_tex readme
 
-# git_submodule:
-# 	git submodule update --init
+git_submodule:
+	git submodule update --init
 
 install_config:
 	.scripts/install-config.sh
