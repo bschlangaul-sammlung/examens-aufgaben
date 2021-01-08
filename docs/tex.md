@@ -40,6 +40,10 @@ dann geladen werden.
 Mit dem Makro `\liAufgabenTitel{}` kann einer Aufgabe ein prägnanter
 kurzer Titel gegeben werden.
 
+### `examen-sammlung.cls`
+
+Zum Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.
+
 ## Pakete
 
 ### `baum.sty`

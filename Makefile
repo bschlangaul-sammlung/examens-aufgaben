@@ -23,4 +23,21 @@ install_tex:
 readme:
 	.scripts/dist/main.js r
 
+clean: find . \
+	\( \
+	-name "*.aux" -or \
+	-name "*.fdb_latexmk" -or \
+	-name "*.glo" -or \
+	-name "*.gls" -or \
+	-name "*.ilg" -or \
+	-name "*.ind" -or \
+	-name "*.idx" -or \
+	-name "*.log" -or \
+	-name "*.out" -or \
+	-name "*.synctex" -or \
+	-name "*.synctex.gz" -or \
+	-name "*.toc" -or \
+	\) \
+	-exec rm -f {} \;
+
 .PHONY: install_tex readme install_cli install_config

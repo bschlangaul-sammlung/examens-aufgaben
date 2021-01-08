@@ -225,7 +225,7 @@ function generiereExamenSammlungPdf() {
                         for (var monatsVerzeichnisse_2 = (e_6 = void 0, __values(monatsVerzeichnisse)), monatsVerzeichnisse_2_1 = monatsVerzeichnisse_2.next(); !monatsVerzeichnisse_2_1.done; monatsVerzeichnisse_2_1 = monatsVerzeichnisse_2.next()) {
                             var monat = monatsVerzeichnisse_2_1.value;
                             var examen = sammlung_1.examenSammlung.gib(nummer, jahr, monat);
-                            ausgabe.add("\n\\section{" + examen.jahr + ": (" + examen.jahreszeit + ")}");
+                            ausgabe.add("\n\\section{" + examen.jahreszeit + " " + examen.jahr + "}");
                             var scanPfad = helfer_1.macheRelativenPfad(path_1.default.join(jahrPfad, monat, 'Scan.pdf'));
                             scanPfad = scanPfad.replace("Staatsexamen/" + nummer + "/", '');
                             var includePdf = "\\includepdf[pages={1-}]{" + scanPfad + "}";
@@ -250,7 +250,7 @@ function generiereExamenSammlungPdf() {
             finally { if (e_5) throw e_5.error; }
         }
         var ergebnis = ausgabe.gibText();
-        var texMarkup = "\\documentclass{lehramt-informatik-haupt}\n\\usepackage{pdfpages}\n\\usepackage{titlesec}\n\\newcommand\\sectionbreak{\\clearpage}\n\\titleformat{\\section}\n{\\centering\\Large\\bfseries} % format\n{}% label\n{0pt} % sep\n{\\huge}\n\n\\setcounter{secnumdepth}{0}\n\n\\title{" + titel + "}\n\\begin{document}\n\\maketitle\n\\tableofcontents\n" + ergebnis + "\n\\end{document}";
+        var texMarkup = "\\documentclass{lehramt-informatik-examen-sammlung}\n\\title{Einzelpr\u00FCfungsnummer " + nummer + "\\\\" + examen_1.examensTitel[nummer] + "}\n\\begin{document}\n\\maketitle\n\\tableofcontents\n" + ergebnis + "\n\\end{document}";
         helfer_1.schreibeDatei(helfer_1.macheRepoPfad('Staatsexamen', nummer, 'Examensammlung.tex'), texMarkup);
     }
 }

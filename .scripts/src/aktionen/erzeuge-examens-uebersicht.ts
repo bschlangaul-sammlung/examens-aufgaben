@@ -172,7 +172,7 @@ export function generiereExamenSammlungPdf () {
         const monatsVerzeichnisse = fs.readdirSync(jahrPfad)
         for (const monat of monatsVerzeichnisse) {
           const examen = examenSammlung.gib(nummer, jahr, monat)
-          ausgabe.add(`\n\\section{${examen.jahr}: (${examen.jahreszeit})}`)
+          ausgabe.add(`\n\\section{${examen.jahreszeit} ${examen.jahr}}`)
 
           let scanPfad = macheRelativenPfad(path.join(jahrPfad, monat, 'Scan.pdf'))
           scanPfad = scanPfad.replace(`Staatsexamen/${nummer}/`, '')
@@ -184,19 +184,8 @@ export function generiereExamenSammlungPdf () {
     }
     const ergebnis = ausgabe.gibText()
 
-    const texMarkup = `\\documentclass{lehramt-informatik-haupt}
-\\usepackage{pdfpages}
-\\usepackage{titlesec}
-\\newcommand\\sectionbreak{\\clearpage}
-\\titleformat{\\section}
-{\\centering\\Large\\bfseries} % format
-{}% label
-{0pt} % sep
-{\\huge}
-
-\\setcounter{secnumdepth}{0}
-
-\\title{${titel}}
+    const texMarkup = `\\documentclass{lehramt-informatik-examen-sammlung}
+\\title{Einzelprüfungsnummer ${nummer}\\\\${examensTitel[nummer]}}
 \\begin{document}
 \\maketitle
 \\tableofcontents
