@@ -23,7 +23,9 @@ install_tex:
 readme:
 	.scripts/dist/main.js r
 
-clean: find . \
+clean:
+	find . \
+	-name ".git*" -prune \
 	\( \
 	-name "*.aux" -or \
 	-name "*.fdb_latexmk" -or \
@@ -36,7 +38,7 @@ clean: find . \
 	-name "*.out" -or \
 	-name "*.synctex" -or \
 	-name "*.synctex.gz" -or \
-	-name "*.toc" -or \
+	-name "*.toc" \
 	\) \
 	-exec rm -f {} \;
 
