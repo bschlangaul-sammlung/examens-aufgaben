@@ -6,21 +6,18 @@ Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.]
 \RequirePackage{lehramt-informatik-basis}
 
 \RequirePackage{pdfpages}
-\RequirePackage{titlesec}
-\newcommand\sectionbreak{\clearpage}
-\titleformat{\section}
-{\centering\Large\bfseries\sffamily} % format
-{}% label
-{0pt} % sep
-{\HUGE}
 
 \author{Hermine Bschlangaul}
 \date{}
-
-\setcounter{secnumdepth}{0}
 
 % Formatierung muss vor literatur sein, sonst Option clash
 \liLadePakete{formatierung}
 
 % Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
 \RequirePackage[ngerman]{babel}
+
+\AtBeginDocument{
+  \maketitle
+  \tableofcontents
+  \pagebreak
+}
