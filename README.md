@@ -444,6 +444,8 @@ OCR des oben genannten Scans:
 ### 46115: Theoretische Informatik / Algorithmen / Datenstrukturen (nicht vertieft)
 
 - 2010 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2010/03/Scan.pdf" download="Staatsexamen-Informatik_46115-2010-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2010/03/OCR.txt" download="Staatsexamen-Informatik_46115-2010-Frühjahr_OCR">OCR.txt</a> 
+    - Thema 1 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2010/03/Thema-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_46115-2010-Frühjahr_T1-A5">Aufgabe 5 (Binärbaum, AVL-Baum)</a>
 - 2011 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2011/03/Scan.pdf" download="Staatsexamen-Informatik_46115-2011-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2011/03/OCR.txt" download="Staatsexamen-Informatik_46115-2011-Frühjahr_OCR">OCR.txt</a> 
     - Thema 1 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2011/03/Thema-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46115-2011-Frühjahr_T1-A3">Aufgabe 3 (B-Baum, AVL-Baum)</a>

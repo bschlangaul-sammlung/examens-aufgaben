@@ -3,6 +3,8 @@
 `minted`, das sich um die Syntax-Hervorhebung des Java-Codes kümmert.]
 \RequirePackage{xparse}
 
+\ExplSyntaxOn
+
 \RequirePackage{minted}
 % pygmentize -L styles
 \usemintedstyle{colorful}
@@ -19,10 +21,33 @@
 
 \def\liLatexCode#1{\mintinline{latex}|#1|}
 
+\tl_const:Nx \l_pfad_tl {\LehramtInformatikRepository/Code/src}
+\tl_const:Nn \l_main_tl {main/java/org/bschlangaul}
+\tl_const:Nn \l_test_tl {test/java/org/bschlangaul}
+
 \NewDocumentCommand{\liJavaDatei}{ O{} m }{
-  \inputminted[#1]{java}{\LehramtInformatikRepository/Code/src/main/java/org/bschlangaul/#2.java}
+  \inputminted[#1]{java}{\l_pfad_tl/main/java/org/bschlangaul/#2.java}
 }
 
 \NewDocumentCommand{\liJavaTestDatei}{ O{} m }{
-  \inputminted[#1]{java}{\LehramtInformatikRepository/Code/src/test/java/org/bschlangaul/#2.java}
+  \inputminted[#1]{java}{\l_pfad_tl/test/java/org/bschlangaul/#2.java}
 }
+
+% \liJavaDatei[firstline=3]{aufgaben/oomup/examen_66116_2015_03/Kunde}
+% \\liJavaDatei(\[.*\])?\{.*examen_(\d{5})_(\d{4})_(\d{2})/(.*)\}
+% \liJavaExamen$1{$2}{$3}{$4}{$5}
+\NewDocumentCommand{\liJavaExamen}{ O{firstline=3} m m m m }{
+  \tl_new:N \l_jahreszeit_tl
+  \tl_set:Nn \l_jahreszeit_tl {#4}
+  \str_case:nn {#4} {
+    {03} {
+      \tl_set:Nn \l_jahreszeit_tl {fruehjahr}
+    }
+    {09} {
+      \tl_set:Nn \l_jahreszeit_tl {herbst}
+    }
+  }
+  \inputminted[#1]{java}{\l_pfad_tl/\l_main_tl/examen/examen_#2/jahr_#3/\l_jahreszeit_tl/#5.java}
+}
+
+\ExplSyntaxOff

@@ -76,8 +76,7 @@ anderen Paket passen]
 \ExplSyntaxOn
 \NewDocumentEnvironment{ liAntwort } { O{standard} }
 {
-  \str_case:nn {#1}
-  {
+  \str_case:nn {#1} {
     {standard} {
       \def\beschriftung{}
       \mdfsetup{backgroundcolor=gray!5,linecolor=gray}
@@ -85,7 +84,7 @@ anderen Paket passen]
     {richtig} {
       \def\beschriftung{richtig}
       \mdfsetup{backgroundcolor=green!5,linecolor=green}
-      }
+    }
     {falsch} {
       \def\beschriftung{falsch}
       \mdfsetup{backgroundcolor=red!3,linecolor=red}
