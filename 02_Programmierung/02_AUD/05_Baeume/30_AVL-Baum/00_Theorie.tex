@@ -125,6 +125,33 @@ Die Kindknoten, die nach der Drehung „im Weg stehen“, werden
 „umgeklappt“, also vom linken zum rechten Kind der nächsten Ebene
 „umgehängt“ und umgekehrt.
 
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Rotation (genaue Darstellung): Linksrotation von k.}
+
+\begin{center}
+\begin{tabular}{l|l|l}
+ &  vorher & nachher \\\hline
+ Wurzel                         & k               & k.links \\
+ linkes	Kind der Wurzel         & k.links         & k.links.links \\
+ rechte	Kind der Wurzel         & k.rechts        & k \\\hline
+
+ li. Ki. des li. Ki. der Wurzel & k.links.links   & k.links.links.links \\
+ re. Ki. des li. Ki. der Wurzel & k.links.rechts  & k.links.links.rechts \\\hline
+
+ li. Ki. des re. Ki. der Wurzel & k.rechts.left   & k.links.rechts \\
+ re. Ki. des re. Ki. der Wurzel & k.rechts.rechts & k.rechts\\\hline
+\end{tabular}
+\end{center}
+
+\noindent
+Die „nachher“-Position bezieht sich immer auf den den neuen
+Wurzelknoten, der Pfad zu dem entsprechenden Knoten beginnt immer beim
+alten Wurzelknoten k.
+\liFussnoteLink{hs-mannheim.de}{https://services.informatik.hs-mannheim.de/~schramm/ads/files/Kapitel10_02.pdf}
+
 %%
 %
 %%
@@ -351,6 +378,16 @@ Knotens überprüft. Wenn der gelöschte Schlüsselwert in einem Knoten mit
 zwei Nachfolgern gespeichert war, muss bei Elternknoten des
 symmetrischen Nachfolgers begonnen werden. \liFussnoteLink{Universität
 Würzburg}{https://www1.pub.informatik.uni-wuerzburg.de/databases/Binaere_Suchbaeume/avl_trees/dictionary/delete.html}
+
+\section{Laufzeit bzw. Komplexität}
+
+\begin{tabular}{lll}
+         & Average-Case & Worst-Case \\
+Suchen   & $\mathcal{O}(\log n)$           & $\mathcal{O}(\log n)$         \\
+Einfügen & $\mathcal{O}(1)$          & $\mathcal{O}(\log n)$         \\
+Löschen  & $\mathcal{O}(1)$          & $\mathcal{O}(\log n)$
+\end{tabular}
+\liFussnoteLink{studyflix.de}{https://studyflix.de/informatik/avl-baum-1434}
 
 %%
 %

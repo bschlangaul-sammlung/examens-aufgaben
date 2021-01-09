@@ -1,0 +1,284 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{baum}
+\begin{document}
+\liAufgabenTitel{Binäre Suchbäume, AVL-Bäume, Implementierung}
+\section{5. Datenstrukturen und Algorithmen: Binäre Suchbäume und AVL-Bäume
+\index{Binärbaum}
+\index{AVL-Baum}
+\footcite{46115:2010:03}}
+
+\begin{enumerate}
+\item Geben Sie jeweils eine Definition für binäre Suchbäume und
+AVL-Bäume an.
+
+\begin{liAntwort}
+
+\begin{description}
+\item[Binärer Suchbaum] Für jeden Knoten gilt: Ein Knoten enthält einen
+Schlüsselwert. Ein Knoten hat zwei Kindknoten: einen linken und einen
+rechten Kindknoten. Alle Schlüsselwerte des linken Teilbaums sind
+kleiner, alle Schlüsselwerte des rechten Teilbaums sind größer als der
+Wert des Knotens.
+
+\item[AVL-Baum] Alle Eigenschaften des oben definierten binären
+Suchbaums gelten auch im AVL-Baum. Zusätzlich gilt: Die Differenz der
+Höhen des rechten und linken Teilbaums darf sich nie mehr als um eins
+unterscheiden.
+\end{description}
+
+\end{liAntwort}
+
+\item Zeichnen Sie einen AVL-Baum, der die folgenden Schlüssel enthält:
+11, 1, 5, 37, 17, 29, 31, 3.
+
+\begin{liAntwort}
+\begin{liDiagramm}{Nach Einfügen von „11“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{11}; ]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „1“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{11};
+  [.\node[label=0]{1}; ]
+  \edge[blank]; \node[blank]{};
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „5“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-2]{11};
+  [.\node[label=1]{1};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=0]{5}; ]
+  ]
+  \edge[blank]; \node[blank]{};
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-2]{11};
+  [.\node[label=-1]{5};
+    [.\node[label=0]{1}; ]
+    \edge[blank]; \node[blank]{};
+  ]
+  \edge[blank]; \node[blank]{};
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Rechtsrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{5};
+  [.\node[label=0]{1}; ]
+  [.\node[label=0]{11}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „37“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=1]{5};
+  [.\node[label=0]{1}; ]
+  [.\node[label=1]{11};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=0]{37}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „17“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=2]{5};
+  [.\node[label=0]{1}; ]
+  [.\node[label=2]{11};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=-1]{37};
+      [.\node[label=0]{17}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Rechtsrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=2]{5};
+  [.\node[label=0]{1}; ]
+  [.\node[label=2]{11};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=1]{17};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{37}; ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=1]{5};
+  [.\node[label=0]{1}; ]
+  [.\node[label=0]{17};
+    [.\node[label=0]{11}; ]
+    [.\node[label=0]{37}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „29“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=2]{5};
+  [.\node[label=0]{1}; ]
+  [.\node[label=1]{17};
+    [.\node[label=0]{11}; ]
+    [.\node[label=-1]{37};
+      [.\node[label=0]{29}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{17};
+  [.\node[label=0]{5};
+    [.\node[label=0]{1}; ]
+    [.\node[label=0]{11}; ]
+  ]
+  [.\node[label=-1]{37};
+    [.\node[label=0]{29}; ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „31“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=1]{17};
+  [.\node[label=0]{5};
+    [.\node[label=0]{1}; ]
+    [.\node[label=0]{11}; ]
+  ]
+  [.\node[label=-2]{37};
+    [.\node[label=1]{29};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{31}; ]
+    ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=1]{17};
+  [.\node[label=0]{5};
+    [.\node[label=0]{1}; ]
+    [.\node[label=0]{11}; ]
+  ]
+  [.\node[label=-2]{37};
+    [.\node[label=-1]{31};
+      [.\node[label=0]{29}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Rechtsrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{17};
+  [.\node[label=0]{5};
+    [.\node[label=0]{1}; ]
+    [.\node[label=0]{11}; ]
+  ]
+  [.\node[label=0]{31};
+    [.\node[label=0]{29}; ]
+    [.\node[label=0]{37}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „3“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{17};
+  [.\node[label=-1]{5};
+    [.\node[label=1]{1};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{3}; ]
+    ]
+    [.\node[label=0]{11}; ]
+  ]
+  [.\node[label=0]{31};
+    [.\node[label=0]{29}; ]
+    [.\node[label=0]{37}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+\end{liAntwort}
+
+\item Welche Zeitkomplexität haben die Operationen \emph{Einfügen},
+\emph{Löschen} und \emph{Suchen} auf AVL-Bäumen? Begründen Sie Ihre
+Antwort.
+
+\begin{liAntwort}
+Für alle Operationen wird jeweils nur ein Pfad von der Wurzel bis zum
+gewünschten Knoten beschritten. Für alle Operation ist deshalb die
+maximale Höhe des Baums entscheidend. Da AVL-Bäume höhenbalanciert sind.
+
+\end{liAntwort}
+
+\item Implementieren Sie die Datenstruktur AVL-Baum mit Schlüsseln vom
+Typ int (für Java oder entsprechende Datentypen für die anderen
+Programmiersprachen) in entweder Java, C++, Smalltalk oder Eiffel. Ihre
+Implementierung muss als einzige Operation die Methode suche
+bereitstellen, die einen Schlüssel als Parameter bekommt und
+
+\begin{itemize}
+\item true zurückliefert, wenn der gesuchte Schlüssel im Baum enthalten
+ist,
+
+\item ansonsten false.
+\end{itemize}
+
+Ihre Implementierung muss keine Konstruktoren oder andere Methoden zur
+Initialisierung bereitstellen. Desweiteren soll die Implementierung nur
+Schlüsselknoten berücksichtigen.
+
+Kommentieren Sie Ihre Implementierung ausführlich. Geben Sie an, welche
+Programmiersprache Sie gewählt haben.
+\end{enumerate}
+
+\end{document}
