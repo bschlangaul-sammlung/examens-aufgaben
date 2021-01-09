@@ -210,4 +210,33 @@ programm
     generiereExamenSammlungPdf()
   })
 
+programm
+  .command('examen-code-verschieben')
+  .alias('ec')
+  .description('Den Examen-Code im Java-Repository verschieben')
+  .action(function (cmdObj: object) {
+    const dateien = glob.sync('**/')
+    for (let pfad of dateien) {
+      if (
+        pfad.match(/examen_\d{5}_\d{4}_\d{2}\/$/) &&
+        !pfad.match(/docs/) &&
+        !pfad.match(/target/)
+      ) {
+        console.log(pfad)
+        const match = pfad.match(/examen_(?<nummer>\d{5})_(?<jahr>\d{4})_(?<monat>\d{2})\/$/)
+        if (match && match.groups) {
+          const monat = match?.groups.monat === '03' ? 'fruehjahr' : 'herbst'
+          const neuerPfad = `src/main/java/org/bschlangaul/examen/examen_${match?.groups.nummer}/jahr_${match?.groups.jahr}/${monat}`
+          console.log(neuerPfad)
+          try {
+            fs.mkdirSync(neuerPfad, {recursive: true})
+            fs.renameSync(pfad, neuerPfad)
+          } catch (error) {
+            console.log(error)
+          }
+        }
+      }
+    }
+  })
+
 programm.parse(process.argv)

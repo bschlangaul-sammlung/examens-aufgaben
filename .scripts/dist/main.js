@@ -228,4 +228,42 @@ programm
     .action(function () {
     erzeuge_examens_uebersicht_1.generiereExamenSammlungPdf();
 });
+programm
+    .command('examen-code-verschieben')
+    .alias('ec')
+    .description('Den Examen-Code im Java-Repository verschieben')
+    .action(function (cmdObj) {
+    var e_3, _a;
+    var dateien = glob_1.default.sync('**/');
+    try {
+        for (var dateien_3 = __values(dateien), dateien_3_1 = dateien_3.next(); !dateien_3_1.done; dateien_3_1 = dateien_3.next()) {
+            var pfad = dateien_3_1.value;
+            if (pfad.match(/examen_\d{5}_\d{4}_\d{2}\/$/) &&
+                !pfad.match(/docs/) &&
+                !pfad.match(/target/)) {
+                console.log(pfad);
+                var match = pfad.match(/examen_(?<nummer>\d{5})_(?<jahr>\d{4})_(?<monat>\d{2})\/$/);
+                if (match && match.groups) {
+                    var monat = (match === null || match === void 0 ? void 0 : match.groups.monat) === '03' ? 'fruehjahr' : 'herbst';
+                    var neuerPfad = "src/main/java/org/bschlangaul/examen/examen_" + (match === null || match === void 0 ? void 0 : match.groups.nummer) + "/jahr_" + (match === null || match === void 0 ? void 0 : match.groups.jahr) + "/" + monat;
+                    console.log(neuerPfad);
+                    try {
+                        fs_1.default.mkdirSync(neuerPfad, { recursive: true });
+                        fs_1.default.renameSync(pfad, neuerPfad);
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                }
+            }
+        }
+    }
+    catch (e_3_1) { e_3 = { error: e_3_1 }; }
+    finally {
+        try {
+            if (dateien_3_1 && !dateien_3_1.done && (_a = dateien_3.return)) _a.call(dateien_3);
+        }
+        finally { if (e_3) throw e_3.error; }
+    }
+});
 programm.parse(process.argv);
