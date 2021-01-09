@@ -258,6 +258,8 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/01_OOMUP/Vererbung/Aufgabe_Bankkonten.pdf" download="Aufgabe_Bankkonten">„Bankkonten“</a> (Vererbung, Generalisierung, Spezialisierung, Klassendiagramm, Implementierung in Java)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/01_OOMUP/Vererbung/Aufgabe_Kleintierpraxis.pdf" download="Aufgabe_Kleintierpraxis">„Kleintierpraxis“</a> (Vererbung, Klassendiagramm, Implementierung in Java)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/02_Modellierung/Aufgabe_DVD-Automat.pdf" download="Aufgabe_DVD-Automat">„DVD-Automat“</a> (Zustandsdiagramm, Aktivitätsdiagramm)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2010/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46116-2010-Frühjahr_T1-A1">„Reiseunternehmen“ Examen 46116 Frühjahr 2010 T1 A1</a> (Warteschlange (Queue), Klassendiagramm, Implementierung in Java)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2011/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46116-2011-Frühjahr_T1-TA2-A1">„Firmenstruktur“ Examen 46116 Frühjahr 2011 T1 TA2 A1</a> (Einfach-verkettete Liste, Objektdiagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46116-2012-Frühjahr_T2-TA2-A1">„Hotel-Verwaltung“ Examen 46116 Frühjahr 2012 T2 TA2 A1</a> (Klassendiagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2014-Herbst_T2-TA1-A3">„Bestellsystem“ Examen 46116 Herbst 2014 T2 TA1 A3</a> (UML-Diagramme, Anwendungsfalldiagramm, Klassendiagramm, Objektdiagramm, Zustandsdiagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_46116-2016-Herbst_T2-TA1-A2">„Spielzeugeisenbahnen“ Examen 46116 Herbst 2016 T2 TA1 A2</a> (Sequenzdiagramm)
@@ -456,12 +458,11 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-1/Aufgabe-7.pdf" download="Staatsexamen-Informatik_46115-2014-Frühjahr_T1-A7">Aufgabe 7 (Halde (Heap), Binärbaum, AVL-Baum)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-1/Aufgabe-8.pdf" download="Staatsexamen-Informatik_46115-2014-Frühjahr_T1-A8">Aufgabe 8 (Minimaler Spannbaum, Algorithmus von Kruskal)</a> 
     - Thema 2 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46115-2014-Frühjahr_T2-A3">Aufgabe 3 (Binärbaum)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/03/Thema-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46115-2014-Frühjahr_T2-A4">Aufgabe 4 (Rekursion, Implementierung in Java, Iterative Realisation)</a>
 - 2014 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/Scan.pdf" download="Staatsexamen-Informatik_46115-2014-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/OCR.txt" download="Staatsexamen-Informatik_46115-2014-Herbst_OCR">OCR.txt</a> 
     - Thema 1 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/Thema-1/Aufgabe-8.pdf" download="Staatsexamen-Informatik_46115-2014-Herbst_T1-A8">Aufgabe 8 (Tiefensuche, Stapel (Stack))</a> 
-    - Thema 2 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/Thema-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46115-2014-Herbst_T2-A3">Aufgabe 3 (Binärbaum)</a>
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/Thema-1/Aufgabe-8.pdf" download="Staatsexamen-Informatik_46115-2014-Herbst_T1-A8">Aufgabe 8 (Tiefensuche, Stapel (Stack))</a>
 - 2015 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2015/03/Scan.pdf" download="Staatsexamen-Informatik_46115-2015-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2015/03/OCR.txt" download="Staatsexamen-Informatik_46115-2015-Frühjahr_OCR">OCR.txt</a> 
 - 2015 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2015/09/Scan.pdf" download="Staatsexamen-Informatik_46115-2015-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2015/09/OCR.txt" download="Staatsexamen-Informatik_46115-2015-Herbst_OCR">OCR.txt</a> 
     - Thema 2 
@@ -489,7 +490,12 @@ OCR des oben genannten Scans:
 ### 46116: Softwaretechnologie / Datenbanksysteme (nicht vertieft)
 
 - 2010 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2010/03/Scan.pdf" download="Staatsexamen-Informatik_46116-2010-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2010/03/OCR.txt" download="Staatsexamen-Informatik_46116-2010-Frühjahr_OCR">OCR.txt</a> 
+    - Thema 1 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2010/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46116-2010-Frühjahr_T1-A1">Aufgabe 1 (Warteschlange (Queue), Klassendiagramm, Implementierung in Java)</a>
 - 2011 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2011/03/Scan.pdf" download="Staatsexamen-Informatik_46116-2011-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2011/03/OCR.txt" download="Staatsexamen-Informatik_46116-2011-Frühjahr_OCR">OCR.txt</a> 
+    - Thema 1 
+        - Teilaufgabe 2 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2011/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46116-2011-Frühjahr_T1-TA2-A1">Aufgabe 1 (Einfach-verkettete Liste, Objektdiagramm)</a>
 - 2012 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/Scan.pdf" download="Staatsexamen-Informatik_46116-2012-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2012/03/OCR.txt" download="Staatsexamen-Informatik_46116-2012-Frühjahr_OCR">OCR.txt</a> 
     - Thema 1 
         - Teilaufgabe 1 
