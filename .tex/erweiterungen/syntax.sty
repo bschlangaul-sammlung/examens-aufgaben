@@ -33,11 +33,10 @@
   \inputminted[#1]{java}{\l_pfad_tl/test/java/org/bschlangaul/#2.java}
 }
 
-% \liJavaDatei[firstline=3]{aufgaben/oomup/examen_66116_2015_03/Kunde}
+% \liJavaExamen{66116}{2015}{03}{Kunde}
 % \\liJavaDatei(\[.*\])?\{.*examen_(\d{5})_(\d{4})_(\d{2})/(.*)\}
-% \liJavaExamen$1{$2}{$3}{$4}{$5}
+% \\liJavaExamen$1{$2}{$3}{$4}{$5}
 \NewDocumentCommand{\liJavaExamen}{ O{firstline=3} m m m m }{
-  \tl_new:N \l_jahreszeit_tl
   \tl_set:Nn \l_jahreszeit_tl {#4}
   \str_case:nn {#4} {
     {03} {
