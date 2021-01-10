@@ -66,20 +66,10 @@ spielt.
 \begin{liAntwort}
 \begin{center}
 \begin{tikzpicture}
-\umlsimpleclass[x=-2,y=-4]{Reiseunternehmen}
-\umlsimpleclass[x=0,y=0,type=abstract]{Person}
-
-\umlsimpleclass[x=-2,y=-2]{Reiseleiter}
 \umlsimpleclass[x=2,y=-2]{Teilnehmer}
 \umlsimpleclass[x=2,y=-4]{Reise}
 \umlsimpleclass[x=5,y=-3]{Warteliste}
 
-\umlVHVinherit{Reiseleiter}{Person}
-\umlVHVinherit{Teilnehmer}{Person}
-
-\umlassoc[mult1=*,mult2=*]{Reiseleiter}{Reiseunternehmen}
-\umlassoc[mult1=1..*,mult2=1]{Reiseleiter}{Reise}
-\umlassoc[mult1=1,mult2=1..*]{Reiseunternehmen}{Reise}
 \umlassoc[mult1=1,mult2=1]{Warteliste}{Reise}
 % https://wvsg.schulen2.regensburg.de/joomla/images/Faecher/Informatik/Informatik_11/informatik_11_1_1_Datenstruktur_Warteschlange.html
 \umlassoc[arg=hat als Nachfolger >, mult=0..1, pos=0.8, angle1=30, angle2=60, loopsize=2cm]{Teilnehmer}{Teilnehmer}

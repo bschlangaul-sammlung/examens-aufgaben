@@ -85,70 +85,6 @@ else {
 }
 \end{minted}
 
-%%
-%
-%%
-
-\subsection{Definition des Knoten}
-
-\liJavaDatei[firstline=15,lastline=49]{liste/saake/Liste}
-\footcite[Seite 326]{saake}
-
-%%
-%
-%%
-
-\subsection{Definition der Liste}
-
-\liJavaDatei[firstline=53,lastline=125]{liste/saake/Liste}
-\footcite[Seite 327-329]{saake}
-
-%-----------------------------------------------------------------------
-%
-%-----------------------------------------------------------------------
-
-\section{Das Kompositum}
-
-Das Kompositum (englisch \emph{composite} oder \emph{whole-part}) ist
-ein Entwurfsmuster aus dem Bereich der Softwareentwicklung. Das
-Kompositionsmuster (\emph{composite pattern}) wird angewendet, um
-\emph{Teil-Ganzes-Hierarchien} zu repräsentieren, indem Objekte zu
-\emph{Baumstrukturen} zusammengefügt werden. Die Grundidee des
-Kompositionsmusters ist, in einer \emph{abstrakten Klasse} sowohl
-\emph{primitive Objekte} als auch ihre \emph{Behälter} zu
-repräsentieren. Somit können sowohl einzelne Objekte als auch ihre
-Kompositionen \emph{einheitlich behandelt} werden.
-\footcite{aud:fs:4}
-
-Ein anderes Beispiel sind die \emph{Klassendefinitionen} der
-\emph{grafischen Benutzeroberfläche von Java}. Alle Elemente wie
-Schaltflächen und Textfelder sind \emph{Spezialisierungen der Klasse
-Component}. Die Behälter für diese Elemente sind aber ebenfalls
-Spezialisierungen derselben Klasse. Mit anderen Worten: Alle
-Standardelemente werden wesentlich durch eine einzige
-(Kompositum-)Klasse definiert.
-\footcite{wiki:kompositum}
-
-\begin{center}
-\begin{tikzpicture}
-\umlclass[x=2.5,y=3,type=abstract]{Komponente}{}{+ agiere()}
-\umlclass[x=0]{Blatt}{}{+ agiere()}
-\umlclass[x=5]{Kompositum}{}{
-  + agiere()\\
-  + fügeKindHinzu()\\
-  + entferneKind()\\
-  + gibKind()
-}
-
-\umlVHVinherit{Kompositum}{Komponente}
-\umlVHVinherit{Blatt}{Komponente}
-\umlHVHaggreg[anchor1=east,arm1=1.5cm,arg1=eltern,mult1=1,arg2=kind,mult2=0..*,pos2=2.9,pos1=0.4]{Kompositum}{Komponente}
-
-\end{tikzpicture}
-\end{center}
-
-Details zum Nachlesen: Klett: Informatik 4, S.27 - 29
-
 %-----------------------------------------------------------------------
 %
 %-----------------------------------------------------------------------
@@ -222,7 +158,31 @@ die Liste, umso länger dauert der Zugriff (im \emph{average} und
 \end{tabularx}
 \footcite[Seite 8]{aud:fs:4}
 
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Didaktisch aufbereitetes einfaches Beispiel einer Liste}
+
 \liJavaDatei{liste/einfach/Element}
 \liJavaDatei{liste/einfach/Liste}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Einfache Liste (nach Saake)}
+
+\liJavaDatei{liste/LeereListeFehler}
+\liJavaDatei{liste/Liste}
+\liJavaDatei{liste/ListenKnoten}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Doppelt verkettete Liste (nach Saake)}
+
+\liJavaDatei{liste/DoppeltVerketteteListe}
 
 \end{document}
