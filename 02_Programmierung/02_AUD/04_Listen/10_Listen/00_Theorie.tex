@@ -1,8 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-\liLadePakete{syntax,uml,mathe}
-
-\usepackage{tikz-cd}
-\usepackage{tabularx}
+\liLadePakete{syntax,uml,mathe,tabelle}
 
 \begin{document}
 
@@ -51,37 +48,6 @@ ist unveränderlich, die Liste wächst hingegen dynamisch. Beim Array
 ist der direkte Zugriff auf die Einzelelemente möglich, durch die Liste
 muss iteriert werden.
 \footcite[Seite 4]{aud:fs:4}
-
-\newcommand\tmpelement[1]{%
-  \tikz{
-    \node[
-      draw,
-      inner sep=2pt,
-      minimum width=8mm,
-      outer sep=0,
-      text height=1.5ex,
-      text depth=.3ex,
-    ](a){#1}
-  }
-  \tikz{
-    \node[
-      draw,
-      inner sep=2pt,
-      minimum width=3mm,
-      outer sep=0,
-      text height=1.5ex,
-      text depth=.3ex,
-    ](a){}
-  }
-}
-
-\begin{tikzcd}
-\arrow[r,-to]{}{Start} &
-  \tmpelement{1. Inhalt} \arrow[r,-to]{}{Next} &
-  \tmpelement{2. Inhalt} \arrow[r,-to]{}{Next} &
-  \tmpelement{3. Inhalt} \arrow[r]{}{NIL} &
-\varnothing
-\end{tikzcd}
 
 %-----------------------------------------------------------------------
 %
@@ -255,5 +221,8 @@ die Liste, umso länger dauert der Zugriff (im \emph{average} und
 
 \end{tabularx}
 \footcite[Seite 8]{aud:fs:4}
+
+\liJavaDatei{liste/einfach/Element}
+\liJavaDatei{liste/einfach/Liste}
 
 \end{document}

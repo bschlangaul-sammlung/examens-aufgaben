@@ -142,6 +142,10 @@ Kommandozeilen-Option `--shell-escape` kompiliert werden.
 * Makro: `\liJavaTestDatei`: Eine komplette Java-Test-Datei einbinden,
   die Verzeichnis `./Code/src/test/java/org/bschlangaul` liegt.
 
+### `tabelle.sty`
+
+Lädt das Paket tabluarx
+
 ### `uml.sty`
 
 Ein Hüll-Paket um `tikz-uml`, das einige Design-Einstellungen vornimmt
