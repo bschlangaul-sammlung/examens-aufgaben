@@ -5,6 +5,20 @@
 
 \ExplSyntaxOn
 
+\directlua{
+  syntax = require('lehramt-informatik-syntax')
+  syntax.importiere_konfiguration('tex_repo_lokaler_pfad', '\LehramtInformatikRepository')
+  syntax.importiere_konfiguration('github_domain', '\LehramtInformatikGithubDomain')
+  syntax.importiere_konfiguration('github_raw_domain', '\LehramtInformatikGithubRawDomain')
+  syntax.importiere_konfiguration('github_tex_repo', '\LehramtInformatikGithubTexRepo')
+  syntax.importiere_konfiguration('github_code_repo', '\LehramtInformatikGithubCodeRepo')
+  syntax.importiere_konfiguration('code_main', 'src/main/java/org/bschlangaul')
+  syntax.importiere_konfiguration('code_test', 'src/test/java/org/bschlangaul')
+  syntax.importiere_konfiguration('git_branch', '\LehramtInformatikGitBranch')
+}
+
+\RequirePackage{hyperref}
+
 \RequirePackage{minted}
 % pygmentize -L styles
 \usemintedstyle{colorful}
@@ -21,9 +35,9 @@
 
 \def\liLatexCode#1{\mintinline{latex}|#1|}
 
-\tl_const:Nx \l_pfad_tl {\LehramtInformatikRepository/Code/src}
-\tl_const:Nn \l_main_tl {main/java/org/bschlangaul}
-\tl_const:Nn \l_test_tl {test/java/org/bschlangaul}
+\tl_const:Nx \l_pfad_tl {\LehramtInformatikRepository/Code}
+\tl_const:Nn \l_main_tl {src/main/java/org/bschlangaul}
+\tl_const:Nn \l_test_tl {src/test/java/org/bschlangaul}
 
 \NewDocumentCommand{\liJavaDatei}{ O{} m }{
   \inputminted[#1]{java}{\l_pfad_tl/main/java/org/bschlangaul/#2.java}
@@ -37,16 +51,16 @@
 % \\liJavaDatei(\[.*\])?\{.*examen_(\d{5})_(\d{4})_(\d{2})/(.*)\}
 % \\liJavaExamen$1{$2}{$3}{$4}{$5}
 \NewDocumentCommand{\liJavaExamen}{ O{firstline=3} m m m m }{
-  \tl_set:Nn \l_jahreszeit_tl {#4}
-  \str_case:nn {#4} {
-    {03} {
-      \tl_set:Nn \l_jahreszeit_tl {fruehjahr}
-    }
-    {09} {
-      \tl_set:Nn \l_jahreszeit_tl {herbst}
-    }
+  \inputminted[#1]{java}{
+    \l_pfad_tl /
+    \l_main_tl /
+    \directlua{syntax.drucke_relativen_examens_pfad('#2', '#3', '#4', '#5')}
   }
-  \inputminted[#1]{java}{\l_pfad_tl/\l_main_tl/examen/examen_#2/jahr_#3/\l_jahreszeit_tl/#5.java}
+  \begin{flushright}
+    \tiny
+    github:~
+    \href{\directlua{syntax.drucke_raw_examen_url('#2', '#3', '#4', '#5')}}{raw}
+  \end{flushright}
 }
 
 \ExplSyntaxOff

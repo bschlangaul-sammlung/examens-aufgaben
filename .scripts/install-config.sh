@@ -8,4 +8,16 @@ ARBEITSVERZEICHNIS="$(pwd)"
 sudo touch "$CONFIG"
 sudo chown "$USER" "$CONFIG"
 
-echo "\\\\def\\\\LehramtInformatikRepository{$ARBEITSVERZEICHNIS}" > /etc/lehramt-informatik.config.tex
+# Leeren
+> "$CONFIG"
+
+_setze_definition() {
+  echo "\\\\def\\\\$1{$2}" >> "$CONFIG"
+}
+
+_setze_definition LehramtInformatikRepository "$ARBEITSVERZEICHNIS"
+_setze_definition LehramtInformatikGithubDomain https://github.com
+_setze_definition LehramtInformatikGithubRawDomain https://raw.githubusercontent.com
+_setze_definition LehramtInformatikGithubTexRepo hbschlang/lehramt-informatik
+_setze_definition LehramtInformatikGithubCodeRepo hbschlang/Java-Didaktik-Beispiele
+_setze_definition LehramtInformatikGitBranch main
