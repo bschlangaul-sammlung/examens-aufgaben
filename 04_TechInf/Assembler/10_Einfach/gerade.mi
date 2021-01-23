@@ -1,0 +1,13 @@
+	SEG
+	JUMP start
+a:	DD W 4
+start:	MOVE W a, R0
+	DIV W R0, I 2, R1
+	MULT W I 2, R1
+	SUB W R0, R1
+	JEQ gerade
+	MOVE W I 0, R5
+	JUMP ende
+gerade:	MOVE W I 1, R5
+ende: 	HALT
+	END
