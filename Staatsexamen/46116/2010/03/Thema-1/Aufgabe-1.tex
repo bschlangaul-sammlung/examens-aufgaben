@@ -1,0 +1,99 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{uml,syntax}
+\begin{document}
+\liAufgabenTitel{Reiseunternehmen}
+\section{Aufgabe 1: Modellierung eines Reiseunternehmens
+\index{Warteschlange (Queue)}
+\footcite{46116:2010:03}}
+
+Es sei folgender Sachverhalt gegeben:
+
+Ein Reiseunternehmen bietet verschiedene Reisen an. Dazu beschäftigt es
+eine Reihe von Reiseleitern, wobei eine Reise von mindestens einem
+Reiseleiter geleitet wird. Da Reiseleiter freiberuflich arbeiten, können
+sie bei mehreren Reiseunternehmen Reisen leiten.
+
+An einer Reise können mehrere Teilnehmer teilnehmen, ein Teilnehmer kann
+auch an verschiedenen Reisen teilnehmen.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Modellieren Sie diesen Sachverhalt in einem UML-Klassendiagramm.
+Für Teilnehmer und Reiseleiter sollen Sie dabei eine abstrakte
+Oberklasse definieren. Achten Sie dabei auf die Multiplizitäten der
+Assoziationen. Sie müssen keine Attribute bzw. Methoden angeben.
+\index{Klassendiagramm}
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}
+\umlsimpleclass[x=-2,y=-4]{Reiseunternehmen}
+\umlsimpleclass[x=0,y=0,type=abstract]{Person}
+
+\umlsimpleclass[x=-2,y=-2]{Reiseleiter}
+\umlsimpleclass[x=2,y=-2]{Teilnehmer}
+\umlsimpleclass[x=2,y=-4]{Reise}
+
+\umlVHVinherit{Reiseleiter}{Person}
+\umlVHVinherit{Teilnehmer}{Person}
+
+\umlassoc[mult1=*,mult2=*]{Reiseleiter}{Reiseunternehmen}
+\umlassoc[mult1=0..*,mult2=0..*]{Teilnehmer}{Reise}
+\umlassoc[mult1=1..*,mult2=1]{Reiseleiter}{Reise}
+\umlassoc[mult1=1,mult2=1..*]{Reiseunternehmen}{Reise}
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Eine Reise kann jedoch nur mit einer begrenzten Kapazität
+angeboten werden, das heißt, zu einer bestimmten Reise kann nur eine
+begrenzte Anzahl von Teilnehmern assoziiert werden. Als Ausgleich soll
+pro Reise eine Warteliste verwaltet werden.
+
+Modellieren Sie diesen erweiterten Sachverhalt in einem neuen Diagramm.
+Nicht veränderte Klassen brauchen nicht noch einmal angegeben werden.
+Beachten Sie dabei, dass die Reihenfolge bei einer Warteliste eine Rolle
+spielt.
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}
+\umlsimpleclass[x=2,y=-2]{Teilnehmer}
+\umlsimpleclass[x=2,y=-4]{Reise}
+\umlsimpleclass[x=5,y=-3]{Warteliste}
+
+\umlassoc[mult1=1,mult2=1]{Warteliste}{Reise}
+% https://wvsg.schulen2.regensburg.de/joomla/images/Faecher/Informatik/Informatik_11/informatik_11_1_1_Datenstruktur_Warteschlange.html
+\umlassoc[arg=hat als Nachfolger >, mult=0..1, pos=0.8, angle1=30, angle2=60, loopsize=2cm]{Teilnehmer}{Teilnehmer}
+\umluniassoc{Teilnehmer}{Warteliste}
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Implementieren Sie die in Aufgabenteil b) modellierten Klassen in
+Java. Fügen Sie eine Methode hinzu, die einen Teilnehmer von einer Reise
+entfernt. Dabei soll automatisch der erste Platz der Warteliste zu einem
+Reiseteilnehmer werden, wenn die Warteliste nicht leer ist. Achten Sie
+auf die Navigierbarkeit Ihrer Assoziationen. Sie können davon ausgehen,
+dass die Methode nur mit Teilnehmern aufgerufen wird, die in der Tat
+Teilnehmer der Reise sind.
+\index{Implementierung in Java}
+
+\liJavaExamen{46116}{2010}{03}{reiseunternehmen/Reiseunternehmen.java}
+\liJavaExamen{46116}{2010}{03}{reiseunternehmen/Reise}
+
+\end{enumerate}
+
+\end{document}

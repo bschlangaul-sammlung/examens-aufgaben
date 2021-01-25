@@ -1,0 +1,39 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{uml}
+\begin{document}
+\liAufgabenTitel{Fußballmeisterschaft}
+\section{Fußballmeisterschaft
+\index{Klassendiagramm}
+\footcite[Seite 1, Aufgae 2]{net:html:tu-dortmund:uebung-softwaretechnik}}
+
+Modellieren Sie die folgende Situation als Klassendiagramm:
+
+Fußballmannschaften einer Liga bestreiten während einer
+Meisterschaftsrunde Spiele gegen andere Mannschaften. Dabei werden in
+jeder Mannschaft Spieler für einen bestimmten Zeitraum (in Minuten)
+eingesetzt, die dabei eventuell Tore schießen.
+
+Die Modellierung soll es ermöglichen, festzustellen, welcher Spieler in
+welchem Spiel wie lange auf dem Feld war und wie viele Tore geschossen
+hat. Ebenso soll es möglich sein, für jede Mannschaft festzustellen,
+gegen welche Mannschaft welche Ergebnisse erzielt wurden.
+
+\begin{center}
+\begin{tikzpicture}
+\umlsimpleclass[y=5]{Liga}
+\umlsimpleclass[y=3]{Mannschaft}
+\umlsimpleclass[y=1]{Spieler}
+\umlsimpleclass[x=5,y=3]{Spiel}
+
+\umlassoc[mult2=*]{Liga}{Mannschaft}
+\umlassoc[mult1=1,mult2=*]{Mannschaft}{Spieler}
+\umlassoc[mult1=2,mult2=*,name=mannschaftspiel]{Mannschaft}{Spiel}
+\umlHVassoc[mult1=*,mult2=*,pos2=1.7,name=spielerspiel]{Spieler}{Spiel}
+\node[below=0cm of spielerspiel-2,font=\scriptsize] {nimmt teil};
+
+\umlassocclass[x=2.5,y=5]{Saison}{mannschaftspiel-1}{- spieljahr}{}
+\umlassocclass[x=8,y=1]{Teilnahme}{spielerspiel-2}{- minuten: int\\- tore: int}{}
+\end{tikzpicture}
+\end{center}
+
+\end{document}

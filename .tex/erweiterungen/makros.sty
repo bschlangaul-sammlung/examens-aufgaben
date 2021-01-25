@@ -62,11 +62,12 @@ anderen Paket passen]
 
 \def\hinweis#1{{\footnotesize[#1]}}
 
-\NewDocumentEnvironment { liProjektSprache }{ m +b } {} {}
-
 %-----------------------------------------------------------------------
 % Environments
 %-----------------------------------------------------------------------
+
+\NewDocumentEnvironment { liProjektSprache }{ o +b } {} {}
+\NewDocumentEnvironment { liEinbettung }{ o +b } {#2} {}
 
 %%
 % \begin{liAntwort}
@@ -75,8 +76,7 @@ anderen Paket passen]
 \ExplSyntaxOn
 \NewDocumentEnvironment{ liAntwort } { O{standard} }
 {
-  \str_case:nn {#1}
-  {
+  \str_case:nn {#1} {
     {standard} {
       \def\beschriftung{}
       \mdfsetup{backgroundcolor=gray!5,linecolor=gray}
@@ -84,7 +84,7 @@ anderen Paket passen]
     {richtig} {
       \def\beschriftung{richtig}
       \mdfsetup{backgroundcolor=green!5,linecolor=green}
-      }
+    }
     {falsch} {
       \def\beschriftung{falsch}
       \mdfsetup{backgroundcolor=red!3,linecolor=red}
@@ -102,8 +102,13 @@ anderen Paket passen]
 }
 {\end{mdframed}}
 
-\NewDocumentEnvironment{ liAdditum } { }
-{\begin{mdframed}[backgroundcolor=yellow!5]}
+\NewDocumentEnvironment{ liAdditum } { o }
+{
+  \begin{mdframed}[backgroundcolor=yellow!5]
+  \IfNoValueTF {#1}
+  { \liPseudoUeberschrift{Additum} }
+  { \liPseudoUeberschrift{Additum:~#1} }
+}
 {\end{mdframed}}
 
 %%
@@ -165,6 +170,19 @@ anderen Paket passen]
   \textbf{Lernkarteikarte:~#1}\par%
   \noindent%
   #2
+  \end{mdframed}
+} {}
+
+\NewDocumentEnvironment { liDiagramm }{ m +b }
+{
+  \begin{mdframed}[backgroundcolor=white!0]
+  \small
+  \noindent%
+  \textit{#1}:
+  \begin{center}
+  #2
+  \medskip
+  \end{center}
   \end{mdframed}
 } {}
 

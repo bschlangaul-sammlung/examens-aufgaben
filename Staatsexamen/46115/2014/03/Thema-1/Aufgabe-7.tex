@@ -1,0 +1,217 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{baum}
+\begin{document}
+\liAufgabenTitel{Heap und binärer Suchbaum und AVL Baum}
+\section{Aufgabe 7 Heap und binärer Suchbaum und AVL Baum
+\index{Halde (Heap)}\index{Binärbaum}\index{AVL-Baum}
+\footcite{46115:2014:03}}
+
+Fügen Sie nacheinander die Zahlen 11, 1, 2, 13, 9, 10, 7, 5
+
+\begin{liProjektSprache}{Baum}
+baum binär (
+  setzte: 11 1 2 13 9 10 7 5;
+  drucke;
+)
+\end{liProjektSprache}
+
+\begin{enumerate}
+
+%%
+% (i)
+%%
+
+\item in einen leeren binären Suchbaum und zeichnen Sie den Suchbaum
+jeweils nach dem Einfügen von „9“ und „5“
+
+\begin{liDiagramm}{Nach Einfügen von „9“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.11
+  [.1
+    \edge[blank]; \node[blank]{};
+    [.2
+      \edge[blank]; \node[blank]{};
+      [.9 ]
+    ]
+  ]
+  [.13 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „5“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.11
+  [.1
+    \edge[blank]; \node[blank]{};
+    [.2
+      \edge[blank]; \node[blank]{};
+      [.9
+        [.7
+          [.5 ]
+          \edge[blank]; \node[blank]{};
+        ]
+        [.10 ]
+      ]
+    ]
+  ]
+  [.13 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+%%
+% (ii)
+%%
+
+\item in einen leeren Min-Heap ein, der bzgl. „$\leq$“ angeordnet ist und
+geben Sie den Heap nach „9“ und nach „5“ an
+
+\begin{liDiagramm}{Nach dem Einfügen von „9“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.1
+  [.9
+    [.13 ]
+    [.11 ]
+  ]
+  [.2 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach dem Einfügen von „5“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.1
+  [.5
+    [.9
+      [.13 ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.11 ]
+  ]
+  [.2
+    [.10 ]
+    [.7 ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+%%
+% (ii)
+%%
+
+\item in einen leeren AVL-Baum ein! Geben Sie den AVL Baum nach „2“ und
+„5“ an und beschreiben Sie die ggf. notwendigen Rotationen beim Einfügen
+dieser beiden Elemente!
+
+\begin{liDiagramm}{Nach Einfügen von „2“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-2]{11};
+  [.\node[label=1]{1};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=0]{2}; ]
+  ]
+  \edge[blank]; \node[blank]{};
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-2]{11};
+  [.\node[label=-1]{2};
+    [.\node[label=0]{1}; ]
+    \edge[blank]; \node[blank]{};
+  ]
+  \edge[blank]; \node[blank]{};
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Rechtsrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{2};
+  [.\node[label=0]{1}; ]
+  [.\node[label=0]{11}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „10“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=2]{2};
+  [.\node[label=0]{1}; ]
+  [.\node[label=-1]{11};
+    [.\node[label=1]{9};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{10}; ]
+    ]
+    [.\node[label=0]{13}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Rechtsrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=2]{2};
+  [.\node[label=0]{1}; ]
+  [.\node[label=2]{9};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=0]{11};
+      [.\node[label=0]{10}; ]
+      [.\node[label=0]{13}; ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{9};
+  [.\node[label=-1]{2};
+    [.\node[label=0]{1}; ]
+    \edge[blank]; \node[blank]{};
+  ]
+  [.\node[label=0]{11};
+    [.\node[label=0]{10}; ]
+    [.\node[label=0]{13}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „5“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{9};
+  [.\node[label=1]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=-1]{7};
+      [.\node[label=0]{5}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+  ]
+  [.\node[label=0]{11};
+    [.\node[label=0]{10}; ]
+    [.\node[label=0]{13}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\end{enumerate}
+
+\end{document}

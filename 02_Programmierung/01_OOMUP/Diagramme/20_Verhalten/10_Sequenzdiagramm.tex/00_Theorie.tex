@@ -1,0 +1,131 @@
+\documentclass{lehramt-informatik-haupt}
+\liLadePakete{uml,syntax}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Sequenzdiagramm (Sequenz diagram)}
+
+\begin{tikzpicture}
+\begin{umlseqdiag}
+\umlactor[class=A]{a}
+\umldatabase[class=B]{b}
+\umlmulti[class=C]{c}
+\umlobject[class=D]{d}
+\begin{umlcall}[op=opa(), type=synchron, return=0]{a}{b}
+\begin{umlfragment}
+\begin{umlcall}[op=opb(), type=synchron, return=1]{b}{c}
+\begin{umlfragment}[type=alt, label=condition, inner xsep=8]
+\begin{umlcall}[op=opc(), type=asynchron]{c}{d}
+\end{umlcall}
+\begin{umlcall}[type=return]{c}{b}
+\end{umlcall}
+\umlfpart[default]
+\begin{umlcall}[op=opd(), type=synchron, return=3]{c}{d}
+\end{umlcall}
+\end{umlfragment}
+\end{umlcall}
+\end{umlfragment}
+\begin{umlfragment}
+\begin{umlcallself}[op=ope(), type=synchron, return=4]{b}
+\begin{umlfragment}[type=assert]
+\begin{umlcall}[op=opf(), type=synchron, return=5]{b}{c}
+\end{umlcall}
+\end{umlfragment}
+\end{umlcallself}
+\end{umlfragment}
+\end{umlcall}
+\umlcreatecall[class=E,x=8]{a}{e}
+\begin{umlfragment}
+\begin{umlcall}[op=opg(), name=test, type=synchron, return=6, dt=7]{a}{e}
+\umlcreatecall[class=F, stereo=boundary, x=12]{e}{f}
+\end{umlcall}
+\begin{umlcall}[op=oph(), type=synchron, return=7]{a}{e}
+\end{umlcall}
+\end{umlfragment}
+\end{umlseqdiag}
+\end{tikzpicture}
+
+\begin{quellen}
+\cite[Seite 401-471]{rupp}
+\cite[Zusammengefügtes PDF Seite 115-117 / Kapitel „Assoziationen“ 33-35]{brinda}
+\end{quellen}
+
+Sequenzdiagramme (sequence diagrams) stellen eine exemplarische Abfolge
+von Nachrichten zwischen Objekten dar. Der Fokus liegt dabei auf der
+zeitlichen Ordnung der Nachrichten. Sequenzdiagramme sind meist sehr
+implementationsspezifisch, das heißt, sie sind ohne näheres Wissen
+über den Sourcecode des Systems nur schwer nachvollziehbar.
+\footcite[Seite 167]{schatten}
+
+\begin{description}
+\item[Kommunikationspartner als Lebenslinien]
+
+Nachrichten in Form von Pfeile
+
+\item[synchroner Operationsaufruf]
+Pfeil mit ausgefülltem Dreieck, gestrichelter Pfeil zurück
+\footcite[Seite 507 (PDF 523): \emph{Synchronous Messages typically
+represent operation calls and are shown with a filled arrow head.}]{uml}
+
+\begin{tikzpicture}
+\begin{umlseqdiag}
+\umlobject[class=A]{a}
+\umlobject[class=B]{b}
+\begin{umlcall}[op={call()},
+return=return]{a}{b}
+\end{umlcall}
+\end{umlseqdiag}
+\end{tikzpicture}
+
+\item[asynchroner Signal-Operationsaufruf]
+Normaler offener Pfeil
+%
+\footcite[Seite 507 (PDF 523): \emph{Asynchronous Messages have an open
+arrow head.}]{uml}
+
+\begin{tikzpicture}
+\begin{umlseqdiag}
+\umlobject[class=A]{a}
+\umlobject[class=B]{b}
+\begin{umlcall}[type=asynchron]{a}{b}
+\end{umlcall}
+\end{umlseqdiag}
+\end{tikzpicture}
+
+\item[Antwortnachricht]
+gestrichelter Pfeil
+%
+\footcite[Seite 507 (PDF 523): \emph{The reply message from a method has a dashed
+line.}]{uml}
+
+\item[Erzeugunsaufruf]
+gestrichelter Pfeil erzeugt neues Objekt
+%
+\footnote{\href{https://stackoverflow.com/a/2128192} The UML 2.2
+specifications (superstructure) has an example on page 474, Figure 14.11
+is their canonical syntax/notation reference. And on page 495 (UML 2.2)
+(Seite 577 (PDF 619) UML 2.5.1) in the notation section it states
+“Object creation Message has a dashed line with an open arrow.”}
+
+\begin{tikzpicture}
+\begin{umlseqdiag}
+\umlobject[class=A]{a}
+\umlcreatecall[class=B]{a}{b}
+\end{umlseqdiag}
+\end{tikzpicture}
+
+\item[Sendeergebnis nicht bekannt]
+kleiner Kreis am Pfeilanfang
+
+\item[Empfangergebnis nicht bekannt]
+kleiner Kreis am Pfeilende
+
+\end{description}
+
+\literatur
+
+\end{document}

@@ -1,0 +1,59 @@
+\documentclass{lehramt-informatik-haupt}
+\liLadePakete{syntax}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Warteschlange (Queue)}
+
+\begin{quellen}
+\item \cite[Kapitel 6.2.1.5, Seite 183]{schneider}
+\item \cite{wiki:warteschlange}
+\end{quellen}
+
+\noindent
+Eine Queue, auch \memph{Warteschlange} oder \memph{Puffer} genannt, ist
+eine Datenstruktur, bei der die Elemente – ähnlich wie bei einem Stack –
+\memph{als Folge „organisiert“} sind.
+%
+Ein neues Element kann \memph{nur auf einer Seite} der Elementfolge
+\memph{eingefügt} werden.
+%
+Das \memph{Entfernen} eines Elements ist – im Gegensatz zum Stack – nur
+\memph{auf der anderen Seite} der Elementfolge möglich (\memph{FIFO}:
+\memph{First In – First Out}). Das Element, das als erstes in eine Queue
+eingefügt wird, muss somit als erstes Element wieder entfernt werden.
+%
+Die Operation zum Hinzufügen eines Elements wird oft
+\liJavaCode{insert()} bzw. \liJavaCode{enqueue()}, die Operation zum
+Entfernen eines Elements oft \liJavaCode{remove()} bzw.
+\liJavaCode{dequeue()} genannt.
+\footcite[Seite 24 (PDF 21)]{aud:fs:4}
+
+%%
+%
+%%
+
+\section{Suchen in Queues}
+
+Auch in einer Queue muss man bei der \memph{Suche} nach einem bestimmten
+Element im schlimmsten Fall \memph{bis zum Ende} der Queue suchen.
+%
+Hierbei kann allerdings \memph{ohne Zerstörung der Datenstruktur}, also
+auch ohne „Hilfsstruktur“, vorgegangen werden.
+%
+Wegen des \memph{möglichen linearen Komplettdurchlaufs} durch die
+gesamte Datenstruktur ist auch bei Queues die Suche eines Elements nicht
+optimal.
+\footcite[Seite 25 (PDF 22)]{aud:fs:4}
+
+\liJavaDatei{liste/WarteschlangeFehler}
+\liJavaDatei{liste/Warteschlange}
+\liJavaDatei{liste/FeldWarteschlange}
+
+\literatur
+
+\end{document}

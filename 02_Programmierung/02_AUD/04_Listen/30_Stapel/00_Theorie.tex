@@ -1,0 +1,61 @@
+\documentclass{lehramt-informatik-haupt}
+\liLadePakete{syntax}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Stapel (Stack)}
+
+\begin{quellen}
+\item \cite[Seite 275-281 (PDF 291-297)]{saake}
+\item \cite{wiki:stapelspeicher}
+\item \cite[Kapitel 6.2.1.4 Seite 182]{schneider}
+\end{quellen}
+
+Ein Stack, auch \memph{Stapel} oder \memph{Keller} genannt, ist eine
+Datenstruktur, bei der die Elemente \memph{als Folge „organisiert“}
+sind. Elemente können nur an \memph{einem Ende der Folge eingefügt bzw.
+ausgelesen / gelöscht} werden (\memph{LIFO}: \memph{Last In – First
+Out}).
+%
+Das Element, das als \emph{letztes} Element in den Stack
+\emph{eingefügt} wurde, muss also als \emph{erstes} Element wieder vom
+Stack \emph{entfernt} werden.
+%
+Dementsprechend kann das als \emph{erstes} in den Stack
+\emph{eingefügte} Element erst als \emph{letztes} Element wieder vom
+Stack \emph{entfernt} werden.
+%
+Die Operation zum Hinzufügen eines Elements heißt in der Regel
+\liJavaCode{push(Object o)}, die Operation zum Entfernen eines Stackelements
+\liJavaCode{pop()}. \liJavaCode{top()} gibt das oberste Element des Stack zurück,
+ohne es zu entfernen
+\footcite[Seite 19 (PDF 17)]{aud:fs:4}
+
+%%
+%
+%%
+
+\section{Suchen im Stack}
+
+Um in einem Stack ein Element zu suchen, muss man \memph{im schlimmsten
+Fall bis zum Ende} des Stacks suchen.
+%
+Außerdem wird eine \memph{zweite Datenstruktur als „Zwischenlager“} der
+von oben entfernten Elemente benötigt.
+%
+Und schließlich muss von dort aus \memph{alles wieder zurückgelegt}
+werden, um den ursprünglichen Datenzustand wieder herzustellen.
+\footcite[Seite 20 (PDF 18)]{aud:fs:4}
+
+\liJavaDatei{liste/StapelFehler}
+\liJavaDatei{liste/Stapel}
+\liJavaDatei{liste/FeldStapel}
+\liJavaDatei{liste/ListeStapel}
+
+\literatur
+
+\end{document}

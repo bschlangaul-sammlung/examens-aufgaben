@@ -1,0 +1,259 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{baum,spalten,mathe}
+\begin{document}
+\liAufgabenTitel{AVL-Baum}
+\section{Aufgabe 5 (AVL Bäume)
+\index{AVL-Baum}
+\footcite{66115:2018:09}}
+
+Hinweis: Wir betrachten in dieser Aufgabe binäre Suchbäume, bei denen jeder innere Knoten
+genau zwei Kinder hat. Schlüssel werden nur in den inneren Knoten gespeichert - die Blätter
+speichern keinerlei Informationen.
+
+\begin{enumerate}
+
+\item Welche Eigenschaften muss ein binärer Suchbaum haben, damit er ein
+AVL-Baum ist?
+
+\begin{liAntwort}
+Er muss die zusätzliche Eigenschaft haben, dass sich an jedem Knoten die
+Höhe der beiden Teilbäume um höchstens eins unterscheidet
+\end{liAntwort}
+
+\item Mit $n(h)$ bezeichnen wir die minimale Anzahl innerer Knoten eines
+AVL-Baums der Höhe $h$.
+
+\begin{enumerate}
+%%
+% (a)
+%%
+
+\item Begründen Sie, dass $n(1) = 1$ und $n(2) = 2$.
+%%
+% (b)
+%%
+
+\item Begründen Sie, dass $n(h) = 1 + n(h - 1) + n (h - 2)$.
+
+%%
+% (c)
+%%
+
+\item Folgern Sie, dass $n(h) > 2^{\frac{h}{2}-1}$.
+\end{enumerate}
+
+\item Warum ist die Höhe jedes AVL-Baums mit $n$ inneren Knoten $O(\log n)$?
+
+\item Fügen Sie die Elemente (45, 16, 79, 31, 51, 87, 49, 61) in der
+angegebenen Reihenfolge in einen anfangs leeren binären Suchbaum ein
+(ohne Rebalancierungen). Zeichnen Sie den resultierenden Suchbaum nach
+jeder Einfügeoperation.
+
+\begin{liAntwort}
+\begin{multicols}{2}
+\begin{liDiagramm}{Einfügen von „45“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.45 ]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Einfügen von „16“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.45
+  [.16 ]
+  \edge[blank]; \node[blank]{};
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Einfügen von „79“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.45
+  [.16 ]
+  [.79 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Einfügen von „31“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.45
+  [.16
+    \edge[blank]; \node[blank]{};
+    [.31 ]
+  ]
+  [.79 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Einfügen von „51“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.45
+  [.16
+    \edge[blank]; \node[blank]{};
+    [.31 ]
+  ]
+  [.79
+    [.51 ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Einfügen von „87“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.45
+  [.16
+    \edge[blank]; \node[blank]{};
+    [.31 ]
+  ]
+  [.79
+    [.51 ]
+    [.87 ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Einfügen von „49“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.45
+  [.16
+    \edge[blank]; \node[blank]{};
+    [.31 ]
+  ]
+  [.79
+    [.51
+      [.49 ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.87 ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Einfügen von „61“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.45
+  [.16
+    \edge[blank]; \node[blank]{};
+    [.31 ]
+  ]
+  [.79
+    [.51
+      [.49 ]
+      [.61 ]
+    ]
+    [.87 ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+\end{multicols}
+
+\end{liAntwort}
+
+\item Ist der resultierende Suchbaum aus Teilaufgabe 5.4 ein AVL-Baum?
+Begründen Sie Ihre Antwort.
+
+\begin{liAntwort}
+Ja, wie in der untenstehenden Grafik zu sehen ist, unterscheiden sich
+die Höhe der Teilbäume von allen Knoten nur um höchstens eins.
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=1]{45};
+  [.\node[label=1]{16};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=0]{31}; ]
+  ]
+  [.\node[label=-1]{79};
+    [.\node[label=0]{51};
+      [.\node[label=0]{49}; ]
+      [.\node[label=0]{61}; ]
+    ]
+    [.\node[label=0]{87}; ]
+  ]
+]
+\end{tikzpicture}
+
+\end{liAntwort}
+
+\item Das Einfügen in einen AVL-Baum funktioniert (zunächst) wie beim binären
+Suchbaum durch Erweitern eines äußeren Knotens w:
+
+vor dem Einfügen von 54 nach dem Einfügen von 54
+
+Anschließend wird die AVL-Baum Eingenschaft (falls notwending) durch eine
+(Doppel-)Rotation wiederhergestellt: Wenn z der erste Knoten auf dem Pfad P von w zur
+Wurzel ist, der nicht balanciert ist, y das Kind von z auf P und r das Kind von y auf P,
+und wenn (a, b,c) die Inorder-Reihenfolge von x, y, 2 ist, dann führen wir die Rotation aus,
+die benötigt wird, um b zum obersten Knoten der drei zu machen.
+
+Die folgende Illustration zeigt den Fall, dass key(y) < key(x) < key(z), d.h.
+(a,b,c) = (y,x,z), wobei w ein Knoten in Ty ist.
+
+Sei Ah die Höhe des Teilbaums 73. Für i = 0,1,2 sei h; die Höhe des Teilbaums T; und
+für v = 2,y,z sei h, die Höhe des Teilbaums mit der Wurzel v vor der Restrukturierung.
+Begründen Sie, dass
+
+\begin{enumerate}
+%%
+% (a)
+%%
+
+\item $h_0 = h$
+%%
+% (b)
+%%
+
+\item $h_1 = h - 1$
+%%
+% (c)
+%%
+
+\item  $h_2 = h$
+%%
+% (d)
+%%
+
+\item $h_x = h + 1$
+%%
+% (e)
+%%
+
+\item $h_y = h + 2$
+%%
+% (f)
+%%
+
+\item  $h_z = h + 3$
+\end{enumerate}
+
+\item Welche Höhe haben die Teilbäume mit den Wurzeln x, y, z nach der
+Restrukturierung? Begründen Sie Ihre Antworten.
+
+\item Begründen Sie, dass die oben gezeigte Doppelrotation die
+AVL-Baum-Eigenschaft wiederherstellt.
+
+\item Beschreiben Sie, wie ein binärer Baum der Höhe h in einem Array
+repräsentiert werden kann. Wie viel Speicherplatz ist für so eine
+Darstellung erforderlich?
+
+\item Warum verwendet man bei der Implementierung von AVL-Bäumen eine
+verzeigerte Struktur und nicht eine Array-basierte Repräsentation?
+
+\end{enumerate}
+
+\end{document}

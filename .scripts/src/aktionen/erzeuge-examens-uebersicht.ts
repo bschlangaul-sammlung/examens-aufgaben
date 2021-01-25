@@ -3,7 +3,7 @@ import fs from 'fs'
 
 import { examensTitel } from '../examen'
 import { ExamensAufgabe } from '../aufgabe'
-import { repositoryPfad, generiereLink, LinkEinstellung } from '../helfer'
+import { repositoryPfad, generiereLink, LinkEinstellung, macheRelativenPfad, macheRepoPfad, schreibeDatei } from '../helfer'
 import { aufgabenSammlung, examenSammlung } from '../sammlung'
 import glob from 'glob'
 
@@ -145,15 +145,51 @@ export function generiereExamensÜbersicht () {
     const jahrVerzeichnisse = fs.readdirSync(nummernPfad)
     for (const jahr of jahrVerzeichnisse) {
       const jahrPfad = path.join(nummernPfad, jahr)
-      const monatsVerzeichnisse = fs.readdirSync(jahrPfad)
-      for (const monat of monatsVerzeichnisse) {
-        const examen = examenSammlung.gib(nummer, jahr, monat)
-        const monatsPfad = path.join(jahrPfad, monat)
-        const scanLink = erzeugeDateiLink(monatsPfad, 'Scan.pdf', `${examen.dateiName}_Scan.pdf`)
-        const ocrLink = erzeugeDateiLink(monatsPfad, 'OCR.txt', `${examen.dateiName}_OCR.txt`, { linkePdf: false })
-        ausgabe.add(`- ${examen.jahrJahreszeit}: ${scanLink} ${ocrLink} ${generiereAufgabenBaum(monatsPfad)}`)
+      if (fs.statSync(jahrPfad).isDirectory()) {
+        const monatsVerzeichnisse = fs.readdirSync(jahrPfad)
+        for (const monat of monatsVerzeichnisse) {
+          const examen = examenSammlung.gib(nummer, jahr, monat)
+          const monatsPfad = path.join(jahrPfad, monat)
+          const scanLink = erzeugeDateiLink(monatsPfad, 'Scan.pdf', `${examen.dateiName}_Scan.pdf`)
+          const ocrLink = erzeugeDateiLink(monatsPfad, 'OCR.txt', `${examen.dateiName}_OCR.txt`, { linkePdf: false })
+          ausgabe.add(`- ${examen.jahrJahreszeit}: ${scanLink} ${ocrLink} ${generiereAufgabenBaum(monatsPfad)}`)
+        }
       }
     }
   }
   return ausgabe.gibText()
+}
+
+export function generiereExamenSammlungPdf () {
+  for (const nummer in examensTitel) {
+    const ausgabe = new AusgabeSammler()
+    const nummernPfad = path.join(repositoryPfad, 'Staatsexamen', nummer)
+    const jahrVerzeichnisse = fs.readdirSync(nummernPfad)
+    for (const jahr of jahrVerzeichnisse) {
+      const jahrPfad = path.join(nummernPfad, jahr)
+      if (fs.statSync(jahrPfad).isDirectory()) {
+        const monatsVerzeichnisse = fs.readdirSync(jahrPfad)
+        for (const monat of monatsVerzeichnisse) {
+          const examen = examenSammlung.gib(nummer, jahr, monat)
+          ausgabe.add(`\n\\liTrennSeite{${examen.jahreszeit} ${examen.jahr}}`)
+
+          let scanPfad = macheRelativenPfad(path.join(jahrPfad, monat, 'Scan.pdf'))
+          //scanPfad = scanPfad.replace(`Staatsexamen/${nummer}/`, '')
+
+          const includePdf = `\\liBindePdfEin{${scanPfad}}`
+          ausgabe.add(includePdf)
+        }
+      }
+    }
+    const ergebnis = ausgabe.gibText()
+
+    const texMarkup = `\\documentclass{lehramt-informatik-examen-sammlung}
+\\liPruefungsNummer{${nummer}}
+\\liPruefungsTitel{${examensTitel[nummer]}}
+
+\\begin{document}
+${ergebnis}
+\\end{document}`
+    schreibeDatei(macheRepoPfad('Staatsexamen', nummer, 'Examensammlung.tex'), texMarkup)
+  }
 }

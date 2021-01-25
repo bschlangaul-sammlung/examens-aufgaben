@@ -40,6 +40,10 @@ dann geladen werden.
 Mit dem Makro `\liAufgabenTitel{}` kann einer Aufgabe ein prägnanter
 kurzer Titel gegeben werden.
 
+### `examen-sammlung.cls`
+
+Zum Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.
+
 ## Pakete
 
 ### `baum.sty`
@@ -92,6 +96,9 @@ thematisch zu keinem anderen Paket passen
   (z. B. RelationenSchema). Der Inhalt
   der Umgebung wird nicht von TeX kompiliert, sondern von dem
   Java-Kommandozeilen-Programm `didaktik.java` verarbeitet.
+* Umgebung: `\begin{liDiagramm}{beschriftung}\end{liDiagramm}`: Zu
+  setzen einer Graphik bzw eines Diagramms.
+
 
 ### `normalformen.sty`
 
@@ -134,6 +141,10 @@ Kommandozeilen-Option `--shell-escape` kompiliert werden.
   Verzeichnis `./Code/src/main/java/org/bschlangaul` liegt.
 * Makro: `\liJavaTestDatei`: Eine komplette Java-Test-Datei einbinden,
   die Verzeichnis `./Code/src/test/java/org/bschlangaul` liegt.
+
+### `tabelle.sty`
+
+Lädt das Paket tabluarx
 
 ### `uml.sty`
 

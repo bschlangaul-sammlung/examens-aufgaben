@@ -1,0 +1,86 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{Getränkelieferservice}
+\section{1 Objektorientierung
+\index{Objektorientierung}
+\footcite{66116:2012:09}}
+
+Ein Getränkelieferservice verwaltet die Bestellungen verschiedener
+Kunden. Die folgenden Teilaufgaben sind in einer objektorientierten
+Programmiersprache zu lösen (die verwendete Sprache ist vorab
+anzugeben.).
+\index{Implementierung in Java}
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Implementieren Sie eine Klasse \liJavaCode{Kasten} zur
+Beschreibung eines Getränkekastens mit den folgenden Eigenschaften.
+Entscheiden Sie dabei jeweils ob eine Realisierung als Objekt- oder
+Klassenfeld sinnvoll ist.
+
+\begin{itemize}
+\item Es existiert ein einheitliches Kastenpfand in Höhe von 1,50 Euro.
+
+\item Für alle Flaschen in einem Kasten gelte ein einheitliches
+Flaschenpfand, das jedoch von Kasten zu Kasten verschieden sein kann.
+
+\item Während das Flaschenpfand für alle Flaschen eines Kastens gleich
+ist, sind die Einzelpreise der Flaschen je nach Inhalt unterschiedlich.
+Die Einzelpreise (ohne Flaschenpfand) der im Kasten enthaltenen Flaschen
+sollen in einem 2-dimensionalen Array abgelegt werden.
+\end{itemize}
+
+Geben Sie für die Klasse \liJavaCode{Kasten} einen geeigneten
+Konstruktor an. Ergänzen Sie in der Klasse \liJavaCode{Kasten} eine
+Objektmethode zur Berechnung des Gesamtpreises des Getränkekastens
+inklusive Kasten- und Flaschenpfand.
+
+%%
+% 2.
+%%
+
+\item Schreiben Sie eine Klasse \liJavaCode{Bestellung}. Jeder
+Bestellung soll eine eindeutige Bestellnummer zugeordnet werden, die
+über den Konstruktoraufruf erstellt wird. Außerdem soll zu jeder
+Bestellung der Name des Kunden gespeichert werden, sowie eine einfach
+verkettete Liste der bestellten Getränkekästen. Die Klasse Bestellung
+soll weiterhin eine Methode beinhalten, die den Gesamtpreis der
+Bestellung ermittelt.
+\index{Einfach-verkettete Liste}
+
+%%
+% 3.
+%%
+
+\item Schreiben Sie ein kleines Testprogramm, das eine Bestellung
+erstellt, die zwei Getränkekästen umfasst. Der erste Kasten soll ein 1 x
+1 Getränkekasten mit einer Flasche zu 0,75 Euro sein, der zweite Kasten
+soll - wie in Abbildung 1 dargestellt - ein 3 x 3 Getränkekasten mit 3
+Flaschen zu 0,7 Euro auf der Diagonalen und 3 weiteren Flaschen zu je 1
+Euro sein. Das Flaschenpfand beider Kästen beträgt 0,15 Euro pro
+Flasche, das Kastenpfand 1,50 Euro. Anschließend soll der Preis der
+Bestellung berechnet und auf der Standardausgabe ausgegeben werden.
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+1,0 & 1,0 & 0,7\\\hline
+1,0 & 0,7 & 0\\\hline
+0,7 & 0 & 0\\\hline
+\end{tabular}
+\end{center}
+
+\begin{liAntwort}
+\liJavaExamen{66116}{2012}{09}{getraenke/Kasten}
+
+\liJavaExamen{66116}{2012}{09}{getraenke/Bestellung}
+\end{liAntwort}
+
+\end{enumerate}
+
+\end{document}

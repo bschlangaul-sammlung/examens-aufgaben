@@ -1,0 +1,85 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{}
+\section{Aufgabe 7 (Bäume)
+\index{Bäume}
+\footcite{66115:2019:09}}
+
+Gegeben sei die folgende Realisierung von binären Bäumen (in einer an
+Java angelehnten Notation):
+
+\liJavaExamen[firstline=3,lastline=5]{66115}{2019}{09}{Node}
+
+\begin{enumerate}
+%%
+% (a)
+%%
+
+\item Beschreiben Sie in möglichst wenigen Worten, was die folgende
+Methode \liJavaCode{foo} auf einem nicht-leeren binären Baum berechnet.
+
+\liJavaExamen[firstline=11,lastline=23]{66115}{2019}{09}{Node}
+
+\begin{liAntwort}
+Die Methode \liJavaCode{foo(Node node)} berechnet die Summe aller Knoten
+des Unterbaums des als Parameter übergebenen Knotens \liJavaCode{node}.
+Der Schüsselwert des Knotens \liJavaCode{node} selbst wird in die
+Summenberechnung mit einbezogen.
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item Die Laufzeit der Methode \liJavaCode{foo(tree)} ist linear in $n$,
+der Anzahl von Knoten im übergebenen Baum \liJavaCode{tree}. Begründen
+Sie kurz, warum  \liJavaCode{foo(tree)} eine lineare Laufzeit hat.
+
+\begin{liAntwort}
+Die Methode \liJavaCode{foo(Node node)} wird pro Knoten des Baums
+\liJavaCode{tree} genau einmal aufgerufen. Es handelt sich um eine
+rekursive Methode, die auf den linken und rechten Kindknoten aufgerufen
+wird. Hat ein Knoten keine Kinder mehr, dann wir die Methode nicht
+aufgerufen.
+\end{liAntwort}
+
+%%
+% (c)
+%%
+
+\item Betrachten Sie den folgenden Algorithmus für nicht-leere, binäre
+Bäume. Beschreiben Sie in möglichst wenigen Worten die Wirkung der
+Methode \liJavaCode{magic(tree)}. Welche Rolle spielt dabei die Methode
+\liJavaCode{max}?
+
+\liJavaExamen[firstline=25,lastline=52]{66115}{2019}{09}{Node}
+
+\begin{liAntwort}
+Methode \liJavaCode{magic(tree)} vertauscht für jeden Knoten des
+Unterbaums den Wert mit dem Maximal-Knoten. Die Methode \liJavaCode{max}
+liefert dabei den Knoten mit der größten Schlüsselwert im Unterbaum des
+übergebenen Knoten (sich selbst eingeschlossen).
+\end{liAntwort}
+
+\item Geben Sie in Abhängigkeit von $n$, der Anzahl von Knoten im
+übergebenen Baum \liJavaCode{tree}, jeweils eine Rekursionsgleichung für
+die asymptotische Best-Case-Laufzeit $(B(n))$ und Worst-Case-Laufzeit
+$(W(n))$ des Aufrufs \liJavaCode{magic(tree)} sowie die entsprechende
+Komplexitätsklasse ($\Theta$) an. Begründen Sie Ihre Antwort.
+
+Hinweis: Überlegen Sie, ob die Struktur des übergebenen Baumes Einfluss
+auf die Laufzeit hat. Die lineare Laufzeit von \liJavaCode{max(t)} in
+der Anzahl der Knoten des Baumes \liJavaCode{t} darf vorausgesetzt
+werden.
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\begin{liAdditum}[Kompletter Code]
+\liJavaExamen{66115}{2019}{09}{Node}
+\end{liAdditum}
+
+\end{document}

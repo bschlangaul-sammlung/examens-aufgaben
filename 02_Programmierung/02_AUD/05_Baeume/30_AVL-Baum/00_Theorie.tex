@@ -121,13 +121,273 @@ $bO = +2$, $bU = -1$ &
 Rechts-Links-Rotation (Rechtsdrehung um $bU$, dann Linksdrehung um $bO$) \\
 \end{tabular}
 
+Die Kindknoten, die nach der Drehung „im Weg stehen“, werden
+„umgeklappt“, also vom linken zum rechten Kind der nächsten Ebene
+„umgehängt“ und umgekehrt.
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Rotation (genaue Darstellung): Linksrotation von k.}
+
+\begin{center}
+\begin{tabular}{l|l|l}
+ &  vorher & nachher \\\hline
+ Wurzel                         & k               & k.links \\
+ linkes	Kind der Wurzel         & k.links         & k.links.links \\
+ rechte	Kind der Wurzel         & k.rechts        & k \\\hline
+
+ li. Ki. des li. Ki. der Wurzel & k.links.links   & k.links.links.links \\
+ re. Ki. des li. Ki. der Wurzel & k.links.rechts  & k.links.links.rechts \\\hline
+
+ li. Ki. des re. Ki. der Wurzel & k.rechts.left   & k.links.rechts \\
+ re. Ki. des re. Ki. der Wurzel & k.rechts.rechts & k.rechts\\\hline
+\end{tabular}
+\end{center}
+
+\noindent
+Die „nachher“-Position bezieht sich immer auf den den neuen
+Wurzelknoten, der Pfad zu dem entsprechenden Knoten beginnt immer beim
+alten Wurzelknoten k.
+\liFussnoteLink{hs-mannheim.de}{https://services.informatik.hs-mannheim.de/~schramm/ads/files/Kapitel10_02.pdf}
+
 %%
 %
 %%
 
-\subsection{Linksrotation}
+\section{Linksrotation 1 2 3}
 
-\liJavaDatei[firstline=70,lastline=78]{baum/AVLBaum}
+\begin{multicols}{3}
+\begin{liDiagramm}{Einfügen von „1“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{1}; ]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Einfügen von „2“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=1]{1};
+  \edge[blank]; \node[blank]{};
+  [.\node[label=0]{2}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Einfügen von „3“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=2]{1};
+  \edge[blank]; \node[blank]{};
+  [.\node[label=1]{2};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=0]{3}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{2};
+  [.\node[label=0]{1}; ]
+  [.\node[label=0]{3}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+\end{multicols}
+
+\section{Rechtsrotation 3 2 1}
+
+\begin{multicols}{3}
+\begin{liDiagramm}{Einfügen von „3“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{3}; ]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Einfügen von „2“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{3};
+  [.\node[label=0]{2}; ]
+  \edge[blank]; \node[blank]{};
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Einfügen von „1“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-2]{3};
+  [.\node[label=-1]{2};
+    [.\node[label=0]{1}; ]
+    \edge[blank]; \node[blank]{};
+  ]
+  \edge[blank]; \node[blank]{};
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Rechtsrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{2};
+  [.\node[label=0]{1}; ]
+  [.\node[label=0]{3}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\end{multicols}
+
+%%
+%
+%%
+
+\section{Links-Rechtsrotation 3 1 2}
+
+\begin{multicols}{3}
+\begin{liDiagramm}{Einfügen von „3“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{3}; ]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Einfügen von „1“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{3};
+  [.\node[label=0]{1}; ]
+  \edge[blank]; \node[blank]{};
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Einfügen von „2“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-2]{3};
+  [.\node[label=1]{1};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=0]{2}; ]
+  ]
+  \edge[blank]; \node[blank]{};
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-2]{3};
+  [.\node[label=-1]{2};
+    [.\node[label=0]{1}; ]
+    \edge[blank]; \node[blank]{};
+  ]
+  \edge[blank]; \node[blank]{};
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Rechtsrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{2};
+  [.\node[label=0]{1}; ]
+  [.\node[label=0]{3}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+\end{multicols}
+
+%%
+%
+%%
+
+\section{Rechts-Linksrotation 1 3 2}
+
+\begin{multicols}{3}
+\begin{liDiagramm}{Einfügen von „1“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{1}; ]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Einfügen von „3“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=1]{1};
+  \edge[blank]; \node[blank]{};
+  [.\node[label=0]{3}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Einfügen von „2“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=2]{1};
+  \edge[blank]; \node[blank]{};
+  [.\node[label=-1]{3};
+    [.\node[label=0]{2}; ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Rechtsrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=2]{1};
+  \edge[blank]; \node[blank]{};
+  [.\node[label=1]{2};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=0]{3}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{2};
+  [.\node[label=0]{1}; ]
+  [.\node[label=0]{3}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+\end{multicols}
+
+\section{Löschen}
+
+Um einen Schlüsselwert in einem AVL-Baum zu löschen, wird der
+\memph{Löschalgorithmus der binären Suchbäume} angewendet. Wie beim
+Einfügen in AVL-Bäumen muss der Suchbaum nun gegebenenfalls
+\memph{rebalanciert} werden. Dazu wird der Weg vom Elternknoten des
+gelöschten Knotens zur Wurzel zurückgelaufen und die Balance jedes
+Knotens überprüft. Wenn der gelöschte Schlüsselwert in einem Knoten mit
+zwei Nachfolgern gespeichert war, muss bei Elternknoten des
+symmetrischen Nachfolgers begonnen werden. \liFussnoteLink{Universität
+Würzburg}{https://www1.pub.informatik.uni-wuerzburg.de/databases/Binaere_Suchbaeume/avl_trees/dictionary/delete.html}
+
+\section{Laufzeit bzw. Komplexität}
+
+\begin{tabular}{lll}
+         & Average-Case & Worst-Case \\
+Suchen   & $\mathcal{O}(\log n)$           & $\mathcal{O}(\log n)$         \\
+Einfügen & $\mathcal{O}(1)$          & $\mathcal{O}(\log n)$         \\
+Löschen  & $\mathcal{O}(1)$          & $\mathcal{O}(\log n)$
+\end{tabular}
+\liFussnoteLink{studyflix.de}{https://studyflix.de/informatik/avl-baum-1434}
 
 %%
 %
@@ -135,10 +395,21 @@ Rechts-Links-Rotation (Rechtsdrehung um $bU$, dann Linksdrehung um $bO$) \\
 
 \subsection{Rechtsrotation}
 
-\liJavaDatei[firstline=60,lastline=68]{baum/AVLBaum}
+\liJavaDatei[firstline=85,lastline=102]{baum/AVLBaum}
 
-Kindknoten, die nach der Drehung „im Weg stehen“, werden „umgeklappt“,
-also vom linken zum rechten Kind der nächsten Ebene und umgekehrt
+%%
+%
+%%
+
+\subsection{Linksrotation}
+
+\liJavaDatei[firstline=104,lastline=121]{baum/AVLBaum}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Die Klasse AVLBaum}
 
 \liJavaDatei[firstline=3]{baum/AVLBaum}
 

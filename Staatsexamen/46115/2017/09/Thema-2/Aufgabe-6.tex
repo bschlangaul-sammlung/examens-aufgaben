@@ -1,0 +1,261 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{baum}
+\begin{document}
+\liAufgabenTitel{Halden - Heaps}
+\section{Aufgabe 6:
+\index{Halde (Heap)}
+\footcite{46115:2017:09}}
+
+Gegeben sei folgende Feld-Einbettung (Array-Darfstellung) einer Min-Halde:
+
+\begin{liProjektSprache}{Baum}
+0 2 3 7 6 5 4 8 9 10 11 12
+\end{liProjektSprache}
+
+\begin{center}
+\begin{tabular}{llllllllllll}
+\bf{0}  & \bf{1}  & \bf{2}  & \bf{3}  & \bf{4}  & \bf{5}  & \bf{6}  & \bf{7}  & \bf{8}  & \bf{9}  & \bf{10} & \bf{11} \\
+\hline
+0       & 2       & 3       & 7       & 6       & 5       & 4       & 8       & 9       & 10      & 11      & 12      \\
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Stellen Sie die Halde graphisch als (links-vollständigen) Baum
+dar.
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.0
+  [.2
+    [.7
+      [.8 ]
+      [.9 ]
+    ]
+    [.6
+      [.10 ]
+      [.11 ]
+    ]
+  ]
+  [.3
+    [.5
+      [.12 ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.4 ]
+  ]
+]
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Entfernen Sie das kleinste Element (die Wurzel 0) aus der obigen
+initialen Halde, stellen Sie die Haldeneigenschaft wieder her und geben
+Sie nur das Endergebnis in Felddarstellung an.
+
+\begin{liAntwort}
+\begin{tabular}{lllllllllll}
+\bf{0}  & \bf{1}  & \bf{2}  & \bf{3}  & \bf{4}  & \bf{5}  & \bf{6}  & \bf{7}  & \bf{8}  & \bf{9}  & \bf{10} \\
+\hline
+2       & 6       & 3       & 7       & 10      & 5       & 4       & 8       & 9       & 12      & 11      \\
+\end{tabular}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Fügen Sie nun den Wert 1 in die obige initiale Halde ein, stellen
+Sie die Haldeneigenschaft wieder her und geben Sie nur das Endergebnis
+in Felddarstellung an.
+
+\begin{liAntwort}
+\begin{tabular}{lllllllllllll}
+\bf{0}  & \bf{1}  & \bf{2}  & \bf{3}  & \bf{4}  & \bf{5}  & \bf{6}  & \bf{7}  & \bf{8}  & \bf{9}  & \bf{10} & \bf{11} & \bf{12} \\
+\hline
+0       & 2       & 1       & 7       & 6       & 3       & 4       & 8       & 9       & 10      & 11      & 12      & 5       \\
+\end{tabular}
+\end{liAntwort}
+
+\end{enumerate}
+
+\begin{liAdditum}[zu b)]
+\begin{liDiagramm}{Entfernen von „0“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.12
+  [.2
+    [.7
+      [.8 ]
+      [.9 ]
+    ]
+    [.6
+      [.10 ]
+      [.11 ]
+    ]
+  ]
+  [.3
+    [.5 ]
+    [.4 ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Vertauschen von „12“ und „2“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.2
+  [.12
+    [.7
+      [.8 ]
+      [.9 ]
+    ]
+    [.6
+      [.10 ]
+      [.11 ]
+    ]
+  ]
+  [.3
+    [.5 ]
+    [.4 ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Vertauschen von „12“ und „6“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.2
+  [.6
+    [.7
+      [.8 ]
+      [.9 ]
+    ]
+    [.12
+      [.10 ]
+      [.11 ]
+    ]
+  ]
+  [.3
+    [.5 ]
+    [.4 ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Vertauschen von „12“ und „10“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.2
+  [.6
+    [.7
+      [.8 ]
+      [.9 ]
+    ]
+    [.10
+      [.12 ]
+      [.11 ]
+    ]
+  ]
+  [.3
+    [.5 ]
+    [.4 ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+\end{liAdditum}
+
+\begin{liAdditum}[zu c)]
+
+\begin{liDiagramm}{Nach dem Einfügen von „1“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.0
+  [.2
+    [.7
+      [.8 ]
+      [.9 ]
+    ]
+    [.6
+      [.10 ]
+      [.11 ]
+    ]
+  ]
+  [.3
+    [.5
+      [.12 ]
+      [.1 ]
+    ]
+    [.4 ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Vertauschen von „1“ und „5“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.0
+  [.2
+    [.7
+      [.8 ]
+      [.9 ]
+    ]
+    [.6
+      [.10 ]
+      [.11 ]
+    ]
+  ]
+  [.3
+    [.1
+      [.12 ]
+      [.5 ]
+    ]
+    [.4 ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Vertauschen von „1“ und „3“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.0
+  [.2
+    [.7
+      [.8 ]
+      [.9 ]
+    ]
+    [.6
+      [.10 ]
+      [.11 ]
+    ]
+  ]
+  [.1
+    [.3
+      [.12 ]
+      [.5 ]
+    ]
+    [.4 ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+\end{liAdditum}
+
+\end{document}

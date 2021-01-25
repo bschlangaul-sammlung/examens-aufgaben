@@ -1,0 +1,121 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{baum}
+\begin{document}
+\liAufgabenTitel{Heap und binärer Suchbaum}
+\section{7. Aufgabe: Heap und binärer Suchbaum
+\index{Binärbaum}\index{Halde (Heap)}
+\footcite{66115:2013:09}}
+
+\begin{enumerate}
+
+\item \strut
+
+\begin{enumerate}
+
+%%
+% i)
+%%
+
+\item Fügen Sie nacheinander die Zahlen 7, 1, 12, 8, 10, 3, 5 in einen
+leeren binären Suchbaum ein und zeichnen Sie den Suchbaum nach „8“ und
+nach „3“.
+
+\begin{liDiagramm}{Nach Einfügen von „8“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.7
+  [.1 ]
+  [.12
+    [.8 ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „3“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.7
+  [.1
+    \edge[blank]; \node[blank]{};
+    [.3 ]
+  ]
+  [.12
+    [.8
+      \edge[blank]; \node[blank]{};
+      [.10 ]
+    ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „5“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.7
+  [.1
+    \edge[blank]; \node[blank]{};
+    [.3
+      \edge[blank]; \node[blank]{};
+      [.5 ]
+    ]
+  ]
+  [.12
+    [.8
+      \edge[blank]; \node[blank]{};
+      [.10 ]
+    ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+%%
+% ii)
+%%
+
+\item Löschen Sie die „1“ aus dem in (i) erstellten Suchbaum und
+zeichnen Sie den Suchbaum.
+
+\begin{liDiagramm}{Nach Löschen von „1“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.7
+  [.3
+    \edge[blank]; \node[blank]{};
+    [.5 ]
+  ]
+  [.12
+    [.8
+      \edge[blank]; \node[blank]{};
+      [.10 ]
+    ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+%%
+% iii)
+%%
+
+\item Fügen Sie 7, 1, 12, 8, 10, 3, 5 in einen leeren MIN-Heap ein,
+der bzgl. „$\leq$“ angeordnet ist.
+Geben Sie den Heap nach jedem Element an.
+\end{enumerate}
+
+%%
+% b)
+%%
+
+\item Was ist die worst-case Laufzeit in O-Notation
+für das Einfügen eines Elements in einen Heap der Größe n?
+Begründen Sie ihre Antwort.
+\end{enumerate}
+
+\end{document}

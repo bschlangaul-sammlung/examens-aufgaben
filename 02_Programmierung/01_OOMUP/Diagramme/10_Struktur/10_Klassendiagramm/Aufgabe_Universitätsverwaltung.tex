@@ -1,0 +1,56 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{uml}
+\begin{document}
+\liAufgabenTitel{Universitätsverwaltung}
+\section{Universitätsverwaltung
+\index{Klassendiagramm}
+\footcite[Seite 4]{net:pdf:uzh-zuerich:uebung-4}}
+
+Gegeben ist der folgende Sachverhalt.
+
+Jede \textbf{Person} hat einen \emph{Namen}, eine \emph{Telefonnummer}
+und \emph{E-Mail}.
+
+Jede \textbf{Wohnadresse} wird von nur einer Person bewohnt. Es kann
+aber sein, dass einige Wohnadressen nichtbewohnt sind. Den Wohnadressen
+sind je eine \emph{Strasse}, eine \emph{Stadt}, eine \emph{PLZ} und ein
+\emph{Land} zugeteilt. Alle Wohnadressen können bestätigt werden und als
+Beschriftung (für Postversand) gedruckt werden.
+
+Es gibt zwei Sorten von \textbf{Personen}: \textbf{Student}, welcher
+sich für ein \emph{Modul einschreiben} kann und \textbf{Professor},
+welcher einen \emph{Lohn} hat. Der Student besitzt eine
+\emph{Matrikelnummer} und eine \emph{Durchschnittsnote}.
+
+Modellieren Sie diesen Sachverhalt mit einem UML Klassendiagramm.
+
+\begin{tikzpicture}
+\umlclass[x=2,y=4]{Person}{
+  + name: String\\
+  + telefonNummer: String\\
+  + eMail: String
+}{}
+\umlclass[]{Professor}{
+  + lohn: double
+}{}
+\umlclass[x=5]{Student}{
+  + matrikelNummer: int\\
+  + durchschnittsNote: double
+}{
+  + einschreibenFuerModule()
+}
+\umlclass[x=10,y=4]{Wohnadresse}{
+  + strasse: String \\
+  + stadt: String \\
+  + plz: int \\
+  + land: String \\
+}{
+  + bestaetigen()\\
+  + drucken()
+}
+
+\umlVHVinherit{Professor}{Person}
+\umlVHVinherit{Student}{Person}
+\umlassoc[arg1=adresse,arg2=person,stereo=wohnt\LeserichtungRechts,mult1=0..1,mult2=1,pos1=0.15,pos2=0.85]{Person}{Wohnadresse}
+\end{tikzpicture}
+\end{document}

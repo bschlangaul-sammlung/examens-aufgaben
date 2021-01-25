@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generiereExamensÜbersicht = void 0;
+exports.generiereExamenSammlungPdf = exports.generiereExamensÜbersicht = void 0;
 var path_1 = __importDefault(require("path"));
 var fs_1 = __importDefault(require("fs"));
 var examen_1 = require("../examen");
@@ -175,23 +175,25 @@ function generiereExamensÜbersicht() {
             for (var jahrVerzeichnisse_1 = (e_3 = void 0, __values(jahrVerzeichnisse)), jahrVerzeichnisse_1_1 = jahrVerzeichnisse_1.next(); !jahrVerzeichnisse_1_1.done; jahrVerzeichnisse_1_1 = jahrVerzeichnisse_1.next()) {
                 var jahr = jahrVerzeichnisse_1_1.value;
                 var jahrPfad = path_1.default.join(nummernPfad, jahr);
-                var monatsVerzeichnisse = fs_1.default.readdirSync(jahrPfad);
-                try {
-                    for (var monatsVerzeichnisse_1 = (e_4 = void 0, __values(monatsVerzeichnisse)), monatsVerzeichnisse_1_1 = monatsVerzeichnisse_1.next(); !monatsVerzeichnisse_1_1.done; monatsVerzeichnisse_1_1 = monatsVerzeichnisse_1.next()) {
-                        var monat = monatsVerzeichnisse_1_1.value;
-                        var examen = sammlung_1.examenSammlung.gib(nummer, jahr, monat);
-                        var monatsPfad = path_1.default.join(jahrPfad, monat);
-                        var scanLink = erzeugeDateiLink(monatsPfad, 'Scan.pdf', examen.dateiName + "_Scan.pdf");
-                        var ocrLink = erzeugeDateiLink(monatsPfad, 'OCR.txt', examen.dateiName + "_OCR.txt", { linkePdf: false });
-                        ausgabe.add("- " + examen.jahrJahreszeit + ": " + scanLink + " " + ocrLink + " " + generiereAufgabenBaum(monatsPfad));
-                    }
-                }
-                catch (e_4_1) { e_4 = { error: e_4_1 }; }
-                finally {
+                if (fs_1.default.statSync(jahrPfad).isDirectory()) {
+                    var monatsVerzeichnisse = fs_1.default.readdirSync(jahrPfad);
                     try {
-                        if (monatsVerzeichnisse_1_1 && !monatsVerzeichnisse_1_1.done && (_b = monatsVerzeichnisse_1.return)) _b.call(monatsVerzeichnisse_1);
+                        for (var monatsVerzeichnisse_1 = (e_4 = void 0, __values(monatsVerzeichnisse)), monatsVerzeichnisse_1_1 = monatsVerzeichnisse_1.next(); !monatsVerzeichnisse_1_1.done; monatsVerzeichnisse_1_1 = monatsVerzeichnisse_1.next()) {
+                            var monat = monatsVerzeichnisse_1_1.value;
+                            var examen = sammlung_1.examenSammlung.gib(nummer, jahr, monat);
+                            var monatsPfad = path_1.default.join(jahrPfad, monat);
+                            var scanLink = erzeugeDateiLink(monatsPfad, 'Scan.pdf', examen.dateiName + "_Scan.pdf");
+                            var ocrLink = erzeugeDateiLink(monatsPfad, 'OCR.txt', examen.dateiName + "_OCR.txt", { linkePdf: false });
+                            ausgabe.add("- " + examen.jahrJahreszeit + ": " + scanLink + " " + ocrLink + " " + generiereAufgabenBaum(monatsPfad));
+                        }
                     }
-                    finally { if (e_4) throw e_4.error; }
+                    catch (e_4_1) { e_4 = { error: e_4_1 }; }
+                    finally {
+                        try {
+                            if (monatsVerzeichnisse_1_1 && !monatsVerzeichnisse_1_1.done && (_b = monatsVerzeichnisse_1.return)) _b.call(monatsVerzeichnisse_1);
+                        }
+                        finally { if (e_4) throw e_4.error; }
+                    }
                 }
             }
         }
@@ -206,3 +208,49 @@ function generiereExamensÜbersicht() {
     return ausgabe.gibText();
 }
 exports.generiereExamensÜbersicht = generiereExamensÜbersicht;
+function generiereExamenSammlungPdf() {
+    var e_5, _a, e_6, _b;
+    for (var nummer in examen_1.examensTitel) {
+        var ausgabe = new AusgabeSammler();
+        var nummernPfad = path_1.default.join(helfer_1.repositoryPfad, 'Staatsexamen', nummer);
+        var jahrVerzeichnisse = fs_1.default.readdirSync(nummernPfad);
+        try {
+            for (var jahrVerzeichnisse_2 = (e_5 = void 0, __values(jahrVerzeichnisse)), jahrVerzeichnisse_2_1 = jahrVerzeichnisse_2.next(); !jahrVerzeichnisse_2_1.done; jahrVerzeichnisse_2_1 = jahrVerzeichnisse_2.next()) {
+                var jahr = jahrVerzeichnisse_2_1.value;
+                var jahrPfad = path_1.default.join(nummernPfad, jahr);
+                if (fs_1.default.statSync(jahrPfad).isDirectory()) {
+                    var monatsVerzeichnisse = fs_1.default.readdirSync(jahrPfad);
+                    try {
+                        for (var monatsVerzeichnisse_2 = (e_6 = void 0, __values(monatsVerzeichnisse)), monatsVerzeichnisse_2_1 = monatsVerzeichnisse_2.next(); !monatsVerzeichnisse_2_1.done; monatsVerzeichnisse_2_1 = monatsVerzeichnisse_2.next()) {
+                            var monat = monatsVerzeichnisse_2_1.value;
+                            var examen = sammlung_1.examenSammlung.gib(nummer, jahr, monat);
+                            ausgabe.add("\n\\liTrennSeite{" + examen.jahreszeit + " " + examen.jahr + "}");
+                            var scanPfad = helfer_1.macheRelativenPfad(path_1.default.join(jahrPfad, monat, 'Scan.pdf'));
+                            //scanPfad = scanPfad.replace(`Staatsexamen/${nummer}/`, '')
+                            var includePdf = "\\liBindePdfEin{" + scanPfad + "}";
+                            ausgabe.add(includePdf);
+                        }
+                    }
+                    catch (e_6_1) { e_6 = { error: e_6_1 }; }
+                    finally {
+                        try {
+                            if (monatsVerzeichnisse_2_1 && !monatsVerzeichnisse_2_1.done && (_b = monatsVerzeichnisse_2.return)) _b.call(monatsVerzeichnisse_2);
+                        }
+                        finally { if (e_6) throw e_6.error; }
+                    }
+                }
+            }
+        }
+        catch (e_5_1) { e_5 = { error: e_5_1 }; }
+        finally {
+            try {
+                if (jahrVerzeichnisse_2_1 && !jahrVerzeichnisse_2_1.done && (_a = jahrVerzeichnisse_2.return)) _a.call(jahrVerzeichnisse_2);
+            }
+            finally { if (e_5) throw e_5.error; }
+        }
+        var ergebnis = ausgabe.gibText();
+        var texMarkup = "\\documentclass{lehramt-informatik-examen-sammlung}\n\\liPruefungsNummer{" + nummer + "}\n\\liPruefungsTitel{" + examen_1.examensTitel[nummer] + "}\n\n\\begin{document}\n" + ergebnis + "\n\\end{document}";
+        helfer_1.schreibeDatei(helfer_1.macheRepoPfad('Staatsexamen', nummer, 'Examensammlung.tex'), texMarkup);
+    }
+}
+exports.generiereExamenSammlungPdf = generiereExamenSammlungPdf;
