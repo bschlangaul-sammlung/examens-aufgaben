@@ -1,0 +1,30 @@
+Start:	SEG
+	JUMP Beginn
+	n: DD W 10
+	
+Beginn:	MOVE W I 1, R2
+	MOVE W I 0, R4
+	MOVE W n, R0
+	CMP W R0,I 0	
+	JEQ Null
+	CMP W R0, I 1
+	JEQ Eins
+
+While:	SUB W I 1, R0, R0
+	CMP W R0, I 0
+	JEQ istEins
+	ADD W R2, R4,R6
+	MOVE W R4,R2
+	MOVE W R6,R4
+	
+	
+	JUMP While
+
+istEins:MOVE W R6, R5
+	JUMP ende
+Null:	MOVE W R4, R5
+	JUMP ende
+Eins:	MOVE W R2, R5
+
+ende:	HALT
+	END

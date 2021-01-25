@@ -1,0 +1,31 @@
+	SEG
+	MOVE W I H'10000',SP
+	JUMP start
+	n: DD W 6
+
+start: 	MOVE W I -1, -!SP
+	MOVE W n, -!SP
+	CALL fakultaet
+	ADD W I 4, SP
+	MOVE W !SP+, R5
+	JUMP halte
+	
+
+fakultaet:	PUSHR
+	MOVE W 64+!SP, R0
+	CMP W R0, I 1
+	JEQ bottom
+	MOVE W I -1, -!SP
+	SUB W I 1, R0, -!SP
+	CALL fakultaet
+	ADD W I 4, SP
+	MULT W !SP+, R0
+	JUMP fertig
+
+bottom:	MOVE W I 1, R0
+
+fertig:	MOVE W R0, 68+!SP
+	POPR
+	RET
+halte:	HALT
+	END

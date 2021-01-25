@@ -1,0 +1,42 @@
+	SEG
+	MOVE W I H'10000',SP
+	JUMP start
+	n: DD W 6
+
+start: 	MOVE W n, R0
+	MOVE W I -1, -!SP
+	MOVE W R0, -!SP
+	CALL fibo
+	ADD W I 4, SP
+	MOVE W !SP+, R5
+	JUMP halte
+	
+
+fibo:	PUSHR
+	MOVE W 64+!SP, R0
+	CMP W R0, I 2
+	JLE bottom
+	SUB W I 1, R0, R0
+	SUB W I 1, R0, R1
+	MOVE W I -1, -!SP
+	MOVE W R0, -!SP
+	CALL fibo
+	ADD W I 4, SP
+	MOVE W !SP+, R3
+	MOVE W I -1, -!SP
+	MOVE W R1, -!SP
+	CALL fibo
+	ADD W I 4, SP
+	ADD W !SP+, R4
+	ADD W R4, R3, R2
+	JUMP fertig
+
+
+bottom:	MOVE W I 1, R2
+
+fertig:	
+	MOVE W R2, 68+!SP
+	POPR
+	RET
+halte:	HALT
+	END

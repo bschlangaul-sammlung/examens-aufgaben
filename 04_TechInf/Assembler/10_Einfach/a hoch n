@@ -1,0 +1,26 @@
+# a^n (a = ganze Zahl; n = natürliche Zahl);
+
+
+	LOAD n
+	CMPI 0
+	JMPP anfang
+	JMP ende
+
+anfang:	LOAD n
+	JMPP rechnung
+	JMP ende
+
+rechnung:	LOAD a
+	MUL ergebnis
+	STORE ergebnis
+	LOAD n
+	SUBI 1
+	STORE n
+	JMP anfang
+
+ende: 	HOLD
+
+
+a:	WORD	2
+n:	WORD	0
+ergebnis: 	WORD	1
