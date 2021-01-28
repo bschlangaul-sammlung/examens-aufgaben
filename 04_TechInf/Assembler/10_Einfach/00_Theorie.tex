@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-
+\liLadePakete{syntax,spalten}
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -11,6 +11,69 @@
 Info\_2020-11-20-2020-11-20\_09.49.27 0h6min
 
 https://schule.awiedemann.de/minimaschine.html
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Umsetzen elementarer Kontrollstrukturen}
+
+%%
+%
+%%
+
+\subsection{Bedingte Anweisung}
+
+\begin{multicols}{2}
+\begin{minted}{java}
+if (x == 0) {
+  y = 0;
+}
+// ... next
+\end{minted}
+
+\columnbreak
+
+\begin{minted}{asm}
+      LOAD x
+      CMPI 0
+      JMPNZ next
+true: LOADI 0
+      STORE y
+next: # ...
+\end{minted}
+\end{multicols}
+
+%%
+%
+%%
+
+\subsection{Bedingte Anweisung mit Alternative}
+
+\begin{multicols}{2}
+\begin{minted}{java}
+if (x == 0) {
+  y = 0;
+} else {
+  y = 1;
+}
+// ... next
+\end{minted}
+
+\columnbreak
+
+\begin{minted}{asm}
+      LOAD x
+      CMPI 0
+      JMPNZ else
+true: LOADI 0
+      STORE y
+      JMP next
+else: LOADI 1
+      STORE y
+next: # ...
+\end{minted}
+\end{multicols}
 
 \literatur
 

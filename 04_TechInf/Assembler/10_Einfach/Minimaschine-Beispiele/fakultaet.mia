@@ -1,0 +1,19 @@
+	LOADI	6
+	PUSH
+	JSR	fak
+	REL	$1
+	STORE	res
+	HOLD
+
+fak:	LOAD	1(SP)
+	JNE	rek
+	LOADI	1
+	RTS
+rek:	SUBI	1
+	PUSH
+	JSR	fak
+	REL	$1
+	MUL	1(SP)
+	RTS
+
+res:	WORD	0

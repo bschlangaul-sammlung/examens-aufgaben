@@ -1,0 +1,17 @@
+	LOADI	0
+	STORE	Produkt
+Start:
+	LOAD	Faktor1
+	JMPNP	Ende
+	SUBI	1
+	STORE	Faktor1
+	LOAD	Produkt
+	ADD	Faktor2
+	STORE	Produkt
+	JMP	Start
+Ende:
+	HOLD
+
+Faktor1:	WORD	5
+Faktor2:	WORD	4
+Produkt:	WORD	0

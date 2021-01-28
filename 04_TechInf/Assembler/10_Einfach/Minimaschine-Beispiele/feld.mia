@@ -1,0 +1,45 @@
+# Bilde die Summe der Feldelemente
+	LOADI	0
+	STORE	summe
+	LOADI	0
+	STORE	zaehler
+wdh1:	LOAD	zaehler
+	CMPI	5
+	JGE	ende1
+	ADDI	anfang
+	STORE	hilf
+	LOAD	summe
+	ADD	(hilf)
+	STORE	summe
+	LOAD	zaehler
+	ADDI	1
+	STORE	zaehler
+	JMP	wdh1
+ende1:	
+
+# Eröhe jedes Feldelement um den Wert 1
+	LOADI	0
+	STORE	zaehler
+wdh2:	LOAD	zaehler
+	CMPI	5
+	JGE	ende2
+	ADDI	anfang
+	STORE	hilf
+	LOAD	(hilf)
+	ADDI	1
+	STORE	(hilf)
+	LOAD	zaehler
+	ADDI	1
+	STORE	zaehler
+	JMP	wdh2
+ende2:	
+	HOLD
+
+zaehler:	WORD	0
+hilf:	WORD	0
+anfang:	WORD	1
+	WORD	2
+	WORD	3
+	WORD	4
+	WORD	5
+summe:	WORD	0

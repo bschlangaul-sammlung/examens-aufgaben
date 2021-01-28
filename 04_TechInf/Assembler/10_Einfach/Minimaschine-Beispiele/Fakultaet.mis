@@ -1,0 +1,16 @@
+PROGRAM Fakultaet;
+VAR res;
+
+FUNCTION Fak (nr);
+BEGIN
+    IF nr = 1
+    THEN
+        RETURN 1;
+    ELSE
+        RETURN nr * Fak (nr - 1);
+    END;
+END Fak;
+
+BEGIN
+    res := Fak (6);
+END Fakultaet.

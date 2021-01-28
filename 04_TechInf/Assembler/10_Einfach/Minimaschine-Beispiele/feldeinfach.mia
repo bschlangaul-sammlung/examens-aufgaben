@@ -1,0 +1,22 @@
+	LOADI	feld
+	STORE	adresse
+start:	LOAD	zaehler
+	CMPI	5
+	JMPP	ende
+	STORE	(adresse)
+	ADDI	1
+	STORE	zaehler
+	LOAD	adresse
+	ADDI	1
+	STORE	adresse
+	JMP	start
+ende:	HOLD
+
+
+zaehler:	WORD	1
+adresse:	WORD	0
+feld:	WORD	0
+	WORD	0
+	WORD	0
+	WORD	0
+	WORD	0
