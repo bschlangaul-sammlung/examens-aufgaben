@@ -1,16 +1,113 @@
 \documentclass{lehramt-informatik-haupt}
-\liLadePakete{syntax,spalten}
+\liLadePakete{syntax,spalten,tabelle}
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Theorie-Teil
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Assembler: Minimaschine}
+\chapter{Einfacher Assembler: Ein-Adress-Befehl}
 
 Info\_2020-11-20-2020-11-20\_09.49.27 0h6min
 
 https://schule.awiedemann.de/minimaschine.html
+
+\subsection{Speicherbefehle}
+
+\begin{tabularx}{\linewidth}{lX}
+LOAD adresse  & Lädt den Wert von der angegebenen Adresse in den Akkumulator. \\
+LOADI zahl    & Lädt die angegebenen Zahl in den Akkumulator, negative Werte sind möglich, Adressen sind nicht zulässig. \\
+STORE adresse & Speichert den Wert im Akkumulator an der angegebenen Adresse.
+\end{tabularx}
+
+\subsection{Arithmetikbefehle}
+
+\begin{tabularx}{\linewidth}{lX}
+ADD adresse   & Addiert den Wert von der angegebenen Adresse zum Akkumulator. \\
+SUB adresse   & Subtrahiert den Wert der angegebenen Adresse vom Akkumulator. \\
+MUL adresse   & Multipliziert den Wert von der angegebenen Adresse zum Akkumulator. \\
+DIV adresse   & Dividiert den Wert im Akkumulator durch den Wert der angegebenen Adresse. \\
+MOD adresse   & Dividiert den Wert im Akkumulator durch den Wert der angegebenen Adresse und speichert den Rest im Akkumulator. \\
+CMP adresse   & Vergleicht den Wert der angegebenen Adresse mit dem Akkumulator und setzt Null- und Negativflag entsprechend. \\
+ADDI zahl     & Addiert den angegebenen Wert zum Akkumulator. \\
+SUBI zahl     & Subtrahiert den angegebenen Wert vom Akkumulator. \\
+MULI zahl     & Multipliziert den angegebenen Wert zum Akkumulator. \\
+DIVI zahl     & Dividiert den Wert im Akkumulator durch den angegebenen Wert. \\
+MODI zahl     & Dividiert den Wert im Akkumulator durch den angegebenen Wert und speichert den Rest im Akkumulator. \\
+CMPI zahl     & Vergleicht den angegebenen Wert mit dem Akkumulator und setzt Null- und Negativflag entsprechend.
+\end{tabularx}
+
+\subsection{Bitmanipulationsbefehle}
+
+\begin{tabularx}{\linewidth}{lX}
+AND adresse   & Bitweise logische Und-Verknüpfung des Werts der angegebenen Adresse mit dem Akkumulator. \\
+OR adresse    & Bitweise logische Oder-Verknüpfung des Werts der angegebenen Adresse mit dem Akkumulator. \\
+XOR adresse   & Bitweise logische Exklusiv-Oder-Verknüpfung des Werts der angegebenen Adresse mit dem Akkumulator. \\
+NOT           & Bitweise logische Invertierung des Werts im Akkumulator. \\
+SHL adresse   & Die Bitfolge im Akkumulator wird um die unter der angegebenen Adresse gespeicherten Anzahl Bits nach links geschoben. Frei werdende Bits werden mit 0-Werten belegt. \\
+SHR adresse   & Die Bitfolge im Akkumulator wird um die unter der angegebenen Adresse gespeicherten Anzahl Bits nach rechts geschoben. Frei werdende Bits werden mit 0-Werten belegt. \\
+SHRA adresse  & Die Bitfolge im Akkumulator wird um die unter der angegebenen Adresse gespeicherten Anzahl Bits nach rechts geschoben. Frei werdende Bits werden mit dem ursprünglich vordersten Bit belegt (Vorzeichenerhalt). \\
+ANDI zahl     & Bitweise logische Und-Verknüpfung der angegebenen Zahl mit dem Akkumulator. \\
+ORI zahl      & Bitweise logische Oder-Verknüpfung der angegebenen Zahl mit dem Akkumulator. \\
+XORI zahl     & Bitweise logische Exklusiv-Oder-Verknüpfung der angegebenen Zahl mit dem Akkumulator. \\
+SHLI zahl     & Die Bitfolge im Akkumulator wird um die angegebene Anzahl Bits nach links geschoben. Frei werdende Bits werden mit 0-Werten belegt. \\
+SHRI zahl     & Die Bitfolge im Akkumulator wird um die angegebene Anzahl Bits nach rechts geschoben. Frei werdende Bits werden mit 0-Werten belegt. \\
+SHRAI zahl    & Die Bitfolge im Akkumulator wird um die angegebene Anzahl Bits nach rechts geschoben. Frei werdende Bits werden mit dem ursprünglich vordersten Bit belegt (Vorzeichenerhalt). \\
+\end{tabularx}
+
+\subsection{Sprungbefehle}
+
+\begin{tabularx}{\linewidth}{lX}
+JMPP adresse  & Springt zur angegebenen Adresse, wenn das  Ergebnis der letzen Operation positiv (\textgreater 0) war, d. h. weder N noch  Z-Flag sind gesetzt. \\
+JMPNN adresse & Springt zur angegebenen Adresse, wenn das  Ergebnis der letzen Operation nicht negativ (≥ 0) war, d. h. das N-Flag  ist nicht gesetzt. \\
+JMPN adresse  & Springt zur angegebenen Adresse, wenn das Ergebnis der letzen Operation negativ (\textless 0) war, d. h. das N-Flag ist gesetzt. \\
+JMPNP adresse & Springt zur angegebenen Adresse, wenn das  Ergebnis der letzen Operation nicht positiv (≤ 0) war, d. h. das N-Flag   oder das Z-Flag ist gesetzt. \\
+JMPZ adresse  & Springt zur angegebenen Adresse, wenn das Ergebnis der letzen Operation null (= 0) war, d. h. das Z-Flag ist gesetzt. \\
+JMPNZ adresse & Springt zur angegebenen Adresse, wenn das  Ergebnis der letzen Operation nicht null (≠ 0) war, d. h. das Z-Flag ist  nicht gesetzt. \\
+JMPV adresse  & Springt zur angegebenen Adresse, wenn die letzte Operation einen Überlauf verursacht hat, d. h. das V-Flag ist gesetzt. \\
+JMP adresse   & Springt zur angegebenen Adresse. \\
+
+\end{tabularx}
+
+\subsection{Alternative Notation der Sprungbefehle}
+
+\begin{tabularx}{\linewidth}{lX}
+JGT adresse   & Springt zur angegebenen Adresse, wenn das  Ergebnis der letzen Operation positiv (\textgreater 0) war, d. h. weder N noch  Z-Flag sind gesetzt. \\
+JGE adresse   & Springt zur angegebenen Adresse, wenn das  Ergebnis der letzen Operation nicht negativ (≥ 0) war, d. h. das N-Flag  ist nicht gesetzt. \\
+JLT adresse   & Springt zur angegebenen Adresse, wenn das Ergebnis der letzen Operation negativ (\textless 0) war, d. h. das N-Flag ist gesetzt. \\
+JLE adresse   & Springt zur angegebenen Adresse, wenn das  Ergebnis der letzen Operation nicht positiv (≤ 0) war, d. h. das N-Flag   oder das Z-Flag ist gesetzt. \\
+JEQ adresse   & Springt zur angegebenen Adresse, wenn das Ergebnis der letzen Operation null (= 0) war, d. h. das Z-Flag ist gesetzt. \\
+JNE adresse   & Springt zur angegebenen Adresse, wenn das  Ergebnis der letzen Operation nicht null (≠ 0) war, d. h. das Z-Flag ist  nicht gesetzt. \\
+JOV adresse   & Springt zur angegebenen Adresse, wenn die letzte Operation einen Überlauf verursacht hat, d. h. das V-Flag ist gesetzt. \\
+\end{tabularx}
+
+\subsection{Sonstige Befehle}
+
+\begin{tabularx}{\linewidth}{lX}
+HOLD          & Hält den Prozessor an. Dieser Befehl hat keine Adresse. \\
+RESET         & Setzt den Prozessor auf den Startzustand zurück. Dieser Befehl hat keine Adresse. \\
+NOOP          & Tut einfach nichts (NO OPeration). Dieser Befehl hat keine Adresse. \\
+
+\end{tabularx}
+
+\subsection{Den Stackpointer verändernde Befehle}
+
+\begin{tabularx}{\linewidth}{lX}
+JSR           & Springt zu der angegebenen Adresse und speichert den Folge-PC auf dem Stack (Unterprogrammaufruf).  Der Stackpointer wird dazu um 1 erniedrigt. \\
+RTS           & Springt zu der Adresse in der Speicherzelle, auf dei der Stackpointer zeigt (Unterprogamrücksprung).  Der Stackpointer wird anschließend um 1 erhöht. \\
+PUSH          & Erniedrigt den Stackpointer um 1 und speichert den Akkumulatorwert an der nun durch den Stackpointer gegebenen Adresse. \\
+POP           & Lädt den Inhalt der durch den Stackpointer gegebenen Adresse in den Akkumulator und erhöht den Stackpointer um 1. \\
+RSV           & Erniedrigt den Stackpointer um den im Adressteil gegebenen Wert (Platz reservieren). \\
+REL           & Erhöht den Stackpointer um den im Adressteil gegebenen Wert (Platz freigeben). \\
+CALL          & Alternative Notation zu JSR. \\
+RETURN        & Alternative Notation zu RTS. \\
+\end{tabularx}
+
+\subsection{Speicherorganisation}
+
+\begin{tabularx}{\linewidth}{lX}
+WORD zahl     & Besetzt eine Speicherzelle mit der angegebenen Zahl, negative Werte sind möglich. \\
+\end{tabularx}
 
 %-----------------------------------------------------------------------
 %
@@ -74,6 +171,33 @@ else: LOADI 1
 next: # ...
 \end{minted}
 \end{multicols}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Aufgaben}
+
+\begin{enumerate}
+\item Speichere die Zahl 2 in der Variablen n.
+
+\item Addiere die beiden Zahlen 2 und 3.
+
+\item Überführe folgenden Java-Code in Assembler:
+
+\begin{enumerate}
+\item \liJavaCode{x = x + 2;}
+\item \liJavaCode{x = x + y;}
+\end{enumerate}
+
+\item Erstelle jeweils ein Assemblerprogramm zur
+
+\begin{enumerate}
+\item Bestimmung, ob eine Zahl größter ist als eine andere.
+
+\item Bestimmung, ob eine Zahl gerade ist oder nicht.
+\end{enumerate}
+\end{enumerate}
 
 \literatur
 

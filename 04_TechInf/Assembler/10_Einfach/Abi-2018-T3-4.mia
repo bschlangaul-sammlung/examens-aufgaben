@@ -1,0 +1,26 @@
+Vorber:	LOADI 15
+	STORE 100
+Start:	LOAD 100
+	CMPI 3
+	JMPN ende
+	MODI 4
+	JMPP falsch4
+	LOAD 100
+	DIVI 4
+	STORE 100
+	JMP endeBed
+falsch4:	LOAD 100
+	MODI 2
+	JMPP falsch2
+	LOAD 100
+	DIVI 2
+	ADDI 1
+	STORE 100
+	JMP endeBed
+falsch2:	LOAD 100
+	ADDI 1
+	DIVI 2
+	STORE 100
+endeBed:	JMP Start
+ende:	HOLD
+n:	WORD 15
