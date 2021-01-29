@@ -121,7 +121,7 @@ WORD zahl     & Besetzt eine Speicherzelle mit der angegebenen Zahl, negative We
 
 \subsection{Bedingte Anweisung}
 
-\begin{multicols}{2}
+\begin{multicols}{3}
 \begin{minted}{java}
 if (x == 0) {
   y = 0;
@@ -139,6 +139,19 @@ true: LOADI 0
       STORE y
 next: # ...
 \end{minted}
+
+\columnbreak
+
+\begin{minted}{componentpascal}
+PROGRAM bedingte_anweisung;
+VAR x, y;
+BEGIN
+  IF x = 0 THEN
+    y := 0;
+  END
+END bedingte_anweisung.
+\end{minted}
+
 \end{multicols}
 
 %%
@@ -147,7 +160,10 @@ next: # ...
 
 \subsection{Bedingte Anweisung mit Alternative}
 
-\begin{multicols}{2}
+\begin{multicols}{3}
+
+\liPseudoUeberschrift{Java}
+
 \begin{minted}{java}
 if (x == 0) {
   y = 0;
@@ -157,7 +173,9 @@ if (x == 0) {
 // ... next
 \end{minted}
 
-\columnbreak
+\vfill\strut\columnbreak
+
+\liPseudoUeberschrift{Assembler}
 
 \begin{minted}{asm}
       LOAD x
@@ -170,6 +188,23 @@ else: LOADI 1
       STORE y
 next: # ...
 \end{minted}
+
+\vfill\strut\columnbreak
+
+\liPseudoUeberschrift{Minisprache}
+
+\begin{minted}{componentpascal}
+PROGRAM bedingte_alternative;
+VAR x, y;
+BEGIN
+  IF x = 0 THEN
+    y := 0;
+  ELSE
+    y := 1;
+  END
+END bedingte_alternative.
+\end{minted}
+
 \end{multicols}
 
 %-----------------------------------------------------------------------
@@ -179,21 +214,135 @@ next: # ...
 \section{Aufgaben}
 
 \begin{enumerate}
+
+%%
+%
+%%
+
 \item Speichere die Zahl 2 in der Variablen n.
 
+\begin{multicols}{2}
+\begin{minted}{asm}
+   LOADI 2
+   STORE n
+   HOLD
+n: WORD 0
+\end{minted}
+
+\columnbreak
+
+\begin{minted}{componentpascal}
+PROGRAM zuweisung;
+VAR
+  n;
+BEGIN
+  n := 2;
+END zuweisung.
+\end{minted}
+\end{multicols}
+
+%%
+%
+%%
+
 \item Addiere die beiden Zahlen 2 und 3.
+
+\begin{multicols}{2}
+\begin{minted}{asm}
+   LOADI 2
+   ADDI 3
+   STORE x
+   HOLD
+x: WORD 0
+\end{minted}
+
+\columnbreak
+
+\begin{minted}{componentpascal}
+PROGRAM addition;
+VAR x;
+BEGIN
+  x := 2 + 3;
+END addition.
+\end{minted}
+
+\end{multicols}
 
 \item Überführe folgenden Java-Code in Assembler:
 
 \begin{enumerate}
+
+%%
+%
+%%
+
 \item \liJavaCode{x = x + 2;}
+
+\begin{multicols}{2}
+\begin{minted}{asm}
+   LOAD x
+   ADDI 2
+   STORE x
+   HOLD
+x: WORD 0
+\end{minted}
+
+\columnbreak
+
+\begin{minted}{componentpascal}
+PROGRAM addition;
+VAR x;
+BEGIN
+  x := x + 2;
+END addition.
+\end{minted}
+\end{multicols}
+
+%%
+%
+%%
+
 \item \liJavaCode{x = x + y;}
+
+\begin{multicols}{2}
+\begin{minted}{asm}
+   LOAD x
+   ADD y
+   STORE x
+   HOLD
+x: WORD 0
+y: WORD 0
+\end{minted}
+
+\columnbreak
+
+\begin{minted}{componentpascal}
+PROGRAM addition;
+VAR x, y;
+BEGIN
+  x := x + y;
+END addition.
+\end{minted}
+\end{multicols}
 \end{enumerate}
+
+%%
+%
+%%
 
 \item Erstelle jeweils ein Assemblerprogramm zur
 
 \begin{enumerate}
-\item Bestimmung, ob eine Zahl größter ist als eine andere.
+
+%%
+%
+%%
+
+\item Bestimmung, ob eine Zahl größer ist als eine andere.
+
+%%
+%
+%%
 
 \item Bestimmung, ob eine Zahl gerade ist oder nicht.
 \end{enumerate}
