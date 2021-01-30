@@ -1263,6 +1263,8 @@ als Markdown-Liste eingebettet werden kann.
         - Verifikation
         - Design by Contract
         - Vollständige Induktion
+- Technische Informatik:
+    - Ein-Adress-Befehl-Assembler
 
 
 {{ einbinden "docs/tex.md" }}

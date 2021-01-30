@@ -1,0 +1,127 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,spalten}
+\begin{document}
+\liAufgabenTitel{Vorlesungsaufgaben}
+\section{Minimaschine\index{Ein-Adress-Befehl-Assembler}}
+
+\section{Aufgabe 1: Vorlesungsaufgaben (Check-Up)}
+
+Geben Sie die Lösungen zu den Aufgaben aus der Assembler-Vorlesung
+ab. Bearbeiten Sie erst danach die folgenden Aufgaben auf diesem
+Übungsblatt.
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Folie 28/2: Berechnung der Potenz $a^n$.
+
+\begin{multicols}{2}
+\liPseudoUeberschrift{Assembler}
+
+\begin{minted}{asm}
+          LOAD n
+          CMPI 0
+          JMPP anfang
+          JMP ende
+
+anfang:   LOAD n
+          JMPP rechnung
+          JMP ende
+
+rechnung: LOAD a
+          MUL ergebnis
+          STORE ergebnis
+          LOAD n
+          SUBI 1
+          STORE n
+          JMP anfang
+
+ende:     HOLD
+a:        WORD 2
+n:        WORD 3
+ergebnis: WORD 0
+\end{minted}
+
+\liSpaltenUmbruch
+\liPseudoUeberschrift{Minisprache}
+
+\begin{minted}{componentpascal}
+PROGRAM potenz;
+VAR a, n, ergebnis;
+BEGIN
+  a := 2;
+  n := 3;
+  ergebnis := 1;
+  WHILE n <> 0 DO
+    ergebnis := ergebnis * a;
+    n := n - 1;
+  END
+END potenz.
+\end{minted}
+\end{multicols}
+
+%%
+% (b)
+%%
+
+\newpage
+
+\item Folie 37/3: Größten gemeinsamen Teiler zweier Zahlen
+
+\begin{multicols}{2}
+\liPseudoUeberschrift{Assembler}
+
+\begin{minted}{asm}
+anfang: LOAD b
+        JMPP innen
+        JMP ende
+
+innen:  LOAD a
+        SUB b
+        JMPN tausch
+        STORE a
+        JMP innen
+
+tausch: LOAD b
+        STORE ggt
+        LOAD a
+        STORE b
+        LOAD ggt
+        STORE a
+        JMP anfang
+
+ende:   HOLD
+
+a:      WORD 30
+b:      WORD 10
+ggt:    WORD 0
+\end{minted}
+
+\liSpaltenUmbruch
+\liPseudoUeberschrift{Minisprache}
+
+\begin{minted}{componentpascal}
+PROGRAM ggt;
+VAR a, b, ggt;
+
+BEGIN
+  a := 30;
+  b := 10;
+  WHILE b > 0 DO
+    IF a - b < 0 THEN
+      ggt := b;
+      b := a;
+      a := ggt;
+    ELSE
+      a := a - b;
+    END
+  END
+END ggt.
+\end{minted}
+\end{multicols}
+\end{enumerate}
+
+\end{document}
