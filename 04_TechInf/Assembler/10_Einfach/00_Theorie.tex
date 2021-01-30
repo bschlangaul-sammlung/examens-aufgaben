@@ -445,6 +445,49 @@ END gerade.
 
 \item Summe der ersten $n$ Zahlen
 
+\begin{multicols}{2}
+\liPseudoUeberschrift{Assembler}
+
+\begin{minted}{asm}
+          LOADI 4
+          STORE n
+          LOADI 0
+          STORE ergebnis
+
+addition: LOAD n
+          CMPI 0
+          JMPNP ende
+          LOAD ergebnis
+          ADD n
+          STORE ergebnis
+          LOAD n
+          SUBI 1
+          STORE n
+          JMP addition
+
+ende:     HOLD
+          ergebnis: WORD 0
+          n: WORD 0
+\end{minted}
+
+\liSpaltenUmbruch
+\liPseudoUeberschrift{Minisprache}
+
+\begin{minted}{componentpascal}
+PROGRAM summe;
+VAR n, ergebnis;
+
+BEGIN
+  n := 4;
+  ergebnis := 0;
+  WHILE n > 0 DO
+    ergebnis := ergebnis + n;
+    n := n - 1;
+  END
+END summe.
+\end{minted}
+\end{multicols}
+
 %%
 %
 %%
@@ -494,7 +537,6 @@ BEGIN
   END
 END potenz.
 \end{minted}
-
 \end{multicols}
 
 %%
@@ -502,6 +544,59 @@ END potenz.
 %%
 
 \item Größten gemeinsamen Teiler zweier Zahlen
+
+\begin{multicols}{2}
+\liPseudoUeberschrift{Assembler}
+
+\begin{minted}{asm}
+anfang: LOAD b
+        JMPP innen
+        JMP ende
+
+innen:  LOAD a
+        SUB b
+        JMPN tausch
+        STORE a
+        JMP innen
+
+tausch: LOAD b
+        STORE ggt
+        LOAD a
+        STORE b
+        LOAD ggt
+        STORE a
+        JMP anfang
+
+ende:   HOLD
+
+a:      WORD 30
+b:      WORD 10
+ggt:    WORD 0
+\end{minted}
+
+\liSpaltenUmbruch
+\liPseudoUeberschrift{Minisprache}
+
+\begin{minted}{componentpascal}
+PROGRAM ggt;
+VAR a, b, ggt;
+
+BEGIN
+  a := 30;
+  b := 10;
+  WHILE b > 0 DO
+    IF a - b < 0 THEN
+      ggt := b;
+      b := a;
+      a := ggt;
+    ELSE
+      a := a - b;
+    END
+  END
+END ggt.
+\end{minted}
+
+\end{multicols}
 
 \end{enumerate}
 
