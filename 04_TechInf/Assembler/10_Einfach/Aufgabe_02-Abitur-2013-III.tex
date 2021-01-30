@@ -61,6 +61,26 @@ sind.
 Fakultät von n in ein Assemblerprogramm. Verwenden Sie die Variable erg
 die Speicherzelle 201 und für die Variable n die Speicherzelle 202.
 
+\begin{minted}{asm}
+Bed: LOAD n
+ CMPI 0
+ JMPZ ende
+
+ LOAD erg
+ MUL n
+ STORE erg
+
+ LOAD n
+ SUBI 1
+ STORE n
+ JMP Bed
+
+ende: HOLD
+
+erg:  WORD 1
+n:  WORD 3
+\end{minted}
+
 \end{enumerate}
 
 \end{document}

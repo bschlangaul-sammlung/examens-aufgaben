@@ -1,0 +1,67 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,spalten}
+\usepackage{struktex}
+\begin{document}
+\liAufgabenTitel{Abitur 2013 IV}
+
+\section{Abitur 2013 IV}
+
+In einer Apotheke werden Aminosäureprodukte in Pulverform verkauft, die
+in vollständig gefüllten zylinderförmigen Dosen abgepackt sind. Aufgrund
+der Regalhöhe haben alle ausgestellten Dosen eine Höhe von 12cm. Der
+Radius der Dosengrundfläche richtet sich nach der jeweiligen
+Verkaufsmenge des Pulvers und wird druch folgenden Algorithmus
+näherungsweise berechnet:
+
+\begin{struktogramm}(50,40)
+\assign{$y = V$}
+\assign{$z = 1$}
+ \while{wiederholge solange $y > z$}
+    \assign{$y = (y + z) / 2$}
+    \assign{$z = V / y$}
+ \whileend
+\assign{Rückgabe $y / 19$}
+\end{struktogramm}
+
+Der dabei verwendete Wert von $19$ für den Divisor ergibt sich aus der
+vorgegebenen Dosenhöhe in mm und der Kreiszahl $\pi$.
+
+Schreiben Sie ein Assemblerprogramm zur Berechnung des Dosenradius (in
+mm) gemäß dem angegebenen Algorithmus, wobei das Volumen V in $mm^3$
+eingegeben wird.
+
+Ergänzen Sie dabei die begonnen Implementierung. Das Ergebnis soll am
+Ende in Zelle 106 stehen.
+
+\begin{minted}{asm}
+Start:
+      LOADI 400000 # Beispielwert für V
+      STORE 101 # V in Zelle 101
+      LOADI 2
+      STORE 104 #Konstante 2 in Zelle 104
+      LOADI 19
+      STORE 105 # Konstante 19 in Zelle 105
+      LOADI 1
+      STORE 102 # z in Zelle 102
+      LOAD 101
+      STORE 103 # y in Zelle 103
+
+wdh:  LOAD 103  # y wird geladen
+      CMP 102  # y wird mit z verglichen
+      JMPZ ENDE # Wenn y>z false, dann Sprung zum Ende.
+      LOAD 103 # y wird geladen
+      ADD 102  # z wird addiert
+      DIV 104  # Division durch Konstante 2
+      STORE 103 # Speichern in Zelle 103 (= neues y)
+      LOAD 101 # V wird geladen
+      DIV 103  # V wird durch y geteilt
+      STORE 102 # Ergebnis wird in z gespeichert
+      JMP wdh  # Ende und Sprung zum Beginn
+
+ENDE:  LOAD 103  # Laden des Wertes in Zelle 103
+  DIV 105  # Teilen durch Konstante 19
+  STORE 106 # Rueckgabe in 106
+  HOLD
+\end{minted}
+
+\end{document}

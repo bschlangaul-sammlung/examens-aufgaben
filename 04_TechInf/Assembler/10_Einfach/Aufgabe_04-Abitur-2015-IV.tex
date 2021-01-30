@@ -1,0 +1,167 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,spalten}
+\begin{document}
+\liAufgabenTitel{Minimaschine}
+
+%%
+%
+%%
+
+\section{Abitur 2015 IV}
+
+Auf dem ägyptischen \emph{Papyrus Rhind}, der etwa auf das Jahr 1550 v.
+Chr. datiert wird, ist eine Möglichkeit zur Multiplikation zweier
+natürlicher Zahlen $z_1$ und $z_2$ beschrieben. Als Struktogramm
+lässt sich dieser Algorithmus folgendermaßen darstellen:
+
+Das berechnete Produkt steht nach Abarbeitung des Algorithmus in der
+Variablen erg.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Berechnen Sie mithilfe der beschriebenen ägyptischen
+Multiplikation schrittweise das Produkt aus $z_1 = 13$ und $z_2 = 5$
+
+\begin{liAntwort}
+\begin{tabular}{lll}
+z1 & z2 & erg \\
+13 & 5  & 0   \\
+   &    & 5   \\
+6  & 10 &     \\
+3  & 20 &     \\
+   &    & 25  \\
+1  & 40 &     \\
+   &    & 65  \\
+0  & 80 &
+\end{tabular}
+
+\begin{tabular}{lll}
+z1 & z2 & erg \\
+13 & 5  & 0   \\
+13 & 5  & 5   \\
+6  & 5  & 5   \\
+6  & 10 & 5   \\
+3  & 10 & 5   \\
+3  & 20 & 5   \\
+3  & 20 & 25  \\
+1  & 20 & 25  \\
+1  & 40 & 25  \\
+1  & 40 & 65  \\
+0  & 40 & 65  \\
+0  & 80 & 65
+\end{tabular}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Nennen Sie die wesentliche Idee des Speichermodells eines
+Rechners, der nach dem von-Neumann-Prinzip aufgebaut ist. Geben Sie
+einen Vor- und einen Nachteil dieses Speichermodells an.
+
+\begin{liAntwort}
+Wesentliche Idee des Speichermodells eines Rechners, der nach dem
+von-Neumann-Prinzip gebaut ist: Programme und Daten sind im selben
+Speicher, wobei der Hauptspeicher aus Zellen gleicher Größe besteht.
+
+Vorteil:
+
+Streng sequentieller Ablauf von Befehlen ist ein Vorteil, weil zu jedem
+Zeitpunkt klar ist, welcher Schritt durchgeführt wird.
+
+Nachteil:
+
+Der von-Neumann-Flaschenhals, weil alle Daten über denselben Bus
+weitergeleitet werden müssen und der Ablauf deshalb eine gewisse Zeit
+benötigt.
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Bestätigen Sie anhand zweier Beispiele, dass mithilfe des
+folgenden Programmausschnitts entschieden werden kann, ob
+Speicherzelle 101 eine gerade oder ungerade Zahl enthält.
+
+\begin{tabular}{lll}
+         & Beispiel für gerade    Zahl & Beispiel für ungerade    Zahl \\
+LOAD 101 & 6=110                       & 5=101                         \\
+SHRI 1   & 3=011                       & 2=010                         \\
+SHLI 1   & 6=110                       & 4=100                         \\
+SUB 101  & 0                           & not zero    für ungerade
+\end{tabular}
+
+\begin{tabular}{lll}
+         & Beispiel für gerade    Zahl & Beispiel für ungerade    Zahl \\
+LOAD 101 & 14=1110                     & 17=10001                      \\
+SHRI 1   & 7=0111                      & 8=01000                       \\
+SHLI 1   & 14=1110                     & 16=10000                      \\
+SUB 101  & 0                           & not zero    für ungerade
+\end{tabular}
+
+\begin{tabular}{lll}
+         & Beispiel für gerade    Zahl & Beispiel für ungerade    Zahl \\
+LOAD 101 & 44=101100                   & 25=11001                      \\
+SHRI 1   & 22=010110                   & 12=01100                      \\
+SHLI 1   & 44=101100                   & 24=11000                      \\
+SUB 101  & 0                           & not zero    für ungerade
+\end{tabular}
+
+\item Anmerkungen für mich
+Bedeutung der Abkürzungen:
+SHRI bedeutet „Shift nach rechts“; SHLI bedeutet „Shift nach links“;
+Vorgehen:
+1. Gerade und ungerade Beispielzahl überlegen (> LOAD 101) und von 1 beginnend solange das letzte Ergebnis *2 nehmen bis es noch in die Beispielzahl passt (im weiteren Verlauf der Erklärung x genannt); dann „=“ und von links nach rechts ausgehend hinschreiben, wie oft man das x braucht, dann x/2, etc. (nur 1er und 0er zulässig!)
+2. Zahlen hinter dem „=“ nach rechts verschieben. Dabei fällt die letzte Zahl weg und links wird die 0 ergänzt. Vor dem „=“ die Zahl mit Hilfe der Zahlenfolge bestimmen. (> SHRI 1)
+3. Zahlen hinter dem „=“ nach links verschieben. Dabei fällt die erste Zahl weg und rechts wird die 0 ergänzt. Vor dem „=“ die Zahl mit Hilfe der Zahlenfolge bestimmen. (> SHLI 1)
+4. Vom bisherigen Ergebnis die Beispielzahl abziehen. (> SUB 101)
+
+\item Schreiben Sie ein Programm für die angegebene Registermaschine,
+das den Algorithmus des Papyrus Rhind umsetzt. Gehen Sie dabei davon
+aus, dass die beiden positiven ganzzahligen Faktoren $z_1$ und $z_2$
+bereits in den Speicherzellen 101 und 102 stehen und dass alle weiteren
+nicht vom Programm belegten Speicherzellen mit dem Wert 0 vorbelegt
+sind.
+
+\begin{minted}{asm}
+Start:  LOADI 13
+ STORE 101
+ LOADI 5
+ STORE 102
+
+Wdh: LOAD 101
+ JMPZ end
+
+Bed: SHRI 1
+ SHLI 1
+ SUB 101
+ CMPI 0
+ JMPZ true
+
+false: LOAD erg
+ ADD 102
+ STORE erg
+
+true: LOAD 101
+ DIVI 2
+ STORE 101
+ LOAD 102
+ MULI 2
+ STORE 102
+ JMP Wdh
+
+end:  LOAD erg
+ HOLD
+
+erg: WORD 0
+\end{minted}
+
+\end{enumerate}
+
+\end{document}
