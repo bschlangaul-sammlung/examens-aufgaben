@@ -126,6 +126,15 @@ Datenbanken.
 * Umgebung: `\begin{liRmodell} \end{liRmodell}`: Kleinere Schrift und
   Schreibmaschinenschrift.
 
+### `spalten.sty`
+
+Lädt das Paket
+„multicol“, damit mehrspaltiger Satz mit Hilfe der Umgebung „multicols“
+realisiert werden kann.
+
+* Makro: `\liSpaltenUmbruch`: Spezieller Spaltenumbruch, der den Inhalt
+  mit Hilfe von `\vfill\strut` nach oben schiebt.
+
 ### `syntax.sty`
 
 Ein Hüll-Paket um `minted`, das sich um die Syntax-Hervorhebung des
