@@ -97,7 +97,6 @@ solange:      LOAD 100
 # IF (n % 2) = 0 THEN
 bedingung:    LOAD 100
               MODI 2
-              CMPI 0
               JMPNZ ist_ungerade
 
 # n := n / 2;
@@ -118,6 +117,37 @@ zaehler:      LOAD 101
               STORE 101
               JMP solange
 
+ende:         HOLD
+\end{minted}
+
+\begin{minted}{asm}
+              LOADI 0
+              STORE 101
+
+solange:      LOAD 100
+              SUBI 1
+              JMPZ ende
+
+zaehler:      LOAD 101
+              ADDI 1
+              STORE 101
+
+modulo:       LOAD 100
+              DIVI 2
+              MULI 2
+              SUB 100
+              JMPN ist_ungerade
+
+ist_gerade:   LOAD 100
+              DIVI 2
+              STORE 100
+              JMP solange
+
+ist_ungerade: LOAD 100
+              MULI 3
+              ADDI 1
+              STORE 100
+              JMP solange
 ende:         HOLD
 \end{minted}
 

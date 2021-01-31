@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax,spalten}
+\liLadePakete{syntax,spalten,struktogramm}
 \begin{document}
 \liAufgabenTitel{Primzahl}
 
@@ -8,6 +8,32 @@
 In dem folgenden Struktogramm wird ein Algorithmus dargestellt, der
 erkennt, ob eine natürliche Zahl $k$ eine Primzahl ist. In diesem Fall
 wir in die Speicherzelle $erg$ die Zahl $1$ abgelegt, sonst $0$.
+
+\begin{center}
+\begin{struktogramm}(80,60)
+\ifthenelse{2}{6}{$k$ gleich $1$}{wahr}{falsch}
+  \assign[7]{$erg = 0$}
+\change
+  \assign{$a = 0$}
+  \assign{$t = 1$}
+
+  \until{solange $a$ gleich $0$}
+    \assign{$t=t+1$}
+
+    \ifthenelse[10]{1}{1}{$t$ ist Teiler von $k$}{wahr}{falsch}
+      \assign{$a=1$}
+    \change
+    \ifend
+  \untilend
+
+  \ifthenelse[10]{1}{1}{$t$ gleich $k$}{wahr}{falsch}
+    \assign{$erg = 1$}
+  \change
+    \assign{$erg = 0$}
+  \ifend
+\ifend
+\end{struktogramm}
+\end{center}
 
 \begin{enumerate}
 
