@@ -64,17 +64,79 @@ erhält, wenn $n$ nach jedem Durchlauf der Wiederholung ausgegeben wird.
 Rest prüfen kann, ob eine Zahl $a$ durch eine andere Zahl $b$ teilbar
 ist.
 
+\begin{liAntwort}
+Wenn man das Ergebnis der Division der beiden Zahlen $a$ und $b$ mit $b$
+multipliziert und nach der Mulitplikation als Ergebnis wieder die Zahl
+$a$ feststeht, dann handelt es sich um eine Division ohne Rest. Ergibt
+sich eine Zahl, die kleiner als $a$ ist, so handelt es sich um eine
+Division mit Rest.
+\end{liAntwort}
+
 %%
 % (c)
 %%
 
-\item Gegeben ist eine Registermaschine mit folgendem Befehlssatz:
+\item Geben Sie ein Programm für die Registermaschine an, das den
+gegebenen Algorithmus \texttt{collatzfolge(n)} umsetzt, wobei zusätzlich
+die Anzahl der Durchläufe der Wiederholung bestimmt werden soll. Der
+Startwert für $n$ steht am Anfang bereits in Speicherzelle $100$.
 
-Geben Sie ein Programm für die Registermaschine an, das den gegebenen
-Algorithmus collatzfolge(n) umsetzt, wobei zusätzlich die Anzahl der
-Durchläufe der Wiederholung bestimmt werden soll. Der Startwert für n
-steht am Anfang bereits in Speicherzelle 100.
+\liPseudoUeberschrift{Mit Modulo}
 
+\begin{minted}{asm}
+# n:      100
+# anzahl: 101
+              LOADI 0
+              STORE 101
+
+# WHILE n <> 1
+solange:      LOAD 100
+              CMPI 1
+              JMPZ ende
+
+# IF (n % 2) = 0 THEN
+bedingung:    LOAD 100
+              MODI 2
+              CMPI 0
+              JMPNZ ist_ungerade
+
+# n := n / 2;
+ist_gerade:   LOAD 100
+              DIVI 2
+              STORE 100
+              JMP zaehler
+
+# n := 3 * n +  1;
+ist_ungerade: LOADI 3
+              MUL 100
+              ADDI 1
+              STORE 100
+
+# anzahl := anzahl + 1;
+zaehler:      LOAD 101
+              ADDI 1
+              STORE 101
+              JMP solange
+
+ende:         HOLD
+\end{minted}
+
+\begin{minted}{componentpascal}
+PROGRAM collatz;
+VAR n, anzahl;
+
+BEGIN
+  n := 7;
+  anzahl := 0;
+  WHILE n <> 1 DO
+    IF (n % 2) = 0 THEN
+      n := n / 2;
+    ELSE
+      n := 3 * n +  1;
+    END;
+    anzahl := anzahl + 1;
+  END
+END collatz.
+\end{minted}
 \end{enumerate}
-
 \end{document}
