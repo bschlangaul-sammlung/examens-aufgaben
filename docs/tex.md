@@ -135,6 +135,10 @@ realisiert werden kann.
 * Makro: `\liSpaltenUmbruch`: Spezieller Spaltenumbruch, der den Inhalt
   mit Hilfe von `\vfill\strut` nach oben schiebt.
 
+### `struktogramm.sty`
+
+Lädt das Paket `struktex` zum Setzen von Struktogrammen.
+
 ### `syntax.sty`
 
 Ein Hüll-Paket um `minted`, das sich um die Syntax-Hervorhebung des

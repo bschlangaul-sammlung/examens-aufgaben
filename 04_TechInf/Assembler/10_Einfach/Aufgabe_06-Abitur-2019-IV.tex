@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax,spalten}
+\liLadePakete{syntax,spalten,struktogramm}
 \begin{document}
 \liAufgabenTitel{Collatz}
 
@@ -10,6 +10,20 @@ Mathematik. Dabei geht es um Zahlenfolgen, die nach folgendem
 Algorithmus gebildet werden, wobei der Eingabewert $n$ eine natürliche
 Zahl größer $0$ ist:
 
+\begin{center}
+\begin{struktogramm}(80,25)[collatzfolge(n)]
+\while{wiederhole solange $n$ ungleich $1$ ist.}
+\ifthenelse{4}{4}
+{$n$ ist gerade}{wahr}{falsch}
+\assign[7]{$n = \frac{n}{2}$}
+\change
+\assign[7]{$n = 3 \cdot n + 1$}
+\ifend
+\whileend
+\end{struktogramm}
+\end{center}
+
+\noindent
 Obwohl der Algorithmus sehr einfach ist, ist bis heute ungeklärt, ob er
 tatsächlich bei jedem beliebigen Startwert von $n$ nach endlich vielen
 Durchläufen der Wiederholung terminiert.
@@ -20,8 +34,27 @@ Durchläufen der Wiederholung terminiert.
 % (a)
 %%
 
-\item Geben Sie die Zahlenfolge an, die man mit dem Startwert $7$ erhält,
-wenn $n$ nach jedem Durchlauf der Wiederholung ausgegeben wird.
+\item Geben Sie die Zahlenfolge an, die man mit dem Startwert $7$
+erhält, wenn $n$ nach jedem Durchlauf der Wiederholung ausgegeben wird.
+
+\begin{liAntwort}
+22
+11
+34
+17
+52
+26
+13
+40
+20
+10
+5
+16
+8
+4
+2
+1
+\end{liAntwort}
 
 %%
 % (b)
