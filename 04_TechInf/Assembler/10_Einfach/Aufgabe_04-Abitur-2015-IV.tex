@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax,spalten}
+\liLadePakete{syntax,spalten,struktogramm}
 \begin{document}
 \liAufgabenTitel{Minimaschine}
 
@@ -14,8 +14,27 @@ Chr. datiert wird, ist eine Möglichkeit zur Multiplikation zweier
 natürlicher Zahlen $z_1$ und $z_2$ beschrieben. Als Struktogramm
 lässt sich dieser Algorithmus folgendermaßen darstellen:
 
+\begin{center}
+\begin{struktogramm}(90,50)
+\assign{lies $z_1$}
+\assign{lies $z_2$}
+\assign{$erg = 0$}
+
+\while{wiederhole solange $z_1 > 0$}
+\ifthenelse{4}{4}
+{$z_1$ gerade}{wahr}{falsch}
+\change
+\assign{$erg = erg + z_2$}
+\ifend
+\assign{$z_1 = z_1 / 2$ (ganzzahlige Division durch 2)}
+\assign{$z_2 = z_2 \cdot 2$ }
+\whileend
+\end{struktogramm}
+\end{center}
+
+\noindent
 Das berechnete Produkt steht nach Abarbeitung des Algorithmus in der
-Variablen erg.
+Variablen $erg$.
 
 \begin{enumerate}
 
@@ -28,7 +47,7 @@ Multiplikation schrittweise das Produkt aus $z_1 = 13$ und $z_2 = 5$
 
 \begin{liAntwort}
 \begin{tabular}{lll}
-z1 & z2 & erg \\
+$z_1$ & $z_2$ & erg \\
 13 & 5  & 0   \\
    &    & 5   \\
 6  & 10 &     \\
@@ -39,21 +58,21 @@ z1 & z2 & erg \\
 0  & 80 &
 \end{tabular}
 
-\begin{tabular}{lll}
-z1 & z2 & erg \\
-13 & 5  & 0   \\
-13 & 5  & 5   \\
-6  & 5  & 5   \\
-6  & 10 & 5   \\
-3  & 10 & 5   \\
-3  & 20 & 5   \\
-3  & 20 & 25  \\
-1  & 20 & 25  \\
-1  & 40 & 25  \\
-1  & 40 & 65  \\
-0  & 40 & 65  \\
-0  & 80 & 65
-\end{tabular}
+% \begin{tabular}{lll}
+% $z_1$ & $z_2$ & erg \\
+% 13 & 5  & 0   \\
+% 13 & 5  & 5   \\
+% 6  & 5  & 5   \\
+% 6  & 10 & 5   \\
+% 3  & 10 & 5   \\
+% 3  & 20 & 5   \\
+% 3  & 20 & 25  \\
+% 1  & 20 & 25  \\
+% 1  & 40 & 25  \\
+% 1  & 40 & 65  \\
+% 0  & 40 & 65  \\
+% 0  & 80 & 65
+% \end{tabular}
 \end{liAntwort}
 
 %%
