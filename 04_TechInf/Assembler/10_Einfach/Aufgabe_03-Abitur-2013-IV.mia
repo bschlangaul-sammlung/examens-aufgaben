@@ -1,0 +1,27 @@
+start:      LOADI 400000
+            STORE 101
+            LOADI 2
+            STORE 104
+            LOADI 19
+            STORE 105
+            LOADI 1
+            STORE 102
+            LOAD 101
+            STORE 103
+
+solange:    LOAD 103
+            CMP 102
+            JMPZ ende
+            LOAD 103
+            ADD 102
+            DIV 104
+            STORE 103
+            LOAD 101
+            DIV 103
+            STORE 102
+            JMP solange
+
+ende:       LOAD 103
+            DIV 105
+            STORE 106
+            HOLD

@@ -83,90 +83,15 @@ Startwert für $n$ steht am Anfang bereits in Speicherzelle $100$.
 
 \liPseudoUeberschrift{Mit Modulo}
 
-\begin{minted}{asm}
-# n:      100
-# anzahl: 101
-              LOADI 0
-              STORE 101
+\liAssemblerDatei{Aufgabe_06-Abitur-2019-IV-mit-Modulo.mia}
 
-# WHILE n <> 1
-solange:      LOAD 100
-              CMPI 1
-              JMPZ ende
+\liPseudoUeberschrift{Ohne Modulo}
 
-# IF (n % 2) = 0 THEN
-bedingung:    LOAD 100
-              MODI 2
-              JMPNZ ist_ungerade
+\liAssemblerDatei{Aufgabe_06-Abitur-2019-IV-ohne-Modulo.mia}
 
-# n := n / 2;
-ist_gerade:   LOAD 100
-              DIVI 2
-              STORE 100
-              JMP zaehler
+\liPseudoUeberschrift{Minisprache}
 
-# n := 3 * n +  1;
-ist_ungerade: LOADI 3
-              MUL 100
-              ADDI 1
-              STORE 100
+\liMinispracheDatei{Aufgabe_06-Abitur-2019-IV.mis}
 
-# anzahl := anzahl + 1;
-zaehler:      LOAD 101
-              ADDI 1
-              STORE 101
-              JMP solange
-
-ende:         HOLD
-\end{minted}
-
-\begin{minted}{asm}
-              LOADI 0
-              STORE 101
-
-solange:      LOAD 100
-              SUBI 1
-              JMPZ ende
-
-zaehler:      LOAD 101
-              ADDI 1
-              STORE 101
-
-modulo:       LOAD 100
-              DIVI 2
-              MULI 2
-              SUB 100
-              JMPN ist_ungerade
-
-ist_gerade:   LOAD 100
-              DIVI 2
-              STORE 100
-              JMP solange
-
-ist_ungerade: LOAD 100
-              MULI 3
-              ADDI 1
-              STORE 100
-              JMP solange
-ende:         HOLD
-\end{minted}
-
-\begin{minted}{componentpascal}
-PROGRAM collatz;
-VAR n, anzahl;
-
-BEGIN
-  n := 7;
-  anzahl := 0;
-  WHILE n <> 1 DO
-    IF (n % 2) = 0 THEN
-      n := n / 2;
-    ELSE
-      n := 3 * n +  1;
-    END;
-    anzahl := anzahl + 1;
-  END
-END collatz.
-\end{minted}
 \end{enumerate}
 \end{document}

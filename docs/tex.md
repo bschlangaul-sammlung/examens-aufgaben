@@ -154,6 +154,11 @@ Kommandozeilen-Option `--shell-escape` kompiliert werden.
   Verzeichnis `./Code/src/main/java/org/bschlangaul` liegt.
 * Makro: `\liJavaTestDatei`: Eine komplette Java-Test-Datei einbinden,
   die Verzeichnis `./Code/src/test/java/org/bschlangaul` liegt.
+* Makro: `\liAssemblerDatei{relativer-pfad}`: Relativer Pfad zu einer
+  Assembler-Datei.
+* Makro: `\liMinispracheDatei{relativer-pfad}`: Relativer Pfad zu einer
+  Minisprachen-Datei (Hochsprache für die Minimaschine von Albert
+  Wiedemann).
 
 ### `tabelle.sty`
 
