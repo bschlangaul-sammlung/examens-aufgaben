@@ -1,7 +1,7 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{syntax,spalten,struktogramm}
 \begin{document}
-\liAufgabenTitel{Minimaschine}
+\liAufgabenTitel{Papyrus Rhind}
 
 %%
 %
@@ -132,54 +132,16 @@ SHLI 1   & 44=101100                   & 24=11000                      \\
 SUB 101  & 0                           & not zero    für ungerade
 \end{tabular}
 
-\item Anmerkungen für mich
-Bedeutung der Abkürzungen:
-SHRI bedeutet „Shift nach rechts“; SHLI bedeutet „Shift nach links“;
-Vorgehen:
-1. Gerade und ungerade Beispielzahl überlegen (> LOAD 101) und von 1 beginnend solange das letzte Ergebnis *2 nehmen bis es noch in die Beispielzahl passt (im weiteren Verlauf der Erklärung x genannt); dann „=“ und von links nach rechts ausgehend hinschreiben, wie oft man das x braucht, dann x/2, etc. (nur 1er und 0er zulässig!)
-2. Zahlen hinter dem „=“ nach rechts verschieben. Dabei fällt die letzte Zahl weg und links wird die 0 ergänzt. Vor dem „=“ die Zahl mit Hilfe der Zahlenfolge bestimmen. (> SHRI 1)
-3. Zahlen hinter dem „=“ nach links verschieben. Dabei fällt die erste Zahl weg und rechts wird die 0 ergänzt. Vor dem „=“ die Zahl mit Hilfe der Zahlenfolge bestimmen. (> SHLI 1)
-4. Vom bisherigen Ergebnis die Beispielzahl abziehen. (> SUB 101)
-
 \item Schreiben Sie ein Programm für die angegebene Registermaschine,
-das den Algorithmus des Papyrus Rhind umsetzt. Gehen Sie dabei davon
-aus, dass die beiden positiven ganzzahligen Faktoren $z_1$ und $z_2$
-bereits in den Speicherzellen 101 und 102 stehen und dass alle weiteren
-nicht vom Programm belegten Speicherzellen mit dem Wert 0 vorbelegt
-sind.
+das den Algorithmus des \emph{Papyrus Rhind} umsetzt. Gehen Sie dabei
+davon aus, dass die beiden positiven ganzzahligen Faktoren $z_1$ und
+$z_2$ bereits in den Speicherzellen $101$ und $102$ stehen und dass alle
+weiteren nicht vom Programm belegten Speicherzellen mit dem Wert $0$
+vorbelegt sind.
 
-\begin{minted}{asm}
-Start:  LOADI 13
- STORE 101
- LOADI 5
- STORE 102
+\liAssemblerDatei{Aufgabe_04-Abitur-2015-IV.mia}
 
-Wdh: LOAD 101
- JMPZ end
-
-Bed: SHRI 1
- SHLI 1
- SUB 101
- CMPI 0
- JMPZ true
-
-false: LOAD erg
- ADD 102
- STORE erg
-
-true: LOAD 101
- DIVI 2
- STORE 101
- LOAD 102
- MULI 2
- STORE 102
- JMP Wdh
-
-end:  LOAD erg
- HOLD
-
-erg: WORD 0
-\end{minted}
+\liJavaDatei[firstline=3]{aufgaben/tech_info/assembler/AegyptischeMultiplikation}
 
 \end{enumerate}
 
