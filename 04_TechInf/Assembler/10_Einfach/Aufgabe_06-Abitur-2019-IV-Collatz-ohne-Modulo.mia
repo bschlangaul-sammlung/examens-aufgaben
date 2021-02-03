@@ -1,0 +1,37 @@
+# n:      100
+# anzahl: 101
+                LOADI 0
+                STORE 101
+
+# WHILE n <> 1
+solange:        LOAD 100
+                SUBI 1
+                JMPZ ende
+
+# anzahl := anzahl + 1;
+zaehler:        LOAD 101
+                ADDI 1
+                STORE 101
+
+# Poorman’s Modulo
+# IF (n % 2) = 0 THEN
+modulo:         LOAD 100
+                DIVI 2
+                MULI 2
+                SUB 100
+                JMPN ist_ungerade
+
+# n := n / 2;
+ist_gerade:     LOAD 100
+                DIVI 2
+                STORE 100
+                JMP solange
+
+# n := 3 * n +  1;
+ist_ungerade:   LOAD 100
+                MULI 3
+                ADDI 1
+                STORE 100
+                JMP solange
+
+ende:           HOLD

@@ -1,23 +1,23 @@
-anfang: LOAD b
-        JMPP innen
-        JMP ende
+anfang:         LOAD b
+                JMPP innen
+                JMP ende
 
-innen:  LOAD a
-        SUB b
-        JMPN tausch
-        STORE a
-        JMP innen
+innen:          LOAD a
+                SUB b
+                JMPN tausch
+                STORE a
+                JMP innen
 
-tausch: LOAD b
-        STORE ggt
-        LOAD a
-        STORE b
-        LOAD ggt
-        STORE a
-        JMP anfang
+tausch:         LOAD b
+                STORE ggt
+                LOAD a
+                STORE b
+                LOAD ggt
+                STORE a
+                JMP anfang
 
-ende:   HOLD
+ende:           HOLD
 
-a:      WORD 30
-b:      WORD 10
-ggt:    WORD 0
+a:              WORD 30
+b:              WORD 10
+ggt:            WORD 0
