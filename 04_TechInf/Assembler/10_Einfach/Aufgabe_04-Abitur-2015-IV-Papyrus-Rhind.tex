@@ -43,7 +43,7 @@ Variablen $erg$.
 %%
 
 \item Berechnen Sie mithilfe der beschriebenen ägyptischen
-Multiplikation schrittweise das Produkt aus $z_1 = 13$ und $z_2 = 5$
+Multiplikation schrittweise das Produkt aus $z_1 = 13$ und $z_2 = 5$.
 
 \begin{liAntwort}
 \begin{tabular}{rrr}
@@ -51,8 +51,9 @@ $z_1$ & $z_2$ & $erg$ \\\hline
 13 & 5  & 5   \\
 6  & 10 & -   \\
 3  & 20 & 25  \\
-1  & 40 & 65  \\\hline
-  &     & 65  \\
+1  & 40 & 65  \\
+0  & 80 & -  \\\hline
+   &    & 65  \\
 \end{tabular}
 \end{liAntwort}
 
@@ -65,20 +66,40 @@ Rechners, der nach dem von-Neumann-Prinzip aufgebaut ist. Geben Sie
 einen Vor- und einen Nachteil dieses Speichermodells an.
 
 \begin{liAntwort}
-Wesentliche Idee des Speichermodells eines Rechners, der nach dem
-von-Neumann-Prinzip gebaut ist: Programme und Daten sind im selben
-Speicher, wobei der Hauptspeicher aus Zellen gleicher Größe besteht.
+Die 7 Grundprinzipien der \emph{Von-Neumann-Architektur}:
 
-Vorteil:
+\begin{enumerate}
+\item Der Rechner besteht aus 4 Werken.
 
-Streng sequentieller Ablauf von Befehlen ist ein Vorteil, weil zu jedem
-Zeitpunkt klar ist, welcher Schritt durchgeführt wird.
+\item Der Rechner ist programmgesteuert.
 
-Nachteil:
+\item Die Programme und Daten liegen im selben Speicher.
 
-Der von-Neumann-Flaschenhals, weil alle Daten über denselben Bus
-weitergeleitet werden müssen und der Ablauf deshalb eine gewisse Zeit
-benötigt.
+\item Der Hauptspeicher ist in Zellen gleicher Größe aufgeteilt.
+
+\item Die Programme bestehen aus Folgen von Befehlen (Sequentielle
+Ausführung)
+
+\item Der Programmablauf ist durch Sprünge möglich.
+
+\item Die Daten und Programme werden in Binärdarstellung gespeichert und
+verarbeitet.
+\end{enumerate}
+
+\bigskip
+
+\begin{description}
+\item[Vorteil:]
+
+Da in von-Neumann-Rechnern keine redundanten Komponenten verbaut werden,
+bleibt der Hardwareaufwand gering.
+
+\item[Nachteil:]
+
+Der wichtigste Nachteil ist der sogenannte Von-Neumann-Flaschenhals. Er
+existiert, da das Bussystem alle Befehle und Daten streng sequentiell
+transportiert.
+\end{description}
 \end{liAntwort}
 
 %%
@@ -111,7 +132,13 @@ $z_2$ bereits in den Speicherzellen $101$ und $102$ stehen und dass alle
 weiteren nicht vom Programm belegten Speicherzellen mit dem Wert $0$
 vorbelegt sind.
 
+\liPseudoUeberschrift{Assembler}
+
 \liAssemblerDatei{Aufgabe_04-Abitur-2015-IV-Papyrus-Rhind.mia}
+
+\liPseudoUeberschrift{Minisprache}
+
+\liMinispracheDatei{Aufgabe_04-Abitur-2015-IV-Papyrus-Rhind.mis}
 
 \liPseudoUeberschrift{Java (iterativ)}
 

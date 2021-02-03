@@ -1,31 +1,45 @@
+# z1 := 13;
+# z2 := 5;
+werte_setzen:   LOADI 13
+                STORE 101 # wird verändert
+                STORE 90 # z1 Eingabe, oberhalb des Ergebnisses
+                LOADI 5
+                STORE 102 # wird verändert
+                STORE 91 # z2 Eingabe, rechts neben z1 Eingabe
 
-Start:  LOADI 13
- STORE 101
- LOADI 5
- STORE 102
+# WHILE z1 > 0 DO
+solange:        LOAD 101
+                JMPNP ende
 
-Wdh: LOAD 101
- JMPZ end
+# IF (z1 % 2) = 1 THEN
+modulo:         SHRI 1
+                SHLI 1
+                SUB 101
+                CMPI 0
+                JMPZ werte_aendern
 
-Bed: SHRI 1
- SHLI 1
- SUB 101
- CMPI 0
- JMPZ true
+# erg := erg + z2;
+ist_ungerade:   LOAD erg
+                ADD 102
+                STORE erg
 
-false: LOAD erg
- ADD 102
- STORE erg
+# z1 halbieren
+# z1 := z1 / 2;
+werte_aendern:  LOAD 101
+                DIVI 2
+                STORE 101
 
-true: LOAD 101
- DIVI 2
- STORE 101
- LOAD 102
- MULI 2
- STORE 102
- JMP Wdh
+# z2 verdoppeln
+# z2 := z2 * 2;
+                LOAD 102
+                MULI 2
+                STORE 102
+                JMP solange
 
-end:  LOAD erg
- HOLD
+# Ergebnis auf Speicherzelle 100 setzen,
+# damit man das Ergebnis besser sieht.
+ende:           LOAD erg
+                STORE 100
+                HOLD
 
-erg: WORD 0
+erg:            WORD 0
