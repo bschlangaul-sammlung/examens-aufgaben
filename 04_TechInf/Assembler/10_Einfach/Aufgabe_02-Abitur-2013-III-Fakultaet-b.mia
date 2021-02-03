@@ -1,0 +1,23 @@
+# erg: 201
+# n: 202
+
+# erg := 1;
+                LOADI 1
+                STORE 201
+# WHILE n > 0 DO
+solange:        LOAD 202
+                CMPI 0
+                JMPNP ende
+
+# erg := erg * n;
+                LOAD 201
+                MUL 202
+                STORE 201
+
+# n := n - 1;
+                LOAD 202
+                SUBI 1
+                STORE 202
+                JMP solange
+
+ende:           HOLD

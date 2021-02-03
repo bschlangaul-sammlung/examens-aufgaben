@@ -1,0 +1,76 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,spalten,struktogramm}
+
+\begin{document}
+\liAufgabenTitel{Abitur 2013 III}
+
+\section{Abitur 2013 III (Aufgabe 2, Check-Up)
+\index{Ein-Adress-Befehl-Assembler}}
+
+\begin{enumerate}
+
+%%
+% 2a)
+%%
+
+\item Vollziehen Sie das nachfolgende Assembler-Programm schrittweise
+nach, indem Sie angeben, welche Werte nach jedem Befehl in den
+Speicherzellen $101$, $102$ und im Akkumulator stehen, wenn zu Beginn $101$
+mit $5$ und $102$ mit $18$ vorbelegt ist.
+
+\liAssemblerDatei{Aufgabe_02-Abitur-2013-III-Fakultaet-a.mia}
+
+\begin{liAntwort}
+\begin{tabular}{|l|l|l|l|}
+                                &              & \multicolumn{2}{l|}{Speicherzellen} \\\hline
+Befehl                          & Akk. & 101 & 102 \\\hline\hline
+                                &              & 5 & 18 \\
+\liAssemblerCode{LOAD 102}      & 18 & 5 & 18 \\
+\liAssemblerCode{DIV 101}       & 3  & 5 & 18 \\
+\liAssemblerCode{MUL 101 }      & 15 & 5 & 18 \\
+\liAssemblerCode{SUB 102}       & -3 & 5 & 18 \\
+\liAssemblerCode{JMPZ acht}     & -3 & 5 & 18 \\
+\liAssemblerCode{LOADI 0}       & 0  & 5 & 18 \\
+\liAssemblerCode{JMP neun}      & 0  & 5 & 18 \\
+\liAssemblerCode{acht: LOADI 1} & 0  & 5 & 18 \\
+\liAssemblerCode{neun: END}     & 0  & 5 & 18 \\
+\end{tabular}
+\end{liAntwort}
+
+%%
+% 2b)
+%%
+
+\newpage
+
+\item Übersetzen Sie das nachfolgende Struktogramm zur Berechnung der
+Fakultät von $n$ in ein Assemblerprogramm. Verwenden Sie die Variable
+$erg$ die Speicherzelle $201$ und für die Variable $n$ die Speicherzelle
+$202$.
+
+\begin{center}
+\begin{struktogramm}(90,30)
+\assign{$erg = 1$}
+\while{wiederhole solange $n > 0$}
+\assign{$erg = erg \cdot n$}
+\assign{$n = n - 1$}
+\whileend
+\end{struktogramm}
+\end{center}
+
+\begin{liAntwort}
+\begin{multicols}{2}
+\liPseudoUeberschrift{Assembler}
+
+\liAssemblerDatei{Aufgabe_02-Abitur-2013-III-Fakultaet-b.mia}
+
+\columnbreak
+
+\liPseudoUeberschrift{Minisprache}
+
+\liMinispracheDatei{Aufgabe_02-Abitur-2013-III-Fakultaet-b.mis}
+\end{multicols}
+\bigskip
+\end{liAntwort}
+\end{enumerate}
+\end{document}
