@@ -1,0 +1,24 @@
+PROGRAM primzahl;
+VAR k, a, t, erg;
+
+BEGIN
+  k := 5;
+  IF k = 1 THEN
+    erg := 0;
+  ELSE
+    a := 0;
+    t := 1;
+    REPEAT
+      t := t + 1;
+      IF (k % t) = 0 THEN
+        a := 1;
+      END
+    UNTIL a = 0;
+
+    IF t = k THEN
+      erg := 1;
+    ELSE
+      erg := 0;
+    END
+  END;
+END primzahl.

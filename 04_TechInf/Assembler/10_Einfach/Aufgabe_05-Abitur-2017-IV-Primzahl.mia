@@ -1,0 +1,51 @@
+# k: 101
+# a: 102
+# t: 103
+# erg: 104
+
+# IF k = 1 THEN
+                LOADI 101
+                CMPI 1
+                JMPZ ist_nicht_prim
+
+# a := 1;
+                LOADI 0
+                STORE 102
+
+# t := 1;
+                LOADI 1
+                STORE 103
+
+# t := t + 1;
+erhoehe_t:      LOAD 103
+                ADDI 1
+                STORE 103
+
+# IF (k % t) = 0 THEN
+                LOAD 101
+                MOD 103
+                JMPP solange_bed
+
+# a := 1;
+                LOADI 1
+                STORE 102
+
+# UNTIL a = 0;
+solange_bed:    LOAD 102
+                JMPZ erhoehe_t
+
+# IF t = k THEN;
+                LOAD 103
+                CMP 101
+                JMPZ ist_prim
+
+# erg := 0;
+ist_nicht_prim: LOADI 0
+                STORE 104
+                JMP ende
+
+# erg := 1;
+ist_prim:       LOADI 1
+                STORE 104
+
+ende:           HOLD
