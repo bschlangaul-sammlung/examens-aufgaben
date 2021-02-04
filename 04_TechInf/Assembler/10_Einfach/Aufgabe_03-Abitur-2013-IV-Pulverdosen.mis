@@ -1,0 +1,15 @@
+PROGRAM pulver_dosen;
+VAR V, y, z, erg;
+
+BEGIN
+  V := 400000;
+  y := V;
+  z := 1;
+
+  WHILE y > z DO
+    y := (y + z) / 2;
+    z := V / y;
+  END;
+
+  erg := y / 19;
+END pulver_dosen.

@@ -1,26 +1,40 @@
+# V: 101
+# z: 102
+# y: 103
+# 2: 104
+# 19: 105
+# erg: 106
+
+# V := 400000;
 start:          LOADI 400000
                 STORE 101
                 LOADI 2
                 STORE 104
                 LOADI 19
                 STORE 105
+# z := 1;
                 LOADI 1
                 STORE 102
+# y := V;
                 LOAD 101
                 STORE 103
 
+# WHILE y > z DO
 solange:        LOAD 103
                 CMP 102
                 JMPZ ende
+# y := (y + z) / 2;
                 LOAD 103
                 ADD 102
                 DIV 104
                 STORE 103
+# z := V / y;
                 LOAD 101
                 DIV 103
                 STORE 102
-              JMP solange
+                JMP solange
 
+# erg := y / 19;
 ende:           LOAD 103
                 DIV 105
                 STORE 106

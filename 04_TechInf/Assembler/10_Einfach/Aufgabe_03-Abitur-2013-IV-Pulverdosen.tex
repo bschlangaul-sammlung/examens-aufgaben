@@ -23,16 +23,28 @@ näherungsweise berechnet:
 \assign{Rückgabe $y / 19$}
 \end{struktogramm}
 
+\noindent
 Der dabei verwendete Wert von $19$ für den Divisor ergibt sich aus der
-vorgegebenen Dosenhöhe in mm und der Kreiszahl $\pi$.
+vorgegebenen Dosenhöhe in $mm$ und der Kreiszahl $\pi$.
 
 Schreiben Sie ein Assemblerprogramm zur Berechnung des Dosenradius (in
-mm) gemäß dem angegebenen Algorithmus, wobei das Volumen V in $mm^3$
+$mm$) gemäß dem angegebenen Algorithmus, wobei das Volumen $V$ in $mm^3$
 eingegeben wird.
 
 Ergänzen Sie dabei die begonnen Implementierung. Das Ergebnis soll am
 Ende in Zelle 106 stehen.
 
-\liAssemblerDatei{Aufgabe_03-Abitur-2013-IV.mia}
+\begin{minted}{asm}
+LOADI 400000 # Beispielwert für V
+STORE 101 # V in Zelle 101
+LOADI 2
+STORE 104 # Konstante 2 in Zelle 104
+LOADI 19
+STORE 105 # Konstante 19 in Zelle 105
+\end{minted}
+
+\liAssemblerDatei{Aufgabe_03-Abitur-2013-IV-Pulverdosen.mia}
+
+\liJavaDatei{aufgaben/tech_info/assembler/Pulverdose}
 
 \end{document}
