@@ -5,8 +5,13 @@
 # 19: 105
 # erg: 106
 
+# Minimaschine kann so eine große Zahl nicht darstellen
 # V := 400000;
-start:          LOADI 400000
+# 2^16: 65536
+# / 2: 32768
+# 32766: letzte Zahl, die ein sinnvolles Ergebnis raus bringt
+# 32767 gibt Ergebnis: -862?
+start:          LOADI 32766
                 STORE 101
                 LOADI 2
                 STORE 104
@@ -22,12 +27,14 @@ start:          LOADI 400000
 # WHILE y > z DO
 solange:        LOAD 103
                 CMP 102
-                JMPZ ende
+                JMPNP ende
+
 # y := (y + z) / 2;
                 LOAD 103
                 ADD 102
                 DIV 104
                 STORE 103
+
 # z := V / y;
                 LOAD 101
                 DIV 103
@@ -37,5 +44,5 @@ solange:        LOAD 103
 # erg := y / 19;
 ende:           LOAD 103
                 DIV 105
-                STORE 106
+                STORE 106 # Es müsste 9 raus kommen
                 HOLD

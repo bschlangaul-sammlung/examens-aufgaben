@@ -8,11 +8,12 @@
 
 In einer Apotheke werden Aminosäureprodukte in Pulverform verkauft, die
 in vollständig gefüllten zylinderförmigen Dosen abgepackt sind. Aufgrund
-der Regalhöhe haben alle ausgestellten Dosen eine Höhe von 12cm. Der
+der Regalhöhe haben alle ausgestellten Dosen eine Höhe von $12cm$. Der
 Radius der Dosengrundfläche richtet sich nach der jeweiligen
 Verkaufsmenge des Pulvers und wird druch folgenden Algorithmus
 näherungsweise berechnet:
 
+\begin{center}
 \begin{struktogramm}(50,40)
 \assign{$y = V$}
 \assign{$z = 1$}
@@ -22,6 +23,7 @@ näherungsweise berechnet:
   \whileend
 \assign{Rückgabe $y / 19$}
 \end{struktogramm}
+\end{center}
 
 \noindent
 Der dabei verwendete Wert von $19$ für den Divisor ergibt sich aus der
@@ -32,7 +34,7 @@ $mm$) gemäß dem angegebenen Algorithmus, wobei das Volumen $V$ in $mm^3$
 eingegeben wird.
 
 Ergänzen Sie dabei die begonnen Implementierung. Das Ergebnis soll am
-Ende in Zelle 106 stehen.
+Ende in Zelle $106$ stehen.
 
 \begin{minted}{asm}
 LOADI 400000 # Beispielwert für V
@@ -43,8 +45,31 @@ LOADI 19
 STORE 105 # Konstante 19 in Zelle 105
 \end{minted}
 
+\begin{liAntwort}
+
+%%
+%
+%%
+
+\liPseudoUeberschrift{Assembler}
+
 \liAssemblerDatei{Aufgabe_03-Abitur-2013-IV-Pulverdosen.mia}
 
-\liJavaDatei{aufgaben/tech_info/assembler/Pulverdose}
+%%
+%
+%%
+
+\liPseudoUeberschrift{Minisprache}
+
+\liMinispracheDatei{Aufgabe_03-Abitur-2013-IV-Pulverdosen.mis}
+
+%%
+%
+%%
+
+\liPseudoUeberschrift{Java}
+
+\liJavaDatei[firstline=5,lastline=17]{aufgaben/tech_info/assembler/Pulverdose}
+\end{liAntwort}
 
 \end{document}
