@@ -2,15 +2,18 @@ PROGRAM ggt;
 VAR a, b, ggt;
 
 BEGIN
-  a := 30;
-  b := 10;
-  WHILE b > 0 DO
-    IF a - b < 0 THEN
-      ggt := b;
-      b := a;
-      a := ggt;
-    ELSE
-      a := a - b;
-    END
+  a := 10;
+  b := 5;
+  IF a = 0 THEN
+    ggt := b;
+  ELSE
+    WHILE b <> 0 DO
+      IF a > b THEN
+        a := a - b;
+      ELSE
+        b := b - a;
+      END;
+    END;
+    ggt := a;
   END
 END ggt.

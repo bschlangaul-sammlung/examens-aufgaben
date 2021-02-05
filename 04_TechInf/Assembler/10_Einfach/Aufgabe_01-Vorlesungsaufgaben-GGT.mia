@@ -1,23 +1,44 @@
-anfang:         LOAD b
-                JMPP innen
+# a := 10;
+                LOADI 3
+                STORE a
+# b := 5;
+                LOADI 30
+                STORE b
+# IF a = 0 THEN
+                LOAD a
+                CMPI 0
+                JMPNZ solange
+# ggt := b;
+                LOAD b
+                STORE ggt
                 JMP ende
 
-innen:          LOAD a
-                SUB b
-                JMPN tausch
-                STORE a
-                JMP innen
-
-tausch:         LOAD b
-                STORE ggt
+# WHILE b <> 0 DO
+solange:        LOAD b
+                CMPI 0
+                JMPZ setze_ergebnis
+# IF a > b THEN
                 LOAD a
-                STORE b
-                LOAD ggt
+                CMP b
+                JMPNP setze_b
+# a := a - b;
+                LOAD a
+                SUB b
                 STORE a
-                JMP anfang
+                JMP solange
+
+# b := b - a;
+setze_b:        LOAD b
+                SUB a
+                STORE b
+                JMP solange
+
+# ggt := a;
+setze_ergebnis: LOAD a
+                STORE ggt
 
 ende:           HOLD
 
-a:              WORD 30
-b:              WORD 10
+a:              WORD 0
+b:              WORD 0
 ggt:            WORD 0

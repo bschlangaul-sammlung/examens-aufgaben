@@ -1,21 +1,23 @@
-                LOAD n
-                CMPI 0
-                JMPP anfang
-                JMP ende
-
-anfang:         LOAD n
+# WHILE n <> 0 DO
+solange:        LOAD n
                 JMPP rechnung
                 JMP ende
 
+# ergebnis := ergebnis * a;
 rechnung:       LOAD a
                 MUL ergebnis
                 STORE ergebnis
+# n := n - 1;
                 LOAD n
                 SUBI 1
                 STORE n
-                JMP anfang
+                JMP solange
 
 ende:           HOLD
+
+# a := 2;
 a:              WORD 2
-n:              WORD 3
-ergebnis:       WORD 0
+# n := 8;
+n:              WORD 8
+# ergebnis := 1;
+ergebnis:       WORD 1
