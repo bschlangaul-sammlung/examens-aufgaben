@@ -1,19 +1,20 @@
-	SEG
-	MOVE W I H'0000FFFF' , SP
-	JUMP Start
-	a: DD W 5
-	b: DD W 6
-Multi:	PUSHR
-	MULT W 64+!SP, 68+!SP, 72+!SP
-	POPR
-	RET
+                SEG
+                MOVE W I H'0000FFFF' , SP
+                JUMP Start
 
-Start:	MOVE W I -1, -!SP
-	MOVE W a, -!SP
-	MOVE W b, -!SP
-	CALL Multi
-	ADD W I 4, SP
-	ADD W I 4, SP
-	MOVE W !SP+, R5
-	HALT
-	END 
+a:              DD W 5
+b:              DD W 6
+Multi:          PUSHR
+                MULT W 64+!SP, 68+!SP, 72+!SP
+                POPR
+                RET
+
+Start:          MOVE W I -1, -!SP
+                MOVE W a, -!SP
+                MOVE W b, -!SP
+                CALL Multi
+                ADD W I 4, SP
+                ADD W I 4, SP
+                MOVE W !SP+, R5
+                HALT
+                END
