@@ -1,0 +1,65 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,spalten}
+\begin{document}
+\liAufgabenTitel{Vorlesungsaufgaben}
+\section{Minimaschine\index{Ein-Adress-Befehl-Assembler}}
+
+% Info_2020-11-20-2020-11-20_09.49.27.mp4 30 min
+
+\section{Abitur 2018 III Aufgabe 4}
+
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Gegeben ist folgendes Programm:
+
+\begin{minted}{asm}
+load 100
+cmp 101
+jmpnn 12
+load 101
+store 102
+jmp 14
+store 102
+hold
+\end{minted}
+
+Der Zustand der Registermaschine wird im Folgenden durch die Inhalte des
+Akkumulators A, des Befehlszählers BZ, des Statusregisters SR sowie der
+Speicherzellen 100 bis 102 beschrieben.
+
+Veranschaulichen Sie die durchlaufenen Zustände bei der Ausführung des
+Programms anhand einer geeigneten Tabelle. Gehen Sie von folgendem
+Anfangszustand aus: Der Befehlszähler BZ enthält den Wert $0$, die
+Speicherzelle $100$ den Wert $4$ und die Speicherzelle $101$ den Wert $5$. Geben
+Sie an, was das Programm in Abhängigkeit von den Startwerten in den
+Speicherzellen $100$ und $101$ leistet.
+
+Gegeben ist folgendes Struktogramm für die Methode $c(n)$ für natürliche
+Zahlen $n \geq 3$.
+
+\item Übertragen Sie diesen Algorithmus der Methode c in ein Programm
+für die gegebene Registermaschine. Machen Sie auch die Speicherzelle
+deutlich, in der der Wert der Variablen n zu Beginn und am Ende des
+Programms steht.
+
+\begin{multicols}{2}
+\liPseudoUeberschrift{Assembler}
+
+\liAssemblerDatei{Aufgabe_Abitur-2018-III.mia}
+
+\liSpaltenUmbruch
+\liPseudoUeberschrift{Minisprache}
+
+\liMinispracheDatei{Aufgabe_Abitur-2018-III.mis}
+\end{multicols}
+
+\item Versehentlich wurde die Bedingung $n \geq 3$ bei der
+Implementierung des Algorithmus durch $n \geq 2$ ersetzt. Erläutern Sie
+kurz, welches Problem bei der Ausführung des Programms auftreten kann.
+\end{enumerate}
+
+\end{document}

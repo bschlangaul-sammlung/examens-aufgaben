@@ -1,0 +1,35 @@
+#Zeile 2
+#Zeile 3
+#Zeile 4
+#Zeile 5
+#Zeile 6
+ LOADI 0
+ STORE summe
+#Zeile 7
+ LOADI 10
+ STORE i
+#Zeile 8
+M$1:
+#Zeile 9
+ LOAD i
+ CMPI 0
+ JMPNP M$2
+#Zeile 10
+ LOAD i
+ MUL i
+ STORE hi$1
+ LOAD summe
+ ADD hi$1
+ STORE summe
+#Zeile 11
+ LOAD i
+ SUBI 1
+ STORE i
+#Zeile 12
+ JMP M$1
+M$2:
+#Zeile 13
+ HOLD
+summe: WORD 0
+i: WORD 0
+hi$1: WORD 0
