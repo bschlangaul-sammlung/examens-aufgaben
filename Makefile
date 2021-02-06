@@ -38,8 +38,9 @@ clean:
 	-name "*.out" -or \
 	-name "*.synctex" -or \
 	-name "*.synctex.gz" -or \
+	-name "_minted-*" -or \
 	-name "*.toc" \
 	\) \
-	-exec rm -f {} \;
+	-exec rm -rf {} \;
 
-.PHONY: install_tex readme install_cli install_config
+.PHONY: install_tex readme install_cli install_config clean
