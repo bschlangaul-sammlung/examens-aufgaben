@@ -119,6 +119,18 @@ Weitere Aufgaben zum Thema „SQL“:
 
 {{ stichwort "Testen" }}
 
+## Technische Informatik
+
+### Ein-Adress-Befehl-Assembler
+
+{{ stichwort "Ein-Adress-Befehl-Assembler" }}
+
+### Mehr-Adress-Befehl-Assembler
+
+{{ stichwort "Mehr-Adress-Befehl-Assembler" }}
+
+Vorlesungsaufgaben
+
 # Aufgaben geordnet nach Staatsexamen
 
 In diesem Repository findet Ihr viele Staatsexamensaufgaben. Von fast

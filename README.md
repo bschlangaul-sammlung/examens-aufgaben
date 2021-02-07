@@ -344,6 +344,30 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2017-Frühjahr_T2-TA2-A4">„wp-Kalkül mit Invariante bei Methode „mul()““ Examen 66116 Frühjahr 2017 T2 TA2 A4</a> (wp-Kalkül, Invariante, Totale Korrektheit)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2017-Herbst_T1-TA2-A4">„Code-Inspection bei Binärer Suche“ Examen 66116 Herbst 2017 T1 TA2 A4</a> (Binäre Suche, Design by Contract, Kontrollflussgraph, Vollständige Anweisungsüberdeckung)
 
+## Technische Informatik
+
+### Ein-Adress-Befehl-Assembler
+
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Einfach/Aufgabe_01-Vorlesungsaufgaben.pdf" download="Aufgabe_01-Vorlesungsaufgaben">„Vorlesungsaufgaben“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Einfach/Aufgabe_02-Abitur-2013-III-Fakultaet.pdf" download="Aufgabe_02-Abitur-2013-III-Fakultaet">„Abitur 2013 III“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Einfach/Aufgabe_03-Abitur-2013-IV-Pulverdosen.pdf" download="Aufgabe_03-Abitur-2013-IV-Pulverdosen">„Pulverdosen“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Einfach/Aufgabe_04-Abitur-2015-IV-Papyrus-Rhind.pdf" download="Aufgabe_04-Abitur-2015-IV-Papyrus-Rhind">„Papyrus Rhind“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Einfach/Aufgabe_05-Abitur-2017-IV-Primzahl.pdf" download="Aufgabe_05-Abitur-2017-IV-Primzahl">„Primzahl“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Einfach/Aufgabe_06-Abitur-2019-IV-Collatz.pdf" download="Aufgabe_06-Abitur-2019-IV-Collatz">„Collatz“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Einfach/Aufgabe_Abitur-2018-III.pdf" download="Aufgabe_Abitur-2018-III">„Abitur 2018“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Einfach/Aufgabe_Abitur-2018-IV.pdf" download="Aufgabe_Abitur-2018-IV">„funkyFunction“</a> (Ein-Adress-Befehl-Assembler)
+
+### Mehr-Adress-Befehl-Assembler
+
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/20_Mehr-Adress/Aufgabe_07-Vorlesungsaufgaben.pdf" download="Aufgabe_07-Vorlesungsaufgaben">„Vorlesungsaufgaben“</a> (Mehr-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/20_Mehr-Adress/Aufgabe_08-Euklid.pdf" download="Aufgabe_08-Euklid">„Euklidscher Algorithmus“</a> (Mehr-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/20_Mehr-Adress/Aufgabe_09-Wurzel.pdf" download="Aufgabe_09-Wurzel">„Intervallschachtelung von Wurzeln“</a> (Mehr-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/20_Mehr-Adress/Aufgabe_10-Fakultaet.pdf" download="Aufgabe_10-Fakultaet">„Fakultät“</a> (Mehr-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/20_Mehr-Adress/Aufgabe_11-Fibonacci.pdf" download="Aufgabe_11-Fibonacci">„Fibonacci-Zahlen“</a> (Mehr-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/20_Mehr-Adress/Aufgabe_12-Potenz.pdf" download="Aufgabe_12-Potenz">„Potenzberechnung“</a> (Mehr-Adress-Befehl-Assembler)
+
+Vorlesungsaufgaben
+
 # Aufgaben geordnet nach Staatsexamen
 
 In diesem Repository findet Ihr viele Staatsexamensaufgaben. Von fast
@@ -1265,6 +1289,7 @@ als Markdown-Liste eingebettet werden kann.
         - Vollständige Induktion
 - Technische Informatik:
     - Ein-Adress-Befehl-Assembler
+    - Mehr-Adress-Befehl-Assembler
 
 
 {{ einbinden "docs/tex.md" }}
