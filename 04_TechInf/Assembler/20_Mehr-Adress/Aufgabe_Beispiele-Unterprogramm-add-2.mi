@@ -1,0 +1,14 @@
+                MOVE W I H'0000FFFF', SP
+
+addZ:
+                PUSHR
+                MOVE W I 2, R0
+                ADD W R0, 64+!SP, 68+!SP
+                POPR
+                RET
+
+start:           MOVE W I -1, -!SP
+                MOVE W n , -!SP
+                CALL addZ
+                ADD W I 4, SP
+                MOVE W !SP+, R0

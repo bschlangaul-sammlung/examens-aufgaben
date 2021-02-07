@@ -8,9 +8,42 @@
 
 \chapter{Assembler: Mehr-Adress-Befehle}
 
-Info_2020-11-20-2020-11-20_09.49.27.mp4 1h16min
+% Info_2020-11-20-2020-11-20_09.49.27.mp4 1h16min
 
-1h41min Installation
+% 1h41min Installation
+
+\section{Datentypen\footcite[Seite 6]{borghoff}}
+
+\begin{tabular}{ll}
+B & Byte, Zeichen; 8 Bit breit\\
+H & Halbwort; 16 Bit breit\\
+W & Wort; 32 Bit breit\\
+F & Gleitpunktzahl (floating point); 32 Bit breit\\
+D & Double-float; 64 Bit breit\\
+\end{tabular}
+
+\section{Register}
+
+Jeder Rechnerkern besitzt 16 frei programmierbare Register, die von 0
+bis 15 numeriert sind. Die Wortbreite eines Registers beträgt 32 Bit.
+Jedoch kann durch geeignete Kennung auch auf Teile eines Registers
+zugegriffen werden (bei \textbf{B} auf das rechte Byte, bei \textbf{H}
+auf das rechte Halbwort und bei \textbf{W} auf das gesamte Register). Es
+gibt zwei ausgezeichnete Register: Der Befehlszähler \textbf{PC}
+(Program Counter) enthält die Adresse des nächsten auszuführenden
+Befehls bzw. des noch zu interpretierenden Teils des aktuellen Befehls.
+Das Register R15 ist gleichzeitig der Befehlszähler PC. Der Kellerpegel
+SP (Stack Pointer) enthält die Adresse des aktuellen Kellers. Das
+Register R14 ist gleichzeitig der Kellerpegel SP. Es gibt noch eine
+ganze Reihe von Sonderregistern, die im folgenden noch erklärt werden.
+Alle Adressen sind vorzeichenlose ganze Zahlen im Wortformat (32 Bit
+Adressen).
+\footcite[Seite 8, 9]{borghoff}
+
+Direkter (immediater) Operand: I
+
+MOVE B I 2,R1
+\footcite[Seite 24]{borghoff}
 
 \literatur
 

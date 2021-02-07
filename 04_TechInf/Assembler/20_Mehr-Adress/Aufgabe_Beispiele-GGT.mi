@@ -1,0 +1,20 @@
+-- Im Order Samples von Mehr-Adress-Simulator.zip
+
+ggT:
+                SEG   -- Initialisierung
+                MOVE W I 99, R0  -- Parameter 1
+                MOVE W I 33, R1  -- Parameter 2
+Test:
+                CMP W R0, R1  -- Beide Parameter vergleichen
+                JEQ Gleich  -- Parameter waren gleich
+                JGT Kleiner  -- Parameter
+Groesser:
+                SUB W R0, R1
+                JUMP Test
+Kleiner:
+                SUB W R1, R0
+                JUMP Test
+Gleich:
+                MOVE W R0, R2
+                HALT
+                END
