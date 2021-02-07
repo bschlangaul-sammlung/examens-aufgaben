@@ -24,23 +24,6 @@ readme:
 	.scripts/dist/main.js r
 
 clean:
-	find . \
-	-name ".git*" -prune \
-	\( \
-	-name "*.aux" -or \
-	-name "*.fdb_latexmk" -or \
-	-name "*.glo" -or \
-	-name "*.gls" -or \
-	-name "*.ilg" -or \
-	-name "*.ind" -or \
-	-name "*.idx" -or \
-	-name "*.log" -or \
-	-name "*.out" -or \
-	-name "*.synctex" -or \
-	-name "*.synctex.gz" -or \
-	-name "_minted-*" -or \
-	-name "*.toc" \
-	\) \
-	-exec rm -rf {} \;
+	.scripts/clean.sh
 
 .PHONY: install_tex readme install_cli install_config clean
