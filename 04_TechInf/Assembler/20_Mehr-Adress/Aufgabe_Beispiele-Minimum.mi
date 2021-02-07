@@ -1,0 +1,32 @@
+-- Manual Seite 52
+
+TEST:           SEG
+                MOVE W I H'10000',SP -- nuetzliche Vorbesetzung
+                JUMP start
+
+a0:             DD W 3
+a1:             DD W -1
+a2:             DD W 9
+a3:             DD W 5
+a4:             DD W 0
+a5:             DD W 2
+
+start:          MOVEA a0,R0 -- Anfangsadresse
+                MOVE W I 0,R2 -- i in R2
+                MOVE W !R0/R2/,R1 -- erster Wert a[0]
+
+init:           MOVE W I 1,R2 -- Startwert
+                MOVE W I 5,R3 -- Endwert
+                JUMP test
+loop:
+if:             SUB W R1,!R0/R2/,R4 -- Bedingung akt-min < 0
+                JGE fi
+                MOVE W !R0/R2/,R1 -- entspricht min:=akt
+fi:
+
+step:           ADD W I 1,R2 -- erhoehe Laufindex
+test:           SUB W R3,R2,R4
+                JLE loop
+                MOVE W R1,R4 -- Ergebnis ist in R4
+                HALT
+                END
