@@ -129,8 +129,6 @@ Weitere Aufgaben zum Thema „SQL“:
 
 {{ stichwort "Mehr-Adress-Befehl-Assembler" }}
 
-Vorlesungsaufgaben
-
 # Aufgaben geordnet nach Staatsexamen
 
 In diesem Repository findet Ihr viele Staatsexamensaufgaben. Von fast
