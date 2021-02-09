@@ -1,6 +1,7 @@
-                SEG
-                MOVE W I H'0000FFFF' , SP
-                JUMP Start
+multiplikation:
+SEG
+                MOVE W I H'0000FFFF', SP
+                JUMP einstieg
 
 a:              DD W 5
 b:              DD W 6
@@ -9,12 +10,13 @@ Multi:          PUSHR
                 POPR
                 RET
 
-Start:          MOVE W I -1, -!SP
+einstieg:       MOVE W I -1, -!SP
                 MOVE W a, -!SP
                 MOVE W b, -!SP
                 CALL Multi
                 ADD W I 4, SP
                 ADD W I 4, SP
                 MOVE W !SP+, R5
-                HALT
-                END
+
+abschluss:      HALT
+END

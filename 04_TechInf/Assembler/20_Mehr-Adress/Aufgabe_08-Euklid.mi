@@ -1,19 +1,20 @@
-Start:          SEG
-                JUMP Beginn
+euklid:
+SEG
+                JUMP einstieg
 
-a:               DD W 442
-b:               DD W 323
+a:              DD W 442
+b:              DD W 323
 
-Beginn:         MOVE W a, R4
+einstieg:       MOVE W a, R4
                 MOVE W b, R2
 schleife:
                 CMP W R2, I 0
                 JNE elsea
                 MOVE W R2, R0
-                JUMP ende
+                JUMP abschluss
 
 elsea:          CMP W R4, I 0
-                JEQ ende
+                JEQ abschluss
                 CMP W R2, R4
                 JGT diffp
                 CMP W R4, R2
@@ -31,6 +32,6 @@ diffn:          SUB W R2, R4, R6
 
 elseb:          JUMP schleife
 
-ende:           MOVE W R2, R0
+abschluss:      MOVE W R2, R0
                 HALT
-                END
+END

@@ -1,34 +1,32 @@
-Prog:           SEG
-
--- Initialisierung
-                MOVE W I H'10000', SP    -- Stack init
-                JUMP start    -- Variablendefinition ueberspringen
+summe:
+SEG
+                MOVE W I H'10000', SP
+                JUMP einstieg
 n:              DD W 4
 
--- Programmvorlauf
-start:          MOVE W I -1, -!SP  -- Platz fuer Rueckgabewert auf dem Stack machen
-                MOVE W n, -!SP   -- Startwert auf den Stack
-                CALL summe   -- summe(n) aufrufen
-                ADD W I 4, SP   -- Stack bereinigen
-                MOVE W !SP+, R5   -- Rückgabe in Register R5
-                JUMP halte
+einstieg:       MOVE W I -1, -!SP
+                MOVE W n, -!SP
+                CALL summe
+                ADD W I 4, SP
+                MOVE W !SP+, R5
+                JUMP abschluss
 
--- summe von n..1
-summe:          PUSHR    -- interne Register sichern
+summe:          PUSHR
                 MOVE W 64+!SP, R0
                 CMP W R0, I 1
                 JEQ bottom
-                MOVE W I -1, -!SP  -- Platz fuer Rueckgabewert auf dem Stack machen
-                SUB W I 1, R0, -!SP  -- n-1 auf den Stack
-                CALL summe   -- summe(n) aufrufen
-                ADD W I 4, SP   -- Stack bereinigen
+                MOVE W I -1, -!SP
+                SUB W I 1, R0, -!SP
+                CALL summe
+                ADD W I 4, SP
                 ADD W !SP+, R0
                 JUMP fertig
+
 bottom:         MOVE W I 1, R0
 
 fertig:         MOVE W R0, 68+!SP
-                POPR    -- Register wieder herstellen
-                RET    -- zurueck zum Aufruf springen
+                POPR
+                RET
 
-halte:          HALT
-                END
+abschluss:      HALT
+END

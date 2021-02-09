@@ -1,14 +1,16 @@
-Start:          SEG
-                JUMP Beginn
+wurzel:
+SEG
+                JUMP einstieg
+
 q:              DD W 121
 
-Beginn:         MOVE W q, R2
-                MOVE W I 0 ,R4
-                MOVE W  q, R5
+einstieg:       MOVE W q, R2
+                MOVE W I 0, R4
+                MOVE W q, R5
                 MOVE W I 0, R6
 
 schleife:       CMP W R8, q
-                JEQ ende
+                JEQ abschluss
 
                 ADD W R4, R5, R6
                 DIV W I 2, R6, R6
@@ -21,6 +23,6 @@ schleife:       CMP W R8, q
 else:           MOVE W R6, R5
                 JUMP schleife
 
-ende:           MOVE W R6, R0
+abschluss:      MOVE W R6, R0
                 HALT
-                END
+END

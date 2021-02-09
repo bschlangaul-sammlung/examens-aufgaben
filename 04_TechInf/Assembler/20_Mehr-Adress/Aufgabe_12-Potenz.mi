@@ -1,17 +1,17 @@
-                SEG
+potenz:         SEG
                 MOVE W I H'10000',SP
-                JUMP start
+                JUMP einstieg
 
 n:              DD W 7
 a:              DD W 2
 
-start:          MOVE W I -1, -!SP
+einstieg:       MOVE W I -1, -!SP
                 MOVE W n, -!SP
                 MOVE W a, R0
                 CALL power
                 ADD W I 4, SP
                 MOVE W !SP+, R5
-                JUMP halte
+                JUMP abschluss
 
 power:          PUSHR
                 MOVE W 64+!SP, R2
@@ -30,5 +30,5 @@ fertig:         MOVE W R0, 68+!SP
                 POPR
                 RET
 
-halte:          HALT
-                END
+abschluss:      HALT
+END

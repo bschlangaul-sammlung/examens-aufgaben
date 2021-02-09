@@ -1,9 +1,10 @@
-Start:          SEG
-                JUMP Beginn
+fibonacci:
+SEG
+                JUMP einstieg
 
 n:              DD W 10
 
-Beginn:         MOVE W I 1, R2
+einstieg:       MOVE W I 1, R2
                 MOVE W I 0, R4
                 MOVE W n, R0
                 CMP W R0,I 0
@@ -20,11 +21,11 @@ While:          SUB W I 1, R0, R0
                 JUMP While
 
 istEins:        MOVE W R6, R5
-                JUMP ende
+                JUMP abschluss
 
 Null:           MOVE W R4, R5
-                JUMP ende
+                JUMP abschluss
 Eins:           MOVE W R2, R5
 
-ende:           HALT
-                END
+abschluss:      HALT
+END

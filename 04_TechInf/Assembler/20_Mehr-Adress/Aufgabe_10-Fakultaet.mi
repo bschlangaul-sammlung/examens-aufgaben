@@ -1,31 +1,41 @@
-                SEG
-                MOVE W I H'10000',SP
-                JUMP start
-n:              DD W 6
+fakultaet:
+SEG
+                MOVE W I H'10000', SP
+                JUMP einstieg
 
-start:          MOVE W I -1, -!SP
+-- int n = 7;
+n:              DD W 7
+
+einstieg:       MOVE W I -1, -!SP
                 MOVE W n, -!SP
-                CALL fakultaet
+                -- fak(n);
+                CALL fak
                 ADD W I 4, SP
                 MOVE W !SP+, R5
-                JUMP halte
+                JUMP abschluss
 
-fakultaet:      PUSHR
+-- private static int fak(int n)
+-- n -> R0
+fak:            PUSHR
                 MOVE W 64+!SP, R0
                 CMP W R0, I 1
-                JEQ bottom
+                -- if (n == 1) return 1;
+                JEQ gleich_eins
                 MOVE W I -1, -!SP
+                -- n - 1
                 SUB W I 1, R0, -!SP
-                CALL fakultaet
+                CALL fak
                 ADD W I 4, SP
+                -- n * fak(n - 1)
                 MULT W !SP+, R0
                 JUMP fertig
 
-bottom:         MOVE W I 1, R0
+-- return 1;
+gleich_eins:    MOVE W I 1, R0
 
 fertig:         MOVE W R0, 68+!SP
                 POPR
                 RET
 
-halte:          HALT
-                END
+abschluss:      HALT
+END

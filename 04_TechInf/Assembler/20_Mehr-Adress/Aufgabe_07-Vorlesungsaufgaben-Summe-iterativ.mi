@@ -1,9 +1,10 @@
-Start:          SEG
-                JUMP Beginn
+summe:
+SEG
+                JUMP einstieg
 
 n:              DD W 2
 
-Beginn:         MOVE W I 1, R2
+einstieg:       MOVE W I 1, R2
                 MOVE W I 1, R4
                 MOVE W n, R0
                 CMP W R0, I 0
@@ -21,12 +22,12 @@ While:          SUB W I 1, R0, R0
                 JUMP While
 
 istNull:        MOVE W I 0, R5
-                JUMP ende
+                JUMP abschluss
 
 istEins:        MOVE W I 1, R5
-                JUMP ende
+                JUMP abschluss
 
 istEnde:        MOVE W  R2, R5
 
-ende:           HALT
-                END
+abschluss:      HALT
+END

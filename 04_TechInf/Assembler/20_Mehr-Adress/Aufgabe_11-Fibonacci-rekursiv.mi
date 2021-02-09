@@ -1,15 +1,17 @@
-                SEG
-                MOVE W I H'10000',SP
-                JUMP start
+fibonacci:
+SEG
+                MOVE W I H'10000', SP
+
+                JUMP einstieg
 n:              DD W 6
 
-start:          MOVE W n, R0
+einstieg:       MOVE W n, R0
                 MOVE W I -1, -!SP
                 MOVE W R0, -!SP
                 CALL fibo
                 ADD W I 4, SP
                 MOVE W !SP+, R5
-                JUMP halte
+                JUMP abschluss
 
 fibo:           PUSHR
                 MOVE W 64+!SP, R0
@@ -36,5 +38,5 @@ fertig:         MOVE W R2, 68+!SP
                 POPR
                 RET
 
-halte:          HALT
-                END
+abschluss:     HALT
+END
