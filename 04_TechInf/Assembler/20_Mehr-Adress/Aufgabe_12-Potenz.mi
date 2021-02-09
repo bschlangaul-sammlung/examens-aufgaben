@@ -1,34 +1,40 @@
-potenz:         SEG
-                MOVE W I H'10000',SP
+potenz:
+SEG
+                MOVE W I H'10000', SP
                 JUMP einstieg
 
-n:              DD W 7
-a:              DD W 2
+power:          PUSHR
+                MOVE W 64+!SP, R2
+                -- if (n == 0)
+                CMP W R2, I 0
+                JEQ ist_null
+                MOVE W I -1, -!SP
+                -- n - 1
+                SUB W I 1, R2, -!SP
+                CALL power
+                ADD W I 4, SP
+                -- a * power(a, n - 1);
+                MULT W !SP+, R0
+                JUMP rueckgabe
+
+-- return 1;
+ist_null:       MOVE W I 1, R0
+
+rueckgabe:      MOVE W R0, 68+!SP
+                POPR
+                RET
 
 einstieg:       MOVE W I -1, -!SP
                 MOVE W n, -!SP
                 MOVE W a, R0
                 CALL power
                 ADD W I 4, SP
+                -- 3^4 = 81
                 MOVE W !SP+, R5
-                JUMP abschluss
+                HALT
 
-power:          PUSHR
-                MOVE W 64+!SP, R2
-                CMP W R2, I 1
-                JEQ bottom
-                MOVE W I -1, -!SP
-                SUB W I 1, R2, -!SP
-                CALL power
-                ADD W I 4, SP
-                MULT W !SP+, R0
-                JUMP fertig
-
-bottom:         MOVE W a, R0
-
-fertig:         MOVE W R0, 68+!SP
-                POPR
-                RET
-
-abschluss:      HALT
+-- int a = 3;
+a:              DD W 3
+-- int n = 4;
+n:              DD W 4
 END
