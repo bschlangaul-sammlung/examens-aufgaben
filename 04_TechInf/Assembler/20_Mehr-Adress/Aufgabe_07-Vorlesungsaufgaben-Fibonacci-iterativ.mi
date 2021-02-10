@@ -1,33 +1,56 @@
 -- Bestimmung der n-ten Fibonaccizahl (iterativ)
 
+-- n          R2
+-- vorletzte  R3
+-- letzte     R4
+-- erg        R5
+
 fibonacci_iterativ:
 SEG
                 JUMP einstieg
 
-n:              DD W 10
+solange:        -- while (n > 1)
+                CMP W R2, I 1
+                JLE abschluss
+                -- erg = letzte + vorletzte;
+                ADD W R3, R4, R5
+                -- vorletzte = letzte;
+                MOVE W R4, R3
+                -- letzte = erg;
+                MOVE W R5, R4
+                -- n--;
+                SUB W I 1, R2
+                JUMP solange
 
-einstieg:       MOVE W I 1, R2
-                MOVE W I 0, R4
-                MOVE W n, R0
-                CMP W R0, I 0
-                JEQ Null
-                CMP W R0, I 1
-                JEQ Eins
-
-While:          SUB W I 1, R0, R0
-                CMP W R0, I 0
-                JEQ istEins
-                ADD W R2, R4,R6
-                MOVE W R4,R2
-                MOVE W R6,R4
-                JUMP While
-
-istEins:        MOVE W R6, R5
+kl_gleich_eins: MOVE W R2, R5
                 JUMP abschluss
 
-Null:           MOVE W R4, R5
-                JUMP abschluss
-Eins:           MOVE W R2, R5
+einstieg:       MOVE W n, R2
+                -- if (n <= 1) return n;
+                CMP W R2, I 1
+                JLE kl_gleich_eins
+
+                -- int vorletzte = 0;
+                MOVE W I 0, R3
+                -- int letzte = 1;
+                MOVE W I 1, R4
+                -- int erg = 0;
+                MOVE W I 0, R5
+                JUMP solange
 
 abschluss:      HALT
+
+n:              DD W 7
+
+-- n:           DD W 0 -- 0
+-- n:           DD W 1 -- 1
+-- n:           DD W 2 -- 1
+-- n:           DD W 3 -- 2
+-- n:           DD W 4 -- 3
+-- n:           DD W 5 -- 5
+-- n:           DD W 6 -- 8
+-- n:           DD W 7 -- 13
+-- n:           DD W 8 -- 21
+-- n:           DD W 9 -- 34
+-- n:           DD W 10 -- 55
 END
