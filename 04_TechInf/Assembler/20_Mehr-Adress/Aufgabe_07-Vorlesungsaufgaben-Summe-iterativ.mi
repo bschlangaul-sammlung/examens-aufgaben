@@ -4,34 +4,26 @@ summe_iterativ:
 SEG
                 JUMP einstieg
 
-solange:        SUB W I 1, R0, R0
-                CMP W R0, I 0
-                JEQ ist_fertig
+-- erg R5
+-- n R4
 
-                ADD W I 1, R4
-                ADD W R2, R4,R2
-
+-- while (n > 0)
+solange:        CMP W R4, I 0
+                JEQ abschluss
+                -- erg = n + erg;
+                ADD W R4, R5
+                -- n--;
+                SUB W I 1, R4
                 JUMP solange
 
-ist_null:       MOVE W I 0, R5
-                JUMP abschluss
+einstieg:       MOVE W n, R4
+                -- int erg = 0;
+                MOVE W I 0, R5
+                JUMP solange
 
-ist_eins:       MOVE W I 1, R5
-                JUMP abschluss
-
--- Das Ergebnis sollte 28 sein.
-ist_fertig:     MOVE W R2, R5
-                JUMP abschluss
-
-einstieg:       MOVE W I 1, R2
-                MOVE W I 1, R4
-                MOVE W n, R0
-                CMP W R0, I 0
-                JEQ ist_null
-                CMP W R0, I 1
-                JEQ ist_eins
-
+-- Das Ergebnis sollte 28 sein, siehe R5.
 abschluss:      HALT
+
 -- int n = 7;
 n:              DD W 7
 END
