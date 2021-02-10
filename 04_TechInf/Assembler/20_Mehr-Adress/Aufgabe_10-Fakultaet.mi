@@ -28,7 +28,7 @@ fak:            PUSHR
                 MOVE W 64+!SP, R0
                 CMP W R0, I 1
                 -- if (n == 1) return 1;
-                JEQ gleich_eins
+                JEQ gleichEins
                 MOVE W I -1, -!SP
                 -- n - 1
                 SUB W I 1, R0, -!SP
@@ -39,7 +39,7 @@ fak:            PUSHR
                 JUMP fertig
 
 -- return 1;
-gleich_eins:    MOVE W I 1, R0
+gleichEins:     MOVE W I 1, R0
 
 fertig:         MOVE W R0, 68+!SP
                 POPR

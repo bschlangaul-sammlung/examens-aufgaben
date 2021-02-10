@@ -19,7 +19,7 @@ SEG
 fib:            PUSHR
                 MOVE W 64+!SP, R0
                 CMP W R0, I 2
-                JLE gib_eins
+                JLE gibEins
                 -- n - 1
                 SUB W I 1, R0, R0
                 -- n - 2
@@ -40,7 +40,7 @@ fib:            PUSHR
                 ADD W R4, R3, R2
                 JUMP rueckgabe
 
-gib_eins:       MOVE W I 1, R2
+gibEins:        MOVE W I 1, R2
 
 rueckgabe:      MOVE W R2, 68+!SP
                 POPR

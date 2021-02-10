@@ -15,7 +15,7 @@ power:          PUSHR
                 MOVE W 64+!SP, R2
                 -- if (n == 0)
                 CMP W R2, I 0
-                JEQ ist_null
+                JEQ istNull
                 MOVE W I -1, -!SP
                 -- n - 1
                 SUB W I 1, R2, -!SP
@@ -26,7 +26,7 @@ power:          PUSHR
                 JUMP rueckgabe
 
 -- return 1;
-ist_null:       MOVE W I 1, R0
+istNull:        MOVE W I 1, R0
 
 rueckgabe:      MOVE W R0, 68+!SP
                 POPR

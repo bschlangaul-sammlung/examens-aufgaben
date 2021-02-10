@@ -1,6 +1,6 @@
 -- Summe der ersten n Zahlen (rekursiv)
 
-summe_rekursiv:
+summeRekursiv:
 SEG
                 MOVE W I H'10000', SP
                 JUMP einstieg
@@ -10,7 +10,7 @@ SEG
 summe:          PUSHR
                 MOVE W 64+!SP, R4
                 CMP W R4, I 0
-                JEQ ist_null
+                JEQ istNull
                 MOVE W I -1, -!SP
                 -- n - 1
                 SUB W I 1, R4, -!SP
@@ -20,7 +20,7 @@ summe:          PUSHR
                 ADD W !SP+, R4
                 JUMP rueckgabe
 
-ist_null:       MOVE W I 0, R4
+istNull:        MOVE W I 0, R4
 
 rueckgabe:      MOVE W R4, 68+!SP
                 POPR

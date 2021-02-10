@@ -5,7 +5,7 @@
 -- letzte     R4
 -- erg        R5
 
-fibonacci_iterativ:
+fibonacciIterativ:
 SEG
                 JUMP einstieg
 
@@ -22,13 +22,13 @@ solange:        -- while (n > 1)
                 SUB W I 1, R2
                 JUMP solange
 
-kl_gleich_eins: MOVE W R2, R5
+klGleichEins:   MOVE W R2, R5
                 JUMP abschluss
 
 einstieg:       MOVE W n, R2
                 -- if (n <= 1) return n;
                 CMP W R2, I 1
-                JLE kl_gleich_eins
+                JLE klGleichEins
 
                 -- int vorletzte = 0;
                 MOVE W I 0, R3
