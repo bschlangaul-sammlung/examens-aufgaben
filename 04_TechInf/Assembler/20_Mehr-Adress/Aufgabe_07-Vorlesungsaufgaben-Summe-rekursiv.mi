@@ -1,32 +1,35 @@
-summe:
+-- Summe der ersten n Zahlen (rekursiv)
+
+summe_rekursiv:
 SEG
                 MOVE W I H'10000', SP
                 JUMP einstieg
-n:              DD W 4
-
-einstieg:       MOVE W I -1, -!SP
-                MOVE W n, -!SP
-                CALL summe
-                ADD W I 4, SP
-                MOVE W !SP+, R5
-                JUMP abschluss
 
 summe:          PUSHR
                 MOVE W 64+!SP, R0
                 CMP W R0, I 1
-                JEQ bottom
+                JEQ ist_eins
                 MOVE W I -1, -!SP
                 SUB W I 1, R0, -!SP
                 CALL summe
                 ADD W I 4, SP
                 ADD W !SP+, R0
-                JUMP fertig
+                JUMP rueckgabe
 
-bottom:         MOVE W I 1, R0
+ist_eins:       MOVE W I 1, R0
 
-fertig:         MOVE W R0, 68+!SP
+rueckgabe:      MOVE W R0, 68+!SP
                 POPR
                 RET
 
-abschluss:      HALT
+einstieg:       MOVE W I -1, -!SP
+                MOVE W n, -!SP
+                CALL summe
+                ADD W I 4, SP
+                -- Das Ergebnis sollte 28 sein.
+                MOVE W !SP+, R5
+                HALT
+
+-- int n = 7;
+n:              DD W 7
 END

@@ -1,33 +1,37 @@
-summe:
+-- Bestimmung der Summe der ersten n Zahlen (iterativ)
+
+summe_iterativ:
 SEG
                 JUMP einstieg
 
-n:              DD W 2
+solange:        SUB W I 1, R0, R0
+                CMP W R0, I 0
+                JEQ ist_fertig
+
+                ADD W I 1, R4
+                ADD W R2, R4,R2
+
+                JUMP solange
+
+ist_null:       MOVE W I 0, R5
+                JUMP abschluss
+
+ist_eins:       MOVE W I 1, R5
+                JUMP abschluss
+
+-- Das Ergebnis sollte 28 sein.
+ist_fertig:     MOVE W R2, R5
+                JUMP abschluss
 
 einstieg:       MOVE W I 1, R2
                 MOVE W I 1, R4
                 MOVE W n, R0
                 CMP W R0, I 0
-                JEQ istNull
+                JEQ ist_null
                 CMP W R0, I 1
-                JEQ istEins
-
-While:          SUB W I 1, R0, R0
-                CMP W R0, I 0
-                JEQ istEnde
-
-                ADD W I 1, R4
-                ADD W R2, R4,R2
-
-                JUMP While
-
-istNull:        MOVE W I 0, R5
-                JUMP abschluss
-
-istEins:        MOVE W I 1, R5
-                JUMP abschluss
-
-istEnde:        MOVE W  R2, R5
+                JEQ ist_eins
 
 abschluss:      HALT
+-- int n = 7;
+n:              DD W 7
 END
