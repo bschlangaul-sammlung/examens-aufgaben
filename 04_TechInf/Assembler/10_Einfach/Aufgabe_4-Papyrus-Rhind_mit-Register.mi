@@ -1,0 +1,35 @@
+papyrus_rhind: SEG
+JUMP start
+
+z1: 	DD W 9
+z2: 	DD W 9
+erg: 	DD W -1
+
+start: 
+	MOVE W I 9, R0
+	MOVE W I 9, R1
+	MOVE W I 0, R2
+
+solange: 
+	CMP W R0, I 0
+	JLE ende
+
+modulo:
+	-- nach rechts schieben
+	SH I -1, R0, R13
+	-- nach links schieben 
+	SH I 1, R13, R13
+	SUB W R13, R0, R12
+	JEQ zahlen_veraendern
+
+addieren: 
+	ADD W R2, R1, R2
+
+zahlen_veraendern:
+	DIV W I 2, R0, R0
+	MULT W I 2, R1, R1
+	JUMP solange
+
+ende: 	HALT
+
+END

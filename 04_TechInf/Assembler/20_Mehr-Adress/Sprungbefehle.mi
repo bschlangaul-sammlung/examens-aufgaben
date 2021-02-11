@@ -1,0 +1,13 @@
+spruchbefehle: SEG
+CMP W a, b 
+-- a > b wahr JLT falsch
+-- a < b wahr JGT falsch
+JGT falsch
+wahr: 
+		MOVE W I 42, R0
+		JUMP ende
+falsch: 	MOVE W I 23, R0
+ende: 		HALT
+a: 		DD W 1
+b: 		DD W 2
+END

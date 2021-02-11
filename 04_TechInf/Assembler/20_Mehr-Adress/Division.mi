@@ -1,0 +1,17 @@
+division: SEG
+-- dreiteilige Befehle
+-- 16 / 4 wird in Register 0 gespeichert
+DIV W I 4, I 16, R0 -- gibt 4
+DIV W I 4, I 17, R1 -- gibt auch 4
+DIV W b, a, erg
+MOVE W erg, R2
+
+-- zweiteiliger Befehle
+MOVE W I 16, R3
+DIV W I 4, R3
+
+HALT
+a: DD W 16 -- bei DD braucht man kein I
+b: DD W 4
+erg: DD W -1
+END
