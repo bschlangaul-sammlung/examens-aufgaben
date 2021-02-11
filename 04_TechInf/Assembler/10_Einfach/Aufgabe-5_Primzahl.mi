@@ -1,0 +1,46 @@
+primzahl: SEG
+JUMP start
+k: 	DD W 5
+a: 	DD W -1
+t: 	DD W -1
+erg: 	DD W -1
+
+start:
+	CMP W k, I 1
+	JEQ ist_keine_primzahl
+
+	-- a := 0
+	MOVE W I 0, a
+	-- t := 1
+	MOVE W I 1, t
+
+solange:
+	-- t := t + 1
+	ADD W I 1, t, t
+	
+	-- k % t == 0
+	DIV W t, k, R1
+	MULT W t, R1, R1
+	CMP W R1, t
+	JNE solange_bedingung
+	MOVE W I 1, a
+
+solange_bedingung:
+	CMP W a, I 0
+	JEQ solange
+
+	CMP W t, k
+	JNE ist_keine_primzahl
+
+ist_primzahl:
+	MOVE W I 1, erg
+	JUMP ende
+
+ist_keine_primzahl:
+	MOVE W I 0, erg
+
+ende:
+	MOVE W erg, R0
+	HALT
+
+END

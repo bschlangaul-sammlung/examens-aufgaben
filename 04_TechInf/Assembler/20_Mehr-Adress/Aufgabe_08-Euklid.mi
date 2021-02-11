@@ -1,12 +1,12 @@
 -- Euklidscher Algorithmus
 
--- Nach Euklid lässt sich der größte gemeinsamer Teiler zweier Zahlen a und b bestim-
+-- Nach Euklid laesst sich der groesste gemeinsamer Teiler zweier Zahlen a und b bestim-
 -- men mit:
 -- Wenn CD aber AB nicht misst, und man nimmt bei AB, CD abwechselnd immer das
--- kleinere vom größeren weg, dann muss (schließlich) eine Zahl übrig bleiben, die die
+-- kleinere vom groesseren weg, dann muss (schliesslich) eine Zahl uebrig bleiben, die die
 -- vorangehende misst.
--- Erstelle ein Assemblerprogramm, das seine beiden Parameter über zwei Variablen a
--- und b aus dem Speicher übernimmt und den ggt(a, b) berechnet. Das Ergebnis soll in
+-- Erstelle ein Assemblerprogramm, das seine beiden Parameter ueber zwei Variablen a
+-- und b aus dem Speicher uebernimmt und den ggt(a, b) berechnet. Das Ergebnis soll in
 -- R0 liegen.
 
 euklid:
@@ -14,6 +14,7 @@ SEG
 
 -- a R0
 -- b R1
+-- erg R0
 
 -- public static int euklid(int a, int b) {
 --   if (a == 0)
@@ -32,32 +33,34 @@ einstieg:       MOVE W a, R0
 
                 -- if (a == 0)
                 CMP W R0, I 0
-                JEQ gib_b_zurueck
+                JEQ gibBZurueck
 
 solange:
                 CMP W R1, I 0
-                JEQ gib_a_zurueck
+                JEQ gibAZurueck
                 -- if (a > b)
                 CMP W R0, R1
-                JLE differenz_b
+                JLE differenzB
 
                 -- a = a - b;
-differenz_a:    SUB W R1, R0
+differenzA:     SUB W R1, R0
                 JUMP solange
 
                 -- b = b - a;
-differenz_b:    SUB W R0, R1
+differenzB:     SUB W R0, R1
                 JUMP solange
 
                 -- return b;
-gib_b_zurueck:  MOVE W R1, R0
+gibBZurueck:    MOVE W R1, R0
                 HALT
 
                 -- return a;
-gib_a_zurueck:  HALT
+gibAZurueck:    HALT
 
 a:              DD W 7
 b:              DD W 49 -- 7
+
+-- Tests
 
 -- a:           DD W 3780
 -- b:           DD W 3528 -- 252
