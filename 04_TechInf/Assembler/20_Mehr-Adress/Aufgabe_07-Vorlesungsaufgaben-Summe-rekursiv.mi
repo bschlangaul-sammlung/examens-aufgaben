@@ -1,5 +1,12 @@
 -- Summe der ersten n Zahlen (rekursiv)
 
+-- public static int summe(int n) {
+--   if (n > 0)
+--     return n + summe(n - 1);
+--   else
+--     return 0;
+-- }
+
 summeRekursiv:
 SEG
                 MOVE W I H'10000', SP
@@ -9,6 +16,7 @@ SEG
 -- erg R5
 summe:          PUSHR
                 MOVE W 64+!SP, R4
+                -- if (n > 0)
                 CMP W R4, I 0
                 JEQ istNull
                 MOVE W I -1, -!SP
@@ -36,6 +44,8 @@ einstieg:       MOVE W I -1, -!SP
 
 -- int n = 7;
 n:              DD W 7 -- 28
+
+-- Tests
 
 -- n:              DD W 0 -- 0
 -- n:              DD W 1 -- 1
