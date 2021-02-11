@@ -4,31 +4,54 @@
 -- men. Erstelle ein Assemblerprogramm, dass zu einer Quadratzahl als Eingabe die
 -- Wurzel berechnet. Das Ergebnis soll in R0 liegen.
 
+-- Lösung mit Hilfe des Heron-Verfahrens
+
+-- public static int wurzelInt(int q) {
+--   // q = Quadratzahl
+--   // w = Quadratwurzel
+--   int w = q / 2;
+--   while (w * w - q > 0) {
+--     w = (w + q / w) / 2;
+--   }
+--   return w;
+-- }
+
+-- w (Quadratwurzel) R0
+-- q (Quadratzahl) R1
+-- tmp1 R2
+-- tmp2 R3
+
 wurzel:
 SEG
                 JUMP einstieg
 
-q:              DD W 121
+einstieg:
+                MOVE W q, R1
+                -- int w = q / 2;
+                MOVE W q, R0
+                DIV W I 2, R0
 
-einstieg:       MOVE W q, R2
-                MOVE W I 0, R4
-                MOVE W q, R5
-                MOVE W I 0, R6
+solange:        -- while (w * w - q > 0)
+                -- tmp1 = w * w
+                MULT W R0, R0, R2
+                -- tmp1 = tmp1 - q
+                SUB W R1, R2
+                -- tmp1 > 0
+                CMP W R2, I 0
+                JLE abschluss
 
-schleife:       CMP W R8, q
-                JEQ abschluss
+                -- w = (w + q / w) / 2;
+                -- tmp2 = q / w
+                DIV W R0, R1, R3
+                -- w = w + tmp2
+                ADD W R0, R3, R0
+                -- w = w / 2
+                DIV 2 I 2, R0
 
-                ADD W R4, R5, R6
-                DIV W I 2, R6, R6
-                MULT W R6, R6, R8
-                CMP W R8, q
-                JGT else
-                MOVE W R6, R4
-                JUMP schleife
+                JUMP solange
 
-else:           MOVE W R6, R5
-                JUMP schleife
+abschluss:      HALT
 
-abschluss:      MOVE W R6, R0
-                HALT
+q:              DD W 50
+
 END

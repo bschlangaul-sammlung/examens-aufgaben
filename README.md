@@ -365,8 +365,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/20_Mehr-Adress/Aufgabe_10-Fakultaet.pdf" download="Aufgabe_10-Fakultaet">„Fakultät“</a> (Mehr-Adress-Befehl-Assembler)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/20_Mehr-Adress/Aufgabe_11-Fibonacci.pdf" download="Aufgabe_11-Fibonacci">„Fibonacci-Zahlen“</a> (Mehr-Adress-Befehl-Assembler)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/20_Mehr-Adress/Aufgabe_12-Potenz.pdf" download="Aufgabe_12-Potenz">„Potenzberechnung“</a> (Mehr-Adress-Befehl-Assembler)
-
-Vorlesungsaufgaben
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/20_Mehr-Adress/Aufgabe_Beispiele.pdf" download="Aufgabe_Beispiele">„Beispiele“</a> (Mehr-Adress-Befehl-Assembler)
 
 # Aufgaben geordnet nach Staatsexamen
 
