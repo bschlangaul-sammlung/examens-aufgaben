@@ -17,9 +17,9 @@
 -- }
 
 -- w (Quadratwurzel) R0
--- q (Quadratzahl) R1
--- tmp1 R2
--- tmp2 R3
+-- q (Quadratzahl)   R1
+-- tmp1              R2
+-- tmp2              R3
 
 wurzel:
 SEG
@@ -46,7 +46,7 @@ solange:        -- while (w * w - q > 0)
                 -- w = w + tmp2
                 ADD W R0, R3, R0
                 -- w = w / 2
-                DIV 2 I 2, R0
+                DIV W I 2, R0
 
                 JUMP solange
 
