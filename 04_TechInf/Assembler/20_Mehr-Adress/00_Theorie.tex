@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-
+\liLadePakete{syntax}
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -53,8 +53,8 @@ MOVE B|H|W|F|D $a_1$, $a_2$\footcite[Seite 26]{borghoff}
 
 H'10000' = Hexadecimal literal
 
-HALT
-Besonderheit: Der HALT -Befehl führt bei der 4-RK-MI zum Halt aller vier Rechnerkerne.\footcite[Seite 32]{borghoff}
+HALT Besonderheit: Der HALT -Befehl führt bei der 4-RK-MI zum Halt aller
+vier Rechnerkerne.\footcite[Seite 32]{borghoff}
 
 Datendefinition
 
@@ -64,22 +64,82 @@ PUSHR push registers\footcite[Seite 26]{borghoff}
 
 POPR pop registers\footcite[Seite 26]{borghoff}
 
-Arithmetische Verknüpfungen
+\subsection{Arithmetische Verknüpfungen}
 
 ADD
 SUB
 MULT
 DIV \footcite[Seite 27]{borghoff}
 
-Unterprogrammsprung
+\begin{minted}{asm}
+SEG
+JUMP start
+a:              DD H 1
+b:              DD H 2
+erg:            DD H -1
 
+start:          ADD H a, b, erg
+                MOVE H erg, R0
+END
+\end{minted}
+
+\begin{minted}{asm}
+division:
+SEG
+                -- dreiteilige Befehle
+                -- 16 / 4 wird in Register 0 gespeichert
+                DIV W I 4, I 16, R0 -- gibt 4
+                DIV W I 4, I 17, R1 -- gibt auch 4
+                DIV W b, a, erg
+                MOVE W erg, R2
+
+                -- zweiteiliger Befehle
+                MOVE W I 16, R3
+                DIV W I 4, R3
+
+                HALT
+                a: DD W 16 -- bei DD braucht man kein I
+                b: DD W 4
+                erg: DD W -1
+END
+\end{minted}
+
+Unterprogrammsprung
 CALL\footcite[Seite 28]{borghoff}
 
 Unbedingter Sprungbefehl
 JUMP\footcite[Seite 28]{borghoff}
 
+\begin{minted}{asm}
+spruchbefehle:
+SEG
+                CMP W a, b
+                -- a > b wahr JLT falsch
+                -- a < b wahr JGT falsch
+                JGT falsch
+wahr:
+                MOVE W I 42, R0
+                JUMP ende
+falsch:         MOVE W I 23, R0
+ende:           HALT
+
+a:              DD W 1
+b:              DD W 2
+END
+\end{minted}
+
 Rückkehr aus Unterprogramm
-RETJUMP\footcite[Seite 29]{borghoff}
+RET\footcite[Seite 29]{borghoff}
+
+\begin{minted}{asm}
+schiebe_befehle:
+SEG
+                -- nach links schieben
+                SH I 1, I 1, R0 -- 1 -> 10
+                -- nach rechts schieben
+                SH I -1, I 5, R1 -- 101 -> 10
+END
+\end{minted}
 
 \literatur
 
