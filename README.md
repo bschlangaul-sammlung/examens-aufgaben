@@ -1177,6 +1177,8 @@ als Markdown-Liste eingebettet werden kann.
         - Adjazenzmatrix
         - Adjazenzliste
     - Master-Theorem
+- FUMUP:
+    - Funktionale Programmierung mit Haskell
 - SOSY:
     - Projektmanagement:
         - Software Engineering

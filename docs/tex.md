@@ -159,6 +159,9 @@ Kommandozeilen-Option `--shell-escape` kompiliert werden.
 * Makro: `\liMinispracheDatei{relativer-pfad}`: Relativer Pfad zu einer
   Minisprachen-Datei (Hochsprache für die Minimaschine von Albert
   Wiedemann).
+* Makro: `\liHaskellCode{haskell}`: Zum Setzen von Haskell-Code.
+* Makro: `\liHaskellDatei{relativer-pfad}`: Relativer Pfad zu einer
+  Haskell-Datei.
 
 ### `tabelle.sty`
 
