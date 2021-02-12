@@ -11,6 +11,15 @@
 -- sich Quadratgroessen damit beschreiben:
 -- Die Loesung der Berechnung soll zum Schluss in R5 liegen.
 
+-- public static int fib(int n) {
+--   if (n <= 0)
+--     return 0;
+--   else if (n == 1 || n == 2)
+--     return 1;
+--   else
+--     return fib(n - 1) + fib(n - 2);
+-- }
+
 fibonacci:
 SEG
                 MOVE W I H'0000FFFF', SP
@@ -18,8 +27,10 @@ SEG
 
 fib:            PUSHR
                 MOVE W 64+!SP, R0
+                CMP W R0, I 1
+                JLT gibNull
                 CMP W R0, I 2
-                JLE gibEins
+                JLT gibEins
                 -- n - 1
                 SUB W I 1, R0, R0
                 -- n - 2
@@ -38,6 +49,9 @@ fib:            PUSHR
                 ADD W !SP+, R4
                 -- fib(n - 1) + fib(n - 2)
                 ADD W R4, R3, R2
+                JUMP rueckgabe
+
+gibNull:        MOVE W I 0, R2
                 JUMP rueckgabe
 
 gibEins:        MOVE W I 1, R2

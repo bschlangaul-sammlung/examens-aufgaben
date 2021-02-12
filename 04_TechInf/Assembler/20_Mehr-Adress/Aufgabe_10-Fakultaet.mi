@@ -6,13 +6,20 @@
 -- benutzen.
 -- Das Ergebnis der Berechnung soll am Ende in R5 liegen.
 
+-- public static int fak(int n) {
+--   if (n <= 1) {
+--     return 1;
+--   } else {
+--     return n * fak(n - 1);
+--   }
+-- }
+
+-- erg          R5
+
 fakultaet:
 SEG
                 MOVE W I H'0000FFFF', SP
                 JUMP einstieg
-
--- int n = 7;
-n:              DD W 7
 
 einstieg:       MOVE W I -1, -!SP
                 MOVE W n, -!SP
@@ -22,13 +29,13 @@ einstieg:       MOVE W I -1, -!SP
                 MOVE W !SP+, R5
                 JUMP abschluss
 
--- private static int fak(int n)
+-- public static int fak(int n)
 -- n -> R0
 fak:            PUSHR
                 MOVE W 64+!SP, R0
                 CMP W R0, I 1
-                -- if (n == 1) return 1;
-                JEQ gleichEins
+                -- if (n <= 1) return 1;
+                JLE klGleichEins
                 MOVE W I -1, -!SP
                 -- n - 1
                 SUB W I 1, R0, -!SP
@@ -36,14 +43,30 @@ fak:            PUSHR
                 ADD W I 4, SP
                 -- n * fak(n - 1)
                 MULT W !SP+, R0
-                JUMP fertig
+                JUMP rueckgabe
 
 -- return 1;
-gleichEins:     MOVE W I 1, R0
+klGleichEins:   MOVE W I 1, R0
 
-fertig:         MOVE W R0, 68+!SP
+rueckgabe:      MOVE W R0, 68+!SP
                 POPR
                 RET
 
 abschluss:      HALT
+
+-- int n = 7;
+n:              DD W 7
+
+-- Tests
+
+-- n:           0 -- 1
+-- n:           1 -- 1
+-- n:           2 -- 2
+-- n:           3 -- 6
+-- n:           4 -- 24
+-- n:           5 -- 120
+-- n:           6 -- 720
+-- n:           7 -- 5040
+-- n:           8 -- 40320
+-- n:           9 -- 362880
 END
