@@ -1,0 +1,27 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{QuickSort}
+\section{
+\index{Funktionale Programmierung mit Haskell}
+\footcite{fumup:ab:3}}
+
+Implementiere ebenfalls in der Datei Sortierverfahren.hs die Funktion
+quickSort, die den Quicksort-Algorithmus umsetzt. Sie erhält eine
+unsortierte Liste mit Elementen (auf denen eine Ordnung definiert ist),
+sortiert diese in aufsteigender Reihenfolge und gibt die sortierte Liste
+zurück. Die Signatur der Sortierfunktion lautet:
+\liHaskellCode{quickSort :: (Ord a) => [a] -> [a]}
+
+Falls eine leere Liste übergeben wird, ist das Ergebnis die leere Liste.
+Ansonsten wird das erste Element der Liste als Pivot-Element gewählt. Es
+soll nun für zwei Teillisten (die mittels Listengenerator erzeugt werden
+sollen und eine Liste alle Elemente kleiner gleich dem Pivot-Element und
+die andere Liste alle Elemente größer dem Pivot-Element enthält) die
+Funktion \liHaskellCode{quickSort} (Rekursion!) aufgerufen werden. Dabei
+sollen die beiden Teillisten mit dem Pivot-Element in der Mitte
+konkateniert werden. (Tipp: Diese Funktion kann (ausgenommen von der
+Signatur und der Abbruchbedingung der Rekursion) als Einzeiler
+programmiert werden.)
+
+\end{document}
