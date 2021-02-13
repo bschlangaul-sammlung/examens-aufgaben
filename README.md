@@ -348,14 +348,14 @@ Weitere Aufgaben zum Thema „SQL“:
 
 ### Ein-Adress-Befehl-Assembler
 
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Einfach/Aufgabe_01-Vorlesungsaufgaben.pdf" download="Aufgabe_01-Vorlesungsaufgaben">„Vorlesungsaufgaben“</a> (Ein-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Einfach/Aufgabe_02-Abitur-2013-III-Fakultaet.pdf" download="Aufgabe_02-Abitur-2013-III-Fakultaet">„Abitur 2013 III“</a> (Ein-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Einfach/Aufgabe_03-Abitur-2013-IV-Pulverdosen.pdf" download="Aufgabe_03-Abitur-2013-IV-Pulverdosen">„Pulverdosen“</a> (Ein-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Einfach/Aufgabe_04-Abitur-2015-IV-Papyrus-Rhind.pdf" download="Aufgabe_04-Abitur-2015-IV-Papyrus-Rhind">„Papyrus Rhind“</a> (Ein-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Einfach/Aufgabe_05-Abitur-2017-IV-Primzahl.pdf" download="Aufgabe_05-Abitur-2017-IV-Primzahl">„Primzahl“</a> (Ein-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Einfach/Aufgabe_06-Abitur-2019-IV-Collatz.pdf" download="Aufgabe_06-Abitur-2019-IV-Collatz">„Collatz“</a> (Ein-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Einfach/Aufgabe_Abitur-2018-III.pdf" download="Aufgabe_Abitur-2018-III">„Abitur 2018“</a> (Ein-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Einfach/Aufgabe_Abitur-2018-IV.pdf" download="Aufgabe_Abitur-2018-IV">„funkyFunction“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Ein-Adress/Aufgabe_01-Vorlesungsaufgaben.pdf" download="Aufgabe_01-Vorlesungsaufgaben">„Vorlesungsaufgaben“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Ein-Adress/Aufgabe_02-Abitur-2013-III-Fakultaet.pdf" download="Aufgabe_02-Abitur-2013-III-Fakultaet">„Abitur 2013 III“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Ein-Adress/Aufgabe_03-Abitur-2013-IV-Pulverdosen.pdf" download="Aufgabe_03-Abitur-2013-IV-Pulverdosen">„Pulverdosen“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Ein-Adress/Aufgabe_04-Abitur-2015-IV-Papyrus-Rhind.pdf" download="Aufgabe_04-Abitur-2015-IV-Papyrus-Rhind">„Papyrus Rhind“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Ein-Adress/Aufgabe_05-Abitur-2017-IV-Primzahl.pdf" download="Aufgabe_05-Abitur-2017-IV-Primzahl">„Primzahl“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Ein-Adress/Aufgabe_06-Abitur-2019-IV-Collatz.pdf" download="Aufgabe_06-Abitur-2019-IV-Collatz">„Collatz“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Ein-Adress/Aufgabe_Abitur-2018-III.pdf" download="Aufgabe_Abitur-2018-III">„Abitur 2018“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Ein-Adress/Aufgabe_Abitur-2018-IV.pdf" download="Aufgabe_Abitur-2018-IV">„funkyFunction“</a> (Ein-Adress-Befehl-Assembler)
 
 ### Mehr-Adress-Befehl-Assembler
 
@@ -1291,6 +1291,8 @@ als Markdown-Liste eingebettet werden kann.
 - Technische Informatik:
     - Ein-Adress-Befehl-Assembler
     - Mehr-Adress-Befehl-Assembler
+- Theoretische Informatik:
+    - Reguläre Sprache
 
 
 {{ einbinden "docs/tex.md" }}
