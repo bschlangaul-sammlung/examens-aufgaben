@@ -46,6 +46,10 @@ Zum Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.
 
 ## Pakete
 
+### `automaten.sty`
+
+Zum Setzen von Automaten.
+
 ### `baum.sty`
 
 Zum Setzen von Binär- und AVL-Bäumen. Hüll-Paket um TikZ and tikz-qtree.

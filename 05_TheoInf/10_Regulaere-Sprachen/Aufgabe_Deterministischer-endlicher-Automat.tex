@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{automaten}
 \begin{document}
 \liAufgabenTitel{Deterministischer endlicher Automat}
 \section{Deterministischer endlicher Automat
@@ -9,5 +9,26 @@
 Geben Sie einen DFA über dem Alphabet $\sum = \{0, 1\}$ an, der die
 folgende Sprache erkennt: Die Menge aller Zeichenketten, die eine durch
 4 teilbare Anzahl von Einsen besitzt.
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[->,node distance=2cm]
+\node[state,accepting] (0) {$z_0$};
+\node[state,right of=0] (1) {$z_1$};
+\node[state,right of=1] (2) {$z_2$};
+\node[state,right of=2] (3) {$z_3$};
+
+\path (0) edge[above] node{1} (1);
+\path (1) edge[above] node{1} (2);
+\path (2) edge[above] node{1} (3);
+\path (3) edge[bend left,above] node{1} (0);
+
+\path (0) edge[loop,above] node{0} (0);
+\path (1) edge[loop,above] node{0} (1);
+\path (2) edge[loop,above] node{0} (2);
+\path (3) edge[loop,above] node{0} (3);
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
 
 \end{document}
