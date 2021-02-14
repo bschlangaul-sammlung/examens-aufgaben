@@ -163,6 +163,10 @@ Kommandozeilen-Option `--shell-escape` kompiliert werden.
 * Makro: `\liHaskellDatei{relativer-pfad}`: Relativer Pfad zu einer
   Haskell-Datei.
 
+### `syntaxbaum.sty`
+
+Zum Setzen von Syntaxbäumen mit Hilfe des Pakets `tikz-qtree`.
+
 ### `tabelle.sty`
 
 Lädt das Paket tabluarx
