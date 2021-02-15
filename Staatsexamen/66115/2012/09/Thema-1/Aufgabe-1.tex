@@ -7,8 +7,14 @@
 \footcite{theoinf:ab:1}}
 
 Wir fixieren das Alphabet $\Sigma = \{a, b\}$ und definieren $L
-\subseteq \Sigma^∗$ durch $L = \{ w \,|\, \text{in w kommt das Teilwort
-\texttt{bab} vor} \}$ z.\,B. ist \texttt{babaabb} $\in L$, aber
+\subseteq \Sigma^∗$ durch
+
+\begin{center}
+$L = \{ w \,|\, \text{in } w \text{ kommt das Teilwort
+\texttt{bab} vor} \}$
+\end{center}
+
+z.\,B. ist \texttt{babaabb} $\in L$, aber
 \texttt{baabaabb} $\notin L$. Der folgende nichtdeterministische
 Automat $A$ erkennt $L$:\footcite{examen:66115:2012:09}
 
@@ -34,6 +40,19 @@ Automat $A$ erkennt $L$:\footcite{examen:66115:2012:09}
 geben Sie den resultierenden deterministischen Automaten an. Nicht
 erreichbare Zustände sollen nicht dargestellt werden.
 
+\begin{liAntwort}
+
+Zustandsmengen
+
+\begin{description}
+\item[$Z_0$]: $\{z_0 \}$
+\item[$Z_1$]: $\{z_0, z_1 \}$
+\item[$Z_2$]: $\{z_0, z_2 \}$
+\item[$Z_3$]: $\{z_0, z_1, z_3 \}$
+\item[$Z_4$]: $\{z_0, z_2, z_3 \}$
+\item[$Z_5$]: $\{z_0, z_3 \}$
+\end{description}
+
 \begin{tabular}{l|l|l}
 
 Zustandsmenge & Eingabe a & Eingabe b \\\hline
@@ -42,15 +61,15 @@ $\{z_0 \}$ & $\{z_0 \}$ & $\{z_0, z_1 \}$ \\
 
 $\{z_0, z_1 \}$ & $\{z_0, z_2 \}$ & $\{z_0, z_1 \}$ \\
 
-$\{z_0, z_2 \}$ & $\{z_0, \}$ & $\{z_0, z_1, z_3 \}$ \\
+$\{z_0, z_2 \}$ & $\{z_0 \}$ & $\{z_0, z_1, z_3 \}$ \\
 
 $\{z_0, z_1, z_3 \}$ & $\{z_0, z_2, z_3 \}$ & $\{z_0, z_1, z_3 \}$ \\
 
 $\{z_0, z_2, z_3 \}$ & $\{z_0, z_3 \}$ &  $\{z_0, z_1, z_3 \}$ \\
 
 $\{z_0, z_3 \}$ & $\{z_0, z_3 \}$ & $\{z_0, z_1, z_3 \}$\\
-
 \end{tabular}
+\end{liAntwort}
 
 \item Konstruieren Sie aus dem so erhaltenen deterministischen Automaten
 den Minimalautomaten für $L$. Beschreiben Sie dabei die Arbeitsschritte
