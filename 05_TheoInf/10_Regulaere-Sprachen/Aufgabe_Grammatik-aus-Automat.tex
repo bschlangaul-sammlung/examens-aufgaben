@@ -1,0 +1,36 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{automaten}
+\begin{document}
+\liAufgabenTitel{Grammatik aus Automat}
+\section{Grammatik aus Automat
+\index{Reguläre Sprache}
+\footcite{theoinf:ab:1}}
+
+Sei $M = (\{q_0, q_1, q_2 \}, \{a, b\}, \sigma, q_0, \{q 2\})$ ein
+endlicher Automat. Die Übergangsfunktion sei wie in dem unten
+abgebildeten Diagramm definiert.
+
+\begin{center}
+\begin{tikzpicture}[->]
+\node[state] (0) at (0,0) {$q_0$};
+\node[state] (1) at (2,2) {$q_1$};
+\node[state,accepting] (2) at (4,0) {$q_2$};
+
+\path (0) edge[above] node{a} (2);
+\path (2) edge[above,bend left] node{b} (0);
+\path (0) edge[above] node{b} (1);
+\path (1) edge[above] node{b} (2);
+\path (2) edge[above,bend left] node{a} (1);
+\path (1) edge[loop,above] node{a} (1);
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+\item Gebe eine reguläre Grammatik $G$ an, sodass $L(G) = L(M)$ gilt.
+
+\item ̈Überlege dir ein systematisches Verfahren, um einen
+deterministischen endlichen Automaten in eine reguläre Grammatik
+umzuwandeln.
+\end{enumerate}
+
+\end{document}

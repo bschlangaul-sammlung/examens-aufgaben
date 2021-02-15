@@ -9,9 +9,9 @@
 Gegeben sind die folgenden Sprachen über dem Alphabet $\Sigma = \{a, b\}$:
 
 \begin{itemize}
-\item $L_0 = \{w \,|\, w \text{ enthält mindestens ein bb}\}$
-\item $L_1 = \{w \,|\, w \text{ endet auf höchstens ein b}\}$
-\item $L_2 = \{w \,|\, w \text{ fängt mit aa an oder hört mit bb auf}\}$
+\item $L_0 = \{w \,|\, w \text{ enthält mindestens ein \emph{bb}}\}$
+\item $L_1 = \{w \,|\, w \text{ endet auf höchstens ein \emph{b}}\}$
+\item $L_2 = \{w \,|\, w \text{ fängt mit \emph{aa} an oder hört mit \emph{bb} auf}\}$
 \end{itemize}
 \begin{enumerate}
 
@@ -20,6 +20,60 @@ Gegeben sind die folgenden Sprachen über dem Alphabet $\Sigma = \{a, b\}$:
 %%
 
 \item Gib zu allen Sprachen eine reguläre Grammatik an.
+
+\begin{liAntwort}
+
+\begin{description}
+%%
+%
+%%
+
+\item[$G_0$]
+
+$= (V, \Sigma, P, S)$ mit $V = \{S, A, B\}$, $\Sigma = \{a, b\}$, $S = S$ und mit $P =$
+
+S $\rightarrow$ aS | bA
+
+A $\rightarrow$ aS | bB | b
+
+B $\rightarrow$ aB | a | bB | b
+
+%%
+%
+%%
+
+\item[$G_1$]
+
+$= (V, \Sigma, P, S)$ mit $V = \{S, A, B\}$, $\Sigma = \{a, b\}$, $S = S$ und mit $P =$
+
+S $\rightarrow$ aS | bA | b
+
+A $\rightarrow$ aS | bB
+
+B $\rightarrow$ aS | bB
+
+%%
+%
+%%
+
+\item[$G_2$]
+
+$= (V, \Sigma, P, S)$ mit $V = \{S, A, B, C, D, E\}$, $\Sigma = \{a, b\}$, $S = S$ und mit $P =$
+
+S $\rightarrow$ aA | bC
+
+A $\rightarrow$ aB | a | bC
+
+B $\rightarrow$ aB | a | bB | b
+
+C $\rightarrow$ aD | bE | b
+
+D $\rightarrow$ bC | aD
+
+E $\rightarrow$ bE | b | aD
+
+\end{description}
+\end{liAntwort}
 
 %%
 % (b)
@@ -34,11 +88,28 @@ anhand der erstellten Grammatiken aus der Teilaufgabe a) an:
 \item zum Wort \emph{aabb} aus der Sprache $L_2$.
 \end{itemize}
 
+\begin{liAntwort}
+\begin{description}
+\item[$Ab_0$] = S $\rightarrow$ aS $\rightarrow$ abA $\rightarrow$ abbB $\rightarrow$ aabb
+\item[$Ab_1$] = S $\rightarrow$ bA $\rightarrow$ baS $\rightarrow$ baaS $\rightarrow$ baab
+\item[$Ab_2$] = S $\rightarrow$ aA $\rightarrow$ aaB $\rightarrow$ aabB $\rightarrow$ aabb
+\end{description}
+
+\end{liAntwort}
 %%
 % (c)
 %%
 
 \item Gib zu allen Sprachen einen regulären Ausdruck an.
+\begin{liAntwort}
+\begin{description}
+\item[$Reg_0$] $=$ \texttt{(a|b)*bb(a|b)*}
+
+\item[$Reg_1$] $=$ \texttt{(b*a+)*b}
+
+\item[$Reg_2$] $=$ \texttt{(aa(a|b)*)|((a|b)*bb)}
+\end{description}
+\end{liAntwort}
 
 %%
 % (d)

@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-\liLadePakete{mathe,syntaxbaum}
+\liLadePakete{mathe,syntaxbaum,automaten}
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric,calc}
 \begin{document}
@@ -145,6 +145,45 @@ Syntaxbaum zu 100101
 ]
 \end{tikzpicture}
 \end{center}
+
+\section{Deterministische endliche Automaten}
+
+Ein deterministischer endlicher Automat (DEA; englisch deterministic
+finite state machine oder deterministic finite automaton, DFA) ist ein
+endlicher Automat, der unter Eingabe eines Zeichens seines
+Eingabealphabetes (den möglichen Eingaben) von einem Zustand, in dem er
+sich befindet, in einen eindeutig bestimmten Folgezustand wechselt.
+\footcite{wiki:dea}
+
+Automaten sind deterministisch, wenn es in jedem Zustand für jedes
+Eingabesymbol höchstens einen (in einem vollständigen Automaten genau
+einen) Folgezustand gibt.
+\footcite[Seite 28]{vossen}
+
+\section{Nichtdeterministische endliche Automaten}
+
+Ein nichtdeterministischer endlicher Automat (NEA; englisch
+nondeterministic finite automaton, NFA) ist ein endlicher Automat, bei
+dem es für den \memph{Zustandsübergang mehrere gleichwertige
+Möglichkeiten} gibt. Im Unterschied zum deterministischen endlichen
+Automaten sind die Möglichkeiten nicht eindeutig, dem Automaten ist also
+nicht vorgegeben, welchen Übergang er zu wählen hat.\footcite{wiki:nea}
+
+\begin{center}
+\begin{tikzpicture}[->]
+\node[state,initial] (p) {p};
+\node[state,accepting,right=of p] (q) {q};
+
+\path (p) edge[above] node{1} (q);
+
+\path (p) edge[loop,above] node{0,1} (q);
+\end{tikzpicture}
+\end{center}
+
+Nichtdeterministische endliche Automaten sind Automaten, in denen es zu
+einem Zustand und einem Eingabesymbol mehrere Folgezustände geben kann.
+\footcite[Seite 28]{vossen}
+
 \literatur
 
 \end{document}
