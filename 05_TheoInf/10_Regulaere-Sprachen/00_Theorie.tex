@@ -146,6 +146,10 @@ Syntaxbaum zu 100101
 \end{tikzpicture}
 \end{center}
 
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
 \section{Deterministische endliche Automaten}
 
 Ein deterministischer endlicher Automat (DEA; englisch deterministic
@@ -159,6 +163,20 @@ Automaten sind deterministisch, wenn es in jedem Zustand für jedes
 Eingabesymbol höchstens einen (in einem vollständigen Automaten genau
 einen) Folgezustand gibt.
 \footcite[Seite 28]{vossen}
+
+Ein DEA/DFA ist ein 5-Tupel ($Z, \Sigma, \sigma, E, z_0$) mit
+
+\begin{description}
+\item[$Z$:] Menge der Zustände (endlich)
+\item[$\Sigma$:] Eingabealphabet mit (endlich)
+\item[$\delta$:] $Z \times \Sigma \rightarrow Z$ Zustandsübergangsfunktion
+\item[$E$:] Menge der Endzustände
+\item[$z_0$:] Startzustand\footcite[Seite 26]{theoinf:fs:1}
+\end{description}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
 
 \section{Nichtdeterministische endliche Automaten}
 
@@ -183,6 +201,22 @@ nicht vorgegeben, welchen Übergang er zu wählen hat.\footcite{wiki:nea}
 Nichtdeterministische endliche Automaten sind Automaten, in denen es zu
 einem Zustand und einem Eingabesymbol mehrere Folgezustände geben kann.
 \footcite[Seite 28]{vossen}
+
+Ein NEA/NFA ist ein 5-Tupel ($Z, \Sigma, \sigma, E, z_0$) mit
+
+\begin{description}
+\item[$Z$:] Menge der Zustände (endlich)
+\item[$\Sigma$:] Eingabealphabet mit (endlich)
+\item[$\delta$:] $Z \times \Sigma \rightarrow 2^Z$ Zustandsübergangsfunktion
+\item[$E$:] Menge der Endzustände
+\item[$z_0$:] Startzustand\footcite[Seite 30]{theoinf:fs:1}
+\end{description}
+
+Potenzmenge
+
+Beispiel: $Z = \{z_1, z_2\}$
+
+$2^Z = \{\{\}, \{z_1 \}, \{z_2 \}, \{z_1 , z_2 \}\}$
 
 \literatur
 
