@@ -1,21 +1,76 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{mathe}
 \begin{document}
 \liAufgabenTitel{Vorlesungsaufgaben}
 \section{Vorlesungsaufgaben
-\index{Reguläre Sprache}
-\footcite{theoinf:ab:1}}
+\index{Reguläre Sprache}}
 
-\section{Übung zu regulären Grammatiken}
+\section{Übung zu regulären Grammatiken\footcite[Seite 21]{theoinf:fs:1}}
 
-Gegeben ist eine Sprache $L \in \Sigma^*$ mit $\Sigma = \{a ,b\}$. Zu
+Gegeben ist eine Sprache $L \subset \Sigma^*$ mit $\Sigma = \{a, b\}$. Zu
 der Sprache $L$ gehören alle Wörter, die die Zeichenfolge $abba$
 beinhalten.
 
 \begin{enumerate}
 \item Gib eine Grammatik an, die diese Sprache erzeugt.
 
+% https://flaci.com/Gib2h94ar
+\begin{liAntwort}
+S $\rightarrow$ aS | aB | bS | bA
+
+A $\rightarrow$ aB
+
+B $\rightarrow$ bC
+
+C $\rightarrow$ bD
+
+D $\rightarrow$ aE
+
+E $\rightarrow$ aE | bE | a | b | $\epsilon$
+\end{liAntwort}
+
 \item Gib eine Ableitung/Syntaxbaum zu deiner Grammatik für das Wort
 \texttt{aabbab} an.
+
+\begin{liAntwort}
+S $\rightarrow$
+aS $\rightarrow$
+aaB $\rightarrow$
+aabC $\rightarrow$
+aabbD $\rightarrow$
+aabbaE $\rightarrow$
+aabbab
+\end{liAntwort}
 \end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Übungen zu regulären Ausdrücken\footcite[Seite 21]{theoinf:fs:1}}
+
+\begin{enumerate}
+\item Gegeben ist eine Sprache $L \subset \Sigma^*$ mit $\Sigma =
+\{a,b\}$. Zu der Sprache $L$ gehören alle Wörter, die die Zeichenfolge
+\texttt{abba} beinhalten.
+
+Gib einen regulären Ausdruck für diese Sprache an.
+
+Gebe möglichst einfache reguläre Ausdrücke für die folgenden
+Sprachen $L \subset \Sigma^*$ mit $\Sigma = \{a,b\}$ und x ∈ {1,2,3}.
+
+\begin{description}
+\item[$L_1$] = $\{ x | x \text{ beinhaltet eine gerade Anzahl von } a \}$
+
+\item[$L_2$] = $\{ x | x \text{ beinhaltet eine ungerade Anzahl von } b \}$
+
+\item[$L_3$] = $\{ x | x \text{ beinhaltet an seinen geradzahligen Positionen ausschließlich } a \}$
+\end{description}
+
+\item Gib einen regulären Ausdruck der eine syntaktisch gültige
+E-Mail-Adresse erkennt. (mindestens 1 Zeichen (Groß-/Kleinbuchstabe oder
+Zahl) vor dem @; mindestens 1 Zeichen (Groß-/Kleinbuchstabe oder Zahl)
+nach dem @; alle E-Mail-Adressen sollen auf .de oder .com enden
+\end{enumerate}
+
 \end{document}
