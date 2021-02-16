@@ -1,0 +1,89 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{Arztpraxis und Autohauskette}
+\section{Aufgabe 4: Reguläre Ausdrücke in JAVA:
+Abitur 2018 Inf2. IV. 1. und Abitur 2015 Inf2. III. 2.
+\index{Reguläre Sprache}
+\footcite{theoinf:ab:1}}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Die Software einer Arztpraxis ermöglicht unter anderem die
+Erstellung von Rechnungen für die Patienten. Dabei muss eine
+Rechnungskennzahl angegeben werden, die wie folgt aufgebaut ist:
+
+\begin{itemize}
+\item zwei Buchstaben für die Initialen des Patienten (erster Buchstabe
+des Nachnamens gefolgt vom ersten Buchstaben des Vornamens)
+
+\item Bindestrich
+
+\item Patientennummer beliebiger Länge, die aus den Ziffern 0 bis 9
+besteht, aber nicht mit 0 beginnt
+
+\item Versicherungsart: P bei Privatpatienten, G bei gesetzlich
+Versicherten
+
+\item nur bei gesetzlich Versicherten: zweistellige
+Versicherungskennzahl (Nummern im Bereich von 01 bis 12)
+
+\item Bindestrich
+
+\item fortlaufende Rechnungsnummer, die aus beliebig vielen Ziffern von
+0 bis 9 besteht, aber nicht mit 0 beginnt
+
+\end{itemize}
+
+Beispiele:
+
+Privatpatient Ingo Matik mit der Patientennummer 32 erhält seine 9.
+Rechnung. Die zugehörige Rechnungskennzahl ist: MI-32P-9.
+
+Seine Frau Martha Matik mit der Patientennummer 1234, die gesetzlich bei
+einer Versicherung mit der Kennzahl 07 versichert ist, erhält ihre 12.
+Rechnung. Die zugehörige Rechnungskennzahl ist: MM-1234G07-12. Für die
+Darstellung der Rechnungskennzahl stehen das lateinische Alphabet der
+Großbuchstaben, die Ziffern 0 bis 9 und der Bindestrich zur Verfügung.
+
+Stelle einen regulären Ausdruck für die Rechnungskennzahl in
+Java-Schreibweise auf.
+
+\begin{liAntwort}
+\liJavaDatei[firstline=3]{aufgaben/theo_inf/regulaere_ausdruecke/KrankenversicherungsNummer}
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item Um in die zentrale Personalabteilung der Autohauskette zu
+gelangen, muss man vor der Sicherheitstür ein aus genau drei Zeichen
+bestehendes Passwort eingeben. Dieses wird jährlich gemäß den
+folgenden Vorgaben der Firma festgelegt:
+
+\begin{itemize}
+\item Das Passwort muss mindestens einen Kleinbuchstaben und eine Ziffer
+enthalten;
+
+\item es darf nicht mit einem der 32 Sonderzeichen (z.B.*, §, ...)
+beginnen;
+
+\item Großbuchstaben sind an keiner Stelle zugelassen.
+
+Stelle einen regulären Ausdruck für die Rechnungskennzahl in
+Java-Schreibweise auf.
+\end{itemize}
+
+\begin{liAntwort}
+\begin{liAntwort}
+\liJavaDatei[firstline=3]{aufgaben/theo_inf/regulaere_ausdruecke/PasswortTuer}
+\end{liAntwort}
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}
