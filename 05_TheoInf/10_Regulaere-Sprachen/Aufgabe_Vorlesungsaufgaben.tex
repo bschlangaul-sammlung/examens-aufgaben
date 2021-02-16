@@ -50,27 +50,87 @@ aabbab
 \section{Übungen zu regulären Ausdrücken\footcite[Seite 21]{theoinf:fs:1}}
 
 \begin{enumerate}
+
+%%
+%
+%%
+
 \item Gegeben ist eine Sprache $L \subset \Sigma^*$ mit $\Sigma =
 \{a,b\}$. Zu der Sprache $L$ gehören alle Wörter, die die Zeichenfolge
 \texttt{abba} beinhalten.
 
 Gib einen regulären Ausdruck für diese Sprache an.
 
-Gebe möglichst einfache reguläre Ausdrücke für die folgenden
-Sprachen $L \subset \Sigma^*$ mit $\Sigma = \{a,b\}$ und x ∈ {1,2,3}.
+\begin{liAntwort}
+(a|b)*abba(a|b)*
+\end{liAntwort}
+
+%%
+%
+%%
+
+\item Gebe möglichst einfache reguläre Ausdrücke für die folgenden
+Sprachen $L_x \subset \Sigma^*$ mit $\Sigma = \{a,b\}$ und $x \in \{1, 2, 3\}$.
 
 \begin{description}
 \item[$L_1$] = $\{ x | x \text{ beinhaltet eine gerade Anzahl von } a \}$
 
+\begin{liAntwort}
+\texttt{.*(aa)+.*} oder \texttt{(a|b)*(aa)(a|b)*}
+\end{liAntwort}
+
 \item[$L_2$] = $\{ x | x \text{ beinhaltet eine ungerade Anzahl von } b \}$
 
+\begin{liAntwort}
+\texttt{.*b(bb)*.*} oder \texttt{(a|b)*b(bb)*(a|b)*}
+\end{liAntwort}
+
 \item[$L_3$] = $\{ x | x \text{ beinhaltet an seinen geradzahligen Positionen ausschließlich } a \}$
+
+\begin{liAntwort}
+\texttt{((a|b)a)*}
+\end{liAntwort}
 \end{description}
+
+%%
+%
+%%
 
 \item Gib einen regulären Ausdruck der eine syntaktisch gültige
 E-Mail-Adresse erkennt. (mindestens 1 Zeichen (Groß-/Kleinbuchstabe oder
-Zahl) vor dem @; mindestens 1 Zeichen (Groß-/Kleinbuchstabe oder Zahl)
-nach dem @; alle E-Mail-Adressen sollen auf .de oder .com enden
+Zahl) vor dem \texttt{@}; mindestens 1 Zeichen (Groß-/Kleinbuchstabe
+oder Zahl) nach dem \texttt{@}; alle E-Mail-Adressen sollen auf
+\texttt{.de} oder \texttt{.com} enden.
+
+\begin{liAntwort}
+\texttt{[a-zA-Z0-9]+@[a-zA-Z0-9]+\.(de|com)}
+\end{liAntwort}
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Übungen zu Automaten\footcite[Seite 28]{theoinf:fs:1}}
+
+Stelle einen Automaten zu den folgenden Sprachen auf:
+
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item $L_1 = \{ x | x \text{ beinhaltet eine gerade Anzahl von } a \}$
+
+\item $L_2 = \{ x | x \text{ beinhaltet eine ungerade Anzahl von } b \}$
+
+\item Gib einen DEA der eine syntaktisch gültige E-Mail-Adresse erkennt.
+(mindestens 1 Zeichen (Groß-/Kleinbuchstabe oder Zahl) vor dem
+\texttt{@}; mindestens 1 Zeichen (Groß-/Kleinbuchstabe oder Zahl) nach
+dem \texttt{@}; alle E-Mail-Adressen sollen auf \texttt{.de} oder
+\texttt{.com} enden.
+
 \end{enumerate}
 
 \end{document}
