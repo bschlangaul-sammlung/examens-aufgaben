@@ -1,0 +1,87 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\usepackage{lilyglyphs}
+\begin{document}
+\liAufgabenTitel{Noten}
+\section{Noten
+\index{Reguläre Sprache}
+\footcite{theoinf:ab:1}}
+
+Der Viervierteltakt ist vor allem in der Unterhaltungsmusik die weitaus
+häufigste Taktart. Viervierteltakt bedeutet, dass ein Takt eine Länge
+von vier Vierteln hat. Das Symbol \quarterNote{} bedeutet eine
+Viertelnote. Eine halbe Note \halfNote{} hat den Wert von zwei Vierteln,
+eine punktierte halbe Note \halfNoteDotted{} den Wert von drei Vierteln
+und eine ganze Note \wholeNote{} den Wert von vier Vierteln. Andere
+Notenwerte sollen hier nicht vorkommen.
+
+Die Prüfsoftware eines Notenverlages stellt eine Methode bereit, die testet, ob die
+Notenwerte eines Taktes tatsächlich vier Viertel ergeben.
+
+Durch das Alphabet
+
+\begin{center}
+$\Sigma =$ \{ \wholeNote, \halfNoteDotted, \halfNote, \quarterNote\ \},
+\end{center}
+
+die Menge der Nichtterminale
+
+\begin{center}
+V = \{ <Takt>; <3/4>; <1/2> \} ,
+\end{center}
+
+das Startsymbol <Takt> sowie die Produktionsregeln
+
+\begin{center}
+$R_1$: <Takt> $\rightarrow$ \wholeNote{} | <3/4> \quarterNote{}
+
+$R_2$: <3/4> $\rightarrow$ \halfNoteDotted{} | <1/2> \quarterNote{}
+
+$R_3$: <1/2> $\rightarrow$ \halfNote{} | \quarterNote{} \quarterNote{}
+\end{center}
+
+ist eine Grammatik für eine formale Sprache $S$ gegeben.
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Entscheide begründet, ob die Zeichenketten
+\quarterNote\quarterNote\quarterNote\quarterNote\ und
+\quarterNote\halfNote\quarterNote{} zu $S$ gehören. Gebe eine weitere
+Zeichenkette an, die zwar einen Viervierteltakt darstellt, aber nicht zu
+$S$ gehört.
+
+%%
+% (b)
+%%
+
+\item Ergänze die oben angegebenen Produktionsregeln so, dass jeder mit
+dem Alphabet $\Sigma$ mögliche Viervierteltakt dargestellt werden kann.
+
+%%
+% (c)
+%%
+
+\item Mit $T_4$ wird die formale Sprache bezeichnet, die genau alle
+Viervierteltakte enthält, die mit den Zeichen aus $\Sigma$ gebildet werden
+können. Verwende für die weiteren Teilaufgaben anstelle der Notensymbole
+Buchstaben gemäß folgender Tabelle:
+
+Zeichne das Zustandsübergangsdiagramm eines erkennenden endlichen
+Automaten, der genau $T_4$ akzeptiert.
+
+%%
+% (d)
+%%
+
+\item Entwerfe eine Implementierung des Automaten aus Teilaufgabe c in
+Java. Dabei soll es u. a. eine Methode istViervierteltakt(eingabe)
+geben, die überprüft, ob die übergebene Zeichenkette eingabe den
+Vorgaben für einen Viervierteltakt entspricht, und einen entsprechenden
+Wahrheitswert zurückgibt. Dazu ruft sie für jedes Zeichen der Eingabe
+jeweils die Methode zustandWechseln() auf.
+\end{enumerate}
+\end{document}
