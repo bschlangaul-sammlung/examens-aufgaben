@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe}
+\liLadePakete{mathe,automaten}
 \begin{document}
 \liAufgabenTitel{Vorlesungsaufgaben}
 \section{Vorlesungsaufgaben
@@ -133,4 +133,92 @@ dem \texttt{@}; alle E-Mail-Adressen sollen auf \texttt{.de} oder
 
 \end{enumerate}
 
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Übungen zu NEA\footcite[Seite 34]{theoinf:fs:1}}
+
+\begin{enumerate}
+\item Stelle einen nichtdeterministischen endlichen Automaten auf, der
+alle durch 2 teilbaren Binärzahlen akzeptiert.
+
+Exkurs: Wann ist eine Binärzahl durch 2 teilbar?
+
+\item Stelle einen NEA auf, der alle Wörter über einem Alphabet $\Sigma
+= \{a,b\}$ akzeptiert, die als vorletztes Zeichen ein $b$ besitzen.
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Übung Potenzmengenalgorithmus\footcite[Seite 46]{theoinf:fs:1}}
+
+Gegeben ist der folgende NEA:
+
+\begin{center}
+\begin{tikzpicture}[->,node distance=2cm]
+\node[state,initial] (0) {$z_0$};
+\node[state,right of=0] (2) {$z_2$};
+\node[state,above of=2] (1) {$z_1$};
+\node[state,right of=2,accepting] (3) {$z_3$};
+
+\path (0) edge[above] node{a} (1);
+\path (0) edge[above] node{a} (2);
+\path (2) edge[right] node{b} (1);
+\path (2) edge[above] node{b} (3);
+\path (3) edge[loop,above] node{a,b} (3);
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+\item Überführe den gegebenen NEA mit dem Potenzmengenalgorithmus in
+einen DEA.
+
+\item Gib den gegebenen NEA in das Programm AutoEdit ein und lasse
+diesen in einen DEA konvertieren. Überprüfe, ob deine Lösung mit der des
+Programms übereinstimmt.
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Übung zur Minimalisierung\footcite[Seite 59]{theoinf:fs:1}}
+
+Minimalisiere den gegebenen DEA:
+
+\begin{center}
+\begin{tikzpicture}[->,node distance=2cm]
+\node[state,initial] (0) {$z_0$};
+\node[state,above right of=0] (1) {$z_1$};
+\node[state,below right of=0] (2) {$z_2$};
+\node[state,right of=1,accepting] (3) {$z_3$};
+\node[state,right of=2,accepting] (4) {$z_4$};
+
+\path (0) edge[above] node{a} (2);
+\path (0) edge[above] node{b} (1);
+\path (1) edge[above] node{a} (3);
+\path (1) edge[above] node{b} (4);
+\path (2) edge[above] node{a,b} (4);
+\path (3) edge[loop,above] node{a,b} (3);
+\path (4) edge[right] node{a,b} (3);
+\end{tikzpicture}
+\end{center}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Übung zum Pumping-Lemma\footcite[Seite 65]{theoinf:fs:1}}
+
+\begin{enumerate}
+\item Zeige, dass die Sprache $L = \{a^n b^m | n \geq m \geq 1\}$ nicht
+regulär ist.
+
+\item Zeige, dass die Sprache $L = \{a^n b^m | n > m \geq 1\}$ nicht
+regulär ist.
+\end{enumerate}
+
+\end{enumerate}
 \end{document}
