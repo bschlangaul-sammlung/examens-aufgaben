@@ -1,0 +1,70 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,mathe}
+\begin{document}
+\liAufgabenTitel{Vorlesungsaufgaben}
+\section{Übungen zu regulären Ausdrücken
+\index{Reguläre Sprache}\footcite[Seite 21]{theoinf:fs:1}}
+
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Gegeben ist eine Sprache $L \subset \Sigma^*$ mit $\Sigma =
+\{a,b\}$. Zu der Sprache $L$ gehören alle Wörter, die die Zeichenfolge
+\texttt{abba} beinhalten.
+
+Gib einen regulären Ausdruck für diese Sprache an.
+
+\begin{liAntwort}
+(a|b)*abba(a|b)*
+\end{liAntwort}
+
+%%
+%
+%%
+
+\item Gebe möglichst einfache reguläre Ausdrücke für die folgenden
+Sprachen $L_x \subset \Sigma^*$ mit $\Sigma = \{a,b\}$ und $x \in \{1, 2, 3\}$.
+
+\begin{description}
+\item[$L_1$] = $\{ x | x \text{ beinhaltet eine gerade Anzahl von } a \}$
+
+\begin{liAntwort}
+\texttt{.*(aa)+.*} oder \texttt{(a|b)*(aa)(a|b)*}
+\end{liAntwort}
+
+\item[$L_2$] = $\{ x | x \text{ beinhaltet eine ungerade Anzahl von } b \}$
+
+\begin{liAntwort}
+\texttt{.*b(bb)*.*} oder \texttt{(a|b)*b(bb)*(a|b)*}
+\end{liAntwort}
+
+\item[$L_3$] = $\{ x | x \text{ beinhaltet an seinen geradzahligen Positionen ausschließlich } a \}$
+
+\begin{liAntwort}
+\texttt{((a|b)a)*}
+\end{liAntwort}
+\end{description}
+
+%%
+%
+%%
+
+\item Gib einen regulären Ausdruck der eine syntaktisch gültige
+E-Mail-Adresse erkennt. (mindestens 1 Zeichen (Groß-/Kleinbuchstabe oder
+Zahl) vor dem \texttt{@}; mindestens 1 Zeichen (Groß-/Kleinbuchstabe
+oder Zahl) nach dem \texttt{@}; alle E-Mail-Adressen sollen auf
+\texttt{.de} oder \texttt{.com} enden.
+
+\begin{liAntwort}
+\texttt{[a-zA-Z0-9]+@[a-zA-Z0-9]+\.(de|com)}
+\end{liAntwort}
+\end{enumerate}
+
+\begin{liAntwort}
+\liJavaDatei[firstline=3]{aufgaben/theo_inf/regulaere_ausdruecke/TestRegularExpressions}
+\end{liAntwort}
+
+\end{document}
