@@ -491,6 +491,8 @@ OCR des oben genannten Scans:
     - Thema 1 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/Thema-1/Aufgabe-8.pdf" download="Staatsexamen-Informatik_46115-2014-Herbst_T1-A8">Aufgabe 8 (Tiefensuche, Stapel (Stack))</a>
 - 2015 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2015/03/Scan.pdf" download="Staatsexamen-Informatik_46115-2015-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2015/03/OCR.txt" download="Staatsexamen-Informatik_46115-2015-Frühjahr_OCR">OCR.txt</a> 
+    - Thema 1 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2015/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46115-2015-Frühjahr_T1-A1">Aufgabe 1 (Reguläre Sprache)</a>
 - 2015 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2015/09/Scan.pdf" download="Staatsexamen-Informatik_46115-2015-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2015/09/OCR.txt" download="Staatsexamen-Informatik_46115-2015-Herbst_OCR">OCR.txt</a> 
     - Thema 2 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2015/09/Thema-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46115-2015-Herbst_T2-A1">Aufgabe 1 (Streutabellen (Hashing))</a>
@@ -852,6 +854,8 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/Thema-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66115-2014-Herbst_T2-A5">Aufgabe 5 (Stapel (Stack))</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2014-Herbst_T2-A6">Aufgabe 6 (Selectionsort, Implementierung in Java, Komplexität, Halde (Heap))</a>
 - 2015 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/OCR.txt" download="Staatsexamen-Informatik_66115-2015-Frühjahr_OCR">OCR.txt</a> 
+    - Thema 1 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T1-A1">Aufgabe 1 (Reguläre Sprache)</a> 
     - Thema 2 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T2-A5">Aufgabe 5 (Stapel (Stack), Komplexität)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T2-A7">Aufgabe 7 (Algorithmus von Dijkstra)</a>
@@ -1294,7 +1298,11 @@ als Markdown-Liste eingebettet werden kann.
     - Ein-Adress-Befehl-Assembler
     - Mehr-Adress-Befehl-Assembler
 - Theoretische Informatik:
-    - Reguläre Sprache
+    - Reguläre Sprache:
+        - Reguläre Grammatik
+        - Deterministisch endlicher Automat
+        - Nichtdeterministisch endlicher Automat
+        - Pumping-Lemma
 
 
 {{ einbinden "docs/tex.md" }}
