@@ -240,6 +240,66 @@ https://studyflix.de/informatik/dea-minimieren-1212
 %
 %-----------------------------------------------------------------------
 
+\section{Äquivalenzklassen (nach Myhill, Nerode)\footcite{theoinf:fs:}}
+
+Zwei Wörter $x, y \in \Sigma^*$ sind äquivalent bzgl. einer Sprache $L$,
+wenn für alle $z \in Σ^*$ gilt:
+
+$xz \in L <=> yz \in L$
+
+Eine Sprache $L$ ist genau dann regulär, wenn sie endlich viele
+Äquivalenzklassen erzeugt.
+
+Die Anzahl der Äquivalenzklassen einer Sprache entspricht der
+minimalen Anzahl von Zustanden eines DEA, der diese Sprache
+erkennt. (Darauf fußt Minimalisierungsalgorithmus.)
+
+\subsection{Beispiel zu Äquivalenzklassen}
+
+$(1|11|111)0^*$ sind alle Binärzahlen, die mit einer, zwei oder drei Einsen
+beginnen, gefolgt von beliebig vielen Nullen.
+
+\begin{enumerate}
+\item Sind x=1 und y=10 in der selben Äquivalenzklasse?
+
+Nein, denn anfügen von $z=1$:
+
+\begin{itemize}
+\item $xz = 11$ erlaubtes Wort
+
+\item $yz = 101$ unerlaubtes Wort
+\end{itemize}
+
+\item Sind $x=1$ und $y=11$ in der selben Äquivalenzklasse?
+
+Nein, denn anfügen von $z=11$:
+
+\begin{itemize}
+\item $xz = 111$ erlaubtes Wort
+\item $yz = 1111$ unerlaubtes Wort
+\end{itemize}
+
+\item Sind $x=10$ und $y=110$ in der selben Äquivalenzklasse?
+
+Ja, fügt man nur 0en an, sind die Wörter in $L$, fügt man auch 1en an,
+sind sie nicht in $L$.
+\end{enumerate}
+
+\subsection{Äquivalente Zustände}
+
+Zwei Zustande $z$, $z'$ eines deterministischen Automaten sind
+äquivalent, wenn für alle möglichen Eingaben der Automat entweder in
+beiden Fallen in einen (nicht notwendig gleichen) Endzustand oder in
+beiden Fallen in einen (nicht notwendig gleichen) Nicht-Endzustand
+übergeht.
+
+Äquivalente Zustände können zu einem Zustand verschmolzen
+werden.
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
 \section{Nichtdeterministische endliche Automaten}
 
 Ein nichtdeterministischer endlicher Automat (NEA; englisch
@@ -280,6 +340,25 @@ Beispiel: $Z = \{z_1, z_2\}$
 
 $2^Z = \{\{\}, \{z_1 \}, \{z_2 \}, \{z_1 , z_2 \}\}$
 
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Potenzmengenalgorithmus NEA $\rightarrow$ DEA\footcite[Seite 35-48]{theoinf:fs:1}}
+
+\begin{itemize}
+\item Starte im Anfangszustand (in der Menge der Anfangszustände).
+
+\item Gib für jedes Zeichen die Menge der erreichbaren Zustände an.
+
+\item Wiederhole diesen Schritt für jede neu erreichte Menge an
+Zuständen.
+
+\item Die Zustandsmengen sind die Zustände des DEA.
+
+\item Mengen, die „alte“ Endzustände enthalten, sind Endzustände des
+neuen DEA.\footcite{wiki:potenzmengenkonstruktion}
+\end{itemize}
 \literatur
 
 \end{document}
