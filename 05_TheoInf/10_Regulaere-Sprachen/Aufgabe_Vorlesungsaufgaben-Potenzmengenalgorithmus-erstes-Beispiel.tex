@@ -1,0 +1,63 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe,automaten,formale-sprachen}
+
+\let\p=\liPotenzmenge
+\begin{document}
+\liAufgabenTitel{Vorlesungsaufgaben}
+\section{Vorlesungsaufgaben
+\index{Potenzmengenalgorithmus}}
+
+\section{Übung Potenzmengenalgorithmus\footcite[Seite 37-45]{theo:fs:1}}
+
+Gegeben ist der folgende NEA:
+
+\begin{center}
+\begin{tikzpicture}[->,node distance=2cm]
+\node[state,initial] (0) {$z_0$};
+\node[state,right of=0] (1) {$z_1$};
+\node[state,right of=1,accepting] (2) {$z_2$};
+
+\path (0) edge[above] node{b} (1);
+\path (1) edge[above] node{a,b} (2);
+\path (0) edge[loop,above] node{a,b} (0);
+\path (2) edge[loop,above] node{a,b} (2);
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+\item Überführe den gegebenen NEA mit dem Potenzmengenalgorithmus in
+einen DEA.
+
+\begin{liAntwort}
+\begin{tabular}{l|l|l|l}
+Name & Zustandsmenge & Eingabe a & Eingabe b \\\hline
+$z'_0$ & \p{z_0} & \p{z_0} & \p{z_0, z_1} \\
+$z'_1$ & \p{z_0, z_1} & \p{z_0, z_2} & \p{z_0, z_1, z_2} \\
+$z'_2$ & \p{z_0, z_2} & \p{z_0, z_2} & \p{z_0, z_1, z_2} \\
+$z'_3$ & \p{z_0, z_1, z_2} & \p{z_0, z_2} & \p{z_0, z_1, z_2} \\
+
+\end{tabular}
+
+\begin{center}
+\begin{tikzpicture}[->,node distance=2cm]
+\node[state,initial] (0) {$z'_0$};
+\node[state,right of=0] (1) {$z'_1$};
+\node[state,accepting, above right of=1] (2) {$z'_2$};
+\node[state,accepting, below right of=2] (3) {$z'_3$};
+
+\path (0) edge[above] node{b} (1);
+\path (1) edge[above] node{a} (2);
+\path (1) edge[above] node{b} (3);
+\path (2) edge[right, bend left] node{b} (3);
+\path (3) edge[above] node{a} (2);
+
+\path (0) edge[above,loop] node{a} (0);
+\path (2) edge[above,loop right] node{a} (2);
+\path (3) edge[above,loop right] node{b} (3);
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
+
+\end{enumerate}
+
+\end{document}

@@ -129,6 +129,26 @@ Weitere Aufgaben zum Thema „SQL“:
 
 {{ stichwort "Mehr-Adress-Befehl-Assembler" }}
 
+## Theoretische Informatik
+
+### Reguläre Sprachen
+
+#### Reguläre Ausdrücke
+
+{{ stichwort "Reguläre Ausdrücke" }}
+
+#### Pumping-Lemma
+
+{{ stichwort "Pumping-Lemma" }}
+
+#### Potenzmengenalgorithmus
+
+{{ stichwort "Potenzmengenalgorithmus" }}
+
+#### Minimierungsalgorithmus
+
+{{ stichwort "Minimierungsalgorithmus" }}
+
 # Aufgaben geordnet nach Staatsexamen
 
 In diesem Repository findet Ihr viele Staatsexamensaufgaben. Von fast

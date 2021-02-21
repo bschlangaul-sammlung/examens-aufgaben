@@ -367,6 +367,30 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/20_Mehr-Adress/Aufgabe_12-Potenz.pdf" download="Aufgabe_12-Potenz">„Potenzberechnung“</a> (Mehr-Adress-Befehl-Assembler)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/20_Mehr-Adress/Aufgabe_Beispiele.pdf" download="Aufgabe_Beispiele">„Beispiele“</a> (Mehr-Adress-Befehl-Assembler)
 
+## Theoretische Informatik
+
+### Reguläre Sprachen
+
+#### Reguläre Ausdrücke
+
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_TheoInf/10_Regulaere-Sprachen/Aufgabe_Arztpraxis.pdf" download="Aufgabe_Arztpraxis">„Arztpraxis und Autohauskette“</a> (Reguläre Ausdrücke)
+
+#### Pumping-Lemma
+
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_TheoInf/10_Regulaere-Sprachen/Aufgabe_Pumping-Lemma.pdf" download="Aufgabe_Pumping-Lemma">„Pumping-Lemma“</a> (Pumping-Lemma)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T1-A1">Examen 66115 Frühjahr 2015 T1 A1</a> (Reguläre Sprache, Pumping-Lemma, Potenzmengenalgorithmus)
+
+#### Potenzmengenalgorithmus
+
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_TheoInf/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus-erstes-Beispiel.pdf" download="Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus-erstes-Beispiel">„Vorlesungsaufgaben“</a> (Potenzmengenalgorithmus)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_TheoInf/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus.pdf" download="Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus">„Vorlesungsaufgaben“</a> (Potenzmengenalgorithmus)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T1-A1">„NEA und Minimalisierung“ Examen 66115 Herbst 2012 T1 A1</a> (Potenzmengenalgorithmus, Minimierungsalgorithmus)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T1-A1">Examen 66115 Frühjahr 2015 T1 A1</a> (Reguläre Sprache, Pumping-Lemma, Potenzmengenalgorithmus)
+
+#### Minimierungsalgorithmus
+
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T1-A1">„NEA und Minimalisierung“ Examen 66115 Herbst 2012 T1 A1</a> (Potenzmengenalgorithmus, Minimierungsalgorithmus)
+
 # Aufgaben geordnet nach Staatsexamen
 
 In diesem Repository findet Ihr viele Staatsexamensaufgaben. Von fast
@@ -833,7 +857,7 @@ OCR des oben genannten Scans:
 - 2012 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2012-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/03/OCR.txt" download="Staatsexamen-Informatik_66115-2012-Frühjahr_OCR">OCR.txt</a> 
 - 2012 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Scan.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/OCR.txt" download="Staatsexamen-Informatik_66115-2012-Herbst_OCR">OCR.txt</a> 
     - Thema 1 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T1-A1">Aufgabe 1 (AUD)</a> 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T1-A1">Aufgabe 1 (Potenzmengenalgorithmus, Minimierungsalgorithmus)</a> 
     - Thema 2 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T2-A6">Aufgabe 6 (Komplexität)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T2-A7">Aufgabe 7 (Halde (Heap))</a>
@@ -855,7 +879,7 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2014-Herbst_T2-A6">Aufgabe 6 (Selectionsort, Implementierung in Java, Komplexität, Halde (Heap))</a>
 - 2015 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/OCR.txt" download="Staatsexamen-Informatik_66115-2015-Frühjahr_OCR">OCR.txt</a> 
     - Thema 1 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T1-A1">Aufgabe 1 (Reguläre Sprache)</a> 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T1-A1">Aufgabe 1 (Reguläre Sprache, Pumping-Lemma, Potenzmengenalgorithmus)</a> 
     - Thema 2 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T2-A5">Aufgabe 5 (Stapel (Stack), Komplexität)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T2-A7">Aufgabe 7 (Algorithmus von Dijkstra)</a>
@@ -1300,9 +1324,12 @@ als Markdown-Liste eingebettet werden kann.
 - Theoretische Informatik:
     - Reguläre Sprache:
         - Reguläre Grammatik
+        - Reguläre Ausdrücke
         - Deterministisch endlicher Automat
         - Nichtdeterministisch endlicher Automat
         - Pumping-Lemma
+        - Potenzmengenalgorithmus
+        - Minimierungsalgorithmus
 
 
 {{ einbinden "docs/tex.md" }}

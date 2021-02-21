@@ -66,6 +66,16 @@ ankreuzen.
 * Makro: `\liFalsch`: Nicht angekreuztes Kästchen (nur innerhalb der
   `itemize`-Umgebung zu verwenden.)
 
+### `formale-sprachen.sty`
+
+* Makro: `\liPotenzmenge`: Umgeben mit geschweiften Klammern in einer
+  Mathematik-Umgebung
+* Makro: `\liPotenzmengeOhneMathe`: Umgeben mit geschweiften Klammern in
+  keiner Mathematik-Umgebung
+
+Hilfsmakros zum Setzen von mathematischen Formeln bei dem Thema Formale
+Sprachen.
+
 ### `grafik.sty`
 
 ### `hanoi.sty`
@@ -102,7 +112,6 @@ thematisch zu keinem anderen Paket passen
   Java-Kommandozeilen-Programm `didaktik.java` verarbeitet.
 * Umgebung: `\begin{liDiagramm}{beschriftung}\end{liDiagramm}`: Zu
   setzen einer Graphik bzw eines Diagramms.
-
 
 ### `normalformen.sty`
 

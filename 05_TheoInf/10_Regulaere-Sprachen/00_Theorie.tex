@@ -1,7 +1,8 @@
 \documentclass{lehramt-informatik-haupt}
-\liLadePakete{mathe,syntaxbaum,automaten}
+\liLadePakete{mathe,syntaxbaum,automaten,formale-sprachen}
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric,calc}
+
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -18,7 +19,7 @@ Die Sprachen lassen sich folgendermaßen einteilen:
 \item[Typ 0] Phrasenstrukturgrammatik
 \item[Typ 1] kontextsensitive Grammatik
 \item[Typ 2] kontextfreie Grammatik
-\item[Typ 3] reguläre Grammatik\footcite[Seite 14]{theoinf:fs:1}
+\item[Typ 3] reguläre Grammatik\footcite[Seite 14]{theo:fs:1}
 \end{description}
 
 \begin{tikzpicture}[font=\sffamily,breathe dist/.initial=0.01ex]
@@ -54,7 +55,7 @@ ist kontextfrei (Typ 2 Sprache), aber nicht regulär
 ist kontextsensitiv (Typ 1 Sprache), aber nicht kontextfrei
 
 \item $L_0 = \{a^{(2^n)}\, | \, n \in \mathbb{N}\}$
-ist eine Typ 0 Sprache\footcite[Seite 15]{theoinf:fs:1}
+ist eine Typ 0 Sprache\footcite[Seite 15]{theo:fs:1}
 \end{itemize}
 
 %-----------------------------------------------------------------------
@@ -171,7 +172,7 @@ Ein DEA/DFA ist ein 5-Tupel ($Z, \Sigma, \sigma, E, z_0$) mit
 \item[$\Sigma$:] Eingabealphabet mit (endlich)
 \item[$\delta$:] $Z \times \Sigma \rightarrow Z$ Zustandsübergangsfunktion
 \item[$E$:] Menge der Endzustände
-\item[$z_0$:] Startzustand\footcite[Seite 26]{theoinf:fs:1}
+\item[$z_0$:] Startzustand\footcite[Seite 26]{theo:fs:1}
 \end{description}
 
 %-----------------------------------------------------------------------
@@ -224,7 +225,7 @@ einem Wort, das nicht in der Sprache ist. (Widerspruch!)\footcite{wiki:pumping}
 
 $\Rightarrow$ Die Behauptung war falsch!
 $\Rightarrow$ $L$ ist nicht regulär!
-\footcite[Seite 63-64]{theoinf:fs:1}
+\footcite[Seite 63-64]{theo:fs:1}
 
 %-----------------------------------------------------------------------
 %
@@ -232,7 +233,7 @@ $\Rightarrow$ $L$ ist nicht regulär!
 
 \section{Minimierungsalgorithmus\footcite[Seite 47-57]{vossen}}
 
-\footcite[Seite 51-62]{theoinf:fs:1}
+\footcite[Seite 51-62]{theo:fs:1}
 
 https://studyflix.de/informatik/dea-minimieren-1212
 
@@ -240,7 +241,7 @@ https://studyflix.de/informatik/dea-minimieren-1212
 %
 %-----------------------------------------------------------------------
 
-\section{Äquivalenzklassen (nach Myhill, Nerode)\footcite{theoinf:fs:}}
+\section{Äquivalenzklassen (nach Myhill, Nerode)\footcite{theo:fs:}}
 
 Zwei Wörter $x, y \in \Sigma^*$ sind äquivalent bzgl. einer Sprache $L$,
 wenn für alle $z \in Σ^*$ gilt:
@@ -256,8 +257,8 @@ erkennt. (Darauf fußt Minimalisierungsalgorithmus.)
 
 \subsection{Beispiel zu Äquivalenzklassen}
 
-$(1|11|111)0^*$ sind alle Binärzahlen, die mit einer, zwei oder drei Einsen
-beginnen, gefolgt von beliebig vielen Nullen.
+$(1|11|111)0^*$ sind alle Binärzahlen, die mit einer, zwei oder drei
+Einsen beginnen, gefolgt von beliebig vielen Nullen.
 
 \begin{enumerate}
 \item Sind x=1 und y=10 in der selben Äquivalenzklasse?
@@ -331,20 +332,22 @@ Ein NEA/NFA ist ein 5-Tupel ($Z, \Sigma, \sigma, E, z_0$) mit
 \item[$\Sigma$:] Eingabealphabet mit (endlich)
 \item[$\delta$:] $Z \times \Sigma \rightarrow 2^Z$ Zustandsübergangsfunktion
 \item[$E$:] Menge der Endzustände
-\item[$z_0$:] Startzustand\footcite[Seite 30]{theoinf:fs:1}
+\item[$z_0$:] Startzustand\footcite[Seite 30]{theo:fs:1}
 \end{description}
 
-Potenzmenge
+Potenzmenge\footcite{wiki:potenzmenge}
 
-Beispiel: $Z = \{z_1, z_2\}$
+\let\p=\liPotenzmengeOhneMathe
 
-$2^Z = \{\{\}, \{z_1 \}, \{z_2 \}, \{z_1 , z_2 \}\}$
+Beispiel: $Z = \p{ z_1, z_2 }$
+
+$2^Z = \{\p{}, \p{z_1 }, \p{z_2 }, \p{z_1 , z_2 }\}$
 
 %-----------------------------------------------------------------------
 %
 %-----------------------------------------------------------------------
 
-\section{Potenzmengenalgorithmus NEA $\rightarrow$ DEA\footcite[Seite 35-48]{theoinf:fs:1}}
+\section{Potenzmengenalgorithmus NEA $\rightarrow$ DEA\footcite[Seite 35-48]{theo:fs:1}}
 
 \begin{itemize}
 \item Starte im Anfangszustand (in der Menge der Anfangszustände).
