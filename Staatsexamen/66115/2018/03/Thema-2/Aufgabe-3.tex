@@ -1,0 +1,78 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe,automaten}
+\begin{document}
+\liAufgabenTitel{Exponentieller Blow-Up}
+\section{Aufgabe 3
+\index{Reguläre Sprache}
+\footcite{66115:2018:03}}
+
+Gesucht ist eine reguläre Sprache $C \in \{a, b\}^∗$, deren minimaler
+deterministischer endlicher Automat (DEA) mindestens 4 Zustände mehr
+besitzt als der minimale nichtdeterministische endliche Automat (NEA).
+Gehen Sie wie folgt vor:
+
+\footcite{theo:ab:1}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Definieren Sie $C \in \{a, b\}$ und erklären Sie kurz, warum es
+bei dieser Sprache NEAs gibt, die deutlich kleiner als der minimale DEA
+sind.
+
+\begin{liAntwort}
+Sprache mit exponentiellem Blow-Up:
+
+Ein NEA der Sprache
+
+\begin{align*}
+L_k &= \{ xay | x, y \in \{a, b\}^* \land |y| = k − 1 \}\\
+    &= \{ w \in \{a, b\}^* | \text{ der k-te Buchstabe von hinten ist ein } a\}\\
+\end{align*}
+
+kommt mit $k + 1$ Zuständen aus.
+
+Jeder DEA $M$ mit $L(M) = L$ hat dann mindestens $2^k$ Zustände. Wir
+wählen $k = 3$. Dann hat der zughörige NEA 4 Zustände und der zugehörige
+DEA mindestens $8$. Sei also $L_k = \{ xay | x, y \in \{a, b\}^* \land
+|y| = 2 \}$ die gesuchte Sprache.
+
+Der informelle Grund, warum ein DEA für die Sprache $L_k$ groß sein muss, ist
+dass er sich immer die letzten n Symbole merken muss.
+\liFussnoteUrl{https://www.tcs.ifi.lmu.de/lehre/ss-2013/timi/handouts/handout-02}
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item Geben Sie den minimalen DEA $M$ für $C$ an.
+(Zeichnung des DEA genügt; die Minimalität muss nicht begründet werden.)
+
+%%
+% (c)
+%%
+
+\item Geben Sie einen NEA N für $C$ an, der mindestens 4 Zustände
+weniger besitzt als $M$. (Zeichnung des DEA genügt)
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[->,node distance=2cm]
+\node[state,initial] (0) {$z_0$};
+\node[state,right of=0] (1) {$z_1$};
+\node[state,right of=1] (2) {$z_2$};
+\node[state,right of=2,accepting] (3) {$z_3$};
+
+\path (0) edge[above] node{a} (1);
+\path (1) edge[above] node{a,b} (2);
+\path (2) edge[above] node{a,b} (3);
+\path (0) edge[loop,above] node{a,b} (0);
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
+\end{enumerate}
+\end{document}
