@@ -1,13 +1,15 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe}
+\liLadePakete{mathe,automaten}
 \begin{document}
 \liAufgabenTitel{NEA-DEA-Aequivalenzklassen}
 \section{NEA-DEA-Äquivalenzklassen
 \index{Reguläre Sprache}
 \footcite{theo:ab:1}}
 
-Gegeben ist der deterministische endliche Automat $A = (Q, \{0, 1\},
-\delta, q_0 , F)$, wobei $Q = \{A, B, C, D, E\}$, $q_0 = A$, $F = {E}$ und
+Gegeben ist der deterministische endliche Automat
+$A = (Q, \{ 0, 1 \}, \delta, q_0 , F)$,
+wobei
+$Q = \{ A, B, C, D, E \}$, $q_0 = A$, $F = \{ E \}$ und
 
 \begin{center}
 \begin{tabular}{l||l|l}
@@ -26,6 +28,26 @@ Minimierungsalgorithmus. Dokumentieren Sie die Schritte geeignet.
 \index{Minimierungsalgorithmus}
 
 \begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[->,node distance=2cm]
+\node[state,initial] (A) {A};
+\node[state,above right of=A] (B) {B};
+\node[state,below right of=A] (C) {C};
+\node[state,right of=C] (D) {D};
+\node[state,above of=D,accepting] (E) {E};
+
+\path (A) edge[above] node{0} (B);
+\path (A) edge[above] node{1} (C);
+\path (B) edge[above] node{0} (E);
+\path (B) edge[right] node{1} (C);
+\path (C) edge[above] node{0} (D);
+\path (C) edge[above,loop below] node{1} (C);
+\path (E) edge[above] node{0} (E);
+\path (D) edge[above] node{1} (A);
+\path (E) edge[above,loop right] node{0,1} (E);
+\end{tikzpicture}
+\end{center}
+
 \end{liAntwort}
 
 \item Geben Sie einen regulären Ausdruck für die erkannte Sprache an.
