@@ -348,24 +348,24 @@ Weitere Aufgaben zum Thema „SQL“:
 
 ### Ein-Adress-Befehl-Assembler
 
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Ein-Adress/Aufgabe_01-Vorlesungsaufgaben.pdf" download="Aufgabe_01-Vorlesungsaufgaben">„Vorlesungsaufgaben“</a> (Ein-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Ein-Adress/Aufgabe_02-Abitur-2013-III-Fakultaet.pdf" download="Aufgabe_02-Abitur-2013-III-Fakultaet">„Abitur 2013 III“</a> (Ein-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Ein-Adress/Aufgabe_03-Abitur-2013-IV-Pulverdosen.pdf" download="Aufgabe_03-Abitur-2013-IV-Pulverdosen">„Pulverdosen“</a> (Ein-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Ein-Adress/Aufgabe_04-Abitur-2015-IV-Papyrus-Rhind.pdf" download="Aufgabe_04-Abitur-2015-IV-Papyrus-Rhind">„Papyrus Rhind“</a> (Ein-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Ein-Adress/Aufgabe_05-Abitur-2017-IV-Primzahl.pdf" download="Aufgabe_05-Abitur-2017-IV-Primzahl">„Primzahl“</a> (Ein-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Ein-Adress/Aufgabe_06-Abitur-2019-IV-Collatz.pdf" download="Aufgabe_06-Abitur-2019-IV-Collatz">„Collatz“</a> (Ein-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Ein-Adress/Aufgabe_Abitur-2018-III.pdf" download="Aufgabe_Abitur-2018-III">„Abitur 2018“</a> (Ein-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/10_Ein-Adress/Aufgabe_Abitur-2018-IV.pdf" download="Aufgabe_Abitur-2018-IV">„funkyFunction“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TECH/Assembler/10_Ein-Adress/Aufgabe_01-Vorlesungsaufgaben.pdf" download="Aufgabe_01-Vorlesungsaufgaben">„Vorlesungsaufgaben“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TECH/Assembler/10_Ein-Adress/Aufgabe_02-Abitur-2013-III-Fakultaet.pdf" download="Aufgabe_02-Abitur-2013-III-Fakultaet">„Abitur 2013 III“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TECH/Assembler/10_Ein-Adress/Aufgabe_03-Abitur-2013-IV-Pulverdosen.pdf" download="Aufgabe_03-Abitur-2013-IV-Pulverdosen">„Pulverdosen“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TECH/Assembler/10_Ein-Adress/Aufgabe_04-Abitur-2015-IV-Papyrus-Rhind.pdf" download="Aufgabe_04-Abitur-2015-IV-Papyrus-Rhind">„Papyrus Rhind“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TECH/Assembler/10_Ein-Adress/Aufgabe_05-Abitur-2017-IV-Primzahl.pdf" download="Aufgabe_05-Abitur-2017-IV-Primzahl">„Primzahl“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TECH/Assembler/10_Ein-Adress/Aufgabe_06-Abitur-2019-IV-Collatz.pdf" download="Aufgabe_06-Abitur-2019-IV-Collatz">„Collatz“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TECH/Assembler/10_Ein-Adress/Aufgabe_Abitur-2018-III.pdf" download="Aufgabe_Abitur-2018-III">„Abitur 2018“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TECH/Assembler/10_Ein-Adress/Aufgabe_Abitur-2018-IV.pdf" download="Aufgabe_Abitur-2018-IV">„funkyFunction“</a> (Ein-Adress-Befehl-Assembler)
 
 ### Mehr-Adress-Befehl-Assembler
 
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/20_Mehr-Adress/Aufgabe_07-Vorlesungsaufgaben.pdf" download="Aufgabe_07-Vorlesungsaufgaben">„Vorlesungsaufgaben“</a> (Mehr-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/20_Mehr-Adress/Aufgabe_08-Euklid.pdf" download="Aufgabe_08-Euklid">„Euklidscher Algorithmus“</a> (Mehr-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/20_Mehr-Adress/Aufgabe_09-Wurzel.pdf" download="Aufgabe_09-Wurzel">„Intervallschachtelung von Wurzeln“</a> (Mehr-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/20_Mehr-Adress/Aufgabe_10-Fakultaet.pdf" download="Aufgabe_10-Fakultaet">„Fakultät“</a> (Mehr-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/20_Mehr-Adress/Aufgabe_11-Fibonacci.pdf" download="Aufgabe_11-Fibonacci">„Fibonacci-Zahlen“</a> (Mehr-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/20_Mehr-Adress/Aufgabe_12-Potenz.pdf" download="Aufgabe_12-Potenz">„Potenzberechnung“</a> (Mehr-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TechInf/Assembler/20_Mehr-Adress/Aufgabe_Beispiele.pdf" download="Aufgabe_Beispiele">„Beispiele“</a> (Mehr-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TECH/Assembler/20_Mehr-Adress/Aufgabe_07-Vorlesungsaufgaben.pdf" download="Aufgabe_07-Vorlesungsaufgaben">„Vorlesungsaufgaben“</a> (Mehr-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TECH/Assembler/20_Mehr-Adress/Aufgabe_08-Euklid.pdf" download="Aufgabe_08-Euklid">„Euklidscher Algorithmus“</a> (Mehr-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TECH/Assembler/20_Mehr-Adress/Aufgabe_09-Wurzel.pdf" download="Aufgabe_09-Wurzel">„Intervallschachtelung von Wurzeln“</a> (Mehr-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TECH/Assembler/20_Mehr-Adress/Aufgabe_10-Fakultaet.pdf" download="Aufgabe_10-Fakultaet">„Fakultät“</a> (Mehr-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TECH/Assembler/20_Mehr-Adress/Aufgabe_11-Fibonacci.pdf" download="Aufgabe_11-Fibonacci">„Fibonacci-Zahlen“</a> (Mehr-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TECH/Assembler/20_Mehr-Adress/Aufgabe_12-Potenz.pdf" download="Aufgabe_12-Potenz">„Potenzberechnung“</a> (Mehr-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/04_TECH/Assembler/20_Mehr-Adress/Aufgabe_Beispiele.pdf" download="Aufgabe_Beispiele">„Beispiele“</a> (Mehr-Adress-Befehl-Assembler)
 
 ## Theoretische Informatik
 
@@ -373,17 +373,17 @@ Weitere Aufgaben zum Thema „SQL“:
 
 #### Reguläre Ausdrücke
 
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_TheoInf/10_Regulaere-Sprachen/Aufgabe_Arztpraxis.pdf" download="Aufgabe_Arztpraxis">„Arztpraxis und Autohauskette“</a> (Reguläre Ausdrücke)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Arztpraxis.pdf" download="Aufgabe_Arztpraxis">„Arztpraxis und Autohauskette“</a> (Reguläre Ausdrücke)
 
 #### Pumping-Lemma
 
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_TheoInf/10_Regulaere-Sprachen/Aufgabe_Pumping-Lemma.pdf" download="Aufgabe_Pumping-Lemma">„Pumping-Lemma“</a> (Pumping-Lemma)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Pumping-Lemma.pdf" download="Aufgabe_Pumping-Lemma">„Pumping-Lemma“</a> (Pumping-Lemma)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T1-A1">Examen 66115 Frühjahr 2015 T1 A1</a> (Reguläre Sprache, Pumping-Lemma, Potenzmengenalgorithmus)
 
 #### Potenzmengenalgorithmus
 
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_TheoInf/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus-erstes-Beispiel.pdf" download="Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus-erstes-Beispiel">„Vorlesungsaufgaben“</a> (Potenzmengenalgorithmus)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_TheoInf/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus.pdf" download="Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus">„Vorlesungsaufgaben“</a> (Potenzmengenalgorithmus)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus-erstes-Beispiel.pdf" download="Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus-erstes-Beispiel">„Vorlesungsaufgaben“</a> (Potenzmengenalgorithmus)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus.pdf" download="Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus">„Vorlesungsaufgaben“</a> (Potenzmengenalgorithmus)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T1-A1">„NEA und Minimalisierung“ Examen 66115 Herbst 2012 T1 A1</a> (Potenzmengenalgorithmus, Minimierungsalgorithmus)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T1-A1">Examen 66115 Frühjahr 2015 T1 A1</a> (Reguläre Sprache, Pumping-Lemma, Potenzmengenalgorithmus)
 
