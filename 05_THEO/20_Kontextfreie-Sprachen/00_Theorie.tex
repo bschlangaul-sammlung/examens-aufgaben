@@ -1,4 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
+\liLadePakete{formale-sprachen}
 
 \begin{document}
 
@@ -7,6 +8,67 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Kontextfreie Sprachen}
+
+\section{Grammatik reguläre Sprachen}
+
+Sei $\Sigma$ ein Alphabet. Eine formale Sprache $L$ ist eine Teilmenge
+aller Wörter über $\Sigma$:
+
+\begin{displaymath}
+L \subseteq \Sigma^*
+\end{displaymath}
+
+\bigskip
+
+\noindent
+Eine Grammatik ist ein 4-Tupel mit $G = (V, \Sigma, P, S)$ und besteht aus:
+
+\begin{itemize}
+\item Einer endlichen Menge $V$ von \memph{Variablen} (Nonterminale)
+
+\item Dem endlichen \memph{Terminalalphabet} $\Sigma$ mit $\Sigma \cap V
+= \emptyset$
+
+\item Der endlichen Menge an \memph{Produktionen}
+
+\item Und einer \memph{Startvariablen} $S$ mit $S \in V$
+\footcite[Seite 7]{theo:fs:2}
+\end{itemize}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Grammatik kontextfreie Sprachen $\leftrightarrow$ kontextsensitiv}
+
+Der Kontext ist das, was um die Variable der linken Seite „herum“
+steht.
+
+Beispiel für kontextsensitiv:
+
+\begin{liProduktionsRegeln}
+1A -> A11,
+2A -> 02 | 121
+\end{liProduktionsRegeln}
+
+steht vor der Variablen A eine 1, dann
+diese Regel...
+steht vor dem A ein 2, dann diese Regel.
+
+Es hängt vom Kontext ab, welche Regel zur Anwendung kommt.
+(Auch AB -> BA also das Vertauschen ist kontextsensitiv)
+\footcite[Seite 9]{theo:fs:2}
+
+Eine kontextfreie Sprache wird durch eine kontextfreie Grammatik
+erzeugt, d. \, h eine Grammatik mit Produktionsregeln der Form:
+
+$A \rightarrow X, X \subset (V \cap \Sigma)^*$
+
+linke Seite: ein Nonterminal
+
+rechte Seite: $\epsilon$ oder ein Terminal oder eine
+Kombination aus Terminalen mit
+Nonterminalen
 
 \literatur
 
