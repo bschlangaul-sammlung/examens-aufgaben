@@ -8,6 +8,54 @@
 
 \chapter{Kontextsensitive und unbeschränkte Sprachen}
 
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Grammatik reguläre Sprachen}
+
+Sei $\Sigma$ ein Alphabet. Eine formale Sprache $L$ ist eine Teilmenge
+aller Wörter über $\Sigma$:
+
+\begin{displaymath}
+L \subseteq \Sigma^*
+\end{displaymath}
+
+\bigskip
+
+\noindent
+Eine Grammatik ist ein 4-Tupel mit $G = (V, \Sigma, P, S)$ und besteht aus:
+
+\begin{itemize}
+\item Einer endlichen Menge $V$ von \memph{Variablen} (Nonterminale)
+
+\item Dem endlichen \memph{Terminalalphabet} $\Sigma$ mit $\Sigma \cap V
+= \emptyset$
+
+\item Der endlichen Menge an \memph{Produktionen}
+
+\item Und einer \memph{Startvariablen} $S$ mit $S \in V$
+\end{itemize}
+
+Eine kontextsensitive Sprache wird durch eine kontextsensitive
+Grammatik erzeugt, d.\,h. eine Grammatik mit Produktionsregeln der
+Form:
+
+$S \rightarrow \epsilon$ oder
+$aA \rightarrow ac$ oder
+$Ab \rightarrow ab$ oder
+$AB \rightarrow BC$ oder
+$aBc \rightarrow abc$
+
+Mit $A,B,C \in V$; $a,b,c \in \Sigma$
+
+\memph{linke Seite: Nonterminale und Terminale}
+
+\memph{rechte Seite: $\epsilon$, Terminale, Nonterminale}
+
+Die Produktionsregeln dürfen hierbei die linke Seite allerdings nicht
+verkürzen (Ausnahme $S \rightarrow \epsilon$).\footcite{theo:fs:3}
+
 \literatur
 
 \end{document}

@@ -72,6 +72,7 @@ ankreuzen.
   Mathematik-Umgebung
 * Makro: `\liPotenzmengeOhneMathe`: Umgeben mit geschweiften Klammern in
   keiner Mathematik-Umgebung
+* Umgebung: `\begin{liProduktionsRegeln}A -> a, B->b`
 
 Hilfsmakros zum Setzen von mathematischen Formeln bei dem Thema Formale
 Sprachen.

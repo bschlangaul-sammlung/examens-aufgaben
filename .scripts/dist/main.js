@@ -33,7 +33,7 @@ programm.description("Repository-Pfad: " + helfer_1.repositoryPfad);
 programm.name('lehramt-informatik.js');
 programm.version('0.1.0');
 programm.on('command:*', function () {
-    console.error('Ungültiger Befehlt: %s\nBenutze das Argument --help, um eine Liste der verfügbaren Befehle anzuzeigen.', programm.args.join(' '));
+    console.error('Ungültiger Befehl: %s\nBenutze das Argument --help, um eine Liste der verfügbaren Befehle anzuzeigen.', programm.args.join(' '));
     process.exit(1);
 });
 programm
