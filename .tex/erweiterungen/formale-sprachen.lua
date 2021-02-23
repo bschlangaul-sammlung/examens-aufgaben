@@ -24,10 +24,15 @@ return {
     local ausgabe = ''
     local regeln = split(eingang, ',')
     for index, value in ipairs(regeln) do
-      value = value:gsub("->", "&\\rightarrow")
-      value = value:gsub("|", "\\,|\\,")
+      value = value:gsub('->', '&\\rightarrow')
+      value = value:gsub('|', '\\,|\\,')
+      value = value:gsub('epsilon', '\\epsilon')
       ausgabe = ausgabe .. value .. '\\\\'
     end
-    tex.print('\\begin{align*}' .. ausgabe .. '\\end{align*}')
+    tex.print(
+      '$P = \\{$' ..
+     '\\begin{align*}' .. ausgabe .. '\\end{align*}' ..
+     '\\begin{flushright}' .. '\\}' .. '\\end{flushright}'
+    )
   end
 }

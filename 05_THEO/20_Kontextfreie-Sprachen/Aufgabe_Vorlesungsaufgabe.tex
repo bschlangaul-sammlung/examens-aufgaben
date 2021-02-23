@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{formale-sprachen}
 \begin{document}
 \liAufgabenTitel{Vorlesungsaufgabe}
 \section{Kontextfreie Sprache
@@ -53,11 +53,11 @@ Grammatik für das Wort
 $V = {S, A, B}$
 $∑= {0,1}$
 
-$P: S \rightarrow A1B$
-
-$A \rightarrow 0A | \epsilon$
-
-$B \rightarrow 0B | 1B | \epsilon$
+\begin{liProduktionsRegeln}
+S -> A1B,
+A -> 0A | epsilon,
+B -> 0B | 1B | epsilon
+\end{liProduktionsRegeln}
 
 $S = S$
 
@@ -78,7 +78,7 @@ $S = S$
 \begin{enumerate}
 \item Gib einen Kellerautomaten an, der die folgende Sprache erkennt:
 
-$L = (a^n c^i b^n | n, i \in N_0 )$
+$L = (a^n c^i b^n | n, i \in N_0)$
 
 \item Gibt eine Grammatik für diese Sprache an.
 
@@ -114,15 +114,13 @@ $L = \{ w\$w R w \in (a|b)^* \}$
 
 Überführe die folgenden kontextfreien Grammatiken in CNF
 
-$S \rightarrow ABC$
-
-$A \rightarrow aCD$
-
-$B \rightarrow bCD$
-
-$C \rightarrow D | \epsilon$
-
-$D \rightarrow C$
+\begin{liProduktionsRegeln}
+S -> ABC,
+A -> aCD,
+B -> bCD,
+C -> D | epsilon,
+D -> C
+\end{liProduktionsRegeln}
 
 %-----------------------------------------------------------------------
 %

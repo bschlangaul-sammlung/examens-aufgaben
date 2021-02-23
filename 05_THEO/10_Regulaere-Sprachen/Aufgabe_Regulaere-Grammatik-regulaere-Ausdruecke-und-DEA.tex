@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe}
+\liLadePakete{mathe,formale-sprachen}
 \begin{document}
 \liAufgabenTitel{Reguläre Grammatik, reguläre Ausdrücke und DEA}
 \section{Reguläre Grammatik, reguläre Ausdrücke und DEA
@@ -32,14 +32,14 @@ Gegeben sind die folgenden Sprachen über dem Alphabet $\Sigma = \{a, b\}$:
 
 $= (V, \Sigma, P, S)$ mit
 $V = \{S, A, B\}$,
-$\Sigma = \{a, b\}$,
-$S = S$ und mit $P =$
+$\Sigma = \{a, b\}$,i
+$S = S$ und mit
 
-S $\rightarrow$ aS | bA
-
-A $\rightarrow$ aS | bB | b
-
-B $\rightarrow$ aB | a | bB | b
+\begin{liProduktionsRegeln}
+S -> aS | bA,
+A -> aS | bB | b,
+B -> aB | a | bB | b
+\end{liProduktionsRegeln}
 
 %%
 %
@@ -50,13 +50,13 @@ B $\rightarrow$ aB | a | bB | b
 $= (V, \Sigma, P, S)$ mit
 $V = \{S, A, B\}$,
 $\Sigma = \{a, b\}$,
-$S = S$ und mit $P =$
+$S = S$ und mit
 
-S $\rightarrow$ aS | bA | b
-
-A $\rightarrow$ aS | bB
-
-B $\rightarrow$ aS | bB
+\begin{liProduktionsRegeln}
+S -> aS | bA | b,
+A -> aS | bB,
+B -> aS | bB
+\end{liProduktionsRegeln}
 
 %%
 %
@@ -67,19 +67,15 @@ B $\rightarrow$ aS | bB
 $= (V, \Sigma, P, S)$ mit
 $V = \{S, A, B, C, D, E\}$,
 $\Sigma = \{a, b\}$, $S = S$ und mit
-$P =$
 
-S $\rightarrow$ aA | bC
-
-A $\rightarrow$ aB | a | bC
-
-B $\rightarrow$ aB | a | bB | b
-
-C $\rightarrow$ aD | bE | b
-
-D $\rightarrow$ bC | aD
-
-E $\rightarrow$ bE | b | aD
+\begin{liProduktionsRegeln}
+S -> aA | bC,
+A -> aB | a | bC,
+B -> aB | a | bB | b,
+C -> aD | bE | b,
+D -> bC | aD,
+E -> bE | b | aD
+\end{liProduktionsRegeln}
 
 \end{description}
 \end{liAntwort}
