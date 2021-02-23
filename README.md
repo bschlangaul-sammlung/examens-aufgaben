@@ -374,6 +374,7 @@ Weitere Aufgaben zum Thema „SQL“:
 #### Reguläre Ausdrücke
 
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Arztpraxis.pdf" download="Aufgabe_Arztpraxis">„Arztpraxis und Autohauskette“</a> (Reguläre Ausdrücke)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_NEA-DEA-Aequivalenzklassen.pdf" download="Aufgabe_NEA-DEA-Aequivalenzklassen">„NEA-DEA-Aequivalenzklassen“</a> (Reguläre Sprache, Minimierungsalgorithmus, Reguläre Ausdrücke, Äquivalenzklassen)
 
 #### Pumping-Lemma
 
@@ -389,6 +390,7 @@ Weitere Aufgaben zum Thema „SQL“:
 
 #### Minimierungsalgorithmus
 
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_NEA-DEA-Aequivalenzklassen.pdf" download="Aufgabe_NEA-DEA-Aequivalenzklassen">„NEA-DEA-Aequivalenzklassen“</a> (Reguläre Sprache, Minimierungsalgorithmus, Reguläre Ausdrücke, Äquivalenzklassen)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T1-A1">„NEA und Minimalisierung“ Examen 66115 Herbst 2012 T1 A1</a> (Potenzmengenalgorithmus, Minimierungsalgorithmus)
 
 # Aufgaben geordnet nach Staatsexamen
@@ -902,6 +904,7 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/Thema-2/Aufgabe-8.pdf" download="Staatsexamen-Informatik_66115-2017-Herbst_T2-A8">Aufgabe 8 (AVL-Baum, Halde (Heap), Binärbaum)</a>
 - 2018 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2018-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/03/OCR.txt" download="Staatsexamen-Informatik_66115-2018-Frühjahr_OCR">OCR.txt</a> 
     - Thema 2 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/03/Thema-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2018-Frühjahr_T2-A3">Aufgabe 3 (Reguläre Sprache)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/03/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2018-Frühjahr_T2-A6">Aufgabe 6 (Master-Theorem)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/03/Thema-2/Aufgabe-8.pdf" download="Staatsexamen-Informatik_66115-2018-Frühjahr_T2-A8">Aufgabe 8 (AVL-Baum)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/03/Thema-2/Aufgabe-9.pdf" download="Staatsexamen-Informatik_66115-2018-Frühjahr_T2-A9">Aufgabe 9 (Algorithmus von Dijkstra)</a>
@@ -1330,6 +1333,9 @@ als Markdown-Liste eingebettet werden kann.
         - Pumping-Lemma
         - Potenzmengenalgorithmus
         - Minimierungsalgorithmus
+        - Äquivalenzklassen
+    - Kontextfreie Sprache
+    - Kontextsensitive Sprache
 
 
 {{ einbinden "docs/tex.md" }}

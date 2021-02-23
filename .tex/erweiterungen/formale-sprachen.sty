@@ -2,5 +2,13 @@
 \ProvidesPackage{lehramt-informatik-formale-sprachen}[2021/02/21 Hilfsmakros
 zum Setzen von mathematischen Formeln bei dem Thema Formale Sprachen]
 
+\directlua{
+  formale_sprachen = require('lehramt-informatik-formale-sprachen')
+}
+
 \def\liPotenzmenge#1{$\{ #1 \}$}
 \def\liPotenzmengeOhneMathe#1{\{ #1 \}}
+
+\NewDocumentEnvironment { liProduktionsRegeln }
+{ +b }
+{\directlua{formale_sprachen.produktions_regeln('#1')}} {}
