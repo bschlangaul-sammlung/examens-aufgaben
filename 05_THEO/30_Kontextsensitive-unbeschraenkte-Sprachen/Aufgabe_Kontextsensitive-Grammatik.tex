@@ -1,0 +1,55 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen}
+\begin{document}
+\liAufgabenTitel{Kontextsensitive Grammatik}
+\section{Kontextsensitive Grammatik
+\index{Kontextsensitive Grammatik}
+\footcite{theo:ab:3}}
+
+Sei $L = \{a^n b^m c^n \, | \, n, m \geq 0, m \leq n \}$.
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Gib eine kontextsensitive Grammatik für L an.
+
+\begin{liAntwort}
+$G = (\{S, A, B, C\}, \{a, b, c\}, P, S)$ mit Produktionen $P$ wie
+folgt:
+
+\begin{liProduktionsRegeln}
+S -> epsilon | aSc | aSBC,
+CB -> BC,
+bC -> bc,
+aB -> ab,
+bB -> bb,
+cC -> cc
+\end{liProduktionsRegeln}
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item Gib eine Ableitung des Wortes $a^3 b^2 c^3$ mittels der in
+Teilaufgabe a) erstellten Grammatik an.
+
+\begin{liAntwort}
+$S
+\rightarrow aSc
+\rightarrow aaSBCc
+\rightarrow aaaSBCBCc
+\rightarrow aaaBCBCc
+\rightarrow aaaBBCCc
+\rightarrow aaabBCCc
+\rightarrow aaabbCCc
+\rightarrow aaabbcCc
+\rightarrow aaabbccc
+$
+\end{liAntwort}
+\end{enumerate}
+
+\end{document}

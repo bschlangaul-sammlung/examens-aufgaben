@@ -1,0 +1,57 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen}
+\begin{document}
+\liAufgabenTitel{CYK-Algorithmus}
+\section{Wortproblem - CYK-Algorithmus
+\index{CYK-Algorithmus}
+\footcite{theo:ab:2}}
+
+Teste jeweils mit dem CYK-Algorithmus, ob das angegebene Wort zur
+Sprache der Grammatik gehört.
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Grammatik $G_1$:
+
+\begin{liProduktionsRegeln}
+S -> SS | R_a A | R_b B | R_c C,
+A -> R_b R_c | R_c R_b,
+B -> R_a R_c | R_c R_a,
+C -> R_a R_b | R_b R_a,
+R_a -> a,
+R_b -> b,
+R_c -> c
+\end{liProduktionsRegeln}
+
+\begin{enumerate}
+\item $w_1 = abccab$
+\item $w_2 = abcba$
+\end{enumerate}
+
+%%
+% (b)
+%%
+
+\item Grammatik $G_2$:
+
+\begin{liProduktionsRegeln}
+Z -> XD | XA | epsilon,
+S -> XD | XA,
+A -> V_a D | V_a A | AB | c,
+B -> BB | CC | c | a,
+C -> CC | c,
+D -> AB,
+X -> V_a D | V_a A | AB | b | c,
+V_a -> a
+\end{liProduktionsRegeln}
+
+\begin{enumerate}
+\item $w_3 = bacac$
+\item $w_4 = baca$
+\end{enumerate}
+\end{enumerate}
+\end{document}
