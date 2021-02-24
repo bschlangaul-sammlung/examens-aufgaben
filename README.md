@@ -1334,7 +1334,9 @@ als Markdown-Liste eingebettet werden kann.
         - Potenzmengenalgorithmus
         - Minimierungsalgorithmus
         - Äquivalenzklassen
-    - Kontextfreie Sprache
+    - Kontextfreie Sprache:
+        - Kontextfreie Grammatik
+        - Kellerautomat
     - Kontextsensitive Sprache
 
 

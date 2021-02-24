@@ -1,0 +1,49 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen}
+\begin{document}
+\liAufgabenTitel{Kellerautomat}
+\section{Grammatik in Kellerautomat umwandeln
+\index{Kellerautomat}
+\footcite{theo:ab:2}}
+
+Gebe für die folgenden Grammatiken $G_i$ jeweils einen Kellerautomaten $P_i$
+an, der dieselbe Sprache besitzt wie die Grammatik: $L(G_i) = L(P_i)$
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item
+
+\begin{liProduktionsRegeln}
+S -> 0S1 | P,
+P -> 1P 0 | S | epsilon
+\end{liProduktionsRegeln}
+
+%%
+% (b)
+%%
+
+\item
+
+\begin{liProduktionsRegeln}
+S -> xT T,
+T -> xS | yS | x
+\end{liProduktionsRegeln}
+
+%%
+% (c)
+%%
+
+\item
+
+\begin{liProduktionsRegeln}
+S -> aB | bA | ABc | B,
+A -> SSa,
+B -> cS | bB | b
+\end{liProduktionsRegeln}
+\end{enumerate}
+
+\end{document}
