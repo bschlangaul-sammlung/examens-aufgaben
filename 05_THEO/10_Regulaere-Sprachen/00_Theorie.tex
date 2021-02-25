@@ -98,20 +98,59 @@ ist eine Typ 0 Sprache\footcite[Seite 15]{theo:fs:1}
 %
 %-----------------------------------------------------------------------
 
-Ein Terminalsymbol (auch Terminalzeichen oder kurz Terminal genannt)
-einer formalen Grammatik ist ein Symbol, das einzeln nicht weiter durch
-eine Produktionsregel ersetzt werden kann.\footcite{wiki:terminal}
+Ein \memph{Terminalsymbol} (auch Terminalzeichen oder kurz Terminal
+genannt) einer formalen Grammatik ist ein Symbol, das einzeln
+\memph{nicht weiter durch eine Produktionsregel ersetzt werden
+kann}.\footcite{wiki:terminal}
 
 Eine Produktionsregel (auch Regel, Produktion oder Ersetzungsregel
 genannt) ist in der Theorie formaler Grammatiken eine Regel, die angibt,
-wie aus Wörtern durch eine Grammatik neue Wörter bzw. Symbolfolgen
-produziert werden.\footcite{wiki:produktionsregel}
+wie \memph{aus Wörtern durch eine Grammatik neue Wörter bzw.
+Symbolfolgen produziert} werden.\footcite{wiki:produktionsregel}
 
 %-----------------------------------------------------------------------
 %
 %-----------------------------------------------------------------------
 
 \section{Grammatik reguläre Sprachen}
+
+\begin{description}
+\item[Alphabete]
+
+Die Symbole, aus denen Eingabewörter bestehen können, fassen wir in
+einer Menge, dem Eingabealphabet, zusammen. Dabei wollen wir nur
+endliche Eingabealphabete zulassen. Ihre Elemente heißen Symbole oder
+Buchstaben. Zur Bezeichnung von Eingabealphabeten wird zumeist das
+Symbol $\Sigma$ (Sigma) benutzt.
+\footcite[Seite 15]{vossen}
+
+\item[Wörter]
+Die endlich langen Zeichenfolgen, die über einem Alphabet $\Sigma$
+gebildet werden können, heißen Wörter über $\Sigma$. Wörter entstehen,
+indem Symbole oder bereits erzeugte Wörter aneinandergereiht
+(miteinander verkettet, konkateniert) werden.
+
+$\Sigma^*$ , die Menge aller Wörter, die über dem Alphabet $\Sigma$
+gebildet werden kann, ist wie folgt definiert:
+
+\begin{enumerate}
+\item Jeder Buchstabe $a \in \Sigma$ ist auch ein Wort über $\Sigma$,
+d.\,h. $a \in \Sigma^*$.
+
+\item Werden bereits konstruierte Wörter hintereinandergeschrieben,
+entstehen neue Wörter, d.\,h. sind $v, w \in Σ^*$ , dann ist auch ihre
+Verkettung (Konkatenation) $v, w \in Σ^*$ .
+
+\item $\epsilon$, das leere Wort, ist ein Wort über (jedem Alphabet)
+$\Sigma$, d.\,h. es gilt immer $\epsilon \in Σ^*$. $\epsilon$ ist ein
+definiertes Wort ohne „Ausdehnung“. Es hat die Eigenschaft: $\epsilon w
+= w \epsilon = w$ für alle $w \in Σ^*$.
+\end{enumerate}
+
+Mit $\Sigma^+$ bezeichnen wir die Menge aller Wörter über $\Sigma$ ohne
+das leere Wort, d.h. $\Sigma^+ = \Sigma^∗ - \{ \epsilon \}$.
+\footcite[Seite 16]{vossen}
+\end{description}
 
 Sei $\Sigma$ ein Alphabet. Eine formale Sprache $L$ ist eine Teilmenge
 aller Wörter über $\Sigma$:
@@ -136,7 +175,7 @@ Eine Grammatik ist ein 4-Tupel mit $G = (V, \Sigma, P, S)$ und besteht aus:
 \item Und einer \memph{Startvariablen} $S$ mit $S \in V$
 \end{itemize}
 
-%-----------------------------------------------------------------------
+%----------------------------------------------------------------------
 %
 %-----------------------------------------------------------------------
 
@@ -146,16 +185,15 @@ $G = (V, \Sigma, P, S)$ mit
 
 $V = \{Z, A\}$
 
-$\Sigma = \{0, 1\}$
+\liAlphabet{0, 1}
 
 \begin{liProduktionsRegeln}
 Z -> 1a | 1,
 A -> 1A | 0A | 1
 \end{liProduktionsRegeln}
 
-Eine reguläre Sprache wird durch eine reguläre
-Grammatik erzeugt, d.h. eine Grammatik mit
-Produktionsregeln der Form:
+Eine reguläre Sprache wird durch eine reguläre Grammatik erzeugt, d.\,h.
+eine Grammatik mit Produktionsregeln der Form:
 
 $A \rightarrow \epsilon$ oder $A \rightarrow 1$ oder $A \rightarrow 0A$
 
@@ -199,6 +237,17 @@ Zeichens} seines Eingabealphabetes (den möglichen Eingaben) von einem
 Zustand, in dem er sich befindet, in einen \memph{eindeutig bestimmten
 Folgezustand} wechselt.
 \footcite{wiki:dea}
+
+Einen endlichen Automaten können wir uns als eine „Black Box“
+vorstellen, in die wir etwas eingeben können und die sich aufgrund einer
+Folge von Eingaben in einem entsprechenden Zustand befindet. In
+Abhängigkeit von ihrem jeweiligen Zustand und einer erfolgten Eingabe
+geht sie in einen Folgezustand über. Befindet sich die Black Box nach
+der Abarbeitung der Eingabefolge in einem ausgezeichneten Zustand, einem
+so genannten Endzustand, dann handelt es sich um eine von ihr
+akzeptierte Folge, falls sie sich nicht in einem Endzustand befindet,
+hat sie die Eingabe nicht akzeptiert.
+\footcite[Seite 11]{vossen}
 
 Automaten sind \memph{deterministisch}, wenn es in jedem Zustand für jedes
 Eingabesymbol \memph{höchstens einen Folgezustand} gibt.
