@@ -13,13 +13,41 @@
 
 \section{Chomsky-Hierarchie\footcite{wiki:chomsky}}
 
-Die Sprachen lassen sich folgendermaßen einteilen:
+Im Jahr 1957 veröffentlichte der amerikanische Sprachwissenschaftler
+Noam \memph{Chomsky} ein Regelwerk, mit dessen Hilfe sich formale
+Grammatiken in \memph{vier Klassen} einteilen lassen:
+\footcite[Seite 168]{hoffmann}
 
 \begin{description}
 \item[Typ 0] Phrasenstrukturgrammatik
+
+Jede Grammatik ist per Definition immer auch eine Typ-0-Grammatik.
+Insbesondere unterliegt die Struktur der Produktionen \memph{keinen
+weiteren vereinbarten Einschränkungen}.
+
 \item[Typ 1] kontextsensitive Grammatik
+
+Eine Grammatik heißt kontextsensitiv, wenn jede Produktionsregel $l
+\rightarrow r$ entweder die Beziehung \memph{$|r| \geq |l|$} erfüllt
+oder die Form \memph{$S \rightarrow \epsilon$} aufweist. Ist die Regel
+$S \rightarrow \epsilon$ enthalten, so darf $S$ in keiner anderen
+rechten Seite einer Regel vorkommen.
+
 \item[Typ 2] kontextfreie Grammatik
+
+Typ-2-Grammatiken sind dadurch charakterisiert, dass die \memph{linke
+Seite} einer Produktionsregel ausschließlich aus einer \memph{einzigen
+Variablen} besteht. Für alle Produktionen $l \rightarrow r$ gilt also $l
+\in V$.
+
 \item[Typ 3] reguläre Grammatik\footcite[Seite 14]{theo:fs:1}
+
+Reguläre Grammatiken sind kontextfrei und besitzen die zusätzliche
+Eigenschaft, dass die rechte Seite einer Produktion entweder aus dem
+\memph{leeren Wort $\epsilon$} oder einem \memph{Terminalsymbol},
+\memph{gefolgt von einem Nonterminal}, besteht. Formal gesprochen
+besitzt jede Produktion die Form $l \rightarrow r$ mit $l \in V$ und $r
+\in \{ \epsilon \} \cup \Sigma V$ .
 \end{description}
 
 \begin{tikzpicture}[font=\sffamily,breathe dist/.initial=0.01ex]
@@ -36,6 +64,14 @@ Die Sprachen lassen sich folgendermaßen einteilen:
   draw,ellipse,inner sep=0pt] (F-\Y){};
   \fi}
 \end{tikzpicture}
+
+Eine Sprache $L$ bezeichnen wir als Typ-$n$-Sprache, wenn eine
+Typ-$n$-Grammatik G existiert, die $L$ erzeugt. Die Menge aller
+Typ-$n$-Sprachen notieren wir mit dem Symbol $\mathcal{L}_1$. Zwischen
+den verschiedenen Sprachklassen besteht die folgende
+Inklusionsbeziehung:
+
+$\mathcal{L}_0 \supset \mathcal{L}_1 \supset \mathcal{L}_2 \supset \mathcal{L}_3$
 
 %-----------------------------------------------------------------------
 %
@@ -156,16 +192,16 @@ Syntaxbaum zu 100101
 
 \section{Deterministische endliche Automaten}
 
-Ein deterministischer endlicher Automat (DEA; englisch deterministic
-finite state machine oder deterministic finite automaton, DFA) ist ein
-endlicher Automat, der unter Eingabe eines Zeichens seines
-Eingabealphabetes (den möglichen Eingaben) von einem Zustand, in dem er
-sich befindet, in einen eindeutig bestimmten Folgezustand wechselt.
+Ein deterministischer endlicher Automat (\memph{DEA}; englisch
+deterministic finite state machine oder deterministic finite automaton,
+\memph{DFA}) ist ein endlicher Automat, der unter \memph{Eingabe eines
+Zeichens} seines Eingabealphabetes (den möglichen Eingaben) von einem
+Zustand, in dem er sich befindet, in einen \memph{eindeutig bestimmten
+Folgezustand} wechselt.
 \footcite{wiki:dea}
 
-Automaten sind deterministisch, wenn es in jedem Zustand für jedes
-Eingabesymbol höchstens einen (in einem vollständigen Automaten genau
-einen) Folgezustand gibt.
+Automaten sind \memph{deterministisch}, wenn es in jedem Zustand für jedes
+Eingabesymbol \memph{höchstens einen Folgezustand} gibt.
 \footcite[Seite 28]{vossen}
 
 Ein DEA/DFA ist ein 5-Tupel ($Z, \Sigma, \delta, E, z_0$) mit
