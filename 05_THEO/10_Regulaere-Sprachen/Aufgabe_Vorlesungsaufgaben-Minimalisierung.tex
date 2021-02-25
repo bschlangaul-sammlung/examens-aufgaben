@@ -1,0 +1,30 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe,automaten}
+\begin{document}
+\liAufgabenTitel{Minimalisierung}
+\section{Vorlesungsaufgaben
+\index{Minimierungsalgorithmus}}
+
+\section{Übung zur Minimalisierung\footcite[Seite 59]{theo:fs:1}}
+
+Minimalisiere den gegebenen DEA:
+
+\begin{center}
+\begin{tikzpicture}[->,node distance=2cm]
+\node[state,initial] (0) {$z_0$};
+\node[state,above right of=0] (1) {$z_1$};
+\node[state,below right of=0] (2) {$z_2$};
+\node[state,right of=1,accepting] (3) {$z_3$};
+\node[state,right of=2,accepting] (4) {$z_4$};
+
+\path (0) edge[above] node{a} (2);
+\path (0) edge[above] node{b} (1);
+\path (1) edge[above] node{a} (3);
+\path (1) edge[above] node{b} (4);
+\path (2) edge[above] node{a,b} (4);
+\path (3) edge[loop,above] node{a,b} (3);
+\path (4) edge[right] node{a,b} (3);
+\end{tikzpicture}
+\end{center}
+
+\end{document}

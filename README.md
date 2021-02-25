@@ -374,23 +374,25 @@ Weitere Aufgaben zum Thema „SQL“:
 #### Reguläre Ausdrücke
 
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Arztpraxis.pdf" download="Aufgabe_Arztpraxis">„Arztpraxis und Autohauskette“</a> (Reguläre Ausdrücke)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_NEA-DEA-Aequivalenzklassen.pdf" download="Aufgabe_NEA-DEA-Aequivalenzklassen">„NEA-DEA-Aequivalenzklassen“</a> (Reguläre Sprache, Minimierungsalgorithmus, Reguläre Ausdrücke, Äquivalenzklassen)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_NEA-DEA-Aequivalenzklassen.pdf" download="Aufgabe_NEA-DEA-Aequivalenzklassen">„NEA-DEA-Aequivalenzklassen“</a> (Reguläre Sprache, Deterministisch endlicher Automat (DEA), Minimierungsalgorithmus, Reguläre Ausdrücke, Äquivalenzklassen)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Regulaere-Grammatik-regulaere-Ausdruecke-und-DEA.pdf" download="Aufgabe_Regulaere-Grammatik-regulaere-Ausdruecke-und-DEA">„Reguläre Grammatik, reguläre Ausdrücke und DEA“</a> (Reguläre Sprache, Reguläre Grammatik, Ableitung (Reguläre Sprache), Reguläre Ausdrücke, Deterministisch endlicher Automat (DEA))
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-Regulaere-Ausdruecke.pdf" download="Aufgabe_Vorlesungsaufgaben-Regulaere-Ausdruecke">„Vorlesungsaufgaben“</a> (Reguläre Ausdrücke)
 
 #### Pumping-Lemma
 
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Pumping-Lemma.pdf" download="Aufgabe_Pumping-Lemma">„Pumping-Lemma“</a> (Pumping-Lemma)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T1-A1">Examen 66115 Frühjahr 2015 T1 A1</a> (Reguläre Sprache, Pumping-Lemma, Potenzmengenalgorithmus)
+
 
 #### Potenzmengenalgorithmus
 
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus-erstes-Beispiel.pdf" download="Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus-erstes-Beispiel">„Vorlesungsaufgaben“</a> (Potenzmengenalgorithmus)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus.pdf" download="Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus">„Vorlesungsaufgaben“</a> (Potenzmengenalgorithmus)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T1-A1">„NEA und Minimalisierung“ Examen 66115 Herbst 2012 T1 A1</a> (Potenzmengenalgorithmus, Minimierungsalgorithmus)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T1-A1">Examen 66115 Frühjahr 2015 T1 A1</a> (Reguläre Sprache, Pumping-Lemma, Potenzmengenalgorithmus)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T1-A1">Examen 66115 Frühjahr 2015 T1 A1</a> (Reguläre Sprache, Pumping-Lemma (Reguläre Sprache), Potenzmengenalgorithmus)
 
 #### Minimierungsalgorithmus
 
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_NEA-DEA-Aequivalenzklassen.pdf" download="Aufgabe_NEA-DEA-Aequivalenzklassen">„NEA-DEA-Aequivalenzklassen“</a> (Reguläre Sprache, Minimierungsalgorithmus, Reguläre Ausdrücke, Äquivalenzklassen)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_NEA-DEA-Aequivalenzklassen.pdf" download="Aufgabe_NEA-DEA-Aequivalenzklassen">„NEA-DEA-Aequivalenzklassen“</a> (Reguläre Sprache, Deterministisch endlicher Automat (DEA), Minimierungsalgorithmus, Reguläre Ausdrücke, Äquivalenzklassen)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-Minimalisierung.pdf" download="Aufgabe_Vorlesungsaufgaben-Minimalisierung">„Minimalisierung“</a> (Minimierungsalgorithmus)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T1-A1">„NEA und Minimalisierung“ Examen 66115 Herbst 2012 T1 A1</a> (Potenzmengenalgorithmus, Minimierungsalgorithmus)
 
 # Aufgaben geordnet nach Staatsexamen
@@ -881,7 +883,7 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2014-Herbst_T2-A6">Aufgabe 6 (Selectionsort, Implementierung in Java, Komplexität, Halde (Heap))</a>
 - 2015 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/OCR.txt" download="Staatsexamen-Informatik_66115-2015-Frühjahr_OCR">OCR.txt</a> 
     - Thema 1 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T1-A1">Aufgabe 1 (Reguläre Sprache, Pumping-Lemma, Potenzmengenalgorithmus)</a> 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T1-A1">Aufgabe 1 (Reguläre Sprache, Pumping-Lemma (Reguläre Sprache), Potenzmengenalgorithmus)</a> 
     - Thema 2 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T2-A5">Aufgabe 5 (Stapel (Stack), Komplexität)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T2-A7">Aufgabe 7 (Algorithmus von Dijkstra)</a>
@@ -1328,16 +1330,23 @@ als Markdown-Liste eingebettet werden kann.
     - Reguläre Sprache:
         - Reguläre Grammatik
         - Reguläre Ausdrücke
-        - Deterministisch endlicher Automat
-        - Nichtdeterministisch endlicher Automat
-        - Pumping-Lemma
+        - Deterministisch endlicher Automat (DEA)
+        - Nichtdeterministisch endlicher Automat (NEA)
+        - Pumping-Lemma (Reguläre Sprache)
         - Potenzmengenalgorithmus
         - Minimierungsalgorithmus
         - Äquivalenzklassen
+        - Ableitung (Reguläre Sprache)
     - Kontextfreie Sprache:
         - Kontextfreie Grammatik
         - Kellerautomat
-    - Kontextsensitive Sprache
+        - CYK-Algorithmus
+        - Chomsky-Normalform
+        - Pumping-Lemma (Kontextfreie Sprache)
+    - Kontextsensitive Sprache:
+        - Kontextsensitive Grammatik
+    - Unbeschränkte Sprache:
+        - Turing-Maschine
 
 
 {{ einbinden "docs/tex.md" }}
