@@ -1,0 +1,63 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{automaten,formale-sprachen}
+\begin{document}
+\liAufgabenTitel{Erweiteter Potzenzmengenalgorithmus}
+\section{Erweiterter Potenzmengenalgorithmus $\epsilon$-NEA zum NEA
+\index{}
+\footcite[Seite 50]{theo:fs:1}}
+
+Gegeben ist der folgende $\epsilon$-NEA:
+
+\begin{center}
+\begin{tikzpicture}[->,node distance=2cm]
+\node[state,initial]              (0) {$z_0$};
+\node[state,below right of=0]     (1) {$z_1$};
+\node[state,right of=0]           (2) {$z_2$};
+\node[state,below of=0]           (3) {$z_3$};
+\node[state,right of=2,accepting] (4) {$z_4$};
+
+\path (0) edge[above] node{$\epsilon$} (2);
+\path (0) edge[above] node{a} (1);
+\path (0) edge[left] node{b} (3);
+\path (1) edge[right] node{$\epsilon$} (2);
+\path (2) edge[above,loop] node{c} (2);
+\path (2) edge[above] node{$\epsilon$} (4);
+\path (3) edge[above] node{$\epsilon$} (1);
+\end{tikzpicture}
+\end{center}
+
+Wandle den gegebenen Automaten in eine $\epsilon$-freien DEA um.
+
+\begin{liAntwort}
+\let\p=\liPotenzmenge
+
+\begin{tabular}{llll}
+Zustandsmenge & Eingabe a & Eingabe b & Eingabe c\\
+\p{z_0, z_2, z_4} &
+\p{z_1, z_2, z_4} &
+\p{z_1, z_2, z_3, z_4} &
+\p{z_2, z_4} \\
+
+\p{z_1, z_2, z_4} &
+\p{} &
+\p{} &
+\p{z_2, z_4} \\
+
+\p{z_1, z_2, z_3, z_4} &
+\p{} &
+\p{} &
+\p{z_2, z_4} \\
+
+\p{z_2, z_4} &
+\p{} &
+\p{} &
+\p{z_2, z_4} \\
+
+\p{} &
+\p{} &
+\p{} &
+\p{} \\
+\end{tabular}
+\end{liAntwort}
+
+\end{document}
