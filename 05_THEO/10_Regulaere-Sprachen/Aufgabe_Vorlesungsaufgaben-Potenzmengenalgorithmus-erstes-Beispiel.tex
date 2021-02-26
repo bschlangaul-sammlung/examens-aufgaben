@@ -2,11 +2,11 @@
 \liLadePakete{mathe,automaten,formale-sprachen}
 
 \begin{document}
-\liAufgabenTitel{Vorlesungsaufgaben}
-\section{Vorlesungsaufgaben
-\index{Potenzmengenalgorithmus}}
+% Info_2021-02-26-2021-02-26_13.01.25.mp4 2h23- 2h38
 
-\section{Übung Potenzmengenalgorithmus\footcite[Seite 35-45]{theo:fs:1}}
+\liAufgabenTitel{Vorlesungsaufgaben}
+\section{Potenzmengenalgorithmus\footcite[Seite 35-45]{theo:fs:1}
+\index{Potenzmengenalgorithmus}}
 
 Gegeben ist der folgende NEA:
 
@@ -29,8 +29,8 @@ Gegeben ist der folgende NEA:
 %
 %%
 
-\item Welche Sprache akzeptiert dieser Automat? Beschreibe in Worten und
-stelle einen regulären Ausdruck hierfür auf.
+\item Welche Sprache akzeptiert dieser Automat? Beschreiben Sie in
+Worten und stellen Sie einen regulären Ausdruck hierfür auf.
 \footcite[Seite 35]{theo:fs:1}
 
 \begin{liAntwort}
@@ -49,18 +49,33 @@ einen DEA.
 
 \begin{tabular}{l|l|l|l}
 Name & Zustandsmenge & Eingabe a & Eingabe b \\\hline
-$z'_0$ & \p{z_0} & \p{z_0} & \p{z_0, z_1} \\
-$z'_1$ & \p{z_0, z_1} & \p{z_0, z_2} & \p{z_0, z_1, z_2} \\
-$z'_2$ & \p{z_0, z_2} & \p{z_0, z_2} & \p{z_0, z_1, z_2} \\
-$z'_3$ & \p{z_0, z_1, z_2} & \p{z_0, z_2} & \p{z_0, z_1, z_2} \\
+$z'_0$ &
+\p{z_0} &
+\p{z_0} &
+\p{z_0, z_1} \\
+
+$z'_1$ &
+\p{z_0, z_1} &
+\p{z_0, z_2} &
+\p{z_0, z_1, z_2} \\
+
+$z'_2$ &
+\p{z_0, z_2} &
+\p{z_0, z_2} &
+\p{z_0, z_1, z_2} \\
+
+$z'_3$ &
+\p{z_0, z_1, z_2} &
+\p{z_0, z_2} &
+\p{z_0, z_1, z_2} \\
 \end{tabular}
 
 \begin{center}
 \begin{tikzpicture}[->,node distance=2cm]
-\node[state,initial] (0) {$z'_0$};
-\node[state,right of=0] (1) {$z'_1$};
-\node[state,accepting, above right of=1] (2) {$z'_2$};
-\node[state,accepting, below right of=2] (3) {$z'_3$};
+\node[state,initial,label=270:\p{z_0}] (0) {$z'_0$};
+\node[state,right of=0,label=270:\p{z_0, z_1}] (1) {$z'_1$};
+\node[state,accepting,above right of=1,label=90:\p{z_0, z_2}] (2) {$z'_2$};
+\node[state,accepting,below right of=2,label=270:\p{z_0, z_1, z_2}] (3) {$z'_3$};
 
 \path (0) edge[above] node{b} (1);
 \path (1) edge[above] node{a} (2);

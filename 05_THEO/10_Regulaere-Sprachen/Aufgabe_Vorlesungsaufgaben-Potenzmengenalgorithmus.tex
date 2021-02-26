@@ -2,13 +2,14 @@
 \liLadePakete{mathe,automaten,formale-sprachen}
 
 \begin{document}
+
+% Info_2021-02-26-2021-02-26_13.01.25.mp4 2h:40 - 2h:
 \liAufgabenTitel{Vorlesungsaufgaben}
-\section{Vorlesungsaufgaben
-\index{Potenzmengenalgorithmus}}
+\section{Potenzmengenalgorithmus
+\index{Potenzmengenalgorithmus}
+\footcite[Seite 46]{theo:fs:1}}
 
-\section{Übung Potenzmengenalgorithmus\footcite[Seite 46]{theo:fs:1}}
-
-Gegeben ist der folgende NEA:
+Gegeben ist der folgende nichtdeterministische endliche Automat:
 
 \begin{center}
 \begin{tikzpicture}[->,node distance=2cm]
@@ -26,34 +27,59 @@ Gegeben ist der folgende NEA:
 \end{center}
 
 \noindent
-Überführenn Sie den gegebenen NEA mit dem Potenzmengenalgorithmus in
-einen DEA.
+Überführenn Sie den gegebenen nichtdeterministischen endlichen Automaten
+mit dem Potenzmengenalgorithmus in einen deterministischen endlichen
+Automaten.
 
 \begin{liAntwort}
 \let\p=\liPotenzmenge
 
-\begin{tabular}{lll}
-Zustandsmenge & Eingabe a & Eingabe b \\
+\begin{tabular}{l|l|l|l}
+neuer Name & Zustandsmenge & Eingabe a & Eingabe b \\\hline\hline
+$z'_0$ &
 \p{z_0} &
 \p{z_1, z_2} &
 \p{} \\
 
+$z'_1$ &
 \p{z_1, z_2} &
 \p{}&
 \p{z_1, z_3} \\
 
+$z'_2$ &
 \p{z_1, z_3} &
 \p{z_3} &
 \p{z_3} \\
 
+$z'_3$ &
 \p{z_3} &
 \p{z_3} &
 \p{z_3} \\
 
+$z'_t$ &
 \p{} &
 \p{} &
 \p{} \\
 \end{tabular}
+
+\begin{center}
+\begin{tikzpicture}[->,node distance=2cm]
+\node[state,initial,label=270:\p{z_0}] (0) {$z'_0$};
+\node[state,right of=0,label=270:\p{z_1, z_2}] (1) {$z'_1$};
+\node[state,right of=1,accepting,label=270:\p{z_1, z_3}] (2) {$z'_2$};
+\node[state,right of=2,accepting,label=270:\p{z_3}] (3) {$z'_3$};
+\node[state,above right of=0,label=90:\p{}] (t) {$z'_t$};
+
+\path (0) edge[above] node{a} (1);
+\path (0) edge[left] node{b} (t);
+\path (1) edge[right] node{a} (t);
+\path (1) edge[above] node{b} (2);
+\path (2) edge[above] node{a,b} (3);
+\path (3) edge[above,loop right] node{a,b} (3);
+\path (t) edge[above,loop right] node{a,b} (t);
+
+\end{tikzpicture}
+\end{center}
 \end{liAntwort}
 
 \end{document}
