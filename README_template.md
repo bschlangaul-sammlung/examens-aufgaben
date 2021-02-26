@@ -141,9 +141,17 @@ Weitere Aufgaben zum Thema „SQL“:
 
 {{ stichwort "Reguläre Ausdrücke" }}
 
+#### Deterministisch endlicher Automat (DEA)
+
+{{ stichwort "Deterministisch endlicher Automat (DEA)" }}
+
+#### Nichtdeterministisch endlicher Automat (NEA)
+
+{{ stichwort "Nichtdeterministisch endlicher Automat (NEA)" }}
+
 #### Pumping-Lemma
 
-{{ stichwort "Pumping-Lemma" }}
+{{ stichwort "Pumping-Lemma (Reguläre Sprache)" }}
 
 #### Potenzmengenalgorithmus
 

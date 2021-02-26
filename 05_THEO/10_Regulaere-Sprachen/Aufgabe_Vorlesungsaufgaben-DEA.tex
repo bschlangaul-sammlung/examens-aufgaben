@@ -1,13 +1,12 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe,automaten}
+\liLadePakete{mathe,automaten,formale-sprachen}
 \begin{document}
 \liAufgabenTitel{Vorlesungsaufgaben}
 \section{Deterministisch endlicher Automat
-\index{Deterministisch endlicher Automat (DEA)}}
+\index{Deterministisch endlicher Automat (DEA)}\footcite[Seite 28]{theo:fs:1}}
 
-\section{Übungen zu Automaten\footcite[Seite 28]{theo:fs:1}}
-
-Stelle einen Automaten zu den folgenden Sprachen auf:
+Stellen Sie einen Automaten zu den folgenden Sprachen (\liAlphabet{a,b})
+auf:
 
 \begin{enumerate}
 
@@ -15,18 +14,19 @@ Stelle einen Automaten zu den folgenden Sprachen auf:
 %
 %%
 
+% https://flaci.com/A5415d28w
 \item $L_1 = \{ x | x \text{ beinhaltet eine gerade Anzahl von } a \}$
 
 \begin{liAntwort}
 \begin{center}
 \begin{tikzpicture}[->,node distance=2cm]
-\node[state,initial] (0) {$z_0$};
+\node[state,initial,accepting] (0) {$z_0$};
 \node[state,right of=0] (1) {$z_1$};
-\node[state,right of=1,accepting] (2) {$z_2$};
 
-\path (0) edge[above] node{a} (1);
-\path (1) edge[above,bend left] node{a} (2);
-\path (2) edge[above,bend left] node{a} (1);
+\path (0) edge[above,bend left] node{a} (1);
+\path (1) edge[above,bend left] node{a} (0);
+\path (0) edge[above,loop] node{b} (0);
+\path (1) edge[above,loop] node{b} (1);
 \end{tikzpicture}
 \end{center}
 \end{liAntwort}
@@ -35,6 +35,7 @@ Stelle einen Automaten zu den folgenden Sprachen auf:
 %
 %%
 
+% https://flaci.com/Arozb1437
 \item $L_2 = \{ x | x \text{ beinhaltet eine ungerade Anzahl von } b \}$
 
 \begin{liAntwort}
@@ -42,11 +43,11 @@ Stelle einen Automaten zu den folgenden Sprachen auf:
 \begin{tikzpicture}[->,node distance=2cm]
 \node[state,initial] (0) {$z_0$};
 \node[state,right of=0,accepting] (1) {$z_1$};
-\node[state,right of=1] (2) {$z_2$};
 
-\path (0) edge[above] node{b} (1);
-\path (1) edge[above,bend left] node{b} (2);
-\path (2) edge[above,bend left] node{b} (1);
+\path (0) edge[above,bend left] node{b} (1);
+\path (1) edge[above,bend left] node{b} (0);
+\path (0) edge[above,loop] node{a} (0);
+\path (1) edge[above,loop] node{a} (1);
 \end{tikzpicture}
 \end{center}
 \end{liAntwort}
@@ -55,11 +56,32 @@ Stelle einen Automaten zu den folgenden Sprachen auf:
 %
 %%
 
-\item Gib einen DEA der eine syntaktisch gültige E-Mail-Adresse erkennt.
-(mindestens 1 Zeichen (Groß-/Kleinbuchstabe oder Zahl) vor dem
-\texttt{@}; mindestens 1 Zeichen (Groß-/Kleinbuchstabe oder Zahl) nach
-dem \texttt{@}; alle E-Mail-Adressen sollen auf \texttt{.de} oder
-\texttt{.com} enden.
+% https://flaci.com/Ajiq3o8ma
+\item Geben Sie einen DEA an, der eine syntaktisch gültige
+E-Mail-Adresse erkennt. (mindestens 1 Zeichen (Groß-/Kleinbuchstabe oder
+Zahl) vor dem \texttt{@}; mindestens 1 Zeichen (Groß-/Kleinbuchstabe
+oder Zahl) nach dem \texttt{@}; alle E-Mail-Adressen sollen auf
+\texttt{.de} oder \texttt{.com} enden.
+
+\begin{liAntwort}
+Es müsste noch der Trap-Zustand hinzugefügt werden.
+\begin{center}
+
+\begin{tikzpicture}[->,node distance=1.8cm]
+\node[state,initial] (0) {$z_0$};
+\node[state,right of=0] (1) {$z_1$};
+\node[state,right of=1] (2) {$z_2$};
+\node[state,right of=2] (3) {$z_3$};
+\node[state,right of=3,node distance=3cm,accepting] (4) {$z_4$};
+\path (0) edge[above] node{\string\w} (1);
+\path (1) edge[above] node{@} (2);
+\path (1) edge[above,loop] node{\string\w} (1);
+\path (2) edge[above] node{\string\w} (3);
+\path (3) edge[above,loop] node{\string\w} (3);
+\path (3) edge[above] node{.de,.com} (4);
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}

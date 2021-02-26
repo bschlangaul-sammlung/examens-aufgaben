@@ -384,9 +384,24 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Regulaere-Grammatik-regulaere-Ausdruecke-und-DEA.pdf" download="Aufgabe_Regulaere-Grammatik-regulaere-Ausdruecke-und-DEA">„Reguläre Grammatik, reguläre Ausdrücke und DEA“</a> (Reguläre Sprache, Reguläre Grammatik, Ableitung (Reguläre Sprache), Reguläre Ausdrücke, Deterministisch endlicher Automat (DEA))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-Regulaere-Ausdruecke.pdf" download="Aufgabe_Vorlesungsaufgaben-Regulaere-Ausdruecke">„Vorlesungsaufgaben“</a> (Reguläre Ausdrücke)
 
+#### Deterministisch endlicher Automat (DEA)
+
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Deterministischer-endlicher-Automat.pdf" download="Aufgabe_Deterministischer-endlicher-Automat">„Deterministischer endlicher Automat“</a> (Reguläre Sprache, Deterministisch endlicher Automat (DEA))
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Grammatik-aus-Automat.pdf" download="Aufgabe_Grammatik-aus-Automat">„Grammatik aus Automat“</a> (Reguläre Sprache, Deterministisch endlicher Automat (DEA), Reguläre Grammatik)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_NEA-DEA-Aequivalenzklassen.pdf" download="Aufgabe_NEA-DEA-Aequivalenzklassen">„NEA-DEA-Aequivalenzklassen“</a> (Reguläre Sprache, Deterministisch endlicher Automat (DEA), Minimierungsalgorithmus, Reguläre Ausdrücke, Äquivalenzklassen)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Regulaere-Grammatik-regulaere-Ausdruecke-und-DEA.pdf" download="Aufgabe_Regulaere-Grammatik-regulaere-Ausdruecke-und-DEA">„Reguläre Grammatik, reguläre Ausdrücke und DEA“</a> (Reguläre Sprache, Reguläre Grammatik, Ableitung (Reguläre Sprache), Reguläre Ausdrücke, Deterministisch endlicher Automat (DEA))
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-DEA.pdf" download="Aufgabe_Vorlesungsaufgaben-DEA">„Vorlesungsaufgaben“</a> (Deterministisch endlicher Automat (DEA))
+
+#### Nichtdeterministisch endlicher Automat (NEA)
+
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-NEA.pdf" download="Aufgabe_Vorlesungsaufgaben-NEA">„nichtdeterministischer endlicher Automat“</a> (Nichtdeterministisch endlicher Automat (NEA))
+
 #### Pumping-Lemma
 
-
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Pumping-Lemma.pdf" download="Aufgabe_Pumping-Lemma">„Pumping-Lemma“</a> (Pumping-Lemma (Reguläre Sprache))
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-Pumping-Lemma.pdf" download="Aufgabe_Vorlesungsaufgaben-Pumping-Lemma">„Pumping-Lemma“</a> (Pumping-Lemma (Reguläre Sprache))
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/20_Kontextfreie-Sprachen/Aufgabe_Pumping-Lemma.pdf" download="Aufgabe_Pumping-Lemma">„Pumping-Lemma“</a> (Pumping-Lemma (Reguläre Sprache))
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T1-A1">Examen 66115 Frühjahr 2015 T1 A1</a> (Reguläre Sprache, Pumping-Lemma (Reguläre Sprache), Potenzmengenalgorithmus)
 
 #### Potenzmengenalgorithmus
 
