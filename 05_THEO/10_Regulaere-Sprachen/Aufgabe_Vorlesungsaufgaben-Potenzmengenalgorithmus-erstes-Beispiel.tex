@@ -1,13 +1,12 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{mathe,automaten,formale-sprachen}
 
-\let\p=\liPotenzmenge
 \begin{document}
 \liAufgabenTitel{Vorlesungsaufgaben}
 \section{Vorlesungsaufgaben
 \index{Potenzmengenalgorithmus}}
 
-\section{Übung Potenzmengenalgorithmus\footcite[Seite 37-45]{theo:fs:1}}
+\section{Übung Potenzmengenalgorithmus\footcite[Seite 35-45]{theo:fs:1}}
 
 Gegeben ist der folgende NEA:
 
@@ -25,17 +24,35 @@ Gegeben ist der folgende NEA:
 \end{center}
 
 \begin{enumerate}
+
+%%
+%
+%%
+
+\item Welche Sprache akzeptiert dieser Automat? Beschreibe in Worten und
+stelle einen regulären Ausdruck hierfür auf.
+\footcite[Seite 35]{theo:fs:1}
+
+\begin{liAntwort}
+$(a|b)^*b(a|b)(a|b)^*$
+\end{liAntwort}
+
+%%
+%
+%%
+
 \item Überführe den gegebenen NEA mit dem Potenzmengenalgorithmus in
 einen DEA.
 
 \begin{liAntwort}
+\let\p=\liPotenzmenge
+
 \begin{tabular}{l|l|l|l}
 Name & Zustandsmenge & Eingabe a & Eingabe b \\\hline
 $z'_0$ & \p{z_0} & \p{z_0} & \p{z_0, z_1} \\
 $z'_1$ & \p{z_0, z_1} & \p{z_0, z_2} & \p{z_0, z_1, z_2} \\
 $z'_2$ & \p{z_0, z_2} & \p{z_0, z_2} & \p{z_0, z_1, z_2} \\
 $z'_3$ & \p{z_0, z_1, z_2} & \p{z_0, z_2} & \p{z_0, z_1, z_2} \\
-
 \end{tabular}
 
 \begin{center}
