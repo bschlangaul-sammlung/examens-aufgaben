@@ -371,6 +371,12 @@ Weitere Aufgaben zum Thema „SQL“:
 
 ### Reguläre Sprachen
 
+#### Reguläre Grammatik
+
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Grammatik-aus-Automat.pdf" download="Aufgabe_Grammatik-aus-Automat">„Grammatik aus Automat“</a> (Reguläre Sprache, Deterministisch endlicher Automat (DEA), Reguläre Grammatik)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Regulaere-Grammatik-regulaere-Ausdruecke-und-DEA.pdf" download="Aufgabe_Regulaere-Grammatik-regulaere-Ausdruecke-und-DEA">„Reguläre Grammatik, reguläre Ausdrücke und DEA“</a> (Reguläre Sprache, Reguläre Grammatik, Ableitung (Reguläre Sprache), Reguläre Ausdrücke, Deterministisch endlicher Automat (DEA))
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-Regulaere-Grammatik.pdf" download="Aufgabe_Vorlesungsaufgaben-Regulaere-Grammatik">„Vorlesungsaufgaben“</a> (Reguläre Grammatik)
+
 #### Reguläre Ausdrücke
 
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Arztpraxis.pdf" download="Aufgabe_Arztpraxis">„Arztpraxis und Autohauskette“</a> (Reguläre Ausdrücke)

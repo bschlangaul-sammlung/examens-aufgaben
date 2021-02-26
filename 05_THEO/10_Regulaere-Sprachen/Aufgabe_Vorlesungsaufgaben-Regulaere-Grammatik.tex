@@ -1,0 +1,88 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe,automaten,formale-sprachen,syntaxbaum}
+\begin{document}
+\liAufgabenTitel{Vorlesungsaufgaben}
+\section{Reguläre Grammatik
+\index{Reguläre Grammatik}}
+
+\section{Übung zu regulären Grammatiken\footcite[Seite 21]{theo:fs:1}}
+
+Gegeben ist eine Sprache $L \subset \Sigma^*$ mit $\Sigma = \{a, b\}$. Zu
+der Sprache $L$ gehören alle Wörter, die die Zeichenfolge $abba$
+beinhalten.
+
+\begin{enumerate}
+\item Gib eine Grammatik an, die diese Sprache erzeugt.
+
+% https://flaci.com/Gib2h94ar
+\begin{liAntwort}
+$G = (V, \Sigma, P, S)$ mit \liAlphabet{a, b},
+$S = S$,
+$V = \{ S, A, B, C, D \}$
+
+Tipp: Die Produktionsregeln so entwerfen, dass zuerst das Wort „abba“
+erkannt wird, dann die Regeln entwerfen.
+
+\begin{liProduktionsRegeln}
+S -> aA | aS | bS,
+A -> bB,
+B -> bC,
+C -> aD,
+D -> aD | bD | epsilon
+\end{liProduktionsRegeln}
+
+Andere Möglichkeit:
+
+\begin{liProduktionsRegeln}
+S -> aA | aS | bS,
+A -> bB,
+B -> bC,
+C -> aD | a,
+D -> aD | bD | a | b
+\end{liProduktionsRegeln}
+
+Nicht erlaubt in regulärer Grammtik:
+
+\begin{liProduktionsRegeln}
+S -> abbaA
+\end{liProduktionsRegeln}
+
+\end{liAntwort}
+
+\item Gib eine Ableitung/Syntaxbaum zu deiner Grammatik für das Wort
+\texttt{aabbab} an.
+
+\begin{liAntwort}
+S $\rightarrow$
+aS $\rightarrow$
+aaA $\rightarrow$
+aabB $\rightarrow$
+aabbC $\rightarrow$
+aabbaD $\rightarrow$
+aabbabD $\rightarrow$
+aabbab
+
+\begin{center}
+\begin{tikzpicture}[level distance=0.7cm]
+\Tree [.S
+  [.a ] [.S
+    [.a ] [.A
+      [.b ] [.B
+        [.b ] [.C
+          [.a ] [.D
+            [.b ] [.D
+              $\epsilon$
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
+\end{enumerate}
+
+\end{document}

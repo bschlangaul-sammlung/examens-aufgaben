@@ -133,6 +133,10 @@ Weitere Aufgaben zum Thema „SQL“:
 
 ### Reguläre Sprachen
 
+#### Reguläre Grammatik
+
+{{ stichwort "Reguläre Grammatik" }}
+
 #### Reguläre Ausdrücke
 
 {{ stichwort "Reguläre Ausdrücke" }}
