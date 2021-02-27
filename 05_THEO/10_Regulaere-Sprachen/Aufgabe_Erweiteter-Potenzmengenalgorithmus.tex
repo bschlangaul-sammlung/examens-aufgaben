@@ -1,16 +1,12 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{automaten,formale-sprachen}
 
-% Info_2021-02-26-2021-02-26_13.01.25.mp4 3h03
+% Info_2021-02-26-2021-02-26_13.01.25.mp4 3h02m30
 \begin{document}
 \liAufgabenTitel{Erweiteter Potenzmengenalgorithmus}
 \section{Erweiterter Potenzmengenalgorithmus $\epsilon$-NEA zum DEA
 \index{Erweiteter Potenzmengenalgorithmus}
 \footcite[Seite 47-49]{theo:fs:1}}
-
-Welche Sprache akzeptiert dieser Automat? Beschreibe in Worten
-und stelle einen regulären Ausdruck sowie eine Grammatik hierfür
-auf.
 
 \begin{center}
 \begin{tikzpicture}[->,node distance=2cm]
@@ -25,5 +21,33 @@ auf.
 \path (2) edge[above,loop] node{c} (3);
 \end{tikzpicture}
 \end{center}
+
+\begin{enumerate}
+\item Welche Sprache akzeptiert dieser Automat? Beschreiben Sie in
+Worten und stellen Sie einen regulären Ausdruck sowie eine Grammatik
+hierfür auf.
+
+\begin{liAntwort}
+\begin{description}
+\item[in Worten]
+
+Das Alphabet besteht aus $a$, $b$, $c$. Am Anfang stehen $0$ oder
+beliebig viele $a$’s, dann kommen $0$ oder beliebig viele $b$’s und dann
+$0$ oder beliebig viele $c$’s.
+
+\item[Regulärer Ausdruck]
+
+$a^*b^*c^*$
+
+\item[Grammatik]
+
+\begin{liProduktionsRegeln}
+S -> aS | bA | cB | epsilon,
+A -> bA | cB | epsilon,
+B -> cB | epsilon
+\end{liProduktionsRegeln}
+\end{description}
+\end{liAntwort}
+\end{enumerate}
 
 \end{document}
