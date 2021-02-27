@@ -394,7 +394,7 @@ Weitere Aufgaben zum Thema „SQL“:
 
 #### Nichtdeterministisch endlicher Automat (NEA)
 
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-NEA.pdf" download="Aufgabe_Vorlesungsaufgaben-NEA">„nichtdeterministischer endlicher Automat“</a> (Nichtdeterministisch endlicher Automat (NEA))
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-NEA.pdf" download="Aufgabe_Vorlesungsaufgaben-NEA">„Vorlesungsaufgaben“</a> (Nichtdeterministisch endlicher Automat (NEA))
 
 #### Pumping-Lemma
 
@@ -1355,6 +1355,7 @@ als Markdown-Liste eingebettet werden kann.
         - Nichtdeterministisch endlicher Automat (NEA)
         - Pumping-Lemma (Reguläre Sprache)
         - Potenzmengenalgorithmus
+        - Erweiteter Potenzmengenalgorithmus
         - Minimierungsalgorithmus
         - Äquivalenzklassen
         - Ableitung (Reguläre Sprache)

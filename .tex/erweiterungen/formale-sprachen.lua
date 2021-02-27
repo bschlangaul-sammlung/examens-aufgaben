@@ -31,8 +31,10 @@ return {
     end
     tex.print(
       '$P = \\{$' ..
-     '\\begin{align*}' .. ausgabe .. '\\end{align*}' ..
-     '\\begin{flushright}' .. '\\}' .. '\\end{flushright}'
+      '\\vspace{-0.2cm}' ..
+      '\\begin{align*}' .. ausgabe .. '\\end{align*}' ..
+      '\\vspace{-1.5cm}' ..
+      '\\begin{flushright}' .. '\\}' .. '\\end{flushright}'
     )
   end
 }

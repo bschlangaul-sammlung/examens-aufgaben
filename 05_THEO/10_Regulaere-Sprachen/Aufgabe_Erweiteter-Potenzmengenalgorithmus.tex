@@ -9,10 +9,10 @@
 \footcite[Seite 47-49]{theo:fs:1}}
 
 \begin{center}
-\begin{tikzpicture}[->,node distance=2cm]
+\begin{tikzpicture}[->,node distance=3cm]
 \node[state,initial] (0) {$z_0$};
-\node[state,right of=0] (1) {$z_2$};
-\node[state,right of=1,accepting] (2) {$z_1$};
+\node[state,right of=0] (1) {$z_1$};
+\node[state,right of=1,accepting] (2) {$z_2$};
 
 \path (0) edge[above] node{$\epsilon$} (1);
 \path (1) edge[above] node{$\epsilon$} (2);
@@ -23,21 +23,39 @@
 \end{center}
 
 \begin{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
 \item Welche Sprache akzeptiert dieser Automat? Beschreiben Sie in
 Worten und stellen Sie einen regulären Ausdruck sowie eine Grammatik
 hierfür auf.
 
 \begin{liAntwort}
 \begin{description}
+
+%%
+%
+%%
+
 \item[in Worten]
 
 Das Alphabet besteht aus $a$, $b$, $c$. Am Anfang stehen $0$ oder
 beliebig viele $a$’s, dann kommen $0$ oder beliebig viele $b$’s und dann
 $0$ oder beliebig viele $c$’s.
 
+%%
+%
+%%
+
 \item[Regulärer Ausdruck]
 
 $a^*b^*c^*$
+
+%%
+%
+%%
 
 \item[Grammatik]
 
@@ -48,6 +66,56 @@ B -> cB | epsilon
 \end{liProduktionsRegeln}
 \end{description}
 \end{liAntwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\item Wandeln Sie den $\epsilon$-NEA zum einem DEA mit Hilfe des
+erweiterter Potenzmengenalgorithmus um.
+
+\begin{liAntwort}
+\let\p=\liPotenzmenge
+
+\begin{tabular}{l|l|l|l|l}
+Name & Zustandsmenge & Eingabe a & Eingabe b & Eingabe c\\\hline\hline
+$z'_0$ &
+\p{z_0, z_1, z_2} &
+\p{z_0, z_1, z_2} &
+\p{z_1, z_2} &
+\p{z_2} \\
+
+$z'_1$ &
+\p{z_1, z_2} &
+\p{} &
+\p{z_1, z_2} &
+\p{z_2} \\
+
+$z'_2$ &
+\p{z_2} &
+\p{} &
+\p{} &
+\p{z_2} \\
+\end{tabular}
+
+Trap-Übergänge werden aus Übersichtsgründen weg gelassen.
+
+\begin{center}
+\begin{tikzpicture}[->,node distance=3cm]
+\node[state,initial,accepting,label=south:\p{z_0, z_1, z_2}] (0) {$z'_0$};
+\node[state,above right of=0,accepting,label=south:\p{z_1, z_2}] (1) {$z'_1$};
+\node[state,below right of=1,accepting,label=south:\p{z_2}] (2) {$z'_2$};
+
+\path (0) edge[above,loop] node{a} (0);
+\path (0) edge[above] node{b} (1);
+\path (0) edge[above] node{c} (2);
+\path (1) edge[above,loop] node{b} (1);
+\path (1) edge[above] node{c} (2);
+\path (2) edge[above,loop] node{c} (2);
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
+
 \end{enumerate}
 
 \end{document}
