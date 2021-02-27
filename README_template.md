@@ -151,11 +151,11 @@ Weitere Aufgaben zum Thema „SQL“:
 
 #### Potenzmengenalgorithmus
 
-{{ stichwort "otenzmengenalgorithmus" }}
+{{ stichwort "Potenzmengenalgorithmus" }}
 
-#### Erweiterer Potenzmengenalgorithmus
+#### Erweiteter Potenzmengenalgorithmus
 
-{{ stichwort "Erweiterer Potenzmengenalgorithmus" }}
+{{ stichwort "Erweiteter Potenzmengenalgorithmus" }}
 
 #### Pumping-Lemma
 
