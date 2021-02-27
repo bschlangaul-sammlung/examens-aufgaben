@@ -10,9 +10,9 @@
 
 \begin{center}
 \begin{tikzpicture}[->,node distance=3cm]
-\node[state,initial] (0) {$z_0$};
-\node[state,right of=0] (1) {$z_1$};
-\node[state,right of=1,accepting] (2) {$z_2$};
+\node[state,initial] (0) {$z0$};
+\node[state,right of=0] (1) {$z1$};
+\node[state,right of=1,accepting] (2) {$z2$};
 
 \path (0) edge[above] node{$\epsilon$} (1);
 \path (1) edge[above] node{$\epsilon$} (2);
@@ -76,35 +76,36 @@ erweiterter Potenzmengenalgorithmus um.
 
 \begin{liAntwort}
 \let\p=\liPotenzmenge
+\let\s=\liZustandsnameStrich
 
 \begin{tabular}{l|l|l|l|l}
 Name & Zustandsmenge & Eingabe a & Eingabe b & Eingabe c\\\hline\hline
-$z'_0$ &
-\p{z_0, z_1, z_2} &
-\p{z_0, z_1, z_2} &
-\p{z_1, z_2} &
-\p{z_2} \\
+\s{0} &
+\p{z0, z1, z2} &
+\p{z0, z1, z2} &
+\p{z1, z2} &
+\p{z2} \\
 
-$z'_1$ &
-\p{z_1, z_2} &
+\s{1} &
+\p{z1, z2} &
 \p{} &
-\p{z_1, z_2} &
-\p{z_2} \\
+\p{z1, z2} &
+\p{z2} \\
 
-$z'_2$ &
-\p{z_2} &
+\s{2} &
+\p{z2} &
 \p{} &
 \p{} &
-\p{z_2} \\
+\p{z2} \\
 \end{tabular}
 
 Trap-Übergänge werden aus Übersichtsgründen weg gelassen.
 
 \begin{center}
 \begin{tikzpicture}[->,node distance=3cm]
-\node[state,initial,accepting,label=south:\p{z_0, z_1, z_2}] (0) {$z'_0$};
-\node[state,above right of=0,accepting,label=south:\p{z_1, z_2}] (1) {$z'_1$};
-\node[state,below right of=1,accepting,label=south:\p{z_2}] (2) {$z'_2$};
+\node[state,initial,accepting,label=south:\p{z0, z1, z2}] (0) {$z'_0$};
+\node[state,above right of=0,accepting,label=south:\p{z1, z2}] (1) {$z'_1$};
+\node[state,below right of=1,accepting,label=south:\p{z2}] (2) {$z'_2$};
 
 \path (0) edge[above,loop] node{a} (0);
 \path (0) edge[above] node{b} (1);

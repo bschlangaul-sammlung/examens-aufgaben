@@ -1,0 +1,196 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{automaten,formale-sprachen}
+\begin{document}
+\let\p=\liPotenzmenge
+\let\s=\liZustandsnameStrich
+
+\liAufgabenTitel{Reguläre Sprache}
+\section{Aufgabe 1: Reguläre Sprachen
+\index{Potenzmengenalgorithmus}
+\footcite{46115:2016:09}}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Konstruieren Sie aus dem NEA mit der Potenzmengenkonstruktion
+einen (deterministischen) EA, der dieselbe Sprache akzeptiert.
+
+\begin{center}
+\begin{tikzpicture}[->,node distance=3cm]
+\node[state,initial]
+(0) {$z_0$};
+
+\node[state,right of=0]
+(1) {$z_1$};
+
+\node[state,right of=1]
+(2) {$z_2$};
+
+\node[state,right of=2,accepting]
+(3) {$z_3$};
+
+\path (0) edge[above] node{a} (1);
+\path (1) edge[above] node{a,b} (2);
+\path (2) edge[above] node{a,b} (3);
+\path (0) edge[above,loop] node{a,b} (0);
+\end{tikzpicture}
+\liFussnoteUrl{https://flaci.com/Aiqxdazuw}
+\end{center}
+
+\begin{liAntwort}
+\ExplSyntaxOn
+\def\z#1{
+  \s{#1}
+  {
+    \footnotesize
+    \liPotenzmenge{
+      \str_case:nn {#1} {
+        {0} {z0}
+        {1} {z0, z1}
+        {2} {z0, z1, z2}
+        {3} {z0, z2}
+        {4} {z0, z1, z2, z3}
+        {5} {z0, z3}
+        {6} {z0, z2, z3}
+        {7} {z0, z1, z3}
+      }
+    }
+  }
+}
+\ExplSyntaxOff
+
+\let\p=\liPotenzmenge
+
+\begin{tabular}{l|l|l|l}
+Name & Zustandsmenge & Eingabe a & Eingabe b \\\hline\hline
+\s{0} &
+\z{0} &
+\z{1} &
+\z{0} \\
+
+\s{1} &
+\z{1} &
+\z{2} &
+\z{3} \\
+
+\s{2} &
+\z{2} &
+\z{4} &
+\z{6} \\
+
+\s{3} &
+\z{3} &
+\z{7} &
+\z{5} \\
+
+\s{4} &
+\z{4} &
+\z{4} &
+\z{6} \\
+
+\s{5} &
+\z{5} &
+\z{1} &
+\z{0} \\
+
+\s{6} &
+\z{6} &
+\z{7} &
+\z{5} \\
+
+\s{7} &
+\z{7} &
+\z{2} &
+\z{3} \\
+\end{tabular}
+
+\begin{center}
+\begin{tikzpicture}[->,node distance=2cm,y=-1cm]
+\node[state]
+(0) at (0,0) {\s{0}};
+
+\node[state]
+(1) at (2,0) {\s{1}};
+
+\node[state]
+(2) at (4,0) {\s{2}};
+
+\node[state]
+(3) at (3,4) {\s{3}};
+
+\node[state,accepting]
+(4) at (6,0) {\s{4}};
+
+\node[state,accepting]
+(5) at (0,2) {\s{5}};
+
+\node[state,accepting]
+(6) at (4,2) {\s{6}};
+
+\node[state,accepting]
+(7) at (6,4) {\s{7}};
+
+\path (0) edge[above] node{a} (1);
+\path (0) edge[above,loop] node{b} (0);
+
+\path (1) edge[above] node{a} (2);
+\path (1) edge[above left] node{b} (3);
+
+\path (2) edge[above] node{a} (4);
+\path (2) edge[left] node{b} (6);
+
+\path (3) edge[above,bend left] node{a} (7);
+\path (3) edge[above] node{b} (5);
+
+\path (4) edge[above,loop] node{a} (4);
+\path (4) edge[above] node{b} (6);
+
+\path (5) edge[above] node{a} (1);
+\path (5) edge[left] node{b} (0);
+
+\path (6) edge[above] node{a} (7);
+\path (6) edge[below] node{b} (5);
+
+\path (7) edge[above right] node{a} (2);
+\path (7) edge[above,bend left] node{b} (3);
+\end{tikzpicture}
+\liFussnoteUrl{https://flaci.com/Aiqnk06c9}
+\end{center}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Beschreiben Sie möglichst einfach, welche Sprachen von den
+folgenden regulären Ausdrücken beschrieben werden:
+
+\begin{enumerate}
+\item $(a | b)^*a$
+
+\begin{liAntwort}
+Sprache mit dem Alphabet \liAlphabet{a, b}: Alle Wörter der Sprache
+enden auf $a$.
+\end{liAntwort}
+
+\item $(a|b)^*a(a|b)^*a(a|b)^*$
+
+\begin{liAntwort}
+Sprache mit dem Alphabet \liAlphabet{a, b}: Alle Wörter der Sprache
+enthalten mindestens 2 $a$’s.
+\end{liAntwort}
+
+\item $(a|b)^*a(bb)^*a(a|b)^*$
+
+\begin{liAntwort}
+Sprache mit dem Alphabet \liAlphabet{a, b}: Alle Wörter der Sprache
+enthalten mindestens 2 $a$’s, die von einer geradzahligen Anzahl von
+$b$’s getrennt sind.
+\end{liAntwort}
+\end{enumerate}
+\end{enumerate}
+
+\end{document}

@@ -396,18 +396,19 @@ Weitere Aufgaben zum Thema „SQL“:
 
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-NEA.pdf" download="Aufgabe_Vorlesungsaufgaben-NEA">„Vorlesungsaufgaben“</a> (Nichtdeterministisch endlicher Automat (NEA))
 
+#### Potenzmengenalgorithmus
+
+
+
+#### Erweiterer Potenzmengenalgorithmus
+
+
+
 #### Pumping-Lemma
 
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Pumping-Lemma.pdf" download="Aufgabe_Pumping-Lemma">„Pumping-Lemma“</a> (Pumping-Lemma (Reguläre Sprache))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-Pumping-Lemma.pdf" download="Aufgabe_Vorlesungsaufgaben-Pumping-Lemma">„Pumping-Lemma“</a> (Pumping-Lemma (Reguläre Sprache))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/20_Kontextfreie-Sprachen/Aufgabe_Pumping-Lemma.pdf" download="Aufgabe_Pumping-Lemma">„Pumping-Lemma“</a> (Pumping-Lemma (Reguläre Sprache))
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T1-A1">Examen 66115 Frühjahr 2015 T1 A1</a> (Reguläre Sprache, Pumping-Lemma (Reguläre Sprache), Potenzmengenalgorithmus)
-
-#### Potenzmengenalgorithmus
-
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus-erstes-Beispiel.pdf" download="Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus-erstes-Beispiel">„Vorlesungsaufgaben“</a> (Potenzmengenalgorithmus)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus.pdf" download="Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus">„Vorlesungsaufgaben“</a> (Potenzmengenalgorithmus)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T1-A1">„NEA und Minimalisierung“ Examen 66115 Herbst 2012 T1 A1</a> (Potenzmengenalgorithmus, Minimierungsalgorithmus)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T1-A1">Examen 66115 Frühjahr 2015 T1 A1</a> (Reguläre Sprache, Pumping-Lemma (Reguläre Sprache), Potenzmengenalgorithmus)
 
 #### Minimierungsalgorithmus
@@ -547,6 +548,8 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2015/09/Thema-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46115-2015-Herbst_T2-A1">Aufgabe 1 (Streutabellen (Hashing))</a>
 - 2016 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/03/Scan.pdf" download="Staatsexamen-Informatik_46115-2016-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/03/OCR.txt" download="Staatsexamen-Informatik_46115-2016-Frühjahr_OCR">OCR.txt</a> 
 - 2016 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/09/Scan.pdf" download="Staatsexamen-Informatik_46115-2016-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/09/OCR.txt" download="Staatsexamen-Informatik_46115-2016-Herbst_OCR">OCR.txt</a> 
+    - Thema 1 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46115-2016-Herbst_T1-A1">Aufgabe 1 (Potenzmengenalgorithmus)</a> 
     - Thema 2 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/09/Thema-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_46115-2016-Herbst_T2-A2">Aufgabe 2 (Komplexität)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/09/Thema-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46115-2016-Herbst_T2-A4">Aufgabe 4 (Dynamische Programmierung)</a>

@@ -19,6 +19,11 @@ local function split(str, pat)
 end
 
 return {
+  erzeuge_tiefgestellt = function (eingang)
+    local ausgabe = string.gsub(eingang, '(%a)(%d)', '%1\\sb{%2}')
+    return tex.print(ausgabe)
+  end,
+
   produktions_regeln = function (eingang)
     print(eingang)
     local ausgabe = ''

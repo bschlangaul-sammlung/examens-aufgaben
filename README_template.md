@@ -149,13 +149,17 @@ Weitere Aufgaben zum Thema „SQL“:
 
 {{ stichwort "Nichtdeterministisch endlicher Automat (NEA)" }}
 
+#### Potenzmengenalgorithmus
+
+{{ stichwort "otenzmengenalgorithmus" }}
+
+#### Erweiterer Potenzmengenalgorithmus
+
+{{ stichwort "Erweiterer Potenzmengenalgorithmus" }}
+
 #### Pumping-Lemma
 
 {{ stichwort "Pumping-Lemma (Reguläre Sprache)" }}
-
-#### Potenzmengenalgorithmus
-
-{{ stichwort "Potenzmengenalgorithmus" }}
 
 #### Minimierungsalgorithmus
 

@@ -8,9 +8,14 @@ zum Setzen von mathematischen Formeln bei dem Thema Formale Sprachen]
 
 \RequirePackage{lehramt-informatik-mathe}
 
-\def\liPotenzmenge#1{$\{ #1 \}$}
-\def\liPotenzmengeOhneMathe#1{\{ #1 \}}
+\def\erzeuge@tiefgestellt#1{\directlua{formale_sprachen.erzeuge_tiefgestellt('#1')}}
+
+\def\liPotenzmenge#1{$\{ \erzeuge@tiefgestellt{#1} \}$}
+\def\liPotenzmengeOhneMathe#1{\{ \erzeuge@tiefgestellt{#1} \}}
+
 \def\liAlphabet#1{$\Sigma = \{ #1 \}$}
+
+\def\liZustandsnameStrich#1{$Z_#1$}
 
 \NewDocumentEnvironment { liProduktionsRegeln }
 { +b }
