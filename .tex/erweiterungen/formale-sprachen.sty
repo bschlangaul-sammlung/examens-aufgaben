@@ -10,8 +10,13 @@ zum Setzen von mathematischen Formeln bei dem Thema Formale Sprachen]
 
 \def\erzeuge@tiefgestellt#1{\directlua{formale_sprachen.erzeuge_tiefgestellt('#1')}}
 
-\def\liPotenzmenge#1{$\{ \erzeuge@tiefgestellt{#1} \}$}
 \def\liPotenzmengeOhneMathe#1{\{ \erzeuge@tiefgestellt{#1} \}}
+\def\liPotenzmenge#1{$\liPotenzmengeOhneMathe{#1}$}
+\let\liZustandsmengeOhneMathe=\liPotenzmengeOhneMathe
+\let\liZustandsmenge=\liPotenzmenge
+
+\def\liUeberfuehrungsFunktionOhneMathe#1{\delta(\erzeuge@tiefgestellt{#1})}
+\def\liUeberfuehrungsFunktion#1{$\liUeberfuehrungsFunktionOhneMathe{#1}$}
 
 \def\liAlphabet#1{$\Sigma = \{ #1 \}$}
 
@@ -19,7 +24,7 @@ zum Setzen von mathematischen Formeln bei dem Thema Formale Sprachen]
 \def\liZustandsnameGross#1{$Z_#1$}
 
 \ExplSyntaxOn
-\def\liZustandsMenge#1#2{
+\def\liZustandsMengenSammlung#1#2{
   \liZustandsnameGross{#1}
   {
     \footnotesize

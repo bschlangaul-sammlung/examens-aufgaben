@@ -72,15 +72,17 @@ ankreuzen.
   Mathematik-Umgebung
 * Makro: `\liPotenzmengeOhneMathe`: Umgeben mit geschweiften Klammern in
   keiner Mathematik-Umgebung
+* Makro: `\liZustandsmenge{z1, z2}`: `$\{ z_1, z_2 \}$`
+* Makro: `\liUeberfuehrungsFunktion{z0, a}`: `$\delta(z_0, a)$`
 * Makro: `\liAlphabet{a, b}`: `$\Sigma = \{ a, b \}$`
 * Makro: `\liZustandsname{1}`: `$z_1$`
 * Makro: `\liZustandsnameGross{1}`: `$Z_1$`
 * Umgebung: `\begin{liProduktionsRegeln}A -> a, B->b`
-* Makro: `\liZustandsMenge{nummer}{latex3 str_case:nn}`
+* Makro: `\liZustandsMengenSammlung{nummer}{latex3 str_case:nn}`
 
 ```latex
 \def\z#1{
-  \liZustandsMenge{#1}{{
+  \liZustandsMengenSammlung{#1}{{
     {0} {z0}
     {1} {z0, z1}
     {2} {z0, z1, z2}

@@ -1,0 +1,132 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,mathe,automaten}
+
+\begin{document}
+\let\z=\liZustandsmengeOhneMathe
+\let\Z=\liZustandsmenge
+\let\a=\liAlphabet
+\let\f=\liUeberfuehrungsFunktionOhneMathe
+\let\F=\liUeberfuehrungsFunktion
+
+\liAufgabenTitel{Reguläre Sprache}
+\section{Aufgabe 1
+\index{Reguläre Sprache}
+\footcite{66115:2007:09}}
+
+Gegeben sei der nichtdeterministische endliche Automat $M$ mit dem
+Alphabet \a{a,b}, der Zustandsmenge \Z{z0, z1, z2, z3}, Anfangszustand
+$z_0$, Endzustand \Z{z3} und der Überführungsfunktion $\delta$ mit:
+
+\begin{align*}
+\f{z0, a} &= \z{z1, z2},\\
+\f{z1, b} &= \z{z0, z1},\\
+\f{z2, a} &= \z{z2, z3},\\
+\f{z0, b} &= \f{z1, a} = \f{z2, b} = \f{z3, a} = \f{z3, b} = \emptyset\\
+\end{align*}
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[->,node distance=4cm]
+\node[state,initial]
+(0) {$z_0$};
+
+\node[state,right of=0]
+(1) {$z_1$};
+
+\node[state,below of=0]
+(2) {$z_2$};
+
+\node[state,right of=2,accepting]
+(3) {$z_3$};
+
+\node[state,below right= 1.5cm of 0]
+(t) {$z_t$};
+
+\path (0) edge[above,bend left] node{a} (1);
+\path (0) edge[left] node{a} (2);
+
+\path (1) edge[above,bend left] node{b} (0);
+\path (1) edge[above,loop right] node{b} (1);
+
+\path (2) edge[above,loop left] node{a} (2);
+\path (2) edge[above] node{a} (3);
+
+\path (0) edge[below left] node{b} (t);
+\path (1) edge[below right] node{a} (t);
+\path (2) edge[above left] node{b} (t);
+\path (3) edge[above right] node{a,b} (t);
+\end{tikzpicture}
+\liFussnoteUrl{https://flaci.com/Afybo27zc}
+\end{center}
+\end{liAntwort}
+
+\noindent
+$L(M)$ sei die von $M$ akzeptierte Sprache.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Gelten folgende Aussagen?
+
+\begin{enumerate}
+
+%%
+% i)
+%%
+
+\item Es gibt Zeichenreihen in $L(M)$, die genauso viele $a$’s enthalten
+wie $b$’s.
+
+\begin{liAntwort}
+Ja, zum Beispiel das Wort $abbbaa$ oder $abbbbaaa$. Mit der
+Überführungsfunktion $\f{z1, b} = \z{ z1 }$ können beliebig viele $b$’s
+akzeptiert werden, sodass die Anzahl von $a$’s und $b$’s ausgeglichen
+werden kann.
+\end{liAntwort}
+
+%%
+% ii)
+%%
+
+\item Jede Zeichenreihe in $L(M)$, die mindestens vier $b$’s enthält,
+enthält auch mindestens vier $a$’s.
+
+\begin{liAntwort}
+Nein, z. b. das Wort $abbbbaa$ wird akzeptiert. Ein Wort muss nur
+mindestens drei $a$’s enthalten. Mit der Überführungsfunktion $\f{z1, b}
+= \z{ z1 }$ können aber beliebig viele $b$’s akzeptiert werden.
+\end{liAntwort}
+
+\end{enumerate}
+
+Begründen Sie Ihre Antworten.
+
+%%
+% b)
+%%
+
+\item Geben Sie eine reguläre (Typ-3-)Grammatik an, die $L(M)$ erzeugt.
+
+%%
+% c)
+%%
+
+\item Beschreiben Sie $L(M)$ durch einen regulären Ausdruck.
+
+\begin{liAntwort}
+(ab+)*aa+
+\end{liAntwort}
+
+%%
+% d)
+%%
+
+\item Konstruieren Sie aus M mit der Potenzmengen-Konstruktion (und
+entsprechender Begründung) einen deterministischen endlichen Automaten,
+der $L(M)$ akzeptiert.
+
+\end{enumerate}
+\end{document}
