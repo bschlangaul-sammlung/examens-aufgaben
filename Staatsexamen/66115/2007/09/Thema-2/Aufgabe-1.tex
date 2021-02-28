@@ -116,7 +116,7 @@ Begründen Sie Ihre Antworten.
 %%
 
 \item Beschreiben Sie $L(M)$ durch einen regulären Ausdruck.
-\index{Regulärer Ausdruck}
+\index{Reguläre Ausdrücke}
 
 \begin{liAntwort}
 (ab+)*aa+
@@ -130,6 +130,72 @@ Begründen Sie Ihre Antworten.
 entsprechender Begründung) einen deterministischen endlichen Automaten,
 der $L(M)$ akzeptiert.
 \index{Potenzmengenalgorithmus}
+
+\begin{liAntwort}
+\def\z#1{
+  \liZustandsMengenSammlungNr{#1}{
+    {
+      {0} {0}
+      {1} {1,2}
+      {2} {t}
+      {3} {2,3,t}
+      {4} {0,1,t}
+      {5} {1,2,t}
+    }
+  }
+}
+\let\s=\liZustandsnameGross
+
+\begin{tabular}{l|l|l|l}
+Name & Zustandsmenge & Eingabe a & Eingabe b \\\hline\hline
+\s{0} & \z{0} & \z{1} & \z{2} \\
+\s{1} & \z{1} & \z{3} & \z{4} \\
+\s{2} & \z{2} & \z{2} & \z{2} \\
+\s{3} & \z{3} & \z{3} & \z{2} \\
+\s{4} & \z{4} & \z{5} & \z{4} \\
+\s{5} & \z{5} & \z{3} & \z{4} \\
+\end{tabular}
+
+\begin{center}
+\begin{tikzpicture}[->,node distance=2cm,y=-1cm]
+\node[state]
+(0) at (0,0) {\s{0}};
+
+\node[state]
+(1) at (2,0) {\s{1}};
+
+\node[state]
+(2) at (0,2) {\s{2}};
+
+\node[state,accepting]
+(3) at (2,2) {\s{3}};
+
+\node[state]
+(4) at (4,0) {\s{4}};
+
+\node[state]
+(5) at (4,2) {\s{5}};
+
+\path (0) edge[above] node{a} (1);
+\path (0) edge[left] node{b} (2);
+
+\path (1) edge[left] node{a} (3);
+\path (1) edge[above] node{b} (4);
+
+\path (2) edge[above,loop left] node{a,b} (2);
+
+\path (3) edge[above,loop below] node{a} (3);
+\path (3) edge[above] node{b} (2);
+
+\path (4) edge[right,bend left] node{a} (5);
+\path (4) edge[above,loop right] node{b} (4);
+
+\path (5) edge[above] node{a} (3);
+\path (5) edge[left,bend left] node{b} (4);
+\end{tikzpicture}
+\liFussnoteUrl{https://flaci.com/Aig9i4u7z}
+\end{center}
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}

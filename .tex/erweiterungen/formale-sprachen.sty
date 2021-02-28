@@ -20,8 +20,21 @@ zum Setzen von mathematischen Formeln bei dem Thema Formale Sprachen]
 
 \def\liAlphabet#1{$\Sigma = \{ #1 \}$}
 
-\def\liZustandsname#1{$z_#1$}
-\def\liZustandsnameGross#1{$Z_#1$}
+\def\liZustandsBuchstabe{z}
+\def\liZustandsBuchstabeGross{Z}
+
+\def\zustandsnamens@liste#1#2{
+  $
+    \{
+      \directlua{formale_sprachen.erzeuge_zustandsnamens_liste('#1', '#2')}
+    \}
+  $
+}
+\def\liZustandsmengeNr#1{\zustandsnamens@liste{\liZustandsBuchstabe}{#1}}
+\def\liZustandsmengeNrGross#1{\zustandsnamens@liste{\liZustandsBuchstabeGross}{#1}}
+
+\def\liZustandsname#1{$\liZustandsBuchstabe_#1$}
+\def\liZustandsnameGross#1{$\liZustandsBuchstabeGross_#1$}
 
 \ExplSyntaxOn
 \def\liZustandsMengenSammlung#1#2{
@@ -29,6 +42,15 @@ zum Setzen von mathematischen Formeln bei dem Thema Formale Sprachen]
   {
     \footnotesize
     \liPotenzmenge{
+      \str_case:nn {#1} #2
+    }
+  }
+}
+\def\liZustandsMengenSammlungNr#1#2{
+  \liZustandsnameGross{#1}
+  {
+    \footnotesize
+    \liZustandsmengeNr{
       \str_case:nn {#1} #2
     }
   }
