@@ -72,7 +72,26 @@ ankreuzen.
   Mathematik-Umgebung
 * Makro: `\liPotenzmengeOhneMathe`: Umgeben mit geschweiften Klammern in
   keiner Mathematik-Umgebung
+* Makro: `\liAlphabet{a, b}`: `$\Sigma = \{ a, b \}$`
+* Makro: `\liZustandsname{1}`: `$z_1$`
+* Makro: `\liZustandsnameGross{1}`: `$Z_1$`
 * Umgebung: `\begin{liProduktionsRegeln}A -> a, B->b`
+* Makro: `\liZustandsMenge{nummer}{latex3 str_case:nn}`
+
+```latex
+\def\z#1{
+  \liZustandsMenge{#1}{{
+    {0} {z0}
+    {1} {z0, z1}
+    {2} {z0, z1, z2}
+    {3} {z0, z2}
+    {4} {z0, z1, z2, z3}
+    {5} {z0, z3}
+    {6} {z0, z2, z3}
+    {7} {z0, z1, z3}
+  }}
+}
+```
 
 Hilfsmakros zum Setzen von mathematischen Formeln bei dem Thema Formale
 Sprachen.

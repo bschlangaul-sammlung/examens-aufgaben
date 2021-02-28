@@ -2,7 +2,7 @@
 \liLadePakete{automaten,formale-sprachen}
 \begin{document}
 \let\p=\liPotenzmenge
-\let\s=\liZustandsnameStrich
+\let\s=\liZustandsnameGross
 
 \liAufgabenTitel{Reguläre Sprache}
 \section{Aufgabe 1: Reguläre Sprachen
@@ -41,27 +41,18 @@ einen (deterministischen) EA, der dieselbe Sprache akzeptiert.
 \end{center}
 
 \begin{liAntwort}
-\ExplSyntaxOn
 \def\z#1{
-  \s{#1}
-  {
-    \footnotesize
-    \liPotenzmenge{
-      \str_case:nn {#1} {
-        {0} {z0}
-        {1} {z0, z1}
-        {2} {z0, z1, z2}
-        {3} {z0, z2}
-        {4} {z0, z1, z2, z3}
-        {5} {z0, z3}
-        {6} {z0, z2, z3}
-        {7} {z0, z1, z3}
-      }
-    }
-  }
+  \liZustandsMenge{#1}{{
+    {0} {z0}
+    {1} {z0, z1}
+    {2} {z0, z1, z2}
+    {3} {z0, z2}
+    {4} {z0, z1, z2, z3}
+    {5} {z0, z3}
+    {6} {z0, z2, z3}
+    {7} {z0, z1, z3}
+  }}
 }
-\ExplSyntaxOff
-
 \let\p=\liPotenzmenge
 
 \begin{tabular}{l|l|l|l}
