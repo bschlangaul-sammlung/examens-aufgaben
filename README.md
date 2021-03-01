@@ -939,6 +939,8 @@ OCR des oben genannten Scans:
     - Thema 2 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/Thema-2/Aufgabe-8.pdf" download="Staatsexamen-Informatik_66115-2017-Herbst_T2-A8">Aufgabe 8 (AVL-Baum, Halde (Heap), Binärbaum)</a>
 - 2018 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2018-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/03/OCR.txt" download="Staatsexamen-Informatik_66115-2018-Frühjahr_OCR">OCR.txt</a> 
+    - Thema 1 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2018-Frühjahr_T1-A1">Aufgabe 1 (Formale Sprachen)</a> 
     - Thema 2 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/03/Thema-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2018-Frühjahr_T2-A3">Aufgabe 3 (Reguläre Sprache)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/03/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2018-Frühjahr_T2-A6">Aufgabe 6 (Master-Theorem)</a> 
@@ -1361,27 +1363,28 @@ als Markdown-Liste eingebettet werden kann.
     - Ein-Adress-Befehl-Assembler
     - Mehr-Adress-Befehl-Assembler
 - Theoretische Informatik:
-    - Reguläre Sprache:
-        - Reguläre Grammatik
-        - Reguläre Ausdrücke
-        - Deterministisch endlicher Automat (DEA)
-        - Nichtdeterministisch endlicher Automat (NEA)
-        - Pumping-Lemma (Reguläre Sprache)
-        - Potenzmengenalgorithmus
-        - Erweiteter Potenzmengenalgorithmus
-        - Minimierungsalgorithmus
-        - Äquivalenzklassen
-        - Ableitung (Reguläre Sprache)
-    - Kontextfreie Sprache:
-        - Kontextfreie Grammatik
-        - Kellerautomat
-        - CYK-Algorithmus
-        - Chomsky-Normalform
-        - Pumping-Lemma (Kontextfreie Sprache)
-    - Kontextsensitive Sprache:
-        - Kontextsensitive Grammatik
-    - Unbeschränkte Sprache:
-        - Turing-Maschine
+    - Formale Sprachen:
+        - Reguläre Sprache:
+            - Reguläre Grammatik
+            - Reguläre Ausdrücke
+            - Deterministisch endlicher Automat (DEA)
+            - Nichtdeterministisch endlicher Automat (NEA)
+            - Pumping-Lemma (Reguläre Sprache)
+            - Potenzmengenalgorithmus
+            - Erweiteter Potenzmengenalgorithmus
+            - Minimierungsalgorithmus
+            - Äquivalenzklassen
+            - Ableitung (Reguläre Sprache)
+        - Kontextfreie Sprache:
+            - Kontextfreie Grammatik
+            - Kellerautomat
+            - CYK-Algorithmus
+            - Chomsky-Normalform
+            - Pumping-Lemma (Kontextfreie Sprache)
+        - Kontextsensitive Sprache:
+            - Kontextsensitive Grammatik
+        - Unbeschränkte Sprache:
+            - Turing-Maschine
 
 
 {{ einbinden "docs/tex.md" }}

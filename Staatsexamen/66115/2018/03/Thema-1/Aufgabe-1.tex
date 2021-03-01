@@ -1,0 +1,158 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,automaten}
+\begin{document}
+
+\let\m=\liMengeOhneMathe
+\let\M=\liMenge
+
+\liAufgabenTitel{NEA}
+\section{Aufgabe 1
+\index{Formale Sprachen}
+\footcite{66115:2018:03}}
+
+Gegeben ist der nichtdeterministische endliche Automat (NEA) $(\m{0,1},
+Q,\delta ,q_0, F)$, wobei $Q = \m{A, B,C}$, $q_0 = A$, $F = \m{C}$ und
+
+\begin{center}
+\begin{tabular}{l||ll}
+$\delta$ & 0 & 1 \\\hline
+$A$ & \M{A, B} & \M{A, C} \\
+$B$ & \M{B, C} & \M{B} \\
+$C$ & \M{C} & \M{C} \\
+\end{tabular}
+\end{center}
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[->,node distance=4cm]
+\node[state,initial]
+(a) {$A$};
+
+\node[state,above right of=a]
+(b) {$B$};
+
+\node[state,below right of=b,accepting]
+(c) {$C$};
+
+\path (a) edge[above] node{0} (b);
+\path (a) edge[above,loop] node{0,1} (a);
+\path (a) edge[above] node{1} (c);
+
+\path (b) edge[above,loop] node{0,1} (b);
+\path (b) edge[above] node{0} (c);
+
+\path (c) edge[above,loop] node{0,1} (c);
+\end{tikzpicture}
+\liFussnoteUrl{https://flaci.com/Aiq3xxgi9}
+\end{center}
+\end{liAntwort}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Führen Sie für diesen NEA die Potenzmengenkonstruktion durch;
+geben Sie alle acht entstehenden Zustände mit ihren Transitionen an,
+nicht nur die erreichbaren.
+
+\begin{liAntwort}
+\def\z#1{
+  \liZustandsMengenSammlung{#1}{
+    {
+      {0} {A}
+      {1} {B}
+      {2} {C}
+      {3} {A,B}
+      {4} {A,C}
+      {5} {B,C}
+      {6} {A,B,C}
+      {7} {}
+    }
+  }
+}
+\let\s=\liZustandsnameGross
+
+\def\g#1{\textcolor{gray}{#1}}
+
+\g{nicht erreichbar}
+
+\begin{tabular}{l|l|l|l}
+Name & Zustandsmenge & Eingabe 0 & Eingabe 1 \\\hline\hline
+\s{0} & \z{0} & \z{3} & \z{4} \\
+\g{\s{1}} & \g{\z{1}} & \g{\z{5}} & \g{\z{1}} \\
+\g{\s{2} }& \g{\z{2}} & \g{\z{2}} & \g{\z{2}} \\
+\s{3} & \z{3} & \z{6} & \z{6} \\
+\s{4} & \z{4} & \z{6} & \z{4} \\
+\g{\s{5}} & \g{\z{5}} & \g{\z{5}} & \g{\z{5}} \\
+\s{6} & \z{6} & \z{6} & \z{6} \\
+\g{\s{7}} & \g{\z{7}} & \g{\z{7}} & \g{\z{7}} \\
+\end{tabular}
+
+\begin{center}
+\begin{tikzpicture}[->,node distance=3cm]
+\node[state,initial]
+(0) {\s{0}};
+
+\node[state,right of=0]
+(3) {\s{3}};
+
+\node[state,below of=0,accepting]
+(4) {\s{4}};
+
+\node[state,right of=4,accepting]
+(6) {\s{6}};
+
+\path (0) edge[above] node{0} (3);
+\path (0) edge[left] node{1} (4);
+\path (3) edge[right] node{0,1} (6);
+\path (4) edge[above] node{0} (6);
+\path (4) edge[above,loop left] node{1} (4);
+\path (6) edge[above,loop below] node{0,1} (6);
+\end{tikzpicture}
+\liFussnoteUrl{https://flaci.com/Aigwcbsf7}
+\end{center}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+% \item Es sei L eine beliebige reguläre Sprache über dem Alphabet © =
+% {a,b,c}. Die Sprache L’ über dem Alphabet W’ = {a,b} umfasst alle
+% Wörter, die aus Wörtern in L durch Streichen aller cs entstehen. Ist zum
+% Beispiel L = {acb, acbcc, abbaccc}, so ist L’ = {ab, abba}.
+
+% Zeigen Sie, dass L’ regular ist.
+
+%%
+% c)
+%%
+
+% \item Die Sprache L, = {a"b" | n > 1} ist bekanntlich kontextfrei aber
+% nicht regulär. Obwohl die
+
+% kontextfreien Sprachen nicht unter Komplement abgeschlossen sind, ist Lı
+% kontextfrei. Die Sprache Dz = {a"b"c” | n > 1} ist bekanntlich nicht
+% kontextfrei.
+
+% Geben Sie eine kontextfreie Grammatik für L, das Komplement von Ly, an.
+
+%%
+% d)
+%%
+
+% \item Die Sprache Ly = {a"b"c” | n > 1} kann bekanntlich als Schnitt
+% zweier kontextfreier Sprachen dargestellt werden: Lg = Lic* Na*L wobei
+% L = {b"c” | n > 1}. Zeigen Sie, dass die Komplemente von L,c* und at
+% L{ kontextfrei sind.
+
+%%
+% e)
+%%
+
+% \item Leiten Sie daraus einen Beweis her, dass die kontextfreien
+% Sprachen nicht unter Komplement abgeschlossen sind.
+\end{enumerate}
+\end{document}
