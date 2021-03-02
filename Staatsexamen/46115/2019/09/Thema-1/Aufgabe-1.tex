@@ -1,0 +1,72 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,automaten}
+\begin{document}
+\let\M=\liMenge
+
+\liAufgabenTitel{Reguläre Sprachen)}
+\section{Aufgabe 1
+\index{Reguläre Sprache}
+\footcite{46115:2019:09}}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Geben Sie einen regulären Ausdruck für die Sprache über dem
+Alphabet \M{a,b} an, die genau alle Wörter enthält, die eine gerade
+Anzahl $a$’s haben.
+
+\begin{liAntwort}
+$b^*(ab^*ab^*)^*$
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item Sei $A$ der folgende DEA über dem Alphabet \M{a,b}:
+
+\begin{center}
+\begin{tikzpicture}[->,node distance=2cm]
+\node[state,initial]
+(1) {1};
+\node[state,right=of 1]
+(2) {2};
+\node[state,right=of 2]
+(3) {3};
+\node[state,right=of 3,accepting]
+(4) {4};
+\node[state,below=of 1]
+(5) {5};
+\node[state,right=of 5]
+(6) {6};
+\node[state,right=of 6]
+(7) {7};
+\node[state,right=of 7]
+(8) {8};
+
+\path (1) edge[above] node{a} (2);
+\path (2) edge[above] node{b} (3);
+\path (3) edge[above] node{a} (4);
+\path (4) edge[above,loop right] node{a,b} (4);
+\path (8) edge[right] node{a} (4);
+\path (8) edge[above] node{b} (7);
+\path (7) edge[above] node{b} (6);
+\path (6) edge[above] node{a} (5);
+\path (1) edge[left] node{b} (5);
+\path (5) edge[above,bend right] node{b} (7);
+\path (2) edge[above,bend left] node{a} (5);
+\path (5) edge[above,bend left] node{a} (2);
+\path (6) edge[right] node{b} (2);
+\path (3) edge[above] node{b} (6);
+\path (7) edge[above] node{a} (4);
+\end{tikzpicture}
+\end{center}
+
+Führen Sie den Minimierungsalgorithmus für $A$ durch und geben Sie den
+minimalen äquivalenten DEA für $L(A)$ als Zeichnung an.
+
+\end{enumerate}
+\end{document}

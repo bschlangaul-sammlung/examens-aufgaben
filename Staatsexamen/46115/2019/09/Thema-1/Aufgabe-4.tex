@@ -1,0 +1,98 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{(Sortierverfahren)}
+\section{Aufgabe 4
+\index{Selectionsort}
+\footcite{46115:2019:09}}
+
+In der folgenden Aufgabe soll ein Feld A von ganzen Zahlen aufsteigend
+sortiert werden. Das Feld habe n Elemente A[1] bis Aln]. Der folgende
+Algorithmus sei gegeben:
+
+\begin{minted}{componentpascal}
+var A : array[l..n] of integer;
+
+procedure selection_sort
+var i, j, smallest, tmp : integer;
+begin
+  for j := 1 to n-1 do begin
+    smallest := j;
+    for i := j + 1 to n do begin
+      if A[i] < A[smallest] then
+        smallest := i;
+    end
+    tmp = A[j];
+    A[j] = A[smallest];
+    A[smallest] = tmp;
+  end
+end
+
+\end{minted}
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Sortieren Sie das folgende Feld mittels des Algorithmus. Notieren
+Sie alle Werte, die die Variable smallest jeweils beim Durchlauf der
+inneren Schleife annimmt. Geben Sie die Belegung des Feldes nach jedem
+Durchlauf der äußeren Schleife in einer neuen Zeile an.
+
+%%
+%
+%%
+
+\item Der Wert der Variablen smallest wird bei jedem Durchlauf der
+äußeren Schleife mindestens ein Mal neu gesetzt. Wie muss das Feld A
+beschaffen sein, damit der Variablen smallest ansonsten niemals ein Wert
+zugewiesen wird? Begründen Sie Ihre Antwort.
+
+%%
+%
+%%
+
+\item Welche Auswirkung auf die Sortierung oder auf die Zuweisungen an
+die Variable smallest hat es, wenn der Vergleich in Zeile 9 des
+Algorithmus statt A[i] < A[smallest] lautet A[i] < A[smallest]?
+Begründen Sie Ihre Antwort.
+
+%%
+%
+%%
+
+\item Betrachten Sie den Algorithmus unter der Maßgabe, dass Zeile 9 wie
+folgt geändert wurde:
+
+\begin{minted}{componentpascal}
+if A[i] > A[smallest| then
+\end{minted}
+
+Welches Ergebnis berechnet der Algorithmus nun?
+
+%%
+%
+%%
+
+\item Betrachten Sie die folgende rekursive Variante des Algorithmus.
+Der erste Parameter ist wieder das zu sortierende Feld, der Parameter
+n ist die Größe des Feldes und der Parameter index ist eine ganze Zahl.
+Die Funktion \mintinline{componentpascal}{min_index(A, x, y)} berechnet
+für $1 \leq x \leq y \leq n$ den Index des kleinsten Elements aus der
+Menge \mintinline{componentpascal}{{A[x], A[x+1],...,A[y]}}
+
+Der initiale Aufruf des Algorithmus lautet:
+\mintinline{componentpascal}{rek_selection _sort(A, n, 1)}
+
+Vervollständigen Sie die fehlenden Angaben in der Beschreibung des
+Algorithmus für
+
+\begin{itemize}
+\item die Abbruchbedingung in Zeile 4 und
+\item den rekursiven Aufruf in Zeile 11.
+\end{itemize}
+
+Begründen Sie Ihre Antworten.
+\end{enumerate}
+\end{document}
