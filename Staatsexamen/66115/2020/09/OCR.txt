@@ -1,0 +1,866 @@
+ 
+
+Prüfungsteilnehmer Prüfungstermin Einzelprüfungsnummer
+
+ 
+
+Kennzahl:
+
+ 
+
+"Herbst
+Kennwort: EDS 66115
+
+2020
+
+ 
+
+Arbeitsplatz-Nr.:
+
+ 
+
+Erste Staatsprüfung für ein Lehramt an öffentlichen Schulen
+
+— Prüfungsaufgaben —
+
+ 
+
+Fach: Informatik (vertieft studiert)
+Einzelprüfung: Theoretische Informatik, Algorithmen
+Anzahl der gestellten Themen (Aufgaben): 2
+
+Anzahl der Druckseiten dieser Vorlage: 15
+
+ 
+
+Bitte wenden!
+Herbst 2020 Einzelprüfungsnummer: 66115 Seite: 2
+
+ 
+
+Thema Nr. 1
+(Aufgabengruppe)
+
+Es sind alle Aufgaben dieser Aufgabengruppe zu bearbeiten!
+
+Teilaufgabe I: Theoretische Informatik
+
+ 
+
+Aufgabe 1 [40 PUNKTE]
+
+Antworten Sie mit „Stimmt“ oder „Stimmt nicht“. Begründen Sie Ihr Urteil kurz.
+
+a) Eine Sprache ist genau dann regulär, wenn sie unendlich viele Wörter enthält.
+
+b) Zu jedem nichtdeterministischen endlichen Automaten mit n Zuständen gibt es einen de-
+terministischen endlichen Automaten, der die gleiche Sprache erkennt und höchstens n?
+Zustände hat.
+
+c) Das Komplement einer kontextfreien Sprache ist wieder kontextfrei.
+
+d) Wenn ein Problem unentscheidbar ist, dann ist es nicht semientscheidbar.
+
+e) Sei f eine totale Funktion. Dann gibt es ein WHILE-Programm, das diese berechnet.
+f) Das Halteproblem für LOOP-Programme ist entscheidbar.
+
+g) Die Komplexitätsklasse NP enthält genau die Entscheidungsprobleme, die in nicht-
+polynomieller Zeit entscheidbar sind.
+
+h) Falls PZNP, dann gibt es keine NP-vollständigen Probleme, die in P liegen.
+
+Aufgabe 2 [20 PUNKTE]
+Sei D = {r,y, 2}. Sei L = (a*yzı*)* C 2°.
+
+a) Geben Sie einen endlichen (deterministischen oder nichtdeterministischen) Automaten A an,
+der L erkennt bzw. akzeptiert.
+
+b) Geben Sie eine reguläre und eindeutige Grammatik G an, die L erzeugt.
+
+Aufgabe 3 [25 PUNKTE]
+
+Seien © = {a,b,c} und L = [wce® | w € {a,b}*}. Dabei ist w das zu w gespiegelte Wort.
+
+a) Zeigen Sie, dass ZL nicht regulär ist.
+
+b) Zeigen Sie, dass L kontextfrei ist, indem Sie eine geeignete Grammatik angeben und an-
+schließend begründen, dass diese die Sprache L erzeugt.
+
+Fortsetzung nächste Seite!
+Herbst 2020 Einzelprüfungsnummer: 66115 Seite: 3
+
+ 
+
+Aufgabe 4 [15 PUNKTE]
+
+Geben Sie für jede der folgenden Mengen an, ob sie entscheidbar ist oder nicht. Dabei ist p,
+die Funktion, die von der Turingmaschine berechnet wird, die durch das Wort w kodiert wird.
+Beweisen Sie Ihre Behauptungen.
+
+a) LL={we2*|pu(0)=0}
+b) a = {we2* | Yulw) = u}
+c) L; = {we I* | Y0(0) = w}
+
+Aufgabe 5 [20 PUNKTE]
+
+Sei IF die Menge aller aussagenlogischen Formeln, die ausschließlich mit den Konstanten 0 und
+1, logischen Variablen x, mit © € N und der Implikation => als Operationszeichen aufgebaut
+sind, wobei natürlich Klammern zugelassen sind. Beachten Sie, dass ; => 7; die gleiche
+Wahrheitstabelle wie -z; V z; hat.
+
+Wir betrachten das Problem ISAT. Eine Formel F' e IF ist genau dann in ISAT enthalten, wenn
+sie erfüllbar ist, das heißt, falls es eine Belegung der Variablen mit Konstanten 0 oder 1 gibt,
+sodass F' den Wert 1 annimmt.
+
+Zeigen Sie: ISAT ist NP-vollständig. Sie dürfen benutzen, dass das SAT-Problem NP-vollständig
+ist.
+
+Fortsetzung nächste Seite!
+Herbst 2020 Einzelprüfungsnummer: 66115 Seite: 4
+
+ 
+
+Teilaufgabe II: Algorithmen
+
+ 
+
+Aufgabe 1 (Algorithmenanalyse) [32 PUNKTE]
+
+Betrachten Sie die folgende Prozedur Countup, die aus zwei ganzzahligen Eingabewerten n und m
+einen ganzzahligen Ausgabewert berechnet:
+
+1 procedure countup(n, m : integer) : integer
+2 varx,y :integer;
+
+3 begin
+4 X:=Nn;
+DD  Y:=0;
+6 while (y< m) do
+7 X=X-—1]1;
+8 y:=y+1;
+9 end while
+10 return x;
+11 end
+
+a) Führen Sie countup(3,2) aus. Geben Sie für jeden Schleifendurchlauf jeweils den Wert der
+Variablen n, m, X und y zu Beginn der while-Schleife und den Rückgabewert der Prozedur
+an.
+
+b) Gibt es Eingabewerte von n und m, für die die Prozedur countup nicht terminiert? Be-
+gründen Sie Ihre Antwort.
+
+c) Geben Sie die asymptotische worst-case Laufzeit der Prozedur countup in der 8-Notation
+in Abhängigkeit von den Eingabewerten n und/oder m an. Begründen Sie Ihre Antwort.
+
+Betrachten Sie nun die folgende Prozedur countdown, die aus zwei ganzzahligen Eingabewerten
+n und Mm einen ganzzahligen Ausgabewert berechnet:
+
+1 procedure countdown(n, m : integer) : integer
+2 varx, y:integer;
+
+3 begin
+4 X:=N;
+° Y=0;
+6 while (n > 0) do
+7 if(y< m) then
+8 X=X-]1;
+9 Y:-y+1;
+10 else
+11 y:=0;
+12 n :=n/2; /» Ganzzahldivision x/
+13 end if
+
+14 end while
+15 return X;
+16 end
+
+Fortsetzung nächste Seite!
+Herbst 2020 Einzelprüfungsnummer: 66115
+
+Seite: 5
+
+d) Führen Sie countdown(3,2) aus. Geben Sie für jeden Schleifendurchlauf jeweils den Wert der
+Variablen n, m, x und y zu Beginn der while-Schleife und den Rückgabewert der Prozedur
+
+an.
+
+e) Gibt es Eingabewerte von n und m, für die die Prozedur countdown nicht terminiert?
+
+Begründen Sie Ihre Antwort.
+
+f) Geben Sie die asymptotische Laufzeit der Prozedur countdown in der 8-Notation in
+Abhängigkeit von den Eingabewerten n und/oder m an unter der Annahme, dass m> 0
+
+und n > 0. Begründen Sie Ihre Antwort.
+
+Aufgabe 2 (Bäume)
+
+[29 PUNKTE]
+
+Wir betrachten ein Feld A von ganzen Zahlen mit n Elementen, die über die Indizes A[O] bis
+Aln-1] angesprochen werden können. In dieses Feld ist ein binärer Baum nach den folgenden
+Regeln eingebettet: Für das Feldelement mit Index i befindet sich
+
+e der Elternknoten im Feldelement mit Index ||,
+
+e der linke Kindknoten im Feldelement mit Index 2-:+1, und
+
+e der rechte Kindknoten im Feldelement mit Index 2:i +2.
+
+a) Zeichnen Sie den durch das folgende Feld repräsentierten binären Baum.
+
+ 
+
+w )0/11|j2|3
+
+4
+
+9 | 10
+
+ 
+
+All 2 |al6lıa
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+12
+
+ 
+
+10
+
+ 
+
+ 
+
+22
+
+ 
+
+20
+
+ 
+
+18 | 16
+
+ 
+
+ 
+
+ 
+
+Der folgende rekursive Algorithmus sei gegeben:
+
+procedure magicli, n : integer) : boolean
+
+begin
+if (i > (n - 2) /2) then
+return true;
+
+if (Ali]l < A[2xi + 1] and Ali] < A[2+i + 2] and
+
+1
+2
+3
+4
+5 endif
+6
+7
+8
+
+return true;
+
+9 endif
+10 return false;
+11 end
+
+magic(2*i + 1, n) and magic(2*i + 2, n)) then
+
+Fortsetzung nächste Seite!
+Herbst 2020 Einzelprüfungsnummer: 66115 Seite: 6
+
+ 
+
+b) Gegeben sei folgendes Feld:
+
+ 
+
+: 1ı011|/2|3
+
+ 
+
+Ali] |2 ale ıa
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Führen Sie magic(0,3) auf dem Feld aus. Welches Resultat liefert der Algorithmus zurück?
+
+c) Wie nennt man die Eigenschaft, die der Algorithmus magic auf dem Feld A prüft? Wie lässt
+sich diese Eigenschaft formal beschreiben?
+
+d) Welche Ausgaben sind durch den Algorithmus magic möglich, wenn das Eingabefeld auf-
+steigend sortiert ist? Begründen Sie Ihre Antwort.
+
+e) Geben Sie zwei dreielementige Zahlenfolgen (bzw. Felder) an, eine für die magic(0,2) den
+Wert true liefert und eine, für die magic(0,2) den Wert false liefert.
+
+f) Betrachten Sie folgende Variante almostmagic der oben bereits erwähnten Prozedur magic,
+bei der die Anweisungen in Zeilen 3 bis 5 entfernt wurden:
+
+procedure almostmagic(i, n : integer) : boolean
+begin
+
+// leer
+
+// leer
+
+// leer
+
+if (Ali]l < Al2xi + 1] and Ali] < A[2xi + 2] and
+
+magic(2*i + 1, n) and magic(2*i + 2, n)) then
+return true;
+
+end if
+
+return false;
+end
+
+OO O0 RPR@0%MXN -
+
+ei ji
+
+Beschreiben Sie die Umstände, die auftreten können, wenn almostmagic auf einem Feld der
+Größe n aufgerufen wird. Welchen Zweck erfüllt die entfernte bedingte Anweisung?
+
+Fortsetzung nächste Seite!
+Herbst 2020 Einzelprüfungsnummer: 66115 Seite: 7
+
+g) Fügen Sie jeweils den angegebenen Wert in den jeweils angegebenen AVL-Baum mit auf-
+steigender Sortierung ein und zeichnen Sie den resultierenden Baum vor möglicherweise
+erforderlichen Rotationen. Führen Sie danach bei Bedarf die erforderliche(n) Rotation(en)
+aus und zeichnen Sie dann den resultierenden Baum. Sollten keine Rotationen erforderlich
+sein, so geben Sie dies durch einen Text wie “keine Rotationen nötig” an.
+
+i.) Wert 7 einfügen
+
+ii.) Wert 11 einfügen
+
+iii.) Wert 5 einfügen
+
+Fortsetzung nächste Seite!
+Herbst 2020 Einzelprüfungsnummer: 66115 Seite: 8
+
+Aufgabe 3 (Kürzeste Wege) [20 PUNKTE]
+
+Gegeben sei der folgende gerichtete und gewichtete Graph G:
+
+ 
+
+15
+
+ 
+
+ 
+
+ 
+
+ 
+
+a) Ermitteln Sie mit dem Algorithmus von Dijkstra den kürzesten Weg vom Knoten A zu
+allen erreichbaren Knoten in G. Verwenden Sie zur Lösung eine Tabelle der folgenden Form.
+Markieren Sie in jeder Zeile den jeweils als nächstes zu betrachtenden Knoten und führen Sie
+die Prioritätswarteschlange der noch zu betrachtenden Knoten (aufsteigend sortiert).
+
+ 
+
+AIB|C|D|E | Prio-Queue
+
+ 
+
+0 I|@o|oo|oo|w [A]
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+b) Geben Sie den kürzesten Pfad vom Knoten A zum Knoten B an.
+
+Aufgabe 4 (O-Notation) [14 PUNKTE]
+
+a) Betrachten Sie das folgende Code-Beispiel (in J ava-Notation):
+
+1 int mystery(int n) {
+inta=0,b=0;
+inti= 0;
+while (i < n) {
+a=b+i,;
+b=a;
+i=i+1;
+}
+
+return a;
+
+}
+
+Bestimmen Sie die asymptotische worst-case Laufzeit des Code-Beispiels in O-Notation
+bezüglich der Problemgröße n. Begründen Sie Ihre Antwort.
+
+SCOTT PB WMmN
+
+ei
+
+Fortsetzung nächste Seite!
+Herbst 2020 Einzelprüfungsnummer: 66115 Seite: 9
+
+b) Betrachten Sie das folgende Code-Beispiel (in J ava-Notation):
+
+1 int mystery(int n) {
+2 Antr=0;
+3 while (n>0){
+4 inty=n;
+5 intx=n;
+6 for (inti=0;i< y; i++) {
+7 for (int j= 0; j< i; j++) {
+8 r=r+1;
+9 }
+10 r=r-1;
+11 }
+12 n=n-1;
+13 }
+14  returnr;
+15 }
+
+Bestimmen Sie für das Code-Beispiel die asymptotische worst-case Laufzeit in O-Notation
+bezüglich der Problemgröße n. Begründen Sie Ihre Antwort.
+
+c) Bestimmen Sie eine asymptotische Lösung (in 8-Schreibweise) für die folgende Rekursions-
+gleichung:
+T(n)=T(2)+3n?’+n
+
+Begründen Sie Ihre Antwort.
+
+Aufgabe 5 (Streuspeicherung) [25 PUNKTE]
+
+Gegeben seien die folgenden Schlüssel k zusammen mit ihren Streuwerten h(k):
+
+ 
+
+k \BIY|IE|!JA|IU|D|?
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+h(k)\5lalolalalo|r|a
+
+ 
+
+a) Fügen Sie die Schlüssel in der angegebenen Reihenfolge (von links nach rechts) in eine Streuta-
+belle der Größe 8 ein und lösen Sie Kollisionen durch verkettete Listen auf.
+
+Stellen Sie die Streutabelle in folgender Art und Weise dar:
+
+Fortsetzung nächste Seite!
+Herbst 2020
+
+Fach
+
+Schlüssel k (verkettete Liste, zuletzt eingetragener Schlüssel rechts)
+
+Einzelprüfungsnummer: 66115
+
+ 
+
+6
+
+7
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Seite: 10
+
+b) Fügen Sie die gleichen Schlüssel in der gleichen Reihenfolge und mit der gleichen Streufunk-
+tion in eine neue Streutabelle der Größe 8 ein. Lösen Sie Kollisionen diesmal aber durch
+
+lineares Sondieren mit Schrittweite +1 auf.
+
+Geben Sie für jeden Schlüssel jeweils an, welche Fächer Sie in welcher Reihenfolge sondiert
+
+haben und wo der Schlüssel schlussendlich gespeichert wird.
+
+c) Bei der doppelten Streuadressierung verwendet man eine Funktionsschar h;, die sich aus
+einer primären Streufunktion ho und einer Folge von sekundären Streufunktionen hı,ha,...
+
+zusammensetzt. Die folgenden Werte der Streufunktionen sind gegeben:
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+k |BIY|JE|!JA|U|D|?
+ro) Islalolalalolr!a
+hılk) 6313131121610
+hakk) | \216l2l6lAal5le
+hs(k) I olılılılalelala
+
+ 
+
+ 
+
+Fügen Sie die Schlüssel in der angegebenen Reihenfolge (von links nach rechts) in eine Streuta-
+belle der Größe 8 ein und geben Sie für jeden Schlüssel jeweils an, welche Streufunktion Ah;
+
+zur letztendlichen Einsortierung verwendet wurde.
+
+-11-
+Herbst 2020 Einzelprüfungsnummer: 66115 Seite: 11
+
+ 
+
+Thema Nr. 2
+(Aufgabengruppe)
+
+Es sind alle Aufgaben dieser Aufgabengruppe zu bearbeiten!
+
+Teilaufgabe I: Theoretische Informatik
+
+ 
+
+Aufgabe 1 (Reguläre Sprachen) [35 PUNKTE]
+
+a) Geben Sie einen deterministischen endlichen Automaten (DEA) mit minimaler Anzahl an
+Zuständen an, der dieselbe Sprache akzeptiert wie folgender deterministischer endlicher Au-
+tomat. Dokumentieren Sie Ihr Vorgehen geeignet.
+
+ 
+
+ 
+
+b) Beweisen oder widerlegen Sie für folgende Sprachen über dem Alphabet 3 = {a,b,c}, dass
+sie regulär sind.
+
+(i) Li = {afcub’vack : u,v € {a,b}* und i,j,k € No}
+(ii) Lo = {atcubivact : u,v € {a,b}* undi,j,ke N, mit k=i+j}
+
+c) Sei L eine reguläre Sprache über dem Alphabet 2. Für ein festes Element a € %& betrachten
+wir die Sprache L, = {au | we D*,wa € L}. Zeigen Sie, dass L, regulär ist.
+
+Fortsetzung nächste Seite!
+Herbst 2020 Einzelprüfungsnummer: 66115 Seite: 12
+
+Aufgabe 2 (Kontextfreie Sprachen) [25 PUNKTE]
+
+a) Sei Z = {0"1"1P0® |n+m=p+g, n,m,p,q € No}. Geben Sie eine kontextfreie Grammatik
+für L an. Sie dürfen dabei e-Produktionen der Form A — e verwenden.
+
+b) Für eine Sprache L sei LI’ = {z" | x € L} die Umkehrsprache. Dabei bezeichne x” das
+Wort, das aus r entsteht, indem man die Reihenfolge der Zeichen umkehrt, beispielsweise
+(abb)” = bba.
+
+(i) Sei L eine kontextfreie Sprache. Zeigen Sie, dass dann auch L" kontextfrei ist.
+(ii) Geben Sie eine kontextfreie Sprache L, an, sodass L, N LT kontextfrei ist.
+(iii) Geben Sie eine kontextfreie Sprache L, an, sodass LyN L5 nicht kontextfrei ist.
+
+Aufgabe 3 (Komplexitätstheorie) [30 PUNKTE]
+
+Das Problem SUBSETSUM besteht darin zu entscheiden, ob aus einer gegebenen Menge von ganzen
+Zahlen eine Teilmenge ausgewählt werden kann, die sich genau zu einer gegebenen Zahl K addiert.
+Formal besteht eine Instanz von SUBSETSUM aus einem Tupel (X,K) mit X = {a1,...,},
+K € Z und gesucht ist eine Menge AC {1,...,n} mit D,.„u=K.
+
+Im Gegensatz dazu ist das Problem CHOICE-OF-2-SUBSETSUM wie folgt definiert: Eine Instanz
+(X, M) von CHOICE-OF-2-SUBSETSUM besteht aus einer Menge X von Paaren von ganzen Zahlen
+(a1,b1), (a2,b2),...,(Qan,bn) € Z2 und einer Zahl M € Z. Die Frage besteht darin, ob es möglich
+ist, aus jedem der Tupel entweder die Zahl a, oder die Zahl b; auszuwählen, sodass die Summe der
+ausgewählten Zahlen genau M ergibt. Formal sind also Mengen A, B gesucht mit ANB=® und
+AUB={l,...,n}, sodass Ja: + V,.pbi=M.
+
+a) Zeigen Sie, dass CHOICE-OF-2-SUBSETSUM in NP liegt.
+
+b) Geben Sie eine totale, in polynomieller Zeit berechenbare Reduktionsfunktion f von SUB-
+SETSUM auf CHOICE-OF-2-SUBSETSUM an.
+
+(Ein Nachweis der Totalität, und dass f in polynomieller Zeit berechenbar ist, ist nicht nötig.)
+c) Zeigen Sie, falls (X, X) in SUBSETSUM, so ist f (X, K) in CHoOICE-OF-2-SUBSETSUM.
+d) Zeigen Sie, falls f(X, K) in CHOICE-OF-2-SUBSETSUM, so ist (X, K) in SUBSETSUM.
+
+Aufgabe 4 (Berechenbarkeit) [30 PUNKTE]
+
+Entscheiden Sie für die folgenden Sprachen, ob sie entscheidbar sind. Beweisen Sie jeweils Ihre
+Antwort. Dabei bezeichne < M > die Gödelnummer der Turingmaschine M.
+
+a) LL={<M>|M akzeptiert mindestens eine Primzahl}
+
+b) Lg={< M > | jeder Übergang von M bewegt den Lesekopf nach rechts und M hält für das
+Eingabewort aab}
+
+Fortsetzung nächste Seite!
+Herbst 2020
+
+Einzelprüfungsnummer: 66115 Seite: 13
+
+ 
+
+Teilaufgabe II: Algorithmen
+
+ 
+
+Aufgabe 1 (Hashing)
+
+[20 PUNKTE]
+
+Eine Hashfunktion h wird verwendet, um Vornamen auf die Buchstaben {A,..., Z} abzubilden.
+Dabei bildet h auf den ersten Buchstaben des Vornamens als Hashwert ab.
+
+Sei H die folgende Hashtabelle (Ausgangszustand):
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Schlüssel || Inhalt Schlüssel || Inhalt
+A N
+B OÖ
+C P
+D Dirk Q
+E R
+F S
+G T
+H U
+
+I Inge V
+J W
+K Kurt X
+L Y
+M Z
+
+ 
+
+ 
+
+ 
+
+ 
+
+a) Fügen Sie der Hashtabelle 7 die Vornamen
+
+Martin, Michael, Norbert, Matthias, Alfons, Bert, Christel, Adalbert, Edith, Emil
+
+in dieser Reihenfolge hinzu, wobei Sie Kollisionen durch lineares Sondieren (mit Inkre-
+mentieren zum nächsten Buchstaben) behandeln.
+
+Fortsetzung nächste Seite!
+Herbst 2020 Einzelprüfungsnummer: 66115 | Seite: 14
+
+b) Fügen Sie der Hashtabelle 7 die Vornamen
+
+Brigitte, Elmar, Thomas, Katrin, Diana, Nathan, Emanuel, Sebastian, Torsten, Karolin
+
+in dieser Reihenfolge hinzu, wobei Sie Kollisionen durch Verkettung der Überläufer be-
+handeln. (Hinweis: Verwenden Sie die Hashtabelle im Ausgangszustand.)
+
+Aufgabe 2 (O-Notation) [20 PUNKTE]
+
+Beweisen Sie die folgenden Aussagen:
+a) Sei fn)=2-.n?+3-n?+4- (log,n) + 7. Dann gilt f € O(n?).
+b) Sei f({n) = 4”. Dann gilt nicht f € O(2").
+c) Sei f{n) = (n+1)! (d. h. die Fakultät von n +1). Dann gilt f € O(n”).
+d) Sei f:N— N definiert durch die folgende Rekursionsgleichung:
+
+3, fürn=1
+/{n) =
+(n—-1)+f(n-1), fürn>1
+
+Dann gilt f e O(n?).
+
+Aufgabe 3 (Heap) [20 PUNKTE]
+
+a) Geben Sie obigen Min-Heap in der Darstellung eines Feldes an, wobei die Knoten in Level-
+Order abgelegt sind.
+
+b) Führen Sie wiederholt DeleteMin-Operationen auf dem gegebenen Heap aus, bis der Heap
+leer ist. Zeichnen Sie dafür den aktuellen Zustand des Heaps als Baum und als Feld
+nach jeder Änderung des Heaps, wobei Sie nur gültige Bäume zeichnen (d. h. solche die keine
+Lücken haben). Dokumentieren Sie, was in den einzelnen Schritten geschieht.
+
+Es sei der folgende Min-Heap gegeben:
+
+Fortsetzung nächste Seite!
+
+I®
+Herbst 2020 Einzelprüfungsnummer: 66115 Seite: 15
+
+ 
+
+Aufgabe 4 (Dynamische Programmierung) [24 PUNKTE]
+
+Das GUTSCHEIN-Problem ist gegeben durch eine Folge wı,...,w„ von Warenwerten (wobei
+welNo fürö=1,...,n) und einem Gutscheinbetrag G € No.
+
+Da Gutscheine nicht in Bargeld ausgezahlt werden können, ist die Frage, ob man eine Teilfolge
+der Waren findet, sodass man genau den Gutschein ausnutzt. Formal ist dies die Frage, ob es eine
+Menge von Indizes J mit IC {l,...,rn} gibt, sodass )_,., wi = G gilt.
+
+a) Sei wı = 10, wa = 30, wz = 40, w4 = 20, ws; = 15 eine Folge von Warenwerten.
+
+b)
+
+(i) Geben Sie einen Gutscheinbetrag 40 < G < 115 an, sodass die GUTSCHEIN-Instanz
+eine Lösung hat. Geben Sie auch die lösende Menge I C {1,2,3,4,5} von Indizes an.
+
+(ii) Geben Sie einen Gutscheinbetrag G mit 40 < G < 115 an, sodass die GUTSCHEIN-
+Instanz keine Lösung hat.
+Sei table eine (n x (G + 1))-Tabelle mit Einträgen tablefi,k], für 1 <i<nundO<sk<G,
+sodass
+true, falses/IC {1,...,i} mit )_,., wi; = k gibt
+tableli, k] = u
+false, sonst
+
+Geben Sie einen Algorithmus in Pseudo-Code oder Java an, der die Tabelle table mit dynami-
+scher Programmierung in Worst-Case-Laufzeit O(n x G)) erzeugt. Begründen Sie die Kor-
+rektheit und die Laufzeit Ihres Algorithmus. Welcher Eintrag in table löst das GUTSCHEIN-
+Problem?
+
+Aufgabe 5 (Schnelle Suche von Schlüsseln) [36 PUNKTE]
+
+Eine Folge von Zahlen ist eine odd-ascending-even-descending-Folge, wenn gilt:
+
+Zunächst enthält die Folge alle Schlüssel, die ungerade Zahlen sind, und diese Schlüssel
+sind aufsteigend sortiert angeordnet. Im Anschluss daran enthält die Folge alle
+Schlüssel, die gerade Zahlen sind, und diese Schlüssel sind absteigend sortiert an-
+geordnet.
+
+Geben Sie die Zahlen 10, 3, 11, 20, 8, 4, 9 als odd-ascending-even-descending-Folge an.
+
+Geben Sie einen Algorithmus (z. B. in Pseudocode oder Java) an, der für eine odd-ascending-
+even-descending-Folge F' gegeben als Feld und einem Schlüsselwert $ prüft, ob $ in F' vor-
+kommt und true im Erfolgsfall und ansonsten false liefert. Dabei soll der Algorithmus
+im Worst-Case eine echt bessere Laufzeit als Linearzeit (in der Größe der Arrays) haben.
+Erläutern Sie Ihren Algorithmus und begründen Sie die Korrektheit.
+
+c) Erläutern Sie schrittweise den Ablauf Ihres Algorithmus für die Folge 1, 5, 11, 8, 4, 2 und
+
+den Suchschlüssel 4.
+
+d) Analysieren Sie die Laufzeit Ihres Algorithmus für den Worst-Case, geben Sie diese in O-
+
+Notation an und begründen Sie diese.

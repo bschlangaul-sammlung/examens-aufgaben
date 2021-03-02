@@ -1,0 +1,614 @@
+ 
+
+Prüfungsteilnehmer Prüfungstermin Einzelprüfungsnummer
+
+ 
+
+Kennzahl:
+
+Herbst
+Kennwort: ____________ 46 1 1 5
+
+2019
+
+Arbeitsplatz-Nr.:
+
+ 
+
+Erste Staatsprüfung für ein Lehramt an öffentlichen Schulen
+
+— Prüfungsaufgaben —
+
+ 
+
+Fach: Informatik (Unterrichtsfach)
+Einzelprüfung: Theoretische Informatik/ Algorithmen /Datenstrukturen
+Anzahl der gestellten Themen (Aufgaben): 2
+
+Anzahl der Druckseiten dieser Vorlage: 12
+
+ 
+
+Bitte wenden!
+Herbst 2019 Einzelprüfungsnummer: 46115 Seite: 2
+
+Thema Nr. 1
+(Aufgabengruppe)
+
+Es sind alle Aufgaben dieser Aufgabengruppe zu bearbeiten!
+
+Aufgabe 1 (Reguläre Sprachen) [20 PunKTe]
+
+(a) [4 Punkte] Geben Sie einen regulären Ausdruck für die Sprache über dem Alphabet {a,b}
+an, die genau alle Wörter enthält, die eine gerade Anzahl a’s haben.
+
+(b) [16 Punkte] Sei A der folgende DEA über dem Alphabet {a,b}:
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Führen Sie den Minimierungsalgorithmus für A durch und geben Sie den minimalen äqui-
+valenten DEA für L(A) als Zeichnung an.
+
+Aufgabe 2 (Kontextfreie Sprachen) [40 PunKTe]
+
+(a) [24 Punkte] Betrachten Sie die folgenden Sprachen:
+
+L, = {ar rer d” |n,meN}
+
+IL; = {art "d" |neN}
+Zeigen Sie für Zı und La, ob sie kontextfrei sind oder nicht. Für den Beweis von Kontext-
+Freiheit in dieser Frage reicht die Angabe eines Automaten oder einer Grammatik. (Beschrei-
+
+ben Sie dann die Konstruktionsidee des Automaten oder der Grammatik.) Für den Beweis
+von Nicht-Kontext-Freiheit verwenden Sie eine der üblichen Methoden.
+
+(b) [16 Punkte] Eine kontextfreie Grammatik ist in Chomsky-Normalform, falls die folgenden
+Bedingungen erfüllt sind:
+
+oe alle Regeln sind von der Form X — YZ oder X — o mit Nichtterminalzeichen X,Y, Z
+und Terminalzeichen o,
+e alle Nichtterminalzeichen sind erreichbar vom Startsymbol und
+
+e alle Nichtterminalzeichen sind erzeugend, d. h. für jedes Nichtterminalzeichen X gibt
+es ein Wort w über dem Terminalalphabet, so dass X =>* w.
+
+Fortsetzung nächste Seite!
+Herbst 2019 Einzelprüfungsnummer: 46115 Seite: 3
+
+ 
+
+Bringen Sie die folgende Grammatik in Chomsky-Normalform.
+$ .— AAB|CD|abe
+
+A — AAAAla
+
+B - BB|S
+
+CC > CCcC|IcC
+
+D-d
+
+Das Startsymbol der Grammatik ist S, das Terminalalphabet ist {a,b,c,d} und die Menge
+der Nichtterminalzeichen ist {S,A,B,C,D}.
+
+Aufgabe 3 (Entscheidbarkeit und Komplexität) 30 PUNKTE]
+
+Betrachten Sie die folgenden Entscheidungsprobleme:
+
+ 
+
+SAT
+
+Gegeben: Aussagenlogische Formel F in KNF.
+
+Frage: Gibt es eine erfüllende Belegung für F?
+
+ 
+
+ 
+
+SAT’
+
+Gegeben: Aussagenlogische Formel Fin KNF.
+
+Frage: Gibt es eine Belegung, die in jeder Klausel min-
+destens ein Literal falsch macht?
+
+ 
+
+ 
+
+ 
+
+Beachten Sie, dass die Belegung bei SAT’ nicht erfüllend sein muss.
+
+(a) |20 Punkte] Zeigen Sie, dass SAT in polynomieller Zeit reduzierbar auf SAT’ ist.
+
+(b) [10 Punkte] Zeigen Sie, dass SAT’ NP-vollständig ist. Sie dürfen annehmen, dass SAT NP-
+vollständig ist.
+
+Fortsetzung nächste Seite!
+Herbst 2019
+
+Einzelprüfungsnummer: 46115
+
+Seite: 4
+
+ 
+
+Aufgabe 4 (Sortierverfahren)
+
+[40 PUNKTE]
+
+In der folgenden Aufgabe soll ein Feld A von ganzen Zahlen aufsteigend sortiert werden. Das Feld
+
+habe n Elemente A[1] bis Aln]. Der folgende Algorithmus sei gegeben:
+
+var
+
+A : array|l..n] of integer;
+
+procedure selection _sort
+
+var i, j, smallest, tmp : integer;
+begin
+for j := 1 to n-1 do begin
+smallest := j;
+for i := j + 1 to n do begin
+if Ali] < Alsmallest] then
+smallest := i;
+end
+tmp = Al j |;
+
+Alj] = Alsmallest];
+Alsmallest] = tmp;
+
+end
+
+end
+
+(a) [18 Punkte] Sortieren Sie das folgende Feld mittels des Algorithmus. Notieren Sie alle Werte,
+die die Variable smallest jeweils beim Durchlauf der inneren Schleife annimmt. Geben Sie
+die Belegung des Feldes nach jedem Durchlauf der äußeren Schleife in einer neuen Zeile an.
+
+ 
+
+Index 1 2
+
+9
+
+9/10
+
+ 
+
+Wert | 27 | 32
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+17
+
+ 
+
+44
+
+ 
+
+42
+
+ 
+
+29
+
+ 
+
+8| 14
+
+ 
+
+ 
+
+ 
+
+(b) [4 Punkte] Der Wert der Variablen smallest wird bei jedem Durchlauf der äußeren Schleife
+mindestens ein Mal neu gesetzt. Wie muss das Feld A beschaffen sein, damit der Variablen
+smallest ansonsten niemals ein Wert zugewiesen wird? Begründen Sie Ihre Antwort.
+
+(c) [4 Punkte] Welche Auswirkung auf die Sortierung oder auf die Zuweisungen an die Variable
+smallest hat es, wenn der Vergleich in Zeile 9 des Algorithmus statt Afi]l < Alsmallest] lautet
+
+Ali] < Alsmallest]? Begründen Sie Ihre Antwort.
+
+(d) [4 Punkte] Betrachten Sie den Algorithmus unter der Maßgabe, dass Zeile 9 wie folgt geändert
+
+wurde:
+
+if Ali] > Alsmallest| then
+
+Welches Ergebnis berechnet der Algorithmus nun?
+
+(e) [10 Punkte] Betrachten Sie die folgende rekursive Variante des Algorithmus. Der erste Pa-
+rameter ist wieder das zu sortierende Feld, der Parameter n ist die Größe des Feldes und
+der Parameter index ist eine ganze Zahl. Die Funktion min _index(A, x, y) berechnet für
+1<x<y<n den Index des kleinsten Elements aus der Menge {Afx], Alx+1],...,Alyl}-
+
+Fortsetzung nächste Seite!
+Herbst 2019 Einzelprüfungsnummer: 46115 Seite: 5
+
+ 
+
+1 procedure rek_selection_sort(A, n, index : integer)
+2 var k, tmp : integer;
+3 begin
+4 if (Abbruchbedingung) then return;
+5 k = min_index(A, index, n);
+6 if k # index then begin
+7 tmp := Alk];
+8 A[k] := Alindex];
+9 Alindex]| := tmp;
+10 end
+11 (rekursiver Aufruf)
+12 end
+Der initiale Aufruf des Algorithmus lautet:
+rek_selection _sort(A, n, 1)
+Vervollständigen Sie die fehlenden Angaben in der Beschreibung des Algorithmus für
+e die Abbruchbedingung in Zeile 4 und
+e den rekursiven Aufruf in Zeile 11.
+Begründen Sie Ihre Antworten.
+Aufgabe 5 (O-Notation) [15 PUNKTE]
+
+(a) |9 Punkte] Sortieren Sie die unten angegebenen Funktionen der O-Klassen O(a(n)), O(b(n)),
+O(c(n)), O(d{n)) und O(e(n)) bezüglich ihrer Teilmengenbeziehungen. Nutzen Sie aus-
+schließlich die echte Teilmenge C sowie die Gleichheit = für die Beziehung zwischen den
+Mengen. Folgendes Beispiel illustriert diese Schreibweise für einige Funktionen fi bis fs
+(diese haben nichts mit den unten angegebenen Funktionen zu tun):
+
+Olfaln)) < Ollsln)) = Olis(n)) < OCAn)) = Olhaln))
+
+Die angegebenen Beziehungen müssen weder bewiesen noch begründet werden.
+
+a(n) = n? - log,(n)
+oe b(n) =2"+n?+42
+° c(n) = art
+e d{n)=3: Vn®
+(b) |6 Punkte] Bestimmen Sie eine asymptotische Lösung (in ©-Schreibweise) für die folgende
+Rekursionsgleichung:
+T(n)=4:T(#)+n?
+
+Fortsetzung nächste Seite!
+Herbst 2019 Einzelprüfungsnummer: 46115 Seite: 6
+
+ 
+
+Aufgabe 6 (Stacks) [25 PUNKTE]
+
+Gegeben sei die Implementierung eines Stacks ganzer Zahlen mit folgender Schnittstelle:
+
+{
+
+oO x SI No DD Hr
+
+}
+
+public class IntStack
+
+// legt Element i auf den Stack
+public void push (int i);
+
+// gibt oberstes Element vom Stack
+public int pop();
+
+// fragt ab ob Stack leer ist
+public boolean isEmpty ();
+
+Betrachten Sie nun die Realisierung der folgenden Datenstruktur Mystery, die zwei Stacks benutzt.
+
+{
+
+oO NOT BE WND
+
+PH
+oO Jo ut 20 DD oO %0
+wo
+
+a
+©
+we z
+
+m
+
+OOo Nur wmn m
+BBEEBEESEBESSESS
+
+public class Mystery
+
+private IntStack a = new IntStack ();
+private IntStack b = new IntStack ();
+
+public void foo(int item) {
+a.push (item);
+}
+
+public int bar() {
+if (b.isEmpty()) {
+while (!a.isEmpty()) {
+' b.push (a.pop());
+}
+
+return b.pop();
+
+|9 Punkte] Skizzieren Sie nach jedem Methodenaufruf der im folgenden angegebenen Be-
+fehlssequenz den Zustand der beiden Stacks eines Objekts m der Klasse Mystery. Geben Sie
+zudem bei jedem Aufruf der Methode bar an, welchen Wert diese zurückliefert.
+
+Mystery m = new Mystery ();
+.foo (3);
+
+.foo (5);
+.foo (4);
+.bar();
+.foo (7);
+.bar()
+.foo (2
+.bar()
+.bar{)
+
+):
+
+2
+
+Fortsetzung nächste Seite!
+Herbst 2019 Einzelprüfungsnummer: 46115 Seite: 7
+
+(b) Sein die Anzahl der in einem Objekt der Klasse Mystery gespeicherten Werte. Im folgenden
+wird gefragt, wieviele Aufrufe von Operationen der Klasse IntStack einzelne Aufrufe von
+Methoden der Klasse Mystery verursachen. Begründen Sie jeweils Ihre Antwort.
+
+(i) [2 Punkte] Wie viele Aufrufe von Operationen der Klasse IntStack verursacht die Me-
+thode foo(x) im besten Fall?
+
+(ii) [2 Punkte] Wie viele Aufrufe von Operationen der Klasse IntStack verursacht die Me-
+thode foo(x) im schlechtesten Fall?
+
+(ii) [3 Punkte] Wie viele Aufrufe von Operationen der Klasse IntStack verursacht die Me-
+thode bar() im besten Fall?
+
+(iv) [3 Punkte] Wie viele Aufrufe von Operationen der Klasse IntStack verursacht die Me-
+thode bar() im schlechtesten Fall?
+
+(c) [6 Punkte] Welche allgemeinen Eigenschaften werden durch die Methoden foo und bar rea-
+lisiert? Unter welchem Namen ist diese Datenstruktur allgemein bekannt?
+
+Aufgabe 7 (Algorithmenentwurf) [10 PunKTe]
+Gegeben sei ein Array A von n ganzen Zahlen. In A sollen Duplikate eliminiert werden. Ausgabe
+soll ein neues Array A’ sein, das jedes Element von A nur ein Mal enthält.
+
+Entwerfen Sie einen Algorithmus mit Laufzeit O(n - log, n), der diese Aufgabe löst.
+
+Sie dürfen die Funktionalität allgemein bekannter Algorithmen und Datenstrukturen (Listen, Gra-
+phen, Stacks, Heaps, Queues, Hash-Tabellen, Algorithmen zum Sortieren) unter Annahme der
+jeweils bekannten effizienten Implementierungen verwenden.
+Herbst 2019 Einzelprüfungsnummer: 46115 Seite: 8
+
+Thema Nr. 2
+(Aufgabengruppe)
+
+Es sind alle Aufgaben dieser Aufgabengruppe zu bearbeiten!
+
+Aufgabe 1 (Komplemetieren eines NEA) |18 PUNKTE]
+
+Es sei der nichtdeterministische endliche Automat A = ({a,b}, {1,2,3,4,5},6,1,{4,5}) gegeben,
+wobei ö durch folgende Zeichnung beschrieben ist.
+
+Konstruieren Sie nachvollziehbar einen deterministischen endlichen Automaten A’, der das Kom-
+plement von L(A) akzeptiert!
+
+Aufgabe 2 (Rechtslineare Grammatik) 26 PUNKTE]
+
+Gegeben ist die rechtslineare Grammatik G = ({a,5}, {S,A,B,C,D},S,R) mit R= {S —
+aAaA—bB,A> aDB- al,B-bB,C + bD,C —b,D— aA}. Sei L die von G er-
+zeugte Sprache.
+
+(a) [8 Punkte] Zeichnen Sie einen nichtdeterministischen endlichen Automaten, der Z akzeptiert!
+
+(b) [18 Punkte] Konstruieren Sie auf nachvollziehbare Weise einen regulären Ausdruck « mit
+L(a)=L!
+
+Aufgabe 3 (Regularität) [16 PUNKTE]
+
+Bestimmen Sie, ob die Sprache A = {w € {a,b}* | |w|a > 2|w|,} regulär ist und beweisen Sie Ihre
+
+Behauptung! Dabei bezeichnet |w|. die Anzahl der a’s in w und |w|, die Anzahl der b’s in w.
+Aufgabe 4 (Entscheidbarkeit, Reduzierbarkeit, Aufzählbarkeit) [30 PUNKTE]
+
+Sei Mo, Mı,... eine Gödelisierung aller Registermaschinen (RAMs).
+
+(a) [12 Punkte] Zeigen Sie die Unentscheidbarkeit der Menge
+A={ieN |die von M, berechnete Funktion f:N — N hat die Eigenschaft W,NP= 9},
+
+wobei W; der Wertebereich von f und P = {2,3,5,7,...} die Menge der Primzahlen ist!
+
+Fortsetzung nächste Seite!
+Herbst 2019 Einzelprüfungsnummer: 46115 Seite: 9
+
+(b) [18 Punkte] Im Folgenden bezeichne M,;(i) die Berechnung der Maschine M,; bei Eingabe :.
+Sei B die Menge aller Paare (j,k), sodass M,(j) mindestens so lange wie M,(k) läuft, d. h.
+
+B={(j,k)ENxN | für alle natürlichen Zahlen t gilt:
+M;,(5) hält innerhalb von t Takten > M,(k) hält innerhalb von t Takten}.
+
+Weiter sei Ko das Komplement des speziellen Halteproblems An = {i eN | M;(i) hält}. Es
+ist bekannt, dass Ko, nicht rekursiv aufzählbar ist. Beweisen Sie, dass Xo Polynomialzeit-
+reduzierbar auf B ist! Folgern Sie daraus, dass B nicht rekursiv aufzählbar ist.
+
+Aufgabe 5 (Quicksort) 21 PUNKTE]
+
+Gegeben ist das Array a = [13, 32, 9, 14,42, 3,10, 21].
+
+(a) [14 Punkte] Sortieren Sie a mit Quicksort aufsteigend und in-situ von links nach rechts. Ge-
+ben Sie die (Teil-)Arrays am Anfang jedes rekursiven Aufrufs und nach jedem Tauschen von
+Elementen (auch mit sich selber) an. Verwenden Sie als Pivotelement jeweils das rechteste
+Element im Teilarray. Kennzeichnen Sie immer das aktuelle Pivotelement. Geben Sie zum
+Schluss das Ergebnis an.
+
+(b) [7 Punkte] Welche asymptotische best-case Laufzeit hat Quicksort? Geben Sie ein Array
+der Länge mindestens 7 an, mit welchem die Quicksort-Variante aus (a) nur die minimale
+Anzahl an Vergleichen benötigt (ohne Begründung).
+
+Aufgabe 6 (Mastertheorem) [10 PUNKTE]
+
+SiT:N—R} eine nicht-negative rekursive Funktion mit folgender Definition:
+
+1, fallsn < no
+T(n) = mita>L,b>1L,f:NHRS,mEeN
+
+a-T(#) + f(n), sonst
+Laut Mastertheorem gilt:
+Fall 1: 3e > 0: f(n) € O(n!°&°=®) >T € O(n!%e)
+
+Fall 2: f(n) € ©(n!°&«) >T € 8(n&“.]og,n)
+Fall 3: (3 >0:f(n) € Qnete)) A (3. :0<ce<ina:-f (*) <c: fr) >Te6&(f(n)).
+
+Fortsetzung nächste Seite!
+Herbst 2019 Einzelprüfungsnummer: 46115 Seite: 10
+
+Gegeben sei die folgende Variante von MergeSort:
+
+3MergeSort (int|] A, int !=1, int r = A.length)
+ifl<rthen
+
+m =1+ 11/3) (rl)
+
+ma = 1+ (2/3): (r 0)
+
+3MergeSort (A, I, mı)
+
+3MergeSort (A, mı + 1, ma)
+
+3MergeSort (A, ma +1, r)
+
+Merge (A, I, mı, ms)
+
+Merge (A, I, ma, r)
+end
+
+ 
+
+(a) |6 Punkte] Geben Sie zu obiger Funktion T die Werte der Konstanten a und b, sowie eine
+passende Definition der Funktion f an, sodass T(n) der Anzahl von Rechenschritten des
+gegebenen Algorithmus entspricht.
+
+(b) [4 Punkte] Bestimmen Sie die asymptotische Laufzeit des Algorithmus mithilfe des Mas-
+tertheorems. Geben Sie dabei den verwendeten Fall an.
+
+Aufgabe 7 (Heapify) [18 PUNKTE]
+
+Schreiben Sie in Pseudocode eine Methode heapify(int|] a), welche im übergebenen Array der
+Länge n die Heapeigenschaft in O(n) Schritten herstellt. D. h. als Ergebnis soll in a gelten, dass
+alil < al27 +1] und al] < ai +2).
+
+Fortsetzung nächste Seite!
+Herbst 2019 Einzelprüfungsnummer: 46115 Seite: 11
+
+ 
+
+Aufgabe 8 (Maximaler Spannbaum mit Jarnik/Prim) [25 PUNKTE]
+
+(a)
+
+(b)
+
+[16 Punkte] Durch folgende Adjazenzmatrix sei ein ungerichteter Graph G mit Kantenlängen
+gegeben.
+
+ 
+
+ 
+
+a - - 7-92 - 4 |
+bI- - - - - 3-5 2
+ceI7 - - AA - -
+dI- -— 4 - - +23 -
+el9 - A - - - 0° -
+l2 3 - - - - 81% 2
+91-7 = - 208 - - —
+hı4 5-3 - 10 - - -
+il 2 --- 2 --  %]
+
+Wenden Sie den Algorithmus von Jarnik/Prim auf G ausgehend von Knoten d an, um einen
+Spannbaum 7 mit maximalem Gewicht zu berechnen. Erstellen Sie dazu eine Tabelle mit
+zwei Spalten und stellen Sie jeden einzelnen Schritt des Verfahrens in einer eigenen Zeile dar.
+Geben Sie in der ersten Spalte denjenigen Knoten v an, der vom Algorithmus als nächstes in
+T aufgenommen wird (dieser sog. “schwarze” Knoten ist damit fertiggestellt). Führen Sie in
+der zweiten Spalte alle anderen vom aktuellen Baum 7 direkt erreichbaren Knoten v (sog.
+“graue Randknoten”) auf.
+
+Geben Sie in der Tabelle Knoten stets als Tripel (v, ö, v.r) an, mit v als Knotenname, v.r als
+aktueller Vorgängerknoten (anderer Knoten der Kante) und d als Länge der Kante {v,v.r}.
+[9 Punkte] Sei G = (V, E,w) ein Graph mit Kantenlängen w: E— N und T ein Spannbaum
+von G mit maximalem Gewicht. Beweisen oder widerlegen Sie die folgende Aussage:
+
+Längste (einfache) Wege zwischen zwei Knoten u,v € V enthalten nur Kanten aus T.
+
+Fortsetzung nächste Seite!
+Herbst 2019 Einzelprüfungsnummer: 46115 Seite: 12
+
+ 
+
+Aufgabe 9 (Hashing) [16 PUNKTE]
+
+(a) [12 Punkte] Verwenden Sie die Hash-Funktion h(k,i) = (h’(k)+2i+4?) mod 11 mit h’(k) =
+k mod 13, um die Schlüssel 20, 12 und 30 in die folgende Hashtabelle einzufügen.
+
+Dokumentieren Sie dabei jeweils, auf welche Zellen zugegriffen wird.
+0 1 2 3 4 9 6 7 8 9 10
+
+1 17 8
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+(a) [4 Punkte] Beschreiben Sie, welchen Vorteil quadratisches Sondieren bei der Kollisionsauflö-
+sung gegenüber linearem Sondieren bietet.
