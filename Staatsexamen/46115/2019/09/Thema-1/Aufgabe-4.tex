@@ -1,17 +1,18 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
+\liLadePakete{syntax,mathe,sortieren}
 \begin{document}
 \liAufgabenTitel{(Sortierverfahren)}
 \section{Aufgabe 4
 \index{Selectionsort}
 \footcite{46115:2019:09}}
 
-In der folgenden Aufgabe soll ein Feld A von ganzen Zahlen aufsteigend
-sortiert werden. Das Feld habe n Elemente A[1] bis Aln]. Der folgende
+In der folgenden Aufgabe soll ein Feld A von ganzen Zahlen
+\emph{aufsteigend}
+sortiert werden. Das Feld habe n Elemente A[1] bis A[n]. Der folgende
 Algorithmus sei gegeben:
 
 \begin{minted}{componentpascal}
-var A : array[l..n] of integer;
+var A : array[1..n] of integer;
 
 procedure selection_sort
 var i, j, smallest, tmp : integer;
@@ -27,7 +28,6 @@ begin
     A[smallest] = tmp;
   end
 end
-
 \end{minted}
 \begin{enumerate}
 
@@ -36,27 +36,150 @@ end
 %%
 
 \item Sortieren Sie das folgende Feld mittels des Algorithmus. Notieren
-Sie alle Werte, die die Variable smallest jeweils beim Durchlauf der
-inneren Schleife annimmt. Geben Sie die Belegung des Feldes nach jedem
-Durchlauf der äußeren Schleife in einer neuen Zeile an.
+Sie alle Werte, die die Variable \emph{smallest} jeweils beim Durchlauf
+der inneren Schleife annimmt. Geben Sie die Belegung des Feldes nach
+jedem Durchlauf der äußeren Schleife in einer neuen Zeile an.
+
+\begin{liAntwort}
+\def\u#1{\liPseudoUeberschrift{nach #1. Durchlauf ( $j = #1$ )}}
+\let\v=\liVertauschen
 
 %%
 %
 %%
 
-\item Der Wert der Variablen smallest wird bei jedem Durchlauf der
-äußeren Schleife mindestens ein Mal neu gesetzt. Wie muss das Feld A
-beschaffen sein, damit der Variablen smallest ansonsten niemals ein Wert
-zugewiesen wird? Begründen Sie Ihre Antwort.
+Ausgang
+
+\v{>27 32 <3 6 17 44 42 29 8 14}
+
+%%
+%
+%%
+
+\u{1}
+
+smallest: (1) 3
+
+\v{3 >32 27 <6 17 44 42 29 8 14}
+
+%%
+%
+%%
+
+\u{2}
+
+smallest: (2) 3 4
+
+\v{3 6 >27 32 17 44 42 29 <8 14}
+
+%%
+%
+%%
+
+\u{3}
+
+smallest: (3) 5 9
+
+\v{3 6 8 >32 <17 44 42 29 27 <14}
+
+%%
+%
+%%
+
+\u{4}
+
+smallest: (4) 5 10
+
+\v{3 6 8 14 17 44 42 29 27 32}
+
+%%
+%
+%%
+
+\u{5}
+
+smallest: (5) -
+
+\v{3 6 8 14 17 >44 42 29 <27 32}
+
+%%
+%
+%%
+
+\u{6}
+
+smallest: (6) 7 8 9
+
+\v{3 6 8 14 17 27 >42 <29 44 32}
+
+%%
+%
+%%
+
+\u{7}
+
+smallest: (7) 8
+
+\v{3 6 8 14 17 27 29 >42 44 <32}
+
+%%
+%
+%%
+
+\u{8}
+
+smallest: (8) 10
+
+\v{3 6 8 14 17 27 29 32 44 42}
+
+%%
+%
+%%
+
+\u{9}
+
+smallest: (9) 10
+
+\v{3 6 8 14 17 27 29 32 >44 <42}
+
+%%
+%
+%%
+
+\liPseudoUeberschrift{fertig}
+
+\v{3 6 8 14 17 27 29 32 42 44}
+
+\end{liAntwort}
+
+%%
+%
+%%
+
+\item Der Wert der Variablen \emph{smallest} wird bei jedem Durchlauf
+der äußeren Schleife mindestens ein Mal neu gesetzt. Wie muss das Feld
+$A$ beschaffen sein, damit der Variablen \emph{smallest} ansonsten
+niemals ein Wert zugewiesen wird? Begründen Sie Ihre Antwort.
+
+\begin{liAntwort}
+Wenn das Feld bereits aufsteigend sortiert ist, dann nimmt die Variable
+\emph{smallest} in der innneren Schleife niemals einen neuen Wert an.
+\end{liAntwort}
 
 %%
 %
 %%
 
 \item Welche Auswirkung auf die Sortierung oder auf die Zuweisungen an
-die Variable smallest hat es, wenn der Vergleich in Zeile 9 des
-Algorithmus statt A[i] < A[smallest] lautet A[i] < A[smallest]?
-Begründen Sie Ihre Antwort.
+die Variable \emph{smallest} hat es, wenn der Vergleich in Zeile 9 des
+Algorithmus statt $A[i] < A[\text{smallest}]$ lautet $A[i] \leq
+A[\text{smallest}]$? Begründen Sie Ihre Antwort.
+
+\begin{liAntwort}
+Der Algorithmus sortiert dann nicht mehr \emph{stabil}, d.\,h. die
+Eingabereihenfolge von Elementen mit \emph{gleichem Wert} wird beim
+Sortieren nicht mehr \emph{bewahrt}.
+\end{liAntwort}
 
 %%
 %
@@ -66,10 +189,14 @@ Begründen Sie Ihre Antwort.
 folgt geändert wurde:
 
 \begin{minted}{componentpascal}
-if A[i] > A[smallest| then
+if A[i] > A[smallest] then
 \end{minted}
 
 Welches Ergebnis berechnet der Algorithmus nun?
+
+\begin{liAntwort}
+Der Algorithmus soritert jetzt absteigend.
+\end{liAntwort}
 
 %%
 %
@@ -95,4 +222,6 @@ Algorithmus für
 
 Begründen Sie Ihre Antworten.
 \end{enumerate}
+
+\liJavaDatei[firstline=3]{examen/examen_46115/jahr_2019/herbst/SelectionSort}
 \end{document}
