@@ -583,6 +583,7 @@ OCR des oben genannten Scans:
     - Thema 1 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2019/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46115-2019-Herbst_T1-A1">Aufgabe 1 (Reguläre Sprache)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2019/09/Thema-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46115-2019-Herbst_T1-A4">Aufgabe 4 (Selectionsort)</a> 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2019/09/Thema-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_46115-2019-Herbst_T1-A6">Aufgabe 6 (Stapel (Stack))</a> 
     - Thema 2 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2019/09/Thema-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46115-2019-Herbst_T2-A1">Aufgabe 1 (Potenzmengenalgorithmus, Nichtdeterministisch endlicher Automat (NEA), Deterministisch endlicher Automat (DEA))</a>
 - 2020 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2020/03/Scan.pdf" download="Staatsexamen-Informatik_46115-2020-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2020/03/OCR.txt" download="Staatsexamen-Informatik_46115-2020-Frühjahr_OCR">OCR.txt</a> 

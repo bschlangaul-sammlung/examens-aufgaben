@@ -1,0 +1,83 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+
+\let\j=\liJavaCode
+\liAufgabenTitel{Mystery-Stacks}
+\section{Aufgabe 6 (Stacks)
+\index{Stapel (Stack)}
+\footcite{46115:2019:09}}
+
+Gegeben sei die Implementierung eines Stacks ganzer Zahlen mit folgender
+Schnittstelle:
+
+\liJavaDatei[firstline=3]{examen/examen_46115/jahr_2019/herbst/mystery_stack/IntStack}
+
+Betrachten Sie nun die Realisierung der folgenden Datenstruktur
+\j{Mystery}, die zwei Stacks benutzt.
+
+\liJavaDatei[firstline=3,lastline=18]{examen/examen_46115/jahr_2019/herbst/mystery_stack/Mystery}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Skizzieren Sie nach jedem Methodenaufruf der im folgenden
+angegebenen Befehlssequenz den Zustand der beiden Stacks eines Objekts
+\j{m} der Klasse \j{Mystery}. Geben Sie zudem bei jedem Aufruf der
+Methode \j{bar} an, welchen Wert diese zurückliefert.
+
+\liJavaDatei[firstline=21,lastline=30]{examen/examen_46115/jahr_2019/herbst/mystery_stack/Mystery}
+
+%%
+% (b)
+%%
+
+\item Sei $n$ die Anzahl der in einem Objekt der Klasse \j{Mystery}
+gespeicherten Werte. Im folgenden wird gefragt, wieviele Aufrufe von
+Operationen der Klasse \j{IntStack} einzelne Aufrufe von Methoden der
+Klasse \j{Mystery} verursachen. Begründen Sie jeweils Ihre Antwort.
+
+\begin{enumerate}
+
+%%
+% (i)
+%%
+
+\item Wie viele Aufrufe von Operationen der Klasse \j{IntStack}
+verursacht die Methode \j{foo(x)} im besten Fall?
+
+%%
+% (ii)
+%%
+
+\item Wie viele Aufrufe von Operationen der Klasse \j{IntStack}
+verursacht die Methode \j{foo(x)} im schlechtesten Fall?
+
+%%
+% (ii)
+%%
+
+\item Wie viele Aufrufe von Operationen der Klasse \j{IntStack}
+verursacht die Methode \j{bar()} im besten Fall?
+
+%%
+% (iv)
+%%
+
+\item Wie viele Aufrufe von Operationen der Klasse \j{IntStack}
+verursacht die Methode \j{bar()} im schlechtesten Fall?
+\end{enumerate}
+
+%%
+% (c)
+%%
+
+\item Welche allgemeinen Eigenschaften werden durch die Methoden \j{foo}
+und \j{bar} realisiert? Unter welchem Namen ist diese Datenstruktur
+allgemein bekannt?
+\end{enumerate}
+
+\end{document}
