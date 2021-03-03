@@ -195,29 +195,62 @@ if A[i] > A[smallest] then
 Welches Ergebnis berechnet der Algorithmus nun?
 
 \begin{liAntwort}
-Der Algorithmus soritert jetzt absteigend.
+Der Algorithmus sortiert jetzt absteigend.
 \end{liAntwort}
 
 %%
 %
 %%
 
-\item Betrachten Sie die folgende rekursive Variante des Algorithmus.
-Der erste Parameter ist wieder das zu sortierende Feld, der Parameter
-n ist die Größe des Feldes und der Parameter index ist eine ganze Zahl.
-Die Funktion \mintinline{componentpascal}{min_index(A, x, y)} berechnet
+\item Betrachten Sie die folgende \emph{rekursive} Variante des
+Algorithmus. Der erste Parameter ist wieder das zu sortierende Feld, der Parameter
+$n$ ist die Größe des Feldes und der Parameter $index$ ist eine ganze
+Zahl. Die Funktion \mintinline{componentpascal}{min_index(A, x, y)} berechnet
 für $1 \leq x \leq y \leq n$ den Index des kleinsten Elements aus der
 Menge \mintinline{componentpascal}{{A[x], A[x+1],...,A[y]}}
 
+\begin{minted}{componentpascal}
+procedure rek_selection_sort(A, n, index : integer)
+var k, tmp : integer;
+begin
+if (Abbruchbedingung) then return;
+  k = min_index(A, index, n);
+  if k <> index then begin
+  tmp := A[k];
+  A[k] := A[index];
+  A[index] := tmp;
+  end
+  (rekursiver Aufruf)
+end
+\end{minted}
+
 Der initiale Aufruf des Algorithmus lautet:
-\mintinline{componentpascal}{rek_selection _sort(A, n, 1)}
+\mintinline{componentpascal}{rek_selection_sort(A, n, 1)}
 
 Vervollständigen Sie die fehlenden Angaben in der Beschreibung des
 Algorithmus für
 
 \begin{itemize}
 \item die Abbruchbedingung in Zeile 4 und
+
+\begin{liAntwort}
+\texttt{n = index} bzw \texttt{n == index}
+
+Begründung: Wenn der aktuelle Index so groß ist wie die Anzahl der
+Elemente im Feld, dann muss / darf abgebrochen werden, denn dann ist das
+Feld soriert.
+\end{liAntwort}
+
 \item den rekursiven Aufruf in Zeile 11.
+
+\begin{liAntwort}
+\mintinline{componentpascal}{rek_selection_sort(A, n, index + 1)}
+
+Am Ende der Methode wurde an die Index-Position \emph{index} das
+kleinste Element gesetzt, jetzt muss an die nächste Index-Position
+(\emph{index + 1}) der kleinste Wert, der noch nicht sortieren Zahlen,
+gesetzt werden.
+\end{liAntwort}
 \end{itemize}
 
 Begründen Sie Ihre Antworten.
