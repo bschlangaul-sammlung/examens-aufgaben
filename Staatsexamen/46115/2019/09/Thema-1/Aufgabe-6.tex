@@ -13,6 +13,7 @@ Schnittstelle:
 
 \liJavaDatei[firstline=3]{examen/examen_46115/jahr_2019/herbst/mystery_stack/IntStack}
 
+\noindent
 Betrachten Sie nun die Realisierung der folgenden Datenstruktur
 \j{Mystery}, die zwei Stacks benutzt.
 
@@ -30,6 +31,35 @@ angegebenen Befehlssequenz den Zustand der beiden Stacks eines Objekts
 Methode \j{bar} an, welchen Wert diese zurückliefert.
 
 \liJavaDatei[firstline=21,lastline=30]{examen/examen_46115/jahr_2019/herbst/mystery_stack/Mystery}
+
+\begin{liAntwort}
+\def\e#1#2#3#4{
+\liJavaCode{#1} &
+\{ #2 \} &
+\{ #3 \} &
+#4\\
+}
+
+\begin{tabular}{l|l|l|l}
+Code & Stack b & Stack b & Rückgabewert \\\hline\hline
+
+\e{m.foo(3);}{3}{}{}
+\e{m.foo(5);}{5, 3}{}{}
+\e{m.foo(4);}{4, 5, 3}{}{}
+
+\e{m.bar();}{}{5, 4}{3}
+
+\e{m.foo(7);}{7}{5, 4}{}
+
+\e{m.bar();}{7}{4}{5}
+
+\e{m.foo(2);}{2, 7}{}{}
+
+\e{m.bar();}{2, 7}{}{4}
+\e{m.bar();}{}{2}{7}
+\end{tabular}
+
+\end{liAntwort}
 
 %%
 % (b)
@@ -49,12 +79,20 @@ Klasse \j{Mystery} verursachen. Begründen Sie jeweils Ihre Antwort.
 \item Wie viele Aufrufe von Operationen der Klasse \j{IntStack}
 verursacht die Methode \j{foo(x)} im besten Fall?
 
+\begin{liAntwort}
+Einen Aufruf, nämlich \liJavaCode{a.push(i)}
+\end{liAntwort}
+
 %%
 % (ii)
 %%
 
 \item Wie viele Aufrufe von Operationen der Klasse \j{IntStack}
 verursacht die Methode \j{foo(x)} im schlechtesten Fall?
+
+\begin{liAntwort}
+Einen Aufruf, nämlich \liJavaCode{a.push(i)}
+\end{liAntwort}
 
 %%
 % (ii)
@@ -63,12 +101,29 @@ verursacht die Methode \j{foo(x)} im schlechtesten Fall?
 \item Wie viele Aufrufe von Operationen der Klasse \j{IntStack}
 verursacht die Methode \j{bar()} im besten Fall?
 
+\begin{liAntwort}
+Wenn der Stack \j{b} nicht leer ist, dann werden zwei Aufrufe
+benötigt, nämlich \j{b.isEmpty()} und \j{b.pop()}
+\end{liAntwort}
+
 %%
 % (iv)
 %%
 
 \item Wie viele Aufrufe von Operationen der Klasse \j{IntStack}
 verursacht die Methode \j{bar()} im schlechtesten Fall?
+
+\begin{liAntwort}
+Wenn der Stack \j{b} leer ist, dann liegen all $n$ Objekte im Stack
+\j{a}. Die Objekte im Stack \j{a} werden in der \j{while}-Schleife nach
+\j{b} verschoben. Pro Objekt sind drei Aufrufe nötig, also $3 \cdot n$.
+\j{b.isEmpty()} (erste Zeile in der Methode) und \j{b.pop()} (letzte
+Zeile in der Methode) wird immer aufgerufen. Wenn alle Objekt von \j{a}
+nach \j{b} verschoben wurden, wird zusätzlich noch einmal in der
+Bedingung der \j{while}-Schleife \j{a.isEmpty()} aufgerufen. Im
+schlechtesten Fall werden also $3 \cdot n + 3$ Operationen der Klasse
+\j{IntStack} aufgerufen.
+\end{liAntwort}
 \end{enumerate}
 
 %%
@@ -78,6 +133,22 @@ verursacht die Methode \j{bar()} im schlechtesten Fall?
 \item Welche allgemeinen Eigenschaften werden durch die Methoden \j{foo}
 und \j{bar} realisiert? Unter welchem Namen ist diese Datenstruktur
 allgemein bekannt?
+
+\begin{liAntwort}
+\begin{description}
+\item[\j{foo()}] Legt das Objekt auf den Stack \j{a}. Das Objekt wird in
+die Warteschlange eingereiht. Die Methode müsste eigentlich
+\j{enqueue()} heißen.
+
+\item[\j{bar()}] Verschiebt alle Objekte vom Stack \j{a} in umgekehrter
+Reihenfolge in den Stack \j{b}, aber nur dann, wenn Stack \j{b} leer
+ist. Entfernt dann den obersten Wert aus dem Stack \j{b} und gibt ihn
+zurück. Das zuerst eingereihte Objekt wird aus der Warteschlange
+entnommen. Die Methode müsste eigentlich \j{dequeue()} heißen.
+\end{description}
+
+Die Datenstruktur ist unter dem Namen Warteschlange oder Queue bekannt
+\end{liAntwort}
 \end{enumerate}
 
 \end{document}
