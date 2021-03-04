@@ -286,6 +286,26 @@ Ein DEA/DFA ist ein 5-Tupel ($Z, \Sigma, \delta, E, z_0$) mit
 %
 %-----------------------------------------------------------------------
 
+\section{Reguläre Grammatik $\rightarrow$ NEA}
+
+Wir können aus einer regulären Grammatik einen NEA machen: Jedes
+Non-Terminal (Variable) wird zu einem Zustand konvertiert. Dazu kommt
+der Zustand $q_{F}$, welcher der Endzustand ist. Existiert in der
+Grammatik eine Regel $S \rightarrow \epsilon$, wobei $S$ Startzustand
+ist, so ist $S$ auch ein Endzustand. Dadurch wird erreicht, dass auch
+das leere Wort akzeptiert wird. Wenn es eine Regel $A \rightarrow a$
+gibt, d. h. eine Regel auf deren rechten Seite nur ein Terminal zu
+finden ist, dann erzeugen wir eine Übergangsfunktion $\delta$ (zeichnen
+einen Pfeil) von dem Zustand $A$ nach $q_{F}$ mit der Inschrift $a$.
+Wenn es eine Regel $A\rightarrow aB$ gibt, dann erzeugen wir eine
+Übergangsfunktion (zeichnen einen Pfeil) von dem Zustand $A$ in den
+Zustand $B$ mit der Inschrift $a$.
+\liFussnoteUrl{http://www.informatikseite.de/theorie/node50.php}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
 \section{Pumping Lemma}
 
 https://studyflix.de/informatik/pumping-lemma-1445

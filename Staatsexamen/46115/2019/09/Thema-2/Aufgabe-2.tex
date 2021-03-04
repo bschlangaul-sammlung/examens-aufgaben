@@ -1,0 +1,71 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,automaten}
+\begin{document}
+\let\m=\liMenge
+
+\liAufgabenTitel{Rechtslineare Grammatik}
+\section{Aufgabe 2 (Rechtslineare Grammatik)
+\index{Reguläre Sprache}
+\footcite{46115:2019:09}}
+
+Gegeben ist die rechtslineare Grammatik
+$G = (\m{a, b}, \m{S, A, B, C, D}, S, P)$ mit
+\begin{liProduktionsRegeln}
+S -> aA,
+A -> bB,
+A -> aD,
+B -> aC,
+B -> bB,
+C -> bD,
+C -> b,
+D -> aA
+\end{liProduktionsRegeln}. Sei $L$ die von $G$ erzeugte Sprache.
+\liFussnoteUrl{https://flaci.com/Gpkv4ansc}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Zeichnen Sie einen nichtdeterministischen endlichen Automaten, der
+$L$ akzeptiert!
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[->,node distance=2cm]
+\node[state,initial] (S) {S};
+\node[state,above right=of S] (A) {A};
+\node[state,below right=of S] (B) {B};
+\node[state,right=of B] (C) {C};
+\node[state,right=of A] (D) {D};
+\node[state,accepting,above right=of C] (E) {E};
+
+\path (A) edge[above,bend left] node{a} (D);
+\path (A) edge[left] node{b} (B);
+\path (B) edge[above,loop below] node{b} (B);
+\path (B) edge[above] node{a} (C);
+\path (C) edge[above] node{b} (E);
+\path (C) edge[right] node{b} (D);
+\path (D) edge[above,bend left] node{a} (A);
+\path (S) edge[above] node{a} (A);
+
+\end{tikzpicture}
+\end{center}
+\liFussnoteUrl{https://flaci.com/Ahh979eqz}
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item Konstruieren Sie auf nachvollziehbare Weise einen regulären
+Ausdruck $\alpha$ mit $L(\alpha)=L$!
+
+\begin{liAntwort}
+$(ab+ab|(a|b+)+ab+ab)$
+(von Flaci automatisch konvertiert)
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}
