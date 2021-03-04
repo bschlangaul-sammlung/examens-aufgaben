@@ -1,7 +1,7 @@
 \documentclass{lehramt-informatik-haupt}
 \usepackage{tabularx}
 \usepackage{float}
-\liLadePakete{baum,mathe}
+\liLadePakete{baum,mathe,syntax}
 
 \begin{document}
 
@@ -14,7 +14,7 @@
 \begin{quellen}
 \item \cite[Seite 25-32]{aud:fs:tafeluebung-11}
 \item \cite{wiki:heap}
-\item \cite[Seite 407-409 (PDF 423-425), Kapitel 14.6.1]{saake}
+\item \cite[Seite 407-409 Kapitel 14.6.1]{saake}
 \end{quellen}
 
 \section{Visualisierungstools}
@@ -38,15 +38,14 @@ Die Datenstruktur Heap bezeichnet einen binären Baum, der folgende
 Eigenschaften erfüllt:\footcite[Seite 407 (PDF 423), Kapitel 14.6.1]{saake}
 
 \begin{itemize}
-\item Der Baum ist vollständig, d.h., die Blattebene ist von links nach
-rechts gefüllt.
+\item Der Baum ist vollständig, d.\,h., die Blattebene ist von links
+nach rechts gefüllt.
 
 \item Der Schlüssel eines jeden Knotens ist kleiner (oder gleich) als
 die Schlüssel seiner Kinder. Diese partielle Ordnung wird auch als
 Heap-Eigenschaft bezeichnet.
 \end{itemize}
 
-%
 Es gibt zwei unterschiedlichen Arten von Halden, nämlich:
 
 \begin{itemize}
@@ -134,11 +133,11 @@ $\frac{i - 1}{2}$
 
 \subsection{Einfügen eines neuen Elements}
 
-Ein neues Element wird an die nächste freie Position in der untersten
-Ebene einfügt. Falls die Ebene voll ist, wird das neue Element erster
-Knoten einer neuen Ebene. Solange die Halden-Eigenschaft in einem
-Teilbaum verletzt ist, lassen wir das neue Element entsprechend der
-Halden-Eigenschaft nach oben wandern.
+Ein neues Element wird an die \memph{nächste freie Position in der
+untersten Ebene einfügt}. Falls die Ebene \memph{voll} ist, wird das
+neue Element \memph{erster Knoten einer neuen Ebene}. Solange die
+Halden-Eigenschaft in einem Teilbaum verletzt ist, lassen wir das neue
+Element entsprechend der Halden-Eigenschaft \memph{nach oben wandern}.
 
 %%
 %
@@ -146,16 +145,18 @@ Halden-Eigenschaft nach oben wandern.
 
 \subsection{Löschen eines Elements}
 
-Wir \memph{ersetzen} das zu löschende Element mit dem \memph{letzten Element der
-untersten Ebene}.
+Wir \memph{ersetzen} das zu löschende Element mit dem \memph{letzten
+Element der untersten Ebene}.
 %
 Solange die Halden-Eigenschaft in einem Teilbaum verletzt ist, lassen
-wir das neue Element entsprechend der Halden-Eigenschaft \memph{nach unten
-sickern}.
+wir das neue Element entsprechend der Halden-Eigenschaft \memph{nach
+unten sickern}.
 %
-Bei einer \memph{Min-Heap} wird mit dem \memph{kleineren Kind} getauscht, bei einer
-\memph{Max-Heap} mit dem \memph{größeren Kind}.
+Bei einer \memph{Min-Heap} wird mit dem \memph{kleineren Kind}
+getauscht, bei einer \memph{Max-Heap} mit dem \memph{größeren Kind}.
 \footcite[Seite 28]{aud:fs:tafeluebung-11}
+
+\liJavaDatei[firstline=3]{sortier/HeapSort}
 
 \literatur
 
