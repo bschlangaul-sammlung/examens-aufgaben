@@ -1,0 +1,119 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{graph}
+\begin{document}
+\liAufgabenTitel{Maximaler Spannbaum mit Jarnik/Prim}
+\section{Aufgabe 8
+\index{Algorithmus von Prim}
+\footcite{46115:2019:09}}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Durch folgende Adjazenzmatrix sei ein ungerichteter Graph $G$ mit
+Kantenlängen gegeben.
+
+\begin{liGraphenFormat}
+a: 0 0
+b: 3 3
+c: 2 0
+d: 8 0
+e: 0 5
+f: 6 2
+g: 6 5
+h: 3 1
+i: 5 4
+a -- c: 7
+a -- e: 9
+a -- f: 2
+a -- h: 4
+b -- f: 3
+b -- h: 5
+b -- i: 2
+c -- d: 4
+c -- e: 4
+d -- g: 2
+d -- h: -3
+e -- g: 0
+f -- g: 8
+f -- h: 10
+f -- i: 2
+i -- i: 20
+\end{liGraphenFormat}
+
+\begin{displaymath}
+\begin{blockarray}{ccccccccc}
+    &  a &  b &  c &  d &  e &  f &  g &  h &  i \\
+\begin{block}{c(cccccccc)}
+  a &  0 &  0 &  7 &  0 &  9 &  2 &  0 &  4 &  0 \\
+  b &  0 &  0 &  0 &  0 &  0 &  3 &  0 &  5 &  2 \\
+  c &  7 &  0 &  0 &  4 &  4 &  0 &  0 &  0 &  0 \\
+  d &  0 &  0 &  4 &  0 &  0 &  0 &  2 & -3 &  0 \\
+  e &  9 &  0 &  4 &  0 &  0 &  0 &  0 &  0 &  0 \\
+  f &  2 &  3 &  0 &  0 &  0 &  0 &  8 & 10 &  2 \\
+  g &  0 &  0 &  0 &  2 &  0 &  8 &  0 &  0 &  0 \\
+  h &  4 &  5 &  0 & -3 &  0 & 10 &  0 &  0 &  0 \\
+  i &  0 &  2 &  0 &  0 &  0 &  2 &  0 &  0 &  0 \\
+\end{block}
+\end{blockarray}
+\end{displaymath}
+
+\begin{tikzpicture}[li graph]
+\node (a) at (0,0) {a};
+\node (b) at (3,3) {b};
+\node (c) at (2,0) {c};
+\node (d) at (8,0) {d};
+\node (e) at (0,5) {e};
+\node (f) at (6,2) {f};
+\node (g) at (6,5) {g};
+\node (h) at (3,1) {h};
+\node (i) at (5,4) {i};
+
+\path[li graph kante] (a) edge node {7} (c);
+\path[li graph kante] (a) edge node {9} (e);
+\path[li graph kante] (a) edge node {2} (f);
+\path[li graph kante] (a) edge node {4} (h);
+\path[li graph kante] (b) edge node {3} (f);
+\path[li graph kante] (b) edge node {5} (h);
+\path[li graph kante] (b) edge node {2} (i);
+\path[li graph kante] (c) edge node {4} (d);
+\path[li graph kante] (c) edge node {4} (e);
+\path[li graph kante] (d) edge node {2} (g);
+\path[li graph kante] (d) edge node {-3} (h);
+\path[li graph kante] (e) edge node {0} (g);
+\path[li graph kante] (f) edge node {8} (g);
+\path[li graph kante] (f) edge node {10} (h);
+\path[li graph kante] (f) edge node {2} (i);
+%\path[li graph kante] (i) edge node {20} (i);
+\end{tikzpicture}
+
+Wenden Sie den Algorithmus von Jarnik/Prim auf $G$ ausgehend von Knoten
+$d$ an, um einen Spannbaum $T$ mit \emph{maximalem} Gewicht zu
+berechnen. Erstellen Sie dazu eine Tabelle mit zwei Spalten und stellen
+Sie jeden einzelnen Schritt des Verfahrens in einer eigenen Zeile dar.
+Geben Sie in der ersten Spalte denjenigen Knoten $v$ an, der vom
+Algorithmus als nächstes in $T$ aufgenommen wird (dieser sog.
+„schwarze“ Knoten ist damit fertiggestellt). Führen Sie in der zweiten Spalte alle
+anderen vom aktuellen Baum $T$ direkt erreichbaren Knoten $v$ (sog.
+„graue Randknoten“) auf.
+
+Geben Sie in der Tabelle Knoten stets als Tripel $(v, \delta, v.\pi)$
+an, mit $v$ als Knotenname, $v.\pi$ als aktueller Vorgängerknoten
+(anderer Knoten der Kante) und $\delta$ als Länge der Kante $\{v,
+v.\pi\}$.
+
+%%
+% (b)
+%%
+
+\item Sei $G = (V, E,w)$ ein Graph mit Kantenlängen $w: E \rightarrow
+\mathbb{N}$ und $T$ ein Spannbaum von $G$ mit maximalem Gewicht.
+Beweisen oder widerlegen Sie die folgende Aussage:
+
+Längste (einfache) Wege zwischen zwei Knoten $u,v \in V$ enthalten nur
+Kanten aus $T$.
+\end{enumerate}
+
+\end{document}

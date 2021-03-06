@@ -1,7 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-\liLadePakete{graph,pseudo}
-
-\usetikzlibrary{arrows.meta}
+\liLadePakete{graph,pseudo,syntax}
 
 \begin{document}
 
@@ -56,8 +54,8 @@ minimalen Spannbaum \memph{hinzugenommen}.
 \footcite{wiki:kruskal}
 
 \begin{algorithm}[H]
-\KwData{$G = (V,E,w)$: ein zusammenhängender, ungerichteter, kantengewichteter Graph
-kruskal(G)}
+\KwData{$G = (V,E,w)$: ein zusammenhängender, ungerichteter,
+kantengewichteter Graph kruskal(G)}
 
 $E'\leftarrow \emptyset $\;
 $L\leftarrow E$\;
@@ -155,6 +153,8 @@ EG     &              & $9$\\\hline
 \end{center}
 \end{minipage}
 
+\liJavaDatei{graph/algorithmen/MinimalerSpannbaumKruskal}
+
 %-----------------------------------------------------------------------
 %
 %-----------------------------------------------------------------------
@@ -163,7 +163,7 @@ EG     &              & $9$\\\hline
 
 Der Algorithmus von Prim dient ebenfalls der Bestimmung eines minimalen
 Spannbaums, erreicht jedoch sein Ziel durch eine unterschiedliche
-Vorgehensweise.
+Vorgehensweise. Er wird auch nach dem Entdecker Jarník genannt.
 
 Der \memph{Teilgraph} $T$ wird \memph{schrittweise vergrößert}, bis
 dieser ein Spannbaum ist. Der Algorithmus benötigt einen
@@ -204,6 +204,24 @@ EG & $9$\\\hline
 \end{tabular}
 \end{center}
 \end{minipage}
+
+\liJavaDatei{graph/algorithmen/MinimalerSpannbaumPrim}
+
+%%
+%
+%%
+
+\section{Vergleich Kruskal und Prim}
+
+\begin{tabular}{l|l}
+\textbf{Kruskal} & \textbf{Prim} \\\hline
+
+sortiert Kanten nach Gewichten &
+Startknoten $\rightarrow$ Nachbarknoten \\
+
+mehrere Teilgraphen möglich &
+nur ein Teilgraph möglich \\
+\end{tabular}
 
 \literatur
 

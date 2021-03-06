@@ -1,5 +1,7 @@
 KONF = {}
 
+local luakeys = require('luakeys')
+
 local function normalisiere_klasse(pfad)
   pfad = pfad.gsub(pfad,'.java', '')
   return pfad
@@ -39,6 +41,15 @@ local export = {
 
   drucke_raw_examen_url = function(nummer, jahr, monat, pfad)
     tex.print(gib_raw_examen_url(nummer, jahr, monat, pfad))
+  end,
+
+  -- Funktioniert nicht: Package xkeyval Error: `firstline=3,' undefined in families `minted@opt@cmd'
+  normalisiere_optionen = function(optionen_str)
+    local optionen = luakeys.parse(optionen_str)
+    if optionen['firstline'] == nil then
+      optionen['firstline'] = 3
+    end
+    tex.print(luakeys.render(optionen))
   end
 }
 
