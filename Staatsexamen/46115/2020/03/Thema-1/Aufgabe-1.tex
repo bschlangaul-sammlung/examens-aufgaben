@@ -16,7 +16,7 @@
 aller Wörter, die $01$ oder $110$ als Teilwort enthalten.
 
 Geben Sie einen regulären Ausdruck für die Sprache $L$ an.
-\index{Regulärer Ausdruck}
+\index{Reguläre Ausdrücke}
 
 \begin{liAntwort}
 (0|1)*(01|110)(0|1)*
@@ -30,7 +30,6 @@ Geben Sie einen regulären Ausdruck für die Sprache $L$ an.
 Automaten, der die Sprache $L$ aus Teilaufgabe (a) akzeptiert. (Hinweis:
 es werden nicht mehr als 6 Zustände benötigt.)
 
-\begin{liAntwort}
 \begin{liAntwort}
 \begin{center}
 \begin{tikzpicture}[->,node distance=2cm]
@@ -51,7 +50,6 @@ es werden nicht mehr als 6 Zustände benötigt.)
 \path (4) edge[above,loop right] node{0,1} (4);
 \end{tikzpicture}
 \end{center}
-\end{liAntwort}
 
 \liFussnoteUrl{https://flaci.com/A54gek0vz}
 \end{liAntwort}
@@ -63,6 +61,39 @@ es werden nicht mehr als 6 Zustände benötigt.)
 \item Minimieren Sie den folgenden deterministischen endlichen Automaten:
 
 Machen Sie dabei Ihren Rechenweg deutlich!
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[->,node distance=1.5cm]
+\node[state] (a) {a};
+\node[state,below=of a,initial] (b) {b};
+\node[state,right=of a,accepting] (c) {c};
+\node[state,right=of b,accepting] (d) {d};
+\node[state,right=of c] (e) {e};
+\node[state,right=of d] (f) {f};
+\node[state,right=of e,accepting] (g) {g};
+\node[state,right=of f,accepting] (h) {h};
+
+\path (a) edge[above] node{0} (c);
+\path (a) edge[right,pos=0.2] node{1} (d);
+\path (b) edge[left,pos=0.2] node{0} (c);
+\path (b) edge[above] node{1s} (d);
+\path (c) edge[right,bend left] node{0} (d);
+\path (c) edge[above] node{1} (e);
+\path (c) edge[above,pos=0.2] node{1} (f);
+\path (d) edge[left,bend left] node{0} (c);
+\path (d) edge[below,pos=0.2] node{1} (e);
+\path (e) edge[above,pos=0.2] node{0} (h);
+\path (f) edge[above,pos=0.2] node{0} (g);
+\path (f) edge[above] node{1} (d);
+\path (g) edge[right,bend left] node{1} (h);
+\path (g) edge[above] node{0} (e);
+\path (h) edge[left,bend left] node{1} (g);
+\path (h) edge[above] node{0} (f);
+\end{tikzpicture}
+\end{center}
+\liFussnoteUrl{https://flaci.com/A54gek0vz}
+\end{liAntwort}
 
 %%
 % (d)
