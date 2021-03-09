@@ -6,7 +6,6 @@
 \index{Minimierungsalgorithmus}
 }
 
-\begin{liAntwort}
 \begin{center}
 \begin{tikzpicture}[->,node distance=1.5cm]
 \node[state,initial] (0) {$z_0$};
@@ -27,10 +26,10 @@
 \path (4) edge[right] node{1} (5);
 \path (5) edge[right,loop right] node{0,1} (5);
 \path (4) edge[right,loop right] node{0} (4);
-
 \end{tikzpicture}
 \end{center}
-\end{liAntwort}
+
+\begin{liAntwort}
 % l = ller
 \def\l{$\emptyset$}
 \def\z#1{$z_#1$}
@@ -38,21 +37,60 @@
 \def\a{$*^1$}
 \def\b{$*^2$}
 
+\def\Z#1#2{$(z_#1, z_#2)$}
+
 \renewcommand{\arraystretch}{1.4}
-\begin{tabular}{c||c|c|c|c|c|c|}
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|c|c|}
 \hline
 \z0  & \l & \l & \l & \l & \l & \l \\ \hline
 \z1  &  & \l & \l & \l & \l & \l \\ \hline
-\z2  & \a &  & \l & \l & \l & \l \\ \hline
-\z3  &  &  &  & \l & \l & \l \\ \hline
-\z4  &  &  &  &  & \l & \l \\ \hline
-\z5  &  &  &  &  &  & \l \\ \hline\hline
+\z2  & \a & \a & \l & \l & \l & \l \\ \hline
+\z3  & \a & \a &  & \l & \l & \l \\ \hline
+\z4  & \a & \a &  &  & \l & \l \\ \hline
+\z5  & \b & \b & \a & \a & \a & \l \\ \hline\hline
  & \z0 & \z1 & \z2 & \z3 & \z4 & \z5 \\ \hline
 \end{tabular}
+\end{center}
+
+\bigskip
 
 \a Paar aus End-/ Nicht-Endzustand kannt nicht äquivalent sein.
 
 \b Test, ob man mit Eingabe zu bereits markiertem Paar kommt.
+
+\begin{center}
+\begin{tabular}{l|l|l}
+Zustandspaar & 0    & 1    \\\hline
+\Z01         & \Z10 & \Z23 \\
+\Z05         & \Z15 & \Z25 \b \\
+\Z15         & \Z05 & \Z35 \b \\
+\Z23         & \Z44 & \Z55 \\
+\Z24         & \Z44 & \Z55 \\
+\Z34         & \Z44 & \Z55 \\
+\end{tabular}
+\end{center}
+
+\noindent
+\Z23, \Z24 unnd \Z34 können zu einem Zustand verschmolzen werden, weil
+sie alle drei bei der Eingabe von 0 zu \Z44 und bei 1 zu \Z55 werden.
+
+\z5 kann nicht verschmolzen werden, weil er in der Tabelle markiert ist.
+
+\begin{center}
+\begin{tikzpicture}[->,node distance=1.5cm]
+\node[state,initial] (01) {$z_{01}$};
+\node[state,right=of 01] (234) {$z_{234}$};
+\node[state,right=of 234,accepting] (5) {$z_5$};
+
+\path (01) edge[above] node{1} (234);
+\path (234) edge[above] node{1} (5);
+\path (01) edge[above,loop] node{0} (01);
+\path (234) edge[above,loop] node{0} (234);
+\path (5) edge[above,loop] node{0,1} (5);
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
 
 \liFussnoteUrl{https://studyflix.de/informatik/dea-minimieren-1212}
 
