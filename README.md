@@ -405,8 +405,8 @@ Weitere Aufgaben zum Thema „SQL“:
 
 #### Potenzmengenalgorithmus
 
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus-erstes-Beispiel.pdf" download="Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus-erstes-Beispiel">„Vorlesungsaufgaben“</a> (Potenzmengenalgorithmus)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus.pdf" download="Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus">„Vorlesungsaufgaben“</a> (Potenzmengenalgorithmus)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Potenzmengenalgorithmus/Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus-erstes-Beispiel.pdf" download="Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus-erstes-Beispiel">„Vorlesungsaufgaben“</a> (Potenzmengenalgorithmus)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Potenzmengenalgorithmus/Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus.pdf" download="Aufgabe_Vorlesungsaufgaben-Potenzmengenalgorithmus">„Vorlesungsaufgaben“</a> (Potenzmengenalgorithmus)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2016/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46115-2016-Herbst_T1-A1">„Reguläre Sprache“ Examen 46115 Herbst 2016 T1 A1</a> (Potenzmengenalgorithmus)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2019/09/Thema-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46115-2019-Herbst_T2-A1">„Komplemetieren eines NEA“ Examen 46115 Herbst 2019 T2 A1</a> (Potenzmengenalgorithmus, Nichtdeterministisch endlicher Automat (NEA), Deterministisch endlicher Automat (DEA))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2007/09/Thema-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2007-Herbst_T2-A1">„Reguläre Sprache“ Examen 66115 Herbst 2007 T2 A1</a> (Reguläre Sprache, Reguläre Grammatik, Reguläre Ausdrücke, Potenzmengenalgorithmus)
@@ -415,8 +415,8 @@ Weitere Aufgaben zum Thema „SQL“:
 
 #### Erweiteter Potenzmengenalgorithmus
 
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Erweiteter-Potenzmengenalgorithmus.pdf" download="Aufgabe_Erweiteter-Potenzmengenalgorithmus">„Erweiteter Potenzmengenalgorithmus“</a> (Erweiteter Potenzmengenalgorithmus)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-Erweiteter-Potenzmengenalgorithmus.pdf" download="Aufgabe_Vorlesungsaufgaben-Erweiteter-Potenzmengenalgorithmus">„Erweiteter Potenzmengenalgorithmus“</a> (Erweiteter Potenzmengenalgorithmus)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Potenzmengenalgorithmus/Aufgabe_Erweiteter-Potenzmengenalgorithmus.pdf" download="Aufgabe_Erweiteter-Potenzmengenalgorithmus">„Erweiteter Potenzmengenalgorithmus“</a> (Erweiteter Potenzmengenalgorithmus)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Potenzmengenalgorithmus/Aufgabe_Vorlesungsaufgaben-Erweiteter-Potenzmengenalgorithmus.pdf" download="Aufgabe_Vorlesungsaufgaben-Erweiteter-Potenzmengenalgorithmus">„Erweiteter Potenzmengenalgorithmus“</a> (Erweiteter Potenzmengenalgorithmus)
 
 #### Pumping-Lemma
 
@@ -429,7 +429,7 @@ Weitere Aufgaben zum Thema „SQL“:
 
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_NEA-DEA-Aequivalenzklassen.pdf" download="Aufgabe_NEA-DEA-Aequivalenzklassen">„NEA-DEA-Aequivalenzklassen“</a> (Reguläre Sprache, Deterministisch endlicher Automat (DEA), Minimierungsalgorithmus, Reguläre Ausdrücke, Äquivalenzklassen)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Studiflix-Minimierung.pdf" download="Aufgabe_Studiflix-Minimierung">„Studiflix-Minimierung“</a> (Minimierungsalgorithmus)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-Minimalisierung.pdf" download="Aufgabe_Vorlesungsaufgaben-Minimalisierung">„Minimalisierung“</a> (Minimierungsalgorithmus)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Minimierungsalgorithmus/Aufgabe_Vorlesungsaufgaben-Minimalisierung.pdf" download="Aufgabe_Vorlesungsaufgaben-Minimalisierung">„Minimalisierung“</a> (Minimierungsalgorithmus)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T1-A1">„NEA und Minimalisierung“ Examen 66115 Herbst 2012 T1 A1</a> (Potenzmengenalgorithmus, Minimierungsalgorithmus)
 
 # Aufgaben geordnet nach Staatsexamen

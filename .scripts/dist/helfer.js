@@ -15,9 +15,10 @@ var __read = (this && this.__read) || function (o, n) {
     }
     return ar;
 };
-var __spread = (this && this.__spread) || function () {
-    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
-    return ar;
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -62,8 +63,8 @@ function leseRepoDatei() {
         args[_i] = arguments[_i];
     }
     if (args[0].includes(exports.repositoryPfad))
-        return leseDatei(path_1.default.join.apply(path_1.default, __spread(args)));
-    return leseDatei(path_1.default.join.apply(path_1.default, __spread([exports.repositoryPfad], args)));
+        return leseDatei(path_1.default.join.apply(path_1.default, __spreadArray([], __read(args))));
+    return leseDatei(path_1.default.join.apply(path_1.default, __spreadArray([exports.repositoryPfad], __read(args))));
 }
 exports.leseRepoDatei = leseRepoDatei;
 function macheRepoPfad() {
@@ -72,8 +73,8 @@ function macheRepoPfad() {
         args[_i] = arguments[_i];
     }
     if (args[0].includes(exports.repositoryPfad))
-        return path_1.default.join.apply(path_1.default, __spread(args));
-    return path_1.default.join.apply(path_1.default, __spread([exports.repositoryPfad], args));
+        return path_1.default.join.apply(path_1.default, __spreadArray([], __read(args)));
+    return path_1.default.join.apply(path_1.default, __spreadArray([exports.repositoryPfad], __read(args)));
 }
 exports.macheRepoPfad = macheRepoPfad;
 function generiereLink(text, pfad, dateiName, einstellung) {

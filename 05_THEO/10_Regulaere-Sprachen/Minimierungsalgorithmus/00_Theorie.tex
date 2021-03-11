@@ -1,0 +1,43 @@
+\documentclass{lehramt-informatik-haupt}
+\liLadePakete{mathe,syntaxbaum,automaten,formale-sprachen}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,calc}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Minimierungsalgorithmus\footcite[Seite 47-57]{vossen}}
+
+\footcite[Seite 51-62]{theo:fs:1}
+
+Es wird eine \memph{Zustandspaartabelle} mit allen möglichen
+Zustandspaaren erstellt. Dabei spielt es \memph{keine Rolle}, ob die
+Zustände im Automaten \memph{verbunden sind oder nicht}.
+
+Die Diagonale der Tabelle wird komplett gestrichen, da Zustände nicht
+mit sich selbst überprüft werden müssen. Außerdem werden die
+\memph{Paare nur in einer Richtung} betrachtet. Die \memph{obere Hälfte}
+der Tabelle über der Diagonalen \memph{kann gestrichen werden}.
+
+Es werden die Zustandspaar markiert, in denen ein Zustand \memph{ein
+Endzustand und der andere kein Endzustand} ist.
+
+Als letztes werden mit Hilfe einer \memph{Übergangstabelle} die noch
+nicht markierten Zustandspaare auf alle möglichen Übergangsmöglichkeiten
+überprüft. Entsteht hierbei ein \memph{bereits gestrichenes Paar} so
+wird das aktuell überprüfte Paar \memph{ebenfalls gestrichen}.
+
+Wir testen jetzt für jedes Zustandspaar die Folgezustände bei der
+Eingabe der Zeichen des Alphabets.
+
+Wir suchen uns nun die Zustandspaare, die bei einer Eingabe ein
+Zustandspaar ergeben, das bereits gestrichen ist.
+
+\liFussnoteUrl{https://studyflix.de/informatik/dea-minimieren-1212}
+
+\literatur
+
+\end{document}

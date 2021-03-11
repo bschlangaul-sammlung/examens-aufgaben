@@ -1,0 +1,82 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe,automaten}
+\begin{document}
+\liAufgabenTitel{Minimalisierung}
+\section{Übung zur Minimalisierung\footcite[Seite 59]{theo:fs:1}
+\index{Minimierungsalgorithmus}}
+
+Minimalisiere den gegebenen DEA:
+
+\begin{center}
+\begin{tikzpicture}[->,node distance=2cm]
+\node[state,initial] (0) {$z_0$};
+\node[state,above right of=0] (1) {$z_1$};
+\node[state,below right of=0] (2) {$z_2$};
+\node[state,right of=1,accepting] (3) {$z_3$};
+\node[state,right of=2,accepting] (4) {$z_4$};
+
+\path (0) edge[above] node{a} (2);
+\path (0) edge[above] node{b} (1);
+\path (1) edge[above] node{a} (3);
+\path (1) edge[above] node{b} (4);
+\path (2) edge[above] node{a,b} (4);
+\path (3) edge[loop right,above] node{a,b} (3);
+\path (4) edge[right] node{a,b} (3);
+\end{tikzpicture}
+\liFussnoteUrl{https://flaci.com/Apm4e9nk7}
+\end{center}
+
+\begin{liAntwort}
+% l = leer
+\def\l{$\emptyset$}
+\def\z#1{$z_#1$}
+\def\Z#1#2{$(z_#1, z_#2)$}
+
+\def\a{$*^1$}
+\def\b{$*^2$}
+
+\renewcommand{\arraystretch}{1.4}
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|c|}
+\hline
+\z0 & \l  & \l  & \l  & \l  & \l  \\ \hline
+\z1 & \b  & \l  & \l  & \l  & \l  \\ \hline
+\z2 & \b  &     & \l  & \l  & \l  \\ \hline
+\z3 & \a  & \a  & \a  & \l  & \l  \\ \hline
+\z4 & \a  & \a  & \a  &     & \l  \\ \hline\hline
+    & \z0 & \z1 & \z2 & \z3 & \z4 \\ \hline
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\a Paar aus End-/ Nicht-Endzustand kannt nicht äquivalent sein.
+
+\b Test, ob man mit Eingabe zu bereits markiertem Paar kommt.
+
+\begin{center}
+\begin{tabular}{l|l|l}
+Zustandspaar & a    & b    \\\hline
+\Z01         & \Z23 \b & \Z14 \\
+\Z02         & \Z24 \b & \Z14 \\
+\Z12         & \Z34    & \Z44 \\
+\Z34         & \Z33    & \Z33 \\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[->,node distance=2cm]
+\node[state,initial] (0) {$z_0$};
+\node[state,above right of=0] (12) {$z_{12}$};
+\node[state,right of=12,accepting] (34) {$z_{34}$};
+
+\path (0) edge[above left] node{a,b} (12);
+\path (12) edge[above] node{a,b} (3);
+\path (34) edge[loop right,above] node{a,b} (34);
+\end{tikzpicture}
+\liFussnoteUrl{https://flaci.com/Aib87m3wc}
+\end{center}
+
+\end{liAntwort}
+
+\end{document}

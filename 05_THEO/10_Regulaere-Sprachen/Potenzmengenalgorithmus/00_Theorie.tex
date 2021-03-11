@@ -1,0 +1,61 @@
+\documentclass{lehramt-informatik-haupt}
+\liLadePakete{mathe,syntaxbaum,automaten,formale-sprachen}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Potenzmengenalgorithmus NEA $\rightarrow$ DEA\footcite[Seite 35-47]{theo:fs:1}}
+
+\begin{itemize}
+\item Starte im Anfangszustand (in der Menge der Anfangszustände).
+
+\item Gib für jedes Zeichen die Menge der erreichbaren Zustände an.
+
+\item Wiederhole diesen Schritt für jede neu erreichte Menge an
+Zuständen.
+
+\item Die Zustandsmengen sind die Zustände des DEA.
+
+\item Mengen, die „alte“ Endzustände enthalten, sind Endzustände des
+neuen DEA.\footcite{wiki:potenzmengenkonstruktion}
+\end{itemize}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Erweiterter Potenzmengenalgorithmus $\epsilon$-NEA zum
+DEA\footcite[Seite 48-49]{theo:fs:1}}
+
+Wählen Sie als neuen Anfangszustand den Alten und alle Zustände, die vom
+Alten aus mit \memph{$\epsilon$ erreichbar} sind.
+
+Führe Sie den Potenzmengenalgorithmus mit dem neuen Startzustand aus.
+Fügen Sie in jedem Schritt auch die \memph{Zustände hinzu}, die über
+einen oder mehrere zusätzliche $\epsilon$-Übergänge erreichbar sind.
+
+\section{Komplement}
+
+Um zu zeigen, dass für jede reguläre Sprache L auch das Komplement L =
+$\Sigma^* \string\ L$ regulär ist, gehen wir in zwei Schritten vor: Im
+ersten Schritt konstruieren wir einen endlichen Automaten A mit L (A) =
+L. Dass ein solcher Automat für jede reguläre Sprache existieren muss,
+haben wir im vorherigen Abschnitt herausgearbeitet. Im zweiten Schritt
+konstruieren wir aus A den Komplementärautomaten A, der die Sprache L
+(A) erzeugt. Dass der Komplementärautomat die Sprache L (A) erzeugt, ist
+leicht einzusehen. Da wir die Menge der Endzustände invertiert haben,
+wird ein Wort $\omega$ genau dann von A akzeptiert, wenn es von A
+zurückgewiesen wird. Mit L wird damit immer auch L von einem Automaten
+akzeptiert, so dass die Menge der regulären Sprachen in Bezug auf das
+Komplement abgeschlossen ist.\footcite[Seite 218-219]{hoffmann}
+
+\literatur
+
+\end{document}
