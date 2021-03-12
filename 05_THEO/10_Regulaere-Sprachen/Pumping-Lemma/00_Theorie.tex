@@ -1,0 +1,56 @@
+\documentclass{lehramt-informatik-haupt}
+\liLadePakete{mathe}
+
+\begin{document}
+
+\section{Pumping Lemma}
+
+https://studyflix.de/informatik/pumping-lemma-1445
+
+Pumping-Lemma für reguläre Sprachen:
+
+Sei $L$ eine reguläre Sprache. Dann gibt es eine Zahl $j$, sodass für
+alle Wörter $ω ∈ L$ mit $|\omega| \geq j$ jeweils eine Zerlegung $\omega
+= uvw$ existiert, sodass die folgenden Eigenschaften erfüllt sind:
+
+\begin{enumerate}
+\item $|v| \geq 1$
+\item $|uv| \leq j$
+\item Für alle $i = 0, 1, 2, \dots$ gilt $uv^iw \in L$
+\end{enumerate}
+
+Das Pumping-Lemma wird verwendet, um zu zeigen, dass eine
+Sprache nicht regulär ist (Widerspruchsbeweis).
+
+%%
+%
+%%
+
+\subsection{Beispiel}
+
+$L = \{a^n b^n | n \in \mathbb{N})$
+
+Ich behaupte, $L$ sei regulär.
+
+\begin{enumerate}
+\item Also gibt es eine Pumpzahl. Sie sei j.
+\item (Wähle geschickt ein „langes“ Wort...)
+$a^j b^j$ ist ein Wort aus $L$, das sicher langer als $j$ ist.
+\item Da $L$ regulär ist, muss es nach dem Pumping-Lemma auch für dieses
+Wort eine Zerlegung geben:
+\end{enumerate}
+
+$a^j b^j = uvw$ mit $|v| \geq 1$ und $|uv| \leq j$
+
+Weil $uv$ höchstens $j$ lang ist, kann es im Fall von $a^j b^j$ nur aus
+$a$‘s bestehen. Da $v$ mindestens ein Zeichen enthält, ist das
+mindestens ein $a$. Pumpen führt nun zu mehr $a$‘s als $b$‘s und also zu
+einem Wort, das nicht in der Sprache ist. (Widerspruch!)\footcite{wiki:pumping}
+
+$\Rightarrow$ Die Behauptung war falsch!
+$\Rightarrow$ $L$ ist nicht regulär!
+\footcite[Seite 63-64]{theo:fs:1}
+
+\literatur
+
+\end{document}
