@@ -1,0 +1,101 @@
+\documentclass{lehramt-informatik-haupt}
+\liLadePakete{formale-sprachen}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Kellerautomat}
+
+Ein Kellerautomat ist ein um einen „Speicher“ (Keller) erweiterter
+endlicher Automat.
+
+Ein nichtdeterministischer Kellerautomat $K$ (PDA = pushdown automaton)
+ist ei n 6-Tupel $K = (Z, \Sigma, \Gamma, \delta, z_0 , \#$
+
+\begin{description}
+\item[Z] endliche Zustandsmenge
+\item[$\Sigma$] Eingabealphabet
+\item[$\Gamma$] Kelleralphabet mit \#
+\item[$\delta$] Zustandsübergangsfunktion
+\item[$z_0$] Startzustand
+\item[\#] unterstes Kellersymbol\footcite[Seite 22]{theo:fs:2}
+\end{description}
+
+Der Kellerspeicher ist als \memph{Stapel (stack)} organisiert und
+erlaubt daher nur einen eingeschränkten Zugriff auf die Elemente. Die
+Funktionsweise ist ähnlich derer eines konventionellen Bücherstapels;
+hier können wir ein neues Buch entweder oben auf den Stapel packen
+(Push-Operation) oder das oberste Buch wegnehmen (Pop-Operation). In
+einem Stack dürfen Elemente weder von unten noch aus der Mitte entnommen
+werden, d. h., das zuletzt hinzugefügte Element wird immer als erstes
+wieder entfernt (\memph{LIFO-Prinzip}, \memph{Last-In-First-Out}).
+
+Im Gegensatz zu den bisher betrachteten Akzeptoren besitzen
+Kellerautomaten zwei \memph{verschiedene Alphabete} $\Sigma$ und
+$\Gamma$. Das \memph{Eingabealphabet $\Sigma$} enthält die Zeichen, aus
+denen sich die \memph{Eingabewörter} zusammensetzen, und das
+\memph{Kelleralphabet $\Gamma$} alle Symbole, die in den
+\memph{Kellerspeicher} geschrieben werden dürfen. Damit beide Alphabete
+einfacher unterschieden werden können, halten wir uns an die gängige
+Konvention, \memph{Eingabezeichen mit Kleinbuchstaben} und
+\memph{Kellerzeichen mit Großbuchstaben} darzustellen.
+
+\footcite[Seite 224]{hoffmann}
+
+Kellerautomaten können analog zu endlichen Automaten durch
+Zustandsgraphen veranschaulicht werden.
+
+Die \memph{Zustandsübergänge} sind charakterisiert durch das
+\memph{gelesene Zeichen}, das \memph{oberste Kellersymbol} und
+\memph{die auf den Keller gelegten Zeichen, die das oberste Kellersymbol
+ersetzen}.
+\footcite[Seite 23]{theo:fs:2}
+
+\subsection{Zustandübergang}
+
+\begin{displaymath}
+(a, \#, A\#)
+\end{displaymath}
+
+\begin{itemize}
+\item
+
+\memph{Buchstabe} des Wortes, der \memph{gerade bearbeitet} wird.
+
+\item
+
+das \memph{aktuelle Kellerzeichen} (d.h. das oberste
+Zeichen auf dem Keller-Stapel) und d
+
+\item
+
+\memph{Zustand} des Kellers \memph{nach Abarbeitung}. Dabei bedeutet...
+
+\begin{description}
+\item[$\epsilon$]
+
+das oberste Zeichen im Keller wurde gelöscht (d.h. pop)
+
+\item[ein Buchstabe]
+
+der Keller hat sich nicht verändert (d.h. nop).
+
+\item[zwei Buchstaben]
+
+es wurde ein Kellerzeichen oben in den Keller reingeschichtet. Der erste
+der beiden Buchstaben ist das neue Kellerzeichen, der zweite Buchstabe
+ist das bisherige oberste Kellerzeichen.
+\end{description}
+\end{itemize}
+\liFussnoteUrl{http://sibiwiki.de/wiki/index.php?title=Kellerautomat}
+
+\literatur
+
+\end{document}
