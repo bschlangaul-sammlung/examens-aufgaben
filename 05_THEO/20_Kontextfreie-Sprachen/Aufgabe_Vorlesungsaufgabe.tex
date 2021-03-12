@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{formale-sprachen}
+\liLadePakete{formale-sprachen,syntaxbaum}
 \begin{document}
 \liAufgabenTitel{Vorlesungsaufgabe}
 \section{Kontextfreie Sprache
@@ -25,20 +25,45 @@ $S = S$
 
 \begin{itemize}
 \item 00101
+
+\begin{liAntwort}
+
+\end{liAntwort}
+
 \item 1001
+
+\begin{liAntwort}
+S $\rightarrow$
+A1B $\rightarrow$
+1B $\rightarrow$
+10B $\rightarrow$
+100B $\rightarrow$
+1001B $\rightarrow$
+1001
+\end{liAntwort}
 \end{itemize}
 
 \item Erstelle eine kontextfreie Grammatik, die alle Wörter mit gleich
 vielen $1$‘s, gefolgt von gleich vielen $0$‘s enthält.
 
+\begin{liAntwort}
+\begin{liProduktionsRegeln}
+S -> 1S0 | epsilon
+\end{liProduktionsRegeln}
+\end{liAntwort}
+
 \item Erstelle eine kontextfreie Grammatik, die alle regulären Ausdrücke
 über den Zeichen $0,1$ darstellt.
+(Beispiel: $01^* (1 + 0)0$ für einen möglichen regulären Ausdruck
+(Das $+$-Zeichen ist hier anstelle des Oderzeichens))
 
-Beispiel:
+\begin{liAntwort}
+\liAlphabet{1; 0; (; ); +; *}
 
-$01^* (1 + 0)0$ für einen möglichen regulären Ausdruck
-
-[Das +-Zeichen ist hier anstelle des Oderzeichens]
+\begin{liProduktionsRegeln}
+S -> epsilon | 0 | 1 | S* | (S) | SS | S+S
+\end{liProduktionsRegeln}
+\end{liAntwort}
 
 \end{enumerate}
 
@@ -48,11 +73,17 @@ $01^* (1 + 0)0$ für einen möglichen regulären Ausdruck
 
 \section{Übung\footcite[Seite 18]{theo:fs:2}}
 
+\let\m=\liMengeOhneMathe
+
 \begin{enumerate}
 \item Erstelle eine Ableitung und einen Parsebaum für die folgende
 Grammatik für das Wort
 
-$G = ( \{P\} , \{0,1\}, \{P \epsilon  0 | 1 | 0P0 | 1P1\}, P)$
+$G = ( \m{P} , \m{ 0, 1 }, P, S)$
+
+\begin{liProduktionsRegeln}
+S -> epsilon | 0 | 1 | 0P0 | 1P
+\end{liProduktionsRegeln}
 
 \begin{itemize}
 \item 0000
@@ -62,8 +93,9 @@ $G = ( \{P\} , \{0,1\}, \{P \epsilon  0 | 1 | 0P0 | 1P1\}, P)$
 \item Erstelle eine Ableitung und einen Parsebaum für die nebenstehende
 Grammatik für das Wort
 
-$V = {S, A, B}$
-$∑= {0,1}$
+$V = \m{ S, A, B }$
+
+\liAlphabet{0, 1}
 
 \begin{liProduktionsRegeln}
 S -> A1B,
@@ -75,10 +107,37 @@ $S = S$
 
 \begin{itemize}
 \item 10101
+
+\begin{liAntwort}
+\def\p{ $\rightarrow$ }
+
+S \p A1B \p 1B \p 10B \p 101B \p 1010B \p 10101B \p 10101
+
+\begin{tikzpicture}[li parsetree,level distance=0.7cm]
+\Tree [.Z
+  1 [.A
+    0 [.A
+      0 [.A
+        1 [.A
+          0 [.A
+            1
+          ]
+        ]
+      ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liAntwort}
+
 \item 00100
 \end{itemize}
 
 \item Sind die Parsebäume eindeutig?
+
+\begin{liAntwort}
+Ja, die Parsebäume sind eindeutig.
+\end{liAntwort}
 \end{enumerate}
 
 %-----------------------------------------------------------------------
