@@ -1,0 +1,36 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,automaten}
+\begin{document}
+\let\m=\liMengeOhneMathe
+\def\z#1{z_#1}
+\def\Z#1{$z_#1$}
+\let\u=\liKellerUebergang
+
+\liAufgabenTitel{Foliensatz}
+\section{Kellerautomat
+\index{Kellerautomat}
+\footcite[Seite 23]{theo:fs:2}}
+
+Beispiel: $L = \m{a^n b^n | n \in Ν}$
+
+Grammatik: $G = (\m{S}, \m{a, b}, P, S)$
+
+\begin{liProduktionsRegeln}
+S -> aSb | ab
+\end{liProduktionsRegeln}
+
+Kellerautomat: $K = (\m{\z1, \z2}, \m{a, b}, \m{A, \#}, \delta, \z1 ,\#)$
+
+\begin{tikzpicture}[li kellerautomat,node distance=5cm]
+\node[state,initial] (0) {$z_0$};
+\node[state,above right of=0] (1) {$z_1$};
+\node[state,right of=0] (2) {$z_2$};
+
+\path (0) edge[below,loop below] node{
+  \u{a raute Araute}\\
+  \u{a A AA}\\
+} (0);
+
+\end{tikzpicture}
+
+\end{document}

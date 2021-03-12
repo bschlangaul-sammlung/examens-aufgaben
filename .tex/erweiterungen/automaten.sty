@@ -4,13 +4,34 @@
 \RequirePackage{tikz}
 \usetikzlibrary{arrows,automata,positioning}
 
+\directlua{
+  automaten = require('lehramt-informatik-automaten')
+}
+
 \def\liAutomatenKante#1#2#3#4{
   \path (#1) edge[#4] node{#3} (#2);
 }
 
+\def\liKellerUebergang#1{(
+  \directlua{automaten.formatiere_uebergang('#1')}
+)}
+
 \tikzset{
   li keller knoten/.style={
-    text width=3cm,
-    align=center
+    text width=2cm,
+    align=center,
+    font=\footnotesize,
+  },
+  li automat/.style={
+    ->,
+    node distance=2cm
+  },
+  li kellerautomat/.style={
+    li automat,
+    every edge/.append style={
+      every node/.style={
+        li keller knoten
+      }
+    }
   }
 }
