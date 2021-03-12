@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{formale-sprachen,syntaxbaum}
+\liLadePakete{formale-sprachen,syntaxbaum,automaten}
 \begin{document}
 \liAufgabenTitel{Vorlesungsaufgabe}
 \section{Kontextfreie Sprache
@@ -151,15 +151,123 @@ Ja, die Parsebäume sind eindeutig.
 
 $L = (a^n c^i b^n | n, i \in N_0)$
 
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[->,node distance=5cm]
+\node[state,initial] (0) {$z_0$};
+\node[state,above right of=0] (1) {$z_1$};
+\node[state,right of=0] (2) {$z_2$};
+
+\path (0) edge[below,loop below] node[text width=3cm,align=center]{
+  (a, \#, A\#)\\
+  (a, A, AA)\\
+} (0);
+
+\path (0) edge[below] node[text width=3cm,align=center]{
+  ($\epsilon$, \#, $\epsilon$)\\
+  (b, A, $\epsilon$)\\
+} (2);
+
+\path (2) edge[below,loop below] node[text width=3cm,align=center]{
+  (b, A, $\epsilon$)\\
+  ($\epsilon$, \#, $\epsilon$)\\
+} (2);
+
+\path (1) edge[below] node[text width=3cm,align=center]{
+  ($\epsilon$, \#, $\epsilon$)\\
+  (b, A, $\epsilon$)\\
+} (2);
+
+\path (1) edge[above,loop] node[text width=3cm,align=center]{
+  (c, A, A)\\
+  (c, \#, \#)\\
+} (1);
+
+\path (0) edge[below] node[text width=3cm,align=center]{
+  (c, \#, \#)\\
+  (a, A, AA)\\
+} (1);
+
+\end{tikzpicture}
+\end{center}
+
+Tabellenform:
+
+\begin{tabular}{llllll}
+z0 & a & \# & z0 & A\#\\
+z0 & a & A & z0 & AA\\
+z0 & b & A & z2 & A & $\epsilon$\\
+z0 & a \# & z0 & A\#\\
+z0 & a & \# & z0 & A\#\\
+z0 & a & \# & z0 & A\#\\
+
+z1 & c & \# & z1 & A\#\\
+z1 & c & A & z2 & A$\epsilon$\\
+z1 & c & A & z2 & A$\epsilon$\\
+z1 & $\epsilon$ & \# & z2 & $\epsilon$\\
+
+z2 & b & A & z2 & A$\epsilon$\\
+z2 & $\epsilon$ & \# & z2 & $\epsilon$\\
+\end{tabular}
+\end{liAntwort}
+
 \item Gibt eine Grammatik für diese Sprache an.
+
+\begin{liAntwort}
+\begin{liProduktionsRegeln}
+S -> aSb | epsilon | c | cC,
+C -> cC | epsilon
+\end{liProduktionsRegeln}
+
+alternativ:
+
+\begin{liProduktionsRegeln}
+S -> aSb | epsilon | C,
+C -> cC | epsilon
+\end{liProduktionsRegeln}
+\end{liAntwort}
 
 \item Gib Konfigurationsfolgen an für die Erzeugung des Wortes
 
 \begin{itemize}
 \item aacbb
+
+\begin{liAntwort}
+\begin{tabular}{llr}
+a: & z0, a,\# -> zo A\#                   & A\#\\
+c. & z0, c,A -> z1 A                      & A\#\\
+c: & z1, c, A -> z1, A                    & A\#\\
+b: & z1, b, A -> z2, epsilon              & \#\\
+epsilon: & z2, epsilon, \# -> z2, epsilon & -\\
+\end{tabular}{llr}
+\end{liAntwort}
+
 \item accb
 \end{itemize}
 
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Kellerautomaten\footcite[Seite 27]{theo:fs:2}}
+
+Erstelle einen Kellerautomaten zu
+\begin{enumerate}
+\item $G = ( \m{P} , \m{0,1} , P, S)$
+
+\begin{liProduktionsRegeln}
+S -> epsilon | 0 | 1 | 0P0 | 1P1,
+\end{liProduktionsRegeln}
+
+\item Grammatik mit den Produktionsregeln
+
+\begin{liProduktionsRegeln}
+S -> A1B,
+A -> 0A | epsilon,
+B -> 0B | 1B | epsilon,
+\end{liProduktionsRegeln}
 \end{enumerate}
 
 %-----------------------------------------------------------------------
