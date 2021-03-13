@@ -1,6 +1,9 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe}
+\liLadePakete{mathe,automaten,formale-sprachen}
 \begin{document}
+\let\m=\liMengeOhneMathe
+\let\u=\liKellerUebergang
+
 \liAufgabenTitel{Konfigurationsfolge Kellerautomat}
 \section{Konfigurationsfolge von Kellerautomaten
 \index{Kellerautomat}
@@ -8,7 +11,20 @@
 
 Gegeben ist der folgende nichtdeterministische Kellerautomat mit
 
-$P = (\{1, 2, 3, 4, \text{Final}\}, \{a, b\}, \{Z, A, B\}, \delta, 1, Z, \{\text{Final}\})$
+$P = (\{1, 2, 3, 4, \text{Final}\}, \m{a, b}, \m{Z, A, B}, \delta, 1, Z, \m{\text{Final}})$
+
+\begin{center}
+\begin{tikzpicture}[li kellerautomat,node distance=4cm]
+\node[state,initial] (1) {1};
+\node[state,above right of=1] (2) {2};
+\node[state,right of=2] (3) {3};
+\node[state,below right of=3] (4) {4};
+\node[state,below right of=1] (F) {Final};
+
+\path (1) edge[above left,bend left] node{\u{a Z AAZ}} (2);
+\path (2) edge[below right,bend left] node{\u{raute Z Z}} (1);
+\end{tikzpicture}
+\end{center}
 
 \begin{enumerate}
 

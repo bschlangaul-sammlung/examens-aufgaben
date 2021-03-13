@@ -12,9 +12,11 @@
   \path (#1) edge[#4] node{#3} (#2);
 }
 
+\ExplSyntaxOn
 \def\liKellerUebergang#1{(
   \directlua{automaten.formatiere_uebergang('#1')}
 )}
+\ExplSyntaxOff
 
 \tikzset{
   li keller knoten/.style={

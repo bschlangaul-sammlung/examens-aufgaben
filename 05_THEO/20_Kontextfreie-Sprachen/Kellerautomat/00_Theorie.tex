@@ -13,19 +13,25 @@
 
 \section{Kellerautomat}
 
+\begin{quellen}
+\item \cite[Kapitel 19.1.2.3, Seite 587-88]{schneider}
+\item \cite{wiki:kellerautomat}
+\item \cite[Seite 224-226]{hoffmannn}
+\end{quellen}
+
 Ein Kellerautomat ist ein um einen „Speicher“ (Keller) erweiterter
 endlicher Automat.
 
 Ein nichtdeterministischer Kellerautomat $K$ (PDA = pushdown automaton)
-ist ei n 6-Tupel $K = (Z, \Sigma, \Gamma, \delta, z_0 , \#$
+ist ein 6-Tupel $K = (Z, \Sigma, \Gamma, \delta, z_0 , \#)$
 
 \begin{description}
 \item[Z] endliche Zustandsmenge
-\item[$\Sigma$] Eingabealphabet
-\item[$\Gamma$] Kelleralphabet mit \#
-\item[$\delta$] Zustandsübergangsfunktion
+\item[$\Sigma$] (Sigma) Eingabealphabet
+\item[$\Gamma$] (Gamma) Kelleralphabet mit \#
+\item[$\delta$] (delta) Zustandsübergangsfunktion
 \item[$z_0$] Startzustand
-\item[\#] unterstes Kellersymbol\footcite[Seite 22]{theo:fs:2}
+\item[\#] unterstes Kellersymbol / Anfangssymbol im Keller ($\bot$ (bot) bei Hoffmann, $Z_0 bei$ bei Erk und Blum) \footcite[Seite 22]{theo:fs:2}
 \end{description}
 
 Der Kellerspeicher ist als \memph{Stapel (stack)} organisiert und
@@ -60,6 +66,33 @@ ersetzen}.
 
 \subsection{Zustandübergang}
 
+Hier verwendete Schreibweise:
+
+\begin{displaymath}
+(a, \#, A\#)
+\end{displaymath}
+
+\begin{displaymath}
+(
+\text{zu-verarbeitender-Buchstabe},
+\text{aktuelles-Kellerzeichen},
+\text{Kellerzustand-nach-Bearbeitung}
+)
+\end{displaymath}
+
+Standardschreibweise:
+
+\begin{displaymath}
+(\#, a): A\#)
+\end{displaymath}
+
+\begin{displaymath}
+(
+\text{aktuelles-Kellerzeichen},
+\text{zu-verarbeitender-Buchstabe}):
+\text{Kellerzustand-nach-Bearbeitung})
+\end{displaymath}
+
 \begin{displaymath}
 (a, \#, A\#)
 \end{displaymath}
@@ -71,8 +104,8 @@ ersetzen}.
 
 \item
 
-das \memph{aktuelle Kellerzeichen} (d.h. das oberste
-Zeichen auf dem Keller-Stapel) und d
+das \memph{aktuelle Kellerzeichen} (d.\,h. das oberste
+Zeichen auf dem Keller-Stapel)
 
 \item
 

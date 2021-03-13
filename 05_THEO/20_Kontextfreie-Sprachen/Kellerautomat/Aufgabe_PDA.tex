@@ -1,0 +1,54 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{automaten,mathe}
+\begin{document}
+\let\m=\liMengeOhneMathe
+\let\u=\liKellerUebergang
+\def\z#1{$z_#1$}
+
+\liAufgabenTitel{PDA}
+\section{PDA
+\index{Kellerautomat}
+\footcite{theo:ab:2}}
+
+Erstelle jeweils einen PDA, der die angegebenen Sprachen akzeptiert.
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item $L = \{0^n 1^n | n \in \mathbb{N} \}$
+
+N = Null
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[li kellerautomat,node distance=1.5cm]
+\node[state,initial] (0) {\z0};
+\node[state,above right=of 0] (1) {\z1};
+\node[state,right=of 1] (2) {\z2};
+\node[state,below right=of 2] (3) {\z3};
+
+\path (0) edge[above left] node{\u{0 raute N}} (1);
+\path (1) edge[above,loop] node{\u{0 N NN}} (1);
+\path (1) edge[above] node{\u{1 N epsilon}} (2);
+\path (2) edge[above,loop] node{\u{1 N epsilon}} (2);
+\path (2) edge[above right] node{\u{epsilon raute epsilon}} (3);
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item Alle Wörter, die gleich viele $a$ wie $b$ enthalten.
+
+%%
+% (c)
+%%
+
+\item Alle Wörter, bei denen kein Präfix mehr Einsen wie Nullen hat.
+\end{enumerate}
+\end{document}
