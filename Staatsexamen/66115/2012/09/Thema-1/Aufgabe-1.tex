@@ -1,7 +1,12 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe,automaten,formale-sprachen}
+\liLadePakete{mathe,automaten,formale-sprachen,minimierung}
 \begin{document}
+\def\z#1{$z_#1$}
+\let\a=\liFussnoteEins
+\let\b=\liFussnoteZwei
 \let\k=\liAutomatenKante
+\let\l=\liLeereZelle
+\let\Z=\liZustandsPaar
 
 \liAufgabenTitel{NEA und Minimalisierung}
 \section{Aufgabe 1
@@ -35,6 +40,7 @@ Automat $A$ erkennt $L$:\footcite{examen:66115:2012:09}
 
 \path (3) edge[loop,above] node{a,b} (3);
 \end{tikzpicture}
+\liFussnoteUrl{https://flaci.com/Af75jwj3r}
 \end{center}
 
 \begin{enumerate}
@@ -93,6 +99,7 @@ Zustandsmenge & Eingabe a & Eingabe b \\\hline
 \k 5 5 a {above,loop left}
 \k 5 3 b {above}
 \end{tikzpicture}
+\liFussnoteUrl{https://flaci.com/Aro483e89}
 \end{center}
 
 \end{liAntwort}
@@ -101,6 +108,33 @@ Zustandsmenge & Eingabe a & Eingabe b \\\hline
 den Minimalautomaten für $L$. Beschreiben Sie dabei die Arbeitsschritte
 des verwendeten Algorithmus in nachvollziehbarer Weise.
 \index{Minimierungsalgorithmus}
+
+\begin{liAntwort}
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|c|c|}
+\hline
+\z0 & \l  & \l  & \l  & \l  & \l & \l  \\ \hline
+\z1 & \b  & \l  & \l  & \l  & \l & \l  \\ \hline
+\z2 & \b  & \b  & \l  & \l  & \l & \l  \\ \hline
+\z3 & \a  & \a  & \a  & \l  & \l & \l  \\ \hline
+\z4 & \a  & \a  & \a  &     & \l & \l  \\ \hline
+\z5 & \a  & \a  & \a  &     &    & \l  \\ \hline\hline
+    & \z0 & \z1 & \z2 & \z3 & \z4& \z5 \\ \hline
+\end{tabular}
+\end{center}
+
+\liFussnoten
+
+\begin{liUebergangsTabelle}{a}{b}
+\Z01 & \Z02\b\b & \Z11 \\
+\Z02 & \Z00 & \Z13\b \\
+\Z12 & \Z20\b\b & \Z13\b \\
+\Z34 & \Z45 & \Z33 \\
+\Z35 & \Z45 & \Z33 \\
+\Z45 & \Z55 & \Z33 \\
+\end{liUebergangsTabelle}
+\end{liAntwort}
+
 \end{enumerate}
 
 \end{document}

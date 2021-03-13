@@ -1,0 +1,43 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-mathe}[2021/03/13 Für den
+Minimierungsalgorithmus von einem NEA zu einem DEA]
+
+\def\liFussnoteEins{$*^1$}
+\def\liFussnoteEinsText{
+  \liFussnoteEins
+  \quad
+  Paar aus End-/ Nicht-Endzustand kann nicht äquivalent sein.
+}
+
+\def\liFussnoteZwei{$*^2$}
+\def\liFussnoteZweiText{
+  \liFussnoteZwei
+  \quad
+   Test, ob man mit Eingabe zu bereits markiertem Paar kommt.
+}
+
+\def\liFussnoten{
+  \bigskip
+
+  \noindent
+  \liFussnoteEinsText
+
+  \noindent
+  \liFussnoteZweiText
+}
+
+\def\liLeereZelle{$\emptyset$}
+
+\def\liZustandsPaar#1#2{$(z_#1, z_#2)$}
+
+\renewcommand{\arraystretch}{1.4}
+
+\NewDocumentEnvironment{ liUebergangsTabelle } { m m } {
+  \liPseudoUeberschrift{Übergangstabelle}
+  \begin{center}
+  \begin{tabular}{l|l|l}
+  Zustandspaar & #1    & #2    \\\hline
+} {
+  \end{tabular}
+  \end{center}
+}

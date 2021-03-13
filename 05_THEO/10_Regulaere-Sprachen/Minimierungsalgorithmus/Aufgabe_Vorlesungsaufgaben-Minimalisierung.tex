@@ -1,6 +1,12 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe,automaten}
+\liLadePakete{mathe,automaten,minimierung}
 \begin{document}
+\def\z#1{$z_#1$}
+\let\a=\liFussnoteEins
+\let\b=\liFussnoteZwei
+\let\l=\liLeereZelle
+\let\Z=\liZustandsPaar
+
 \liAufgabenTitel{Minimalisierung}
 \section{Übung zur Minimalisierung\footcite[Seite 59]{theo:fs:1}
 \index{Minimierungsalgorithmus}}
@@ -27,15 +33,6 @@ Minimalisiere den gegebenen DEA:
 \end{center}
 
 \begin{liAntwort}
-% l = leer
-\def\l{$\emptyset$}
-\def\z#1{$z_#1$}
-\def\Z#1#2{$(z_#1, z_#2)$}
-
-\def\a{$*^1$}
-\def\b{$*^2$}
-
-\renewcommand{\arraystretch}{1.4}
 \begin{center}
 \begin{tabular}{|c||c|c|c|c|c|}
 \hline
@@ -48,21 +45,14 @@ Minimalisiere den gegebenen DEA:
 \end{tabular}
 \end{center}
 
-\bigskip
+\liFussnoten
 
-\a Paar aus End-/ Nicht-Endzustand kannt nicht äquivalent sein.
-
-\b Test, ob man mit Eingabe zu bereits markiertem Paar kommt.
-
-\begin{center}
-\begin{tabular}{l|l|l}
-Zustandspaar & a    & b    \\\hline
-\Z01         & \Z23 \b & \Z14 \\
-\Z02         & \Z24 \b & \Z14 \\
-\Z12         & \Z34    & \Z44 \\
-\Z34         & \Z33    & \Z33 \\
-\end{tabular}
-\end{center}
+\begin{liUebergangsTabelle}{a}{b}
+\Z01 & \Z23 \b & \Z14 \\
+\Z02 & \Z24 \b & \Z14 \\
+\Z12 & \Z34    & \Z44 \\
+\Z34 & \Z33    & \Z33 \\
+\end{liUebergangsTabelle}
 
 \begin{center}
 \begin{tikzpicture}[->,node distance=2cm]
