@@ -1,6 +1,12 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{automaten}
+\liLadePakete{automaten,minimierung}
+
 \begin{document}
+\def\z#1{$z_#1$}
+\let\f=\liFussnote
+\let\l=\liLeereZelle
+\let\Z=\liZustandsPaar
+
 \liAufgabenTitel{Studiflix-Minimierung}
 \section{Minimierungsalgorithmus
 \index{Minimierungsalgorithmus}
@@ -30,45 +36,29 @@
 \end{center}
 
 \begin{liAntwort}
-% l = leer
-\def\l{$\emptyset$}
-\def\z#1{$z_#1$}
-\def\Z#1#2{$(z_#1, z_#2)$}
-
-\def\a{$*^1$}
-\def\b{$*^2$}
-
-\renewcommand{\arraystretch}{1.4}
 \begin{center}
 \begin{tabular}{|c||c|c|c|c|c|c|}
 \hline
 \z0 & \l  & \l  & \l  & \l  & \l  & \l  \\ \hline
 \z1 &     & \l  & \l  & \l  & \l  & \l  \\ \hline
-\z2 & \a  & \a  & \l  & \l  & \l  & \l  \\ \hline
-\z3 & \a  & \a  &     & \l  & \l  & \l  \\ \hline
-\z4 & \a  & \a  &     &     & \l  & \l  \\ \hline
-\z5 & \b  & \b  & \a  & \a  & \a  & \l  \\ \hline\hline
+\z2 & \f1 & \f1 & \l  & \l  & \l  & \l  \\ \hline
+\z3 & \f1 & \f1 &     & \l  & \l  & \l  \\ \hline
+\z4 & \f1 & \f1 &     &     & \l  & \l  \\ \hline
+\z5 & \f2 & \f2 & \f1 & \f1 & \f1 & \l  \\ \hline\hline
     & \z0 & \z1 & \z2 & \z3 & \z4 & \z5 \\ \hline
 \end{tabular}
 \end{center}
 
-\bigskip
+\liFussnoten
 
-\a Paar aus End-/ Nicht-Endzustand kann nicht äquivalent sein.
-
-\b Test, ob man mit Eingabe zu bereits markiertem Paar kommt.
-
-\begin{center}
-\begin{tabular}{l|l|l}
-Zustandspaar & 0    & 1    \\\hline
-\Z01         & \Z10 & \Z23 \\
-\Z05         & \Z15 & \Z25 \b \\
-\Z15         & \Z05 & \Z35 \b \\
-\Z23         & \Z44 & \Z55 \\
-\Z24         & \Z44 & \Z55 \\
-\Z34         & \Z44 & \Z55 \\
-\end{tabular}
-\end{center}
+\begin{liUebergangsTabelle}{0}{1}
+\Z01 & \Z10 & \Z23     \\
+\Z05 & \Z15 & \Z25 \f2 \\
+\Z15 & \Z05 & \Z35 \f2 \\
+\Z23 & \Z44 & \Z55     \\
+\Z24 & \Z44 & \Z55     \\
+\Z34 & \Z44 & \Z55     \\
+\end{liUebergangsTabelle}
 
 \noindent
 \Z23, \Z24 unnd \Z34 können zu einem Zustand verschmolzen werden, weil

@@ -2,18 +2,26 @@
 \ProvidesPackage{lehramt-informatik-mathe}[2021/03/13 Für den
 Minimierungsalgorithmus von einem NEA zu einem DEA]
 
-\def\liFussnoteEins{$*^1$}
-\def\liFussnoteEinsText{
-  \liFussnoteEins
+\def\liFussnote#1{$*^#1$}
+
+\def\li@fussnote@text#1#2{
+  \liFussnote{#1}
   \quad
-  Paar aus End-/ Nicht-Endzustand kann nicht äquivalent sein.
+  #2
+}
+\def\liFussnoteEinsText{
+  \li@fussnote@text{1}
+  {Paar aus End-/ Nicht-Endzustand kann nicht äquivalent sein.}
 }
 
-\def\liFussnoteZwei{$*^2$}
 \def\liFussnoteZweiText{
-  \liFussnoteZwei
-  \quad
-   Test, ob man mit Eingabe zu bereits markiertem Paar kommt.
+  \li@fussnote@text{2}
+  {Test, ob man mit Eingabe zu bereits markiertem Paar kommt.}
+}
+
+\def\liFussnoteDreiText{
+  \li@fussnote@text{3}
+  {In weiteren Iterationen markierte Zustände.}
 }
 
 \def\liFussnoten{
@@ -24,6 +32,9 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 
   \noindent
   \liFussnoteZweiText
+
+  \noindent
+  \liFussnoteDreiText
 }
 
 \def\liLeereZelle{$\emptyset$}
@@ -36,7 +47,7 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
   \liPseudoUeberschrift{Übergangstabelle}
   \begin{center}
   \begin{tabular}{l|l|l}
-  Zustandspaar & #1    & #2    \\\hline
+  \textbf{Zustandspaar} & \textbf{#1} & \textbf{#2} \\\hline
 } {
   \end{tabular}
   \end{center}

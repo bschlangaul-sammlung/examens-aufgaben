@@ -2,8 +2,7 @@
 \liLadePakete{mathe,automaten,formale-sprachen,minimierung}
 \begin{document}
 \def\z#1{$z_#1$}
-\let\a=\liFussnoteEins
-\let\b=\liFussnoteZwei
+\let\f=\liFussnote
 \let\k=\liAutomatenKante
 \let\l=\liLeereZelle
 \let\Z=\liZustandsPaar
@@ -75,9 +74,7 @@ Zustandsmenge & Eingabe a & Eingabe b \\\hline
 \end{tabular}
 
 \begin{center}
-
-\def\Z#1{$Z_#1$}
-
+\def\Z#1{$Z_{#1}$}
 \begin{tikzpicture}[->,node distance=2cm]
 \node[state,initial] (0) {\Z0};
 \node[state,above right of=0] (1) {\Z1};
@@ -114,11 +111,11 @@ des verwendeten Algorithmus in nachvollziehbarer Weise.
 \begin{tabular}{|c||c|c|c|c|c|c|}
 \hline
 \z0 & \l  & \l  & \l  & \l  & \l & \l  \\ \hline
-\z1 & \b  & \l  & \l  & \l  & \l & \l  \\ \hline
-\z2 & \b  & \b  & \l  & \l  & \l & \l  \\ \hline
-\z3 & \a  & \a  & \a  & \l  & \l & \l  \\ \hline
-\z4 & \a  & \a  & \a  &     & \l & \l  \\ \hline
-\z5 & \a  & \a  & \a  &     &    & \l  \\ \hline\hline
+\z1 & \f3 & \l  & \l  & \l  & \l & \l  \\ \hline
+\z2 & \f2 & \f2 & \l  & \l  & \l & \l  \\ \hline
+\z3 & \f1 & \f1 & \f1 & \l  & \l & \l  \\ \hline
+\z4 & \f1 & \f1 & \f1 &     & \l & \l  \\ \hline
+\z5 & \f1 & \f1 & \f1 &     &    & \l  \\ \hline\hline
     & \z0 & \z1 & \z2 & \z3 & \z4& \z5 \\ \hline
 \end{tabular}
 \end{center}
@@ -126,15 +123,31 @@ des verwendeten Algorithmus in nachvollziehbarer Weise.
 \liFussnoten
 
 \begin{liUebergangsTabelle}{a}{b}
-\Z01 & \Z02\b\b & \Z11 \\
-\Z02 & \Z00 & \Z13\b \\
-\Z12 & \Z20\b\b & \Z13\b \\
+\Z01 & \Z02\f3 & \Z11 \\
+\Z02 & \Z00 & \Z13\f2 \\
+\Z12 & \Z20\f3 & \Z13\f2 \\
 \Z34 & \Z45 & \Z33 \\
 \Z35 & \Z45 & \Z33 \\
 \Z45 & \Z55 & \Z33 \\
 \end{liUebergangsTabelle}
-\end{liAntwort}
 
+\def\Z#1{$Z_{#1}$}
+\begin{tikzpicture}[->,node distance=2cm]
+\node[state,initial] (0) {\Z0};
+\node[state,above right of=0] (1) {\Z1};
+\node[state,below right of=1] (2) {\Z2};
+\node[state,right of=2,accepting] (345) {\Z{345}};
+
+\k 0 0 a {above,loop below}
+\k 0 1 b {above left}
+\k 1 2 a {above right}
+\k 1 1 b {above,loop}
+\k 2 0 a {above}
+\k 2 {345} b {above}
+\k {345} {345} {a,b} {above,loop below}
+\end{tikzpicture}
+\liFussnoteUrl{https://flaci.com/Ar3joif5z}
+\end{liAntwort}
 \end{enumerate}
 
 \end{document}
