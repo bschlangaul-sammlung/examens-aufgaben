@@ -12,6 +12,8 @@ local function text_in_buchstaben_teilen (text)
   return ergebnis
 end
 
+-- A -> A, B;
+-- B, D -> A, C;
 return {
   teilen = function (eingang)
     local buchstaben = text_in_buchstaben_teilen(eingang)
