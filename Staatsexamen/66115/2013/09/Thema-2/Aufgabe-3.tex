@@ -1,12 +1,96 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{automaten,minimierung,formale-sprachen}
+
 \begin{document}
+\let\f=\liFussnote
+\let\l=\liLeereZelle
+\def\Z#1#2{(#1, #2)}
+
 \liAufgabenTitel{Minimierung DFA}
 \section{Aufgabe 3
 \index{Minimierungsalgorithmus}
 \footcite{66115:2013:09}}
 
-Minimieren Sie den folgenden deterministischen Automaten mit den Zuständen
-{0,1,2,3,4,5, 6}, dem Startzustand 0 und den Endzuständen {3,6}.
-Geben Sie z.B. durch die Bezeichnung an, welche Zustände zusammengefasst wurden.
+Minimieren Sie den folgenden deterministischen Automaten mit den
+Zuständen \liMenge{0, 1, 2, 3, 4, 5, 6}, dem Startzustand $0$ und den
+Endzuständen \liMenge{3, 6}. Geben Sie z. B. durch die Bezeichnung an,
+welche Zustände zusammengefasst wurden.
+
+\begin{center}
+\begin{tikzpicture}[li automat,node distance=1cm]
+\node[state,initial] (0) {0};
+\node[state,right=of 0] (1) {1};
+\node[state,right=of 1] (2) {2};
+\node[state,below right=of 2] (4) {4};
+\node[state,accepting,above right=of 4] (3) {3};
+\node[state,right=of 3] (5) {5};
+\node[state,accepting,right=of 5] (6) {6};
+
+\path (0) edge[above] node{a} (1);
+\path (1) edge[above] node{a} (2);
+\path (2) edge[above] node{a} (3);
+\path (2) edge[above] node{b} (4);
+\path (3) edge[above,bend left] node{b} (5);
+\path (3) edge[above,loop above] node{a} (3);
+\path (4) edge[above] node{a} (3);
+\path (4) edge[above,loop below] node{b} (4);
+\path (5) edge[above,bend left] node{a} (6);
+\path (5) edge[above,bend left] node{b} (3);
+\path (6) edge[above,bend left] node{b} (5);
+\path (6) edge[below,bend left] node{a} (3);
+\end{tikzpicture}
+\end{center}
+
+\begin{liAntwort}
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|c|c|c|}
+\hline
+0 & \l  & \l  & \l  & \l  & \l  & \l  & \l  \\ \hline
+1 & \f3 & \l  & \l  & \l  & \l  & \l  & \l  \\ \hline
+2 & \f2 & \f2 & \l  & \l  & \l  & \l  & \l  \\ \hline
+3 & \f1 & \f1 & \f1 & \l  & \l  & \l  & \l  \\ \hline
+4 & \f2 & \f2 &     & \f1 & \l  & \l  & \l  \\ \hline
+5 & \f2 & \f2 & \f2 & \f1 & \f2 & \l  & \l  \\ \hline
+6 & \f1 & \f1 & \f1 &     & \f1 & \f1 & \l  \\ \hline\hline
+  & 0   & 1   & 2   & 3   & 4   & 5   & 6   \\ \hline
+\end{tabular}
+\end{center}
+
+\liFussnoten
+
+\begin{liUebergangsTabelle}{a}{b}
+\Z01 & \Z12 \f3 & \Z TT \\
+\Z02 & \Z13 \f2 & \Z T4 \\
+\Z04 & \Z13 \f2 & \Z T4 \\
+\Z05 & \Z16 \f2 & \Z T3 \\
+\Z12 & \Z23 \f2 & \Z T4 \\
+\Z14 & \Z23 \f2 & \Z T4 \\
+\Z15 & \Z26 \f2 & \Z T3 \\
+\Z24 & \Z33 & \Z 44 \\
+\Z25 & \Z36 & \Z 34 \f2 \\
+\Z36 & \Z33 & \Z 55 \\
+\Z45 & \Z36 & \Z 34 \f2 \\
+\end{liUebergangsTabelle}
+
+T = Trap-Zustand = Falle
+
+\begin{center}
+\begin{tikzpicture}[li automat,node distance=1cm]
+\node[state,initial] (0) {0};
+\node[state,right=of 0] (1) {1};
+\node[state,right=of 1] (24) {24};
+\node[state,accepting,right=of 24] (36) {36};
+\node[state,right=of 36] (5) {5};
+
+\path (0) edge[above] node{a} (1);
+\path (1) edge[above] node{a} (24);
+\path (24) edge[above,loop above] node{b} (24);
+\path (24) edge[above] node{a} (36);
+\path (36) edge[above,bend left] node{b} (5);
+\path (36) edge[above,loop above] node{a} (36);
+\path (5) edge[above,bend left] node{a,b} (36);
+\end{tikzpicture}
+\end{center}
+
+\end{liAntwort}
 \end{document}
