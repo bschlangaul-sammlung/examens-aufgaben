@@ -17,7 +17,7 @@ Attributhülle]
 
 % Attributmenge
 \def\li@menge#1#2{$#1 = \{#2\}$}
-\def\liFunktionaleAbhaengigkeiten#1#2{\li@menge{#1}{#2}}
+\def\liFunktionaleAbhaengigkeitenMenge#1#2{\li@menge{#1}{#2}}
 % Mit teilen
 \def\liAttributMenge#1#2{$#1 = \{\liTeilen{#2}\}$}
 
@@ -31,3 +31,6 @@ Attributhülle]
 
 % geschweifte Klammer
 \def\liGeschweifteKlammer#1{$\{#1\}$}
+
+\NewDocumentEnvironment { liFunktionaleAbhaengigkeiten } { +b }
+{\directlua{normalformen.formatiere_funktionale_abhaengigkeiten('#1')}} {}

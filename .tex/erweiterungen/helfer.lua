@@ -1,5 +1,6 @@
 return {
   -- http://lua-users.org/wiki/SplitJoin
+  -- pat: pattern matching https://www.lua.org/pil/20.2.html
   split = function (str, pat)
     local t = {}  -- NOTE: use {n = 0} in Lua-5.0
     local fpat = "(.-)" .. pat
