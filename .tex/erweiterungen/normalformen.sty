@@ -25,12 +25,30 @@ Attributhülle]
   $\{\text{\liTeilen{#1}}\} \rightarrow \{\text{\liTeilen{#2}}\}$%
 }
 
-\def\liAttributHuelle#1{%
-  $\textit{AttrHülle}(#1)$%
-}
+\def\liAttributHuelleOhneMathe#1{$\textit{AttrHülle}(#1)$}
+\def\liAttributHuelle#1{\liAttributHuelleOhneMathe{#1}}
+
+\def\liMengeOhneMathe#1{\{ #1 \}}
+\def\liMenge#1{\liMengeOhneMathe{#1}}
 
 % geschweifte Klammer
-\def\liGeschweifteKlammer#1{$\{#1\}$}
+\let\liGeschweifteKlammer=\liMenge
 
+% \let\fa=\liFunktionaleAbhaengigkeit
+% \liFunktionaleAbhaengigkeit{A, B -> C, D}
+\def\liFunktionaleAbhaengigkeit#1{
+  \directlua{normalformen.drucke_funk_abhaengigkeit('#1')}
+}
+
+% \begin{liFunktionaleAbhaengigkeiten}
+%   M -> M;
+%   M -> N;
+%   V -> T, P, PN;
+%   P -> PN;
+% \end{liFunktionaleAbhaengigkeiten}
+
+% Regulärer Ausdruck zum Konvertieren
+% \\item \$(.*) \\rightarrow (.*)\$
+% $1 -> $2;
 \NewDocumentEnvironment { liFunktionaleAbhaengigkeiten } { +b }
-{\directlua{normalformen.formatiere_funktionale_abhaengigkeiten('#1')}} {}
+{\directlua{normalformen.drucke_funk_abhaengigkeiten('#1')}} {}

@@ -1,6 +1,10 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{mathe,normalformen}
 \begin{document}
+\let\a=\liAttributHuelleOhneMathe
+\let\m=\liMengeOhneMathe
+\let\fa=\liFunktionaleAbhaengigkeit
+
 \liAufgabenTitel{Relation-MNVTPPN}
 
 \section{Zusatzaufgabe 1 (wird nicht in der Übung
@@ -11,18 +15,11 @@ besprochen)
 Betrachten Sie ein abstraktes Relationenschema $R = \{M, N, V, T, P,
 PN\}$ mit den FDs
 
-\begin{compactitem}
-\item $M \rightarrow M$
-\item $M \rightarrow N$
-\item $V \rightarrow T, P, PN$
-\item $P \rightarrow PN$
-\end{compactitem}
-
 \begin{liFunktionaleAbhaengigkeiten}
 M -> M;
 M -> N;
 V -> T, P, PN;
-P -> PN
+P -> PN;
 \end{liFunktionaleAbhaengigkeiten}
 
 \begin{enumerate}
@@ -31,11 +28,11 @@ P -> PN
 \begin{liAntwort}
 V kommt auf keiner rechten Seite der FDs vor.
 
-$\text{AttrHuell}(R, \liGeschweifteKlammer{V}) = \{V, T, P, PN\} \neq  R$
+$\a{R, \m{V}} = \m{V, T, P, PN} \neq  R$
 
-$\text{AttrHuell}(R, \liGeschweifteKlammer{V, M}) = \{V, M, N, T, P, PN\} = R$
+$\a{R, \m{V, M}} = \m{V, M, N, T, P, PN} = R$
 
-$\text{AttrHuell}(R, \liGeschweifteKlammer{V, P}) = \{V, P, T, PN\} \neq R$
+$\a{R, \m{V, P}} = \m{V, P, T, PN} \neq R$
 
 $V, M$ ist Schlüsselkandidat
 \end{liAntwort}
@@ -44,7 +41,7 @@ $V, M$ ist Schlüsselkandidat
 
 \begin{liAntwort}
 1NF weil nichtprimäre Attribute von einer echten Teilmenge des
-Schlüsselkandidaten abhängen (z. B. $M \rightarrow N$).
+Schlüsselkandidaten abhängen (z. B. \fa{M -> N}).
 \end{liAntwort}
 
 \item Bestimmen Sie zu den gebenen FDs die kanonische Überdeckung.
@@ -56,26 +53,24 @@ Schlüsselkandidaten abhängen (z. B. $M \rightarrow N$).
 
 \item Rechtsreduktion: PN ist doppelt
 
-$\text{AttrHuell}(R - (V \rightarrow T, P, PN) \cup (V \rightarrow T, P), \{V\}) = \{V, T, P, PN\}$
+$\a{R - (V \rightarrow T, P, PN) \cup (V \rightarrow T, P), \m{V}} = \m{V, T, P, PN}$
 
-\begin{compactitem}
-\item $M \rightarrow M$
-\item $M \rightarrow N$
-\item $V \rightarrow T, P$
-\item $P \rightarrow PN$
-\end{compactitem}
+\begin{liFunktionaleAbhaengigkeiten}
+M -> M;
+M -> N;
+V -> T, P;
+P -> PN;
+\end{liFunktionaleAbhaengigkeiten}
 \item Leere Klausel streichen
 
 \item Vereinigung
 
-\begin{compactitem}
-\item $M \rightarrow N$
-\item $V \rightarrow T, P$
-\item $P \rightarrow PN$
-\end{compactitem}
-
+\begin{liFunktionaleAbhaengigkeiten}
+M -> N;
+V -> T, P;
+P -> PN;
+\end{liFunktionaleAbhaengigkeiten}
 \end{enumerate}
-
 \end{liAntwort}
 
 \item Falls nötig, überführen Sie die Relation verlustfrei und

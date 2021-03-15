@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{normalformen}
 \begin{document}
 \liAufgabenTitel{Supermarkt}
 
@@ -45,11 +45,15 @@ Es existieren folgende funktionale Abhängigkeiten:
 \bigskip
 
 \tmptt{%
-  ArtNr $\rightarrow$ ArtName; ArtArt; Hersteller; HerstTel\\
-  Hersteller $\rightarrow$ HerstTel\\
-  Lieferant $\rightarrow$ LiefTel\\
-  ArtNr, Lieferant, BestDat $\rightarrow$ Anzahl
+
 }
+
+\begin{liFunktionaleAbhaengigkeiten}
+ArtNr -> ArtName, ArtArt, Hersteller, HerstTel;
+Hersteller -> HerstTel;
+Lieferant -> LiefTel;
+ArtNr, Lieferant, BestDat -> Anzahl;
+\end{liFunktionaleAbhaengigkeiten}
 
 \bigskip
 \noindent
