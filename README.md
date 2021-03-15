@@ -431,6 +431,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Minimierungsalgorithmus/Aufgabe_Studiflix-Minimierung.pdf" download="Aufgabe_Studiflix-Minimierung">„Studiflix-Minimierung“</a> (Minimierungsalgorithmus)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Minimierungsalgorithmus/Aufgabe_Vorlesungsaufgaben-Minimalisierung.pdf" download="Aufgabe_Vorlesungsaufgaben-Minimalisierung">„Minimalisierung“</a> (Minimierungsalgorithmus)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T1-A1">„NEA und Minimalisierung“ Examen 66115 Herbst 2012 T1 A1</a> (Potenzmengenalgorithmus, Minimierungsalgorithmus)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/Thema-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2013-Herbst_T2-A3">„Minimierung DFA“ Examen 66115 Herbst 2013 T2 A3</a> (Minimierungsalgorithmus)
 
 # Aufgaben geordnet nach Staatsexamen
 
@@ -934,6 +935,7 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/03/Thema-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2013-Frühjahr_T1-A6">Aufgabe 6 (Streutabellen (Hashing))</a>
 - 2013 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/Scan.pdf" download="Staatsexamen-Informatik_66115-2013-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/OCR.txt" download="Staatsexamen-Informatik_66115-2013-Herbst_OCR">OCR.txt</a> 
     - Thema 2 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/Thema-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2013-Herbst_T2-A3">Aufgabe 3 (Minimierungsalgorithmus)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/Thema-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66115-2013-Herbst_T2-A7">Aufgabe 7 (Binärbaum, Halde (Heap))</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/Thema-2/Aufgabe-8.pdf" download="Staatsexamen-Informatik_66115-2013-Herbst_T2-A8">Aufgabe 8 (AVL-Baum)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/Thema-2/Aufgabe-9.pdf" download="Staatsexamen-Informatik_66115-2013-Herbst_T2-A9">Aufgabe 9 (Algorithmus von Dijkstra)</a>

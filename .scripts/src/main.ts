@@ -15,6 +15,7 @@ import { erzeugeReadme } from './aktionen/erzeuge-readme'
 import { erzeugeExamensAufgabeVorlage } from './aktionen/erzeuge-examens-aufgabe-vorlage'
 import { führeSqlAus } from './aktionen/fuehre-sql-aus'
 import { öffne } from './aktionen/oeffne'
+import { öffneDurchStichwort } from './aktionen/oeffne-durch-stichwort'
 import { generiereExamenSammlungPdf } from './aktionen/erzeuge-examens-uebersicht'
 
 const programm = new Command()
@@ -65,6 +66,14 @@ programm
     } else {
       öffne(referenz.join(':'))
     }
+  })
+
+programm
+  .command('oeffne-stichwort <stichwort>')
+  .description('Öffne Aufgaben anhand des Stichworts')
+  .alias('s')
+  .action(function (stichwort: string, cmdObj: object): void {
+    öffneDurchStichwort(stichwort)
   })
 
 programm
@@ -166,7 +175,6 @@ programm
 
 programm
   .command('ocr <pdf-datei>')
-  .alias('o')
   .description('Texterkennung in einer PDF-Datei durchführen.')
   .action(function (datei: string): void {
     childProcess.spawnSync('ocrmypdf', [

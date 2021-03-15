@@ -27,6 +27,7 @@ var erzeuge_readme_1 = require("./aktionen/erzeuge-readme");
 var erzeuge_examens_aufgabe_vorlage_1 = require("./aktionen/erzeuge-examens-aufgabe-vorlage");
 var fuehre_sql_aus_1 = require("./aktionen/fuehre-sql-aus");
 var oeffne_1 = require("./aktionen/oeffne");
+var oeffne_durch_stichwort_1 = require("./aktionen/oeffne-durch-stichwort");
 var erzeuge_examens_uebersicht_1 = require("./aktionen/erzeuge-examens-uebersicht");
 var programm = new commander_1.Command();
 programm.description("Repository-Pfad: " + helfer_1.repositoryPfad);
@@ -73,6 +74,13 @@ programm
     else {
         oeffne_1.öffne(referenz.join(':'));
     }
+});
+programm
+    .command('oeffne-stichwort <stichwort>')
+    .description('Öffne Aufgaben anhand des Stichworts')
+    .alias('s')
+    .action(function (stichwort, cmdObj) {
+    oeffne_durch_stichwort_1.öffneDurchStichwort(stichwort);
 });
 programm
     .command('generiere-readme')
@@ -186,7 +194,6 @@ programm
 });
 programm
     .command('ocr <pdf-datei>')
-    .alias('o')
     .description('Texterkennung in einer PDF-Datei durchführen.')
     .action(function (datei) {
     child_process_1.default.spawnSync('ocrmypdf', [
