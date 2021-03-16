@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
+\liLadePakete{syntax,formale-sprachen,syntaxbaum}
 
 \begin{document}
 \liAufgabenTitel{Klammerausdrücke}
@@ -16,20 +16,137 @@ Beispiel:
 {[](){(){[]([])}}}{}
 \end{minted}
 
+\begin{minted}{md}
+{
+  []
+  ()
+  {
+    ()
+    {
+      []
+      (
+        []
+      )
+    }
+  }
+}
+{}
+\end{minted}
+
 \begin{enumerate}
 
 %%
 % (a)
 %%
 
-\item Entwerfe eine Grammatik, die die korrekte Abfolge solcher
+\item Entwerfen Sie eine Grammatik, die die korrekte Abfolge solcher
 Klammerfolgen beschreibt.
 
+\begin{liAntwort}
+Die Variablennamen:
+
+\begin{description}
+\item[S] \textbf{S}tart
+
+\item[G] \textbf{g}eschweifte Klammer (\texttt{\{\}})
+
+\item[E] \textbf{e}ckige Klammern (\texttt{[]})
+
+\item[R] \textbf{r}unde Klammern (\texttt{()})
+
+\item[V] \textbf{V}erkettung
+\end{description}
+
+\begin{minted}{md}
+S -> G | E | R | V | EPSILON
+G -> { S } | { }
+E -> [ S ] | [ ]
+R -> ( S ) | ( )
+V -> S S
+\end{minted}
+
+Die Produktionsregeln könnte man auch als nur eine Regel zusammenfassen.
+
+\begin{minted}{md}
+S -> { S } | {} | ( S ) | () | [ S ] | [] | S S | EPSILON
+\end{minted}
+
+Damit eine „abwechslungsreichere“ Ableitung entsteht, wir hier die auf
+mehrere Regeln aufgeteile Grammtik präferiert.
+
+\end{liAntwort}
 %%
 % (b)
 %%
 
-\item Gib eine Ableitung für den oben angegebenen Klammerausdruck an.
+\newpage
+
+\item Geben Sie eine Ableitung für den oben angegebenen Klammerausdruck
+an.
+
+\begin{liAntwort}
+In übersichtlicher Formatierung
+
+\begin{minted}{md}
+01 {
+02   []
+03   ()
+04   {
+05     ()
+06     {
+07       []
+08       (
+09         []
+10       )
+11     }
+12   }
+13 }
+14 {}
+\end{minted}
+
+% \Uchar91 \Uchar93
+
+Vor den Knoten G E R V müsste eigentlich jedesmal ein S stehen. Da der
+Baum sonst zu unübersichtlich wird, wurde auf die S-Knoten verzichtet.
+
+\begin{center}
+\begin{tikzpicture}[li parsetree,level distance=1.2cm]
+\Tree
+[.S
+  [.V
+    [.G % 01
+      \{
+      [.V
+        [.R ( ) ]  % 02
+        [.R ( ) ] % 03
+        [.G
+          \{ % 04
+          [.V
+            [.R ( ) ] % 05
+            [.G
+              \{ % 06
+                [.V
+                  [.E \Uchar91 \Uchar93 ] % 07
+                  [.R
+                    ( % 08
+                      [.E \Uchar91 \Uchar93 ] % 09
+                    ) % 08
+                  ]
+                ]
+              \} % 11
+            ]
+          ]
+          \} % 12
+        ]
+      ]
+      \}
+    ]
+    [.G \{ \} ] % 14
+  ]
+]
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}
