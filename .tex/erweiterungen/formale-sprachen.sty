@@ -63,3 +63,13 @@ zum Setzen von mathematischen Formeln bei dem Thema Formale Sprachen]
 \NewDocumentEnvironment { liProduktionsRegeln }
 { +b }
 {\directlua{formale_sprachen.produktions_regeln('#1')}} {}
+
+% Automatisch tiefgestellte Nummerierung \z1
+% \let\z=\liZustandsnameTiefgestellt
+\def\liZustandsnameTiefgestellt#1{
+  \ifmmode
+  \liZustandsBuchstabe_{#1}
+  \else
+  $\liZustandsBuchstabe_{#1}$
+  \fi
+}

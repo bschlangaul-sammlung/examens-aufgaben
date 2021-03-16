@@ -23,7 +23,9 @@ Ein Kellerautomat ist ein um einen „Speicher“ (Keller) erweiterter
 endlicher Automat.
 
 Ein nichtdeterministischer Kellerautomat $K$ (PDA = pushdown automaton)
-ist ein 6-Tupel $K = (Z, \Sigma, \Gamma, \delta, z_0 , \#)$
+ist ein 6-Tupel $K = (Z, \Sigma, \Gamma, \delta, z_0 , \#)$. Manchmal
+wird er auch als 7-Tupel angegeben. Als letztes Element im Tupel wird
+dann die Menge der Endzustände angegeben.
 
 \begin{description}
 \item[Z] endliche Zustandsmenge
@@ -31,7 +33,15 @@ ist ein 6-Tupel $K = (Z, \Sigma, \Gamma, \delta, z_0 , \#)$
 \item[$\Gamma$] (Gamma) Kelleralphabet mit \#
 \item[$\delta$] (delta) Zustandsübergangsfunktion
 \item[$z_0$] Startzustand
-\item[\#] unterstes Kellersymbol / Anfangssymbol im Keller ($\bot$ (bot) bei Hoffmann, $Z_0 bei$ bei Erk und Blum) \footcite[Seite 22]{theo:fs:2}
+\item[\#] unterstes Kellersymbol / Anfangssymbol im Keller ($\bot$ (bot)
+bei Hoffmann, $Z_0 bei$ bei Erk und Blum) \footcite[Seite 22]{theo:fs:2}
+Ein Kellerbodenzeichen ist ein spezielles Kellerzeichen, das nur einmal
+während eines Akzeptierungslaufs, nämlich eingangs, als Markierung des
+Kellerbodens eingeführt werden darf und nur einmal, als letzter Schritt
+eines Akzeptierungslaufs, wieder gelöscht werden darf.
+Zwischenzeitliches „Testen” soll aber möglich sein!
+\liFussnoteUrl{https://www.uni-trier.de/fileadmin/fb4/prof/INF/TIN/Folien/GTI_II/ws_2011/VL4.pdf}
+
 \end{description}
 
 Der Kellerspeicher ist als \memph{Stapel (stack)} organisiert und
@@ -128,6 +138,20 @@ ist das bisherige oberste Kellerzeichen.
 \end{description}
 \end{itemize}
 \liFussnoteUrl{http://sibiwiki.de/wiki/index.php?title=Kellerautomat}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Konfigurationsfolge}
+
+\begin{center}
+(aktueller Zustand, aktuelles, noch nicht verarbeitetes Eingabewort, aktuelle Kellerbelegung)
+\end{center}
+
+\begin{center}
+$(z_0, \text{abbba}, \# ) \vdash (z_0, \text{bbba}, a\#)$
+\end{center}
 
 \literatur
 

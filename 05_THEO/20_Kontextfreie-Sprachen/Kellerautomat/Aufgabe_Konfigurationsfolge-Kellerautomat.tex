@@ -1,8 +1,9 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe,automaten,formale-sprachen}
+\liLadePakete{mathe,automaten,formale-sprachen,mathe}
 \begin{document}
 \let\m=\liMengeOhneMathe
 \let\u=\liKellerUebergang
+\let\z=\liZustandsnameTiefgestellt
 
 \liAufgabenTitel{Konfigurationsfolge Kellerautomat}
 \section{Konfigurationsfolge von Kellerautomaten
@@ -11,18 +12,55 @@
 
 Gegeben ist der folgende nichtdeterministische Kellerautomat mit
 
-$P = (\{1, 2, 3, 4, \text{Final}\}, \m{a, b}, \m{Z, A, B}, \delta, 1, Z, \m{\text{Final}})$
+\begin{displaymath}
+P = (
+\{1, 2, 3, 4, \text{Final}\},
+\m{a, b},
+\m{\#, A, B},
+\delta,
+\z1,
+\#,
+\m{\z{Final}}
+)
+\end{displaymath}
 
 \begin{center}
 \begin{tikzpicture}[li kellerautomat,node distance=4cm]
-\node[state,initial] (1) {1};
-\node[state,above right of=1] (2) {2};
-\node[state,right of=2] (3) {3};
-\node[state,below right of=3] (4) {4};
-\node[state,below right of=1] (F) {Final};
+\node[state,initial] (1) {\z1};
+\node[state,above right of=1] (2) {\z2};
+\node[state,right of=2] (3) {\z3};
+\node[state,below left of=3] (4) {\z4};
+\node[state,below right of=1,accepting] (F) {\z{Final}};
 
-\path (1) edge[above left,bend left] node{\u{a Z AAZ}} (2);
-\path (2) edge[below right,bend left] node{\u{raute Z Z}} (1);
+\path (1) edge[bend left=10]
+node[above left=-0.3cm]{\u{a raute AAraute}} (2);
+
+\path (1) edge[above,bend left=10]
+node{\u{b raute Braute}} (4);
+
+\path (1) edge
+node[below left=-0.3cm]{\u{epsilon raute epsilon}} (F);
+
+\path (2) edge[bend left=10]
+node[below right=-0.4cm,]{\u{epsilon raute raute}} (1);
+
+\path (2) edge[loop above]
+node{\u{b A epsilon}\\\u{a A AAA}} (2);
+
+\path (3) edge[above]
+node{\u{epsilon raute Araute}} (2);
+
+\path (3) edge[bend left=10]
+node[below right=-0.4cm]{\u{epsilon B epsilon}} (4);
+
+\path (4) edge[below,loop,loop below]
+node{\u{b B BB}} (4);
+
+\path (4) edge[bend left=10]
+node[above left=-0.4cm]{\u{a B epsilon}} (3);
+
+\path (4) edge[below,bend left=10]
+node{\u{epsilon raute raute}} (1);
 \end{tikzpicture}
 \end{center}
 
@@ -39,20 +77,62 @@ eine Berechnung (Folge von Konfigurationen) des Kellerautomaten an:
 
 \item $w_1 = \texttt{bab}$
 
+\begin{liAntwort}
+$(\z1, bab, \#) \vdash
+(\z4, ab, B\#) \vdash
+(\z3, b, \#) \vdash
+(\z2, b, A\#) \vdash
+(\z2, \epsilon, \#) \vdash
+(\z1, \epsilon, \#) \vdash
+(\z{Final}, \epsilon, \epsilon)$
+\end{liAntwort}
+
 %%
 % (b)
 %%
 
 \item $w_2 = \texttt{abb}$
 
+\begin{liAntwort}
+$(\z1, abb, \#) \vdash
+(\z2, bb, AA\# )\vdash
+(\z2, b, A\#) \vdash
+(\z2, \epsilon, \#) \vdash
+(\z1, \epsilon, \#) \vdash
+(\z{Final}, \epsilon, \epsilon)$
+\end{liAntwort}
+
 %%
 % (c)
 %%
 
 \item $w_3 = \texttt{abababbbb}$
+
+\begin{liAntwort}
+$(\z1, abababbbb, \#) \vdash
+(\z2, bababbbb, AA\#) \vdash
+(\z2, ababbbb, A\#) \vdash
+(\z2, babbbb, AAA\#) \vdash
+(\z2, abbbb, AA\#) \vdash
+(\z2, bbbb, AAAA\#) \vdash
+(\z2, bbb, AAA\#) \vdash
+(\z2, bb, AA\#) \vdash
+(\z2, b, A\#) \vdash
+(\z2, \epsilon, \#) \vdash
+(\z1, \epsilon, \#) \vdash
+(\z{Final}, \epsilon, \epsilon)$
+\end{liAntwort}
+
 \end{enumerate}
 
 \item Charakterisiere die Wörter der Sprache in eigenen Worten.
+
+\begin{liAntwort}
+$L = \{w \, | \, w
+\text{ enthält genau doppelt so viele }
+b \text{’s wie }
+a \text{’s} \}$
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}
