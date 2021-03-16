@@ -142,10 +142,6 @@ thematisch zu keinem anderen Paket passen
 Hilfsmakros zum Setzen von Normalformen, Funktionalen Abhänigkeiten,
 Attributhülle
 
-* Makro: `\liFA #1 > #2`: Funktionale Abhängigkeit. #1 #2 ohne Komma wird
-  in einzelne Buchstaben zerteilt. z. B. `\liFA AB > CD` ergibt `A, B -> C, D`.
-  Soll nicht aufgeteilt werden, einfach ein Komma anhängen.
-
 ### `pseudo.sty`
 
 Paket zum Setzen von Pseudo-Code, Hüll-Paket um `algorithm2e`.

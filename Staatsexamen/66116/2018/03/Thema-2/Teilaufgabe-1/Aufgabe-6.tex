@@ -1,6 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{normalformen}
 \begin{document}
+\let\FA=\liFunktionaleAbhaengigkeiten
+
 \liAufgabenTitel{Synthese-Algorithmus bei Relationenschema A-F}
 
 \section{Aufgabe 6: Normalformen\footcite{examen:66116:2018:03}}
@@ -8,14 +10,14 @@
 Gegeben sei das Relationenschema R(A,B,C,D,E,F), sowie die Menge der
 zugehörigen funktionalen Abhängigkeiten F' \footcite{db:pu:wh}
 
-\begin{itemize}
-\item \liFA C > B
-\item \liFA B > A
-\item \liFA CE > D
-\item \liFA E > F
-\item \liFA CE > F
-\item \liFA C > A
-\end{itemize}
+\FA{
+  C -> B;
+  B -> A;
+  C, E -> D;
+  E -> F;
+  C, E -> F;
+  C -> A;
+}
 
 \begin{enumerate}
 \item Bestimmen Sie den Schlüsselkandidaten der Relation R und begründen

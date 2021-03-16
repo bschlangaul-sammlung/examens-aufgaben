@@ -4,6 +4,7 @@
 \let\a=\liAttributHuelleOhneMathe
 \let\m=\liMengeOhneMathe
 \let\fa=\liFunktionaleAbhaengigkeit
+\let\FA=\liFunktionaleAbhaengigkeiten
 
 \liAufgabenTitel{Relation-MNVTPPN}
 
@@ -15,12 +16,12 @@ besprochen)
 Betrachten Sie ein abstraktes Relationenschema $R = \{M, N, V, T, P,
 PN\}$ mit den FDs
 
-\begin{liFunktionaleAbhaengigkeiten}
-M -> M;
-M -> N;
-V -> T, P, PN;
-P -> PN;
-\end{liFunktionaleAbhaengigkeiten}
+\FA{
+  M -> M;
+  M -> N;
+  V -> T, P, PN;
+  P -> PN;
+}
 
 \begin{enumerate}
 \item Bestimmen Sie alle Kandidatenschlüssel.
@@ -55,21 +56,23 @@ Schlüsselkandidaten abhängen (z. B. \fa{M -> N}).
 
 $\a{R - (V \rightarrow T, P, PN) \cup (V \rightarrow T, P), \m{V}} = \m{V, T, P, PN}$
 
-\begin{liFunktionaleAbhaengigkeiten}
-M -> M;
-M -> N;
-V -> T, P;
-P -> PN;
-\end{liFunktionaleAbhaengigkeiten}
+\FA{
+  M -> M;
+  M -> N;
+  V -> T, P;
+  P -> PN;
+}
+
 \item Leere Klausel streichen
 
 \item Vereinigung
 
-\begin{liFunktionaleAbhaengigkeiten}
-M -> N;
-V -> T, P;
-P -> PN;
-\end{liFunktionaleAbhaengigkeiten}
+\FA{
+  M -> N;
+  V -> T, P;
+  P -> PN;
+}
+
 \end{enumerate}
 \end{liAntwort}
 

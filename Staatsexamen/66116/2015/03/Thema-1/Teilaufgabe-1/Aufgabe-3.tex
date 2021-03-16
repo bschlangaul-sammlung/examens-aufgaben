@@ -1,6 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{normalformen}
 \begin{document}
+\let\FA=\liFunktionaleAbhaengigkeiten
+
 \liAufgabenTitel{Relation A-F}
 \section{DB.3 (Funktionale Abhängigkeiten und Zerlegungen)
 \index{Normalformen}
@@ -15,7 +17,12 @@ Gegeben sei das Relationenschema R=(U, F) mit der Attributmenge
 und der folgenden Menge F von funktionalen Abhängigkeiten:
 
 \begin{center}
-\liFunktionaleAbhaengigkeiten{F}{\lifa A > B, \lifa ABC > D, \lifa D > BC {}}
+
+\FA{
+  A -> B;
+  A, B, C -> D;
+  D -> B, C;
+}
 \end{center}
 
 \begin{enumerate}

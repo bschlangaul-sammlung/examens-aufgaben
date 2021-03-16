@@ -1,6 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{rmodell,normalformen}
 \begin{document}
+\let\FA=\liFunktionaleAbhaengigkeiten
+
 \liAufgabenTitel{Wareneingänge}
 \section{Normalisierung
 \index{Normalformen}
@@ -31,7 +33,7 @@ ZulieferungsNr & ArtikelNr & Datum & Artikelname & Menge\\\hline
 \item Erläutern Sie, inwiefern obiges Schema die 3. Normalform verletzt.
 
 \begin{liAntwort}
-text
+
 \end{liAntwort}
 
 %%
@@ -60,12 +62,11 @@ Normalform (3NF) erreicht.
 \liFussnoteLink{datenbank-verstehen.de}{https://www.datenbanken-verstehen.de/datenmodellierung/normalisierung/abhaengigkeiten-normalisierung/}
 \end{exkurs}
 
-\begin{itemize}
-\item \liFA ZulieferungsNr, > Datum,
-\item \liFA ArtikelNr, > Artikelname,
-\item \liFA ZulieferungsNr, ArtikelNr > Menge,
-\end{itemize}
-
+\FA{
+  ZulieferungsNr -> Datum;
+  ArtikelNr -> Artikelname;
+  ZulieferungsNr, ArtikelNr -> Menge;
+}
 \end{liAntwort}
 
 %%
@@ -76,7 +77,7 @@ Normalform (3NF) erreicht.
 Erläutern Sie die dazu durchzuführenden Schritte jeweils kurz.
 
 \begin{liAntwort}
-text
+
 \end{liAntwort}
 
 \end{enumerate}
