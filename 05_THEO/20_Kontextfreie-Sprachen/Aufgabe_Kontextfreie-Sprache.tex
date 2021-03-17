@@ -65,6 +65,10 @@ $K = (\m{\z0, \z1}, \m{a, b}, \m{\#, A, B}, \delta, \z0, \#, \z0)$
 \node[state,initial,accepting] (0) {\z0};
 \node[state,right of=0] (1) {\z1};
 
+\path (0) edge[above,loop] node{
+  \u{epsilon raute epsilon}
+} (0);
+
 \path (0) edge[above,bend left] node{
   \u{a raute Araute}
 } (1);
