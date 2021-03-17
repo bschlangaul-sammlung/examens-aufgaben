@@ -1,7 +1,9 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{formale-sprachen}
+\liLadePakete{formale-sprachen,automaten}
 \begin{document}
 \let\m=\liMengeOhneMathe
+\let\u=\liKellerUebergang
+\let\z=\liZustandsnameTiefgestellt
 
 \liAufgabenTitel{Kontextfreie Sprache}
 \section{Kontextfreie Sprache
@@ -19,26 +21,69 @@ BA -> AB,
 AA -> aa,
 BB -> bb
 \end{liProduktionsRegeln}
+
 \begin{enumerate}
 
 %%
 % (a)
 %%
 
-\item Gib einen Ausdruck an, der die Wörter der Sprache beschreibt.
+\item Geben Sie einen (regulären?) Ausdruck an, der die Wörter der
+Sprache beschreibt.
+
+\begin{liAntwort}
+(aabb)*
+\end{liAntwort}
 
 %%
 % (b)
 %%
 
-\item Gib eine kontextfreie Grammatik $G'$ an, für die gilt:
+\item Geben Sie eine kontextfreie Grammatik $G'$ an, für die gilt:
 $L(G') = L(G)$
+
+\begin{liAntwort}
+\begin{liProduktionsRegeln}
+S -> SAB | epsilon,
+A -> a a,
+B -> b b
+\end{liProduktionsRegeln}
+%\liFussnoteUrl{https://flaci.com/Grn19rt8w}
+\end{liAntwort}
 
 %%
 % (c)
 %%
 
-\item Gib einen Kellerautomaten an, der die Sprache akzeptiert.
+\item Geben Sie einen Kellerautomaten an, der die Sprache akzeptiert.
+
+\begin{liAntwort}
+
+$K = (\m{\z0, \z1}, \m{a, b}, \m{\#, A, B}, \delta, \z0, \#, \z0)$
+
+\begin{tikzpicture}[li kellerautomat,node distance=3cm]
+\node[state,initial,accepting] (0) {\z0};
+\node[state,right of=0] (1) {\z1};
+
+\path (0) edge[above,bend left] node{
+  \u{a raute Araute}
+} (1);
+
+\path (1) edge[above,loop] node{
+  \u{b raute Braute}\\
+  \u{a A epsilon}\\
+} (1);
+
+\path (1) edge[below,bend left] node{
+  \u{b B epsilon}
+} (0);
+
+\end{tikzpicture}
+
+% DKA
+% https://flaci.com/Ai8krgvor
+
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}
