@@ -16,23 +16,6 @@ Beispiel:
 {[](){(){[]([])}}}{}
 \end{minted}
 
-\begin{minted}{md}
-{
-  []
-  ()
-  {
-    ()
-    {
-      []
-      (
-        []
-      )
-    }
-  }
-}
-{}
-\end{minted}
-
 \begin{enumerate}
 
 %%
@@ -43,12 +26,12 @@ Beispiel:
 Klammerfolgen beschreibt.
 
 \begin{liAntwort}
-Die Variablennamen:
+Erläuterungen zu den Variablennamen:
 
 \begin{description}
 \item[S] \textbf{S}tart
 
-\item[G] \textbf{g}eschweifte Klammer (\texttt{\{\}})
+\item[G] \textbf{g}eschweifte Klammern (\texttt{\{\}})
 
 \item[E] \textbf{e}ckige Klammern (\texttt{[]})
 
@@ -64,15 +47,16 @@ E -> [ S ] | [ ]
 R -> ( S ) | ( )
 V -> S S
 \end{minted}
+%\liFussnoteUrl{https://flaci.com/Ghjeb39xr}
 
-Die Produktionsregeln könnte man auch als nur eine Regel zusammenfassen.
+Die Produktionsregeln kann man auch zu einer Regel zusammenfassen.
 
 \begin{minted}{md}
 S -> { S } | {} | ( S ) | () | [ S ] | [] | S S | EPSILON
 \end{minted}
 
 Damit eine „abwechslungsreichere“ Ableitung entsteht, wir hier die auf
-mehrere Regeln aufgeteile Grammtik präferiert.
+mehrere Regeln aufgeteile Grammatik präferiert.
 
 \end{liAntwort}
 %%
@@ -85,29 +69,40 @@ mehrere Regeln aufgeteile Grammtik präferiert.
 an.
 
 \begin{liAntwort}
-In übersichtlicher Formatierung
+
+% 01 {
+% 02   []
+% 03   ()
+% 04   {
+% 05     ()
+% 06     {
+% 07       []
+% 08       (
+% 09         []
+% 10       )
+% 11     }
+% 12   }
+% 13 }
+% 14 {}
+
+Vor den Knoten/Variablen G E R V müsste eigentlich jedesmal ein S
+stehen. Da der Baum / die Ableitung sonst zu unübersichtlich wird, wurde
+auf die S-Knoten verzichtet. Auch auf die Epsilon-Übergänge wurde aus
+denselben Grund verzichtet.
 
 \begin{minted}{md}
-01 {
-02   []
-03   ()
-04   {
-05     ()
-06     {
-07       []
-08       (
-09         []
-10       )
-11     }
-12   }
-13 }
-14 {}
+S ->
+V ->
+GG ->
+{ V }{} ->
+{ E R G }{} ->
+{[](){ V }}{} ->
+{[](){ R G }}{} ->
+{[](){(){ V }}}{} ->
+{[](){(){ E R }}}{} ->
+{[](){(){[]( E )}}}{} ->
+{[](){(){[]([])}}}{}
 \end{minted}
-
-% \Uchar91 \Uchar93
-
-Vor den Knoten G E R V müsste eigentlich jedesmal ein S stehen. Da der
-Baum sonst zu unübersichtlich wird, wurde auf die S-Knoten verzichtet.
 
 \begin{center}
 \begin{tikzpicture}[li parsetree,level distance=1.2cm]
@@ -117,7 +112,7 @@ Baum sonst zu unübersichtlich wird, wurde auf die S-Knoten verzichtet.
     [.G % 01
       \{
       [.V
-        [.R ( ) ]  % 02
+        [.E \Uchar91 \Uchar93 ]  % 02
         [.R ( ) ] % 03
         [.G
           \{ % 04
