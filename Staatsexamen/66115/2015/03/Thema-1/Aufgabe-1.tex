@@ -1,7 +1,22 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{formale-sprachen,automaten}
+\liLadePakete{formale-sprachen,automaten,minimierung}
 \begin{document}
-\liAufgabenTitel{}
+\let\l=\liLeereZelle
+\let\f=\liFussnote
+\def\z#1{
+  \liZustandsMengenSammlungNr{#1}{
+    {
+      {0} {0}
+      {1} {0,1}
+      {2} {0,2}
+      {3} {0,1,2}
+    }
+  }
+}
+\let\s=\liZustandsnameGross
+\let\Z=\liZustandsPaar
+
+\liAufgabenTitel{Alphabet 0 1 Anzahl Unterschied höchstes 3}
 \section{Aufgabe 1
 \index{Reguläre Sprache}
 \footcite{66115:2015:03}}
@@ -32,6 +47,22 @@ Sie Ihr Argumentation schlüssig und vollständig auf.
 
 \item Begründen Sie, dass $L$ regulär ist.
 
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[li automat,node distance=3cm]
+\node[state,initial]
+(0) {$z_0$};
+
+\node[state,right of=0]
+(1) {$z_1$};
+
+\path (0) edge[above,loop] node{$0$,$1$} (0);
+
+\end{tikzpicture}
+\liFussnoteUrl{https://flaci.com/A5z2ogtgg}
+\end{center}
+\end{liAntwort}
+
 %%
 % (c)
 %%
@@ -56,7 +87,7 @@ Automaten mit nur drei Zuständen an, $L_2$ erkennt.
 
 \begin{liAntwort}
 \begin{center}
-\begin{tikzpicture}[->,node distance=3cm]
+\begin{tikzpicture}[li automat,node distance=3cm]
 \node[state,initial]
 (0) {$z_0$};
 
@@ -84,39 +115,34 @@ muss ein deterministischer Automat für $L_2$ also mindestens haben?
 \index{Potenzmengenalgorithmus}
 
 \begin{liAntwort}
-\def\z#1{
-  \liZustandsMengenSammlungNr{#1}{
-    {
-      {0} {0}
-      {1} {0,1}
-      {2} {0,2}
-      {3} {0,1,2}
-    }
-  }
-}
-\let\s=\liZustandsnameGross
+
+%%
+%
+%%
+
+\liPseudoUeberschrift{Potenzmengenkonstruktion}
 
 \begin{tabular}{l|l|l|l}
 Name & Zustandsmenge & Eingabe $0$ & Eingabe $1$ \\\hline\hline
-\s{0} & \z{0} & \z{0} & \z{1} \\
-\s{1} & \z{1} & \z{2} & \z{3} \\
-\s{2} & \z{2} & \z{0} & \z{1} \\
-\s{3} & \z{3} & \z{2} & \z{3} \\
+\s0 & \z0 & \z0 & \z1 \\
+\s1 & \z1 & \z2 & \z3 \\
+\s2 & \z2 & \z0 & \z1 \\
+\s3 & \z3 & \z2 & \z3 \\
 \end{tabular}
 
 \begin{center}
-\begin{tikzpicture}[->,node distance=3cm]
+\begin{tikzpicture}[li automat,node distance=3cm]
 \node[state,initial]
-(0) {\s{0}};
+(0) {\s0};
 
 \node[state,below of=0]
-(1) {\s{1}};
+(1) {\s1};
 
 \node[state,right of=0,accepting]
-(2) {\s{2}};
+(2) {\s2};
 
 \node[state,right of=1,accepting]
-(3) {\s{3}};
+(3) {\s3};
 
 \path (0) edge[above,loop] node{$0$} (0);
 \path (0) edge[left] node{$1$} (1);
@@ -130,6 +156,37 @@ Name & Zustandsmenge & Eingabe $0$ & Eingabe $1$ \\\hline\hline
 \end{tikzpicture}
 \liFussnoteUrl{https://flaci.com/Ajfcofpb9}
 \end{center}
+
+%%
+%
+%%
+
+\liPseudoUeberschrift{Minimierungsalgorithmus}
+
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|}
+\hline
+\s0 & \l  & \l  & \l  & \l  \\ \hline
+\s1 & \f2 & \l  & \l  & \l  \\ \hline
+\s2 & \f1 & \f1 & \l  & \l  \\ \hline
+\s3 & \f1 & \f1 & \f2 & \l  \\ \hline\hline
+    & \s0 & \s1 & \s2 & \s3 \\ \hline
+\end{tabular}
+\end{center}
+
+\liFussnoten
+
+\def\liZustandsPaarVariablenName{Z}
+
+\begin{liUebergangsTabelle}{0}{1}
+\Z01 & \Z02 \f2 & \Z13 \f2 \\
+\Z23 & \Z01 & \Z13 \f2 \\
+\end{liUebergangsTabelle}
+
+Wie aus der oben stehenden Tabelle abzulesen ist, gibt es keine
+äquivalenten Zustände. Der Automat kann nicht minimiert werden. Er ist
+bereits minimal
+
 \end{liAntwort}
 \end{enumerate}
 \end{document}
