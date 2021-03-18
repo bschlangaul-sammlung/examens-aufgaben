@@ -1,6 +1,9 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe}
+\liLadePakete{mathe,normalformen}
 \begin{document}
+\let\ah=\liAttributHuelle
+\let\m=\liMenge
+
 \liAufgabenTitel{Studentenbibliothek}
 
 \section{Staatsexamen Frühjahr 1994 - Aufgabe 7
@@ -34,13 +37,13 @@ in 3. Normalform an!
 \begin{enumerate}
 \item Linksreduktion
 
-$AttrHull(F, \{Autnr\}) = \{ Autnr, AutName, AutWohnort \}$
+$\ah{F, \m{Autnr}} = \m{ Autnr, AutName, AutWohnort }$
 
-$AttrHull(F, \{Signatur\}) = \{ Signatur, Titel, Fachgebiet, Art, ErschOrt, MatrNr, StudName, Gebdatum, StudWohnort, StudFachrichtung, \}$
+$\ah{F, \m{Signatur}} = \m{ Signatur, Titel, Fachgebiet, Art, ErschOrt, MatrNr, StudName, Gebdatum, StudWohnort, StudFachrichtung, }$
 
 \item Rechtsreduktion
 
-$AttrHull(F - \{Signatur \rightarrow MatrNr\}, \{Signatur\}) = \{ Signatur, Titel, Fachgebiet, Art, ErschOrt \}$ Es kann nichts weggelassen werden
+$\ah{F - \m{Signatur \rightarrow MatrNr}, \m{Signatur}} = \m{ Signatur, Titel, Fachgebiet, Art, ErschOrt }$ Es kann nichts weggelassen werden
 
 \end{enumerate}
 

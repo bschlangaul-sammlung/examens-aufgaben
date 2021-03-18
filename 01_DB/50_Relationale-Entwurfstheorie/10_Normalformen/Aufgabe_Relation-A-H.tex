@@ -3,6 +3,8 @@
 \begin{document}
 \let\fa=\liFunktionaleAbhaengigkeit
 \let\FA=\liFunktionaleAbhaengigkeiten
+\let\ah=\liAttributHuelle
+\let\m=\liMenge
 
 \liAufgabenTitel{Relation A-H}
 
@@ -43,13 +45,13 @@ Wir betrachten nur die zusammengesetzten Attribute:
 \begin{itemize}
 \item \fa{AE -> D}:
 
-$\liAttributHuelle{F, \{A\}} = \{A, E, F, B, \textbf{D}\}$ \\
-$\textit{AttrHüll}(F, \{E\}) = \{E\}$
+$\ah{F, \m{A}} = \m{A, E, F, B, \textbf{D}}$ \\
+$\ah{(F, \m{E}} = \m{E}$
 
 \item \fa{AG -> H}:
 
-$\textit{AttrHüll}(F, \{A\}) = \{A, E, F, B, D\}$ \\
-$\textit{AttrHüll}(F, \{G\}) = \{G\}$
+$\ah{F, \m{A}} = \m{A, E, F, B, D}$ \\
+$\ah{F, \m{G}} = \m{G}$
 \end{itemize}
 
 \textbf{FDs}
@@ -71,12 +73,12 @@ Nur die Attribute betrachten, die rechts doppelt vorkommen:
 
 $E$:
 
-$\textit{AttrHüll}(F - \{F \rightarrow E\}, \{F\}) = \{F\}$ \\
-$\textit{AttrHüll}(F - \{A \rightarrow E\}, \{A\}) = \{A, B, D, F, \textbf{E}\}$
+$\ah{F - \m{F \rightarrow E}, \m{F}} = \m{F}$ \\
+$\ah{F - \m{A \rightarrow E}, \m{A}} = \m{A, B, D, F, \textbf{E}}$
 
 $D$:
 
-$\textit{AttrHüll}(F - \{A \rightarrow D\}, \{A\}) = \{A, B, \textbf{D}, F, E\}$
+$\ah{F - \m{A \rightarrow D}, \m{A}} = \m{A, B, \textbf{D}, F, E}$
 
 $A \rightarrow D$ kann wegen der Armstrongschen Dekompositionsregel
 weggelassen werden. Wenn gilt $A \rightarrow B, D$, dann gilt auch $A

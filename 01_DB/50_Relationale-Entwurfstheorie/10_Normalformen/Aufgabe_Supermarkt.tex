@@ -2,6 +2,7 @@
 \liLadePakete{normalformen}
 \begin{document}
 \let\FA=\liFunktionaleAbhaengigkeiten
+\let\m=\liMenge
 
 \liAufgabenTitel{Supermarkt}
 
@@ -98,7 +99,7 @@ Ich wähle \texttt{ArtNr, Lieferant, BestDat} aus, da diese Attribute auf
 keiner rechten Seite einer FD vorkommen. Außerdem wähle ich \texttt{EP}
 aus, da \texttt{EP} in keiner FD vorkommt.
 
-\tmptt{AttrHülle(F, \{ArtNr, Lieferant, BestDat, EP\}) = \\
+\tmptt{AttrHülle(F, \m{ArtNr, Lieferant, BestDat, EP}) = \\
 \{
   ArtNr,
   Lieferant,
@@ -120,7 +121,7 @@ weiter verkleinern kann.
 
 \subsection*{ohne \texttt{ArtNr}}
 
-\tmptt{AttrHülle(F, \{Lieferant, BestDat, EP\}) = \\
+\tmptt{AttrHülle(F, \m{Lieferant, BestDat, EP}) = \\
 \{
   Lieferant,
   BestDat,
@@ -130,7 +131,7 @@ weiter verkleinern kann.
 
 \subsection*{ohne \texttt{Lieferant}}
 
-\tmptt{AttrHülle(F, \{ArtNr, BestDat, EP\}) = \\
+\tmptt{AttrHülle(F, \m{ArtNr, BestDat, EP}) = \\
 \{
   ArtNr,
   BestDat,
@@ -143,7 +144,7 @@ weiter verkleinern kann.
 
 \subsection*{ohne \texttt{BestDat}}
 
-\tmptt{AttrHülle(F, \{ArtNr, Lieferant, EP\}) = \\
+\tmptt{AttrHülle(F, \m{ArtNr, Lieferant, EP}) = \\
 \{
   ArtNr,
   Lieferant,
@@ -157,7 +158,7 @@ weiter verkleinern kann.
 
 \subsection*{ohne \texttt{EP}}
 
-\tmptt{AttrHülle(F, \{ArtNr, Lieferant, BestDat\}) = \\
+\tmptt{AttrHülle(F, \m{ArtNr, Lieferant, BestDat}) = \\
 \{
   ArtNr,
   Lieferant,
@@ -233,7 +234,7 @@ ist \tmptt{ArtNr, Lieferant, BestDat $\rightarrow$ Anzahl}
 \begin{itemize}
 \item ohne \tmptt{ArtNr}
 
-\tmptt{Anzahl $\notin$ AttrHülle(F, \{Lieferant, BestDat\}) = \\
+\tmptt{Anzahl $\notin$ AttrHülle(F, \m{Lieferant, BestDat}) = \\
 \{
   Lieferant,
   BestDat,
@@ -242,7 +243,7 @@ ist \tmptt{ArtNr, Lieferant, BestDat $\rightarrow$ Anzahl}
 
 \item ohne \tmptt{Lieferant}
 
-\tmptt{Anzahl $\notin$ AttrHülle(F, \{ArtNr, BestDat\}) = \\
+\tmptt{Anzahl $\notin$ AttrHülle(F, \m{ArtNr, BestDat}) = \\
 \{
   ArtNr,
   BestDat,
@@ -254,7 +255,7 @@ ist \tmptt{ArtNr, Lieferant, BestDat $\rightarrow$ Anzahl}
 
 \item ohne \tmptt{BestDat}
 
-\tmptt{Anzahl $\notin$ AttrHülle(F, \{ArtNr, Lieferant\}) = \\
+\tmptt{Anzahl $\notin$ AttrHülle(F, \m{ArtNr, Lieferant}) = \\
 \{
   ArtNr,
   Lieferant,
@@ -274,7 +275,7 @@ Die linke Seiten der FDs können nicht reduziert werden.
 Das einzige Attribut, dass auf der rechten Seite der FDs doppelt vorkommt
 ist \tmptt{HerstTel}
 
-\tmptt{HerstTel $\in$ AttrHülle(F - \{ArtNr $\rightarrow$ HerstTel\}, \{ArtNr\}) = \\
+\tmptt{HerstTel $\in$ AttrHülle(F - \m{ArtNr $\rightarrow$ HerstTel}, \m{ArtNr}) = \\
 \{
   ArtNr,
   ArtName,

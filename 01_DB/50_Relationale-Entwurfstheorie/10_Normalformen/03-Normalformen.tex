@@ -1,9 +1,11 @@
 \documentclass{lehramt-informatik-haupt}
-\liLadePakete{mathe}
+\liLadePakete{mathe,normalformen}
 \usepackage{tabularx}
 \usepackage{paralist}
 
 \begin{document}
+\let\ah=\liAttributHuelle
+\let\m=\liMenge
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Theorie-Teil
@@ -88,45 +90,45 @@ $T \rightarrow U$
 
 Gesucht
 
-$\textit{AttrHüll}(F, \{P,Q\})$
+$\ah{F, \m{P,Q}}$
 
 \noindent
 \begin{tabularx}{\linewidth}{lX}
-$\{P, Q\}$ &
+$\m{P, Q}$ &
 Initialisierung von Erg mit den vorgegebenen Attributwerten P und Q
 \\\hline
 
-$\{P, Q\} \cup \{R\}$  &
+$\m{P, Q} \cup \m{R}$  &
 Die linke Seite der FD $P Q \rightarrow R$ ist bereits in Erg enthalten.
 Also werden die Attribute der rechten Seite zur Menge Erg hinzugefügt.
 \\\hline
 
-$\{P, Q, R\}$ &
+$\m{P, Q, R}$ &
 Wegen der FD $PR \rightarrow Q$ käme Q hinzu, ist aber schon in Erg
 enthalten. Also bleibt Erg unverändert.
 \\\hline
 
-$\{P, Q, R\} \cup \{S\}$ &
+$\m{P, Q, R} \cup \m{S}$ &
 Die linke Seite der FD $Q \rightarrow S$ ist bereits in Erg enthalten.
 Also werden die Attribute der rechten Seite zur Menge Erg hinzugefügt.
 \\\hline
 
-$\{P, Q, R, S\} \cup \{T\}$ &
+$\m{P, Q, R, S} \cup \m{T}$ &
 Die linke Seite der FD $PS \rightarrow T$ ist bereits in Erg enthalten.
 Also werden die Attribute der rechten Seite zur Menge Erg hinzugefügt.
 \\\hline
 
-$\{P, Q, R, S, T\}$ &
+$\m{P, Q, R, S, T}$ &
 Wegen der FD $QR \rightarrow P$ käme P hinzu, ist aber schon in Erg
 enthalten. Also bleibt Erg unverändert.
 \\\hline
 
-$\{P, Q, R, S, T\} \cup \{U\}$ &
+$\m{P, Q, R, S, T} \cup \m{U}$ &
 Die linke Seite der FD $T \rightarrow U$ ist bereits in Erg enthalten.
 Also werden die Attribute der rechten Seite zur Menge Erg hinzugefügt.
 \\\hline
 
-$\{P, Q, R, S, T, U\}$ &
+$\m{P, Q, R, S, T, U}$ &
 Es ist also bereits die gesamte Attributmenge erreicht. Weitere
 Betrachtungen erübrigen sich hiermit.
 \\\hline
@@ -206,7 +208,7 @@ Schlüsselkandidaten sind.
 \subsubsection{Beispiel}
 
 Gegeben ist das Relationenschema
-$Aufnahmepruefung\{PersNr, Schuelername, Fach, Note\}$
+$Aufnahmepruefung\m{PersNr, Schuelername, Fach, Note}$
 und die Menge von FDs
 $F = \{
   PersNr Schuelername \rightarrow Note,
@@ -217,8 +219,8 @@ $F = \{
 
 Die funktionalen Abhängigkeiten implizieren, dass es zwei
 Schlüsselkandidaten gibt, nämlich
-$\{PersNr, Schuelername\}$ und
-$\{Schuelername, Fach\}$.
+$\m{PersNr, Schuelername}$ und
+$\m{Schuelername, Fach}$.
 
 Das Relationenschema befindet sich in 3NF, da gilt:
 
@@ -245,7 +247,7 @@ Fach eine Lehrkraft prüft, mehrfach abgespeichert wird.
 
 \section{Abstaktes R\footcite[Seite 1, Aufgabe 1]{db:ab:6}}
 
-Gegeben sei das Relationenschema $R\{A, B, C, D, E, G\}$ mit
+Gegeben sei das Relationenschema $R\m{A, B, C, D, E, G}$ mit
 
 \begin{multline}
 F = \{ \\
@@ -267,11 +269,11 @@ F = \{ \\
 \begin{liAntwort}
 A, G, D kommen auf keiner linken Seite vor
 
-$AttrHull(F, \{C, E\}) = R$
+$\ah{F, \m{C, E}} = R$
 
-$AttrHull(F, \{C\}) = \{B\} != R$
+$\ah{F, \m{C}} = \m{B} != R$
 
-$AttrHull(F, \{E\}) = \{E, D\} != R$
+$\ah{F, \m{E}} = \m{E, D} != R$
 \end{liAntwort}
 
 \begin{liAntwort}
@@ -279,12 +281,12 @@ $AttrHull(F, \{E\}) = \{E, D\} != R$
 $C$ und $E$ kommen auf keiner rechten Seite der FDs aus $F$ vor, d.h.
 $C$ und $E$ müssen Teil jedes Schlüsselkandidaten sein.
 
-Außerdem gilt: $AttrHull(F, \{C, E\}) = \{A, B, C, D, E, G\} = R$
+Außerdem gilt: $\ah{F, \m{C, E}} = \m{A, B, C, D, E, G} = R$
 
-$\{C, E\}$ ist somit Superschlüssel von $R$. Zudem ist $\{C, E\}$
+$\m{C, E}$ ist somit Superschlüssel von $R$. Zudem ist $\m{C, E}$
 minimal, da beide Attribute Teil jedes SK sein müssen.
 
-$\Rightarrow$ $\{C, E\}$ ist damit der einzige Schlüsselkandidat von $R$
+$\Rightarrow$ $\m{C, E}$ ist damit der einzige Schlüsselkandidat von $R$
 (da kein SK ohne $C$ und $E$ möglich ist).
 
 Anmerkung:
@@ -296,8 +298,8 @@ E\}$. In diesem Fall lässt sich die Schlüsselkandidateneigenschaft
 jedoch einfacher zeigen, sodass man den Algorithmus und somit Zeit
 sparen kann.
 
-\item Achtung! $\{C, E\}$ ist zwar der einzige Schlüsselkandidat, aber
-nicht der einzige Superschlüssel, auch \{A, B, C, D, E, G\} wäre ein
+\item Achtung! $\m{C, E}$ ist zwar der einzige Schlüsselkandidat, aber
+nicht der einzige Superschlüssel, auch \m{A, B, C, D, E, G} wäre ein
 Superschlüssel!
 \end{itemize}
 
@@ -311,7 +313,7 @@ Superschlüssel!
 
 \begin{liAntwort}
 Ist nicht in der 2NF, denn $D$ hängt von $E$ ab, also von einer
-echten Teilmenge des Schlüsselkandidaten $\{C, E\}$. Das gleiche gilt
+echten Teilmenge des Schlüsselkandidaten $\m{C, E}$. Das gleiche gilt
 für die FD $C \rightarrow B$.
 \end{liAntwort}
 
@@ -319,7 +321,7 @@ für die FD $C \rightarrow B$.
 $R$ ist nicht in 2NF, denn:
 
 Betrachte $E \rightarrow D$: $D$ ist ein Nicht-Schlüsselattribut und $E$
-ist echt Teilmenge des Schlüsselkandidaten $\{C, E\}$.
+ist echt Teilmenge des Schlüsselkandidaten $\m{C, E}$.
 %
 Ebenso ist $B$ nicht voll funktional abhängig vom Schlüsselkandidaten,
 sondern nur von einer echten Teilmenge des Schlüsselkandidaten, nämlich
@@ -366,8 +368,8 @@ Kanonische Überdeckung
 
 \begin{enumerate}
 \item Linksreduktion\\
-$AttrHul\{F, \{C\}\} = \{C, B\}$ $\rightarrow G$ nicht enthalten\\
-$AttrHul\{F, \{E\}\} = \{E, D\}$ $\rightarrow G$ nicht enthalten
+$AttrHul\m{F, \m{C}} = \m{C, B}$ $\rightarrow G$ nicht enthalten\\
+$AttrHul\m{F, \m{E}} = \m{E, D}$ $\rightarrow G$ nicht enthalten
 
 \item Rechtsreduktion\\
 Kein Attribut auf einer rechten Seite ist redundant: Da das einzelne
@@ -386,26 +388,26 @@ bereits einer kanonischen Überdeckung von F oder nicht?
 \begin{itemize}
 \item Eliminierung redundanter Attribute auf der linken Seite: Die
 Attributmenge auf den linken Seiten der FDs sind bereits bis auf $CE
-\rightarrow G$ einelementig. Bei $CE \rightarrow G$ ist \{CE\} der
+\rightarrow G$ einelementig. Bei $CE \rightarrow G$ ist \m{CE} der
 Schlüsselkandidat, also kann kein redundantes Attribut vorliegen.
 
 \item Eliminierung redundanter Attribute auf der rechten Seite (hier müssen auch alle
 einelementigen FA’s betrachtet werden)
 
 \begin{itemize}
-\item $E \rightarrow D$: $AttrHull(F - \{E \rightarrow D\}, \{E\}) = \{E\}$, d.h.
-$D \notin AttrHull(F - \{E \rightarrow D\}, \{E\})$
+\item $E \rightarrow D$: $\ah{F - \m{E \rightarrow D}, \m{E}} = \m{E}$, d.h.
+$D \notin \ah{F - \m{E \rightarrow D}, \m{E}}$
 
-\item $C \rightarrow B$: $AttrHull(F - \{C \rightarrow B\}, \{C\}) = \{C\}$, d.h.
-$B \notin AttrHull(F - \{C \rightarrow B\}, \{E\})$
+\item $C \rightarrow B$: $\ah{F - \m{C \rightarrow B}, \m{C}} = \m{C}$, d.h.
+$B \notin \ah{F - \m{C \rightarrow B}, \m{E}}$
 
-\item $CE \rightarrow G$: $AttrHull(F - \{CE \rightarrow G\}, \{C, E\}) = \{A, B, C, D, E\}$, d.h.
-$G \notin AttrHull(F - \{CE \rightarrow G\}, \{E\})$
+\item $CE \rightarrow G$: $\ah{F - \m{CE \rightarrow G}, \m{C, E}} = \m{A, B, C, D, E}$, d.h.
+$G \notin \ah{F - \m{CE \rightarrow G}, \m{E}}$
 $\Rightarrow$ $CE \rightarrow G$ ist nicht redundant
 
-\item $B \rightarrow A$: $AttrHull(F - \{B \rightarrow A\}, \{B\}) = \{B\}$, d.h.
+\item $B \rightarrow A$: $\ah{F - \m{B \rightarrow A}, \m{B}} = \m{B}$, d.h.
 
-$A \notin AttrHull(F - \{B \rightarrow A\}, \{E\})$
+$A \notin \ah{F - \m{B \rightarrow A}, \m{E}}$
 $\Rightarrow$ $B \rightarrow A$ ist nicht redundant
 \end{itemize}
 
@@ -414,133 +416,6 @@ F ist bereits minimal.
 
 \end{liAntwort}
 
-\end{enumerate}
-
-%-----------------------------------------------------------------------
-%
-%-----------------------------------------------------------------------
-
-\section{Normalformen (Mietwagenfirma)
-\footcite[Seite 2, Aufgabe 3: Normalformen]{db:pu:4}
-}
-
-Gegeben sei die folgende relationale Datenbank der Mietwagenfirma
-„MobilRent“, Station „München-Mitte“.
-
-\renewcommand{\labelenumi}{(\alph{enumi})}
-
-\begin{tabular}{lllllllll}
-KdNr & Name & Wohnort & Buchungsdatum & Aktion & Fahrzeug & Typ & Tarifgruppe & Tage
-\\
-
-123 & Chomsky & Nürnberg & 23.01.2004 & 0 & Cala & Klein & 7 & 2
-\\
-
-123 & Chomsky & Nürnberg & 07.10.2003 & -25\% & Vanny & Transp & ® & 1
-\\
-
-220 & Neumann & München & 02.04.2004 & 0 & Baro & Klein & 7 & 2
-\\
-
-710 & Turing & München & 20.02.2004 & -10\% & Cala & Klein & 1 & 2
-\\
-
-888 & Neumann & Passau & 07.10.2003 & -25\% & Lux & Mittelkl & 3 & 3
-\\
-\end{tabular}
-
-$KdNr$ steht für die Kundennummer der Kunden. An bestimmten Tagen
-gewährt die Firma Rabatt. Folgende funktionale Abhängigkeiten seien
-vorgegeben.
-
-$KdNr \rightarrow Name, Wohnort$
-
-$KdNr, Buchungsdatum \rightarrow Fahrzeug, Typ, Tarifgruppe, Tage, Rueckgabe-Station$
-
-$Buchungsdatum \rightarrow Aktion$
-
-$Fahrzeug \rightarrow Typ, Tarifgruppe$
-
-$Typ \rightarrow Tarifgruppe$
-
-$Rueckgabestation \rightarrow Stationsleiter$
-
-Der Primärschlüssel besteht aus den Attributen $KdNr$ und
-$Buchungsdatum$.
-
-\begin{enumerate}
-
-%%
-% (a)
-%%
-
-\item Begründe, dass diese Tabelle in 1. Normalform vorliegt.
-
-\begin{liAntwort}
-Es gibt nur atomare Werte. Alle Attributewerte sind atomar.
-\end{liAntwort}
-
-%%
-% (b)
-%%
-
-\item Erläutere, warum nur Tabellen mit zusammengesetzem Primärschlüssel
-die zweite Normalform verletzen können.
-
-\begin{liAntwort}
-Nur bei Tabellen mit zusammegesetzten Primärschlüssel kann es vorkommen,
-dass ein Nichtschlüssel-Attribute von einer echten Teilmenge des
-Primärschlüssel voll funktional abhängt.
-\end{liAntwort}
-
-%%
-% (c)
-%%
-
-\item Zeige mögliche Anomalien auf, die hier auftreten können.
-
-\begin{liAntwort}
-Löschanomalie, z. B.
-
-Updateanomalie, z. B. Chomsky zieht um
-
-Insert-Anomalie, z. B. Kunde kann sich nicht registrieren ohne
-dass ein Buchung stattfand.
-\end{liAntwort}
-
-%%
-% (d)
-%%
-
-\item Überführe das Schema in die 2. Normalform.
-
-\begin{liAntwort}
-MobilRent(\underline{KdNr, Buchungsdatum}, Fahrzeug, Typ, Tarifgruppe, Tage,Rückgabestation, Stationsleiter)
-
-Kunden(\underline{Kdnr}, Name, Wohnort)
-
-Aktion(\underline{Buchungsdatum}, Aktion)
-\end{liAntwort}
-
-%%
-% (3)
-%%
-
-\item Überführe das Schema in die 3. Normalform.
-
-\begin{liAntwort}
-Kunden(\underline{Kdnr}, Name, Wohnort)
-
-Aktion(\underline{Buchungsdatum}, Aktion)
-
-Fahrzeugtypen(\underline{Fahrzeug}, Typ)
-
-Tarifgruppen(\underline{Typ}, Tarifgruppe)
-
-Stationsleiter(\underline{Rückgabestation}, Stationsleiter)
-
-MobilRent(\underline{KdNr, Buchungsdatum}, Fahrzeug, Tage, Rückgabestation)
-\end{liAntwort}
 \end{enumerate}
 
 %-----------------------------------------------------------------------
@@ -648,20 +523,20 @@ Attributhülle
 % 1.
 %%
 
-\item $AttrHull(F, \{Name, Bezeichnung\})$
+\item $\ah{F, \m{Name, Bezeichnung}}$
 
 \begin{liAntwort}
-$AttrHull(F, \{Name, Bezeichnung\}) = \{Name, Bezeichnung\}$
+$\ah{F, \m{Name, Bezeichnung}} = \m{Name, Bezeichnung}$
 \end{liAntwort}
 
 %%
 % 2.
 %%
 
-\item $AttrHull(F, \{Name, AbtNr\})$
+\item $\ah{F, \m{Name, AbtNr}}$
 
 \begin{liAntwort}
-$AttrHull(F, \{Name, AbtNr\}) = \{Name, AbtNr, Strasse, Ort, Bezeichnung\}$
+$\ah{F, \m{Name, AbtNr}} = \m{Name, AbtNr, Strasse, Ort, Bezeichnung}$
 \end{liAntwort}
 \end{enumerate}
 
@@ -702,8 +577,8 @@ F = \{ \\
 \begin{enumerate}
 \item Linksreduktion
 
-$AttrHull(F, \{D\}) = \{D\}$ \\
-$AttrHull(F, \{C\}) = \{C, D, A, B, E\}$ \\
+$\ah{F, \m{D}} = \m{D}$ \\
+$\ah{F, \m{C}} = \m{C, D, A, B, E}$ \\
 
 \begin{multline*}
 F' = \{ \\
@@ -716,10 +591,10 @@ F' = \{ \\
 
 \item Rechtsreduktion
 
-$AttrHull(F - \{A \rightarrow BC\}, \{A\}) = \{A\}$ \\
-$AttrHull(F - \{C \rightarrow DA\}, \{C\}) = \{C, B, E, A\}$ \\
-$AttrHull(F - \{E \rightarrow AC\}, \{E\}) = \{E\}$ \\
-$AttrHull(F - \{C \rightarrow BE\}, \{C\}) = \{C, D, A, B\}$ \\
+$\ah{F - \m{A \rightarrow BC}, \m{A}} = \m{A}$ \\
+$\ah{F - \m{C \rightarrow DA}, \m{C}} = \m{C, B, E, A}$ \\
+$\ah{F - \m{E \rightarrow AC}, \m{E}} = \m{E}$ \\
+$\ah{F - \m{C \rightarrow BE}, \m{C}} = \m{C, D, A, B}$ \\
 Keine Linksreduktion möglich
 
 schon minimal

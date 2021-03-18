@@ -1,6 +1,9 @@
 \documentclass{lehramt-informatik-haupt}
+\liLadePakete{normalformen,syntax}
 
 \begin{document}
+\let\ah=\liAttributHuelle
+\let\m=\liMenge
 
 %-----------------------------------------------------------------------
 %
@@ -9,12 +12,12 @@
 \section{Aufgabe 5.1 (Seite 79)}
 
 \begin{enumerate}
-\item Gegeben sind die Domänen Klassenstufe = \{5, 11\} und
-Raumnummer = \{101, 102, 202\}\}. Bestimmen Sie das kartesische Produkt
+\item Gegeben sind die Domänen Klassenstufe = \m{5, 11} und
+Raumnummer = \m{101, 102, 202}\}. Bestimmen Sie das kartesische Produkt
 Klassenstufe x Raumnummer.
 
 \begin{liAntwort}
-\{(5, 101), (5, 102), (5, 202), (11, 101), (11, 102), (11,202)\}
+\m{(5, 101), (5, 102), (5, 202), (11, 101), (11, 102), (11,202)}
 \end{liAntwort}
 
 \item Es gilt: Klasse $\subseteq$ Klassenstufe $\times$ Raumnummer.
@@ -43,7 +46,7 @@ Klasse = {(5, 101), (11, 202)}
 dem Relationschema Schueler (Eintrittsjahr, Nr, Name, Konfession)
 darstellen. Geben Sie die Extension der Relation an.
 
-Lösung: \{(2017, 1, Max Mustermann, rk), (2018, 2, Sabine Kracker, ev)\}
+Lösung: \m{(2017, 1, Max Mustermann, rk), (2018, 2, Sabine Kracker, ev)}
 
 %%
 %
@@ -54,7 +57,7 @@ Klassenzimmer beschreiben. Geben Sie ein mögliches Relationenschema
 Klasse an.
 
 \begin{liAntwort}
-Klasse \{[Name: STRING, Klassenzimmer: STRING]\}
+Klasse \m{[Name: STRING, Klassenzimmer: STRING]}
 \end{liAntwort}
 
 \end{enumerate}
@@ -1016,7 +1019,7 @@ WHERE f.Klasse = 5 AND f.Lehrkraft = l.PersNr;
 \section{Aufgabe 8.1 (Seite 174)}
 
 Gegeben sei die Relation Artikel mit dem Schema
-\texttt{Artikel\{Lieferant, Adresse, Artikelname, Preis\}}. Die
+\texttt{Artikel\m{Lieferant, Adresse, Artikelname, Preis}}. Die
 Relation wird durch folgende Tabelle repräsentiert:
 
 Geben Sie Beispiele für mögliche Anomalien an!
@@ -1113,41 +1116,41 @@ Preis eindeutig bestimmt werden kann.
 %%
 
 \item Gegeben sei das Relationenschema
-$Artikel\{Lieferant, Adresse, Artikelname, Preis\}$ , die folgende
+$Artikel\m{Lieferant, Adresse, Artikelname, Preis}$ , die folgende
 Menge $F$ funktionaler Abhängigkeiten für Artikel
 $F := \{
   Lieferant \rightarrow Adresse,
   Lieferant Artikelname \rightarrow Preis
 \}$
 und die Menge
-$X = \{Lieferant, Artikelname\}$.
-Bestimmen Sie $AttrHull(F, X)$.
+$X = \m{Lieferant, Artikelname}$.
+Bestimmen Sie $\ah{F, X}$.
 
 \begin{liAntwort}
-$F^+ = \{Lieferant, Artikelname\}$
+$F^+ = \m{Lieferant, Artikelname}$
 
 1. Durchlauf
 
-$Lieferant$ ja $F^+ = \{Lieferant, Artikelname, Adresse\}$
-$Lieferant Artikelname$ ja $F^+$ $F^+ = \{Lieferant, Artikelname, Adresse, Preis\}$
+$Lieferant$ ja $F^+ = \m{Lieferant, Artikelname, Adresse}$
+$Lieferant Artikelname$ ja $F^+$ $F^+ = \m{Lieferant, Artikelname, Adresse, Preis}$
 
 2. Durchlauf
 
 keine Veränderungen mehr
 
-$F^+ = \{Lieferant, Artikelname, Adresse, Preis\}$
+$F^+ = \m{Lieferant, Artikelname, Adresse, Preis}$
 \end{liAntwort}
 
 %%
 %
 %%
 
-\item Gegeben sei das Relationenschema $Abstrakt\{A, B, C, D, E\}$ , und
+\item Gegeben sei das Relationenschema $Abstrakt\m{A, B, C, D, E}$ , und
 $F := \{
   A D \rightarrow C,
   B \rightarrow D,
   E \rightarrow A
-\}$. Bestimmen Sie $AttrHull(F, \{A, B\})$.
+\}$. Bestimmen Sie $\ah{F, \m{A, B}}$.
 \end{enumerate}
 
 \begin{liAntwort}
@@ -1177,7 +1180,7 @@ A D ja $F^+ \cup A B D C$
 %%
 
 \item Gegeben sei das Relationenschema
-\texttt{Professor\{PersNr, Dienststelle, Zimmer, Telefon\}}
+\texttt{Professor\m{PersNr, Dienststelle, Zimmer, Telefon}}
 und
 \texttt{F = \{
   PersNr Dienststelle $\rightarrow$ Zimmer,
@@ -1193,22 +1196,22 @@ Ist F bereits minimal?
 \item Überprüfung, ob redundante Attribute vorliegen:
 
 \begin{itemize}
-\item \texttt{Zimmer $\rightarrow$ Telefon}: \texttt{\{Zimmer\}} ist
+\item \texttt{Zimmer $\rightarrow$ Telefon}: \texttt{\m{Zimmer}} ist
 bereits einelementig, d.h. es gibt kein redundantes Attribut
 
 \item \texttt{PersNr Dienststelle $\rightarrow$ Zimmer}
 
 \begin{itemize}
 \item Wir berechnen:
-\texttt{AttrHull(F, \{PersNr\}) = \{PersNr\}}, aber
-\texttt{Zimmer $\notin$ \{PersNr\}}.
+\texttt{\ah{F, \m{PersNr}} = \m{PersNr}}, aber
+\texttt{Zimmer $\notin$ \m{PersNr}}.
 
 Dienststelle ist nicht redundant.
 
 \item Wir berechnen:
-\texttt{AttrHull(F, \{Dienststelle\}) = \{Dienststelle\}},
+\texttt{\ah{F, \m{Dienststelle}} = \m{Dienststelle}},
 aber
-\texttt{Zimmer $\notin$ \{Dienststelle\}}.
+\texttt{Zimmer $\notin$ \m{Dienststelle}}.
 PersNr ist nicht redundant.
 \end{itemize}
 
@@ -1220,17 +1223,17 @@ Es gibt keine redundanten Attribute.
 \begin{itemize}
 \item \texttt{Zimmer $\rightarrow$ Telefon}:
 Wir berechnen:
-\texttt{AttrHull(F - \{Zimmer $\rightarrow$ Telefon\}, \{Zimmer\}) = \{Zimmer\}},
+\texttt{\ah{F - \m{Zimmer $\rightarrow$ Telefon}, \m{Zimmer}} = \m{Zimmer}},
 aber
-\texttt{Telefon $\notin$ \{Zimmer\}}.
+\texttt{Telefon $\notin$ \m{Zimmer}}.
 \texttt{Zimmer $\rightarrow$ Telefon} ist nicht redundant.
 
 \item \texttt{PersNr Dienststelle $\rightarrow$ Zimmer}:
 Wir berechnen:
-\texttt{AttrHull(F - \{PersNr Dienststelle $\rightarrow$ Zimmer\}, \{PersNr, Dienststelle\}) =
-\{PersNr, Dienststelle\}},
+\texttt{\ah{F - \m{PersNr Dienststelle $\rightarrow$ Zimmer}, \m{PersNr, Dienststelle}} =
+\m{PersNr, Dienststelle}},
 aber
-\texttt{Zimmer $\notin$ \{PersNr, Dienststelle\}}.
+\texttt{Zimmer $\notin$ \m{PersNr, Dienststelle}}.
 \texttt{PersNr Dienststelle $\rightarrow$ Zimmer} ist nicht redundant.
 \end{itemize}
 
@@ -1260,11 +1263,11 @@ Bestimmen Sie die minimale Überdeckung von \texttt{F}!
 \begin{itemize}
 \item \texttt{PersNr Name $\rightarrow$ Geburtsjahr} ohne \texttt{Name}:
 
-\texttt{Geburtsjahr} $\in$ \texttt{AttrHüll\{F, \{PersNr\}\} = \{PersNr, Name, Wohnort, Geburtsjahr\}}
+\texttt{Geburtsjahr} $\in$ \texttt{AttrHüll\m{F, \m{PersNr}} = \m{PersNr, Name, Wohnort, Geburtsjahr}}
 
 \item \texttt{PersNr Name $\rightarrow$ Geburtsjahr} ohne \texttt{PersNr}:
 
-\texttt{Geburtsjahr} $\in$ \texttt{AttrHüll\{F, \{Name\}\} = \{Name, PersNr, Wohnort, Geburtsjahr\}}
+\texttt{Geburtsjahr} $\in$ \texttt{AttrHüll\m{F, \m{Name}} = \m{Name, PersNr, Wohnort, Geburtsjahr}}
 
 \texttt{F = \{%
   PersNr $\rightarrow$ Name, Wohnort, Geburtsjahr,
@@ -1282,7 +1285,7 @@ Bestimmen Sie die minimale Überdeckung von \texttt{F}!
 
 \section{Aufgabe 8.5 (Seite 186])}
 
-Gegeben sei das Relationenschema \texttt{Professor\{PersNr, Dienststelle, Zimmer, Telefon\}}.
+Gegeben sei das Relationenschema \texttt{Professor\m{PersNr, Dienststelle, Zimmer, Telefon}}.
 
 \begin{itemize}
 \item Bestimmen Sie eine sinnvolle Menge \texttt{F} von FDs!
@@ -1307,13 +1310,13 @@ Menge von funktionalen Abhängigkeiten festgelegt werden:
 Ergebnismenge \texttt{Erg} &
 Erklärung\\
 
-\texttt{\{PersNr, Dienststelle\}} &
+\texttt{\m{PersNr, Dienststelle}} &
 \texttt{Erg} wird initialisiert\\
 
-\texttt{\{PersNr, Dienststelle\} $\cup$ \{Zimmer\}} &
+\texttt{\m{PersNr, Dienststelle} $\cup$ \m{Zimmer}} &
 wegen FD \texttt{PersNr Dienststelle $\rightarrow$ Zimmer}\\
 
-\texttt{\{PersNr, Dienststelle, Zimmer\} $\cup$ \{Telefon\}} &
+\texttt{\m{PersNr, Dienststelle, Zimmer} $\cup$ \m{Telefon}} &
 wegen FD \texttt{Zimmer $\rightarrow$ Telefon}\\
 \end{tabular}
 
@@ -1329,15 +1332,15 @@ wegen FD \texttt{Zimmer $\rightarrow$ Telefon}\\
 
 \begin{enumerate}
 \item Gegeben sei das Relationenschema
-$Artikel\{\textrm{Lieferant, Adresse, Artikelname, Preis}\}$
+$Artikel\m{\textrm{Lieferant, Adresse, Artikelname, Preis}}$
 und die Menge
-$F = \{\textrm{Lieferant} \rightarrow \textrm{Adresse}, \textrm{Lieferant Artikelname} \rightarrow \textrm{Preis} \}$.
+$F = \m{\textrm{Lieferant} \rightarrow \textrm{Adresse}, \textrm{Lieferant Artikelname} \rightarrow \textrm{Preis} }$.
 Zeigen Sie, dass Artikel nicht 2NF ist!
 
 \item Gegeben ist das Relationenschema
-$Lehrkraft\{\textrm{PersNr, Name, Geburtsdatum, Wohnort}\}$
+$Lehrkraft\m{\textrm{PersNr, Name, Geburtsdatum, Wohnort}}$
 mit
-$F = \{PersNr \rightarrow Name, PersNr \rightarrow Geburtsdatum, PersNr \rightarrow Wohnort, Name Geburtsdatum \rightarrow PersNr\}$.
+$F = \m{PersNr \rightarrow Name, PersNr \rightarrow Geburtsdatum, PersNr \rightarrow Wohnort, Name Geburtsdatum \rightarrow PersNr}$.
 Ist das Relationenschema in 2NF?
 
 \end{enumerate}

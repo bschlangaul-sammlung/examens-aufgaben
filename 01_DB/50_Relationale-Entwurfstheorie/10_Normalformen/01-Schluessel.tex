@@ -1,6 +1,9 @@
 \documentclass{lehramt-informatik-haupt}
-\usepackage{amsmath}
+\liLadePakete{mathe,normalformen}
+
 \begin{document}
+\let\ah=\liAttributHuelle
+\let\m=\liMenge
 
 %-----------------------------------------------------------------------
 %
@@ -53,17 +56,17 @@ Foliensätze Seite 8
 
 \begin{itemize}
 \item
-$Erg = \{\}$,
-$Test = \{\{\textit{alle Attribute der Relation}\}\}$,
-$K = \{\textit{alle Attribute der Relation}\}$
+$Erg = \m{}$,
+$Test = \m{\m{\textit{alle Attribute der Relation}}}$,
+$K = \m{\textit{alle Attribute der Relation}}$
 
 \begin{itemize}
 \item Wähle ein Attribut aus $K$, ist
-$\textit{AttrHüll}(F,K \SLASH \{A\}) = R$?
+$\ah{F,K \SLASH \m{A}} = R$?
 (Also die Menge $K$ ohne das Attribut $A$)
 
 \item ja $\Rightarrow$ ändere $\textit{Test}$:
-streiche $K$ aus $\textit{Test}$, füge $K \SLASH \{A\}$ in $\textit{Test}$ ein.
+streiche $K$ aus $\textit{Test}$, füge $K \SLASH \m{A}$ in $\textit{Test}$ ein.
 
 \item $K$ selbst bleibt unverändert!
 
@@ -71,7 +74,7 @@ streiche $K$ aus $\textit{Test}$, füge $K \SLASH \{A\}$ in $\textit{Test}$ ein.
 Attribute reihum untersucht wurden.
 \end{itemize}
 
-\item wenn kein $K\{A\}$ Superschlüssel $\Rightarrow$
+\item wenn kein $K\m{A}$ Superschlüssel $\Rightarrow$
 $K$ ist Schlüsselkandidat!
 Füge $K$ zu $Erg$ hinzu und lösche $K$ aus $\textit{Test}$.
 
@@ -106,9 +109,7 @@ $A$ kommt auf keiner rechten Seite der FD’s vor.
 Man kann es über FD's nicht erreichen. $A$ muss also Teil des
 Schlüsselkandidaten sein.
 
-\begin{equation*}
-\textit{AttrHüll}(F, \{A\}) = R = \textit{Superschlüssel}
-\end{equation*}
+$\ah{F, \m{A}} = R = \textit{Superschlüssel}$
 
 A ist minimal Schlüsselkandidat.
 %
@@ -121,7 +122,7 @@ A enthalten $\rightarrow$ A einziger Schlüsselkandidat.
 
 \subsubsection{Mit Hilfe des Algorithmus:}
 
-$Test = \{\{A, B, C, D\}\}$ $Erg = \{\}$
+$Test = \m{\m{A, B, C, D}}$ $Erg = \m{}$
 
 \begin{enumerate}
 
@@ -129,59 +130,59 @@ $Test = \{\{A, B, C, D\}\}$ $Erg = \{\}$
 % 1.
 %%
 
-\item $K = \{A, B, C, D\}$
+\item $K = \m{A, B, C, D}$
 
-$K \SLASH A: \textit{AttrHüll}(F, \{B, C, D\}) = \{B, C, D\}$ !\\
+$K \SLASH A: \ah{F, \m{B, C, D}} = \m{B, C, D}$ !\\
 
-$K \SLASH B: \textit{AttrHüll}(F, \{A, C, D\}) = R$\\
-$\rightarrow Test = \{\{A, C, D\}\}$ \\
+$K \SLASH B: \ah{F, \m{A, C, D}} = R$\\
+$\rightarrow Test = \m{\m{A, C, D}}$ \\
 
-$K \SLASH C: \textit{AttrHüll}(F, \{A, B, D\}) = R$\\
-$\rightarrow Test = \{\{A, C, D\}, \{A, B, D\}\}$ \\
+$K \SLASH C: \ah{F, \m{A, B, D}} = R$\\
+$\rightarrow Test = \m{\m{A, C, D}, \m{A, B, D}}$ \\
 
-$K \SLASH D: \textit{AttrHüll}(F, \{A, B, C\}) = R$\\
-$\rightarrow Test = \{\{A, C, D\}, \{A, B, D\}, \{A, B, C\}\}$ \\
+$K \SLASH D: \ah{F, \m{A, B, C}} = R$\\
+$\rightarrow Test = \m{\m{A, C, D}, \m{A, B, D}, \m{A, B, C}}$ \\
 
 %%
 % 2.
 %%
 
-\item $K = \{A, C, D\}$
+\item $K = \m{A, C, D}$
 
-$K \SLASH A: \textit{AttrHüll}(F, \{C, D\}) = \{C, D\}$ !\\
+$K \SLASH A: \ah{F, \m{C, D}} = \m{C, D}$ !\\
 
-$K \SLASH C: \textit{AttrHüll}(F, \{A, D\}) = R$\\
-$\rightarrow Test = \{\{A, D\}, \{A, C, D\}, \{A, B, D\}, \{A, B, C\}\}$ \\
+$K \SLASH C: \ah{F, \m{A, D}} = R$\\
+$\rightarrow Test = \m{\m{A, D}, \m{A, C, D}, \m{A, B, D}, \m{A, B, C}}$ \\
 
-$K \SLASH C: \textit{AttrHüll}(F, \{A, C\}) = R$\\
-$\rightarrow Test = \{\{A, C\}, \{A, D\}, \{A, C, D\}, \{A, B, D\}, \{A, B, C\}\}$ \\
+$K \SLASH C: \ah{F, \m{A, C}} = R$\\
+$\rightarrow Test = \m{\m{A, C}, \m{A, D}, \m{A, C, D}, \m{A, B, D}, \m{A, B, C}}$ \\
 
 %%
 % 3.
 %%
 
-\item $K = \{A, C\}$
+\item $K = \m{A, C}$
 
-$K \SLASH A: \textit{AttrHüll}(F, \{C\}) = \{C\}$ !\\
+$K \SLASH A: \ah{F, \m{C}} = \m{C}$ !\\
 
-$K \SLASH C: \textit{AttrHüll}(F, \{A\}) = R$\\
-$\rightarrow Test = \{\{A\}, \{A, D\}, \{A, C, D\}, \{A, B, D\}, \{A, B, C\}\}$ \\
+$K \SLASH C: \ah{F, \m{A}} = R$\\
+$\rightarrow Test = \m{\m{A}, \m{A, D}, \m{A, C, D}, \m{A, B, D}, \m{A, B, C}}$ \\
 
 %%
 % 4.
 %%
 
-\item $K = \{A\}$
+\item $K = \m{A}$
 
 $K \SLASH A$: ! $\rightarrow$ kein Superschlüssel ohne A mehr möglich\\
 $\rightarrow$ dieses K wandert in Ergebnis und wird in Test gelöscht
 
-$\rightarrow Test = \{\{A, D\}, \{A, C, D\}, \{A, B, D\}, \{A, B, C\}\}$ \\
-$\rightarrow Erg = \{\{A\}\}$ \\
+$\rightarrow Test = \m{\m{A, D}, \m{A, C, D}, \m{A, B, D}, \m{A, B, C}}$ \\
+$\rightarrow Erg = \m{\m{A}}$ \\
 \end{enumerate}
 
 analog verfahren wir mit den übrigen Mengen in Test, wie man bereits
-sieht bleibt $\{A\}$ einziger Schlüsselkandidat.
+sieht bleibt $\m{A}$ einziger Schlüsselkandidat.
 
 \literatur
 

@@ -21,10 +21,19 @@ Attributhülle]
 % Mit teilen
 \def\liAttributMenge#1#2{$#1 = \{\liTeilen{#2}\}$}
 
+% \let\ah=\liAttributHuelle
 \def\liAttributHuelleOhneMathe#1{\textit{AttrHülle}(#1)}
-\def\liAttributHuelle#1{$\liAttributHuelleOhneMathe{#1}$}
+\def\liAttributHuelle#1{
+\ifmmode
+  \liAttributHuelleOhneMathe{#1}
+\else
+  $\liAttributHuelleOhneMathe{#1}$
+\fi
+}
 
 \def\liMengeOhneMathe#1{\{ #1 \}}
+
+% \let\m=\liMenge
 \def\liMenge#1{\liMengeOhneMathe{#1}}
 
 % geschweifte Klammer
