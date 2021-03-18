@@ -12,26 +12,26 @@ Sprache auffassen lässt.
 
 \begin{liAntwort}
 Im Grunde genommen kann ein DPDA einen deterministischen endlichen
-Automaten simulieren. Der PDA behält ein Stack-Symbol $Z_0$ auf seinem
-Stack, weil ein PDA einen Stack besitzen muss, ignoriert den Stack aber
-eigentlich und arbeitet lediglich mit seinen Zuständen. Formal
-ausgedrückt, sei
+Automaten simulieren. Weil ein PDA einen Stack besitzen muss, erhält der
+PDA ein Symbol $Z_0$ auf seinem Stack. Der PDA ignoriert den Stack aber
+und arbeitet lediglich mit seinen Zuständen. Formal ausgedrückt, sei
 
 \begin{displaymath}
-A = (Q, \Sigma, \delta, A, q_0, F)
+A = (Q, \Sigma, \delta_A, q_0, F)
 \end{displaymath}
 
+\noindent
 ein DFA. Wir konstruieren einen DPDA
 
 \begin{displaymath}
-P = (Q, \Sigma, \{Z_0 \}, \delta_P, q_0, Z_0, F )
+P = (Q, \Sigma, \{ Z_0 \}, \delta_P, q_0, Z_0, F),
 \end{displaymath}
-,
 
+\noindent
 indem $\delta_P(q, a, Z_0) = \{(p, Z_0)\}$ für alle Zustände $p$ und $q$
 aus $Q$ definiert wird, derart dass $\delta_A(q, a) = p$. Wir behaupten,
 dass $(q_0, w, Z_0) \rightarrow (p, \epsilon, Z_0)$ genau dann, wenn
-$\delta_A (q_0 , w) = p$ . Das heißt, $P$ simuliert $A$ über seinen
+$\delta_A (q_0, w) = p$. Das heißt, $P$ simuliert $A$ über seinen
 Zustand. Beide Richtungen lassen sich durch einfache Induktionsbeweise
 über $|w|$ zeigen. Da sowohl $A$ als auch $P$ akzeptieren, indem sie
 einen der Zustände aus $F$ annehmen, schließen wir darauf, dass ihre
