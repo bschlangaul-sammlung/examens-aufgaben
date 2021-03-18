@@ -2,6 +2,7 @@
 \liLadePakete{normalformen}
 \begin{document}
 \let\m=\liMenge
+\let\fa=\liFunktionaleAbhaengigkeit
 
 \liAufgabenTitel{Arbeitsvermittler}
 
@@ -41,19 +42,19 @@ Aus diesen Vorgaben ergibt sich (beispielsweise) folgendes relationales
 Schema (Relationen mindestens in 1.NF):
 
 \begin{itemize}
-\item \textbf{Stellen}: Stellenbezeichnung, AG-Name, AG-Adresse, Gehalt,
-Einstellungsdatum, befristet
+\item \liRelation{Stellen}{Stellenbezeichnung, AG-Name, AG-Adresse, Gehalt,
+Einstellungsdatum, befristet}
 
-\item \textbf{Bewerber}: Name, Adresse, Gebdatum, Beruf, TelNr,
-Antrittsdatum, aelter25
+\item \liRelation{Bewerber}{Name, Adresse, Gebdatum, Beruf, TelNr,
+Antrittsdatum, aelter25}
 
-\item \textbf{Branche}: Branchenbezeichnung, Bedarf
+\item \liRelation{Branche}{Branchenbezeichnung, Bedarf}
 
-\item \textbf{gehoert\_zu}: Stellenbezeichnung, AG-Name, AG-Adresse,
-Branchenbezeichnung
+\item \liRelation{gehoert\_zu}{Stellenbezeichnung, AG-Name, AG-Adresse,
+Branchenbezeichnung}
 
-\item \textbf{vermittelt}: Stellenbezeichnung, AG-Name, AG-Adresse,
-Name, Adresse
+\item \liRelation{vermittelt}{Stellenbezeichnung, AG-Name, AG-Adresse,
+Name, Adresse}
 \end{itemize}
 
 \begin{enumerate}
@@ -68,30 +69,30 @@ Abhängigkeiten} gibt es bzgl. der einzelnen Relationen?
 \begin{liAntwort}
 \begin{itemize}
 \item \textbf{Stellen}: \\
-Stellenbezeichnung, AG-Name, AG-Adresse $\rightarrow$ Gehalt \\
-Stellenbezeichnung, AG-Name, AG-Adresse $\rightarrow$ Einstellungsdatum \\
-Stellenbezeichnung $\rightarrow$ befristet
+\fa{Stellenbezeichnung, AG-Name, AG-Adresse -> Gehalt} \\
+\fa{Stellenbezeichnung, AG-Name, AG-Adresse -> Einstellungsdatum} \\
+\fa{Stellenbezeichnung -> befristet}
 
 \item \textbf{Bewerber}: \\
-Name, Adresse $\rightarrow$ Gebdatum \\
-Name, Adresse $\rightarrow$ Beruf \\
-Name, Adresse $\rightarrow$ TelNr \\
-Name, Adresse $\rightarrow$ Antrittsdatum \\
-Name, Adresse $\rightarrow$ aelter25 \\
-Name, Gebdatum $\rightarrow$ aelter25
+\fa{Name, Adresse -> Gebdatum} \\
+\fa{Name, Adresse -> Beruf} \\
+\fa{Name, Adresse -> TelNr} \\
+\fa{Name, Adresse -> Antrittsdatum} \\
+\fa{Name, Adresse -> aelter25} \\
+\fa{Name, Gebdatum -> aelter25}
 
 \item \textbf{Branche}: \\
-Branchenbezeichnung $\rightarrow$ Bedarf
+\fa{Branchenbezeichnung -> Bedarf}
 
 \item \textbf{gehoert\_zu}: \\
-Stellenbezeichnung $\rightarrow$ Branchenbezeichnung
+\fa{Stellenbezeichnung -> Branchenbezeichnung}
 
 \item \textbf{vermittelt}: \\
-Stellenbezeichnung, AG-Name, AG-Adresse $\rightarrow$ Name \\
-Stellenbezeichnung, AG-Name, AG-Adresse $\rightarrow$ Adresse \\
-Name, Adresse $\rightarrow$ Stellenbezeichnung \\
-Name, Adresse $\rightarrow$ AG-Name \\
-Name, Adresse $\rightarrow$ AG-Adresse
+\fa{Stellenbezeichnung, AG-Name, AG-Adresse -> Name} \\
+\fa{Stellenbezeichnung, AG-Name, AG-Adresse -> Adresse} \\
+\fa{Name, Adresse -> Stellenbezeichnung} \\
+\fa{Name, Adresse -> AG-Name} \\
+\fa{Name, Adresse -> AG-Adresse}
 \end{itemize}
 
 \end{liAntwort}

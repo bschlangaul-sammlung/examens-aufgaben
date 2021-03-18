@@ -1,6 +1,7 @@
 \documentclass{lehramt-informatik-haupt}
-
+\liLadePakete{normalformen}
 \begin{document}
+\let\fa=\liFunktionaleAbhaengigkeit
 
 \chapter{Funktionale Abhängigkeiten}
 
@@ -14,18 +15,19 @@
 
 \subsection{Definition (Funktionale Abhängigkeit)}
 
-Sei $R\{A_1,...,A_n\}$ ein Relationenschema. Seien $X, Y \subseteq
-\{A_1,...,A_n\}$ Teilmengen der Attributmenge von $R$. $Y$ ist genau
+Sei $R\{A_1,\dots,A_n\}$ ein Relationenschema. Seien $X, Y \subseteq
+\{A_1,\dots,A_n\}$ Teilmengen der Attributmenge von $R$. $Y$ ist genau
 dann funktional abhängig von $X$, wenn gleiche Werte für die Attribute
 in $X$ auch gleiche Werte für die Attribute in $Y$ erzwingen. Man
 schreibt: $X \rightarrow Y$. $X \rightarrow Y$ heißt funktionale
 Abhängigkeit, englisch \emph{Functional Dependency}, kurz \textbf{FD},
-für das Relationenschema $R\{A_1,...,A_n\}$ Dabei heißt eine funktionale
-Abhängigkeit $X \rightarrow Y$
+für das Relationenschema $R\{A_1,\dots,A_n\}$ Dabei heißt eine
+funktionale Abhängigkeit $X \rightarrow Y$
 
 \begin{itemize}
 \item \textbf{einfach}, wenn $Y$ nur aus einem Attribut besteht.
-\item \textbf{trivial}, wenn $Y \subseteq X$ gilt.
+\item \textbf{trivial}, wenn $Y \subseteq X$ gilt.\footcite[Seite
+168]{winter}
 \end{itemize}
 
 %%
@@ -34,16 +36,16 @@ Abhängigkeit $X \rightarrow Y$
 
 \subsection{Definition (Erfüllung funktionaler Abhängigkeiten)}
 
-Sei $R\{A_1,...,A_n\}$ ein Relationenschema. Seien $X, Y \subseteq
-R\{A_1,...,A_n\}$ Teilmengen der Attributmenge von R. Eine Instanz $R$
-von $R\{A_1,...,A_n\}$ erfüllt die funktionale Abhängigkeit $X
+Sei $R\{A_1,\dots,A_n\}$ ein Relationenschema. Seien $X, Y \subseteq
+R\{A_1,\dots,A_n\}$ Teilmengen der Attributmenge von R. Eine Instanz $R$
+von $R\{A_1,\dots,A_n\}$ erfüllt die funktionale Abhängigkeit $X
 \rightarrow Y$, wenn gilt: Stimmen zwei Tupel aus $R$ in den Werten der
 Attribute aus $X$ überein, so stimmen sie auch in den Werten der
 Attribute aus $Y$ überein. Man sagt, dass eine funktionale Abhängigkeit
-$X \rightarrow Y$ für $R\{A_1,...,A_n\}$ \textbf{gilt}, wenn sie von
+$X \rightarrow Y$ für $R\{A_1,\dots,A_n\}$ \textbf{gilt}, wenn sie von
 \textbf{jeder Instanz} von $R$ erfüllt wird. Eine Menge $F$ funktionaler
-Abhängigkeiten gilt für $R\{A_1,...,A_n\}$, wenn jede Abhängigkeit aus
-$F$ für $R\{A_1,...,A_n\}$ gilt.
+Abhängigkeiten gilt für $R\{A_1,\dots,A_n\}$, wenn jede Abhängigkeit aus
+$F$ für $R\{A_1,\dots,A_n\}$ gilt.\footcite[Seite 169]{winter}
 
 %%
 %
@@ -51,35 +53,32 @@ $F$ für $R\{A_1,...,A_n\}$ gilt.
 
 \subsection{Definition (Logische Folgerbarkeit)}
 
-Für jede Instanz des Relationenschemas, die die FD $PersNr \rightarrow
-Name, Geschlecht, Wohnort, Geburtsjahr$ erfüllt, gilt sicher auch
-$PersNr \rightarrow Name$. Man sagt, dass $PersNr \rightarrow Name$
-logisch aus $F$ folgt.
+Für jede Instanz des Relationenschemas, die die FD \fa{PersNr ->
+Name, Geschlecht, Wohnort, Geburtsjahr} erfüllt, gilt sicher auch
+\fa{PersNr -> Name}. Man sagt, dass \fa{PersNr -> Name}
+logisch aus $F$ folgt.\footcite[Seite 171]{winter}
 
 %%
 %
 %%
 
-\subsection{Definition(Hülle von F)}
+\subsection{Definition (Hülle von F)}
 
 Zu einer gegebenen Menge $F$ von FDs kann man die Menge aller aus $F$
 logisch folgerbaren funktionalen Abhängigkeiten bestimmen. Diese Menge
-heißt Hülle $F^+$.
+heißt Hülle $F^+$.\footcite[Seite 171]{winter}
 
 %-----------------------------------------------------------------------
 %
 %-----------------------------------------------------------------------
 
-\section{Armstrong-Kalkül}
-
-\href{https://de.wikipedia.org/wiki/Funktionale_Abh%C3%A4ngigkeit#Axiome_von_Armstrong}{Wikipedia}
-Foliensatz Seite 14
+\section{Armstrong-Kalkül\footcite[Axiome von Armstrong]{wiki:funktionale-abhängigkeit}}
 
 Mit Hilfe der Axiome von Armstrong (auch Armstrong-Axiome) lassen sich
 aus einer Menge von funktionalen Abhängigkeiten, die auf einer Relation
 gelten, \textbf{weitere} funktionale Abhängigkeiten \textbf{ableiten}.
 Die folgenden drei Regeln reichen aus, um alle funktionalen
-Abhängigkeiten herzuleiten:
+Abhängigkeiten herzuleiten:\footcite[Seite 14]{db:fs:}
 
 \begin{lernkartei}{Armstrong-Kalkül}
 

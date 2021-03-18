@@ -1,6 +1,10 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{normalformen}
 \begin{document}
+\let\FA=\liFunktionaleAbhaengigkeiten
+\let\fa=\liFunktionaleAbhaengigkeit
+\let\m=\liMenge
+
 \liAufgabenTitel{Kanonische Überdeckung (Kemper)}
 
 \section{Kanonische Überdeckung (kleines Beispiel aus Kemper)
@@ -8,13 +12,7 @@
 \footcite[Seite 186]{kemper}
 }
 
-$F = \{\lifa A > B, B \rightarrow C, AB \rightarrow C\}$
-
-\begin{compactitem}
-\item \lifa A > B
-\item \lifa B > C
-\item \lifa  AB > C
-\end{compactitem}
+\FA{A -> B; B -> C; A, B -> C}
 
 \begin{enumerate}
 \item Kanonische Überdeckung
@@ -22,7 +20,7 @@ $F = \{\lifa A > B, B \rightarrow C, AB \rightarrow C\}$
 \begin{enumerate}
 \item Linksreduktion
 
-$\liAttributHuelle{F, A} = \{A, B, C\}$
+$\liAttributHuelle{F, \m{A}} = \m{A, B, C}$
 
 \begin{compactitem}
 \item $A \rightarrow B$
@@ -46,7 +44,7 @@ $\liAttributHuelle{F, A} = \{A, B, C\}$
 \end{compactitem}
 
 \item Vereinigung
-
+\end{enumerate}
 \item Neues Relationenschema
 
 \begin{compactitem}
@@ -57,7 +55,6 @@ $\liAttributHuelle{F, A} = \{A, B, C\}$
 \item Hinzufügen einer Relation
 \item Entfernen überflüssiger Teilschemata
 
-\end{enumerate}
 \end{enumerate}
 
 \end{document}

@@ -2,7 +2,7 @@
 \ProvidesPackage{lehramt-informatik-normalformen}[2020/12/10
 Hilfsmakros zum Setzen von Normalformen, Funktionalen Abhänigkeiten,
 Attributhülle]
-\RequirePackage{amsmath}
+\liLadePakete{mathe}
 \directlua{
   normalformen = require('lehramt-informatik-normalformen')
 }
@@ -41,11 +41,11 @@ Attributhülle]
 
 % \let\fa=\liFunktionaleAbhaengigkeit
 % \liFunktionaleAbhaengigkeit{A, B -> C, D}
-\def\liFunktionaleAbhaengigkeit#1{
-  \directlua{normalformen.drucke_funk_abhaengigkeit('#1')}
+\def\liFunktionaleAbhaengigkeit#1{%
+  \directlua{normalformen.drucke_funk_abhaengigkeit('#1')}%
 }
 
-% \liFunktionaleAbhaengigkeiten{
+% \liFunktionaleAbhaengigkeiten[F]{
 %   M -> M;
 %   M -> N;
 %   V -> T, P, PN;
@@ -56,4 +56,14 @@ Attributhülle]
 % Regulärer Ausdruck zum Konvertieren
 % \\item \$(.*) \\rightarrow (.*)\$
 % $1 -> $2;
-\def\liFunktionaleAbhaengigkeiten#1{\directlua{normalformen.drucke_funk_abhaengigkeiten('#1')}} {}
+\NewDocumentCommand {\liFunktionaleAbhaengigkeiten} { O{FA} m } {
+\par
+\noindent
+#1 $= \{$
+\par
+\directlua{normalformen.drucke_funk_abhaengigkeiten('#2')}
+\par
+\noindent$\}$
+}
+
+\def\liRelation#1#2{#1(#2)}

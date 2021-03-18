@@ -6,6 +6,8 @@
 \begin{document}
 \let\ah=\liAttributHuelle
 \let\m=\liMenge
+\let\FA=\liFunktionaleAbhaengigkeiten
+\let\fa=\liFunktionaleAbhaengigkeit
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Theorie-Teil
@@ -62,9 +64,10 @@ Die Attributhülle $\alpha ^{+}$ eines bestimmten Attributs $\alpha$
 eine Liste aller Attribute, die von $\alpha$ funktional
 abhängen.\footcite[Attributhülle]{wiki:funktionale-abhängigkeit}
 
-Durch die Bestimmung der Attributhülle kann angegeben werden, welche anderen
-Attribute in einer Relation durch die \memph{gegebenen} Attribute
-bestimmt werden können.\footcite[Seite 8]{db:fs:4}\footcite[Seite 179]{winter}
+Durch die Bestimmung der Attributhülle kann angegeben werden, welche
+anderen Attribute in einer Relation durch die \memph{gegebenen}
+Attribute bestimmt werden können.\footcite[Seite
+8]{db:fs:4}\footcite[Seite 179]{winter}
 
 %-----------------------------------------------------------------------
 %
@@ -74,19 +77,12 @@ bestimmt werden können.\footcite[Seite 8]{db:fs:4}\footcite[Seite 179]{winter}
 
 Beispiel:\footcite[Seite 8]{db:fs:4}
 
-$F$:
-
-$PQ \rightarrow R$
-
-$PR \rightarrow Q$
-
-$Q \rightarrow S$
-
-$PS \rightarrow T$
-
-$QR \rightarrow P$
-
-$T \rightarrow U$
+\FA{P, Q -> R;
+P, R -> Q;
+Q -> S;
+P, S -> T;
+Q, R -> P;
+T -> U;}
 
 Gesucht
 
@@ -405,7 +401,7 @@ $B \notin \ah{F - \m{C \rightarrow B}, \m{E}}$
 $G \notin \ah{F - \m{CE \rightarrow G}, \m{E}}$
 $\Rightarrow$ $CE \rightarrow G$ ist nicht redundant
 
-\item $B \rightarrow A$: $\ah{F - \m{B \rightarrow A}, \m{B}} = \m{B}$, d.h.
+\item $B \rightarrow A$: $\ah{F - \fa{B -> A}, \m{B}} = \m{B}$, d.h.
 
 $A \notin \ah{F - \m{B \rightarrow A}, \m{E}}$
 $\Rightarrow$ $B \rightarrow A$ ist nicht redundant
@@ -559,18 +555,12 @@ ${Name, AbtNr}$
 
 \section{Minimale Überdeckung\footcite[Seite 1, Aufgabe 2]{db:ab:5}}
 
-Gegeben ist die Menge $F = \{A \rightarrow BC, C \rightarrow DA, E
-\rightarrow AC, CD \rightarrow BE\}$. Bestimmen Sie eine minimale
-Überdeckung von F.
-
-\begin{multline*}
-F = \{ \\
-  A \rightarrow BC, \\
-  C \rightarrow DA, \\
-  E \rightarrow AC, \\
-  CD \rightarrow BE \\
-\}
-\end{multline*}
+Gegeben ist die Menge \FA[$F$]{
+  A -> B, C;
+  C -> D, A;
+  E -> A, C;
+  C, D -> B, E;
+}. Bestimmen Sie eine minimale Überdeckung von $F$.
 
 \begin{liAntwort}
 
@@ -580,14 +570,12 @@ F = \{ \\
 $\ah{F, \m{D}} = \m{D}$ \\
 $\ah{F, \m{C}} = \m{C, D, A, B, E}$ \\
 
-\begin{multline*}
-F' = \{ \\
-  A \rightarrow BC, \\
-  C \rightarrow DA, \\
-  E \rightarrow AC, \\
-  C \rightarrow BE \\
-\}
-\end{multline*}
+\FA[$F'$]{
+  A -> B, C;
+  C -> D, A;
+  E -> A, C;
+  C -> B, E;
+}
 
 \item Rechtsreduktion
 
@@ -612,20 +600,15 @@ schon minimal
 }
 
 Gegeben sei die Relation \emph{Abstrakt} mit dem Schema $Abstrakt\{A, B, C, D,
-E\}$ und die Menge der funktionalen Abhängigkeiten $F = \{A \rightarrow
-BC, CD \rightarrow E, AC \rightarrow E, B \rightarrow D\}$.
+E\}$ und die Menge der funktionalen Abhängigkeiten \FA[$F$]{
+  A -> B, C;
+  C, D -> E;
+  A, C -> E;
+  B -> D;
+}.
 
 \noindent
 Bestimmen Sie die Schlüsselkandidaten von Abstrakt!
-
-\begin{multline*}
-F = \{ \\
-  A \rightarrow BC, \\
-  CD \rightarrow E, \\
-  AC \rightarrow E, \\
-  B \rightarrow D \\
-\}
-\end{multline*}
 
 %-----------------------------------------------------------------------
 %

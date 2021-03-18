@@ -17,10 +17,9 @@ end
 -- return: { A, B }
 -- 'nichts' wird durch \emptyset ersetzt
 local function setze_menge (eingabe)
-
   eingabe = eingabe:gsub('nichts', '\\emptyset{}')
   local elemente = helfer.split(eingabe, '%s*,%s*')
-  return '\\{ ' .. table.concat(elemente, ', ') .. ' \\}'
+  return '\\{ \\textit{' .. table.concat(elemente, ', ') .. '} \\}'
 end
 
 local function setze_funk_abhaengigkeit(eingabe, fuer_mathe)
@@ -41,11 +40,8 @@ local function drucke_funk_abhaengigkeiten(eingabe)
   local abhaengigkeiten = helfer.split(eingabe, '%s*;%s*')
   local ausgabe = ''
   for index, abhaengigkeit in ipairs(abhaengigkeiten) do
-    ausgabe = ausgabe .. '\\item ' .. setze_funk_abhaengigkeit(abhaengigkeit) .. ' '
+    ausgabe = ausgabe .. '\\hspace{0.6cm}' .. setze_funk_abhaengigkeit(abhaengigkeit) .. ',\\par'
   end
-
-  ausgabe = '\\begin{compactitem}' .. ausgabe .. '\\end{compactitem}'
-
   print(ausgabe)
   tex.print(ausgabe)
 end
