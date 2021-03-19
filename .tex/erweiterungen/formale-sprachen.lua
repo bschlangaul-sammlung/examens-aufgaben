@@ -26,12 +26,6 @@ return {
       value = value:gsub('epsilon', '\\epsilon')
       ausgabe = ausgabe .. value .. '\\\\'
     end
-    tex.print(
-      '$P = \\{$' ..
-      '\\vspace{-0.2cm}' ..
-      '\\begin{align*}' .. ausgabe .. '\\end{align*}' ..
-      '\\vspace{-1.5cm}' ..
-      '\\begin{flushright}' .. '\\}' .. '\\end{flushright}'
-    )
+    tex.print(ausgabe)
   end
 }

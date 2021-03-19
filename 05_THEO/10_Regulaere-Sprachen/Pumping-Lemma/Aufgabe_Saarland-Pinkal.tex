@@ -1,0 +1,66 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen}
+\begin{document}
+
+\liAufgabenTitel{Saarland Pinkal}
+\section{Pumping-Lemma
+\index{Pumping-Lemma (Reguläre Sprache)}
+}
+
+\liFussnoteUrl{http://www.coli.uni-saarland.de/courses/I2CL-10/material/Uebungsblaetter/Musterloesung4.4.pdf}
+
+\begin{displaymath}
+L_1 = \liMenge{ w c w^R | w \in \liMenge{a, b}^* }
+\end{displaymath}
+
+Erläuterung: $w^R$ ist die Spiegelung von $w$, d.\,h. es enthält die
+Zeichen von $w$ in umgekehrter Reihenfolge. Worte von $L_1$ sind also
+z.\,B. $c$, $abcba$, $bbbaabacabaabbb$
+
+\begin{liAntwort}
+$L_1$ ist kontexfrei.
+
+\liPseudoUeberschrift{Beweis, dass $L_1$ nicht regulär ist, durch das
+Pumping Lemma: }
+
+\noindent
+Wir nehmen an $L_1$ wäre regulär. Dann gibt es einen endlichen
+Automaten, der $L_1$ erkennt. Die Anzahl der Zustände dieses Automaten
+sei $k$. Wir wählen jetzt das Wort $x = a^k c a^k$. $x$ liegt in $L_1$,
+und ist offensichtlich länger als $k$. Dieses Wort muss irgendwo eine
+Schleife, also einen aufpumpbaren Teil enthalten, d.\,h. man kann es so
+in $uvw$ zerlegen, dass für jede natürliche Zahl $i$ auch $uv^iw$ zu
+$L_1$ gehört. Wo könnte dieser aufpumpbare Teil liegen?
+
+\begin{description}
+\item[Fall 1:]
+
+Der aufpumbare Teil $v$ liegt komplett im Bereich des ersten
+$a^k$-Blocks. Dann würde aber $uv^2w = a^{k + |v|} c a^k$ mehr $a$’s im
+ersten Teil als im zweiten Teil enthalten und läge nicht mehr in $L_1$.
+
+\item[Fall 2:]
+
+$v$ enthält das $c$. Dann würde aber $u v^2 w$ zwei $c$’s enthalten und
+läge damit nicht mehr in $L_1$.
+
+\item[Fall 3:]
+
+Der aufpumpbare Teil liegt komplett im Bereich des zweiten $a^k$-Blocks.
+Dann liegt analog zu Fall 1 $u v^2 w$ nicht mehr in $L_1$. Unser Wort
+lässt sich also nicht so zerlegen, dass man den Mittelteil aufpumpen
+kann, also ist die Annahme, dass $L_1$ regulär ist, falsch.
+\end{description}
+\noindent
+Beweis, dass $L_1$ kontextfrei ist, durch Angabe einer kontexfreien
+Grammatik:
+
+\noindent
+\begin{liProduktionsRegeln}
+S -> aSa,
+S -> bSb,
+S -> c
+\end{liProduktionsRegeln}
+\end{liAntwort}
+
+\end{document}

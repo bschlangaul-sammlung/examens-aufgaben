@@ -8,8 +8,14 @@ zum Setzen von mathematischen Formeln bei dem Thema Formale Sprachen]
 
 \RequirePackage{lehramt-informatik-mathe}
 
-\def\liMenge#1{$\{ #1 \}$}
 \def\liMengeOhneMathe#1{\{ #1 \}}
+\def\liMenge#1{%
+\ifmmode%
+\liMengeOhneMathe{#1}%
+\else%
+$\liMengeOhneMathe{#1}$%
+\fi%
+}
 
 \def\erzeuge@tiefgestellt#1{\directlua{formale_sprachen.erzeuge_tiefgestellt('#1')}}
 
@@ -58,11 +64,20 @@ zum Setzen von mathematischen Formeln bei dem Thema Formale Sprachen]
     }
   }
 }
-\ExplSyntaxOff
 
 \NewDocumentEnvironment { liProduktionsRegeln }
 { +b }
-{\directlua{formale_sprachen.produktions_regeln('#1')}} {}
+{
+  \noindent
+  $P = \{$
+  \vspace{-0.2cm}
+  \begin{align*}
+    \directlua{formale_sprachen.produktions_regeln('#1')}
+  \end{align*}
+  \vspace{-1.5cm}
+  \begin{flushright}\}\end{flushright}
+} {}
+\ExplSyntaxOff
 
 % Automatisch tiefgestellte Nummerierung \z1
 % \let\z=\liZustandsnameTiefgestellt
