@@ -1,0 +1,62 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-synthese-algorithmus}[2021/03/19
+Hilfsmakros zum Setzten des Synthese-Algroithmuses zur Umformung einer
+Relation in die 3. Normalform]
+
+\liLadePakete{normalformen,mathe}
+
+\ExplSyntaxOn
+
+% \let\schritt=\liSyntheseSchrittUeberschrift
+\def\liSyntheseSchrittUeberschrift#1{
+  {
+    \bfseries
+    \sffamily
+    \str_case:nn {#1} {
+      {1} {Kanonische~Überdeckung}
+      {1-1} {Linksreduktion}
+      {1-2} {Rechtsreduktion}
+      {1-3} {Löschen~leerer~Klauseln}
+      {1-4} {Vereinigung}
+    }
+  }
+}
+
+% \let\erklaerung=\liSyntheseSchrittErklaerung
+\def\liSyntheseSchrittErklaerung#1{
+  {
+    \itshape
+    \str_case:nn {#1} {
+      {1} {}
+      {1-1} {
+        Führe~für~jede~funktionale~Anhängigkeit~
+        $\alpha~\rightarrow~\beta~\in~F$~die~Linksreduktion~durch,~
+        überprüfe~also~für~alle~
+        $A~\in~\alpha$,~ob~$A$~überflüssig~ist,~d.~h.~ob~
+        $\beta~\subseteq~\liAttributHuelle{F,~\alpha~-~A}.$
+      }
+      {1-2} {
+        Führe~für~jede~(verbliebene)~funktionale~Abhängigkeit~$\alpha~
+        \rightarrow~\beta$~die~Rechtsreduktion~durch,~überprüfe~also~für~
+        alle~$B~\in~\beta$,~ob~$B~\in~\liAttributHuelle{F~-~(\alpha~
+        \rightarrow~\beta)~\cup~(\alpha~\rightarrow~(\beta~-~B)),~
+        \alpha}$~gilt.~In~diesem~Fall~ist~B~auf~der~rechten~Seite~
+        überflüssig~und~kann~eleminiert~werden,~d.\,h.~$\alpha~
+        \rightarrow~\beta$~wird~durch~$\alpha~\rightarrow~(\beta~-~B)$~
+        ersetzt.
+      }
+      {1-3} {
+        Entferne~die~funktionalen~Abhängigkeiten~der~Form~$\alpha~
+        \rightarrow~\emptyset$,~die~im~2.~Schritt~möglicherweise~
+        entstanden~sind.
+      }
+      {1-4} {
+        Fasse~mittels~der~Vereinigungsregel~funktionale~Abhängigkeiten~
+        der~Form~$\alpha~\rightarrow~\beta\sb{1},~\dots,~\alpha~\rightarrow~
+        \beta\sb{n}$,~so~dass~$\alpha~\rightarrow~\beta\sb{1}~\cup~\dots~\cup~
+        \beta\sb{n}$~verbleibt.
+      }
+    }
+  }
+}
+\ExplSyntaxOff

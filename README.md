@@ -421,6 +421,7 @@ Weitere Aufgaben zum Thema „SQL“:
 
 #### Pumping-Lemma
 
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Pumping-Lemma/Aufgabe_Koblenz.pdf" download="Aufgabe_Koblenz">„Koblenz“</a> (Pumping-Lemma (Reguläre Sprache))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Pumping-Lemma/Aufgabe_Pumping-Lemma.pdf" download="Aufgabe_Pumping-Lemma">„Pumping-Lemma“</a> (Pumping-Lemma (Reguläre Sprache))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Pumping-Lemma/Aufgabe_Saarland-Pinkal.pdf" download="Aufgabe_Saarland-Pinkal">„Saarland Pinkal“</a> (Pumping-Lemma (Reguläre Sprache))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Pumping-Lemma/Aufgabe_Vorlesungsaufgaben-Pumping-Lemma.pdf" download="Aufgabe_Vorlesungsaufgaben-Pumping-Lemma">„Vorlesungsaufgaben“</a> (Pumping-Lemma (Reguläre Sprache))
