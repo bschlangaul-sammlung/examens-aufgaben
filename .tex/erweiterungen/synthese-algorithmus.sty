@@ -18,6 +18,9 @@ Relation in die 3. Normalform]
       {1-2} {Rechtsreduktion}
       {1-3} {Löschen~leerer~Klauseln}
       {1-4} {Vereinigung}
+      {2} {Neues~Relationenschema}
+      {3} {Hinzufügen~einer~Relation}
+      {4} {Entfernung~überflüssiger~Teilschemata}
     }
   }
 }
@@ -27,7 +30,11 @@ Relation in die 3. Normalform]
   {
     \itshape
     \str_case:nn {#1} {
-      {1} {}
+      {1} {
+        Die~kanonische~Überdeckung~-~also~die~kleinst~mögliche~noch~
+        äquivalente~Menge~von~funktionalen~Abhängigkeiten~kann~in~vier~
+        Schritten~erreicht~werden.
+      }
       {1-1} {
         Führe~für~jede~funktionale~Anhängigkeit~
         $\alpha~\rightarrow~\beta~\in~F$~die~Linksreduktion~durch,~
@@ -56,7 +63,34 @@ Relation in die 3. Normalform]
         \beta\sb{n}$,~so~dass~$\alpha~\rightarrow~\beta\sb{1}~\cup~\dots~\cup~
         \beta\sb{n}$~verbleibt.
       }
+      % Kemper Seite 197
+      {2} {
+        Erzeuge~für~jede~funktionale~Abhängigkeit~$\alpha~\rightarrow~
+        \beta~\in~F\sb{c}$~ein~Relationenschema~$\mathcal{R}\sb{\alpha}~
+        :=~\alpha~\cup~\beta$.
+      }
+      {3} {
+        Falls~eines~der~in~Schritt~2.~erzeugten~Schemata~$R\sb{\alpha}$~
+        einen~Schlüsselkandidaten~von~$\mathcal{R}$~bezüglich~$F\sb{c}$~
+        enthält,~sind~wir~fertig,~sonst~wähle~einen~Schlüsselkandidaten~
+        $\mathcal{K}~\subseteq~\mathcal{R}$~aus~und~definiere~folgendes~
+        zusätzliche~Schema:~$\mathcal{R}\sb{\mathcal{K}}~:=~\mathcal{K}$~
+        und~$\mathcal{F}\sb{\mathcal{K}}~:=~\emptyset$
+      }
+      {4} {
+        Eliminiere~diejenigen~Schemata~$R\sb{\alpha}$,~die~in~einem~
+        anderen~Relationenschema~$R\sb{\alpha'}$~enthalten~sind,~d.~h.~
+        $R\sb{\alpha}~\subseteq~R\sb{\alpha'}$.
+      }
     }
+    \enspace\leaders\vrule height 0.6pt depth -0.4pt \hfill \null \par
   }
 }
+
+% \let\schrittE=\liSyntheseSchrittUeberschriftErklaerung
+\def\liSyntheseSchrittUeberschriftErklaerung#1{
+  \liSyntheseSchrittUeberschrift{#1}\par
+  \liSyntheseSchrittErklaerung{#1}
+}
+
 \ExplSyntaxOff
