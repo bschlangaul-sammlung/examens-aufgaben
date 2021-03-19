@@ -1,0 +1,59 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen}
+\begin{document}
+\let\m=\liMenge
+
+\liAufgabenTitel{Koblenz}
+\section{Pumping-Lemma
+\index{Pumping-Lemma (Reguläre Sprache)}
+\footcite{}}
+
+Zeigen oder widerlegen Sie: Die folgenden Sprachen über dem Alphabet
+\liAlphabet{a, b, c} sind regulär.
+\footnote{\url{https://userpages.uni-koblenz.de/~dpeuter/teaching/17ss_gti/blatt04_loesung.pdf}}
+
+\begin{displaymath}
+L_1 = \m{ww | w \in \m{a, b} ∗ }
+\end{displaymath}
+
+\begin{liAntwort}
+\noindent
+Angenommen $L_1$ sei regulär, dann müsste $L_1$ die Bedingungen der
+stärkeren Variante des Pumping-Lemmas erfüllen.
+
+\liPseudoUeberschrift{Beweis durch Widerspruch:}
+
+\noindent
+Sei $j \in \mathbb{N}$ die Konstante aus dem Pumping-Lemma und
+$\omega = a^j b a^j b$ ein Wort aus $L_1$ ($|\omega| > j$ gilt offensichtlich).
+
+Dann müsste $\omega$ nach dem Pumping-Lemma zerlegbar sein in $\omega = uvw$ mit
+$|v| \geq 1$ und $|uv| < j$.
+%
+$uv$ kann wegen $|uv| < j$ kein $b$ enthalten und liegt komplett im
+ersten $a^j$.
+
+\noindent
+Also:
+
+\begin{displaymath}
+a^j b a^j b = uvw \text{ mit }
+u = a^x \text{, }
+v = a^y \text{, }
+w = a^{n - x - y} b a^j b (n \geq x + y, x > 0)
+\end{displaymath}
+
+\noindent
+Dann gilt
+
+\begin{displaymath}
+u v^0 w = a^x a^{j - x - y} b a^j b = a^{j - y} b a^j b \notin L_1
+\end{displaymath}
+
+\noindent
+Wir haben gezeigt, dass es keine gültige Zerlegung für $\omega$ gibt.
+Also gilt für $L_1$ die stärkere Variante des Pumping-Lemmas nicht.
+Somit kann $L_1$ nicht regulär sein.
+
+\end{liAntwort}
+\end{document}

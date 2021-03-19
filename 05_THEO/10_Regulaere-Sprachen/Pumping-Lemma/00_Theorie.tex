@@ -5,17 +5,31 @@
 
 \chapter{Pumping-Lemma für reguläre Sprachen}
 
-% https://studyflix.de/informatik/pumping-lemma-1445
+%
 \noindent
 Sei $L$ eine reguläre Sprache. Dann gibt es eine Zahl $j$, sodass für
-alle Wörter $\omega \in L$ mit $|\omega| \geq j$ jeweils eine Zerlegung $\omega
-= uvw$ existiert, sodass die folgenden Eigenschaften erfüllt sind:
+alle Wörter $\omega \in L$  mit $|\omega| \geq j$ (jedes Wort $\omega$
+in $L$ mit Mindestlänge $j$) jeweils eine Zerlegung $\omega = uvw$
+existiert, sodass die folgenden Eigenschaften erfüllt sind:
 
 \begin{enumerate}
 \item $|v| \geq 1$
+(Das Wort $v$ ist nicht leer.)
+
 \item $|uv| \leq j$
+(Die beiden Wörter $u$ und $v$ haben zusammen höchstens die Länge $n$.)
+
 \item Für alle $i = 0, 1, 2, \dots$ gilt $uv^iw \in L$
+(Für jede natürliche Zahl (mit 0) $i$ ist das Wort $uv^{i}w$ in der
+Sprache $L$)
 \end{enumerate}
+
+Die kleinste Zahl $j$, die diese Eigenschaften erfüllt, wird
+Pumping-Zahl der Sprache $L$ genannt.\footcite{wiki:pumping-lemma}
+
+Die einzelnen Bestandteile der Zerlegung des Wortes $\omega$ heißen
+Anfangsteil $u$, Endteil $w$ und Schleifenteil $v$.
+\liFussnoteUrl{https://studyflix.de/informatik/pumping-lemma-1445}
 
 \noindent
 Das Pumping-Lemma wird verwendet, um zu zeigen, dass eine
