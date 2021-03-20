@@ -1,0 +1,18 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-typographie}[2021/03/20 Typographische Makros,
+die das Erscheinungsbild verändern. Die Schriftdefinition sind in
+formatierung.sty definiert.]
+
+\ExplSyntaxOn
+
+\def\liParagraphMitLinien#1{
+  \noindent
+  \vrule height 2pt depth -1.6pt width 0.4cm
+  \enspace
+  #1
+  \enspace
+  \leaders\vrule height 2pt depth -1.6pt \hfill \null
+  \par
+}
+
+\ExplSyntaxOff

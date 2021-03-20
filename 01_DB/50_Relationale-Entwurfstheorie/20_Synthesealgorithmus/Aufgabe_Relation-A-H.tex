@@ -1,10 +1,11 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{normalformen}
+\liLadePakete{normalformen,synthese-algorithmus}
 \begin{document}
 \let\fa=\liFunktionaleAbhaengigkeit
 \let\FA=\liFunktionaleAbhaengigkeiten
 \let\ah=\liAttributHuelle
 \let\m=\liMenge
+\let\schrittE=\liSyntheseSchrittUeberschriftErklaerung
 
 \liAufgabenTitel{Relation A-H}
 
@@ -16,7 +17,9 @@
 Überführen Sie das Relationenschema mit Hilfe des Synthesealgorithmus in
 die 3. Normalform!
 
-$R(A, B, C, D, E, F, G, H)$
+\begin{center}
+\liRelation[R]{A, B, C, D, E, F, G, H}
+\end{center}
 
 \FA{
 F -> E;
@@ -38,7 +41,7 @@ AG -> H;
 %
 %%
 
-\item 1. Linksreduktion:
+\item \schrittE{1-1}
 
 Wir betrachten nur die zusammengesetzten Attribute:
 
@@ -67,7 +70,7 @@ AG -> H;
 %
 %%
 
-\item 2. Rechtsreduktion:
+\item \schrittE{1-2}
 
 Nur die Attribute betrachten, die rechts doppelt vorkommen:
 
@@ -94,7 +97,7 @@ A -> F;
 AG -> H;
 }
 
-\item 3. Leere Klauseln streichen:
+\item \schrittE{1-3}
 
 \FA{
 F -> E;
@@ -103,7 +106,7 @@ A -> F;
 AG -> H;
 }
 
-\item 4. Vereinigung
+\item \schrittE{1-4}
 
 \FA{
 F -> E;
@@ -115,27 +118,27 @@ Jetzt die weiteren Hauptschritte:
 
 \end{enumerate}
 
-\item Neues Relationenschema
+\item \schrittE{2}
 
 \begin{compactitem}
-\item $R1(F, E)$
-\item $R2(A, B, D, F)$
-\item $R3(A, G, H)$
+\item \liRelation[R1]{F, E}
+\item \liRelation[R2]{A, B, D, F}
+\item \liRelation[R3]{A, G, H}
 \end{compactitem}
 
-\item Hinzufügen einer Relation
+\item \schrittE{3}
 
 Schlüsselkandidaten hinzufügen, falls nicht vorhanden:
-$R4(A, C, G)$
+\liRelation[R4]{A, C, G}
 
 \begin{compactitem}
-\item $R1(F, E)$
-\item $R2(A, B, D, F)$
-\item $R3(A, G, H)$
-\item $R4(A, C, G)$
+\item \liRelation[R1]{F, E}
+\item \liRelation[R2]{A, B, D, F}
+\item \liRelation[R3]{A, G, H}
+\item \liRelation[R4]{A, C, G}
 \end{compactitem}
 
-\item Entfernen überflüssiger Teilschemata
+\item \schrittE{4}
 
 nichts zu tun
 

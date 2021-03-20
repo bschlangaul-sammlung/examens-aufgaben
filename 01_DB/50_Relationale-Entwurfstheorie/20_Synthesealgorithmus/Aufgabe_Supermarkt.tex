@@ -2,10 +2,12 @@
 \liLadePakete{normalformen,synthese-algorithmus}
 \begin{document}
 \let\FA=\liFunktionaleAbhaengigkeiten
+\let\fa=\liFunktionaleAbhaengigkeit
 \let\m=\liMenge
 \let\schritt=\liSyntheseSchrittUeberschrift
 \let\erklaerung=\liSyntheseSchrittErklaerung
 \let\schrittE=\liSyntheseSchrittUeberschriftErklaerung
+\let\ah=\liAttributHuelle
 
 \liAufgabenTitel{Supermarkt}
 
@@ -54,7 +56,7 @@ Es existieren folgende funktionale Abhängigkeiten:
 
 }
 
-\FA{
+\FA[F]{
 ArtNr -> ArtName, ArtArt, Hersteller, HerstTel;
 Hersteller -> HerstTel;
 Lieferant -> LiefTel;
@@ -234,7 +236,7 @@ kurz!\index{Synthese-Algorithmus}
 \erklaerung{1-1}
 
 Die einzige FD mit einer Determinante bestehtend aus mehrere Attributen,
-ist \tmptt{ArtNr, Lieferant, BestDat $\rightarrow$ Anzahl}
+ist \fa{ArtNr, Lieferant, BestDat -> Anzahl}
 
 \begin{itemize}
 \item ohne \tmptt{ArtNr}
@@ -275,65 +277,55 @@ ist \tmptt{ArtNr, Lieferant, BestDat $\rightarrow$ Anzahl}
 
 Die linke Seiten der FDs können nicht reduziert werden.
 
-\item \schritt{1-2}
-
-\erklaerung{1-2}
+\item \schrittE{1-2}
 
 Das einzige Attribut, dass auf der rechten Seite der FDs doppelt vorkommt
 ist \tmptt{HerstTel}
 
-\tmptt{HerstTel $\in$ AttrHülle(F - \m{ArtNr $\rightarrow$ HerstTel}, \m{ArtNr}) = \\
-\{
+HerstTel $\in$ \ah{F - \fa{ArtNr -> HerstTel}, \m{ArtNr}} = \\
+\m{
   ArtNr,
   ArtName,
   ArtArt,
   Hersteller,
   HerstTel
-\}}
+}
 
-\item \schritt{1-3}
-
-\erklaerung{1-3}
+\item \schrittE{1-3}
 
 Nichts zu tun
 
-\item \schritt{1-4}
-
-\erklaerung{1-4}
+\item \schrittE{1-4}
 
 Nichts zu tun
 \end{enumerate}
 
 Kanonische Überdeckung:
 
-\tmptt{%
-  ArtNr $\rightarrow$ ArtName; ArtArt; Hersteller\\
-  Hersteller $\rightarrow$ HerstTel\\
-  Lieferant $\rightarrow$ LiefTel\\
-  ArtNr, Lieferant, BestDat $\rightarrow$ Anzahl
+\FA[$F_c$]{
+ArtNr -> ArtName, ArtArt, Hersteller;
+Hersteller -> HerstTel;
+Lieferant -> LiefTel;
+ArtNr, Lieferant, BestDat -> Anzahl;
 }
 
 \item \schrittE{2}
 
-\tmptt{%
-  R1(ArtNr, ArtName, ArtArt, Hersteller)\\
-  R2(Hersteller, HerstTel)\\
-  R3(Lieferant, LiefTel)\\
-  R4(ArtNr, Lieferant, BestDat, Anzahl)
-}
+\liRelation[R1]{ArtNr, ArtName, ArtArt, Hersteller}\\
+\liRelation[R2]{Hersteller, HerstTel}\\
+\liRelation[R3]{Lieferant, LiefTel}\\
+\liRelation[R4]{ArtNr, Lieferant, BestDat, Anzahl}
 
 \item \schrittE{3}
 
 Es muss noch eine Relation hinzugefügt werden, nämlich kommt das
 Attribut \tmptt{EP} bisher in keiner Relation vor.
 
-\tmptt{%
-  R1(ArtNr, ArtName, ArtArt, Hersteller)\\
-  R2(Hersteller, HerstTel)\\
-  R3(Lieferant, LiefTel)\\
-  R4(ArtNr, Lieferant, BestDat, Anzahl)\\
-  R5(ArtNr, Lieferant, BestDat, EP)
-}
+\liRelation[R1]{ArtNr, ArtName, ArtArt, Hersteller}\\
+\liRelation[R2]{Hersteller, HerstTel}\\
+\liRelation[R3]{Lieferant, LiefTel}\\
+\liRelation[R4]{ArtNr, Lieferant, BestDat, Anzahl}\\
+\liRelation[R5]{ArtNr, Lieferant, BestDat, EP}
 
 \item \schrittE{4}
 
@@ -343,13 +335,11 @@ Nicht zu tun.
 
 Ergebnis:
 
-\tmptt{%
-  R1(ArtNr, ArtName, ArtArt, Hersteller)\\
-  R2(Hersteller, HerstTel)\\
-  R3(Lieferant, LiefTel)\\
-  R4(ArtNr, Lieferant, BestDat, Anzahl)\\
-  R5(ArtNr, Lieferant, BestDat, EP)
-}
+\liRelation[R1]{ArtNr, ArtName, ArtArt, Hersteller}\\
+\liRelation[R2]{Hersteller, HerstTel}\\
+\liRelation[R3]{Lieferant, LiefTel}\\
+\liRelation[R4]{ArtNr, Lieferant, BestDat, Anzahl}\\
+\liRelation[R5]{ArtNr, Lieferant, BestDat, EP}
 
 \end{liAntwort}
 

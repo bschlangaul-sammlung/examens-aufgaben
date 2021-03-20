@@ -1,6 +1,9 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe,normalformen}
+\liLadePakete{normalformen,synthese-algorithmus}
 \begin{document}
+\let\FA=\liFunktionaleAbhaengigkeiten
+\let\schrittE=\liSyntheseSchrittUeberschriftErklaerung
+
 \liAufgabenTitel{Drei-Schemata}
 
 \section{Normalformen Einstieg
@@ -10,14 +13,19 @@
 Es seien folgende Relationenschemata mit den jeweiligen Mengen
 funktionaler Abhängigkeiten gegeben:
 
-$S_1 \{P, Q, R\}$ mit
-$F_1 = \{P Q \rightarrow R, P R \rightarrow Q, QR \rightarrow P \}$
+\begin{description}
+\item \liRelation[$S_1$]{P, Q, R} mit
 
-$S_2 \{P, R, S, T \}$ mit
-$F_2 = \{P S \rightarrow T \}$
+\FA[$F_1$]{P, Q -> R; P, R -> Q; Q, R -> P}
 
-$S_3 \{P, S, U \}$ mit
-$F_3 = \{\}$
+\item \liRelation[$S_2$]{P, R, S, T} mit
+
+\FA[$F_2$]{P, S -> T}
+
+\item \liRelation[$S_3$]{P, S, U}  mit
+
+\FA[$F_3$]{}
+\end{description}
 
 \begin{enumerate}
 
@@ -30,13 +38,19 @@ BCNF\index{Boyce-Codd-Normalform}, welche in 3NF\index{Dritte
 Normalform}, welche in 2NF\index{Zweite Normalform}? Begründe!
 
 \begin{liAntwort}
-\begin{itemize}
-\item $S_1$: BCNF
+\begin{description}
+\item[$S_1$] BCNF
 
-\item $S_2$: 1NF aber nicht 2NF
+\item[$S_2$] 1NF aber nicht 2NF
 
-\item $S_3$: BCNF
-\end{itemize}
+\item[$S_3$] BCNF
+\end{description}
+
+($S_1$, $F_1$) und ($S_3$, $F_3$) sind offenbar in BCNF und
+daher auch in 3NF und 2NF. ($S_2$ , $F_2$) ist offenbar nicht in
+2NF, da der Schlüsselkandidat PRS ist und T von einem Teil dieser
+Schlüsselkandidaten, nämlich PS, abhängig ist und daher auch nicht in
+3NF oder BCNF.
 \end{liAntwort}
 
 %%
@@ -50,17 +64,42 @@ Abhängigkeiten, die über den erhaltenen Teilrelationen gelten. Ihr
 Lösungsweg muss nachvollziehbar sein.
 
 \begin{liAntwort}
+Achtung! Die Aufteilung in die einzelnen Schritte stimmt nicht.
+
+\begin{enumerate}
+\item \schrittE{1}
+
 PS -> T (ist schon kanonische Überdeckung)
 
-2. Schritt
+\item \schrittE{2}
+
+Enthält keines der so entstandenen Relationenschemata einen
+Schlüsselkandidaten von R, so wird ein weiteres Relationenschema
+erzeugt, das als Attribute die Attribute eines (beliebigen)
+Schlüsselkandidaten von R hat.
 
 R1 (P, S, T)
 
-3. Schritt
+\item \schrittE{3}
 
-R1 (P, S, T) mit F21 = {PS->}
-R2 (P, S, R) mit F22 = {}
+Attribute von R, die in keinem der in Schritt 1 und 2 erzeugten
+Relationenschemata auftauchen, werden in einem zusätzlichen
+Relationenschema zusammengefasst
 
+\liRelation[$S_{21}$]{P, S, T} mit \FA[$F_{21}$]{P S-> T}
+
+\bigskip
+
+\liRelation[$S_{22}$]{P, S, R} mit \FA[$F_{22}$]{}
+
+\item \schrittE{4}
+
+Von den in Schritt 1 bis 3 entstandenen Schemata werden die Schemata
+wieder verworfen, deren Attributmenge eine Teilmenge eines anderen in
+Schritt 1 bis 3 entstandenen Schemas ist und solche mit gleichem
+Schlüsselkandidaten zusammengefasst.
+
+\end{enumerate}
 \end{liAntwort}
 
 \end{enumerate}

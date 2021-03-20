@@ -1,10 +1,11 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe,normalformen}
+\liLadePakete{mathe,normalformen,synthese-algorithmus}
 \begin{document}
 \let\ah=\liAttributHuelleOhneMathe
 \let\m=\liMenge
 \let\FA=\liFunktionaleAbhaengigkeiten
 \let\fa=\liFunktionaleAbhaengigkeit
+\let\schrittE=\liSyntheseSchrittUeberschriftErklaerung
 
 \liAufgabenTitel{Studentenbibliothek}
 
@@ -16,11 +17,14 @@
 Betrachten Sie das relationale Schema
 \footcite[Seite 1, Aufgabe 2]{db:ab:6}
 
-\liRelation{R}{Signatur, Titel, Fachgebiet, Art, ErschOrt, MatrNr,
+\begin{center}
+\liRelation[R]{Signatur, Titel, Fachgebiet, Art, ErschOrt, MatrNr,
 StudName, Gebdatum, StudWohnort, StudFachrichtung, AutNr, AutName,
 AutWohnort, AutBuchHonorar}
+\end{center}
 
-und die Menge
+\noindent
+und die Menge\bigskip
 
 \FA{Signatur -> Titel, Fachgebiet, Art, ErschOrt;
 Signatur -> MatrNr;
@@ -37,14 +41,14 @@ in 3. Normalform an!
 
 \begin{liAntwort}
 \begin{enumerate}
-\item Linksreduktion
+\item \schrittE{1-1}
 
 \ah{F, \m{Autnr}} = \m{Autnr, AutName, AutWohnort}
 
 \ah{F, \m{Signatur}} =
 \m{Signatur, Titel, Fachgebiet, Art, ErschOrt, MatrNr, StudName, Gebdatum, StudWohnort, StudFachrichtung}
 
-\item Rechtsreduktion
+\item \schrittE{1-2}
 
 \ah{F - \m{\fa{Signatur -> MatrNr}}, \m{Signatur}} = \m{Signatur, Titel, Fachgebiet, Art, ErschOrt}
 

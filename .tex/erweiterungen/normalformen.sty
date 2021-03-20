@@ -57,13 +57,18 @@ Attributhülle]
 % \\item \$(.*) \\rightarrow (.*)\$
 % $1 -> $2;
 \NewDocumentCommand {\liFunktionaleAbhaengigkeiten} { O{FA} m } {
-\par
-\noindent
-#1 $= \{$
-\par
-\directlua{normalformen.drucke_funk_abhaengigkeiten('#2')}
-\par
-\noindent$\}$
+  \par
+  \noindent
+  #1 $= \{$
+  \par
+  \directlua{normalformen.drucke_funk_abhaengigkeiten('#2')}
+  \par
+  \noindent$\}$
 }
 
-\def\liRelation#1#2{#1(#2)}
+% Regulärer Ausdruck zum Konvertieren
+% \$(R.*)\((.*)\)\$
+% \\liRelation[$1]{$2}
+\NewDocumentCommand {\liRelation} { O{R} m } {
+  #1(\textit{\,#2\,})
+}
