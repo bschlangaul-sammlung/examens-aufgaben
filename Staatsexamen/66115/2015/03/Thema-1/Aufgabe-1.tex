@@ -35,21 +35,20 @@ Erinnerung: $|w|_a$ bezeichnet die Zahl der $a$’s im Wort $w$.
 %%
 
 \item Sei $A = (Q, \Sigma, \delta, q_0 , E)$ ein deterministischer
-endlicher Automat für L. Es sei $w_1 = 111$, $w_2 = 11$, $w_3 = 1$,$ w_4
+endlicher Automat für $L$. Es sei $w_1 = 111$, $w_2 = 11$, $w_3 = 1$,$ w_4
 = \epsilon$, $w_5 = 0$, $w_6 = 00$, $w_7 = 000$. Machen Sie sich klar,
 dass der Automat jedes dieser Wörter verarbeiten können muss. Folgern
 Sie, dass der Automat mindestens sieben Zustände haben muss. Schreiben
 Sie Ihr Argumentation schlüssig und vollständig auf.
 
 \begin{liAntwort}
-
-Die Grammatik einer regulären Sprache kann durch einen deterministischen
-endlichen Automaten dargestellt werden.
-
-In einem DEA kann man nur anhand der Zustände zählen. Da die Zustände
-endlich sind, es aber unendlich viele Möglichkeiten gibt, die gezählt
-werden müssen, gibt es für diese Sprache keinen DEA. Somit ist diese
-Sprache nicht regulär.
+Ein deterministischen endlicher Automat hat keinen zusätzlichen Speicher
+zur Verfügung, in dem die Anzahl der bisher vorkommenden $0$ und $1$
+gespeichert werden könnte. Ein DEA kann die von der Spreche benötigten
+Anzahl an $0$ und $1$ nur in Form von Zustanden speichern. Um die Anzahl
+von 3 Einsen bzw 3 Nullen zu speichern, sind also 6 Zustände nötig. Da
+die Sprache auch das leere Wort erkennen soll ist noch ein zusätzlicher
+Zustand für dieses leere Wort nötig.
 \end{liAntwort}
 
 %%
@@ -59,19 +58,7 @@ Sprache nicht regulär.
 \item Begründen Sie, dass $L$ regulär ist.
 
 \begin{liAntwort}
-\begin{center}
-\begin{tikzpicture}[li automat,node distance=3cm]
-\node[state,initial]
-(0) {$z_0$};
 
-\node[state,right of=0]
-(1) {$z_1$};
-
-\path (0) edge[above,loop] node{$0$,$1$} (0);
-
-\end{tikzpicture}
-\liFussnoteUrl{https://flaci.com/A5z2ogtgg}
-\end{center}
 \end{liAntwort}
 
 %%
