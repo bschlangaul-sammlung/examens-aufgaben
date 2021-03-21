@@ -3,11 +3,20 @@
 \begin{document}
 \let\FA=\liFunktionaleAbhaengigkeiten
 \let\fa=\liFunktionaleAbhaengigkeit
-\let\m=\liMenge
-\let\schritt=\liSyntheseSchrittUeberschrift
-\let\erklaerung=\liSyntheseSchrittErklaerung
+\let\m=\liAttributMenge
 \let\schrittE=\liSyntheseSchrittUeberschriftErklaerung
 \let\ah=\liAttributHuelle
+
+\NewDocumentEnvironment{ tmpHuelle } { +b } {
+\begingroup
+\footnotesize
+\begin{multline*}
+#1
+\end{multline*}
+\endgroup
+} {
+
+}
 
 \liAufgabenTitel{Supermarkt}
 
@@ -15,34 +24,22 @@
 \footcite{db:ab:6}
 }
 
-\newcommand{\tmptt}[1]{%
-  {%
-    \small%
-    \ttfamily%
-    \noindent%
-    #1
-  }
-}
-
 Ein Supermarkt speichert seine Bestellungen in nachfolgender Tabelle:
 
 \bigskip
 
-\tmptt{%
-  \{
-    ARTBEST[
-      ArtNr;
-      ArtName;
-      ArtArt;
-      Hersteller;
-      HerstTel;
-      Lieferant;
-      LiefTel;
-      BestDat;
-      Anzahl;
-      EP
-    ]
-  \}
+\noindent
+\liRelation[ARTBEST]{
+  ArtNr,
+  ArtName,
+  ArtArt,
+  Hersteller,
+  HerstTel,
+  Lieferant,
+  LiefTel,
+  BestDat,
+  Anzahl,
+  EP
 }
 
 \bigskip
@@ -51,10 +48,6 @@ Ein Supermarkt speichert seine Bestellungen in nachfolgender Tabelle:
 Es existieren folgende funktionale Abhängigkeiten:
 
 \bigskip
-
-\tmptt{%
-
-}
 
 \FA[F]{
 ArtNr -> ArtName, ArtArt, Hersteller, HerstTel;
@@ -65,7 +58,7 @@ ArtNr, Lieferant, BestDat -> Anzahl;
 
 \bigskip
 \noindent
-EP „Bestdat“ steht für Bestelldatum, „EP“ für Einkaufspreis
+„Bestdat“ steht für Bestelldatum, „EP“ für Einkaufspreis
 
 \begin{enumerate}
 
@@ -100,25 +93,27 @@ sonst wäre es ja kein Schlüsselkandidat / Primär\-schlüssel.
 Schlüsselkandidaten\index{Schlüsselkandidat} von ARTBEST.
 
 \begin{liAntwort}
-Ich wähle \texttt{ArtNr, Lieferant, BestDat} aus, da diese Attribute auf
-keiner rechten Seite einer FD vorkommen. Außerdem wähle ich \texttt{EP}
-aus, da \texttt{EP} in keiner FD vorkommt.
+Ich wähle \m{ArtNr, Lieferant, BestDat} aus, da diese Attribute auf
+keiner rechten Seite einer FD vorkommen. Außerdem wähle ich \m{EP}
+aus, da \m{EP} in keiner FD vorkommt.
 
-\tmptt{AttrHülle(F, \m{ArtNr, Lieferant, BestDat, EP}) = \\
-\{
+\begin{tmpHuelle}
+\ah{F, \m{ArtNr, Lieferant, BestDat, EP}} = \\
+\m{
   ArtNr,
   Lieferant,
   BestDat,
   EP,
   ArtName,
   ArtArt,
-  Hersteller,\\
+  Hersteller,
   HerstTel,
   LiefTel,
   Anzahl
-\} = R}
+} = R
+\end{tmpHuelle}
 
-Damit ist gezeigt, dass \texttt{ArtNr, Lieferant, BestDat, EP} ein
+Damit ist gezeigt, dass \m{ArtNr, Lieferant, BestDat, EP} ein
 Superschlüssel ist.
 
 Ich teste mit Hilfe der Attributhülle, ob man den Superschlüssel noch
@@ -126,18 +121,20 @@ weiter verkleinern kann.
 
 \subsection*{ohne \texttt{ArtNr}}
 
-\tmptt{AttrHülle(F, \m{Lieferant, BestDat, EP}) = \\
-\{
+\begin{tmpHuelle}
+\ah{F, \m{Lieferant, BestDat, EP}} = \\
+\m{
   Lieferant,
   BestDat,
   EP,
   LiefTel
-\} $\neq$ R}
-
+} \neq R
+\end{tmpHuelle}
 \subsection*{ohne \texttt{Lieferant}}
 
-\tmptt{AttrHülle(F, \m{ArtNr, BestDat, EP}) = \\
-\{
+\begin{tmpHuelle}
+\ah{F, \m{ArtNr, BestDat, EP}} = \\
+\m{
   ArtNr,
   BestDat,
   EP,
@@ -145,12 +142,14 @@ weiter verkleinern kann.
   ArtArt,
   Hersteller,
   HerstTel
-\} $\neq$ R}
+} \neq R
+\end{tmpHuelle}
 
 \subsection*{ohne \texttt{BestDat}}
 
-\tmptt{AttrHülle(F, \m{ArtNr, Lieferant, EP}) = \\
-\{
+\begin{tmpHuelle}
+\ah{F, \m{ArtNr, Lieferant, EP}} = \\
+\m{
   ArtNr,
   Lieferant,
   EP,
@@ -159,25 +158,28 @@ weiter verkleinern kann.
   Hersteller,
   HerstTel,
   LiefTel
-\} $\neq$ R}
+} \neq R
+\end{tmpHuelle}
 
 \subsection*{ohne \texttt{EP}}
 
-\tmptt{AttrHülle(F, \m{ArtNr, Lieferant, BestDat}) = \\
-\{
+\begin{tmpHuelle}
+\ah{F, \m{ArtNr, Lieferant, BestDat}} = \\
+\m{
   ArtNr,
   Lieferant,
   BestDat,
   ArtName,
   ArtArt,
-  Hersteller,\\
+  Hersteller,
   HerstTel,
   LiefTel,
   Anzahl
-\} $\neq$ R}
+} \neq R
+\end{tmpHuelle}
 
-Der Superschlüssel \texttt{ArtNr, Lieferant, BestDat, EP} kann nicht
-mehr weiter \\verkleinert werden. Er ist bereits minimal. \texttt{ArtNr,
+Der Superschlüssel \m{ArtNr, Lieferant, BestDat, EP} kann nicht
+mehr weiter verkleinert werden. Er ist bereits minimal. \m{ArtNr,
 Lieferant, BestDat, EP} ist der einzige Schlüsselkandidat und damit
 der Primärschlüssel.
 
@@ -194,15 +196,15 @@ Anomalien auf, die bei fehlender Normalisierung auftreten können.
 \begin{liAntwort}
 In der dritten Normalform darf kein Nichtschlüsselattribut von einem
 Schlüsselkandidaten transitiv abhängen. In der Relation \texttt{ARTBEST}
-hängt \texttt{HerstTel} funkional von \texttt{Hersteller} und
-\texttt{Hersteller} hängt wiederum funktional von dem Primärschlüssel /
-Schlüsselkandidaten \texttt{ArtNr, Lieferant, BestDat, EP} ab.
+hängt \m{HerstTel} funkional von \m{Hersteller} und
+\m{Hersteller} hängt wiederum funktional von dem Primärschlüssel /
+Schlüsselkandidaten \m{ArtNr, Lieferant, BestDat, EP} ab.
 
 \bigskip
 
-\texttt{ArtNr, Lieferant, BestDat, EP}
-$\rightarrow$ \texttt{Hersteller}
-$\rightarrow$ \texttt{HerstTel}
+\m{ArtNr, Lieferant, BestDat, EP}
+$\rightarrow$ \m{Hersteller}
+$\rightarrow$ \m{HerstTel}
 
 \subsection*{Update-Anomalie}\index{Update-Anomalie}
 
@@ -228,42 +230,45 @@ kurz!\index{Synthese-Algorithmus}
 \begin{liAntwort}
 
 \begin{enumerate}
-\item \schritt{1}
+\item \schrittE{1}
 
 \begin{enumerate}
-\item \schritt{1-1}
-
-\erklaerung{1-1}
+\item \schrittE{1-1}
 
 Die einzige FD mit einer Determinante bestehtend aus mehrere Attributen,
 ist \fa{ArtNr, Lieferant, BestDat -> Anzahl}
 
 \begin{itemize}
-\item ohne \tmptt{ArtNr}
+\item ohne \m{ArtNr}
 
-\tmptt{Anzahl $\notin$ AttrHülle(F, \m{Lieferant, BestDat}) = \\
-\{
+\begin{tmpHuelle}
+\m{Anzahl} \notin \ah{F, \m{Lieferant, BestDat}} = \\
+\m{
   Lieferant,
   BestDat,
   LiefTel
-\}}
+}
+\end{tmpHuelle}
 
-\item ohne \tmptt{Lieferant}
+\item ohne \m{Lieferant}
 
-\tmptt{Anzahl $\notin$ AttrHülle(F, \m{ArtNr, BestDat}) = \\
-\{
+\begin{tmpHuelle}
+Anzahl \notin \ah{F, \m{ArtNr, BestDat}} = \\
+\m{
   ArtNr,
   BestDat,
   ArtName,
   ArtArt,
   Hersteller,
   HerstTel
-\}}
+}
+\end{tmpHuelle}
 
-\item ohne \tmptt{BestDat}
+\item ohne \m{BestDat}
 
-\tmptt{Anzahl $\notin$ AttrHülle(F, \m{ArtNr, Lieferant}) = \\
-\{
+\begin{tmpHuelle}
+Anzahl \notin \ah{F, \m{ArtNr, Lieferant}} = \\
+\m{
   ArtNr,
   Lieferant,
   ArtName,
@@ -271,7 +276,8 @@ ist \fa{ArtNr, Lieferant, BestDat -> Anzahl}
   Hersteller,
   HerstTel,
   LiefTel
-\}}
+}
+\end{tmpHuelle}
 
 \end{itemize}
 
@@ -280,9 +286,10 @@ Die linke Seiten der FDs können nicht reduziert werden.
 \item \schrittE{1-2}
 
 Das einzige Attribut, dass auf der rechten Seite der FDs doppelt vorkommt
-ist \tmptt{HerstTel}
+ist \m{HerstTel}
 
-HerstTel $\in$ \ah{F - \fa{ArtNr -> HerstTel}, \m{ArtNr}} = \\
+\begin{tmpHuelle}
+\m{HerstTel} \in \ah{F - \fa{ArtNr -> HerstTel}, \m{ArtNr}} = \\
 \m{
   ArtNr,
   ArtName,
@@ -290,6 +297,7 @@ HerstTel $\in$ \ah{F - \fa{ArtNr -> HerstTel}, \m{ArtNr}} = \\
   Hersteller,
   HerstTel
 }
+\end{tmpHuelle}
 
 \item \schrittE{1-3}
 
@@ -319,7 +327,7 @@ ArtNr, Lieferant, BestDat -> Anzahl;
 \item \schrittE{3}
 
 Es muss noch eine Relation hinzugefügt werden, nämlich kommt das
-Attribut \tmptt{EP} bisher in keiner Relation vor.
+Attribut \m{EP} bisher in keiner Relation vor.
 
 \liRelation[R1]{ArtNr, ArtName, ArtArt, Hersteller}\\
 \liRelation[R2]{Hersteller, HerstTel}\\

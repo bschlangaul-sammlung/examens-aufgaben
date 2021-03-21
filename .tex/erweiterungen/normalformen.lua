@@ -1,18 +1,6 @@
 --local helfer = require('helfer')
 local helfer = require('lehramt-informatik-helfer')
 
-local function text_in_buchstaben_teilen (text)
-  local ergebnis = {}
-  if string.find(text, ',') then
-    ergebnis = helfer.split(text, ' *, *')
-  else
-    for buchstabe in text:gmatch(".") do
-      table.insert(ergebnis, buchstabe)
-    end
-  end
-  return ergebnis
-end
-
 -- param eingang: A, B
 -- return: { A, B }
 -- 'nichts' wird durch \emptyset ersetzt
@@ -47,11 +35,6 @@ local function drucke_funk_abhaengigkeiten(eingabe)
 end
 
 return {
-  teilen = function (eingang)
-    local buchstaben = text_in_buchstaben_teilen(eingang)
-    local ergebnis = table.concat(buchstaben, ', ')
-    return ergebnis
-  end,
   drucke_funk_abhaengigkeit = function (eingabe, fuer_mathe)
     tex.print(setze_funk_abhaengigkeit(eingabe, fuer_mathe))
   end,

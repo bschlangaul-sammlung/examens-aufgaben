@@ -1,0 +1,66 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{normalformen,synthese-algorithmus}
+\begin{document}
+\let\FA=\liFunktionaleAbhaengigkeiten
+\let\m=\liAttributMenge
+\let\schrittE=\liSyntheseSchrittUeberschriftErklaerung
+
+\liAufgabenTitel{Entwurfstheorie}
+\section{Aufgabe 5
+\index{synthese-Algorithmus}
+\footcite{66116:2017:03}}
+
+In der folgenden Datenbank sind die Ausleihvorgänge einer Bibliothek gespeichert:
+
+| Ausleihe | LNr | Name | Adresse | BNr | Titel | Kategorie | ExemplarNr |
+1 | Müller | Winklerstr. 1 Datenbanksysteme | Informatik 1
+1 | Miller | Winklerstr. 1 | Datenbanksysteme | Informatik 2
+2 | Huber | Friedrichstr. | 2 Anatomie I Medizin 5
+2 Huber | Friedrichstr. 3 Harry Potter Literatur 20
+3 Meier | Bismarkstr. 4 OODBS Informatik 1
+4 Meier Marktpl. 5 | Pippi Langstrumpf | Literatur 1
+
+Für die Datenbank gilt:
+
+Jeder Leser hat eine eindeutige Lesernummer (LNr), einen Namen und eine
+Adresse. Ein Buch hat eine Buchnummer (BNr), einen Titel und eine
+Kategorie. Es kann mehrere Exemplare eines Buches geben, welche durch
+eine, innerhalb einer Buchnummer eindeutigen, Exemplarnummer
+unterschieden werden.
+
+\begin{enumerate}
+\item Beschreiben Sie kurz, welche Redundanzen in der Datenbank vorhanden sind
+und welche Anomalien auftreten können.
+
+\item Nachfolgend sind alle nicht-trivialen funktionalen Abhängigkeiten,
+welche in der obigen Datenbank gelten, angegeben:
+
+\FA{LNr -> Name;
+LNr -> Adresse;
+BNr -> Titel;
+BNr -> Kategorie;
+LNr, BNr, ExemplarNr -> Name, Adresse, Titel, Kategorie}
+
+Einziger Schlüsselkandidat ist \m{LNr, BNr, ExemplarNr}. Überführen Sie
+das Schema mit Hilfe des Synthesealgorithmus für 3NF in die dritte
+Normalform.
+
+\begin{liAntwort}
+\begin{enumerate}
+\item \schrittE{1}
+
+\begin{enumerate}
+\item \schrittE{1-1}
+\item \schrittE{1-2}
+\item \schrittE{1-3}
+\item \schrittE{1-4}
+\end{enumerate}
+
+\item \schrittE{2}
+\item \schrittE{3}
+\item \schrittE{4}
+\end{enumerate}
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}

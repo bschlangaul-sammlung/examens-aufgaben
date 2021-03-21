@@ -11,18 +11,11 @@ Attributhülle]
   \directlua{tex.print(normalformen.teilen('#1'))}
 }
 
-\def\lifa#1 > #2 {%
-  $\text{#1}\rightarrow\text{#2}$%
-}
-
-% Attributmenge
-\def\li@menge#1#2{$#1 = \{#2\}$}
-\def\liFunktionaleAbhaengigkeitenMenge#1#2{\li@menge{#1}{#2}}
-% Mit teilen
-\def\liAttributMenge#1#2{$#1 = \{\liTeilen{#2}\}$}
-
 % \let\ah=\liAttributHuelle
-\def\liAttributHuelleOhneMathe#1{\textit{AttrHülle}(#1)}
+% Regulärer Ausdruck zum Konvertieren
+% AttrHülle\((.*)\)
+% \\ah{$1}
+\def\liAttributHuelleOhneMathe#1{\text{AttrHülle}(#1)}
 \def\liAttributHuelle#1{
 \ifmmode
   \liAttributHuelleOhneMathe{#1}
@@ -31,10 +24,8 @@ Attributhülle]
 \fi
 }
 
-\def\liMengeOhneMathe#1{\{ #1 \}}
-
-% \let\m=\liMenge
-\def\liMenge#1{\liMengeOhneMathe{#1}}
+% \let\m=\liAttributMenge
+\def\liAttributMenge#1{\{ \textit{#1} \}}
 
 % geschweifte Klammer
 \let\liGeschweifteKlammer=\liMenge
