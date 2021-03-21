@@ -1,13 +1,14 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{normalformen,synthese-algorithmus}
 \begin{document}
+\let\ah=\liAttributHuelle
 \let\FA=\liFunktionaleAbhaengigkeiten
 \let\m=\liAttributMenge
 \let\schrittE=\liSyntheseSchrittUeberschriftErklaerung
 
 \liAufgabenTitel{Entwurfstheorie}
 \section{Aufgabe 5
-\index{synthese-Algorithmus}
+\index{Synthese-Algorithmus}
 \footcite{66116:2017:03}}
 
 In der folgenden Datenbank sind die Ausleihvorgänge einer Bibliothek gespeichert:
@@ -35,11 +36,23 @@ und welche Anomalien auftreten können.
 \item Nachfolgend sind alle nicht-trivialen funktionalen Abhängigkeiten,
 welche in der obigen Datenbank gelten, angegeben:
 
-\FA{LNr -> Name;
-LNr -> Adresse;
-BNr -> Titel;
-BNr -> Kategorie;
-LNr, BNr, ExemplarNr -> Name, Adresse, Titel, Kategorie}
+\FA{
+  LNr -> Name;
+  LNr -> Adresse;
+  BNr -> Titel;
+  BNr -> Kategorie;
+  LNr, BNr, ExemplarNr -> Name, Adresse, Titel, Kategorie
+}
+
+% http://www.ict.griffith.edu.au/normalization_tools/normalization/ind.php#resources
+
+% LNr,BNr,ExemplarNr,Name,Adresse,Titel,Kategorie
+
+% LNr -> Name
+% LNr -> Adresse
+% BNr -> Titel
+% BNr -> Kategorie
+% LNr,BNr,ExemplarNr -> Name,Titel,Adresse,Kategorie
 
 Einziger Schlüsselkandidat ist \m{LNr, BNr, ExemplarNr}. Überführen Sie
 das Schema mit Hilfe des Synthesealgorithmus für 3NF in die dritte
@@ -51,6 +64,21 @@ Normalform.
 
 \begin{enumerate}
 \item \schrittE{1-1}
+
+$\ah{F, \m{\m{LNr, BNr, ExemplarNr} - \m{LNr}}} = \m{Titel, Kategorie}$
+
+$\ah{F, \m{\m{LNr, BNr, ExemplarNr} - \m{BNr}}} = \m{Name, Adresse}$
+
+$\ah{F, \m{\m{LNr, BNr, ExemplarNr} - \m{ExemplarNr}}} = \m{Name, Adresse, Titel, Kategorie}$
+
+\FA{
+  LNr -> Name;
+  LNr -> Adresse;
+  BNr -> Titel;
+  BNr -> Kategorie;
+  LNr, BNr -> Name, Adresse, Titel, Kategorie
+}
+
 \item \schrittE{1-2}
 \item \schrittE{1-3}
 \item \schrittE{1-4}
