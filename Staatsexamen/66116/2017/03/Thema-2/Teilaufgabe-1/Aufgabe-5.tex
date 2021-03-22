@@ -2,7 +2,9 @@
 \liLadePakete{normalformen,synthese-algorithmus}
 \begin{document}
 \let\ah=\liAttributHuelle
+\let\ahL=\liAttributHuelleLinksReduktion
 \let\FA=\liFunktionaleAbhaengigkeiten
+\let\fa=\liFunktionaleAbhaengigkeit
 \let\m=\liAttributMenge
 \let\schrittE=\liSyntheseSchrittUeberschriftErklaerung
 
@@ -58,6 +60,12 @@ Einziger Schlüsselkandidat ist \m{LNr, BNr, ExemplarNr}. Überführen Sie
 das Schema mit Hilfe des Synthesealgorithmus für 3NF in die dritte
 Normalform.
 
+\def\ahR#1#2#3#4{
+\shoveleft{\ah{FA - (\fa{#1 -> #2}) \cup (\fa{#1 -> #3}), \m{#1}} =}
+\\
+\shoveright{\m{#4}}\\
+}
+
 \begin{liAntwort}
 \begin{enumerate}
 \item \schrittE{1}
@@ -65,11 +73,12 @@ Normalform.
 \begin{enumerate}
 \item \schrittE{1-1}
 
-$\ah{F, \m{\m{LNr, BNr, ExemplarNr} - \m{LNr}}} = \m{Titel, Kategorie}$
-
-$\ah{F, \m{\m{LNr, BNr, ExemplarNr} - \m{BNr}}} = \m{Name, Adresse}$
-
-$\ah{F, \m{\m{LNr, BNr, ExemplarNr} - \m{ExemplarNr}}} = \m{Name, Adresse, Titel, Kategorie}$
+\begin{liAHuelle}
+\\
+\ahL{LNr, BNr, ExemplarNr}{LNr}{Titel, Kategorie}
+\ahL{LNr, BNr, ExemplarNr}{BNr}{Name, Adresse}
+\ahL{LNr, BNr, ExemplarNr}{\textbf{ExemplarNr}}{\textbf{Name, Adresse, Titel, Kategorie}}
+\end{liAHuelle}
 
 \FA{
   LNr -> Name;
@@ -80,8 +89,43 @@ $\ah{F, \m{\m{LNr, BNr, ExemplarNr} - \m{ExemplarNr}}} = \m{Name, Adresse, Titel
 }
 
 \item \schrittE{1-2}
+
+\begin{liAHuelle}
+\\
+\ahR{LNr}{Name}{nichts}{Adresse}
+\ahR{LNr}{Adresse}{nichts}{Name}
+\ahR{BNr}{Titel}{nichts}{Kategorie}
+\ahR{BNr}{Kategorie}{nichts}{Titel}
+\ahR{LNr, BNr}{Name, Adresse, Titel, Kategorie}{Adresse, Titel, Kategorie}{Name, Adresse, Titel, Kategorie}
+\ahR{LNr, BNr}{Name, Adresse, Titel, Kategorie}{Name, Titel, Kategorie}{Name, Adresse, Titel, Kategorie}
+\ahR{LNr, BNr}{Name, Adresse, Titel, Kategorie}{Name, Adresse, Kategorie}{Name, Adresse, Titel, Kategorie}
+\ahR{LNr, BNr}{Name, Adresse, Titel, Kategorie}{Name, Adresse, Titel}{Name, Adresse, Titel, Kategorie}
+\end{liAHuelle}
+
+\FA{
+  LNr -> Name;
+  LNr -> Adresse;
+  BNr -> Titel;
+  BNr -> Kategorie;
+  LNr, BNr -> nichts
+}
+
 \item \schrittE{1-3}
+
+\FA{
+  LNr -> Name;
+  LNr -> Adresse;
+  BNr -> Titel;
+  BNr -> Kategorie;
+}
+
 \item \schrittE{1-4}
+
+\FA{
+  LNr -> Name, Adresse;
+  BNr -> Titel, Kategorie;
+}
+
 \end{enumerate}
 
 \item \schrittE{2}

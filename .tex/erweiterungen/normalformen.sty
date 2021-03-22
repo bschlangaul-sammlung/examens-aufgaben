@@ -27,8 +27,27 @@ Attributhülle]
 % \let\m=\liAttributMenge
 \def\liAttributMenge#1{\{ \textit{#1} \}}
 
-% geschweifte Klammer
-\let\liGeschweifteKlammer=\liMenge
+\NewDocumentEnvironment{ liAHuelle } { +b } {
+  \begingroup
+  \footnotesize
+  \begin{multline*}
+    #1
+  \end{multline*}
+  \endgroup
+} { }
+
+% Nur innerhalb von liAHuelle zu verwenden
+% bzw. multline
+% \let\ahL=\liAttributHuelleLinksReduktion
+% \ahL{ursprüngliche linke Attributmenge}{ohne dieses Attribut}{Ergebnis}
+\def\liAttributHuelleLinksReduktion#1#2#3{
+  \shoveleft{
+    \liAttributHuelleOhneMathe{FA, \liAttributMenge{\liAttributMenge{#1} - \liAttributMenge{#2}}} =
+  } \\
+  \shoveright{
+    \liAttributMenge{#3}
+  } \\
+}
 
 % \let\fa=\liFunktionaleAbhaengigkeit
 % \liFunktionaleAbhaengigkeit{A, B -> C, D}

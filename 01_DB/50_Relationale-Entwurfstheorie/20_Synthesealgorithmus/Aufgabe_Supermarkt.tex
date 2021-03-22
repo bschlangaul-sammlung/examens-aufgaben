@@ -7,17 +7,6 @@
 \let\schrittE=\liSyntheseSchrittUeberschriftErklaerung
 \let\ah=\liAttributHuelle
 
-\NewDocumentEnvironment{ tmpHuelle } { +b } {
-\begingroup
-\footnotesize
-\begin{multline*}
-#1
-\end{multline*}
-\endgroup
-} {
-
-}
-
 \liAufgabenTitel{Supermarkt}
 
 \section{Aufgabe 5 (Check-Up)
@@ -97,7 +86,7 @@ Ich wähle \m{ArtNr, Lieferant, BestDat} aus, da diese Attribute auf
 keiner rechten Seite einer FD vorkommen. Außerdem wähle ich \m{EP}
 aus, da \m{EP} in keiner FD vorkommt.
 
-\begin{tmpHuelle}
+\begin{liAHuelle}
 \ah{F, \m{ArtNr, Lieferant, BestDat, EP}} = \\
 \m{
   ArtNr,
@@ -111,7 +100,7 @@ aus, da \m{EP} in keiner FD vorkommt.
   LiefTel,
   Anzahl
 } = R
-\end{tmpHuelle}
+\end{liAHuelle}
 
 Damit ist gezeigt, dass \m{ArtNr, Lieferant, BestDat, EP} ein
 Superschlüssel ist.
@@ -121,7 +110,7 @@ weiter verkleinern kann.
 
 \subsection*{ohne \texttt{ArtNr}}
 
-\begin{tmpHuelle}
+\begin{liAHuelle}
 \ah{F, \m{Lieferant, BestDat, EP}} = \\
 \m{
   Lieferant,
@@ -129,10 +118,10 @@ weiter verkleinern kann.
   EP,
   LiefTel
 } \neq R
-\end{tmpHuelle}
+\end{liAHuelle}
 \subsection*{ohne \texttt{Lieferant}}
 
-\begin{tmpHuelle}
+\begin{liAHuelle}
 \ah{F, \m{ArtNr, BestDat, EP}} = \\
 \m{
   ArtNr,
@@ -143,11 +132,11 @@ weiter verkleinern kann.
   Hersteller,
   HerstTel
 } \neq R
-\end{tmpHuelle}
+\end{liAHuelle}
 
 \subsection*{ohne \texttt{BestDat}}
 
-\begin{tmpHuelle}
+\begin{liAHuelle}
 \ah{F, \m{ArtNr, Lieferant, EP}} = \\
 \m{
   ArtNr,
@@ -159,11 +148,11 @@ weiter verkleinern kann.
   HerstTel,
   LiefTel
 } \neq R
-\end{tmpHuelle}
+\end{liAHuelle}
 
 \subsection*{ohne \texttt{EP}}
 
-\begin{tmpHuelle}
+\begin{liAHuelle}
 \ah{F, \m{ArtNr, Lieferant, BestDat}} = \\
 \m{
   ArtNr,
@@ -176,7 +165,7 @@ weiter verkleinern kann.
   LiefTel,
   Anzahl
 } \neq R
-\end{tmpHuelle}
+\end{liAHuelle}
 
 Der Superschlüssel \m{ArtNr, Lieferant, BestDat, EP} kann nicht
 mehr weiter verkleinert werden. Er ist bereits minimal. \m{ArtNr,
@@ -241,18 +230,18 @@ ist \fa{ArtNr, Lieferant, BestDat -> Anzahl}
 \begin{itemize}
 \item ohne \m{ArtNr}
 
-\begin{tmpHuelle}
+\begin{liAHuelle}
 \m{Anzahl} \notin \ah{F, \m{Lieferant, BestDat}} = \\
 \m{
   Lieferant,
   BestDat,
   LiefTel
 }
-\end{tmpHuelle}
+\end{liAHuelle}
 
 \item ohne \m{Lieferant}
 
-\begin{tmpHuelle}
+\begin{liAHuelle}
 Anzahl \notin \ah{F, \m{ArtNr, BestDat}} = \\
 \m{
   ArtNr,
@@ -262,11 +251,11 @@ Anzahl \notin \ah{F, \m{ArtNr, BestDat}} = \\
   Hersteller,
   HerstTel
 }
-\end{tmpHuelle}
+\end{liAHuelle}
 
 \item ohne \m{BestDat}
 
-\begin{tmpHuelle}
+\begin{liAHuelle}
 Anzahl \notin \ah{F, \m{ArtNr, Lieferant}} = \\
 \m{
   ArtNr,
@@ -277,7 +266,7 @@ Anzahl \notin \ah{F, \m{ArtNr, Lieferant}} = \\
   HerstTel,
   LiefTel
 }
-\end{tmpHuelle}
+\end{liAHuelle}
 
 \end{itemize}
 
@@ -288,7 +277,7 @@ Die linke Seiten der FDs können nicht reduziert werden.
 Das einzige Attribut, dass auf der rechten Seite der FDs doppelt vorkommt
 ist \m{HerstTel}
 
-\begin{tmpHuelle}
+\begin{liAHuelle}
 \m{HerstTel} \in \ah{F - \fa{ArtNr -> HerstTel}, \m{ArtNr}} = \\
 \m{
   ArtNr,
@@ -297,7 +286,7 @@ ist \m{HerstTel}
   Hersteller,
   HerstTel
 }
-\end{tmpHuelle}
+\end{liAHuelle}
 
 \item \schrittE{1-3}
 
