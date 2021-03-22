@@ -31,7 +31,34 @@ BB -> bb
 \item Geben Sie einen (regulären?) Ausdruck an, der die Wörter der
 Sprache beschreibt.
 
+% S
+%
+
 \begin{liAntwort}
+\let\u=\liPseudoUeberschrift
+
+„.“ nur als optische Stütze nach 4 Zeichen eingefügt
+
+\u{4}
+
+\liAbleitung{S -> SAB -> SABAB -> ABAB -> AABB -> aabb}
+
+\u{6}
+
+\liAbleitung{S -> ... -> ABAB.AB -> AABB.AB -> AABA.BB -> AAAB.BB -> nichts}
+
+\u{8}
+
+\liAbleitung{S -> ... -> ABAB.ABAB -> ... -> aabb.aabb }
+
+\liAbleitung{S -> ... -> ABAB.ABAB -> ... -> AABB.AABB -> AABA.BABB -> AABA.ABBB -> AAAB.ABBB -> AAAA.BBBB -> aaaa.bbbb}
+
+\u{12}
+
+\liAbleitung{S -> ... -> ABAB.ABAB.ABAB -> ... -> aabbaabbaabb }
+
+\liAbleitung{S -> ... -> ABAB.ABAB.ABAB -> AABB.ABAB.ABAB -> AABA.BBAB.ABAB -> AAAB.BBAB.ABAB ... -> aaaaaabbbbbb }
+
 (aabb)*
 \end{liAntwort}
 
