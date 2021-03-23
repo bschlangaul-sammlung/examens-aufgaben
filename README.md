@@ -1421,6 +1421,8 @@ als Markdown-Liste eingebettet werden kann.
             - Ableitung (Reguläre Sprache)
         - Kontextfreie Sprache:
             - Kontextfreie Grammatik
+            - Ableitung (Kontextfreie Sprache)
+            - Ableitungsbaum
             - Kellerautomat
             - CYK-Algorithmus
             - Chomsky-Normalform

@@ -1,0 +1,119 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,syntaxbaum}
+\begin{document}
+
+% Info_2021-03-12-2021-03-12_13.03.18.mp4 1h43
+\let\m=\liMengeOhneMathe
+
+\liAufgabenTitel{Vorlesungsaufgabe}
+\section{Ableitung und Parsebaum
+\index{Kontextfreie Sprache}
+\footcite[Seite 18]{theo:fs:2}}
+
+\begin{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\item Erstelle eine Ableitung und einen Parsebaum für die folgende
+Grammatik für das Wort
+\index{Ableitung (Kontextfreie Sprache)}
+\index{Ableitungsbaum}
+\liFussnoteUrl{https://flaci.com/Gf6s60uxg}
+
+$G = (\m{P}, \m{0, 1}, P, S)$
+
+\begin{liProduktionsRegeln}
+S -> epsilon | 0 | 1 | 0S0 | 1S1
+\end{liProduktionsRegeln}
+
+\begin{itemize}
+
+%%
+%
+%%
+
+\item 0000
+
+\begin{liAntwort}
+\liAbleitung{S -> 0S0 -> 00S00 -> 0000}
+
+\begin{center}
+\begin{tikzpicture}[li parsetree,level distance=1cm]
+\Tree [.S 0 [ 0 [.S $\epsilon$ ] 0 ] 0 ]
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
+
+%%
+%
+%%
+
+\item 01010
+
+\begin{liAntwort}
+\liAbleitung{S -> 0S0 -> 01S10 -> 01010}
+
+\begin{center}
+\begin{tikzpicture}[li parsetree,level distance=1cm]
+\Tree [.S 0 [ 1 [.S 0 ] 1 ] 0 ]
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
+\end{itemize}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\item Erstelle eine Ableitung und einen Parsebaum für die nebenstehende
+Grammatik für das Wort
+\liFussnoteUrl{https://flaci.com/Gpmohr81a}
+
+$V = \m{ S, A, B }$
+
+\liAlphabet{0, 1}
+
+\begin{liProduktionsRegeln}
+S -> A1B,
+A -> 0A | epsilon,
+B -> 0B | 1B | epsilon
+\end{liProduktionsRegeln}
+
+$S = S$
+
+\begin{itemize}
+\item 10101
+
+\begin{liAntwort}
+\liAbleitung{S -> A1B -> 1B -> 10B -> 101B -> 1010B -> 10101B -> 10101}
+
+\begin{center}
+\begin{tikzpicture}[li parsetree,level distance=1cm]
+\Tree [.S [.A $\epsilon$ ] 1 [.B 0 [.B 1 [.B 0 [.B 1 [.B $\epsilon$ ] ] ] ] ] ]
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
+
+\item 00100
+
+\begin{liAntwort}
+\liAbleitung{S -> A1B -> 0A1B -> 00A1B -> 001B -> 0010B -> 00100B -> 00100}
+
+\begin{center}
+\begin{tikzpicture}[li parsetree,level distance=1cm]
+\Tree [.S [.A 0 [.A 0 [.A ] $\epsilon$ ] ] 1 [.B 0 [.B 0 [.B $\epsilon$  ] ] ] ]
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
+\end{itemize}
+
+\item Sind die Parsebäume eindeutig?
+
+\begin{liAntwort}
+Ja, die Parsebäume sind eindeutig.
+\end{liAntwort}
+\end{enumerate}
+
+\end{document}
