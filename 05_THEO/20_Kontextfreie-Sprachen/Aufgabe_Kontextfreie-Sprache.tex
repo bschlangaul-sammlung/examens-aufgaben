@@ -28,7 +28,7 @@ BB -> bb
 % (a)
 %%
 
-\item Geben Sie einen (regulären?) Ausdruck an, der die Wörter der
+\item Geben Sie einen Ausdruck an, der die Wörter der
 Sprache beschreibt.
 
 % S
@@ -37,29 +37,31 @@ Sprache beschreibt.
 \begin{liAntwort}
 \let\u=\liPseudoUeberschrift
 
-„.“ nur als optische Stütze nach 4 Zeichen eingefügt
+Einige Testableitungen um die Grammatik in Erfahrung zu bringen:
 
-\u{4}
+„.“ nur als optische Stütze nach 4 Zeichen eingefügt.
+
+\u{Mit 4 Buchstaben}
 
 \liAbleitung{S -> SAB -> SABAB -> ABAB -> AABB -> aabb}
 
-\u{6}
+\u{Mit 6 Buchstaben}
 
 \liAbleitung{S -> ... -> ABAB.AB -> AABB.AB -> AABA.BB -> AAAB.BB -> nichts}
 
-\u{8}
+\u{Mit 8 Buchstaben}
 
 \liAbleitung{S -> ... -> ABAB.ABAB -> ... -> aabb.aabb }
 
 \liAbleitung{S -> ... -> ABAB.ABAB -> ... -> AABB.AABB -> AABA.BABB -> AABA.ABBB -> AAAB.ABBB -> AAAA.BBBB -> aaaa.bbbb}
 
-\u{12}
+\u{Mit 12 Buchstaben}
 
 \liAbleitung{S -> ... -> ABAB.ABAB.ABAB -> ... -> aabbaabbaabb }
 
-\liAbleitung{S -> ... -> ABAB.ABAB.ABAB -> AABB.ABAB.ABAB -> AABA.BBAB.ABAB -> AAAB.BBAB.ABAB ... -> aaaaaabbbbbb }
+\liAbleitung{S -> ... -> ABAB.ABAB.ABAB -> AAAA.BBBB.AABB  -> aaaabbbbaabb }
 
-(aabb)*
+\liAbleitung{S -> ... -> ABAB.ABAB.ABAB -> AABB.ABAB.ABAB -> AABA.BBAB.ABAB -> AAAB.BBAB.ABAB ... -> aaaa.aabb.bbbb }
 \end{liAntwort}
 
 %%
@@ -70,11 +72,11 @@ Sprache beschreibt.
 $L(G') = L(G)$
 
 \begin{liAntwort}
+
 \begin{liProduktionsRegeln}
-S -> SAB | epsilon,
-A -> a a,
-B -> b b
+S -> aa S bb | S S | epsilon,
 \end{liProduktionsRegeln}
+
 %\liFussnoteUrl{https://flaci.com/Grn19rt8w}
 \end{liAntwort}
 

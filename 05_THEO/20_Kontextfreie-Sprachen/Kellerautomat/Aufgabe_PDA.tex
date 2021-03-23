@@ -18,11 +18,11 @@ Erstelle jeweils einen PDA, der die angegebenen Sprachen akzeptiert.
 % (a)
 %%
 
-\item $L = \{0^n 1^n | n \in \mathbb{N} \}$
-
-N = Null
+\item $L = \{0^n 1^n \, | \, n \in \mathbb{N} \}$
 
 \begin{liAntwort}
+N = Null
+
 \begin{center}
 \begin{tikzpicture}[li kellerautomat,node distance=1.5cm]
 \node[state,initial] (0) {\z0};
@@ -30,13 +30,14 @@ N = Null
 \node[state,right=of 1] (2) {\z2};
 \node[state,below right=of 2] (3) {\z3};
 
-\path (0) edge[above left] node{\u{0 raute N}} (1);
+\path (0) edge[above left] node{\u{0 raute Nraute}} (1);
 \path (1) edge[above,loop] node{\u{0 N NN}} (1);
 \path (1) edge[above] node{\u{1 N epsilon}} (2);
 \path (2) edge[above,loop] node{\u{1 N epsilon}} (2);
 \path (2) edge[above right] node{\u{epsilon raute epsilon}} (3);
 \end{tikzpicture}
 \end{center}
+\liFussnoteUrl{https://flaci.com/Aji1r8mf7}
 \end{liAntwort}
 
 %%
@@ -45,10 +46,18 @@ N = Null
 
 \item Alle Wörter, die gleich viele $a$ wie $b$ enthalten.
 
+\begin{liAntwort}
+\liFussnoteUrl{https://flaci.com/Arar6fos7}
+\end{liAntwort}
+
 %%
 % (c)
 %%
 
 \item Alle Wörter, bei denen kein Präfix mehr Einsen wie Nullen hat.
+
+\begin{liAntwort}
+nicht akzeptiert: 1 11
+\end{liAntwort}
 \end{enumerate}
 \end{document}
