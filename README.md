@@ -156,8 +156,12 @@ Weitere Aufgaben zum Thema „SQL“:
 
 #### Normalformen
 
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/50_Relationale-Entwurfstheorie/10_Normalformen/Aufgabe_Abstraktes-R.pdf" download="Aufgabe_Abstraktes-R">„Abstraktes R“</a> (Schlüsselkandidat, Zweite Normalform, Kanonische Überdeckung)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/50_Relationale-Entwurfstheorie/10_Normalformen/Aufgabe_Anomalien-Abhaengigkeiten.pdf" download="Aufgabe_Anomalien-Abhaengigkeiten">„Anomalien Abhängigkeiten“</a> (Update-Anomalie, Delete-Anomalie, Insert-Anomalie, Funktionale Abhängigkeiten, Attributhüllen-Algorithmus, Attributhülle, Superschlüssel)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/50_Relationale-Entwurfstheorie/10_Normalformen/Aufgabe_Kanonische-Ueberdeckung-Kemper.pdf" download="Aufgabe_Kanonische-Ueberdeckung-Kemper">„Kanonische Überdeckung (Kemper)“</a> (Kanonische Überdeckung)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/50_Relationale-Entwurfstheorie/10_Normalformen/Aufgabe_Mietwagenfirma.pdf" download="Aufgabe_Mietwagenfirma">„Mietwagenfirma“</a> (Zweite Normalform, Delete-Anomalie, Update-Anomalie, Insert-Anomalie, Dritte Normalform)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/50_Relationale-Entwurfstheorie/10_Normalformen/Aufgabe_Minimale-Ueberdeckung.pdf" download="Aufgabe_Minimale-Ueberdeckung">„Minimale Überdeckung“</a> (Kanonische Überdeckung)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/50_Relationale-Entwurfstheorie/10_Normalformen/Aufgabe_Schlüsselkandidat-von-R.pdf" download="Aufgabe_Schlüsselkandidat-von-R">„Schlüsselkandidat von R“</a> (Schlüsselkandidat)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/50_Relationale-Entwurfstheorie/20_Synthesealgorithmus/Aufgabe_Arbeitsvermittler.pdf" download="Aufgabe_Arbeitsvermittler">„Arbeitsvermittler“</a> (Normalformen, Funktionale Abhängigkeiten, Schlüsselkandidat, Synthese-Algorithmus)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/50_Relationale-Entwurfstheorie/20_Synthesealgorithmus/Aufgabe_Drei-Schemata.pdf" download="Aufgabe_Drei-Schemata">„Drei-Schemata“</a> (Boyce-Codd-Normalform, Dritte Normalform, Zweite Normalform, Synthese-Algorithmus)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/50_Relationale-Entwurfstheorie/20_Synthesealgorithmus/Aufgabe_Relation-A-H.pdf" download="Aufgabe_Relation-A-H">„Relation A-H“</a> (Synthese-Algorithmus)
@@ -1222,6 +1226,8 @@ als Markdown-Liste eingebettet werden kann.
             - Zweite Normalform
             - Dritte Normalform
             - Boyce-Codd-Normalform
+            - Attributhülle
+            - Attributhüllen-Algorithmus
             - Anomalien:
                 - Update-Anomalie
                 - Insert-Anomalie

@@ -1,0 +1,115 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,automaten}
+\begin{document}
+\let\m=\liMenge
+\let\u=\liKellerUebergang
+\let\e=\liEpsilon
+
+\liAufgabenTitel{Vorlesungsaufgabe}
+\section{Kellerautomaten
+\index{Kontextfreie Sprache}
+\footcite[Seite 25]{theo:fs:2}}
+
+\begin{enumerate}
+\item Gib einen Kellerautomaten an, der die folgende Sprache erkennt:
+\index{Kellerautomat}
+
+$L = (a^n c^i b^n | n, i \in N_0)$
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[li kellerautomat,node distance=5cm]
+\node[state,initial] (0) {$z_0$};
+\node[state,above right of=0] (1) {$z_1$};
+\node[state,right of=0] (2) {$z_2$};
+
+\path (0) edge[below,loop below] node{
+  \u{a raute Araute}
+  \u{a A AA}
+} (0);
+
+\path (0) edge[below] node{
+  \u{epsilon raute epsilon}
+  \u{b A epsilon}
+} (2);
+
+\path (2) edge[below,loop below] node{
+  \u{b A epsilon}
+  \u{epsilon raute epsilon}
+} (2);
+
+\path (1) edge[below] node{
+  \u{epsilon raute epsilon}
+  \u{b A epsilon}
+} (2);
+
+\path (1) edge[above,loop] node{
+  \u{c A A}
+  \u{c raute raute}
+} (1);
+
+\path (0) edge[below] node{
+  \u{c raute raute}
+  \u{a A AA}
+} (1);
+
+\end{tikzpicture}
+\end{center}
+
+Tabellenform:
+
+\begin{tabular}{llllll}
+z0 & a & \# & z0 & A\#\\
+z0 & a & A & z0 & AA\\
+z0 & b & A & z2 & A & \e\\
+z0 & a \# & z0 & A\#\\
+z0 & a & \# & z0 & A\#\\
+z0 & a & \# & z0 & A\#\\
+
+z1 & c & \# & z1 & A\#\\
+z1 & c & A & z2 & A\e\\
+z1 & c & A & z2 & A\e\\
+z1 & \e & \# & z2 & \e\\
+
+z2 & b & A & z2 & A\e\\
+z2 & \e & \# & z2 & \e\\
+\end{tabular}
+\end{liAntwort}
+
+\item Gibt eine Grammatik für diese Sprache an.
+
+\begin{liAntwort}
+\begin{liProduktionsRegeln}
+S -> aSb | epsilon | c | cC,
+C -> cC | epsilon
+\end{liProduktionsRegeln}
+
+alternativ:
+
+\begin{liProduktionsRegeln}
+S -> aSb | epsilon | C,
+C -> cC | epsilon
+\end{liProduktionsRegeln}
+\end{liAntwort}
+
+\item Gib Konfigurationsfolgen an für die Erzeugung des Wortes
+
+\begin{itemize}
+\item aacbb
+
+\begin{liAntwort}
+\begin{tabular}{llr}
+a: & z0, a,\# -> zo A\#                   & A\#\\
+c. & z0, c,A -> z1 A                      & A\#\\
+c: & z1, c, A -> z1, A                    & A\#\\
+b: & z1, b, A -> z2, epsilon              & \#\\
+epsilon: & z2, epsilon, \# -> z2, epsilon & -\\
+\end{tabular}{llr}
+\end{liAntwort}
+
+\item accb
+\end{itemize}
+
+\end{enumerate}
+
+\end{document}

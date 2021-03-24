@@ -1,0 +1,50 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{normalformen}
+\begin{document}
+\let\fa=\liFunktionaleAbhaengigkeit
+\let\FA=\liFunktionaleAbhaengigkeiten
+\let\ah=\liAttributHuelle
+\let\m=\liAttributMenge
+
+\liAufgabenTitel{Minimale Überdeckung}
+
+\section{Minimale Überdeckung
+\index{Kanonische Überdeckung}
+\footcite[Seite 1, Aufgabe 2]{db:ab:5}}
+
+Gegeben ist die Menge \FA[$F$]{
+  A -> B, C;
+  C -> D, A;
+  E -> A, C;
+  C, D -> B, E;
+}. Bestimmen Sie eine minimale Überdeckung von $F$.
+
+\begin{liAntwort}
+
+\begin{enumerate}
+\item Linksreduktion
+
+$\ah{F, \m{D}} = \m{D}$ \\
+$\ah{F, \m{C}} = \m{C, D, A, B, E}$ \\
+
+\FA[$F'$]{
+  A -> B, C;
+  C -> D, A;
+  E -> A, C;
+  C -> B, E;
+}
+
+\item Rechtsreduktion
+
+$\ah{F - \m{A \rightarrow BC}, \m{A}} = \m{A}$ \\
+$\ah{F - \m{C \rightarrow DA}, \m{C}} = \m{C, B, E, A}$ \\
+$\ah{F - \m{E \rightarrow AC}, \m{E}} = \m{E}$ \\
+$\ah{F - \m{C \rightarrow BE}, \m{C}} = \m{C, D, A, B}$ \\
+Keine Linksreduktion möglich
+
+schon minimal
+
+\end{enumerate}
+
+\end{liAntwort}
+\end{document}

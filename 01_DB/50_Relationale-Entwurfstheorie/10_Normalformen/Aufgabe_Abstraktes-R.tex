@@ -1,0 +1,184 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{normalformen}
+\begin{document}
+\let\ah=\liAttributHuelle
+\let\m=\liAttributMenge
+\let\FA=\liFunktionaleAbhaengigkeiten
+\let\fa=\liFunktionaleAbhaengigkeit
+
+\liAufgabenTitel{Abstraktes R}
+
+\section{Abstaktes R\footcite[Seite 1, Aufgabe 1]{db:ab:6}}
+
+Gegeben sei das Relationenschema \liRelation{A, B, C, D, E, G} mit
+
+\begin{multline}
+F = \{ \\
+  E \rightarrow D, \\
+  C \rightarrow B, \\
+  CE \rightarrow G, \\
+  B \rightarrow A \\
+\}
+\end{multline}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Zeigen Sie: ${C, E}$ ist der einzige Schlüsselkandidat von $R$.
+\index{Schlüsselkandidat}
+
+\begin{liAntwort}
+A, G, D kommen auf keiner linken Seite vor
+
+$\ah{F, \m{C, E}} = R$
+
+$\ah{F, \m{C}} = \m{B} != R$
+
+$\ah{F, \m{E}} = \m{E, D} != R$
+\end{liAntwort}
+
+\begin{liAntwort}
+
+$C$ und $E$ kommen auf keiner rechten Seite der FDs aus $F$ vor, d.h.
+$C$ und $E$ müssen Teil jedes Schlüsselkandidaten sein.
+
+Außerdem gilt: $\ah{F, \m{C, E}} = \m{A, B, C, D, E, G} = R$
+
+$\m{C, E}$ ist somit Superschlüssel von $R$. Zudem ist $\m{C, E}$
+minimal, da beide Attribute Teil jedes SK sein müssen.
+
+$\Rightarrow$ $\m{C, E}$ ist damit der einzige Schlüsselkandidat von $R$
+(da kein SK ohne $C$ und $E$ möglich ist).
+
+Anmerkung:
+
+\begin{itemize}
+\item Man könnte hier auch einen Algorithmus zur Bestimmung der
+Schlüsselkandidaten verwenden, dessen einziges Ergebnis wäre dann $\{C,
+E\}$. In diesem Fall lässt sich die Schlüsselkandidateneigenschaft
+jedoch einfacher zeigen, sodass man den Algorithmus und somit Zeit
+sparen kann.
+
+\item Achtung! $\m{C, E}$ ist zwar der einzige Schlüsselkandidat, aber
+nicht der einzige Superschlüssel, auch \m{A, B, C, D, E, G} wäre ein
+Superschlüssel!
+\end{itemize}
+
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item Ist $R$ in 2NF?
+\index{Zweite Normalform}
+
+\begin{liAntwort}
+Ist nicht in der 2NF, denn $D$ hängt von $E$ ab, also von einer
+echten Teilmenge des Schlüsselkandidaten $\m{C, E}$. Das gleiche gilt
+für die FD \fa{C -> B}.
+\end{liAntwort}
+
+\begin{liAntwort}
+$R$ ist nicht in 2NF, denn:
+
+Betrachte \fa{E -> D}: $D$ ist ein Nicht-Schlüsselattribut und $E$
+ist echt Teilmenge des Schlüsselkandidaten $\m{C, E}$.
+%
+Ebenso ist $B$ nicht voll funktional abhängig vom Schlüsselkandidaten,
+sondern nur von einer echten Teilmenge des Schlüsselkandidaten, nämlich
+$C$.
+
+Anmerkung:
+
+\begin{itemize}
+\item Ob alle Attributwerte atomar sind, können wir in einem abstrakten
+Schema wie diesem nicht wirklich sagen, daher kann dies Annahme in der
+Regel nicht getroffen werden.
+
+\item Dass $A$ von $B$ abhängig ist, spielt bei der Entscheidung über
+die 2. NF keine Rolle, da $B$ selbst (genauso wie $A$) ein
+Nicht-Schlüsselattribut ist. Wichtig ist nur, ob es Abhängigkeiten
+zwischen einem Teil der Schlüsselkandidaten (also einem
+Schlüsselattribut) und einem Nicht-Schlüsselattribut gibt.
+
+\item Um der 2NF zu genügen, müsste in folgenden Relationen aufgeteilt
+werden:
+$R1(C, E, G)$,
+$R2(C, B, A)$,
+$R3(E, D)$
+\end{itemize}
+
+\end{liAntwort}
+
+%%
+% (c)
+%%
+
+\item Ist $F$ minimal?
+\index{Kanonische Überdeckung}
+\begin{multline}
+F = \{ \\
+  E \rightarrow D, \\
+  C \rightarrow B, \\
+  CE \rightarrow G, \\
+  B \rightarrow A \\
+\}
+\end{multline}
+
+\begin{liAntwort}
+Kanonische Überdeckung
+
+\begin{enumerate}
+\item Linksreduktion\\
+$AttrHul\m{F, \m{C}} = \m{C, B}$ $\rightarrow G$ nicht enthalten\\
+$AttrHul\m{F, \m{E}} = \m{E, D}$ $\rightarrow G$ nicht enthalten
+
+\item Rechtsreduktion\\
+Kein Attribut auf einer rechten Seite ist redundant: Da das einzelne
+Attribut, das die rechte Seite einer FD aus F bildet, bei keiner anderen
+FD auf der rechten Seite auftritt, kann die rechte Seite einer FD nicht
+unter ausschließlicher Verwendung der restlichen FD aus der
+entsprechenden linken Seite abgeleitet werden.
+\end{enumerate}
+
+\end{liAntwort}
+
+\begin{liAntwort}
+Vorgehen: Entsprechen die hier abgebildeten Funktionalen Abhängigkeiten
+bereits einer kanonischen Überdeckung von F oder nicht?
+
+\begin{itemize}
+\item Eliminierung redundanter Attribute auf der linken Seite: Die
+Attributmenge auf den linken Seiten der FDs sind bereits bis auf
+\fa{C, E -> G} einelementig. Bei \fa{C, E -> G} ist \m{CE} der
+Schlüsselkandidat, also kann kein redundantes Attribut vorliegen.
+
+\item Eliminierung redundanter Attribute auf der rechten Seite (hier müssen auch alle
+einelementigen FA’s betrachtet werden)
+
+\begin{itemize}
+\item \fa{E -> D}: $\ah{F - \m{E \rightarrow D}, \m{E}} = \m{E}$, d.h.
+$D \notin \ah{F - \m{E \rightarrow D}, \m{E}}$
+
+\item \fa{C -> B}: $\ah{F - \m{C \rightarrow B}, \m{C}} = \m{C}$, d.h.
+$B \notin \ah{F - \m{C \rightarrow B}, \m{E}}$
+
+\item \fa{CE -> G}: $\ah{F - \m{CE \rightarrow G}, \m{C, E}} = \m{A, B, C, D, E}$, d.h.
+$G \notin \ah{F - \m{CE \rightarrow G}, \m{E}}$
+$\Rightarrow$ $CE \rightarrow G$ ist nicht redundant
+
+\item \fa{B -> A}: $\ah{F - \fa{B -> A}, \m{B}} = \m{B}$, d.h.
+
+$A \notin \ah{F - \m{B \rightarrow A}, \m{E}}$
+$\Rightarrow$ $B \rightarrow A$ ist nicht redundant
+\end{itemize}
+
+F ist bereits minimal.
+\end{itemize}
+\end{liAntwort}
+\end{enumerate}
+\end{document}

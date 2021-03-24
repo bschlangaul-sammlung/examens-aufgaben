@@ -1,83 +1,12 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{formale-sprachen,syntaxbaum,automaten}
 \begin{document}
+\let\m=\liMenge
+
 \liAufgabenTitel{Vorlesungsaufgabe}
 \section{Kontextfreie Sprache
 \index{Kontextfreie Sprache}
 \footcite{theo:fs:2}}
-
-%-----------------------------------------------------------------------
-%
-%-----------------------------------------------------------------------
-
-\section{Übung\footcite[Seite 18]{theo:fs:2}}
-
-\let\m=\liMengeOhneMathe
-
-\begin{enumerate}
-\item Erstelle eine Ableitung und einen Parsebaum für die folgende
-Grammatik für das Wort
-
-$G = ( \m{P} , \m{ 0, 1 }, P, S)$
-
-\begin{liProduktionsRegeln}
-S -> epsilon | 0 | 1 | 0P0 | 1P
-\end{liProduktionsRegeln}
-
-\begin{itemize}
-\item 0000
-\item 01010
-\end{itemize}
-
-\item Erstelle eine Ableitung und einen Parsebaum für die nebenstehende
-Grammatik für das Wort
-
-$V = \m{ S, A, B }$
-
-\liAlphabet{0, 1}
-
-\begin{liProduktionsRegeln}
-S -> A1B,
-A -> 0A | epsilon,
-B -> 0B | 1B | epsilon
-\end{liProduktionsRegeln}
-
-$S = S$
-
-\begin{itemize}
-\item 10101
-
-\begin{liAntwort}
-\def\p{ $\rightarrow$ }
-
-S \p A1B \p 1B \p 10B \p 101B \p 1010B \p 10101B \p 10101
-
-\begin{tikzpicture}[li parsetree,level distance=1cm]
-\Tree [.Z
-  1 [.A
-    0 [.A
-      0 [.A
-        1 [.A
-          0 [.A
-            1
-          ]
-        ]
-      ]
-    ]
-  ]
-]
-\end{tikzpicture}
-\end{liAntwort}
-
-\item 00100
-\end{itemize}
-
-\item Sind die Parsebäume eindeutig?
-
-\begin{liAntwort}
-Ja, die Parsebäume sind eindeutig.
-\end{liAntwort}
-\end{enumerate}
 
 %-----------------------------------------------------------------------
 %
@@ -194,7 +123,7 @@ epsilon: & z2, epsilon, \# -> z2, epsilon & -\\
 
 Erstelle einen Kellerautomaten zu
 \begin{enumerate}
-\item $G = ( \m{P} , \m{0,1} , P, S)$
+\item $G = (\m{P} , \m{0, 1}, P, S)$
 
 \begin{liProduktionsRegeln}
 S -> epsilon | 0 | 1 | 0P0 | 1P1,

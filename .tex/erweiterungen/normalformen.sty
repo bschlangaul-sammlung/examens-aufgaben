@@ -51,6 +51,8 @@ Attributhülle]
 
 % \let\fa=\liFunktionaleAbhaengigkeit
 % \liFunktionaleAbhaengigkeit{A, B -> C, D}
+% \$(.*?) \\rightarrow (.*?)\$
+% \\fa{$1 -> $2}
 \def\liFunktionaleAbhaengigkeit#1{%
   \directlua{normalformen.drucke_funk_abhaengigkeit('#1')}%
 }
@@ -65,6 +67,7 @@ Attributhülle]
 % \let\FA=\liFunktionaleAbhaengigkeiten
 % Regulärer Ausdruck zum Konvertieren
 % \\item \$(.*) \\rightarrow (.*)\$
+% \$(.*) \\rightarrow (.*)\$
 % $1 -> $2;
 \NewDocumentCommand {\liFunktionaleAbhaengigkeiten} { O{FA} m } {
   \par
