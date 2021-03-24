@@ -28,11 +28,8 @@ BB -> bb
 % (a)
 %%
 
-\item Geben Sie einen Ausdruck an, der die Wörter der
-Sprache beschreibt.
-
-% S
-%
+\item Geben Sie einen Ausdruck an, der die Wörter der Sprache
+beschreibt.
 
 \begin{liAntwort}
 \let\u=\liPseudoUeberschrift
@@ -51,17 +48,17 @@ Einige Testableitungen um die Grammatik in Erfahrung zu bringen:
 
 \u{Mit 8 Buchstaben}
 
-\liAbleitung{S -> ... -> ABAB.ABAB -> ... -> aabb.aabb }
+\liAbleitung{S -> ... -> ABAB.ABAB -> ... -> aabb.aabb}
 
 \liAbleitung{S -> ... -> ABAB.ABAB -> ... -> AABB.AABB -> AABA.BABB -> AABA.ABBB -> AAAB.ABBB -> AAAA.BBBB -> aaaa.bbbb}
 
 \u{Mit 12 Buchstaben}
 
-\liAbleitung{S -> ... -> ABAB.ABAB.ABAB -> ... -> aabbaabbaabb }
+\liAbleitung{S -> ... -> ABAB.ABAB.ABAB -> ... -> aabb.aabb.aabb}
 
-\liAbleitung{S -> ... -> ABAB.ABAB.ABAB -> AAAA.BBBB.AABB  -> aaaabbbbaabb }
+\liAbleitung{S -> ... -> ABAB.ABAB.ABAB -> AAAA.BBBB.AABB  -> aaaa.bbbb.aabb}
 
-\liAbleitung{S -> ... -> ABAB.ABAB.ABAB -> AABB.ABAB.ABAB -> AABA.BBAB.ABAB -> AAAB.BBAB.ABAB ... -> aaaa.aabb.bbbb }
+\liAbleitung{S -> ... -> ABAB.ABAB.ABAB -> AABB.ABAB.ABAB -> AABA.BBAB.ABAB -> AAAB.BBAB.ABAB ... -> aaaa.aabb.bbbb}
 \end{liAntwort}
 
 %%
@@ -84,11 +81,15 @@ S -> aa S bb | S S | epsilon,
 % (c)
 %%
 
+\newpage
+
 \item Geben Sie einen Kellerautomaten an, der die Sprache akzeptiert.
 
 \begin{liAntwort}
 
-$K = (\m{\z0, \z1}, \m{a, b}, \m{\#, A, B}, \delta, \z0, \#, \z0)$
+$K = (\m{\z0, \z1}, \m{a, b}, \m{\#, 1, 2}, \delta, \z0, \#, \z0)$
+
+Bemerkung: 1 steht für 1A und 2 steht für 2A
 
 \begin{tikzpicture}[li kellerautomat,node distance=3cm]
 \node[state,initial,accepting] (0) {\z0};
@@ -96,15 +97,18 @@ $K = (\m{\z0, \z1}, \m{a, b}, \m{\#, A, B}, \delta, \z0, \#, \z0)$
 
 \path (0) edge[above,loop] node{
   \u{epsilon raute epsilon}
+  \u{a 2 12}
+  \u{a 1 21}
+  \u{a raute 1raute}
 } (0);
 
 \path (0) edge[above,bend left] node{
-  \u{a raute Araute}
+  \u{epsilon 2 2}
 } (1);
 
 \path (1) edge[above,loop] node{
-  \u{b raute Braute}\\
-  \u{a A epsilon}\\
+  \u{b 1 epsilon}
+  \u{b 2 epsilon}
 } (1);
 
 \path (1) edge[below,bend left] node{
@@ -113,8 +117,7 @@ $K = (\m{\z0, \z1}, \m{a, b}, \m{\#, A, B}, \delta, \z0, \#, \z0)$
 
 \end{tikzpicture}
 
-% DKA
-% https://flaci.com/Ai8krgvor
+% \liFussnoteUrl{https://flaci.com/Ahfqseouz}
 
 \end{liAntwort}
 
