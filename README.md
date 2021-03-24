@@ -1429,7 +1429,8 @@ als Markdown-Liste eingebettet werden kann.
             - Kontextfreie Grammatik
             - Ableitung (Kontextfreie Sprache)
             - Ableitungsbaum
-            - Kellerautomat
+            - Kellerautomat:
+                - Konfigurationsfolge
             - CYK-Algorithmus
             - Chomsky-Normalform
             - Pumping-Lemma (Kontextfreie Sprache)

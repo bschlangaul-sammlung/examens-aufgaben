@@ -4,6 +4,8 @@
 \let\m=\liMenge
 \let\u=\liKellerUebergang
 \let\e=\liEpsilon
+\let\z=\liZustandsnameTiefgestellt
+\def\p{$\vdash$ }
 
 \liAufgabenTitel{Vorlesungsaufgabe}
 \section{Kellerautomaten
@@ -21,9 +23,9 @@ L = \{ a^n c^i b^n | n, i \in \mathbb{N}_0 \}
 \begin{liAntwort}
 \begin{center}
 \begin{tikzpicture}[li kellerautomat,node distance=5cm]
-\node[state,initial] (0) {$z_0$};
-\node[state,above right of=0] (1) {$z_1$};
-\node[state,right of=0,accepting] (2) {$z_2$};
+\node[state,initial] (0) {\z0};
+\node[state,above right of=0] (1) {\z1};
+\node[state,right of=0,accepting] (2) {\z2};
 
 \path (0) edge[below,loop below] node{
   \u{a raute Araute}
@@ -76,27 +78,28 @@ Tabellenform:
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
 Aktueller Zustand &  Eingabe   & Keller & Folgezustand & Keller \\\hline\hline
-z0 & a  & \# & z0 & A\# \\
-z0 & a  & A  & z0 & AA  \\\hline
+\z0 & a  & \# & \z0 & A\# \\
+\z0 & a  & A  & \z0 & AA  \\\hline
 
-z0 & c  & \# & z1 & \#  \\
-z0 & c  & A  & z1 & A   \\\hline
+\z0 & c  & \# & \z1 & \#  \\
+\z0 & c  & A  & \z1 & A   \\\hline
 
-z0 & \e & \# & z2 & \e  \\
-z0 & b  & A  & z2 & \e  \\\hline
+\z0 & \e & \# & \z2 & \e  \\
+\z0 & b  & A  & \z2 & \e  \\\hline
 
-z1 & c  & \# & z1 & \#  \\
-z1 & c  & A  & z1 & A   \\\hline
+\z1 & c  & \# & \z1 & \#  \\
+\z1 & c  & A  & \z1 & A   \\\hline
 
-z1 & \e & \# & z2 & \e  \\
-z1 & b  & A  & z2 & \e  \\\hline
+\z1 & \e & \# & \z2 & \e  \\
+\z1 & b  & A  & \z2 & \e  \\\hline
 
-z2 & \e & \# & z2 & \e  \\
-z2 & b  & A  & z2 & \e  \\\hline
+\z2 & \e & \# & \z2 & \e  \\
+\z2 & b  & A  & \z2 & \e  \\\hline
 \end{tabular}
 \end{liAntwort}
 
-\item Gibt eine Grammatik für diese Sprache an.
+\item Geben Sie eine Grammatik für diese Sprache an.
+\index{Kontextfreie Grammatik}
 
 \begin{liAntwort}
 \begin{liProduktionsRegeln}
@@ -112,22 +115,32 @@ C -> cC | epsilon
 \end{liProduktionsRegeln}
 \end{liAntwort}
 
-\item Gib Konfigurationsfolgen an für die Erzeugung des Wortes
+\item Geben Sie Konfigurationsfolgen für die Erzeugung des Wortes an
+\index{Konfigurationsfolge}
 
 \begin{itemize}
 \item aacbb
 
 \begin{liAntwort}
-\begin{tabular}{llr}
-a: & z0, a,\# -> zo A\#                   & A\#\\
-c. & z0, c,A -> z1 A                      & A\#\\
-c: & z1, c, A -> z1, A                    & A\#\\
-b: & z1, b, A -> z2, epsilon              & \#\\
-epsilon: & z2, epsilon, \# -> z2, epsilon & -\\
-\end{tabular}{llr}
+(\z0, aacbb, \#)   \p
+(\z0, acbb,  A\#)  \p
+(\z0, cbb,   AA\#) \p
+(\z1, bb,    AA\#) \p
+(\z2, b,     A\#)  \p
+(\z2, \e,    \#)   \p
+(\z2, \e,   \e)
 \end{liAntwort}
 
 \item accb
+
+\begin{liAntwort}
+(\z0, accb, \#)  \p
+(\z0, ccb,  A\#) \p
+(\z1, cb,   A\#) \p
+(\z2, b,    A\#) \p
+(\z2, \e,   \#)  \p
+(\z2, \e,   \e)
+\end{liAntwort}
 \end{itemize}
 \end{enumerate}
 \end{document}
