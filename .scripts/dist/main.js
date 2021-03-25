@@ -273,4 +273,36 @@ programm
         finally { if (e_3) throw e_3.error; }
     }
 });
+programm
+    .command('kellerautomat-flaci-to-tex <flaci-tex-code>')
+    .alias('kf')
+    .description('Konvertieren: Automat für LaTeX konvertieren')
+    .action(function (texCode, cmdObj) {
+    var e_4, _a;
+    var regExp = /\\transition\{(?<forState>.*?)\}\{(?<toState>.*?)\}\{(?<transitions>.*?)\}/g;
+    function formatElement(input) {
+        if (input === '' || input == null)
+            return 'epsilon';
+        return input.replace('\\#', 'raute');
+    }
+    var match;
+    while ((match = regExp.exec(texCode)) != null) {
+        var transitions = match[3];
+        console.log("\n" + match[1] + " -> " + match[2] + ":");
+        try {
+            for (var _b = (e_4 = void 0, __values(transitions.split(';').reverse())), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var transition = _c.value;
+                var elements = transition.split(',');
+                console.log(formatElement(elements[1]) + ' ' + formatElement(elements[0]) + ' ' + formatElement(elements[2]) + ',');
+            }
+        }
+        catch (e_4_1) { e_4 = { error: e_4_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_4) throw e_4.error; }
+        }
+    }
+});
 programm.parse(process.argv);

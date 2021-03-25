@@ -2,6 +2,8 @@
 \liLadePakete{formale-sprachen,automaten}
 \begin{document}
 \let\m=\liMenge
+\let\z=\liZustandsnameTiefgestellt
+\let\u=\liKellerUebergang
 
 \liAufgabenTitel{Vorlesungsaufgabe}
 
@@ -24,6 +26,43 @@ S -> epsilon | 0 | 1 | 0P0 | 1P1,
 \end{liProduktionsRegeln}
 
 \begin{liAntwort}
+$K = (\m{\z0, \z1}, \m{0, 1}, \m{\#, N, E}, \delta, z_0, \#)$
+
+N = Null
+
+E = Eins
+
+\begin{center}
+\begin{tikzpicture}[li kellerautomat,node distance=5cm]
+\node[state,initial] (0) {\z0};
+\node[state,right of=0,accepting] (1) {\z1};
+
+\path (0) edge[above,loop] node{\u{
+1 N NE,
+1 E EE,
+1 raute Eraute,
+0 E NE,
+0 N NN,
+0 raute Nraute,
+}} (0);
+
+\path (0) edge[above] node{\u{
+0 N N,
+0 E E,
+1 E E,
+0 N N,
+epsilon E E,
+epsilon N N,
+epsilon raute epsilon,
+}} (1);
+
+\path (1) edge[above,loop] node{\u{
+1 E epsilon,
+0 N epsilon,
+}} (1);
+\end{tikzpicture}
+\end{center}
+
 \liFussnoteUrl{https://flaci.com/Ahij8jnn7}
 \end{liAntwort}
 
@@ -41,6 +80,34 @@ B -> 0B | 1B | epsilon,
 \end{enumerate}
 
 \begin{liAntwort}
+$K = (\m{\z0, \z1}, \m{0, 1}, \m{\#, E}, \delta, z_0, \#)$
+
+E = Eins ist gesetzt
+
+\begin{center}
+\begin{tikzpicture}[li kellerautomat,node distance=5cm]
+\node[state,initial] (0) {\z0};
+\node[state,right of=0,accepting] (1) {\z1};
+
+\path (0) edge[above,loop] node{\u{
+1 raute Eraute,
+0 raute raute,
+}} (0);
+
+\path (0) edge[above] node{\u{
+epsilon E epsilon,
+1 E epsilon,
+0 E epsilon,
+}} (1);
+
+\path (1) edge[above,loop] node{\u{
+epsilon raute epsilon,
+1 raute raute,
+0 raute raute,
+}} (1);
+\end{tikzpicture}
+\end{center}
+
 \liFussnoteUrl{https://flaci.com/Ar3imp8a7}
 \end{liAntwort}
 
