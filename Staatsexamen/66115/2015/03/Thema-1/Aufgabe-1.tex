@@ -26,7 +26,7 @@ bei denen beim Lesen von links nach rechts der Unterschied in der Zahl
 der $0$en und $1$en stets höchstens 3 ist. Also ist $w \in L$ genau
 dann, wenn für alle $u$, $v$ mit $w = uv$ gilt $||u|_0 - |u|_1| \leq 3$.
 Erinnerung: $|w|_a$ bezeichnet die Zahl der $a$’s im Wort $w$.
-\footcite{theo:ab:1}
+\footcite[Aufgabe 10: StEx Frühjahr 2015, Thema 1, Aufgabe 1 (Check-Up)]{theo:ab:1}
 
 \begin{enumerate}
 
@@ -44,10 +44,10 @@ Sie Ihr Argumentation schlüssig und vollständig auf.
 \begin{liAntwort}
 Ein deterministischen endlicher Automat hat keinen zusätzlichen Speicher
 zur Verfügung, in dem die Anzahl der bisher vorkommenden $0$ und $1$
-gespeichert werden könnte. Ein DEA kann die von der Spreche benötigten
+gespeichert werden könnte. Ein DEA kann die von der Sprache benötigten
 Anzahl an $0$ und $1$ nur in Form von Zustanden speichern. Um die Anzahl
-von 3 Einsen bzw 3 Nullen zu speichern, sind also 6 Zustände nötig. Da
-die Sprache auch das leere Wort erkennen soll ist noch ein zusätzlicher
+von 3 Einsen bzw. 3 Nullen zu speichern, sind also 6 Zustände nötig. Da
+die Sprache auch das leere Wort erkennen soll, ist noch ein zusätzlicher
 Zustand für dieses leere Wort nötig.
 \end{liAntwort}
 
@@ -58,6 +58,24 @@ Zustand für dieses leere Wort nötig.
 \item Begründen Sie, dass $L$ regulär ist.
 
 \begin{liAntwort}
+$L$ ist nicht regulär. Widerspruchsbeweis durch das Pumping Lemma.
+
+\begin{description}
+\item[j] = Pumping-Zahl
+\item[k] = zur Pumping-Zahl abhängige Zahl
+\item[i] = Zahl, die die Werte $\{ 0, 1, 2, 3 \dots \}$ annimmt und mit
+der aufgepumpt wird.
+\end{description}
+
+$\omega = 0^j 1^k = uvw$ mit $|j - k| \leq 3$ und $j, k \geq 0$
+
+$\omega = 0^j 1^{j+k} = uvw$ mit $|k| \leq 3$
+
+Wir teilen $0^j$ in $uv$ auf.
+
+$u = 0^{j-i}$ $v = 0^i$ $w = 1^{j+k}$
+
+$\rightarrow$ man kann nicht unendlich aufpumpen. $L$ ist nicht regulär.
 
 \end{liAntwort}
 
@@ -72,6 +90,20 @@ $w = uxv$, wobei $u = 0$, $x = 1$, $v = (01)^{n-1}$ , so ist zum Beispiel
 $ux^5 v \notin L$, denn es ist $ux^5 v = 01111101010101$.... Legen Sie
 genau dar, an welcher Stelle dieser „Beweis” fehlerhaft ist.
 \index{Pumping-Lemma (Reguläre Sprache)}
+
+\begin{liAntwort}
+\begin{enumerate}
+\item Das Wort $(01)^n$ ist schlecht gewählt: Das für den Pumping-Lemma
+Beweis gewählte Wort $(01)^n$ spiegelt nicht die Eigenschaft der
+Sprache wieder, dass sich die Anzahl von Nullen und Einsen um maximal
+drei unterscheidet.
+
+\item Außerdem wurde das $(01)^n$ Wort falsch zerlegt. Für die
+Pumping-Zahl $n = 3$ gibt es sehr wohl eine Zerlegung, die beim
+Aufpumpen regulär ist, also: $\omega = 010101$ ($u = 01$, $x = 01$ und
+$v = 01$). $ux^5 v = 01 0101010101 01 \in L$.
+\end{enumerate}
+\end{liAntwort}
 
 %%
 % (d)
@@ -99,7 +131,7 @@ Automaten mit nur drei Zuständen an, $L_2$ erkennt.
 \path (0) edge[above] node{$1$} (1);
 \path (1) edge[above] node{$0$,$1$} (2);
 \end{tikzpicture}
-\liFussnoteUrl{https://flaci.com/Apwzjufbg}
+%\liFussnoteUrl{https://flaci.com/Apwzjufbg}
 
 % https://i11www.iti.kit.edu/_media/teaching/winter2017/tgi/uebungsblatt_1_mit_lsg.pdf
 
@@ -156,7 +188,7 @@ Name & Zustandsmenge & Eingabe $0$ & Eingabe $1$ \\\hline\hline
 \path (3) edge[above,loop below] node{$1$} (3);
 
 \end{tikzpicture}
-\liFussnoteUrl{https://flaci.com/Ajfcofpb9}
+%\liFussnoteUrl{https://flaci.com/Ajfcofpb9}
 \end{center}
 
 %%
@@ -187,7 +219,7 @@ Name & Zustandsmenge & Eingabe $0$ & Eingabe $1$ \\\hline\hline
 
 Wie aus der oben stehenden Tabelle abzulesen ist, gibt es keine
 äquivalenten Zustände. Der Automat kann nicht minimiert werden. Er ist
-bereits minimal
+bereits minimal.
 
 \end{liAntwort}
 \end{enumerate}
