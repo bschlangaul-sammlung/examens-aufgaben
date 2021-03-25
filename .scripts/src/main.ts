@@ -252,21 +252,31 @@ programm
   .alias('kf')
   .description('Konvertieren: Automat für LaTeX konvertieren')
   .action(function (texCode: string, cmdObj: object) {
-    const regExp = /\\transition\{(?<forState>.*?)\}\{(?<toState>.*?)\}\{(?<transitions>.*?)\}/g
+    const regExp = /\\transition(\[.*?\])?\{(?<fromState>.*?)\}\{(?<toState>.*?)\}\{(?<transitions>.*?)\}/g
 
     function formatElement(input: string | undefined): string {
       if (input === '' || input == null) return 'epsilon'
       return input.replace('\\#', 'raute')
     }
 
-    let match
-    while( (match = regExp.exec( texCode )) != null ) {
-      const transitions = match[3]
-      console.log(`\n${match[1]} -> ${match[2]}:`)
+    function buildTransitions(transitions: string): string {
+      let output: string = ''
       for (const transition of transitions.split(';').reverse()) {
         const elements = transition.split(',')
-        console.log(formatElement(elements[1]) + ' ' + formatElement(elements[0]) + ' ' + formatElement(elements[2]) + ',')
+        output += formatElement('  ' + elements[1]) + ' ' + formatElement(elements[0]) + ' ' + formatElement(elements[2]) + ',\n'
+      }
+      return output
+    }
 
+    function formatTransitionsForTikz(fromState: string, toState: string, transitions: string): string {
+      return `\\path (${fromState}) edge[above] node{\\u{\n${transitions}}} (${toState});\n`
+    }
+
+    let match
+    while( (match = regExp.exec( texCode )) != null ) {
+      if (match?.groups != null) {
+        const groups = match.groups
+        console.log(formatTransitionsForTikz(groups.fromState, groups.toState, buildTransitions(groups.transitions)))
       }
     }
   })

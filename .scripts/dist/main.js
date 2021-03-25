@@ -278,22 +278,20 @@ programm
     .alias('kf')
     .description('Konvertieren: Automat für LaTeX konvertieren')
     .action(function (texCode, cmdObj) {
-    var e_4, _a;
-    var regExp = /\\transition\{(?<forState>.*?)\}\{(?<toState>.*?)\}\{(?<transitions>.*?)\}/g;
+    var regExp = /\\transition(\[.*?\])?\{(?<fromState>.*?)\}\{(?<toState>.*?)\}\{(?<transitions>.*?)\}/g;
     function formatElement(input) {
         if (input === '' || input == null)
             return 'epsilon';
         return input.replace('\\#', 'raute');
     }
-    var match;
-    while ((match = regExp.exec(texCode)) != null) {
-        var transitions = match[3];
-        console.log("\n" + match[1] + " -> " + match[2] + ":");
+    function buildTransitions(transitions) {
+        var e_4, _a;
+        var output = '';
         try {
-            for (var _b = (e_4 = void 0, __values(transitions.split(';').reverse())), _c = _b.next(); !_c.done; _c = _b.next()) {
+            for (var _b = __values(transitions.split(';').reverse()), _c = _b.next(); !_c.done; _c = _b.next()) {
                 var transition = _c.value;
                 var elements = transition.split(',');
-                console.log(formatElement(elements[1]) + ' ' + formatElement(elements[0]) + ' ' + formatElement(elements[2]) + ',');
+                output += formatElement('  ' + elements[1]) + ' ' + formatElement(elements[0]) + ' ' + formatElement(elements[2]) + ',\n';
             }
         }
         catch (e_4_1) { e_4 = { error: e_4_1 }; }
@@ -302,6 +300,17 @@ programm
                 if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
             }
             finally { if (e_4) throw e_4.error; }
+        }
+        return output;
+    }
+    function formatTransitionsForTikz(fromState, toState, transitions) {
+        return "\\path (" + fromState + ") edge[above] node{\\u{\n" + transitions + "}} (" + toState + ");\n";
+    }
+    var match;
+    while ((match = regExp.exec(texCode)) != null) {
+        if ((match === null || match === void 0 ? void 0 : match.groups) != null) {
+            var groups = match.groups;
+            console.log(formatTransitionsForTikz(groups.fromState, groups.toState, buildTransitions(groups.transitions)));
         }
     }
 });

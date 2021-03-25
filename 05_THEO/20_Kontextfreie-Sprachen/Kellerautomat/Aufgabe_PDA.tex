@@ -8,7 +8,7 @@
 \liAufgabenTitel{PDA}
 \section{PDA
 \index{Kellerautomat}
-\footcite{theo:ab:2}}
+\footcite[Aufgabe 7: PDA aufstellen]{theo:ab:2}}
 
 Erstelle jeweils einen PDA, der die angegebenen Sprachen akzeptiert.
 
@@ -47,6 +47,46 @@ N = Null
 \item Alle Wörter, die gleich viele $a$ wie $b$ enthalten.
 
 \begin{liAntwort}
+
+\begin{center}
+\begin{tikzpicture}[li kellerautomat,node distance=4cm]
+\node[state,initial] (0) {\z0};
+\node[state,above right=of 0] (1) {\z1};
+\node[state,below right=of 0] (2) {\z2};
+\node[state,above=of 0] (3) {\z3};
+
+\path (0) edge[right,bend left] node{\u{
+  a raute Araute,
+}} (1);
+
+\path (0) edge[right,bend left] node{\u{
+  b raute Braute,
+}} (2);
+
+\path (0) edge[left] node{\u{
+  raute epsilon epsilon,
+}} (3);
+
+\path (1) edge[right,bend left] node{\u{
+  b A epsilon,
+}} (0);
+
+\path (1) edge[above,loop right] node{\u{
+  b A epsilon,
+  a A AA,
+}} (1);
+
+\path (2) edge[above,loop right] node{\u{
+  a B epsilon,
+  b B BB,
+}} (2);
+
+\path (2) edge[left,bend left] node{\u{
+  a B epsilon,
+}} (0);
+\end{tikzpicture}
+\end{center}
+
 \liFussnoteUrl{https://flaci.com/Arar6fos7}
 \end{liAntwort}
 
