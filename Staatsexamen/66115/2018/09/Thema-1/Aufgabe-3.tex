@@ -1,0 +1,58 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen}
+\begin{document}
+\let\m=\liMenge
+
+\liAufgabenTitel{}
+\section{Aufgabe 3 (Kontextfreie Sprachen)
+\index{Kontextfreie Sprache}
+\footcite{66115:2018:09}}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Entwerfen Sie eine kontextfreie Grammatik für die folgende
+kontextfreie Sprache über dem Alphabet \liAlphabet{a, b,c}:
+
+\begin{displaymath}
+L=\m{ w b^{3k} c^{2k+1} v \, | \, k \in \mathbb{N}, |w|_c= |u|_a}
+\end{displaymath}
+
+(Hierbei bezeichnet $|u|$, die Anzahl des Zeichens $x$ in dem Wort $u$,
+und es gilt $0 \in \mathbb{N}$.) Erklären Sie den Zweck der einzelnen
+Nichtterminale (Variablen) und der Grammatikregeln Ihrer Grammatik.
+
+%%
+% (b)
+%%
+
+\item Betrachten Sie die folgende kontextfreie Grammatik
+
+\begin{displaymath}
+G = (\m{S, X,Y, Z}, \m{z, y}, P, S)
+\end{displaymath}
+
+mit den Produktionen
+
+\begin{liProduktionsRegeln}
+S -> ZX | y,
+X -> ZS | SS | x,
+Y -> SX | YZ,
+Z -> XX | XS
+\end{liProduktionsRegeln}
+
+Benutzen Sie den Algorithmus von Cocke-Younger-Kasami (CYK) um zu
+zeigen, dass das Wort $zzzyx$ zu der von G erzeugten Sprache $L(G)$
+gehört.
+
+%%
+%  (c)
+%%
+
+\item Geben Sie eine Ableitung des Wortes $xxxyx$ mit $G$ an.
+
+\end{enumerate}
+\end{document}
