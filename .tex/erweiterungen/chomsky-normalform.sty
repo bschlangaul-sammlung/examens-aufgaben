@@ -1,0 +1,68 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-chomsky-normalform}[2021/03/26
+Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
+
+\ExplSyntaxOn
+
+% \let\schritt=\liChomskySchrittUeberschrift
+\def\liChomskySchrittUeberschrift#1{
+  {
+    \bfseries
+    \sffamily
+    \str_case:nn {#1} {
+      {1} {Elimination der $\epsilon$-Regeln}
+      {2} {Elimination von Kettenregeln}
+      {3} {Separation von Terminalzeichen}
+      {4} {Elimination von mehrelementigen Nonterminalketten}
+    }
+  }
+}
+
+\def\li@chomsky@erklaerung@texte#1{
+  \str_case:nn {#1} {
+    % Hoffmann Seite 180
+    {1} {
+      Alle Regeln der Form $A \rightarrow \epsilon$ werden eliminiert.
+      Die Ersetzung von $A$ wird durch $\epsilon$ in allen anderen
+      Regeln vorweggenommen.
+    }
+    {2} {
+      Jede Produktion der Form $A \rightarrow B$ mit $A, B \in S$ wird
+      als Kettenregel bezeichnet. Diese tragen nicht zur Produktion
+      von Terminalzeichen bei und lassen sich ebenfalls eliminieren.
+    }
+    {3} {
+      Jedes Terminalzeichen $\sigma$, das in Kombination mit anderen
+      Symbolen auftaucht, wird durch ein neues Nonterminal
+      $S\sb{\sigma}$ ersetzt und die Menge der Produktionen durch die
+      Regel $S\sb{\sigma} \rightarrow \sigma$ ergänzt.
+    }
+    {4} {
+      Alle Produktionen der Form
+      $A\rightarrow B\sb1 B\sb2 \dots B\sbn$
+      werden in die Produktionen
+      $A \rightarrow
+      A\sb{n-1} B\sbn, A\sb{n-1} \rightarrow
+      A\sb{n-2} B\sb{n-1}, \dots,
+      A\sb{2} \rightarrow B\sb{1} B\sb{2}$ zerteilt.
+      Nach der Ersetzung sind alle längeren Nonterminalketten
+      vollständig heruntergebrochen und die Chomsky-Normalform erreicht.
+    }
+  }
+}
+% \let\erklaerung=\liChomskySchrittErklaerung
+\def\liChomskySchrittErklaerung#1{
+  {
+    \itshape
+    \footnotesize
+    \liParagraphMitLinien{\li@chomsky@erklaerung@texte{#1}}
+  }
+}
+
+% \let\schrittE=\liChomskySchrittUeberschriftErklaerung
+\def\liChomskySchrittUeberschriftErklaerung#1{
+  \liChomskySchrittUeberschrift{#1}\par
+  \liChomskySchrittErklaerung{#1}
+}
+
+\ExplSyntaxOff
