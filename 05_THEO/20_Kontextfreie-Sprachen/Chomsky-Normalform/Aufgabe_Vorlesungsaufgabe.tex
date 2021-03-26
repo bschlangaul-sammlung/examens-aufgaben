@@ -1,0 +1,184 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,chomsky-normalform}
+\begin{document}
+\let\schrittE=\liChomskySchrittUeberschriftErklaerung
+
+\liAufgabenTitel{Vorlesungsaufgabe}
+\section{Kontextfreien Grammatiken in CNF
+\index{Kontextfreie Sprache}
+\footcite[Seite 37]{theo:fs:2}}
+
+Überführe die folgenden kontextfreien Grammatiken in CNF
+
+\begin{enumerate}
+
+%-----------------------------------------------------------------------
+% a
+%-----------------------------------------------------------------------
+
+\item
+
+\begin{liProduktionsRegeln}
+S -> 0S1 | epsilon
+\end{liProduktionsRegeln}
+
+\begin{liAntwort}
+\begin{enumerate}
+\item \schrittE{1}
+
+\begin{liProduktionsRegeln}
+S -> 0S1 | 01
+\end{liProduktionsRegeln}
+\liFussnoteUrl{https://flaci.com/Ghje1ygz9}
+\item \schrittE{2}
+
+nichts zu tun
+
+\item \schrittE{3}
+
+N = Null, E = Eins
+
+\begin{liProduktionsRegeln}
+S -> NSE | NE,
+N -> 0,
+E -> 1
+\end{liProduktionsRegeln}
+
+\item \schrittE{4}
+
+\begin{liProduktionsRegeln}
+S -> NR | NE,
+R -> SE,
+N -> 0,
+E -> 1
+\end{liProduktionsRegeln}
+\end{enumerate}
+\end{liAntwort}
+
+%-----------------------------------------------------------------------
+% b
+%-----------------------------------------------------------------------
+
+\item
+
+\begin{liProduktionsRegeln}
+S -> a | aA | B,
+A -> aBB | epsilon,
+B -> Aa | b
+\end{liProduktionsRegeln}
+\liFussnoteUrl{https://flaci.com/G54gubr9i}
+
+\begin{liAntwort}
+\begin{enumerate}
+\item \schrittE{1}
+
+\begin{liProduktionsRegeln}
+S -> a | aA | B,
+A -> aBB,
+B -> Aa | b | a
+\end{liProduktionsRegeln}
+
+Das leere Wort ist nicht in der Sprache ($\epsilon \notin L(G )$). In
+der Sprache sind immer Wörter mit mindestens einem Buchstaben. In der
+ersten Produktionsregel wird aus $aA  \rightarrow a \epsilon$ nur das
+$a$. Das ist aber bereits in der ersten Regel enthalten. In der zweiten
+Regel wird das leere Wort weg gelassen. In der dritten Regel wird noch
+ein $a$ hinzugefügt, das aus $Aa \rightarrow \epsilon a \rightarrow a$
+entstanden ist.
+
+\item \schrittE{2}
+
+\begin{liProduktionsRegeln}
+S -> a | aA | Aa | b,
+A -> aBB,
+B -> Aa | b | a
+\end{liProduktionsRegeln}
+
+Wir schreiben die Regel, die keine einzelnes Nonterminal auf der rechten
+Seite enthalten, ab. In der ersten Regel wird $B$ mit $Aa | b | a$
+ersetzte, wobei das letzte $a$, dann weggelassen werden kann, da es
+bereits am Anfang der rechten Seite vorkommt. Die $B$-Regel kann nicht
+weggelassen werden, weil sie in der $A$-Regel vorkommt.
+
+\item \schrittE{3}
+
+\begin{liProduktionsRegeln}
+S -> a | VA | AV | b,
+A -> VBB,
+B -> AV | b | a,
+V -> a
+\end{liProduktionsRegeln}
+
+\item \schrittE{4}
+
+\begin{liProduktionsRegeln}
+S -> a | VA | AV | b,
+A -> VC,
+B -> AV | b | a,
+V -> a,
+C -> BB
+\end{liProduktionsRegeln}
+\end{enumerate}
+\end{liAntwort}
+
+%-----------------------------------------------------------------------
+% c
+%-----------------------------------------------------------------------
+
+\item % Video ab 1h26
+
+\begin{liProduktionsRegeln}
+S -> ABC,
+A -> aCD,
+B -> bCD,
+C -> D | epsilon,
+D -> C
+\end{liProduktionsRegeln}
+\liFussnoteUrl{https://flaci.com/Grxwcync2}
+
+\begin{liAntwort}
+\begin{enumerate}
+\item \schrittE{1}
+
+\begin{liProduktionsRegeln}
+S -> ABC | AB,
+A -> aCD | aD,
+B -> bCD | bD,
+C -> D,
+D -> C | epsilon
+\end{liProduktionsRegeln}
+
+In der letzten Regel entsteht ein neues $\epsilon$. Es muss in der
+nächsten Iteration entfernt werden.
+
+\begin{liProduktionsRegeln}
+S -> ABC | AB,
+A -> aCD | aD | aC | a,
+B -> bCD | bD | bC | b,
+C -> D,
+D -> C
+\end{liProduktionsRegeln}
+
+\item \schrittE{2}
+
+\begin{liProduktionsRegeln}
+S -> AB,
+A -> a,
+B -> b,
+\end{liProduktionsRegeln}
+
+$C$ und $D$ sind nicht produktiv. $C \rightarrow D$ und $D \rightarrow
+C$ können gestrichen werden.
+
+\item \schrittE{3}
+
+nichts zu tun
+
+\item \schrittE{4}
+
+nichts zu tun
+\end{enumerate}
+\end{liAntwort}
+\end{enumerate}
+
+\end{document}
