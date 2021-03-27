@@ -8,7 +8,7 @@ import glob from 'glob'
 import { Command } from 'commander'
 
 import { Aufgabe, ExamensAufgabe } from './aufgabe'
-import { repositoryPfad, öffneVSCode, zeigeFehler, leseDatei, schreibeDatei } from './helfer'
+import { repositoryPfad, öffneVSCode, zeigeFehler, leseDatei, schreibeDatei, führeAus, öffneProgramm } from './helfer'
 
 import { erzeugeAufgabenVorlage } from './aktionen/erzeuge-aufgaben-vorlage'
 import { erzeugeReadme } from './aktionen/erzeuge-readme'
@@ -300,12 +300,22 @@ programm
       dtxInhalte.push(prefix + inhalt)
     }
 
+    function kompiliereDtxDatei(): void {
+      führeAus('lualatex dokumentation.dtx', texPfad)
+      führeAus('makeindex -s gglo.ist -o dokumentation.gls dokumentation.glo', texPfad)
+      führeAus('makeindex -s gind.ist -o dokumentation.ind dokumentation.idx', texPfad)
+      führeAus('lualatex dokumentation.dtx', texPfad)
+    }
+
     for (const sty of styS) {
       leseSty(sty)
     }
 
     const dtxVorlage = leseDatei(path.join(texPfad, 'dokumentation_vorlage.dtx'))
     schreibeDatei(dtxPfad, dtxVorlage.replace('{{ einbinden }}', dtxInhalte.join('\n')))
+
+    kompiliereDtxDatei()
+    öffneProgramm('/usr/bin/xdg-open', path.join(texPfad, 'dokumentation.pdf'))
   })
 
 programm.parse(process.argv)

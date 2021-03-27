@@ -65,13 +65,18 @@ export function generiereLink (text: string, pfad: string, dateiName: string, ei
 
   if (alsLink) {
     if (alsHtml) {
-      const erweiterung = pfad.split('.').pop()
       dateiName = dateiName.replace(/\.[a-z]{3,5}$/, '')
       return `<a href="${githubRawUrl}/${pfad}" download="${dateiName}">${text}</a>`
     }
     return `[${text}](${githubRawUrl}/${pfad})`
   }
   return text
+}
+
+export function führeAus (programm: string, cwd: string) {
+  const process = childProcess.spawnSync(programm, { cwd: cwd, encoding: 'utf-8', shell: true })
+  if (process.status !== 0) throw Error(process.stderr)
+  console.log(process.stdout)
 }
 
 export function öffneProgramm (programm: string, pfad: string): void {

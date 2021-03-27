@@ -24,7 +24,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.öffneVSCode = exports.öffneProgramm = exports.generiereLink = exports.macheRepoPfad = exports.leseRepoDatei = exports.macheRelativenPfad = exports.repositoryPfad = exports.zeigeFehler = exports.schreibeDatei = exports.leseDatei = void 0;
+exports.öffneVSCode = exports.öffneProgramm = exports.führeAus = exports.generiereLink = exports.macheRepoPfad = exports.leseRepoDatei = exports.macheRelativenPfad = exports.repositoryPfad = exports.zeigeFehler = exports.schreibeDatei = exports.leseDatei = void 0;
 var fs_1 = __importDefault(require("fs"));
 var path_1 = __importDefault(require("path"));
 var child_process_1 = __importDefault(require("child_process"));
@@ -95,7 +95,6 @@ function generiereLink(text, pfad, dateiName, einstellung) {
         pfad = pfad.replace(/\.[\w]+$/, '.pdf');
     if (alsLink) {
         if (alsHtml) {
-            var erweiterung = pfad.split('.').pop();
             dateiName = dateiName.replace(/\.[a-z]{3,5}$/, '');
             return "<a href=\"" + githubRawUrl + "/" + pfad + "\" download=\"" + dateiName + "\">" + text + "</a>";
         }
@@ -104,6 +103,13 @@ function generiereLink(text, pfad, dateiName, einstellung) {
     return text;
 }
 exports.generiereLink = generiereLink;
+function führeAus(programm, cwd) {
+    var process = child_process_1.default.spawnSync(programm, { cwd: cwd, encoding: 'utf-8', shell: true });
+    if (process.status !== 0)
+        throw Error(process.stderr);
+    console.log(process.stdout);
+}
+exports.führeAus = führeAus;
 function öffneProgramm(programm, pfad) {
     var subprocess = child_process_1.default.spawn(programm, [pfad], {
         detached: true,
