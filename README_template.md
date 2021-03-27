@@ -165,6 +165,25 @@ Weitere Aufgaben zum Thema „SQL“:
 
 {{ stichwort "Minimierungsalgorithmus" }}
 
+
+### Kontextfreie Sprachen
+
+#### Kontextfreie Grammtik
+
+{{ stichwort "Kontextfreie Grammtik" }}
+
+#### Ableitung (Kontextfreie Sprache)
+
+{{ stichwort "Ableitung (Kontextfreie Sprache)" }}
+
+#### Kellerautomat
+
+{{ stichwort "Kellerautomat" }}
+
+#### Chomsky-Normalform
+
+{{ stichwort "Chomsky-Normalform" }}
+
 # Aufgaben geordnet nach Staatsexamen
 
 In diesem Repository findet Ihr viele Staatsexamensaufgaben. Von fast

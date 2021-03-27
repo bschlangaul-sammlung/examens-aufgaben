@@ -441,6 +441,35 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T1-A1">„NEA und Minimalisierung“ Examen 66115 Herbst 2012 T1 A1</a> (Potenzmengenalgorithmus, Minimierungsalgorithmus)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/Thema-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2013-Herbst_T2-A3">„Minimierung DFA“ Examen 66115 Herbst 2013 T2 A3</a> (Minimierungsalgorithmus)
 
+
+### Kontextfreie Sprachen
+
+#### Kontextfreie Grammtik
+
+
+
+#### Ableitung (Kontextfreie Sprache)
+
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/20_Kontextfreie-Sprachen/Ableitung-Ableitungsbaum/Aufgabe_Ableitungen.pdf" download="Aufgabe_Ableitungen">„Ableitungen“</a> (Ableitung (Kontextfreie Sprache), Ableitungsbaum)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/20_Kontextfreie-Sprachen/Ableitung-Ableitungsbaum/Aufgabe_Vorlesungsaufgabe.pdf" download="Aufgabe_Vorlesungsaufgabe">„Vorlesungsaufgabe“</a> (Kontextfreie Sprache, Ableitung (Kontextfreie Sprache), Ableitungsbaum)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/20_Kontextfreie-Sprachen/Grammatik/Aufgabe_Vorlesungsaufgabe.pdf" download="Aufgabe_Vorlesungsaufgabe">„Vorlesungsaufgabe“</a> (Kontextfreie Sprache, Ableitung (Kontextfreie Sprache), Kontextfreie Grammatik)
+
+#### Kellerautomat
+
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/20_Kontextfreie-Sprachen/Kellerautomat/Aufgabe_Balancierte-Klammern.pdf" download="Aufgabe_Balancierte-Klammern">„Balancierte-Klammern“</a> (Kellerautomat)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/20_Kontextfreie-Sprachen/Kellerautomat/Aufgabe_Foliensatz.pdf" download="Aufgabe_Foliensatz">„Foliensatz“</a> (Kellerautomat)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/20_Kontextfreie-Sprachen/Kellerautomat/Aufgabe_Kellerautomat.pdf" download="Aufgabe_Kellerautomat">„Kellerautomat“</a> (Kellerautomat)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/20_Kontextfreie-Sprachen/Kellerautomat/Aufgabe_Konfigurationsfolge-Kellerautomat.pdf" download="Aufgabe_Konfigurationsfolge-Kellerautomat">„Konfigurationsfolge Kellerautomat“</a> (Kellerautomat)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/20_Kontextfreie-Sprachen/Kellerautomat/Aufgabe_PDA.pdf" download="Aufgabe_PDA">„PDA“</a> (Kellerautomat)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/20_Kontextfreie-Sprachen/Kellerautomat/Aufgabe_Vorlesungsaufgabe-1.pdf" download="Aufgabe_Vorlesungsaufgabe-1">„Vorlesungsaufgabe“</a> (Kontextfreie Sprache, Kellerautomat, Kontextfreie Grammatik, Konfigurationsfolge)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/20_Kontextfreie-Sprachen/Kellerautomat/Aufgabe_Vorlesungsaufgabe-2.pdf" download="Aufgabe_Vorlesungsaufgabe-2">„Vorlesungsaufgabe“</a> (Kellerautomat)
+
+#### Chomsky-Normalform
+
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/20_Kontextfreie-Sprachen/Chomsky-Normalform/Aufgabe_Chomsky-Normalform.pdf" download="Aufgabe_Chomsky-Normalform">„Chomsky-Normalform“</a> (Chomsky-Normalform)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/20_Kontextfreie-Sprachen/Chomsky-Normalform/Aufgabe_Vorlesungsaufgabe.pdf" download="Aufgabe_Vorlesungsaufgabe">„Vorlesungsaufgabe“</a> (Chomsky-Normalform)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/03/Thema-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66115-2012-Frühjahr_T1-A4">„Kontextfreie Sprache“ Examen 66115 Frühjahr 2012 T1 A4</a> (Chomsky-Normalform)
+
 # Aufgaben geordnet nach Staatsexamen
 
 In diesem Repository findet Ihr viele Staatsexamensaufgaben. Von fast
@@ -934,7 +963,7 @@ OCR des oben genannten Scans:
 - 2012 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2012-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/03/OCR.txt" download="Staatsexamen-Informatik_66115-2012-Frühjahr_OCR">OCR.txt</a> 
     - Thema 1 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/03/Thema-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2012-Frühjahr_T1-A3">Aufgabe 3 (Kontextfreie Sprache)</a> 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/03/Thema-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66115-2012-Frühjahr_T1-A4">Aufgabe 4 (Kontextfreie Sprache)</a>
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/03/Thema-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66115-2012-Frühjahr_T1-A4">Aufgabe 4 (Chomsky-Normalform)</a>
 - 2012 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Scan.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/OCR.txt" download="Staatsexamen-Informatik_66115-2012-Herbst_OCR">OCR.txt</a> 
     - Thema 1 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T1-A1">Aufgabe 1 (Potenzmengenalgorithmus, Minimierungsalgorithmus)</a> 
