@@ -1,7 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{formale-sprachen}
+\liLadePakete{formale-sprachen,chomsky-normalform}
 \begin{document}
 \let\m=\liMenge
+\let\schrittE=\liChomskySchrittUeberschriftErklaerung
 
 \liAufgabenTitel{Kontextfreie Sprache}
 \section{Aufgabe 4
@@ -14,12 +15,61 @@ Gegeben ist die kontextfreie Grammatik $G = (\Sigma, N, S, R)$ mit
 \begin{liProduktionsRegeln}
 S -> A,
 S -> B,
-A -> aAb,
-B -> AA,
-B -> bBa,
+A -> a A b,
+B -> A A,
+B -> b B a,
 A -> a
 \end{liProduktionsRegeln}
+\liFussnoteUrl{https://flaci.com/Gr3rgt2vg}
 
 Geben Sie eine äquivalente Grammatik in Chomsky-Normalform an.
+
+\begin{liAntwort}
+\begin{enumerate}
+\item \schrittE{1}
+
+\liNichtsZuTun
+
+\item \schrittE{2}
+
+\begin{liProduktionsRegeln}
+S -> aAb | a | AA | bBa,
+A -> aAb | a,
+B -> AA | bBa,
+\end{liProduktionsRegeln}
+
+\item \schrittE{3}
+
+\begin{liProduktionsRegeln}
+S -> T_a C | T_a | A A | T_b B T_a,
+A -> T_a C | T_a,
+B -> AA | T_b B T_a,
+T_a -> a,
+T_b -> b,
+\end{liProduktionsRegeln}
+
+\item \schrittE{4}
+
+% Ergebnis von Flaci.com:
+% S   -> T1 S.1 | a | A A | T2 S.2
+% A   -> T1 S.1 | a
+% B   -> A A | T2 S.2
+% T_a: T1  -> a
+% T_b: T2  -> b
+% C:   S.1 -> A T2
+% D:   S.2 -> B T1
+
+\begin{liProduktionsRegeln}
+S -> T_a C | a | A A | T_b D,
+A -> T_a C | a,
+B -> A A | T_b D,
+T_a -> a,
+T_b -> b,
+C -> A T_b,
+D -> B T_a,
+\end{liProduktionsRegeln}
+
+\end{enumerate}
+\end{liAntwort}
 
 \end{document}
