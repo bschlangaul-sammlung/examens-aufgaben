@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{formale-sprachen,automaten,minimierung}
+\liLadePakete{formale-sprachen,automaten,minimierung,syntax}
 \begin{document}
 \let\l=\liLeereZelle
 \let\f=\liFussnote
@@ -35,20 +35,22 @@ Erinnerung: $|w|_a$ bezeichnet die Zahl der $a$’s im Wort $w$.
 %%
 
 \item Sei $A = (Q, \Sigma, \delta, q_0 , E)$ ein deterministischer
-endlicher Automat für $L$. Es sei $w_1 = 111$, $w_2 = 11$, $w_3 = 1$,$ w_4
-= \epsilon$, $w_5 = 0$, $w_6 = 00$, $w_7 = 000$. Machen Sie sich klar,
-dass der Automat jedes dieser Wörter verarbeiten können muss. Folgern
-Sie, dass der Automat mindestens sieben Zustände haben muss. Schreiben
-Sie Ihr Argumentation schlüssig und vollständig auf.
+endlicher Automat für $L$. Es sei $w_1 = 111$, $w_2 = 11$, $w_3 = 1$, $
+w_4 = \epsilon$, $w_5 = 0$, $w_6 = 00$, $w_7 = 000$. Machen Sie sich
+klar, dass der Automat jedes dieser Wörter verarbeiten können muss.
+Folgern Sie, dass der Automat mindestens sieben Zustände haben muss.
+Schreiben Sie Ihr Argumentation schlüssig und vollständig auf.
 
 \begin{liAntwort}
 Ein deterministischen endlicher Automat hat keinen zusätzlichen Speicher
 zur Verfügung, in dem die Anzahl der bisher vorkommenden $0$ und $1$
 gespeichert werden könnte. Ein DEA kann die von der Sprache benötigten
 Anzahl an $0$ und $1$ nur in Form von Zustanden speichern. Um die Anzahl
-von 3 Einsen bzw. 3 Nullen zu speichern, sind also 6 Zustände nötig. Da
-die Sprache auch das leere Wort erkennen soll, ist noch ein zusätzlicher
-Zustand für dieses leere Wort nötig.
+von 3 Einsen bzw. 3 Nullen zu speichern, sind also 6 Zustände nötig.
+
+Die Wörter $01$ oder $0011$ oder $0101$ etc. haben eine Differenz von
+$0$, wenn die Anzahl an $0$ und $1$ abzogen wird. Um auch diese Wörter
+darstellen zu können, ist mindestens ein weiterer Zustand nötig.
 \end{liAntwort}
 
 %%
@@ -58,25 +60,16 @@ Zustand für dieses leere Wort nötig.
 \item Begründen Sie, dass $L$ regulär ist.
 
 \begin{liAntwort}
-$L$ ist nicht regulär. Widerspruchsbeweis durch das Pumping Lemma.
+Die Sprache kann mit einem regulären Ausdruck dargestellt werden:
 
-\begin{description}
-\item[j] = Pumping-Zahl
-\item[k] = zur Pumping-Zahl abhängige Zahl
-\item[i] = Zahl, die die Werte $\{ 0, 1, 2, 3 \dots \}$ annimmt und mit
-der aufgepumpt wird.
-\end{description}
-
-$\omega = 0^j 1^k = uvw$ mit $|j - k| \leq 3$ und $j, k \geq 0$
-
-$\omega = 0^j 1^{j+k} = uvw$ mit $|k| \leq 3$
-
-Wir teilen $0^j$ in $uv$ auf.
-
-$u = 0^{j-i}$ $v = 0^i$ $w = 1^{j+k}$
-
-$\rightarrow$ man kann nicht unendlich aufpumpen. $L$ ist nicht regulär.
-
+\begin{minted}{md}
+(
+ (0|) (0|) (0|) (1|) (1|) (1|)
+ |
+ (1|) (1|) (1|) (0|) (0|) (0|)
+)
+(01|10)*
+\end{minted}
 \end{liAntwort}
 
 %%
@@ -92,17 +85,13 @@ genau dar, an welcher Stelle dieser „Beweis” fehlerhaft ist.
 \index{Pumping-Lemma (Reguläre Sprache)}
 
 \begin{liAntwort}
-\begin{enumerate}
-\item Das Wort $(01)^n$ ist schlecht gewählt: Das für den Pumping-Lemma
-Beweis gewählte Wort $(01)^n$ spiegelt nicht die Eigenschaft der
-Sprache wieder, dass sich die Anzahl von Nullen und Einsen um maximal
-drei unterscheidet.
-
-\item Außerdem wurde das $(01)^n$ Wort falsch zerlegt. Für die
-Pumping-Zahl $n = 3$ gibt es sehr wohl eine Zerlegung, die beim
-Aufpumpen regulär ist, also: $\omega = 010101$ ($u = 01$, $x = 01$ und
-$v = 01$). $ux^5 v = 01 0101010101 01 \in L$.
-\end{enumerate}
+Das Wort $(01)^n$ wurde falsch zerlegt. Für die Pumping-Zahl $n = 3$
+gibt es sehr wohl eine Zerlegung, die beim Aufpumpen regulär ist, also:
+$\omega = 010101$ ($u = 01$, $x = 01$ und $v = 01$). $ux^5 v = 01
+0101010101 01 \in L$. Es gibt also eine Zerlegung, die beim Aufpumpen
+die 3 Pumping-Lemma-Eigenschaften erfüllt. Daher kann man das
+Pumping-Lemma so nicht widerlegt werden, indem man ein einziges
+Gegenbeispiel gibt.
 \end{liAntwort}
 
 %%
