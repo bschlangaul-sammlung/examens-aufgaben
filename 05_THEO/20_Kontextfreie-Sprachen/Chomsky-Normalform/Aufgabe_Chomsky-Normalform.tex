@@ -1,0 +1,92 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,chomsky-normalform}
+\begin{document}
+\let\schrittE=\liChomskySchrittUeberschriftErklaerung
+
+\liAufgabenTitel{Chomsky-Normalform}
+\section{Chomsky-Normalform
+\index{Chomsky-Normalform}
+\footcite{theo:ab:2}}
+
+Überführen Sie jeweils die angegebene kontextfreie Grammatik in
+Chomsky-Normalform.
+
+\begin{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\item $G = (\{a, b, c\}, \{S, A, B, C, X\}, P, S)$ mit $P$:
+
+\begin{liProduktionsRegeln}
+S -> XAB | epsilon,
+A -> aAB | AB | c,
+B -> BB | C | a,
+C -> CC | c | epsilon,
+X -> A | b
+\end{liProduktionsRegeln}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\item $G = (\{a, b, c\}, \{S, T\}, P, S)$ mit $P$:
+
+\begin{liProduktionsRegeln}
+S -> aSbS | T,
+T -> cT | c
+\end{liProduktionsRegeln}
+
+\begin{liAntwort}
+\begin{enumerate}
+\item \schrittE{1}
+
+\liNichtsZuTun
+
+\item \schrittE{2}
+
+\begin{liProduktionsRegeln}
+S -> aSbS | cT | c,
+T -> cT | c
+\end{liProduktionsRegeln}
+
+\item \schrittE{3}
+
+\begin{liProduktionsRegeln}
+S -> ASAS | CT | c,
+T -> CT | c,
+A -> a,
+B -> b,
+C -> c,
+\end{liProduktionsRegeln}
+
+\item \schrittE{4}
+
+\begin{liProduktionsRegeln}
+S -> AU | CT | c,
+T -> CT | c,
+A -> a,
+B -> b,
+C -> c,
+U -> SV
+V -> AS
+\end{liProduktionsRegeln}
+
+\end{enumerate}
+\end{liAntwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\item $G = (\{a, b, c\}, \{S, A, B\}, P, S)$ mit $P$:
+
+\begin{liProduktionsRegeln}
+S -> AB,
+A -> aAA | epsilon,
+B -> bBB | epsilon
+\end{liProduktionsRegeln}
+\end{enumerate}
+
+\end{document}
