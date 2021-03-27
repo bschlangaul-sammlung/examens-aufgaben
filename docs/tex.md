@@ -46,46 +46,6 @@ Zum Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.
 
 ## Pakete
 
-### |formale-sprachen.sty|
-
-* Makro: |\liPotenzmenge|: Umgeben mit geschweiften Klammern in einer
-  Mathematik-Umgebung
-* Makro: |\liPotenzmengeOhneMathe|: Umgeben mit geschweiften Klammern in
-  keiner Mathematik-Umgebung
-* Makro: |\liZustandsmenge{z1, z2}|: |$\{ z_1, z_2 \}$|
-* Makro: |\liUeberfuehrungsFunktion{z0, a}|: |$\delta(z_0, a)$|
-* Makro: |\liAlphabet{a, b}|: |$\Sigma = \{ a, b \}$|
-* Makro: |\liZustandsname{1}|: |$z_1$|
-* Makro: |\liZustandsnameGross{1}|: |$Z_1$|
-* Umgebung: |\begin{liProduktionsRegeln}A -> a, B->b|
-* Makro: |\liZustandsMengenSammlung{nummer}{latex3 str_case:nn}|
-
-|||latex
-\def\z#1{
-  \liZustandsMengenSammlung{#1}{
-    {
-      {0} {z0}
-      {1} {z0, z1}
-      {2} {z0, z1, z2}
-      {3} {z0, z2}
-      {4} {z0, z1, z2, z3}
-      {5} {z0, z3}
-      {6} {z0, z2, z3}
-      {7} {z0, z1, z3}
-    }
-  }
-}
-|||
-
-Hilfsmakros zum Setzen von mathematischen Formeln bei dem Thema Formale
-Sprachen.
-
-### |grafik.sty|
-
-### |hanoi.sty|
-
-Paket zum Setzen von Hanoi-Grafiken
-
 * Makro: |\liHanoi{anzahl-scheiben}{gewicht-scheibe/turm-nr,gewicht-scheibe/turm-nr}|,
   z. B.: |\liHanoi{4}{4/1,3/1,2/3,1/2}|
 

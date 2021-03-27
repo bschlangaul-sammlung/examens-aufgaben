@@ -7,7 +7,10 @@ zum Setzen von mathematischen Formeln bei dem Thema Formale Sprachen]
 }
 
 \RequirePackage{lehramt-informatik-mathe}
+%    \end{macrocode}
 
+% \begin{macro}{\liMenge}
+%    \begin{macrocode}
 % \let\m=\liMenge
 \def\liMengeOhneMathe#1{\{ #1 \}}
 \def\liMenge#1{%
@@ -17,26 +20,62 @@ zum Setzen von mathematischen Formeln bei dem Thema Formale Sprachen]
 $\liMengeOhneMathe{#1}$%
 \fi%
 }
+%    \end{macrocode}
+% \end{macro}
 
-% \let\e=\liEpsilon
+% \begin{macro}{\liEpsilon}
+% |\let\e=\liEpsilon|
+%    \begin{macrocode}
 \def\liEpsilon{$\epsilon$}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liPotenzmenge}
+% Umgeben mit geschweiften Klammern in einer Mathematik-Umgebung
+%    \begin{macrocode}
 \def\erzeuge@tiefgestellt#1{\directlua{formale_sprachen.erzeuge_tiefgestellt('#1')}}
-
 \def\liPotenzmengeOhneMathe#1{\{ \erzeuge@tiefgestellt{#1} \}}
 \def\liPotenzmenge#1{$\liPotenzmengeOhneMathe{#1}$}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liZustandsmenge}
+% |\liZustandsmenge{z1, z2}|: |$\{ z_1, z_2 \}$|
+%    \begin{macrocode}
 \let\liZustandsmengeOhneMathe=\liPotenzmengeOhneMathe
 \let\liZustandsmenge=\liPotenzmenge
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liUeberfuehrungsFunktion}
+% |\liUeberfuehrungsFunktion{z0, a}|: |$\delta(z_0, a)$|
+%    \begin{macrocode}
 \def\liUeberfuehrungsFunktionOhneMathe#1{\delta(\erzeuge@tiefgestellt{#1})}
 \def\liUeberfuehrungsFunktion#1{$\liUeberfuehrungsFunktionOhneMathe{#1}$}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liAlphabet}
+% |\liAlphabet{a, b}|: |$\Sigma = \{ a, b \}$|
+%    \begin{macrocode}
 \def\liAlphabet#1{$\Sigma = \{ #1 \}$}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liZustandsBuchstabe}
+%    \begin{macrocode}
 \def\liZustandsBuchstabe{z}
-\def\liZustandsBuchstabeGross{Z}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liZustandsBuchstabeGross}
+%    \begin{macrocode}
+\def\liZustandsBuchstabeGross{Z}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liZustandsmengeNr}
+%    \begin{macrocode}
 \def\zustandsnamens@liste#1#2{
   $
     \{
@@ -45,11 +84,49 @@ $\liMengeOhneMathe{#1}$%
   $
 }
 \def\liZustandsmengeNr#1{\zustandsnamens@liste{\liZustandsBuchstabe}{#1}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liZustandsmengeNrGross}
+%    \begin{macrocode}
 \def\liZustandsmengeNrGross#1{\zustandsnamens@liste{\liZustandsBuchstabeGross}{#1}}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liZustandsname}
+% |\liZustandsname{1}|: |$z_1$|
+%    \begin{macrocode}
 \def\liZustandsname#1{$\liZustandsBuchstabe_#1$}
-\def\liZustandsnameGross#1{$\liZustandsBuchstabeGross_#1$}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liZustandsnameGross}
+% |\liZustandsnameGross{1}|: |$Z_1$|
+%    \begin{macrocode}
+\def\liZustandsnameGross#1{$\liZustandsBuchstabeGross_#1$}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liZustandsMengenSammlung}
+% |\liZustandsMengenSammlung{nummer}{latex3 str_case:nn}|
+%
+% \begin{verbatim}
+%   \def\z#1{
+%     \liZustandsMengenSammlung{#1}{
+%       {
+%         {0} {z0}
+%         {1} {z0, z1}
+%         {2} {z0, z1, z2}
+%         {3} {z0, z2}
+%         {4} {z0, z1, z2, z3}
+%         {5} {z0, z3}
+%         {6} {z0, z2, z3}
+%         {7} {z0, z1, z3}
+%       }
+%     }
+%   }
+% \end{verbatim}
+%    \begin{macrocode}
 \ExplSyntaxOn
 \def\liZustandsMengenSammlung#1#2{
   \liZustandsnameGross{#1}
@@ -60,6 +137,11 @@ $\liMengeOhneMathe{#1}$%
     }
   }
 }
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liZustandsMengenSammlungNr}
+%    \begin{macrocode}
 \def\liZustandsMengenSammlungNr#1#2{
   \liZustandsnameGross{#1}
   {
@@ -69,9 +151,18 @@ $\liMengeOhneMathe{#1}$%
     }
   }
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liAbleitung}
+%    \begin{macrocode}
 \def\liAbleitung#1{\directlua{formale_sprachen.formatiere_ableitung('#1')}}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{environment}{liProduktionsRegeln}
+% |\begin{liProduktionsRegeln}A -> a, B->b|
+%    \begin{macrocode}
 \NewDocumentEnvironment { liProduktionsRegeln }
 { +b }
 {
@@ -84,7 +175,11 @@ $\liMengeOhneMathe{#1}$%
   \vspace{-1.5cm}
   \begin{flushright}\}\end{flushright}
 } {}
+%    \end{macrocode}
+% \end{environment}
 
+% \begin{macro}{\liZustandsnameTiefgestellt}
+%    \begin{macrocode}
 % Automatisch tiefgestellte Nummerierung \z1
 % \let\z=\liZustandsnameTiefgestellt
 \def\liZustandsnameTiefgestellt#1{
@@ -95,3 +190,7 @@ $\liMengeOhneMathe{#1}$%
   \fi
 }
 \ExplSyntaxOff
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
