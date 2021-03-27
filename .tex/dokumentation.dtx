@@ -238,9 +238,12 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 \ExplSyntaxOn
 
 \liLadePakete{typographie}
+%    \end{macrocode}
 
-% \let\schritt=\liChomskySchrittUeberschrift
-\def\liChomskySchrittUeberschrift#1{
+% \begin{macro}{\liChomskyUeberschrift}
+% |\let\schritt=\liChomskyUeberschrift|
+%    \begin{macrocode}
+\def\liChomskyUeberschrift#1{
   {
     \bfseries
     \sffamily
@@ -252,10 +255,16 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
     }
   }
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liChomskyErklaerung}
+% |\let\erklaerung=\liChomskyErklaerung|
+%  Hoffmann Seite 180
+%    \begin{macrocode}
 \def\li@chomsky@erklaerung@texte#1{
   \str_case:nn {#1} {
-    % Hoffmann Seite 180
+    %
     {1} {
       Alle~Regeln~der~Form~$A~\rightarrow~\epsilon$~werden~eliminiert.~
       Die~Ersetzung~von~$A$~wird~durch~$\epsilon$~in~allen~anderen~
@@ -285,21 +294,27 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
     }
   }
 }
-% \let\erklaerung=\liChomskySchrittErklaerung
-\def\liChomskySchrittErklaerung#1{
+\def\liChomskyErklaerung#1{
   {
     \itshape
     \footnotesize
     \liParagraphMitLinien{\li@chomsky@erklaerung@texte{#1}}
   }
 }
+%    \end{macrocode}
+% \end{macro}
 
-% \let\schrittE=\liChomskySchrittUeberschriftErklaerung
-\def\liChomskySchrittUeberschriftErklaerung#1{
-  \liChomskySchrittUeberschrift{#1}\par
-  \liChomskySchrittErklaerung{#1}
+% \begin{macro}{\liChomskyUeberErklaerung}
+% |\let\schrittE=\liChomskyUeberErklaerung|
+%    \begin{macrocode}
+\def\liChomskyUeberErklaerung#1{
+  \liChomskyUeberschrift{#1}\par
+  \liChomskyErklaerung{#1}
 }
+%    \end{macrocode}
+% \end{macro}
 
+%    \begin{macrocode}
 \ExplSyntaxOff
 
 %    \end{macrocode}
