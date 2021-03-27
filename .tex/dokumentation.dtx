@@ -1,0 +1,1771 @@
+% \iffalse meta-comment
+% vim: textwidth=75
+%<*internal>
+\iffalse
+%</internal>
+%<*readme>
+|
+-------:| -----------------------------------------------------------------
+   test:| A new LaTeX package
+ Author:| (not set)
+ E-mail:| (not set)
+License:| Released under the LaTeX Project Public License v1.3c or later
+    See:| http://www.latex-project.org/lppl.txt
+
+
+Short description:
+Some text about the package: probably the same as the abstract.
+%</readme>
+%<*internal>
+\fi
+\def\nameofplainTeX{plain}
+\ifx\fmtname\nameofplainTeX\else
+  \expandafter\begingroup
+\fi
+%</internal>
+%<*install>
+\input docstrip.tex
+\keepsilent
+\askforoverwritefalse
+\preamble
+-------:| -----------------------------------------------------------------
+   test:| A new LaTeX package
+ Author:| (not set)
+ E-mail:| (not set)
+License:| Released under the LaTeX Project Public License v1.3c or later
+    See:| http://www.latex-project.org/lppl.txt
+
+\endpreamble
+\postamble
+
+Copyright (C) 2021 by (not set) <(not set)>
+
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License (LPPL), either
+version 1.3c of this license or (at your option) any later
+version.  The latest version of this license is in the file:
+
+http://www.latex-project.org/lppl.txt
+
+This work is "maintained" (as per LPPL maintenance status) by
+(not set).
+
+This work consists of the file test.dtx and a Makefile.
+Running "make" generates the derived files README, test.pdf and test.sty.
+Running "make inst" installs the files in the user's TeX tree.
+Running "make install" installs the files in the local TeX tree.
+
+\endpostamble
+
+\usedir{tex/latex/test}
+\generate{
+  \file{\jobname.sty}{\from{\jobname.dtx}{package}}
+}
+%</install>
+%<install>\endbatchfile
+%<*internal>
+\usedir{source/latex/test}
+\generate{
+  \file{\jobname.ins}{\from{\jobname.dtx}{install}}
+}
+\nopreamble\nopostamble
+\usedir{doc/latex/test}
+\generate{
+  \file{README.txt}{\from{\jobname.dtx}{readme}}
+}
+\ifx\fmtname\nameofplainTeX
+  \expandafter\endbatchfile
+\else
+  \expandafter\endgroup
+\fi
+%</internal>
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{test.dtx}
+%</driver>
+%<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+%<package>\ProvidesPackage{test}
+%<*package>
+    [2021/03/27 v1.00 A new LaTeX package]
+%</package>
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage[a4paper,margin=25mm,left=50mm,nohead]{geometry}
+\usepackage[numbered]{hypdoc}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \GetFileInfo{\jobname.dtx}
+% \DoNotIndex{\newcommand,\newenvironment,\def,\endinput}
+%
+%\title{\textsf{test} --- A new LaTeX package\thanks{This file
+%   describes version \fileversion, last revised \filedate.}
+%}
+%\author{(not set)\thanks{E-mail: (not set)}}
+%\date{Released \filedate}
+%
+%\maketitle
+%
+%\changes{v1.00}{2021/03/27}{First public release}
+%
+%\StopEventually{^^A
+%  \PrintChanges
+%  \PrintIndex
+%}
+%
+% \section{Implementation}
+%
+%    \begin{macrocode}
+%<*package>
+%    \end{macrocode}
+%    \begin{macrocode}
+%    \end{macrocode}
+% \subsection{automaten.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-automaten}[2021/02/14 Zum Setzen von Automaten]
+
+\RequirePackage{tikz}
+\usetikzlibrary{arrows,automata,positioning}
+
+\directlua{
+  automaten = require('lehramt-informatik-automaten')
+}
+
+% \let\k=\liAutomatenKante
+\def\liAutomatenKante#1#2#3#4{
+  \path (#1) edge[#4] node{#3} (#2);
+}
+
+\ExplSyntaxOn
+% \let\u=\liKellerUebergang
+% Regulärer Ausdruck zum Konvertieren:
+% \((.*), (.*), (.*)\)
+% \\u{$1 $2 $3}
+\def\liKellerUebergang#1{
+  \directlua{automaten.gib_uebergaenge_aus('#1')}
+}
+\ExplSyntaxOff
+
+\tikzset{
+  li keller knoten/.style={
+    text width=2cm,
+    align=center,
+    font=\footnotesize,
+  },
+  li automat/.style={
+    ->,
+    node distance=2cm
+  },
+  li kellerautomat/.style={
+    li automat,
+    every edge/.append style={
+      every node/.style={
+        li keller knoten
+      }
+    }
+  }
+}
+
+%    \end{macrocode}
+% \subsection{baum.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-bbaum}[2020/06/13 Zum Setzen von
+Binär- und AVL-Bäumen. Hüll-Paket um TikZ and tikz-qtree.]
+
+\RequirePackage{tikz}
+
+% für li binaer baum
+\RequirePackage{tikz-qtree}
+
+% Für b baum
+\usetikzlibrary{shapes.multipart}
+
+\tikzset{
+  li binaer baum/.style={
+    shorten <=2pt,
+    shorten >=2pt,
+    ->,
+    every tree node/.style={
+      minimum width=2em,
+      draw,
+      circle
+    },
+    blank/.style={
+      draw=none
+    },
+    edge from parent/.style={
+      draw,
+      edge from parent path={(\tikzparentnode) -- (\tikzchildnode)}
+    },
+    level distance=1cm,
+    every label/.style={
+      gray,
+      font=\footnotesize,
+      label position=0,
+      label distance=0cm,
+    }
+  },
+  li avl balance/.style={
+    blue,
+    label position=0,
+  },
+  li avl hoehe/.style={
+    green,
+    label position=180,
+  },
+  li markiert/.style={
+    very thick
+  },
+  bbaum node/.style={
+    rectangle split parts=10,
+    rectangle split,
+    rectangle split horizontal,
+    rectangle split ignore empty parts,
+    draw,
+    fill=white
+  },
+  bbaum/.style={
+    shorten <=2pt,
+    shorten >=2pt,
+    every node/.style=bbaum node,
+    level 1/.style={
+      level distance=12mm,
+      sibling distance=25mm,
+    },
+    level 2/.style={
+      level distance=9mm,
+      sibling distance=15mm,
+    },
+  }
+}
+
+%    \end{macrocode}
+% \subsection{checkbox.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-checkbox}[2020/12/14 Zum Setzen von
+Multiple-Choice-Fragen. Simulation von Kästchen zum ankreuzen]
+\RequirePackage{amssymb}
+
+\def\liRichtig{\item[$\boxtimes$]}
+\def\liFalsch{\item[$\square$]}
+
+%    \end{macrocode}
+% \subsection{chomsky-normalform.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-chomsky-normalform}[2021/03/26
+Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
+
+\ExplSyntaxOn
+
+\liLadePakete{typographie}
+
+% \let\schritt=\liChomskySchrittUeberschrift
+\def\liChomskySchrittUeberschrift#1{
+  {
+    \bfseries
+    \sffamily
+    \str_case:nn {#1} {
+      {1} {Elimination~der~$\epsilon$-Regeln}
+      {2} {Elimination~von~Kettenregeln}
+      {3} {Separation~von~Terminalzeichen}
+      {4} {Elimination~von~mehrelementigen~Nonterminalketten}
+    }
+  }
+}
+
+\def\li@chomsky@erklaerung@texte#1{
+  \str_case:nn {#1} {
+    % Hoffmann Seite 180
+    {1} {
+      Alle~Regeln~der~Form~$A~\rightarrow~\epsilon$~werden~eliminiert.~
+      Die~Ersetzung~von~$A$~wird~durch~$\epsilon$~in~allen~anderen~
+      Regeln~vorweggenommen.
+    }
+    {2} {
+      Jede~Produktion~der~Form~$A~\rightarrow~B$~mit~$A,~B~\in~S$~wird~
+      als~Kettenregel~bezeichnet.~Diese~tragen~nicht~zur~Produktion~
+      von~Terminalzeichen~bei~und~lassen~sich~ebenfalls~eliminieren.
+    }
+    {3} {
+      Jedes~Terminalzeichen~$\sigma$,~das~in~Kombination~mit~anderen~
+      Symbolen~auftaucht,~wird~durch~ein~neues~Nonterminal~
+      $S\sb{\sigma}$~ersetzt~und~die~Menge~der~Produktionen~durch~die~
+      Regel~$S\sb{\sigma}~\rightarrow~\sigma$~ergänzt.
+    }
+    {4} {
+      Alle~Produktionen~der~Form~
+      $A\rightarrow~B\sb{1}~B\sb{2}~\dots~B\sb{n}$~
+      werden~in~die~Produktionen~
+      $A~\rightarrow~
+      A\sb{n-1}~B\sb{n},~A\sb{n-1}~\rightarrow~
+      A\sb{n-2}~B\sb{n-1},~\dots,~
+      A\sb{2}~\rightarrow~B\sb{1}~B\sb{2}$~zerteilt.~
+      Nach~der~Ersetzung~sind~alle~längeren~Nonterminalketten~
+      vollständig~heruntergebrochen~und~die~Chomsky-Normalform~erreicht.
+    }
+  }
+}
+% \let\erklaerung=\liChomskySchrittErklaerung
+\def\liChomskySchrittErklaerung#1{
+  {
+    \itshape
+    \footnotesize
+    \liParagraphMitLinien{\li@chomsky@erklaerung@texte{#1}}
+  }
+}
+
+% \let\schrittE=\liChomskySchrittUeberschriftErklaerung
+\def\liChomskySchrittUeberschriftErklaerung#1{
+  \liChomskySchrittUeberschrift{#1}\par
+  \liChomskySchrittErklaerung{#1}
+}
+
+\ExplSyntaxOff
+
+%    \end{macrocode}
+% \subsection{cpm.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-cpm}[2020/09/03]
+\RequirePackage{tikz}
+
+\def\ereignis#1(#2,#3){
+  \node[circle,draw] (#1) at (#2,#3) {#1};
+}
+
+% name
+\def\ereignisN(#1)#2(#3,#4){
+  \node[circle,draw] (#1) at (#3,#4) {#2};
+}
+
+\def\vorgang(#1>#2)#3{
+  \path[->] (#1) edge node[auto,sloped] {#3} (#2);
+}
+
+\def\VORGANG(#1>#2)#3{
+  \path[->,thick] (#1) edge node[auto,sloped] {#3} (#2);
+}
+
+\def\scheinvorgang(#1>#2)#3{
+  \path[->,dashed] (#1) edge node[auto,sloped] {#3} (#2);
+}
+
+% \t = tmp
+\def\t#1(#2-#3){#1_{\scriptscriptstyle(#2\rightarrow#3)}}
+
+% \v = von
+\def\v#1(#2){#1_{\scriptscriptstyle(\rightarrow#2)}}
+\def\zu#1(#2){#1_{\scriptscriptstyle(\leftarrow#2)}}
+
+\let\f=\footnotesize
+
+%    \end{macrocode}
+% \subsection{er.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-uml}[2020/06/13]
+\RequirePackage{tikz-er2}
+\usetikzlibrary{positioning}
+\RequirePackage{soul}
+\RequirePackage{MnSymbol}
+
+\newcommand{\Entity}[1]{\textbf{#1}}
+\newcommand{\Relationship}[1]{\ul{#1}}
+\newcommand{\Attribute}[1]{\emph{#1}}
+
+% mp = marginpar
+\newcommand{\mpEntity}[1]{\Entity{#1}\marginpar{\Entity{\tiny{}\medsquare{} E: #1}}}
+\newcommand{\mpRelationship}[1]{\Relationship{#1}\marginpar{\Relationship{\tiny{}\meddiamond{} R: #1}}}
+\newcommand{\mpAttribute}[1]{\Attribute{#1}\marginpar{\Attribute{\tiny{}\medcircle{} A: #1}}}
+
+% datenbank name
+\def\dname#1{{\footnotesize\texttt{(#1)}}}
+
+%    \end{macrocode}
+% \subsection{formale-sprachen.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-formale-sprachen}[2021/02/21 Hilfsmakros
+zum Setzen von mathematischen Formeln bei dem Thema Formale Sprachen]
+
+\directlua{
+  formale_sprachen = require('lehramt-informatik-formale-sprachen')
+}
+
+\RequirePackage{lehramt-informatik-mathe}
+
+% \let\m=\liMenge
+\def\liMengeOhneMathe#1{\{ #1 \}}
+\def\liMenge#1{%
+\ifmmode%
+\liMengeOhneMathe{#1}%
+\else%
+$\liMengeOhneMathe{#1}$%
+\fi%
+}
+
+% \let\e=\liEpsilon
+\def\liEpsilon{$\epsilon$}
+
+\def\erzeuge@tiefgestellt#1{\directlua{formale_sprachen.erzeuge_tiefgestellt('#1')}}
+
+\def\liPotenzmengeOhneMathe#1{\{ \erzeuge@tiefgestellt{#1} \}}
+\def\liPotenzmenge#1{$\liPotenzmengeOhneMathe{#1}$}
+
+\let\liZustandsmengeOhneMathe=\liPotenzmengeOhneMathe
+\let\liZustandsmenge=\liPotenzmenge
+
+\def\liUeberfuehrungsFunktionOhneMathe#1{\delta(\erzeuge@tiefgestellt{#1})}
+\def\liUeberfuehrungsFunktion#1{$\liUeberfuehrungsFunktionOhneMathe{#1}$}
+
+\def\liAlphabet#1{$\Sigma = \{ #1 \}$}
+
+\def\liZustandsBuchstabe{z}
+\def\liZustandsBuchstabeGross{Z}
+
+\def\zustandsnamens@liste#1#2{
+  $
+    \{
+      \directlua{formale_sprachen.erzeuge_zustandsnamens_liste('#1', '#2')}
+    \}
+  $
+}
+\def\liZustandsmengeNr#1{\zustandsnamens@liste{\liZustandsBuchstabe}{#1}}
+\def\liZustandsmengeNrGross#1{\zustandsnamens@liste{\liZustandsBuchstabeGross}{#1}}
+
+\def\liZustandsname#1{$\liZustandsBuchstabe_#1$}
+\def\liZustandsnameGross#1{$\liZustandsBuchstabeGross_#1$}
+
+\ExplSyntaxOn
+\def\liZustandsMengenSammlung#1#2{
+  \liZustandsnameGross{#1}
+  {
+    \footnotesize
+    \liPotenzmenge{
+      \str_case:nn {#1} #2
+    }
+  }
+}
+\def\liZustandsMengenSammlungNr#1#2{
+  \liZustandsnameGross{#1}
+  {
+    \footnotesize
+    \liZustandsmengeNr{
+      \str_case:nn {#1} #2
+    }
+  }
+}
+
+\def\liAbleitung#1{\directlua{formale_sprachen.formatiere_ableitung('#1')}}
+
+\NewDocumentEnvironment { liProduktionsRegeln }
+{ +b }
+{
+  \noindent
+  $P = \{$
+  \vspace{-0.2cm}
+  \begin{align*}
+    \directlua{formale_sprachen.produktions_regeln('#1')}
+  \end{align*}
+  \vspace{-1.5cm}
+  \begin{flushright}\}\end{flushright}
+} {}
+
+% Automatisch tiefgestellte Nummerierung \z1
+% \let\z=\liZustandsnameTiefgestellt
+\def\liZustandsnameTiefgestellt#1{
+  \ifmmode
+  \liZustandsBuchstabe\sb{#1}
+  \else
+  $\liZustandsBuchstabe\sb{#1}$
+  \fi
+}
+\ExplSyntaxOff
+
+%    \end{macrocode}
+% \subsection{gantt.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-gantt}[2020/09/05]
+\RequirePackage{tikz-uml}
+\RequirePackage{pgfgantt}
+\setganttlinklabel{f-s}{}
+\setganttlinklabel{s-s}{}
+\setganttlinklabel{f-f}{}
+\setganttlinklabel{s-f}{}
+
+%    \end{macrocode}
+% \subsection{grafik.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-grafik}[2020/12/27 Lädt das Paket
+TikZ, um Grafiken zeichnen zu können.]
+\RequirePackage{tikz}
+
+%    \end{macrocode}
+% \subsection{graph.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-graph}[2020/06/09]
+\RequirePackage{tikz}
+
+\RequirePackage{xparse}
+
+% Für Adjazenz-Matrix
+\RequirePackage{blkarray}
+
+\usetikzlibrary{arrows.meta}
+
+\tikzset{
+  li graph/.style={
+    every node/.style={
+      circle,
+      draw
+    }
+  },
+  li graph kante/.style={
+    >={Stealth[black]},
+    every node/.style={fill=white,circle},
+    every edge/.style={draw=black}
+  }
+}
+
+\def\graph knoten #1 kanten #2 {
+  \begin{center}
+  \begin{tikzpicture}
+  \begin{scope}[every node/.style={circle,draw}]
+  #1
+  \end{scope}
+
+  \begin{scope}[>={Stealth[black]},
+                every node/.style={fill=white,circle},
+                every edge/.style={draw=black}]
+  #2
+  \end{scope}
+  \end{tikzpicture}
+  \end{center}
+}
+
+% \\node\s*\((.*)\)\s*at\s*\((\d+),(\d+)\)\s*\{.*\}\s*;
+% \knoten{$1}($2,$3)
+\def\knoten#1(#2,#3){
+  \node (#1) at (#2,#3) {#1};
+}
+
+% \\path \((.*)\) edge node \{(.*)\} \((.*)\);
+% \kante($1-$3){$2}
+\def\kante(#1-#2)#3{
+  \path (#1) edge node {#3} (#2);
+}
+
+% \\draw\s*\((.*)\)\s*--\s*\((.*)\);
+% Kante ohne Gewicht
+\def\kanteO(#1-#2){
+  \path (#1) edge (#2);
+}
+
+% Kante geRichtet
+% \\path \[->\] \((.*)\) edge node \{(.*)\} \((.*)\);
+% \kanteR($1>$3){$2}
+\def\kanteR(#1>#2)#3{
+  \path[->] (#1) edge node {#3} (#2);
+}
+
+\def\KANTE(#1-#2)#3{
+  \path[ultra thick] (#1) edge node {#3} (#2);
+}
+
+%% Dummy-Umgebung, zum Parsen durch Java gedacht.
+\NewDocumentEnvironment { liGraphenFormat }{ +b } {} {}
+
+%    \end{macrocode}
+% \subsection{hanoi.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-hanoi}[2020/12/19 Paket zum Setzen
+von Hanoi-Grafiken]
+% https://kleinco.de/latex-snippets/7/tikz-towers-of-hanoi-illustration-for-latex-documents/
+
+\RequirePackage{tikz}
+\RequirePackage{xcolor}
+
+\def\li@mset #1[#2]=#3{%
+	\expandafter\xdef\csname #1#2\endcsname{#3}
+}
+\def\li@mget #1[#2]{%
+	\csname #1#2\endcsname
+}
+\def\li@minc #1[#2]+=#3{%
+	\pgfmathparse{\li@mget #1[#2]+#3}%
+	\li@mset #1[#2]=\pgfmathresult
+}
+
+\def\liHanoi#1#2{
+  \edef\li@numdiscs{#1}
+  \def\li@sequence{#2}
+  \begin{tikzpicture}[line width=4mm,brown!40,line cap=round,xscale=3]
+    % init colors
+    \foreach[count=\j] \c in {red,green!80!black,blue,orange,violet,gray,yellow!80!black,purple,cyan,black}
+    \li@mset col[\j]={\c};
+    % draw poles and init pole counters
+    \foreach \j in {1,2,3}{
+      \li@mset pos[\j]=0
+      \draw (\j,-.5) -- +(0, .5 + .5*\li@numdiscs);
+    }
+    % draw base
+    \draw (.5,-.5) -- +(3,0);
+    % draw discs
+    \foreach[count=\k] \i/\j in \li@sequence{
+      \draw[draw={\li@mget col[\i]}] (\j,\li@mget pos[\j]) +(-.4*\i/\li@numdiscs,0) -- +(.4*\i/\li@numdiscs,0) node[pos=.5,white,font=\sffamily] {\i};
+      \li@minc pos[\j]+={.5}
+    }
+  \end{tikzpicture}
+}
+
+%    \end{macrocode}
+% \subsection{kontrollflussgraph.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-kontrollflussgraph}[2020/11/07]
+
+\RequirePackage{tikz}
+\usetikzlibrary{positioning}
+\tikzset{
+  kontrollfluss/.style={
+    knoten/.style={
+      circle,
+      draw
+    },
+    usebox/.style={
+      draw,
+      rectangle,
+      font=\scriptsize,
+      anchor=west,
+      align=left,
+    },
+    bedingung/.style={
+      midway,
+      font=\scriptsize
+    },
+    knotenbeschriftung/.style={
+      draw,
+      rectangle,
+      midway,
+      font=\scriptsize
+    },
+    every pin/.style={
+      draw,
+      dotted,
+      rectangle,
+      pin position=right,
+      font=\scriptsize
+    },
+    every pin edge/.style={
+      dotted
+    }
+  }
+}
+
+\def\bedingung#1#2{node[bedingung,#1]{[\texttt{#2}]}}
+\def\KanteWahr#1{node[bedingung,#1]{\texttt{true}}}
+\def\KanteFalsch#1{node[bedingung,#1]{\texttt{false}}}
+
+\def\TextzeileKnoten#1{\raisebox{-2pt}{\tikz[scale=0.5,transform shape] \node[draw,circle]{#1};}}
+
+\ExplSyntaxOn
+\NewDocumentCommand \KnotenPfad { m }
+{
+  \seq_set_split:Nnn \l_tmpa_seq { - } { #1 }
+  \seq_set_map:NNn \l_tmpa_seq \l_tmpa_seq {\TextzeileKnoten{##1}}
+  \seq_use:Nn \l_tmpa_seq { ~-~~ }
+}
+\ExplSyntaxOff
+
+%    \end{macrocode}
+% \subsection{makros.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-makros}[2020/11/27 Eine Sammlung von
+häufig verwendeten Makros und Umgebungen, die thematisch zu keinem
+anderen Paket passen]
+
+%-----------------------------------------------------------------------
+% diverse
+%-----------------------------------------------------------------------
+
+\RequirePackage{hyperref}
+\RequirePackage{graphicx}
+
+%-----------------------------------------------------------------------
+% Macros
+%-----------------------------------------------------------------------
+
+%%
+% \inhaltsverzeichnis
+%%
+\def\inhaltsverzeichnis {
+  \begin{mdframed}
+    \begingroup
+    \let\clearpage\relax
+    \tableofcontents
+    \endgroup
+  \end{mdframed}
+}
+
+%%
+% \mephm (\marginpar and \emph)
+%%
+\newcommand{\memph}[1]{\emph{#1}\marginpar{\tiny#1}}
+
+%%
+% \SLASH
+%%
+\newcommand\SLASH{\char`\\}
+
+%%
+% \liPseudoUeberschrift
+%%
+\newcommand{\liPseudoUeberschrift}[1]{
+\bigskip
+\noindent
+\textsf{\textbf{#1}}
+\noindent
+}
+
+%%
+% \liBeschriftung
+%%
+\newcommand{\liBeschriftung}[1]{
+\par
+\noindent
+\medskip
+\textbf{#1}:
+\medskip
+\noindent
+}
+
+\def\hinweis#1{{\footnotesize[#1]}}
+
+%-----------------------------------------------------------------------
+% Environments
+%-----------------------------------------------------------------------
+
+\NewDocumentEnvironment { liProjektSprache }{ o +b } {} {}
+\NewDocumentEnvironment { liEinbettung }{ o +b } {#2} {}
+
+%%
+% \begin{liAntwort}
+%%
+\RequirePackage{xparse}
+\ExplSyntaxOn
+\NewDocumentEnvironment{ liAntwort } { O{standard} }
+{
+  \str_case:nn {#1} {
+    {standard} {
+      \def\beschriftung{}
+      \mdfsetup{backgroundcolor=gray!5,linecolor=gray}
+    }
+    {richtig} {
+      \def\beschriftung{richtig}
+      \mdfsetup{backgroundcolor=green!5,linecolor=green}
+    }
+    {falsch} {
+      \def\beschriftung{falsch}
+      \mdfsetup{backgroundcolor=red!3,linecolor=red}
+    }
+    {muster} {
+      \def\beschriftung{Musterlösung}
+      \mdfsetup{backgroundcolor=green!12,linecolor=green}
+    }
+  }
+  \ifx\beschriftung\empty\else
+  \noindent
+  \textbf{\beschriftung{}:}
+  \fi
+  \begin{mdframed}
+}
+{\end{mdframed}}
+
+\NewDocumentEnvironment{ liAdditum } { o }
+{
+  \begin{mdframed}[backgroundcolor=yellow!5]
+  \IfNoValueTF {#1}
+  { \liPseudoUeberschrift{Additum} }
+  { \liPseudoUeberschrift{Additum:~#1} }
+}
+{\end{mdframed}}
+
+%%
+% \begin{exkurs}
+%%
+\NewDocumentEnvironment{exkurs}{o +b}{
+  \vspace{0.2cm}%
+  \begin{mdframed}[
+    backgroundcolor=white,
+    bottomline=false,
+    innermargin=1cm,
+    leftline=true,
+    linecolor=black,
+    linewidth=0.1cm,
+    outermargin=1cm,
+    rightline=false,
+    topline=false,
+  ]
+  \footnotesize
+  \noindent%
+  \textbf{Exkurs:~#1}\par%
+  \noindent%
+  #2
+  \end{mdframed}
+  \vspace{0.2cm}
+}{}
+
+%%
+% \begin{quellen}
+%%
+\cs_new:Npn \listenpunkt #1 {\item #1}
+\NewDocumentEnvironment { quellen }{ +b }
+{
+  \seq_clear_new:N \l_quellen
+  \seq_set_split:Nnn \l_quellen {\item} {#1}
+  \seq_remove_all:Nn \l_quellen {}
+  \begin{mdframed}[backgroundcolor=yellow!30,linecolor=yellow]
+  \footnotesize
+  \noindent
+  \textbf{Überblick~über~die~Quellen:}
+  \begin{compactitem}
+  \seq_map_function:NN \l_quellen {\listenpunkt}
+  \end{compactitem}
+  \end{mdframed}
+  % https://tex.stackexchange.com/a/229004
+  \makeatletter
+  \par\@afterindentfalse\@afterheading
+  \makeatother
+} {}
+
+%%
+% \begin{lernkartei}
+%%
+\NewDocumentEnvironment { lernkartei }{ m +b }
+{
+  \begin{mdframed}
+  \footnotesize
+  \noindent%
+  \textbf{Lernkarteikarte:~#1}\par%
+  \noindent%
+  #2
+  \end{mdframed}
+} {}
+
+\NewDocumentEnvironment { liDiagramm }{ m +b }
+{
+  \begin{mdframed}[backgroundcolor=white!0]
+  \small
+  \noindent%
+  \textit{#1}:
+  \begin{center}
+  #2
+  \medskip
+  \end{center}
+  \end{mdframed}
+} {}
+
+\ExplSyntaxOff
+
+\def\ExamensAufgabeTTA #1 / #2 / #3 : Thema #4 Teilaufgabe #5 Aufgabe #6 {
+  \input{\LehramtInformatikRepository/Staatsexamen/#1/#2/#3/Thema-#4/Teilaufgabe-#5/Aufgabe-#6.tex}
+}
+
+\def\ExamensAufgabeTA #1 / #2 / #3 : Thema #4 Aufgabe #5 {
+  \input{\LehramtInformatikRepository/Staatsexamen/#1/#2/#3/Thema-#4/Aufgabe-#5.tex}
+}
+
+\def\ExamensAufgabeA #1 / #2 / #3 : Aufgabe #4 {
+  \input{\LehramtInformatikRepository/Staatsexamen/#1/#2/#3/Aufgabe-#4.tex}
+}
+
+\def\liFussnoteUrl#1{\footnote{\url{#1}}}
+\def\liFussnoteLink#1#2{\footnote{\href{#2}{#1}}}
+
+%    \end{macrocode}
+% \subsection{mathe.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-mathe}[2020/06/10]
+
+% for example \ltimes \rtimes
+%\RequirePackage{amssymb}
+\RequirePackage{amsmath}
+
+%%
+% \mlq \mrq
+%%
+\DeclareMathSymbol{\mlq}{\mathord}{operators}{``}
+\DeclareMathSymbol{\mrq}{\mathord}{operators}{`'}
+
+%    \end{macrocode}
+% \subsection{minimierung.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-mathe}[2021/03/13 Für den
+Minimierungsalgorithmus von einem NEA zu einem DEA]
+
+\def\liFussnote#1{$*^#1$}
+
+\def\li@fussnote@text#1#2{
+  \liFussnote{#1}
+  \quad
+  {\footnotesize #2}
+}
+\def\liFussnoteEinsText{
+  \li@fussnote@text{1}
+  {Paar aus End-/ Nicht-Endzustand kann nicht äquivalent sein.}
+}
+
+\def\liFussnoteZweiText{
+  \li@fussnote@text{2}
+  {Test, ob man mit der Eingabe zu einem bereits markiertem Paar kommt.}
+}
+
+\def\liFussnoteDreiText{
+  \li@fussnote@text{3}
+  {In weiteren Iterationen markierte Zustände.}
+}
+
+\def\liFussnoten{
+  \bigskip
+
+  \noindent
+  \liFussnoteEinsText
+
+  \noindent
+  \liFussnoteZweiText
+
+  \noindent
+  \liFussnoteDreiText
+}
+
+\def\liLeereZelle{$\emptyset$}
+
+\def\liZustandsPaarVariablenName{z}
+\def\liZustandsPaar#1#2{$(\liZustandsPaarVariablenName_#1, \liZustandsPaarVariablenName_#2)$}
+
+\renewcommand{\arraystretch}{1.4}
+
+\NewDocumentEnvironment{ liUebergangsTabelle } { m m } {
+  \liPseudoUeberschrift{Übergangstabelle}
+  \begin{center}
+  \begin{tabular}{l|l|l}
+  \textbf{Zustandspaar} & \textbf{#1} & \textbf{#2} \\\hline
+} {
+  \end{tabular}
+  \end{center}
+}
+
+%    \end{macrocode}
+% \subsection{normalformen.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-normalformen}[2020/12/10
+Hilfsmakros zum Setzen von Normalformen, Funktionalen Abhänigkeiten,
+Attributhülle]
+\liLadePakete{mathe}
+\directlua{
+  normalformen = require('lehramt-informatik-normalformen')
+}
+
+\def\liTeilen#1{
+  \directlua{tex.print(normalformen.teilen('#1'))}
+}
+
+% \let\ah=\liAttributHuelle
+% Regulärer Ausdruck zum Konvertieren
+% AttrHülle\((.*)\)
+% \\ah{$1}
+\def\liAttributHuelleOhneMathe#1{\text{AttrHülle}(#1)}
+\def\liAttributHuelle#1{
+\ifmmode
+  \liAttributHuelleOhneMathe{#1}
+\else
+  $\liAttributHuelleOhneMathe{#1}$
+\fi
+}
+
+% \let\m=\liAttributMenge
+\def\liAttributMenge#1{\{ \textit{#1} \}}
+
+\NewDocumentEnvironment{ liAHuelle } { +b } {
+  \begingroup
+  \footnotesize
+  \begin{multline*}
+    #1
+  \end{multline*}
+  \endgroup
+} { }
+
+% Nur innerhalb von liAHuelle zu verwenden
+% bzw. multline
+% \let\ahL=\liAttributHuelleLinksReduktion
+% \ahL{ursprüngliche linke Attributmenge}{ohne dieses Attribut}{Ergebnis}
+\def\liAttributHuelleLinksReduktion#1#2#3{
+  \shoveleft{
+    \liAttributHuelleOhneMathe{FA, \liAttributMenge{\liAttributMenge{#1} - \liAttributMenge{#2}}} =
+  } \\
+  \shoveright{
+    \liAttributMenge{#3}
+  } \\
+}
+
+% \let\fa=\liFunktionaleAbhaengigkeit
+% \liFunktionaleAbhaengigkeit{A, B -> C, D}
+% \$(.*?) \\rightarrow (.*?)\$
+% \\fa{$1 -> $2}
+\def\liFunktionaleAbhaengigkeit#1{%
+  \directlua{normalformen.drucke_funk_abhaengigkeit('#1')}%
+}
+
+% \liFunktionaleAbhaengigkeiten[F]{
+%   M -> M;
+%   M -> N;
+%   V -> T, P, PN;
+%   P -> PN;
+% }
+%
+% \let\FA=\liFunktionaleAbhaengigkeiten
+% Regulärer Ausdruck zum Konvertieren
+% \\item \$(.*) \\rightarrow (.*)\$
+% \$(.*) \\rightarrow (.*)\$
+% $1 -> $2;
+\NewDocumentCommand {\liFunktionaleAbhaengigkeiten} { O{FA} m } {
+  \par
+  \noindent
+  #1 $= \{$
+  \par
+  \directlua{normalformen.drucke_funk_abhaengigkeiten('#2')}
+  \par
+  \noindent$\}$
+}
+
+% Regulärer Ausdruck zum Konvertieren
+% \$(R.*)\((.*)\)\$
+% \\liRelation[$1]{$2}
+\NewDocumentCommand {\liRelation} { O{R} m } {
+  #1(\textit{\,#2\,})
+}
+
+%    \end{macrocode}
+% \subsection{petri.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-petri}[2020/12/03]
+
+\RequirePackage{tikz}
+
+\usetikzlibrary{petri,arrows.meta}
+
+% Für die Darstellungsmatrix
+\RequirePackage{blkarray}
+
+\def\TmpSetKeys{%
+  \def\TmpTransitionOne{}%
+  \def\TmpTransitionTwo{}%
+  \def\TmpTransitionThree{}%
+  \def\TmpTransitionFour{}%
+  \def\TmpTransitionFive{}%
+  \def\TmpTransitionSix{}%
+  \def\TmpTransitionSeven{}%
+  \def\TmpTransitionEight{}%
+  \def\TmpTransitionNine{}%
+  \def\TmpTransitionTen{}%
+  \pgfkeys{/petri/.cd,
+    p1/.store in=\TmpPlaceOne,p1/.default=0,p1,
+    p2/.store in=\TmpPlaceTwo,p2/.default=0,p2,
+    p3/.store in=\TmpPlaceThree,p3/.default=0,p3,
+    p4/.store in=\TmpPlaceFour,p4/.default=0,p4,
+    p5/.store in=\TmpPlaceFive,p5/.default=0,p5,
+    p6/.store in=\TmpPlaceSix,p6/.default=0,p6,
+    p7/.store in=\TmpPlaceSeven,p7/.default=0,p7,
+    p8/.store in=\TmpPlaceEight,p8/.default=0,p8,
+    p9/.store in=\TmpPlaceNine,p9/.default=0,p9,
+    p10/.store in=\TmpPlaceTen,p10/.default=0,p10,
+    t1/.store in=\TmpTransitionOne,t1/.default=activated,
+    t2/.store in=\TmpTransitionTwo,t2/.default=activated,
+    t3/.store in=\TmpTransitionThree,t3/.default=activated,
+    t4/.store in=\TmpTransitionFour,t4/.default=activated,
+    t5/.store in=\TmpTransitionFive,t5/.default=activated,
+    t6/.store in=\TmpTransitionSix,t6/.default=activated,
+    t7/.store in=\TmpTransitionSeven,t7/.default=activated,
+    t8/.store in=\TmpTransitionEight,t8/.default=activated,
+    t9/.store in=\TmpTransitionNine,t9/.default=activated,
+    t10/.store in=\TmpTransitionTen,t10/.default=activated,
+    scale/.store in=\TmpScale,scale/.default=0.5,
+    x/.store in=\TmpX,x/.default=5,
+    y/.store in=\TmpY,y/.default=5,
+  }%
+}
+
+\TmpSetKeys
+
+\tikzset{activated/.style={very thick}}
+
+%    \end{macrocode}
+% \subsection{pseudo.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-pseudo}[2020/12/30 Paket zum Setzen
+von Pseudo-Code, Hüll-Paket um algorithm2e]
+
+\RequirePackage[german,boxruled]{algorithm2e}
+
+%    \end{macrocode}
+% \subsection{quicksort.sty}
+%    \begin{macrocode}
+% https://tex.stackexchange.com/a/142634
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-quicksort}[2020/06/12]
+
+%----------------------------------------------------
+% USAGE:
+% \QSinitialize{comma, separated, numerical, values}
+% \loop
+% \QSpivotStep
+% \ifnum\value{pivotcount}>0
+%   \QSsortStep
+% \repeat
+%----------------------------------------------------
+
+% xintfrac does not load xinttools, this must be done explicitely if needed as here.
+\RequirePackage{xintfrac, xinttools}
+
+\RequirePackage{tikz}
+
+%----------------------------------------------------------------
+% FIRST PART: TikZ styles and macros for the actual drawing
+\newcounter{cellcount}%  used for coordinates of the node
+\newcounter{pivotcount}% when it will remain at zero, will signal the sort is finished.
+
+% Styles defined by Tom Bombaldi. (modified: all share the same size)
+% (re-modified \bf -> \bfseries due to extremely annoying warnings from
+% KOMA-script which are truly a pain and do not make any sense regarding \bf:
+% if I want to use \bf, and know what I am doing, why should I get HARASSED
+% by police of LaTeX good conduct ? )
+\tikzset{l/.style={minimum width=6mm, minimum height=6mm, draw=black, fill=lime!70!gray},
+        o/.style={minimum width=6mm, minimum height=6mm, draw=black, fill=olive!50},
+        r/.style={minimum width=6mm, minimum height=6mm, draw=black, fill=magenta!50!black, text=white, font=\bfseries, yshift=1.5mm},
+% this is the "b" style as used in the image below
+%        b/.style={minimum width=6mm, minimum height=6mm, draw=black, fill=magenta!50!black, text=white, font=\bfseries},
+% nicer:
+        b/.style={minimum width=6mm, minimum height=6mm, draw=black, fill=white, text=magenta!50!black, font=\bfseries},
+        g/.style={minimum width=6mm, minimum height=6mm, draw=black, fill=gray, text=white, font=\bfseries}}
+
+% NOTE the b style was originally the same as the r(aised) style apart from
+% not being raised, but I find it nicer with a somewhat different
+% specification. I have not updated the images though.
+
+% How the nodes are drawn depending on whether on the left of the pivot value
+% or on the right, or is a pivot value, or a raised pivot during selection phase.
+
+\def\DecoLEFT #1{%
+   \xintFor* ##1 in {#1} \do
+   {\stepcounter{cellcount}\node[o] at (\arabic{cellcount},0) {##1};}%
+}
+
+\def\DecoINERT #1{%
+   \xintFor* ##1 in {#1} \do
+   {\stepcounter{cellcount}\node[g] at (\arabic{cellcount},0) {##1};}%
+}
+
+\def\DecoRIGHT #1{%
+   \xintFor* ##1 in {#1} \do
+   {\stepcounter{cellcount}\node[l] at (\arabic{cellcount},0) {##1};}%
+}
+
+\def\DecoLEFTwithPivot #1{\stepcounter{pivotcount}%
+     \xintFor* ##1 in {#1} \do
+     {\stepcounter{cellcount}%
+      \xintifForLast {\node[r]}{\node[o]} at (\arabic{cellcount},0) {##1};}%
+}
+
+\def\DecoINERTwithPivot #1{\stepcounter{pivotcount}%
+     \xintFor* ##1 in {#1} \do
+     {\stepcounter{cellcount}%
+      \xintifForLast {\node[b]}{\node[g]} at (\arabic{cellcount},0) {##1};}%
+}
+
+\def\DecoRIGHTwithPivot #1{\stepcounter{pivotcount}%
+     \xintFor* ##1 in {#1} \do
+     {\stepcounter{cellcount}%
+      \xintifForLast {\node[r]}{\node[l]} at (\arabic{cellcount},0) {##1};}%
+}
+
+%----------------------------------------------------------------
+% SECOND PART: the actual sorting routines.
+
+\def\QS@sort@a #1{\expandafter \QS@sort@b \expandafter {\xintLength {#1}}{#1}}
+\def\QS@sort@b #1{\ifcase #1
+                      \expandafter\QS@sort@empty
+                   \or\expandafter\QS@sort@single
+                 \else\expandafter\QS@sort@c
+                 \fi
+}%
+\def\QS@sort@empty  #1{}
+\def\QS@sort@single #1{\QSIr {#1}}
+
+% This step is to pick the last as pivot.
+\def\QS@sort@c #1%
+   {\expandafter\QS@sort@d\expandafter {\romannumeral0\xintnthelt {-1}{#1}}{#1}}%
+
+% Here \QSLr, \QSIr, \QSr have been let to \relax.
+% The trick with \xintApplyUnbraced is that for example when selecting
+% the elements smaller than pivot, if we had been using \xintApply we
+% would have had at the minimum an empty brace pair. Thus we use the
+% "unbraced" variant, but then the \QS@select@smaller has added in
+% anticipation a level of braces.
+\def\QS@sort@d #1#2{%
+    \QSLr {\xintApplyUnbraced {\QS@select@smaller  {#1}}{#2}}%
+    \QSIr {\xintApplyUnbraced {\QS@select@equal    {#1}}{#2}}%
+    \QSRr {\xintApplyUnbraced {\QS@select@greater {#1}}{#2}}%
+}%
+\def\QS@select@smaller #1#2{\xintifLt {#2}{#1}{{#2}}{ }}% space will stop a f-expansion
+\def\QS@select@equal   #1#2{\xintifEq {#2}{#1}{{#2}}{ }}% space will stop a f-expansion
+\def\QS@select@greater #1#2{\xintifGt {#2}{#1}{{#2}}{ }}% space will stop a f-expansion
+
+%
+% NOTE 1: thus, each comparison with the pivot is done three (!) times.
+%
+% NOTE 2: we may well end up with \QSLr {<empty>} situations. THis is handled
+% silently by the \xintFor loops, and also when \QSLr becomes \QS@sort@a, the
+% latter must handle correctly an empty argument.
+
+%----------------------------------------------------------------
+% THIRD PART: the main macros \QSpivotStep, \QSsortStep and \QSinitialize.
+
+% This draws all with suitable highlighting for the newly chosen pivots
+% (which will be shown raised)
+\def\QSpivotStep {\let\QSLr\DecoLEFTwithPivot
+                \let\QSIr\DecoINERT
+                \let\QSIrr\DecoINERT
+                \let\QSRr\DecoRIGHTwithPivot
+\par\centerline{\rule[1.5mm]{0pt}{8mm}%
+            \setcounter{cellcount}{0}\setcounter{pivotcount}{0}%
+            \begin{tikzpicture}\QS@list\end{tikzpicture}}
+}
+
+% This sorts and then draws, showing where the pivot chosen in the previous
+% step go. Next time they will have become "inert". If pivotcount is still at
+% zero on exit from \QSpivotStep, then this is the signal to stop before
+% executing \QSsortStep.
+\def\QSsortStep {\def\QSLr {\noexpand\QS@sort@a}%
+                 \def\QSRr {\noexpand\QS@sort@a}%
+                 \def\QSIr {\noexpand\QSIrr}%
+                 \let\QSIrr\relax
+                    \edef\QS@list{\QS@list}%
+                \let\QSLr\relax
+                \let\QSRr\relax
+                \let\QSIr\relax
+                    \edef\QS@list{\QS@list}%
+                \let\QSLr\DecoLEFT
+                \let\QSIr\DecoINERTwithPivot
+                \let\QSIrr\DecoINERT
+                \let\QSRr\DecoRIGHT
+\par\centerline{\rule[1.5mm]{0pt}{8mm}%
+            \setcounter{cellcount}{0}%
+            \begin{tikzpicture}\QS@list\end{tikzpicture}}
+}
+
+\def\QSinitialize #1{%
+    % first, we convert the comma separated values into a list of braced items
+    % we use an \edef, and anyhow many \edef's will be used later
+    \edef\QS@list {\noexpand\QSRr {\xintCSVtoList {#1}}}%
+    \let\QSRr\DecoRIGHT
+    % The \QSRr marker mutated to draw the last element as
+    % pivot and the earlier ones with the suitable style.
+    %
+    % The list of marked braced items \QS@list is used both for drawing
+    % (as here) and for doing the exchange of elements during sort.
+    \par\centerline{\rule[1.5mm]{0pt}{8mm}\setcounter{cellcount}{0}%
+                \begin{tikzpicture}\QS@list\end{tikzpicture}}
+}
+
+%    \end{macrocode}
+% \subsection{relationale-algebra.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-relationale-algebra}[2020/12/11]
+\RequirePackage{amssymb}
+
+%    \end{macrocode}
+% \subsection{rmodell.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-rmodell}[2020/09/01
+Makros und Umgebungen zum Setzen des Relationenmodells beim Thema
+Datenbanken.]
+\RequirePackage{soul}
+
+\def\liPrimaer#1{\ul{#1}}
+
+\def\liFremd#1{{\setul{-0.9em}{}\ul{#1}}}
+
+\def\li@Rmodell@Schrift{\footnotesize\ttfamily}
+
+\ExplSyntaxOn
+\NewDocumentEnvironment { liRmodell }
+{ +b }
+{
+  \medskip
+  {
+    \setlength{\parindent}{0pt}
+    \li@Rmodell@Schrift#1
+
+  }
+  \medskip
+} {}
+\ExplSyntaxOff
+
+\def\liRelation#1#2{
+\noindent
+#1 : \{[ #2 ]\}
+\par
+}
+
+\def\liAttribut#1{{\li@Rmodell@Schrift#1}}
+
+%    \end{macrocode}
+% \subsection{sortieren.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-sortieren}[2020/06/10 Schaubilder
+für händisches Sortieren bzw. einen Schreibtischlauf setzen]
+\RequirePackage{tikz}
+\usetikzlibrary{shapes.multipart,positioning}
+
+\def\liVertauschen#1{
+  \directlua{
+    local sortieren = require('lehramt-informatik-sortieren')
+    sortieren('#1')
+  }
+}
+
+% https://tex.stackexchange.com/a/140895
+\RequirePackage{forest,xstring}
+\usetikzlibrary{calc}
+
+\makeatletter
+\pgfmathdeclarefunction{strrepeat}{2}{%
+  \begingroup\pgfmathint{#2}\pgfmath@count\pgfmathresult
+    \let\pgfmathresult\pgfutil@empty
+    \pgfutil@loop\ifnum\pgfmath@count>0\relax
+      \expandafter\def\expandafter\pgfmathresult\expandafter{\pgfmathresult#1}%
+      \advance\pgfmath@count-1\relax
+    \pgfutil@repeat\pgfmath@smuggleone\pgfmathresult\endgroup}
+\makeatother
+
+\def\myNodes{}
+
+\ExplSyntaxOn
+\newcommand*\sortList[1]{%
+  \clist_sort:Nn#1{\int_compare:nNnTF{##1}>{##2}\sort_return_swapped:\sort_return_same:}}
+\ExplSyntaxOff
+
+\forestset{
+  sort/.code={%
+    \pgfmathparse{level()>\forestSortLevel}%
+    \ifnum\pgfmathresult=0
+      \StrSubstitute{\forestov{content}}{ }{,}[\myList]%
+      \sortList\myList
+      \StrSubstitute{\myList}{,}{ }[\myList]%
+      \pgfmathparse{strrepeat("1",level())}%
+      \xappto\myNodes{\noexpand\node at ($(\forestov{name}|-m)!-1!(\forestov{name})$)
+        (m\forestov{name}) {\myList}}%
+      \pgfmathparse{level()==\forestSortLevel}%
+      \ifnum\pgfmathresult=1
+        \forestOget{\forestov{@first}}{name}\forestFirst
+        \forestOget{\forestov{@last}}{name}\forestLast
+        \xappto\myNodes{{[<-]edge (\forestOv{\forestov{@first}}{name})
+          \ifx\forestFirst\forestLast\else edge (\forestOv{\forestov{@last}}{name})\fi}}%
+      \fi
+      \ifnum\forestov{@parent}=0\else
+        \xappto\myNodes{edge (m\forestOv{\forestov{@parent}}{name})}%
+      \fi
+      \gappto\myNodes{;}%
+    \fi}}
+
+\forestset{sort level/.code=%
+  \pgfmathparse{#1}\let\forestSortLevel\pgfmathresult
+  \pgfmathparse{strrepeat("1",\forestSortLevel+1)}\let\forestOnes\pgfmathresult}
+
+%    \end{macrocode}
+% \subsection{spalten.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-spalten}[2020/12/07 Lädt das Paket
+„multicol“, damit mehrspaltiger Satz mit Hilfe der Umgebung „multicols“
+realisiert werden kann.]
+\RequirePackage{multicol}
+
+\def\liSpaltenUmbruch{\vfill\strut\columnbreak}
+
+%    \end{macrocode}
+% \subsection{struktogramm.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-struktogramm}[2021/01/31 Lädt das
+Paket struktex zum Setzen von Struktogrammen]
+\RequirePackage{struktex}
+
+%    \end{macrocode}
+% \subsection{syntax.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-syntax}[2020/06/10 Ein Hüll-Paket um
+`minted`, das sich um die Syntax-Hervorhebung des Java-Codes kümmert.]
+\RequirePackage{xparse}
+
+\ExplSyntaxOn
+
+\directlua{
+  syntax = require('lehramt-informatik-syntax')
+  syntax.importiere_konfiguration('tex_repo_lokaler_pfad', '\LehramtInformatikRepository')
+  syntax.importiere_konfiguration('github_domain', '\LehramtInformatikGithubDomain')
+  syntax.importiere_konfiguration('github_raw_domain', '\LehramtInformatikGithubRawDomain')
+  syntax.importiere_konfiguration('github_tex_repo', '\LehramtInformatikGithubTexRepo')
+  syntax.importiere_konfiguration('github_code_repo', '\LehramtInformatikGithubCodeRepo')
+  syntax.importiere_konfiguration('code_main', 'src/main/java/org/bschlangaul')
+  syntax.importiere_konfiguration('code_test', 'src/test/java/org/bschlangaul')
+  syntax.importiere_konfiguration('git_branch', '\LehramtInformatikGitBranch')
+}
+
+\RequirePackage{hyperref}
+
+\RequirePackage{minted}
+% pygmentize -L styles
+\usemintedstyle{colorful}
+%\BeforeBeginEnvironment{minted}{\begin{mdframed}}
+%\AfterEndEnvironment{minted}{\end{mdframed}}
+%\setminted{breaklines=true,linenos}
+\setminted{
+  breaklines=true,
+  linenos,
+  fontsize=\footnotesize,
+}
+
+\def\liJavaCode#1{\mintinline{java}|#1|}
+
+\def\liLatexCode#1{\mintinline{latex}|#1|}
+
+\tl_const:Nx \l_pfad_tl {\LehramtInformatikRepository/Code}
+\tl_const:Nn \l_main_tl {src/main/java/org/bschlangaul}
+\tl_const:Nn \l_test_tl {src/test/java/org/bschlangaul}
+
+\NewDocumentCommand{\liJavaDatei}{ O{firstline=3} m }{
+  \inputminted[#1]{java}{\l_pfad_tl/\l_main_tl/#2.java}
+}
+
+\NewDocumentCommand{\liJavaTestDatei}{ O{firstline=3} m }{
+  \inputminted[#1]{java}{\l_pfad_tl/\l_test_tl/#2.java}
+}
+
+% \liJavaExamen{66116}{2015}{03}{Kunde}
+% \\liJavaDatei(\[.*\])?\{.*examen_(\d{5})_(\d{4})_(\d{2})/(.*)\}
+% \\liJavaExamen$1{$2}{$3}{$4}{$5}
+\NewDocumentCommand{\liJavaExamen}{ O{firstline=3} m m m m }{
+  \inputminted[#1]{java}{
+    \l_pfad_tl /
+    \l_main_tl /
+    \directlua{syntax.drucke_relativen_examens_pfad('#2', '#3', '#4', '#5')}
+  }
+  \begin{flushright}
+    \tiny
+    github:~
+    \href{\directlua{syntax.drucke_raw_examen_url('#2', '#3', '#4', '#5')}}{raw}
+  \end{flushright}
+}
+
+\def\liAssemblerCode#1{\mintinline{asm}|#1|}
+
+\NewDocumentCommand{\liAssemblerDatei}{ m }{
+  \inputminted{asm}{#1}
+}
+
+\NewDocumentCommand{\liMinispracheDatei}{ m }{
+  \inputminted{componentpascal}{#1}
+}
+
+\def\liHaskellCode#1{\mintinline{haskell}|#1|}
+
+\NewDocumentCommand{\liHaskellDatei}{ m }{
+  \inputminted{haskell}{#1}
+}
+
+\ExplSyntaxOff
+
+%    \end{macrocode}
+% \subsection{syntaxbaum.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-syntaxbaum}[2021/02/14 Zum Setzen von
+Syntaxbäumen mit Hilfe des Pakets tikz-qtree]
+\RequirePackage{tikz-qtree}
+
+\tikzset{li parsetree/.style={
+    every internal node/.style={
+      draw,circle
+    },
+    every leaf node/.style={
+      draw,rectangle
+    },
+  }
+}
+
+%    \end{macrocode}
+% \subsection{synthese-algorithmus.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-synthese-algorithmus}[2021/03/19
+Hilfsmakros zum Setzen des Synthese-Algroithmuses zur Umformung einer
+Relation in die 3. Normalform]
+
+\liLadePakete{normalformen,mathe,typographie}
+
+\ExplSyntaxOn
+
+% \let\schritt=\liSyntheseSchrittUeberschrift
+\def\liSyntheseSchrittUeberschrift#1{
+  {
+    \bfseries
+    \sffamily
+    \str_case:nn {#1} {
+      {1} {Kanonische~Überdeckung}
+      {1-1} {Linksreduktion}
+      {1-2} {Rechtsreduktion}
+      {1-3} {Löschen~leerer~Klauseln}
+      {1-4} {Vereinigung}
+      {2} {Neues~Relationenschema}
+      {3} {Hinzufügen~einer~Relation}
+      {4} {Entfernung~überflüssiger~Teilschemata}
+    }
+  }
+}
+
+\def\li@synthese@erklaerung@texte#1{
+  \str_case:nn {#1} {
+    {1} {
+      Die~kanonische~Überdeckung~-~also~die~kleinst~mögliche~noch~
+      äquivalente~Menge~von~funktionalen~Abhängigkeiten~kann~in~vier~
+      Schritten~erreicht~werden.
+    }
+    {1-1} {
+      Führe~für~jede~funktionale~Anhängigkeit~
+      $\alpha~\rightarrow~\beta~\in~F$~die~Linksreduktion~durch,~
+      überprüfe~also~für~alle~
+      $A~\in~\alpha$,~ob~$A$~überflüssig~ist,~d.~h.~ob~
+      $\beta~\subseteq~\liAttributHuelle{F,~\alpha~-~A}.$
+    }
+    {1-2} {
+      Führe~für~jede~(verbliebene)~funktionale~Abhängigkeit~$\alpha~
+      \rightarrow~\beta$~die~Rechtsreduktion~durch,~überprüfe~also~für~
+      alle~$B~\in~\beta$,~ob~$B~\in~\liAttributHuelle{F~-~(\alpha~
+      \rightarrow~\beta)~\cup~(\alpha~\rightarrow~(\beta~-~B)),~
+      \alpha}$~gilt.~In~diesem~Fall~ist~B~auf~der~rechten~Seite~
+      überflüssig~und~kann~eleminiert~werden,~d.\,h.~$\alpha~
+      \rightarrow~\beta$~wird~durch~$\alpha~\rightarrow~(\beta~-~B)$~
+      ersetzt.
+    }
+    {1-3} {
+      Entferne~die~funktionalen~Abhängigkeiten~der~Form~$\alpha~
+      \rightarrow~\emptyset$,~die~im~2.~Schritt~möglicherweise~
+      entstanden~sind.
+    }
+    {1-4} {
+      Fasse~mittels~der~Vereinigungsregel~funktionale~Abhängigkeiten~
+      der~Form~$\alpha~\rightarrow~\beta\sb{1},~\dots,~\alpha~\rightarrow~
+      \beta\sb{n}$,~so~dass~$\alpha~\rightarrow~\beta\sb{1}~\cup~\dots~\cup~
+      \beta\sb{n}$~verbleibt.
+    }
+    % Kemper Seite 197
+    {2} {
+      Erzeuge~für~jede~funktionale~Abhängigkeit~$\alpha~\rightarrow~
+      \beta~\in~F\sb{c}$~ein~Relationenschema~$\mathcal{R}\sb{\alpha}~
+      :=~\alpha~\cup~\beta$.
+    }
+    {3} {
+      Falls~eines~der~in~Schritt~2.~erzeugten~Schemata~$R\sb{\alpha}$~
+      einen~Schlüsselkandidaten~von~$\mathcal{R}$~bezüglich~$F\sb{c}$~
+      enthält,~sind~wir~fertig,~sonst~wähle~einen~Schlüsselkandidaten~
+      $\mathcal{K}~\subseteq~\mathcal{R}$~aus~und~definiere~folgendes~
+      zusätzliche~Schema:~$\mathcal{R}\sb{\mathcal{K}}~:=~\mathcal{K}$~
+      und~$\mathcal{F}\sb{\mathcal{K}}~:=~\emptyset$
+    }
+    {4} {
+      Eliminiere~diejenigen~Schemata~$R\sb{\alpha}$,~die~in~einem~
+      anderen~Relationenschema~$R\sb{\alpha'}$~enthalten~sind,~d.~h.~
+      $R\sb{\alpha}~\subseteq~R\sb{\alpha'}$.
+    }
+  }
+}
+% \let\erklaerung=\liSyntheseSchrittErklaerung
+\def\liSyntheseSchrittErklaerung#1{
+  {
+    \itshape
+    \footnotesize
+    \liParagraphMitLinien{\li@synthese@erklaerung@texte{#1}}
+  }
+}
+
+% \let\schrittE=\liSyntheseSchrittUeberschriftErklaerung
+\def\liSyntheseSchrittUeberschriftErklaerung#1{
+  \liSyntheseSchrittUeberschrift{#1}\par
+  \liSyntheseSchrittErklaerung{#1}
+}
+
+\ExplSyntaxOff
+
+%    \end{macrocode}
+% \subsection{tabelle.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-tabelle}[2020/12/05 Lädt das Paket tabluarx]
+\RequirePackage{tabularx}
+
+%    \end{macrocode}
+% \subsection{typographie.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-typographie}[2021/03/20 Typographische Makros,
+die das Erscheinungsbild verändern. Die Schriftdefinition sind in
+formatierung.sty definiert.]
+
+\ExplSyntaxOn
+\RequirePackage{wasysym}
+
+\let\liErledigt=\CheckedBox
+
+\def\liNichtsZuTun{\liErledigt{}~Nichts~zu~tun}
+
+\def\liParagraphMitLinien#1{
+  \noindent
+  \vrule height 2pt depth -1.6pt width 0.4cm
+  \enspace
+  #1
+  \enspace
+  \leaders\vrule height 2pt depth -1.6pt \hfill \null
+  \par
+  \medskip
+}
+
+\ExplSyntaxOff
+
+%    \end{macrocode}
+% \subsection{uml.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-uml}[2020/06/13 Ein Hüll-Paket um
+`tikz-uml', das einige Design-Einstellungen vornimmt und manche
+Erweiterung bereitstellt]
+\RequirePackage{tikz-uml}
+\RequirePackage{fontspec}
+\RequirePackage{tikz-uml-activity}
+\usetikzlibrary{positioning}
+
+\tikzumlset{
+  fill class=white!0,
+  font=\footnotesize,
+  fill object=white!0,
+  fill note=white!0,
+  fill state=white!0,
+  % Use case
+  fill usecase=white!0,
+  fill system=white!0,
+}
+
+% U+25C2 BLACK LEFT-POINTING SMALL TRIANGLE
+\def\LeserichtungLinks{{\fontspec{DejaVu Sans}◂ }}
+% U+25B8 BLACK RIGHT-POINTING SMALL TRIANGLE
+\def\LeserichtungRechts{ {\fontspec{DejaVu Sans}▸}}
+
+%    \end{macrocode}
+% \subsection{wasserfall.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-wasserfall}[2020/06/10]
+\RequirePackage{tikz}
+\tikzset{wasserfall/.style={
+  >=stealth,
+  node distance = 2mm and -8mm,
+  start chain = A going below right,
+  every node/.style = {
+    draw,
+    text width=24mm,
+    minimum height=12mm,
+    align=center,
+    inner sep=1mm,
+    fill=white,
+    drop shadow={fill=black},
+    on chain=A
+  },
+}}
+\usetikzlibrary{chains,positioning,shadows}
+
+%    \end{macrocode}
+% \subsection{wpkalkuel.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-wpkalkuel}[2020/06/13]
+\RequirePackage{amsmath}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\def\wp#1#2{
+  \text{wp}(\texttt{\scriptsize"#1"},\thinspace #2)
+}
+%    \end{macrocode}
+
+% \begin{macro}{\MatheEnv}
+%    \begin{macrocode}
+\def\MatheEnv#1{
+  \medskip
+
+  \hspace{1em}#1
+
+  \medskip
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\def\Mathe#1{
+  \MatheEnv{$#1$}
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\def\MatheEquiv#1{
+  \MatheEnv{$\equiv$\hspace{1em}$#1$}
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\def\Erklaerung#1{
+  \medskip
+  {\footnotesize#1}
+}
+
+%    \end{macrocode}
+%    \begin{macrocode}
+\endinput
+%</package>
+%    \end{macrocode}
+%\Finale

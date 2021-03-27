@@ -281,4 +281,31 @@ programm
     }
   })
 
+programm
+  .command('dtx')
+  .description('*.sty zu einem dtx zusammenfügen')
+  .action(function (cmdObj: object) {
+    const texPfad = path.join(repositoryPfad, '.tex')
+    const styPfad = path.join(texPfad, 'erweiterungen')
+    const styS = glob.sync('**/*.sty', { cwd: styPfad })
+
+    const dtxPfad = path.join(texPfad, 'dokumentation.dtx')
+    const dtxInhalte: string[] = []
+
+    function leseSty(dateiName: string): void {
+      const inhalt = leseDatei(path.join(styPfad, dateiName))
+      const prefix =  '%    \\end{macrocode}\n' +
+        '% \\subsection{' + dateiName +  '}\n' +
+        '%    \\begin{macrocode}\n'
+      dtxInhalte.push(prefix + inhalt)
+    }
+
+    for (const sty of styS) {
+      leseSty(sty)
+    }
+
+    const dtxVorlage = leseDatei(path.join(texPfad, 'dokumentation_vorlage.dtx'))
+    schreibeDatei(dtxPfad, dtxVorlage.replace('{{ einbinden }}', dtxInhalte.join('\n')))
+  })
+
 programm.parse(process.argv)

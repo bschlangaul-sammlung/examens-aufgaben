@@ -314,4 +314,37 @@ programm
         }
     }
 });
+programm
+    .command('dtx')
+    .description('*.sty zu einem dtx zusammenfügen')
+    .action(function (cmdObj) {
+    var e_5, _a;
+    var texPfad = path_1.default.join(helfer_1.repositoryPfad, '.tex');
+    var styPfad = path_1.default.join(texPfad, 'erweiterungen');
+    var styS = glob_1.default.sync('**/*.sty', { cwd: styPfad });
+    var dtxPfad = path_1.default.join(texPfad, 'dokumentation.dtx');
+    var dtxInhalte = [];
+    function leseSty(dateiName) {
+        var inhalt = helfer_1.leseDatei(path_1.default.join(styPfad, dateiName));
+        var prefix = '%    \\end{macrocode}\n' +
+            '% \\subsection{' + dateiName + '}\n' +
+            '%    \\begin{macrocode}\n';
+        dtxInhalte.push(prefix + inhalt);
+    }
+    try {
+        for (var styS_1 = __values(styS), styS_1_1 = styS_1.next(); !styS_1_1.done; styS_1_1 = styS_1.next()) {
+            var sty = styS_1_1.value;
+            leseSty(sty);
+        }
+    }
+    catch (e_5_1) { e_5 = { error: e_5_1 }; }
+    finally {
+        try {
+            if (styS_1_1 && !styS_1_1.done && (_a = styS_1.return)) _a.call(styS_1);
+        }
+        finally { if (e_5) throw e_5.error; }
+    }
+    var dtxVorlage = helfer_1.leseDatei(path_1.default.join(texPfad, 'dokumentation_vorlage.dtx'));
+    helfer_1.schreibeDatei(dtxPfad, dtxVorlage.replace('{{ einbinden }}', dtxInhalte.join('\n')));
+});
 programm.parse(process.argv);
