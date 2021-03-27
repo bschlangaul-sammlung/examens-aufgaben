@@ -3,19 +3,6 @@
 %<*internal>
 \iffalse
 %</internal>
-%<*readme>
-|
--------:| -----------------------------------------------------------------
-   test:| A new LaTeX package
- Author:| (not set)
- E-mail:| (not set)
-License:| Released under the LaTeX Project Public License v1.3c or later
-    See:| http://www.latex-project.org/lppl.txt
-
-
-Short description:
-Some text about the package: probably the same as the abstract.
-%</readme>
 %<*internal>
 \fi
 \def\nameofplainTeX{plain}
@@ -27,36 +14,6 @@ Some text about the package: probably the same as the abstract.
 \input docstrip.tex
 \keepsilent
 \askforoverwritefalse
-\preamble
--------:| -----------------------------------------------------------------
-   test:| A new LaTeX package
- Author:| (not set)
- E-mail:| (not set)
-License:| Released under the LaTeX Project Public License v1.3c or later
-    See:| http://www.latex-project.org/lppl.txt
-
-\endpreamble
-\postamble
-
-Copyright (C) 2021 by (not set) <(not set)>
-
-This work may be distributed and/or modified under the
-conditions of the LaTeX Project Public License (LPPL), either
-version 1.3c of this license or (at your option) any later
-version.  The latest version of this license is in the file:
-
-http://www.latex-project.org/lppl.txt
-
-This work is "maintained" (as per LPPL maintenance status) by
-(not set).
-
-This work consists of the file test.dtx and a Makefile.
-Running "make" generates the derived files README, test.pdf and test.sty.
-Running "make inst" installs the files in the user's TeX tree.
-Running "make install" installs the files in the local TeX tree.
-
-\endpostamble
-
 \usedir{tex/latex/test}
 \generate{
   \file{\jobname.sty}{\from{\jobname.dtx}{package}}
@@ -70,9 +27,6 @@ Running "make install" installs the files in the local TeX tree.
 }
 \nopreamble\nopostamble
 \usedir{doc/latex/test}
-\generate{
-  \file{README.txt}{\from{\jobname.dtx}{readme}}
-}
 \ifx\fmtname\nameofplainTeX
   \expandafter\endbatchfile
 \else
@@ -106,13 +60,11 @@ Running "make install" installs the files in the local TeX tree.
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment,\def,\endinput}
 %
-%\title{\textsf{test} --- A new LaTeX package\thanks{This file
-%   describes version \fileversion, last revised \filedate.}
-%}
-%\author{(not set)\thanks{E-mail: (not set)}}
-%\date{Released \filedate}
+%\title{\textsf{lehramt-informatik}}
+%\author{Hermine Bschlangaul \thanks{E-mail: hermine.bschlangaul@gmx.net}}
 %
 %\maketitle
+%\tableofcontents
 %
 %\changes{v1.00}{2021/03/27}{First public release}
 %

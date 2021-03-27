@@ -12,7 +12,6 @@
 
 ```latex
 %    \end{macrocode}
-% \end{macro}
 
 % \begin{macro}{}
 %    \begin{macrocode}
@@ -21,6 +20,11 @@
 % \end{macro}
 
 % \begin{macro}{}
+%    \begin{macrocode}
+
+%    \end{macrocode}
+% \end{macro}
+
 %    \begin{macrocode}
 ```
 
