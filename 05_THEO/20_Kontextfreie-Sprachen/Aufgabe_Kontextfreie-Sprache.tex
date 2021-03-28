@@ -32,6 +32,9 @@ BB -> bb
 beschreibt.
 
 \begin{liAntwort}
+
+$L = \m{(a^n b^n)^m \, | \, m \in \mathbb{N}_0 \text{ und } n \in \text{ gerade Zahlen}}$
+
 \let\u=\liPseudoUeberschrift
 
 Einige Testableitungen um die Grammatik in Erfahrung zu bringen:
@@ -86,36 +89,69 @@ S -> aa S bb | S S | epsilon,
 \item Geben Sie einen Kellerautomaten an, der die Sprache akzeptiert.
 
 \begin{liAntwort}
+\liPseudoUeberschrift{1. Kellerautomat (aus der Grammtik abgeleitet)}
+
+$K = (\m{\z0, \z1, \z2}, \m{a, b}, \m{\#, S, A, B}, \delta, \z0, \#, \z0)$
+
+\begin{tikzpicture}[li kellerautomat,node distance=3cm]
+\node[state,initial] (0) {\z0};
+\node[state,right of=0] (1) {\z1};
+\node[state,right of=1,accepting] (2) {\z2};
+
+\path (0) edge[above] node{\u{
+  epsilon raute Sraute
+}} (1);
+
+\path (1) edge[above,loop] node{\u{
+  a A epsilon,
+  b B epsilon,
+  epsilon S AASBBS,
+  epsilon S SS,
+  epsilon S epsilon
+}} (1);
+
+\path (1) edge[above] node{\u{
+  epsilon raute epsilon
+}} (2);
+
+\end{tikzpicture}
+% \liFussnoteUrl{https://flaci.com/Araj960s2}
+
+\liPseudoUeberschrift{2. Kellerautomat}
 
 $K = (\m{\z0, \z1}, \m{a, b}, \m{\#, 1, 2}, \delta, \z0, \#, \z0)$
 
-Bemerkung: 1 steht für 1A und 2 steht für 2A
+Bemerkung zum Kelleralphabet: $1$ steht für $1A$, also ein $a$ befindet
+sich im Keller, und $2$ steht für $2A$, also zwei $a$ befinden sich im
+Keller.
 
+\begin{center}
 \begin{tikzpicture}[li kellerautomat,node distance=3cm]
 \node[state,initial,accepting] (0) {\z0};
 \node[state,right of=0] (1) {\z1};
 
-\path (0) edge[above,loop] node{
-  \u{epsilon raute epsilon}
-  \u{a 2 12}
-  \u{a 1 21}
-  \u{a raute 1raute}
-} (0);
+\path (0) edge[above,loop] node{\u{
+  epsilon raute epsilon,
+  a 2 12,
+  a 1 21,
+  a raute 1raute
+}} (0);
 
 \path (0) edge[above,bend left] node{
   \u{epsilon 2 2}
 } (1);
 
-\path (1) edge[above,loop] node{
-  \u{b 1 epsilon}
-  \u{b 2 epsilon}
-} (1);
+\path (1) edge[above,loop] node{\u{
+  b 1 epsilon,
+  b 2 epsilon
+}} (1);
 
-\path (1) edge[below,bend left] node{
-  \u{b B epsilon}
-} (0);
+\path (1) edge[below,bend left] node{\u{
+  b B epsilon
+}} (0);
 
 \end{tikzpicture}
+\end{center}
 
 % \liFussnoteUrl{https://flaci.com/Ahfqseouz}
 
