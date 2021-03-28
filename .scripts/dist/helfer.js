@@ -106,7 +106,7 @@ exports.generiereLink = generiereLink;
 function führeAus(programm, cwd) {
     var process = child_process_1.default.spawnSync(programm, { cwd: cwd, encoding: 'utf-8', shell: true });
     if (process.status !== 0)
-        throw Error(process.stderr);
+        throw Error(process.stderr + process.stdout);
     console.log(process.stdout);
 }
 exports.führeAus = führeAus;

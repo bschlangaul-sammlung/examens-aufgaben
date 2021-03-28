@@ -23,3 +23,5 @@ cp -f .tex/fremd/tikz-uml.sty $HOME/texmf/tex
 cp -f .tex/fremd/tikz-uml.pdf $HOME/texmf/doc
 
 cp -f .tex/fremd/tikz-uml-activity.sty $HOME/texmf/tex
+
+cp -f .tex/dokumentation.pdf $HOME/texmf/doc/lehramt-informatik.pdf

@@ -49,34 +49,6 @@ Zum Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.
 * Makro: |\liHanoi{anzahl-scheiben}{gewicht-scheibe/turm-nr,gewicht-scheibe/turm-nr}|,
   z. B.: |\liHanoi{4}{4/1,3/1,2/3,1/2}|
 
-### |makros.sty|
-
-Eine Sammlung von häufig verwendeten Makros und Umgebungen, die
-thematisch zu keinem anderen Paket passen
-
-* Makro: |\liPseudoUeberschrift{}|: Text, der sich wie eine Überschrift
-  verhält.
-* Makro: |\liBeschriftung{}|: Ähnlich dem Makro
-  |\liPseudoUeberschrift{}|. Am Ende des Textes wird ein
-  Doppelpunktzeichen angehängt.
-* Makro: |\liFussnoteUrl{url}|: Eine HTTP-URL als Fußnote setzen.
-* Makro: |\liFussnoteLink{text}{url}|: Einen Link, d. h. einen Link-Text
-  und eine URL als Fußnote setzen.
-* Umgebung: |\begin{liAntwort} \end{liAntwort}|: Zum Setzen von
-  Antworten. Sie werden mit einem Kasten umgeben. Könnten eventuell
-  ausgeblendet werden, wenn man nur die Lösung sehen will.
-* Umgebung: |\begin{liAdditum} \end{liAdditum}|: Zusätzliches Material
-  bei Aufgaben, das zum Lösen der Aufgaben nicht unbedingt nötig ist,
-  z. b. Hintergrundinformation, Test-Dateien, komplette Code-Dateien.
-* Umgebung: |\begin{liProjektSprache}{NameProjektSprache}
-  \end{liProjektSprache}|: Zum Einbetten
-  von projekteigenen Minisprachen/DSLs (Domain-specific language)
-  (z. B. RelationenSchema). Der Inhalt
-  der Umgebung wird nicht von TeX kompiliert, sondern von dem
-  Java-Kommandozeilen-Programm |didaktik.java| verarbeitet.
-* Umgebung: |\begin{liDiagramm}{beschriftung}\end{liDiagramm}|: Zu
-  setzen einer Graphik bzw eines Diagramms.
-
 ### |normalformen.sty|
 
 Hilfsmakros zum Setzen von Normalformen, Funktionalen Abhänigkeiten,

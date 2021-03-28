@@ -542,7 +542,14 @@ $\liMengeOhneMathe{#1}$%
 % \end{macro}
 
 % \begin{environment}{liProduktionsRegeln}
-% |\begin{liProduktionsRegeln}A -> a, B->b|
+% \begin{verbatim}
+% \begin{liProduktionsRegeln}
+%   S -> S A B | EPSILON,
+%   B A -> A B,
+%   A A -> a a,
+%   B B -> b b
+% \end{liProduktionsRegeln}
+% \end{verbatim}
 %    \begin{macrocode}
 \NewDocumentEnvironment { liProduktionsRegeln }
 { +b }
@@ -783,20 +790,13 @@ von Hanoi-Grafiken]
 häufig verwendeten Makros und Umgebungen, die thematisch zu keinem
 anderen Paket passen]
 
-%-----------------------------------------------------------------------
-% diverse
-%-----------------------------------------------------------------------
-
 \RequirePackage{hyperref}
 \RequirePackage{graphicx}
 
-%-----------------------------------------------------------------------
-% Macros
-%-----------------------------------------------------------------------
+%    \end{macrocode}
 
-%%
-% \inhaltsverzeichnis
-%%
+% \begin{macro}{\inhaltsverzeichnis}
+%    \begin{macrocode}
 \def\inhaltsverzeichnis {
   \begin{mdframed}
     \begingroup
@@ -805,30 +805,38 @@ anderen Paket passen]
     \endgroup
   \end{mdframed}
 }
+%    \end{macrocode}
+% \end{macro}
 
-%%
-% \mephm (\marginpar and \emph)
-%%
+% \begin{macro}{\memph}
+% |\mephm| (|\marginpar| and |\emph|)
+%    \begin{macrocode}
 \newcommand{\memph}[1]{\emph{#1}\marginpar{\tiny#1}}
+%    \end{macrocode}
+% \end{macro}
 
-%%
-% \SLASH
-%%
+% \begin{macro}{\SLASH}
+%    \begin{macrocode}
 \newcommand\SLASH{\char`\\}
+%    \end{macrocode}
+% \end{macro}
 
-%%
-% \liPseudoUeberschrift
-%%
+% \begin{macro}{\liPseudoUeberschrift}
+% Text, der sich wie eine Überschrift verhält.
+%    \begin{macrocode}
 \newcommand{\liPseudoUeberschrift}[1]{
 \bigskip
 \noindent
 \textsf{\textbf{#1}}
 \noindent
 }
+%    \end{macrocode}
+% \end{macro}
 
-%%
-% \liBeschriftung
-%%
+% \begin{macro}{\liBeschriftung}
+% Ähnlich dem Makro |\liPseudoUeberschrift{}|. Am Ende des Textes wird
+% ein Doppelpunktzeichen angehängt.
+%    \begin{macrocode}
 \newcommand{\liBeschriftung}[1]{
 \par
 \noindent
@@ -837,19 +845,36 @@ anderen Paket passen]
 \medskip
 \noindent
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\hinweis}
+%    \begin{macrocode}
 \def\hinweis#1{{\footnotesize[#1]}}
+%    \end{macrocode}
+% \end{macro}
 
-%-----------------------------------------------------------------------
-% Environments
-%-----------------------------------------------------------------------
-
+% \begin{environment}{liProjektSprache}
+% |\begin{liProjektSprache}{NameProjektSprache} \end{liProjektSprache}|:
+% Zum Einbetten von projekteigenen Minisprachen/DSLs (Domain-specific
+% language) (z. B. RelationenSchema). Der Inhalt der Umgebung wird nicht
+% von TeX kompiliert, sondern von dem Java-Kommandozeilen-Programm
+% |didaktik.java| verarbeitet.
+%    \begin{macrocode}
 \NewDocumentEnvironment { liProjektSprache }{ o +b } {} {}
-\NewDocumentEnvironment { liEinbettung }{ o +b } {#2} {}
+%    \end{macrocode}
+% \end{environment}
 
-%%
-% \begin{liAntwort}
-%%
+% \begin{environment}{liEinbettung}
+%    \begin{macrocode}
+\NewDocumentEnvironment { liEinbettung }{ o +b } {#2} {}
+%    \end{macrocode}
+% \end{environment}
+
+% \begin{environment}{liAntwort}
+% Zum Setzen von Antworten. Sie werden mit einem Kasten umgeben. Könnten
+% eventuell ausgeblendet werden, wenn man nur die Lösung sehen will.
+% \begin{macrocode}
 \RequirePackage{xparse}
 \ExplSyntaxOn
 \NewDocumentEnvironment{ liAntwort } { O{standard} }
@@ -879,7 +904,14 @@ anderen Paket passen]
   \begin{mdframed}
 }
 {\end{mdframed}}
+%    \end{macrocode}
+% \end{environment}
 
+% \begin{environment}{liAdditum}
+% Zusätzliches Material bei Aufgaben, das
+% zum Lösen der Aufgaben nicht unbedingt nötig ist, z. b.
+% Hintergrundinformation, Test-Dateien, komplette Code-Dateien.
+% \begin{macrocode}
 \NewDocumentEnvironment{ liAdditum } { o }
 {
   \begin{mdframed}[backgroundcolor=yellow!5]
@@ -888,11 +920,12 @@ anderen Paket passen]
   { \liPseudoUeberschrift{Additum:~#1} }
 }
 {\end{mdframed}}
+%    \end{macrocode}
+% \end{environment}
 
-%%
-% \begin{exkurs}
-%%
-\NewDocumentEnvironment{exkurs}{o +b}{
+% \begin{environment}{liExkurs}
+%    \begin{macrocode}
+\NewDocumentEnvironment{ liExkurs }{o +b}{
   \vspace{0.2cm}%
   \begin{mdframed}[
     backgroundcolor=white,
@@ -913,12 +946,13 @@ anderen Paket passen]
   \end{mdframed}
   \vspace{0.2cm}
 }{}
+%    \end{macrocode}
+% \end{environment}
 
-%%
-% \begin{quellen}
-%%
+% \begin{environment}{liQuellen}
+%    \begin{macrocode}
 \cs_new:Npn \listenpunkt #1 {\item #1}
-\NewDocumentEnvironment { quellen }{ +b }
+\NewDocumentEnvironment { liQuellen }{ +b }
 {
   \seq_clear_new:N \l_quellen
   \seq_set_split:Nnn \l_quellen {\item} {#1}
@@ -936,10 +970,11 @@ anderen Paket passen]
   \par\@afterindentfalse\@afterheading
   \makeatother
 } {}
+%    \end{macrocode}
+% \end{environment}
 
-%%
-% \begin{lernkartei}
-%%
+% \begin{environment}{liLernkartei}
+%    \begin{macrocode}
 \NewDocumentEnvironment { lernkartei }{ m +b }
 {
   \begin{mdframed}
@@ -950,7 +985,13 @@ anderen Paket passen]
   #2
   \end{mdframed}
 } {}
+%    \end{macrocode}
+% \end{environment}
 
+% \begin{environment}{liDiagramm}
+% |\begin{liDiagramm}{beschriftung}\end{liDiagramm}|: Zu
+% setzen einer Graphik bzw eines Diagramms.
+%    \begin{macrocode}
 \NewDocumentEnvironment { liDiagramm }{ m +b }
 {
   \begin{mdframed}[backgroundcolor=white!0]
@@ -963,23 +1004,50 @@ anderen Paket passen]
   \end{center}
   \end{mdframed}
 } {}
-
 \ExplSyntaxOff
+%    \end{macrocode}
+% \end{environment}
 
-\def\ExamensAufgabeTTA #1 / #2 / #3 : Thema #4 Teilaufgabe #5 Aufgabe #6 {
+% \begin{macro}{\liExamensAufgabeTTA}
+%    \begin{macrocode}
+\def\liExamensAufgabeTTA #1 / #2 / #3 : Thema #4 Teilaufgabe #5 Aufgabe #6 {
   \input{\LehramtInformatikRepository/Staatsexamen/#1/#2/#3/Thema-#4/Teilaufgabe-#5/Aufgabe-#6.tex}
 }
+%    \end{macrocode}
+% \end{macro}
 
-\def\ExamensAufgabeTA #1 / #2 / #3 : Thema #4 Aufgabe #5 {
+% \begin{macro}{\liExamensAufgabeTA}
+%    \begin{macrocode}
+\def\liExamensAufgabeTA #1 / #2 / #3 : Thema #4 Aufgabe #5 {
   \input{\LehramtInformatikRepository/Staatsexamen/#1/#2/#3/Thema-#4/Aufgabe-#5.tex}
 }
+%    \end{macrocode}
+% \end{macro}
 
-\def\ExamensAufgabeA #1 / #2 / #3 : Aufgabe #4 {
+% \begin{macro}{\liExamensAufgabeA}
+%    \begin{macrocode}
+\def\liExamensAufgabeA #1 / #2 / #3 : Aufgabe #4 {
   \input{\LehramtInformatikRepository/Staatsexamen/#1/#2/#3/Aufgabe-#4.tex}
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liFussnoteUrl}
+% |\liFussnoteUrl{url}|: Eine HTTP-URL als Fußnote setzen.
+%    \begin{macrocode}
 \def\liFussnoteUrl#1{\footnote{\url{#1}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liFussnoteLink}
+% |\liFussnoteLink{text}{url}|: Einen Link, d. h. einen Link-Text
+% und eine URL als Fußnote setzen.
+%    \begin{macrocode}
 \def\liFussnoteLink#1#2{\footnote{\href{#2}{#1}}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{mathe.sty}

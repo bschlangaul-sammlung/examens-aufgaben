@@ -30,6 +30,7 @@ return {
       value = value:gsub('->', '&\\rightarrow')
       value = value:gsub('|', '\\,|\\,')
       value = value:gsub('epsilon', '\\epsilon')
+      value = value:gsub('EPSILON', '\\epsilon')
       ausgabe = ausgabe .. value .. '\\\\'
     end
     tex.print(ausgabe)

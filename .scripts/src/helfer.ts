@@ -75,7 +75,7 @@ export function generiereLink (text: string, pfad: string, dateiName: string, ei
 
 export function führeAus (programm: string, cwd: string) {
   const process = childProcess.spawnSync(programm, { cwd: cwd, encoding: 'utf-8', shell: true })
-  if (process.status !== 0) throw Error(process.stderr)
+  if (process.status !== 0) throw Error(process.stderr + process.stdout)
   console.log(process.stdout)
 }
 

@@ -161,7 +161,14 @@ $\liMengeOhneMathe{#1}$%
 % \end{macro}
 
 % \begin{environment}{liProduktionsRegeln}
-% |\begin{liProduktionsRegeln}A -> a, B->b|
+% \begin{verbatim}
+% \begin{liProduktionsRegeln}
+%   S -> S A B | EPSILON,
+%   B A -> A B,
+%   A A -> a a,
+%   B B -> b b
+% \end{liProduktionsRegeln}
+% \end{verbatim}
 %    \begin{macrocode}
 \NewDocumentEnvironment { liProduktionsRegeln }
 { +b }
