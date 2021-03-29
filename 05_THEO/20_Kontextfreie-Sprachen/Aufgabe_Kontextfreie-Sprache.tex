@@ -77,7 +77,7 @@ $L(G') = L(G)$
 S -> aa S bb | S S | epsilon,
 \end{liProduktionsRegeln}
 
-%\liFussnoteUrl{https://flaci.com/Grn19rt8w}
+\liFussnoteUrl{https://flaci.com/Grn19rt8w}
 \end{liAntwort}
 
 %%
@@ -93,29 +93,22 @@ S -> aa S bb | S S | epsilon,
 
 $K = (\m{\z0, \z1, \z2}, \m{a, b}, \m{\#, S, A, B}, \delta, \z0, \#, \z0)$
 
+\begin{center}
 \begin{tikzpicture}[li kellerautomat,node distance=3cm]
-\node[state,initial] (0) {\z0};
-\node[state,right of=0] (1) {\z1};
-\node[state,right of=1,accepting] (2) {\z2};
+\node[state,initial,accepting] (0) {\z0};
 
-\path (0) edge[above] node{\u{
-  epsilon raute Sraute
-}} (1);
-
-\path (1) edge[above,loop] node{\u{
+\path (0) edge[above,loop] node{\u{
   a A epsilon,
   b B epsilon,
-  epsilon S AASBBS,
+  epsilon S AASBB,
   epsilon S SS,
-  epsilon S epsilon
-}} (1);
-
-\path (1) edge[above] node{\u{
-  epsilon raute epsilon
-}} (2);
-
+  epsilon S epsilon,
+  epsilon raute Sraute
+}} (0);
 \end{tikzpicture}
-% \liFussnoteUrl{https://flaci.com/Araj960s2}
+\end{center}
+
+\liFussnoteUrl{https://flaci.com/Araj960s2}
 
 \liPseudoUeberschrift{2. Kellerautomat}
 
@@ -153,9 +146,7 @@ Keller.
 \end{tikzpicture}
 \end{center}
 
-% \liFussnoteUrl{https://flaci.com/Ahfqseouz}
-
+\liFussnoteUrl{https://flaci.com/Ahfqseouz}
 \end{liAntwort}
-
 \end{enumerate}
 \end{document}

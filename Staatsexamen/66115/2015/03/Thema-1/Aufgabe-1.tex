@@ -60,16 +60,47 @@ darstellen zu können, ist mindestens ein weiterer Zustand nötig.
 \item Begründen Sie, dass $L$ regulär ist.
 
 \begin{liAntwort}
-Die Sprache kann mit einem regulären Ausdruck dargestellt werden:
+\begin{center}
+\begin{tikzpicture}[li automat,node distance=3cm]
+\node[state,initial,accepting]
+(0) {$z_0$};
 
-\begin{minted}{md}
-(
- (0|) (0|) (0|) (1|) (1|) (1|)
- |
- (1|) (1|) (1|) (0|) (0|) (0|)
-)
-(01|10)*
-\end{minted}
+\node[state,above right of=0,accepting]
+(1) {$z_1$};
+
+\node[state,right of=1,accepting]
+(2) {$z_2$};
+
+\node[state,right of=2,accepting]
+(3) {$z_3$};
+
+\node[state,below right of=0,accepting]
+(4) {$z_4$};
+
+\node[state,right of=4,accepting]
+(5) {$z_5$};
+
+\node[state,right of=5,accepting]
+(6) {$z_6$};
+
+\path (0) edge[above,bend left] node{0} (1);
+\path (1) edge[above,bend left] node{0} (2);
+\path (2) edge[above,bend left] node{0} (3);
+
+\path (1) edge[above,bend left] node{1} (0);
+\path (2) edge[above,bend left] node{1} (1);
+\path (3) edge[above,bend left] node{1} (2);
+
+\path (0) edge[above,bend left] node{1} (4);
+\path (4) edge[above,bend left] node{1} (5);
+\path (5) edge[above,bend left] node{1} (6);
+
+\path (4) edge[above,bend left] node{0} (0);
+\path (5) edge[above,bend left] node{0} (4);
+\path (6) edge[above,bend left] node{0} (5);
+\end{tikzpicture}
+%\liFussnoteUrl{https://flaci.com/Ap9bwqpta}
+\end{center}
 \end{liAntwort}
 
 %%
