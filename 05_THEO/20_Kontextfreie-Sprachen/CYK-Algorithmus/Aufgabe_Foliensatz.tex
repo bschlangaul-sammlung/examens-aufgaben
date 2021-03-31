@@ -1,28 +1,26 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{formale-sprachen}
 \begin{document}
-\liAufgabenTitel{Youtube-Video Karsten-Morisse}
+\liAufgabenTitel{Foliensatz}
 \section{CYK-Algorithmus
 \index{CYK-Algorithmus}
-\footcite{}}
-
-https://www.youtube.com/watch?v=Q5TvCyu4RUo
+\footcite[Seite 46]{theo:fs:2}}
 
 \begin{liProduktionsRegeln}
-S -> A B | B C,
+S -> A B | B T,
 A -> B A | a,
-B -> C C | b,
-C -> A B | a
+B -> T T | b,
+T -> A B | a
 \end{liProduktionsRegeln}
 
 \begin{liAntwort}
 \begin{tabular}{|c|c|c|c|c|}
-a   & b   & a   & a   & b \\\hline\hline
-A,C & B   & A,C & A,C & B \\
-S,C & A,S & B   & S,C \\
-B   & -   & B \\
-S,A & - \\
-S,S,C \\
+b   & a     & a   & a   & b \\\hline\hline
+B   & A,T   & A,T & A,T & B \\
+A,S & B     & B   & S,T \\
+-   & S,T,A & B \\
+S,A & S,T \\
+S,T \\
 \end{tabular}
 \end{liAntwort}
 
