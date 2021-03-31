@@ -430,7 +430,6 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Pumping-Lemma/Aufgabe_Pumping-Lemma.pdf" download="Aufgabe_Pumping-Lemma">„Pumping-Lemma“</a> (Pumping-Lemma (Reguläre Sprache))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Pumping-Lemma/Aufgabe_Saarland-Pinkal.pdf" download="Aufgabe_Saarland-Pinkal">„Saarland Pinkal“</a> (Pumping-Lemma (Reguläre Sprache))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Pumping-Lemma/Aufgabe_Vorlesungsaufgaben-Pumping-Lemma.pdf" download="Aufgabe_Vorlesungsaufgaben-Pumping-Lemma">„Vorlesungsaufgaben“</a> (Pumping-Lemma (Reguläre Sprache))
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/20_Kontextfreie-Sprachen/Aufgabe_Pumping-Lemma.pdf" download="Aufgabe_Pumping-Lemma">„Pumping-Lemma“</a> (Pumping-Lemma (Reguläre Sprache))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T1-A1">„Alphabet 0 1 Anzahl Unterschied höchstes 3“ Examen 66115 Frühjahr 2015 T1 A1</a> (Reguläre Sprache, Pumping-Lemma (Reguläre Sprache), Potenzmengenalgorithmus)
 
 #### Minimierungsalgorithmus

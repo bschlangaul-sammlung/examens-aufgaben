@@ -1,0 +1,31 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Foliensatz}
+\section{Pumping-Lemma
+\index{Pumping-Lemma (Kontextfreie Sprache)}
+\footcite[Seite 42]{theo:fs:2}}
+
+$L = a^n b^n c^n \in \mathbb{N}$
+Ich behaupte, L sei kontextfrei.
+
+\begin{enumerate}
+\item Also gibt es eine Pumpzahl. Sie sei j.
+(Wähle geschickt ein „langes“ Wort...)
+a j b j c j ist ein Wort aus L, das sicher länger als j ist.
+
+\item  Da L kontextfrei ist, muss es nach dem Pumping-Lemma auch für dieses Wort
+eine beliebige Zerlegung geben:
+a j b j c j = uvwxy mit |vx| ≥ 1 und |vwx| ≤ j
+
+\item  Weil vwx höchstens j lang ist, kann es nie a‘s und c‘s zugleich enthalten (es
+stehen j b‘s dazwischen!).
+
+\item Andererseits enthält vx mindestens ein Zeichen.
+Das Wort ω = uv 0 wx 0 y = uwy enthält dann nicht mehr gleich viele a‘s, b‘s
+und c‘s. (Widerspruch)!
+
+\item Die Behauptung war falsch! => L ist nicht kontextfrei!
+
+\end{enumerate}
+\end{document}
