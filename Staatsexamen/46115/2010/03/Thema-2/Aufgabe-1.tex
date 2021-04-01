@@ -1,16 +1,19 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{formale-sprachen,automaten}
 \begin{document}
+\def\z#1{$z_{#1}$}
 \let\m=\liMenge
 
 \liAufgabenTitel{Alphabet ab}
 \section{Aufgabe 1
 \index{Reguläre Sprache}
 \footcite{46115:2010:03}}
+\begin{enumerate}
 
-Gegeben ist die folgende Sprache L1 über dem Alphabet \liAlphabet{a,b}:
+\item Gegeben ist die folgende Sprache L1 über dem Alphabet \liAlphabet{a,b}:
 
-$L1 = \m{w \in \Sigma^* \, | \, \text{die Anzahl der a in w ist gerade und b kommt in w genau einmal vor}}$.
+$L1 = \m{w \in \Sigma^* \, | \,
+\text{die Anzahl der } a \text{ in } w \text{ ist gerade und } b \text{ kommt in } w \text{ genau einmal vor}}$.
 
 \begin{enumerate}
 
@@ -19,7 +22,33 @@ $L1 = \m{w \in \Sigma^* \, | \, \text{die Anzahl der a in w ist gerade und b kom
 %%
 
 \item Geben Sie einen deterministischen endlichen Automaten an, der die
-Sprache L1 akzeptiert.
+Sprache $L1$ akzeptiert.
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[->,node distance=4cm]
+\node[state,initial] (0) {\z0};
+\node[state,right of=0] (1) {\z1};
+\node[state,below of=0,accepting] (2) {\z2};
+\node[state,right of=2] (3) {\z3};
+\node[state,above right=2cm of 2] (t) {\z{t}};
+
+\path (0) edge[bend left,above] node{a} (1);
+\path (1) edge[bend left,above] node{a} (0);
+
+\path (2) edge[bend left,above] node{a} (3);
+\path (3) edge[bend left,above] node{a} (2);
+
+\path (0) edge[right] node{b} (2);
+\path (1) edge[right] node{b} (3);
+
+\path (2) edge[right] node{b} (t);
+\path (3) edge[right] node{b} (t);
+\path (t) edge[loop above,right,pos=0.8] node{a,b} (t);
+\end{tikzpicture}
+\end{center}
+\liFussnoteUrl{https://flaci.com/Ahfqe3eb7}
+\end{liAntwort}
 
 %%
 % b)
@@ -29,17 +58,18 @@ Sprache L1 akzeptiert.
 beschreibt.
 
 \begin{liAntwort}
-(aba|((aa)*b(aa)*))
+(aa)*(b|aba)(aa)*
 \end{liAntwort}
+\end{enumerate}
 
-Die folgende Sprache $L2$ ist eine Erweiterung von $L1$:
+\item Die folgende Sprache $L2$ ist eine Erweiterung von $L1$:
 
 $L1 = \m{w \in \Sigma^* \, | \, \text{die Anzahl der } a \text{ in } w \text{ ist gerade und die Anzahl der } b \text{ in } w \text{ ist ungerade}}.$
 
 %%
 % c)
 %%
-
+\begin{enumerate}
 \item Geben Sie einen deterministischen endlichen Automaten an, der die
 Sprache $L2$ akzeptiert.
 
@@ -50,14 +80,12 @@ gu = gerade Anzahl a’s, ungerade Anzahl b’s
 
 ug = ungerade Anzahl a’s, gerade Anzahl b’s
 
-\def\z#1{$Z_{#1}$}
-
 \begin{center}
 \begin{tikzpicture}[->,node distance=4cm]
 \node[state,initial] (gg) {\z{gg}};
 \node[state,right of=gg] (ug) {\z{ug}};
 \node[state,below of=ug] (uu) {\z{uu}};
-\node[state,below of=gg] (gu) {\z{gu}};
+\node[state,below of=gg,accepting] (gu) {\z{gu}};
 
 \path (gg) edge[bend left,above] node{0} (ug);
 \path (ug) edge[bend left,above] node{0} (gg);
@@ -70,7 +98,6 @@ ug = ungerade Anzahl a’s, gerade Anzahl b’s
 
 \path (ug) edge[bend left,left] node{1} (uu);
 \path (uu) edge[bend left,left] node{1} (ug);
-
 \end{tikzpicture}
 \end{center}
 
@@ -81,8 +108,20 @@ ug = ungerade Anzahl a’s, gerade Anzahl b’s
 % d)
 %%
 
-\item Geben Sie eine rechtslineare Grammatik an, die die Sprache L2
+\item Geben Sie eine rechtslineare Grammatik an, die die Sprache $L2$
 erzeugt.
 
+\begin{liAntwort}
+\begin{liProduktionsRegeln}
+A -> a B | b D | b,
+B -> b C | a A,
+C -> a D | a | b B,
+D -> b A | a C,
+\end{liProduktionsRegeln}
+https://flaci.com/Ahfqe3eb7
+
+\end{liAntwort}
+
+\end{enumerate}
 \end{enumerate}
 \end{document}
