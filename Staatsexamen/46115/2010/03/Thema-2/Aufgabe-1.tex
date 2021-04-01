@@ -1,0 +1,88 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,automaten}
+\begin{document}
+\let\m=\liMenge
+
+\liAufgabenTitel{Alphabet ab}
+\section{Aufgabe 1
+\index{Reguläre Sprache}
+\footcite{46115:2010:03}}
+
+Gegeben ist die folgende Sprache L1 über dem Alphabet \liAlphabet{a,b}:
+
+$L1 = \m{w \in \Sigma^* \, | \, \text{die Anzahl der a in w ist gerade und b kommt in w genau einmal vor}}$.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Geben Sie einen deterministischen endlichen Automaten an, der die
+Sprache L1 akzeptiert.
+
+%%
+% b)
+%%
+
+\item Geben Sie einen regulären Ausdruck an, der die Sprache $L1$
+beschreibt.
+
+\begin{liAntwort}
+(aba|((aa)*b(aa)*))
+\end{liAntwort}
+
+Die folgende Sprache $L2$ ist eine Erweiterung von $L1$:
+
+$L1 = \m{w \in \Sigma^* \, | \, \text{die Anzahl der } a \text{ in } w \text{ ist gerade und die Anzahl der } b \text{ in } w \text{ ist ungerade}}.$
+
+%%
+% c)
+%%
+
+\item Geben Sie einen deterministischen endlichen Automaten an, der die
+Sprache $L2$ akzeptiert.
+
+\begin{liAntwort}
+\liFussnoteUrl{https://www.informatik.uni-hamburg.de/TGI/lehre/vl/SS14/FGI1/Folien/fgi1_v2_handout.pdf}
+
+gu = gerade Anzahl a’s, ungerade Anzahl b’s
+
+ug = ungerade Anzahl a’s, gerade Anzahl b’s
+
+\def\z#1{$Z_{#1}$}
+
+\begin{center}
+\begin{tikzpicture}[->,node distance=4cm]
+\node[state,initial] (gg) {\z{gg}};
+\node[state,right of=gg] (ug) {\z{ug}};
+\node[state,below of=ug] (uu) {\z{uu}};
+\node[state,below of=gg] (gu) {\z{gu}};
+
+\path (gg) edge[bend left,above] node{0} (ug);
+\path (ug) edge[bend left,above] node{0} (gg);
+
+\path (gg) edge[bend left,left] node{1} (gu);
+\path (gu) edge[bend left,left] node{1} (gg);
+
+\path (gu) edge[bend left,above] node{0} (uu);
+\path (uu) edge[bend left,above] node{0} (gu);
+
+\path (ug) edge[bend left,left] node{1} (uu);
+\path (uu) edge[bend left,left] node{1} (ug);
+
+\end{tikzpicture}
+\end{center}
+
+\liFussnoteUrl{https://flaci.com/Af0vcjys9}
+\end{liAntwort}
+
+%%
+% d)
+%%
+
+\item Geben Sie eine rechtslineare Grammatik an, die die Sprache L2
+erzeugt.
+
+\end{enumerate}
+\end{document}
