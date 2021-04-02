@@ -29,6 +29,7 @@ var fuehre_sql_aus_1 = require("./aktionen/fuehre-sql-aus");
 var oeffne_1 = require("./aktionen/oeffne");
 var oeffne_durch_stichwort_1 = require("./aktionen/oeffne-durch-stichwort");
 var erzeuge_examens_uebersicht_1 = require("./aktionen/erzeuge-examens-uebersicht");
+var flaci_automaten_1 = require("./peg/flaci-automaten");
 var programm = new commander_1.Command();
 programm.description("Repository-Pfad: " + helfer_1.repositoryPfad);
 programm.name('lehramt-informatik.js');
@@ -278,6 +279,7 @@ programm
     .alias('kf')
     .description('Konvertieren: Automat für LaTeX konvertieren')
     .action(function (texCode, cmdObj) {
+    console.log(flaci_automaten_1.parse(texCode));
     var regExp = /\\transition(\[.*?\])?\{(?<fromState>.*?)\}\{(?<toState>.*?)\}\{(?<transitions>.*?)\}/g;
     function formatElement(input) {
         if (input === '' || input == null)

@@ -18,6 +18,8 @@ import { öffne } from './aktionen/oeffne'
 import { öffneDurchStichwort } from './aktionen/oeffne-durch-stichwort'
 import { generiereExamenSammlungPdf } from './aktionen/erzeuge-examens-uebersicht'
 
+import { parse } from './peg/flaci-automaten'
+
 const programm = new Command()
 programm.description(`Repository-Pfad: ${repositoryPfad}`)
 programm.name('lehramt-informatik.js')
@@ -252,6 +254,7 @@ programm
   .alias('kf')
   .description('Konvertieren: Automat für LaTeX konvertieren')
   .action(function (texCode: string, cmdObj: object) {
+    console.log(parse(texCode))
     const regExp = /\\transition(\[.*?\])?\{(?<fromState>.*?)\}\{(?<toState>.*?)\}\{(?<transitions>.*?)\}/g
 
     function formatElement(input: string | undefined): string {

@@ -572,7 +572,9 @@ OCR des oben genannten Scans:
 
 - 2010 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2010/03/Scan.pdf" download="Staatsexamen-Informatik_46115-2010-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2010/03/OCR.txt" download="Staatsexamen-Informatik_46115-2010-Frühjahr_OCR">OCR.txt</a> 
     - Thema 1 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2010/03/Thema-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_46115-2010-Frühjahr_T1-A5">Aufgabe 5 (Binärbaum, AVL-Baum)</a>
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2010/03/Thema-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_46115-2010-Frühjahr_T1-A5">Aufgabe 5 (Binärbaum, AVL-Baum)</a> 
+    - Thema 2 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2010/03/Thema-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46115-2010-Frühjahr_T2-A1">Aufgabe 1 (Reguläre Sprache)</a>
 - 2011 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2011/03/Scan.pdf" download="Staatsexamen-Informatik_46115-2011-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2011/03/OCR.txt" download="Staatsexamen-Informatik_46115-2011-Frühjahr_OCR">OCR.txt</a> 
     - Thema 1 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2011/03/Thema-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46115-2011-Frühjahr_T1-A3">Aufgabe 3 (B-Baum, AVL-Baum)</a>
@@ -949,6 +951,8 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2007/09/Thema-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2007-Herbst_T2-A1">Aufgabe 1 (Reguläre Sprache, Reguläre Grammatik, Reguläre Ausdrücke, Potenzmengenalgorithmus)</a>
 - 2008 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2008/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2008-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2008/03/OCR.txt" download="Staatsexamen-Informatik_66115-2008-Frühjahr_OCR">OCR.txt</a> 
 - 2008 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2008/09/Scan.pdf" download="Staatsexamen-Informatik_66115-2008-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2008/09/OCR.txt" download="Staatsexamen-Informatik_66115-2008-Herbst_OCR">OCR.txt</a> 
+    - Thema 2 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2008/09/Thema-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66115-2008-Herbst_T2-A4">Aufgabe 4 (Theoretische Informatik)</a>
 - 2009 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2009/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2009-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2009/03/OCR.txt" download="Staatsexamen-Informatik_66115-2009-Frühjahr_OCR">OCR.txt</a> 
 - 2009 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2009/09/Scan.pdf" download="Staatsexamen-Informatik_66115-2009-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2009/09/OCR.txt" download="Staatsexamen-Informatik_66115-2009-Herbst_OCR">OCR.txt</a> 
     - Thema 2 
@@ -1006,6 +1010,7 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Thema-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66115-2017-Frühjahr_T1-A4">Aufgabe 4 (Vollständige Induktion)</a>
 - 2017 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/Scan.pdf" download="Staatsexamen-Informatik_66115-2017-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/OCR.txt" download="Staatsexamen-Informatik_66115-2017-Herbst_OCR">OCR.txt</a> 
     - Thema 1 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/Thema-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66115-2017-Herbst_T1-A2">Aufgabe 2 (Kontextfreie Sprache)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/Thema-1/Aufgabe-8.pdf" download="Staatsexamen-Informatik_66115-2017-Herbst_T1-A8">Aufgabe 8 (Greedy-Algorithmus)</a> 
     - Thema 2 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/Thema-2/Aufgabe-8.pdf" download="Staatsexamen-Informatik_66115-2017-Herbst_T2-A8">Aufgabe 8 (AVL-Baum, Halde (Heap), Binärbaum)</a>
