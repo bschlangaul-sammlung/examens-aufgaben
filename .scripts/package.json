@@ -24,7 +24,6 @@
   "scripts": {
     "test": "npm run build; mocha",
     "build": "tsc --target ES5 --outDir dist --esModuleInterop --downlevelIteration src/main.ts",
-    "build:pegjs": "pegjs --format commonjs src/peg/*.pegjs; cp src/peg/* dist/peg",
     "install": "sudo rm -f /usr/local/bin/lehramt-informatik.js; sudo chmod a+x dist/main.js; sudo ln -s $(pwd)/dist/main.js /usr/local/bin/lehramt-informatik.js; sudo rm -f /usr/local/bin/i; sudo ln -s $(pwd)/dist/main.js /usr/local/bin/i"
   },
   "author": "",
