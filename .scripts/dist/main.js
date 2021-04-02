@@ -29,7 +29,7 @@ var fuehre_sql_aus_1 = require("./aktionen/fuehre-sql-aus");
 var oeffne_1 = require("./aktionen/oeffne");
 var oeffne_durch_stichwort_1 = require("./aktionen/oeffne-durch-stichwort");
 var erzeuge_examens_uebersicht_1 = require("./aktionen/erzeuge-examens-uebersicht");
-var konvertiere_flaci_to_tikz_1 = require("./aktionen/konvertiere-flaci-to-tikz");
+var konvertiere_flaci_zu_tikz_1 = require("./aktionen/konvertiere-flaci-zu-tikz");
 var programm = new commander_1.Command();
 programm.description("Repository-Pfad: " + helfer_1.repositoryPfad);
 programm.name('lehramt-informatik.js');
@@ -278,7 +278,7 @@ programm
     .command('flaci-to-tikz <jsonDatei>')
     .alias('flaci')
     .description('Konvertieren flaci.com Automaten to TikZ-Automaten')
-    .action(konvertiere_flaci_to_tikz_1.konvertiereFlaciToTikz);
+    .action(konvertiere_flaci_zu_tikz_1.konvertiereFlaciZuTikz);
 programm
     .command('dtx')
     .description('*.sty zu einem dtx zusammenfügen')

@@ -17,7 +17,7 @@ import { führeSqlAus } from './aktionen/fuehre-sql-aus'
 import { öffne } from './aktionen/oeffne'
 import { öffneDurchStichwort } from './aktionen/oeffne-durch-stichwort'
 import { generiereExamenSammlungPdf } from './aktionen/erzeuge-examens-uebersicht'
-import { konvertiereFlaciToTikz } from './aktionen/konvertiere-flaci-to-tikz'
+import { konvertiereFlaciZuTikz } from './aktionen/konvertiere-flaci-zu-tikz'
 
 const programm = new Command()
 programm.description(`Repository-Pfad: ${repositoryPfad}`)
@@ -252,7 +252,7 @@ programm
   .command('flaci-to-tikz <jsonDatei>')
   .alias('flaci')
   .description('Konvertieren flaci.com Automaten to TikZ-Automaten')
-  .action(konvertiereFlaciToTikz)
+  .action(konvertiereFlaciZuTikz)
 
 programm
   .command('dtx')

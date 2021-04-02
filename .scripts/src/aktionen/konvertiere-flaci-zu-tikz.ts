@@ -18,30 +18,30 @@ import path from 'path'
 // \path (E) edge[above,loop right] node{0,1} (E);
 // \end{tikzpicture}
 
-interface FlaciTransition {
+interface FlaciÜbergang {
   Source: number
   Target: number
   x: number
   y: number
-  Label: string[]
+  Labels: string[]
 }
 
-interface FlaciState {
+interface FlaciZustand {
   ID: number
   Name: string
   x: number
   y: number
   Final: boolean
   Radius: number
-  Transitions: FlaciTransition[]
+  Transitions: FlaciÜbergang[]
   Start: boolean
 }
 
-interface FlaciAutomaton {
+interface FlaciAutomat {
   simulationInput: string[]
   Alphabet: string[]
   StackAlphabet: string[]
-  States: FlaciState[]
+  States: FlaciZustand[]
   lastInputs: string[][]
 }
 
@@ -49,7 +49,7 @@ interface FlaciDefinition {
   name: string
   description: string
   type: string
-  automaton: FlaciAutomaton
+  automaton: FlaciAutomat
   GUID: string
 }
 
@@ -57,52 +57,85 @@ interface StateNames {
   [stateId: number]: string
 }
 
-function formatState(state: FlaciState): string {
+function formatierteLänge(länge: number, spiegeln: boolean = false): string {
+  if (spiegeln) {
+    länge = länge * -1
+  }
+
+  länge = Math.round((länge / 70) * 100) / 100
+  return `${länge}cm`
+}
+
+function formatiereZustandsName (zustand: FlaciZustand): string {
+  let name = zustand.Name
+  const regExp = /^(z|q)(\d+)$/
+  if (name.match(regExp)) {
+    name = name.replace(regExp, '$z_$2$')
+  }
+  return name
+}
+
+function formatiereZustand (state: FlaciZustand): string {
   let additionsOptions = ''
   if (state.Start) additionsOptions = ',initial'
   if (state.Final) additionsOptions = additionsOptions + ',accepting'
-  return `\\node[state,x=${state.x},y=${state.y}${additionsOptions}] (${state.Name}) {${state.Name}};`
+  let name = formatiereZustandsName(state)
+  const koordinate = `at (${formatierteLänge(state.x)},${formatierteLänge(state.y, true)})`
+  return `  \\node[state,${additionsOptions}] (${state.Name}) ${koordinate} {${name}};`
 }
 
-function formatTransition(trans: FlaciTransition, states: StateNames) {
+function formatiereÜbergang (trans: FlaciÜbergang, states: StateNames) {
   const source = states[trans.Source]
   const target = states[trans.Target]
+  const eingabe = trans.Labels.join(',')
   let loop = ''
   if (source === target) {
     loop = ',loop'
   }
-  return `\\path (${source}) edge[above${loop}] node{lol} (${target});`
+
+  let biegen = ''
+  if (trans.x !== 0 || trans.y !== 0) {
+    biegen = ',bend left'
+  }
+
+  if (loop !== '') {
+    biegen = ''
+  }
+  return `  \\path (${source}) edge[auto${biegen}${loop}] node{${eingabe}} (${target});`
 }
 
-function formatAutomaton (states: string[], transitions: string[]): string {
-  return '\\begin{tikzpicture}[->,node distance=2cm]\n' +
-    states.join('\n') + '\n\n' +
-    transitions.join('\n') + '\n' +
-    '\\end{tikzpicture}\n'
+function formatiereFlaciLink(def: FlaciDefinition) {
+  return `\n\\liFussnoteUrl{https://flaci.com/A${def.GUID}}`
 }
 
-export function konvertiereFlaciToTikz(jsonDateiPfad: string) {
-  const definition = require(path.join(process.cwd(), jsonDateiPfad)) as FlaciDefinition
-  console.log(definition)
-
+function formatiereAutomat (def: FlaciDefinition): string {
   const statesRendered = []
 
-  const states = definition.automaton.States
+  const states = def.automaton.States
   const stateNames: StateNames = {}
   for (const state of states) {
     stateNames[state.ID] = state.Name
-    statesRendered.push(formatState(state))
+    statesRendered.push(formatiereZustand(state))
   }
 
   const transitionsRendered = []
 
   for (const state of states) {
     for (const transition of state.Transitions) {
-      transitionsRendered.push(formatTransition(transition, stateNames))
+      transitionsRendered.push(formatiereÜbergang(transition, stateNames))
     }
   }
 
-  console.log(formatAutomaton(statesRendered, transitionsRendered))
+  return '\\begin{tikzpicture}[li automat]\n' +
+    statesRendered.join('\n') + '\n\n' +
+    transitionsRendered.join('\n') + '\n' +
+    '\\end{tikzpicture}\n' +
+    formatiereFlaciLink(def)
+}
+
+export function konvertiereFlaciZuTikz(jsonDateiPfad: string) {
+  const definition = require(path.join(process.cwd(), jsonDateiPfad)) as FlaciDefinition
+  console.log(formatiereAutomat(definition))
 }
 
 // function keller (texCode: string, cmdObj: object) {
