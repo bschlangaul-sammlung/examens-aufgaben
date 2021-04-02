@@ -17,8 +17,7 @@ import { führeSqlAus } from './aktionen/fuehre-sql-aus'
 import { öffne } from './aktionen/oeffne'
 import { öffneDurchStichwort } from './aktionen/oeffne-durch-stichwort'
 import { generiereExamenSammlungPdf } from './aktionen/erzeuge-examens-uebersicht'
-
-import { parse } from './peg/flaci-automaten'
+import { konvertiereFlaciToTikz } from './aktionen/konvertiere-flaci-to-tikz'
 
 const programm = new Command()
 programm.description(`Repository-Pfad: ${repositoryPfad}`)
@@ -250,39 +249,10 @@ programm
   })
 
 programm
-  .command('kellerautomat-flaci-to-tex <flaci-tex-code>')
-  .alias('kf')
-  .description('Konvertieren: Automat für LaTeX konvertieren')
-  .action(function (texCode: string, cmdObj: object) {
-    console.log(parse(texCode))
-    const regExp = /\\transition(\[.*?\])?\{(?<fromState>.*?)\}\{(?<toState>.*?)\}\{(?<transitions>.*?)\}/g
-
-    function formatElement(input: string | undefined): string {
-      if (input === '' || input == null) return 'epsilon'
-      return input.replace('\\#', 'raute')
-    }
-
-    function buildTransitions(transitions: string): string {
-      let output: string = ''
-      for (const transition of transitions.split(';').reverse()) {
-        const elements = transition.split(',')
-        output += formatElement('  ' + elements[1]) + ' ' + formatElement(elements[0]) + ' ' + formatElement(elements[2]) + ',\n'
-      }
-      return output
-    }
-
-    function formatTransitionsForTikz(fromState: string, toState: string, transitions: string): string {
-      return `\\path (${fromState}) edge[above] node{\\u{\n${transitions}}} (${toState});\n`
-    }
-
-    let match
-    while( (match = regExp.exec( texCode )) != null ) {
-      if (match?.groups != null) {
-        const groups = match.groups
-        console.log(formatTransitionsForTikz(groups.fromState, groups.toState, buildTransitions(groups.transitions)))
-      }
-    }
-  })
+  .command('flaci-to-tikz <jsonDatei>')
+  .alias('flaci')
+  .description('Konvertieren flaci.com Automaten to TikZ-Automaten')
+  .action(konvertiereFlaciToTikz)
 
 programm
   .command('dtx')

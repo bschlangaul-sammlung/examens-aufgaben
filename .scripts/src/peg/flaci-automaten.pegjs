@@ -40,14 +40,20 @@
 
 Start = State* Transition*
 
-State = WhiteSpace? "\\state" type:Type? name:StringMandatoryArgument x:NumberMandatoryArgument y:NumberMandatoryArgument WhiteSpace? {
-  return '\\node[state,x=' + x +
-  ',y=' + y +
-  ',' + type +
-  '] (' + name +
-  ') {' + name +
-  '};'
-}
+State =
+  WhiteSpace?
+  "\\state"
+  type:Type?
+  name:StringMandatoryArgument
+  x:NumberMandatoryArgument
+  y:NumberMandatoryArgument WhiteSpace? {
+    return '\\node[state,x=' + x +
+    ',y=' + y +
+    ',' + type +
+    '] (' + name +
+    ') {' + name +
+    '};'
+  }
 
 Transition =
   WhiteSpace?
@@ -63,7 +69,6 @@ Transition =
   }
 
 NumberMandatoryArgument = '{' number:Number '}' { return number }
-
 StringMandatoryArgument = '{' string:String '}' { return string }
 StringOptionalArgument = '[' string:String ']' { return string }
 

@@ -29,7 +29,7 @@ var fuehre_sql_aus_1 = require("./aktionen/fuehre-sql-aus");
 var oeffne_1 = require("./aktionen/oeffne");
 var oeffne_durch_stichwort_1 = require("./aktionen/oeffne-durch-stichwort");
 var erzeuge_examens_uebersicht_1 = require("./aktionen/erzeuge-examens-uebersicht");
-var flaci_automaten_1 = require("./peg/flaci-automaten");
+var konvertiere_flaci_to_tikz_1 = require("./aktionen/konvertiere-flaci-to-tikz");
 var programm = new commander_1.Command();
 programm.description("Repository-Pfad: " + helfer_1.repositoryPfad);
 programm.name('lehramt-informatik.js');
@@ -275,52 +275,15 @@ programm
     }
 });
 programm
-    .command('kellerautomat-flaci-to-tex <flaci-tex-code>')
-    .alias('kf')
-    .description('Konvertieren: Automat für LaTeX konvertieren')
-    .action(function (texCode, cmdObj) {
-    console.log(flaci_automaten_1.parse(texCode));
-    var regExp = /\\transition(\[.*?\])?\{(?<fromState>.*?)\}\{(?<toState>.*?)\}\{(?<transitions>.*?)\}/g;
-    function formatElement(input) {
-        if (input === '' || input == null)
-            return 'epsilon';
-        return input.replace('\\#', 'raute');
-    }
-    function buildTransitions(transitions) {
-        var e_4, _a;
-        var output = '';
-        try {
-            for (var _b = __values(transitions.split(';').reverse()), _c = _b.next(); !_c.done; _c = _b.next()) {
-                var transition = _c.value;
-                var elements = transition.split(',');
-                output += formatElement('  ' + elements[1]) + ' ' + formatElement(elements[0]) + ' ' + formatElement(elements[2]) + ',\n';
-            }
-        }
-        catch (e_4_1) { e_4 = { error: e_4_1 }; }
-        finally {
-            try {
-                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-            }
-            finally { if (e_4) throw e_4.error; }
-        }
-        return output;
-    }
-    function formatTransitionsForTikz(fromState, toState, transitions) {
-        return "\\path (" + fromState + ") edge[above] node{\\u{\n" + transitions + "}} (" + toState + ");\n";
-    }
-    var match;
-    while ((match = regExp.exec(texCode)) != null) {
-        if ((match === null || match === void 0 ? void 0 : match.groups) != null) {
-            var groups = match.groups;
-            console.log(formatTransitionsForTikz(groups.fromState, groups.toState, buildTransitions(groups.transitions)));
-        }
-    }
-});
+    .command('flaci-to-tikz <jsonDatei>')
+    .alias('flaci')
+    .description('Konvertieren flaci.com Automaten to TikZ-Automaten')
+    .action(konvertiere_flaci_to_tikz_1.konvertiereFlaciToTikz);
 programm
     .command('dtx')
     .description('*.sty zu einem dtx zusammenfügen')
     .action(function (cmdObj) {
-    var e_5, _a;
+    var e_4, _a;
     var texPfad = path_1.default.join(helfer_1.repositoryPfad, '.tex');
     var styPfad = path_1.default.join(texPfad, 'erweiterungen');
     var styS = glob_1.default.sync('**/*.sty', { cwd: styPfad });
@@ -345,12 +308,12 @@ programm
             leseSty(sty);
         }
     }
-    catch (e_5_1) { e_5 = { error: e_5_1 }; }
+    catch (e_4_1) { e_4 = { error: e_4_1 }; }
     finally {
         try {
             if (styS_1_1 && !styS_1_1.done && (_a = styS_1.return)) _a.call(styS_1);
         }
-        finally { if (e_5) throw e_5.error; }
+        finally { if (e_4) throw e_4.error; }
     }
     var dtxVorlage = helfer_1.leseDatei(path_1.default.join(texPfad, 'dokumentation_vorlage.dtx'));
     helfer_1.schreibeDatei(dtxPfad, dtxVorlage.replace('{{ einbinden }}', dtxInhalte.join('\n')));
