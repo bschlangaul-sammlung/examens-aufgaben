@@ -4,6 +4,7 @@
 \def\Z#1#2{$q_#1z_#2$}
 \def\q#1{$q_#1$}
 \def\z#1{$z_#1$}
+\let\m=\liMenge
 
 \liAufgabenTitel{Reguläre Sprachen}
 \section{Aufgabe 1
@@ -17,18 +18,39 @@
 %%
 
 \item Geben Sie einen möglichst einfachen regulären Ausdruck für die
-Sprache L, = aja2--- an n > 3,a; € {a, b} für allei =1,...,n und a,
-a, an.
+Sprache
+\liAusdruck[L_1]
+{a_1,a_2,\dots,a_n}
+{
+  n \geq 3, a_i \in \liMenge{a, b}
+  \text{ für alle } i = 1,\dots,n
+  \text{ und } a_1 \geq a_n
+}
+an.
+
+\begin{liAntwort}
+\texttt{((a(a|b)+b)|(b(a|b)+a))}
+\end{liAntwort}
 
 %%
 % b)
 %%
 
 \item Geben Sie einen möglichst einfachen regulären Ausdruck für die
-Sprache Ly = {w € {a,b}* | w enthält genau ein b und ist von ungerader
-Länge}
-
+Sprache
+\liAusdruck[L_2]
+{w \in \m{a,b}^*}
+{
+  w
+  \text{ enthält genau ein }
+  b
+  \text{ und ist von ungerader Länge}
+}
 an.
+
+\begin{liAntwort}
+\texttt{(aa)*(b|aba)(aa)*}
+\end{liAntwort}
 
 %%
 % c)

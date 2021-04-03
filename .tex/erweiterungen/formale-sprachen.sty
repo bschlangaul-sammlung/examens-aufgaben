@@ -200,6 +200,19 @@ $\liMengeOhneMathe{#1}$%
   $\liZustandsBuchstabe\sb{#1}$
   \fi
 }
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liAusdruck}
+% |\liAusdruck[L_2]{a_1,a_2,\dots,a_n}{n \in N}|: \liAusdruck[L_2]{a_1,a_2,\dots,a_n}{n \in N}
+%    \begin{macrocode}
+\NewDocumentCommand{ \liAusdruck } { O{L} m m } {
+  $#1 = \{
+    \, #2 \,
+    |
+    \, #3 \,
+  \}$
+}
 \ExplSyntaxOff
 %    \end{macrocode}
 % \end{macro}
