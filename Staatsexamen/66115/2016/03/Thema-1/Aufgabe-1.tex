@@ -1,0 +1,65 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{automaten}
+\begin{document}
+\liAufgabenTitel{Reguläre Sprachen}
+\section{Aufgabe 1
+\index{Reguläre Sprache}
+\footcite{66115:2016:03}}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Geben Sie einen möglichst einfachen regulären Ausdruck für die
+Sprache L, = aja2--- an n > 3,a; € {a, b} für allei =1,...,n und a,
+a, an.
+
+%%
+% b)
+%%
+
+\item Geben Sie einen möglichst einfachen regulären Ausdruck für die
+Sprache Ly = {w € {a,b}* | w enthält genau ein b und ist von ungerader
+Länge}
+
+an.
+
+%%
+% c)
+%%
+
+\item Beschreiben Sie die Sprache des folgenden Automaten A,
+möglichst einfach und präzise in ihren eigenen Worten.
+
+\begin{liAntwort}
+\begin{tikzpicture}[li automat]
+  \node[state,,initial] (q0) at (2.14cm,-2.14cm) {$q_0$};
+  \node[state,] (q1) at (4cm,-2.14cm) {$q_1$};
+  \node[state,] (q2) at (6cm,-2.14cm) {$q_2$};
+  \node[state,,accepting] (q3) at (7.57cm,-2.14cm) {$q_3$};
+
+  \path (q0) edge[auto,bend left] node{a} (q1);
+  \path (q0) edge[auto,loop] node{b} (q0);
+  \path (q1) edge[auto] node{b} (q2);
+  \path (q1) edge[auto,bend left] node{a} (q0);
+  \path (q2) edge[auto] node{a} (q3);
+  \path (q2) edge[auto,bend left] node{b} (q0);
+  \path (q3) edge[auto,loop] node{a,b} (q3);
+\end{tikzpicture}
+
+\liFussnoteUrl{https://flaci.com/Arz003ccg}
+\end{liAntwort}
+
+%%
+% d)
+%%
+
+\item Betrachten Sie folgenden Automaten Asa:
+
+Konstruieren Sie einen endlichen Automaten, der die Schnittmenge der
+Sprachen L(A,) und L(A2) akzeptiert.
+\end{enumerate}
+
+\end{document}

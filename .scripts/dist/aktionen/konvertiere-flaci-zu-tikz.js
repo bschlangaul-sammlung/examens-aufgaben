@@ -28,7 +28,8 @@ function formatiereZustandsName(zustand) {
     var name = zustand.Name;
     var regExp = /^(z|q)(\d+)$/;
     if (name.match(regExp)) {
-        name = name.replace(regExp, '$z_$2$');
+        name = name.replace(regExp, '$1_$2');
+        name = "$" + name + "$";
     }
     return name;
 }
@@ -107,11 +108,12 @@ function formatiereAutomat(def) {
         }
         finally { if (e_2) throw e_2.error; }
     }
-    return '\\begin{tikzpicture}[li automat]\n' +
+    return '\\begin{liAntwort}\n\\begin{tikzpicture}[li automat]\n' +
         statesRendered.join('\n') + '\n\n' +
         transitionsRendered.join('\n') + '\n' +
         '\\end{tikzpicture}\n' +
-        formatiereFlaciLink(def);
+        formatiereFlaciLink(def) +
+        '\n\\end{liAntwort}';
 }
 function konvertiereFlaciZuTikz(jsonDateiPfad) {
     var definition = require(path_1.default.join(process.cwd(), jsonDateiPfad));

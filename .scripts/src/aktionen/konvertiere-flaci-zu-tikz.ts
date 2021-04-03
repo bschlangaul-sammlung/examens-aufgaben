@@ -70,7 +70,8 @@ function formatiereZustandsName (zustand: FlaciZustand): string {
   let name = zustand.Name
   const regExp = /^(z|q)(\d+)$/
   if (name.match(regExp)) {
-    name = name.replace(regExp, '$z_$2$')
+    name = name.replace(regExp, '$1_$2')
+    name = `$${name}$`
   }
   return name
 }
@@ -126,11 +127,12 @@ function formatiereAutomat (def: FlaciDefinition): string {
     }
   }
 
-  return '\\begin{tikzpicture}[li automat]\n' +
+  return '\\begin{liAntwort}\n\\begin{tikzpicture}[li automat]\n' +
     statesRendered.join('\n') + '\n\n' +
     transitionsRendered.join('\n') + '\n' +
     '\\end{tikzpicture}\n' +
-    formatiereFlaciLink(def)
+    formatiereFlaciLink(def) +
+    '\n\\end{liAntwort}'
 }
 
 export function konvertiereFlaciZuTikz(jsonDateiPfad: string) {
