@@ -41,7 +41,7 @@ function formatiereZustand(state) {
         additionsOptions = additionsOptions + ',accepting';
     var name = formatiereZustandsName(state);
     var koordinate = "at (" + formatierteLänge(state.x) + "," + formatierteLänge(state.y, true) + ")";
-    return "  \\node[state," + additionsOptions + "] (" + state.Name + ") " + koordinate + " {" + name + "};";
+    return "  \\node[state" + additionsOptions + "] (" + state.Name + ") " + koordinate + " {" + name + "};";
 }
 function formatiereÜbergang(trans, states) {
     var source = states[trans.Source];
@@ -62,6 +62,14 @@ function formatiereÜbergang(trans, states) {
 }
 function formatiereFlaciLink(def) {
     return "\n\\liFussnoteUrl{https://flaci.com/A" + def.GUID + "}";
+}
+function formatiereTexEnv(name, inhalt, optionen) {
+    if (optionen === void 0) { optionen = null; }
+    var opt = '';
+    if (optionen != null) {
+        opt = '[' + optionen + ']';
+    }
+    return '\\begin{' + name + '}' + opt + '\n' + inhalt + '\n\\end{' + name + '}';
 }
 function formatiereAutomat(def) {
     var e_1, _a, e_2, _b, e_3, _c;
@@ -108,12 +116,10 @@ function formatiereAutomat(def) {
         }
         finally { if (e_2) throw e_2.error; }
     }
-    return '\\begin{liAntwort}\n\\begin{tikzpicture}[li automat]\n' +
-        statesRendered.join('\n') + '\n\n' +
-        transitionsRendered.join('\n') + '\n' +
-        '\\end{tikzpicture}\n' +
-        formatiereFlaciLink(def) +
-        '\n\\end{liAntwort}';
+    var inhalt = statesRendered.join('\n') + '\n\n' + transitionsRendered.join('\n');
+    var tikzPicture = formatiereTexEnv('center', formatiereTexEnv('tikzpicture', inhalt, 'li automat'));
+    var liAntwort = tikzPicture + '\n' + formatiereFlaciLink(def);
+    return formatiereTexEnv('liAntwort', liAntwort);
 }
 function konvertiereFlaciZuTikz(jsonDateiPfad) {
     var definition = require(path_1.default.join(process.cwd(), jsonDateiPfad));

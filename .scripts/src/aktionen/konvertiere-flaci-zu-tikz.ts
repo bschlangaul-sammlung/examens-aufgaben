@@ -82,7 +82,7 @@ function formatiereZustand (state: FlaciZustand): string {
   if (state.Final) additionsOptions = additionsOptions + ',accepting'
   let name = formatiereZustandsName(state)
   const koordinate = `at (${formatierteLänge(state.x)},${formatierteLänge(state.y, true)})`
-  return `  \\node[state,${additionsOptions}] (${state.Name}) ${koordinate} {${name}};`
+  return `  \\node[state${additionsOptions}] (${state.Name}) ${koordinate} {${name}};`
 }
 
 function formatiereÜbergang (trans: FlaciÜbergang, states: StateNames) {
@@ -109,6 +109,14 @@ function formatiereFlaciLink(def: FlaciDefinition) {
   return `\n\\liFussnoteUrl{https://flaci.com/A${def.GUID}}`
 }
 
+function formatiereTexEnv(name: string, inhalt: string, optionen: string | null = null): string {
+  let opt = ''
+  if (optionen != null) {
+    opt = '[' + optionen + ']'
+  }
+  return '\\begin{' + name +  '}' + opt + '\n' + inhalt + '\n\\end{' + name +  '}'
+}
+
 function formatiereAutomat (def: FlaciDefinition): string {
   const statesRendered = []
 
@@ -126,13 +134,10 @@ function formatiereAutomat (def: FlaciDefinition): string {
       transitionsRendered.push(formatiereÜbergang(transition, stateNames))
     }
   }
-
-  return '\\begin{liAntwort}\n\\begin{tikzpicture}[li automat]\n' +
-    statesRendered.join('\n') + '\n\n' +
-    transitionsRendered.join('\n') + '\n' +
-    '\\end{tikzpicture}\n' +
-    formatiereFlaciLink(def) +
-    '\n\\end{liAntwort}'
+  const inhalt = statesRendered.join('\n') + '\n\n' + transitionsRendered.join('\n')
+  const tikzPicture = formatiereTexEnv('center', formatiereTexEnv('tikzpicture', inhalt, 'li automat'))
+  const liAntwort = tikzPicture + '\n' + formatiereFlaciLink(def)
+  return formatiereTexEnv('liAntwort', liAntwort)
 }
 
 export function konvertiereFlaciZuTikz(jsonDateiPfad: string) {

@@ -390,6 +390,31 @@ Beispiel: $Z = \p{ z_1, z_2 }$
 
 $2^Z = \{\p{}, \p{z_1 }, \p{z_2 }, \p{z_1 , z_2 }\}$
 
+\section{Schnitt zweier Automaten}
+
+\url{https://vowi.fsinf.at/images/9/9c/TU_Wien-Formale_Modellierung_VU_%28Salzer%29-L%C3%B6sungen_alte_Tests_-_TU_Wien-Formale_Modellierung_VU_%28Salzer%29_-_%C3%9Cbung_2_-_Musterl%C3%B6sung_%282017WS%29.pdf}
+
+Wir konstruieren einen Automaten A, der die beiden Automaten $A_1$ und
+$A_2$ parallel ausführt. Als Zustände für A verwenden wir Paare ($q_1$,
+$q_2$), wobei $q_1 \in Q_1$ ein Zustand des ersten Automaten und $q_2$
+∈ $Q_2$ ein Zustand des zweiten Automaten ist. Der neue Automat befindet
+sich bei Eingabe eines Wortes $w$ im Zustand ($q_1$ , $q_2$), wenn sich
+der erste Automat bei diesem Wort im Zustand $q_1$ und der zweite im
+Zustand $q_2$ befinden würde. Der Startzustand ($i_1$ , $i_2$)
+entspricht der Situation, in der sich die beiden ursprünglichen
+Automaten im Startzustand befinden. Ein Übergang mit dem Symbol $s$ von
+($q_1$, $q_2$) nach ($q_1$ 0 , $q_2$ 0 ) existiert genau dann, wenn
+wenn man mit diesem Symbol in $A_1$
+von $q_1$ nach $q_1$ 0 = δ 1 ($q_1$ , s) und in $A_2$ von $q_2$ nach
+$q_2$ 0 = δ 2 ($q_2$ , s) gelangt.
+
+Ein Wort wird von beiden Automaten
+akzeptiert (und liegt daher im Durchschnitt der Sprachen), wenn der neue
+Automat einen Zustand ($q_1$ , $q_2$ ) erreicht, bei dem beide Zustände
+Endzustände im jeweiligen Automaten sind, wenn also $q_1 \in F_1$ und
+$q_2 \in F_2$ gilt. Ein Automat für den Durchschnitt der Sprachen
+L($A_1$ ) und L($A_2$ ) lässt sich somit durch
+
 \literatur
 
 \end{document}

@@ -1,6 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{automaten}
 \begin{document}
+\def\z#1#2{$q_#1z_#2$}
+
 \liAufgabenTitel{Reguläre Sprachen}
 \section{Aufgabe 1
 \index{Reguläre Sprache}
@@ -30,10 +32,10 @@ an.
 % c)
 %%
 
-\item Beschreiben Sie die Sprache des folgenden Automaten A,
+\item Beschreiben Sie die Sprache des folgenden Automaten $A$,
 möglichst einfach und präzise in ihren eigenen Worten.
 
-\begin{liAntwort}
+\begin{center}
 \begin{tikzpicture}[li automat]
   \node[state,,initial] (q0) at (2.14cm,-2.14cm) {$q_0$};
   \node[state,] (q1) at (4cm,-2.14cm) {$q_1$};
@@ -48,18 +50,66 @@ möglichst einfach und präzise in ihren eigenen Worten.
   \path (q2) edge[auto,bend left] node{b} (q0);
   \path (q3) edge[auto,loop] node{a,b} (q3);
 \end{tikzpicture}
-
+\end{center}
 \liFussnoteUrl{https://flaci.com/Arz003ccg}
-\end{liAntwort}
 
 %%
 % d)
 %%
 
-\item Betrachten Sie folgenden Automaten Asa:
+\item Betrachten Sie folgenden Automaten $A_2$:
+
+\begin{center}
+\begin{tikzpicture}[li automat]
+  \node[state,initial] (z0) at (2.14cm,-2.14cm) {$z_0$};
+  \node[state,accepting] (z1) at (4.86cm,-2.14cm) {$z_1$};
+
+  \path (z0) edge[auto,bend left] node{a,b} (z1);
+  \path (z1) edge[auto,bend left] node{a,b} (z0);
+\end{tikzpicture}
+\end{center}
+\liFussnoteUrl{https://flaci.com/Ap9qbkumc}
+
+Im Original sind die Zustände mit $q_x$ benannt. Damit wir die
+Schnittmenge besser bilden können, wird hier $z_x$ verwendet.
 
 Konstruieren Sie einen endlichen Automaten, der die Schnittmenge der
-Sprachen L(A,) und L(A2) akzeptiert.
+Sprachen $L(A_1)$ und $L(A_2)$ akzeptiert.
+
+\begin{liAntwort}
+
+$A_1$
+
+\begin{tabular}{l|l|l}
+  & a & b \\\hline
+0 & 1 & 0 \\
+1 & 0 & 2 \\
+2 & 3 & 0 \\
+3 & 3 & 3 \\
+\end{tabular}
+
+$A_2$
+
+\begin{tabular}{l|l|l}
+  & a & b \\\hline
+0 & 1 & 1 \\
+1 & 0 & 0 \\
+\end{tabular}
+
+Neuer Endzustand: \z31
+
+\begin{tabular}{l|l|l}
+     & a    & b    \\\hline
+\z00 & \z11 & \z01 \\
+\z10 & \z01 & \z21 \\
+\z20 & \z31 & \z01 \\
+\z30 & \z31 & \z31 \\
+\z01 & \z10 & \z00 \\
+\z11 & \z00 & \z20 \\
+\z21 & \z30 & \z00 \\
+\z31 & \z30 & \z30 \\
+\end{tabular}
+\end{liAntwort}
 \end{enumerate}
 
 \end{document}
