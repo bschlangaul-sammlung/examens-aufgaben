@@ -8,7 +8,7 @@ return {
 
   formatiere_ableitung = function (eingang)
     eingang = eingang:gsub('nichts', '$\\emptyset$')
-    eingang = eingang:gsub('->', '$\\rightarrow$')
+    eingang = eingang:gsub('->', '$\\vdash$')
     tex.print(eingang)
   end,
 

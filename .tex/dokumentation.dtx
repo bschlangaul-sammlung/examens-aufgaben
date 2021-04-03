@@ -48,6 +48,8 @@
 \documentclass{ltxdoc}
 \usepackage[a4paper,margin=25mm,left=50mm,nohead]{geometry}
 \usepackage[numbered]{hypdoc}
+\usepackage{lehramt-informatik-basis}
+\liLadePakete{formale-sprachen}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
@@ -391,8 +393,9 @@ zum Setzen von mathematischen Formeln bei dem Thema Formale Sprachen]
 %    \end{macrocode}
 
 % \begin{macro}{\liMenge}
+% |$\liMenge{a, b, c}$|: $\liMenge{a, b, c}$
+% |\let\m=\liMenge|
 %    \begin{macrocode}
-% \let\m=\liMenge
 \def\liMengeOhneMathe#1{\{ #1 \}}
 \def\liMenge#1{%
 \ifmmode%
@@ -405,6 +408,8 @@ $\liMengeOhneMathe{#1}$%
 % \end{macro}
 
 % \begin{macro}{\liEpsilon}
+% |\liEpsilon|: \liEpsilon
+%
 % |\let\e=\liEpsilon|
 %    \begin{macrocode}
 \def\liEpsilon{$\epsilon$}
@@ -437,7 +442,7 @@ $\liMengeOhneMathe{#1}$%
 % \end{macro}
 
 % \begin{macro}{\liAlphabet}
-% |\liAlphabet{a, b}|: |$\Sigma = \{ a, b \}$|
+% |\liAlphabet{a, b}| (|$\Sigma = \{ a, b \}$|): \liAlphabet{a, b}
 %    \begin{macrocode}
 \def\liAlphabet#1{$\Sigma = \{ #1 \}$}
 %    \end{macrocode}
@@ -536,6 +541,7 @@ $\liMengeOhneMathe{#1}$%
 % \end{macro}
 
 % \begin{macro}{\liAbleitung}
+% |\liAbleitung{S -> aB -> ab}|: \liAbleitung{S -> aB -> ab}
 %    \begin{macrocode}
 \def\liAbleitung#1{\directlua{formale_sprachen.formatiere_ableitung('#1')}}
 %    \end{macrocode}
@@ -567,9 +573,9 @@ $\liMengeOhneMathe{#1}$%
 % \end{environment}
 
 % \begin{macro}{\liZustandsnameTiefgestellt}
+% Automatisch tiefgestellte Nummerierung |\z1|
+% |\let\z=\liZustandsnameTiefgestellt|
 %    \begin{macrocode}
-% Automatisch tiefgestellte Nummerierung \z1
-% \let\z=\liZustandsnameTiefgestellt
 \def\liZustandsnameTiefgestellt#1{
   \ifmmode
   \liZustandsBuchstabe\sb{#1}

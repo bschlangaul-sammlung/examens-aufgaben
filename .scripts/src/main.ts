@@ -274,10 +274,10 @@ programm
     }
 
     function kompiliereDtxDatei(): void {
-      führeAus('lualatex dokumentation.dtx', texPfad)
+      führeAus('lualatex --shell-escape dokumentation.dtx', texPfad)
       führeAus('makeindex -s gglo.ist -o dokumentation.gls dokumentation.glo', texPfad)
       führeAus('makeindex -s gind.ist -o dokumentation.ind dokumentation.idx', texPfad)
-      führeAus('lualatex dokumentation.dtx', texPfad)
+      führeAus('lualatex --shell-escape dokumentation.dtx', texPfad)
     }
 
     for (const sty of styS) {

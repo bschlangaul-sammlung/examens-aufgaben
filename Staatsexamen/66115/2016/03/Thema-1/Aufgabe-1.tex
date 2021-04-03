@@ -1,7 +1,9 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{automaten}
+\liLadePakete{automaten,formale-sprachen}
 \begin{document}
-\def\z#1#2{$q_#1z_#2$}
+\def\Z#1#2{$q_#1z_#2$}
+\def\q#1{$q_#1$}
+\def\z#1{$z_#1$}
 
 \liAufgabenTitel{Reguläre Sprachen}
 \section{Aufgabe 1
@@ -32,7 +34,7 @@ an.
 % c)
 %%
 
-\item Beschreiben Sie die Sprache des folgenden Automaten $A$,
+\item Beschreiben Sie die Sprache des folgenden Automaten $A_1$,
 möglichst einfach und präzise in ihren eigenen Worten.
 
 \begin{center}
@@ -52,6 +54,10 @@ möglichst einfach und präzise in ihren eigenen Worten.
 \end{tikzpicture}
 \end{center}
 \liFussnoteUrl{https://flaci.com/Arz003ccg}
+
+\begin{liAntwort}
+Die Sprache enthält das Teilwort $aba$
+\end{liAntwort}
 
 %%
 % d)
@@ -82,33 +88,64 @@ $A_1$
 
 \begin{tabular}{l|l|l}
   & a & b \\\hline
-0 & 1 & 0 \\
-1 & 0 & 2 \\
-2 & 3 & 0 \\
-3 & 3 & 3 \\
+\q0 & \q1 & \q0 \\
+\q1 & \q0 & \q2 \\
+\q2 & \q3 & \q0 \\
+\q3 & \q3 & \q3 \\
 \end{tabular}
 
 $A_2$
 
 \begin{tabular}{l|l|l}
   & a & b \\\hline
-0 & 1 & 1 \\
-1 & 0 & 0 \\
+\z0 & \z1 & \z1 \\
+\z1 & \z0 & \z0 \\
 \end{tabular}
 
-Neuer Endzustand: \z31
+Neuer Endzustand:  \Z31
 
 \begin{tabular}{l|l|l}
      & a    & b    \\\hline
-\z00 & \z11 & \z01 \\
-\z10 & \z01 & \z21 \\
-\z20 & \z31 & \z01 \\
-\z30 & \z31 & \z31 \\
-\z01 & \z10 & \z00 \\
-\z11 & \z00 & \z20 \\
-\z21 & \z30 & \z00 \\
-\z31 & \z30 & \z30 \\
+ \Z00 &  \Z11 &  \Z01 \\
+ \Z10 &  \Z01 &  \Z21 \\
+ \Z20 &  \Z31 &  \Z01 \\
+ \Z30 &  \Z31 &  \Z31 \\
+ \Z01 &  \Z10 &  \Z00 \\
+ \Z11 &  \Z00 &  \Z20 \\
+ \Z21 &  \Z30 &  \Z00 \\
+ \Z31 &  \Z30 &  \Z30 \\
 \end{tabular}
+
+\begin{center}
+\begin{tikzpicture}[li automat]
+  \node[state,initial] (q0z0) at (2.14cm,-2.14cm) {\Z00};
+  \node[state] (q1z0) at (2.14cm,-8.43cm) {\Z10};
+  \node[state] (q2z0) at (5.29cm,-8.43cm) {\Z20};
+  \node[state] (q3z0) at (7.43cm,-2.14cm) {\Z30};
+  \node[state] (q0z1) at (2.14cm,-5.29cm) {\Z01};
+  \node[state] (q1z1) at (5.43cm,-4.29cm) {\Z11};
+  \node[state] (q2z1) at (5.29cm,-2.14cm) {\Z21};
+  \node[state,accepting] (q3z1) at (8.86cm,-5.43cm) {\Z31};
+
+  \path (q0z0) edge[auto,bend left=10] node{a} (q1z1);
+  \path (q0z0) edge[auto,bend left] node{b} (q0z1);
+  \path (q1z0) edge[auto,bend left] node{a} (q0z1);
+  \path (q1z0) edge[auto] node{b} (q2z0);
+  \path (q2z0) edge[auto] node{a} (q3z1);
+  \path (q2z0) edge[auto] node{b} (q0z1);
+  \path (q3z0) edge[auto,bend left] node{a,b} (q3z1);
+  \path (q0z1) edge[auto,bend left] node{b} (q0z0);
+  \path (q0z1) edge[auto,bend left] node{a} (q1z0);
+  \path (q1z1) edge[auto,bend left=10] node{a} (q0z0);
+  \path (q1z1) edge[auto] node{b} (q2z0);
+  \path (q2z1) edge[auto] node{a} (q3z0);
+  \path (q2z1) edge[auto] node{b} (q0z0);
+  \path (q3z1) edge[auto,bend left] node{a,b} (q3z0);
+\end{tikzpicture}
+\end{center}
+
+\liFussnoteUrl{https://flaci.com/Ar3pc5rh7}
+
 \end{liAntwort}
 \end{enumerate}
 

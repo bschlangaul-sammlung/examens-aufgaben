@@ -297,10 +297,10 @@ programm
         dtxInhalte.push(prefix + inhalt);
     }
     function kompiliereDtxDatei() {
-        helfer_1.führeAus('lualatex dokumentation.dtx', texPfad);
+        helfer_1.führeAus('lualatex --shell-escape dokumentation.dtx', texPfad);
         helfer_1.führeAus('makeindex -s gglo.ist -o dokumentation.gls dokumentation.glo', texPfad);
         helfer_1.führeAus('makeindex -s gind.ist -o dokumentation.ind dokumentation.idx', texPfad);
-        helfer_1.führeAus('lualatex dokumentation.dtx', texPfad);
+        helfer_1.führeAus('lualatex --shell-escape dokumentation.dtx', texPfad);
     }
     try {
         for (var styS_1 = __values(styS), styS_1_1 = styS_1.next(); !styS_1_1.done; styS_1_1 = styS_1.next()) {
