@@ -52,7 +52,9 @@
 \usepackage{lehramt-informatik-basis}
 \liLadePakete{
   gantt,
-  formale-sprachen
+  formale-sprachen,
+  typographie,
+  synthese-algorithmus,
 }
 \EnableCrossrefs
 \CodelineIndex
@@ -1293,15 +1295,52 @@ Attributhülle]
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-petri}[2020/12/03]
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \RequirePackage{tikz}
-
 \usetikzlibrary{petri,arrows.meta}
+%    \end{macrocode}
 
 % Für die Darstellungsmatrix
+%    \begin{macrocode}
 \RequirePackage{blkarray}
+%    \end{macrocode}
 
-\def\TmpSetKeys{%
+% \begin{verbatim}
+% \def\TmpA#1{
+%   \liPetriSetzeSchluessel%
+%   \pgfkeys{/petri/.cd,#1}%
+%   \begin{tikzpicture}
+%   \node at (-0.25,-0.25) {};
+%   \node at (\TmpX,\TmpY) {};
+%
+%   \begin{scope}[transform canvas={scale=\TmpScale},x=2cm,y=2cm,]
+%     \node[place,tokens=\TmpPlaceOne,label=$p_1$] at (0,1) (p1) {};
+%     \node[place,tokens=\TmpPlaceTwo,label=$p_2$] at (2,2) (p2) {};
+%     \node[place,tokens=\TmpPlaceThree,label=east:$p_3$] at (2,0) (p3) {};
+%
+%     \node[transition,label=east:$t_1$,\TmpTransitionOne] at (2,1) {}
+%       edge[pre] (p2)
+%       edge[post] (p3);
+%     \node[transition,label=$t_2$,\TmpTransitionTwo] at (1,1.5) {}
+%       edge[pre] (p1)
+%       edge[post] (p2);
+%     \node[transition,label=$t_3$,\TmpTransitionThree] at (1,0.5) {}
+%       edge[pre] (p3)
+%       edge[post] (p1);
+%     \node[transition,label=$t_4$,\TmpTransitionFour] at (1,1) {}
+%       edge[pre] (p2)
+%       edge[pre] (p3)
+%       edge[post] (p1);
+%   \end{scope}
+%   \end{tikzpicture}
+% }
+% \end{verbatim}
+
+% \begin{macro}{\liPetriSetzeSchluessel}
+%    \begin{macrocode}
+\def\liPetriSetzeSchluessel{%
   \def\TmpTransitionOne{}%
   \def\TmpTransitionTwo{}%
   \def\TmpTransitionThree{}%
@@ -1338,8 +1377,11 @@ Attributhülle]
     y/.store in=\TmpY,y/.default=5,
   }%
 }
+%    \end{macrocode}
+% \end{macro}
 
-\TmpSetKeys
+%    \begin{macrocode}
+\liPetriSetzeSchluessel
 
 \tikzset{activated/.style={very thick}}
 
@@ -1760,13 +1802,51 @@ Syntaxbäumen mit Hilfe des Pakets tikz-qtree]
 \ProvidesPackage{lehramt-informatik-synthese-algorithmus}[2021/03/19
 Hilfsmakros zum Setzen des Synthese-Algroithmuses zur Umformung einer
 Relation in die 3. Normalform]
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \liLadePakete{normalformen,mathe,typographie}
-
 \ExplSyntaxOn
+%    \end{macrocode}
 
-% \let\schritt=\liSyntheseSchrittUeberschrift
-\def\liSyntheseSchrittUeberschrift#1{
+% \begin{verbatim}
+% \let\schrittE=\liSyntheseUeberErklaerung
+% \begin{enumerate}
+% \item \schrittE{1}
+%
+% \begin{enumerate}
+% \item \schrittE{1-1}
+% \item \schrittE{1-2}
+% \item \schrittE{1-3}
+% \item \schrittE{1-4}
+% \end{enumerate}
+%
+% \item \schrittE{2}
+% \item \schrittE{3}
+% \item \schrittE{4}
+% \end{enumerate}
+% \end{verbatim}
+
+% \let\schrittE=\liSyntheseUeberErklaerung
+% \begin{enumerate}
+% \item \schrittE{1}
+%
+% \begin{enumerate}
+% \item \schrittE{1-1}
+% \item \schrittE{1-2}
+% \item \schrittE{1-3}
+% \item \schrittE{1-4}
+% \end{enumerate}
+%
+% \item \schrittE{2}
+% \item \schrittE{3}
+% \item \schrittE{4}
+% \end{enumerate}
+
+% \begin{macro}{\liSyntheseUeberschrift}
+% |\let\schritt=\liSyntheseUeberschrift|
+%    \begin{macrocode}
+\def\liSyntheseUeberschrift#1{
   {
     \bfseries
     \sffamily
@@ -1782,7 +1862,12 @@ Relation in die 3. Normalform]
     }
   }
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liSyntheseErklaerung}
+% |\let\erklaerung=\liSyntheseErklaerung|
+%    \begin{macrocode}
 \def\li@synthese@erklaerung@texte#1{
   \str_case:nn {#1} {
     {1} {
@@ -1839,21 +1924,27 @@ Relation in die 3. Normalform]
     }
   }
 }
-% \let\erklaerung=\liSyntheseSchrittErklaerung
-\def\liSyntheseSchrittErklaerung#1{
+\def\liSyntheseErklaerung#1{
   {
     \itshape
     \footnotesize
     \liParagraphMitLinien{\li@synthese@erklaerung@texte{#1}}
   }
 }
+%    \end{macrocode}
+% \end{macro}
 
-% \let\schrittE=\liSyntheseSchrittUeberschriftErklaerung
-\def\liSyntheseSchrittUeberschriftErklaerung#1{
-  \liSyntheseSchrittUeberschrift{#1}\par
-  \liSyntheseSchrittErklaerung{#1}
+% \begin{macro}{\liSyntheseUeberErklaerung}
+% |\let\schrittE=\liSyntheseUeberErklaerung|
+%    \begin{macrocode}
+\def\liSyntheseUeberErklaerung#1{
+  \liSyntheseUeberschrift{#1}\par
+  \liSyntheseErklaerung{#1}
 }
+%    \end{macrocode}
+% \end{macro}
 
+%    \begin{macrocode}
 \ExplSyntaxOff
 
 %    \end{macrocode}
@@ -1876,18 +1967,24 @@ formatierung.sty definiert.]
 %    \end{macrocode}
 
 % \begin{macro}{\liErledigt}
+% |\liErledigt|: \liErledigt
 %    \begin{macrocode}
 \let\liErledigt=\CheckedBox
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\liNichtsZuTun}
+% |\liNichtsZuTun|: \liNichtsZuTun
 %    \begin{macrocode}
 \def\liNichtsZuTun{\liErledigt{}~Nichts~zu~tun}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\liParagraphMitLinien}
+% |\liParagraphMitLinien{Lorem ipsum...}|:
+%
+% \liParagraphMitLinien{Lorem ipsum dolor sit, ipsum dolor sit, ipsum
+% dolor sit, ipsum dolor sit, ipsum dolor sit, ipsum dolor sit}
 %    \begin{macrocode}
 \def\liParagraphMitLinien#1{
   \noindent

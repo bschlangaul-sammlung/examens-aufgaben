@@ -2,13 +2,51 @@
 \ProvidesPackage{lehramt-informatik-synthese-algorithmus}[2021/03/19
 Hilfsmakros zum Setzen des Synthese-Algroithmuses zur Umformung einer
 Relation in die 3. Normalform]
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \liLadePakete{normalformen,mathe,typographie}
-
 \ExplSyntaxOn
+%    \end{macrocode}
 
-% \let\schritt=\liSyntheseSchrittUeberschrift
-\def\liSyntheseSchrittUeberschrift#1{
+% \begin{verbatim}
+% \let\schrittE=\liSyntheseUeberErklaerung
+% \begin{enumerate}
+% \item \schrittE{1}
+%
+% \begin{enumerate}
+% \item \schrittE{1-1}
+% \item \schrittE{1-2}
+% \item \schrittE{1-3}
+% \item \schrittE{1-4}
+% \end{enumerate}
+%
+% \item \schrittE{2}
+% \item \schrittE{3}
+% \item \schrittE{4}
+% \end{enumerate}
+% \end{verbatim}
+
+% \let\schrittE=\liSyntheseUeberErklaerung
+% \begin{enumerate}
+% \item \schrittE{1}
+%
+% \begin{enumerate}
+% \item \schrittE{1-1}
+% \item \schrittE{1-2}
+% \item \schrittE{1-3}
+% \item \schrittE{1-4}
+% \end{enumerate}
+%
+% \item \schrittE{2}
+% \item \schrittE{3}
+% \item \schrittE{4}
+% \end{enumerate}
+
+% \begin{macro}{\liSyntheseUeberschrift}
+% |\let\schritt=\liSyntheseUeberschrift|
+%    \begin{macrocode}
+\def\liSyntheseUeberschrift#1{
   {
     \bfseries
     \sffamily
@@ -24,7 +62,12 @@ Relation in die 3. Normalform]
     }
   }
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liSyntheseErklaerung}
+% |\let\erklaerung=\liSyntheseErklaerung|
+%    \begin{macrocode}
 \def\li@synthese@erklaerung@texte#1{
   \str_case:nn {#1} {
     {1} {
@@ -81,19 +124,25 @@ Relation in die 3. Normalform]
     }
   }
 }
-% \let\erklaerung=\liSyntheseSchrittErklaerung
-\def\liSyntheseSchrittErklaerung#1{
+\def\liSyntheseErklaerung#1{
   {
     \itshape
     \footnotesize
     \liParagraphMitLinien{\li@synthese@erklaerung@texte{#1}}
   }
 }
+%    \end{macrocode}
+% \end{macro}
 
-% \let\schrittE=\liSyntheseSchrittUeberschriftErklaerung
-\def\liSyntheseSchrittUeberschriftErklaerung#1{
-  \liSyntheseSchrittUeberschrift{#1}\par
-  \liSyntheseSchrittErklaerung{#1}
+% \begin{macro}{\liSyntheseUeberErklaerung}
+% |\let\schrittE=\liSyntheseUeberErklaerung|
+%    \begin{macrocode}
+\def\liSyntheseUeberErklaerung#1{
+  \liSyntheseUeberschrift{#1}\par
+  \liSyntheseErklaerung{#1}
 }
+%    \end{macrocode}
+% \end{macro}
 
+%    \begin{macrocode}
 \ExplSyntaxOff

@@ -1,14 +1,51 @@
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-petri}[2020/12/03]
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \RequirePackage{tikz}
-
 \usetikzlibrary{petri,arrows.meta}
+%    \end{macrocode}
 
 % Für die Darstellungsmatrix
+%    \begin{macrocode}
 \RequirePackage{blkarray}
+%    \end{macrocode}
 
-\def\TmpSetKeys{%
+% \begin{verbatim}
+% \def\TmpA#1{
+%   \liPetriSetzeSchluessel%
+%   \pgfkeys{/petri/.cd,#1}%
+%   \begin{tikzpicture}
+%   \node at (-0.25,-0.25) {};
+%   \node at (\TmpX,\TmpY) {};
+%
+%   \begin{scope}[transform canvas={scale=\TmpScale},x=2cm,y=2cm,]
+%     \node[place,tokens=\TmpPlaceOne,label=$p_1$] at (0,1) (p1) {};
+%     \node[place,tokens=\TmpPlaceTwo,label=$p_2$] at (2,2) (p2) {};
+%     \node[place,tokens=\TmpPlaceThree,label=east:$p_3$] at (2,0) (p3) {};
+%
+%     \node[transition,label=east:$t_1$,\TmpTransitionOne] at (2,1) {}
+%       edge[pre] (p2)
+%       edge[post] (p3);
+%     \node[transition,label=$t_2$,\TmpTransitionTwo] at (1,1.5) {}
+%       edge[pre] (p1)
+%       edge[post] (p2);
+%     \node[transition,label=$t_3$,\TmpTransitionThree] at (1,0.5) {}
+%       edge[pre] (p3)
+%       edge[post] (p1);
+%     \node[transition,label=$t_4$,\TmpTransitionFour] at (1,1) {}
+%       edge[pre] (p2)
+%       edge[pre] (p3)
+%       edge[post] (p1);
+%   \end{scope}
+%   \end{tikzpicture}
+% }
+% \end{verbatim}
+
+% \begin{macro}{\liPetriSetzeSchluessel}
+%    \begin{macrocode}
+\def\liPetriSetzeSchluessel{%
   \def\TmpTransitionOne{}%
   \def\TmpTransitionTwo{}%
   \def\TmpTransitionThree{}%
@@ -45,7 +82,10 @@
     y/.store in=\TmpY,y/.default=5,
   }%
 }
+%    \end{macrocode}
+% \end{macro}
 
-\TmpSetKeys
+%    \begin{macrocode}
+\liPetriSetzeSchluessel
 
 \tikzset{activated/.style={very thick}}
