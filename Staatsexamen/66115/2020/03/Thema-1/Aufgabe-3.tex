@@ -1,0 +1,87 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen}
+\begin{document}
+\let\m=\liMenge
+\liAufgabenTitel{Kontextfreie Sprachen}
+\section{Aufgabe 3
+\index{Reguläre Sprache}
+\footcite{66115:2020:03}}
+
+\begin{enumerate}
+%%
+% (a)
+%%
+
+\item Entwerfen Sie eine kontextfreie Grammatik für die folgende kontextfreie Spra-
+che über dem Alphabet \liAlphabet{a, b, c}:
+
+L = {a"*’wuc” |n € No,2- |w|s = |vla}-
+
+(Hierbei bezeichnet |u|, die Anzahl des Zeichens x in dem Wort u.)
+
+Erklären Sie den Zweck der einzelnen Nichtterminale (Variablen) und der Grammatikregeln
+Ihrer Grammatik.
+
+%%
+% (b)
+%%
+
+\item Betrachten Sie die folgende kontextfreie Grammatik
+
+\begin{displaymath}
+G=(\m{A,B,C,D}, \m{a,b,c}, P, A)
+\end{displaymath}
+
+mit den Produktionen
+
+\begin{liProduktionsRegeln}
+A -> A B | C D | a,
+B -> C C | c,
+C -> D C | C B | b,
+D -> D B | a,
+\end{liProduktionsRegeln}
+
+Benutzen Sie den Algorithmus von Cocke-Younger-Kasami (CYK), um zu
+zeigen, dass das Wort $abcab$ zu der von $G$ erzeugten Sprache $L(G)$
+gehört.
+\index{CYK-Algorithmus}
+
+%%
+% (c)
+%%
+
+\item Finden Sie nun ein größtmögliches Teilwort von $abcab$, dass von
+keinem der vier Nichtterminale von $G$ ableitbar ist.
+
+%%
+% (d)
+%%
+
+\item Geben Sie eine Ableitung des Wortes $abcab$ mit $G$ an.
+\index{Ableitung (Kontextfreie Sprache)}
+
+\begin{liAntwort}
+\liAbleitung{
+  A ->
+  AB ->
+  ACC ->
+  ACBC ->
+  ACBDC ->
+  aCBDC ->
+  abBDC ->
+  abcDC ->
+  abcaC ->
+  abcab
+}
+\end{liAntwort}
+
+%%
+% (e)
+%%
+
+\item Beweisen Sie, dass die folgende formale Sprache über Z = {a,b} nicht kon-
+textfrei ist: ,
+L={a"b" |neN}.
+
+\end{enumerate}
+\end{document}
