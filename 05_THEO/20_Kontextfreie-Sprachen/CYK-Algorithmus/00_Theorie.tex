@@ -1,7 +1,7 @@
 \documentclass{lehramt-informatik-haupt}
 \liLadePakete{syntax}
-
 \begin{document}
+\def\t#1#2{$t_{#1,#2}$}
 
 \chapter{CYK-Algorithmus}
 \index{CYK-Algorithmus}
@@ -26,6 +26,52 @@ CNF-Grammatik (\memph{Chomsky-Normalform}) gegeben ist.
 Bilde zu einem Wort $w$ alle Teilwörter der Länge $1, 2, 3, \dots$ und
 bestimme die Ableitbarkeit von Variablen. Ist das „Teilwort“ der Länge
 $|w|$ vom Startsymbol ableitbar, so gehört $w$ zur Sprache.
+
+\begin{tabular}{|c||c|c|c|c|c|}
+\hline
+    & a    & b    & a    & b    & a \\
+\hline
+i/j & 1    & 2    & 3    & 4    & 5 \\\hline\hline
+1   & \t11 & \t12 & \t13 & \t14 & \t15 \\\cline{1-6}
+2   & \t21 & \t22 & \t23 & \t24 \\\cline{1-5}
+3   & \t31 & \t32 & \t33 \\\cline{1-4}
+4   & \t41 & \t42 \\\cline{1-3}
+5   & \t51 \\\cline{1-2}
+\end{tabular}
+
+\begin{itemize}
+
+\item Erste Tabellenzeile aus den Produktionsregeln ableiten.
+
+\item Aber der zweiten Tabellenzeile, aus den bereits aufgefüllten Zellen ableiten
+
+\item Variablen kombinieren (Reihenfolge beachten!)
+
+Zum Beispiel: \t11 (AB) \t12 (CD): AC AD BC BD
+
+\item Mehrere Zellenpaare durchprobieren
+
+\begin{itemize}
+\item Zum Beispiel: \t21
+
+\begin{enumerate}
+\item \t11 und \t12
+\end{enumerate}
+
+\item Zum Beispiel: \t51
+
+\begin{enumerate}
+\item \t11 und \t42
+\item \t21 und \t33
+\item \t31 und \t24
+\item \t41 und \t15
+\end{enumerate}
+\end{itemize}
+
+\item Steht in der letzten Zelle die Start-Variable, dann ist das Wort
+ableitbar.
+
+\end{itemize}
 
 \liJavaDatei{formale_sprachen/CYKAlgorithmus}
 
