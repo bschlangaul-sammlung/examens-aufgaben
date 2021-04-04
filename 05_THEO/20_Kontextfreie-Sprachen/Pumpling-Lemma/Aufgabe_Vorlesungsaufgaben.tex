@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{formale-sprachen}
 \begin{document}
 \liAufgabenTitel{Vorlesungsaufgaben}
 \section{Pumping-Lemma
@@ -9,7 +9,112 @@
 Zeige, dass die folgenden Sprache nicht kontextfrei sind:
 
 \begin{itemize}
-\item $L = \{ a^n b^n c^{2n} | n \in N \}$
+% 2h02
+\item $L = \{ a^n b^n c^{2n} | n \in \mathbb{N} \}$
+
+\begin{liAntwort}
+Annahme: $L$ ist kontextfrei.
+
+$\forall \omega \in L$: $\omega = / uvwxy$
+
+$j \in \mathbb{N}$: $|\omega| \geq j$
+
+$\omega = a^j b^j c^{2j}$: $|\omega| = 4j > j$
+
+Damit gilt: $|vwx| \leq j$, $|vx| \geq 1$
+
+Zu zeigen: Keine Möglichkeit der Zerlegung, damit $\omega' \in L$
+
+\begin{description}
+
+%%
+%
+%%
+
+\item[1. Fall]
+
+$vwv$ enthält nur $a$'s
+
+o. E. d. A. (ohne Einschränkung der Allgemeinheit) stecken alle $a$'s in
+der Zerlegung $vwx$, d. h. $u$ ist leer
+
+$u$: $\epsilon$
+$v$: $a^l$
+$w$: $a^{j-(l+m)}$
+$x$: $a^m$
+$y$: $b\dots b c \dots c$
+
+$v^2 w x^2 y$
+
+$a^{2l} a^{j-(l+m)} a^{2m} b^j c^{2j} =   $
+
+Nebenrechnung: $2l + j - (l + m) + 2m = j + l + m > j$,
+da $|vx| \geq 1 \rightarrow l + m \geq 1$
+
+$\Rightarrow$ $\omega' = uv^2wx^2y \notin L$
+
+%%
+%
+%%
+
+\item[2. Fall]
+
+$vwv$ enthalten $a$'s und $b$'s
+
+o. E. d. A. $|v|_a = |x|_b$
+
+$u$: $a^p$
+$v$: $a^l$
+$w$: $a^{j-(p+l)} b^{j-(l+r)}$
+$x$: $b^l$
+$y$: $b^r c^{2j}$
+
+$\Rightarrow$ $u v^0 w x^0 v$
+
+Nebenrechnung:
+
+$a$'s: $p + j - (l + p ) = j - l$
+
+$b$'s: $j - (l + r) = j - l$
+
+ist falsch, da $j-l$ echt kleiner ist, da $|vx| \geq 1 \rightarrow l \geq 1$
+
+$\Rightarrow$ $\omega' \notin L$
+
+%%
+%
+%%
+
+\item[3. Fall]
+
+$vwx$ enthält nur $b$'s
+
+analog zu Fall 1
+
+%%
+%
+%%
+
+\item[4. Fall] $vwx$ enthält nur $b$'s und $c$'s
+
+analog zu Fall 2
+
+%%
+%
+%%
+
+\item[5. Fall] $vwx$ enthält nur  $c$'s
+
+analog zu Fall 1
+\end{description}
+
+$\Rightarrow$ Es gibt keine Zerlegung, sodass $\forall i \in \mathbb{N}_0$
+
+$\Rightarrow$ Annahme ist falsch
+
+$\Rightarrow$ $L$ ist nicht kontextfrei
+\end{liAntwort}
+
 \item $L = \{ a^n b^{n^2} | n \in N \}$
 \end{itemize}
 
