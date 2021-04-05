@@ -26,6 +26,20 @@ interface FlaciÜbergang {
   Labels: string[]
 }
 
+interface KellerAktion {
+  0: string
+  1: string
+  2: string[]
+}
+
+interface FlaciKellerÜbergang {
+  Source: number
+  Target: number
+  x: number
+  y: number
+  Labels: KellerAktion[]
+}
+
 interface FlaciZustand {
   ID: number
   Name: string
@@ -105,8 +119,50 @@ function formatiereÜbergang (trans: FlaciÜbergang, states: StateNames) {
   return `  \\path (${source}) edge[auto${biegen}${loop}] node{${eingabe}} (${target});`
 }
 
+function formatiereOptionen (optionen: string[]): string {
+  if (optionen.length > 0) {
+    return '[' + optionen.join(',') + ']'
+  }
+  return ''
+}
+
+function formatiereKellerZeichen(zeichen: string): string {
+  if (zeichen === '') return 'epsilon'
+  if (zeichen === '#') return 'raute'
+  return zeichen
+}
+
+function formatiereKellerÜbergang (trans: FlaciKellerÜbergang, states: StateNames) {
+  const source = states[trans.Source]
+  const target = states[trans.Target]
+
+  const übergänge = []
+  for (const label of trans.Labels) {
+    const übergang = []
+    übergang.push(formatiereKellerZeichen(label[1]))
+    übergang.push(formatiereKellerZeichen(label[0]))
+    let kellerAktion = label[2].map((value) => {
+      return formatiereKellerZeichen(value)
+    }).join('')
+    if (kellerAktion === '') kellerAktion = 'epsilon'
+    übergang.push(kellerAktion)
+    übergänge.push('    ' + übergang.join(' '))
+  }
+
+  let optionen = []
+  if (source === target) {
+    optionen.push('loop')
+  }
+
+  if ((trans.x !== 0 || trans.y !== 0) && !optionen.includes('loop')) {
+    optionen.push('bend left')
+  }
+
+  return `  \\liKellerKante${formatiereOptionen(optionen)}{${source}}{${target}}{\n${übergänge.join(',\n')}\n  }\n`
+}
+
 function formatiereFlaciLink(def: FlaciDefinition) {
-  return `\n\\liFussnoteUrl{https://flaci.com/A${def.GUID}}`
+  return `\n\\liFlaci{A${def.GUID}}`
 }
 
 function formatiereTexEnv(name: string, inhalt: string, optionen: string | null = null): string {
@@ -120,6 +176,11 @@ function formatiereTexEnv(name: string, inhalt: string, optionen: string | null 
 function formatiereAutomat (def: FlaciDefinition): string {
   const statesRendered = []
 
+  let istKeller = false
+  if (def.type === 'NKA' || def.type === 'DKA') {
+    istKeller = true
+  }
+
   const states = def.automaton.States
   const stateNames: StateNames = {}
   for (const state of states) {
@@ -131,46 +192,28 @@ function formatiereAutomat (def: FlaciDefinition): string {
 
   for (const state of states) {
     for (const transition of state.Transitions) {
-      transitionsRendered.push(formatiereÜbergang(transition, stateNames))
+      if (!istKeller) {
+        transitionsRendered.push(formatiereÜbergang(transition, stateNames))
+      } else {
+        const trans = transition as any
+        transitionsRendered.push(formatiereKellerÜbergang(<FlaciKellerÜbergang> trans, stateNames))
+      }
     }
   }
   const inhalt = statesRendered.join('\n') + '\n\n' + transitionsRendered.join('\n')
-  const tikzPicture = formatiereTexEnv('center', formatiereTexEnv('tikzpicture', inhalt, 'li automat'))
+  const tikzPicture = formatiereTexEnv('center', formatiereTexEnv(
+    'tikzpicture',
+    inhalt,
+    istKeller ? 'li kellerautomat' : 'li automat'
+  ))
   const liAntwort = tikzPicture + '\n' + formatiereFlaciLink(def)
   return formatiereTexEnv('liAntwort', liAntwort)
 }
 
 export function konvertiereFlaciZuTikz(jsonDateiPfad: string) {
-  const definition = require(path.join(process.cwd(), jsonDateiPfad)) as FlaciDefinition
+  if (!jsonDateiPfad.match(/^\//)) {
+    jsonDateiPfad = path.join(process.cwd(), jsonDateiPfad)
+  }
+  const definition = require(jsonDateiPfad) as FlaciDefinition
   console.log(formatiereAutomat(definition))
 }
-
-// function keller (texCode: string, cmdObj: object) {
-//   const regExp = /\\transition(\[.*?\])?\{(?<fromState>.*?)\}\{(?<toState>.*?)\}\{(?<transitions>.*?)\}/g
-
-//   function formatElement(input: string | undefined): string {
-//     if (input === '' || input == null) return 'epsilon'
-//     return input.replace('\\#', 'raute')
-//   }
-
-//   function buildTransitions(transitions: string): string {
-//     let output: string = ''
-//     for (const transition of transitions.split(';').reverse()) {
-//       const elements = transition.split(',')
-//       output += formatElement('  ' + elements[1]) + ' ' + formatElement(elements[0]) + ' ' + formatElement(elements[2]) + ',\n'
-//     }
-//     return output
-//   }
-
-//   function formatTransitionsForTikz(fromState: string, toState: string, transitions: string): string {
-//     return `\\path (${fromState}) edge[above] node{\\u{\n${transitions}}} (${toState});\n`
-//   }
-
-//   let match
-//   while( (match = regExp.exec( texCode )) != null ) {
-//     if (match?.groups != null) {
-//       const groups = match.groups
-//       console.log(formatTransitionsForTikz(groups.fromState, groups.toState, buildTransitions(groups.transitions)))
-//     }
-//   }
-// }

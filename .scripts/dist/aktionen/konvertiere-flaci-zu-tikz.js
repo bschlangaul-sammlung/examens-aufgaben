@@ -60,8 +60,57 @@ function formatiereÜbergang(trans, states) {
     }
     return "  \\path (" + source + ") edge[auto" + biegen + loop + "] node{" + eingabe + "} (" + target + ");";
 }
+function formatiereOptionen(optionen) {
+    if (optionen.length > 0) {
+        return '[' + optionen.join(',') + ']';
+    }
+    return '';
+}
+function formatiereKellerZeichen(zeichen) {
+    if (zeichen === '')
+        return 'epsilon';
+    if (zeichen === '#')
+        return 'raute';
+    return zeichen;
+}
+function formatiereKellerÜbergang(trans, states) {
+    var e_1, _a;
+    var source = states[trans.Source];
+    var target = states[trans.Target];
+    var übergänge = [];
+    try {
+        for (var _b = __values(trans.Labels), _c = _b.next(); !_c.done; _c = _b.next()) {
+            var label = _c.value;
+            var übergang = [];
+            übergang.push(formatiereKellerZeichen(label[1]));
+            übergang.push(formatiereKellerZeichen(label[0]));
+            var kellerAktion = label[2].map(function (value) {
+                return formatiereKellerZeichen(value);
+            }).join('');
+            if (kellerAktion === '')
+                kellerAktion = 'epsilon';
+            übergang.push(kellerAktion);
+            übergänge.push('    ' + übergang.join(' '));
+        }
+    }
+    catch (e_1_1) { e_1 = { error: e_1_1 }; }
+    finally {
+        try {
+            if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+        }
+        finally { if (e_1) throw e_1.error; }
+    }
+    var optionen = [];
+    if (source === target) {
+        optionen.push('loop');
+    }
+    if ((trans.x !== 0 || trans.y !== 0) && !optionen.includes('loop')) {
+        optionen.push('bend left');
+    }
+    return "  \\liKellerKante" + formatiereOptionen(optionen) + "{" + source + "}{" + target + "}{\n" + übergänge.join(',\n') + "\n  }\n";
+}
 function formatiereFlaciLink(def) {
-    return "\n\\liFussnoteUrl{https://flaci.com/A" + def.GUID + "}";
+    return "\n\\liFlaci{A" + def.GUID + "}";
 }
 function formatiereTexEnv(name, inhalt, optionen) {
     if (optionen === void 0) { optionen = null; }
@@ -72,8 +121,12 @@ function formatiereTexEnv(name, inhalt, optionen) {
     return '\\begin{' + name + '}' + opt + '\n' + inhalt + '\n\\end{' + name + '}';
 }
 function formatiereAutomat(def) {
-    var e_1, _a, e_2, _b, e_3, _c;
+    var e_2, _a, e_3, _b, e_4, _c;
     var statesRendered = [];
+    var istKeller = false;
+    if (def.type === 'NKA' || def.type === 'DKA') {
+        istKeller = true;
+    }
     var states = def.automaton.States;
     var stateNames = {};
     try {
@@ -83,71 +136,55 @@ function formatiereAutomat(def) {
             statesRendered.push(formatiereZustand(state));
         }
     }
-    catch (e_1_1) { e_1 = { error: e_1_1 }; }
+    catch (e_2_1) { e_2 = { error: e_2_1 }; }
     finally {
         try {
             if (states_1_1 && !states_1_1.done && (_a = states_1.return)) _a.call(states_1);
         }
-        finally { if (e_1) throw e_1.error; }
+        finally { if (e_2) throw e_2.error; }
     }
     var transitionsRendered = [];
     try {
         for (var states_2 = __values(states), states_2_1 = states_2.next(); !states_2_1.done; states_2_1 = states_2.next()) {
             var state = states_2_1.value;
             try {
-                for (var _d = (e_3 = void 0, __values(state.Transitions)), _e = _d.next(); !_e.done; _e = _d.next()) {
+                for (var _d = (e_4 = void 0, __values(state.Transitions)), _e = _d.next(); !_e.done; _e = _d.next()) {
                     var transition = _e.value;
-                    transitionsRendered.push(formatiereÜbergang(transition, stateNames));
+                    if (!istKeller) {
+                        transitionsRendered.push(formatiereÜbergang(transition, stateNames));
+                    }
+                    else {
+                        var trans = transition;
+                        transitionsRendered.push(formatiereKellerÜbergang(trans, stateNames));
+                    }
                 }
             }
-            catch (e_3_1) { e_3 = { error: e_3_1 }; }
+            catch (e_4_1) { e_4 = { error: e_4_1 }; }
             finally {
                 try {
                     if (_e && !_e.done && (_c = _d.return)) _c.call(_d);
                 }
-                finally { if (e_3) throw e_3.error; }
+                finally { if (e_4) throw e_4.error; }
             }
         }
     }
-    catch (e_2_1) { e_2 = { error: e_2_1 }; }
+    catch (e_3_1) { e_3 = { error: e_3_1 }; }
     finally {
         try {
             if (states_2_1 && !states_2_1.done && (_b = states_2.return)) _b.call(states_2);
         }
-        finally { if (e_2) throw e_2.error; }
+        finally { if (e_3) throw e_3.error; }
     }
     var inhalt = statesRendered.join('\n') + '\n\n' + transitionsRendered.join('\n');
-    var tikzPicture = formatiereTexEnv('center', formatiereTexEnv('tikzpicture', inhalt, 'li automat'));
+    var tikzPicture = formatiereTexEnv('center', formatiereTexEnv('tikzpicture', inhalt, istKeller ? 'li kellerautomat' : 'li automat'));
     var liAntwort = tikzPicture + '\n' + formatiereFlaciLink(def);
     return formatiereTexEnv('liAntwort', liAntwort);
 }
 function konvertiereFlaciZuTikz(jsonDateiPfad) {
-    var definition = require(path_1.default.join(process.cwd(), jsonDateiPfad));
+    if (!jsonDateiPfad.match(/^\//)) {
+        jsonDateiPfad = path_1.default.join(process.cwd(), jsonDateiPfad);
+    }
+    var definition = require(jsonDateiPfad);
     console.log(formatiereAutomat(definition));
 }
 exports.konvertiereFlaciZuTikz = konvertiereFlaciZuTikz;
-// function keller (texCode: string, cmdObj: object) {
-//   const regExp = /\\transition(\[.*?\])?\{(?<fromState>.*?)\}\{(?<toState>.*?)\}\{(?<transitions>.*?)\}/g
-//   function formatElement(input: string | undefined): string {
-//     if (input === '' || input == null) return 'epsilon'
-//     return input.replace('\\#', 'raute')
-//   }
-//   function buildTransitions(transitions: string): string {
-//     let output: string = ''
-//     for (const transition of transitions.split(';').reverse()) {
-//       const elements = transition.split(',')
-//       output += formatElement('  ' + elements[1]) + ' ' + formatElement(elements[0]) + ' ' + formatElement(elements[2]) + ',\n'
-//     }
-//     return output
-//   }
-//   function formatTransitionsForTikz(fromState: string, toState: string, transitions: string): string {
-//     return `\\path (${fromState}) edge[above] node{\\u{\n${transitions}}} (${toState});\n`
-//   }
-//   let match
-//   while( (match = regExp.exec( texCode )) != null ) {
-//     if (match?.groups != null) {
-//       const groups = match.groups
-//       console.log(formatTransitionsForTikz(groups.fromState, groups.toState, buildTransitions(groups.transitions)))
-//     }
-//   }
-// }
