@@ -4,7 +4,7 @@
 \liAufgabenTitel{Pumping-Lemma}
 \section{Pumping-Lemma
 \index{Pumping-Lemma (Kontextfreie Sprache)}
-\footcite{theo:ab:2}}
+\footcite[Aufgabe 11: Pumping-Lemma]{theo:ab:2}}
 
 Zeige jeweils, dass die angegebene Sprache nicht kontextfrei ist:
 \begin{enumerate}
@@ -15,12 +15,47 @@ Zeige jeweils, dass die angegebene Sprache nicht kontextfrei ist:
 
 \item \liAusdruck[L_1]{ww}{ w \in \{ a, b \}^*}
 
+\begin{liAntwort}
+Sei $L_1$ kontextfrei. Dann existiert nach dem Pumping-Lemma eine Zahl
+$j$, so dass für jedes Wort $\omega \in L_1$ mit $|\omega| \geq j$ eine
+Zerlegung $\omega = uvwxy$ existiert, für die gilt: $|vx| > 0$, $|vwx|
+\leq n$ und für jedes $i \in \mathbb{N}$ ist $u v^i x y^i z \in L_1$.
+
+Wähle $\omega = a^n b^n a^n b^n$. Dann gibt es für jede Zerlegung
+$\omega = uvxyz$ mit den obigen Bedingungen zwei Möglichkeiten:
+
+\begin{itemize}
+\item $vwx$ besteht aus $a^j b^k$ mit $j + k > 0$.
+
+\item $vwx$ besteht aus $b^j a^k$ mit $j + k > 0$.
+\end{itemize}
+Dann ist in beiden Fällen $u v^0 x y^0 z \notin L1$.
+
+\end{liAntwort}
 %%
 % (b)
 %%
 
 \item \liAusdruck[L_2]{a^k b^l c^m}{ k > l > m; k, l, m \in N}
 
+\begin{liAntwort}
+Sei $L_2$ kontextfrei. Dann existiert nach dem Pumping-Lemma eine Zahl
+$j$, so dass für jedes Wort $\omega \in L_2$ mit $|\omega| \geq j$ eine
+Zerlegung $\omega = uvwxy$ existiert, für die gil-t: $|vx| > 0$, $|vwx|
+\leq j$ und für jedes $i \in \mathbb{N}$ ist $u v^i w x^i y \in L_2$.
+
+Wähle $\omega = a^n b^{n-1} c^{n-2}$.
+Dann gibt es für jede Zerlegung $\omega = uvwxy$ mit den obigen
+Bedingungen zwei Möglichkeiten:
+
+\begin{itemize}
+\item $vwx$ enthält kein $a$.
+Dann ist $u v^2 w x^2 y \notin L_2$.
+
+\item $vwx$ enthält mindestens ein $a$.
+Dann ist $u v^0 w x^0 y \notin L_2$.
+\end{itemize}
+\end{liAntwort}
 \end{enumerate}
 
 \end{document}
