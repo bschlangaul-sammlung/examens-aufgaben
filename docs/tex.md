@@ -46,9 +46,6 @@ Zum Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.
 
 ## Pakete
 
-* Makro: |\liHanoi{anzahl-scheiben}{gewicht-scheibe/turm-nr,gewicht-scheibe/turm-nr}|,
-  z. B.: |\liHanoi{4}{4/1,3/1,2/3,1/2}|
-
 ### |normalformen.sty|
 
 Hilfsmakros zum Setzen von Normalformen, Funktionalen Abhänigkeiten,
@@ -58,18 +55,8 @@ Attributhülle
 
 Paket zum Setzen von Pseudo-Code, Hüll-Paket um |algorithm2e|.
 
-### |rmodell.sty|
 
-Makros und Umgebungen zum Setzen des Relationenmodells beim Thema
-Datenbanken.
-
-* Makro: |\liRelation{name}{attribut, attribut}|: Umhüllen der Attribute
-  mit geschweiften und dann eckigen Klammern.
-* Makro: |\liPrimaer{text}|: Unterstreichung für den Primärschlüssel
-* Makro: |\liFremd{text}|: Überstreichung für den Fremdschlüssel
-* Makro: |\liAttribut{text}|: Gleiche Schrift wie Umgebung |liRmodell|
-* Umgebung: |\begin{liRmodell} \end{liRmodell}|: Kleinere Schrift und
-  Schreibmaschinenschrift.
+* Umgebung:
 
 ### |spalten.sty|
 

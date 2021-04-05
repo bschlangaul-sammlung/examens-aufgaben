@@ -48,6 +48,7 @@
 \usepackage[a4paper,margin=25mm,left=50mm,nohead]{geometry}
 \usepackage[numbered]{hypdoc}
 \usepackage{amsmath}
+\usepackage{titlesec}
 \usepackage{lehramt-informatik-basis}
 \liLadePakete{
   gantt,
@@ -58,6 +59,8 @@
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
+\let\oldsubsection\subsection
+\renewcommand\subsection{\clearpage\oldsubsection}
 \begin{document}
   \DocInput{\jobname.dtx}
 \end{document}
@@ -78,16 +81,10 @@
 %  \PrintIndex
 %}
 %
+% \newpage
 % \section{Implementation}
 %
 %    \begin{macrocode}
-%<*package>
-%    \end{macrocode}
-%    \begin{macrocode}
 {{ einbinden }}
-%    \end{macrocode}
-%    \begin{macrocode}
-\endinput
-%</package>
 %    \end{macrocode}
 %\Finale

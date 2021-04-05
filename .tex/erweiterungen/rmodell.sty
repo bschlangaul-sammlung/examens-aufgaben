@@ -3,13 +3,27 @@
 Makros und Umgebungen zum Setzen des Relationenmodells beim Thema
 Datenbanken.]
 \RequirePackage{soul}
+%    \end{macrocode}
 
+% \begin{macro}{\liPrimaer}
+% |\liPrimaer{text}|: Unterstreichung für den Primärschlüssel
+%    \begin{macrocode}
 \def\liPrimaer#1{\ul{#1}}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liFremd}
+% |\liFremd{text}|: Überstreichung für den Fremdschlüssel
+%    \begin{macrocode}
 \def\liFremd#1{{\setul{-0.9em}{}\ul{#1}}}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{environment}{liRmodell}
+% |\begin{liRmodell} \end{liRmodell}|: Kleinere Schrift und
+% Schreibmaschinenschrift.
+%    \begin{macrocode}
 \def\li@Rmodell@Schrift{\footnotesize\ttfamily}
-
 \ExplSyntaxOn
 \NewDocumentEnvironment { liRmodell }
 { +b }
@@ -23,11 +37,26 @@ Datenbanken.]
   \medskip
 } {}
 \ExplSyntaxOff
+%    \end{macrocode}
+% \end{environment}
 
+% \begin{macro}{\liRelation}
+% |\liRelation{name}{attribut, attribut}|: Umhüllen der Attribute
+% mit geschweiften und dann eckigen Klammern.
+%    \begin{macrocode}
 \def\liRelation#1#2{
 \noindent
 #1 : \{[ #2 ]\}
 \par
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liAttribut}
+% |\liAttribut{text}|: Gleiche Schrift wie Umgebung |liRmodell|
+%    \begin{macrocode}
 \def\liAttribut#1{{\li@Rmodell@Schrift#1}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}

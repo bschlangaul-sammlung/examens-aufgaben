@@ -48,6 +48,7 @@
 \usepackage[a4paper,margin=25mm,left=50mm,nohead]{geometry}
 \usepackage[numbered]{hypdoc}
 \usepackage{amsmath}
+\usepackage{titlesec}
 \usepackage{lehramt-informatik-basis}
 \liLadePakete{
   gantt,
@@ -58,6 +59,8 @@
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
+\let\oldsubsection\subsection
+\renewcommand\subsection{\clearpage\oldsubsection}
 \begin{document}
   \DocInput{\jobname.dtx}
 \end{document}
@@ -78,11 +81,9 @@
 %  \PrintIndex
 %}
 %
+% \newpage
 % \section{Implementation}
 %
-%    \begin{macrocode}
-%<*package>
-%    \end{macrocode}
 %    \begin{macrocode}
 %    \end{macrocode}
 % \subsection{automaten.sty}
@@ -757,11 +758,19 @@ TikZ, um Grafiken zeichnen zu können.]
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-hanoi}[2020/12/19 Paket zum Setzen
 von Hanoi-Grafiken]
-% https://kleinco.de/latex-snippets/7/tikz-towers-of-hanoi-illustration-for-latex-documents/
+%    \end{macrocode}
 
+% Quelle: \url{https://kleinco.de/latex-snippets/7/tikz-towers-of-hanoi-illustration-for-latex-documents/}
+
+%    \begin{macrocode}
 \RequirePackage{tikz}
 \RequirePackage{xcolor}
+%    \end{macrocode}
 
+% \begin{macro}{\liHanoi}
+% |\liHanoi{anzahl-scheiben}{gewicht-scheibe/turm-nr,gewicht-scheibe/turm-nr}|,
+% z. B.: |\liHanoi{4}{4/1,3/1,2/3,1/2}|
+%    \begin{macrocode}
 \def\li@mset #1[#2]=#3{%
 	\expandafter\xdef\csname #1#2\endcsname{#3}
 }
@@ -794,6 +803,10 @@ von Hanoi-Grafiken]
     }
   \end{tikzpicture}
 }
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{kontrollflussgraph.sty}
@@ -1576,13 +1589,27 @@ von Pseudo-Code, Hüll-Paket um algorithm2e]
 Makros und Umgebungen zum Setzen des Relationenmodells beim Thema
 Datenbanken.]
 \RequirePackage{soul}
+%    \end{macrocode}
 
+% \begin{macro}{\liPrimaer}
+% |\liPrimaer{text}|: Unterstreichung für den Primärschlüssel
+%    \begin{macrocode}
 \def\liPrimaer#1{\ul{#1}}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liFremd}
+% |\liFremd{text}|: Überstreichung für den Fremdschlüssel
+%    \begin{macrocode}
 \def\liFremd#1{{\setul{-0.9em}{}\ul{#1}}}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{environment}{liRmodell}
+% |\begin{liRmodell} \end{liRmodell}|: Kleinere Schrift und
+% Schreibmaschinenschrift.
+%    \begin{macrocode}
 \def\li@Rmodell@Schrift{\footnotesize\ttfamily}
-
 \ExplSyntaxOn
 \NewDocumentEnvironment { liRmodell }
 { +b }
@@ -1596,14 +1623,29 @@ Datenbanken.]
   \medskip
 } {}
 \ExplSyntaxOff
+%    \end{macrocode}
+% \end{environment}
 
+% \begin{macro}{\liRelation}
+% |\liRelation{name}{attribut, attribut}|: Umhüllen der Attribute
+% mit geschweiften und dann eckigen Klammern.
+%    \begin{macrocode}
 \def\liRelation#1#2{
 \noindent
 #1 : \{[ #2 ]\}
 \par
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liAttribut}
+% |\liAttribut{text}|: Gleiche Schrift wie Umgebung |liRmodell|
+%    \begin{macrocode}
 \def\liAttribut#1{{\li@Rmodell@Schrift#1}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{sortieren.sty}
@@ -2182,9 +2224,5 @@ Erweiterung bereitstellt]
   {\footnotesize#1}
 }
 
-%    \end{macrocode}
-%    \begin{macrocode}
-\endinput
-%</package>
 %    \end{macrocode}
 %\Finale
