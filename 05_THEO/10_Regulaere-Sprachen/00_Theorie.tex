@@ -229,45 +229,6 @@ Syntaxbaum zu 100101
 %
 %-----------------------------------------------------------------------
 
-\section{Deterministische endliche Automaten}
-
-Ein deterministischer endlicher Automat (\memph{DEA}; englisch
-deterministic finite state machine oder deterministic finite automaton,
-\memph{DFA}) ist ein endlicher Automat, der unter \memph{Eingabe eines
-Zeichens} seines Eingabealphabetes (den möglichen Eingaben) von einem
-Zustand, in dem er sich befindet, in einen \memph{eindeutig bestimmten
-Folgezustand} wechselt.
-\footcite{wiki:dea}
-
-Einen endlichen Automaten können wir uns als eine „Black Box“
-vorstellen, in die wir etwas eingeben können und die sich aufgrund einer
-Folge von Eingaben in einem entsprechenden Zustand befindet. In
-Abhängigkeit von ihrem jeweiligen Zustand und einer erfolgten Eingabe
-geht sie in einen Folgezustand über. Befindet sich die Black Box nach
-der Abarbeitung der Eingabefolge in einem ausgezeichneten Zustand, einem
-so genannten Endzustand, dann handelt es sich um eine von ihr
-akzeptierte Folge, falls sie sich nicht in einem Endzustand befindet,
-hat sie die Eingabe nicht akzeptiert.
-\footcite[Seite 11]{vossen}
-
-Automaten sind \memph{deterministisch}, wenn es in jedem Zustand für jedes
-Eingabesymbol \memph{höchstens einen Folgezustand} gibt.
-\footcite[Seite 28]{vossen}
-
-Ein DEA/DFA ist ein 5-Tupel ($Z, \Sigma, \delta, E, z_0$) mit
-
-\begin{description}
-\item[$Z$:] Menge der Zustände (endlich)
-\item[$\Sigma$:] Eingabealphabet mit (endlich)
-\item[$\delta$:] $Z \times \Sigma \rightarrow Z$ Zustandsübergangsfunktion
-\item[$E$:] Menge der Endzustände
-\item[$z_0$:] Startzustand\footcite[Seite 26]{theo:fs:1}
-\end{description}
-
-%-----------------------------------------------------------------------
-%
-%-----------------------------------------------------------------------
-
 \section{Reguläre Grammatik $\rightarrow$ NEA}
 
 Wir können aus einer regulären Grammatik einen NEA machen: Jedes
@@ -343,77 +304,6 @@ beiden Fallen in einen (nicht notwendig gleichen) Nicht-Endzustand
 
 Äquivalente Zustände können zu einem Zustand verschmolzen
 werden.
-
-%-----------------------------------------------------------------------
-%
-%-----------------------------------------------------------------------
-
-\section{Nichtdeterministische endliche Automaten}
-
-Ein nichtdeterministischer endlicher Automat (NEA; englisch
-nondeterministic finite automaton, NFA) ist ein endlicher Automat, bei
-dem es für den \memph{Zustandsübergang mehrere gleichwertige
-Möglichkeiten} gibt. Im Unterschied zum deterministischen endlichen
-Automaten sind die Möglichkeiten nicht eindeutig, dem Automaten ist also
-nicht vorgegeben, welchen Übergang er zu wählen hat.\footcite{wiki:nea}
-
-\begin{center}
-\begin{tikzpicture}[->]
-\node[state,initial] (p) {p};
-\node[state,accepting,right=of p] (q) {q};
-
-\path (p) edge[above] node{1} (q);
-
-\path (p) edge[loop,above] node{0,1} (q);
-\end{tikzpicture}
-\end{center}
-
-Nichtdeterministische endliche Automaten sind Automaten, in denen es zu
-einem Zustand und einem Eingabesymbol mehrere Folgezustände geben kann.
-\footcite[Seite 28]{vossen}
-
-Ein NEA/NFA ist ein 5-Tupel ($Z, \Sigma, \sigma, E, z_0$) mit
-
-\begin{description}
-\item[$Z$:] Menge der Zustände (endlich)
-\item[$\Sigma$:] Eingabealphabet mit (endlich)
-\item[$\delta$:] $Z \times \Sigma \rightarrow 2^Z$ Zustandsübergangsfunktion
-\item[$E$:] Menge der Endzustände
-\item[$z_0$:] Startzustand\footcite[Seite 30]{theo:fs:1}
-\end{description}
-
-Potenzmenge\footcite{wiki:potenzmenge}
-
-\let\p=\liPotenzmengeOhneMathe
-
-Beispiel: $Z = \p{ z_1, z_2 }$
-
-$2^Z = \{\p{}, \p{z_1 }, \p{z_2 }, \p{z_1 , z_2 }\}$
-
-\section{Schnitt zweier Automaten}
-
-\url{https://vowi.fsinf.at/images/9/9c/TU_Wien-Formale_Modellierung_VU_%28Salzer%29-L%C3%B6sungen_alte_Tests_-_TU_Wien-Formale_Modellierung_VU_%28Salzer%29_-_%C3%9Cbung_2_-_Musterl%C3%B6sung_%282017WS%29.pdf}
-
-Wir konstruieren einen Automaten A, der die beiden Automaten $A_1$ und
-$A_2$ parallel ausführt. Als Zustände für A verwenden wir Paare ($q_1$,
-$q_2$), wobei $q_1 \in Q_1$ ein Zustand des ersten Automaten und $q_2$
-∈ $Q_2$ ein Zustand des zweiten Automaten ist. Der neue Automat befindet
-sich bei Eingabe eines Wortes $w$ im Zustand ($q_1$ , $q_2$), wenn sich
-der erste Automat bei diesem Wort im Zustand $q_1$ und der zweite im
-Zustand $q_2$ befinden würde. Der Startzustand ($i_1$ , $i_2$)
-entspricht der Situation, in der sich die beiden ursprünglichen
-Automaten im Startzustand befinden. Ein Übergang mit dem Symbol $s$ von
-($q_1$, $q_2$) nach ($q_1$ 0 , $q_2$ 0 ) existiert genau dann, wenn
-wenn man mit diesem Symbol in $A_1$
-von $q_1$ nach $q_1$ 0 = δ 1 ($q_1$ , s) und in $A_2$ von $q_2$ nach
-$q_2$ 0 = δ 2 ($q_2$ , s) gelangt.
-
-Ein Wort wird von beiden Automaten
-akzeptiert (und liegt daher im Durchschnitt der Sprachen), wenn der neue
-Automat einen Zustand ($q_1$ , $q_2$ ) erreicht, bei dem beide Zustände
-Endzustände im jeweiligen Automaten sind, wenn also $q_1 \in F_1$ und
-$q_2 \in F_2$ gilt. Ein Automat für den Durchschnitt der Sprachen
-L($A_1$ ) und L($A_2$ ) lässt sich somit durch
 
 \literatur
 

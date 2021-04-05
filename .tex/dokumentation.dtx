@@ -50,19 +50,20 @@
 \usepackage{amsmath}
 \usepackage{mdframed}
 
-\def\liBeispiel#1{
+\newenvironment{liBeispiel}{
   \begin{mdframed}
-  #1
+}{
   \end{mdframed}
 }
 
 \usepackage{lehramt-informatik-basis}
 \liLadePakete{
-  gantt,
+  automaten,
   formale-sprachen,
+  gantt,
   minimierung,
-  typographie,
   synthese-algorithmus,
+  typographie,
 }
 \EnableCrossrefs
 \CodelineIndex
@@ -98,29 +99,117 @@
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-automaten}[2021/02/14 Zum Setzen von Automaten]
+%    \end{macrocode}
 
+% \subsubsection{Endlicher Automat}
+
+% \begin{verbatim}
+% \begin{tikzpicture}[li automat]
+% \node[state,initial,accepting] (0) {$z_0$};
+% \node[state,right of=0] (1) {$z_1$};
+%
+% \path (0) edge[above] node{1} (1);
+% \path (0) edge[loop,above] node{0} (0);
+% \path (1) edge[loop,above] node{0} (1);
+% \end{tikzpicture}
+% \end{verbatim}
+
+% \begin{liBeispiel}
+% \begin{tikzpicture}[li automat]
+% \node[state,initial,accepting] (0) {$z_0$};
+% \node[state,right of=0] (1) {$z_1$};
+%
+% \path (0) edge[above] node{1} (1);
+% \path (0) edge[loop,above] node{0} (0);
+% \path (1) edge[loop,above] node{0} (1);
+% \end{tikzpicture}
+% \end{liBeispiel}
+
+% \subsubsection{Kellerautomat}
+
+% \begin{verbatim}
+% \let\u=\liKellerUebergang
+% \begin{tikzpicture}[li kellerautomat,node distance=5cm]
+% \node[state,initial] (0) {$z_0$};
+% \node[state,right of=0,accepting] (1) {$z_1$};
+%
+% \path (0) edge[above,loop] node{\u{
+% 1 raute Eraute,
+% 0 raute raute,
+% }} (0);
+%
+% \path (0) edge[above] node{\u{
+% epsilon E epsilon,
+% 1 E epsilon,
+% 0 E epsilon,
+% }} (1);
+%
+% \path (1) edge[above,loop] node{\u{
+% epsilon raute epsilon,
+% 1 raute raute,
+% 0 raute raute,
+% }} (1);
+% \end{tikzpicture}
+% \end{verbatim}
+
+% \begin{liBeispiel}
+% \let\u=\liKellerUebergang
+% \begin{tikzpicture}[li kellerautomat,node distance=5cm]
+% \node[state,initial] (0) {$z_0$};
+% \node[state,right of=0,accepting] (1) {$z_1$};
+%
+% \path (0) edge[above,loop] node{\u{
+% 1 raute Eraute,
+% 0 raute raute,
+% }} (0);
+%
+% \path (0) edge[above] node{\u{
+% epsilon E epsilon,
+% 1 E epsilon,
+% 0 E epsilon,
+% }} (1);
+%
+% \path (1) edge[above,loop] node{\u{
+% epsilon raute epsilon,
+% 1 raute raute,
+% 0 raute raute,
+% }} (1);
+% \end{tikzpicture}
+% \end{liBeispiel}
+
+%    \begin{macrocode}
 \RequirePackage{tikz}
 \usetikzlibrary{arrows,automata,positioning}
 
 \directlua{
   automaten = require('lehramt-informatik-automaten')
 }
+%    \end{macrocode}
 
-% \let\k=\liAutomatenKante
+% \begin{macro}{\liAutomatenKante}
+% |\let\k=\liAutomatenKante|
+%    \begin{macrocode}
 \def\liAutomatenKante#1#2#3#4{
   \path (#1) edge[#4] node{#3} (#2);
 }
+%    \end{macrocode}
+% \end{macro}
 
-\ExplSyntaxOn
-% \let\u=\liKellerUebergang
+% \begin{macro}{\liKellerUebergang}
+% |\let\u=\liKellerUebergang|
 % Regulärer Ausdruck zum Konvertieren:
-% \((.*), (.*), (.*)\)
-% \\u{$1 $2 $3}
+% |\((.*), (.*), (.*)\)|
+% |\\u{$1 $2 $3}|
+%    \begin{macrocode}
+\ExplSyntaxOn
 \def\liKellerUebergang#1{
   \directlua{automaten.gib_uebergaenge_aus('#1')}
 }
 \ExplSyntaxOff
+%    \end{macrocode}
+% \end{macro}
 
+%    \begin{macrocode}
 \tikzset{
   li keller knoten/.style={
     text width=2cm,
@@ -140,6 +229,9 @@
     }
   }
 }
+%    \end{macrocode}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{baum.sty}
@@ -1208,7 +1300,9 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 % \end{macro}
 
 % \begin{macro}{\liFussnoten}
-% \liBeispiel{\liFussnoten}
+% \begin{liBeispiel}
+%   \liFussnoten
+% \end{liBeispiel}
 %    \begin{macrocode}
 \def\liFussnoten{
   \bigskip
@@ -2046,6 +2140,7 @@ Relation in die 3. Normalform]
 % \end{enumerate}
 % \end{verbatim}
 
+% \begin{liBeispiel}
 % \let\schrittE=\liSyntheseUeberErklaerung
 % \begin{enumerate}
 % \item \schrittE{1}
@@ -2061,6 +2156,7 @@ Relation in die 3. Normalform]
 % \item \schrittE{3}
 % \item \schrittE{4}
 % \end{enumerate}
+% \end{liBeispiel}
 
 % \begin{macro}{\liSyntheseUeberschrift}
 % |\let\schritt=\liSyntheseUeberschrift|
