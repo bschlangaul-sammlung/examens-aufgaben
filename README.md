@@ -397,16 +397,16 @@ Weitere Aufgaben zum Thema „SQL“:
 
 #### Deterministisch endlicher Automat (DEA)
 
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Deterministischer-endlicher-Automat.pdf" download="Aufgabe_Deterministischer-endlicher-Automat">„Deterministischer endlicher Automat“</a> (Reguläre Sprache, Deterministisch endlicher Automat (DEA))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Grammatik-aus-Automat.pdf" download="Aufgabe_Grammatik-aus-Automat">„Grammatik aus Automat“</a> (Reguläre Sprache, Deterministisch endlicher Automat (DEA), Reguläre Grammatik)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_NEA-DEA-Aequivalenzklassen.pdf" download="Aufgabe_NEA-DEA-Aequivalenzklassen">„NEA-DEA-Aequivalenzklassen“</a> (Reguläre Sprache, Deterministisch endlicher Automat (DEA), Minimierungsalgorithmus, Reguläre Ausdrücke, Äquivalenzklassen)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-DEA.pdf" download="Aufgabe_Vorlesungsaufgaben-DEA">„Vorlesungsaufgaben“</a> (Deterministisch endlicher Automat (DEA))
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Endliche-Automaten/Aufgabe_Deterministischer-endlicher-Automat.pdf" download="Aufgabe_Deterministischer-endlicher-Automat">„Deterministischer endlicher Automat“</a> (Reguläre Sprache, Deterministisch endlicher Automat (DEA))
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Endliche-Automaten/Aufgabe_Vorlesungsaufgaben-DEA.pdf" download="Aufgabe_Vorlesungsaufgaben-DEA">„Vorlesungsaufgaben“</a> (Deterministisch endlicher Automat (DEA))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Regulaere-Ausdruecke/Aufgabe_Regulaere-Grammatik-regulaere-Ausdruecke-und-DEA.pdf" download="Aufgabe_Regulaere-Grammatik-regulaere-Ausdruecke-und-DEA">„Reguläre Grammatik, reguläre Ausdrücke und DEA“</a> (Reguläre Sprache, Reguläre Grammatik, Ableitung (Reguläre Sprache), Reguläre Ausdrücke, Deterministisch endlicher Automat (DEA))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2019/09/Thema-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46115-2019-Herbst_T2-A1">„Komplemetieren eines NEA“ Examen 46115 Herbst 2019 T2 A1</a> (Potenzmengenalgorithmus, Nichtdeterministisch endlicher Automat (NEA), Deterministisch endlicher Automat (DEA))
 
 #### Nichtdeterministisch endlicher Automat (NEA)
 
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Aufgabe_Vorlesungsaufgaben-NEA.pdf" download="Aufgabe_Vorlesungsaufgaben-NEA">„Vorlesungsaufgaben“</a> (Nichtdeterministisch endlicher Automat (NEA))
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Endliche-Automaten/Aufgabe_Vorlesungsaufgaben-NEA.pdf" download="Aufgabe_Vorlesungsaufgaben-NEA">„Vorlesungsaufgaben“</a> (Nichtdeterministisch endlicher Automat (NEA))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2019/09/Thema-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46115-2019-Herbst_T2-A1">„Komplemetieren eines NEA“ Examen 46115 Herbst 2019 T2 A1</a> (Potenzmengenalgorithmus, Nichtdeterministisch endlicher Automat (NEA), Deterministisch endlicher Automat (DEA))
 
 #### Potenzmengenalgorithmus
@@ -1045,7 +1045,9 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-2/Aufgabe-9.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T2-A9">Aufgabe 9 (Streutabellen (Hashing))</a>
 - 2020 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2020-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/03/OCR.txt" download="Staatsexamen-Informatik_66115-2020-Frühjahr_OCR">OCR.txt</a> 
     - Thema 1 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/03/Thema-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2020-Frühjahr_T1-A3">Aufgabe 3 (Kontextfreie Sprache, CYK-Algorithmus, Ableitung (Kontextfreie Sprache))</a>
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/03/Thema-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2020-Frühjahr_T1-A3">Aufgabe 3 (Kontextfreie Sprache, CYK-Algorithmus, Ableitung (Kontextfreie Sprache))</a> 
+    - Thema 2 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/03/Thema-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2020-Frühjahr_T2-A3">Aufgabe 3 (Kontextfreie Sprache, Kontextfreie Grammatik)</a>
 - 2020 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Scan.pdf" download="Staatsexamen-Informatik_66115-2020-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/OCR.txt" download="Staatsexamen-Informatik_66115-2020-Herbst_OCR">OCR.txt</a> 
 
 ### 66116: Datenbanksysteme / Softwaretechnologie (vertieft)

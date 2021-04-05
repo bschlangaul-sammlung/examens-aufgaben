@@ -29,52 +29,50 @@
 % \subsubsection{Kellerautomat}
 
 % \begin{verbatim}
-% \let\u=\liKellerUebergang
 % \begin{tikzpicture}[li kellerautomat,node distance=5cm]
 % \node[state,initial] (0) {$z_0$};
 % \node[state,right of=0,accepting] (1) {$z_1$};
 %
-% \path (0) edge[above,loop] node{\u{
-% 1 raute Eraute,
-% 0 raute raute,
-% }} (0);
+% \liKellerKante[above,loop]{0}{0}{
+%   1 raute Eraute,
+%   0 raute raute,
+% }
 %
-% \path (0) edge[above] node{\u{
-% epsilon E epsilon,
-% 1 E epsilon,
-% 0 E epsilon,
-% }} (1);
+% \liKellerKante[above]{0}{1}{
+%   epsilon E epsilon,
+%   1 E epsilon,
+%   0 E epsilon,
+% }
 %
-% \path (1) edge[above,loop] node{\u{
-% epsilon raute epsilon,
-% 1 raute raute,
-% 0 raute raute,
-% }} (1);
+% \liKellerKante[above,loop]{1}{2}{
+%   epsilon raute epsilon,
+%   1 raute raute,
+%   0 raute raute,
+% }
 % \end{tikzpicture}
 % \end{verbatim}
 
 % \begin{liBeispiel}
-% \let\u=\liKellerUebergang
 % \begin{tikzpicture}[li kellerautomat,node distance=5cm]
 % \node[state,initial] (0) {$z_0$};
 % \node[state,right of=0,accepting] (1) {$z_1$};
 %
-% \path (0) edge[above,loop] node{\u{
-% 1 raute Eraute,
-% 0 raute raute,
-% }} (0);
+% \liKellerKante[above,loop]{0}{0}{
+%   1 raute Eraute,
+%   0 raute raute,
+% }
 %
-% \path (0) edge[above] node{\u{
-% epsilon E epsilon,
-% 1 E epsilon,
-% 0 E epsilon,
-% }} (1);
+% \liKellerKante[above]{0}{1}{
+%   epsilon E epsilon,
+%   1 E epsilon,
+%   0 E epsilon,
+% }
 %
-% \path (1) edge[above,loop] node{\u{
-% epsilon raute epsilon,
-% 1 raute raute,
-% 0 raute raute,
-% }} (1);
+% \liKellerKante[above,loop]{1}{2}{
+%   epsilon raute epsilon,
+%   1 raute raute,
+%   0 raute raute,
+% }
 % \end{tikzpicture}
 % \end{liBeispiel}
 
@@ -107,6 +105,16 @@
   \directlua{automaten.gib_uebergaenge_aus('#1')}
 }
 \ExplSyntaxOff
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liKellerKante}
+% \cmd{\liKellerKante}\oarg{tikz-optionen}\marg{von}\marg{zu}\marg{übergange}
+% |\let\k=\liKellerKante|
+%    \begin{macrocode}
+\NewDocumentCommand{\liKellerKante} { O{auto} m m m  } {
+  \path (#2) edge[#1] node{\liKellerUebergang{#4}} (#3);
+}
 %    \end{macrocode}
 % \end{macro}
 
