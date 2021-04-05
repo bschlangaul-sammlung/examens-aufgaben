@@ -1,29 +1,51 @@
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-mathe}[2021/03/13 Für den
 Minimierungsalgorithmus von einem NEA zu einem DEA]
+%    \end{macrocode}
 
+% \begin{macro}{\liFussnote}
+%    \begin{macrocode}
 \def\liFussnote#1{$*^#1$}
+%    \end{macrocode}
+% \end{macro}
 
+%    \begin{macrocode}
 \def\li@fussnote@text#1#2{
   \liFussnote{#1}
   \quad
   {\footnotesize #2}
 }
+%    \end{macrocode}
+
+% \begin{macro}{\liFussnoteEinsText}
+%    \begin{macrocode}
 \def\liFussnoteEinsText{
   \li@fussnote@text{1}
   {Paar aus End-/ Nicht-Endzustand kann nicht äquivalent sein.}
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liFussnoteZweiText}
+%    \begin{macrocode}
 \def\liFussnoteZweiText{
   \li@fussnote@text{2}
   {Test, ob man mit der Eingabe zu einem bereits markiertem Paar kommt.}
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liFussnoteDreiText}
+%    \begin{macrocode}
 \def\liFussnoteDreiText{
   \li@fussnote@text{3}
   {In weiteren Iterationen markierte Zustände.}
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liFussnoten}
+%    \begin{macrocode}
 \def\liFussnoten{
   \bigskip
 
@@ -36,14 +58,35 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
   \noindent
   \liFussnoteDreiText
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liLeereZelle}
+%    \begin{macrocode}
 \def\liLeereZelle{$\emptyset$}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liZustandsPaarVariablenName}
+%    \begin{macrocode}
 \def\liZustandsPaarVariablenName{z}
-\def\liZustandsPaar#1#2{$(\liZustandsPaarVariablenName_#1, \liZustandsPaarVariablenName_#2)$}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liZustandsPaar}
+%    \begin{macrocode}
+\def\liZustandsPaar#1#2{
+  $(
+    \liZustandsPaarVariablenName_#1,
+    \liZustandsPaarVariablenName_#2
+  )$
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{environment}{liUebergangsTabelle}
+%    \begin{macrocode}
 \renewcommand{\arraystretch}{1.4}
-
 \NewDocumentEnvironment{ liUebergangsTabelle } { m m } {
   \liPseudoUeberschrift{Übergangstabelle}
   \begin{center}
@@ -53,3 +96,7 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
   \end{tabular}
   \end{center}
 }
+%    \end{macrocode}
+% \end{environment}
+
+%    \begin{macrocode}

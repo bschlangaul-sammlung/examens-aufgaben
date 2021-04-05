@@ -46,39 +46,6 @@ Zum Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.
 
 ## Pakete
 
-### |normalformen.sty|
-
-Hilfsmakros zum Setzen von Normalformen, Funktionalen Abhänigkeiten,
-Attributhülle
-
-### |pseudo.sty|
-
-Paket zum Setzen von Pseudo-Code, Hüll-Paket um |algorithm2e|.
-
-
-* Umgebung:
-
-### |spalten.sty|
-
-Lädt das Paket
-„multicol“, damit mehrspaltiger Satz mit Hilfe der Umgebung „multicols“
-realisiert werden kann.
-
-* Makro: |\liSpaltenUmbruch|: Spezieller Spaltenumbruch, der den Inhalt
-  mit Hilfe von |\vfill\strut| nach oben schiebt.
-
-### |sortieren.sty|
-
-Schaubilder für händisches Sortieren bzw. einen Schreibtischlauf setzen
-
-* Makro: |\liVertauschen{1 2 >4 <3 5}|: Setze ein Schaubild mit Hilfe
-  von TikZ. |<| und |>| werden dazu verwendet, um den Vertauschprozess
-  zu visualisieren.
-
-### |struktogramm.sty|
-
-Lädt das Paket |struktex| zum Setzen von Struktogrammen.
-
 ## Vorlagen
 
 ### haupt

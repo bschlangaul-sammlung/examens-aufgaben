@@ -3,14 +3,23 @@
 für händisches Sortieren bzw. einen Schreibtischlauf setzen]
 \RequirePackage{tikz}
 \usetikzlibrary{shapes.multipart,positioning}
+%    \end{macrocode}
 
+% \begin{macro}{\liVertauschen}
+% |\liVertauschen{1 2 >4 <3 5}|: Setze ein Schaubild mit Hilfe
+% von TikZ. |<| und |>| werden dazu verwendet, um den Vertauschprozess
+% zu visualisieren.
+%    \begin{macrocode}
 \def\liVertauschen#1{
   \directlua{
     local sortieren = require('lehramt-informatik-sortieren')
     sortieren('#1')
   }
 }
+%    \end{macrocode}
+% \end{macro}
 
+%    \begin{macrocode}
 % https://tex.stackexchange.com/a/140895
 \RequirePackage{forest,xstring}
 \usetikzlibrary{calc}
