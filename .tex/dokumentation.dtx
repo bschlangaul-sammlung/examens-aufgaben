@@ -1,5 +1,4 @@
 % \iffalse meta-comment
-% vim: textwidth=75
 %<*internal>
 \iffalse
 %</internal>
@@ -73,8 +72,6 @@
 %
 %\maketitle
 %\tableofcontents
-%
-%\changes{v1.00}{2021/03/27}{First public release}
 %
 %\StopEventually{^^A
 %  \PrintChanges
@@ -1698,9 +1695,17 @@ Paket struktex zum Setzen von Struktogrammen]
 \ProvidesPackage{lehramt-informatik-syntax}[2020/06/10 Ein Hüll-Paket um
 `minted`, das sich um die Syntax-Hervorhebung des Java-Codes kümmert.]
 \RequirePackage{xparse}
+%    \end{macrocode}
 
+% Um das Paket |minted| benutzen zu können, muss |pygmentize|
+% installiert sein. Außerdem müssen die TeX-Dateien mit der
+% Kommandozeilen-Option |--shell-escape| kompiliert werden.
+
+%    \begin{macrocode}
 \ExplSyntaxOn
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \directlua{
   syntax = require('lehramt-informatik-syntax')
   syntax.importiere_konfiguration('tex_repo_lokaler_pfad', '\LehramtInformatikRepository')
@@ -1712,9 +1717,13 @@ Paket struktex zum Setzen von Struktogrammen]
   syntax.importiere_konfiguration('code_test', 'src/test/java/org/bschlangaul')
   syntax.importiere_konfiguration('git_branch', '\LehramtInformatikGitBranch')
 }
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \RequirePackage{hyperref}
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \RequirePackage{minted}
 % pygmentize -L styles
 \usemintedstyle{colorful}
@@ -1726,26 +1735,54 @@ Paket struktex zum Setzen von Struktogrammen]
   linenos,
   fontsize=\footnotesize,
 }
+%    \end{macrocode}
 
+% \begin{macro}{\liJavaCode}
+% Im Zeilenfluss einen kurzen Java-Code-Ausschnitt setzen.
+%    \begin{macrocode}
 \def\liJavaCode#1{\mintinline{java}|#1|}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liLatexCode}
+% Im Zeilenfluss einen kurzen \LaTeX-Code-Ausschnitt setzen.
+%    \begin{macrocode}
 \def\liLatexCode#1{\mintinline{latex}|#1|}
+%    \end{macrocode}
+% \end{macro}
 
+%    \begin{macrocode}
 \tl_const:Nx \l_pfad_tl {\LehramtInformatikRepository/Code}
 \tl_const:Nn \l_main_tl {src/main/java/org/bschlangaul}
 \tl_const:Nn \l_test_tl {src/test/java/org/bschlangaul}
+%    \end{macrocode}
 
+% \begin{macro}{\liJavaDatei}
+% Eine komplette Java-Datei einbinden, die
+% Verzeichnis |./Code/src/main/java/org/bschlangaul| liegt.
+%    \begin{macrocode}
 \NewDocumentCommand{\liJavaDatei}{ O{firstline=3} m }{
   \inputminted[#1]{java}{\l_pfad_tl/\l_main_tl/#2.java}
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liJavaTestDatei}
+% Eine komplette Java-Test-Datei einbinden,
+% die Verzeichnis |./Code/src/test/java/org/bschlangaul| liegt.
+%    \begin{macrocode}
 \NewDocumentCommand{\liJavaTestDatei}{ O{firstline=3} m }{
   \inputminted[#1]{java}{\l_pfad_tl/\l_test_tl/#2.java}
 }
+%    \end{macrocode}
+% \end{macro}
 
-% \liJavaExamen{66116}{2015}{03}{Kunde}
-% \\liJavaDatei(\[.*\])?\{.*examen_(\d{5})_(\d{4})_(\d{2})/(.*)\}
-% \\liJavaExamen$1{$2}{$3}{$4}{$5}
+% \begin{macro}{\liJavaExamen}
+% |\liJavaExamen{66116}{2015}{03}{Kunde}|
+% Regulärer Ausdruck zum Konvertieren:
+% |\\liJavaDatei(\[.*\])?\{.*examen_(\d{5})_(\d{4})_(\d{2})/(.*)\}|
+% |\\liJavaExamen$1{$2}{$3}{$4}{$5}|
+%    \begin{macrocode}
 \NewDocumentCommand{\liJavaExamen}{ O{firstline=3} m m m m }{
   \inputminted[#1]{java}{
     \l_pfad_tl /
@@ -1758,24 +1795,55 @@ Paket struktex zum Setzen von Struktogrammen]
     \href{\directlua{syntax.drucke_raw_examen_url('#2', '#3', '#4', '#5')}}{raw}
   \end{flushright}
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liAssemblerCode}
+%    \begin{macrocode}
 \def\liAssemblerCode#1{\mintinline{asm}|#1|}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liAssemblerDatei}
+% |\liAssemblerDatei{relativer-pfad}|: Relativer Pfad zu einer
+% Assembler-Datei.
+%    \begin{macrocode}
 \NewDocumentCommand{\liAssemblerDatei}{ m }{
   \inputminted{asm}{#1}
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liMinispracheDatei}
+% |\liMinispracheDatei{relativer-pfad}|: Relativer Pfad zu einer
+% Minisprachen-Datei (Hochsprache für die Minimaschine von Albert
+% Wiedemann).
+%    \begin{macrocode}
 \NewDocumentCommand{\liMinispracheDatei}{ m }{
   \inputminted{componentpascal}{#1}
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liHaskellCode}
+% |\liHaskellCode{haskell}|: Zum Setzen von Haskell-Code.
+%    \begin{macrocode}
 \def\liHaskellCode#1{\mintinline{haskell}|#1|}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liHaskellDatei}
+% |\liHaskellDatei{relativer-pfad}|: Relativer Pfad zu einer
+% Haskell-Datei.
+%    \begin{macrocode}
 \NewDocumentCommand{\liHaskellDatei}{ m }{
   \inputminted{haskell}{#1}
 }
-
 \ExplSyntaxOff
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{syntaxbaum.sty}
@@ -2009,11 +2077,16 @@ formatierung.sty definiert.]
 \ProvidesPackage{lehramt-informatik-uml}[2020/06/13 Ein Hüll-Paket um
 `tikz-uml', das einige Design-Einstellungen vornimmt und manche
 Erweiterung bereitstellt]
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \RequirePackage{tikz-uml}
 \RequirePackage{fontspec}
 \RequirePackage{tikz-uml-activity}
 \usetikzlibrary{positioning}
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \tikzumlset{
   fill class=white!0,
   font=\footnotesize,
@@ -2024,11 +2097,23 @@ Erweiterung bereitstellt]
   fill usecase=white!0,
   fill system=white!0,
 }
+%    \end{macrocode}
 
+% \begin{macro}{\liLeserichtungLinks}
 % U+25C2 BLACK LEFT-POINTING SMALL TRIANGLE
-\def\LeserichtungLinks{{\fontspec{DejaVu Sans}◂ }}
+%    \begin{macrocode}
+\def\liLeserichtungLinks{{\fontspec{DejaVu Sans}◂ }}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liLeserichtungRechts}
 % U+25B8 BLACK RIGHT-POINTING SMALL TRIANGLE
-\def\LeserichtungRechts{ {\fontspec{DejaVu Sans}▸}}
+%    \begin{macrocode}
+\def\liLeserichtungRechts{ {\fontspec{DejaVu Sans}▸}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{wasserfall.sty}

@@ -92,43 +92,6 @@ Schaubilder für händisches Sortieren bzw. einen Schreibtischlauf setzen
 
 Lädt das Paket |struktex| zum Setzen von Struktogrammen.
 
-### |syntax.sty|
-
-Ein Hüll-Paket um |minted|, das sich um die Syntax-Hervorhebung des
-Java-Codes kümmert. Um das Paket |minted| benutzen zu können, muss
-|pygmentize| installiert sein. Außerdem müssen die TeX-Dateien mit der
-Kommandozeilen-Option |--shell-escape| kompiliert werden.
-
-* Makro: |\liJavaCode|: Im Zeilenfluss einen kurzen
-  Java-Code-Ausschnitt setzen.
-* Makro: |\liLatexCode|: Im Zeilenfluss einen kurzen
-  LaTeX-Code-Ausschnitt setzen.
-* Makro: |\liJavaDatei|: Eine komplette Java-Datei einbinden, die
-  Verzeichnis |./Code/src/main/java/org/bschlangaul| liegt.
-* Makro: |\liJavaTestDatei|: Eine komplette Java-Test-Datei einbinden,
-  die Verzeichnis |./Code/src/test/java/org/bschlangaul| liegt.
-* Makro: |\liAssemblerDatei{relativer-pfad}|: Relativer Pfad zu einer
-  Assembler-Datei.
-* Makro: |\liMinispracheDatei{relativer-pfad}|: Relativer Pfad zu einer
-  Minisprachen-Datei (Hochsprache für die Minimaschine von Albert
-  Wiedemann).
-* Makro: |\liHaskellCode{haskell}|: Zum Setzen von Haskell-Code.
-* Makro: |\liHaskellDatei{relativer-pfad}|: Relativer Pfad zu einer
-  Haskell-Datei.
-
-### |syntaxbaum.sty|
-
-Zum Setzen von Syntaxbäumen mit Hilfe des Pakets |tikz-qtree|.
-
-### |tabelle.sty|
-
-Lädt das Paket tabluarx
-
-### |uml.sty|
-
-Ein Hüll-Paket um |tikz-uml|, das einige Design-Einstellungen vornimmt
-und manche Erweiterung bereitstellt
-
 ## Vorlagen
 
 ### haupt
