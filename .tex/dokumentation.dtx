@@ -48,11 +48,19 @@
 \usepackage[a4paper,margin=25mm,left=50mm,nohead]{geometry}
 \usepackage[numbered]{hypdoc}
 \usepackage{amsmath}
-\usepackage{titlesec}
+\usepackage{mdframed}
+
+\def\liBeispiel#1{
+  \begin{mdframed}
+  #1
+  \end{mdframed}
+}
+
 \usepackage{lehramt-informatik-basis}
 \liLadePakete{
   gantt,
   formale-sprachen,
+  minimierung,
   typographie,
   synthese-algorithmus,
 }
@@ -1200,6 +1208,7 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 % \end{macro}
 
 % \begin{macro}{\liFussnoten}
+% \liBeispiel{\liFussnoten}
 %    \begin{macrocode}
 \def\liFussnoten{
   \bigskip
