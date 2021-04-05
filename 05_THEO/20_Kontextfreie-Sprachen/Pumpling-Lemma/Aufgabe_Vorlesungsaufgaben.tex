@@ -1,16 +1,24 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{formale-sprachen}
 \begin{document}
+\def\A{$a$’s }
+\def\B{$b$’s }
+
 \liAufgabenTitel{Vorlesungsaufgaben}
 \section{Pumping-Lemma
 \index{Pumping-Lemma (Kontextfreie Sprache)}
 \footcite[Seite 43]{theo:fs:2}}
 
-Zeige, dass die folgenden Sprache nicht kontextfrei sind:
+Zeigen Sie, dass die folgenden Sprachen nicht kontextfrei sind:
 
 \begin{itemize}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
 % 2h02
-\item $L = \{ a^n b^n c^{2n} | n \in \mathbb{N} \}$
+\item \liAusdruck{a^n b^n c^{2n}}{n \in \mathbb{N}}
 
 \begin{liAntwort}
 Annahme: $L$ ist kontextfrei.
@@ -38,11 +46,13 @@ $vwv$ enthält nur $a$'s
 o. E. d. A. (ohne Einschränkung der Allgemeinheit) stecken alle $a$'s in
 der Zerlegung $vwx$, d. h. $u$ ist leer
 
-$u$: $\epsilon$
-$v$: $a^l$
-$w$: $a^{j-(l+m)}$
-$x$: $a^m$
-$y$: $b\dots b c \dots c$
+\begin{description}
+\item[$u$]: $\epsilon$
+\item[$v$]: $a^l$
+\item[$w$]: $a^{j-(l+m)}$
+\item[$x$]: $a^m$
+\item[$y$]: $b\dots b c \dots c$
+\end{description}
 
 $v^2 w x^2 y$
 
@@ -115,7 +125,69 @@ $\Rightarrow$ Annahme ist falsch
 $\Rightarrow$ $L$ ist nicht kontextfrei
 \end{liAntwort}
 
-\item $L = \{ a^n b^{n^2} | n \in N \}$
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\item \liAusdruck{a^n b^{n^2}}{n \in \mathbb{N}}
+
+\begin{liAntwort}
+Annahme: $L$ kontextfrei
+
+$\Rightarrow$ Pumping-Lemma: $j \in \mathbb{N}$: $|w| \geq j$
+
+$\omega = a^j b^{j^2}$
+
+$j + j^2 > j$
+
+\begin{description}
+
+%%
+%
+%%
+
+\item[1. Fall] $vwx$ enthält nur $a$'s
+
+$\Rightarrow$ ungleich viele \A wie \B als Quadrat
+
+$\Rightarrow$  $\omega' \notin E$
+
+%%
+%
+%%
+
+\item[2. Fall] $vwx$ enthält nur $b$'s
+
+$\Rightarrow$ analog zu Fall 1
+
+$\Rightarrow$  $\omega' \notin E$
+
+%%
+%
+%%
+
+\item[3. Fall] $vwx$ enthält \A und \B
+
+o. E. d. A.  v nur \A; x nur \B
+
+\begin{description}
+\item[$u$:] $a^{j - (l + m)}$
+\item[$v$:] $a^l$
+\item[$w$:] $a^m b^n$
+\item[$x$:] $b^{l^2}$
+\item[$y$:] $b^{j^2 - (n + l^2)}$
+\end{description}
+
+$\Rightarrow$ $uv^0wx^0y = \omega'$
+
+a: $j-(l+m) + 0 \cdot l + m = j - l$
+
+b: $n- 0 \cdot l^2 + j^2 - (n + l^2) = j^2 - l^2 = (j - l)(j + l) \neq (j - l)(j - l)$
+
+$\Rightarrow \in L$
+
+\end{description}
+\end{liAntwort}
 \end{itemize}
 
 \end{document}
