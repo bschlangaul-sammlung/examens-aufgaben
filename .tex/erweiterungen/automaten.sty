@@ -26,56 +26,6 @@
 % \end{tikzpicture}
 % \end{liBeispiel}
 
-% \subsubsection{Kellerautomat}
-
-% \begin{verbatim}
-% \begin{tikzpicture}[li kellerautomat,node distance=5cm]
-% \node[state,initial] (0) {$z_0$};
-% \node[state,right of=0,accepting] (1) {$z_1$};
-%
-% \liKellerKante[above,loop]{0}{0}{
-%   1 raute Eraute,
-%   0 raute raute,
-% }
-%
-% \liKellerKante[above]{0}{1}{
-%   epsilon E epsilon,
-%   1 E epsilon,
-%   0 E epsilon,
-% }
-%
-% \liKellerKante[above,loop]{1}{2}{
-%   epsilon raute epsilon,
-%   1 raute raute,
-%   0 raute raute,
-% }
-% \end{tikzpicture}
-% \end{verbatim}
-
-% \begin{liBeispiel}
-% \begin{tikzpicture}[li kellerautomat,node distance=5cm]
-% \node[state,initial] (0) {$z_0$};
-% \node[state,right of=0,accepting] (1) {$z_1$};
-%
-% \liKellerKante[above,loop]{0}{0}{
-%   1 raute Eraute,
-%   0 raute raute,
-% }
-%
-% \liKellerKante[above]{0}{1}{
-%   epsilon E epsilon,
-%   1 E epsilon,
-%   0 E epsilon,
-% }
-%
-% \liKellerKante[above,loop]{1}{2}{
-%   epsilon raute epsilon,
-%   1 raute raute,
-%   0 raute raute,
-% }
-% \end{tikzpicture}
-% \end{liBeispiel}
-
 %    \begin{macrocode}
 \RequirePackage{tikz}
 \usetikzlibrary{arrows,automata,positioning}
@@ -94,8 +44,74 @@
 %    \end{macrocode}
 % \end{macro}
 
+%    \begin{macrocode}
+\tikzset{
+  li automat/.style={
+    ->,
+    node distance=2cm
+  },
+}
+%    \end{macrocode}
+
+% \subsubsection{Kellerautomat}
+
+% \begin{verbatim}
+% \begin{tikzpicture}[li kellerautomat,node distance=5cm]
+% \node[state,initial] (0) {$z_0$};
+% \node[state,right of=0,accepting] (1) {$z_1$};
+%
+% \liKellerKante[above,loop]{0}{0}{
+%   1, KELLERBODEN, E KELLERBODEN;
+%   0, KELLERBODEN, KELLERBODEN;
+% }
+%
+% \liKellerKante[above]{0}{1}{
+%   EPSILON, E, EPSILON;
+%   1, E, EPSILON;
+%   0, E, EPSILON;
+% }
+%
+% \liKellerKante[above,loop]{1}{2}{
+%   EPSILON, KELLERBODEN, EPSILON;
+%   1, KELLERBODEN, KELLERBODEN;
+%   0, KELLERBODEN, KELLERBODEN;
+% }
+% \end{tikzpicture}
+% \end{verbatim}
+
+% \begin{liBeispiel}
+% \begin{tikzpicture}[li kellerautomat,node distance=5cm]
+% \node[state,initial] (0) {$z_0$};
+% \node[state,right of=0,accepting] (1) {$z_1$};
+%
+% \liKellerKante[above,loop]{0}{0}{
+%   1, KELLERBODEN, E KELLERBODEN;
+%   0, KELLERBODEN, KELLERBODEN;
+% }
+%
+% \liKellerKante[above]{0}{1}{
+%   EPSILON, E, EPSILON;
+%   1, E, EPSILON;
+%   0, E, EPSILON;
+% }
+%
+% \liKellerKante[above,loop]{1}{2}{
+%   EPSILON, KELLERBODEN, EPSILON;
+%   1, KELLERBODEN, KELLERBODEN;
+%   0, KELLERBODEN, KELLERBODEN;
+% }
+% \end{tikzpicture}
+% \end{liBeispiel}
+
 % \begin{macro}{\liKellerUebergang}
 % |\let\u=\liKellerUebergang|
+%
+% |\liKellerUebergang{a, KELLERBODEN, A; b KELLERBODEN, EPSILON}|
+%
+% \begin{liBeispiel}
+%   \liKellerUebergang{a, KELLERBODEN, A; b, KELLERBODEN, EPSILON}
+% \end{liBeispiel}
+%
 % Regulärer Ausdruck zum Konvertieren:
 % |\((.*), (.*), (.*)\)|
 % |\\u{$1 $2 $3}|
@@ -112,7 +128,7 @@
 % \cmd{\liKellerKante}\oarg{tikz-optionen}\marg{von}\marg{zu}\marg{übergange}
 % |\let\k=\liKellerKante|
 %    \begin{macrocode}
-\NewDocumentCommand{\liKellerKante} { O{auto} m m m  } {
+\NewDocumentCommand{\liKellerKante} { O{above} m m m  } {
   \path (#2) edge[#1] node{\liKellerUebergang{#4}} (#3);
 }
 %    \end{macrocode}
@@ -124,10 +140,6 @@
     text width=2cm,
     align=center,
     font=\footnotesize,
-  },
-  li automat/.style={
-    ->,
-    node distance=2cm
   },
   li kellerautomat/.style={
     li automat,

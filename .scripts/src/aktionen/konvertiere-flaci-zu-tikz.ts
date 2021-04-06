@@ -127,8 +127,8 @@ function formatiereOptionen (optionen: string[]): string {
 }
 
 function formatiereKellerZeichen(zeichen: string): string {
-  if (zeichen === '') return 'epsilon'
-  if (zeichen === '#') return 'raute'
+  if (zeichen === '') return 'EPSILON'
+  if (zeichen === '#') return 'KELLERBODEN'
   return zeichen
 }
 
@@ -144,12 +144,12 @@ function formatiereKellerÜbergang (trans: FlaciKellerÜbergang, states: StateNa
     let kellerAktion = label[2].map((value) => {
       return formatiereKellerZeichen(value)
     }).join('')
-    if (kellerAktion === '') kellerAktion = 'epsilon'
+    if (kellerAktion === '') kellerAktion = 'EPSILON'
     übergang.push(kellerAktion)
-    übergänge.push('    ' + übergang.join(' '))
+    übergänge.push('    ' + übergang.join(', '))
   }
 
-  let optionen = []
+  let optionen = ['above']
   if (source === target) {
     optionen.push('loop')
   }
@@ -158,7 +158,7 @@ function formatiereKellerÜbergang (trans: FlaciKellerÜbergang, states: StateNa
     optionen.push('bend left')
   }
 
-  return `  \\liKellerKante${formatiereOptionen(optionen)}{${source}}{${target}}{\n${übergänge.join(',\n')}\n  }\n`
+  return `  \\liKellerKante${formatiereOptionen(optionen)}{${source}}{${target}}{\n${übergänge.join(';\n')}\n  }\n`
 }
 
 function formatiereFlaciLink(def: FlaciDefinition) {

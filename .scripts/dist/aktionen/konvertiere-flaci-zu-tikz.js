@@ -68,9 +68,9 @@ function formatiereOptionen(optionen) {
 }
 function formatiereKellerZeichen(zeichen) {
     if (zeichen === '')
-        return 'epsilon';
+        return 'EPSILON';
     if (zeichen === '#')
-        return 'raute';
+        return 'KELLERBODEN';
     return zeichen;
 }
 function formatiereKellerÜbergang(trans, states) {
@@ -88,9 +88,9 @@ function formatiereKellerÜbergang(trans, states) {
                 return formatiereKellerZeichen(value);
             }).join('');
             if (kellerAktion === '')
-                kellerAktion = 'epsilon';
+                kellerAktion = 'EPSILON';
             übergang.push(kellerAktion);
-            übergänge.push('    ' + übergang.join(' '));
+            übergänge.push('    ' + übergang.join(', '));
         }
     }
     catch (e_1_1) { e_1 = { error: e_1_1 }; }
@@ -100,14 +100,14 @@ function formatiereKellerÜbergang(trans, states) {
         }
         finally { if (e_1) throw e_1.error; }
     }
-    var optionen = [];
+    var optionen = ['above'];
     if (source === target) {
         optionen.push('loop');
     }
     if ((trans.x !== 0 || trans.y !== 0) && !optionen.includes('loop')) {
         optionen.push('bend left');
     }
-    return "  \\liKellerKante" + formatiereOptionen(optionen) + "{" + source + "}{" + target + "}{\n" + übergänge.join(',\n') + "\n  }\n";
+    return "  \\liKellerKante" + formatiereOptionen(optionen) + "{" + source + "}{" + target + "}{\n" + übergänge.join(';\n') + "\n  }\n";
 }
 function formatiereFlaciLink(def) {
     return "\n\\liFlaci{A" + def.GUID + "}";

@@ -11,43 +11,55 @@
 \index{Kellerautomat}
 \footcite[Seite 23]{theo:fs:2}}
 
-Beispiel: $L = \m{a^n b^n | n \in \mathbb{N}}$
+Erstellen Sie einen Kellerautomaten, der folgende Sprache
 
-\subsection{Grammatik: }
-
-$G = (\m{S}, \m{a, b}, P, S)$
-
-\bigskip
+\begin{center}
+\liAusdruck{a^n b^n}{n \in \mathbb{N}}
+\end{center}
 
 \noindent
-\begin{liProduktionsRegeln}
-S -> aSb | ab
-\end{liProduktionsRegeln}
+mit folgender Grammatik
 
-\subsection{Kellerautomat: }
+\begin{center}
+\liGrammatik{
+  variablen=S,
+  alphabet={a,b},
+  produktionen={S -> aSb | ab}
+}
+\end{center}
 
+\noindent
+erkennt.
+
+\begin{liAntwort}
 \begin{center}
 $K = (\m{\z1, \z2}, \m{a, b}, \m{A, \#}, \delta, \z1 ,\#)$
 \end{center}
 
-\begin{tikzpicture}[li kellerautomat,node distance=3cm]
-\node[state,initial] (1) {$z_1$};
-\node[state,right of=1] (2) {$z_2$};
+\begin{center}
+\begin{tikzpicture}[li kellerautomat]
+  \node[state,initial] (z1) at (2cm,-2.14cm) {$z_1$};
+  \node[state,accepting] (z2) at (5.57cm,-2.14cm) {$z_2$};
 
-\path (1) edge[above,loop] node{
-  \u{a raute Araute}\\
-  \u{a A AA}\\
-} (1);
+  \liKellerKante[above]{z1}{z2}{
+    b, A, EPSILON;
+    EPSILON, KELLERBODEN, EPSILON
+  }
 
-\path (2) edge[above,loop] node{
-  \u{b A epsilon}\\
-  \u{epsilon raute epsilon}\\
-} (2);
+  \liKellerKante[above,loop]{z1}{z1}{
+    a, A, AA;
+    a, KELLERBODEN, AKELLERBODEN
+  }
 
-\path (1) edge[above] node{
-  \u{b A epsilon}\\
-} (2);
+  \liKellerKante[above,loop]{z2}{z2}{
+    b, A, EPSILON;
+    EPSILON, KELLERBODEN, EPSILON
+  }
+
 \end{tikzpicture}
+\end{center}
+
+\liFlaci{Ah5v17t52}
 
 \begin{tabular}{|l|l|l|l|l|}
 Aktueller Zustand &  Eingabe   & Keller & Folgezustand & Keller \\\hline
@@ -58,4 +70,5 @@ Aktueller Zustand &  Eingabe   & Keller & Folgezustand & Keller \\\hline
 \Z2               & $\epsilon$ & \#     & \Z2          & \# \\
 \end{tabular}
 
+\end{liAntwort}
 \end{document}

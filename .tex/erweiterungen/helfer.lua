@@ -1,4 +1,9 @@
 return {
+  -- http://lua-users.org/wiki/StringTrim
+  trim = function (input)
+      return (input:gsub("^%s*(.-)%s*$", "%1"))
+  end,
+
   -- http://lua-users.org/wiki/SplitJoin
   -- pat: pattern matching https://www.lua.org/pil/20.2.html
   split = function (str, pat)

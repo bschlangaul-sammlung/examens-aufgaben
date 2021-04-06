@@ -126,56 +126,6 @@
 % \end{tikzpicture}
 % \end{liBeispiel}
 
-% \subsubsection{Kellerautomat}
-
-% \begin{verbatim}
-% \begin{tikzpicture}[li kellerautomat,node distance=5cm]
-% \node[state,initial] (0) {$z_0$};
-% \node[state,right of=0,accepting] (1) {$z_1$};
-%
-% \liKellerKante[above,loop]{0}{0}{
-%   1 raute Eraute,
-%   0 raute raute,
-% }
-%
-% \liKellerKante[above]{0}{1}{
-%   epsilon E epsilon,
-%   1 E epsilon,
-%   0 E epsilon,
-% }
-%
-% \liKellerKante[above,loop]{1}{2}{
-%   epsilon raute epsilon,
-%   1 raute raute,
-%   0 raute raute,
-% }
-% \end{tikzpicture}
-% \end{verbatim}
-
-% \begin{liBeispiel}
-% \begin{tikzpicture}[li kellerautomat,node distance=5cm]
-% \node[state,initial] (0) {$z_0$};
-% \node[state,right of=0,accepting] (1) {$z_1$};
-%
-% \liKellerKante[above,loop]{0}{0}{
-%   1 raute Eraute,
-%   0 raute raute,
-% }
-%
-% \liKellerKante[above]{0}{1}{
-%   epsilon E epsilon,
-%   1 E epsilon,
-%   0 E epsilon,
-% }
-%
-% \liKellerKante[above,loop]{1}{2}{
-%   epsilon raute epsilon,
-%   1 raute raute,
-%   0 raute raute,
-% }
-% \end{tikzpicture}
-% \end{liBeispiel}
-
 %    \begin{macrocode}
 \RequirePackage{tikz}
 \usetikzlibrary{arrows,automata,positioning}
@@ -194,8 +144,74 @@
 %    \end{macrocode}
 % \end{macro}
 
+%    \begin{macrocode}
+\tikzset{
+  li automat/.style={
+    ->,
+    node distance=2cm
+  },
+}
+%    \end{macrocode}
+
+% \subsubsection{Kellerautomat}
+
+% \begin{verbatim}
+% \begin{tikzpicture}[li kellerautomat,node distance=5cm]
+% \node[state,initial] (0) {$z_0$};
+% \node[state,right of=0,accepting] (1) {$z_1$};
+%
+% \liKellerKante[above,loop]{0}{0}{
+%   1, KELLERBODEN, E KELLERBODEN;
+%   0, KELLERBODEN, KELLERBODEN;
+% }
+%
+% \liKellerKante[above]{0}{1}{
+%   EPSILON, E, EPSILON;
+%   1, E, EPSILON;
+%   0, E, EPSILON;
+% }
+%
+% \liKellerKante[above,loop]{1}{2}{
+%   EPSILON, KELLERBODEN, EPSILON;
+%   1, KELLERBODEN, KELLERBODEN;
+%   0, KELLERBODEN, KELLERBODEN;
+% }
+% \end{tikzpicture}
+% \end{verbatim}
+
+% \begin{liBeispiel}
+% \begin{tikzpicture}[li kellerautomat,node distance=5cm]
+% \node[state,initial] (0) {$z_0$};
+% \node[state,right of=0,accepting] (1) {$z_1$};
+%
+% \liKellerKante[above,loop]{0}{0}{
+%   1, KELLERBODEN, E KELLERBODEN;
+%   0, KELLERBODEN, KELLERBODEN;
+% }
+%
+% \liKellerKante[above]{0}{1}{
+%   EPSILON, E, EPSILON;
+%   1, E, EPSILON;
+%   0, E, EPSILON;
+% }
+%
+% \liKellerKante[above,loop]{1}{2}{
+%   EPSILON, KELLERBODEN, EPSILON;
+%   1, KELLERBODEN, KELLERBODEN;
+%   0, KELLERBODEN, KELLERBODEN;
+% }
+% \end{tikzpicture}
+% \end{liBeispiel}
+
 % \begin{macro}{\liKellerUebergang}
 % |\let\u=\liKellerUebergang|
+%
+% |\liKellerUebergang{a, KELLERBODEN, A; b KELLERBODEN, EPSILON}|
+%
+% \begin{liBeispiel}
+%   \liKellerUebergang{a, KELLERBODEN, A; b, KELLERBODEN, EPSILON}
+% \end{liBeispiel}
+%
 % Regulärer Ausdruck zum Konvertieren:
 % |\((.*), (.*), (.*)\)|
 % |\\u{$1 $2 $3}|
@@ -224,10 +240,6 @@
     text width=2cm,
     align=center,
     font=\footnotesize,
-  },
-  li automat/.style={
-    ->,
-    node distance=2cm
   },
   li kellerautomat/.style={
     li automat,
@@ -663,7 +675,7 @@ $\liMengeOhneMathe{#1}$%
 
 % \begin{environment}{liProduktionsRegeln}
 % \begin{verbatim}
-% \begin{liProduktionsRegeln}
+% \begin{liProduktionsRegeln}[P_1]
 %   S -> S A B | EPSILON,
 %   B A -> A B,
 %   A A -> a a,
@@ -673,13 +685,13 @@ $\liMengeOhneMathe{#1}$%
 %
 %    \begin{macrocode}
 \NewDocumentEnvironment { liProduktionsRegeln }
-{ +b }
+{ O{P} +b }
 {
   \noindent
-  $P = \{$
+  $#1 = \{$
   \vspace{-0.2cm}
   \begin{align*}
-    \directlua{formale_sprachen.produktions_regeln('#1')}
+    \directlua{formale_sprachen.produktions_regeln('#2')}
   \end{align*}
   \vspace{-1.5cm}
   \begin{flushright}\}\end{flushright}
@@ -1295,7 +1307,8 @@ anderen Paket passen]
 % \end{macro}
 
 % \begin{macro}{\liFussnoteUrl}
-% |\liFussnoteUrl{url}|: Eine HTTP-URL als Fußnote setzen.
+% \cmd{\liFussnoteUrl}\oarg{zusätzlicher-text}\marg{url}
+% |\liFussnoteUrl[zusätzlicher Text]{url}|: Eine HTTP-URL als Fußnote setzen.
 %    \begin{macrocode}
 \NewDocumentCommand{\liFussnoteUrl} { o m } {
   \footnote{\url{#2}\IfNoValueTF{#1}{}{ (#1)}}
@@ -1305,10 +1318,13 @@ anderen Paket passen]
 % \end{macro}
 
 % \begin{macro}{\liFussnoteLink}
-% |\liFussnoteLink{text}{url}|: Einen Link, d. h. einen Link-Text
+% \cmd{\liFussnoteLink}\oarg{zusätzlicher-text}\marg{link-text}\marg{url}
+% |\liFussnoteLink[zusätzlicher Text]{text}{url}|: Einen Link, d. h. einen Link-Text
 % und eine URL als Fußnote setzen.
 %    \begin{macrocode}
-\def\liFussnoteLink#1#2{\footnote{\href{#2}{#1}}}
+\NewDocumentCommand{\liFussnoteLink} { o m m } {
+  \footnote{\href{#3}{#2}\IfNoValueTF{#1}{}{ (#1)}}
+}
 %    \end{macrocode}
 % \end{macro}
 

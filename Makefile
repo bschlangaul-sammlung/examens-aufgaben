@@ -23,6 +23,8 @@ install_tex:
 install_tex_dtx: install_tex
 	i dtx
 
+tex: install_tex_dtx
+
 readme:
 	.scripts/dist/main.js r
 

@@ -167,7 +167,7 @@ $\liMengeOhneMathe{#1}$%
 
 % \begin{environment}{liProduktionsRegeln}
 % \begin{verbatim}
-% \begin{liProduktionsRegeln}
+% \begin{liProduktionsRegeln}[P_1]
 %   S -> S A B | EPSILON,
 %   B A -> A B,
 %   A A -> a a,
@@ -177,13 +177,13 @@ $\liMengeOhneMathe{#1}$%
 %
 %    \begin{macrocode}
 \NewDocumentEnvironment { liProduktionsRegeln }
-{ +b }
+{ O{P} +b }
 {
   \noindent
-  $P = \{$
+  $#1 = \{$
   \vspace{-0.2cm}
   \begin{align*}
-    \directlua{formale_sprachen.produktions_regeln('#1')}
+    \directlua{formale_sprachen.produktions_regeln('#2')}
   \end{align*}
   \vspace{-1.5cm}
   \begin{flushright}\}\end{flushright}
