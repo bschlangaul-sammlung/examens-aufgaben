@@ -143,7 +143,7 @@ function formatiereKellerÜbergang (trans: FlaciKellerÜbergang, states: StateNa
     übergang.push(formatiereKellerZeichen(label[0]))
     let kellerAktion = label[2].map((value) => {
       return formatiereKellerZeichen(value)
-    }).join('')
+    }).join(' ')
     if (kellerAktion === '') kellerAktion = 'EPSILON'
     übergang.push(kellerAktion)
     übergänge.push('    ' + übergang.join(', '))

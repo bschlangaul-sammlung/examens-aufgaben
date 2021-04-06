@@ -1,6 +1,10 @@
 local helfer = require('lehramt-informatik-helfer')
 
 --- Gib einen Kellerübergang aus
+--
+-- :param str eingang: 'a, KELLERBODEN, A KELLERBODEN'
+--
+-- :return: '(a, #: a#)'
 local function gib_uebergang_aus (eingang)
   local elemente = helfer.split(eingang, '%s*,%s*')
   for index, element in ipairs(elemente) do
@@ -13,10 +17,15 @@ local function gib_uebergang_aus (eingang)
 
     elemente[index] = element
   end
+  local eingabe_zeichen = helfer.trim(elemente[1])
+  local aktuelles_kellerzeichen = helfer.trim(elemente[2])
+  local keller_veraenderung = helfer.trim(elemente[3])
+  keller_veraenderung = string.gsub(keller_veraenderung, '%s+', '')
+
   local ausgabe = '(' ..
-    helfer.trim(elemente[1]) .. ', ' ..
-    helfer.trim(elemente[2]) .. ': ' ..
-    helfer.trim(elemente[3]) .. ')\\\\'
+    eingabe_zeichen .. ', ' ..
+    aktuelles_kellerzeichen .. ': ' ..
+    keller_veraenderung .. ')\\\\'
   tex.print(ausgabe)
 end
 
