@@ -235,4 +235,32 @@ $\liMengeOhneMathe{#1}$%
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\liGrammatik}
+% \liGrammatik{variablen={S,A,B}}
+%    \begin{macrocode}
+\ExplSyntaxOn
+\tl_set:Nn \l_variablen_tl {V}
+\tl_set:Nn \l_alphabet_tl {$\Sigma$}
+\tl_set:Nn \l_produktionen_tl {P}
+\tl_set:Nn \l_start_tl {S}
+
+\keys_define:nn { grammatik } {
+  variablen .code:n = {\tl_set:Nn \l_variablen_tl {\liMenge{#1}}},
+  alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\liMenge{#1}}},
+  produktionen .code:n = {\tl_set:Nn \l_produktionen_tl {\liMenge{#1}}},
+  start .code:n = {\tl_set:Nn \l_start_tl {#1}},
+}
+\def\liGrammatik#1{%
+  \keys_set:nn { grammatik } { #1 }
+  $G = (
+    \l_variablen_tl,
+    \l_alphabet_tl,
+    \l_produktionen_tl,
+    \l_start_tl
+  )$
+}
+\ExplSyntaxOff
+%    \end{macrocode}
+% \end{macro}
+
 %    \begin{macrocode}

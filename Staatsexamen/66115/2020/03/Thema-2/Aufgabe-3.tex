@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{formale-sprachen}
+\liLadePakete{formale-sprachen,automaten}
 \begin{document}
 \liAufgabenTitel{Kontextfreie Sprachen}
 \section{Aufgabe 3
@@ -58,7 +58,44 @@ soll sich der PDA in einem Endzustand befinden und der Keller geleert
 sein.
 
 \begin{liAntwort}
-\liFlaci{Ar35t3mgc}
+\liFlaci{Gpkctmk3g}
+
+\begin{liProduktionsRegeln}
+S -> 0 S 0 | 1 S 1 | 0 A 0 | 1 A 1,
+A -> 0 A | 1 A | 0 | 1
+\end{liProduktionsRegeln}
+
+\begin{center}
+\begin{tikzpicture}[li kellerautomat]
+  \node[state,initial] (z0) at (2.2cm,-4.71cm) {$z_0$};
+  \node[state,accepting] (z2) at (7.5cm,-4.71cm) {$z_2$};
+  \node[state] (z1) at (5cm,-4.71cm) {$z_1$};
+
+  \liKellerKante{z0}{z1}{
+    epsilon raute Sraute
+  }
+
+  \liKellerKante{z1}{z2}{
+    epsilon raute epsilon
+  }
+
+  \liKellerKante[above,loop]{z1}{z1}{
+    0 0 epsilon,
+    1 1 epsilon,
+    epsilon S 0S0,
+    epsilon S 1S1,
+    epsilon S 0A0,
+    epsilon S 1A1,
+    epsilon A 0A,
+    epsilon A 1A,
+    epsilon A 0,
+    epsilon A 1
+  }
+
+\end{tikzpicture}
+\end{center}
+
+\liFlaci{A5z2zfkdw}
 \end{liAntwort}
 
 %%
