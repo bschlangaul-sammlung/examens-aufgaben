@@ -2,6 +2,7 @@
 \liLadePakete{formale-sprachen}
 
 \begin{document}
+\let\z=\liZustandsname
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Theorie-Teil
@@ -151,6 +152,30 @@ ist das bisherige oberste Kellerzeichen.
 \begin{center}
 $(z_0, \text{abbba}, \# ) \vdash (z_0, \text{bbba}, A\#)$
 \end{center}
+
+\section{Von kontextfreien Grammatiken zu Kellerautomaten}
+
+Für das Akzeptieren einer kontextfreien Sprache genügt ein Kellerautomat
+mit nur \memph{zwei Zuständen}, wobei die einzige Aufgabe des
+Startzustands (\memph{\z0}) darin besteht, das \memph{Startsymbol $S$
+der Grammatik in den Keller} zu legen. Während der eigentlichen Rechnung
+befindet sich der Automat permanent in dem anderen Zustand (\z1), dem
+einzigen Endzustand; die Rechnung findet nur in dem Keller statt. Der
+konstruierte Automat vollzieht zwei verschiedene Arbeitsschritte:
+
+\begin{description}
+\item[Expansion]
+
+Nicht-Leseschritt mit Bezug auf Grammatikregel $A \rightarrow a B$
+(Expansion): Ersetze die Kellerspitze $A$ mit $a B$
+
+\item[Scan]
+
+Leseschritte (Scan): Lies ein $a \in T$  der Eingabekette und entferne
+Kellerspitze.
+\end{description}
+
+\liFussnoteUrl[Seite 29]{https://user.phil.hhu.de/~petersen/Einf_CL_0910/material/EinfCL_14_handout.pdf}
 
 \literatur
 

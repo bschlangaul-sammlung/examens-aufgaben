@@ -246,17 +246,24 @@ anderen Paket passen]
 % \end{macro}
 
 % \begin{macro}{\liFussnoteUrl}
-% |\liFussnoteUrl{url}|: Eine HTTP-URL als Fußnote setzen.
+% \cmd{\liFussnoteUrl}\oarg{zusätzlicher-text}\marg{url}
+% |\liFussnoteUrl[zusätzlicher Text]{url}|: Eine HTTP-URL als Fußnote setzen.
 %    \begin{macrocode}
-\def\liFussnoteUrl#1{\footnote{\url{#1}}}
+\NewDocumentCommand{\liFussnoteUrl} { o m } {
+  \footnote{\url{#2}\IfNoValueTF{#1}{}{ (#1)}}
+}
+
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\liFussnoteLink}
-% |\liFussnoteLink{text}{url}|: Einen Link, d. h. einen Link-Text
+% \cmd{\liFussnoteLink}\oarg{zusätzlicher-text}\marg{link-text}\marg{url}
+% |\liFussnoteLink[zusätzlicher Text]{text}{url}|: Einen Link, d. h. einen Link-Text
 % und eine URL als Fußnote setzen.
 %    \begin{macrocode}
-\def\liFussnoteLink#1#2{\footnote{\href{#2}{#1}}}
+\NewDocumentCommand{\liFussnoteLink} { o m m } {
+  \footnote{\href{#3}{#2}\IfNoValueTF{#1}{}{ (#1)}}
+}
 %    \end{macrocode}
 % \end{macro}
 

@@ -1297,7 +1297,10 @@ anderen Paket passen]
 % \begin{macro}{\liFussnoteUrl}
 % |\liFussnoteUrl{url}|: Eine HTTP-URL als Fußnote setzen.
 %    \begin{macrocode}
-\def\liFussnoteUrl#1{\footnote{\url{#1}}}
+\NewDocumentCommand{\liFussnoteUrl} { o m } {
+  \footnote{\url{#2}\IfNoValueTF{#1}{}{ (#1)}}
+}
+
 %    \end{macrocode}
 % \end{macro}
 
