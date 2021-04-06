@@ -18,25 +18,40 @@ Erstelle jeweils einen PDA, der die angegebenen Sprachen akzeptiert.
 % (a)
 %%
 
-\item \liAusdruck[L]{0^n 1^n}{n \in \mathbb{N}}
+\item \liAusdruck{0^n 1^n}{n \in \mathbb{N}}
 
 \begin{liAntwort}
 N = Null
 
 \begin{center}
-\begin{tikzpicture}[li kellerautomat,node distance=1.5cm]
-\node[state,initial] (0) {\z0};
-\node[state,above right=of 0] (1) {\z1};
-\node[state,right=of 1] (2) {\z2};
-\node[state,below right=of 2] (3) {\z3};
+\begin{tikzpicture}[li kellerautomat]
+  \node[state,initial] (z0) at (4.43cm,-4cm) {$z_0$};
+  \node[state] (z1) at (5.86cm,-2.29cm) {$z_1$};
+  \node[state] (z2) at (8.71cm,-2.29cm) {$z_2$};
+  \node[state,accepting] (z3) at (10.29cm,-4.14cm) {$z_3$};
 
-\path (0) edge[above left] node{\u{0 raute Nraute}} (1);
-\path (1) edge[above,loop] node{\u{0 N NN}} (1);
-\path (1) edge[above] node{\u{1 N epsilon}} (2);
-\path (2) edge[above,loop] node{\u{1 N epsilon}} (2);
-\path (2) edge[above right] node{\u{epsilon raute epsilon}} (3);
+  \liKellerKante[left]{z0}{z1}{
+    0, KELLERBODEN, N KELLERBODEN;
+  }
+
+  \liKellerKante[above]{z1}{z2}{
+    1, N, EPSILON;
+  }
+
+  \liKellerKante[above,loop]{z1}{z1}{
+    0, N, N N;
+  }
+
+  \liKellerKante[right]{z2}{z3}{
+    EPSILON, KELLERBODEN, EPSILON;
+  }
+
+  \liKellerKante[above,loop]{z2}{z2}{
+    1, N, EPSILON;
+  }
 \end{tikzpicture}
 \end{center}
+
 \liFlaci{Aji1r8mf7}
 \end{liAntwort}
 
@@ -47,43 +62,42 @@ N = Null
 \item Alle Wörter, die gleich viele $a$ wie $b$ enthalten.
 
 \begin{liAntwort}
-
 \begin{center}
-\begin{tikzpicture}[li kellerautomat,node distance=4cm]
-\node[state,initial] (0) {\z0};
-\node[state,above right=of 0] (1) {\z1};
-\node[state,below right=of 0] (2) {\z2};
-\node[state,above=of 0] (3) {\z3};
+\begin{tikzpicture}[li kellerautomat]
+  \node[state,initial] (z0) at (2.29cm,-4cm) {$z_0$};
+  \node[state] (z1) at (6cm,-1.86cm) {$z_1$};
+  \node[state] (z2) at (7.29cm,-5.71cm) {$z_2$};
+  \node[state,accepting] (z3) at (1cm,-1.43cm) {$z_3$};
 
-\path (0) edge[right,bend left] node{\u{
-  a raute Araute,
-}} (1);
+  \liKellerKante[left,bend left]{z0}{z1}{
+    a, KELLERBODEN, A KELLERBODEN;
+  }
 
-\path (0) edge[right,bend left] node{\u{
-  b raute Braute,
-}} (2);
+  \liKellerKante[above right,bend left=10]{z0}{z2}{
+    b, KELLERBODEN, B KELLERBODEN;
+  }
 
-\path (0) edge[left] node{\u{
-  raute epsilon epsilon,
-}} (3);
+  \liKellerKante[left]{z0}{z3}{
+    EPSILON, KELLERBODEN, EPSILON;
+  }
 
-\path (1) edge[right,bend left] node{\u{
-  b A epsilon,
-}} (0);
+  \liKellerKante[right,bend left]{z1}{z0}{
+    b, A, EPSILON;
+  }
 
-\path (1) edge[above,loop right] node{\u{
-  b A epsilon,
-  a A AA,
-}} (1);
+  \liKellerKante[above,loop]{z1}{z1}{
+    a, A, A A;
+    b, A, EPSILON;
+  }
 
-\path (2) edge[above,loop right] node{\u{
-  a B epsilon,
-  b B BB,
-}} (2);
+  \liKellerKante[above,loop]{z2}{z2}{
+    b, B, B B;
+    a, B, EPSILON;
+  }
 
-\path (2) edge[left,bend left] node{\u{
-  a B epsilon,
-}} (0);
+  \liKellerKante[below left,bend left=10]{z2}{z0}{
+    a, B, EPSILON;
+  }
 \end{tikzpicture}
 \end{center}
 
@@ -97,15 +111,56 @@ N = Null
 \item Alle Wörter, bei denen kein Präfix mehr Einsen wie Nullen hat.
 
 \begin{liAntwort}
-akzeptiert
+akzeptiert:
 
-01
-
-00101
+\begin{itemize}
+\item 000
+\item 00101
+\item 01
+\end{itemize}
 
 nicht akzeptiert:
 
-1 11
+\begin{itemize}
+\item 011
+\item 111
+\item 1
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[li kellerautomat]
+  \node[state,initial] (z0) at (2.43cm,-6.43cm) {$z_0$};
+  \node[state] (z2) at (7.43cm,-6.43cm) {$z_2$};
+  \node[state,accepting] (z1) at (5.57cm,-4.14cm) {$z_1$};
+
+  \liKellerKante[above,bend left]{z0}{z2}{
+    0, KELLERBODEN, N KELLERBODEN;
+  }
+
+  \liKellerKante[above left]{z0}{z1}{
+    0, KELLERBODEN, EPSILON;
+    EPSILON, KELLERBODEN, EPSILON;
+  }
+
+  \liKellerKante[above,loop below]{z0}{z0}{
+    EPSILON, N, EPSILON;
+  }
+
+  \liKellerKante[above,loop]{z2}{z2}{
+    1, N, EPSILON;
+    0, N, N N;
+  }
+
+  \liKellerKante[below,bend left]{z2}{z0}{
+    0, N, N;
+    EPSILON, KELLERBODEN, KELLERBODEN;
+    0, KELLERBODEN, EPSILON;
+    EPSILON, N, EPSILON;
+  }
+\end{tikzpicture}
+\end{center}
+
+\liFlaci{Af7rfyqqg}
 \end{liAntwort}
 \end{enumerate}
 \end{document}

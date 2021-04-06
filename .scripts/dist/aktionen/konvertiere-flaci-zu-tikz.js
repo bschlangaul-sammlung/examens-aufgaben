@@ -86,7 +86,7 @@ function formatiereKellerÜbergang(trans, states) {
             übergang.push(formatiereKellerZeichen(label[0]));
             var kellerAktion = label[2].map(function (value) {
                 return formatiereKellerZeichen(value);
-            }).join('');
+            }).join(' ');
             if (kellerAktion === '')
                 kellerAktion = 'EPSILON';
             übergang.push(kellerAktion);
@@ -107,7 +107,8 @@ function formatiereKellerÜbergang(trans, states) {
     if ((trans.x !== 0 || trans.y !== 0) && !optionen.includes('loop')) {
         optionen.push('bend left');
     }
-    return "  \\liKellerKante" + formatiereOptionen(optionen) + "{" + source + "}{" + target + "}{\n" + übergänge.join(';\n') + "\n  }\n";
+    var übergängeFormatiert = übergänge.join(';\n') + ';';
+    return "  \\liKellerKante" + formatiereOptionen(optionen) + "{" + source + "}{" + target + "}{\n" + übergängeFormatiert + "\n  }\n";
 }
 function formatiereFlaciLink(def) {
     return "\n\\liFlaci{A" + def.GUID + "}";
@@ -175,7 +176,7 @@ function formatiereAutomat(def) {
         }
         finally { if (e_3) throw e_3.error; }
     }
-    var inhalt = statesRendered.join('\n') + '\n\n' + transitionsRendered.join('\n');
+    var inhalt = statesRendered.join('\n') + '\n\n' + transitionsRendered.join('\n').replace(/\n$/, '');
     var tikzPicture = formatiereTexEnv('center', formatiereTexEnv('tikzpicture', inhalt, istKeller ? 'li kellerautomat' : 'li automat'));
     var liAntwort = tikzPicture + '\n' + formatiereFlaciLink(def);
     return formatiereTexEnv('liAntwort', liAntwort);

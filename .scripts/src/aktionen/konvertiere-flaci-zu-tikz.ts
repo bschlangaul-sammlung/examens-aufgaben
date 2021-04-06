@@ -158,7 +158,9 @@ function formatiereKellerÜbergang (trans: FlaciKellerÜbergang, states: StateNa
     optionen.push('bend left')
   }
 
-  return `  \\liKellerKante${formatiereOptionen(optionen)}{${source}}{${target}}{\n${übergänge.join(';\n')}\n  }\n`
+  const übergängeFormatiert = übergänge.join(';\n') + ';'
+
+  return `  \\liKellerKante${formatiereOptionen(optionen)}{${source}}{${target}}{\n${übergängeFormatiert}\n  }\n`
 }
 
 function formatiereFlaciLink(def: FlaciDefinition) {
@@ -200,7 +202,7 @@ function formatiereAutomat (def: FlaciDefinition): string {
       }
     }
   }
-  const inhalt = statesRendered.join('\n') + '\n\n' + transitionsRendered.join('\n')
+  const inhalt = statesRendered.join('\n') + '\n\n' + transitionsRendered.join('\n').replace(/\n$/, '')
   const tikzPicture = formatiereTexEnv('center', formatiereTexEnv(
     'tikzpicture',
     inhalt,
