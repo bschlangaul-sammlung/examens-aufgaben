@@ -57,6 +57,7 @@
 }
 
 \usepackage{lehramt-informatik-basis}
+
 \liLadePakete{
   automaten,
   formale-sprachen,
@@ -669,6 +670,7 @@ $\liMengeOhneMathe{#1}$%
 %   B B -> b b
 % \end{liProduktionsRegeln}
 % \end{verbatim}
+%
 %    \begin{macrocode}
 \NewDocumentEnvironment { liProduktionsRegeln }
 { +b }
@@ -684,6 +686,15 @@ $\liMengeOhneMathe{#1}$%
 } {}
 %    \end{macrocode}
 % \end{environment}
+
+% \begin{macro}{\liProduktionen}
+% |\liProduktionen{S -> A, A -> a}|: \liProduktionen{S -> A, A -> a}
+%    \begin{macrocode}
+\def\liProduktionen#1{
+  \liMenge{\directlua{formale_sprachen.produktions_regeln('#1', true)}}
+}
+%    \end{macrocode}
+% \end{macro}
 
 % \begin{macro}{\liZustandsnameTiefgestellt}
 % Automatisch tiefgestellte Nummerierung |\z1|
@@ -731,23 +742,35 @@ $\liMengeOhneMathe{#1}$%
 % \end{macro}
 
 % \begin{macro}{\liGrammatik}
-% \liGrammatik{variablen={S,A,B}}
+% \cmd{\liGrammatik}\oarg{grammtik-name}\marg{variablen=V,alphabet=$\Sigma$,produktionen=P,start=S}
+%
+% \begin{itemize}
+% \item |\liGrammatik{}|: \liGrammatik{}
+% \item |\liGrammatik[G_1]{}|: \liGrammatik[G_1]{}
+% \item |\liGrammatik{variablen={S,A,B}}|: \liGrammatik{variablen={S,A,B}}
+% \item |\liGrammatik{alphabet={a,b}}|: \liGrammatik{alphabet={a,b}}
+% \item |\liGrammatik{start=X}|: \liGrammatik{start=X}
+
+% \end{itemize}
+%
 %    \begin{macrocode}
 \ExplSyntaxOn
-\tl_set:Nn \l_variablen_tl {V}
-\tl_set:Nn \l_alphabet_tl {$\Sigma$}
-\tl_set:Nn \l_produktionen_tl {P}
-\tl_set:Nn \l_start_tl {S}
+\NewDocumentCommand {\liGrammatik} { O{G} m } {
+  \tl_set:Nn \l_variablen_tl {V}
+  \tl_set:Nn \l_alphabet_tl {$\Sigma$}
+  \tl_set:Nn \l_produktionen_tl {P}
+  \tl_set:Nn \l_start_tl {S}
 
-\keys_define:nn { grammatik } {
-  variablen .code:n = {\tl_set:Nn \l_variablen_tl {\liMenge{#1}}},
-  alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\liMenge{#1}}},
-  produktionen .code:n = {\tl_set:Nn \l_produktionen_tl {\liMenge{#1}}},
-  start .code:n = {\tl_set:Nn \l_start_tl {#1}},
-}
-\def\liGrammatik#1{%
-  \keys_set:nn { grammatik } { #1 }
-  $G = (
+  \keys_define:nn { grammatik } {
+    variablen .code:n = {\tl_set:Nn \l_variablen_tl {\liMenge{##1}}},
+    alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\liMenge{##1}}},
+    produktionen .code:n = {\tl_set:Nn \l_produktionen_tl {\liProduktionen{##1}}},
+    start .code:n = {\tl_set:Nn \l_start_tl {##1}},
+  }
+
+  \keys_set:nn { grammatik } { #2 }
+
+  $#1 = (
     \l_variablen_tl,
     \l_alphabet_tl,
     \l_produktionen_tl,

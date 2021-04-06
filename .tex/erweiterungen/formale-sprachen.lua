@@ -22,17 +22,29 @@ return {
     tex.print(table.concat(nummern_tabelle, ', '))
   end,
 
-  produktions_regeln = function (eingang)
+  produktions_regeln = function (eingang, inline)
+    if inline == nil then
+      inline = false
+    end
     print(eingang)
     local ausgabe = ''
     local regeln = helfer.split(eingang, ',')
     for index, value in ipairs(regeln) do
-      value = value:gsub('->', '&\\rightarrow')
+      if not inline then
+        value = value:gsub('->', '&->')
+      end
+      value = value:gsub('->', '\\rightarrow')
       value = value:gsub('|', '\\,|\\,')
       value = value:gsub('epsilon', '\\epsilon')
       value = value:gsub('EPSILON', '\\epsilon')
-      ausgabe = ausgabe .. value .. '\\\\'
+      if not inline then
+        value = value .. '\\\\'
+      else
+        value = value .. ', '
+      end
+      ausgabe = ausgabe .. value
     end
+    ausgabe = string.gsub(ausgabe, ', $', '')
     tex.print(ausgabe)
   end
 }

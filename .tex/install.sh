@@ -24,4 +24,6 @@ cp -f .tex/fremd/tikz-uml.pdf $HOME/texmf/doc
 
 cp -f .tex/fremd/tikz-uml-activity.sty $HOME/texmf/tex
 
-cp -f .tex/dokumentation.pdf $HOME/texmf/doc/lehramt-informatik.pdf
+if [ -f .tex/dokumentation.pdf ]; then
+  cp -f .tex/dokumentation.pdf $HOME/texmf/doc/lehramt-informatik.pdf
+fi

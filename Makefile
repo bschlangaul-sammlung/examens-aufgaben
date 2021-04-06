@@ -20,6 +20,9 @@ build_cli:
 install_tex:
 	.tex/install.sh
 
+install_tex_dtx: install_tex
+	i dtx
+
 readme:
 	.scripts/dist/main.js r
 
