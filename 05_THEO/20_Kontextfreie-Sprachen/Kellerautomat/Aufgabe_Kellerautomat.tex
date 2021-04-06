@@ -26,24 +26,23 @@ P -> 1 P 0 | S | EPSILON
 \begin{liAntwort}
 \begin{center}
 \begin{tikzpicture}[li kellerautomat]
-  \node[state,initial] (q0) at (3.14cm,-4.71cm) {$q_0$};
+  \node[state,initial] (z0) at (3.14cm,-4.71cm) {$z_0$};
   \node[state,accepting] (q1) at (5.71cm,-4.71cm) {$q_1$};
 
-  \liKellerKante[above]{q0}{q1}{
-    EPSILON, KELLERBODEN, EPSILON
+  \liKellerKante[above]{z0}{q1}{
+    EPSILON, KELLERBODEN, EPSILON;
   }
 
-  \liKellerKante[above,loop]{q0}{q0}{
+  \liKellerKante[above,loop]{z0}{z0}{
     EPSILON, KELLERBODEN, S KELLERBODEN;
-    EPSILON, S, 0S1;
+    EPSILON, S, 0 S 1;
     EPSILON, S, P;
-    EPSILON, P, 1P0;
+    EPSILON, P, 1 P 0;
     EPSILON, P, S;
     EPSILON, P, EPSILON;
     0, 0, EPSILON;
-    1, 1, EPSILON
+    1, 1, EPSILON;
   }
-
 \end{tikzpicture}
 \end{center}
 
@@ -61,6 +60,31 @@ S -> x T T,
 T -> x S | y S | x
 \end{liProduktionsRegeln}
 
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[li kellerautomat]
+  \node[state,initial] (z0) at (3.86cm,-3.86cm) {$z_0$};
+  \node[state,accepting] (q2) at (7.14cm,-3.86cm) {$q_2$};
+
+  \liKellerKante[above]{z0}{q2}{
+    EPSILON, KELLERBODEN, EPSILON;
+  }
+
+  \liKellerKante[above,loop]{z0}{z0}{
+    x, x, EPSILON;
+    y, y, EPSILON;
+    EPSILON, S, x T T;
+    EPSILON, T, x S;
+    EPSILON, T, y S;
+    EPSILON, T, x;
+    EPSILON, KELLERBODEN, S KELLERBODEN;
+  }
+\end{tikzpicture}
+\end{center}
+
+\liFlaci{Aiq4r0162}
+\end{liAntwort}
+
 %%
 % (c)
 %%
@@ -72,6 +96,36 @@ S -> a B | b A | A B c | B,
 A -> S S a,
 B -> c S | b B | b
 \end{liProduktionsRegeln}
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[li kellerautomat]
+  \node[state,initial] (z0) at (5.29cm,-5cm) {$z_0$};
+  \node[state,accepting] (z1) at (8.14cm,-5cm) {$z_1$};
+
+  \liKellerKante[above]{z0}{z1}{
+    EPSILON, KELLERBODEN, EPSILON;
+  }
+
+  \liKellerKante[above,loop]{z0}{z0}{
+    a, a, EPSILON;
+    b, b, EPSILON;
+    c, c, EPSILON;
+    EPSILON, S, a B;
+    EPSILON, S, b A;
+    EPSILON, S, A B c;
+    EPSILON, S, B;
+    EPSILON, A, S S a;
+    EPSILON, B, c S;
+    EPSILON, B, b B;
+    EPSILON, B, b;
+    EPSILON, KELLERBODEN, S KELLERBODEN;
+  }
+\end{tikzpicture}
+\end{center}
+
+\liFlaci{Ajh5y0s5r}
+\end{liAntwort}
 \end{enumerate}
 
 \end{document}

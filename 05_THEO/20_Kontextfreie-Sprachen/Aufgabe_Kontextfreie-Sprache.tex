@@ -2,7 +2,6 @@
 \liLadePakete{formale-sprachen,automaten}
 \begin{document}
 \let\m=\liMengeOhneMathe
-\let\u=\liKellerUebergang
 \let\z=\liZustandsnameTiefgestellt
 
 \liAufgabenTitel{Kontextfreie Sprache}
@@ -87,6 +86,7 @@ S -> aa S bb | S S | epsilon,
 \newpage
 
 \item Geben Sie einen Kellerautomaten an, der die Sprache akzeptiert.
+\index{Kellerautomat}
 
 \begin{liAntwort}
 \liPseudoUeberschrift{1. Kellerautomat (aus der Grammtik abgeleitet)}
@@ -94,17 +94,17 @@ S -> aa S bb | S S | epsilon,
 $K = (\m{\z0, \z1, \z2}, \m{a, b}, \m{\#, S, A, B}, \delta, \z0, \#, \z0)$
 
 \begin{center}
-\begin{tikzpicture}[li kellerautomat,node distance=3cm]
-\node[state,initial,accepting] (0) {\z0};
+\begin{tikzpicture}[li kellerautomat]
+  \node[state,initial,accepting] (z0) at (4.29cm,-4.57cm) {$z_0$};
 
-\path (0) edge[above,loop] node{\u{
-  a A epsilon,
-  b B epsilon,
-  epsilon S AASBB,
-  epsilon S SS,
-  epsilon S epsilon,
-  epsilon raute Sraute
-}} (0);
+  \liKellerKante[above,loop]{z0}{z0}{
+    a, A, EPSILON;
+    b, B, EPSILON;
+    EPSILON, S, A A S B B;
+    EPSILON, S, S S;
+    EPSILON, S, EPSILON;
+    EPSILON, KELLERBODEN, S KELLERBODEN;
+  }
 \end{tikzpicture}
 \end{center}
 
@@ -117,36 +117,35 @@ $K = (\m{\z0, \z1}, \m{a, b}, \m{\#, 1, 2}, \delta, \z0, \#, \z0)$
 Bemerkung zum Kelleralphabet: $1$ steht für $1A$, also ein $a$ befindet
 sich im Keller, und $2$ steht für $2A$, also zwei $a$ befinden sich im
 Keller.
-
 \begin{center}
-\begin{tikzpicture}[li kellerautomat,node distance=3cm]
-\node[state,initial,accepting] (0) {\z0};
-\node[state,right of=0] (1) {\z1};
+\begin{tikzpicture}[li kellerautomat]
+  \node[state,initial,accepting] (z0) at (2.43cm,-5.86cm) {$z_0$};
+  \node[state] (z1) at (8.29cm,-5.86cm) {$z_1$};
 
-\path (0) edge[above,loop] node{\u{
-  epsilon raute epsilon,
-  a 2 12,
-  a 1 21,
-  a raute 1raute
-}} (0);
+  \liKellerKante[above,bend left]{z0}{z1}{
+    EPSILON, 2, 2;
+  }
 
-\path (0) edge[above,bend left] node{
-  \u{epsilon 2 2}
-} (1);
+  \liKellerKante[above,loop]{z0}{z0}{
+    a, KELLERBODEN, 1 KELLERBODEN;
+    a, 1, 2 1;
+    a, 2, 1 2;
+    EPSILON, KELLERBODEN, EPSILON;
+  }
 
-\path (1) edge[above,loop] node{\u{
-  b 1 epsilon,
-  b 2 epsilon
-}} (1);
+  \liKellerKante[above,loop]{z1}{z1}{
+    b, 2, EPSILON;
+    b, 1, EPSILON;
+  }
 
-\path (1) edge[below,bend left] node{\u{
-  b B epsilon
-}} (0);
-
+  \liKellerKante[above,bend left]{z1}{z0}{
+    EPSILON, KELLERBODEN, KELLERBODEN;
+  }
 \end{tikzpicture}
 \end{center}
 
 \liFlaci{Ahfqseouz}
+
 \end{liAntwort}
 \end{enumerate}
 \end{document}
