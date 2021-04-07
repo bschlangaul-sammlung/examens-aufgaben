@@ -135,6 +135,50 @@
 }
 %    \end{macrocode}
 
+% \begin{macro}{\liAutomat}
+% \cmd{\liAutomat}\oarg{automaten-name}\marg{zustaende=Z,alphabet=$\Sigma$,delta=$\delta$,end=E,start=$z_0$}
+%
+% \begin{itemize}
+% \item |\liAutomat{}|: \liAutomat{}
+% \item |\liAutomat[A_1]{}|: \liAutomat[A_1]{}
+% \item |\liAutomat{zustaende={z_0, z_1, z_2}}|: \liAutomat{zustaende={z_0, z_1, z_2}}
+% \item |\liAutomat{alphabet={a,b}}|: \liAutomat{alphabet={a,b}}
+% \item |\liAutomat{delta=d}|: \liAutomat{delta=d}
+% \item |\liAutomat{end={z_0, z_1, z_2}}|: \liAutomat{end={z_0, z_1, z_2}}
+% \item |\liAutomat{start=z_1}|: \liAutomat{start=z_1}
+% \end{itemize}
+%
+%    \begin{macrocode}
+\ExplSyntaxOn
+\NewDocumentCommand {\liAutomat} { O{A} m } {
+  \tl_set:Nn \l_zustaende_tl {Z}
+  \tl_set:Nn \l_alphabet_tl {\Sigma}
+  \tl_set:Nn \l_delta_tl {\delta}
+  \tl_set:Nn \l_end_tl {E}
+  \tl_set:Nn \l_start_tl {z\sb{0}}
+
+  \keys_define:nn { automat } {
+    zustaende .code:n = {\tl_set:Nn \l_zustaende_tl {\liMenge{##1}}},
+    alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\liMenge{##1}}},
+    delta .code:n = {\tl_set:Nn \l_delta_tl {##1}},
+    end .code:n = {\tl_set:Nn \l_end_tl {\liMenge{##1}}},
+    start .code:n = {\tl_set:Nn \l_start_tl {##1}},
+  }
+
+  \keys_set:nn { automat } { #2 }
+
+  $#1 = (
+    \l_zustaende_tl,
+    \l_alphabet_tl,
+    \l_delta_tl,
+    \l_end_tl,
+    \l_start_tl
+  )$
+}
+\ExplSyntaxOff
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\liAutomatenKante}
 % |\let\k=\liAutomatenKante|
 %    \begin{macrocode}
@@ -762,14 +806,13 @@ $\liMengeOhneMathe{#1}$%
 % \item |\liGrammatik{variablen={S,A,B}}|: \liGrammatik{variablen={S,A,B}}
 % \item |\liGrammatik{alphabet={a,b}}|: \liGrammatik{alphabet={a,b}}
 % \item |\liGrammatik{start=X}|: \liGrammatik{start=X}
-
 % \end{itemize}
 %
 %    \begin{macrocode}
 \ExplSyntaxOn
 \NewDocumentCommand {\liGrammatik} { O{G} m } {
   \tl_set:Nn \l_variablen_tl {V}
-  \tl_set:Nn \l_alphabet_tl {$\Sigma$}
+  \tl_set:Nn \l_alphabet_tl {\Sigma}
   \tl_set:Nn \l_produktionen_tl {P}
   \tl_set:Nn \l_start_tl {S}
 

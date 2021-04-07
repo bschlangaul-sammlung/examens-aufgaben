@@ -3,8 +3,8 @@
 \begin{document}
 \let\m=\liMenge
 
-\liAufgabenTitel{}
-\section{Aufgabe 3 (Kontextfreie Sprachen)
+\liAufgabenTitel{Kontextfreie Sprachen}
+\section{Aufgabe 3
 \index{Kontextfreie Sprache}
 \footcite{66115:2018:09}}
 
@@ -31,17 +31,17 @@ Nichtterminale (Variablen) und der Grammatikregeln Ihrer Grammatik.
 
 \item Betrachten Sie die folgende kontextfreie Grammatik
 
-\begin{displaymath}
-G = (\m{S, X,Y, Z}, \m{z, y}, P, S)
-\end{displaymath}
+\begin{center}
+\liGrammatik{variablen={S, X, Y, Z}, alphabet={z, y}}
+\end{center}
 
 mit den Produktionen
 
 \begin{liProduktionsRegeln}
-S -> ZX | y,
-X -> ZS | SS | x,
-Y -> SX | YZ,
-Z -> XX | XS
+S -> Z X | y,
+X -> Z S | S S | x,
+Y -> S X | Y Z,
+Z -> X X | X S
 \end{liProduktionsRegeln}
 
 Benutzen Sie den Algorithmus von Cocke-Younger-Kasami (CYK) um zu

@@ -17,13 +17,13 @@ Chomsky-Normalform.
 %
 %-----------------------------------------------------------------------
 
-\item $G = (\{a, b, c\}, \{S, A, B, C, X\}, P, S)$ mit $P$:
+\item \liGrammatik{variablen={S, A, B, C, X}, alphabet={a, b, c}} mit $P$:
 
 \begin{liProduktionsRegeln}
-S -> XAB | epsilon,
-A -> aAB | AB | c,
-B -> BB | C | a,
-C -> CC | c | epsilon,
+S -> X A B | EPSILON,
+A -> a A B | A B | c,
+B -> B B | C | a,
+C -> C C | c | EPSILON,
 X -> A | b
 \end{liProduktionsRegeln}
 
@@ -31,11 +31,11 @@ X -> A | b
 %
 %-----------------------------------------------------------------------
 
-\item $G = (\{a, b, c\}, \{S, T\}, P, S)$ mit $P$:
+\item \liGrammatik{variablen={S, T}, alphabet={a, b, c}} mit $P$:
 
 \begin{liProduktionsRegeln}
-S -> aSbS | T,
-T -> cT | c
+S -> a S b S | T,
+T -> c T | c
 \end{liProduktionsRegeln}
 
 \begin{liAntwort}
@@ -47,15 +47,15 @@ T -> cT | c
 \item \schrittE{2}
 
 \begin{liProduktionsRegeln}
-S -> aSbS | cT | c,
-T -> cT | c
+S -> a S b S | c T | c,
+T -> c T | c
 \end{liProduktionsRegeln}
 
 \item \schrittE{3}
 
 \begin{liProduktionsRegeln}
-S -> ASAS | CT | c,
-T -> CT | c,
+S -> A S A S | C T | c,
+T -> C T | c,
 A -> a,
 B -> b,
 C -> c,
@@ -64,13 +64,13 @@ C -> c,
 \item \schrittE{4}
 
 \begin{liProduktionsRegeln}
-S -> AU | CT | c,
-T -> CT | c,
+S -> A U | C T | c,
+T -> C T | c,
 A -> a,
 B -> b,
 C -> c,
-U -> SV
-V -> AS
+U -> S V
+V -> A S
 \end{liProduktionsRegeln}
 
 \end{enumerate}
@@ -80,12 +80,12 @@ V -> AS
 %
 %-----------------------------------------------------------------------
 
-\item $G = (\{a, b, c\}, \{S, A, B\}, P, S)$ mit $P$:
+\item \liGrammatik{variablen={S, A, B}, alphabet={a, b, c}} mit $P$:
 
 \begin{liProduktionsRegeln}
-S -> AB,
-A -> aAA | epsilon,
-B -> bBB | epsilon
+S -> A B,
+A -> a A A | EPSILON,
+B -> b B B | EPSILON
 \end{liProduktionsRegeln}
 \end{enumerate}
 
