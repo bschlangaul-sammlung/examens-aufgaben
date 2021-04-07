@@ -1,6 +1,7 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{mathe,formale-sprachen}
 \begin{document}
+\let\m=\liMenge
 \liAufgabenTitel{Pumping-Lemma}
 \section{Pumping-Lemma
 \index{Pumping-Lemma (Reguläre Sprache)}
@@ -15,8 +16,9 @@ Begründe jeweils, ob die folgenden Sprachen regulär sind oder nicht.
 % a)
 %%
 
-\item $L_1 = \{w \in \{a, b\}^* \,|\, \text{ auf ein } a \text{ folgt
-immer ein } b\}$
+\item \liAusdruck[L_1]
+{w \in \m{a, b}^* }
+{\text{ auf ein } a \text{ folgt immer ein } b}
 
 \begin{liAntwort}
 $L_1 = L(b^* (ab)^* b^*)$ und damit regulär.
@@ -26,8 +28,9 @@ $L_1 = L(b^* (ab)^* b^*)$ und damit regulär.
 % b)
 %%
 
-\item $L_2 = \{ w \in \{ 1 \}^* \,|\, \exists n \in \mathbb{N} \text{ mit }
-|w| = n^2\}$
+\item \liAusdruck[L_2]
+{w \in \{ 1 \}^*}
+{\exists n \in \mathbb{N} \text{ mit } |w| = n^2}
 
 \begin{liAntwort}
 $L_2$ ist nicht regulär.

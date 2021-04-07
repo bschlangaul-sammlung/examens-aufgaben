@@ -1,30 +1,32 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{automaten}
+\liLadePakete{automaten,formale-sprachen}
 \begin{document}
 \liAufgabenTitel{Grammatik aus Automat}
 \section{Grammatik aus Automat
 \index{Reguläre Sprache}
 \footcite{theo:ab:1}}
 
-Sei $M = (\{q_0, q_1, q_2 \}, \{a, b\}, \sigma, q_0, \{q 2\})$ ein
+\liAutomat{}
+Sei \liAutomat{zustaende={Z_0, Z_1, Z_2}, alphabet={a, b}, end={Z_2}} ein
 endlicher Automat. Die Übergangsfunktion sei wie in dem unten
 abgebildeten Diagramm definiert.
 \index{Deterministisch endlicher Automat (DEA)}
 
 \begin{center}
-\begin{tikzpicture}[->]
-\node[state] (0) at (0,0) {$q_0$};
-\node[state] (1) at (2,2) {$q_1$};
-\node[state,accepting] (2) at (4,0) {$q_2$};
+\begin{tikzpicture}[li automat]
+  \node[state,initial] (z0) at (2.43cm,-5.14cm) {$Z_0$};
+  \node[state] (z1) at (6.29cm,-1.71cm) {$Z_1$};
+  \node[state,accepting] (z2) at (8.43cm,-5.57cm) {$Z_2$};
 
-\path (0) edge[above] node{a} (2);
-\path (2) edge[above,bend left] node{b} (0);
-\path (0) edge[above] node{b} (1);
-\path (1) edge[above] node{b} (2);
-\path (2) edge[above,bend left] node{a} (1);
-\path (1) edge[loop,above] node{a} (1);
+  \path (z0) edge[auto] node{b} (z1);
+  \path (z0) edge[auto,bend left] node{a} (z2);
+  \path (z1) edge[auto,bend left] node{b} (z2);
+  \path (z1) edge[auto,loop] node{a} (z1);
+  \path (z2) edge[auto,bend left] node{b} (z0);
+  \path (z2) edge[auto,bend left] node{a} (z1);
 \end{tikzpicture}
 \end{center}
+\liFlaci{Apk0iyqyg}
 
 \begin{enumerate}
 
@@ -35,13 +37,40 @@ abgebildeten Diagramm definiert.
 \item Gebe eine reguläre Grammatik $G$ an, sodass $L(G) = L(M)$ gilt.
 \index{Reguläre Grammatik}
 
+\begin{liAntwort}
+\liGrammatik{variablen={Z_0, Z_1, Z_2}, alphabet={a, b}, start=Z_0} mit
+folgender Produktionsmenge
+
+\begin{liProduktionsRegeln}
+Z_0 -> b Z_1 | a Z_2,
+Z_1 -> a Z_1 | b Z_2,
+Z_2 -> b Z_0 | a Z_1 | EPSILON
+\end{liProduktionsRegeln}
+\end{liAntwort}
+
 %%
 %
 %%
 
-\item ̈Überlege dir ein systematisches Verfahren, um einen
+\item Überlegen Sie sich ein systematisches Verfahren, um einen
 deterministischen endlichen Automaten in eine reguläre Grammatik
 umzuwandeln.
+
+\begin{liAntwort}
+Analog zu obigem Beispiel folgender Algorithmus benutzt werden:
+
+\begin{itemize}
+\item Setze $V = \liMenge{Z_0, Z_1, \dots Z_n}$ und $S$ auf den
+Startzustand des Automaten.
+
+\item Für jeden Übergang $\delta(Z_i, a) = Z_j$ füge die Produktion
+\liProduktionen{Z_i -> a Z_j} zu $P$ hinzu.
+
+\item Für jeden Zustand $Z_i \in Z$ füge die Produktion
+\liProduktionen{Z_i -> EPSILON}  zu P dazu.
+
+\end{itemize}
+\end{liAntwort}
 \end{enumerate}
 
 \end{document}

@@ -1,13 +1,24 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{formale-sprachen}
 \begin{document}
-\liAufgabenTitel{}
+\liAufgabenTitel{Kontextfrei aber nicht regulär}
 \section{Aufgabe 3
 \index{Kontextfreie Sprache}
 \footcite{66115:2012:03}}
 
 Beweisen Sie, dass folgende Sprache kontextfrei, aber nicht regulär ist.
 
-\liAusdruck{ab}{n>m-> 1}
+\begin{center}
+\liAusdruck[C]{a^n b^m}{ n \geq m \geq 1 }
+\end{center}
+
+\begin{liAntwort}
+\liGrammatik{variablen={S, A, B}, alphabet={a, b}}
+
+\begin{liProduktionsRegeln}
+S -> a A b | a B b | a b,
+B -> a B | a
+\end{liProduktionsRegeln}
+\end{liAntwort}
 
 \end{document}

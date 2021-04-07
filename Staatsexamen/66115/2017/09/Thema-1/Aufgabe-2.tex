@@ -22,7 +22,11 @@ Betrachten Sie die Sprache $L_1 = L_a \cup L_b$.
 \item Geben Sie für $L_1$ eine kontextfreie Grammatik an.
 \begin{liAntwort}
 \begin{liProduktionsRegeln}
-S -> a S b
+S -> S_a | S_b,
+S_a -> a S_a c | a B_a c,
+B_a -> b,
+S_b -> a B_b,
+B_b -> b B_b c | b c
 \end{liProduktionsRegeln}
 \end{liAntwort}
 
@@ -31,6 +35,14 @@ S -> a S b
 %%
 
 \item Ist Ihre Grammatik aus a) eindeutig? Begründen Sie Ihre Antwort.
+
+\begin{liAntwort}
+Nein. Die Sprache ist nicht eindeutig. Für das Wort $abc$ gibt es
+zwei Ableitungen, nämlich
+\liAbleitung{S -> S_a -> a B_a c -> a b c}
+und
+\liAbleitung{S -> S_b -> a B_b -> a b c}.
+\end{liAntwort}
 
 %%
 % c)
