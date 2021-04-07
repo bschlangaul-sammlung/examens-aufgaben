@@ -73,7 +73,7 @@ $L(G') = L(G)$
 \begin{liAntwort}
 
 \begin{liProduktionsRegeln}
-S -> aa S bb | S S | epsilon,
+S -> a a S b b | S S | epsilon,
 \end{liProduktionsRegeln}
 
 \liFlaci{Grn19rt8w}
@@ -91,7 +91,12 @@ S -> aa S bb | S S | epsilon,
 \begin{liAntwort}
 \liPseudoUeberschrift{1. Kellerautomat (aus der Grammtik abgeleitet)}
 
-$K = (\m{\z0, \z1, \z2}, \m{a, b}, \m{\#, S, A, B}, \delta, \z0, \#, \z0)$
+\liKellerAutomat{
+  zustaende={\z0},
+  alphabet={a, b},
+  kelleralphabet={\#, S, A, B},
+  end={\z0},
+}
 
 \begin{center}
 \begin{tikzpicture}[li kellerautomat]
@@ -112,7 +117,12 @@ $K = (\m{\z0, \z1, \z2}, \m{a, b}, \m{\#, S, A, B}, \delta, \z0, \#, \z0)$
 
 \liPseudoUeberschrift{2. Kellerautomat}
 
-$K = (\m{\z0, \z1}, \m{a, b}, \m{\#, 1, 2}, \delta, \z0, \#, \z0)$
+\liKellerAutomat{
+  zustaende={\z0, \z1},
+  alphabet={a, b},
+  kelleralphabet={\#, 1, 2},
+  end={\z0},
+}
 
 Bemerkung zum Kelleralphabet: $1$ steht für $1A$, also ein $a$ befindet
 sich im Keller, und $2$ steht für $2A$, also zwei $a$ befinden sich im

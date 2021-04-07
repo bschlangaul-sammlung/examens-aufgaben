@@ -20,6 +20,13 @@ Erstelle jeweils einen PDA, der die angegebenen Sprachen akzeptiert.
 \item \liAusdruck{0^n 1^n}{n \in \mathbb{N}}
 
 \begin{liAntwort}
+\liKellerAutomat{
+  zustaende={z_0, z_1, z_2, z_3},
+  alphabet={0, 1},
+  kelleralphabet={\#, N},
+  end={z_3},
+}
+
 N = Null
 
 \begin{center}
@@ -61,6 +68,13 @@ N = Null
 \item Alle Wörter, die gleich viele $a$ wie $b$ enthalten.
 
 \begin{liAntwort}
+\liKellerAutomat{
+  zustaende={z_0, z_1, z_2, z_3},
+  alphabet={a, b},
+  kelleralphabet={\#, A, B},
+  end={z_3},
+}
+
 \begin{center}
 \begin{tikzpicture}[li kellerautomat]
   \node[state,initial] (z0) at (2.29cm,-4cm) {$z_0$};
@@ -110,6 +124,13 @@ N = Null
 \item Alle Wörter, bei denen kein Präfix mehr Einsen wie Nullen hat.
 
 \begin{liAntwort}
+\liKellerAutomat{
+  zustaende={z_0, z_1, z_2},
+  alphabet={0, 1},
+  kelleralphabet={\#, N},
+  end={z_1},
+}
+
 akzeptiert:
 
 \begin{itemize}

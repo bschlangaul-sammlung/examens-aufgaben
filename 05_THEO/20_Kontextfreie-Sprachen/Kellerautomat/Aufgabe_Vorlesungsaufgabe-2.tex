@@ -26,7 +26,12 @@ S -> EPSILON | 0 | 1 | 0 P 0 | 1 P 1,
 \end{liProduktionsRegeln}
 
 \begin{liAntwort}
-$K = (\m{\z0, \z1}, \m{0, 1}, \m{\#, N, E}, \delta, z_0, \#)$
+\liKellerAutomat{
+  zustaende={\z0, \z1},
+  alphabet={0, 1},
+  kelleralphabet={\#, N, E},
+  end={z_1},
+}
 
 N = Null
 
@@ -79,27 +84,33 @@ B -> 0 B | 1 B | EPSILON,
 \end{enumerate}
 
 \begin{liAntwort}
-$K = (\m{\z0, \z1}, \m{0, 1}, \m{\#, E}, \delta, z_0, \#)$
+\liKellerAutomat{
+  zustaende={\z0, \z1},
+  alphabet={0, 1},
+  kelleralphabet={\#, E},
+  end={z_1},
+}
 
+\noindent
 E = Eins ist gesetzt
 
 \begin{center}
 \begin{tikzpicture}[li kellerautomat]
   \node[state,initial] (z0) at (4cm,-8cm) {$z_0$};
-  \node[state,accepting] (q1) at (7.86cm,-8cm) {$q_1$};
+  \node[state,accepting] (z1) at (7.86cm,-8cm) {$z_1$};
 
   \liKellerKante[above,loop]{z0}{z0}{
     0, KELLERBODEN, KELLERBODEN;
     1, KELLERBODEN, E KELLERBODEN;
   }
 
-  \liKellerKante[above]{z0}{q1}{
+  \liKellerKante[above]{z0}{z1}{
     0, E, EPSILON;
     1, E, EPSILON;
     EPSILON, E, EPSILON;
   }
 
-  \liKellerKante[above,loop]{q1}{q1}{
+  \liKellerKante[above,loop]{z1}{z1}{
     0, KELLERBODEN, KELLERBODEN;
     1, KELLERBODEN, KELLERBODEN;
     EPSILON, KELLERBODEN, EPSILON;

@@ -97,7 +97,7 @@
 }
 %    \end{macrocode}
 
-% \subsubsection{Kellerautomat}
+% \newpage\subsubsection{Kellerautomat}
 
 % \begin{verbatim}
 % \begin{tikzpicture}[li kellerautomat,node distance=5cm]
@@ -146,6 +146,56 @@
 % }
 % \end{tikzpicture}
 % \end{liBeispiel}
+
+% \begin{macro}{\liKellerAutomat}
+% \cmd{\liKellerAutomat}\oarg{automaten-name}
+% \\\marg{zustaende=Z,alphabet=$\Sigma$,kelleralphabet=$\Gamma$,delta=$\delta$,start=$z_0$,kellerboden=\#,end=E}
+%
+% \begin{verbatim}
+% \liKellerAutomat{
+%   zustaende={z_0, z_1, z_2},
+%   alphabet={a, b, c},
+%   kelleralphabet={\#, A},
+%   end={z_2},
+% }
+% \end{verbatim}
+%
+%    \begin{macrocode}
+\ExplSyntaxOn
+\NewDocumentCommand {\liKellerAutomat} { O{K} m } {
+  \tl_set:Nn \l_zustaende_tl {Z}
+  \tl_set:Nn \l_alphabet_tl {\Sigma}
+  \tl_set:Nn \l_kelleralphabet_tl {\Gamma}
+  \tl_set:Nn \l_delta_tl {\delta}
+  \tl_set:Nn \l_start_tl {z\sb{0}}
+  \tl_set:Nn \l_kellerboden_tl {\#}
+  \tl_set:Nn \l_end_tl {E}
+
+  \keys_define:nn { kellerautomat } {
+    zustaende .code:n = {\tl_set:Nn \l_zustaende_tl {\liMenge{##1}}},
+    alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\liMenge{##1}}},
+    kelleralphabet .code:n = {\tl_set:Nn \l_kelleralphabet_tl {\liMenge{##1}}},
+    delta .code:n = {\tl_set:Nn \l_delta_tl {##1}},
+    start .code:n = {\tl_set:Nn \l_start_tl {##1}},
+    kellerboden .code:n = {\tl_set:Nn \l_kellerboden_tl {##1}},
+    end .code:n = {\tl_set:Nn \l_end_tl {\liMenge{##1}}},
+  }
+
+  \keys_set:nn { kellerautomat } { #2 }
+
+  $#1 = (
+    \l_zustaende_tl,
+    \l_alphabet_tl,
+    \l_kelleralphabet_tl,
+    \l_delta_tl,
+    \l_start_tl,
+    \l_kellerboden_tl,
+    \l_end_tl
+  )$
+}
+\ExplSyntaxOff
+%    \end{macrocode}
+% \end{macro}
 
 % \begin{macro}{\liKellerUebergang}
 % |\let\u=\liKellerUebergang|

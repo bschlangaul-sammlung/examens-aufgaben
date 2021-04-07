@@ -24,12 +24,19 @@ P -> 1 P 0 | S | EPSILON
 \end{liProduktionsRegeln}
 
 \begin{liAntwort}
+\liKellerAutomat{
+  zustaende={z_0, z_1},
+  alphabet={0, 1},
+  kelleralphabet={\#, S, P, 0, 1},
+  end={z_1},
+}
+
 \begin{center}
 \begin{tikzpicture}[li kellerautomat]
   \node[state,initial] (z0) at (3.14cm,-4.71cm) {$z_0$};
-  \node[state,accepting] (q1) at (5.71cm,-4.71cm) {$q_1$};
+  \node[state,accepting] (z1) at (5.71cm,-4.71cm) {$z_1$};
 
-  \liKellerKante[above]{z0}{q1}{
+  \liKellerKante[above]{z0}{z1}{
     EPSILON, KELLERBODEN, EPSILON;
   }
 
@@ -61,12 +68,19 @@ T -> x S | y S | x
 \end{liProduktionsRegeln}
 
 \begin{liAntwort}
+\liKellerAutomat{
+  zustaende={z_0, z_1},
+  alphabet={x, y},
+  kelleralphabet={\#, T, S, x, y},
+  end={z_1},
+}
+
 \begin{center}
 \begin{tikzpicture}[li kellerautomat]
   \node[state,initial] (z0) at (3.86cm,-3.86cm) {$z_0$};
-  \node[state,accepting] (q2) at (7.14cm,-3.86cm) {$q_2$};
+  \node[state,accepting] (z1) at (7.14cm,-3.86cm) {$z_1$};
 
-  \liKellerKante[above]{z0}{q2}{
+  \liKellerKante[above]{z0}{z1}{
     EPSILON, KELLERBODEN, EPSILON;
   }
 
@@ -98,6 +112,13 @@ B -> c S | b B | b
 \end{liProduktionsRegeln}
 
 \begin{liAntwort}
+\liKellerAutomat{
+  zustaende={z_0, z_1},
+  alphabet={a, b},
+  kelleralphabet={\#, A, B, a, b},
+  end={z_1},
+}
+
 \begin{center}
 \begin{tikzpicture}[li kellerautomat]
   \node[state,initial] (z0) at (5.29cm,-5cm) {$z_0$};
