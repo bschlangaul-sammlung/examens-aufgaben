@@ -46,19 +46,26 @@ function formatiereZustand(state) {
 function formatiereÜbergang(trans, states) {
     var source = states[trans.Source];
     var target = states[trans.Target];
-    var eingabe = trans.Labels.join(',');
-    var loop = '';
-    if (source === target) {
-        loop = ',loop';
+    var eingabeSymbole = '$' + trans.Labels.map(function (value) {
+        if (value === '')
+            return '\\epsilon';
+        return value;
+    }).join(',') + '$';
+    var optionen = bestimmeÜbergangsOptionen(trans);
+    return "  \\path (" + source + ") edge" + formatiereOptionen(optionen) + " node{" + eingabeSymbole + "} (" + target + ");";
+}
+function bestimmeÜbergangsOptionen(trans, standardOption) {
+    if (standardOption === void 0) { standardOption = 'auto'; }
+    var optionen = [standardOption];
+    if (trans.Source === trans.Target) {
+        // loop above ergibt eine kleiner Schleife, ähnlich wie loop left etc.
+        // So sind alle Schleifen einheitlich groß.
+        optionen.push('loop above');
     }
-    var biegen = '';
-    if (trans.x !== 0 || trans.y !== 0) {
-        biegen = ',bend left';
+    if ((trans.x !== 0 || trans.y !== 0) && !optionen.includes('loop above')) {
+        optionen.push('bend left');
     }
-    if (loop !== '') {
-        biegen = '';
-    }
-    return "  \\path (" + source + ") edge[auto" + biegen + loop + "] node{" + eingabe + "} (" + target + ");";
+    return optionen;
 }
 function formatiereOptionen(optionen) {
     if (optionen.length > 0) {
@@ -100,18 +107,12 @@ function formatiereKellerÜbergang(trans, states) {
         }
         finally { if (e_1) throw e_1.error; }
     }
-    var optionen = ['above'];
-    if (source === target) {
-        optionen.push('loop');
-    }
-    if ((trans.x !== 0 || trans.y !== 0) && !optionen.includes('loop')) {
-        optionen.push('bend left');
-    }
+    var optionen = bestimmeÜbergangsOptionen(trans, 'above');
     var übergängeFormatiert = übergänge.join(';\n') + ';';
     return "  \\liKellerKante" + formatiereOptionen(optionen) + "{" + source + "}{" + target + "}{\n" + übergängeFormatiert + "\n  }\n";
 }
 function formatiereFlaciLink(def) {
-    return "\n\\liFlaci{A" + def.GUID + "}";
+    return "\\liFlaci{A" + def.GUID + "}";
 }
 function formatiereTexEnv(name, inhalt, optionen) {
     if (optionen === void 0) { optionen = null; }

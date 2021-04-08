@@ -36,7 +36,7 @@
 %    \end{macrocode}
 
 % \begin{macro}{\liAutomat}
-% \cmd{\liAutomat}\oarg{automaten-name}\marg{zustaende=Z,alphabet=$\Sigma$,delta=$\delta$,end=E,start=$z_0$}
+% \cmd{\liAutomat}\oarg{automaten-name}\marg{zustaende=Z,alphabet=$\Sigma$,delta=$\delta$,ende=E,start=$z_0$}
 %
 % \begin{itemize}
 % \item |\liAutomat{}|: \liAutomat{}
@@ -44,8 +44,10 @@
 % \item |\liAutomat{zustaende={z_0, z_1, z_2}}|: \liAutomat{zustaende={z_0, z_1, z_2}}
 % \item |\liAutomat{alphabet={a,b}}|: \liAutomat{alphabet={a,b}}
 % \item |\liAutomat{delta=d}|: \liAutomat{delta=d}
-% \item |\liAutomat{end={z_0, z_1, z_2}}|: \liAutomat{end={z_0, z_1, z_2}}
+% \item |\liAutomat{ende={z_0, z_1, z_2}}|: \liAutomat{ende={z_0, z_1, z_2}}
 % \item |\liAutomat{start=z_1}|: \liAutomat{start=z_1}
+% \item |\liAutomat{dea}|: \liAutomat{dea}
+% \item |\liAutomat{nea}|: \liAutomat{nea}
 % \end{itemize}
 %
 %    \begin{macrocode}
@@ -54,24 +56,29 @@
   \tl_set:Nn \l_zustaende_tl {Z}
   \tl_set:Nn \l_alphabet_tl {\Sigma}
   \tl_set:Nn \l_delta_tl {\delta}
-  \tl_set:Nn \l_end_tl {E}
+  \tl_set:Nn \l_ende_tl {E}
   \tl_set:Nn \l_start_tl {z\sb{0}}
+  \tl_set:Nn \l_typ_tl {}
 
   \keys_define:nn { automat } {
     zustaende .code:n = {\tl_set:Nn \l_zustaende_tl {\liMenge{##1}}},
     alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\liMenge{##1}}},
     delta .code:n = {\tl_set:Nn \l_delta_tl {##1}},
-    end .code:n = {\tl_set:Nn \l_end_tl {\liMenge{##1}}},
+    ende .code:n = {\tl_set:Nn \l_ende_tl {\liMenge{##1}}},
     start .code:n = {\tl_set:Nn \l_start_tl {##1}},
+    dea .value_forbidden:n = true,
+    dea .code:n = {\tl_set:Nn \l_typ_tl {\sb{\text{DEA}}}},
+    nea .value_forbidden:n = true,
+    nea .code:n = {\tl_set:Nn \l_typ_tl {\sb{\text{NEA}}}},
   }
 
   \keys_set:nn { automat } { #2 }
 
-  $#1 = (
+  $#1 \l_typ_tl = (
     \l_zustaende_tl,
     \l_alphabet_tl,
     \l_delta_tl,
-    \l_end_tl,
+    \l_ende_tl,
     \l_start_tl
   )$
 }
@@ -149,14 +156,14 @@
 
 % \begin{macro}{\liKellerAutomat}
 % \cmd{\liKellerAutomat}\oarg{automaten-name}
-% \\\marg{zustaende=Z,alphabet=$\Sigma$,kelleralphabet=$\Gamma$,delta=$\delta$,start=$z_0$,kellerboden=\#,end=E}
+% \\\marg{zustaende=Z,alphabet=$\Sigma$,kelleralphabet=$\Gamma$,delta=$\delta$,start=$z_0$,kellerboden=\#,ende=E}
 %
 % \begin{verbatim}
 % \liKellerAutomat{
 %   zustaende={z_0, z_1, z_2},
 %   alphabet={a, b, c},
 %   kelleralphabet={\#, A},
-%   end={z_2},
+%   ende={z_2},
 % }
 % \end{verbatim}
 %
@@ -169,7 +176,7 @@
   \tl_set:Nn \l_delta_tl {\delta}
   \tl_set:Nn \l_start_tl {z\sb{0}}
   \tl_set:Nn \l_kellerboden_tl {\#}
-  \tl_set:Nn \l_end_tl {E}
+  \tl_set:Nn \l_ende_tl {E}
 
   \keys_define:nn { kellerautomat } {
     zustaende .code:n = {\tl_set:Nn \l_zustaende_tl {\liMenge{##1}}},
@@ -178,7 +185,7 @@
     delta .code:n = {\tl_set:Nn \l_delta_tl {##1}},
     start .code:n = {\tl_set:Nn \l_start_tl {##1}},
     kellerboden .code:n = {\tl_set:Nn \l_kellerboden_tl {##1}},
-    end .code:n = {\tl_set:Nn \l_end_tl {\liMenge{##1}}},
+    ende .code:n = {\tl_set:Nn \l_ende_tl {\liMenge{##1}}},
   }
 
   \keys_set:nn { kellerautomat } { #2 }
@@ -190,7 +197,7 @@
     \l_delta_tl,
     \l_start_tl,
     \l_kellerboden_tl,
-    \l_end_tl
+    \l_ende_tl
   )$
 }
 \ExplSyntaxOff

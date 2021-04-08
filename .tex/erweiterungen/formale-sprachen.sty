@@ -216,14 +216,19 @@ $\liMengeOhneMathe{#1}$%
 
 % \begin{macro}{\liAusdruck}
 % |\liAusdruck[L_2]{a_1,a_2,\dots,a_n}{n \in N}|: \liAusdruck[L_2]{a_1,a_2,\dots,a_n}{n \in N}
+%
+% Ohne „=“: |\liAusdruck[]{x}{y}|: \liAusdruck[]{x}{y}
+%
 % Regulärer Ausdruck zum Konvertieren:
 % \begin{verbatim}
 % \$(.*) += +\\\{ *(.*?)( *\\, *)?\|( *\\, *)?(.*?) *\\\}\$
+% \\liAusdruck[$1]{$2}{$5}
 % \end{verbatim}
-% |\\liAusdruck[$1]{$2}{$5}|
 %    \begin{macrocode}
 \NewDocumentCommand{ \liAusdruck } { O{L} m m } {
-  $#1 = \{
+  $
+   \tl_if_empty:nTF {#1} {} {#1 =}
+   \{
     \, #2 \,
     |
     \, #3 \,

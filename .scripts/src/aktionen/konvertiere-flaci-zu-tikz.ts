@@ -102,21 +102,27 @@ function formatiereZustand (state: FlaciZustand): string {
 function formatiereÜbergang (trans: FlaciÜbergang, states: StateNames) {
   const source = states[trans.Source]
   const target = states[trans.Target]
-  const eingabe = trans.Labels.join(',')
-  let loop = ''
-  if (source === target) {
-    loop = ',loop'
+  const eingabeSymbole = '$' + trans.Labels.map(value => {
+    if (value === '') return '\\epsilon'
+    return value
+  }).join(',') + '$'
+
+  const optionen = bestimmeÜbergangsOptionen(trans)
+  return `  \\path (${source}) edge${formatiereOptionen(optionen)} node{${eingabeSymbole}} (${target});`
+}
+
+function bestimmeÜbergangsOptionen(trans: FlaciÜbergang | FlaciKellerÜbergang, standardOption: string = 'auto'): string[] {
+  let optionen = [standardOption]
+  if (trans.Source === trans.Target) {
+    // loop above ergibt eine kleiner Schleife, ähnlich wie loop left etc.
+    // So sind alle Schleifen einheitlich groß.
+    optionen.push('loop above')
   }
 
-  let biegen = ''
-  if (trans.x !== 0 || trans.y !== 0) {
-    biegen = ',bend left'
+  if ((trans.x !== 0 || trans.y !== 0) && !optionen.includes('loop above')) {
+    optionen.push('bend left')
   }
-
-  if (loop !== '') {
-    biegen = ''
-  }
-  return `  \\path (${source}) edge[auto${biegen}${loop}] node{${eingabe}} (${target});`
+  return optionen
 }
 
 function formatiereOptionen (optionen: string[]): string {
@@ -149,22 +155,14 @@ function formatiereKellerÜbergang (trans: FlaciKellerÜbergang, states: StateNa
     übergänge.push('    ' + übergang.join(', '))
   }
 
-  let optionen = ['above']
-  if (source === target) {
-    optionen.push('loop')
-  }
-
-  if ((trans.x !== 0 || trans.y !== 0) && !optionen.includes('loop')) {
-    optionen.push('bend left')
-  }
-
+  const optionen = bestimmeÜbergangsOptionen(trans, 'above')
   const übergängeFormatiert = übergänge.join(';\n') + ';'
 
   return `  \\liKellerKante${formatiereOptionen(optionen)}{${source}}{${target}}{\n${übergängeFormatiert}\n  }\n`
 }
 
 function formatiereFlaciLink(def: FlaciDefinition) {
-  return `\n\\liFlaci{A${def.GUID}}`
+  return `\\liFlaci{A${def.GUID}}`
 }
 
 function formatiereTexEnv(name: string, inhalt: string, optionen: string | null = null): string {

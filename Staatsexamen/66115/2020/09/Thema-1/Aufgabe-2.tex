@@ -1,0 +1,99 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,automaten}
+\begin{document}
+\liAufgabenTitel{Reguläre Sprache xyz}
+\section{Aufgabe 2
+\index{Reguläre Sprache}
+\footcite{66115:2020:09}}
+
+Sei \liAlphabet{x, y, z}. Sei $L = (x^* y z x^*)^* \subseteq \Sigma^*$.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Geben Sie einen endlichen (deterministischen oder
+nichtdeterministischen) Automaten $A$ an, der $L$ erkennt bzw. akzeptiert.
+
+\begin{liAntwort}
+\liPseudoUeberschrift{Nichtdeterministischer endlicher Automat}
+
+\liAutomat{
+  nea,
+  alphabet={x,y,z},
+  zustaende={z_0, z_1, z_2, z_3, z_T},
+  ende={z_0, z_2}
+}
+
+\begin{center}
+\begin{tikzpicture}[li automat]
+  \node[state] (z1) at (3.14cm,-2.29cm) {$z_1$};
+  \node[state] (z2) at (5.29cm,-2.29cm) {$z_2$};
+  \node[state] (z3) at (7.57cm,-2.29cm) {$z_3$};
+  \node[state,initial,accepting] (z0) at (3cm,-4.43cm) {$z_0$};
+
+  \path (z1) edge[auto] node{$y$} (z2);
+  \path (z1) edge[auto,loop above] node{$x$} (z1);
+  \path (z2) edge[auto] node{$z$} (z3);
+  \path (z3) edge[auto,bend left] node{$\epsilon$} (z0);
+  \path (z3) edge[auto,loop above] node{$x$} (z3);
+  \path (z0) edge[auto] node{$\epsilon$} (z1);
+\end{tikzpicture}
+\end{center}
+\liFlaci{Ajpmxqvh9}
+
+\liPseudoUeberschrift{Deterministischer endlicher Automat}
+
+\liAutomat{
+  dea,
+  alphabet={x,y,z},
+  zustaende={z_0, z_1, z_2, z_3, z_T},
+  ende={z_0, z_2}
+}
+
+\begin{center}
+\begin{tikzpicture}[li automat]
+  \node[state,initial,accepting] (z0) at (2.14cm,-2.14cm) {$z_0$};
+  \node[state] (z1) at (3.86cm,-4.43cm) {$z_1$};
+  \node[state] (zT) at (2.57cm,-7.43cm) {$z_T$};
+  \node[state,accepting] (z2) at (7.71cm,-8.43cm) {$z_2$};
+  \node[state] (z3) at (7.86cm,-3.71cm) {$z_3$};
+
+  \path (z0) edge[auto] node{$x$} (z1);
+  \path (z0) edge[auto] node{$y$} (z3);
+  \path (z0) edge[auto] node{$z$} (zT);
+  \path (z1) edge[auto] node{$y$} (z3);
+  \path (z1) edge[auto,loop above] node{$x$} (z1);
+  \path (z1) edge[auto] node{$z$} (zT);
+  \path (zT) edge[auto,loop left] node{$x,y,z$} (zT);
+  \path (z2) edge[auto,loop below] node{$x$} (z2);
+  \path (z2) edge[auto,bend left] node{$y$} (z3);
+  \path (z2) edge[auto] node{$z$} (zT);
+  \path (z3) edge[auto,bend left] node{$z$} (z2);
+  \path (z3) edge[auto] node{$x,y$} (zT);
+\end{tikzpicture}
+\end{center}
+\liFlaci{A5xo470g9}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Geben Sie eine reguläre und eindeutige Grammatik $G$ an, die $L$
+erzeugt.
+
+\begin{liAntwort}
+\begin{liProduktionsRegeln}
+Z_0 -> x Z_1 | y Z_3 | EPSILON,
+Z_1 -> y Z_3 | x Z_1,
+Z_2 -> x Z_2 | x | y Z_3,
+Z_3 -> z Z_2 | z,
+\end{liProduktionsRegeln}
+\liFlaci{Gjfc3c2d2}
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}

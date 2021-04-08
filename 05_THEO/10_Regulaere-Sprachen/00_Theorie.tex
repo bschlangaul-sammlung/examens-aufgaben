@@ -245,6 +245,16 @@ Wenn es eine Regel $A\rightarrow aB$ gibt, dann erzeugen wir eine
 Zustand $B$ mit der Inschrift $a$.
 \liFussnoteUrl{http://www.informatikseite.de/theorie/node50.php}
 
+\subsection{Eindeutige Grammatik}
+
+Eine Grammatik $G$ ist dann eindeutig, wenn für jedes Wort aus $L(G)$
+genau eine mögliche Ableitung aus dem Startsymbol existiert.
+\liFussnoteUrl{http://u-helmich.de/inf/kursQ21/27/folge-27-2.html}
+
+Eine Sprache $L$ heißt eindeutig, wenn es für $L$ eine eindeutige
+Grammatik gibt. Ansonsten heißt $L$ mehrdeutig.
+\liFussnoteUrl{http://wwwmayr.in.tum.de/lehre/2008WS/ads-ei/2008-11-24.pdf}
+
 %-----------------------------------------------------------------------
 %
 %-----------------------------------------------------------------------
@@ -304,6 +314,84 @@ beiden Fallen in einen (nicht notwendig gleichen) Nicht-Endzustand
 
 Äquivalente Zustände können zu einem Zustand verschmolzen
 werden.
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Abschlusseigenschaften reguläre Sprachen}
+\begin{description}
+\item[Vereinigung:]
+
+Die Vereinigung $L = L_1 \cup L_2$ zweier regulärer Sprachen $L_1$ und
+$L_2$ ist regulär.
+
+\item[Schnitt:]
+
+Der Schnitt $L = L_1 \cup L_2$ zweier regulärer Sprachen $L_1$ und $L_2$
+ist regulär.
+
+\item[Komplement:]
+
+Das Komplement $\bar L = \Sigma^* \setminus L$ einer regulären Sprache
+$L$ ist regulär.
+
+Sei $A$ ein deterministischer endlicher Automat, der $L$
+erkennt. Der Automat $A$ erreicht für jedes Wort $\omega$ Element $L$
+einen Endzustand und für jedes Wort $\omega$ nicht Element L einen
+Nicht-Endzustand. Indem in $A$ alle Endzustände zu Nicht-Endzuständen
+gemacht werden und umgekehrt, entsteht ein deterministischer endlicher
+Automat $A$, der $L$ erkennt. Also ist $L$ regulär.
+\liFussnoteUrl{https://www.inf.hs-flensburg.de/lang/theor/regulaer-abgeschlossen.htm}
+
+\item[Produkt:]
+
+Das Produkt \liAusdruck[]{uv}{u \in L_1 \lor v \in L_2} zweier regulärer
+Sprachen $L_1$ und $L_2$ ist regulär.
+
+\item[Kleene-Stern:]
+
+Der Kleene-Stern $L^*$ einer regulären Sprache $L$, d.\,h. die beliebig
+häufige Konkatenation von Wörter aus der Sprache $L$ vereinigt mit dem
+leeren Wort, ist regulär.
+\footcite[Seite 68]{theo:fs:1}
+\end{description}
+
+\begin{description}
+
+\item[Wortproblem:]
+
+Als Wortproblem einer formalen Sprache bezeichnet man das
+Entscheidungsproblem, zu einem gegebenen Wort festzustellen, ob dieses
+zur Sprache gehört, oder nicht. Das Wortproblem einer Sprache $L$ ist
+entscheidbar, wenn es einen Algorithmus gibt, der in endlicher Zeit
+herausfindet, ob $\omega \in L$ ist oder nicht. $\Rightarrow$ für
+reguläre Sprachen entscheidbar!
+
+\item[Leerheitsproblem:]
+
+Als Leerheitsproblem bezeichnet man das Problem, zu entscheiden, ob eine
+in Form einer formalen Grammatik gegebene formale Sprache $L$ leer ist,
+also $L = \emptyset$. Das Problem ist es also herauszufinden, ob es
+Wörter gibt, die den Regeln der Grammatik genügen, oder nicht.
+$\Rightarrow$ für reguläre Sprachen entscheidbar!
+
+\item[Endlichkeitsproblem:]
+
+Als Endlichkeitsproblem einer formalen Sprache $L$ bezeichnet man das
+Problem, zu entscheiden, ob die Sprache endlich ist. Eine formale
+Sprache wird als endlich bezeichnet, wenn die Menge ihrer
+„Wörter“ endlich ist, man schreibt dann auch $|L| < \infty$. $\Rightarrow$ für
+reguläre Sprachen entscheidbar!
+
+\item[Äquivalenzproblem:]
+
+Als Äquivalenzproblem bezeichnet man das Problem, zu entscheiden, ob
+zwei formale Definitionen von zwei Sprachen $L_1$ und $L_2$ äquivalent
+sind, also $L_1 = L_2$ gilt. $\Rightarrow$ für reguläre Sprachen
+entscheidbar!
+\footcite[Seite 70-71]{theo:fs:1}
+\end{description}
 
 \literatur
 
