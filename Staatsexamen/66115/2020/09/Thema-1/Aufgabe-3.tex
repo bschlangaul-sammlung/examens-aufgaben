@@ -1,0 +1,58 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen}
+\begin{document}
+\liAufgabenTitel{}
+\section{Aufgabe 3
+\index{Kontextfreie Sprache}
+\footcite{66115:2020:09}}
+
+Seien \liAlphabet{a,b,c} und \liAusdruck{wc\hat{w}}{w \in \liMenge{a,b}*}.
+Dabei ist $\hat{w}$ das zu $w$ gespiegelte Wort.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Zeigen Sie, dass $L$ nicht regulär ist.
+\index{Pumping-Lemma (Reguläre Sprache)}
+
+\begin{liAntwort}
+$L$ ist regulär.
+Dann gilt für $L$ das Pumping-Lemma.
+Sei $j$ die Zahl aus
+dem Pumping-Lemma.
+Dann muss sich das Wort $a^j b c b a^j \in L$
+aufpumpen lassen (da $|a^j b c b a^j| \geq j$).
+$a^j b c b a^j = uvw$ ist eine passende Zerlegung laut Lemma.
+Da $|uv| < j$, ist
+$u = a^x$, $v = a^y$, $w = a^z b c b a^j$, wobei
+$y > 0$ und
+$x + y + z = j$
+Aber dann
+$u v^0 w= a^{x+z} b c b a^j \notin L$, da $x + z < j$.
+Widerspruch.
+\liFussnoteUrl{https://userpages.uni-koblenz.de/~sofronie/gti-ss-2015/slides/endliche-automaten6.pdf}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Zeigen Sie, dass $L$ kontextfrei ist, indem Sie eine geeignete
+Grammatik angeben und anschließend begründen, dass diese die Sprache $L$
+erzeugt.
+
+\begin{liAntwort}
+\begin{liProduktionsRegeln}
+S -> a S a | a C a | b S b | b C b,
+C -> c
+\end{liProduktionsRegeln}
+
+\liAbleitung{S -> aSa -> abCba -> abcba}
+
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}
