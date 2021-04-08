@@ -1,0 +1,131 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\newmintinline[p]{pascal}{}
+
+\liAufgabenTitel{Algorithmenanalyse}
+\section{Aufgabe 1
+\index{Algorithmen und Datenstrukturen}
+\footcite{66115:2020:09}}
+
+Betrachten Sie die folgende Prozedur \p{countup}, die aus zwei
+ganzzahligen Eingabewerten \p{n} und \p{m} einen ganzzahligen
+Ausgabewert berechnet:
+
+\begin{minted}{pascal}
+procedure countup(n, m: integer): integer
+var x, y: integer;
+begin
+  x := n;
+  y := 0;
+  while (y < m) do
+    x := x - 1;
+    y := y + 1;
+  end while
+  return x;
+end
+\end{minted}
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Führen Sie \p{countup(3,2)} aus. Geben Sie für jeden
+Schleifendurchlauf jeweils den Wert der Variablen \p{n}, \p{m}, \p{x}
+und \p{y} zu Beginn der while-Schleife und den Rückgabewert der Prozedur
+an.
+
+\begin{liAntwort}
+\begin{tabular}{llll}
+n & m & x & y \\\hline
+3 & 2 & 3 & 0 \\
+3 & 2 & 2 & 1 \\
+3 & 2 & 1 & 2 \\
+\end{tabular}
+
+Rückgabewert: 1
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Gibt es Eingabewerte von \p{n} und \p{m}, für die die Prozedur
+\p{countup} nicht terminiert? Begründen Sie Ihre Antwort.
+
+\begin{liAntwort}
+Nein. Mit jedem Schleifendurchlauf wird der Wert der Variablen \p{y} um
+eins hochgezählt, die Werte, die \p{y} annimmt, sind also mathematisch
+ausgedrückt streng monoton steigend. \p{y} nähert sich \p{m}
+an, bis \p{y} nicht mehr kleiner ist als \p{m} und die Prozedur
+terminiert. An diesem Sachverhält ändern auch sehr große Zahlen, die
+über die Variable \p{m} der Prozedur übergeben werden, nichts.
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Geben Sie die asymptotische worst-case Laufzeit der Prozedur
+\p{countup} in der $\Theta$-Notation in Abhängigkeit von den
+Eingabewerten \p{n} und/oder \p{m} an. Begründen Sie Ihre Antwort.
+
+\begin{liAntwort}
+Die Laufzeit der Prozedur ist immer $\Theta(m)$. Die Laufzeit hängt nur
+von \p{m} ab. Es kann nicht zwischen best-, average and worst-case
+unterschieden werden.
+\end{liAntwort}
+
+Betrachten Sie nun die folgende Prozedur countdown, die aus zwei
+ganzzahligen Eingabewerten n und Mm einen ganzzahligen Ausgabewert
+berechnet:
+
+\begin{minted}{pascal}
+procedure countdown(n, m : integer) : integer
+varx, y:integer;
+begin
+X:=N;
+Y=0;
+while (n > 0) do
+if(y< m) then
+X=X-]1;
+Y:-y+1;
+else
+y:=0;
+n :=n/2; /» Ganzzahldivision x/
+end if
+end while
+return X;
+end
+\end{minted}
+
+%%
+% d)
+%%
+
+\item Führen Sie countdown(3,2) aus. Geben Sie für jeden
+Schleifendurchlauf jeweils den Wert der Variablen n, m, x und y zu
+Beginn der while-Schleife und den Rückgabewert der Prozedur
+an.
+
+%%
+% e)
+%%
+
+\item Gibt es Eingabewerte von n und m, für die die Prozedur countdown
+nicht terminiert?
+
+Begründen Sie Ihre Antwort.
+
+%%
+% f)
+%%
+
+\item Geben Sie die asymptotische Laufzeit der Prozedur countdown in der
+8-Notation in Abhängigkeit von den Eingabewerten n und/oder m an unter
+der Annahme, dass m> 0
+und n > 0. Begründen Sie Ihre Antwort.
+
+\end{enumerate}
+\end{document}
