@@ -37,15 +37,16 @@ und \p{y} zu Beginn der while-Schleife und den Rückgabewert der Prozedur
 an.
 
 \begin{liAntwort}
-\begin{tabular}{llll}
-n & m & x & y \\\hline
+\begin{tabular}{lllll}
+n & m & x & y  & ausgeführter Code, der Änderung bewirkte \\\hline
 3 & 2 & 3 & 0 \\
-3 & 2 & 2 & 1 \\
-3 & 2 & 1 & 2 \\
+3 & 2 & 2 & 1 & \p{x := x - 1; y := y + 1;} \\
 \end{tabular}
 
 Rückgabewert: 1
 \end{liAntwort}
+
+\liJavaDatei{examen/examen_66115/jahr_2020/herbst/counter/CountUp}
 
 %%
 % b)
@@ -101,25 +102,29 @@ begin
       n := n / 2; /* Ganzzahldivision */
     end if
   end while
-  return X;
+  return x;
 end
 \end{minted}
 
-Führen Sie \p{countdown(3,2)} aus. Geben Sie für jeden
+\liJavaDatei{examen/examen_66115/jahr_2020/herbst/counter/CountDown}
+
+Führen Sie \p{countdown(3, 2)} aus. Geben Sie für jeden
 Schleifendurchlauf jeweils den Wert der Variablen \p{n}, \p{m}, \p{x}
 und \p{y} zu Beginn der \p{while}-Schleife und den Rückgabewert der
 Prozedur an.
 
 \begin{liAntwort}
-\begin{tabular}{llll}
-n & m & x & y \\\hline
-3 & 2 & 3 & 0 \\
-3 & 2 & 2 & 1 \\
-3 & 2 & 1 & 2 \\
-3 & 2 & 0 & 0 \\
+\begin{tabular}{lllll}
+n & m & x & y & ausgeführter Code, der Änderung bewirkte \\\hline
+3 & 2 & 3 & 0 & \\
+3 & 2 & 2 & 1 & \p{x := x - 1; y := y + 1;} \\
+3 & 2 & 1 & 2 & \p{x := x - 1; y := y + 1;} \\
+1 & 2 & 1 & 0 & \p{y := 0; n := n / 2;} \\
+1 & 2 & 0 & 1 & \p{x := x - 1; y := y + 1;} \\
+1 & 2 & -1 & 2 & \p{x := x - 1; y := y + 1;} \\
 \end{tabular}
 
-Rückgabewert: 1
+Rückgabewert: -1
 \end{liAntwort}
 
 %%
@@ -141,14 +146,14 @@ terminiert sofort
 
 \item[\p{m < 0}]
 
-Falsch-Block der Wenn-Dann-Bedingung erniedrigt \p{n} bis \p{0} erreicht
+Falsch-Block der Wenn-Dann-Bedingung erniedrigt \p{n} \p{n := n / 2;} bis \p{0} erreicht
 ist. Dann terminiert die Prozedur.
 
 \item[\p{m > 0}]
 
-Wahr-Block der Wenn-Dann-Bedingung erhöht \p{y} streng monoton bis \p{y
->= m}. Falsch-Block der Wenn-Dann-Bedingung erniedrigt \p{n} bis \p{0}
-erreicht ist. Dann terminiert die Prozedur.
+1. Wahr-Block der Wenn-Dann-Bedingung erhöht \p{y} streng monoton bis
+\p{y >= m}. 2. Falsch-Block der Wenn-Dann-Bedingung halbiert \p{n} bis
+\p{0}. 1. und 2. solange bis n = 0
 
 \end{description}
 \end{liAntwort}
@@ -163,7 +168,47 @@ und/oder \p{m} an unter der Annahme, dass \p{m >= 0} und \p{n > 0}.
 Begründen Sie Ihre Antwort.
 
 \begin{liAntwort}
-$\Theta(m) + \Theta(\log_2 n)$
+
+Anzahl der while Schleife:
+
+m + 1:
+
+m oft: bis y < m
++1 Halbierung von n und y auf 0 setzen
+
+wegen dem n/2 ist die Laufzeit logarithmisch, ähnlich wie worst case bei
+der Binären Suche.
+
+\begin{tabular}{lllll}
+n & m & x & y & ausgeführter Code, der Änderung bewirkte \\\hline
+16 & 3 & 16 & 0 \\
+16 & 3 & 15 & 1 \\
+16 & 3 & 14 & 2 \\
+16 & 3 & 13 & 3 \\
+8 & 3 & 13 & 0 & \p{y := 0; n := n / 2;} \\
+8 & 3 & 12 & 1 \\
+8 & 3 & 11 & 2 \\
+8 & 3 & 10 & 3 \\
+4 & 3 & 10 & 0 & \p{y := 0; n := n / 2;} \\
+4 & 3 & 9 & 1 \\
+4 & 3 & 8 & 2 \\
+4 & 3 & 7 & 3 \\
+2 & 3 & 7 & 0 & \p{y := 0; n := n / 2;} \\
+2 & 3 & 6 & 1 \\
+2 & 3 & 5 & 2 \\
+2 & 3 & 4 & 3 \\
+1 & 3 & 4 & 0 & \p{y := 0; n := n / 2;} \\
+1 & 3 & 3 & 1 \\
+1 & 3 & 2 & 2 \\
+1 & 3 & 1 & 3 \\
+\end{tabular}
+
+%
+$\Theta((m + 1) \log_2 n)$
+
+Wegkürzen der Konstanten
+
+$\Theta(m \log n)$
 \end{liAntwort}
 
 \end{enumerate}
