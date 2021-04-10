@@ -1,0 +1,197 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,baum}
+\begin{document}
+\newmintinline[p]{pascal}{}
+
+\liAufgabenTitel{Bäume}
+\section{Aufgabe 2
+\index{Binärbaum}
+\footcite{66115:2020:09}}
+
+Wir betrachten ein Feld A von ganzen Zahlen mit \p{n} Elementen, die über
+die Indizes \p{A[O]} bis \p{A[n-1]} angesprochen werden können. In dieses Feld
+ist ein binärer Baum nach den folgenden Regeln eingebettet: Für das
+Feldelement mit Index $i$ befindet sich
+
+\begin{itemize}
+\item der Elternknoten im Feldelement mit Index $\lfloor\frac{i-1}{2}\rfloor$,
+
+\item der linke Kindknoten im Feldelement mit Index $2 \cdot i + 1$, und
+
+\item der rechte Kindknoten im Feldelement mit Index $2 \cdot i + 2$.
+\end{itemize}
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Zeichnen Sie den durch das folgende Feld repräsentierten binären
+Baum.
+
+\begin{center}
+\begin{tabular}{|r|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+i        & 0 & 1 & 2 & 3  & 4  & 5  & 6 & 7  & 8  & 9  & 10\\\hline
+\p{A[i]} & 2 & 4 & 6 & 14 & 12 & 10 & 8 & 22 & 20 & 18 & 16\\\hline
+\end{tabular}
+\end{center}
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.2
+  [.4
+    [.14
+      [.22 ]
+      [.20 ]
+    ]
+    [.12
+      [.18 ]
+      [.16 ]
+    ]
+  ]
+  [.6
+    [.10 ]
+    [.8 ]
+  ]
+]
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Der folgende rekursive Algorithmus sei gegeben:
+
+\begin{minted}{pascal}
+procedure magic(i, n : integer) : boolean
+begin
+  if (i > (n - 2) / 2) then
+    return true;
+  endif
+  if (A[i] <= A[2 * i + 1] and A[i] <= A[2 * i + 2] and
+      magic(2 * i + 1, n) and magic(2 * i + 2, n)) then
+    return true;
+  endif
+  return false;
+end
+\end{minted}
+
+\liJavaDatei{examen/examen_66115/jahr_2020/herbst/Baum}
+
+Gegeben sei folgendes Feld:
+
+\begin{center}
+\begin{tabular}{|r|c|c|c|c|c|}
+\hline
+i        & 0 & 1 & 2 & 3  \\\hline
+\p{A[i]} & 2 & 4 & 6 & 14 \\\hline
+\end{tabular}
+\end{center}
+
+Führen Sie \p{magic(0,3)} auf dem Feld aus. Welches Resultat liefert der
+Algorithmus zurück?
+
+\begin{liAntwort}
+true
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Wie nennt man die Eigenschaft, die der Algorithmus \p{magic} auf
+dem Feld A prüft? Wie lässt sich diese Eigenschaft formal beschreiben?
+
+\begin{liAntwort}
+Haldeneigenschaft einer Minhalde.
+
+Die Methode funktioniert jedoch nicht fehlerfrei. \liJavaCode{magic(0,
+3)} liefert bei dem Feld \liJavaCode{2, 4, 6, 1} \liJavaCode{true}
+zurück.
+
+\end{liAntwort}
+
+%%
+% d)
+%%
+
+\item Welche Ausgaben sind durch den Algorithmus \p{magic} möglich, wenn
+das Eingabefeld aufsteigend sortiert ist? Begründen Sie Ihre Antwort.
+
+\begin{liAntwort}
+true. Eine sortierte aufsteigende Zahlenfolge entspricht den
+Haldeneigenschaften einer Min-Heap.
+\end{liAntwort}
+
+%%
+% e)
+%%
+
+\item Geben Sie zwei dreielementige Zahlenfolgen (bzw. Felder) an, eine
+für die \p{magic(0,2)} den Wert \p{true} liefert und eine, für die
+\p{magic(0,2)} den Wert \p{false} liefert.
+
+%%
+% f)
+%%
+
+\item Betrachten Sie folgende Variante almostmagic der oben bereits erwähnten Prozedur magic,
+bei der die Anweisungen in Zeilen 3 bis 5 entfernt wurden:
+
+\begin{minted}{pascal}
+procedure almostmagic(i, n : integer) : boolean
+begin
+  // leer
+  // leer
+  // leer
+  if (A[i] <= A[2 * i + 1] and A[i] <= A[2 * i + 2] and
+      magic(2 * i + 1, n) and magic(2 * i + 2, n)) then
+    return true;
+  endif
+  return false;
+end
+\end{minted}
+
+Beschreiben Sie die Umstände, die auftreten können, wenn almostmagic auf
+einem Feld der Größe n aufgerufen wird. Welchen Zweck erfüllt die
+entfernte bedingte Anweisung?
+
+%%
+% g)
+%%
+
+\item Fügen Sie jeweils den angegebenen Wert in den jeweils angegebenen
+AVL-Baum mit aufsteigender Sortierung ein und zeichnen Sie den
+resultierenden Baum vor möglicherweise erforderlichen Rotationen. Führen
+Sie danach bei Bedarf die erforderliche(n) Rotation(en) aus und zeichnen
+Sie dann den resultierenden Baum. Sollten keine Rotationen erforderlich
+sein, so geben Sie dies durch einen Text wie “keine Rotationen nötig”
+an.
+
+\begin{enumerate}
+
+%%
+% i.)
+%%
+
+\item Wert 7 einfügen
+
+%%
+% ii.)
+%%
+
+\item Wert 11 einfügen
+
+%%
+% iii.)
+%%
+
+\item Wert 5 einfügen
+\end{enumerate}
+\end{enumerate}
+\end{document}
