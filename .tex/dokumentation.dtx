@@ -60,6 +60,7 @@
 
 \liLadePakete{
   automaten,
+  baum,
   formale-sprachen,
   gantt,
   minimierung,
@@ -361,16 +362,53 @@
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-bbaum}[2020/06/13 Zum Setzen von
 Binär- und AVL-Bäumen. Hüll-Paket um TikZ and tikz-qtree.]
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \RequirePackage{tikz}
+%    \end{macrocode}
 
-% für li binaer baum
+% für |li binaer baum|
+%    \begin{macrocode}
 \RequirePackage{tikz-qtree}
+%    \end{macrocode}
 
 % Für b baum
+%    \begin{macrocode}
 \usetikzlibrary{shapes.multipart}
 %    \end{macrocode}
+
+% \newpage\subsubsection{Binärbaum}
+
 % TikZ-Stil: |li binaer baum|: Knoten als Kreise, Kanten als Pfeile.
+
+% \begin{verbatim}
+% \begin{tikzpicture}[li binaer baum]
+% \Tree
+% [.7
+%   [.2
+%     [.1 ]
+%     [.5 ]
+%   ]
+%   \edge[blank]; \node[blank]{};
+% ]
+% \end{tikzpicture}
+% \end{verbatim}
+
+% \begin{liBeispiel}
+% \begin{tikzpicture}[li binaer baum]
+% \Tree
+% [.7
+%   [.2
+%     [.1 ]
+%     [.5 ]
+%   ]
+%   \edge[blank]; \node[blank]{};
+% ]
+% \end{tikzpicture}
+% \end{liBeispiel}
+
+% \index{tikz: li binaer baum}
 %    \begin{macrocode}
 \tikzset{
   li binaer baum/.style={
@@ -397,6 +435,39 @@ Binär- und AVL-Bäumen. Hüll-Paket um TikZ and tikz-qtree.]
       label distance=0cm,
     }
   },
+}
+%    \end{macrocode}
+
+% \newpage\subsubsection{AVL-Baum}
+
+% \begin{verbatim}
+% \begin{tikzpicture}[li binaer baum]
+% \Tree
+% [.\node[label=-1]{5};
+%   [.\node[label=-1]{2};
+%     [.\node[label=0]{1}; ]
+%     \edge[blank]; \node[blank]{};
+%   ]
+%   [.\node[label=0]{7}; ]
+% ]
+% \end{tikzpicture}
+% \end{verbatim}
+
+% \begin{liBeispiel}
+% \begin{tikzpicture}[li binaer baum]
+% \Tree
+% [.\node[label=-1]{5};
+%   [.\node[label=-1]{2};
+%     [.\node[label=0]{1}; ]
+%     \edge[blank]; \node[blank]{};
+%   ]
+%   [.\node[label=0]{7}; ]
+% ]
+% \end{tikzpicture}
+% \end{liBeispiel}
+
+%    \begin{macrocode}
+\tikzset{
   li avl balance/.style={
     blue,
     label position=0,
@@ -408,6 +479,64 @@ Binär- und AVL-Bäumen. Hüll-Paket um TikZ and tikz-qtree.]
   li markiert/.style={
     very thick
   },
+}
+%    \end{macrocode}
+
+% \newpage\subsubsection{B-Baum}
+
+% \begin{verbatim}
+% \begin{tikzpicture}[
+%   scale=0.8,
+%   transform shape,
+%   bbaum,
+%   level 1/.style={level distance=10mm,sibling distance=32mm},
+%   level 2/.style={level distance=10mm,sibling distance=20mm},
+% ]
+% \node {10 \nodepart{two} 33} [->]
+%   child {node {8}
+%     child {node {5}}
+%     child {node {9}}
+%   }
+%   child {node {20}
+%     child {node {15}}
+%     child {node {31}}
+%   }
+%   child {node {50}
+%     child {node {45}}
+%     child {node {60 \nodepart{two} 80}}
+%   }
+% ;
+% \end{tikzpicture}
+% \end{verbatim}
+
+% \begin{liBeispiel}
+% \begin{tikzpicture}[
+%   scale=0.8,
+%   transform shape,
+%   bbaum,
+%   level 1/.style={level distance=10mm,sibling distance=32mm},
+%   level 2/.style={level distance=10mm,sibling distance=20mm},
+% ]
+% \node {10 \nodepart{two} 33} [->]
+%   child {node {8}
+%     child {node {5}}
+%     child {node {9}}
+%   }
+%   child {node {20}
+%     child {node {15}}
+%     child {node {31}}
+%   }
+%   child {node {50}
+%     child {node {45}}
+%     child {node {60 \nodepart{two} 80}}
+%   }
+% ;
+% \end{tikzpicture}
+% \end{liBeispiel}
+
+% \index{tikz: bbaum}
+%    \begin{macrocode}
+\tikzset{
   bbaum node/.style={
     rectangle split parts=10,
     rectangle split,
@@ -430,6 +559,9 @@ Binär- und AVL-Bäumen. Hüll-Paket um TikZ and tikz-qtree.]
     },
   }
 }
+%    \end{macrocode}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{checkbox.sty}

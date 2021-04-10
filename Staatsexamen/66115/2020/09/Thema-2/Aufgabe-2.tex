@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax,baum}
+\liLadePakete{syntax,baum,mathe}
 \begin{document}
 \newmintinline[p]{pascal}{}
 
@@ -67,6 +67,8 @@ i        & 0 & 1 & 2 & 3  & 4  & 5  & 6 & 7  & 8  & 9  & 10\\\hline
 
 \item Der folgende rekursive Algorithmus sei gegeben:
 
+\liPseudoUeberschrift{Pseudo-Code / Pascal}
+
 \begin{minted}{pascal}
 procedure magic(i, n : integer) : boolean
 begin
@@ -81,7 +83,9 @@ begin
 end
 \end{minted}
 
-\liJavaDatei{examen/examen_66115/jahr_2020/herbst/Baum}
+\liPseudoUeberschrift{Java-Implementation}
+
+\liJavaDatei[firstline=6,lastline=15]{examen/examen_66115/jahr_2020/herbst/Baum}
 
 Gegeben sei folgendes Feld:
 
@@ -108,12 +112,14 @@ true
 dem Feld A prüft? Wie lässt sich diese Eigenschaft formal beschreiben?
 
 \begin{liAntwort}
-Haldeneigenschaft einer Minhalde.
+Die sogenannte „Haldeneigenschaft“ bzw. „Heap-Eigenschaft“ einer
+Min-Halde. Der Schlüssel eines jeden Knotens ist kleiner (oder gleich)
+als die Schlüssel seiner Kinder.\footcite[Seite 407]{saake}
 
-Die Methode funktioniert jedoch nicht fehlerfrei. \liJavaCode{magic(0,
-3)} liefert bei dem Feld \liJavaCode{2, 4, 6, 1} \liJavaCode{true}
-zurück.
-
+Ein Baum erfüllt die Heap-Eigenschaft bezüglich einer Vergleichsrelation
+„$>$“ auf den Schlüsselwerten genau dann, wenn für jeden Knoten $u$ des
+Baums gilt, dass $u_\text{wert} > v_\text{wert}$ für alle Knoten $v$ aus
+den Unterbäumen von $u$.\footcite[Seite 259]{weicker}
 \end{liAntwort}
 
 %%
@@ -124,7 +130,7 @@ zurück.
 das Eingabefeld aufsteigend sortiert ist? Begründen Sie Ihre Antwort.
 
 \begin{liAntwort}
-true. Eine sortierte aufsteigende Zahlenfolge entspricht den
+\liJavaCode{true}. Eine sortierte aufsteigende Zahlenfolge entspricht den
 Haldeneigenschaften einer Min-Heap.
 \end{liAntwort}
 
@@ -136,12 +142,19 @@ Haldeneigenschaften einer Min-Heap.
 für die \p{magic(0,2)} den Wert \p{true} liefert und eine, für die
 \p{magic(0,2)} den Wert \p{false} liefert.
 
+\begin{liAntwort}
+\liJavaDatei[firstline=35,lastline=39]{examen/examen_66115/jahr_2020/herbst/Baum}
+\end{liAntwort}
+
 %%
 % f)
 %%
 
-\item Betrachten Sie folgende Variante almostmagic der oben bereits erwähnten Prozedur magic,
-bei der die Anweisungen in Zeilen 3 bis 5 entfernt wurden:
+\item Betrachten Sie folgende Variante \p{almostmagic} der oben bereits
+erwähnten Prozedur \p{magic}, bei der die Anweisungen in Zeilen 3 bis 5
+entfernt wurden:
+
+\liPseudoUeberschrift{Pseudo-Code / Pascal}
 
 \begin{minted}{pascal}
 procedure almostmagic(i, n : integer) : boolean
@@ -157,9 +170,24 @@ begin
 end
 \end{minted}
 
-Beschreiben Sie die Umstände, die auftreten können, wenn almostmagic auf
-einem Feld der Größe n aufgerufen wird. Welchen Zweck erfüllt die
-entfernte bedingte Anweisung?
+\liPseudoUeberschrift{Java-Implementation}
+
+\liJavaDatei[firstline=17,lastline=23]{examen/examen_66115/jahr_2020/herbst/Baum}
+
+Beschreiben Sie die Umstände, die auftreten können, wenn \p{almostmagic}
+auf einem Feld der Größe \p{n} aufgerufen wird. Welchen Zweck erfüllt
+die entfernte bedingte Anweisung?
+
+\begin{liAntwort}
+Wird die Prozedur zum Beispiel mit \p{almostmagic(0, n + 1)} aufgerufen,
+kommst es zu einem sogenannten „Array-Index-Ouf-of-Bounds“ Fehler, d. h.
+die Prozedur will auf Index des Feldes zugreifen, der im Feld gar nicht
+existiert. Die drei zusätzlichen Zeilen in der Methode \p{magic} bieten
+dafür einen Schutz, indem sie vor den Index-Zugriffen auf das Feld
+\p{true} zurückgeben.
+
+\liJavaDatei[firstline=41,lastline=42]{examen/examen_66115/jahr_2020/herbst/Baum}
+\end{liAntwort}
 
 %%
 % g)
@@ -170,8 +198,9 @@ AVL-Baum mit aufsteigender Sortierung ein und zeichnen Sie den
 resultierenden Baum vor möglicherweise erforderlichen Rotationen. Führen
 Sie danach bei Bedarf die erforderliche(n) Rotation(en) aus und zeichnen
 Sie dann den resultierenden Baum. Sollten keine Rotationen erforderlich
-sein, so geben Sie dies durch einen Text wie “keine Rotationen nötig”
+sein, so geben Sie dies durch einen Text wie „keine Rotationen nötig”
 an.
+\index{AVL-Baum}
 
 \begin{enumerate}
 
