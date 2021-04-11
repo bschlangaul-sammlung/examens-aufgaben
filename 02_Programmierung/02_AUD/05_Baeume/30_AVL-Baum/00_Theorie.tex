@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-\liLadePakete{mathe,baum,syntax,spalten}
+\liLadePakete{mathe,baum,syntax,spalten,tabelle}
 \usepackage{xparse}
 
 \begin{document}
@@ -32,7 +32,7 @@ Ein AVL-Baum ist ein binärer Suchbaum, der \memph{höhenbalanciert} ist,
 d.\,h. für jeden Knoten gilt:
 
 \begin{center}
-$|h(\text{rechterTeilbaum}) - h(\text{linkerTeilbaum})| \leq 1$
+$|h_\text{ rechterTeilbaum} - h_\text{ linkerTeilbaum}| \leq 1$
 \end{center}
 
 \noindent
@@ -57,27 +57,30 @@ baum avl (
 \begin{multicols}{2}
 \liPseudoUeberschrift{Binärer Suchbaum}
 
+\begin{center}
 \begin{tikzpicture}[li binaer baum]
 \Tree
-[.1
+[.\node[label=4]{1};
   \edge[blank]; \node[blank]{};
-  [.2
+  [.\node[label=3]{2};
     \edge[blank]; \node[blank]{};
-    [.3
+    [.\node[label=2]{3};
       \edge[blank]; \node[blank]{};
-      [.4
+      [.\node[label=1]{4};
         \edge[blank]; \node[blank]{};
-        [.5 ]
+        [.\node[label=0]{5}; ]
       ]
     ]
   ]
 ]
 \end{tikzpicture}
+\end{center}
 
 \columnbreak
 
 \liPseudoUeberschrift{AVL-Baum}
 
+\begin{center}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=1]{2};
@@ -88,7 +91,7 @@ baum avl (
   ]
 ]
 \end{tikzpicture}
-
+\end{center}
 \end{multicols}
 
 %-----------------------------------------------------------------------
@@ -98,29 +101,40 @@ baum avl (
 \section{Rotationsregeln}
 
 \begin{center}
-$b$ (Balance-Faktor) $=$ Knotenzahl rechter Teilbaum $-$ Knotenzahl linker Teilbaum
+$b_\text{ Balance-Faktor} = h_\text{ rechter Teilbaum} - h_\text{ linker Teilbaum}$
 \end{center}
 
+\liPseudoUeberschrift{Erklärungen}
+
 \begin{description}
-\item[$bO =$] Balance-Faktor des „oberen“ Wurzelknotens
-\item[$bU =$] Balance-Faktor des Kindknoten von $bO$
+\item[$bO$] Balance-Faktor des „oberen“ Wurzelknotens
+\item[$bU$] Balance-Faktor des Kindknoten von $bO$
 \end{description}
 
+\begin{description}
+\item[$-$] Rechtsdrehung
+
+\item[$+$] Linksdrehung
+\end{description}
+
+\begin{center}
 \noindent
-\begin{tabular}{l|l}
-$bO = -2$, $bU = -1$ &
+\begin{tabularx}{\linewidth}{l|X}
+$bU = -1$, $bO = -2$ &
 Rechtsrotation (Rechtsdrehung um $bO$) \\
 
-$bO = +2$, $bU = +1$ &
+$bU = +1$, $bO = +2$ &
 Linksrotation (Linksdrehung um $bO$) \\
 
-$bO = -2$, $bU = +1$ &
+$bU = +1$, $bO = -2$ &
 Links-Rechts-Rotation (Linksdrehung um $bU$, dann Rechtsdrehung um $bO$) \\
 
-$bO = +2$, $bU = -1$ &
+$bU = -1$, $bO = +2$ &
 Rechts-Links-Rotation (Rechtsdrehung um $bU$, dann Linksdrehung um $bO$) \\
-\end{tabular}
+\end{tabularx}
+\end{center}
 
+\noindent
 Die Kindknoten, die nach der Drehung „im Weg stehen“, werden
 „umgeklappt“, also vom linken zum rechten Kind der nächsten Ebene
 „umgehängt“ und umgekehrt.
