@@ -1,10 +1,47 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{graph}
 \begin{document}
 \liAufgabenTitel{Graph A-E}
 \section{Aufgabe 3
 \index{Algorithmus von Dijkstra}
 \footcite{examen:66115:2020:09}}
+
+\begin{liGraphenFormat}
+A: 0 0
+B: 7 2
+C: 2 -1
+D: 6 -1
+E: 5 0
+A->B: 15
+A->C: 5
+A->E: 12
+C->B: 8
+C->D: 5
+C->E: 3
+D->B: 2
+E->B: 2
+E->D: 1
+\end{liGraphenFormat}
+
+\begin{center}
+\begin{tikzpicture}[li graph]
+\node (A) at (0,0) {A};
+\node (B) at (7,2) {B};
+\node (C) at (2,-1) {C};
+\node (D) at (6,-1) {D};
+\node (E) at (5,0) {E};
+
+\path[li graph kante,->] (A) edge node {15} (B);
+\path[li graph kante,->] (A) edge node {5} (C);
+\path[li graph kante,->] (A) edge node {12} (E);
+\path[li graph kante,->] (C) edge node {8} (B);
+\path[li graph kante,->] (C) edge node {5} (D);
+\path[li graph kante,->] (C) edge node {3} (E);
+\path[li graph kante,->] (D) edge node {2} (B);
+\path[li graph kante,->] (E) edge node {2} (B);
+\path[li graph kante,->] (E) edge (D);
+\end{tikzpicture}
+\end{center}
 
 \begin{enumerate}
 
@@ -13,16 +50,26 @@
 %%
 
 \item Ermitteln Sie mit dem Algorithmus von Dijkstra den kürzesten Weg
-vom Knoten A zu allen erreichbaren Knoten in G. Verwenden Sie zur Lösung
-eine Tabelle der folgenden Form. Markieren Sie in jeder Zeile den
+vom Knoten $A$ zu allen erreichbaren Knoten in $G$. Verwenden Sie zur
+Lösung eine Tabelle der folgenden Form. Markieren Sie in jeder Zeile den
 jeweils als nächstes zu betrachtenden Knoten und führen Sie die
 Prioritätswarteschlange der noch zu betrachtenden Knoten (aufsteigend
 sortiert).
+
+\begin{tabular}{lllllll}
+\bf{Nr.}        & \bf{ausgewählt} & \bf{A}          & \bf{B}          & \bf{C}          & \bf{D}          & \bf{E}          \\
+\hline
+1               & A               & \bf{0}          & 15              & 5               & $\infty$        & 12              \\
+2               & C               & |               & 13              & \bf{5}          & 10              & 8               \\
+3               & E               & |               & 10              & |               & 9               & \bf{8}          \\
+4               & D               & |               & 10              & |               & \bf{9}          & |               \\
+5               & B               & |               & \bf{10}         & |               & |               & |               \\
+\end{tabular}
 
 %%
 % b)
 %%
 
-\item Geben Sie den kürzesten Pfad vom Knoten A zum Knoten B an.
+\item Geben Sie den kürzesten Pfad vom Knoten $A$ zum Knoten $B$ an.
 \end{enumerate}
 \end{document}

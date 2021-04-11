@@ -1,18 +1,88 @@
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-graph}[2020/06/09]
 \RequirePackage{tikz}
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \RequirePackage{xparse}
+%    \end{macrocode}
 
 % Für Adjazenz-Matrix
+
+% \begin{verbatim}
+% \[
+% \begin{blockarray}{ccccc}
+%    & a & b & c & d & e \\
+% \begin{block}{c(cccc)}
+%  a & 0 & 1 & 0 & 4 & 0 \\
+%  b & 0 & 0 & 0 & 1 & 3 \\
+%  c & 0 & 0 & 0 & 1 & 0 \\
+%  d & 4 & 1 & 1 & 0 & 2 \\
+%  e & 0 & 0 & 0 & 0 & 0 \\
+% \end{block}
+% \end{blockarray}
+% \]
+% \end{verbatim}
+
+% \[
+% \begin{blockarray}{ccccc}
+%    & a & b & c & d & e \\
+% \begin{block}{c(cccc)}
+%  a & 0 & 1 & 0 & 4 & 0 \\
+%  b & 0 & 0 & 0 & 1 & 3 \\
+%  c & 0 & 0 & 0 & 1 & 0 \\
+%  d & 4 & 1 & 1 & 0 & 2 \\
+%  e & 0 & 0 & 0 & 0 & 0 \\
+% \end{block}
+% \end{blockarray}
+% \]
+
+%    \begin{macrocode}
 \RequirePackage{blkarray}
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \usetikzlibrary{arrows.meta}
+%    \end{macrocode}
 
+% \begin{verbatim}
+% \begin{tikzpicture}[li graph]
+% \node (a) at (0,0) {a};
+% \node (b) at (1,1) {b};
+% \node (c) at (4,1) {c};
+% \node (d) at (3,0) {d};
+% \node (e) at (3,3) {e};
+%
+% \path[li graph kante,->] (a) edge (b);
+% \path[li graph kante] (b) edge (d);
+% \path[li graph kante,->] (b) edge node {3} (e);
+% \path[li graph kante] (c) edge (d);
+% \path[li graph kante] (d) edge node {4} (a);
+% \path[li graph kante,->] (d) edge node {2} (e);
+% \end{tikzpicture}
+% \end{verbatim}
+
+% \begin{liBeispiel}
+% \begin{tikzpicture}[li graph]
+% \node (a) at (0,0) {a};
+% \node (b) at (1,1) {b};
+% \node (c) at (4,1) {c};
+% \node (d) at (3,0) {d};
+% \node (e) at (3,3) {e};
+% \path[li graph kante,->] (a) edge (b);
+% \path[li graph kante] (b) edge (d);
+% \path[li graph kante,->] (b) edge node {3} (e);
+% \path[li graph kante] (c) edge (d);
+% \path[li graph kante] (d) edge node {4} (a);
+% \path[li graph kante,->] (d) edge node {2} (e);
+% \end{tikzpicture}
+% \end{liBeispiel}
+
+%    \begin{macrocode}
 \tikzset{
   li graph/.style={
     every node/.style={
-      circle,
+      rectangle,
       draw
     }
   },
@@ -22,7 +92,10 @@
     every edge/.style={draw=black}
   }
 }
+%    \end{macrocode}
 
+% \begin{macro}{\graph}
+%    \begin{macrocode}
 \def\graph knoten #1 kanten #2 {
   \begin{center}
   \begin{tikzpicture}
@@ -38,35 +111,80 @@
   \end{tikzpicture}
   \end{center}
 }
+%    \end{macrocode}
+% \end{macro}
 
-% \\node\s*\((.*)\)\s*at\s*\((\d+),(\d+)\)\s*\{.*\}\s*;
-% \knoten{$1}($2,$3)
+% \begin{macro}{\knoten}
+% |\\node\s*\((.*)\)\s*at\s*\((\d+),(\d+)\)\s*\{.*\}\s*;|
+% |\knoten{$1}($2,$3)|
+%    \begin{macrocode}
 \def\knoten#1(#2,#3){
   \node (#1) at (#2,#3) {#1};
 }
+%    \end{macrocode}
+% \end{macro}
 
-% \\path \((.*)\) edge node \{(.*)\} \((.*)\);
-% \kante($1-$3){$2}
+% \begin{macro}{\kante}
+% |\\path \((.*)\) edge node \{(.*)\} \((.*)\);|
+% |\kante($1-$3){$2}|
+%    \begin{macrocode}
 \def\kante(#1-#2)#3{
   \path (#1) edge node {#3} (#2);
 }
+%    \end{macrocode}
+% \end{macro}
 
-% \\draw\s*\((.*)\)\s*--\s*\((.*)\);
+% \begin{macro}{\kanteO}
+% |\\draw\s*\((.*)\)\s*--\s*\((.*)\);|
 % Kante ohne Gewicht
+%    \begin{macrocode}
 \def\kanteO(#1-#2){
   \path (#1) edge (#2);
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\kanteR}
 % Kante geRichtet
-% \\path \[->\] \((.*)\) edge node \{(.*)\} \((.*)\);
-% \kanteR($1>$3){$2}
+% |\\path \[->\] \((.*)\) edge node \{(.*)\} \((.*)\);|
+% |\kanteR($1>$3){$2}|
+%    \begin{macrocode}
 \def\kanteR(#1>#2)#3{
   \path[->] (#1) edge node {#3} (#2);
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\KANTE}
+%    \begin{macrocode}
 \def\KANTE(#1-#2)#3{
   \path[ultra thick] (#1) edge node {#3} (#2);
 }
+%    \end{macrocode}
+% \end{macro}
 
-%% Dummy-Umgebung, zum Parsen durch Java gedacht.
+% \begin{environment}{liGraphenFormat}
+% Dummy-Umgebung, zum Parsen durch Java gedacht.
+%
+% \begin{verbatim}
+% \begin{liGraphenFormat}
+% a: 0 0
+% b: 1 1
+% c: 4 1
+% d: 3 0
+% e: 2 2
+% a -> b
+% b -- d
+% b -> e: 3
+% c -- d
+% d -> e: 2
+% d -- a: 4
+% \end{liGraphenFormat}
+% \end{verbatim}
+
+%    \begin{macrocode}
 \NewDocumentEnvironment { liGraphenFormat }{ +b } {} {}
+%    \end{macrocode}
+% \end{environment}
+
+%    \begin{macrocode}
