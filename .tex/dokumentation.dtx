@@ -418,7 +418,7 @@ Binär- und AVL-Bäumen. Hüll-Paket um TikZ and tikz-qtree.]
     every tree node/.style={
       minimum width=2em,
       draw,
-      circle
+      rectangle
     },
     blank/.style={
       draw=none
@@ -466,33 +466,17 @@ Binär- und AVL-Bäumen. Hüll-Paket um TikZ and tikz-qtree.]
 % \end{tikzpicture}
 % \end{liBeispiel}
 
-%    \begin{macrocode}
-\tikzset{
-  li avl balance/.style={
-    blue,
-    label position=0,
-  },
-  li avl hoehe/.style={
-    green,
-    label position=180,
-  },
-  li markiert/.style={
-    very thick
-  },
-}
-%    \end{macrocode}
-
 % \newpage\subsubsection{B-Baum}
 
 % \begin{verbatim}
 % \begin{tikzpicture}[
 %   scale=0.8,
 %   transform shape,
-%   bbaum,
+%   li bbaum,
 %   level 1/.style={level distance=10mm,sibling distance=32mm},
 %   level 2/.style={level distance=10mm,sibling distance=20mm},
 % ]
-% \node {10 \nodepart{two} 33} [->]
+% \node {10 \nodepart{two} 33}
 %   child {node {8}
 %     child {node {5}}
 %     child {node {9}}
@@ -513,11 +497,11 @@ Binär- und AVL-Bäumen. Hüll-Paket um TikZ and tikz-qtree.]
 % \begin{tikzpicture}[
 %   scale=0.8,
 %   transform shape,
-%   bbaum,
+%   li bbaum,
 %   level 1/.style={level distance=10mm,sibling distance=32mm},
 %   level 2/.style={level distance=10mm,sibling distance=20mm},
 % ]
-% \node {10 \nodepart{two} 33} [->]
+% \node {10 \nodepart{two} 33}
 %   child {node {8}
 %     child {node {5}}
 %     child {node {9}}
@@ -537,7 +521,7 @@ Binär- und AVL-Bäumen. Hüll-Paket um TikZ and tikz-qtree.]
 % \index{tikz: bbaum}
 %    \begin{macrocode}
 \tikzset{
-  bbaum node/.style={
+  li bbaum knoten/.style={
     rectangle split parts=10,
     rectangle split,
     rectangle split horizontal,
@@ -545,13 +529,18 @@ Binär- und AVL-Bäumen. Hüll-Paket um TikZ and tikz-qtree.]
     draw,
     fill=white
   },
-  bbaum/.style={
-    shorten <=2pt,
-    shorten >=2pt,
-    every node/.style=bbaum node,
+  li bbaum/.style={
+    every node/.style={
+      li bbaum knoten
+    },
     level 1/.style={
       level distance=12mm,
       sibling distance=25mm,
+    },
+    every child/.style={
+      shorten <= 2pt,
+      shorten >= 6pt,
+      ->,
     },
     level 2/.style={
       level distance=9mm,
