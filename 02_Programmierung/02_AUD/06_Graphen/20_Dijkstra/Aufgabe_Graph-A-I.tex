@@ -9,39 +9,11 @@
 }
 
 Führen Sie auf dem gegebenen Graphen die Suche nach der kürzesten
-Distanz aller Knoten zum Startknoten A mit dem Algorithmus von Dijkstra
-durch. Tragen Sie die Abarbeitungsreihenfolge, den unmittelbaren
-Vorgängerknoten, sowie die ermittelte kürzeste Distanz für jeden Knoten
-ein! Bei gleichen Distanzen arbeiten Sie die Knoten in lexikalischer
-Reihenfolge ab.
-
-\graph knoten {
-  \knoten{A}(1,4)
-  \knoten{B}(3,5)
-  \knoten{C}(3,3)
-  \knoten{D}(0,2)
-  \knoten{E}(5,5)
-  \knoten{F}(5,1)
-  \knoten{G}(3,0)
-  \knoten{H}(6,3)
-  \knoten{I}(8,4)
-} kanten {
-  \kante(A-B){2}
-  \kante(A-C){5}
-  \kante(A-D){2}
-  \kante(B-C){3}
-  \kante(B-E){1}
-  \kante(C-D){3}
-  \kante(C-E){1}
-  \kante(C-F){1}
-  \kante(C-H){1}
-  \kante(D-G){2}
-  \kante(E-I){7}
-  \kante(F-G){2}
-  \kante(F-H){3}
-  \kante(F-H){3}
-  \kante(H-I){1}
-}
+Distanz aller Knoten zum Startknoten $A$ mit dem Algorithmus von
+Dijkstra durch. Tragen Sie die Abarbeitungsreihenfolge, den
+unmittelbaren Vorgängerknoten, sowie die ermittelte kürzeste Distanz für
+jeden Knoten ein! Bei gleichen Distanzen arbeiten Sie die Knoten in
+lexikalischer Reihenfolge ab.
 
 \begin{liGraphenFormat}
 A: 1 4
@@ -69,18 +41,17 @@ F -- H: 3
 H -- I
 \end{liGraphenFormat}
 
-Als TikZ-Umgebung
-
-\begin{tikzpicture}
-\node[li graph knoten] (A) at (1,4) {A};
-\node[li graph knoten] (B) at (3,5) {B};
-\node[li graph knoten] (C) at (3,3) {C};
-\node[li graph knoten] (D) at (0,2) {D};
-\node[li graph knoten] (E) at (5,5) {E};
-\node[li graph knoten] (F) at (5,1) {F};
-\node[li graph knoten] (G) at (3,0) {G};
-\node[li graph knoten] (H) at (6,3) {H};
-\node[li graph knoten] (I) at (8,4) {I};
+\begin{center}
+\begin{tikzpicture}[li graph]
+\node (A) at (1,4) {A};
+\node (B) at (3,5) {B};
+\node (C) at (3,3) {C};
+\node (D) at (0,2) {D};
+\node (E) at (5,5) {E};
+\node (F) at (5,1) {F};
+\node (G) at (3,0) {G};
+\node (H) at (6,3) {H};
+\node (I) at (8,4) {I};
 
 \path[li graph kante] (A) edge node {2} (B);
 \path[li graph kante] (A) edge node {5} (C);
@@ -97,5 +68,38 @@ Als TikZ-Umgebung
 \path[li graph kante] (F) edge node {3} (H);
 \path[li graph kante] (H) edge (I);
 \end{tikzpicture}
+\end{center}
 
+\begin{liAntwort}
+\begin{tabular}{lllllllllll}
+\bf{Nr.}     & \bf{besucht} & \bf{A}       & \bf{B}       & \bf{C}       & \bf{D}       & \bf{E}       & \bf{F}       & \bf{G}       & \bf{H}       & \bf{I}       \\
+\hline
+0            &              & 0            & $\infty$     & $\infty$     & $\infty$     & $\infty$     & $\infty$     & $\infty$     & $\infty$     & $\infty$     \\
+1            & A            & \bf{0}       & 2            & 5            & 2            & $\infty$     & $\infty$     & $\infty$     & $\infty$     & $\infty$     \\
+2            & B            & |            & \bf{2}       & 5            & 2            & 3            & $\infty$     & $\infty$     & $\infty$     & $\infty$     \\
+3            & D            & |            & |            & 5            & \bf{2}       & 3            & $\infty$     & 4            & $\infty$     & $\infty$     \\
+4            & E            & |            & |            & 4            & |            & \bf{3}       & $\infty$     & 4            & $\infty$     & 10           \\
+5            & C            & |            & |            & \bf{4}       & |            & |            & 5            & 4            & 5            & 10           \\
+6            & G            & |            & |            & |            & |            & |            & 5            & \bf{4}       & 5            & 10           \\
+7            & F            & |            & |            & |            & |            & |            & \bf{5}       & |            & 5            & 10           \\
+8            & H            & |            & |            & |            & |            & |            & |            & |            & \bf{5}       & 6            \\
+9            & I            & |            & |            & |            & |            & |            & |            & |            & |            & \bf{6}       \\
+\end{tabular}
+
+\noindent
+\begin{tabular}{llll}
+\bf{nach}                                                                         & \bf{Entfernung}                                                                   & \bf{Reihenfolge}                                                                  & \bf{Pfad}                                                                         \\
+\hline
+A  $\rightarrow$  A                                                               & 0                                                                                 & 0                                                                                 &                                                                                   \\
+A  $\rightarrow$  B                                                               & 2                                                                                 & 2                                                                                 & A $\rightarrow$ B                                                                 \\
+A  $\rightarrow$  C                                                               & 4                                                                                 & 5                                                                                 & A $\rightarrow$ B $\rightarrow$ E $\rightarrow$ C                                 \\
+A  $\rightarrow$  D                                                               & 2                                                                                 & 3                                                                                 & A $\rightarrow$ D                                                                 \\
+A  $\rightarrow$  E                                                               & 3                                                                                 & 4                                                                                 & A $\rightarrow$ B $\rightarrow$ E                                                 \\
+A  $\rightarrow$  F                                                               & 5                                                                                 & 7                                                                                 & A $\rightarrow$ B $\rightarrow$ E $\rightarrow$ C $\rightarrow$ F                 \\
+A  $\rightarrow$  G                                                               & 4                                                                                 & 6                                                                                 & A $\rightarrow$ D $\rightarrow$ G                                                 \\
+A  $\rightarrow$  H                                                               & 5                                                                                 & 8                                                                                 & A $\rightarrow$ B $\rightarrow$ E $\rightarrow$ C $\rightarrow$ H                 \\
+A  $\rightarrow$  I                                                               & 6                                                                                 & 9                                                                                 & A $\rightarrow$ B $\rightarrow$ E $\rightarrow$ C $\rightarrow$ H $\rightarrow$ I \\
+\end{tabular}
+
+\end{liAntwort}
 \end{document}
