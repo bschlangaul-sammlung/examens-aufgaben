@@ -1,0 +1,69 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,mathe}
+\begin{document}
+\let\j=\liJavaCode
+
+\liAufgabenTitel{O-Notation}
+\section{Aufgabe 4
+\index{Komplexität}
+\footcite{66115:2020:09}}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Betrachten Sie das folgende Code-Beispiel (in Java-Notation):
+
+\liJavaDatei[firstline=4,lastline=13]{examen/examen_66115/jahr_2020/herbst/o_notation/Mystery1}
+
+Bestimmen Sie die asymptotische worst-case Laufzeit des Code-Beispiels
+in $\mathcal{O}$-Notation bezüglich der Problemgröße $n$. Begründen Sie
+Ihre Antwort.
+
+\begin{liAntwort}
+Die asymptotische worst-case Laufzeit des Code-Beispiels
+in $\mathcal{O}$-Notation ist $\mathcal{O}(n)$.
+
+Die \j{while}-Schleife wird genau $n$ mal ausgeführt. In der Schleife
+wird die Variable \j{i} in der Zeile \j{i = i + 1;} inkrementiert. \j{i}
+wird mit 0 initialisiert. Die \j{while}-Schleife endet wenn \j{i} gleich
+groß ist wir \j{n}.
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Betrachten Sie das folgende Code-Beispiel (in Java-Notation):
+
+\liJavaDatei[firstline=5,lastline=18]{examen/examen_66115/jahr_2020/herbst/o_notation/Mystery2}
+
+Bestimmen Sie für das Code-Beispiel die asymptotische worst-case
+Laufzeit in $\mathcal{O}$-Notation
+bezüglich der Problemgröße $n$. Begründen Sie Ihre Antwort.
+
+\begin{liAntwort}
+while: n-mal
+
+1. for: $n, n-1, n-2 \dots, 2, 1$
+
+2. for: $1, 2, n$
+
+$\sum_{i=}$
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Bestimmen Sie eine asymptotische Lösung (in $\Theta$-Schreibweise)
+für die folgende Rekursionsgleichung:
+
+\begin{displaymath}
+T(n) = T(\frac{n}{2}) + \frac{1}{2}n^2 + n
+\end{displaymath}
+\end{enumerate}
+
+\end{document}

@@ -57,19 +57,43 @@ Prioritätswarteschlange der noch zu betrachtenden Knoten (aufsteigend
 sortiert).
 
 \begin{tabular}{lllllll}
-\bf{Nr.}        & \bf{ausgewählt} & \bf{A}          & \bf{B}          & \bf{C}          & \bf{D}          & \bf{E}          \\
+\bf{Nr.}     & \bf{besucht} & \bf{A}       & \bf{B}       & \bf{C}       & \bf{D}       & \bf{E}       \\
 \hline
-1               & A               & \bf{0}          & 15              & 5               & $\infty$        & 12              \\
-2               & C               & |               & 13              & \bf{5}          & 10              & 8               \\
-3               & E               & |               & 10              & |               & 9               & \bf{8}          \\
-4               & D               & |               & 10              & |               & \bf{9}          & |               \\
-5               & B               & |               & \bf{10}         & |               & |               & |               \\
+0            &              & 0            & $\infty$     & $\infty$     & $\infty$     & $\infty$     \\
 \end{tabular}
+
+\begin{liAntwort}
+\begin{tabular}{lllllll}
+\bf{Nr.}     & \bf{besucht} & \bf{A}       & \bf{B}       & \bf{C}       & \bf{D}       & \bf{E}       \\
+\hline
+0            &              & 0            & $\infty$     & $\infty$     & $\infty$     & $\infty$     \\
+1            & A            & \bf{0}       & 15           & 5            & $\infty$     & 12           \\
+2            & C            & |            & 13           & \bf{5}       & 10           & 8            \\
+3            & E            & |            & 10           & |            & 9            & \bf{8}       \\
+4            & D            & |            & 10           & |            & \bf{9}       & |            \\
+5            & B            & |            & \bf{10}      & |            & |            & |            \\
+\end{tabular}
+\end{liAntwort}
 
 %%
 % b)
 %%
 
 \item Geben Sie den kürzesten Pfad vom Knoten $A$ zum Knoten $B$ an.
+
+\begin{liAntwort}
+A $\rightarrow$ C $\rightarrow$ E $\rightarrow$ B: 10
+
+\begin{tabular}{llll}
+\bf{nach}                                         & \bf{Entfernung}                                   & \bf{Reihenfolge}                                  & \bf{Pfad}                                         \\
+\hline
+A  $\rightarrow$  A                               & 0                                                 & 0                                                 &                                                   \\
+A  $\rightarrow$  B                               & 10                                                & 5                                                 & A $\rightarrow$ C $\rightarrow$ E $\rightarrow$ B \\
+A  $\rightarrow$  C                               & 5                                                 & 2                                                 & A $\rightarrow$ C                                 \\
+A  $\rightarrow$  D                               & 9                                                 & 4                                                 & A $\rightarrow$ C $\rightarrow$ E $\rightarrow$ D \\
+A  $\rightarrow$  E                               & 8                                                 & 3                                                 & A $\rightarrow$ C $\rightarrow$ E                 \\
+\end{tabular}
+
+\end{liAntwort}
 \end{enumerate}
 \end{document}
