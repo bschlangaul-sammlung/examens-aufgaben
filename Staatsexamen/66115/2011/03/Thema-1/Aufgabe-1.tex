@@ -1,6 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{master-theorem}
 \begin{document}
+\let\T=\liT
+
 \liAufgabenTitel{}
 \section{Aufgabe 1
 \index{Master-Theorem}
@@ -16,32 +18,25 @@ eine kurze Begründung, warum das Master-Theorem nicht anwendbar ist!
 % a)
 %%
 
-\item T(n) = 16T(n/2) + 40n - 6
-
-\begin{liAntwort}
-\def\liLet#1#2{
-  \texttt{\textbackslash{}let\textbackslash#1=\textbackslash#2}
-}
-\liLet{T}{liT}
-\end{liAntwort}
+\item $T(n) = \T{16}{2} + 40n - 6$
 
 %%
 % b)
 %%
 
-\item T(n) = 27T(n/3) + 3n? logn
+\item $T(n) = \T{27}{3} + 3n^2 \log n$
 
 %%
 % c)
 %%
 
-\item Tin) = 4T(n/2) +3n? +logn
+\item $T(n) = \T{4}{2} + 3n^2 + \log n$
 
 %%
 % d)
 %%
 
-\item T(n)=4T(w/16) + 100 logn + Yan +n”
+\item $T(n)= \T{4}{2} + 100 \log n + \sqrt{2n} + n^{-2}$
 \end{enumerate}
 
 \end{document}

@@ -87,7 +87,7 @@
 % \end{macro}
 
 % \begin{macro}{\liAutomatenKante}
-% |\let\k=\liAutomatenKante|
+% \liLet{k}{liAutomatenKante}
 %    \begin{macrocode}
 \def\liAutomatenKante#1#2#3#4{
   \path (#1) edge[#4] node{#3} (#2);
@@ -205,7 +205,7 @@
 % \end{macro}
 
 % \begin{macro}{\liKellerUebergang}
-% |\let\u=\liKellerUebergang|
+% \liLet{u}{liKellerUebergang}
 %
 % |\liKellerUebergang{a, KELLERBODEN, A; b KELLERBODEN, EPSILON}|
 %
@@ -227,7 +227,7 @@
 
 % \begin{macro}{\liKellerKante}
 % \cmd{\liKellerKante}\oarg{tikz-optionen}\marg{von}\marg{zu}\marg{übergange}
-% |\let\k=\liKellerKante|
+% \liLet{k}{liKellerKante}
 %    \begin{macrocode}
 \NewDocumentCommand{\liKellerKante} { O{above} m m m  } {
   \path (#2) edge[#1] node{\liKellerUebergang{#4}} (#3);

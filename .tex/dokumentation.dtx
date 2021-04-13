@@ -56,6 +56,8 @@
   \end{mdframed}
 }
 
+% \|\\let\\(.*?)=\\(.*?)\|
+% \liLet{$1}{$2}
 \ExplSyntaxOn
 \def\liLet#1#2{
   \noindent
@@ -204,7 +206,7 @@
 % \end{macro}
 
 % \begin{macro}{\liAutomatenKante}
-% |\let\k=\liAutomatenKante|
+% \liLet{k}{liAutomatenKante}
 %    \begin{macrocode}
 \def\liAutomatenKante#1#2#3#4{
   \path (#1) edge[#4] node{#3} (#2);
@@ -322,7 +324,7 @@
 % \end{macro}
 
 % \begin{macro}{\liKellerUebergang}
-% |\let\u=\liKellerUebergang|
+% \liLet{u}{liKellerUebergang}
 %
 % |\liKellerUebergang{a, KELLERBODEN, A; b KELLERBODEN, EPSILON}|
 %
@@ -344,7 +346,7 @@
 
 % \begin{macro}{\liKellerKante}
 % \cmd{\liKellerKante}\oarg{tikz-optionen}\marg{von}\marg{zu}\marg{übergange}
-% |\let\k=\liKellerKante|
+% \liLet{k}{liKellerKante}
 %    \begin{macrocode}
 \NewDocumentCommand{\liKellerKante} { O{above} m m m  } {
   \path (#2) edge[#1] node{\liKellerUebergang{#4}} (#3);
@@ -606,7 +608,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 %    \end{macrocode}
 
 % \begin{macro}{\liChomskyUeberschrift}
-% |\let\schritt=\liChomskyUeberschrift|
+% \liLet{schritt}{liChomskyUeberschrift}
 %    \begin{macrocode}
 \def\liChomskyUeberschrift#1{
   {
@@ -624,7 +626,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \end{macro}
 
 % \begin{macro}{\liChomskyErklaerung}
-% |\let\erklaerung=\liChomskyErklaerung|
+% \liLet{erklaerung}{liChomskyErklaerung}
 %  Hoffmann Seite 180
 %    \begin{macrocode}
 \def\li@chomsky@erklaerung@texte#1{
@@ -670,7 +672,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \end{macro}
 
 % \begin{macro}{\liChomskyUeberErklaerung}
-% |\let\schrittE=\liChomskyUeberErklaerung|
+% \liLet{schrittE}{liChomskyUeberErklaerung}
 %    \begin{macrocode}
 \def\liChomskyUeberErklaerung#1{
   \liChomskyUeberschrift{#1}\par
@@ -758,7 +760,7 @@ zum Setzen von mathematischen Formeln bei dem Thema Formale Sprachen]
 
 % \begin{macro}{\liMenge}
 % |$\liMenge{a, b, c}$|: $\liMenge{a, b, c}$
-% |\let\m=\liMenge|
+% \liLet{m}{liMenge}
 %    \begin{macrocode}
 \def\liMengeOhneMathe#1{\{ #1 \}}
 \def\liMenge#1{%
@@ -774,7 +776,7 @@ $\liMengeOhneMathe{#1}$%
 % \begin{macro}{\liEpsilon}
 % |\liEpsilon|: \liEpsilon
 %
-% |\let\e=\liEpsilon|
+% \liLet{e}{liEpsilon}
 %    \begin{macrocode}
 \def\liEpsilon{$\epsilon$}
 %    \end{macrocode}
@@ -948,7 +950,7 @@ $\liMengeOhneMathe{#1}$%
 
 % \begin{macro}{\liZustandsnameTiefgestellt}
 % Automatisch tiefgestellte Nummerierung |\z1|
-% |\let\z=\liZustandsnameTiefgestellt|
+% \liLet{z}{liZustandsnameTiefgestellt}
 %    \begin{macrocode}
 \def\liZustandsnameTiefgestellt#1{
   \ifmmode
@@ -1707,7 +1709,7 @@ anderen Paket passen]
 % \begin{macro}{\liRundeKlammer}
 %    \begin{macrocode}
 \def\liRundeKlammer#1{
-  \left( #1 \right)
+  \negthinspace \left( #1 \right)
 }
 %    \end{macrocode}
 % \end{macro}
@@ -1929,7 +1931,7 @@ Attributhülle]
 
 % \begin{macro}{\liAttributHuelle}
 %    \begin{macrocode}
-% |\let\ah=\liAttributHuelle|
+% \liLet{ah}{liAttributHuelle}
 % Regulärer Ausdruck zum Konvertieren
 % |AttrHülle\((.*)\)|
 % |\\ah{$1}|
@@ -1945,7 +1947,7 @@ Attributhülle]
 % \end{macro}
 
 % \begin{macro}{\liAttributMenge}
-% |\let\m=\liAttributMenge|
+% \liLet{m}{liAttributMenge}
 %    \begin{macrocode}
 \def\liAttributMenge#1{\{ \textit{#1} \}}
 %    \end{macrocode}
@@ -1967,7 +1969,7 @@ Attributhülle]
 % \begin{macro}{\liAttributHuelleLinksReduktion}
 % Nur innerhalb von |liAHuelle| zu verwenden
 % bzw. |multline|
-% |\let\ahL=\liAttributHuelleLinksReduktion|
+% \liLet{ahL}{liAttributHuelleLinksReduktion}
 % |\ahL{ursprüngliche linke Attributmenge}{ohne dieses Attribut}{Ergebnis}|
 %    \begin{macrocode}
 \def\liAttributHuelleLinksReduktion#1#2#3{
@@ -1982,7 +1984,7 @@ Attributhülle]
 % \end{macro}
 
 % \begin{macro}{\liFunktionaleAbhaengigkeit}
-% |\let\fa=\liFunktionaleAbhaengigkeit|
+% \liLet{fa}{liFunktionaleAbhaengigkeit}
 % |\liFunktionaleAbhaengigkeit{A, B -> C, D}|
 % Regulärer Ausdruck zum Konvertieren: |\$(.*?) \\rightarrow (.*?)\$|
 % |\\fa{$1 -> $2}|
@@ -2003,7 +2005,7 @@ Attributhülle]
 % }
 % \end{verbatim}
 %
-% |\let\FA=\liFunktionaleAbhaengigkeiten|
+% \liLet{FA}{liFunktionaleAbhaengigkeiten}
 % Regulärer Ausdruck zum Konvertieren:
 % |\\item \$(.*) \\rightarrow (.*)\$|
 % |\$(.*) \\rightarrow (.*)\$|
@@ -2708,7 +2710,7 @@ Relation in die 3. Normalform]
 % \end{liBeispiel}
 
 % \begin{macro}{\liSyntheseUeberschrift}
-% |\let\schritt=\liSyntheseUeberschrift|
+% \liLet{schritt}{liSyntheseUeberschrift}
 %    \begin{macrocode}
 \def\liSyntheseUeberschrift#1{
   {
@@ -2730,7 +2732,7 @@ Relation in die 3. Normalform]
 % \end{macro}
 
 % \begin{macro}{\liSyntheseErklaerung}
-% |\let\erklaerung=\liSyntheseErklaerung|
+% \liLet{erklaerung}{liSyntheseErklaerung}
 %    \begin{macrocode}
 \def\li@synthese@erklaerung@texte#1{
   \str_case:nn {#1} {
@@ -2799,7 +2801,7 @@ Relation in die 3. Normalform]
 % \end{macro}
 
 % \begin{macro}{\liSyntheseUeberErklaerung}
-% |\let\schrittE=\liSyntheseUeberErklaerung|
+% \liLet{schrittE}{liSyntheseUeberErklaerung}
 %    \begin{macrocode}
 \def\liSyntheseUeberErklaerung#1{
   \liSyntheseUeberschrift{#1}\par
