@@ -1,8 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{automaten,minimierung}
+\liLadePakete{automaten,minimierung,formale-sprachen}
 
 \begin{document}
-\def\z#1{$z_#1$}
+\let\z=\liZustandsnameTiefgestellt
 \let\f=\liFussnote
 \let\l=\liLeereZelle
 \let\Z=\liZustandsPaar
@@ -61,9 +61,9 @@
 \end{liUebergangsTabelle}
 
 \noindent
-\Z23, \Z24 unnd \Z34 können zu einem Zustand verschmolzen werden, weil
+\Z23, \Z24 und \Z34 können zu einem Zustand verschmolzen werden, weil
 sie alle drei bei der Eingabe von 0 zu \Z44 und bei 1 zu \Z55 werden.
-
+%
 \z5 kann nicht verschmolzen werden, weil er in der Tabelle markiert ist.
 
 \begin{center}

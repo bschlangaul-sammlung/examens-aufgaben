@@ -1,0 +1,180 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,automaten,minimierung}
+\begin{document}
+\let\z=\liZustandsnameTiefgestellt
+\let\f=\liFussnote
+\let\l=\liLeereZelle
+\let\Z=\liZustandsPaar
+
+\liAufgabenTitel{}
+\section{Aufgabe 1
+\index{Reguläre Sprache}
+\footcite{66115:2020:09}}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Geben Sie einen deterministischen endlichen Automaten (DEA) mit
+minimaler Anzahl an Zuständen an, der dieselbe Sprache akzeptiert wie
+folgender deterministischer endlicher Automat. Dokumentieren Sie Ihr
+Vorgehen geeignet.
+
+\begin{center}
+\begin{tikzpicture}[li automat,scale=0.8,transform shape]
+  \node[state,initial] (z0) at (2.14cm,-2.14cm) {$z_0$};
+  \node[state] (z1) at (2.86cm,-6cm) {$z_1$};
+  \node[state] (z2) at (6.71cm,-1.71cm) {$z_2$};
+  \node[state] (z3) at (8cm,-4.29cm) {$z_3$};
+  \node[state] (z4) at (10.71cm,-1cm) {$z_4$};
+  \node[state] (z5) at (4.43cm,-3.57cm) {$z_5$};
+  \node[state] (z6) at (11.86cm,-4cm) {$z_6$};
+  \node[state] (z7) at (9.43cm,-6.43cm) {$z_7$};
+  \node[state,accepting] (z8) at (14cm,-2.43cm) {$z_8$};
+
+  \path (z0) edge[auto] node{$1$} (z1);
+  \path (z0) edge[auto] node{$0$} (z2);
+  \path (z1) edge[auto] node{$1$} (z7);
+  \path (z1) edge[auto] node{$0$} (z5);
+  \path (z2) edge[auto] node{$0$} (z3);
+  \path (z2) edge[auto,bend left] node{$1$} (z7);
+  \path (z3) edge[auto] node{$0$} (z5);
+  \path (z3) edge[auto] node{$1$} (z1);
+  \path (z4) edge[auto] node{$0$} (z3);
+  \path (z4) edge[auto] node{$1$} (z7);
+  \path (z5) edge[auto] node{$0$} (z0);
+  \path (z5) edge[auto] node{$1$} (z7);
+  \path (z6) edge[auto] node{$0$} (z8);
+  \path (z6) edge[auto] node{$1$} (z4);
+  \path (z7) edge[auto,bend right] node{$1$} (z8);
+  \path (z7) edge[auto] node{$0$} (z6);
+  \path (z8) edge[auto] node{$1$} (z4);
+  \path (z8) edge[auto,loop above] node{$0$} (z8);
+\end{tikzpicture}
+\end{center}
+\liFlaci{Aj5aei652}
+
+\begin{liAntwort}
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|}
+\hline
+\z0 & \l  & \l  & \l  & \l  & \l  & \l  & \l  & \l  & \l  \\ \hline
+\z1 & \f3 & \l  & \l  & \l  & \l  & \l  & \l  & \l  & \l  \\ \hline
+\z2 & \f3 & \f4 & \l  & \l  & \l  & \l  & \l  & \l  & \l  \\ \hline
+\z3 &     & \f3 & \f3 & \l  & \l  & \l  & \l  & \l  & \l  \\ \hline
+\z4 & \f3 & \f4 &     & \f3 & \l  & \l  & \l  & \l  & \l  \\ \hline
+\z5 & \f3 & \f4 &     & \f3 &     & \l  & \l  & \l  & \l  \\ \hline
+\z6 & \f2 & \f2 & \f2 & \f2 & \f2 & \f2 & \l  & \l  & \l  \\ \hline
+\z7 & \f2 & \f2 & \f2 & \f2 & \f2 & \f2 & \f2 & \l  & \l  \\ \hline
+\z8 & \f1 & \f1 & \f1 & \f1 & \f1 & \f1 & \f1 & \f1 & \l  \\ \hline\hline
+    & \z0 & \z1 & \z2 & \z3 & \z4 & \z5 & \z6 & \z7 & \z8 \\ \hline
+\end{tabular}
+\end{center}
+
+\liFussnoten
+
+% 0 2 1
+% 1 5 7
+% 2 3 7
+% 3 5 1
+% 4 3 7
+% 5 0 7
+% 6 8 4
+% 7 6 8
+% 8 8 4
+
+\begin{liUebergangsTabelle}{0}{1}
+\Z01 & \Z25 & \Z17 \f3 \\
+\Z02 & \Z23 & \Z17 \f3 \\
+\Z03 & \Z25 & \Z11 \\
+\Z04 & \Z23 & \Z17 \f3 \\
+\Z05 & \Z20 & \Z17 \f3\\
+\Z06 & \Z28 & \Z14 \f2 \\
+\Z07 & \Z26 & \Z18 \f2 \\
+\Z12 & \Z53 & \Z77 \f4 \\
+\Z13 & \Z55 & \Z71 \f3 \\
+\Z14 & \Z53 & \Z77 \f4 \\
+\Z15 & \Z50 & \Z77 \f4 \\
+\Z16 & \Z58 & \Z74 \f2 \\
+\Z17 & \Z56 & \Z78 \f2 \\
+\Z23 & \Z35 & \Z71 \f3 \\
+\Z24 & \Z33 & \Z77 \\
+\Z25 & \Z30 & \Z77 \\
+\Z26 & \Z38 & \Z74 \f2 \\
+\Z27 & \Z36 & \Z78 \f2 \\
+\Z34 & \Z53 & \Z17 \f3 \\
+\Z35 & \Z50 & \Z17 \f3 \\
+\Z36 & \Z58 & \Z14 \f2 \\
+\Z37 & \Z56 & \Z18 \f2 \\
+\Z45 & \Z30 & \Z77 \\
+\Z46 & \Z38 & \Z74 \f2 \\
+\Z47 & \Z36 & \Z78 \f2 \\
+\Z56 & \Z08 & \Z74 \f2 \\
+\Z57 & \Z06 & \Z78 \f2 \\
+\Z67 & \Z86 & \Z48 \f2\\
+\end{liUebergangsTabelle}
+
+\begin{center}
+\begin{tikzpicture}[li automat]
+  \node[state,initial] (z03) at (2.29cm,-2.14cm) {$z_{03}$};
+  \node[state] (z6) at (9.43cm,-6.71cm) {$z_6$};
+  \node[state] (z245) at (6.71cm,-3cm) {$z_{245}$};
+  \node[state] (z7) at (5.71cm,-7.86cm) {$z_7$};
+  \node[state,accepting] (z8) at (10.71cm,-2.71cm) {$z_8$};
+  \node[state] (z1) at (2.14cm,-5.29cm) {$z_1$};
+
+  \path (z03) edge[auto] node{$1$} (z1);
+  \path (z03) edge[auto,bend left] node{$0$} (z245);
+  \path (z6) edge[auto] node{$0$} (z8);
+  \path (z6) edge[auto] node{$1$} (z245);
+  \path (z245) edge[auto,bend left] node{$0$} (z03);
+  \path (z245) edge[auto] node{$1$} (z7);
+  \path (z7) edge[auto] node{$1$} (z8);
+  \path (z7) edge[auto] node{$0$} (z6);
+  \path (z8) edge[auto] node{$1$} (z245);
+  \path (z8) edge[auto,loop above] node{$0$} (z8);
+  \path (z1) edge[auto] node{$1$} (z7);
+  \path (z1) edge[auto] node{$0$} (z245);
+\end{tikzpicture}
+\end{center}
+\liFlaci{Aro484bz2}
+
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Beweisen oder widerlegen Sie für folgende Sprachen über dem
+Alphabet \liAlphabet{a,b,c}, dass sie regulär sind.
+
+\begin{enumerate}
+
+%%
+% (i)
+%%
+
+\item \liAusdruck[L_1]{a^i c u b^j v a c^k}
+{u,v \in \liMenge{a,b}^* \text{ und } i, j, k \in \mathbb{N}_0}
+
+%%
+% (ii)
+%%
+
+\item \liAusdruck[L_2]{a^i c u b^j v a c^k}
+{u,v \in \liMenge{a, b}^* \text{ und } i, j, k \in \mathbb{N}_0\text{ mit } k = i + j}
+
+\end{enumerate}
+
+%%
+% c)
+%%
+
+\item Sei $L$ eine reguläre Sprache über dem Alphabet $\Sigma$. Für ein
+festes Element $a \in \Sigma$ betrachten wir die Sprache
+\liAusdruck[L_a]{a w}{w \in \Sigma^*, wa \in L}. Zeigen Sie, dass $L_a$
+regulär ist.
+\end{enumerate}
+\end{document}
