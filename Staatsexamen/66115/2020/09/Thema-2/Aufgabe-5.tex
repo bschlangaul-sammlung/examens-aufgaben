@@ -1,0 +1,162 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Streuspeicherung}
+\section{Aufgabe 5
+\index{Streutabellen (Hashing)}
+\footcite{66115:2020:09}}
+
+Gegeben seien die folgenden Schlüssel $k$ zusammen mit ihren Streuwerten
+$h(k)$:
+
+\begin{center}
+\begin{tabular}{|r||c|c|c|c|c|c|c|c|}
+\hline
+$k$    & B & Y & E & ! & A & U & D & ? \\\hline
+$h(k)$ & 5 & 4 & 0 & 4 & 4 & 0 & 7 & 2 \\\hline
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Fügen Sie die Schlüssel in der angegebenen Reihenfolge (von links
+nach rechts) in eine Streutabelle der Größe 8 ein und lösen Sie
+Kollisionen durch verkettete Listen auf.
+
+Stellen Sie die Streutabelle in folgender Art und Weise dar:
+
+\begin{liAntwort}
+\begin{center}
+\begin{tabular}{|c||l|}
+\hline
+Fach & Schlüssel k {\scriptsize(verkettete Liste, zuletzt eingetragener Schlüssel rechts)}\\
+\hline
+0 & E, U, \\
+1 & \\
+2 & ? \\
+3 & \\
+4 & Y, !, A \\
+5 & B, \\
+6 & \\
+7 & D\\
+\hline
+\end{tabular}
+\end{center}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Fügen Sie die gleichen Schlüssel in der gleichen Reihenfolge und
+mit der gleichen Streufunktion in eine neue Streutabelle der Größe $8$
+ein. Lösen Sie Kollisionen diesmal aber durch lineares Sondieren mit
+Schrittweite $+1$ auf.
+
+Geben Sie für jeden Schlüssel jeweils an, welche Fächer Sie in welcher
+Reihenfolge sondiert haben und wo der Schlüssel schlussendlich
+gespeichert wird.
+
+\begin{liAntwort}
+\begin{center}
+\begin{tabular}{|c||l|}
+\hline
+Fach & Schlüssel $k$\\
+\hline
+0 & E \\
+1 & U \\
+2 & D \\
+3 & ? \\
+4 & Y\\
+5 & B \\
+6 & !\\
+7 & A \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c||l|l|}
+\hline
+Schlüssel & Sondierung & Speicherung\\
+\hline
+B & & 5 \\
+Y & & 4 \\
+E & & 0 \\
+! & 4, 5 & 6 \\
+A & 4, 5, 6 & 7 \\
+U & 0 & 1 \\
+D & 7, 0, 1 & 2 \\
+? & 2 & 3 \\
+\hline
+\end{tabular}
+\end{center}
+\end{liAntwort}
+
+%%
+% c
+%%
+
+\item Bei der doppelten Streuadressierung verwendet man eine
+Funktionsschar $h_i$, die sich aus einer primären Streufunktion $h_0$
+und einer Folge von sekundären Streufunktionen $h_1, h_2,\dots$
+zusammensetzt. Die folgenden Werte der Streufunktionen sind gegeben:
+
+\begin{center}
+\begin{tabular}{|r||c|c|c|c|c|c|c|c|}
+\hline
+$k$      & B & Y & E & ! & A & U & D & ? \\\hline
+$h_0(k)$ & 5 & 4 & 0 & 4 & 4 & 0 & 7 & 2 \\\hline
+$h_1(k)$ & 6 & 3 & 3 & 3 & 1 & 2 & 6 & 0 \\\hline
+$h_2(k)$ & 7 & 2 & 6 & 2 & 6 & 4 & 5 & 6 \\\hline
+$h_3(k)$ & 0 & 1 & 1 & 1 & 3 & 6 & 4 & 4 \\\hline
+\end{tabular}
+\end{center}
+
+Fügen Sie die Schlüssel in der angegebenen Reihenfolge (von links nach
+rechts) in eine Streutabelle der Größe $8$ ein und geben Sie für jeden
+Schlüssel jeweils an, welche Streufunktion $h_i$ zur letztendlichen
+Einsortierung verwendet wurde.
+
+\begin{liAntwort}
+\begin{center}
+\begin{tabular}{|c||l|}
+\hline
+Fach & Schlüssel $k$\\
+\hline
+0 & U \\
+1 & A \\
+2 & ! \\
+3 & E \\
+4 & Y \\
+5 & B \\
+6 & ? \\
+7 & D \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c||l|l|}
+\hline
+Schlüssel & Streufunktion\\
+\hline
+B & $h_0(k)$ \\
+Y & $h_0(k)$ \\
+E & $h_0(k)$ \\
+! & $h_2(k)$ \\
+A & $h_1(k)$ \\
+U & $h_0(k)$ \\
+D & $h_0(k)$ \\
+? & $h_2(k)$ \\
+\hline
+\end{tabular}
+\end{center}
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}
