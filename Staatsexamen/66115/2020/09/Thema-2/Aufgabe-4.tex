@@ -45,13 +45,18 @@ Laufzeit in $\mathcal{O}$-Notation
 bezüglich der Problemgröße $n$. Begründen Sie Ihre Antwort.
 
 \begin{liAntwort}
-while: n-mal
+\begin{description}
+\item[\j{while}:]
+$n$-mal
 
-1. for: $n, n-1, n-2 \dots, 2, 1$
+\item[1. \j{for}:]
+$n, n-1, \dots, 2, 1$
 
-2. for: $1, 2, n$
+\item[2. \j{for}:]
+$1, 2, \dots, n-1, n$
+\end{description}
 
-$\sum_{i=}$
+$n \times n \times n = \mathcal{O}(n^3)$
 \end{liAntwort}
 
 %%
@@ -60,10 +65,12 @@ $\sum_{i=}$
 
 \item Bestimmen Sie eine asymptotische Lösung (in $\Theta$-Schreibweise)
 für die folgende Rekursionsgleichung:
+\index{Master-Theorem}
 
 \begin{displaymath}
-T(n) = T(\frac{n}{2}) + \frac{1}{2}n^2 + n
+T(n) = T\left(\frac{n}{2}\right) + \textstyle{\frac{1}{2}}n^2 + n
 \end{displaymath}
+
 \end{enumerate}
 
 \end{document}

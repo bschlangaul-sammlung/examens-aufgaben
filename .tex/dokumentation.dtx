@@ -62,6 +62,7 @@
   automaten,
   baum,
   formale-sprachen,
+  master-theorem,
   gantt,
   graph,
   minimierung,
@@ -1674,6 +1675,80 @@ anderen Paket passen]
 }
 %    \end{macrocode}
 % \end{macro}
+
+%    \begin{macrocode}
+
+%    \end{macrocode}
+% \subsection{master-theorem.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-master-theorem}[2021/04/13]
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\ExplSyntaxOn
+\RequirePackage{amsmath}
+%    \end{macrocode}
+
+% \begin{macro}{\liRundeKlammer}
+%    \begin{macrocode}
+\def\liRundeKlammer#1{
+  \left(#1\right)
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liTheta}
+% |\liTheta{n^2}|: \liTheta{n^2}
+%    \begin{macrocode}
+\def\liThetaOhneMathe#1{
+  \Theta\liRundeKlammer{#1}
+}
+\def\liTheta#1{
+  \ifmmode
+    \liThetaOhneMathe{#1}
+  \else
+    $\liThetaOhneMathe{#1}$
+  \fi
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liOmega}
+% |\liOmega{n^2}|: \liOmega{n^2}
+%    \begin{macrocode}
+\def\liOmegaOhneMathe#1{
+  \Omega \liRundeKlammer{#1}
+}
+\def\liOmega#1{
+  \ifmmode
+    \liOmegaOhneMathe{#1}
+  \else
+    $\liOmegaOhneMathe{#1}$
+  \fi
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liO}
+% |\liO{n^2}|: \liO{n^2}
+%    \begin{macrocode}
+\def\liOOhneMathe#1{
+  \mathcal{O} \liRundeKlammer{#1}
+}
+\def\liO#1{
+  \ifmmode
+    \liOOhneMathe{#1}
+  \else
+    $\liOOhneMathe{#1}$
+  \fi
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
 
 %    \begin{macrocode}
 

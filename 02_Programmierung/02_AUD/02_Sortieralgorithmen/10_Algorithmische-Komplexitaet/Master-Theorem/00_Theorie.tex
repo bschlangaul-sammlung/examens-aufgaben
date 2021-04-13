@@ -1,0 +1,65 @@
+\documentclass{lehramt-informatik-haupt}
+\liLadePakete{mathe,master-theorem}
+
+\begin{document}
+\let\T=\liTheta
+\let\O=\liO
+\let\o=\liOmega
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Master-Theorem}
+
+Der Hauptsatz der Laufzeitfunktionen – oder oft auch aus dem Englischen
+als Master-Theorem entlehnt – bietet eine \memph{schnelle Lösung} für
+die Frage, \memph{in welcher Laufzeitklasse} eine gegebene
+\memph{rekursiv definierte Funktion} liegt. Mit dem Master-Theorem kann
+allerdings \memph{nicht jede rekursiv definierte Funktion} gelöst
+werden. Lässt sich keiner der \memph{drei möglichen Fälle} des
+Master-Theorems auf die Funktion $T$ anwenden, so muss man die
+Komplexitätsklasse der Funktion anderweitig berechnen.
+
+\begin{displaymath}
+T(n) = a \cdot T \left( \textstyle{\frac{n}{b}} \right) + f(n)
+\end{displaymath}
+
+\begin{itemize}
+\item[$a =$]
+Anzahl der Unterprobleme in der Rekursion
+
+\item[$\textstyle{\frac{1}{b}} =$]
+Teil des Originalproblems, welches wiederum durch alle Unterprobleme
+repräsentiert wird
+
+\item[$f(n) =$]
+Kosten (Aufwand, Nebenkosten), die durch die Division des Problems und
+die Kombination der Teillösungen entstehen
+\end{itemize}
+\footcite{wiki:master-theorem}
+\footcite[Seite 19-35 (PDF 11-24)]{aud:fs:2}
+
+\begin{description}
+\item[1. Fall:]
+$T(n) \in \T{n^{\log_{b}a}}$
+
+\hfill falls $f(n) \in \O{n^{\log_{b} a - \varepsilon}}$
+für $\varepsilon > 0$
+
+\item[2. Fall:]
+$T(n) \in \T{n^{\log_{b}a} \cdot \log n}$
+
+\hfill falls $f(n) \in \T{n^{\log_{b}a}}$
+
+\item[3. Fall:]
+$T(n) \in \T{f(n)}$
+
+\hfill falls $f(n) \in \o{n^{\log_{b} a + \varepsilon}}$
+für $\varepsilon > 0$
+und ebenfalls für ein $c$ mit $0<c<1$ und alle hinreichend großen $n$
+gilt:
+$a \cdot f(\textstyle {\frac {n}{b}})\leq c \cdot f(n)$
+\end{description}
+
+\literatur
+\end{document}
