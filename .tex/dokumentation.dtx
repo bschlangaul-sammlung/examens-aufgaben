@@ -56,6 +56,20 @@
   \end{mdframed}
 }
 
+\ExplSyntaxOn
+\def\liLet#1#2{
+  \noindent
+  \textbf{Let-Abkürzung:~}
+  \texttt{
+    \textbackslash let
+    \textbackslash#1
+    =
+    \textbackslash#2
+  }
+  \par
+}
+\ExplSyntaxOff
+
 \usepackage{lehramt-informatik-basis}
 
 \liLadePakete{
@@ -1693,7 +1707,7 @@ anderen Paket passen]
 % \begin{macro}{\liRundeKlammer}
 %    \begin{macrocode}
 \def\liRundeKlammer#1{
-  \left(#1\right)
+  \left( #1 \right)
 }
 %    \end{macrocode}
 % \end{macro}
@@ -1702,7 +1716,7 @@ anderen Paket passen]
 % |\liTheta{n^2}|: \liTheta{n^2}
 %    \begin{macrocode}
 \def\liThetaOhneMathe#1{
-  \Theta\liRundeKlammer{#1}
+  \Theta \liRundeKlammer{#1}
 }
 \def\liTheta#1{
   \ifmmode
@@ -1745,6 +1759,23 @@ anderen Paket passen]
 }
 %    \end{macrocode}
 % \end{macro}
+
+% \begin{macro}{\liT}
+% \liLet{T}{liT}
+% |\liT{16}{2}|: \liT{16}{2}
+%    \begin{macrocode}
+  \def\liTOhneMathe#1#2{
+    #1 \cdot T \liRundeKlammer{\frac{n}{#2}}
+  }
+  \def\liT#1#2{
+    \ifmmode
+      \liTOhneMathe{#1}{#2}
+    \else
+      $\liTOhneMathe{#1}{#2}$
+    \fi
+  }
+  %    \end{macrocode}
+  % \end{macro}
 
 %    \begin{macrocode}
 \ExplSyntaxOff
