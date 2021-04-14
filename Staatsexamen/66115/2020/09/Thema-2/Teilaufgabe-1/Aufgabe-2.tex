@@ -7,6 +7,7 @@
 \footcite{66115:2020:09}}
 
 \begin{enumerate}
+
 %%
 % a)
 %%
@@ -15,6 +16,16 @@
 p, q \in \mathbb{N}_0}. Geben Sie eine kontextfreie Grammatik für $L$
 an. Sie dürfen dabei $\varepsilon$-Produktionen der Form
 \liProduktionen{A -> EPSILON} verwenden.
+
+\begin{liAntwort}
+\begin{liProduktionsRegeln}
+S -> 0 S 0 | 0 A 0 | 0 B 0 | EPSILON | A | B | C
+A -> 0 A 1 | 0 C 1,
+B -> 1 B 0 | 1 C 1,
+C -> 1 C 1 | EPSILON,
+\end{liProduktionsRegeln}
+\end{liAntwort}
+
 %%
 % b)
 %%
@@ -25,18 +36,21 @@ indem man die Reihenfolge der Zeichen umkehrt, beispielsweise $(abb)^r =
 bba$.
 
 \begin{enumerate}
+
 %%
 % (i)
 %%
 
 \item Sei $L$ eine kontextfreie Sprache. Zeigen Sie, dass dann auch
 $L^r$ kontextfrei ist.
+
 %%
 % (ii)
 %%
 
 \item Geben Sie eine kontextfreie Sprache $L_1$, an, sodass $L_1 \cap
 L^r_1$ kontextfrei ist.
+
 %%
 % (iii)
 %%
