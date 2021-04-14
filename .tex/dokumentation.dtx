@@ -1811,12 +1811,17 @@ anderen Paket passen]
 Minimierungsalgorithmus von einem NEA zu einem DEA]
 %    \end{macrocode}
 
+%    \begin{macrocode}
+\liLadePakete{typographie}
+%    \end{macrocode}
+
 % \begin{verbatim}
 % \let\z=\liZustandsnameTiefgestellt
 % \let\f=\liFussnote
 % \let\l=\liLeereZelle
 % \let\Z=\liZustandsPaar
-
+% \let\erklaerung=\liMinimierungErklaerung
+%
 % \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|}
 % \hline
 % \z0 & \l  & \l  & \l  & \l  & \l  & \l  & \l  & \l  & \l  \\ \hline
@@ -1830,11 +1835,23 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 % \z8 &     &     &     &     &     &     &     &     & \l  \\ \hline\hline
 %     & \z0 & \z1 & \z2 & \z3 & \z4 & \z5 & \z6 & \z7 & \z8 \\ \hline
 % \end{tabular}
+%
+% \liFussnoten
+%
+% \begin{liUebergangsTabelle}{0}{1}
+% \Z01 & \Z10 & \Z23     \\
+% \Z05 & \Z15 & \Z25 \f2 \\
+% \Z15 & \Z05 & \Z35 \f2 \\
+% \Z23 & \Z44 & \Z55     \\
+% \Z24 & \Z44 & \Z55     \\
+% \Z34 & \Z44 & \Z55     \\
+% \end{liUebergangsTabelle}
+%
 % \end{verbatim}
 
 % \begin{macro}{\liFussnote}
 %    \begin{macrocode}
-\def\liFussnote#1{$*^#1$}
+\def\liFussnote#1{$x_{#1}$}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1873,6 +1890,15 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\liFussnoteVierText}
+%    \begin{macrocode}
+\def\liFussnoteVierText{
+  \li@fussnote@text{4}
+  {…}
+}
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\liFussnoten}
 % \begin{liBeispiel}
 %   \liFussnoten
@@ -1889,11 +1915,16 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 
   \noindent
   \liFussnoteDreiText
+
+  \noindent
+  \liFussnoteVierText
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\liLeereZelle}
+% |\liLeereZelle|: \liLeereZelle
+% \liLet{l}{liLeereZelle}
 %    \begin{macrocode}
 \def\liLeereZelle{$\emptyset$}
 %    \end{macrocode}
@@ -1922,7 +1953,7 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 \NewDocumentEnvironment{ liUebergangsTabelle } { m m } {
   \liPseudoUeberschrift{Übergangstabelle}
   \begin{center}
-  \begin{tabular}{l|l|l}
+  \begin{tabular}{r||l|l}
   \textbf{Zustandspaar} & \textbf{#1} & \textbf{#2} \\\hline
 } {
   \end{tabular}
@@ -1930,6 +1961,28 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 }
 %    \end{macrocode}
 % \end{environment}
+
+% \begin{macro}{\liMinimierungErklaerung}
+% \liLet{erklaerung}{liMinimierungErklaerung}
+% \liMinimierungErklaerung
+%    \begin{macrocode}
+\ExplSyntaxOn
+\def\liMinimierungErklaerung{
+  %\footcite[Seite~19]{koenig}
+  \liParagraphMitLinien{
+    Der~Algorithmus~trägt~in~seinem~Verlauf~eine~Markierung~in~alle~
+    diejenigen~Zellen~der~Tabelle~ein,~die~zueinander~nicht~äquivalente~
+    Zustände~bezeichnen.~Die~Markierung~„$x\sb{n}$“~in~einer~Tabellenzelle~($i$,~
+    $j$)~bedeutet~dabei,~dass~das~Zustandspaar~($i$,~$j$)~in~der~$k$-ten~
+    Iteration~des~Algorithmus~markiert~wurde~und~die~Zustände~$i$~und~$j$~
+    somit~zueinander~($k~-~1$)-äquivalent,~aber~nicht~$k$-äquivalent~und~
+    somit~insbesondere~nicht~äquivalent~sind.~Bleibt~eine~Zelle~bis~zum~Ende~
+    unmarkiert,~sind~die~entsprechenden~Zustände~zueinander~äquivalent.
+  }
+}
+\ExplSyntaxOff
+%    \end{macrocode}
+% \end{macro}
 
 %    \begin{macrocode}
 

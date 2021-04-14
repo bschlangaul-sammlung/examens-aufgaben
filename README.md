@@ -224,7 +224,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/10_Algorithmische-Komplexitaet/Aufgabe_Methode-magicStaff.pdf" download="Aufgabe_Methode-magicStaff">„Methode „magicStaff()““</a> (Komplexität)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/10_Algorithmische-Komplexitaet/Aufgabe_mehrere-Funktionen.pdf" download="Aufgabe_mehrere-Funktionen">„mehrere-Funktionen“</a> (Komplexität)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/20_Selectionsort/Aufgabe_iterativ-rekursiv.pdf" download="Aufgabe_iterativ-rekursiv">„iterativ-rekursiv“</a> (Selectionsort, Iterative Realisation, Rekursion)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/40_Mergesort/Aufgabe_Implementierung-merge-Methode.pdf" download="Aufgabe_Implementierung-merge-Methode">„Implementierung der merge-Methode“</a> (Mergesort)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/40_Mergesort/Aufgabe_Implementierung-merge-Methode.pdf" download="Aufgabe_Implementierung-merge-Methode">„Implementierung der merge-Methode“</a> (Mergesort, Master-Theorem)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/Aufgabe_Haendisch-Quick-Mergesort.pdf" download="Aufgabe_Haendisch-Quick-Mergesort">„Händisch Quick- und Mergesort“</a> (Mergesort, Quicksort)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/Aufgabe_Haendisches-Sortieren.pdf" download="Aufgabe_Haendisches-Sortieren">„Händisches Sortieren“</a> (Bubblesort, Mergesort, Quicksort)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/02_Sortieralgorithmen/Aufgabe_Sortier-Vorlage.pdf" download="Aufgabe_Sortier-Vorlage">„Sortier-Vorlage“</a> (Selectionsort, Bubblesort)
@@ -240,6 +240,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T2-A5">„Sortieren mit Stapel“ Examen 66115 Frühjahr 2015 T2 A5</a> (Stapel (Stack), Komplexität)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T1-A5">„Notation des Informatik-Duden“ Examen 66115 Herbst 2019 T1 A5</a> (Quicksort)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T1-A6">„Sortieren von O-Klassen“ Examen 66115 Herbst 2019 T1 A6</a> (Komplexität)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66115-2020-Herbst_T1-TA2-A4">„O-Notation“ Examen 66115 Herbst 2020 T1 TA2 A4</a> (Komplexität, Master-Theorem)
 
 ## Softwaresysteme (SOSY)
 
@@ -431,7 +432,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Pumping-Lemma/Aufgabe_Saarland-Pinkal.pdf" download="Aufgabe_Saarland-Pinkal">„Saarland Pinkal“</a> (Pumping-Lemma (Reguläre Sprache))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/05_THEO/10_Regulaere-Sprachen/Pumping-Lemma/Aufgabe_Vorlesungsaufgaben-Pumping-Lemma.pdf" download="Aufgabe_Vorlesungsaufgaben-Pumping-Lemma">„Vorlesungsaufgaben“</a> (Pumping-Lemma (Reguläre Sprache))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T1-A1">„Alphabet 0 1 Anzahl Unterschied höchstes 3“ Examen 66115 Frühjahr 2015 T1 A1</a> (Reguläre Sprache, Pumping-Lemma (Reguläre Sprache), Potenzmengenalgorithmus)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2020-Herbst_T1-A3">Examen 66115 Herbst 2020 T1 A3</a> (Kontextfreie Sprache, Pumping-Lemma (Reguläre Sprache))
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2020-Herbst_T1-TA1-A3">„Palindrom mit Alphabet abc“ Examen 66115 Herbst 2020 T1 TA1 A3</a> (Kontextfreie Sprache, Pumping-Lemma (Reguläre Sprache))
 
 #### Minimierungsalgorithmus
 
@@ -965,6 +966,8 @@ OCR des oben genannten Scans:
     - Thema 2 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2010/09/Thema-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2010-Herbst_T2-A3">Aufgabe 3 (Streutabellen (Hashing))</a>
 - 2011 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2011/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2011-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2011/03/OCR.txt" download="Staatsexamen-Informatik_66115-2011-Frühjahr_OCR">OCR.txt</a> 
+    - Thema 1 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2011/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2011-Frühjahr_T1-A1">Aufgabe 1 (Master-Theorem)</a>
 - 2011 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2011/09/Scan.pdf" download="Staatsexamen-Informatik_66115-2011-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2011/09/OCR.txt" download="Staatsexamen-Informatik_66115-2011-Herbst_OCR">OCR.txt</a> 
 - 2012 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2012-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/03/OCR.txt" download="Staatsexamen-Informatik_66115-2012-Frühjahr_OCR">OCR.txt</a> 
     - Thema 1 
@@ -1042,6 +1045,7 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T1-A6">Aufgabe 6 (Komplexität)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T1-A7">Aufgabe 7 (Bäume)</a> 
     - Thema 2 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T2-A6">Aufgabe 6 (Master-Theorem)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T2-A7">Aufgabe 7 (AVL-Baum)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-2/Aufgabe-8.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T2-A8">Aufgabe 8 (Minimaler Spannbaum)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-2/Aufgabe-9.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T2-A9">Aufgabe 9 (Streutabellen (Hashing))</a>
@@ -1052,9 +1056,20 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/03/Thema-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2020-Frühjahr_T2-A3">Aufgabe 3 (Kontextfreie Sprache, Kontextfreie Grammatik)</a>
 - 2020 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Scan.pdf" download="Staatsexamen-Informatik_66115-2020-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/OCR.txt" download="Staatsexamen-Informatik_66115-2020-Herbst_OCR">OCR.txt</a> 
     - Thema 1 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2020-Herbst_T1-A1">Aufgabe 1 (Theoretische Informatik, Reguläre Sprache)</a> 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66115-2020-Herbst_T1-A2">Aufgabe 2 (Reguläre Sprache)</a> 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2020-Herbst_T1-A3">Aufgabe 3 (Kontextfreie Sprache, Pumping-Lemma (Reguläre Sprache))</a>
+        - Teilaufgabe 1 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2020-Herbst_T1-TA1-A1">Aufgabe 1 (Theoretische Informatik, Reguläre Sprache)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66115-2020-Herbst_T1-TA1-A2">Aufgabe 2 (Reguläre Sprache)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2020-Herbst_T1-TA1-A3">Aufgabe 3 (Kontextfreie Sprache, Pumping-Lemma (Reguläre Sprache))</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66115-2020-Herbst_T1-TA1-A5">Aufgabe 5 (Theoretische Informatik)</a> 
+        - Teilaufgabe 2 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2020-Herbst_T1-TA2-A1">Aufgabe 1 (Algorithmen und Datenstrukturen)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66115-2020-Herbst_T1-TA2-A2">Aufgabe 2 (Binärbaum, AVL-Baum)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2020-Herbst_T1-TA2-A3">Aufgabe 3 (Algorithmus von Dijkstra)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66115-2020-Herbst_T1-TA2-A4">Aufgabe 4 (Komplexität, Master-Theorem)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66115-2020-Herbst_T1-TA2-A5">Aufgabe 5 (Streutabellen (Hashing))</a> 
+    - Thema 2 
+        - Teilaufgabe 1 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2020-Herbst_T2-TA1-A1">Aufgabe 1 (Reguläre Sprache)</a>
 
 ### 66116: Datenbanksysteme / Softwaretechnologie (vertieft)
 
@@ -1303,6 +1318,7 @@ als Markdown-Liste eingebettet werden kann.
         - Feld (Array)
         - main-Methode
 - AUD:
+    - Algorithmen und Datenstrukturen
     - Rekursion:
         - Iterative Realisation
     - Suche:

@@ -34,6 +34,22 @@ Eingabe der Zeichen des Alphabets.
 Wir suchen uns nun die Zustandspaare, die bei einer Eingabe ein
 Zustandspaar ergeben, das bereits gestrichen ist.
 
+Im Folgenden wird der Algorithmus zur Markierung der nicht-äquivalenten
+Zustände anhand einer Dreieckstabelle durchgeführt, die alle fraglichen
+Zustandspaare enthält.
+
+Minimierungstabelle (Table filling)
+
+Der Algorithmus trägt in seinem Verlauf eine Markierung in alle
+diejenigen Zellen der Tabelle ein, die zueinander nicht äquivalente
+Zustände bezeichnen. Die Markierung „$x_n$“ in einer Tabellenzelle ($i$,
+$j$) bedeutet dabei, dass das Zustandspaar ($i$, $j$) in der $k$-ten
+Iteration des Algorithmus markiert wurde und die Zustände $i$ und $j$
+somit zueinander ($k - 1$)-äquivalent, aber nicht $k$-äquivalent und
+somit insbesondere nicht äquivalent sind. Bleibt eine Zelle bis zum Ende
+unmarkiert, sind die entsprechenden Zustände zueinander äquivalent.
+\footcite[Seite 19]{koenig}
+
 \liFussnoteUrl{https://studyflix.de/informatik/dea-minimieren-1212}
 
 \literatur
