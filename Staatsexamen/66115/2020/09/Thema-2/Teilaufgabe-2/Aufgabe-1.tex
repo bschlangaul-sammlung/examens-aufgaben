@@ -1,0 +1,171 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,spalten,tabelle}
+\begin{document}
+\liAufgabenTitel{Vornamen}
+\section{Aufgabe 1
+\index{Streutabellen (Hashing)}
+\footcite{66115:2020:09}}
+
+Eine Hashfunktion $h$ wird verwendet, um Vornamen auf die Buchstaben
+\liMenge{A, \dots, Z} abzubilden. Dabei bildet $h$ auf den ersten
+Buchstaben des Vornamens als Hashwert ab.
+
+Sei $H$ die folgende Hashtabelle (Ausgangszustand):
+
+\begin{multicols}{2}
+\noindent
+\begin{tabularx}{\linewidth}{|l||X|}
+\hline
+Schlüssel & Inhalt \\\hline\hline
+A &\\\hline
+B &\\\hline
+C &\\\hline
+D & Dirk \\\hline
+E &\\\hline
+F &\\\hline
+G &\\\hline
+H &\\\hline
+I & Inge \\\hline
+J &\\\hline
+K & Kurt \\\hline
+L &\\\hline
+M &\\\hline
+\end{tabularx}
+
+\noindent
+\begin{tabularx}{\linewidth}{|l||X|}
+\hline
+Schlüssel & Inhalt \\\hline\hline
+N & \\\hline
+O & \\\hline
+P & \\\hline
+Q & \\\hline
+R & \\\hline
+S & \\\hline
+T & \\\hline
+U & \\\hline
+V & \\\hline
+W & \\\hline
+X & \\\hline
+Y & \\\hline
+Z & \\\hline
+\end{tabularx}
+\end{multicols}
+\begin{enumerate}
+%%
+% a)
+%%
+
+\item Fügen Sie der Hashtabelle $H$ die Vornamen
+
+\begin{center}
+Martin, Michael, Norbert, Matthias, Alfons, Bert, Christel, Adalbert,
+Edith, Emil
+\end{center}
+
+in dieser Reihenfolge hinzu, wobei Sie Kollisionen durch lineares
+Sondieren (mit Inkrementieren zum nächsten Buchstaben) behandeln.
+
+\begin{liAntwort}
+\begin{multicols}{2}
+\noindent
+\begin{tabularx}{\linewidth}{|l||X|}
+\hline
+Schlüssel & Inhalt \\\hline\hline
+A & Alfons \\\hline
+B & Bert \\\hline
+C & Christel \\\hline
+D & Dirk \\\hline
+E & Adalbert \\\hline
+F & Edith \\\hline
+G & Emil \\\hline
+H & \\\hline
+I & Inge \\\hline
+J & \\\hline
+K & Kurt \\\hline
+L & \\\hline
+M & Martin \\\hline
+\end{tabularx}
+
+\noindent
+\begin{tabularx}{\linewidth}{|l||X|}
+\hline
+Schlüssel & Inhalt \\\hline\hline
+N & Michael \\\hline
+O & Norbert \\\hline
+P & Matthias \\\hline
+Q & \\\hline
+R & \\\hline
+S & \\\hline
+T & \\\hline
+U & \\\hline
+V & \\\hline
+W & \\\hline
+X & \\\hline
+Y & \\\hline
+Z & \\\hline
+\end{tabularx}
+\end{multicols}
+\bigskip
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Fügen Sie der Hashtabelle $H$ die Vornamen
+
+\begin{center}
+Brigitte, Elmar, Thomas, Katrin, Diana, Nathan, Emanuel, Sebastian,
+Torsten, Karolin
+\end{center}
+
+in dieser Reihenfolge hinzu, wobei Sie Kollisionen durch Verkettung der
+Überläufer behandeln. (Hinweis: Verwenden Sie die Hashtabelle im
+Ausgangszustand.)
+
+\begin{liAntwort}
+\begin{multicols}{2}
+\noindent
+\begin{tabularx}{\linewidth}{|l||X|}
+\hline
+Schlüssel & Inhalt \\\hline\hline
+A &\\\hline
+B & Brigitte \\\hline
+C &\\\hline
+D & Dirk, Diana \\\hline
+E & Elmar, Emanuel \\\hline
+F &\\\hline
+G &\\\hline
+H &\\\hline
+I & Inge \\\hline
+J &\\\hline
+K & Kurt, Katrin, Karolin \\\hline
+L &\\\hline
+M &\\\hline
+\end{tabularx}
+
+\noindent
+\begin{tabularx}{\linewidth}{|l||X|}
+\hline
+Schlüssel & Inhalt \\\hline\hline
+N & Nathan \\\hline
+O & \\\hline
+P & \\\hline
+Q & \\\hline
+R & \\\hline
+S & Sebastian \\\hline
+T & Thomas, Torsten \\\hline
+U & \\\hline
+V & \\\hline
+W & \\\hline
+X & \\\hline
+Y & \\\hline
+Z & \\\hline
+\end{tabularx}
+\end{multicols}
+\bigskip
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}

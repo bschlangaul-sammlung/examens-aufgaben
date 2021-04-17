@@ -1,0 +1,236 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{baum}
+\begin{document}
+\liAufgabenTitel{DeleteMin}
+\section{Aufgabe 3
+\index{Halde (Heap)}
+\footcite{66115:2020:09}}
+
+Es sei der folgende Min-Heap gegeben:
+
+\begin{center}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.10
+  [.20
+    [.40 ]
+    [.25 ]
+  ]
+  [.15
+    [.35 ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Geben Sie obigen Min-Heap in der Darstellung eines Feldes an,
+wobei die Knoten in Level-Order abgelegt sind.
+
+\begin{liAntwort}
+\begin{tabular}{llllll}
+\bf{0} & \bf{1} & \bf{2} & \bf{3} & \bf{4} & \bf{5} \\
+\hline
+10     & 20     & 15     & 40     & 25     & 35     \\
+\end{tabular}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Führen Sie wiederholt DeleteMin-Operationen auf dem gegebenen Heap
+aus, bis der Heap leer ist. Zeichnen Sie dafür den aktuellen Zustand des
+Heaps als Baum und als Feld nach jeder Änderung des Heaps, wobei Sie nur
+gültige Bäume zeichnen (d. h. solche die keine Lücken haben).
+Dokumentieren Sie, was in den einzelnen Schritten geschieht.
+
+\begin{liAntwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\liPseudoUeberschrift{Löschen von 10}
+
+\begin{liDiagramm}{Nach dem Ersetzen von „10“ durch „35“}
+\begin{tabular}{lllll}
+\bf{0} & \bf{1} & \bf{2} & \bf{3} & \bf{4} \\
+\hline
+35     & 20     & 15     & 40     & 25     \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.35
+  [.20
+    [.40 ]
+    [.25 ]
+  ]
+  [.15 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Vertauschen von „35“ und „15“}
+\begin{tabular}{lllll}
+\bf{0} & \bf{1} & \bf{2} & \bf{3} & \bf{4} \\
+\hline
+15     & 20     & 35     & 40     & 25     \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.15
+  [.20
+    [.40 ]
+    [.25 ]
+  ]
+  [.35 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\liPseudoUeberschrift{Löschen von 15}
+
+\begin{liDiagramm}{Nach dem Ersetzen von „15“ mit „25“}
+\begin{tabular}{llll}
+\bf{0} & \bf{1} & \bf{2} & \bf{3} \\
+\hline
+25     & 20     & 35     & 40     \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.25
+  [.20
+    [.40 ]
+    \edge[blank]; \node[blank]{};
+  ]
+  [.35 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Vertauschen von „25“ und „20“}
+\begin{tabular}{llll}
+\bf{0} & \bf{1} & \bf{2} & \bf{3} \\
+\hline
+20     & 25     & 35     & 40     \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.20
+  [.25
+    [.40 ]
+    \edge[blank]; \node[blank]{};
+  ]
+  [.35 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\liPseudoUeberschrift{Löschen von 20}
+
+\begin{liDiagramm}{Nach dem Vertauschen von „20“ mit „40“}
+\begin{tabular}{lll}
+\bf{0} & \bf{1} & \bf{2} \\
+\hline
+40     & 25     & 35     \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.40
+  [.25 ]
+  [.35 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Vertauschen von „40“ und „25“}
+\begin{tabular}{lll}
+\bf{0} & \bf{1} & \bf{2} \\
+\hline
+25     & 40     & 35     \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.25
+  [.40 ]
+  [.35 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\liPseudoUeberschrift{Löschen von 25}
+
+\begin{liDiagramm}{Nach dem Ersetzen von „25“ durch „35“}
+\begin{tabular}{ll}
+\bf{0} & \bf{1} \\
+\hline
+35     & 40     \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.35
+  [.40 ]
+  \edge[blank]; \node[blank]{};
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\liPseudoUeberschrift{Löschen von 35}
+
+\begin{liDiagramm}{Nach dem Ersetzen von „35“ mit „40“}
+\begin{tabular}{l}
+\bf{0} \\
+\hline
+40     \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.40 ]
+\end{tikzpicture}
+\end{liDiagramm}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\liPseudoUeberschrift{Löschen von 40}
+
+\begin{liDiagramm}{Nach dem Löschen von „40“}
+
+\end{liDiagramm}
+
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}
