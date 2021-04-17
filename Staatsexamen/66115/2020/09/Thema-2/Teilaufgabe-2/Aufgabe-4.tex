@@ -1,18 +1,19 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{syntax,mathe}
 \begin{document}
-\liAufgabenTitel{}
+\liAufgabenTitel{Gutschein}
 \section{Aufgabe 4
 \index{Dynamische Programmierung}
 \footcite{66115:2020:09}}
 
-Das GUTSCHEIN-Problem ist gegeben durch eine Folge wı,...,w„ von
-Warenwerten (wobei welNo fürö=1,...,n) und einem Gutscheinbetrag G € No.
+Das GUTSCHEIN-Problem ist gegeben durch eine Folge $w_1, \dots, w_n$ von
+Warenwerten (wobei $w \in N_0$ für $i = 1, \dots, n$ ) und einem
+Gutscheinbetrag $G \in \mathbb{N}_0$.
 
 Da Gutscheine nicht in Bargeld ausgezahlt werden können, ist die Frage,
 ob man eine Teilfolge der Waren findet, sodass man genau den Gutschein
-ausnutzt. Formal ist dies die Frage, ob es eine Menge von Indizes J mit
-IC
+ausnutzt. Formal ist dies die Frage, ob es eine Menge von Indizes $I$ mit
+$I \subseteq \{1, \dots, n \}$ gibt, sodass $\sum_{i \in I} w_i = G$
 \begin{enumerate}
 
 %%
@@ -29,7 +30,7 @@ von Warenwerten.
 %%
 
 \item Geben Sie einen Gutscheinbetrag $40 < G < 115$ an, sodass die
-GUTSCHEIN-Instanz eine Lösung hat. Geben Sie auch die lösende Menge $I
+GUT\-SCHEIN-Instanz eine Lösung hat. Geben Sie auch die lösende Menge $I
 \subseteq \{ 1, 2, 3, 4, 5 \}$ von Indizes an.
 
 \begin{liAntwort}
@@ -55,16 +56,27 @@ GUTSCHEIN-Instanz keine Lösung hat.
 % b)
 %%
 
-\item Sei table eine (n x (G + 1))-Tabelle mit Einträgen tablefi,k], für 1 <i<nundO<sk<G,
-sodass
-true, falses/IC
-tableli, k] = u
-false, sonst
+\item Sei \emph{table} eine $(n \times (G + 1))$-Tabelle mit Einträgen
+$\text{table}[i,k]$, für $1 < i < n$ und $0 \leq k \leq G$, sodass
+
+\begin{liAntwort}
+\begin{equation*}
+\text{table}[i,k] =
+\begin{cases}
+\textbf{true} &
+\text{falls es } I \subseteq \{1, \dots, n \} \text{ mit }
+\sum_{i \in I} w_i = G \text{ gibt}\\
+
+\textbf{false} & \text{sonst}
+\end{cases}
+\end{equation*}
+\end{liAntwort}
 
 Geben Sie einen Algorithmus in Pseudo-Code oder Java an, der die Tabelle
-table mit dynami- scher Programmierung in Worst-Case-Laufzeit O(n x G))
-erzeugt. Begründen Sie die Kor- rektheit und die Laufzeit Ihres
-Algorithmus. Welcher Eintrag in table löst das GUTSCHEIN- Problem?
+\emph{table} mit \emph{dynamischer Programmierung} in
+Worst-Case-Laufzeit $\mathcal{O}(n \times G)$) erzeugt. Begründen Sie
+die Korrektheit und die Laufzeit Ihres Algorithmus. Welcher Eintrag in
+\emph{table} löst das GUTSCHEIN-Problem?
 
 \end{enumerate}
 \end{document}
