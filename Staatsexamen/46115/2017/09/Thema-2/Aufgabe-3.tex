@@ -1,0 +1,45 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{Primzahl}
+\section{Aufgabe 3
+\index{Dynamische Programmierung}
+\footcite{46115:2017:09}}
+
+Die Methode \liJavaCode{pKR} berechnet die n-te Primzahl ($n > 1$)
+kaskadenartig rekursiv und äußerst ineffizient:
+
+\begin{minted}{java}
+long pKR(int n) {
+long p = 2;
+if (n >= 2) {
+
+p = pKR(n - 1); // beginne die Suche bei der vorhergehenden Primzahl
+int i = 0;
+do {
+
+P++; // pruefe, ob die jeweils naechste Zahl prim ist, d.h. ...
+for (1=1; i < n && p % pKR(i) != 0; i++) {
+} // pruefe, ob unter den kleineren Primzahlen ein Teiler ist
+} while (i != n); // ... bis nur noch 1 und p Teiler von p sind
+}
+
+return p;
+}
+\end{minted}
+
+Überführen Sie \liJavaCode{pKR} mittels \emph{dynamischer
+Programmierung} (hier also Memoization) und mit möglichst \emph{wenigen
+Änderungen} so in die \emph{linear} rekursive Methode \liJavaCode{pLR},
+dass \liJavaCode{pLR(n, new long[n + 1])} ebenfalls die n-te Primzahl
+ermittelt:
+
+\begin{minted}{java}
+private long pLR(int n, long[] ps) {
+ps[l] = 2;
+}
+\end{minted}
+
+\liJavaDatei{examen/examen_46115/jahr_2017/herbst/PrimzahlDP}
+
+\end{document}
