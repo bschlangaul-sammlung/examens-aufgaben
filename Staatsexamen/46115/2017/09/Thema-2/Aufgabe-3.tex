@@ -6,40 +6,42 @@
 \index{Dynamische Programmierung}
 \footcite{46115:2017:09}}
 
-Die Methode \liJavaCode{pKR} berechnet die n-te Primzahl ($n > 1$)
+Die Methode \liJavaCode{pKR} berechnet die $n$-te Primzahl ($n \geq 1$)
 kaskadenartig rekursiv und äußerst ineffizient:
 
-\begin{minted}{java}
-long pKR(int n) {
-long p = 2;
-if (n >= 2) {
+\liJavaExamen[firstline=32,lastline=44]{46115}{2017}{09}{PrimzahlDP}
 
-p = pKR(n - 1); // beginne die Suche bei der vorhergehenden Primzahl
-int i = 0;
-do {
-
-P++; // pruefe, ob die jeweils naechste Zahl prim ist, d.h. ...
-for (1=1; i < n && p % pKR(i) != 0; i++) {
-} // pruefe, ob unter den kleineren Primzahlen ein Teiler ist
-} while (i != n); // ... bis nur noch 1 und p Teiler von p sind
-}
-
-return p;
-}
-\end{minted}
-
+\noindent
 Überführen Sie \liJavaCode{pKR} mittels \emph{dynamischer
-Programmierung} (hier also Memoization) und mit möglichst \emph{wenigen
-Änderungen} so in die \emph{linear} rekursive Methode \liJavaCode{pLR},
-dass \liJavaCode{pLR(n, new long[n + 1])} ebenfalls die n-te Primzahl
-ermittelt:
+Programmierung} (hier also \emph{Memoization}) und mit möglichst
+\emph{wenigen Änderungen} so in die \emph{linear} rekursive Methode
+\liJavaCode{pLR}, dass \liJavaCode{pLR(n, new long[n + 1])} ebenfalls
+die $n$-te Primzahl ermittelt:
 
 \begin{minted}{java}
 private long pLR(int n, long[] ps) {
-ps[l] = 2;
+  ps[1] = 2;
+  // ...
 }
 \end{minted}
 
-\liJavaDatei{examen/examen_46115/jahr_2017/herbst/PrimzahlDP}
+\begin{liAntwort}
+\begin{liExkurs}[Kaskadenartig rekursiv]
+Kaskadenförmige Rekursion bezeichnet den Fall, in dem mehrere rekursive
+Aufrufe nebeneinander stehen.
+\end{liExkurs}
+
+\begin{liExkurs}[Linear rekursiv]
+Die häufigste Rekursionsform ist die lineare Rekursion, bei der in jedem
+Fall der rekursiven Definition höchstens ein rekursiver Aufruf vorkommen
+darf.
+\end{liExkurs}
+
+\liJavaExamen[firstline=55,lastline=70]{46115}{2017}{09}{PrimzahlDP}
+
+\liPseudoUeberschrift{Der komplette Quellcode}
+
+\liJavaExamen{46115}{2017}{09}{PrimzahlDP}
+\end{liAntwort}
 
 \end{document}

@@ -81,6 +81,7 @@
   formale-sprachen,
   gantt,
   graph,
+  makros,
   master-theorem,
   mathe,
   minimierung,
@@ -1429,10 +1430,19 @@ von Hanoi-Grafiken]
 \ProvidesPackage{lehramt-informatik-makros}[2020/11/27 Eine Sammlung von
 häufig verwendeten Makros und Umgebungen, die thematisch zu keinem
 anderen Paket passen]
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \RequirePackage{hyperref}
-\RequirePackage{graphicx}
+%    \end{macrocode}
 
+%    \begin{macrocode}
+\RequirePackage{graphicx}
+%    \end{macrocode}
+
+% Für die Umgebung |liQuellen| benötigt.
+%    \begin{macrocode}
+\RequirePackage{paralist}
 %    \end{macrocode}
 
 % \begin{macro}{\inhaltsverzeichnis}
@@ -1564,6 +1574,21 @@ anderen Paket passen]
 % \end{environment}
 
 % \begin{environment}{liExkurs}
+
+% \begin{verbatim}
+% \begin{liExkurs}[Linear rekursiv]
+% Die häufigste Rekursionsform ist die lineare Rekursion, bei der in jedem
+% Fall der rekursiven Definition höchstens ein rekursiver Aufruf vorkommen
+% darf.
+% \end{liExkurs}
+% \end{verbatim}
+
+% \begin{liExkurs}[Linear rekursiv]
+% Die häufigste Rekursionsform ist die lineare Rekursion, bei der in jedem
+% Fall der rekursiven Definition höchstens ein rekursiver Aufruf vorkommen
+% darf.
+% \end{liExkurs}
+
 %    \begin{macrocode}
 \NewDocumentEnvironment{ liExkurs }{o +b}{
   \vspace{0.2cm}%
@@ -1590,22 +1615,38 @@ anderen Paket passen]
 % \end{environment}
 
 % \begin{environment}{liQuellen}
+
+% \url{https://tex.stackexchange.com/a/229004}
+
+% \begin{verbatim}
+% \begin{liQuellen}
+% \item Quelle 1
+% \item Quelle 2
+% \end{liQuellen}
+% \end{verbatim}
+
+% \begin{liQuellen}
+% \item Quelle 1
+% \item Quelle 2
+% \end{liQuellen}
+
 %    \begin{macrocode}
-\cs_new:Npn \listenpunkt #1 {\item #1}
+\cs_new:Npn \listen@punkt #1 {\item #1}
 \NewDocumentEnvironment { liQuellen }{ +b }
 {
   \seq_clear_new:N \l_quellen
   \seq_set_split:Nnn \l_quellen {\item} {#1}
   \seq_remove_all:Nn \l_quellen {}
-  \begin{mdframed}[backgroundcolor=yellow!30,linecolor=yellow]
+  \begin{mdframed}[backgroundcolor=white!0]
   \footnotesize
   \noindent
-  \textbf{Überblick~über~die~Quellen:}
+  \textsf{\textbf{Weiterführende~Literatur:}}
+  \medskip
   \begin{compactitem}
-  \seq_map_function:NN \l_quellen {\listenpunkt}
+  \seq_map_function:NN \l_quellen {\listen@punkt}
   \end{compactitem}
   \end{mdframed}
-  % https://tex.stackexchange.com/a/229004
+  %
   \makeatletter
   \par\@afterindentfalse\@afterheading
   \makeatother
@@ -1962,15 +2003,25 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 %    \end{macrocode}
 % \end{environment}
 
+% \begin{macro}{\liUeberschriftDreiecksTabelle}
+% |\liUeberschriftDreiecksTabelle|: \liUeberschriftDreiecksTabelle
+%    \begin{macrocode}
+\ExplSyntaxOn
+\def\liUeberschriftDreiecksTabelle{
+  \liPseudoUeberschrift{Minimierungstabelle~(Table~filling)}
+}
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\liMinimierungErklaerung}
 % \liLet{erklaerung}{liMinimierungErklaerung}
 % \liMinimierungErklaerung
 %    \begin{macrocode}
-\ExplSyntaxOn
 \def\liMinimierungErklaerung{
   %\footcite[Seite~19]{koenig}
   \liParagraphMitLinien{
-    Der~Algorithmus~trägt~in~seinem~Verlauf~eine~Markierung~in~alle~
+    Der~Minimierungs-Algorithmus~(auch~Table-Filling-Algorithmus~genannt)~
+    trägt~in~seinem~Verlauf~eine~Markierung~in~alle~
     diejenigen~Zellen~der~Tabelle~ein,~die~zueinander~nicht~äquivalente~
     Zustände~bezeichnen.~Die~Markierung~„$x\sb{n}$“~in~einer~Tabellenzelle~($i$,~
     $j$)~bedeutet~dabei,~dass~das~Zustandspaar~($i$,~$j$)~in~der~$k$-ten~
