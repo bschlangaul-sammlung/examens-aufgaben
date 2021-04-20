@@ -12,8 +12,8 @@ Gutscheinbetrag $G \in \mathbb{N}_0$.
 
 Da Gutscheine nicht in Bargeld ausgezahlt werden können, ist die Frage,
 ob man eine Teilfolge der Waren findet, sodass man genau den Gutschein
-ausnutzt. Formal ist dies die Frage, ob es eine Menge von Indizes $I$ mit
-$I \subseteq \{1, \dots, n \}$ gibt, sodass $\sum_{i \in I} w_i = G$
+ausnutzt. Formal ist dies die Frage, ob es eine Menge von Indizes $I$
+mit $I \subseteq \{1, \dots, n \}$ gibt, sodass $\sum_{i \in I} w_i = G$
 \begin{enumerate}
 
 %%
@@ -43,8 +43,8 @@ $I = \{ 1, 3 \}$
 % (ii)
 %%
 
-\item Geben Sie einen Gutscheinbetrag $G$ mit $40 < G < 115$ an, sodass die
-GUTSCHEIN-Instanz keine Lösung hat.
+\item Geben Sie einen Gutscheinbetrag $G$ mit $40 < G < 115$ an, sodass
+die GUTSCHEIN-Instanz keine Lösung hat.
 
 \begin{liAntwort}
 51
@@ -80,7 +80,51 @@ die Korrektheit und die Laufzeit Ihres Algorithmus. Welcher Eintrag in
 
 \begin{liAntwort}
 \liJavaExamen{66115}{2020}{09}{Gutschein}
+
+Die äußere for-Schleife läuft n mal und die innere for-Schleife G mal.
+Der letzte Eintrag in der Tabelle, also der Wert in der Zelle:\\
+\liJavaCode{tabelle[warenWerte.length][gutscheinBetrag]}.
+
 \end{liAntwort}
+
+\liJavaTestDatei{examen/examen_66115/jahr_2020/herbst/GutscheinTest}
+
+\begin{itemize}
+\item \liJavaCode{gutscheinDP(3, new int[] { 1, 2, 3 }));}: wahr (w)
+
+\begin{minted}{md}
+[
+  [w, f, f, f],
+  [w, w, f, f],
+  [w, w, w, w],
+  [w, w, w, w]
+]
+\end{minted}
+
+\item \liJavaCode{gutscheinDP(7, new int[] { 1, 2, 3 });}: falsch (f)
+
+\begin{minted}{md}
+[
+  [w, f, f, f, f, f, f, f],
+  [w, w, f, f, f, f, f, f],
+  [w, w, w, w, f, f, f, f],
+  [w, w, w, w, w, w, w, f]
+]
+\end{minted}
+
+\item \liJavaCode{gutscheinDP(10, new int[] { 10, 30, 40, 20, 15 });}: wahr (w)
+
+\begin{minted}{md}
+[
+  [w, f, f, f, f, f, f, f, f, f, f],
+  [w, f, f, f, f, f, f, f, f, f, w],
+  [w, f, f, f, f, f, f, f, f, f, w],
+  [w, f, f, f, f, f, f, f, f, f, w],
+  [w, f, f, f, f, f, f, f, f, f, w],
+  [w, f, f, f, f, f, f, f, f, f, w]
+]
+\end{minted}
+\end{itemize}
 
 \end{enumerate}
 \end{document}
