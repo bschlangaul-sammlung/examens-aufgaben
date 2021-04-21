@@ -11,10 +11,12 @@
 Eine Folge von Zahlen ist eine
 \emph{odd-ascending-even-descending}-Folge, wenn gilt:
 
+\begin{quote}
 Zunächst enthält die Folge alle Schlüssel, die \emph{ungerade} Zahlen
 sind, und diese Schlüssel sind aufsteigend sortiert angeordnet. Im
 Anschluss daran enthält die Folge alle Schlüssel, die \emph{gerade}
 Zahlen sind, und diese Schlüssel sind absteigend sortiert angeordnet.
+\end{quote}
 
 \begin{enumerate}
 \item Geben Sie die Zahlen $10, 3, 11, 20, 8, 4, 9$ als
@@ -33,6 +35,9 @@ Laufzeit als Linearzeit (in der Größe der Arrays) haben. Erläutern Sie
 Ihren Algorithmus und begründen Sie die Korrektheit.
 
 \begin{liAntwort}
+Bei dem Algorithmus handelt es sich um einen leicht abgewandelten Code,
+der eine „klassische“ binären Suche implementiert.
+
 \liJavaExamen[firstline=5,lastline=26]{66115}{2020}{09}{UngeradeGerade}
 \end{liAntwort}
 
@@ -69,14 +74,22 @@ Schlüssel gefunden wurde.
 geben Sie diese in $\mathcal{O}$-Notation an und begründen Sie diese.
 
 \begin{liAntwort}
-text
+Die Laufzeit des Algorithmuses ist in der Ordnung $\mathcal{O}(\log_2
+n)$.
+
+Im schlechtesten Fall muss nicht die gesamte Folge durchsucht werden.
+Nach dem ersten Teilen der Folge bleiben nur noch $\frac{n}{2}$
+Elemente, nach dem zweiten Schritt $\frac{n}{4}$, nach dem dritten
+$\frac{n}{8}$ usw. Allgemein bedeutet dies, dass im $i$-ten Durchlauf
+maximal $\frac{n}{2^i}$ Elemente zu durchsuchen sind. Entsprechend
+werden $\log_2 n$ Schritte benötigt.
 \end{liAntwort}
 
 \liPseudoUeberschrift{Kompletter Code}
 
 \liJavaExamen{66115}{2020}{09}{UngeradeGerade}
 
-\liPseudoUeberschrift{Test}
+\liPseudoUeberschrift{Test-Code}
 
 \liJavaTestDatei{examen/examen_66115/jahr_2020/herbst/UngeradeGeradeTest}
 

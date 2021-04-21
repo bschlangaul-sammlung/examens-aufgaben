@@ -66,41 +66,11 @@ beziehen.
 
 \section{Iterativer Ansatz}
 
-\begin{minted}{java}
-public int binsearch(int[] a, int lo, int hi, int x){
-  while (lo <= hi) {
-    int m = lo + (hi - lo) / 2;
-    if (x < a[m]){
-      hi = m - 1;
-    } else if (x > a[m]) {
-      lo = m + 1;
-    } else {
-      return m;
-    }
-  }
-  return -1;
-}
-\end{minted}
+\liJavaDatei[firstline=7,lastline=22]{suche/BinaereSuche}
 
 \section{Rekursiver Ansatz}
 
-\begin{minted}{java}
-public int binsearch(int[] a, int lo, int hi, int x){
-  if (lo > hi){
-    return -1;
-  }
-  int m = lo + (hi - lo) / 2;
-  if (x < a[m]) {
-    return binsearch(a, lo, m - 1, x);
-  }
-  if (x > a[m]) {
-    return binsearch(a, m + 1, hi, x);
-  }
-  return m;
-}
-\end{minted}
-
-\liJavaDatei{suche/BinaereSuche}
+\liJavaDatei[firstline=24,lastline=40]{suche/BinaereSuche}
 
 \section{Komplexität}
 
