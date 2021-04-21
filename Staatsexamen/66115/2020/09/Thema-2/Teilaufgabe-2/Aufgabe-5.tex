@@ -1,6 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{syntax}
 \begin{document}
+\let\j=\liJavaCode
+
 \liAufgabenTitel{Schnelle Suche von Schlüsseln: odd-ascending-even-descending-Folge}
 \section{Aufgabe 5
 \index{Binäre Suche}
@@ -31,9 +33,7 @@ Laufzeit als Linearzeit (in der Größe der Arrays) haben. Erläutern Sie
 Ihren Algorithmus und begründen Sie die Korrektheit.
 
 \begin{liAntwort}
-\liJavaExamen{66115}{2020}{09}{UngeradeGerade}
-
-\liJavaTestDatei{examen/examen_66115/jahr_2020/herbst/UngeradeGeradeTest}
+\liJavaExamen[firstline=5,lastline=26]{66115}{2020}{09}{UngeradeGerade}
 \end{liAntwort}
 
 %%
@@ -42,7 +42,24 @@ Ihren Algorithmus und begründen Sie die Korrektheit.
 
 \item Erläutern Sie schrittweise den Ablauf Ihres Algorithmus für die
 Folge $1, 5, 11, 8, 4, 2$ und
-den Suchschlüssel 4.
+den Suchschlüssel $4$.
+
+\begin{liAntwort}
+
+Die erste Zeile der Methode \j{suche} initialisiert die Variable
+\j{links} mit 0 und \j{rechts} mit 5. Da \j{links} kleiner ist als
+\j{rechts}, wird die \j{while}-Schleife betreten und die Variable
+\j{mitte} auf 2 gesetzt. Da der gesuchte Schlüssel gerade ist und
+\j{feld[2]} 11 ist, also größer, wird in den \j{true}-Block der
+\j{if}-Bedingung besprungen und die Variable \j{links} aus 3 gesetzt.
+
+Zu Beginn des 2. Durchlaufs der \j{while}-Schleife ergeben sich folgende
+Werte: \j{links}: 3 \j{mitte}: 4 \j{rechts}: 5.
+
+In der anschließenden Bedingten Anweisung wird die \j{while}-Schleife
+verlassen und \j{true} zurückgegeben, da mit \j{feld[4]} der gewünschte
+Schlüssel gefunden wurde.
+\end{liAntwort}
 
 %%
 % d)
@@ -50,6 +67,18 @@ den Suchschlüssel 4.
 
 \item Analysieren Sie die Laufzeit Ihres Algorithmus für den Worst-Case,
 geben Sie diese in $\mathcal{O}$-Notation an und begründen Sie diese.
+
+\begin{liAntwort}
+text
+\end{liAntwort}
+
+\liPseudoUeberschrift{Kompletter Code}
+
+\liJavaExamen{66115}{2020}{09}{UngeradeGerade}
+
+\liPseudoUeberschrift{Test}
+
+\liJavaTestDatei{examen/examen_66115/jahr_2020/herbst/UngeradeGeradeTest}
 
 \end{enumerate}
 \end{document}

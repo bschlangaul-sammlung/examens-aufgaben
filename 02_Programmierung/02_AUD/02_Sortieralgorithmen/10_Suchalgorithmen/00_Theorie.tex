@@ -9,6 +9,10 @@
 
 \chapter{Suchalgorithmen}
 
+\begin{liQuellen}
+\item \cite[Seite 120-123]{saake}
+\end{liQuellen}
+
 %-----------------------------------------------------------------------
 %
 %-----------------------------------------------------------------------
@@ -95,6 +99,18 @@ public int binsearch(int[] a, int lo, int hi, int x){
   return m;
 }
 \end{minted}
+
+\liJavaDatei{suche/BinaereSuche}
+
+\section{Komplexität}
+
+Im schlechtesten Fall muss nicht die gesamte Folge durchsucht werden.
+Nach dem ersten Teilen der Folge bleiben nur noch $\frac{n}{2}$
+Elemente, nach dem zweiten Schritt $\frac{n}{4}$, nach dem dritten
+$\frac{n}{8}$ usw. Allgemein bedeutet dies, dass im $i$-ten Durchlauf
+maximal $\frac{n}{2^i}$ Elemente zu durchsuchen sind. Entsprechend
+werden $\log_2 n$ Schritte benötigt.
+\footcite[Seite 122]{saake}
 
 \literatur
 
