@@ -1,18 +1,18 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{syntax,mathe}
 \begin{document}
-\liAufgabenTitel{}
+\liAufgabenTitel{Niedrigster gemeinsame Vorfahre}
 \section{Aufgabe 10
 \index{Binärbaum}
 \footcite{66115:2020:03}}
 
 Sei $B$ ein binärer Suchbaum. In jedem Knoten $v$ von $B$ wird ein
-Schlüssel $v.key \in \mathbb{N}$ gespeichert sowie Zeiger $v.left$,
-$v.right$ und $v.parent$ auf sein linkes Kind, auf sein rechtes Kind und
-auf seinen Elternknoten. Die Zeiger sind \emph{nil}, wenn der
-entsprechende Nachbar nicht existiert. Für zwei Knoten $u$ und $v$ ist
-wie üblich der \emph{Abstand} die Anzahl der Kanten auf dem kürzesten
-Pfad von $u$ nach $v$.
+Schlüssel $v.\text{key} \in \mathbb{N}$ gespeichert sowie Zeiger
+$v.\text{left}$, $v.\text{right}$ und $v.\text{parent}$ auf sein linkes
+Kind, auf sein rechtes Kind und auf seinen Elternknoten. Die Zeiger sind
+\emph{nil}, wenn der entsprechende Nachbar nicht existiert. Für zwei
+Knoten $u$ und $v$ ist wie üblich der \emph{Abstand} die Anzahl der
+Kanten auf dem kürzesten Pfad von $u$ nach $v$.
 
 Für einen Knoten $w$ von $B$ sei $B(w)$ der Teilbaum von $B$ mit Wurzel
 $w$. Für zwei Knoten $u$ und $v$ von $B$ ist $w$ ein \emph{gemeinsamer}
@@ -43,6 +43,9 @@ beantwortet werden können.
 in $B$ geliefert. Beschreiben Sie in Worten und in Pseudocode einen
 Algorithmus, der den niedrigsten gemeinsamen Vorfahren von $u$ und $v$
 berechnet. Analysieren Sie die Laufzeit Ihres Algorithmus.
+
+\liJavaDatei{examen/examen_66115/jahr_2020/fruehjahr/NGV}
+
 %%
 % (b)
 %%
@@ -50,17 +53,17 @@ berechnet. Analysieren Sie die Laufzeit Ihres Algorithmus.
 \item Wir bekommen $u$ und $v$ wieder als Zeiger auf die entsprechenden
 Knoten in $B$ geliefert. Seien $d_u$, und $d_v$, die Abstände von $u$
 bzw. $v$ zum niedrigsten gemeinsamen Vorfahren von $u$ und $v$. Die
-Laufzeit Ihres Algorithmus soll $O(max\{d_u,d_v\})$ sein. Dabei kann Ihr
-Algorithmus in jedem Knoten $v$ eine Information $v.info$ speichern.
-Skizzieren Sie Ihren Algorithmus in Worten.
+Laufzeit Ihres Algorithmus soll $O(\text{max}\{d_u, d_v\})$ sein. Dabei
+kann Ihr Algorithmus in jedem Knoten $v$ eine Information
+$v.\text{info}$ speichern. Skizzieren Sie Ihren Algorithmus in Worten.
 
 %%
 % (c)
 %%
 
-\item Wir bekommen die Schlüssel $u.key$ und $v.key$. Die Laufzeit Ihres
-Algorithmus soll proportional zum Abstand der Wurzel von $B$ zum
-niedrigsten gemeinsamen Vorfahren von $u$ und $v$ sein. Skizzieren Sie
-Ihren Algorithmus in Worten.
+\item Wir bekommen die Schlüssel $u.\text{key}$ und $v.\text{key}$. Die
+Laufzeit Ihres Algorithmus soll proportional zum Abstand der Wurzel von
+$B$ zum niedrigsten gemeinsamen Vorfahren von $u$ und $v$ sein.
+Skizzieren Sie Ihren Algorithmus in Worten.
 \end{enumerate}
 \end{document}
