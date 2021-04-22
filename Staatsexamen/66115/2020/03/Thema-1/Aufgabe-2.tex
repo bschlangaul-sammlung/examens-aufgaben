@@ -1,6 +1,18 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{formale-sprachen,automaten}
+\liLadePakete{formale-sprachen,automaten,potenzmengen-konstruktion}
 \begin{document}
+\def\z#1{
+  \liZustandsMengenSammlungNr{#1}{
+    {
+      {0} {0}
+      {1} {0,1}
+      {2} {0,2}
+      {3} {0,2,3}
+      {4} {0,1,2}
+    }
+  }
+}
+
 \liAufgabenTitel{Automaten mit Zuständen q, r, s, t}
 \section{Aufgabe 2
 \index{Reguläre Sprache}
@@ -45,6 +57,45 @@ Kombination aus $a,b,c$ vorkommen.
 \item Benutzen Sie die Potenzmengenkonstruktion, um einen
 deterministischen Automaten zu konstruieren, der zu dem Automaten aus
 Teil (a) äquivalent ist. (Berechnen Sie nur erreichbare Zustände.)
+\index{Potenzmengenalgorithmus}
+
+\begin{liAntwort}
+\begin{tabular}{l|l|l|l}
+Zustandsmenge & Eingabe $a$ & Eingabe $b$ & Eingabe $c$ \\\hline
+\z0 & \z0 & \z1 & \z0 \\
+\z1 & \z0 & \z1 & \z2 \\
+\z2 & \z3 & \z4 & \z2 \\
+\z3 & \z3 & \z4 & \z2 \\
+\z4 & \z3 & \z4 & \z2 \\
+\end{tabular}
+
+\begin{center}
+\begin{tikzpicture}[li automat]
+  \node[state,initial] (Z0) at (1.86cm,-1.71cm) {$Z_0$};
+  \node[state] (Z1) at (2cm,-5.86cm) {$Z_1$};
+  \node[state] (Z4) at (8.86cm,-2cm) {$Z_4$};
+  \node[state,accepting] (Z3) at (3.71cm,-1.86cm) {$Z_3$};
+  \node[state] (Z2) at (8.29cm,-5.86cm) {$Z_2$};
+
+  \path (Z0) edge[auto,bend left=10] node{$b$} (Z1);
+  \path (Z0) edge[auto,loop above] node{$a,c$} (Z0);
+  \path (Z1) edge[auto,bend left=10] node{$a$} (Z0);
+  \path (Z1) edge[auto,loop below] node{$b$} (Z1);
+  \path (Z1) edge[auto] node{$c$} (Z2);
+  \path (Z2) edge[auto,bend left=10] node{$a$} (Z3);
+  \path (Z2) edge[auto,bend left=10] node{$b$} (Z4);
+  \path (Z2) edge[auto,loop below] node{$c$} (Z2);
+  \path (Z3) edge[auto,bend left=10] node{$b$} (Z4);
+  \path (Z3) edge[auto,bend left=10] node{$c$} (Z2);
+  \path (Z3) edge[auto,loop above] node{$a$} (Z3);
+  \path (Z4) edge[auto,bend left=10] node{$a$} (Z3);
+  \path (Z4) edge[auto,bend left=10] node{$c$} (Z2);
+  \path (Z4) edge[auto,loop above] node{$b$} (Z4);
+\end{tikzpicture}
+\end{center}
+\liFlaci{A5o6pho8c}
+
+\end{liAntwort}
 
 %%
 % (c)
@@ -52,6 +103,38 @@ Teil (a) äquivalent ist. (Berechnen Sie nur erreichbare Zustände.)
 
 \item Ist der resultierende deterministische Automat schon minimal?
 Begründen Sie Ihre Antwort.
+
+\begin{liAntwort}
+Nein. \z2 und \z4 können vereinigt werden, da sie bei denselben Eingaben
+auf die selben Potzenmengen übergehen.
+
+\begin{tabular}{l|l|l|l}
+Zustandsmenge & Eingabe $a$ & Eingabe $b$ & Eingabe $c$ \\\hline
+\z2 & \z3 & \z4 & \z2 \\
+\z3 & \z3 & \z4 & \z2 \\
+\z4 & \z3 & \z4 & \z2 \\
+\end{tabular}
+
+\begin{center}
+\begin{tikzpicture}[li automat]
+  \node[state,initial] (Z0) at (2.14cm,-2.14cm) {$Z_0$};
+  \node[state] (Z1) at (4.57cm,-2.14cm) {$Z_1$};
+  \node[state,accepting] (Z3) at (8.86cm,-2.14cm) {$Z_3$};
+  \node[state] (Z24) at (6.57cm,-2.14cm) {$Z_{24}$};
+
+  \path (Z0) edge[auto,bend left] node{$b$} (Z1);
+  \path (Z0) edge[auto,loop above] node{$a,c$} (Z0);
+  \path (Z1) edge[auto,loop above] node{$b$} (Z1);
+  \path (Z1) edge[auto,bend left] node{$a$} (Z0);
+  \path (Z1) edge[auto] node{$c$} (Z24);
+  \path (Z3) edge[auto,bend left] node{$b,c$} (Z24);
+  \path (Z3) edge[auto,loop above] node{$a$} (Z3);
+  \path (Z24) edge[auto,loop above] node{$b,c$} (Z24);
+  \path (Z24) edge[auto,bend left] node{$a$} (Z3);
+\end{tikzpicture}
+\end{center}
+\liFlaci{Ai1hox2b7}
+\end{liAntwort}
 
 %%
 % (d)

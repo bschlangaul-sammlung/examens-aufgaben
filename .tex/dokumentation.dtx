@@ -862,53 +862,6 @@ $\liMengeOhneMathe{#1}$%
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsMengenSammlung}
-% |\liZustandsMengenSammlung{nummer}{latex3 str_case:nn}|
-%
-% \begin{verbatim}
-%   \def\z#1{
-%     \liZustandsMengenSammlung{#1}{
-%       {
-%         {0} {z0}
-%         {1} {z0, z1}
-%         {2} {z0, z1, z2}
-%         {3} {z0, z2}
-%         {4} {z0, z1, z2, z3}
-%         {5} {z0, z3}
-%         {6} {z0, z2, z3}
-%         {7} {z0, z1, z3}
-%       }
-%     }
-%   }
-% \end{verbatim}
-%    \begin{macrocode}
-\ExplSyntaxOn
-\def\liZustandsMengenSammlung#1#2{
-  \liZustandsnameGross{#1}
-  {
-    \footnotesize
-    \liPotenzmenge{
-      \str_case:nn {#1} #2
-    }
-  }
-}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\liZustandsMengenSammlungNr}
-%    \begin{macrocode}
-\def\liZustandsMengenSammlungNr#1#2{
-  \liZustandsnameGross{#1}
-  {
-    \footnotesize
-    \liZustandsmengeNr{
-      \str_case:nn {#1} #2
-    }
-  }
-}
-%    \end{macrocode}
-% \end{macro}
-
 % \begin{macro}{\liAbleitung}
 % |\liAbleitung{S -> aB -> ab}|: \liAbleitung{S -> aB -> ab}
 %    \begin{macrocode}
@@ -964,6 +917,10 @@ $\liMengeOhneMathe{#1}$%
 }
 %    \end{macrocode}
 % \end{macro}
+
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
 
 % \begin{macro}{\liAusdruck}
 % |\liAusdruck[L_2]{a_1,a_2,\dots,a_n}{n \in N}|: \liAusdruck[L_2]{a_1,a_2,\dots,a_n}{n \in N}
@@ -2257,6 +2214,97 @@ Attributhülle]
 \liPetriSetzeSchluessel
 
 \tikzset{activated/.style={very thick}}
+
+%    \end{macrocode}
+% \subsection{potenzmengen-konstruktion.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-potenzmengen-konstruktion}[2021/02/21 Hilfsmakros
+einzusetzen bei der Potenzmengen-Konstruktion (Potenzmengen-Algorithmus)]
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\liLadePakete{formale-sprachen}
+\ExplSyntaxOn
+%    \end{macrocode}
+
+% \begin{verbatim}
+% \def\z#1{
+%   \liZustandsMengenSammlungNr{#1}{
+%     {
+%       {0} {0}
+%       {1} {0,1}
+%       {2} {0,2}
+%       {3} {0,1,3}
+%       {4} {0,2,3}
+%       {5} {0,3}
+%     }
+%   }
+% }
+% \let\s=\liZustandsnameGross
+
+% \begin{tabular}{l|l|l}
+% Zustandsmenge & Eingabe a & Eingabe b \\\hline
+% \z0 & \z0 & \z1 \\
+% \z1 & \z2 & \z1 \\
+% \z2 & \z0 & \z3 \\
+% \z3 & \z4 & \z3 \\
+% \z4 & \z5 & \z3 \\
+% \z5 & \z5 & \z3\\
+% \end{tabular}
+% \end{verbatim}
+
+% \begin{macro}{\liZustandsMengenSammlung}
+% |\liZustandsMengenSammlung{nummer}{latex3 str_case:nn}|
+%
+% \begin{verbatim}
+%   \def\z#1{
+%     \liZustandsMengenSammlung{#1}{
+%       {
+%         {0} {z0}
+%         {1} {z0, z1}
+%         {2} {z0, z1, z2}
+%         {3} {z0, z2}
+%         {4} {z0, z1, z2, z3}
+%         {5} {z0, z3}
+%         {6} {z0, z2, z3}
+%         {7} {z0, z1, z3}
+%       }
+%     }
+%   }
+% \end{verbatim}
+%    \begin{macrocode}
+\def\liZustandsMengenSammlung#1#2{
+  \liZustandsnameGross{#1}
+  {
+    \footnotesize
+    \liPotenzmenge{
+      \str_case:nn {#1} #2
+    }
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liZustandsMengenSammlungNr}
+%    \begin{macrocode}
+\def\liZustandsMengenSammlungNr#1#2{
+  \liZustandsnameGross{#1}
+  {
+    \footnotesize
+    \liZustandsmengeNr{
+      \str_case:nn {#1} #2
+    }
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{pseudo.sty}
