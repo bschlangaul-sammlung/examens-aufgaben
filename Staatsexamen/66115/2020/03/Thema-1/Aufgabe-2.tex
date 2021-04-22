@@ -1,0 +1,63 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,automaten}
+\begin{document}
+\liAufgabenTitel{Automaten mit Zuständen q, r, s, t}
+\section{Aufgabe 2
+\index{Reguläre Sprache}
+\footcite{66115:2020:03}}
+
+\begin{enumerate}
+%%
+% (a)
+%%
+
+\item Es sei $L \subseteq \{ a, b, c \}^*$ die von dem folgenden
+nichtdeterministischen Automaten akzeptierte Sprache:
+
+\begin{center}
+\begin{tikzpicture}[li automat]
+  \node[state,initial] (z0) at (2.14cm,-2.14cm) {$z_0$};
+  \node[state] (z1) at (4cm,-2.14cm) {$z_1$};
+  \node[state] (z2) at (5.71cm,-2.14cm) {$z_2$};
+  \node[state,accepting] (z3) at (7.57cm,-2.14cm) {$z_3$};
+
+  \path (z0) edge[auto] node{$b$} (z1);
+  \path (z0) edge[auto,loop above] node{$a,b,c$} (z0);
+  \path (z1) edge[auto] node{$c$} (z2);
+  \path (z2) edge[auto] node{$a$} (z3);
+  \path (z2) edge[auto,loop above] node{$a,b,c$} (z2);
+\end{tikzpicture}
+\end{center}
+\liFlaci{Apmac9bwc}
+
+Beschreiben Sie (in Worten) wie die Wörter aus der Sprache $L$ aussehen.
+
+\begin{liAntwort}
+Alle Wörter der Sprache $L$ enthalten die Symbolfolge $bc$ und enden auf
+$a$. Am Anfang der Wörter und vor dem letzten $a$ können beliebige
+Kombination aus $a,b,c$ vorkommen.
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item Benutzen Sie die Potenzmengenkonstruktion, um einen
+deterministischen Automaten zu konstruieren, der zu dem Automaten aus
+Teil (a) äquivalent ist. (Berechnen Sie nur erreichbare Zustände.)
+
+%%
+% (c)
+%%
+
+\item Ist der resultierende deterministische Automat schon minimal?
+Begründen Sie Ihre Antwort.
+
+%%
+% (d)
+%%
+
+\item Minimieren Sie den folgenden deterministischen Automaten:
+
+\end{enumerate}
+\end{document}
