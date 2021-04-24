@@ -289,6 +289,15 @@
 % }
 % \end{verbatim}
 %
+% \begin{liBeispiel}
+% \liKellerAutomat{
+%   zustaende={z_0, z_1, z_2},
+%   alphabet={a, b, c},
+%   kelleralphabet={\#, A},
+%   ende={z_2},
+% }
+% \end{liBeispiel}
+%
 %    \begin{macrocode}
 \ExplSyntaxOn
 \NewDocumentCommand {\liKellerAutomat} { O{K} m } {
@@ -374,6 +383,81 @@
   }
 }
 %    \end{macrocode}
+
+% \subsubsection{Turingmaschine}
+
+%    \begin{macrocode}
+\RequirePackage{bbding}
+%    \end{macrocode}
+
+% \begin{macro}{\liTuringLeerzeichen}
+% \begin{liBeispiel}
+% \liTuringLeerzeichen
+% \end{liBeispiel}
+%    \begin{macrocode}
+\def\liTuringLeerzeichen{\ifmmode\text{\Square}\else\Square\fi}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liTuringMaschine}
+% \cmd{\liTuringMaschine}\oarg{automaten-name}
+% \\\marg{zustaende=Z,alphabet=$\Sigma$,bandalphabet=$\Gamma$,delta=$\delta$,start=$z_0$,leerzeichen=\liTuringLeerzeichen,ende=E}
+%
+% \begin{verbatim}
+% \liTuringMaschine{
+%   zustaende={z_0, z_1, z_2},
+%   alphabet={a, b, c},
+%   bandalphabet={\liTuringLeerzeichen, A},
+%   ende={z_2},
+% }
+% \end{verbatim}
+%
+% \begin{liBeispiel}
+% \liTuringMaschine{
+%   zustaende={z_0, z_1, z_2},
+%   alphabet={a, b, c},
+%   bandalphabet={\liTuringLeerzeichen, A},
+%   ende={z_2},
+% }
+% \end{liBeispiel}
+%
+%    \begin{macrocode}
+\ExplSyntaxOn
+\NewDocumentCommand {\liTuringMaschine} { O{TM} m } {
+
+  \tl_set:Nn \l_zustaende_tl {Z}
+  \tl_set:Nn \l_alphabet_tl {\Sigma}
+  \tl_set:Nn \l_bandalphabet_tl {\Gamma}
+  \tl_set:Nn \l_delta_tl {\delta}
+  \tl_set:Nn \l_start_tl {z\sb{0}}
+  \tl_set:Nn \l_leerzeichen_tl {\liTuringLeerzeichen}
+  \tl_set:Nn \l_ende_tl {E}
+
+  \keys_define:nn { kellerautomat } {
+    zustaende .code:n = {\tl_set:Nn \l_zustaende_tl {\liMenge{##1}}},
+    alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\liMenge{##1}}},
+    bandalphabet .code:n = {\tl_set:Nn \l_bandalphabet_tl {\liMenge{##1}}},
+    delta .code:n = {\tl_set:Nn \l_delta_tl {##1}},
+    start .code:n = {\tl_set:Nn \l_start_tl {##1}},
+    leerzeichen .code:n = {\tl_set:Nn \l_leerzeichen_tl {##1}},
+    ende .code:n = {\tl_set:Nn \l_ende_tl {\liMenge{##1}}},
+  }
+
+  \keys_set:nn { kellerautomat } { #2 }
+
+  $\text{#1} = (
+    \l_zustaende_tl,
+    \l_alphabet_tl,
+    \l_bandalphabet_tl,
+    \l_delta_tl,
+    \l_start_tl,
+    \l_leerzeichen_tl,
+    \l_ende_tl
+  )$
+}
+\ExplSyntaxOff
+%    \end{macrocode}
+% \end{macro}
 
 %    \begin{macrocode}
 
@@ -2244,7 +2328,7 @@ einzusetzen bei der Potenzmengen-Konstruktion (Potenzmengen-Algorithmus)]
 % \let\s=\liZustandsnameGross
 
 % \begin{tabular}{l|l|l}
-% Zustandsmenge & Eingabe a & Eingabe b \\\hline
+% Zustandsmenge & Eingabe $a$ & Eingabe $b$ \\\hline
 % \z0 & \z0 & \z1 \\
 % \z1 & \z2 & \z1 \\
 % \z2 & \z0 & \z3 \\

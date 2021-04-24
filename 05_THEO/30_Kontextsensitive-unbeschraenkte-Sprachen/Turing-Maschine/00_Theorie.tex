@@ -1,0 +1,82 @@
+\documentclass{lehramt-informatik-haupt}
+\liLadePakete{formale-sprachen,automaten}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Linear beschränkte Turingmaschine}
+
+\begin{liQuellen}
+\item \cite[Seite 312-317]{hoffmann}
+\item \cite{wiki:turingmaschine}
+\end{liQuellen}
+
+Eine deterministische Turingmaschine (TM, DTM) ist ein 7-Tupel
+\liTuringMaschine{} ist gegeben durch:
+
+\begin{description}
+\item[$Z$]
+Eine endliche Menge $Z$ von Zuständen
+
+\item[$\Sigma$]
+Ein Eingabealphabet $\Sigma$
+
+\item[$\Gamma$]
+Ein Bandalphabet $\Gamma$ mit Σ ⊆ Γ $\Sigma \subseteq\Gamma$
+
+\item[$\delta$]
+Eine partielle Überführungsfunktion
+δ : Z ⨯ Γ → Z ⨯ Γ ⨯ {L,R,N}
+
+\item[$z_0$]
+Einem Startzustand $z_0 \in Z$
+
+\item[\liTuringLeerzeichen]
+Ein Leerzeichen (für das leere Feld) □ ∈ Γ \ Σ
+
+\item[$E$]
+Eine endliche Menge E ⊆ Z von
+akzeptierenden Zuständen
+\end{description}
+
+Die nichtdeterministischen linear beschränkten Turingmaschinen
+(LBA = Linear Bounded Automaton) sind Automatenklassen für die
+kontextsensitiven Grammatiken/Sprachen.
+
+Ein LBA ist eine Turingmaschine, dessen Band linear beschränkt ist:
+
+\begin{itemize}
+\item[Definition 1]
+
+Sie verlässt den Bereich des Bandes auf dem die Eingabe steht nicht.
+
+\item[Definition 2]
+
+Sie kann um einen konstanten Faktor $c$ größeres Band simulieren, sodass
+die Turingmaschine höchstens $c \cdot n$ Felder benutzt, wobei $n$ die
+Länge des Eingabewortes ist.
+\end{itemize}
+
+Eine offene Fragestellung ist, ob jede Sprache, die von einer NLBA
+akzeptiert wird, auch durch eine DLBA akzeptiert wird. Sprich:
+Akzeptieren DLBA und NLBA die gleiche Sprachklasse
+\footcite[Seite 10]{theo:fs:3}
+
+Eine TM terminiert oder hält für ein Wort $w$ genau dann, wenn für
+eine gegebene Konfiguration keine Regel definiert ist.
+
+Eine TM akzeptiert ein Wort $w$ genau dann, wenn sie in einem
+Endzustand terminiert.
+
+Eine TM mit $k$ Bändern und je einem Schreib-/Lesekopf ist
+äquivalent zu einer Einbandturingmaschine. Dabei wird von allen $k$
+Bändern zeitgleich je ein Symbol gelesen und jeder der $k$ Köpfe
+kann sich unabhängig von den anderen bewegen.
+\footcite[Seite 26]{theo:fs:3}
+
+\literatur
+
+\end{document}
