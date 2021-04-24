@@ -1,6 +1,7 @@
 \documentclass{lehramt-informatik-haupt}
 \liLadePakete{formale-sprachen,automaten}
-
+\usepackage{tikz}
+\usetikzlibrary{chains,fit,shapes}
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -14,6 +15,60 @@
 \item \cite{wiki:turingmaschine}
 \end{liQuellen}
 
+% https://texample.net/tikz/examples/turing-machine-2/
+\begin{tikzpicture}
+\tikzstyle{every path}=[very thick]
+
+\edef\sizetape{0.7cm}
+\tikzstyle{tmtape}=[draw,minimum size=\sizetape]
+\tikzstyle{tmhead}=[arrow box,draw,minimum size=.5cm,arrow box
+arrows={east:.25cm, west:0.25cm}]
+
+%% Draw TM tape
+\begin{scope}[start chain=1 going right,node distance=-0.15mm]
+    \node [on chain=1,tmtape,draw=none] {$\ldots$};
+    \node [on chain=1,tmtape] {};
+    \node [on chain=1,tmtape] (input) {b};
+    \node [on chain=1,tmtape] {b};
+    \node [on chain=1,tmtape] {a};
+    \node [on chain=1,tmtape] {a};
+    \node [on chain=1,tmtape] {a};
+    \node [on chain=1,tmtape] {a};
+    \node [on chain=1,tmtape] {};
+    \node [on chain=1,tmtape,draw=none] {$\ldots$};
+    \node [on chain=1] {\textbf{Band}};
+\end{scope}
+
+%% Draw TM Finite Control
+\begin{scope}
+[shift={(3cm,-5cm)},start chain=circle placed {at=(-\tikzchaincount*60:1.5)}]
+\foreach \i in {z_0,z_1,z_2,z_3,\ddots,q_n}
+	\node [on chain] {$\i$};
+
+% Arrow to current state
+\node (center) {};
+\draw[->] (center) -- (circle-2);
+
+\node[rounded corners,draw=black,thick,fit=(circle-1) (circle-2) (circle-3)
+      (circle-4) (circle-5) (circle-6),
+			label=below:\textbf{Finite Control}] (fsbox)
+		{};
+\end{scope}
+
+%% Draw TM head below (input) tape cell
+\node [tmhead,yshift=-.3cm] at (input.south) (head) {$z_1$};
+
+%% Link Finite Control with Head
+\path[->,draw] (fsbox.north) .. controls (4.5,-1) and (0,-2) .. node[right]
+			(headlinetext)
+ 			{}
+			(head.south);
+\node[xshift=3cm] at (headlinetext)
+			{\textbf{Schreibe-/Lesekopf}};
+
+\end{tikzpicture}
+
+\noindent
 Eine deterministische Turingmaschine (TM, DTM) ist ein 7-Tupel
 \liTuringMaschine{} ist gegeben durch:
 
@@ -25,21 +80,21 @@ Eine endliche Menge $Z$ von Zuständen
 Ein Eingabealphabet $\Sigma$
 
 \item[$\Gamma$]
-Ein Bandalphabet $\Gamma$ mit Σ ⊆ Γ $\Sigma \subseteq\Gamma$
+Ein Bandalphabet $\Gamma$ mit $\Sigma \subseteq\Gamma$
 
 \item[$\delta$]
 Eine partielle Überführungsfunktion
-δ : Z ⨯ Γ → Z ⨯ Γ ⨯ {L,R,N}
+$\delta : Z \times \Gamma \rightarrow Z \times \Gamma \times \{ L, R, N \}$
 
 \item[$z_0$]
 Einem Startzustand $z_0 \in Z$
 
 \item[\liTuringLeerzeichen]
-Ein Leerzeichen (für das leere Feld) □ ∈ Γ \ Σ
+Ein Leerzeichen (für das leere Feld) $\liTuringLeerzeichen \in \Gamma \string\ \Sigma$
 
 \item[$E$]
-Eine endliche Menge E ⊆ Z von
-akzeptierenden Zuständen
+Eine endliche Menge $E \subseteq Z$ von
+akzeptierenden Zuständen\footcite[Seite 21]{theo:fs:3}
 \end{description}
 
 Die nichtdeterministischen linear beschränkten Turingmaschinen
