@@ -1,46 +1,153 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{automaten}
 \begin{document}
+\def\l{\,\liTuringLeerzeichen\,}
 \let\t=\liTuringUebergang
+\def\z#1{\ifmmode \,z_#1\,\else$z_#1$\fi}
 \liAufgabenTitel{Übergangsfunktion}
 \section{Turingmaschine mit folgender Übergangsfunktion
 \index{Turing-Maschine}
 \footcite[Aufgabe 2]{theo:ab:3}}
 
 Gegeben sei eine TM mit folgender Übergangsfunktion:
-0
-X
-LEER
-z 1
-\t{z2, LEER, R}
--
--
-z 2
-\t{z3, X, R}
-\t{z2, X, R}
-%\t{z\sb{\text{final}}, LEER, R}
-z 3
-\t{z4, 0, R}
-\t{z3, X, R}
-\t{z5, LEER, L}
-z 4
-\t{z3, X, R}
-\t{z4, X, R}
--
-z 5
-\t{z5, 0, L}
-\t{z5, X, L}
-\t{z2, LEER, R}
-Erreicht die TM den Zustand z f inal , so hält sie an und bearbeitet keine weitere Einga-
-be. Zu Beginn der Berechnung soll die TM auf dem ersten Symbol der Eingabe (links)
-stehen. Das Raute-Symbol steht für das leere Zeichen auf dem Band.
+
+\begin{center}
+\begin{tabular}{c|ccccc}
+& \z1 & \z2 & \z3 & \z4 & \z5 \\\hline
+
+0 &
+\t{z2, LEER, R} &
+\t{z3, X, R} &
+\t{z4, 0, R} &
+\t{z3, X, R} &
+\t{z5, 0, L} \\
+
+X &
+- &
+\t{z2, X, R} &
+\t{z3, X, R} &
+\t{z4, X, R} &
+\t{z5, X, L} \\
+
+\l &
+- &
+\t{z_f, LEER, R} &
+\t{z5, LEER, L} &
+- &
+\t{z2, LEER, R} \\
+\end{tabular}
+\end{center}
+
+\noindent
+Erreicht die TM den Zustand $z_f$ (final), so hält sie an und bearbeitet
+keine weitere Eingabe. Zu Beginn der Berechnung soll die TM auf dem
+ersten Symbol der Eingabe (links) stehen.
 \begin{enumerate}
-\item (a) Gebe für die folgenden Eingaben die Konfigurationsfolgen der Berechnung an:
-• 00000
-• 000000
-• 0000
-\item (b) Gebe zwei andere Wörter über der Sprache L ⊂ {0 ∗ } an, für die TM im Zustand
-z f inal endet.
-\item (c) Für welche Sprache ist die TM an Akzeptor?
+
+%%
+% (a)
+%%
+
+\item Gebe für die folgenden Eingaben die Konfigurationsfolgen der
+Berechnung an:
+
+\def\z#1{\,z_#1\,}
+\def\p{&\rightarrow}
+
+\begin{itemize}
+\item 00000
+
+\begin{liAntwort}
+Der Zustand der TM steht vor dem nächsten gelesenen Zeichen
+
+$\z1 00000 \rightarrow
+\l \z2 0000 \rightarrow
+\l X\z3 000 \rightarrow
+\l X0\z4 00 \rightarrow
+\l X0X\z3 0 \rightarrow
+\l X0X0\z4$
+
+\end{liAntwort}
+
+\item 000000
+
+\begin{liAntwort}
+Der Zustand der TM steht vor dem nächsten gelesenen Zeichen
+
+$\z1 000000 \rightarrow
+\l \z2 00000 \rightarrow
+\l X\z3 0000 \rightarrow
+\l X0\z4 000 \rightarrow
+\l X0X\z3 00 \rightarrow
+\l X0X0\z4 0 \rightarrow
+\l X0X0X\z3 \l \rightarrow
+\l X0X0\z5 X\l \rightarrow
+\l X0X\z5 0X\l \rightarrow
+\l X0\z5 X0X\l \rightarrow
+\l X\z5 0X0X\l \rightarrow
+\l \z5 X0X0X\l \rightarrow
+\z5 \l X0X0X\l \rightarrow
+\l \z2 X0X0X\l \rightarrow
+\l X\z2 0X0X\l \rightarrow
+\l XX\z3 X0X\l \rightarrow
+\l XXX\z3 0X\l \rightarrow
+\l XXX0\z4 X\l \rightarrow
+\l XXX0X\z4 \l$
+
+\end{liAntwort}
+
+\item 0000
+\begin{liAntwort}
+Der Zustand der TM steht vor dem nächsten gelesenen Zeichen
+
+\begin{align*}
+\z1 000 \p \\
+\p \l \z1 000 \\
+\p \l X\z3 00 \\
+\p \l X0\z4 0 \\
+\p \l X0X\z3 \l \\
+\p \l X0\z5 X\l \\
+\p \l X\z5 0X\l \\
+\p \l \z5 X0X\l \\
+\p \z5 \l X0X\l \\
+\p \l \z2 X0X\l \\
+\p \l X\z2 0X\l \\
+\p \l XX\z3 X\l \\
+\p \l XXX\z3 \l \\
+\p \l XX\z5 X\l \\
+\p \l X\z5 XX\l \\
+\p \l \z5 XXX\l \\
+\p \z5 \l XXX\l \\
+\p \l \z2 XXX\l \\
+\p \l X\z2 XX\l \\
+\p \l XX\z2 X\l \\
+\p \l XXX\z2 \l \\
+\p \l XXX\l \z f
+\end{align*}
+\end{liAntwort}
+
+\end{itemize}
+
+%%
+% (b)
+%%
+
+\item Gebe zwei andere Wörter über der Sprache $L \subset \{ \, 0^* \,
+\}$ an, für die TM im Zustand $z_f$ endet.
+
+\begin{liAntwort}
+Z.\,B. $0$ oder $00$
+\end{liAntwort}
+
+%%
+% (c)
+%%
+
+\item Für welche Sprache ist die TM an Akzeptor?
+
+\begin{liAntwort}
+Die TM erkennt alle Wörter mit der Eigenschaft, dass die Anzahl der
+Nullen eine 2er-Potenzen ist.
+\end{liAntwort}
 \end{enumerate}
 \end{document}
