@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{automaten}
+\liLadePakete{automaten,formale-sprachen}
 \begin{document}
 \def\l{\,\liTuringLeerzeichen\,}
 \let\t=\liTuringUebergang
@@ -36,6 +36,7 @@ X &
 - &
 \t{z2, LEER, R} \\
 \end{tabular}
+\liFlaci{Apew8cea2}
 \end{center}
 
 \noindent
@@ -60,12 +61,14 @@ Berechnung an:
 \begin{liAntwort}
 Der Zustand der TM steht vor dem nächsten gelesenen Zeichen
 
-$\z1 00000 \rightarrow
-\l \z2 0000 \rightarrow
-\l X\z3 000 \rightarrow
-\l X0\z4 00 \rightarrow
-\l X0X\z3 0 \rightarrow
-\l X0X0\z4$
+\begin{align*}
+\z1 00000 \p \\
+\p \l \z2 0000 \\
+\p \l X\z3 000 \\
+\p \l X0\z4 00 \\
+\p \l X0X\z3 0 \\
+\p \l X0X0\z4
+\end{align*}
 
 \end{liAntwort}
 
@@ -74,25 +77,27 @@ $\z1 00000 \rightarrow
 \begin{liAntwort}
 Der Zustand der TM steht vor dem nächsten gelesenen Zeichen
 
-$\z1 000000 \rightarrow
-\l \z2 00000 \rightarrow
-\l X\z3 0000 \rightarrow
-\l X0\z4 000 \rightarrow
-\l X0X\z3 00 \rightarrow
-\l X0X0\z4 0 \rightarrow
-\l X0X0X\z3 \l \rightarrow
-\l X0X0\z5 X\l \rightarrow
-\l X0X\z5 0X\l \rightarrow
-\l X0\z5 X0X\l \rightarrow
-\l X\z5 0X0X\l \rightarrow
-\l \z5 X0X0X\l \rightarrow
-\z5 \l X0X0X\l \rightarrow
-\l \z2 X0X0X\l \rightarrow
-\l X\z2 0X0X\l \rightarrow
-\l XX\z3 X0X\l \rightarrow
-\l XXX\z3 0X\l \rightarrow
-\l XXX0\z4 X\l \rightarrow
-\l XXX0X\z4 \l$
+\begin{align*}
+\z1 000000 \p \\
+\p \l \z2 00000 \\
+\p \l X\z3 0000 \\
+\p \l X0\z4 000 \\
+\p \l X0X\z3 00 \\
+\p \l X0X0\z4 0 \\
+\p \l X0X0X\z3 \l \\
+\p \l X0X0\z5 X\l \\
+\p \l X0X\z5 0X\l \\
+\p \l X0\z5 X0X\l \\
+\p \l X\z5 0X0X\l \\
+\p \l \z5 X0X0X\l \\
+\p \z5 \l X0X0X\l \\
+\p \l \z2 X0X0X\l \\
+\p \l X\z2 0X0X\l \\
+\p \l XX\z3 X0X\l \\
+\p \l XXX\z3 0X\l \\
+\p \l XXX0\z4 X\l \\
+\p \l XXX0X\z4 \l
+\end{align*}
 
 \end{liAntwort}
 
