@@ -151,7 +151,7 @@
 %    \begin{macrocode}
 \RequirePackage{tikz}
 \usetikzlibrary{arrows,automata,positioning}
-
+\liLadePakete{mathe}
 \directlua{
   automaten = require('lehramt-informatik-automaten')
 }
@@ -350,7 +350,7 @@
 %    \begin{macrocode}
 \ExplSyntaxOn
 \def\liKellerUebergang#1{
-  \directlua{automaten.gib_uebergaenge_aus('#1')}
+  \directlua{automaten.gib_keller_uebergaenge('#1')}
 }
 \ExplSyntaxOff
 %    \end{macrocode}
@@ -454,6 +454,19 @@
     \l_leerzeichen_tl,
     \l_ende_tl
   )$
+}
+\ExplSyntaxOff
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liTuringUebergang}
+% \liLet{t}{liTuringUebergang}
+% |\liTuringUebergang{z_1, LEER, R}|: \liTuringUebergang{z_1, LEER, R}
+% |\liTuringUebergang{z1, leer, l}|: \liTuringUebergang{z_1, LEER, l}
+%    \begin{macrocode}
+\ExplSyntaxOn
+\def\liTuringUebergang#1{
+  $\directlua{automaten.gib_turing_uebergang('\luaescapestring{\noexpand{#1}}')}$
 }
 \ExplSyntaxOff
 %    \end{macrocode}

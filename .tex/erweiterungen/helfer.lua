@@ -23,5 +23,12 @@ return {
       table.insert(t, cap)
     end
     return t
-  end
+  end,
+
+  konvertiere_tiefgestellt = function (eingang)
+    if string.find(eingang, "^%a+%d+$") then
+      return string.gsub(eingang, '(%a)(%d)', '%1\\sb{%2}')
+    end
+    return eingang
+  end,
 }
