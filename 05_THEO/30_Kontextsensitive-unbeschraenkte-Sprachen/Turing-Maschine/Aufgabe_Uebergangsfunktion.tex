@@ -1,0 +1,46 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{automaten}
+\begin{document}
+\let\t=\liTuringUebergang
+\liAufgabenTitel{Übergangsfunktion}
+\section{Turingmaschine mit folgender Übergangsfunktion
+\index{Turing-Maschine}
+\footcite[Aufgabe 2]{theo:ab:3}}
+
+Gegeben sei eine TM mit folgender Übergangsfunktion:
+0
+X
+LEER
+z 1
+\t{z2, LEER, R}
+-
+-
+z 2
+\t{z3, X, R}
+\t{z2, X, R}
+%\t{z\sb{\text{final}}, LEER, R}
+z 3
+\t{z4, 0, R}
+\t{z3, X, R}
+\t{z5, LEER, L}
+z 4
+\t{z3, X, R}
+\t{z4, X, R}
+-
+z 5
+\t{z5, 0, L}
+\t{z5, X, L}
+\t{z2, LEER, R}
+Erreicht die TM den Zustand z f inal , so hält sie an und bearbeitet keine weitere Einga-
+be. Zu Beginn der Berechnung soll die TM auf dem ersten Symbol der Eingabe (links)
+stehen. Das Raute-Symbol steht für das leere Zeichen auf dem Band.
+\begin{enumerate}
+\item (a) Gebe für die folgenden Eingaben die Konfigurationsfolgen der Berechnung an:
+• 00000
+• 000000
+• 0000
+\item (b) Gebe zwei andere Wörter über der Sprache L ⊂ {0 ∗ } an, für die TM im Zustand
+z f inal endet.
+\item (c) Für welche Sprache ist die TM an Akzeptor?
+\end{enumerate}
+\end{document}
