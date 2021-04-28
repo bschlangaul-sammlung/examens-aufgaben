@@ -57,10 +57,10 @@ local function drucke_einen_turing_uebergang (eingang)
   richtung = richtung:gsub('l', 'L')
   richtung = richtung:gsub('r', 'R')
 
-  local ausgabe = '(' ..
-    zustand_oder_lese .. ': ' ..
-    schreibe .. ', ' ..
-    richtung .. ')\\\\'
+  local ausgabe = '(\\,' ..
+    '$' .. zustand_oder_lese .. '$' .. ': ' ..
+    '$' .. schreibe .. '$' .. ', ' ..
+    richtung .. '\\,)\\\\'
   tex.print(ausgabe)
 end
 

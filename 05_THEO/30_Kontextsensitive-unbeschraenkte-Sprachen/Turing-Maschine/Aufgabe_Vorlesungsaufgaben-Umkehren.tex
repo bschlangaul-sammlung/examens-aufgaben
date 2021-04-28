@@ -1,0 +1,154 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,mathe,automaten}
+\begin{document}
+\def\z#1{\,z_#1\,}
+\def\p{&\rightarrow}
+\def\l{\,\liTuringLeerzeichen\,}
+
+\liAufgabenTitel{Vorlesungsaufgaben ab-Wörter umkehren}
+\section{Wörter umkehren auf dem Band der Turingmaschine
+\index{Turingmaschine}
+\footcite[Seite 27]{theo:fs:3}}
+
+% Info_2021-04-23-2021-04-23_13.17.40 3h10
+
+\begin{enumerate}
+\item Giben Sie eine Turingmaschine an, die die Eingabe über dem
+Alphabet $\Sigma = \{ a, b \}$ umkehrt.
+
+Beispiele:
+
+\begin{itemize}
+\item $abb \rightarrow bba$
+\item $aaaaba \rightarrow abaaaa$
+\item $aaa \rightarrow aaa$
+\end{itemize}
+
+Tipp:
+Fügen Sie ein extra Zeichen ein, welches das Eingabewort von deinem
+umgedrehten Wort trennt.
+Das Ergebniswort muss nicht an derselben Stelle wie das
+Eingabewort stehen.
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[li turingmaschine]
+  \node[state,initial] (z0) at (7.57cm,-1.71cm) {$z_0$};
+  \node[state] (z1) at (5.71cm,-3.14cm) {$z_1$};
+  \node[state] (z2) at (5.71cm,-5.29cm) {$z_2$};
+  \node[state] (z3) at (8.71cm,-4.57cm) {$z_3$};
+  \node[state] (z4) at (8.43cm,-7.43cm) {$z_4$};
+  \node[state] (z5) at (12.57cm,-5.57cm) {$z_5$};
+  \node[state] (z6) at (8.14cm,-8.86cm) {$z_6$};
+  \node[state] (z7) at (10.71cm,-9.43cm) {$z_7$};
+  \node[state,accepting] (z8) at (13cm,-9.43cm) {$z_8$};
+
+  \liTuringKante[above left,pos=0.7]{z0}{z1}{
+    a, a, L;
+    b, b, L;
+  }
+
+  \liTuringKante[above,loop above]{z0}{z0}{
+    LEER, LEER, N;
+  }
+
+  \liTuringKante[right]{z1}{z2}{
+    LEER, *, R;
+  }
+
+  \liTuringKante[above]{z2}{z3}{
+    a, *, L;
+  }
+
+  \liTuringKante[below left]{z2}{z4}{
+    b, *, L;
+  }
+
+  \liTuringKante[above,loop above]{z3}{z3}{
+    b, b, L;
+    a, a, L;
+    *, *, L;
+  }
+
+  \liTuringKante[above]{z3}{z5}{
+    LEER, a, R;
+  }
+
+  \liTuringKante[above left,pos=0.8 ]{z4}{z5}{
+    LEER, b, R;
+  }
+
+  \liTuringKante[above,loop above]{z4}{z4}{
+    *, *, L;
+    a, a, L;
+    b, b, L;
+  }
+
+  \liTuringKante[right]{z5}{z6}{
+    *, *, R;
+  }
+
+  \liTuringKante[above,loop above]{z5}{z5}{
+    a, a, R;
+    b, b, R;
+  }
+
+  \liTuringKante[above,loop below]{z6}{z6}{
+    *, *, R;
+  }
+
+  \liTuringKante[left,bend left]{z6}{z2}{
+    a, a, N;
+    b, b, N;
+  }
+
+  \liTuringKante[above]{z6}{z7}{
+    LEER, LEER, L;
+  }
+
+  \liTuringKante[above,loop above]{z7}{z7}{
+    *, LEER, L;
+  }
+
+  \liTuringKante[above]{z7}{z8}{
+    b, b, N;
+    a, a, N;
+  }
+\end{tikzpicture}
+\end{center}
+\liFlaci{Af75rdjbc}
+\end{liAntwort}
+
+\item Geben Sie anschließend eine Konfigurationsfolge ihrer TM für $ab$
+an.
+
+\begin{liAntwort}
+\begin{align*}
+\z0 a b \p \z1 \l  ab\\
+\p \z2 * a b \\
+\p * \z3 * b \\
+\p \z3 * * b \\
+\p \z3 \l * * b \\
+\p a \z5 * * b \\
+\p a * \z6 * b \\
+\p a * * \z6 b \\
+\p a * * \z2 b \\
+\p a * \z4 * * \\
+\p a \z4 * * * \\
+\p \z4 a * * * \\
+\p \z4 \l a * * * \\
+\p b \z5 a * * * \\
+\p b a \z6 * * * \\
+\p b a * \z6 * * \\
+\p b a * * \z6 * \\
+\p b a * * * \z6 \l\\
+\p b a * * \z7 \l\\
+\p b a * \z7 \l\\
+\p b a \z7 \l\\
+\p b  \z8  a
+\end{align*}
+
+\end{liAntwort}
+\end{enumerate}
+
+\end{document}

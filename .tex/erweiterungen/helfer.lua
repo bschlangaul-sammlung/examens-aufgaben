@@ -1,7 +1,6 @@
 return {
   -- http://lua-users.org/wiki/StringTrim
   trim = function (input)
-    print(input)
     if input == nil then
       return ''
     end

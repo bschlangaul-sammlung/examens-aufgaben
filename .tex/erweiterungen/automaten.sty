@@ -340,10 +340,11 @@
 % \liLet{t}{liTuringUebergang}
 % |\liTuringUebergang{z_1, LEER, R}|: \liTuringUebergang{z_1, LEER, R}
 % |\liTuringUebergang{z1, leer, l}|: \liTuringUebergang{z_1, LEER, l}
+% \liTuringUebergang{z_1, LEER, l; LEER, LEER, r}
 %    \begin{macrocode}
 \ExplSyntaxOn
 \def\liTuringUebergang#1{
-  $\directlua{automaten.drucke_turing_uebergaenge('#1')}$
+  \directlua{automaten.drucke_turing_uebergaenge('#1')}
 }
 \ExplSyntaxOff
 %    \end{macrocode}
