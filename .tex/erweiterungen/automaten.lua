@@ -39,7 +39,7 @@ end
 
 --
 -- @tparam string eingang: z12 ☐ L
-local function drucke_einen_turing_uebergang (eingang)
+local function gib_einen_turing_uebergang (eingang)
   local elemente = helfer.split(eingang, '%s*,%s*')
   for index, element in ipairs(elemente) do
     element = element:gsub('LEER', '\\liTuringLeerzeichen')
@@ -60,18 +60,19 @@ local function drucke_einen_turing_uebergang (eingang)
   local ausgabe = '(\\,' ..
     '$' .. zustand_oder_lese .. '$' .. ': ' ..
     '$' .. schreibe .. '$' .. ', ' ..
-    richtung .. '\\,)\\\\'
-  tex.print(ausgabe)
+    richtung .. '\\,)'
+  return ausgabe
 end
 
 local function drucke_turing_uebergaenge (eingang)
   local elemente = helfer.split(eingang, '%s*;%s*')
   for index, element in ipairs(elemente) do
-    drucke_einen_turing_uebergang(element)
+    tex.print(gib_einen_turing_uebergang(element) .. '\\\\')
   end
 end
 
 return {
   drucke_keller_uebergaenge = drucke_keller_uebergaenge,
+  gib_einen_turing_uebergang = gib_einen_turing_uebergang,
   drucke_turing_uebergaenge = drucke_turing_uebergaenge,
 }

@@ -458,14 +458,29 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liTuringUebergang}
-% \liLet{t}{liTuringUebergang}
-% |\liTuringUebergang{z_1, LEER, R}|: \liTuringUebergang{z_1, LEER, R}
-% |\liTuringUebergang{z1, leer, l}|: \liTuringUebergang{z_1, LEER, l}
-% \liTuringUebergang{z_1, LEER, l; LEER, LEER, r}
+% \begin{macro}{\liTuringUebergangZelle}
+% Formatiert einen Zustandsübergang für eine Übergangstabelle.
+% \liLet{t}{liTuringUebergangZelle}
+% |\liTuringUebergangZelle{z_1, LEER, R}|: \liTuringUebergangZelle{z_1, LEER, R}
+% |\liTuringUebergangZelle{z1, leer, l}|: \liTuringUebergangZelle{z_1, LEER, l}
 %    \begin{macrocode}
 \ExplSyntaxOn
-\def\liTuringUebergang#1{
+\def\liTuringUebergangZelle#1{
+  \directlua{tex.print(automaten.gib_einen_turing_uebergang('#1'))}
+}
+\ExplSyntaxOff
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liTuringUebergaenge}
+% Nur in den TikZ-Grafiken zu verwenden. Setzt Zeilenumbrüche ans Ende.
+% Nicht für die Tabelle geeignet.
+% \liLet{t}{liTuringUebergaenge}
+% \noindent
+% \liTuringUebergaenge{z_1, LEER, l; LEER, LEER, r}
+%    \begin{macrocode}
+\ExplSyntaxOn
+\def\liTuringUebergaenge#1{
   \directlua{automaten.drucke_turing_uebergaenge('#1')}
 }
 \ExplSyntaxOff
@@ -477,7 +492,7 @@
 % \liLet{t}{liTuringKante}
 %    \begin{macrocode}
 \NewDocumentCommand{\liTuringKante} { O{above} m m m  } {
-  \path (#2) edge[#1] node{\liTuringUebergang{#4}} (#3);
+  \path (#2) edge[#1] node{\liTuringUebergaenge{#4}} (#3);
 }
 %    \end{macrocode}
 % \end{macro}

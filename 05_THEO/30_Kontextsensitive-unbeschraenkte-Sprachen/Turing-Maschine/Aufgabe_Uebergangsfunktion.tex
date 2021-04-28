@@ -2,7 +2,7 @@
 \liLadePakete{automaten,formale-sprachen}
 \begin{document}
 \def\l{\,\liTuringLeerzeichen\,}
-\let\t=\liTuringUebergang
+\let\t=\liTuringUebergangZelle
 \def\z#1{\ifmmode \,z_#1\,\else$z_#1$\fi}
 \liAufgabenTitel{Übergangsfunktion}
 \section{Turingmaschine mit folgender Übergangsfunktion
@@ -36,8 +36,64 @@ X &
 - &
 \t{z2, LEER, R} \\
 \end{tabular}
-\liFlaci{Apew8cea2}
 \end{center}
+
+\begin{center}
+\begin{tikzpicture}[li turingmaschine]
+  \node[state,initial] (z1) at (2.43cm,-4.14cm) {$z_1$};
+  \node[state] (z2) at (4.43cm,-4.14cm) {$z_2$};
+  \node[state] (z3) at (8.71cm,-4.14cm) {$z_3$};
+  \node[state] (z4) at (8.71cm,-6.43cm) {$z_4$};
+  \node[state] (z5) at (7cm,-1.43cm) {$z_5$};
+  \node[state,accepting] (zf) at (4.43cm,-5.71cm) {$z_f$};
+
+  \liTuringKante[above]{z1}{z2}{
+    0, X, R;
+  }
+
+  \liTuringKante[above]{z2}{z3}{
+    0, X, R;
+  }
+
+  \liTuringKante[above,loop above]{z2}{z2}{
+    X, X, R;
+  }
+
+  \liTuringKante[right]{z2}{zf}{
+    LEER, LEER, R;
+  }
+
+  \liTuringKante[right,bend left]{z3}{z4}{
+    0, 0, R;
+  }
+
+  \liTuringKante[above,loop right]{z3}{z3}{
+    X, X, R;
+  }
+
+  \liTuringKante[right,bend right]{z3}{z5}{
+    LEER, LEER, R;
+  }
+
+  \liTuringKante[left,bend left]{z4}{z3}{
+    0, X, R;
+  }
+
+  \liTuringKante[above,loop below]{z4}{z4}{
+    X, X, R;
+  }
+
+  \liTuringKante[above,loop above]{z5}{z5}{
+    0, 0, L;
+    X, X, L;
+  }
+
+  \liTuringKante[above left,pos=0.3]{z5}{z2}{
+    LEER, LEER, R;
+  }
+\end{tikzpicture}
+\end{center}
+\liFlaci{Apew8cea2}
 
 \noindent
 Erreicht die TM den Zustand $z_f$ (final), so hält sie an und bearbeitet
