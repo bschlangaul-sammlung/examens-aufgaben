@@ -5,7 +5,7 @@ local helfer = require('lehramt-informatik-helfer')
 -- :param str eingang: 'a, KELLERBODEN, A KELLERBODEN'
 --
 -- :return: '(a, #: a#)'
-local function gib_keller_uebergang (eingang)
+local function drucke_einen_keller_uebergang (eingang)
   local elemente = helfer.split(eingang, '%s*,%s*')
   for index, element in ipairs(elemente) do
     element = element:gsub('epsilon', '\\epsilon')
@@ -14,7 +14,6 @@ local function gib_keller_uebergang (eingang)
     element = element:gsub('kellerboden', '\\#')
     element = element:gsub('raute', '\\#')
     element = element:gsub('RAUTE', '\\#')
-
     elemente[index] = element
   end
   local eingabe_zeichen = helfer.trim(elemente[1])
@@ -30,37 +29,49 @@ local function gib_keller_uebergang (eingang)
 end
 
 --- Gib mehrere Kellerübergänge aus.
--- \liKellerUebergang{epsilon raute epsilon, b A epsilon}
-local function gib_keller_uebergaenge (eingang)
+-- \liKellerUebergang{EPSILON, KELLERBODEN, EPSILON; b, A, EPSILON}
+local function drucke_keller_uebergaenge (eingang)
   local elemente = helfer.split(eingang, '%s*;%s*')
   for index, element in ipairs(elemente) do
-    gib_keller_uebergang(element)
+    drucke_einen_keller_uebergang(element)
   end
 end
 
-local function gib_turing_uebergang (eingang)
+--
+-- @tparam string eingang: z12 ☐ L
+local function drucke_einen_turing_uebergang (eingang)
   local elemente = helfer.split(eingang, '%s*,%s*')
+  for index, element in ipairs(elemente) do
+    element = element:gsub('LEER', '\\liTuringLeerzeichen')
+    element = element:gsub('leer', '\\liTuringLeerzeichen')
+    element = element:gsub('☐', '\\liTuringLeerzeichen')
+    elemente[index] = element
+  end
 
-  local zustand = helfer.trim(elemente[1])
-  zustand = helfer.konvertiere_tiefgestellt(zustand)
+  local zustand_oder_lese = helfer.trim(elemente[1])
+  zustand_oder_lese = helfer.konvertiere_tiefgestellt(zustand_oder_lese)
 
-  local zeichen = helfer.trim(elemente[2])
-  zeichen = zeichen:gsub('LEER', '\\liTuringLeerzeichen')
-  zeichen = zeichen:gsub('leer', '\\liTuringLeerzeichen')
+  local schreibe = helfer.trim(elemente[2])
 
-  local bewegung = helfer.trim(elemente[3])
-  bewegung = bewegung:gsub('l', 'L')
-  bewegung = bewegung:gsub('r', 'R')
+  local richtung = helfer.trim(elemente[3])
+  richtung = richtung:gsub('l', 'L')
+  richtung = richtung:gsub('r', 'R')
 
   local ausgabe = '(' ..
-    zustand .. ', ' ..
-    zeichen .. ', ' ..
-    bewegung .. ')'
+    zustand_oder_lese .. ': ' ..
+    schreibe .. ', ' ..
+    richtung .. ')\\\\'
   tex.print(ausgabe)
 end
 
+local function drucke_turing_uebergaenge (eingang)
+  local elemente = helfer.split(eingang, '%s*;%s*')
+  for index, element in ipairs(elemente) do
+    drucke_einen_turing_uebergang(element)
+  end
+end
+
 return {
-  gib_keller_uebergang = gib_keller_uebergang,
-  gib_keller_uebergaenge = gib_keller_uebergaenge,
-  gib_turing_uebergang = gib_turing_uebergang,
+  drucke_keller_uebergaenge = drucke_keller_uebergaenge,
+  drucke_turing_uebergaenge = drucke_turing_uebergaenge,
 }

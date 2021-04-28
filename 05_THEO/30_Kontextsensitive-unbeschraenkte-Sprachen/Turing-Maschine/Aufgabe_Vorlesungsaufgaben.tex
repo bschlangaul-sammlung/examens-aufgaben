@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{formale-sprachen,mathe}
+\liLadePakete{formale-sprachen,mathe,automaten}
 \begin{document}
 \liAufgabenTitel{Vorlesungsaufgaben}
 \section{
@@ -65,7 +65,91 @@ Eingabewort stehen.
 \end{enumerate}
 
 \begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[li turingmaschine]
+  \node[state,initial] (z0) at (1.86cm,-5.29cm) {$z_0$};
+  \node[state] (z1) at (3.86cm,-5.29cm) {$z_1$};
+  \node[state] (z2) at (5.71cm,-5.29cm) {$z_2$};
+  \node[state] (z3) at (8.29cm,-4.43cm) {$z_3$};
+  \node[state] (z4) at (8cm,-7.43cm) {$z_4$};
+  \node[state] (z5) at (12.57cm,-5.57cm) {$z_5$};
+  \node[state] (z6) at (7.57cm,-10.43cm) {$z_6$};
+  \node[state] (z7) at (11.43cm,-10.43cm) {$z_7$};
+  \node[state,accepting] (z8) at (13.86cm,-10.43cm) {$z_8$};
+
+  \liTuringKante[above]{z0}{z1}{
+    a, a, L;
+    b, b, L;
+  }
+
+  \liTuringKante[above,loop above]{z0}{z0}{
+    LEER, LEER, N;
+  }
+
+  \liTuringKante[above]{z1}{z2}{
+    LEER, |, R;
+  }
+
+  \liTuringKante[above]{z2}{z3}{
+    a, |, L;
+  }
+
+  \liTuringKante[above]{z2}{z4}{
+    b, |, L;
+  }
+
+  \liTuringKante[above,loop above]{z3}{z3}{
+    b, b, L;
+    a, a, L;
+    |, |, L;
+  }
+
+  \liTuringKante[above]{z3}{z5}{
+    LEER, a, R;
+  }
+
+  \liTuringKante[above]{z4}{z5}{
+    LEER, b, R;
+  }
+
+  \liTuringKante[above,loop above]{z4}{z4}{
+    |, |, L;
+    a, a, L;
+    b, b, L;
+  }
+
+  \liTuringKante[above]{z5}{z6}{
+    |, |, R;
+  }
+
+  \liTuringKante[above,loop above]{z5}{z5}{
+    a, a, R;
+    b, b, R;
+  }
+
+  \liTuringKante[above,loop above]{z6}{z6}{
+    |, |, R;
+  }
+
+  \liTuringKante[above,bend left]{z6}{z2}{
+    a, a, N;
+    b, b, N;
+  }
+
+  \liTuringKante[above]{z6}{z7}{
+    LEER, LEER, L;
+  }
+
+  \liTuringKante[above,loop above]{z7}{z7}{
+    |, LEER, L;
+  }
+
+  \liTuringKante[above]{z7}{z8}{
+    b, b, N;
+    a, a, N;
+  }
+\end{tikzpicture}
+\end{center}
 \liFlaci{Af75rdjbc}
 \end{liAntwort}
-
 \end{document}

@@ -1,7 +1,11 @@
 return {
   -- http://lua-users.org/wiki/StringTrim
   trim = function (input)
-      return (input:gsub("^%s*(.-)%s*$", "%1"))
+    print(input)
+    if input == nil then
+      return ''
+    end
+    return (input:gsub("^%s*(.-)%s*$", "%1"))
   end,
 
   -- http://lua-users.org/wiki/SplitJoin

@@ -111,6 +111,37 @@ function formatiereKellerÜbergang(trans, states) {
     var übergängeFormatiert = übergänge.join(';\n') + ';';
     return "  \\liKellerKante" + formatiereOptionen(optionen) + "{" + source + "}{" + target + "}{\n" + übergängeFormatiert + "\n  }\n";
 }
+function formatiereTuringZeichen(zeichen) {
+    if (zeichen === '☐')
+        return 'LEER';
+    return zeichen;
+}
+function formatiereTuringÜbergang(trans, states) {
+    var e_2, _a;
+    var source = states[trans.Source];
+    var target = states[trans.Target];
+    var übergänge = [];
+    try {
+        for (var _b = __values(trans.Labels), _c = _b.next(); !_c.done; _c = _b.next()) {
+            var label = _c.value;
+            var übergang = [];
+            übergang.push(formatiereTuringZeichen(label[0]));
+            übergang.push(formatiereTuringZeichen(label[1]));
+            übergang.push(formatiereTuringZeichen(label[2]));
+            übergänge.push('    ' + übergang.join(', '));
+        }
+    }
+    catch (e_2_1) { e_2 = { error: e_2_1 }; }
+    finally {
+        try {
+            if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+        }
+        finally { if (e_2) throw e_2.error; }
+    }
+    var optionen = bestimmeÜbergangsOptionen(trans, 'above');
+    var übergängeFormatiert = übergänge.join(';\n') + ';';
+    return "  \\liTuringKante" + formatiereOptionen(optionen) + "{" + source + "}{" + target + "}{\n" + übergängeFormatiert + "\n  }\n";
+}
 function formatiereFlaciLink(def) {
     return "\\liFlaci{A" + def.GUID + "}";
 }
@@ -123,11 +154,17 @@ function formatiereTexEnv(name, inhalt, optionen) {
     return '\\begin{' + name + '}' + opt + '\n' + inhalt + '\n\\end{' + name + '}';
 }
 function formatiereAutomat(def) {
-    var e_2, _a, e_3, _b, e_4, _c;
+    var e_3, _a, e_4, _b, e_5, _c;
     var statesRendered = [];
-    var istKeller = false;
+    var automatenTyp;
     if (def.type === 'NKA' || def.type === 'DKA') {
-        istKeller = true;
+        automatenTyp = 'keller';
+    }
+    else if (def.type === 'TM') {
+        automatenTyp = 'turing';
+    }
+    else {
+        automatenTyp = 'endlicher';
     }
     var states = def.automaton.States;
     var stateNames = {};
@@ -138,47 +175,61 @@ function formatiereAutomat(def) {
             statesRendered.push(formatiereZustand(state));
         }
     }
-    catch (e_2_1) { e_2 = { error: e_2_1 }; }
+    catch (e_3_1) { e_3 = { error: e_3_1 }; }
     finally {
         try {
             if (states_1_1 && !states_1_1.done && (_a = states_1.return)) _a.call(states_1);
         }
-        finally { if (e_2) throw e_2.error; }
+        finally { if (e_3) throw e_3.error; }
     }
     var transitionsRendered = [];
     try {
         for (var states_2 = __values(states), states_2_1 = states_2.next(); !states_2_1.done; states_2_1 = states_2.next()) {
             var state = states_2_1.value;
             try {
-                for (var _d = (e_4 = void 0, __values(state.Transitions)), _e = _d.next(); !_e.done; _e = _d.next()) {
+                for (var _d = (e_5 = void 0, __values(state.Transitions)), _e = _d.next(); !_e.done; _e = _d.next()) {
                     var transition = _e.value;
-                    if (!istKeller) {
+                    if (automatenTyp === 'endlicher') {
                         transitionsRendered.push(formatiereÜbergang(transition, stateNames));
                     }
-                    else {
+                    else if (automatenTyp === 'keller') {
                         var trans = transition;
                         transitionsRendered.push(formatiereKellerÜbergang(trans, stateNames));
                     }
+                    else {
+                        var trans = transition;
+                        transitionsRendered.push(formatiereTuringÜbergang(trans, stateNames));
+                    }
                 }
             }
-            catch (e_4_1) { e_4 = { error: e_4_1 }; }
+            catch (e_5_1) { e_5 = { error: e_5_1 }; }
             finally {
                 try {
                     if (_e && !_e.done && (_c = _d.return)) _c.call(_d);
                 }
-                finally { if (e_4) throw e_4.error; }
+                finally { if (e_5) throw e_5.error; }
             }
         }
     }
-    catch (e_3_1) { e_3 = { error: e_3_1 }; }
+    catch (e_4_1) { e_4 = { error: e_4_1 }; }
     finally {
         try {
             if (states_2_1 && !states_2_1.done && (_b = states_2.return)) _b.call(states_2);
         }
-        finally { if (e_3) throw e_3.error; }
+        finally { if (e_4) throw e_4.error; }
+    }
+    var envOption;
+    if (automatenTyp === 'endlicher') {
+        envOption = 'li automat';
+    }
+    else if (automatenTyp === 'keller') {
+        envOption = 'li kellerautomat';
+    }
+    else {
+        envOption = 'li turingmaschine';
     }
     var inhalt = statesRendered.join('\n') + '\n\n' + transitionsRendered.join('\n').replace(/\n$/, '');
-    var tikzPicture = formatiereTexEnv('center', formatiereTexEnv('tikzpicture', inhalt, istKeller ? 'li kellerautomat' : 'li automat'));
+    var tikzPicture = formatiereTexEnv('center', formatiereTexEnv('tikzpicture', inhalt, envOption));
     var liAntwort = tikzPicture + '\n' + formatiereFlaciLink(def);
     return formatiereTexEnv('liAntwort', liAntwort);
 }

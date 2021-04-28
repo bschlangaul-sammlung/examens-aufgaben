@@ -350,7 +350,7 @@
 %    \begin{macrocode}
 \ExplSyntaxOn
 \def\liKellerUebergang#1{
-  \directlua{automaten.gib_keller_uebergaenge('#1')}
+  \directlua{automaten.drucke_keller_uebergaenge('#1')}
 }
 \ExplSyntaxOff
 %    \end{macrocode}
@@ -424,7 +424,6 @@
 %    \begin{macrocode}
 \ExplSyntaxOn
 \NewDocumentCommand {\liTuringMaschine} { O{TM} m } {
-
   \tl_set:Nn \l_zustaende_tl {Z}
   \tl_set:Nn \l_alphabet_tl {\Sigma}
   \tl_set:Nn \l_bandalphabet_tl {\Gamma}
@@ -466,11 +465,34 @@
 %    \begin{macrocode}
 \ExplSyntaxOn
 \def\liTuringUebergang#1{
-  $\directlua{automaten.gib_turing_uebergang('\luaescapestring{\noexpand{#1}}')}$
+  $\directlua{automaten.drucke_turing_uebergaenge('#1')}$
 }
 \ExplSyntaxOff
 %    \end{macrocode}
 % \end{macro}
+
+% \begin{macro}{\liTuringKante}
+% \cmd{\liTuringKante}\oarg{tikz-optionen}\marg{zustand-oder-lese}\marg{schreibe}\marg{richtung}
+% \liLet{t}{liTuringKante}
+%    \begin{macrocode}
+\NewDocumentCommand{\liTuringKante} { O{above} m m m  } {
+  \path (#2) edge[#1] node{\liTuringUebergang{#4}} (#3);
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\tikzset{
+  li turingmaschine/.style={
+    li automat,
+    every edge/.append style={
+      every node/.style={
+        li keller knoten
+      }
+    }
+  }
+}
+%    \end{macrocode}
 
 %    \begin{macrocode}
 
