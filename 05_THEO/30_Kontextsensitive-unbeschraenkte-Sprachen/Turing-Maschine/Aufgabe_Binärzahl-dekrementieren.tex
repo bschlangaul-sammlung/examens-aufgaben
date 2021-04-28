@@ -1,0 +1,81 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,automaten}
+\begin{document}
+\liAufgabenTitel{Binärzahl dekrementieren}
+\section{Binärzahl dekrementieren
+\index{Turing-Maschine}
+\footcite[Aufgabe 3]{theo:ab:3}}
+
+Sei \liAlphabet{0, 1} und $\Gamma = \{ 0, 1, \liTuringLeerzeichen \}$.
+Konstruiere eine Turingmaschine $M$, die eine in Binärform gegebene,
+natürliche Zahl $(\neq 0)$ um $1$ dekrementiert (und wieder in Binärform
+ausgibt). Der Schreib-/Lesekopf steht zu Beginn der Berechnung auf dem
+ersten Leerzeichen links von der Eingabe und soll auch am Ende wieder
+dort stehen. Beachte, dass führende Nullen in der Eingabe/Ausgabe nicht
+vorkommen dürfen.
+
+\begin{liAntwort}
+Die Maschine geht zunächst ans rechte Ende des Wortes, dann invertiert
+sie alle 0 Bits, bis sie auf eine 1 trifft. Diese wird durch 0 ersetzt.
+Damit ist der Dekrementierungsvorgang beendet. Nun sucht Sie das linke
+Ende des Wortes und löscht eventuell entstandene führende Nullen. Trifft
+Sie dabei auf das Leerzeichen, so war die Ausgabe die Zahl 0 und diese
+wird wieder aufs Band geschrieben. Insgesamt ergibt sich M = ({q 0 , q 1
+, q 2 , q 3 , q 4 , q 5 }, Σ, Γ, δ, q 0 , 2, {q 5 }) mit unten
+angegebener Übergangsfunktion:
+
+\begin{center}
+\begin{tikzpicture}[li turingmaschine]
+  \node[state,initial] (z0) at (2.86cm,-2.29cm) {$z_0$};
+  \node[state] (z1) at (6.43cm,-2.29cm) {$z_1$};
+  \node[state] (z2) at (9.57cm,-2.29cm) {$z_2$};
+  \node[state] (z3) at (2.57cm,-4.86cm) {$z_3$};
+  \node[state] (z4) at (6.14cm,-6.29cm) {$z_4$};
+  \node[state,accepting] (z5) at (9.57cm,-6.29cm) {$z_5$};
+
+  \liTuringKante[above]{z0}{z1}{
+    1, 1, R;
+    0, 0, R;
+    LEER, LEER, R;
+  }
+
+  \liTuringKante[above]{z1}{z2}{
+    LEER, LEER, L;
+  }
+
+  \liTuringKante[above,loop above]{z1}{z1}{
+    1, 1, R;
+    0, 0, R;
+  }
+
+  \liTuringKante[above,loop above]{z2}{z2}{
+    0, 1, L;
+  }
+
+  \liTuringKante[above]{z2}{z3}{
+    1, 0, L;
+  }
+
+  \liTuringKante[above,loop above]{z3}{z3}{
+    1, 1, L;
+    0, 0, R;
+  }
+
+  \liTuringKante[above]{z3}{z4}{
+    LEER, LEER, R;
+  }
+
+  \liTuringKante[above,loop above]{z4}{z4}{
+    0, LEER, R;
+  }
+
+  \liTuringKante[above]{z4}{z5}{
+    1, 1, L;
+    LEER, 0, R;
+  }
+\end{tikzpicture}
+\end{center}
+\liFlaci{Ahifz611c}
+\end{liAntwort}
+
+\end{document}
