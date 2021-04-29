@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe}
+\liLadePakete{mathe,syntax}
 
 \begin{document}
 \liAufgabenTitel{Turing-Maschine Multiplikation}
@@ -26,6 +26,8 @@ Turingmaschine ab und beschreibe diese. Tipp: Die schriftliche
 Multiplikation mit Binärzahlen funktioniert genauso wie die schriftliche
 Multiplikation mit Dezimalzahlen!
 
+\begin{liAntwort}
+
 $13 \cdot 3 = 1101 \cdot 11 = 39 = 100111$:
 
 \begin{center}
@@ -36,6 +38,7 @@ $13 \cdot 3 = 1101 \cdot 11 = 39 = 100111$:
 1 & 0 & 0 & 1 & 1 & 1
 \end{tabular}
 \end{center}
+\end{liAntwort}
 
 %%
 % (b)
@@ -45,11 +48,125 @@ $13 \cdot 3 = 1101 \cdot 11 = 39 = 100111$:
 sollen für die Berechnung herangezogen werden. Auf dem dritten Band soll
 das Ergebnis stehen. (analog zur schriftlichen Multiplikation)
 
+\begin{liAntwort}
+\begin{tabular}{ll}
+$z_0$ & Versetzung der Zeiger von Band 2 und 3 im Vergleich zu 1. \\
+$z_1$ & kopiert das Wort von Band 1 auf Band 2 (mit Versetzung). \\
+$z_2$ & Binäre Addition ohne Übertrag. \\
+$z_3$ & Binäre Addition mit Übertrag. \\
+$z_4$ & Übertrag am Ende der Addition falls sich das Wort vergrößert \\
+$z_f$ & fertig \\
+\end{tabular}
+
+\begin{minted}{md}
+name: Multiplikation mit 3 (3-Band)
+init: z0
+accept: zf
+
+z0, 0,_,_
+z1, 0,_,_, -,>,>
+z0, 1,_,_
+z1, 1,_,_, -,>,>
+
+z1, 0,_,_
+z1, 0,0,_, >,>,>
+z1, 1,_,_
+z1, 1,1,_, >,>,>
+
+z1, _,_,_
+z2, _,_,_, -,<,<
+
+z2, _,0,_
+z2, _,0,0, <,<,<
+z2, _,1,_
+z2, _,1,1, <,<,<
+z2, 0,0,_
+z2, 0,0,0, <,<,<
+z2, 0,1,_
+z2, 0,1,1, <,<,<
+z2, 1,0,_
+z2, 1,0,1, <,<,<
+
+z2, 1,_,_
+zf, 1,_,1, -,-,-
+
+z2, 1,1,_
+z3, 1,1,0, <,<,<
+
+z3, 0,1,_
+z3, 0,1,0, <,<,<
+z3, 1,0,_
+z3, 1,0,0, <,<,<
+z3, 1,1,_
+z3, 1,1,1, <,<,<
+
+z3, 0,0,_
+z2, 0,0,1, <,<,<
+
+z3, 1,_,_
+z4, 1,_,0, <,<,<
+
+z4, _,_,_
+zf, _,_,1, -,-,-
+\end{minted}
+\liFussnoteUrl{http://turingmachinesimulator.com/shared/tgaybidewo}
+\end{liAntwort}
+
 %%
 % (c)
 %%
 
 \item Erstelle dazu eine TM mit 2 Bändern. Auf dem ersten Band steht die
 Eingabe und auf dem zweiten Band soll das Ergebnis stehen.
+
+\begin{liAntwort}
+\begin{tabular}{ll}
+$z_0$ & Die Binärzahl überlaufen \\
+$z_1$ & Zur nächsten Ziffer muss 0 addiert werden. \\
+$z_2$ & Zur nächsten Ziffer muss 1 addiert werden. \\
+$z_3$ & Zur nächsten Ziffer muss 2 addiert werden. \\
+$z_f$ & fertig \\
+\end{tabular}
+
+\begin{minted}{md}
+name: Multiplikation mit 3 (2-Band)
+init: z0
+accept: zf
+
+z0, 0,_
+z0, 0,_, >,-
+z0, 1,_
+z0, 1,_, >,-
+
+z0, _,_
+z1, _,_, <,-
+
+z1, 0,_
+z1, 0,0, <,<
+
+z1, 1,_
+z2, 1,1, <,<
+
+z2, 1,_
+z3, 1,0, <,<
+
+z3, 0,_
+z2, 0,0, <,<
+z3, _,_
+z2, _,0, -,<
+
+z2, 0,_
+z1, 0,1, <,<
+z2, _,_
+z1, _,1, -,<
+
+z3, 1,_
+z3, 1,1, <,<
+
+z1, _,_
+zf, _,_, -,-
+\end{minted}
+\liFussnoteUrl{http://turingmachinesimulator.com/shared/caoxpsgrgl}
+\end{liAntwort}
 \end{enumerate}
 \end{document}
