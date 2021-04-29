@@ -1,0 +1,64 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,mathe}
+\begin{document}
+\liAufgabenTitel{Vorlesungsaufgaben kontextsensitive Grammatiken}
+\section{Übung kontextsensitive Grammatiken
+\index{Kontextsensitive Sprache}
+\footcite\footcite[Seite 8]{theo:fs:3}}
+
+% Info_2021-04-23-2021-04-23_09.35.52.mp4 37min
+
+Gegen sei folgende Grammatik:
+
+\liGrammatik{} mit
+$V = \{S, B, C\}$,
+\liAlphabet{a, b, c},
+$S=S$ und
+
+\begin{liProduktionsRegeln}
+S -> aSBC | aBC,
+CB -> BC,
+aB -> ab,
+bB -> bb,
+bC -> bc,
+cC -> cc,
+\end{liProduktionsRegeln}
+
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Geben Sie die Sprache an, die die folgende Grammatik erzeugt:
+
+\begin{liAntwort}
+\liAusdruck{a^n b^b c^n}{n \in \mathbb{N}}
+\end{liAntwort}
+
+%%
+%
+%%
+
+\item Gib Sie eine Ableitung mit der folgenden Grammatik für das Wort
+aaabbbccc an.
+
+% Info_2021-04-23-2021-04-23_09.35.52.mp4 54min
+
+\begin{liAntwort}
+\liAbleitung{aSBC ->
+aaSBCBC ->
+aaaBCBCBC ->
+aaaBBCCBC ->
+aaaBBCBCC ->
+aaaBBBCCC ->
+aaabBBCCC ->
+aaabbBCCC ->
+aaabbbCCC ->
+aaabbbcCC ->
+aaabbbccC ->
+aaabbbccc}
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}
