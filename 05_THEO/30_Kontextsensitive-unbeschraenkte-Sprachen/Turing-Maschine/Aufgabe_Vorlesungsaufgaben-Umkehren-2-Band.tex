@@ -1,0 +1,46 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,mathe,syntax}
+\begin{document}
+\def\z#1{\,z_#1\,}
+\def\p{&\rightarrow}
+\def\l{\,\liTuringLeerzeichen\,}
+
+\liAufgabenTitel{Vorlesungsaufgaben ab-Wörter umkehren 2-Band-Turingmaschine}
+\section{Wörter umkehren auf der 2-Band-Turingmaschine
+\index{Turing-Maschine}
+\footcite[Seite 27]{theo:fs:3}}
+
+% Info_2021-04-23-2021-04-23_13.17.40.mp4 3h20min
+
+\begin{enumerate}
+\item Geben Sie eine 2-Band-Turingmaschine an, die die Eingabe über dem
+Alphabet $\Sigma = \{ a, b \}$ umkehrt.
+
+Beispiele:
+
+\begin{itemize}
+\item $abb \rightarrow bba$
+\item $aaaaba \rightarrow abaaaa$
+\item $aaa \rightarrow aaa$
+\end{itemize}
+
+Tipp:
+Das Ergebniswort muss nicht auf dem 1. Band stehen.
+\end{enumerate}
+
+\begin{liAntwort}
+\begin{minted}{md}
+name: ab-Wörter umkehren 2-Band-Turingmaschine
+init: z0
+accept: z0
+
+z0,a,_
+z0,_,a,>,<
+
+z0,b,_
+z0,_,b,>,<
+\end{minted}
+\liFussnoteUrl{http://turingmachinesimulator.com/shared/iqwxphngwc}
+\end{liAntwort}
+
+\end{document}
