@@ -15,14 +15,45 @@ dort stehen. Beachte, dass führende Nullen in der Eingabe/Ausgabe nicht
 vorkommen dürfen.
 
 \begin{liAntwort}
+\begin{center}
+\begin{tabular}{r|l}
+\textbf{dezimal} & \textbf{binär} \\\hline
+0 & 0 \\
+1 & 1 \\
+2 & 10 \\
+3 & 11 \\
+4 & 100 \\
+5 & 101 \\
+6 & 110 \\
+7 & 111 \\
+8 & 1000 \\
+9 & 1001 \\
+10 & 1010 \\
+11 & 1011 \\
+12 & 1100 \\
+13 & 1101 \\
+14 & 1110 \\
+15 & 1111 \\
+16 & 10000 \\
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\noindent
 Die Maschine geht zunächst ans rechte Ende des Wortes, dann invertiert
-sie alle 0 Bits, bis sie auf eine 1 trifft. Diese wird durch 0 ersetzt.
-Damit ist der Dekrementierungsvorgang beendet. Nun sucht Sie das linke
-Ende des Wortes und löscht eventuell entstandene führende Nullen. Trifft
-Sie dabei auf das Leerzeichen, so war die Ausgabe die Zahl 0 und diese
-wird wieder aufs Band geschrieben. Insgesamt ergibt sich M = ({q 0 , q 1
-, q 2 , q 3 , q 4 , q 5 }, Σ, Γ, δ, q 0 , 2, {q 5 }) mit unten
-angegebener Übergangsfunktion:
+sie alle $0$ Bits, bis sie auf eine $1$ trifft. Diese wird durch $0$
+ersetzt. Damit ist der Dekrementierungsvorgang beendet. Nun sucht Sie
+das linke Ende des Wortes und löscht eventuell entstandene führende
+Nullen. Trifft Sie dabei auf das Leerzeichen, so war die Ausgabe die
+Zahl $0$ und diese wird wieder aufs Band geschrieben. Insgesamt ergibt
+sich
+
+\begin{center}
+\liTuringMaschine{zustaende={z_0, z_1, z_2, z_3, z_4, z_5}, start={z_0}, ende={z_5}}
+\end{center}
+
+mit unten angegebener Übergangsfunktion:
 
 \begin{center}
 \begin{tikzpicture}[li turingmaschine]
