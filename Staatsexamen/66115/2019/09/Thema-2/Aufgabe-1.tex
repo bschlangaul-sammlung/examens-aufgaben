@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe}
+\liLadePakete{mathe,automaten,formale-sprachen}
 \begin{document}
 \liAufgabenTitel{Multiplikation mit 3}
 \section{Aufgabe 1
@@ -26,5 +26,106 @@ Maschine.
 
 \item Geben Sie dann das kommentierte Programm der Turing-Maschine an
 und erklären Sie die Bedeutung der verwendeten Zustände.
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[li turingmaschine]
+  \node[state,initial] (RECHT) at (2.14cm,-1.86cm) {RECHT};
+  \node[state] (Ü0) at (5.43cm,-1.86cm) {Ü0};
+  \node[state] (2A+2) at (9.29cm,-7.43cm) {2A+2};
+  \node[state] (2A+1) at (5.57cm,-7.43cm) {2A+1};
+  \node[state] (2A+0) at (2.29cm,-7.29cm) {2A+0};
+  \node[state] (1A+0) at (3.43cm,-4.86cm) {1A+0};
+  \node[state] (1A+1) at (7.29cm,-4.86cm) {1A+1};
+  \node[state] (2A+3) at (12.43cm,-7.57cm) {2A+3};
+  \node[state] (1A+2) at (11cm,-4.71cm) {1A+2};
+  \node[state] (Ü1) at (9.29cm,-2cm) {Ü1};
+  \node[state,accepting] (FINE) at (4.43cm,-9.14cm) {FINE};
+
+  \liTuringKante[above,loop above]{RECHT}{RECHT}{
+    0, 0, R;
+    1, 1, R;
+  }
+
+  \liTuringKante[above]{RECHT}{Ü0}{
+    LEER, LEER, N;
+  }
+
+  \liTuringKante[above]{Ü0}{1A+0}{
+    0, 0, L;
+    LEER, LEER, L;
+  }
+
+  \liTuringKante[above]{Ü0}{1A+1}{
+    1, 1, L;
+  }
+
+  \liTuringKante[above]{2A+2}{Ü1}{
+    0, 0, L;
+    1, 0, L;
+    LEER, 0, L;
+  }
+
+  \liTuringKante[above,bend left]{2A+1}{Ü0}{
+    0, 1, L;
+    1, 1, L;
+    LEER, 1, L;
+  }
+
+  \liTuringKante[above,bend left]{2A+0}{Ü0}{
+    0, 0, L;
+    1, 0, L;
+  }
+
+  \liTuringKante[above]{2A+0}{FINE}{
+    LEER, LEER, N;
+  }
+
+  \liTuringKante[above]{1A+0}{2A+0}{
+    0, 0, R;
+    LEER, LEER, R;
+  }
+
+  \liTuringKante[above]{1A+0}{2A+1}{
+    1, 1, R;
+  }
+
+  \liTuringKante[above]{1A+1}{2A+2}{
+    1, 1, R;
+  }
+
+  \liTuringKante[above]{1A+1}{2A+1}{
+    LEER, LEER, R;
+    0, 0, R;
+  }
+
+  \liTuringKante[above,bend left]{2A+3}{Ü1}{
+    0, 1, L;
+    1, 1, L;
+    LEER, 1, L;
+  }
+
+  \liTuringKante[above]{1A+2}{2A+3}{
+    1, 1, R;
+  }
+
+  \liTuringKante[above]{1A+2}{2A+2}{
+    0, 0, R;
+    LEER, LEER, R;
+  }
+
+  \liTuringKante[above]{Ü1}{1A+2}{
+    1, 1, L;
+  }
+
+  \liTuringKante[above]{Ü1}{1A+1}{
+    0, 0, L;
+    LEER, LEER, L;
+  }
+\end{tikzpicture}
+\end{center}
+\liFlaci{Ahjkw50kg}
+\end{liAntwort}
+
 \end{enumerate}
 \end{document}
