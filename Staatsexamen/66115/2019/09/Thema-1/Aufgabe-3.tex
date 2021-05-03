@@ -1,0 +1,57 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen}
+\begin{document}
+\liAufgabenTitel{}
+\section{Aufgabe 3
+\index{Kontextfreie Sprache}
+\footcite{66115:2019:09}}
+
+Gegeben sei die kontextfreie Grammatik \liGrammatik{} mit Sprache $L(G)$,
+wobei $V = \liMenge{S,T,U} $und \liAlphabet{a,b}. P bestehe aus den folgenden
+Produktionen:
+
+\begin{liProduktionsRegeln}
+S -> T U U T,
+T -> a T | EPSILON,
+U -> b U b | a,
+\end{liProduktionsRegeln}
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Geben Sie fünf verschiedene Wörter $w \in \Sigma^*$ mit $w \in
+L(G)$ an.
+
+\begin{liAntwort}
+\begin{itemize}
+\item aa
+\item aaaa
+\item ababbaba
+\item aababbabaa
+\item abbabbbbabba
+\end{itemize}
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item Geben Sie eine explizite Beschreibung der Sprache $L(G)$ an.
+
+\begin{liAntwort}
+
+\liAusdruck{a^* b^n a b^{2n} a b^n a^*}{n \in \mathbb{N}_0}
+
+\end{liAntwort}
+
+%%
+% (c)
+%%
+
+\item Bringen Sie $G$ in Chomsky-Normalform und erklären Sie Ihre
+Vorgehensweise.
+
+\end{enumerate}
+\end{document}

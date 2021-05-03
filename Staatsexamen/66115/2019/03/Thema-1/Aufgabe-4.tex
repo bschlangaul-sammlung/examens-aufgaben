@@ -2,6 +2,8 @@
 \liLadePakete{automaten,formale-sprachen}
 \begin{document}
 \let\l=\liTuringLeerzeichen
+\let\d=\liUeberfuehrungsFunktion
+
 \liAufgabenTitel{}
 \section{Aufgabe 4
 \index{Turing-Maschine}
@@ -9,12 +11,12 @@
 
 Wir betrachten die Turingmaschine \liTuringMaschine[M]{}. Hierbei ist
 die Zustandsmenge Q = {90, da; , 9, Qr} mit Startzustand go und
-akzeptierenden Zuständen F = {q;}. Das Eingabealphabet ist © = {a,b,|},
-das Bandalphabet ist T = ZU {U} mit Blank-Zeichen D für leeres Feld. Die
-Ubergangsfunktion 6: Q xT > Q xI x {L, N, R}, wobei der
-Schreib-Lese-Kopf mit L nach links, mit N nicht und mit R nach rechts
-bewegt wird, ist durch folgende Tabelle gegeben (bspw. ist ö(go,a) =
-(9,I,R)):
+akzeptierenden Zuständen F = {q;}. Das Eingabealphabet ist
+\liAlphabet{a, b, |} das Bandalphabet ist \liBandAlphabet{\l} mit
+Blank-Zeichen \l für leeres Feld. Die
+Übergangsfunktion \liTuringUeberfuehrung, wobei der Schreib-Lese-Kopf
+mit L nach links, mit N nicht und mit R nach rechts bewegt wird, ist
+durch folgende Tabelle gegeben (bspw. ist $\d{q0, a} = (q_a, \l, R)$):
 
 % a b | O
 

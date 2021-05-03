@@ -497,6 +497,14 @@
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\liTuringUeberfuehrung}
+%    \begin{macrocode}
+\def\liTuringUeberfuehrung{
+  $\delta : Z \times \Gamma \rightarrow Z \times \Gamma \times \{ L, R, N \}$
+}
+%    \end{macrocode}
+% \end{macro}
+
 %    \begin{macrocode}
 \tikzset{
   li turingmaschine/.style={
@@ -916,7 +924,7 @@ $\liMengeOhneMathe{#1}$%
 %
 % \liLet{e}{liEpsilon}
 %    \begin{macrocode}
-\def\liEpsilon{$\epsilon$}
+\def\liEpsilon{$\varepsilon$}
 %    \end{macrocode}
 % \end{macro}
 
@@ -939,9 +947,16 @@ $\liMengeOhneMathe{#1}$%
 
 % \begin{macro}{\liUeberfuehrungsFunktion}
 % |\liUeberfuehrungsFunktion{z0, a}|: |$\delta(z_0, a)$|
+% \liLet{d}{liUeberfuehrungsFunktion}
 %    \begin{macrocode}
 \def\liUeberfuehrungsFunktionOhneMathe#1{\delta(\erzeuge@tiefgestellt{#1})}
-\def\liUeberfuehrungsFunktion#1{$\liUeberfuehrungsFunktionOhneMathe{#1}$}
+\def\liUeberfuehrungsFunktion#1{
+\ifmmode
+  \liUeberfuehrungsFunktionOhneMathe{#1}
+\else
+  $\liUeberfuehrungsFunktionOhneMathe{#1}$
+\fi
+}
 %    \end{macrocode}
 % \end{macro}
 
@@ -949,6 +964,13 @@ $\liMengeOhneMathe{#1}$%
 % |\liAlphabet{a, b}| (|$\Sigma = \{ a, b \}$|): \liAlphabet{a, b}
 %    \begin{macrocode}
 \def\liAlphabet#1{$\Sigma = \{ #1 \}$}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liBandAlphabet}
+% |\liBandAlphabet{\liTuringLeerzeichen}|: \liBandAlphabet{\liTuringLeerzeichen}
+%    \begin{macrocode}
+\def\liBandAlphabet#1{$\Gamma = \Sigma \cup \{ #1 \}$}
 %    \end{macrocode}
 % \end{macro}
 
