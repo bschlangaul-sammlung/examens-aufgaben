@@ -1,6 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{formale-sprachen}
+\liLadePakete{formale-sprachen,chomsky-normalform}
 \begin{document}
+\let\schrittE=\liChomskyUeberErklaerung
+
 \liAufgabenTitel{}
 \section{Aufgabe 3
 \index{Kontextfreie Sprache}
@@ -15,6 +17,7 @@ S -> T U U T,
 T -> a T | EPSILON,
 U -> b U b | a,
 \end{liProduktionsRegeln}
+\liFussnoteUrl{https://flaci.com/Gjpsin26a}
 \begin{enumerate}
 
 %%
@@ -52,6 +55,57 @@ L(G)$ an.
 
 \item Bringen Sie $G$ in Chomsky-Normalform und erklären Sie Ihre
 Vorgehensweise.
+
+\begin{liAntwort}
+\begin{enumerate}
+\item \schrittE{1}
+
+\begin{liProduktionsRegeln}
+S -> T U U T | T U U | U U T | U U,
+T -> a T | a,
+U -> b U b | a,
+\end{liProduktionsRegeln}
+
+\item \schrittE{2}
+
+\liNichtsZuTun
+
+\item \schrittE{3}
+
+\begin{liProduktionsRegeln}
+S -> T U U T | T U U | U U T | U U,
+T -> A T | A,
+U -> B U B | A,
+A -> a,
+B -> b
+\end{liProduktionsRegeln}
+
+\item \schrittE{4}
+
+% S   -> T S.1 | U S.2 | T S.4 | U U
+% T   -> T1 T | a
+% U   -> T2 U.1 | a
+% T1  -> a
+% T2  -> b
+% S.1 -> U S.2
+% S.2 -> U T
+% S.4 -> U U
+% U.1 -> U T2
+
+\begin{liProduktionsRegeln}
+S -> T S_1 | T S_3 | U S_2 | U U, % S   -> T S.1 | U S.2 | T S.4 | U U
+S_1 -> U S_2, % S.1 -> U S.2
+S_2 -> U T, % S.2 -> U T
+S_3 -> U U, % S.4 -> U U
+T -> A T | a, % T   -> T1 T | a
+U -> B U_1 | a, % U   -> T2 U.1 | a
+U_1 -> U B, % U.1 -> U T2
+A -> a, % T1  -> a
+B -> b, % T2  -> b
+\end{liProduktionsRegeln}
+\end{enumerate}
+
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}
