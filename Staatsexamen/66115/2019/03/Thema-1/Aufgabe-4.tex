@@ -1,0 +1,138 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{automaten,formale-sprachen}
+\begin{document}
+\let\l=\liTuringLeerzeichen
+\liAufgabenTitel{}
+\section{Aufgabe 4
+\index{Turing-Maschine}
+\footcite{66115:2019:03}}
+
+Wir betrachten die Turingmaschine \liTuringMaschine[M]{}. Hierbei ist
+die Zustandsmenge Q = {90, da; , 9, Qr} mit Startzustand go und
+akzeptierenden Zuständen F = {q;}. Das Eingabealphabet ist © = {a,b,|},
+das Bandalphabet ist T = ZU {U} mit Blank-Zeichen D für leeres Feld. Die
+Ubergangsfunktion 6: Q xT > Q xI x {L, N, R}, wobei der
+Schreib-Lese-Kopf mit L nach links, mit N nicht und mit R nach rechts
+bewegt wird, ist durch folgende Tabelle gegeben (bspw. ist ö(go,a) =
+(9,I,R)):
+
+% a b | O
+
+% do (da, I, R) (q, O, R) (as, |, N) (qf, O, N)
+% da (da, a, R) (da, b, R) (Biss |, R) (az, a, L)
+% db (9b a, R) (4, b, R) (9; |, R) (az, b, L)
+
+% qL (91,0, L) (gr, b, L) (qr, |, L) (go, O, R)
+
+\begin{center}
+\begin{tikzpicture}[li turingmaschine]
+  \node[state,initial] (q0) at (2.71cm,-4.71cm) {$q_0$};
+  \node[state] (qa) at (5.86cm,-3.14cm) {$q_a$};
+  \node[state] (qb) at (6cm,-6.86cm) {$q_b$};
+  \node[state] (qL) at (8.86cm,-4.71cm) {$q_L$};
+  \node[state,accepting] (qf) at (2.71cm,-7cm) {$q_f$};
+
+  \liTuringKante[above left]{q0}{qa}{
+    a, LEER, R;
+  }
+
+  \liTuringKante[left,pos=0.8]{q0}{qb}{
+    b, LEER, R;
+  }
+
+  \liTuringKante[left]{q0}{qf}{
+    |, |, N;
+    LEER, LEER, N;
+  }
+
+  \liTuringKante[above,loop above]{qa}{qa}{
+    a, a, R;
+    b, b, R;
+    |, |, R;
+  }
+
+  \liTuringKante[right,pos=0.1]{qa}{qL}{
+    LEER, a, L;
+  }
+
+  \liTuringKante[above,loop below]{qb}{qb}{
+    a, a, R;
+    b, b, R;
+    |, |, R;
+  }
+
+  \liTuringKante[below right]{qb}{qL}{
+    LEER, b, L;
+  }
+
+  \liTuringKante[above,loop above]{qL}{qL}{
+    a, a, L;
+    b, b, L;
+    |, |, L;
+  }
+
+  \liTuringKante[above]{qL}{q0}{
+    LEER, LEER, R;
+  }
+\end{tikzpicture}
+\end{center}
+\liFlaci{Aj54q4rd9}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Die Notation $(v,q,aw)$ beschreibt eine Konfiguration der
+Turingmaschine: der interne Zustand ist $q$, der Schreib-Lesekopf steht
+auf einem Feld mit $a \in \Gamma$, rechts vom Schreib-Lesekopf steht $w
+\in \Gamma^*$, links vom Schreib-Lesekopf steht $v \in \Gamma^*$.
+
+Vervollständigen Sie die Folge von Konfigurationen, die die
+Turingmaschine bei Eingabe $ab|$ bis zum Erreichen des Zustands $q_f$
+durchläuft. Sie können auch Ihre eigene Notation zur Darstellung von
+Konfigurationen verwenden.
+
+\def\p{ $\vdash$ \\}
+
+\begin{liAntwort}
+$(\l, q_0, a b | )$ \p % 0
+% a entfernt
+$(\l, q_a, \l b | )$ \p % 1
+$(\l, q_a, b | )$ \p % 2
+$(b, q_a, |)$ \p % 3
+% a geschrieben
+$(b|, q_L, a)$ \p % 4
+$(b, q_L, | a)$ \p % 5
+$(\l, q_L, \l b | a)$ \p % 6
+$(\l, q_b, \l b | a)$ \p % 7
+% b entfernt
+$(\l, q_b, \l | a)$ \p % 8
+$(\l, q_b, | a)$ \p % 9
+$(|, q_b, a)$ \p % 10
+% b geschrieben
+$(|a, q_L, b)$ \p % 11
+$(|, q_L, a b)$ \p % 12
+$(\l, q_L, | a b)$ \p % 13
+$(\l, q_0, \l | a b)$ \p % 14
+$(\l, q_f, | a b)$ % 15
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item Sei $w \in \{ a, b \}^*$ beliebig. Mit welchem Bandinhalt
+terminiert die Turingmaschine bei Eingabe von $w|$? Geben Sie auch eine
+kurze Begründung an.
+
+\begin{liAntwort}
+Die Turingmaschine terminiert bei alle möglichen Wörtern $w \in \{ a, b
+\}^*$, auch bei dem leeren Wort vor $|$. Die Maschine verschiebt alle
+Vorkommen von $a$’s und $b$’s vor dem Trennzeichen $|$ nach rechts. Ist
+das Trennzeichen $|$ schließlich das erste Zeichen von links gesehen,
+dann terminiert die Maschine.
+\end{liAntwort}
+\end{enumerate}
+\end{document}
