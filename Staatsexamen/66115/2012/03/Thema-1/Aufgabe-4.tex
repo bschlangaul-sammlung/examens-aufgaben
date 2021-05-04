@@ -26,6 +26,13 @@ A -> a
 Geben Sie eine äquivalente Grammatik in Chomsky-Normalform an.
 
 \begin{liAntwort}
+Kann auch so geschrieben werden:
+\begin{liProduktionsRegeln}
+S -> A | B,
+A -> a A b | a,
+B -> A A | b B a,
+\end{liProduktionsRegeln}
+
 \begin{enumerate}
 \item \schrittE{1}
 
@@ -42,9 +49,9 @@ B -> A A | b B a,
 \item \schrittE{3}
 
 \begin{liProduktionsRegeln}
-S -> T_a C | T_a | A A | T_b B T_a,
-A -> T_a C | T_a,
-B -> AA | T_b B T_a,
+S -> T_a A T_b | a | A A | T_b B T_a,
+A -> T_a A T_b | a,
+B -> A A | T_b B T_a,
 T_a -> a,
 T_b -> b,
 \end{liProduktionsRegeln}

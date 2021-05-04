@@ -10,8 +10,8 @@
 Betrachten Sie die Sprache $L_1 = L_a \cup L_b$.
 
 \begin{itemize}
-\item[] \liAusdruck[L_a]{a^n b c^n}{n \in \mathbb{N}}
-\item[] \liAusdruck[L_b]{a b^m c^m}{m \in \mathbb{N}}
+\item \liAusdruck[L_a]{a^n b c^n}{n \in \mathbb{N}}
+\item \liAusdruck[L_b]{a b^m c^m}{m \in \mathbb{N}}
 \end{itemize}
 \begin{enumerate}
 
@@ -23,9 +23,8 @@ Betrachten Sie die Sprache $L_1 = L_a \cup L_b$.
 \begin{liAntwort}
 \begin{liProduktionsRegeln}
 S -> S_a | S_b,
-S_a -> a S_a c | a B_a c,
-B_a -> b,
-S_b -> a B_b,
+S_a -> a S_a c | b,
+S_b -> a | a B_b,
 B_b -> b B_b c | b c
 \end{liProduktionsRegeln}
 \end{liAntwort}
@@ -39,7 +38,7 @@ B_b -> b B_b c | b c
 \begin{liAntwort}
 Nein. Die Sprache ist nicht eindeutig. Für das Wort $abc$ gibt es
 zwei Ableitungen, nämlich
-\liAbleitung{S -> S_a -> a B_a c -> a b c}
+\liAbleitung{S -> S_a -> a S_a c -> a b c}
 und
 \liAbleitung{S -> S_b -> a B_b -> a b c}.
 \end{liAntwort}
@@ -48,8 +47,92 @@ und
 % c)
 %%
 
+% 1h00min
+
 \item Betrachten Sie die Sprache \liAusdruck[L_2]{a^ {2^n}}{n \in
 \mathbb{N}}. Zeigen Sie, dass $L_2$ nicht kontextfrei ist.
+
+\begin{liAntwort}
+Annahme: $L_2$ ist kontextfrei
+
+$\rightarrow$ Pumping-Lemma gilt für $L_2$
+
+$\rightarrow$ $j \in \mathbb{N}$ als Pumping-Zahl
+
+$\omega \in L_2$: $|\omega| \geq j$
+
+Konsequenz: $\omega = u v w x y$
+
+\begin{itemize}
+\item $|vx| \geq 1$
+\item $|vwx| \leq j$
+\item $u v^i w x^i y \in L_2$ für alle $i \in \mathbb{N}_0$
+\end{itemize}
+
+Wir wählen: $\omega = a^{2^i}$: $|\omega| \geq j$
+
+\begin{description}
+\item[p] $a \dots a$
+\item[r] $a \dots a$
+\item[s] $a \dots a$
+\item[t] $a \dots a$
+\item[q] $a \dots a$
+\end{description}
+
+$q + r + s + t + q = 2^j$
+
+$\Rightarrow$ $r + t \geq 1$
+
+$r + s + t \leq j$
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\liPseudoUeberschrift{1. Fall}
+
+$r + t = 2^{j-1}$
+
+$2^{j-1} + 2^{j-1} = 2 \cdot 2^{j-1} =  2^1 \cdot 2^{j-1} =  2^{1+j-1} = 2^j$
+
+$\omega' = u v^2 w x^2 y$
+
+$p + 2 \cdot r + s + 2 \cdot t + q$
+
+$p + s + q + 2 \cdot (r + t)$
+
+$2^{j-1} + 2 \cdot 2^{j-1} = 3 \cdot 2^{j-1} = 2^{j-1} + 2^i \leq 2^{j+1}$
+
+keine Zweierpotenz
+
+$\Rightarrow$ $\omega \notin L_2$
+
+$\Rightarrow$ Widerspruch zur Annahme
+
+$\Rightarrow$ $L_2$ nicht kontextfrei
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\liPseudoUeberschrift{2. Fall}
+
+$r + t \neq 2^{j-1}$
+
+$\omega' = u v^0 w x^0 y$
+
+$\Rightarrow$ $p + s + q = 2^j - (r + t)$
+
+$(r + t) \neq 2^{j-i}$
+
+ist keine Zweierpotenz
+
+$\Rightarrow$ $\omega \notin L_2$
+
+$\Rightarrow$ $L_2$ nicht kontextfrei
+
+\end{liAntwort}
+
 \end{enumerate}
 
 \end{document}
