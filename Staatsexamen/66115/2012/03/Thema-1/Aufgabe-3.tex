@@ -1,10 +1,12 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{formale-sprachen}
+\liLadePakete{formale-sprachen,automaten}
 \begin{document}
 \liAufgabenTitel{Kontextfrei aber nicht regulär}
 \section{Aufgabe 3
 \index{Kontextfreie Sprache}
 \footcite{66115:2012:03}}
+
+% Info_2021-04-23-2021-04-23_13.17.40.mp4 3min
 
 Beweisen Sie, dass folgende Sprache kontextfrei, aber nicht regulär ist.
 
@@ -13,12 +15,102 @@ Beweisen Sie, dass folgende Sprache kontextfrei, aber nicht regulär ist.
 \end{center}
 
 \begin{liAntwort}
-\liGrammatik{variablen={S, A, B}, alphabet={a, b}}
+\liPseudoUeberschrift{Nachweis Kontextfrei über Grammatik}
+
+\noindent
+\liGrammatik{variablen={S}, alphabet={a, b}}
 
 \begin{liProduktionsRegeln}
-S -> a A b | a B b | a b,
-B -> a B | a
+S -> a S b | a S | a b
 \end{liProduktionsRegeln}
+
+\begin{itemize}
+\item Regel 1: $a S b$
+\item Regel 2: $a S$
+\item Regel 3: $a b$
+\end{itemize}
+
+\begin{description}
+\item[$ab$:]
+$S \xrightarrow{3} ab$
+
+\item[$a^n b$:]
+$S \xrightarrow[n-1]{2} a^{n-1} S \xrightarrow{3} a^{n-1}ab$
+
+\item[$a^n b^m$:]
+$S \xrightarrow[m-1]{1}
+a^{m-1} S b^{m-1} \xrightarrow[n-(m-1)]{2}
+a^{n-1}Sb^{m-1}\xrightarrow{3}
+a^n b^m$
+
+$\Rightarrow L(G) = C$
+\end{description}
+
+\liPseudoUeberschrift{Nachweis Kontextfrei über Kellerautomat}
+
+\begin{center}
+\begin{tikzpicture}[li kellerautomat]
+  \node[state,initial] (z0) at (2.71cm,-2.57cm) {$z_0$};
+  \node[state] (z1) at (5cm,-2.57cm) {$z_1$};
+  \node[state,accepting] (z2) at (7.43cm,-2.57cm) {$z_2$};
+
+  \liKellerKante[above,loop above]{z0}{z0}{
+    a, KELLERBODEN, A KELLERBODEN;
+    a, A, A A;
+  }
+
+  \liKellerKante[above]{z0}{z1}{
+    b, A, EPSILON;
+  }
+
+  \liKellerKante[above]{z1}{z2}{
+    EPSILON, KELLERBODEN, EPSILON;
+    EPSILON, A, EPSILON;
+  }
+
+  \liKellerKante[above,loop above]{z1}{z1}{
+    b, A, EPSILON;
+  }
+\end{tikzpicture}
+\end{center}
+\liFlaci{Aji151myg}
+
+\liPseudoUeberschrift{Nachweis: C nicht regulär}
+
+C sei regulär
+
+$\Rightarrow$ Pumping-Lemma für C erfüllt
+
+$j$ sei die Pumping-Zahl ($j \in \mathbb{N}$)
+
+$\omega \in C$: $\omega = a^j b^j$
+
+$\omega = u v w$
+
+Dann gilt:
+
+\begin{itemize}
+\item $|v| \geq 1$
+\item $|uv| \leq j$
+\item $u v^i w \in C$ für alle $i \in \mathbb{N}_0$
+\end{itemize}
+
+In $uv$ können nur $a$’s vorkommen
+
+$\Rightarrow$
+In $v$ muss mindestens ein $a$ vorkommen
+
+$\Rightarrow$
+$u v^0 w = a^l (a^{j-l})^0 b^j$ ($(a^{j-l})^0 = \varepsilon$)
+
+$\Rightarrow$
+In $\omega'$ sind nur $l$ viele $a$’s, Da $l < j$, $\omega' \notin C$,
+
+$\Rightarrow$
+Widerspruch zur Annahme
+
+$\Rightarrow$
+C nicht regulär
 \end{liAntwort}
 
 \end{document}

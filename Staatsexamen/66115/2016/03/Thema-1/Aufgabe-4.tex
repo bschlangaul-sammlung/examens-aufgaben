@@ -1,6 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
+\liLadePakete{syntax,automaten}
 \begin{document}
+\let\l=\liTuringLeerzeichen
+
 \liAufgabenTitel{}
 \section{4. Turingmaschinen
 \index{Turing-Maschine}
@@ -20,9 +22,9 @@ f_M(a^n) = a^n b^n
 \end{displaymath}
 
 berechnet. Die Maschine $M$ nimmt somit immer einen String der Form
-$a^n$ (ein String, der aus $n$ $a$’s für beliebiges $n \in N$ besteht)
-als Eingabe und produziert anschließend auf Band 2 als Ausgabe den
-String $a^n b^n$ (ein String aus $n$ $a$’s gefolgt von $n$ $b$’s).
+$a^n$ (ein String, der aus $n$ $a$’s für beliebiges $n \in \mathbb{N}$
+besteht) als Eingabe und produziert anschließend auf Band 2 als Ausgabe
+den String $a^n b^n$ (ein String aus $n$ $a$’s gefolgt von $n$ $b$’s).
 
 Beschreiben Sie außerdem die Idee hinter Ihrer Konstruktion.
 
@@ -48,6 +50,12 @@ z2, a,_
 z2, a,b, >,>
 \end{minted}
 \liFussnoteUrl{http://turingmachinesimulator.com/shared/lyptczerhe}
+
+\begin{tabular}{c|l}
+$z_0$ & $a$’s auf das 2. Band kopieren \\
+$z_1$ & Zu Beginn der Eingabe auf dem 1. Band, 2. Band bleibt\\
+$z_2$ & Für jedes $a$’s auf dem 1. Band ein $b$ auf dem 2. Band erzeugen\\
+\end{tabular}
 \end{liAntwort}
 
 %%
@@ -55,5 +63,44 @@ z2, a,b, >,>
 %%
 \item Geben Sie die Konfigurationsfolge der Turingmaschine aus (a) für
 die Eingabe $aa$ an.
+
+\begin{liAntwort}
+% 0
+z0 a a,
+z0 \l \l
+
+% 1
+a z0 a,
+a z0 \l
+
+% 2
+a a z0 \l,
+a a z0 \l
+
+% 3
+a z1 a,
+a a z1 \l
+
+% 4
+z1 a a \l,
+a a z1 \l
+
+% 5
+z1 \l a a,
+a a z1 \l
+
+% 6
+z2 a a,
+a a z2 \l
+
+% 7
+a z2 a,
+a a b z2 \l
+
+% 8
+a a z2 \l,
+a a b b z2 \l
+\end{liAntwort}
+
 \end{enumerate}
 \end{document}
