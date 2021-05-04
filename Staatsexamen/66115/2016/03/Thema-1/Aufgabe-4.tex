@@ -1,0 +1,59 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{}
+\section{4. Turingmaschinen
+\index{Turing-Maschine}
+\footcite{66115:2016:03}}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Geben Sie eine deterministische 2-Band Turingmaschine $M$ an, die
+die Funktion
+
+\begin{displaymath}
+f_M(a^n) = a^n b^n
+\end{displaymath}
+
+berechnet. Die Maschine $M$ nimmt somit immer einen String der Form
+$a^n$ (ein String, der aus $n$ $a$’s für beliebiges $n \in N$ besteht)
+als Eingabe und produziert anschließend auf Band 2 als Ausgabe den
+String $a^n b^n$ (ein String aus $n$ $a$’s gefolgt von $n$ $b$’s).
+
+Beschreiben Sie außerdem die Idee hinter Ihrer Konstruktion.
+
+\begin{liAntwort}
+\begin{minted}{md}
+name: 66115 2016 03 1 4
+init: z0
+accept: z2
+
+z0, a,_
+z0, a,a, >,>
+
+z0, _,_
+z1, _,_, <,-
+
+z1, a,_
+z1, a,_, <,-
+
+z1, _,_
+z2, _,_, >,-
+
+z2, a,_
+z2, a,b, >,>
+\end{minted}
+\liFussnoteUrl{http://turingmachinesimulator.com/shared/lyptczerhe}
+\end{liAntwort}
+
+%%
+% b)
+%%
+\item Geben Sie die Konfigurationsfolge der Turingmaschine aus (a) für
+die Eingabe $aa$ an.
+\end{enumerate}
+\end{document}
