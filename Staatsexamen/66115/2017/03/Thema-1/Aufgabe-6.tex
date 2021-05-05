@@ -1,0 +1,73 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe}
+\begin{document}
+\liAufgabenTitel{Turing}
+\section{Aufgabe 6
+\index{Entscheidbarkeit}
+\footcite{66115:2017:03}}
+
+Es sei $E$ die Menge aller (geeignet codierten) Turingmaschinen $M$ mit
+folgender Eigenschaft: Es gibt eine Eingabe $w$, so dass $M$ gestartet
+auf $w$ mindestens 1000 Schritte rechnet und dann irgendwann hält.
+
+Das Halteproblem auf leerer Eingabe $H_0$ ist definiert als die Menge
+aller Turingmaschinen, die auf leerer Eingabe gestartet, irgendwann
+halten.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Zeigen Sie, dass $E$ unentscheidbar ist (etwa durch Reduktion vom
+Halteproblem $H_0$).
+
+\begin{liAntwort}
+Dazu definieren wir die Funktion $f : \Sigma^* \rightarrow \Sigma^*$ wie
+folgt:
+
+\begin{equation*}
+f(u) =
+\begin{cases}
+c(M’) &
+falls u = c(M)w ist für eine Turingmaschine M und Eingabe w\\
+
+0 & \text{sonst}
+\end{cases}
+\end{equation*}
+
+Dabei sei M’ eine Turingmaschine, die sich wie folgt verhält:
+\begin{enumerate}
+\item Geht 1000 Schritte nach rechts
+\item Schreibt festes Wort w (für M’ ist w demnach fest!)
+\item Startet M
+\end{enumerate}
+
+\begin{itemize}
+\item total
+
+\item berechenbar: Syntaxcheck, 1000 Schritte über 1000 weitere Zustände
+realisierbar
+
+\item Korrektheit: u € Lnat  u = c(M)w für TM M, die auf w hält & f(u) =
+c(M’), wobei M’ 1000 Schritte macht und dann hält > f(u) € L
+\end{itemize}
+\end{liAntwort}
+\footcite[Seite 54]{theo:fs:4}
+
+%%
+% b)
+%%
+
+\item Begründen Sie, dass $E$ partiell entscheidbar ist.
+
+%%
+% c)
+%%
+
+\item Geben Sie ein Problem an, welches nicht einmal partiell
+entscheidbar ist.
+
+\end{enumerate}
+\end{document}

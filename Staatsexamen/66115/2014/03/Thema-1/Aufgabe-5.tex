@@ -1,0 +1,67 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen}
+\begin{document}
+\liAufgabenTitel{}
+\section{Aufgabe 5
+\index{Entscheidbarkeit}
+\footcite{66115:2014:03}}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Definieren Sie die zum Halteproblem für Turing-Maschinen bei
+fester Eingabe $m \in \mathbb{N}_0 = \{ 0, 1, 2, \dots \}$ gehörende
+Menge $H_m$.
+\footcite[Seite 55]{theo:fs:3}
+
+\begin{liAntwort}
+\liAusdruck[H_m]{c(M) \in \mathbb{N}}{c(M)\text{ hält auf Eingabe }m},
+wobei $c(M)$ der Codierung der Turingmaschine (Gödelnummer) entspricht.
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Gegeben sei das folgende Problem E:
+
+Entscheiden Sie, ob es für die deterministische Turing-Maschine mit der
+Gödelnummer $n$ eine Eingabe $w \in \mathbb{N}_0$ gibt, so dass $w$ eine
+gerade Zahl ist und die Maschine $n$ gestartet mit $w$ hält.
+
+Zeigen. Sie, dass $E$ nicht entscheidbar ist. Benutzen Sie, dass $H_m$
+aus (a) für jedes $m \in \mathbb{N}_0$ nicht entscheidbar ist.
+
+\begin{liAntwort}
+Wir zeigen dies durch Reduktion $H_2 \leq E$:
+\begin{itemize}
+\item Berechenbare Funktion $f$: lösche Eingabe, schreibe eine $2$ und
+starte dich selbst.
+
+\item $M‘$ ist eine Turingmaschine, die $E$ entscheidet.
+
+\item $x \in H_2$ (Quellcode der Programme, die auf die Eingabe von $2$
+halten)
+
+\item $M_x$ (kompiliertes Programm, TM)
+
+\item Für alle $x \in H_2$ gilt, $M_x$ hält auf Eingabe von $2
+\Leftrightarrow f(x) = c(M‘) \in E$. Denn sofern die ursprüngliche
+Maschine auf das Wort $2$ hält, hält $M‘$ auf alle Eingaben und somit
+auch auf Eingaben gerader Zahlen. Hält die ursprüngliche Maschine $M$
+nicht auf die Eingabe der Zahl $2$, so hält $M‘$ auf keine Eingabe.
+\end{itemize}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Zeigen Sie, dass das Problem $E$ aus (b) partiell-entscheidbar (=
+rekursiv aufzählbar) ist.
+
+\end{enumerate}
+\end{document}
