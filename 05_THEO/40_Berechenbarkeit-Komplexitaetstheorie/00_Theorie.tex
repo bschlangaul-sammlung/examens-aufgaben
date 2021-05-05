@@ -8,6 +8,168 @@
 
 \chapter{Berechenbarkeit und Komplexitätstheorie}
 
+\section{Komplexitätstheorie}
+
+\memph{Komplexität} bezeichnet die „Kompliziertheit“ von Problemen,
+Algorithmen und Daten.
+%
+Die \memph{Komplexitätstheorie} befasst sich dabei mit dem
+Ressourcenverbrauch von Algorithmen.
+%
+Die betrachteten Ressourcen sind fast immer die Anzahl der
+benötigten Rechenschritte (\memph{Zeitkomplexität}) oder der
+Speicherbedarf (\memph{Platzkomplexität}).
+%
+Algorithmen und Probleme werden in der Komplexitätstheorie gemäß ihrer
+so bestimmten Komplexität in so genannte \memph{Komplexitätsklassen}
+eingeteilt. Diese sind ein wichtiges Werkzeug, um bestimmen zu können,
+welche Probleme \emph{„gleich schwierig“} sind.
+\footcite[Seite 58]{theo:fs:4}
+
+\section{Komplexitätsklassen}
+
+\begin{description}
+\item[P]
+enthält alle Probleme, für die eine \memph{deterministische}
+Turingmaschine in polynomieller Zeit eine Lösung berechnen kann.
+\footcite[Seite 59]{theo:fs:4}
+
+\item[NP]
+enthält alle Probleme, für die eine \memph{nicht-deterministische} (= NP)
+Turingmaschine in polynomieller Zeit eine Lösung berechnen kann.
+\footcite[Seite 60]{theo:fs:4}
+
+\begin{description}
+\item[NP-schwer] (engl. NP-hard) ist eine Eigenschaft eines
+algorithmischen Problems. Ein NP-schweres Problem ist dabei mindestens
+genauso „schwer“ wie alle Probleme in NP. Das bedeutet, dass ein
+Algorithmus, der ein NP-schweres Problem löst, mithilfe einer Reduktion
+benutzt werden kann, um alle Probleme in NP zu lösen.\footcite{wiki:np-schwer}
+
+\item[NP-vollständig] sind die Probleme, die in NP liegen
+und NP-schwer sind.\footcite{wiki:np-vollstaendig}
+\end{description}
+\end{description}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Karps 21 NP-vollständige Probleme}
+
+Nachdem Stephen Cook 1971 den Nachweis erbrachte, dass SAT
+NP-vollständig ist, griff Richard Karp 1972 diese Idee auf und zeigte
+die NP-Vollständigkeit für 21 weitere Probleme. Diese werden als
+klassische NP-vollständige Probleme bezeichnet.\footcite{wiki:karps-21}
+
+Seit 1972 wurden mehr als 10000 Probleme als NP-vollständig
+charakterisiert.
+\footcite[Seite 80]{theo:fs:4}
+
+%%
+%
+%%
+
+\subsection{Problem des Handlungsreisenden}
+
+(TSP: engl. traveling salesman problem, Optimierungsproblem der
+Kombinatorik): Die Aufgabe besteht darin, eine Reihenfolge für den
+Besuch mehrerer Orte so zu wählen, dass keine Station außer der ersten
+mehr als einmal besucht wird, die gesamte Reisestrecke des
+Handlungsreisenden möglichst kurz und die
+
+erste Station gleich der letzten Station ist. Eingabe: Ungerichteter
+Graph mit Längen als Beschriftungen für Kanten
+
+Ausgabe: Kürzeste Tour, auf der alle Knoten
+
+genau einmal vorkommen\footcite[Seite 73]{theo:fs:4}
+
+%%
+%
+%%
+
+\subsection{Hamiltonkreisproblem}
+
+Existiert ein geschlossener Pfad in einem
+Graphen, der jeden Knoten nur genau einmal enthält?
+
+Wichtiges Problem der Graphentheorie
+Ist eine Verallgemeinerung des TSP, bei welchem nur nach dem kürzesten
+Hamiltonkreis in einem Graphen gefragt wird.
+
+%%
+%
+%%
+
+\subsection{Teilsummenproblem}
+
+(auch Untermengensummenproblem, SSP engl. subset sum problem)
+
+Gegeben sei eine Menge von ganzen Zahlen $M = \{z_1 , z_2 , \dots, z_n
+\}$. Gesucht ist eine Untermenge, deren Elementsumme maximal, aber nicht
+größer als eine gegebene obere Schranke c ist (oft ist auch gefragt, die
+Schranke c exakt zu erreichen). Es ist ein spezielles Rucksackproblem.
+\footcite[Seite 74]{theo:fs:4}
+
+%%
+%
+%%
+
+\subsection{Rucksackproblem}
+
+(auch englisch knapsack problem) ist ein Optimierungsproblem der
+Kombinatorik.
+
+Aus einer Menge von Objekten, die jeweils ein Gewicht und einen Nutzwert
+haben, soll eine Teilmenge ausgewählt werden, deren Gesamtgewicht eine
+vorgegebene Gewichtsschranke nicht überschreitet. Unter dieser Bedingung
+soll der Nutzwert der ausgewählten Objekte maximiert werden.
+\footcite[Seite 75]{theo:fs:4}
+
+%%
+%
+%%
+
+\subsection{Cliquenproblem}
+
+(CLIQUE) fragt nach der Existenz einer Clique der Mindestgröße n in
+einem gegebenen Graphen.
+
+Eine Clique ist eine Teilmenge von Knoten in einem ungerichteten
+Graphen, bei der jedes Knotenpaar durch eine Kante verbunden ist
+(informell: jeder mit jedem innerhalb des Teilgraphen)
+
+Beispiel: In dem nebenstehenden Graphen wird mit der Brute-Force-Methode
+nach einer 4er-Clique gesucht.
+\footcite[Seite 76]{theo:fs:4}
+
+%%
+%
+%%
+
+\subsection{Stabilitätsproblem}
+
+(Independent Set oder Co-Clique) fragt nach der Existenz einer Teilmenge
+von Knoten in einem gegebenen Graphen der Mindestgröße n , bei denen die
+Knoten zueinander nicht adjazent (=keine direkte Verbindung) sind.
+
+Das Stabilitätsproblem ist das „Gegenproblem“ zum Cliquenproblem
+
+Beispiel: Die neun blauen Knoten bilden im nebenstehenden Graphen eine
+(maximale) stabile Menge.\footcite[Seite 77]{theo:fs:4}
+
+%%
+%
+%%
+
+\subsection{COL und k-COL}
+
+COL und k-COL mit $k \geq 3$, $k \in \mathbb{N}$ (graph coloring –
+Färbung eines Graphen) fragt, ob ein gegebener Graph mit k Farben so
+färbbar ist, dass zwei benachbarte Knoten niemals die gleiche Farben
+haben.
+
 \literatur
 
 \end{document}

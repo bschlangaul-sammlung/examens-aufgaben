@@ -1,0 +1,54 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{k-COL}
+\section{Komplexität
+\index{Komplexitätstheorie}
+\footcite{66115:2016:03}}
+
+Das Problem k-COL ist wie folgt definiert:
+
+\begin{description}
+\item[Gegeben:]
+
+Ein ungerichteter Graph $G = (V, E)$.
+
+\item[Frage:]
+
+Kann man jedem Knoten $v$ in $V$ eine Zahl $z(v) \in \{1, \dots ,k\}$
+zuordnen, so dass für alle Kanten $(u_1,u_2) \in E$ gilt: $z(u_1) \neq
+z(u_2)?$
+\end{description}
+
+Zeigen Sie, dass man 3-COL in polynomieller Zeit auf 4-COL reduzieren
+kann. Beschreiben Sie dazu die Reduktion und zeigen Sie anschließend
+ihre Korrektheit.
+
+\begin{liAntwort}
+Zu Zeigen: 3-COL $\leq_P$ 4-COL
+
+also 4-COL ist mindestens so schwer wie 3-COL Eingabeinstanz von 3-COL
+durch eine Funktion in eine Eingabeinstanz von 4-COL umbauen so, dass
+jede JA- bzw. NEIN-Instanz von 3-COL eine JA- bzw. NEIN-Instanz von
+4-COL ist.
+\footcite[Seite 67]{theo:fs:4}
+
+Funktion ergänzt einen beliebigen gegebenen Graphen um einen
+weiteren Knoten, der mit allen Knoten des ursprünglichen Graphen
+durch eine Kante verbunden ist.
+
+\begin{description}
+\item[total] ja
+
+\item[in Polynomialzeit berechenbar] ja
+
+(Begründung: z. B. Adjazenzmatrix $\rightarrow$ neue Spalte)
+
+\item[Korrektheit:] ja
+
+Färbe den „neuen“ Knoten mit einer Farbe. Da er mit allen anderen Knoten
+verbunden ist, bleiben für die übrigen Knoten nur drei Farben.
+\footcite[Seite 69]{theo:fs:4}
+\end{description}
+\end{liAntwort}
+\end{document}
