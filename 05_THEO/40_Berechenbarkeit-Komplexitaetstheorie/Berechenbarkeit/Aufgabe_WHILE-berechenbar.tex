@@ -1,0 +1,74 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe}
+\begin{document}
+\liAufgabenTitel{WHILE-berechenbar}
+\section{WHILE-berechenbar
+\index{WHILE-berechenbar}
+\footcite[Aufgabe 2]{theo:ab:4}}
+
+Bestimme jeweils, ob die angegebene Funktion WHILE-berechenbar ist:
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item $x \rightarrow 2^x$
+
+\begin{liAntwort}
+erg = 1;
+WHILE x 6 = 0 DO
+erg = erg * 2;
+x = x - 1;
+END;
+return erg;
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item $\text{ggT}(n, m)$,
+also der größte gemeinsame Teiler. Sie dürfen die (ganzzahligen) Operationen
++, −, ∗ und / verwenden, wobei das Minus, wie üblich, eingeschränkt ist.
+
+\begin{liAntwort}
+Es bietet sich an, zunächst die modulo Operation x i := x j % x k durch folgendes WHILE-
+Programm zu definieren:
+x n+1 := x j /x k ;
+x n+2 := x n+1 ∗ x k ;
+x i := x j − x n+2 ;
+Wobei x n+1 und x n+2 im Rest des Programmes nicht verwendet werden sollen. Mit der
+Modulo Operation kann man nun z.B. einfach den euklidischen Algorithmus verwenden
+(Eingabe seien x 1 und x 2 , Ausgabe ist x 1 :
+WHILE x 2 6 = 0 DO
+x 3 := x1 % x 2 ;
+x 1 := x 2 + 0;
+x 2 := x 3 + 0;
+END
+\end{liAntwort}
+
+%%
+% (c)
+%%
+
+\item if x i 6 = 0 then P 1 else P 2 fi mit der üblichen Semantik.
+Als Nachweis kann jeweils ein WHILE-Programm angegeben werden.
+
+\begin{liAntwort}
+Sei x n die höchste in P 1 bzw. P 2 vorkommende Variable (o. E. i ≤ n).
+x n+1 := x i + 0;
+x n+2 := 1;
+WHILE x n+1 6 = 0 DO
+x n+1 := 0;
+x n+2 := 0;
+P 1 ;
+END
+WHILE x n+2 6 = 0 DO
+x n+2 := 0;
+P 2 ;
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}
