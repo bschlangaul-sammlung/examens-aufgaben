@@ -1,0 +1,59 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{LOOP-Fakultät}
+\section{
+\index{}
+\footcite[Aufgabe 1]{theo:ab:4}}
+
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Geben Sie ein LOOP-Programm an, das die Funktion $f(n) = n!$
+berechnet.
+
+\begin{liAntwort}
+\begin{minted}{md}
+x2 := 1;
+LOOP x1 DO
+x3 := x3 + 1;
+x2 := x2 * x3 ; END
+x3 := 0;
+RETURN x2;
+\end{minted}
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item
+
+Beweisen Sie:
+
+Ist $f : N \rightarrow N$ LOOP-berechenbar, so ist auch
+$g : N \rightarrow N$ mit $g(n) = f (i)$
+LOOP-berechenbar.
+
+\begin{liAntwort}
+Bei einem LOOP-Programm der Form LOOP xi DO P END wird das Programm P so
+oft ausgeführt, wie der Wert der Variablen xi zu Beginn angibt. Beweis:
+
+\begin{minted}{md}
+x 0 := 0; i := 0;
+LOOP n DO
+i := i + 1;
+y := f(i);
+x 0 := x 0 + y;
+END
+RETURN x 0
+\end{minted}
+
+ist LOOP-berechenbar, da $f (n)$ LOOP-berechenbar ist.
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}
