@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-\liLadePakete{syntax,uml}
+\liLadePakete{syntax,entwurfsmuster}
 
 \begin{document}
 
@@ -29,9 +29,9 @@ auf die \memph{Zustandsänderung} eines bestimmten Objekts \memph{zu
 reagieren}, um den eigenen Zustand anzupassen.
 \footcite[Seite 70]{eilebrecht}
 
-%%
+%-----------------------------------------------------------------------
 %
-%%
+%-----------------------------------------------------------------------
 
 \section{Szenario}
 
@@ -46,69 +46,21 @@ die Anzeige der Prognose automatisch anpasst, sobald sich im Hintergrund
 Änderungen ergeben.
 \footcite[Seite 70]{eilebrecht}
 
-%%
+%-----------------------------------------------------------------------
 %
-%%
+%-----------------------------------------------------------------------
 
 \section{UML-Diagramm}
 
-\begin{tikzpicture}
-\umlclass[x=0,y=0,type=abstract]{Gegenstand}{}{
-  + registriere(beobachter: Beobachter): void\\
-  + entferne(beobachter: Beobachter): void\\
-  + benachrichtige(beobachter: Beobachter): void\\
-}
-\umlclass[x=0,y=-3]{KonkreterGegenstand}{}{
-  + setzteZustand(zustand: Zustand): void
-}
-\umlinherit{KonkreterGegenstand}{Gegenstand}
+\liEntwurfsBeobachterUml
 
-\umlclass[x=8,y=0,type=interface]{Beobachter}{}{
-  + aktualisiere(zustand: Zustand): void
-}
-\umlclass[x=8,y=-3]{KonkreterBeobachter}{}{
-  + aktualisiere(zustand: Zustand): void
-}
-\umlreal{KonkreterBeobachter}{Beobachter}
-
-\umlHVHaggreg[arg1=beobachter,pos1=0.5,mult2=*,pos2=2.5]{KonkreterGegenstand}{Beobachter}
-
-\end{tikzpicture}
-
-%%
+%-----------------------------------------------------------------------
 %
-%%
+%-----------------------------------------------------------------------
 
 \section{Akteure}
 
-\begin{description}
-\item[Gegenstand / Subjekt (Subject / Observable)]
-
-Ein Subjekt (beobachtbares Objekt, auf Englisch publisher, also
-„Veröffentlicher“, genannt) hat eine Liste von Beobachtern, ohne deren
-konkrete Typen zu kennen. Es bietet eine Schnittstelle zur An- und
-Abmeldung von Beobachtern und eine Schnittstelle zur Benachrichtigung
-von Beobachtern über Änderungen an.\footcite[Seite 251]{gof}
-
-\item[Beobachter (Observer)]
-Die Beobachter (auf Englisch auch subscriber, also „Abonnent“, genannt)
-definieren eine Aktualisierungsschnittstelle.
-
-\item[konkreter/s Gegenstand / Subjekt (ConcreteSubject / ConcreteObservable)]
-
-Ein konkretes Subjekt (konkretes, beobachtbares Objekt) speichert den
-relevanten Zustand und benachrichtigt alle Beobachter bei
-Zustandsänderungen über deren Aktualisierungsschnittstelle. Es verfügt
-über eine Schnittstelle zur Erfragung des aktuellen Zustands.
-
-\item[Konkrete Beobachter (ConcreteObserver)]
-
-Konkrete Beobachter verwalten die Referenz auf ein konkretes Subjekt,
-dessen Zustand sie beobachten und speichern und dessen Zustand
-konsistent ist. Sie implementieren eine Aktualisierungsschnittstelle
-unter Verwendung der Abfrageschnittstelle des konkreten Subjekts.
-\footcite{wiki:beobachter}
-\end{description}
+\liEntwurfsBeobachterAkteure
 
 %-----------------------------------------------------------------------
 %
