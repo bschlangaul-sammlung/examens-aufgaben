@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-\liLadePakete{syntax,uml}
+\liLadePakete{syntax,uml,entwurfsmuster}
 
 \begin{document}
 
@@ -30,21 +30,7 @@ zustandsabhängiger Verhaltensweisen eines Objektes eingesetzt.
 
 \section{Klassendiagramm}
 
-\begin{tikzpicture}
-\umlclass[x=-1,y=3]{Context}{}{+request()}
-\umlclass[x=3,y=3,type=interface]{State}{}{+handle()}
-\umlclass[x=1,y=0]{ConcreteStateA}{}{+handle()}
-\umlclass[x=5,y=0]{ConcreteStateB}{}{+handle()}
-
-\umlVHVreal{ConcreteStateA}{State}
-\umlVHVreal{ConcreteStateB}{State}
-
-\umlaggreg{Context}{State}
-
-\umlnote[x=-2,y=0,width=2cm]{Context}{state.handle()}
-\end{tikzpicture}
-
-Quelle: Englische Wikipedia, so ähnlich wie in GoF
+\liEntwurfsmusterZustandUml
 
 %-----------------------------------------------------------------------
 %

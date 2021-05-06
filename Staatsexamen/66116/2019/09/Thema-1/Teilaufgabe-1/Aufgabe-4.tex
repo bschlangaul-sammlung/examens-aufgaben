@@ -1,7 +1,7 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{uml,syntax}
+\liLadePakete{uml,syntax,entwurfsmuster}
 \begin{document}
-\liAufgabenTitel{Zustand-Entwurfsmuster bei Verwaltung von Prozessen }
+\liAufgabenTitel{Zustand-Entwurfsmuster bei Verwaltung von Prozessen}
 
 \section{Aufgabe 4: (Entwurfsmuster)
 \index{Zustand (State)}
@@ -44,7 +44,30 @@ simulieren, indem der Methodenaufruf auf der Standardausgabe
 protokolliert wird. Falls Transitionen im aktuellen Zustand undefiniert
 sind, soll eine Fehlermeldung ausgegeben werden.
 
+\begin{liExkurs}[Zustand-(State)-Entwurfsmuster]
+\liPseudoUeberschrift{UML-Klassendiagramm}
+
+\liEntwurfsmusterZustandUml
+
+\liPseudoUeberschrift{Teilnehmer}
+
+\liEntwurfsmusterZustandTeilnehmer
+\end{liExkurs}
+
 \begin{liAntwort}
+Implementierung in der Programmiersprache „Java“:
+
+\begin{center}
+\begin{tabular}{l|l|l}
+Methoden & Zustände & Klassennamen \\\hline\hline
+& Bereit & ZustandBereit \\
+starten(), fortsetzen() & Aktiv & ZustandAktiv \\
+suspendieren() & Suspendiert & ZustandSuspendiert \\
+beenden() & Beendet & ZustandBeendet \\
+abbrechen() & Abgebrochen & ZustandAbgebrochen \\
+\end{tabular}
+\end{center}
+
 \liJavaExamen{66116}{2019}{09}{Prozess}
 \liJavaExamen{66116}{2019}{09}{ProzessZustand}
 \liJavaExamen{66116}{2019}{09}{ZustandAbgebrochen}

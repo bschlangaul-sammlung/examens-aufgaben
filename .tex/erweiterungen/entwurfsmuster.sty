@@ -1,0 +1,59 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-entwurfsmuster}[2021/05/06 Hilfsmakros
+zum Setzen von Entwurfsmuster/Design Patterns]
+
+\RequirePackage{lehramt-informatik-uml}
+%    \end{macrocode}
+
+% \begin{macro}{\liEntwurfsmusterZustandUml}
+% Quelle: Englische Wikipedia, so ähnlich wie in GoF
+% \begin{liBeispiel}
+% \liEntwurfsmusterZustandUml
+% \end{liBeispiel}
+%    \begin{macrocode}
+\def\liEntwurfsmusterZustandUml{
+  \begin{tikzpicture}
+    \umlclass[x=-1,y=3]{Kontext}{}{+beantrage()}
+    \umlclass[x=3,y=3,type=interface]{Zustand}{}{+agiere()}
+    \umlclass[x=1,y=0]{KonkreterZustandA}{}{+agiere()}
+    \umlclass[x=5,y=0]{KonkreterZustandB}{}{+agiere()}
+
+    \umlVHVreal{KonkreterZustandA}{Zustand}
+    \umlVHVreal{KonkreterZustandB}{Zustand}
+
+    \umlaggreg[arg=zustand,pos=0.4]{Kontext}{Zustand}
+
+    \umlnote[x=-2.5,y=0,width=2.5cm]{Kontext}{zustand.agiere()}
+  \end{tikzpicture}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liEntwurfsmusterZustandTeilnehmer}
+% Quelle: Deutsche Wikipedia
+% \begin{liBeispiel}
+% \liEntwurfsmusterZustandTeilnehmer
+% \end{liBeispiel}
+%    \begin{macrocode}
+\def\liEntwurfsmusterZustandTeilnehmer{
+  \begin{description}
+    \item[Kontext (Context)]
+
+    definiert die clientseitige Schnittstelle und verwaltet die separaten
+    Zustandsklassen.
+
+    \item[State (Zustand)]
+
+    definiert eine einheitliche Schnittstelle aller Zustandsobjekte und
+    implementiert gegebenenfalls ein Standardverhalten.
+
+    \item[KontreterZustand (ConcreteState)]
+
+    implementiert das Verhalten, das mit dem Zustand des Kontextobjektes
+    verbunden ist.
+  \end{description}
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
