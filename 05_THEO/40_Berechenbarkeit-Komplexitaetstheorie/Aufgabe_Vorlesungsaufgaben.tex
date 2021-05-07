@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{syntax}
 \begin{document}
 \liAufgabenTitel{Vorlesungsaufgaben}
 \section{Vorlesungsaufgaben
@@ -13,12 +13,72 @@
 \section{LOOP-Implementierung\footcite[Seite 11]{theo:fs:4}}
 
 \begin{enumerate}
-\item Gebe eine LOOP-Implementierung für
+\item Geben Sie eine LOOP-Implementierung für
 
-\begin{itemize}
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item $add(x_i, x_j)$
+
+\begin{liAntwort}
+\begin{minted}{md}
+x_0 := x_i;
+loop x_j do
+  x0 := succ(x_0);
+end
+\end{minted}
+\end{liAntwort}
+
+%%
+%
+%%
+
 \item $mult(x_i, x_j)$
+
+\begin{liAntwort}
+\begin{minted}{md}
+x_0 := x_i;
+loop x_j do
+  x0 := add(x_0, x_i);
+end
+\end{minted}
+\end{liAntwort}
+
+%%
+%
+%%
+
+\item $power(x_i, x_j)$
+
+\begin{liAntwort}
+\begin{minted}{md}
+x_0 := succ(0);
+loop x_j do
+  x0 := mult(x_0, x_i);
+end
+\end{minted}
+\end{liAntwort}
+
+%%
+%
+%%
+
+\item $hyper(x_i, x_j)$
+
+\begin{liAntwort}
+\begin{minted}{md}
+x_0 := succ(0);
+loop x_j do
+  x0 := power(x_i, x_0);
+end
+\end{minted}
+\end{liAntwort}
+
 \item $2^{x_i}$
-\end{itemize}
+\end{enumerate}
 
 an.
 
