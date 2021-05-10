@@ -1,13 +1,15 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+
 \begin{document}
 \liAufgabenTitel{Vermische Fragen}
 \section{Aufgabe 1
 \index{Theoretische Informatik}
 \footcite{66115:2020:09}}
 
-Antworten Sie mit „Stimmt“ oder „Stimmt nicht“. Begründen Sie Ihr Urteil
-kurz.
+Antworten Sie mit \emph{„Stimmt“} oder \emph{„Stimmt nicht“}. Begründen
+Sie Ihr Urteil kurz.
+
+% Info_2021-05-07-2021-05-07_13.30.16.mp4 1h57min
 
 \begin{enumerate}
 
@@ -20,10 +22,8 @@ Wörter enthält.
 \index{Reguläre Sprache}
 
 \begin{liAntwort}
-Stimmt nicht. Auch das leere Wort gehört zu den regulären Sprachen. Eine
-Sprache ist dann regulär, wenn sie durch eine reguläre Grammatik,
-einen endlichen Automaten oder einen regulären Ausdruck dargestellt
-werden kann.
+Stimmt nicht. Sprachen mit endlicher Mächtigkeit sind immer regulär.
+Endliche Spachen sind in obenstehender Aussage ausgeschlossen.
 \end{liAntwort}
 
 %%
@@ -35,11 +35,7 @@ Zuständen gibt es einen deterministischen endlichen Automaten, der die
 gleiche Sprache erkennt und höchstens $n^2$ Zustände hat.
 
 \begin{liAntwort}
-Stimmt: Englische Wikipedia:
-Because the DFA states consist of sets of NFA states, an n-state NFA may
-be converted to a DFA with at most 2n states.[2] For every n, there
-exist n-state NFAs such that every subset of states is reachable from
-the initial subset, so that the converted DFA has exactly 2n states,
+Stimmt nicht. Müsste $2^n$ heißen.
 \end{liAntwort}
 
 %%
@@ -49,15 +45,8 @@ the initial subset, so that the converted DFA has exactly 2n states,
 \item Das Komplement einer kontextfreien Sprache ist wieder kontextfrei.
 
 \begin{liAntwort}
-Stimmt.
-
-Sei $A$ ein deterministischer endlicher Automat, der $L$
-erkennt. Der Automat $A$ erreicht für jedes Wort $\omega$ Element $L$
-einen Endzustand und für jedes Wort $\omega$ nicht Element L einen
-Nicht-Endzustand. Indem in $A$ alle Endzustände zu Nicht-Endzuständen
-gemacht werden und umgekehrt, entsteht ein deterministischer endlicher
-Automat $A$, der $L$ erkennt. Also ist $L$ regulär.
-\liFussnoteUrl{https://www.inf.hs-flensburg.de/lang/theor/regulaer-abgeschlossen.htm}
+Stimmt nicht. Das Komplement einer kontextfreien Sprache kann regulär,
+kontextfrei oder kontextsensitiv sein.
 \end{liAntwort}
 
 %%
@@ -67,17 +56,34 @@ Automat $A$, der $L$ erkennt. Also ist $L$ regulär.
 \item Wenn ein Problem unentscheidbar ist, dann ist es nicht
 semientscheidbar.
 
+\begin{liAntwort}
+Stimmt nicht. Semientscheidbarkeit ist eine typische Form der
+Unentscheidbarkeit. Unentscheidbarkeit ist das Gegenteil von
+Entscheidbarkeit. Unentscheidbar kann entweder völlig unentscheidbar
+sein oder semientscheidbar.
+\end{liAntwort}
+
 %%
 % e)
 %%
 
-\item Sei f eine totale Funktion. Dann gibt es ein WHILE-Programm, das
+\item Sei $f$ eine totale Funktion. Dann gibt es ein WHILE-Programm, das
 diese berechnet.
+
+\begin{liAntwort}
+Stimmt nicht. Wir wissen nicht, ob die totale Funktion $f$ berechenbar
+ist. Wenn $f$ berechenbar ist, dann wäre die Aussage richtig.
+\end{liAntwort}
+
 %%
 % f)
 %%
 
 \item Das Halteproblem für LOOP-Programme ist entscheidbar.
+
+\begin{liAntwort}
+Stimmt. Alle LOOP-Programme terminieren (halten).
+\end{liAntwort}
 
 %%
 % g)
@@ -86,11 +92,19 @@ diese berechnet.
 \item Die Komplexitätsklasse NP enthält genau die Entscheidungsprobleme,
 die in nicht-polynomieller Zeit entscheidbar sind.
 
+\begin{liAntwort}
+Stimmt. Die Aussage entspricht der Definiton der Komplexitätsklasse NP.
+\end{liAntwort}
+
 %%
 % h)
 %%
 
-\item Falls PZNP, dann gibt es keine NP-vollständigen Probleme, die in P
-liegen.
+\item Falls $P \geq NP$, dann gibt es keine $NP$-vollständigen Probleme,
+die in $P$ liegen.
+
+\begin{liAntwort}
+Stimmt. Entspricht der Definition.
+\end{liAntwort}
 \end{enumerate}
 \end{document}
