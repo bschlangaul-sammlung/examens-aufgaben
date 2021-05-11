@@ -1,0 +1,64 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,mathe}
+\begin{document}
+\liAufgabenTitel{Vorlesungsaufgaben}
+\section{Vorlesungsaufgaben WHILE-Programm
+\index{Berechenbarkeit}
+\footcite[Seite 16]{theo:fs:4}}
+
+Geben Sie ein WHILE-Programm an, dass
+
+% Info_2021-05-07-2021-05-07_09.32.08.mp4 2h29
+
+\begin{itemize}
+\item $2^{x_i}$
+
+\begin{liAntwort}
+Ausnutzen der 2er-Potenzeigenschaft:
+
+$2^1 = 1 + 1 = 2$
+
+$2^2 = 2 + 2 = 4$
+
+$2^3 = 4 + 4 = 8$
+
+Hier werden nur die elementaren Bestandteile der WHILE-Sprache ausgenutzt.
+
+\begin{minted}{md}
+x_2 := 1;
+WHILE x_1 DO
+  x_3 := x_2;
+  WHILE x_3 DO
+    x_2 := x_2 + 1;
+    x_3 := x_3 - 1;
+  END
+  x_1 := x_1 - 1;
+END
+x_0 := x_2;
+\end{minted}
+\end{liAntwort}
+
+\item $\text{ggt}(x_i, x_j)$
+
+\begin{liAntwort}
+Zusätzliche Voraussetzungen:
+
+\begin{minted}{md}
+x_1 > x_2;
+MOD(x_1, x_2);
+\end{minted}
+
+\begin{minted}{md}
+x_0 := MOD(x_1, x_2);
+WHILE x_0 DO
+  x_1 := x_2;
+  x_2 := x_0;
+  x_0 := MOD(x_1, x_2);
+END
+\end{minted}
+\end{liAntwort}
+\end{itemize}
+
+berechnet.
+
+\end{document}

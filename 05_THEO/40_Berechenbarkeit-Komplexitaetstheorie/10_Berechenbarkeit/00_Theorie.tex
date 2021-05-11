@@ -1,4 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
+\liLadePakete{mathe}
 
 \begin{document}
 
@@ -77,9 +78,12 @@ nach Programmausführung von $P$
 
 Es gibt die Möglichkeit sogenannte Makros zu definieren.
 \end{description}
+
 %%
 %
 %%
+
+% Info_2021-05-07-2021-05-07_09.32.08.mp4 2h
 
 \subsubsection{While-Programme}
 
@@ -88,6 +92,72 @@ Es gibt die Möglichkeit sogenannte Makros zu definieren.
 \item \cite[Seite 260-264]{hoffmann}
 \item \cite{wiki:while}
 \end{liQuellen}
+
+\begin{itemize}
+\item endlicher Aufbau
+\item Variablen aus den natürlichen Zahlen
+\end{itemize}
+
+\begin{description}
+\item[Programmelemente:] \strut
+
+\begin{description}
+\item[Konstante:]
+$0$ (andere Kostanten müssen aus den anderen Element )
+
+\item[Variablen:]
+$x_0, x_1, x_2, \dots, x_n$
+
+\item[Operator:]
+
+$succ$ (Successor), $pred$ (Predecessor), $:=$ (Wertzuweisen), $;$ (Anweisungtrenner)
+
+\item[Schleife:]
+
+ $loop \dots do \dots end$(nach dem $loop$ Schlüsselwort steht genau eine
+Variable, die dekrementiert wird. Ist 0 erreicht, stop die Schleife)
+
+\item[Schleife:]
+
+$while \dots do \dots end$
+(nach dem $while$ Schlüsselwort steht eine Bedingung. $while$-Schleife
+kann nicht terminieren.)
+\end{description}
+
+\item[Speichervektor v:] \strut
+
+\begin{itemize}
+\item endlich, aber beliebig lang
+\item Speicherung der Variablen des Programms
+\item $(x_0, x_1, x_2, \dots, x_n)$
+ \end{itemize}
+
+\item[Übergangsfunktion $\delta(v, P)$:] \strut
+
+\begin{description}
+\item[Eingabe:] Speichervektor $v$ und Programm $P$
+\item[Ausgabe:] Speichervektor $v'$
+\end{description}
+
+nach Programmausführung von $P$
+\begin{equation*}
+\delta(v, \text{while }x_i\text{ do }P)
+\begin{cases}
+\bot & \text{falls }T_i = \emptyset\\
+\delta(v, P^{\text{min}T_i}) & \text{falls }T_i \neq \emptyset\\
+\end{cases}
+\end{equation*}
+\end{description}
+
+Mit $f : \mathbb{N}^n \rightarrow \mathbb{N}$ sei eine partielle
+Funktion über den natürlichen Zahlen gegeben. $f$ heißt
+While-berechenbar, falls ein While-Programm $P$ mit den folgenden
+Eigenschaften existiert:
+
+Satz von Kleene:
+
+Jede WHILE-berechenbare Funktion lässt sich als WHILE-Programm mit nur
+einer WHILE-Schleife realisieren.\footcite[Seite 13]{theo:fs:4}
 
 \subsection{Weitere Berechnungsmodelle}
 
@@ -111,7 +181,19 @@ Es gibt die Möglichkeit sogenannte Makros zu definieren.
 % Info_2021-05-07-2021-05-07_09.32.08.mp4 2h47min
 
 Eine Turing-Maschine $U$ heißt universell, wenn sie eine andere
-Turing-Maschine $T$ simulieren (ausführen) kann.\footcite[Seite 23]{theo:fs:4}
+Turing-Maschine $T$ simulieren (ausführen) kann.\footcite[Seite
+23]{theo:fs:4}
+
+\begin{equation*}
+\delta((0,x_1,x_2,\dots,x_n,0,\dots), P) =
+\begin{cases}
+\bot &
+\text{falls } f(x_1,x_2,\dots,x_n) = \bot\\
+
+(f(x_1,x_2,\dots,x_n), \dots) &
+\text{falls }f(x_1,x_2,\dots,x_n) \neq \bot\\
+\end{cases}
+\end{equation*}\footcite[Seite 261]{hoffmann}
 
 \subsection{Gödelisierung:}
 
