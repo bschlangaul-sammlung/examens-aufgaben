@@ -1,0 +1,123 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{GOTO-Programme}
+\section{GOTO-Programme
+\index{GOTO-berechenbar}
+\footcite[Aufgabe 4]{theo:ab:4}}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Terminieren GOTO-Programme immer? Begründe Deine Antwort.
+
+\begin{liAntwort}
+GOTO-Programme terminieren nicht immer.
+
+\begin{description}
+\item[Variante 1:]
+
+Die Menge der GOTO-Programme ist identisch mit der Menge der
+WHILE-Programme. Da WHILE-Programme partielle Funktionen beschreiben und
+diese nicht für alle Eingaben terminieren, terminieren GOTO-Programme
+ebenfalls nicht für alle Eingaben.
+
+\item[Variante 2:]
+
+Die charakteristische Funktion einer semi-entscheidbaren Sprache ist
+Turing- bzw. GOTO-berechenbar, d.\.h. zu jeder semi-entscheidbaren
+Sprache gibt es eine Turing-Maschine. GOTO-Programme können
+Turing-Maschinen simulieren. Da hier von einer nur semi-entscheidbaren
+Sprache ausgegangen wird, terminiert das GOTO-Programm nicht, falls die
+Eingabe x kein Element der Sprache ist.
+\end{description}
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item Gebe ein GOTO-Programm an, dass die Summe dreier Zahlen berechnen.
+
+\begin{liAntwort}
+\begin{minted}{md}
+Eingabe x_1, x_2, x_3;
+x_0 := x_1;
+IF x_2 = 0 GOTO Z6;
+  x_0 := x_0 + 1;
+  x_2 := x_2 - 1;
+GOTO Z2;
+IF x_3 = 0 GOTO Z10;
+  x_0 := x_0 + 1;
+  x_3 := x_3 - 1;
+GOTO Z6;
+END;
+Ausgabe: x_0
+\end{minted}
+\end{liAntwort}
+
+%%
+% (c)
+%%
+
+\item Gegeben ist das GOTO-Programm:
+
+\begin{minted}{md}
+x_4 := x_1;
+IF x_4 = 0 GOTO Z10;
+  x_5 := x_2;
+IF x_5 = 0 GOTO Z8;
+  x_3 := x_3 + 1;
+  x_5 := x_5 - 1;
+GOTO Z4;
+  x_4 := x_4 - 1;
+GOTO Z2;
+  x_5 := x_5 - 1
+\end{minted}
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Was berechnet das Programm?
+
+\begin{liAntwort}
+$f(n, m) = n * m$
+\end{liAntwort}
+
+%%
+% 2.
+%%
+
+\item Übertrage das Programm in ein WHILE-Programm.
+
+\begin{liAntwort}
+\begin{minted}{md}
+Eingabe x_1, x_2 :
+x_4 := x_1;
+WHILE x_4 <> 0 DO
+  x_5 := x_2;
+  WHILE x_5 <> 0 DO
+    x_3 := x_3 + 1;
+    x_5 := x_5 - 1
+  END;
+x_4 := x_4 - 1
+END
+Ausgabe x_0
+
+\end{minted}
+
+\begin{minted}{md}
+Eingabe : x_1, x_2
+x_0 := mult ( x_1, x_2 );
+Ausgabe : x_0
+\end{minted}
+\end{liAntwort}
+\end{enumerate}
+
+\end{enumerate}
+\end{document}

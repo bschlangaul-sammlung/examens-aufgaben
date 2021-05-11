@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe}
+\liLadePakete{mathe,syntax}
 \begin{document}
 \liAufgabenTitel{WHILE-berechenbar}
 \section{WHILE-berechenbar
@@ -17,12 +17,14 @@ Bestimme jeweils, ob die angegebene Funktion WHILE-berechenbar ist:
 \item $x \rightarrow 2^x$
 
 \begin{liAntwort}
+\begin{minted}{md}
 erg = 1;
-WHILE x 6 = 0 DO
-erg = erg * 2;
-x = x - 1;
+WHILE x != 0 DO
+  erg = erg * 2;
+  x = x - 1;
 END;
 return erg;
+\end{minted}
 \end{liAntwort}
 
 %%
@@ -30,44 +32,68 @@ return erg;
 %%
 
 \item $\text{ggT}(n, m)$,
-also der größte gemeinsame Teiler. Sie dürfen die (ganzzahligen) Operationen
-+, −, ∗ und / verwenden, wobei das Minus, wie üblich, eingeschränkt ist.
+
+also der größte gemeinsame Teiler. Sie dürfen die (ganzzahligen)
+Operationen $+$, $−$, $∗$ und $/$ verwenden, wobei das Minus, wie
+üblich, eingeschränkt ist.
 
 \begin{liAntwort}
-Es bietet sich an, zunächst die modulo Operation x i := x j % x k durch folgendes WHILE-
-Programm zu definieren:
-x n+1 := x j /x k ;
-x n+2 := x n+1 ∗ x k ;
-x i := x j − x n+2 ;
-Wobei x n+1 und x n+2 im Rest des Programmes nicht verwendet werden sollen. Mit der
-Modulo Operation kann man nun z.B. einfach den euklidischen Algorithmus verwenden
-(Eingabe seien x 1 und x 2 , Ausgabe ist x 1 :
-WHILE x 2 6 = 0 DO
-x 3 := x1 % x 2 ;
-x 1 := x 2 + 0;
-x 2 := x 3 + 0;
+Es bietet sich an, zunächst die modulo Operation
+
+\begin{minted}{md}
+x_i := x_j % x_k
+\end{minted}
+
+durch folgendes WHILE-Programm zu definieren:
+
+\begin{minted}{md}
+x_n+1 := x_j / x_k;
+x_n+2 := x_n+1 ∗ x_k;
+x_i := x_j - x_n+2;
+\end{minted}
+
+Wobei $x_{n+1}$ und $x_{n+1}$ im Rest des Programmes nicht verwendet
+werden sollen. Mit der Modulo Operation kann man nun z.\,B. einfach den
+euklidischen Algorithmus verwenden (Eingabe seien $x_1$ und $x_2$,
+Ausgabe ist $x_1$:
+
+\begin{minted}{md}
+WHILE x_2 != 0 DO
+  x_3 := x_1 % x_2;
+  x_1 := x_2 + 0;
+  x_2 := x_3 + 0;
 END
+\end{minted}
 \end{liAntwort}
 
 %%
 % (c)
 %%
 
-\item if x i 6 = 0 then P 1 else P 2 fi mit der üblichen Semantik.
+\item \begin{minted}{md}
+if x_i != 0 then P_1 else P_2 fi
+\end{minted}
+
+mit der üblichen Semantik.
 Als Nachweis kann jeweils ein WHILE-Programm angegeben werden.
 
 \begin{liAntwort}
-Sei x n die höchste in P 1 bzw. P 2 vorkommende Variable (o. E. i ≤ n).
-x n+1 := x i + 0;
-x n+2 := 1;
-WHILE x n+1 6 = 0 DO
-x n+1 := 0;
-x n+2 := 0;
-P 1 ;
+Sei $x_n$ die höchste in $P_1$ bzw. $P_2$ vorkommende Variable (o. E. $i
+\leq n$).
+
+\begin{minted}{md}
+x_n+1 := x_i + 0;
+x_n+2 := 1;
+WHILE x_n+1 != 0 DO
+  x_n+1 := 0;
+  x_n+2 := 0;
+  P_1;
 END
 WHILE x n+2 6 = 0 DO
-x n+2 := 0;
-P 2 ;
+  x_n+2 := 0;
+  P_2;
+END
+\end{minted}
 \end{liAntwort}
 
 \end{enumerate}
