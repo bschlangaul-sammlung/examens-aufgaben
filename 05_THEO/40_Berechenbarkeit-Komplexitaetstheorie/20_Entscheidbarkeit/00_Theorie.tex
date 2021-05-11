@@ -1,0 +1,98 @@
+\documentclass{lehramt-informatik-haupt}
+\liLadePakete{mathe}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Entscheidbarkeit}
+
+\begin{liQuellen}
+\item \cite[Seite 309-312]{hoffmann}
+\item \cite{wiki:entscheidbar}
+\item \cite[Kapitel 19.2.3.1 Entscheidbarkeit und Semientscheidbarkeit, Seite 596-597]{schneider}
+\end{liQuellen}
+
+\begin{description}
+\item[Entscheidbarkeit]
+
+Eine Sprache $L \subseteq \Sigma^*$ heißt entscheidbar, wenn die
+charakteristische Funktion $\chi_{L} : \Sigma^* \rightarrow \{0,1\}$ mit
+
+\begin{equation*}
+\chi _{L}(\omega)=
+\begin{cases}
+1,& \text{falls } \omega \in L,\\
+0,& \text{falls } \omega \notin L
+\end{cases}
+\end{equation*}
+
+berechenbar ist.
+
+\item[Semi-Entscheidbarkeit]
+
+Eine Sprache $L \subseteq \Sigma^*$ heißt semi-entscheidbar, wenn die
+partielle charakteristische Funktion $\chi_{L}' : \Sigma^* \rightarrow
+\{ 1 \}$ mit
+
+\begin{equation*}
+\chi _{L}'(\omega)=
+\begin{cases}
+1,& \text{falls } \omega \in L,\\
+\bot,& \text{falls } \omega \notin L
+\end{cases}
+\end{equation*}
+
+berechenbar ist.
+\end{description}
+
+\begin{liExkurs}[Charakteristische Funktion]
+Die Indikatorfunktion (auch charakteristische Funktion genannt) ist eine
+Funktion in der Mathematik, die sich dadurch auszeichnet, dass sie
+nur einen oder zwei Funktionswerte annimmt. Sie ermöglicht es,
+komplizierte Mengen mathematisch präzise zu fassen und auf ihnen
+Funktionen\footcite{wiki:charakteristische-funktion}
+\end{liExkurs}
+
+\section{Wichtige Definitionen}
+
+Jede nichtdeterministische Turing-Maschine kann durch eine
+deterministische Turing-Maschine simuliert werden.
+
+Zu jeder Typ-0-Sprache $L$ existiert eine Turing-Maschine, die $L$
+akzeptiert.
+
+Zu jeder Typ-1-Sprache $L$ existiert eine nichtdeterministische, linear
+beschränkte Turing-Maschine, die $L$ akzeptiert.
+\footcite[Seite 35]{theo:fs:4}
+
+Eine Sprache $L$ heißt
+
+\memph{rekursiv aufzählbar}, falls eine Turing-Maschine $T$ existiert,
+die $L$ akzeptiert.
+
+oder
+
+falls $L = \emptyset$ oder eine surjektive und berechenbare Abbildung
+$f: \mathbb{N} \leftarrow L$ existiert.
+
+\memph{abzählbar}, falls eine bijektive Abbildung $f: \mathbb{N}
+\leftarrow L$ existiert.
+
+\memph{rekursiv} oder \memph{entscheidbar}, falls eine Turing-Maschine
+$T$ existiert, die $L$ akzeptiert und zusätzlich für jede Eingabe
+terminiert.
+\footcite[Seite 37]{theo:fs:4}
+
+Eine Sprache $L$ ist genau dann entscheidbar, wenn sowohl $L$ als auch
+$\overline{L}$ semi-entscheidbar sind.
+
+Eine Sprache ist genau dann aufzählbar, wenn sie semi-entscheidbar ist.
+
+Eine Sprache ist genau dann entscheidbar, wenn $L$ und $\overline{L}$
+aufzählbar sind.
+\footcite[Seite 39]{theo:fs:4}
+
+\end{document}
