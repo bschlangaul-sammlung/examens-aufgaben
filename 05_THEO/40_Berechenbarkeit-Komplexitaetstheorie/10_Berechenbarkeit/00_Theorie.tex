@@ -1,5 +1,7 @@
 \documentclass{lehramt-informatik-haupt}
 \liLadePakete{mathe}
+\usepackage{tikz}
+\usetikzlibrary{calc,trees,positioning,arrows,fit,shapes,calc}
 
 \begin{document}
 
@@ -232,6 +234,95 @@ Funktionen, die von einem Menschen berechnet werden können.
 
 Church‘sche These kann nicht bewiesen werden!
 \footcite[Seite 27]{theo:fs:4}
+
+\begin{liExkurs}[Funktion]
+In der Mathematik ist eine Funktion (lateinisch functio) oder Abbildung
+eine Beziehung (Relation) zwischen zwei Mengen, die jedem Element der
+einen Menge (Funktionsargument, unabhängige Variable, $x$-Wert) genau
+ein Element der anderen Menge (Funktionswert, abhängige Variable,
+$y$-Wert) zuordnet.
+\liFussnoteUrl{https://de.wikipedia.org/wiki/Funktion_(Mathematik)}
+
+Eine (totale) Funktion ist eine Relation $R \subseteq M \times N$ über dem
+Deﬁnitionsbereich $M$ und dem Wertebereich $N$, welche folgende
+Eigenschaften hat:
+
+\begin{enumerate}
+\item Jedes Element aus dem Deﬁnitionsbereich $M$ ist mit höchstens
+einem Element aus dem Wertebereich $N$ verbunden. (\emph{rechtseindeutig})
+
+\item Jedes Element von $M$ ist mit einem Element aus $N$ verbunden.
+(\emph{linkstotal})
+\end{enumerate}
+\liFussnoteUrl{https://files.ifi.uzh.ch/cl/siclemat/lehre/ws0607/ecl1/script/html/scriptse48.html}
+\end{liExkurs}
+
+\begin{liExkurs}[Totale Funktion]
+Eine rechtseindeutige bzw. funktionale Relation nennt man auch partielle
+Funktion. Wenn diese auch linkstotal – also eine Funktion – ist, dann
+sagt man zur Verdeutlichung auch totale Funktion.
+\liFussnoteUrl{https://de.wikipedia.org/wiki/Relation_(Mathematik)}
+\end{liExkurs}
+
+\begin{liExkurs}[Partielle Funktion]
+Der Begriff der partiellen Funktion ist eine Verallgemeinerung des
+Begriffs der Funktion. Unter einer Funktion von $X$ nach $Y$ versteht
+man eine linkstotale, rechtseindeutige Relation, also eine Relation, in
+der jedem Element von $X$ genau ein Element von $Y$ zugeordnet ist. Jede
+Funktion von $X$ nach $Y$ ist also insbesondere eine partielle Funktion
+von $X$ nach $Y$, nämlich eine (links-)totale partielle Funktion, aber
+nicht umgekehrt. Insofern kann der Begriff der partiellen Funktion
+irreführend sein. Um auszudrücken, dass eine partielle Funktion sogar
+eine Funktion im eigentlichen Sinn ist, sagt man gelegentlich, es handle
+sich um eine totale Funktion. Der Unterschied zwischen partiellen
+Funktionen und (totalen) Funktionen ist: Für partielle Funktionen
+
+\begin{displaymath}
+f\colon \;X \rightharpoonup Y
+\end{displaymath}
+
+\noindent
+gilt
+
+\begin{displaymath}
+\operatorname {Def} (f) \subseteq X ,
+\end{displaymath}
+
+\noindent
+für (totale) Funktionen
+
+\begin{displaymath}
+f \colon \; X \to Y
+\end{displaymath}
+
+ gilt
+
+\begin{displaymath}
+\operatorname {Def} (f)=X .
+\end{displaymath}
+
+\liFussnoteUrl{https://de.wikipedia.org/wiki/Partielle_Funktion}
+\end{liExkurs}
+
+ \begin{tikzpicture}[ele/.style={fill=black,circle,minimum width=.8pt,inner sep=1pt},every fit/.style={ellipse,draw,inner sep=-2pt}]
+  \node[ele,label=left:$a$] (a1) at (0,4) {};
+  \node[ele,label=left:$b$] (a2) at (0,3) {};
+  \node[ele,label=left:$c$] (a3) at (0,2) {};
+  \node[ele,label=left:$d$] (a4) at (0,1) {};
+
+  \node[ele,,label=right:$1$] (b1) at (4,4) {};
+  \node[ele,,label=right:$2$] (b2) at (4,3) {};
+  \node[ele,,label=right:$3$] (b3) at (4,2) {};
+  \node[ele,,label=right:$4$] (b4) at (4,1) {};
+
+  \node[draw,fit= (a1) (a2) (a3) (a4),minimum width=2cm] {} ;
+  \node[draw,fit= (b1) (b2) (b3) (b4),minimum width=2cm] {} ;
+  \draw[->,thick,shorten <=2pt,shorten >=2pt] (a1) -- (b4);
+  \draw[->,thick,shorten <=2pt,shorten >=2] (a2) -- (b2);
+  \draw[->,thick,shorten <=2pt,shorten >=2] (a3) -- (b1);
+  \draw[->,thick,shorten <=2pt,shorten >=2] (a4) -- (b3);
+ \end{tikzpicture}
+
 \literatur
 
 \end{document}
