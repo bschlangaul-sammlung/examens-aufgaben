@@ -304,24 +304,93 @@ f \colon \; X \to Y
 \liFussnoteUrl{https://de.wikipedia.org/wiki/Partielle_Funktion}
 \end{liExkurs}
 
- \begin{tikzpicture}[ele/.style={fill=black,circle,minimum width=.8pt,inner sep=1pt},every fit/.style={ellipse,draw,inner sep=-2pt}]
-  \node[ele,label=left:$a$] (a1) at (0,4) {};
-  \node[ele,label=left:$b$] (a2) at (0,3) {};
-  \node[ele,label=left:$c$] (a3) at (0,2) {};
-  \node[ele,label=left:$d$] (a4) at (0,1) {};
+\tikzset{
+  punkt/.style = {
+    fill = black,
+    circle,
+    minimum width = 0.8pt,
+    inner sep = 1pt,
+  },
+  menge/.style = {
+    ellipse,
+    draw,
+    inner sep = 5pt,
+    minimum width = 2.5cm,
+  },
+  pfeil/.style = {
+    ->,
+    shorten <= 2pt,
+    shorten >= 2pt,
+  }
+}
 
-  \node[ele,,label=right:$1$] (b1) at (4,4) {};
-  \node[ele,,label=right:$2$] (b2) at (4,3) {};
-  \node[ele,,label=right:$3$] (b3) at (4,2) {};
-  \node[ele,,label=right:$4$] (b4) at (4,1) {};
+Arten von (partiellen) Funktionen
 
-  \node[draw,fit= (a1) (a2) (a3) (a4),minimum width=2cm] {} ;
-  \node[draw,fit= (b1) (b2) (b3) (b4),minimum width=2cm] {} ;
-  \draw[->,thick,shorten <=2pt,shorten >=2pt] (a1) -- (b4);
-  \draw[->,thick,shorten <=2pt,shorten >=2] (a2) -- (b2);
-  \draw[->,thick,shorten <=2pt,shorten >=2] (a3) -- (b1);
-  \draw[->,thick,shorten <=2pt,shorten >=2] (a4) -- (b3);
- \end{tikzpicture}
+Surjektiv
+
+Jedes Element des Wertebereichs wird von mindestens einem Pfeil getroﬀen.
+
+\begin{center}
+\begin{tikzpicture}
+\node[punkt,label=left:$a$] (a) at (0,4) {};
+\node[punkt,label=left:$b$] (b) at (0,3) {};
+\node[punkt,label=left:$c$] (c) at (0,2) {};
+
+\node[punkt,label=right:$1$] (1) at (4,3.5) {};
+\node[punkt,label=right:$2$] (2) at (4,2.5) {};
+
+\node[menge,draw,fit= (a) (b) (c)] {} ;
+\node[menge,fit= (1) (2)] {} ;
+\draw[pfeil] (a) -- (1);
+\draw[pfeil] (b) -- (1);
+\draw[pfeil] (c) -- (2);
+\end{tikzpicture}
+\end{center}
+
+Injektiv
+
+Jedes Element des Wertebereichs wird von höchstens einem Pfeil getroﬀen.
+
+\begin{center}
+\begin{tikzpicture}
+\node[punkt,label=left:$a$] (a) at (0,4) {};
+\node[punkt,label=left:$b$] (b) at (0,3) {};
+\node[punkt,label=left:$c$] (c) at (0,2) {};
+
+\node[punkt,label=right:$1$] (1) at (4,4.5) {};
+\node[punkt,label=right:$2$] (2) at (4,3.5) {};
+\node[punkt,label=right:$3$] (3) at (4,2.5) {};
+\node[punkt,label=right:$4$] (4) at (4,1.5) {};
+
+\node[menge,draw,fit= (a) (b) (c)] {} ;
+\node[menge,fit= (1) (2) (3) (4)] {} ;
+\draw[pfeil] (a) -- (3);
+\draw[pfeil] (b) -- (2);
+\draw[pfeil] (c) -- (1);
+\end{tikzpicture}
+\end{center}
+
+Bijektiv
+
+Jedes Element des Wertebereichs wird von genau einem Pfeil getroﬀen.
+
+\begin{center}
+\begin{tikzpicture}
+\node[punkt,label=left:$a$] (a) at (0,4) {};
+\node[punkt,label=left:$b$] (b) at (0,3) {};
+\node[punkt,label=left:$c$] (c) at (0,2) {};
+
+\node[punkt,label=right:$1$] (1) at (4,4) {};
+\node[punkt,label=right:$2$] (2) at (4,3) {};
+\node[punkt,label=right:$3$] (3) at (4,2) {};
+
+\node[menge,draw,fit= (a) (b) (c)] {} ;
+\node[menge,fit= (1) (2) (3)] {} ;
+\draw[pfeil] (a) -- (3);
+\draw[pfeil] (b) -- (2);
+\draw[pfeil] (c) -- (1);
+\end{tikzpicture}
+\end{center}
 
 \literatur
 
