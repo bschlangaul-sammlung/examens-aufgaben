@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{formale-sprachen}
 \begin{document}
 \liAufgabenTitel{Verständnis}
 \section{Verständnis formale Sprachen
@@ -17,6 +17,15 @@ Begründungen müssen keine formellen mathematischen Beweise sein).
 
 \item Welche Möglichkeiten gibt es, eine formale Sprache vom Typ 3 zu
 definieren?
+
+\begin{liAntwort}
+\begin{itemize}
+\item reguläre Grammatik
+\item endlicher Automat
+\item regulärer Ausdruck
+\end{itemize}
+\end{liAntwort}
+
 %%
 % b)
 %%
@@ -35,17 +44,54 @@ $P$, CYK-Algorithmus löst es ein Polynomialzeit.
 \item Sind Syntaxbäume zu einer Grammatik immer eindeutig? Falls nicht,
 geben Sie ein Gegenbeispiel.
 
+\begin{liAntwort}
+Nein. Syntaxbäume zu einer Grammtik sind nicht immer eindeutig.
+
+\liPseudoUeberschrift{Gegenbeispiel}
+
+\liGrammatik{
+  variablen={S, A, B},
+  alphabet={a}
+}
+
+\begin{liProduktionsRegeln}
+S -> A A,
+S -> B B,
+A -> a,
+B -> a,
+\end{liProduktionsRegeln}
+
+\liAbleitung{S -> A A -> a A -> a a}
+
+\liAbleitung{S -> B B -> a B -> a a}\footcite{wiki:mehrdeutig}
+\end{liAntwort}
+
 %%
 % d)
 %%
 
 \item Wie kann man die Äquivalenz zweier Typ-3 Sprachen nachweisen?
+
+\begin{liAntwort}
+Wir können von den auf Äquivalenz zu überprüfenden Sprachen jeweils
+einen minimalen endlichen Automaten bilden. Sie diese entstanden zwei
+Automaten äquivalent so sind auch die Sprachen äquivalent.
+\footcite{wiki:aequivalenzproblem}
+\end{liAntwort}
+
 %%
 % e)
 %%
 
 \item Wie kann man das Wortproblem für das Komplement einer Typ-3
 Sprache lösen?
+
+\begin{liAntwort}
+Da das Komplement einer regulären Sprache wieder eine reguläre Sprache
+ergibt, kann das Wortproblem beim Komplement durch einen deterministisch
+endlichen Automaten gelöst werden.
+\end{liAntwort}
+
 %%
 % f)
 %%
@@ -67,6 +113,17 @@ Falls nicht, geben Sie ein Gegenbeispiel, mit Begründung.
 \item Geben Sie ein Beispiel, an dem deutlich wird, dass
 deterministische und nichtdeterministische Typ-2 Sprachen
 unterschiedlich sind.
+
+\begin{liAntwort}
+\begin{description}
+\item[Deterministisch Kontextfrei]
+\liAusdruck{0^n 1^n}{n \geq 0}
+
+\item[Nichtdeterministisch Kontextfrei]
+\liAusdruck{\omega \omega^R}{\omega \geq \{0, 1\}^*} (R steht für rückwärts)
+\end{description}
+\liFussnoteUrl{https://docplayer.org/19566652-Einfuehrung-in-die-theoretische-informatik.html}
+\end{liAntwort}
 
 %%
 % i)
