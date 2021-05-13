@@ -235,16 +235,29 @@ Funktionen, die von einem Menschen berechnet werden können.
 Church‘sche These kann nicht bewiesen werden!
 \footcite[Seite 27]{theo:fs:4}
 
-\begin{liExkurs}[Funktion]
-In der Mathematik ist eine Funktion (lateinisch functio) oder Abbildung
-eine Beziehung (Relation) zwischen zwei Mengen, die jedem Element der
-einen Menge (Funktionsargument, unabhängige Variable, $x$-Wert) genau
-ein Element der anderen Menge (Funktionswert, abhängige Variable,
-$y$-Wert) zuordnet.
-\liFussnoteUrl{https://de.wikipedia.org/wiki/Funktion_(Mathematik)}
+\section{Funktion}
 
-Eine (totale) Funktion ist eine Relation $R \subseteq M \times N$ über dem
-Deﬁnitionsbereich $M$ und dem Wertebereich $N$, welche folgende
+In der Mathematik ist eine Funktion (lateinisch functio) oder
+\memph{Abbildung} eine \memph{Beziehung (Relation) zwischen zwei
+Mengen}, die jedem Element der einen Menge (Funktionsargument, Urbild,
+unabhängige Variable, $x$-Wert) genau ein Element der anderen Menge
+(Funktionswert, Bild von $x$, abhängige Variable, $y$-Wert) zuordnet.
+\footcite[Seite 51]{hoffmann}
+\footcite{wiki:funktion}
+
+\begin{center}
+\begin{tabular}{l|l}
+eine Menge & andere Menge\\\hline
+Funktionsargument & Funktionswert\\
+Urbild & Bild\\
+unabhängige Variable & abhängige Variable\\
+Definitionsmenge & Zielmenge\\
+Definitionsbereich & Wertebereich\\
+\end{tabular}
+\end{center}
+
+Eine (totale) Funktion ist eine Relation $R \subseteq M \times N$ über
+dem Deﬁnitionsbereich $M$ und dem Wertebereich $N$, welche folgende
 Eigenschaften hat:
 
 \begin{enumerate}
@@ -255,16 +268,25 @@ einem Element aus dem Wertebereich $N$ verbunden. (\emph{rechtseindeutig})
 (\emph{linkstotal})
 \end{enumerate}
 \liFussnoteUrl{https://files.ifi.uzh.ch/cl/siclemat/lehre/ws0607/ecl1/script/html/scriptse48.html}
-\end{liExkurs}
 
 \begin{liExkurs}[Totale Funktion]
 Eine rechtseindeutige bzw. funktionale Relation nennt man auch partielle
 Funktion. Wenn diese auch linkstotal – also eine Funktion – ist, dann
 sagt man zur Verdeutlichung auch totale Funktion.
-\liFussnoteUrl{https://de.wikipedia.org/wiki/Relation_(Mathematik)}
+\footcite{wiki:relation}
 \end{liExkurs}
 
-\begin{liExkurs}[Partielle Funktion]
+\section{Partielle Funktion}
+
+Der Funktionsbegriff wird in der theoretischen Informatik anders
+definiert als in der Mathematik. Dort ist eine Funktion eine
+Zuordnungsvorschrift, die ausnahmslos jedes Element der Definitionsmenge
+auf ein Element der Zielmenge abbildet. Mit anderen Worten: In der
+klassischen \memph{Mathematik sind alle Funktionen total}. Der Begriff
+der partiellen Funktion wurde in der theoretischen Informatik
+eingeführt, um Programme zu beschreiben, die \memph{für gewisse
+Eingabewerte nicht terminieren}.\footcite[Seite 51]{hoffmann}
+
 Der Begriff der partiellen Funktion ist eine Verallgemeinerung des
 Begriffs der Funktion. Unter einer Funktion von $X$ nach $Y$ versteht
 man eine linkstotale, rechtseindeutige Relation, also eine Relation, in
@@ -302,7 +324,6 @@ f \colon \; X \to Y
 \end{displaymath}
 
 \liFussnoteUrl{https://de.wikipedia.org/wiki/Partielle_Funktion}
-\end{liExkurs}
 
 \tikzset{
   punkt/.style = {
@@ -324,11 +345,24 @@ f \colon \; X \to Y
   }
 }
 
-Arten von (partiellen) Funktionen
+\section{Arten von (partiellen) Funktionen}
 
-Surjektiv
+%%
+%
+%%
 
-Jedes Element des Wertebereichs wird von mindestens einem Pfeil getroﬀen.
+\subsection{Surjektiv}
+
+Surjektive Funktionen besitzen die Eigenschaft, die Zielmenge
+vollständig auszuschöpfen, d. h., jedes Element besitzt mindestens ein
+Urbild in der Definitionsmenge.\footcite[Seite 51]{hoffmann}
+
+jedes Element der Zielmenge mindestens einmal als Funktionswert annimmt.
+Das heißt, jedes Element der Zielmenge hat ein nichtleeres Urbild.
+\footcite{wiki:surjektiv}
+
+Jedes Element des Wertebereichs wird von mindestens einem Pfeil getroffen.
+\liFussnoteUrl{https://files.ifi.uzh.ch/cl/siclemat/lehre/ws0607/ecl1/script/html/scriptse48.html}
 
 \begin{center}
 \begin{tikzpicture}
@@ -347,9 +381,14 @@ Jedes Element des Wertebereichs wird von mindestens einem Pfeil getroﬀen.
 \end{tikzpicture}
 \end{center}
 
-Injektiv
+%%
+%
+%%
 
-Jedes Element des Wertebereichs wird von höchstens einem Pfeil getroﬀen.
+\subsection{Injektiv}
+
+Jedes Element des Wertebereichs wird von höchstens einem Pfeil getroffen.
+\liFussnoteUrl{https://files.ifi.uzh.ch/cl/siclemat/lehre/ws0607/ecl1/script/html/scriptse48.html}
 
 \begin{center}
 \begin{tikzpicture}
@@ -370,9 +409,27 @@ Jedes Element des Wertebereichs wird von höchstens einem Pfeil getroﬀen.
 \end{tikzpicture}
 \end{center}
 
-Bijektiv
+Eine injektive Funktion, auch als Injektion bezeichnet, ist ein
+Spezialfall einer linkseindeutigen Relation, namentlich der, bei dem die
+Relation auch rechtseindeutig und linkstotal ist.
+\footcite{wiki:injektiv}
 
-Jedes Element des Wertebereichs wird von genau einem Pfeil getroﬀen.
+%%
+%
+%%
+
+\subsection{Bijektiv}
+
+von bijektiv, etwa ‚umkehrbar eindeutig auf‘. Zur Veranschaulichung kann
+man sagen, dass bei einer Bijektion eine vollständige Paarbildung
+zwischen den Elementen von Definitionsmenge und Zielmenge stattfindet.
+Bijektionen behandeln ihren Definitionsbereich und ihren Wertebereich
+also symmetrisch; deshalb hat eine bijektive Funktion immer eine
+Umkehrfunktion.
+\footcite{wiki:bijektiv}
+
+Jedes Element des Wertebereichs wird von genau einem Pfeil getroffen.
+\liFussnoteUrl{https://files.ifi.uzh.ch/cl/siclemat/lehre/ws0607/ecl1/script/html/scriptse48.html}
 
 \begin{center}
 \begin{tikzpicture}
