@@ -11,103 +11,6 @@
 
 \chapter{Reguläre Sprachen}
 
-\section{Chomsky-Hierarchie\footcite{wiki:chomsky}}
-
-Im Jahr 1957 veröffentlichte der amerikanische Sprachwissenschaftler
-Noam \memph{Chomsky} ein Regelwerk, mit dessen Hilfe sich formale
-Grammatiken in \memph{vier Klassen} einteilen lassen:
-\footcite[Seite 168]{hoffmann}
-
-\begin{description}
-\item[Typ 0] Phrasenstrukturgrammatik
-
-Jede Grammatik ist per Definition immer auch eine Typ-0-Grammatik.
-Insbesondere unterliegt die Struktur der Produktionen \memph{keinen
-weiteren vereinbarten Einschränkungen}.
-
-\item[Typ 1] kontextsensitive Grammatik
-
-Eine Grammatik heißt kontextsensitiv, wenn jede Produktionsregel $l
-\rightarrow r$ entweder die Beziehung \memph{$|r| \geq |l|$} erfüllt
-oder die Form \memph{$S \rightarrow \epsilon$} aufweist. Ist die Regel
-$S \rightarrow \epsilon$ enthalten, so darf $S$ in keiner anderen
-rechten Seite einer Regel vorkommen.
-
-\item[Typ 2] kontextfreie Grammatik
-
-Typ-2-Grammatiken sind dadurch charakterisiert, dass die \memph{linke
-Seite} einer Produktionsregel ausschließlich aus einer \memph{einzigen
-Variablen} besteht. Für alle Produktionen $l \rightarrow r$ gilt also $l
-\in V$.
-
-\item[Typ 3] reguläre Grammatik\footcite[Seite 14]{theo:fs:1}
-
-Reguläre Grammatiken sind kontextfrei und besitzen die zusätzliche
-Eigenschaft, dass die rechte Seite einer Produktion entweder aus dem
-\memph{leeren Wort $\epsilon$} oder einem \memph{Terminalsymbol},
-\memph{gefolgt von einem Nonterminal}, besteht. Formal gesprochen
-besitzt jede Produktion die Form $l \rightarrow r$ mit $l \in V$ und $r
-\in \{ \epsilon \} \cup \Sigma V$ .
-\end{description}
-
-\begin{tikzpicture}[font=\sffamily,breathe dist/.initial=0.01ex]
-\foreach \X [count=\Y,remember=\Y as \LastY] in
-{Typ 3 Sprachen, Typ 2 Sprachen, Typ 1 Sprachen, Typ 0 Sprachen, Alle Sprachen}
-  {\ifnum\Y=1
-  \node[ellipse,draw,outer sep=0pt] (F-\Y) {\X};
-  \else
-  \node[anchor=south] (T-\Y) at (F-\LastY.north) {\X};
-  \path let \p1=($([yshift=\pgfkeysvalueof{/tikz/breathe dist}]T-\Y.north)-(F-\LastY.south)$),
-  \p2=($(F-1.east)-(F-1.west)$),\p3=($(F-1.north)-(F-1.south)$)
-  in ($([yshift=\pgfkeysvalueof{/tikz/breathe dist}]T-\Y.north)!0.5!(F-\LastY.south)$)
-  node[minimum height=\y1,minimum width={\y1*\x2/\y3},
-  draw,ellipse,inner sep=0pt] (F-\Y){};
-  \fi}
-\end{tikzpicture}
-
-Eine Sprache $L$ bezeichnen wir als Typ-$n$-Sprache, wenn eine
-Typ-$n$-Grammatik G existiert, die $L$ erzeugt. Die Menge aller
-Typ-$n$-Sprachen notieren wir mit dem Symbol $\mathcal{L}_1$. Zwischen
-den verschiedenen Sprachklassen besteht die folgende
-Inklusionsbeziehung:
-
-$\mathcal{L}_0 \supset \mathcal{L}_1 \supset \mathcal{L}_2 \supset \mathcal{L}_3$
-
-%-----------------------------------------------------------------------
-%
-%-----------------------------------------------------------------------
-
-\noindent
-Die Sprache
-
-\begin{itemize}
-\item \liAusdruck[L_3]{(ab)^n}{n \in \mathbb{N}}
-ist regulär (Typ 3 Sprache)
-
-\item \liAusdruck[L_2]{a^n b^n}{n \in \mathbb{N}}
-ist kontextfrei (Typ 2 Sprache), aber nicht regulär
-
-\item \liAusdruck[L_1]{a^n b^n c^n}{n \in \mathbb{N}}
-ist kontextsensitiv (Typ 1 Sprache), aber nicht kontextfrei
-
-\item \liAusdruck[L_0]{a^{(2^n)}}{n \in \mathbb{N}}
-ist eine Typ 0 Sprache\footcite[Seite 15]{theo:fs:1}
-\end{itemize}
-
-%-----------------------------------------------------------------------
-%
-%-----------------------------------------------------------------------
-
-Ein \memph{Terminalsymbol} (auch Terminalzeichen oder kurz Terminal
-genannt) einer formalen Grammatik ist ein Symbol, das einzeln
-\memph{nicht weiter durch eine Produktionsregel ersetzt werden
-kann}.\footcite{wiki:terminal}
-
-Eine Produktionsregel (auch Regel, Produktion oder Ersetzungsregel
-genannt) ist in der Theorie formaler Grammatiken eine Regel, die angibt,
-wie \memph{aus Wörtern durch eine Grammatik neue Wörter bzw.
-Symbolfolgen produziert} werden.\footcite{wiki:produktionsregel}
-
 %-----------------------------------------------------------------------
 %
 %-----------------------------------------------------------------------
@@ -383,36 +286,18 @@ leeren Wort, ist regulär.
 \begin{description}
 
 \item[Wortproblem:]
-
-Als Wortproblem einer formalen Sprache bezeichnet man das
-Entscheidungsproblem, zu einem gegebenen Wort festzustellen, ob dieses
-zur Sprache gehört, oder nicht. Das Wortproblem einer Sprache $L$ ist
-entscheidbar, wenn es einen Algorithmus gibt, der in endlicher Zeit
-herausfindet, ob $\omega \in L$ ist oder nicht. $\Rightarrow$ für
+$\Rightarrow$ für
 reguläre Sprachen entscheidbar!
 
 \item[Leerheitsproblem:]
-
-Als Leerheitsproblem bezeichnet man das Problem, zu entscheiden, ob eine
-in Form einer formalen Grammatik gegebene formale Sprache $L$ leer ist,
-also $L = \emptyset$. Das Problem ist es also herauszufinden, ob es
-Wörter gibt, die den Regeln der Grammatik genügen, oder nicht.
 $\Rightarrow$ für reguläre Sprachen entscheidbar!
 
 \item[Endlichkeitsproblem:]
-
-Als Endlichkeitsproblem einer formalen Sprache $L$ bezeichnet man das
-Problem, zu entscheiden, ob die Sprache endlich ist. Eine formale
-Sprache wird als endlich bezeichnet, wenn die Menge ihrer
-„Wörter“ endlich ist, man schreibt dann auch $|L| < \infty$. $\Rightarrow$ für
-reguläre Sprachen entscheidbar!
+$\Rightarrow$ für reguläre Sprachen entscheidbar!
 
 \item[Äquivalenzproblem:]
 
-Als Äquivalenzproblem bezeichnet man das Problem, zu entscheiden, ob
-zwei formale Definitionen von zwei Sprachen $L_1$ und $L_2$ äquivalent
-sind, also $L_1 = L_2$ gilt. $\Rightarrow$ für reguläre Sprachen
-entscheidbar!
+$\Rightarrow$ für reguläre Sprachen entscheidbar!
 \footcite[Seite 70-71]{theo:fs:1}
 \end{description}
 

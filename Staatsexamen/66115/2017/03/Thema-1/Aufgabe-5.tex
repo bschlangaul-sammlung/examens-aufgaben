@@ -1,0 +1,78 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen}
+\begin{document}
+\liAufgabenTitel{Aussagen}
+\section{Aufgabe 5
+\index{Formale Sprachen}
+\footcite{66115:2017:03}}
+
+Zeigen oder widerlegen Sie die folgenden Aussagen (die jeweiligen
+Beweise sind sehr kurz):
+\footcite[Aufgabe 6]{theo:ab:5}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Alle regulären Sprachen liegen in NP.
+
+\begin{liAntwort}
+Stimmt. Alle regulären Sprachen sind in Polynomialzeit entscheidbar (es
+existiert ein Automat dazu), sie liegen als in P und folglich auch in
+NP.
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item Es gibt Sprachen $A$, $B$ mit $A \subseteq B$, sodass $B$ regulär
+und $A$ kontextfrei ist.
+
+\begin{liAntwort}
+Stimmt. Es existieren Sprachen mit der Eigenschaft wie gefordert. Wir
+wählen: $B = (a|b)^*$ und \liAusdruck[A]{a^n b^n}{n \in \mathbb{N}}. A
+ist bekanntermaßen nicht regulär, wie man mit dem Pumping Lemma beweisen
+kann, kann aber durch eine Grammatik \liGrammatik{alphabet={a,b},
+produktionen={S -> aSb | EPSILON}} erzeugt werden. Für $B$ gibt es einen
+deterministischen endlichen Automaten.
+\end{liAntwort}
+
+%%
+% (c)
+%%
+
+\item Es gibt unentscheidbare Sprachen $L$ über den Alphabet $\Sigma$,
+so dass sowohl $L$ als auch das Komplement $\overline{L} = \Sigma^∗
+\setminus L$ rekursiv aufzählbar (= partiell entscheidbar) sind.
+
+\begin{liAntwort}
+Stimmt nicht. Ist $L$ und sein Komplement rekursiv aufzählbar so können
+wir L entscheiden, denn wir haben eine Maschine die auf Eingabe x hält
+und akzeptiert, wenn $x \in L$ ist, sowie eine Maschine die hält, wenn
+$x$ und akzeptiert, wenn $x \notin L$ ist. Daraus lässt sich eine
+Maschine konstruieren, die $L$ entscheidet.
+\end{liAntwort}
+
+%%
+% (d)
+%%
+
+\item Sei $L$ eine beliebige kontextfreie Sprache über dem Alphabet
+$\Sigma$. Dann ist das Komplement $\overline{L} = \Sigma^∗ \setminus L$
+entscheidbar.
+
+\begin{liAntwort}
+Stimmt. Es gibt einen Entscheider für die Sprache $L$. Dieser
+entscheidet für eine Eingabe $x$, ob diese in $L$ ist oder nicht.
+Negiert man diese Entscheidung, so ergibt sich ein Entscheider für
+$\overline{L}$
+\end{liAntwort}
+
+Schreiben Sie zuerst zur Aussage „Stimmt“ oder „Stimmt nicht“ und dann
+Ihre Begründung.
+
+\end{enumerate}
+\end{document}
