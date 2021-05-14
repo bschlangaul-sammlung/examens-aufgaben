@@ -1,0 +1,86 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen}
+\begin{document}
+\liAufgabenTitel{Chomsky-Hierarchie}
+\section{Aufgabe 2
+\index{Formale Sprachen}
+\footcite{66115:2016:09}}
+
+Ordnen Sie die folgenden Sprachen über \liAlphabet{a, b} bestmöglich in
+die Chomsky-Hierarchie ein und geben Sie jeweils eine kurze Begründung
+(1-2 Sätze).\footcite[Aufgabe 8]{theo:ab:5}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item \liAusdruck[L_1]{a^n b^n}{n \geq 1}
+
+\begin{liAntwort}
+Typ-2-Sprache: Die Sprache $L_1$ ist kontextfrei, denn die Sprache
+braucht einen Speicher, da sie sich die Anzahl der $a$’s merken muss, um
+die gleiche Anzahl an $b$’s produzieren zu können. Dies ist mit einem
+Kellerautomaten möglich. Eine Grammtik der Sprache ist
+\liGrammatik{variablen={S},produktionen={S -> aSb | EPSILON}}
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item \liAusdruck[L_2]{a^n b^n} {\text{die Turingmaschine mit
+Gödelnummer } n \text{ hält auf leerer Eingabe}}
+
+\begin{liAntwort}
+Typ-0-Sprache: Die Sprache hat eine Typ-0-Grammatik, da sie
+offensichtlich semientscheidbar, aber nicht entscheidbar ist.
+\end{liAntwort}
+
+%%
+% (c)
+%%
+
+\item $L_3 = Σ^* \setminus L_1$
+
+\begin{liAntwort}
+Typ-2-Sprache: Die Sprache $L_3$ ist kontextfrei, da ein PDA existiert,
+der nicht aktzeptiert, wenn er $L_1$ aktzeptiert. (Ausgänge umgepolt)
+\end{liAntwort}
+
+%%
+% (d)
+%%
+
+\item $L_4 = Σ^* \setminus L_2$
+
+\begin{liAntwort}
+Nicht in der Hierachie: Das Komplement einer semi- aber unentscheidbaren
+Sprache kann nicht semi-entscheidbar sein, da L sonst entscheidbar wäre.
+\end{liAntwort}
+
+%%
+% (e)
+%%
+
+\item \liAusdruck[L_5]{a^n b^m}
+{n + m \text{ ist ein Vielfaches von drei}}
+
+\begin{liAntwort}
+Typ-3-Sprache: regulär, 2 Teilautomaten mit je 3 Zuständen (modulo 2
+mal)
+\end{liAntwort}
+
+%%
+% (f)
+%%
+
+\item \liAusdruck[L_6]{a^n b^n}{n\text{ Quadratzahl}}
+
+\begin{liAntwort}
+nicht regulär, nicht kontextfrei (Pumping-Lemma)
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}
