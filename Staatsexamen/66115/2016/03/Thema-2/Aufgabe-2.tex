@@ -22,19 +22,19 @@ will, was heutige Computer im Prinzip berechnen können?
 
 \begin{liAntwort}
 Funktionen über beliebige Mengen können durch eine geeignete
-Nummerierung auf Zahlenfunktionen abgebildet werden
-\liFussnoteUrl{https://de.wikipedia.org/wiki/Zahlenfunktion}
+Nummerierung auf Zahlenfunktionen abgebildet werden.
+%\liFussnoteUrl{https://de.wikipedia.org/wiki/Zahlenfunktion}
 \end{liAntwort}
 
 %%
 % b)
 %%
 
-\item Was besagt die Church-Turing These? Könnte man sie beweisen oder
+\item Was besagt die Church-Turing-These? Könnte man sie beweisen oder
 widerlegen?
 
 \begin{liAntwort}
-Die Church-Turing-These besagt, dass die Klasse der turing-berechenbaren
+Die Church-Turing-These besagt, dass die Klasse der turing-berechen\-baren
 Funktionen mit der Klasse der intuitiv berechenbaren Funktionen
 übereinstimmt. Die These kann nicht bewiesen oder widerlegt werden, weil
 es sich bei dem Begriff \emph{„intuitiv berechenbare Funktion“} um
@@ -56,14 +56,12 @@ beliebig genau approximieren?
 
 \begin{liAntwort}
 Die Voraussetzung für numerisches Rechnen mit reellen Zahlen ist deren
-Darstellung durch ein Ziffernsystem.
-
-Überabzählbarkeit von $\mathbb{R}$: Die Menge $\mathbb{R}$ der reellen
-Zahlen ist nicht abzählbar.
-
-Es gibt kein Ziffernsystem zur Darstellung von $\mathbb{R}$.
-
-\liFussnoteUrl{https://www3.math.tu-berlin.de/Vorlesungen/SS07/DiskrMaLS/MitZahlenRechnen.pdf}
+Darstellung durch ein Ziffernsystem. Die Menge $\mathbb{R}$ der reellen
+Zahlen ist nicht abzählbar (Überabzählbarkeit von $\mathbb{R}$). Es gibt
+deshalb kein Ziffernsystem zur Darstellung von $\mathbb{R}$. Die
+Dezimaldarstellung der reelen Zahlen lässt sich daher nicht beliebig
+genau approximieren.
+%\liFussnoteUrl{https://www3.math.tu-berlin.de/Vorlesungen/SS07/DiskrMaLS/MitZahlenRechnen.pdf}
 \end{liAntwort}
 
 %%
@@ -74,11 +72,9 @@ Es gibt kein Ziffernsystem zur Darstellung von $\mathbb{R}$.
 zwischen While-Berechenbarkeit und Loop-Berechenbarkeit.
 
 \begin{liAntwort}
-Alle Loop-berechenbaren Funktionen $f \colon N^n \rightarrow N$ sind total. Die Rede ist
-von partiellen Funktionen, die in Abschnitt 2.2 eingeführt wurden und in
-der theoretischen Informatik eine wichtige Rolle spielen. Partielle
-Funktionen sind für uns die formale Grundlage, um Programme zu
-beschreiben, die nicht für alle Eingabekombinationen terminieren.
+Alle LOOP-Programme sind mathematisch betrachtet totale Funktionen,
+d.\,h. sie terminieren immer. WHILE-Programme hingegen partiellen
+Funktionen, die nicht für alle Eingabekombinationen terminieren.
 \footcite[Seite 258-259]{hoffmann}
 \end{liAntwort}
 
@@ -96,18 +92,22 @@ aus dieser Idee ein Argument, das illustriert, warum die
 Ackermannfunktion nicht Loop-berechenbar ist.
 
 \begin{liAntwort}
-Gäbe es ein Loop-Programm, das ack(n, m) tatsächlich für beliebige Werte
-von n berechnet, so müsste dieses aufgrund von Satz 6.1 – im Widerspruch
-zum endlichen Aufbau eines Loop-Programms – unendlich viele
-Schleifenkonstrukte enthalten.
+Jedes LOOP-Programm benötigt zur Berechnung der Funktion $x \uparrow^n
+y$ mindestens $n + 2$ Schleifen.
 
-Jedes Loop-Programm zur Berechnung der Funktion $x \uparrow^n y$ benötigt
-mindestens n + 2 Schleifen.
+Gäbe es ein LOOP-Programm, das $ack(n,
+m)$ tatsächlich für beliebige Werte von $n$ berechnet, so müsste dieses
+--- im Widerspruch zum endlichen Aufbau eines Loop-Programms ---
+unendlich viele Schleifenkonstrukte enthalten.
+
+\liPseudoUeberschrift{Hyperexponentiation}
 
 \begin{itemize}
 \item $x \uparrow^{-1} y = x + y$
 \item $x \uparrow^0 y = x \cdot y$
 \item $x \uparrow^1 y = x^y$
+\item $x \uparrow^2 y = x^{y^y}$
+
 \end{itemize}
 \footcite[Seite 258]{hoffmann}
 \end{liAntwort}
