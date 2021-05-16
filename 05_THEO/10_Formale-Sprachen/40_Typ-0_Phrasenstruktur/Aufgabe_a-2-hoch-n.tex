@@ -1,0 +1,37 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen}
+\begin{document}
+\liAufgabenTitel{a-2-hoch-n}
+\section{Ableitung einer Phrasenstrukturgrammatik
+\index{Unbeschränkte Sprache}
+\footcite[Seite 15-16]{thoe:fs:3}}
+
+Die folgende Grammatik erzeugt die Sprache \liAusdruck{a^{2^n}}{n \in
+\mathbb{N}}, nicht kontextsensitiv ist:
+
+\liGrammatik{variablen={S, L, R, D}, alphabet={a}}
+\begin{liProduktionsRegeln}
+S -> L a R,
+L -> L D | EPSILON
+D a -> a a D,
+D R -> R,
+R -> EPSILON,
+\end{liProduktionsRegeln}
+
+Leiten Sie das Wort $a^8$ ab.
+
+\begin{liAntwort}
+\liAbleitung{LaR
+-> 3 LDDDaR
+-> DDDaR
+-> DDaaDR
+-> DaaDaDR
+-> aaDaDaDR
+-> aaaaDDaDR
+-> aaaaaaaaDDDR
+-> aaaaaaaaDDR
+-> aaaaaaaaR
+-> aaaaaaa}
+\end{liAntwort}
+
+\end{document}

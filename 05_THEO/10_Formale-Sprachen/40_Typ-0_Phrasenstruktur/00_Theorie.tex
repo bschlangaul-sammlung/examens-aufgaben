@@ -1,0 +1,92 @@
+\documentclass{lehramt-informatik-haupt}
+\liLadePakete{formale-sprachen}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Phrasenstruktur Sprachen}
+
+\begin{liQuellen}
+\item \cite[Seite 191-192]{hoffmann}
+\end{liQuellen}
+
+\section{Grammatik Phrasenstruktur Sprachen}
+
+Sei $\Sigma$ ein Alphabet. Eine formale Sprache $L$ ist eine Teilmenge
+aller Wörter über $\Sigma$:
+
+\begin{displaymath}
+L \subseteq \Sigma^*
+\end{displaymath}
+
+\bigskip
+
+\noindent
+Eine Grammatik ist ein 4-Tupel mit \liGrammatik{} und besteht aus:
+
+\begin{itemize}
+\item Einer endlichen Menge $V$ von \memph{Variablen} (Nonterminale)
+
+\item Dem endlichen \memph{Terminalalphabet} $\Sigma$ mit $\Sigma \cap V
+= \emptyset$
+
+\item Der endlichen Menge an \memph{Produktionen}
+
+\item Und einer \memph{Startvariablen} $S$ mit $S \in V$
+\end{itemize}
+
+Eine Typ-0-Sprache wird durch eine Phrasenstrukturgrammatik erzeugt. Die
+Produktionsregeln dieser haben nur noch folgende Einschränkungen:
+
+\begin{description}
+\item[linke Seite:] mindestens ein Nonterminal
+\item[rechte Seite:] $\varepsilon$, Terminale, Nonterminale
+\end{description}
+
+Die Produktionsregeln dürfen hierbei die linke Seite auch verkürzen. Das
+heißt, es darf bei einer Typ-0-Grammatik auch jedes Nonterminal auf
+$\varepsilon$ abbilden\footcite[Seite 13-14]{theo:fs:3}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Phrasenstrukturgrammatik (Typ 0)}
+
+Phrasenstrukturgrammatiken werden auch unbeschränkte Grammatiken
+genannt. Jede Grammatik ist von Typ 0. Diese Sprachen werden auf
+\memph{rekursiv aufzählbar} genannt. Jede von einer Grammatik von Typ-0
+erzeugte Sprache ist \memph{semi-entscheidbar}. Es gibt eine
+\memph{Turingmaschine}, die diese Sprache akzeptiert. Für ein Wort, dass
+nicht in der Sprache liegt, muss die Turingmaschine nicht terminieren.
+\footcite[Seite 13-14]{theo:fs:3}
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+Die Produktionsregeln dürfen hierbei die linke Seite allerdings nicht
+verkürzen (Ausnahme $S \rightarrow \epsilon$).\footcite{theo:fs:3}
+
+In der theoretischen Informatik ist eine rekursiv aufzählbare Sprache
+(auch bekannt als semientscheidbare oder erkennbare Sprache) $L$ dadurch
+definiert, dass es eine Turingmaschine gibt, die alle Wörter aus $L$
+akzeptiert, aber keine Wörter, die nicht in $L$ liegen. Im Unterschied
+zu rekursiven Sprachen (entscheidbare Sprachen) muss bei den rekursiv
+aufzählbaren Sprachen die Turingmaschine nicht halten, wenn ein Wort
+nicht in $L$ liegt. Das heißt, unter Umständen muss man auf die Lösung
+unendlich lange warten. Alle rekursiven Sprachen sind deshalb auch
+rekursiv aufzählbar.
+
+Rekursiv aufzählbare Sprachen bilden die oberste Stufe der
+Chomsky-Hierarchie und heißen deshalb auch Typ-0-Sprachen; die
+entsprechenden Grammatiken sind die Typ-0-Grammatiken. Sie können somit
+auch als all die Sprachen definiert werden, deren Wörter sich durch eine
+beliebige formale Grammatik ableiten lassen.
+\footcite{wiki:rekursiv-aufzaehlbare-sprache}
+
+\literatur
+
+\end{document}
