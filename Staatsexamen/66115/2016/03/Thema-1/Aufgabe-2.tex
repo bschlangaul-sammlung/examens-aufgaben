@@ -1,0 +1,81 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,chomsky-normalform}
+\begin{document}
+\let\schrittE=\liChomskyUeberErklaerung
+
+\liAufgabenTitel{Alphabet 0,1,2}
+\section{Aufgabe 2
+\index{Chomsky-Normalform}
+\footcite{66115:2016:03}}
+
+Betrachten Sie die folgende Grammatik \liGrammatik{variablen={S, A},
+alphabet={0, 1, 2}} mit\footcite[Aufgabe 2e)]{theo:ab:5}
+
+\begin{liProduktionsRegeln}
+S -> 0 S 0 | 1 S 1 | 2 A 2 | 0 | 1 | EPSILON,
+A -> A 2
+\end{liProduktionsRegeln}
+\liFlaci{Gf6scqja9}
+
+\noindent
+Konstruieren Sie für die Grammatik $G$ schrittweise eine äquivalente
+Grammatik in Chomsky-Normalform. Geben Sie für jeden einzelnen Schritt
+des Verfahrens das vollständige Zwischenergebnis an und erklären Sie
+kurz, was in dem Schritt getan wurde.
+
+\begin{liAntwort}
+\begin{enumerate}
+
+% S.S -> S | EPSILON
+% S   -> T1 S.1 | T2 S.2 | 0 | 1 | T1 T1 | T2 T2
+% T1  -> 0
+% T2  -> 1
+% S.1 -> S T1
+% S.2 -> S T2
+
+\item \schrittE{1}
+
+falls $S \rightarrow \varepsilon \in P$ neuen Startzustand $S'$
+einführen
+
+\begin{liProduktionsRegeln}
+S -> 0 S 0 | 1 S 1 | 2 A 2 | 0 | 1 | 0 0 | 1 1,
+S_1 -> EPSILON | S
+A -> A 2
+\end{liProduktionsRegeln}
+
+\item \schrittE{2}
+
+\liNichtsZuTun
+
+\item \schrittE{3}
+
+N = Null
+E = Eins
+Z = Zwei
+
+\begin{liProduktionsRegeln}
+S -> N S N | E S E | Z A Z | 0 | 1 | N N | E E,
+S_1 -> EPSILON | S,
+A -> A Z,
+N -> 0,
+E -> 1,
+Z -> 2,
+\end{liProduktionsRegeln}
+
+\item \schrittE{4}
+
+\begin{liProduktionsRegeln}
+S -> N S_N | E S_E | Z A | 0 | 1 | N N | E E,
+S_N -> S N,
+S_E -> S E,
+A -> A Z,
+N -> 0,
+E -> 1,
+Z -> 2,
+\end{liProduktionsRegeln}
+
+\end{enumerate}
+\end{liAntwort}
+
+\end{document}
