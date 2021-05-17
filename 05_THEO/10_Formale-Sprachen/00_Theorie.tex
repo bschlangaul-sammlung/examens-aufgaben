@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-\liLadePakete{mathe,formale-sprachen}
+\liLadePakete{mathe,formale-sprachen,tabelle}
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric,calc}
 
@@ -278,6 +278,84 @@ Typ 1 & ja   & nein & nein & nein & nein \\
 Typ 0 & nein & nein & nein & nein & nein \\
 \end{tabular}
 }
+
+\section{Formale Sprachen und Maschinenmodelle\footcite[Seite 32]{theo:fs:3}}
+
+\begin{tabular}{l|l|l}
+Sprache & Maschinenmodell & Speichergröße \\\hline
+Typ 3 & DFA, NFA & endlich\\
+Typ 2 & DPDA, NPDA & Stapel\\
+Typ 1 & LBA & proportional zu Eingabe\\
+Typ 0 & DTM, NTM & unendlich\\
+\end{tabular}
+
+\noindent
+\begin{tabularx}{\linewidth}{l|X||l|X}
+Englisch & Bedeutung & Deutsch & Bedeutung \\\hline\hline
+
+%%
+%
+%%
+
+DFA\footcite{wiki:dfa} &
+Deterministic Finite Automaton &
+DEA &
+Deterministischer Endlicher Automat\\
+
+%%
+%
+%%
+
+DPDA\footcite{wiki:dpda} &
+Deterministic PushDown Automaton &
+DKA &
+Deterministischer Kellerautomat \\
+
+%%
+%
+%%
+
+TM, DTM\footcite{wiki:tm} &
+Deterministic Turing machine &
+&
+Deterministische Turing-Maschine \\
+
+%%
+%
+%%
+
+LBA\footcite{wiki:lba} &
+Linear Bounded Automaton &
+&
+Linear beschränkte Turingmaschine \\
+
+%%
+%
+%%
+
+NFA\footcite{wiki:nfa} &
+Deterministic Finite Automaton &
+NEA &
+Nichtdeterministischer endlicher Automat\\
+
+%%
+%
+%%
+
+PDA, NPDA\footcite{wiki:pda} &
+(Nondeterministic) PushDown Automaton &
+KA, NKA &
+Nichtdeterministischer Kellerautomat \\
+
+%%
+%
+%%
+
+NTM, NDTM\footcite{wiki:ntm} &
+NonDeterministic Turing machine &
+- &
+Nichtdeterministische Turingmaschine\\
+\end{tabularx}
 
 \literatur
 
