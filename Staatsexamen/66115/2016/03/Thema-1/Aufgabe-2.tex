@@ -24,24 +24,24 @@ des Verfahrens das vollständige Zwischenergebnis an und erklären Sie
 kurz, was in dem Schritt getan wurde.
 
 \begin{liAntwort}
-\begin{enumerate}
+Die Regeln \liProduktionen{S -> 2 A 2} und  \liProduktionen{A -> A 2}
+können gelöscht werden, da es keine Regel \liProduktionen{A -> EPSILON}
+oder \liProduktionen{A -> S} gibt. So erhalten wir:
 
-% S.S -> S | EPSILON
-% S   -> T1 S.1 | T2 S.2 | 0 | 1 | T1 T1 | T2 T2
-% T1  -> 0
-% T2  -> 1
-% S.1 -> S T1
-% S.2 -> S T2
+\begin{liProduktionsRegeln}
+S -> 0 S 0 | 1 S 1 | 0 | 1 | EPSILON
+\end{liProduktionsRegeln}
+
+\begin{enumerate}
 
 \item \schrittE{1}
 
-falls $S \rightarrow \varepsilon \in P$ neuen Startzustand $S'$
+falls $S \rightarrow \varepsilon \in P$ neuen Startzustand $S_1$
 einführen
 
 \begin{liProduktionsRegeln}
-S -> 0 S 0 | 1 S 1 | 2 A 2 | 0 | 1 | 0 0 | 1 1,
+S -> 0 S 0 | 1 S 1 | 0 | 1 | 0 0 | 1 1,
 S_1 -> EPSILON | S
-A -> A 2
 \end{liProduktionsRegeln}
 
 \item \schrittE{2}
@@ -52,27 +52,31 @@ A -> A 2
 
 N = Null
 E = Eins
-Z = Zwei
 
 \begin{liProduktionsRegeln}
-S -> N S N | E S E | Z A Z | 0 | 1 | N N | E E,
+S -> N S N | E S E | 0 | 1 | N N | E E,
 S_1 -> EPSILON | S,
 A -> A Z,
 N -> 0,
 E -> 1,
-Z -> 2,
 \end{liProduktionsRegeln}
 
 \item \schrittE{4}
 
+% S.S -> S | EPSILON
+% S   -> T1 S.1 | T2 S.2 | 0 | 1 | T1 T1 | T2 T2
+% T1  -> 0
+% T2  -> 1
+% S.1 -> S T1
+% S.2 -> S T2
+
 \begin{liProduktionsRegeln}
-S -> N S_N | E S_E | Z A | 0 | 1 | N N | E E,
-S_N -> S N,
-S_E -> S E,
-A -> A Z,
-N -> 0,
-E -> 1,
-Z -> 2,
+S -> N S_N | E S_E | 0 | 1 | N N | E E, % T1 S.1 | T2 S.2 | 0 | 1 | T1 T1 | T2 T2
+S_1 -> EPSILON | S, % S.S -> S | EPSILON
+S_N -> S N, % S.1 -> S T1
+S_E -> S E, % S.2 -> S T2
+N -> 0, % T1  -> 0
+E -> 1, % T2  -> 1
 \end{liProduktionsRegeln}
 
 \end{enumerate}
