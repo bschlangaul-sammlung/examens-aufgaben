@@ -1,12 +1,14 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{formale-sprachen}
+\liLadePakete{formale-sprachen,cyk-algorithmus}
 \begin{document}
+\let\l=\liKurzeTabellenLinie
+
 \liAufgabenTitel{Youtube-Video Karsten-Morisse}
 \section{CYK-Algorithmus
 \index{CYK-Algorithmus}
-\footcite{}}
+\liFussnoteUrl{https://www.youtube.com/watch?v=Q5TvCyu4RUo}}
 
-https://www.youtube.com/watch?v=Q5TvCyu4RUo
+\liGrammatik{variablen={S, A, B, C}, alphabet={a, b}}
 
 \begin{liProduktionsRegeln}
 S -> A B | B C,
@@ -18,12 +20,15 @@ C -> A B | a
 \begin{liAntwort}
 \begin{tabular}{|c|c|c|c|c|}
 a   & b   & a   & a   & b \\\hline\hline
-A,C & B   & A,C & A,C & B \\
-S,C & A,S & B   & S,C \\
-B   & -   & B \\
-S,A & - \\
-S,S,C \\
+
+A,C & B   & A,C & A,C & B \l5
+S,C & A,S & B   & S,C \l4
+B   & -   & B \l3
+S,A & - \l2
+S,S,C \l1
 \end{tabular}
+
+\liWortInSprache{abaab}
 \end{liAntwort}
 
 \end{document}

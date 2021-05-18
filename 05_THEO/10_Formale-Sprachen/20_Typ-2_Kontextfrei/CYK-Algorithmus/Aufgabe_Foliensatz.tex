@@ -1,6 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{formale-sprachen}
+\liLadePakete{formale-sprachen,cyk-algorithmus}
 \begin{document}
+\let\l=\liKurzeTabellenLinie
+
 \liAufgabenTitel{Foliensatz}
 \section{CYK-Algorithmus
 \index{CYK-Algorithmus}
@@ -17,16 +19,14 @@ T -> A B | a
 \begin{tabular}{|c|c|c|c|c|}
 b     & a     & a   & a   & b \\\hline\hline
 
-B     & A,T   & A,T & A,T & B \\\cline{1-5}
-A,S   & B     & B   & S,T \\\cline{1-4}
--     & S,T,A & B \\\cline{1-3}
-S,A,T & S,T \\\cline{1-2}
-S,T   \\\cline{1-1}
+B     & A,T   & A,T & A,T & B \l5
+A,S   & B     & B   & S,T \l4
+-     & S,T,A & B \l3
+S,A,T & S,T \l2
+S,T   \l1
 \end{tabular}
 
-\bigskip
-\noindent
-$\Rightarrow baaab \in L(G)$
+\liWortInSprache{baaab}
 \end{liAntwort}
 
 \end{document}

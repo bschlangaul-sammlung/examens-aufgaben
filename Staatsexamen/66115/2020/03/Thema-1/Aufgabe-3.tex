@@ -1,7 +1,9 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{formale-sprachen}
+\liLadePakete{formale-sprachen,cyk-algorithmus}
 \begin{document}
 \let\m=\liMenge
+\let\l=\liKurzeTabellenLinie
+
 \liAufgabenTitel{Kontextfreie Sprachen}
 \section{Aufgabe 3
 \index{Kontextfreie Sprache}
@@ -61,17 +63,18 @@ gehört.
 \index{CYK-Algorithmus}
 
 \begin{liAntwort}
-\begin{tabular}{|c||c|c|c|c|c|}
-\hline
-    & a    & b    & c    & a    & b \\
-\hline
-i/j & 1    & 2    & 3    & 4    & 5 \\\hline\hline
-1   & A,D  & C    & B    & A,D  & C \\\cline{1-6}
-2   & C    & C    & -    & C    \\\cline{1-5}
-3   & C,C  & A    & -    \\\cline{1-4}
-4   & A,A  & B    \\\cline{1-3}
-5   & A,D,B,B \\\cline{1-2}
+\begin{tabular}{|c|c|c|c|c|}
+
+a    & b    & c    & a    & b \\\hline\hline
+
+A,D  & C    & B    & A,D  & C \l5
+C    & C    & -    & C    \l4
+C,C  & A    & -    \l3
+A,A  & B    \l2
+A,D,B,B \l1
 \end{tabular}
+
+\liWortInSprache{abcab}
 \end{liAntwort}
 
 %%

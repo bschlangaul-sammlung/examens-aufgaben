@@ -1,6 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{formale-sprachen}
+\liLadePakete{formale-sprachen,cyk-algorithmus}
 \begin{document}
+\let\l=\liKurzeTabellenLinie
+
 \liAufgabenTitel{CYK-Algorithmus}
 \section{Wortproblem - CYK-Algorithmus
 \index{CYK-Algorithmus}
@@ -41,7 +43,7 @@ R_c -> c
 \begin{liProduktionsRegeln}
 Z -> X D | X A | EPSILON,
 S -> X D | X A,
-A -> V_a D | V_a A | AB | c,
+A -> V_a D | V_a A | A B | c,
 B -> B B | C C | c | a,
 C -> C C | c,
 D -> A B,
@@ -51,6 +53,19 @@ V_a -> a
 
 \begin{enumerate}
 \item $w_3 = bacac$
+
+\begin{liAntwort}
+\begin{tabular}{|c|c|c|c|c|}
+b   & a   & c   & a   & c \\\hline\hline
+
+X   & B,$V_a$ & A,B,C,X     & B,$V_a$ & A,B,C,X \l5
+-   & B,A,X   & A,D,X,B     & B,A,X \l4
+Z,S & A,B,D,X & B,A,X,D,S,Z \l3
+Z,S & A,B,D,S,X,Z \l2
+Z,S \l1
+\end{tabular}
+\end{liAntwort}
+
 \item $w_4 = baca$
 \end{enumerate}
 \end{enumerate}

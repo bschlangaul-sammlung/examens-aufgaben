@@ -1,7 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{formale-sprachen}
+\liLadePakete{formale-sprachen,cyk-algorithmus}
 \begin{document}
 \let\m=\liMenge
+\let\l=\liKurzeTabellenLinie
 
 \liAufgabenTitel{Kontextfreie Sprachen}
 \section{Aufgabe 3
@@ -47,8 +48,23 @@ Z -> X X | X S
 \end{liProduktionsRegeln}
 
 Benutzen Sie den Algorithmus von Cocke-Younger-Kasami (CYK) um zu
-zeigen, dass das Wort $zzzyx$ zu der von G erzeugten Sprache $L(G)$
+zeigen, dass das Wort $xxxyx$ zu der von G erzeugten Sprache $L(G)$
 gehört.
+\index{CYK-Algorithmus}
+
+\begin{liAntwort}
+\begin{tabular}{|c|c|c|c|c|}
+x   & x   & x   & y   & x \\\hline\hline
+
+X   & X   & X   & S   & X \l5
+Z   & Z   & Z   & Y \l4
+S   & X   & S \l3
+Z,X & Z   \l2
+X,S,Z \l1
+\end{tabular}
+
+\liWortInSprache{xxxyx}
+\end{liAntwort}
 
 %%
 %  (c)
