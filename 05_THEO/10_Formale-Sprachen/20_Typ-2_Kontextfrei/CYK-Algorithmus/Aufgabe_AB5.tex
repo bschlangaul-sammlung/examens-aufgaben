@@ -1,0 +1,67 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,cyk-algorithmus}
+\begin{document}
+\let\l=\liKurzeTabellenLinie
+
+\liAufgabenTitel{AB5}
+\section{
+\index{CYK-Algorithmus}
+\footcite[Aufgabe 2b)]{theo:ab:5}}
+
+Teste jeweils mit dem CYK-Algorithmus, ob das angegebene Wort zur Sprache
+der Grammatik gehört.
+\begin{liProduktionsRegeln}
+S -> S S | R_a A | R_b B | R_c C,
+A -> R_b R_c | R_c R_b,
+B -> R_a R_c | R_c R_a,
+C -> R_a R_b | R_b R_a,
+R_a -> a,
+R_b -> b,
+R_c -> c,
+\end{liProduktionsRegeln}
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item $\omega_1 = acbcab$
+
+\begin{liAntwort}
+\begin{tabular}{|c|c|c|c|c|c|}
+a     & c     & b     & c     & a     & b \\\hline\hline
+
+$R_a$ & $R_c$ & $R_b$ & $R_c$ & $R_a$ & $R_b$ \l6
+B     & A     & A     & B     & C \l5
+S     & -     & S     & S \l4
+-     & -     & - \l3
+-     & - \l2
+S \l1
+\end{tabular}
+
+\liWortInSprache{\omega_1}
+\end{liAntwort}
+
+%%
+% 2.
+%%
+
+\item $\omega_2 = cabb$
+
+\begin{liAntwort}
+\begin{tabular}{|c|c|c|c|}
+c     & a     & b     & b    \\\hline\hline
+
+$R_c$ & $R_a$ & $R_b$ & $R_b$  \l4
+B     & C     & - \l3
+S     & - \l2
+- \l1
+\end{tabular}
+
+\liWortNichtInSprache{\omega_2}
+\end{liAntwort}
+
+\end{enumerate}
+
+\end{document}

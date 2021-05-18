@@ -2,11 +2,11 @@
 \liLadePakete{automaten,formale-sprachen}
 \begin{document}
 \liAufgabenTitel{Erweiteter Potenzmengenalgorithmus}
-\section{Erweiterter Potenzmengenalgorithmus $\epsilon$-NEA zum DEA
+\section{Erweiterter Potenzmengenalgorithmus $\varepsilon$-NEA zum DEA
 \index{Erweiteter Potenzmengenalgorithmus}
 \footcite[Seite 50]{theo:fs:1}}
 
-Gegeben ist der folgende $\epsilon$-NEA:
+Gegeben ist der folgende $\varepsilon$-NEA:
 
 \begin{center}
 \begin{tikzpicture}[->,node distance=3cm]
@@ -16,17 +16,17 @@ Gegeben ist der folgende $\epsilon$-NEA:
 \node[state,below of=0]           (3) {$z_3$};
 \node[state,right of=2,accepting] (4) {$z_4$};
 
-\path (0) edge[above] node{$\epsilon$} (2);
+\path (0) edge[above] node{$\varepsilon$} (2);
 \path (0) edge[right] node{a} (1);
 \path (0) edge[left] node{b} (3);
-\path (1) edge[right] node{$\epsilon$} (2);
+\path (1) edge[right] node{$\varepsilon$} (2);
 \path (2) edge[above,loop] node{c} (2);
-\path (2) edge[above] node{$\epsilon$} (4);
-\path (3) edge[above] node{$\epsilon$} (1);
+\path (2) edge[above] node{$\varepsilon$} (4);
+\path (3) edge[above] node{$\varepsilon$} (1);
 \end{tikzpicture}
 \end{center}
 
-Wandlen Sie den gegebenen Automaten in eine $\epsilon$-freien DEA um.
+Wandlen Sie den gegebenen Automaten in eine $\varepsilon$-freien DEA um.
 
 \begin{liAntwort}
 \let\p=\liPotenzmenge

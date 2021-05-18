@@ -35,8 +35,8 @@ return {
       end
       value = value:gsub('->', '\\rightarrow')
       value = value:gsub('|', '\\,|\\,')
-      value = value:gsub('epsilon', '\\epsilon')
-      value = value:gsub('EPSILON', '\\epsilon')
+      value = value:gsub('epsilon', '\\varepsilon')
+      value = value:gsub('EPSILON', '\\varepsilon')
       if not inline then
         value = value .. '\\\\'
       else

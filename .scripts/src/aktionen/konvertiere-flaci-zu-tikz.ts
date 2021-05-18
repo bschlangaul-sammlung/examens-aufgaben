@@ -128,7 +128,7 @@ function formatiereÜbergang (trans: FlaciÜbergang, states: StateNames) {
   const source = states[trans.Source]
   const target = states[trans.Target]
   const eingabeSymbole = '$' + trans.Labels.map(value => {
-    if (value === '') return '\\epsilon'
+    if (value === '') return '\\varepsilon'
     return value
   }).join(',') + '$'
 

@@ -18,7 +18,7 @@ Sprache der Grammatik gehört.
 \item Grammatik $G_1$:
 
 \begin{liProduktionsRegeln}
-S -> SS | R_a A | R_b B | R_c C,
+S -> S S | R_a A | R_b B | R_c C,
 A -> R_b R_c | R_c R_b,
 B -> R_a R_c | R_c R_a,
 C -> R_a R_b | R_b R_a,
@@ -39,13 +39,13 @@ R_c -> c
 \item Grammatik $G_2$:
 
 \begin{liProduktionsRegeln}
-Z -> XD | XA | epsilon,
-S -> XD | XA,
+Z -> X D | X A | EPSILON,
+S -> X D | X A,
 A -> V_a D | V_a A | AB | c,
-B -> BB | CC | c | a,
-C -> CC | c,
-D -> AB,
-X -> V_a D | V_a A | AB | b | c,
+B -> B B | C C | c | a,
+C -> C C | c,
+D -> A B,
+X -> V_a D | V_a A | A B | b | c,
 V_a -> a
 \end{liProduktionsRegeln}
 

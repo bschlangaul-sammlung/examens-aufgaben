@@ -48,7 +48,7 @@ function formatiereÜbergang(trans, states) {
     var target = states[trans.Target];
     var eingabeSymbole = '$' + trans.Labels.map(function (value) {
         if (value === '')
-            return '\\epsilon';
+            return '\\varepsilon';
         return value;
     }).join(',') + '$';
     var optionen = bestimmeÜbergangsOptionen(trans);

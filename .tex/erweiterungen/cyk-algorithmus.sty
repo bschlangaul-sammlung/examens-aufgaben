@@ -1,0 +1,48 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-cyk-algorithmus}[2021/06/18 Hilfsmakros
+zum Setzen des CYK-Algorithmus]
+%    \end{macrocode}
+
+% \begin{verbatim}
+% \begin{tabular}{|c|c|c|c|c|c|}
+% a     & c     & b     & c     & a     & b \\\hline\hline
+%
+% $R_a$ & $R_c$ & $R_b$ & $R_c$ & $R_a$ & $R_b$ \l6
+% B     & A     & A     & B     & C \l5
+% S     & -     & S     & S \l4
+% -     & -     & - \l3
+% -     & - \l2
+% S \l1
+% \end{tabular}
+% \end{verbatim}
+
+% \begin{macro}{\liKurzeTabellenLinie}
+% \liLet{l}{liKurzeTabellenLinie}
+%    \begin{macrocode}
+\def\liKurzeTabellenLinie#1{\\\cline{1-#1}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liWortInSprache}
+% \liWortInSprache{abc}[L(Y)]
+%    \begin{macrocode}
+\NewDocumentCommand{ \liWortInSprache } { m O{L(G)} } {
+  \bigskip
+  \noindent
+  $\Rightarrow #1 \in #2$
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liWortNichtInSprache}
+% \liWortNichtInSprache{abc}
+%    \begin{macrocode}
+\NewDocumentCommand{ \liWortNichtInSprache } { m O{L(G)} } {
+  \bigskip
+  \noindent
+  $\Rightarrow #1 \notin #2$
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}

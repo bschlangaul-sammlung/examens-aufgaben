@@ -78,6 +78,7 @@
 \liLadePakete{
   automaten,
   baum,
+  cyk-algorithmus,
   entwurfsmuster,
   formale-sprachen,
   gantt,
@@ -762,7 +763,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
     \bfseries
     \sffamily
     \str_case:nn {#1} {
-      {1} {Elimination~der~$\epsilon$-Regeln}
+      {1} {Elimination~der~$\varepsilon$-Regeln}
       {2} {Elimination~von~Kettenregeln}
       {3} {Separation~von~Terminalzeichen}
       {4} {Elimination~von~mehrelementigen~Nonterminalketten}
@@ -780,8 +781,8 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
   \str_case:nn {#1} {
     %
     {1} {
-      Alle~Regeln~der~Form~$A~\rightarrow~\epsilon$~werden~eliminiert.~
-      Die~Ersetzung~von~$A$~wird~durch~$\epsilon$~in~allen~anderen~
+      Alle~Regeln~der~Form~$A~\rightarrow~\varepsilon$~werden~eliminiert.~
+      Die~Ersetzung~von~$A$~wird~durch~$\varepsilon$~in~allen~anderen~
       Regeln~vorweggenommen.
     }
     {2} {
@@ -867,6 +868,58 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 \def\zu#1(#2){#1_{\scriptscriptstyle(\leftarrow#2)}}
 
 \let\f=\footnotesize
+
+%    \end{macrocode}
+% \subsection{cyk-algorithmus.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-cyk-algorithmus}[2021/06/18 Hilfsmakros
+zum Setzen des CYK-Algorithmus]
+%    \end{macrocode}
+
+% \begin{verbatim}
+% \begin{tabular}{|c|c|c|c|c|c|}
+% a     & c     & b     & c     & a     & b \\\hline\hline
+%
+% $R_a$ & $R_c$ & $R_b$ & $R_c$ & $R_a$ & $R_b$ \l6
+% B     & A     & A     & B     & C \l5
+% S     & -     & S     & S \l4
+% -     & -     & - \l3
+% -     & - \l2
+% S \l1
+% \end{tabular}
+% \end{verbatim}
+
+% \begin{macro}{\liKurzeTabellenLinie}
+% \liLet{l}{liKurzeTabellenLinie}
+%    \begin{macrocode}
+\def\liKurzeTabellenLinie#1{\\\cline{1-#1}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liWortInSprache}
+% \liWortInSprache{abc}[L(Y)]
+%    \begin{macrocode}
+\NewDocumentCommand{ \liWortInSprache } { m O{L(G)} } {
+  \bigskip
+  \noindent
+  $\Rightarrow #1 \in #2$
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liWortNichtInSprache}
+% \liWortNichtInSprache{abc}
+%    \begin{macrocode}
+\NewDocumentCommand{ \liWortNichtInSprache } { m O{L(G)} } {
+  \bigskip
+  \noindent
+  $\Rightarrow #1 \notin #2$
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{entwurfsmuster.sty}
