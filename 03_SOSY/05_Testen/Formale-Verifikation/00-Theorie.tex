@@ -17,6 +17,8 @@
 
 \section{Programmverifikation, Korrektheit\footcite[Seite 14]{sosy:fs:5}}
 
+\section{Korrektheit\footcite[Kapitel 6.1.3.1 Seite 178]{schneider}}
+
 Verifikation dient dazu, die Korrektheit eines Programms
 \memph{mathematisch} zu beweisen.
 
@@ -25,9 +27,12 @@ Ein Algorithmus ist dabei
 \begin{itemize}
 
 \item \memph{partiell korrekt}, wenn er bei gültiger Eingabe
-(Vorbedingung) immer ein gültiges Ergebnis (Nachbedingung) liefert.
+(Vorbedingung) \memph{immer ein gültiges Ergebnis} (Nachbedingung)
+liefert. Dabei ist es noch möglich, dass das Programm nicht für jede
+Eingabe ein Ergebnis liefert, also nicht für jede Eingabe terminiert.
 
-\item \memph{total korrekt}, wenn er partiell korrekt ist und terminiert.
+\item \memph{total korrekt}, wenn er partiell korrekt ist und
+\memph{terminiert}.\footcite{wiki:korrektheit}
 \end{itemize}
 
 %-----------------------------------------------------------------------
@@ -206,6 +211,110 @@ while (i < x) {
 \end{minted}
 
 \end{multicols}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Terminierungsfunktion bei Wiederholungen}
+
+Zum Beweis der Terminierung einer Schleife muss eine
+Terminierungsfunktion $T$ angeben werden:
+
+\begin{displaymath}
+T \colon V \rightarrow \mathbb{N}
+\end{displaymath}
+
+$V$ ist eine Teilmenge der Ausdrücke über die Variablenwerte der Schleife
+Die Terminierungsfunktion muss folgende Eigenschaften besitzen:
+
+\begin{itemize}
+\item Ihre Werte sind natürliche Zahlen (einschließlich 0).
+
+\item Jede Ausführung des Schleifenrumpfs verringert ihren Wert (streng
+monoton fallend).
+
+\item Die Schleifenbedingung ist false, wenn $T = 0$.
+\end{itemize}
+
+$T$ ist die obere Schranke für die noch ausstehende Anzahl von
+Schleifendurchläufen.
+\footcite[Seite 33]{sosy:fs:5}
+
+%%
+%
+%%
+
+\subsection{Terminierungsfunktion bei Wiederholungen (Beispiel)}
+
+Beispiel Quadratzahl:
+
+\begin{minted}{java}
+// Q: 0 <= a
+y = 0;
+x = 0;
+while (y != a) {
+  x = x + 2 * y + 1;
+  y = y + 1;
+}
+// R: x = a^2
+\end{minted}
+
+\noindent
+Wähle die Terminierungsfunktion:
+
+\begin{displaymath}
+T(y) = a - y
+\end{displaymath}
+
+\noindent
+$T(y)$ wird in jedem Durchgang verringert, da $y$ erhöht wird und $a$
+konstant bleibt. Wenn $T(y) = 0$, folgt $y = a$, d.\,h. die
+Schleifenbedingung $y \neq a$ ist falsch. Der Schleifenrumpf enthält
+keine Schleifen, Rekursionen, Gotos …. Die Wiederholung terminiert.
+\footcite[Seite 34]{sosy:fs:5}
+
+\section{Terminierungsfunktion bei Rekursion}
+
+Beim Beweis der Terminierung von Rekursionen kann
+genauso wie bei Wiederholungen vorgegangen werden.
+Auch hier wird eine Terminierungsfunktion T konstruiert,
+die mit zunehmender Rekursionstiefe kleiner wird.
+
+Es muss gelten:
+\begin{itemize}
+\item Die Werte von $T$ sind natürliche Zahlen (inkl. $0$).
+
+\item Bei jedem Aufruf der Methode (rechte Seite der
+Rekursionsgleichung) wird der Wert von $T$ echt kleiner.
+
+\item Abbruch bei (spätestens) $T = 0$ erzwungen.
+\footcite[Seite 36]{sosy:fs:5}
+\end{itemize}
+
+%%
+%
+%%
+
+\subsection{Terminierungsfunktion bei Rekursion (Beispiel)}
+
+Beispiel Fibonacci-Zahlen:
+
+\begin{minted}{java}
+int fig(int n) {
+ if (n < 3) return 1;
+ else return (fib(n - 1) + fib(n - 2));
+}
+\end{minted}
+Wähle die Terminierungsfunktion
+
+\begin{displaymath}
+T(n) = n:
+\end{displaymath}
+
+$T(n)$ wird in jedem Rekursionsschritt verringert. Für $n < 3$ wird in
+den Basisfall gesprungen und die Rekursion beendet. Die Rekursion
+terminiert.
 
 \literatur
 
