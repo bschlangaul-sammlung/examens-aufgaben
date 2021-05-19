@@ -1,0 +1,65 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,cyk-algorithmus}
+\begin{document}
+\let\l=\liKurzeTabellenLinie
+
+\liAufgabenTitel{Kontextfreie Grammatiken}
+\section{Aufgabe 2
+\index{Kontextfreie Sprache}
+\footcite{66115:2013:03}}
+
+Gegeben sei die Grammatik \liGrammatik{variablen={S, A, B, C},
+alphabet={a,b}} und
+
+\begin{liProduktionen}
+S -> A B,
+S -> C S,
+A -> B C,
+A -> B B,
+A -> a,
+B -> A C,
+B -> b,
+C -> A A,
+C -> B A
+\end{liProduktionen}
+\liFlaci{Gr46a6j0a}
+
+$L = L(G)$ ist die von G erzeugte Sprache.
+
+\begin{enumerate}
+%%
+% a)
+%%
+
+\item Zeigen Sie, dass $G$ mehrdeutig ist.
+
+%%
+% b)
+%%
+
+\item Entscheiden Sie mithilfe des Algorithmus von Cocke, Younger und
+Kasami (CYK), ob das Wort $w = babaaa$ zur Sprache L gehört. Begründen
+Sie Ihre Entscheidung.
+\index{CYK-Algorithmus}
+
+\begin{liAntwort}
+\begin{tabular}{|c|c|c|c|c|c|}
+b     & a     & b    & a    & a    & a \\\hline\hline
+
+B     & A     & B    & A    & A    & A \l6
+C     & S     & C    & C    & C \l5
+-     & B     & A    & B \l4
+A     & C     & A,C \l3
+A,C   & B,C,A \l3
+A,C,B \l1
+\end{tabular}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Geben Sie eine Ableitung für $w = babaaa$ an.
+\end{enumerate}
+
+\end{document}

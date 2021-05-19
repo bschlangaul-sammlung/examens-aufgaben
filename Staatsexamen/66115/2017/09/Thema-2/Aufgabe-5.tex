@@ -1,0 +1,66 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,cyk-algorithmus}
+\begin{document}
+\let\l=\liKurzeTabellenLinie
+
+\liAufgabenTitel{CYK mit fehlenden Zellen}
+\section{Aufgabe 5
+\index{CYK-Algorithmus}
+\footcite{66115:2017:09}}
+
+% Sei \liGrammatik{}
+% eine kontextfreie Grammatik {V: Variablenmenge; S: Menge der Terminalsym
+% bole; S: Startsymbol; P: Menge der Produktionen) in Chomsky-Normalform, und sei w — Wi... Wn
+% ein Wort aus n Zeichen aus E. Der Algorithmus von Cocke/Younger/Kasami (CYK-Algorithmus)
+% berechnet für alle i,j G {1,...,n}, i < j, die Variablenmenge V(i,j) = {A G V j A —)■
+% . . . wj}.
+
+Sei \liGrammatik{variablen={S, A, B, C}, alphabet={a, b}} die
+kontextfreie Grammatik in Chomsky-Normalform und der Menge P der
+Produktionen:
+
+\begin{liProduktionsRegeln}
+S -> A B | B C,
+A -> B A | a,
+C -> A B | a,
+B -> C C | b,
+\end{liProduktionsRegeln}
+
+\noindent
+Sei $\omega = baaab$. Folgende Tabelle entsteht durch Anwendung des
+CYK-Algorithmus. Z. B. bedeutet $B \in V(3,5)$, dass aus der Variablen
+$B$ das Teilwort $\omega_3 \omega_4 \omega_5 = aab$ hergeleitet werden
+kann. Drei Einträge wurden weggelassen.
+
+\begin{enumerate}
+
+%%
+% i)
+%%
+\item Bestimmen Sie die Mengen $V(1,2)$, $V(1,3)$ und $V(1,5)$.
+
+\begin{liAntwort}
+\begin{tabular}{|c|c|c|c|c|}
+b     & a     & a   & a   & b \\\hline\hline
+
+B     & A,C   & A,C & A,C & B \l5
+A,S   & B     & B   & S,C \l4
+-     & S,C,A & B \l3
+S,A,C & S,C \l2
+S,C \l1
+\end{tabular}
+\end{liAntwort}
+
+%%
+% ii)
+%%
+
+\item Wie entnehmen Sie dieser Tabelle, dass $\omega \in L(G)$ ist?
+
+\begin{liAntwort}
+In der Menge $V(1,5)$ ist das Startsymbol $S$ der Sprache $L(G)$
+enthalten.
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}
