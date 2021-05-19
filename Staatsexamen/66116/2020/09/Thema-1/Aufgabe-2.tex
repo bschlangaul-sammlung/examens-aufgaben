@@ -1,0 +1,114 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{gantt}
+\begin{document}
+\liAufgabenTitel{Projektplanung}
+\section{Aufgabe 2
+\index{Projektplanung}
+\footcite{66116:2020:09}}
+
+Die Planung eines Softwareprojekts kann z. B. in Form von
+Gantt-Diagrammen oder CPM-Netzwerken (kritischer Pfad Methode)
+festgehalten werden.
+
+Folgendes Gantt-Diagramm zeigt einen Teil der Projektplanung in einem
+klassischen Softwareentwicklungsprozess:
+
+\begin{center}
+\begin{ganttchart}[x unit=0.7cm, y unit chart=0.6cm]{0}{6}
+\ganttbar[name=D]{Design}{0}{2} \\
+\ganttbar[name=R]{Realization}{2}{5} \\
+\ganttbar[name=T]{Testing}{3}{6}
+\gantttitlelist[name=Zeit]{0,...,6}{1}\\
+\ganttlink{D}{R}
+\ganttlink[link type=s-s]{R}{T}
+\end{ganttchart}
+\end{center}
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Im Diagramm werden 3 Phasen aus dem klassischen
+Softwareentwicklungsprozess genannt. Welche Phase sollte dem Design
+(Entwurf) immer vorangehen?
+
+\begin{liAntwort}
+Die Anforderungsanalyse
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item Wandeln Sie das Gantt-Diagramm in ein CPM-Netzwerk um. Fügen Sie
+dazu einen zusätzlichen Start- und Endknoten hinzu. Das Ende des
+Projekts ist durch das Ende aller Aktivitäten bedingt.
+\index{CPM-Netzplantechnik}
+%%
+% (c)
+%%
+
+\item Welche im obigen Gantt-Diagramm nicht enthaltenen Beziehungsarten
+zwischen Aktivitäten können in einem Gantt-Diagramm noch auftreten?
+Nennen Sie auch deren Bedeutung.
+\index{Gantt-Diagramm}
+
+\begin{liAntwort}
+Diese Beziehungsarten sind im obigen Gantt-Diagramm vorhanden:
+
+\begin{description}
+\item[Normalfolge EA:]
+\emph{end-to-start relationship}
+%
+Anordnungsbeziehung vom Ende eines Vorgangs zum Anfang seines
+Nachfolgers.
+
+\item[Anfangsfolge AA:]
+\emph{start-to-start relationship}
+%
+Anordnungsbeziehung vom Anfang eines Vorgangs zum Anfang seines
+Nachfolgers.
+\end{description}
+
+Diese Beziehungsarten sind im obigen Gantt-Diagramm \emph{nicht}
+vorhanden:
+\begin{description}
+
+\item[Endefolge EE:]
+\emph{finish-to-finish relationship}
+%
+Anordnungsbeziehung vom Ende eines Vorgangs zum Ende seines Nachfolgers.
+
+\item[Sprungfolge AE:]
+\emph{start-to-finish relationship }
+%
+Anordnungsbeziehung vom Anfang eines Vorgangs zum Ende seines
+Nachfolgers
+\end{description}
+\end{liAntwort}
+
+Gegeben sei nun das folgende CPM-Netzwerk:
+
+%%
+% (d)
+%%
+
+\item Geben Sie für jedes Ereignis die früheste Zeit an.
+
+%%
+% (e)
+%%
+
+\item Geben Sie für jedes Ereignis die späteste Zeit an.
+
+%%
+% (f)
+%%
+
+\item Geben Sie einen kritischen Pfad durch das Netz an! Wie wirkt sich
+eine Verzögerung von 5 Zeiteinheiten auf dem kritischen Pfad auf das
+Projektende aus?
+
+\end{enumerate}
+\end{document}

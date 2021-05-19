@@ -324,6 +324,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2016-Frühjahr_T2-TA2-A4">„Projektmanagement“ Examen 66116 Frühjahr 2016 T2 TA2 A4</a> (Gantt-Diagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2017-Herbst_T2-TA2-A1">„Gantt und CPM“ Examen 66116 Herbst 2017 T2 TA2 A1</a> (Gantt-Diagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2018-Herbst_T2-TA1-A1">„Gantt und zwei Softwareentwickler“ Examen 66116 Herbst 2018 T2 TA1 A1</a> (Gantt-Diagramm, CPM-Netzplantechnik)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-A2">„Projektplanung“ Examen 66116 Herbst 2020 T1 A2</a> (Projektplanung, CPM-Netzplantechnik, Gantt-Diagramm)
 
 ### Softwarearchitektur
 
@@ -353,6 +354,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2017-Frühjahr_T2-TA2-A1">„Methode „binToInt()“ und Kontrollflussgraph“ Examen 66116 Frühjahr 2017 T2 TA2 A1</a> (Zyklomatische Komplexität nach Mc-Cabe, Datenfluss-annotierter Kontrollflussgraph)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2017-Frühjahr_T2-TA2-A4">„wp-Kalkül mit Invariante bei Methode „mul()““ Examen 66116 Frühjahr 2017 T2 TA2 A4</a> (wp-Kalkül, Invariante, Totale Korrektheit)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2017-Herbst_T1-TA2-A4">„Code-Inspection bei Binärer Suche“ Examen 66116 Herbst 2017 T1 TA2 A4</a> (Binäre Suche, Design by Contract, Kontrollflussgraph, Vollständige Anweisungsüberdeckung)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-A1">„Verifikation“ Examen 66116 Herbst 2020 T1 A1</a> (Verifikation)
 
 ## Technische Informatik
 
@@ -1230,6 +1232,9 @@ OCR des oben genannten Scans:
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A7">Aufgabe 7 (SQL, SQL mit Übungsdatenbank, EXCEPT, Top-N-Query, ALTER TABLE, TRIGGER)</a>
 - 2020 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Scan.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/OCR.txt" download="Staatsexamen-Informatik_66116-2020-Frühjahr_OCR">OCR.txt</a> 
 - 2020 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Scan.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/OCR.txt" download="Staatsexamen-Informatik_66116-2020-Herbst_OCR">OCR.txt</a> 
+    - Thema 1 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-A1">Aufgabe 1 (Verifikation)</a> 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-A2">Aufgabe 2 (Projektplanung, CPM-Netzplantechnik, Gantt-Diagramm)</a>
 - 2021 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Scan.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/OCR.txt" download="Staatsexamen-Informatik_66116-2021-Frühjahr_OCR">OCR.txt</a> 
 
 ### 66118: Fachdidaktik (Gymnasium)

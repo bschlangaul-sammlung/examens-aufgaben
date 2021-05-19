@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{syntax}
 \begin{document}
 \liAufgabenTitel{Verifikation}
 \section{Aufgabe 1
@@ -60,30 +60,32 @@ einer abweisenden Schleife mit Vorbedingung P und Nachbedingung Q.
 %%
 
 \item Geben Sie für das folgende Suchprogramm die nummerierten
-Zusicherungen an. Lassen Sie dabei jeweils die invariante Vorbedingung P
-des Suchprogramms weg. Schreiben Sie nicht auf dem Aufgabenblatt!
+Zusicherungen an. Lassen Sie dabei jeweils die invariante Vorbedingung
+$P$ des Suchprogramms weg. Schreiben Sie nicht auf dem Aufgabenblatt!
 
-% HWP=zn>0OAm...mıEeltAme,z
-% i=-J;
-% // (1)
-% 3-0;
-% // (2)
-% while (i == -1&& j < n) // (3)
-% {1
-% if (a]lj] == m){
-% // (5)
-% i=j;
-% // (6)
-% }
-% else {
-% // (7)
-% ;=j+l
-% // (8)
-% }
-% // (9)
-% }
+$P \equiv n > 0 \land a_0 \dots a_{n-1} \in \mathbb{Z}^n \land \in \mathbb{Z}$
+\begin{minted}{java}
+i = -1;
+// (1)
+j = 0;
+// (2)
+while (i == -1 && j < n) // (3)
+{ // (4)
+  if (a[j] == m) {
+    // (5)
+    i = j;
+    // (6)
+  }
+  else {
+    // (7)
+    j = j + 1;
+    // (8)
+  }
+  // (9)
+}
+\end{minted}
 
-% WIQ=Pr(ii=-11VO<k<n:% #Zm)V(i>0Aa;=m)
+$Q \equiv P \land (i = -1 \land \forall \, 0 \leq k < n \colon a_k \neq m) \lor (i \geq 0 \land a_i = m)$
 
 \end{enumerate}
 \end{document}
