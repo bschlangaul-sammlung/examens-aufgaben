@@ -11,7 +11,7 @@
 Gegeben sei die Grammatik \liGrammatik{variablen={S, A, B, C},
 alphabet={a,b}} und
 
-\begin{liProduktionen}
+\begin{liProduktionsRegeln}
 S -> A B,
 S -> C S,
 A -> B C,
@@ -21,7 +21,7 @@ B -> A C,
 B -> b,
 C -> A A,
 C -> B A
-\end{liProduktionen}
+\end{liProduktionsRegeln}
 \liFlaci{Gr46a6j0a}
 
 $L = L(G)$ ist die von G erzeugte Sprache.
@@ -32,6 +32,17 @@ $L = L(G)$ ist die von G erzeugte Sprache.
 %%
 
 \item Zeigen Sie, dass $G$ mehrdeutig ist.
+
+\begin{liAntwort}
+Das Wort $baab$ kann in zwei verschiedenen Ableitungen hergeleitet
+werden:
+
+\begin{enumerate}
+\item \liAbleitung{S -> AB -> BCB -> bCB -> bAAB -> baAB -> baaB -> baab}
+
+\item \liAbleitung{S -> CS -> BAS -> bAS -> baS -> baAB -> baaB -> baab}
+\end{enumerate}
+\end{liAntwort}
 
 %%
 % b)
@@ -50,9 +61,14 @@ B     & A     & B    & A    & A    & A \l6
 C     & S     & C    & C    & C \l5
 -     & B     & A    & B \l4
 A     & C     & A,C \l3
-A,C   & B,C,A \l3
+A,C   & B,C,A \l2
 A,C,B \l1
 \end{tabular}
+
+\liWortNichtInSprache{babaaa}
+
+Das Startsymbol $S$ ist nicht in der Zelle $V(1,5) = \liMenge{A, C, B}$
+enthalten.
 \end{liAntwort}
 
 %%
@@ -60,6 +76,12 @@ A,C,B \l1
 %%
 
 \item Geben Sie eine Ableitung für $w = babaaa$ an.
+
+\begin{liAntwort}
+\liAbleitung{A -> BB -> bB -> bAC -> baC -> baAA -> baBCA -> babCA ->
+babAAA -> babaAA -> babaaA -> babaaa}
+\end{liAntwort}
+
 \end{enumerate}
 
 \end{document}

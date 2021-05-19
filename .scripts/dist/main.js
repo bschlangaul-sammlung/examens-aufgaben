@@ -197,28 +197,34 @@ programm
     .command('ocr <pdf-datei>')
     .description('Texterkennung in einer PDF-Datei durchführen.')
     .action(function (datei) {
-    child_process_1.default.spawnSync('ocrmypdf', [
+    var process = child_process_1.default.spawnSync('ocrmypdf', [
         '--deskew',
         '--rotate-pages',
         '-l', 'deu+eng',
         '--sidecar',
-        "" + datei,
+        datei + ".txt",
         datei,
         datei
-    ]);
+    ], { encoding: 'utf-8' });
+    if (process.status !== 0) {
+        console.log(process.stderr);
+    }
 });
 programm
     .command('rotiere-pdf <pdf-datei>')
     .alias('r')
     .description('PDF-Datei rotieren.')
     .action(function (datei) {
-    child_process_1.default.spawnSync('pdftk', [
+    var process = child_process_1.default.spawnSync('pdftk', [
         datei,
         'cat',
         '1-endeast', 'output',
         '--sidecar',
         datei + "_rotated.pdf"
     ]);
+    if (process.status !== 0) {
+        console.log(process.stderr);
+    }
 });
 programm
     .command('enumerate-item <tex-datei>')

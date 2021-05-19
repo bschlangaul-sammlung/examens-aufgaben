@@ -648,6 +648,7 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2020/03/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_46115-2020-Frühjahr_T2-A6">Aufgabe 6 (Komplexität)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2020/03/Thema-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_46115-2020-Frühjahr_T2-A7">Aufgabe 7 (Halde (Heap))</a>
 - 2020 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2020/09/Scan.pdf" download="Staatsexamen-Informatik_46115-2020-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2020/09/OCR.txt" download="Staatsexamen-Informatik_46115-2020-Herbst_OCR">OCR.txt</a> 
+- 2021 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2021/03/Scan.pdf" download="Staatsexamen-Informatik_46115-2021-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2021/03/OCR.txt" download="Staatsexamen-Informatik_46115-2021-Frühjahr_OCR">OCR.txt</a> 
 
 ### 46116: Softwaretechnologie / Datenbanksysteme (nicht vertieft)
 
@@ -755,6 +756,7 @@ OCR des oben genannten Scans:
 - 2019 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2019/09/Scan.pdf" download="Staatsexamen-Informatik_46116-2019-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2019/09/OCR.txt" download="Staatsexamen-Informatik_46116-2019-Herbst_OCR">OCR.txt</a> 
 - 2020 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2020/03/Scan.pdf" download="Staatsexamen-Informatik_46116-2020-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2020/03/OCR.txt" download="Staatsexamen-Informatik_46116-2020-Frühjahr_OCR">OCR.txt</a> 
 - 2020 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2020/09/Scan.pdf" download="Staatsexamen-Informatik_46116-2020-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2020/09/OCR.txt" download="Staatsexamen-Informatik_46116-2020-Herbst_OCR">OCR.txt</a> 
+- 2021 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2021/03/Scan.pdf" download="Staatsexamen-Informatik_46116-2021-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2021/03/OCR.txt" download="Staatsexamen-Informatik_46116-2021-Frühjahr_OCR">OCR.txt</a> 
 
 ### 46118: Fachdidaktik (Mittelschulen)
 
@@ -988,6 +990,7 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/09/Thema-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66115-2012-Herbst_T2-A7">Aufgabe 7 (Halde (Heap))</a>
 - 2013 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2013-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/03/OCR.txt" download="Staatsexamen-Informatik_66115-2013-Frühjahr_OCR">OCR.txt</a> 
     - Thema 1 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/03/Thema-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66115-2013-Frühjahr_T1-A2">Aufgabe 2 (Kontextfreie Sprache, CYK-Algorithmus)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/03/Thema-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2013-Frühjahr_T1-A6">Aufgabe 6 (Streutabellen (Hashing))</a>
 - 2013 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/Scan.pdf" download="Staatsexamen-Informatik_66115-2013-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/OCR.txt" download="Staatsexamen-Informatik_66115-2013-Herbst_OCR">OCR.txt</a> 
     - Thema 1 
@@ -1043,6 +1046,7 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/Thema-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2017-Herbst_T1-A3">Aufgabe 3 (Komplexitätstheorie)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/Thema-1/Aufgabe-8.pdf" download="Staatsexamen-Informatik_66115-2017-Herbst_T1-A8">Aufgabe 8 (Greedy-Algorithmus)</a> 
     - Thema 2 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/Thema-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66115-2017-Herbst_T2-A5">Aufgabe 5 (CYK-Algorithmus)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/09/Thema-2/Aufgabe-8.pdf" download="Staatsexamen-Informatik_66115-2017-Herbst_T2-A8">Aufgabe 8 (AVL-Baum, Halde (Heap), Binärbaum)</a>
 - 2018 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2018-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/03/OCR.txt" download="Staatsexamen-Informatik_66115-2018-Frühjahr_OCR">OCR.txt</a> 
     - Thema 1 
@@ -1054,7 +1058,7 @@ OCR des oben genannten Scans:
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/03/Thema-2/Aufgabe-9.pdf" download="Staatsexamen-Informatik_66115-2018-Frühjahr_T2-A9">Aufgabe 9 (Algorithmus von Dijkstra)</a>
 - 2018 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/09/Scan.pdf" download="Staatsexamen-Informatik_66115-2018-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/09/OCR.txt" download="Staatsexamen-Informatik_66115-2018-Herbst_OCR">OCR.txt</a> 
     - Thema 1 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/09/Thema-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2018-Herbst_T1-A3">Aufgabe 3 (Kontextfreie Sprache)</a> 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/09/Thema-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2018-Herbst_T1-A3">Aufgabe 3 (Kontextfreie Sprache, CYK-Algorithmus)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/09/Thema-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66115-2018-Herbst_T1-A5">Aufgabe 5 (AVL-Baum)</a> 
     - Thema 2 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/09/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2018-Herbst_T2-A6">Aufgabe 6 (Backtracking)</a>
@@ -1103,6 +1107,7 @@ OCR des oben genannten Scans:
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2020-Herbst_T2-TA2-A3">Aufgabe 3 (Halde (Heap))</a> 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66115-2020-Herbst_T2-TA2-A4">Aufgabe 4 (Dynamische Programmierung)</a> 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-2/Teilaufgabe-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66115-2020-Herbst_T2-TA2-A5">Aufgabe 5 (Binäre Suche)</a>
+- 2021 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2021/03/Scan.pdf" download="Staatsexamen-Informatik_66115-2021-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2021/03/OCR.txt" download="Staatsexamen-Informatik_66115-2021-Frühjahr_OCR">OCR.txt</a> 
 
 ### 66116: Datenbanksysteme / Softwaretechnologie (vertieft)
 
@@ -1225,6 +1230,7 @@ OCR des oben genannten Scans:
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A7">Aufgabe 7 (SQL, SQL mit Übungsdatenbank, EXCEPT, Top-N-Query, ALTER TABLE, TRIGGER)</a>
 - 2020 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Scan.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/OCR.txt" download="Staatsexamen-Informatik_66116-2020-Frühjahr_OCR">OCR.txt</a> 
 - 2020 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Scan.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/OCR.txt" download="Staatsexamen-Informatik_66116-2020-Herbst_OCR">OCR.txt</a> 
+- 2021 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Scan.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/OCR.txt" download="Staatsexamen-Informatik_66116-2021-Frühjahr_OCR">OCR.txt</a> 
 
 ### 66118: Fachdidaktik (Gymnasium)
 
@@ -1246,6 +1252,7 @@ OCR des oben genannten Scans:
 - 2019 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66118/2019/09/Scan.pdf" download="Staatsexamen-Informatik_66118-2019-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66118/2019/09/OCR.txt" download="Staatsexamen-Informatik_66118-2019-Herbst_OCR">OCR.txt</a> 
 - 2020 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66118/2020/03/Scan.pdf" download="Staatsexamen-Informatik_66118-2020-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66118/2020/03/OCR.txt" download="Staatsexamen-Informatik_66118-2020-Frühjahr_OCR">OCR.txt</a> 
 - 2020 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66118/2020/09/Scan.pdf" download="Staatsexamen-Informatik_66118-2020-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66118/2020/09/OCR.txt" download="Staatsexamen-Informatik_66118-2020-Herbst_OCR">OCR.txt</a> 
+- 2021 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66118/2021/03/Scan.pdf" download="Staatsexamen-Informatik_66118-2021-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66118/2021/03/OCR.txt" download="Staatsexamen-Informatik_66118-2021-Frühjahr_OCR">OCR.txt</a> 
 
 # Stichwort-Verzeichnis
 

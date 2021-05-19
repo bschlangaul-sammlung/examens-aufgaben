@@ -1,0 +1,543 @@
+ 
+
+Prüfungsteilnehmer Prüfungstermin Einzelprüfungsnummer
+
+ 
+
+Kennzahl:
+
+Frühjahr
+Kennwort: __________ 46115
+2021
+
+Arbeitsplatz-Nr.:
+
+ 
+
+Erste Staatsprüfung für ein Lehramt an öffentlichen Schulen
+
+— Prüfungsaufgaben —
+
+ 
+
+Fach: Informatik
+Einzelprüfung: Algorithmen und Datenstrukturen
+Anzahl der gestellten Themen (Aufgaben): 2
+
+Anzahl der Druckseiten dieser Vorlage: 12
+
+ 
+
+Bitte wenden!
+Frühjahr 2021 Einzelprüfungsnummer: 46115 Seite: 2
+Thema Nr. 1
+(Aufgabengruppe)
+
+Es sind alle Aufgaben dieser Aufgabengruppe zu bearbeiten!
+
+Teilaufgabe I: Theoretische Informatik
+
+ 
+
+Aufgabe 1 (Kaugummi-Automat) [20 PUNKTE]
+
+Ein moderner Kaugummi-Automat erhalte 20- und 50-Cent-Münzen. Eine Packung Kaugummi
+kostet 120 Cent. Die interne Steuerung des Kaugummi-Automaten verwendet einen determinis-
+tischen endlichen Automaten, der die Eingabe als Folge von 20- und 50-Cent-Münzen (d. h. als
+Wort über dem Alphabet {20,50}) erhält, und genau die Folgen akzeptiert, die in der Summe 120
+Cent ergeben.
+
+(a) Geben Sie zwei Worte aus {20,50}* an, die der Automat akzeptiert.
+
+(b) Zeichnen Sie einen deterministischen endlichen Automaten als Zustandsgraph, der
+für die interne Steuerung des Kaugummi-Automaten verwendet werden kann (d. h. der
+Automat akzeptiert genau alle Folgen von 20- und 50-Cent-Münzen, deren Summe 120 er-
+
+gibt).
+c) Geben Sie einen regulären Ausdruck an, der die akzeptierte Sprache des Automaten
+erzeugt.
+Aufgabe 2 (Kontextfreie Sprachen) [30 PUNKTE]
+
+a) Verwenden Sie den Algorithmus von Cocke, Younger und Kasami (CYK-Algorithmus), um
+für die folgende kontextfreie Grammatik G = (V,D, P, 5) mit Variablen V={$,A,B,C,D},
+Terminalzeichen 3 = {a,b}, Produktionen
+
+P={S—>SB| AC |a,
+A-a,
+B-b,
+C—DD|AB,
+D-AB|DC|CD}
+
+und Startsymbol S zu prüfen, ob das Wort aabababb in der durch G erzeugten Sprache liegt.
+Erläutern Sie dabei Ihr Vorgehen und den Ablauf des CYK-Algorithmus.
+
+Fortsetzung nächste Seite!
+Frithjahr 2021 Einzelprüfungsnummer: 46115 Seite: 3
+
+ 
+
+b) Mit a’, wobei i € No = {0,1,2,...}, wird das Wort bezeichnet, das aus der i-fachen Wie-
+derholung des Zeichens a besteht (d. h. a’ = € und a? = aa‘~!, wobei e das leere Wort
+ist).
+
+Sei die Sprache L definiert über dem Alphabet {a,b} als
+
+L = {a"b™ | iE No, i > 1}.
+
+Zeigen Sie, dass die Sprache Z nicht vom Typ 3 der Chomsky-Hierarchie (d. h. nicht regulär)
+ist.
+
+Aufgabe 3 (Minimierung von Endlichen Automaten) (30 PUNKTE|
+
+Betrachten Sie den unten gezeigten deterministischen endlichen Automaten, der Worte tiber dem
+Alphabet X = {a,b} verarbeitet. Bestimmen Sie den dazugehörigen Minimalautomaten, d. h.
+einen deterministischen endlichen Automaten, der die gleiche Sprache akzeptiert und eine mini-
+male Anzahl an Zuständen benutzt. Erläutern Sie Ihre Berechnung, indem Sie z. B. eine Minimie-
+rungstabelle angeben.
+
+ 
+
+20
+
+ 
+
+Aufgabe 4 (Entscheidbarkeit) [10 PUNKTE|
+
+Beweisen Sie, dass das folgende Entscheidungsproblem semi-entscheidbar ist.
+
+Eingabe: Eine Turingmaschine M
+Aufgabe: Entscheiden Sie, ob ein Eingabewort existiert, auf das M hält.
+
+Fortsetzung nächste Seite!
+ 
+
+ 
+
+Frühjahr 2021 Einzelprüfungsnummer: 46115 Seite: 4
+Teilaufgabe II: Algorithmen
+Aufgabe 1 (Sortieren) [26 PUNKTE]
+
+a) Geben Sie für folgende Sortierverfahren jeweils zwei Felder A und B an, so dass das jeweilige
+Sortierverfahren angewendet auf A seine Best-Case-Laufzeit und angewendet auf B seine
+Worst-Case-Laufzeit erreicht. (Wir messen die Laufzeit durch die Anzahl der Vergleiche
+zwischen Elementen der Eingabe.) Dabei soll das Feld A die Zahlen 1,2,...,7 genau einmal
+enthalten; das Feld B ebenso. Sie bestimmen also nur die Reihenfolge der Zahlen.
+
+Wenden Sie als Beleg für Ihre Aussagen das jeweilige Sortierverfahren auf die Felder A und
+B an und geben Sie nach jedem größeren Schritt des Algorithmus den Inhalt der Felder an.
+
+Geben Sie außerdem für jedes Verfahren asymptotische Best- und Worst-Case-Laufzeit für
+ein Feld der Länge n an.
+
+Für drei der Sortierverfahren ist der Pseudocode angegeben. Beachten Sie, dass die Feldindi-
+zes hier bei 1 beginnen. Die im Pseudocode verwendete Unterroutine Swap(A, :, j) vertauscht
+im Feld A die Elemente mit den Indizes i und j miteinander.
+
+i) Insertionsort
+ii) Bubblesort
+iii) Quicksort
+
+ 
+
+Insertionsort(int[] A)
+for 7 = 2 to A.length do
+key = Alj]
+i=j-1
+while i>0 and Ali] > key do
+Afi + 1] = Ali]
+t=t-1
+Ali + 1] = key
+
+Bubblesort(int|] A)
+n := length(A)
+repeat
+swapped = false
+fori=lton—1do
+if Ali — 1] > Alc] then
+Swap(A,i — 1,7)
+
+swapped := true
+
+until not swapped
+
+ 
+
+Quicksort(int[] A, @ = 1, r = A.length)
+if 2<r then
+m = Partition(A, 2, r)
+| Quicksort(A, 2,m — 1)
+Quicksort(A,m + 1,r)
+
+int Partition (int|] A, int 2, intr)
+
+pivot = Alr]
+
+i=
+
+for j =¢€tor—1do
+
+if A[j] < pivot then
+
+Swap(A, i, 5)
+w=i+l
+
+Swap(A,i,r)
+
+return i
+
+ 
+
+b) Geben Sie die asymptotische Best- und Worst-Case-Laufzeit von Mergesort an.
+
+Fortsetzung nächste Seite!
+Friihjahr 2021 Einzelprüfungsnummer: 46115 Seite: 5
+
+ 
+
+Aufgabe 2 (Minimum und Maximum) [16 PUNKTE]
+
+a) Argumentieren Sie, warum man das Maximum von n Zahlen nicht mit weniger als n — 1
+Vergleichen bestimmen kann.
+
+b) Geben Sie einen Algorithmus im Pseudocode an, der das Maximum eines Feldes der Länge
+n mit genau n — 1 Vergleichen bestimmt.
+
+c) Wenn man das Minimum und das Maximum von n Zahlen bestimmen will, dann kann das
+natürlich mit 2n —2 Vergleichen erfolgen. Zeigen Sie, dass man bei jedem beliebigen Feld mit
+deutlich weniger Vergleichen auskommt, wenn man die beiden Werte statt in zwei separaten
+Durchläufen in einem Durchlauf geschickt bestimmt.
+
+Aufgabe 3 (Breitensuche) [16 PUNKTE]
+
+Wir betrachten eine Variante der Breitensuche (BFS), bei der die Knoten markiert werden, wenn
+sie das erste Mal besucht werden. Außerdem wird die Suche einmal bei jedem unmarkierten Kno-
+ten gestartet, bis alle Knoten markiert sind. Wir betrachten gerichtete Graphen. Ein gerichteter
+Graph G ist schwach zusammenhängend, wenn der ungerichtete Graph (der sich daraus ergibt,
+dass man die Kantenrichtungen von G ignoriert) zusammenhängend ist.
+
+a) Beschreiben Sie für ein allgemeines n € N mit n > 2 den Aufbau eines schwach zusam-
+menhängenden Graphen G,„ mit n Knoten, bei dem die Breitensuche O(n) mal gestartet
+werden muss, bis alle Knoten markiert sind.
+
+b) Welche asymptotische Laufzeit in Abhängigkeit von der Anzahl der Knoten (n) und von
+der Anzahl der Kanten (m) hat die Breitensuche über alle Neustarts zusammen? Beachten
+Sie, dass die Markierungen nicht gelöscht werden. Geben Sie die Laufzeit in O-Notation an.
+Begründen Sie Ihre Antwort.
+
+Aufgabe 4 (Kürzeste-Wege-Bäume und minimale Spannbäume) [13 PUNKTE]
+
+Die Algorithmen von Dijkstra und Jarnik-Prim gehen ähnlich vor. Beide berechnen, ausgehend
+von einem Startknoten, einen Baum. Allerdings berechnet der Algorithmus von Dijkstra einen
+Kürzesten-Wege-Baum, während der Algorithmus von Jarnik-Prim einen minimalen Spannbaum
+berechnet.
+
+a) Geben Sie einen ungerichteten gewichteten Graphen G mit höchstens fünf Knoten und einen
+Startknoten s von G an, so dass Dijkstra(G,s) und Jarnik-Prim(G,s) ausgehend von s
+verschiedene Bäume in G liefern. Geben Sie beide Bäume an.
+
+b) Geben Sie eine unendlich große Menge von Graphen an, auf denen der Algorithmus von
+Jarnik-Prim asymptotisch schneller ist als der Algorithmus von Kruskal, der ebenfalls mini-
+male Spannbäume berechnet.
+
+Hinweis: Für einen Graphen mit n Knoten und m Kanten benötigt Jarnik-Prim
+O(m-+nlogn) Zeit, Kruskal O(mlogm) Zeit.
+
+Fortsetzung nächste Seite!
+Frühjahr 2021 Einzelprüfungsnummer: 46115 Seite: 6
+
+Aufgabe 5 (Sondierfolgen für Hashing mit offener Adressierung) [19 PUNKTE]
+
+Eine Sondierfolge s(k,i) liefert für einen Schlüssel k aus einem Universum U und Versuchsnum-
+merni = 0,1,...,m-leine Folge von Indizes für eine Hashtabelle 7[0..m 1]. Mithilfe einer Son-
+dierfolge wird beim Hashing mit offener Adressierung z. B. beim Einfügen eines neuen Schlüssels k
+nach einem noch nicht benützten Tabelleneintrag gesucht. Seien h und h’ zwei verschiedene Hash-
+funktionen, die U auf {0,1,...,m—1} abbilden. Beantworten Sie die folgenden Fragen und geben
+Sie an, um welche Art von Sondieren es sich jeweils handelt.
+
+a) Was ist problematisch an der Sondierfolge s(k,i) = (h(k) + 22) mod m, wobei m = 1023 die
+Größe der Hashtabelle ist?
+
+b) Was ist problematisch an der Sondierfolge s(k,i) = (k(k) +i(i+1)) mod m, wobei m = 1024
+die Größe der Hashtabelle ist?
+
+c) Was ist vorteilhaft an der Sondierfolge s(k,:) = (h(k) +i: h’(k)) mod m, wobei m die Größe
+der Hashtabelle ist?
+
+d) Sei A(k) = k mod 6 und h’(k) = k? mod 6.
+
+Fügen Sie die Schlüssel 14, 9, 8, 3, 2 in eine Hashtabelle der Größe 7 ein. Verwenden Sie
+die Sondierfolge s(k,2) = (h(k) +i. h’(k)) mod 7 und offene Adressierung. Notieren Sie die
+Indizes der Tabellenfelder und vermerken Sie neben jedem Feld die erfolglosen Sondierungen.
+Frühjahr 2021 Einzelprüfungsnummer: 46115 Seite: 7
+
+Thema Nr. 2
+(Aufgabengruppe)
+
+Es sind alle Aufgaben dieser Aufgabengruppe zu bearbeiten!
+
+Teilaufgabe I: Theoretische Informatik
+
+Aufgabe 1 (Reguläre Sprachen) [20 PUNKTE]
+
+a) Betrachten Sie die formale Sprache L © {a,b,c}*: aller Wörter, die entweder mit b beginnen
+oder mit a enden (aber nicht beides gleichzeitig) und das Teilwort cc enthalten.
+Entwerfen Sie einen (vollständigen) deterministischen endlichen Automaten, der die Sprache
+L akzeptiert. (Hinweis: Es werden weniger als 10 Zustände benötigt.)
+
+b) Ist die folgende Aussage richtig? Begründen Sie Ihre Antwort.
+
+„Jede Teilsprache einer regulären Sprache ist regulär, d. h. für ein Alphabet % und formale
+Sprachen L[’ C LC &* ist L’ regular, falls L regulär ist.“
+
+Aufgabe 2 (Reguläre Sprachen) [20 PUNKTE]
+
+Gegeben sei der folgende e-nichtdeterministische endliche Automat A über dem Alphabet
+
+= {a,b}:
+Tr
+@)
+
+a) Konstruieren Sie einen deterministischen endlichen Automaten fiir A. Wenden Sie dafiir die
+Potenzmengenkonstruktion an.
+
+ 
+
+ 
+
+ 
+
+b) Beschreiben Sie die von A akzeptierte Sprache L(A) mit eigenen Worten und so einfach wie
+möglich.
+
+Fortsetzung nächste Seite!
+Frühjahr 2021 Einzelprüfungsnummer: 46115 Seite: 8
+
+ 
+
+Aufgabe 3 (Reguläre und Kontextfreie Sprachen) [40 PUNKTE]
+
+Sei No = {0,1,2,...} die Menge aller natürlichen Zahlen mit 0. Betrachten Sie die folgenden
+Sprachen.
+
+a) Ly = {a"brar Ine No}
+
+b) Le = {a"a"d" |ne No}
+
+c) L3 = {(ab)"a(ba)"b(ab)” | n € No}
+Geben Sie jeweils an, ob L,, L2 und L3 kontextfrei und ob Ly, Lz und Ls regulär sind. Beweisen
+Sie Ihre Behauptung und ordnen Sie jede Sprache in die kleinstmögliche Klasse (regulär, kontext-
+
+frei, nicht kontextfrei) ein. Für eine Einordnung in konterxtfrei zeigen Sie also, dass die Sprache
+kontextfrei und nicht regulär ist.
+
+Erfolgt ein Beweis durch Angabe eines Automaten, so ist eine klare Beschreibung der Funkti-
+onsweise des Automaten und der Bedeutung der Zustände erforderlich. Erfolgt der Beweis durch
+Angabe eines regulären Ausdruckes, so ist eine intuitive Beschreibung erforderlich. Wird der Be-
+weis durch die Angabe einer Grammatik geführt, so ist die Bedeutung der Variablen zu erläutern.
+
+Aufgabe 4 (Notationen) [10 PUNKTE|
+
+Beweisen oder widerlegen Sie: Die Menge der geraden natürlichen Zahlen G = {2n |n e N} ist
+auf das spezielle Halteproblem Ky = {x € N | M, hält auf Eingabe x} reduzierbar.
+
+Teilaufgabe II: Algorithmen
+
+ 
+
+Aufgabe 1 (O-Notation) [12 PUNKTE]
+
+Sortieren Sie die unten angegebenen Funktionen der O-Klassen O(a), O(b), O(c), O(d) und O(e)
+bezüglich ihrer Teilmengenbeziehungen. Nutzen Sie ausschließlich die echte Teilmenge € sowie die
+Gleichheit = für die Beziehung zwischen den Mengen. Folgendes Beispiel illustriert diese Schreib-
+weise für einige Funktionen fı bis fs. (Diese haben nichts mit den unten angegebenen Funktionen
+zu tun.)
+
+O(fa) & O(fs) = O(fs)  O(f:) = O(a)
+Die angegebenen Beziehungen miissen weder bewiesen noch begriindet werden.
+e a(n) = Vn +4n—5
+
+b(n) = log (log,(n))
+c(n) = 2”
+
+d(n) = n? log(n) + 2n
+
+qm
+loge n
+
+ 
+
+e(n) =
+
+Fortsetzung nächste Seite!
+Friihjahr 2021 Einzelpriifungsnummer: 46115
+
+Aufgabe 2 (Implementierung)
+
+Gegeben sei die folgende Java-Implementierung eines Stacks.
+
+class Stack {
+private Item head;
+
+public Stack () {
+head = null;
+
+}
+public void push(int val) {
+if (head == null) {
+head = new Item(val, null);
+} else {
+
+head = new Item(val, head);
+}
+}
+
+public int pop() {
+Yen.
+}
+
+public int size() {
+//
+}
+
+public int min() {
+/l :..
+}
+
+class Item {
+private int val;
+private Item next;
+
+public Item(int val, Item next) {
+this.val = val;
+this.next = next;
+
+Seite: 9
+
+[19 PUNKTE]
+
+Fortsetzung nächste Seite!
+Frühjahr 2021 Einzelprüfungsnummer: 46115 Seite: 10
+
+a) Implementieren Sie die Methode pop in einer objektorientierten Programmiersprache Ihrer
+Wahl, die das erste Item des Stacks entfernt und seinen Wert zurückgibt. Ist kein Wert
+
+im Stack enthalten, so soll dies mit einer IndexOutOfBoundsException oder Ähnlichem
+gemeldet werden.
+
+Beschreiben Sie nun jeweils die notwendigen Änderungen an den bisherigen Implementierungen,
+die für die Realisierung der folgenden Methoden notwendig sind.
+
+b) size gibt in Laufzeit O(1) die Anzahl der enthaltenen Items zurück.
+
+c) min gibt (zu jedem Zeitpunkt) in Laufzeit O(1) den Wert des kleinsten Elements im Stack
+zurück.
+
+Sie dürfen jeweils alle anderen angegebenen Methoden der Klasse verwenden, auch wenn Sie
+diese nicht implementiert haben. Sie können anstelle von objektorientiertem Quellcode auch eine
+informelle Beschreibung Ihrer Änderungen angeben.
+
+Aufgabe 3 (Lineare und Binäre Suchverfahren) [34 PUNKTE]
+
+Gegeben ist ein aufsteigend sortiertes Array A von n ganzen Zahlen und eine ganze Zahl r.
+Es wird der Algorithmus BinarySearch betrachtet, der A effizient nach dem Wert x absucht.
+Ergebnis ist der Index i mit x = Ali] oder NIL, falls © & A.
+
+ı int BinarySearch(int[] A, int r)
+2 f=1
+3 r= A.length
+4 while r > é do
+5 m = | 45]
+6 if 2 < Alm] then
+7 r=om—l
+8 else if 2 = Alm] then
+9 | return m
+10 else
+11 | €=m+l1
+12 return NIL
+
+ 
+
+a) Durchsuchen Sie das folgende Feld jeweils nach den in (i) bis (iii) angegebenen Werten mittels
+binärer Suche. Geben Sie für jede Iteration die Werte /,r,m und den betretenen if-Zweig
+an. Geben Sie zudem den Ergebnis-Index bzw. NIL an.
+
+Index
+
+ 
+
+ 
+
+i]s] «| «| 2] 4] off
+
+ 
+
+wen [ilsfol7] io] w]u]al ale!
+(i) 10
+(ii) 13
+(iii) 22
+
+Fortsetzung nächste Seite!
+Frühjahr 2021 Einzelprüfungsnummer: 46115 Seite: 11
+
+ 
+
+b) Betrachten Sie auf das Array aus Teilaufgabe a). Für welche Werte durchläuft der Algorith-
+mus nie den letzten else-Teil in Zeile 11?
+Hinweis: Unterscheiden Sie auch zwischen enthaltenen und nicht-enthaltenen Werten.
+
+c) Wie ändert sich das Ergebnis der binären Suche, wenn im sortierten Eingabefeld zwei auf-
+einanderfolgende, unterschiedliche Werte vertauscht wurden? Betrachten Sie hierbei die be-
+troffenen Werte, die anderen Feldelemente und nicht enthaltene Werte in Abhängigkeit vom
+Ort der Vertauschung.
+
+d) Angenommen, das Eingabearray A für den Algorithmus für die binäre Suche enthält nur die
+Zahlen 0 und 1, aufsteigend sortiert. Zudem ist jede der beiden Zahlen mindestens ein Mal
+vorhanden. Ändern Sie den Algorithmus für die binäre Suche so ab, dass er den bzw. einen
+Index k zurückgibt, für den gilt: Alk] =1 und Ak—1]=0.
+
+e) Betrachten Sie die folgende rekursive Variante von BinarySearch.
+
+1 int RekBinarySearch(int[] A. int x. int £. int r)
+
+| mi
+
+3 | ({rekursive Implementierung)
+
+Der initiale Aufruf der rekursiven Variante lautet:
+RekBinarySearch (A, z, 1, A.length)
+
+Vervollständigen Sie die Implementierung des Algorithmus in Zeile 3.
+
+Fortsetzung nächste Seite!
+Frühjahr 2021 Einzelprüfungsnummer: 46115 Seite: 12
+Aufgabe 4 (Dijkstra-Algorithmus:) [25 PUNKTE]
+
+a) Berechnen Sie im gegebenen gerichteten und gewichteten Graph G = (V,E,w) mit
+Kantenlängen w : E — R{ mittels des Dijkstra-Algorithmus die kürzesten (gerichteten)
+Pfade ausgehend vom Startknoten a.
+
+ 
+
+Knoten, deren Entfernung von a bereits feststeht, seien als schwarz bezeichnet und Knoten,
+bei denen lediglich eine obere Schranke # oo für ihre Entfernung von a bekannt ist, seien
+als grau bezeichnet.
+
+i) Geben Sie als Lösung eine Tabelle an. Fügen Sie jedes mal, wenn der Algorithmus
+einen Knoten schwarz färbt, eine Zeile zu der Tabelle hinzu. Die Tabelle soll dabei
+zwei Spalten beinhalten: die linke Spalte zur Angabe des aktuell schwarz gewordenen
+Knotens und die rechte Spalte mit der bereits aktualisierten Menge grauer Knoten.
+Jeder Tabelleneintrag soll anstelle des nackten Knotennamens v ein Tripel (v, v.d, v.r)
+sein. Dabei steht v.d für die aktuell bekannte kürzeste Distanz zwischen a und v.
+
+v.r ist der direkte Vorgänger von v auf dem zugehörigen kürzesten Weg von a.
+
+ii) Zeichnen Sie zudem den entstandenen Kürzeste-Pfade-Baum.
+
+b) Warum berechnet der Dijkstra-Algorithmus auf einem gerichteten Eingabegraphen mit po-
+tentiell auch negativen Kantengewichten w : # — R nicht immer einen korrekten Kürzesten-
+Wege-Baum von einem gewählten Startknoten aus? Geben Sie ein Beispiel an, für das der
+Algorithmus die falsche Antwort liefert.
+
+c) Begründen Sie, warum das Problem nicht gelöst werden kann, indem der Betrag des niedrigs-
+ten (also des betragsmäßig größten negativen) Kantengewichts im Graphen zu allen Kanten
+addiert wird.

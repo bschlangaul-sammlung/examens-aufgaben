@@ -178,14 +178,17 @@ programm
   .command('ocr <pdf-datei>')
   .description('Texterkennung in einer PDF-Datei durchführen.')
   .action(function (datei: string): void {
-    childProcess.spawnSync('ocrmypdf', [
+    const process = childProcess.spawnSync('ocrmypdf', [
       '--deskew',
       '--rotate-pages',
       '-l', 'deu+eng',
-      '--sidecar', `${datei}`,
+      '--sidecar', `${datei}.txt`,
       datei,
       datei
-    ])
+    ], { encoding: 'utf-8' })
+    if (process.status !== 0) {
+      console.log(process.stderr)
+    }
   })
 
 programm
@@ -193,12 +196,15 @@ programm
   .alias('r')
   .description('PDF-Datei rotieren.')
   .action(function (datei: string): void {
-    childProcess.spawnSync('pdftk', [
+    const process = childProcess.spawnSync('pdftk', [
       datei,
       'cat',
       '1-endeast', 'output',
       '--sidecar', `${datei}_rotated.pdf`
     ])
+    if (process.status !== 0) {
+      console.log(process.stderr)
+    }
   })
 
 programm
