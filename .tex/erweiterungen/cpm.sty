@@ -3,43 +3,74 @@
 \RequirePackage{tikz}
 %    \end{macrocode}
 
-% \begin{macro}{\ereignis}
+% \begin{tikzpicture}[scale=0.8,transform shape]
+% \liCpmEreignis{1}(0,2)
+% \liCpmEreignis{2}(1,4)
+% \liCpmEreignis{3}(1,0)
+% \liCpmEreignis{4}(3,4)
+% \liCpmEreignis{5}(3,2)
+% \liCpmEreignis{6}(3,0)
+% \liCpmEreignis{7}(5,4)
+% \liCpmEreignis{8}(5,2)
+% \liCpmEreignis{9}(5,0)
+% \liCpmEreignis{10}(7,2)
+
+% \liCpmVorgang(1>2){10}
+% \liCpmVORGANG(1>3){22}
+% \liCpmVorgang(1>5){6}
+% \liCpmVorgang(1>6){5}
+% \liCpmVORGANG(3>6){8}
+% \liCpmVorgang(2>5){5}
+% \liCpmVorgang(2>4){8}
+% \liCpmVorgang(4>7){12}
+% \liCpmVorgang(7>8){3}
+% \liCpmVorgang(7>10){6}
+% \liCpmVORGANG(9>10){9}
+% \liCpmVORGANG(6>9){11}
+% \liCpmVorgang(8>10){7}
+% \liCpmVorgang(4>5){1}
+
+% \liCpmScheinvorgang(5>6){}
+% \liCpmScheinvorgang(5>8){}
+% \end{tikzpicture}
+
+% \begin{macro}{\liCpmEreignis}
 %    \begin{macrocode}
-\def\ereignis#1(#2,#3){
+\def\liCpmEreignis#1(#2,#3){
   \node[circle,draw] (#1) at (#2,#3) {#1};
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\ereignisN}
+% \begin{macro}{\liCpmEreignisN}
 % N = name
 %    \begin{macrocode}
-\def\ereignisN(#1)#2(#3,#4){
+\def\liCpmEreignisN(#1)#2(#3,#4){
   \node[circle,draw] (#1) at (#3,#4) {#2};
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\vorgang}
+% \begin{macro}{\liCpmVorgang}
 %    \begin{macrocode}
-\def\vorgang(#1>#2)#3{
+\def\liCpmVorgang(#1>#2)#3{
   \path[->] (#1) edge node[auto,sloped] {#3} (#2);
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\VORGANG}
+% \begin{macro}{\liCpmVORGANG}
 % Vorgang für den kritischen Pfad
 %    \begin{macrocode}
-\def\VORGANG(#1>#2)#3{
+\def\liCpmVORGANG(#1>#2)#3{
   \path[->,thick] (#1) edge node[auto,sloped] {#3} (#2);
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\scheinvorgang}
+% \begin{macro}{\liCpmScheinvorgang}
 %    \begin{macrocode}
-\def\scheinvorgang(#1>#2)#3{
+\def\liCpmScheinvorgang(#1>#2)#3{
   \path[->,dashed] (#1) edge node[auto,sloped] {#3} (#2);
 }
 %    \end{macrocode}
