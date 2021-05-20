@@ -56,6 +56,9 @@
   \end{mdframed}
 }
 
+% dummy
+\newcommand{\footcite}[2][]{}
+
 % \|\\let\\(.*?)=\\(.*?)\|
 % \liLet{$1}{$2}
 \ExplSyntaxOn
@@ -1038,6 +1041,63 @@ zum Setzen von Entwurfsmuster/Design Patterns]
 \RequirePackage{lehramt-informatik-uml}
 %    \end{macrocode}
 
+% \subsubsection{Adapter}
+
+% \begin{macro}{\liEntwurfsAdapterUml}
+% \begin{liBeispiel}
+% \liEntwurfsAdapterUml
+% \end{liBeispiel}
+%    \begin{macrocode}
+\def\liEntwurfsAdapterUml{
+  \begin{tikzpicture}
+    \umlsimpleclass[x=1,y=3]{Klient}{}{}
+    \umlclass[x=4,y=3,type=interface]{Ziel}{}{agiere()}
+    \umlclass[x=4,y=0]{Adapter}{}{agiere()}
+    \umlclass[x=8,y=1.5]{Dienst}{}{agiereSpeziell()}
+
+    \umlreal{Adapter}{Ziel}
+    \umluniassoc{Klient}{Ziel}
+    \umlinherit{Adapter}{Dienst}
+
+    \umlnote[x=7,y=-1,width=2cm]{Adapter}{agiereSpeziell()}
+  \end{tikzpicture}
+  \footcite[so ähnlich wie GoF]{wiki:adapter}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liEntwurfsAdapterAkteure}
+% \begin{liBeispiel}
+% \liEntwurfsAdapterAkteure
+% \end{liBeispiel}
+%    \begin{macrocode}
+\def\liEntwurfsAdapterAkteure{
+  \begin{description}
+
+    \item[Ziel (Target)]
+
+    Das Ziel definiert die Schnittstelle, die der Klient nutzen kann.
+
+    \item[Klient (Client)]
+
+    Der Klient nutzt Dienste über inkompatible Schnittstellen und greift
+    dabei auf adaptierte Schnittstellen zurück.
+
+    \item[Dienst (Adaptee)]
+
+    Der Dienst bietet wiederzuverwendende Dienstleistungen mit fest
+    definierter Schnittstelle an.
+
+    \item[Adapter]
+
+    Der Adapter adaptiert die Schnittstelle des Dienstes auf die
+    Schnittstelle zum Klienten.\footcite{wiki:adapter}
+
+  \end{description}
+}
+%    \end{macrocode}
+% \end{macro}
+
 % \subsubsection{Beobachter}
 
 % \begin{macro}{\liEntwurfsBeobachterUml}
@@ -1082,30 +1142,33 @@ zum Setzen von Entwurfsmuster/Design Patterns]
     \item[Gegenstand / Subjekt (Subject / Observable)]
 
     Ein Subjekt (beobachtbares Objekt, auf Englisch publisher, also
-    „Veröffentlicher“, genannt) hat eine Liste von Beobachtern, ohne deren
-    konkrete Typen zu kennen. Es bietet eine Schnittstelle zur An- und
-    Abmeldung von Beobachtern und eine Schnittstelle zur Benachrichtigung
-    von Beobachtern über Änderungen an.
-    %\footcite[Seite 251]{gof}
+    „Veröffentlicher“, genannt) hat eine Liste von Beobachtern, ohne
+    deren konkrete Typen zu kennen. Es bietet eine Schnittstelle zur An-
+    und Abmeldung von Beobachtern und eine Schnittstelle zur
+    Benachrichtigung von Beobachtern über Änderungen an.\footcite[Seite
+    251]{gof}
 
     \item[Beobachter (Observer)]
-    Die Beobachter (auf Englisch auch subscriber, also „Abonnent“, genannt)
-    definieren eine Aktualisierungsschnittstelle.
+
+    Die Beobachter (auf Englisch auch subscriber, also „Abonnent“,
+    genannt) definieren eine Aktualisierungsschnittstelle.
 
     \item[konkreter/s Gegenstand / Subjekt (ConcreteSubject / ConcreteObservable)]
 
-    Ein konkretes Subjekt (konkretes, beobachtbares Objekt) speichert den
-    relevanten Zustand und benachrichtigt alle Beobachter bei
-    Zustandsänderungen über deren Aktualisierungsschnittstelle. Es verfügt
-    über eine Schnittstelle zur Erfragung des aktuellen Zustands.
+    Ein konkretes Subjekt (konkretes, beobachtbares Objekt) speichert
+    den relevanten Zustand und benachrichtigt alle Beobachter bei
+    Zustandsänderungen über deren Aktualisierungsschnittstelle. Es
+    verfügt über eine Schnittstelle zur Erfragung des aktuellen
+    Zustands.
 
     \item[Konkrete Beobachter (ConcreteObserver)]
 
-    Konkrete Beobachter verwalten die Referenz auf ein konkretes Subjekt,
-    dessen Zustand sie beobachten und speichern und dessen Zustand
-    konsistent ist. Sie implementieren eine Aktualisierungsschnittstelle
-    unter Verwendung der Abfrageschnittstelle des konkreten Subjekts.
-    %\footcite{wiki:beobachter}
+    Konkrete Beobachter verwalten die Referenz auf ein konkretes
+    Subjekt, dessen Zustand sie beobachten und speichern und dessen
+    Zustand konsistent ist. Sie implementieren eine
+    Aktualisierungsschnittstelle unter Verwendung der
+    Abfrageschnittstelle des konkreten Subjekts.
+    \footcite{wiki:beobachter}
   \end{description}
 }
 %    \end{macrocode}

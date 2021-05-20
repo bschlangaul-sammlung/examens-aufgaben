@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-\liLadePakete{syntax,uml}
+\liLadePakete{syntax,entwurfsmuster}
 
 \begin{document}
 
@@ -32,18 +32,15 @@ wären.
 
 \section{Klassendiagramm}
 
-\begin{tikzpicture}
-\umlsimpleclass[x=0,y=3]{Klient}{}{}
-\umlclass[x=4,y=3]{Ziel}{}{agiere()}
-\umlclass[x=4,y=0]{Adapter}{}{agiere()}
-\umlclass[x=8,y=1.5]{Dienst}{}{agiereSpeziell()}
+\liEntwurfsAdapterUml
 
-\umlreal{Adapter}{Ziel}
-\umluniassoc{Klient}{Ziel}
-\umlinherit{Adapter}{Dienst}
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
 
-\umlnote[x=7,y=-1,width=2cm]{Adapter}{agiereSpeziell()}
-\end{tikzpicture}
+\section{Akteure}
+
+\liEntwurfsAdapterAkteure
 
 %-----------------------------------------------------------------------
 %
