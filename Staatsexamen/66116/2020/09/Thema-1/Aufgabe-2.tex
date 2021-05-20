@@ -1,6 +1,9 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{gantt,cpm}
 \begin{document}
+\let\SZ=\liCpmSpaetesterI
+\let\FZ=\liCpmFruehesterI
+
 \liAufgabenTitel{Projektplanung}
 \section{Aufgabe 2
 \index{Projektplanung}
@@ -135,13 +138,14 @@ Gegeben sei nun das folgende CPM-Netzwerk:
 
 \liCpmVorgang[schein]{b}{d}{}
 \liCpmVorgang[schein]{b}{f}{}
+\liCpmVorgang[schein]{d}{e}{}
 \liCpmVorgang{a}{b}{2}
 \liCpmVorgang{a}{f}{3}
-\liCpmVorgang{f}{e}{4}
 \liCpmVorgang{b}{c}{3}
-\liCpmVorgang{c}{e}{5}
 \liCpmVorgang{c}{d}{1}
+\liCpmVorgang{c}{e}{5}
 \liCpmVorgang{e}{g}{2}
+\liCpmVorgang{f}{e}{4}
 \end{tikzpicture}
 \end{center}
 
@@ -151,11 +155,37 @@ Gegeben sei nun das folgende CPM-Netzwerk:
 
 \item Geben Sie für jedes Ereignis die früheste Zeit an.
 
+\begin{liAntwort}
+\begin{tabular}{|l|l|l|}
+i & Nebenrechnung & \FZ \\\hline
+a &                        & 0 \\
+b &                        & 2 \\
+c &                        & 5 \\
+d & $\max(2_b, 6_c)$       & 6 \\
+e & $\max(6_d, 10_e, 7_f)$ & 10 \\
+f & $\max(3_f, 2_b)$       & 3 \\
+g &                        & 12 \\
+\end{tabular}
+\end{liAntwort}
+
 %%
 % (e)
 %%
 
 \item Geben Sie für jedes Ereignis die späteste Zeit an.
+
+\begin{liAntwort}
+\begin{tabular}{|l|l|l|}
+i & Nebenrechnung & \SZ \\\hline
+a &                        & 0 \\
+b & $\min(2_c, 10_d, 6_f)$ & 2 \\
+c & $\min(9_d, 5_e)$       & 5 \\
+d &                        & 10 \\
+e &                        & 10 \\
+f &                        & 6 \\
+g &                        & 12 \\
+\end{tabular}
+\end{liAntwort}
 
 %%
 % (f)
@@ -164,6 +194,41 @@ Gegeben sei nun das folgende CPM-Netzwerk:
 \item Geben Sie einen kritischen Pfad durch das Netz an! Wie wirkt sich
 eine Verzögerung von 5 Zeiteinheiten auf dem kritischen Pfad auf das
 Projektende aus?
+
+\begin{liAntwort}
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\hline
+$i$ & a & b & c  & d  & e  & f  & g  \\\hline\hline
+\FZ & 0 & 2 & 5  & 6  & 10 & 3  & 12  \\\hline
+\SZ & 0 & 2 & 5  & 10 & 10 & 6  & 12 \\\hline
+GP  & 0 & 0 & 0  & 3  & 0  & 3  & 0  \\\hline
+\end{tabular}
+
+\begin{center}
+\begin{tikzpicture}[x=1.5cm,y=1.5cm]
+\liCpmEreignis{a}{0}{1}
+\liCpmEreignis{b}{1}{2}
+\liCpmEreignis{c}{2}{2}
+\liCpmEreignis{d}{2}{1}
+\liCpmEreignis{e}{3}{1}
+\liCpmEreignis{f}{2}{0}
+\liCpmEreignis{g}{4}{1}
+
+\liCpmVorgang[schein]{b}{d}{}
+\liCpmVorgang[schein]{b}{f}{}
+\liCpmVorgang[schein]{d}{e}{}
+\liCpmVorgang[kritisch]{a}{b}{2}
+\liCpmVorgang{a}{f}{3}
+\liCpmVorgang[kritisch]{b}{c}{3}
+\liCpmVorgang{c}{d}{1}
+\liCpmVorgang[kritisch]{c}{e}{5}
+\liCpmVorgang[kritisch]{e}{g}{2}
+\liCpmVorgang{f}{e}{4}
+\end{tikzpicture}
+\end{center}
+
+Das Projekt verlängert sich um 5 Zeiteinheiten.
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}

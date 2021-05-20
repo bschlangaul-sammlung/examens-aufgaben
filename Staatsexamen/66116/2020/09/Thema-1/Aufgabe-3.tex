@@ -1,0 +1,108 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\let\j=\liJavaCode
+
+\liAufgabenTitel{Ticket-Handel}
+\section{Aufgabe 3
+\index{Entwurfsmuster}
+\footcite{66116:2020:09}}
+
+% [ <<enumeration>>
+% Kategorie
+
+% ERWACHSEN
+% KIND
+
+% TicketHandel
+
+% - verkaufte Tickets : int
+
+% - TicketHandelf() <<interface>>
+% | _ıL _suse>> _ı_ Ticket
+% +ticketKaufen(kategorie: Kategorie) : Ticket | _______ 4 midi.
+% + gibVerkaufteTicketsf{) : int | | <<use>> gibPreis() : double |.
+% |
+% VW | benutzt | I-------- --
+% | 1 - druckerei | | l
+% | TicketDruckerei | | | ErwachsenenTicket | KinderTicket |
+% I m uni
+% | + erstelleTicket(kategorie : Kategorie) : Ticket | | = - | - - |
+% | | | ( _J
+% | L------______ M M
+% <<use>> 1
+% u TTT
+
+Ihnen sei ein UML Klassendiagramm zu folgendem Szenario gegeben. Ein
+Benutzer (nicht im Diagramm enthalten) kann über einen TicketHandel
+Tickets erwerben. Dabei muss der Benutzer eine der zwei Ticketkategorien
+angeben. Das Handelsystem benutzt eine TicketDruckerei, um ein passendes
+Ticket für den Benutzer zu erzeugen.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Im angegebenen Klassendiagramm wurden zwei unterschiedliche
+Entwurfsmuster verwendet. Um welche Muster handelt es sich? Geben Sie
+jeweils den Namen des Musters sowie die Elemente des Klassendiagramms
+an, mit denen diese Muster im Zusammenhang stehen. ACHTUNG: Es handelt
+sich dabei \emph{nicht} um das \emph{Interface}- oder das
+\emph{Vererbungs}muster.
+
+\begin{liAntwort}
+Einzelstück (Singleton): \j{TicketHandel}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Nennen Sie zwei generelle Vorteile von Entwurfsmustern.
+
+%%
+% c)
+%%
+
+\item Geben Sie eine Implementierung der Klasse \j{TicketHandel} an. Bei
+der Methode \j{ticketKaufen()} wird die Anzahl der verkauften Tickets um
+1 erhöht und ein entsprechendes Ticket erstellt und zurückgegeben.
+Beachten Sie den Hinweis auf der nächsten Seite.
+
+%%
+% d)
+%%
+
+\item Geben Sie eine Implementierung der Klasse \j{TicketDruckerei} an.
+
+%%
+% e)
+%%
+
+\item Geben Sie eine Implementierung der Klasse \j{KinderTicket} an.
+
+\emph{Hinweis:} Die Implementierungen \emph{müssen} sowohl dem
+Klassendiagramm, als auch den Konzepten der verwendeten Muster
+entsprechen. Verwenden Sie eine objektorientierte Programmiersprache,
+vorzugsweie \emph{Java}. Sie müssen sich an der nachfolgenden
+Testmethode und ihrer Ausgabe orientieren. Die Testmethode muss mit
+Ihrer Implementierung ausführbar sein und sich semantisch korrekt
+verhalten.
+
+Quelltext der Testmethode:
+
+% public static void main(String|) args) {
+% TicketHandel.gibInstanz().ticketKaufen(Kategorie. ERWACHSEN);
+% TicketHandel.gibInstanz().ticketKaufen (Kategorie.KIND);
+% System.out.printIn (“ Anzahl verkaufter Tickets: ”
+% + TicketHandel.gibInstanz().gibVerkaufteTickets());
+
+% }
+
+Konsolenausgabe:
+
+Anzahl verkaufter Tickets: 2
+\end{enumerate}
+\end{document}

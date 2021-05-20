@@ -841,6 +841,10 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 \RequirePackage{tikz}
 %    \end{macrocode}
 
+%    \begin{macrocode}
+\liLadePakete{mathe}
+%    \end{macrocode}
+
 % \begin{tikzpicture}[scale=0.8,transform shape]
 % \liCpmEreignis{1}{0}{2}
 % \liCpmEreignis{2}{1}{4}
@@ -873,7 +877,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \end{tikzpicture}
 
 % \begin{macro}{\liCpmEreignis}
-% % |liCpmEreignis\{(.*)\}\((.*),(.*)\)| -> |liCpmEreignis{$1}{$2}{$3}|
+% |liCpmEreignis\{(.*)\}\((.*),(.*)\)| -> |liCpmEreignis{$1}{$2}{$3}|
 %    \begin{macrocode}
 \ExplSyntaxOn
 \NewDocumentCommand { \liCpmEreignis } { O{} m m m  } {
@@ -916,6 +920,20 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 %    \end{macrocode}
 % \end{macro}
 
+% \subsubsection{Hilfsmakros für Zeitpunkt-Tabelle}
+
+% \begin{verbatim}
+% \let\SZ=\liCpmSpaetesterI
+% \let\FZ=\liCpmFruehesterI
+% \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+% \hline
+% $i$ & 1 & 2 & 3  & 4 & 5  & 6  & 7  & 8  \\\hline\hline
+% \FZ & 0 & 5 & 18 & 7 & 19 & 26 & 22 & 30 \\\hline
+% \SZ & 0 & 5 & 18 & 9 & 19 & 26 & 24 & 30 \\\hline
+% GP  & 0 & 0 & 0  & 2 & 0  & 0  & 2  & 0  \\\hline
+% \end{tabular}
+% \end{verbatim}
+
 % \begin{macro}{\t}
 % t = tmp
 %    \begin{macrocode}
@@ -933,6 +951,22 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \begin{macro}{\zu}
 %    \begin{macrocode}
 \def\zu#1(#2){#1_{\scriptscriptstyle(\leftarrow#2)}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liCpmSpaetesterI}
+% Spätester Zeitpunkt, zu dem Ereignis $i$ eintreten kann
+% \liLet{SZ}{liCpmSpaetesterI}
+%    \begin{macrocode}
+\def\liCpmSpaetesterI{\SZ}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liCpmFruehesterI}
+% Frühester Zeitpunkt, zu dem Ereignis $i$ eintreten kann.
+% \liLet{FZ}{liCpmFruehesterI}
+%    \begin{macrocode}
+\def\liCpmFruehesterI{\FZ}
 %    \end{macrocode}
 % \end{macro}
 
@@ -3170,6 +3204,7 @@ Paket struktex zum Setzen von Struktogrammen]
 
 % \begin{macro}{\liJavaCode}
 % Im Zeilenfluss einen kurzen Java-Code-Ausschnitt setzen.
+% \liLet{j}{liJavaCode}
 %    \begin{macrocode}
 \def\liJavaCode#1{\mintinline{java}|#1|}
 %    \end{macrocode}

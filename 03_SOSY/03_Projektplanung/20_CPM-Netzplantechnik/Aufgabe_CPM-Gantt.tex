@@ -1,6 +1,9 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{cpm,gantt,mathe}
 \begin{document}
+\let\SZ=\liCpmSpaetesterI
+\let\FZ=\liCpmFruehesterI
+
 \liAufgabenTitel{CPM und Gantt}
 
 \section{CPM und Gantt
@@ -73,7 +76,7 @@ Tabelle die Zeiten der Vorgänge berechnen.
 
 \begin{tabular}{|l|r|r|}
 \hline
-$i$ & Nebenrechnung & $\text{FZ}_i$\\
+$i$ & Nebenrechnung & \FZ\\
 \hline\hline
 1             &                                                & 0 \\\hline
 2             & \f$0 + \t{1}(1-2) = 1$                         & 1 \\\hline
@@ -94,7 +97,7 @@ $i$ & Nebenrechnung & $\text{FZ}_i$\\
 
 \begin{tabular}{|l|r|r|}
 \hline
-$i$ & Nebenrechnung & $\text{SZ}_i$\\
+$i$ & Nebenrechnung & \SZ\\
 \hline\hline
 1             & \f$8 - \t{6}(3-5) - \t{1}(2-3) - \t{1}(1-2) = 0$ & \\
               & \f$8 - \t{3}(4-5) - \t{3}(2-4) - \t{1}(1-2) = 1$ & \\
@@ -149,8 +152,8 @@ an.
 \begin{tabular}{|l|l|l|l|l|l|l|l|}
 \hline
 i             & 1 & 2 & 3  & 4 & 5  & 6  & 7  \\\hline\hline
-$\text{FZ}_i$ & 0 & 4 & 9  & 11 & 13 & 19 & 21  \\\hline
-$\text{SZ}_i$ & 0 & 4 & 10 & 11 & 13 & 19 & 21  \\\hline
+\FZ & 0 & 4 & 9  & 11 & 13 & 19 & 21  \\\hline
+\SZ & 0 & 4 & 10 & 11 & 13 & 19 & 21  \\\hline
 GP            & 0 & 0 & 1  & 0  & 0  & 0  & 0  \\\hline
 \end{tabular}
 
@@ -162,7 +165,7 @@ GP            & 0 & 0 & 1  & 0  & 0  & 0  & 0  \\\hline
 
 \begin{tabular}{|l|r|r|}
 \hline
-$\text{FZ}_i$ & Nebenrechnung & \\
+$i$ & Nebenrechnung & \FZ \\
 \hline\hline
 1 &                                                                      & 0 \\\hline
 2 &                                                                      & 4 \\\hline
@@ -181,7 +184,7 @@ $\text{FZ}_i$ & Nebenrechnung & \\
 
 \begin{tabular}{|l|r|r|}
 \hline
-$\text{SZ}_i$ & Nebenrechnung & \\
+$i$ & Nebenrechnung & \SZ \\
 \hline\hline
 1 & \f$\min(\v{4}(2) - 4, \v{10}(3) - 8) = \min(0, 2)$                    & 0 \\\hline
 2 & \f$\min(\v{13}(5) - 8, \v{11}(4) - 7, \v{10}(3) - 5) = \min(5, 4, 5)$ & 4\\\hline
