@@ -838,36 +838,75 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-cpm}[2020/09/03]
 \RequirePackage{tikz}
+%    \end{macrocode}
 
+% \begin{macro}{\ereignis}
+%    \begin{macrocode}
 \def\ereignis#1(#2,#3){
   \node[circle,draw] (#1) at (#2,#3) {#1};
 }
+%    \end{macrocode}
+% \end{macro}
 
-% name
+% \begin{macro}{\ereignisN}
+% N = name
+%    \begin{macrocode}
 \def\ereignisN(#1)#2(#3,#4){
   \node[circle,draw] (#1) at (#3,#4) {#2};
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\vorgang}
+%    \begin{macrocode}
 \def\vorgang(#1>#2)#3{
   \path[->] (#1) edge node[auto,sloped] {#3} (#2);
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\VORGANG}
+% Vorgang für den kritischen Pfad
+%    \begin{macrocode}
 \def\VORGANG(#1>#2)#3{
   \path[->,thick] (#1) edge node[auto,sloped] {#3} (#2);
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\scheinvorgang}
+%    \begin{macrocode}
 \def\scheinvorgang(#1>#2)#3{
   \path[->,dashed] (#1) edge node[auto,sloped] {#3} (#2);
 }
+%    \end{macrocode}
+% \end{macro}
 
-% \t = tmp
-\def\t#1(#2-#3){#1_{\scriptscriptstyle(#2\rightarrow#3)}}
+% \begin{macro}{\t}
+% t = tmp
+%    \begin{macrocode}
+  \def\t#1(#2-#3){#1_{\scriptscriptstyle(#2\rightarrow#3)}}
+%    \end{macrocode}
+% \end{macro}
 
-% \v = von
+% \begin{macro}{\v}
+% v = von
+%    \begin{macrocode}
 \def\v#1(#2){#1_{\scriptscriptstyle(\rightarrow#2)}}
-\def\zu#1(#2){#1_{\scriptscriptstyle(\leftarrow#2)}}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\zu}
+%    \begin{macrocode}
+\def\zu#1(#2){#1_{\scriptscriptstyle(\leftarrow#2)}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
 \let\f=\footnotesize
+%    \end{macrocode}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{cyk-algorithmus.sty}

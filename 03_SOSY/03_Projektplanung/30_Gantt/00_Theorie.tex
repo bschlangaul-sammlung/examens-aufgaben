@@ -19,13 +19,40 @@ Ein Gantt-Diagramm ist ein Instrument des Projektmanagements, das die
 zeitliche Abfolge von Aktivitäten graphisch in Form von \memph{Balken}
 auf einer \memph{Zeitachse} darstellt.
 
-\section{Anordnungsbeziehungen im Gantt Diagramm\footcite[Seite 34]{sosy:fs:3}}
+\begin{center}
+\begin{ganttchart}[
+  x unit=0.7cm,
+  y unit chart=0.6cm
+]{1}{14}
+\gantttitlelist{1,...,14}{1} \\
+\ganttbar[name=A1]{A1}{3}{5} \\
+\ganttbar[name=A2]{A2}{1}{5} \\
+\ganttbar[name=A3]{A3}{6}{7} \\
+\ganttbar[name=A4]{A4}{6}{10} \\
+\ganttbar[name=A5]{A5}{8}{14} \\
+\ganttbar[name=A6]{A6}{11}{14}
+\ganttlink{A1}{A3}
+\ganttlink{A1}{A4}
+\ganttlink[link type=f-s]{A2}{A4}
+\ganttlink[link type=f-s]{A3}{A5}
+\ganttlink[link type=f-s]{A4}{A6}
+\end{ganttchart}
+\end{center}
+
+\section{Anordnungsbeziehungen (AOB) im Gantt-Diagramm\footcite[Seite
+34]{sosy:fs:3}}
 
 \begin{description}
+
+%%
+%
+%%
+
 \item[Normalfolge EA:]
 \emph{end-to-start relationship}
 %
-Anordnungsbeziehung vom Ende eines Vorgangs zum Anfang seines
+Anordnungsbeziehung vom \textbf{E}nde eines Vorgangs zum \textbf{A}nfang
+seines
 Nachfolgers.
 
 \begin{center}
@@ -36,11 +63,19 @@ Nachfolgers.
 \end{ganttchart}
 \end{center}
 
+Vorgang 1 muss abgeschlossen sein, bevor Vorgang 2 beginnen kann
+(sequentielle Vorgänge). Diese Anordnungsbeziehung kommt sehr häufig
+vor.\footcite[Seite 31]{sosy:fs:3}
+
+%%
+%
+%%
+
 \item[Anfangsfolge AA:]
 \emph{start-to-start relationship}
 %
-Anordnungsbeziehung vom Anfang eines Vorgangs zum Anfang seines
-Nachfolgers.
+Anordnungsbeziehung vom \textbf{A}nfang eines Vorgangs zum
+\textbf{A}nfang seines Nachfolgers.
 
 \begin{center}
 \begin{ganttchart}{1}{9}
@@ -50,10 +85,18 @@ Nachfolgers.
 \end{ganttchart}
 \end{center}
 
+Der Beginn von Vorgang 1 ist Voraussetzung für den Beginn von Vorgang 2
+(paralleler Start der Vorgänge)\footcite[Seite 31]{sosy:fs:3}
+
+%%
+%
+%%
+
 \item[Endefolge EE:]
 \emph{finish-to-finish relationship}
 %
-Anordnungsbeziehung vom Ende eines Vorgangs zum Ende seines Nachfolgers.
+Anordnungsbeziehung vom \textbf{E}nde eines Vorgangs zum \textbf{E}nde
+seines Nachfolgers.
 
 \begin{center}
 \begin{ganttchart}{1}{9}
@@ -63,19 +106,31 @@ Anordnungsbeziehung vom Ende eines Vorgangs zum Ende seines Nachfolgers.
 \end{ganttchart}
 \end{center}
 
-\item[Sprungfolge AE:]
-\emph{start-to-finish relationship }
+Vorgang 1 muss abgeschlossen sein, bevor Vorgang 2 beendet werden kann
+(paralleles Ende der Vorgänge).
+\footcite[Seite 32]{sosy:fs:3}
+
+%%
 %
-Anordnungsbeziehung vom Anfang eines Vorgangs zum Ende seines
-Nachfolgers
+%%
+
+\item[Sprungfolge AE:]
+\emph{start-to-finish relationship}
+%
+Anordnungsbeziehung vom \textbf{A}nfang eines Vorgangs zum \textbf{E}nde
+seines Nachfolgers
 
 \begin{center}
 \begin{ganttchart}{1}{9}
-\ganttbar{}{2}{4} \\
-\ganttbar{}{6}{8}
+\ganttbar{}{6}{8} \\
+\ganttbar{}{2}{4}
 \ganttlink[link type=s-f]{elem0}{elem1}
 \end{ganttchart}
 \end{center}
+
+Vorgang 2 kann erst dann abgeschlossen werden, wenn Vorgang 1 begonnen
+wurde. Diese Anordnungsbeziehung kommt sehr selten vor.
+\footcite[Seite 32]{sosy:fs:3}
 
 \end{description}
 
@@ -87,28 +142,31 @@ Nachfolgers
 
 \begin{enumerate}
 
-\item Zeichne (falls gefordert bzw. nötig) für das Projekt einen Start-
-und Endknoten
+\item Für das \memph{ganze Projekt} einen Start- und Endknoten
+einzeichnen (falls gefordert bzw. nötig).
 
-\item Zeichen für jede Aktivität (= Balken im Gantt Diagramm) einen
-Start- und einen Endknoten
+\item Für \memph{jede Aktivität} (= Balken im Gantt-Diagramm) einen
+Start- und einen Endknoten einzeichnen.
 
-\item Zeichne zwischen Start- und Endknoten einen Vorgang ein. Seine
-Dauer entspricht der Länge des Balkens (falls Pufferzeiten in Klammern
-angegeben sind werden sie von der Balkenlänge abgezogen).
+\item Zwischen Start- und Endknoten einen \memph{Vorgang} einzeichnen.
+Seine Dauer entspricht der Länge des Balkens (falls Pufferzeiten in
+Klammern angegeben sind, werden sie von der Balkenlänge abgezogen).
 
-\item Zeichne für jede Anordnungsbeziehung, die im Gantt-Diagramm
-eingezeichnet ist, einen Vorgang ein. Ist der zeitliche Versatz zwischen
-dem Balken der Aktivität und dem der Nachfolge-Aktivität
+\item Für jede \memph{Anordnungsbeziehung}, die im Gantt-Diagramm
+vorkommt ist, einen Vorgang einzeichnen. Ist der \memph{zeitliche
+Versatz} zwischen dem Balken der Aktivität und dem der
+Nachfolge-Aktivität
 
+\begin{quote}
 \begin{description}
 \item[positiv,] so entspricht die Richtung des Pfeils der im Gantt
 Diagramm ist.
 
 \item[negativ,] so wird die Richtung des Pfeils im CPM Netz umgekehrt.
 
-\item[null,] so zeichne einen Scheinvorgang ein.
+\item[null,] so wird einen Scheinvorgang eingezeichnet.
 \end{description}
+\end{quote}
 
 Der Betrag des zeitlichen Versatzes der Balken ist die Dauer des
 Vorgangs (also immer positiv).\footcite[Seite 35]{sosy:fs:3}
