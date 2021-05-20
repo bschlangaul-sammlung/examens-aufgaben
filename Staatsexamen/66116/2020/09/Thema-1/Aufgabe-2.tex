@@ -59,14 +59,14 @@ Projekts ist durch das Ende aller Aktivitäten bedingt.
 
 \begin{center}
 \begin{tikzpicture}[x=1.5cm,y=1.5cm]
-\liCpmEreignis{A}(1,1)
-\liCpmEreignis{DA}(1,2)
-\liCpmEreignis{DE}(3,2)
-\liCpmEreignis{RA}(2,1)
-\liCpmEreignis{RE}(4,1)
-\liCpmEreignis{TA}(3,0)
-\liCpmEreignis{TE}(5,0)
-\liCpmEreignis{E}(5,1)
+\liCpmEreignis[name=A]{$A$}{1}{1}
+\liCpmEreignis[name=DA]{$D_A$}{1}{2}
+\liCpmEreignis[name=DE]{$D_E$}{3}{2}
+\liCpmEreignis[name=RA]{$R_A$}{2}{1}
+\liCpmEreignis[name=RE]{$R_E$}{4}{1}
+\liCpmEreignis[name=TA]{$T_A$}{3}{0}
+\liCpmEreignis[name=TE]{$T_E$}{5}{0}
+\liCpmEreignis[name=E]{$E$}{5}{1}
 
 \liCpmVorgang[schein]{A}{DA}{}
 \liCpmVorgang{DA}{DE}{2}
@@ -122,6 +122,28 @@ Nachfolgers
 \end{liAntwort}
 
 Gegeben sei nun das folgende CPM-Netzwerk:
+
+\begin{center}
+\begin{tikzpicture}[x=1.5cm,y=1.5cm]
+\liCpmEreignis{a}{0}{1}
+\liCpmEreignis{b}{1}{2}
+\liCpmEreignis{c}{2}{2}
+\liCpmEreignis{d}{2}{1}
+\liCpmEreignis{e}{3}{1}
+\liCpmEreignis{f}{2}{0}
+\liCpmEreignis{g}{4}{1}
+
+\liCpmVorgang[schein]{b}{d}{}
+\liCpmVorgang[schein]{b}{f}{}
+\liCpmVorgang{a}{b}{2}
+\liCpmVorgang{a}{f}{3}
+\liCpmVorgang{f}{e}{4}
+\liCpmVorgang{b}{c}{3}
+\liCpmVorgang{c}{e}{5}
+\liCpmVorgang{c}{d}{1}
+\liCpmVorgang{e}{g}{2}
+\end{tikzpicture}
+\end{center}
 
 %%
 % (d)
