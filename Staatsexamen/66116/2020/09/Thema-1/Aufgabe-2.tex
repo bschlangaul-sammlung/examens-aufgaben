@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{gantt}
+\liLadePakete{gantt,cpm}
 \begin{document}
 \liAufgabenTitel{Projektplanung}
 \section{Aufgabe 2
@@ -15,9 +15,9 @@ klassischen Softwareentwicklungsprozess:
 
 \begin{center}
 \begin{ganttchart}[x unit=0.7cm, y unit chart=0.6cm]{0}{6}
-\ganttbar[name=D]{Design}{0}{2} \\
-\ganttbar[name=R]{Realization}{2}{5} \\
-\ganttbar[name=T]{Testing}{3}{6}
+\ganttbar[name=D]{Design}{0}{1} \\
+\ganttbar[name=R]{Realization}{2}{4} \\
+\ganttbar[name=T]{Testing}{3}{5}
 \gantttitlelist[name=Zeit]{0,...,6}{1}\\
 \ganttlink{D}{R}
 \ganttlink[link type=s-s]{R}{T}
@@ -45,6 +45,39 @@ Die Anforderungsanalyse
 dazu einen zusätzlichen Start- und Endknoten hinzu. Das Ende des
 Projekts ist durch das Ende aller Aktivitäten bedingt.
 \index{CPM-Netzplantechnik}
+
+\begin{liAntwort}
+\begin{description}
+\item[$D_A$] Design Anfang
+\item[$R_A$] Realization Anfang
+\item[$T_A$] Testing Anfang
+\item[$D_E$] Design Ende
+\item[$R_E$] Realization Ende
+\item[$T_E$] Testing Ende
+
+\end{description}
+
+\begin{center}
+\begin{tikzpicture}[x=1.5cm,y=1.5cm]
+\liCpmEreignis{A}(1,1)
+\liCpmEreignis{DA}(1,2)
+\liCpmEreignis{DE}(3,2)
+\liCpmEreignis{RA}(2,1)
+\liCpmEreignis{RE}(4,1)
+\liCpmEreignis{TA}(3,0)
+\liCpmEreignis{TE}(5,0)
+\liCpmEreignis{E}(5,1)
+
+\liCpmVorgang[schein]{A}{DA}{}
+\liCpmVorgang{DA}{DE}{2}
+\liCpmVorgang{RA}{RE}{3}
+\liCpmVorgang{TA}{TE}{3}
+\liCpmVorgang{RA}{TA}{1}
+\liCpmVorgang[schein]{DE}{RA}{}
+\liCpmVorgang[schein]{TE}{E}{}
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
 %%
 % (c)
 %%
