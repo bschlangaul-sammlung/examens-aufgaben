@@ -853,23 +853,23 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \liCpmEreignis{9}(5,0)
 % \liCpmEreignis{10}(7,2)
 
-% \liCpmVorgang(1>2){10}
-% \liCpmVORGANG(1>3){22}
-% \liCpmVorgang(1>5){6}
-% \liCpmVorgang(1>6){5}
-% \liCpmVORGANG(3>6){8}
-% \liCpmVorgang(2>5){5}
-% \liCpmVorgang(2>4){8}
-% \liCpmVorgang(4>7){12}
-% \liCpmVorgang(7>8){3}
-% \liCpmVorgang(7>10){6}
-% \liCpmVORGANG(9>10){9}
-% \liCpmVORGANG(6>9){11}
-% \liCpmVorgang(8>10){7}
-% \liCpmVorgang(4>5){1}
+% \liCpmVorgang{1}{2}{10}
+% \liCpmVorgang{1}{3}{22}
+% \liCpmVorgang{1}{5}{6}
+% \liCpmVorgang{1}{6}{5}
+% \liCpmVorgang{3}{6}{8}
+% \liCpmVorgang{2}{5}{5}
+% \liCpmVorgang{2}{4}{8}
+% \liCpmVorgang{4}{7}{12}
+% \liCpmVorgang{7}{8}{3}
+% \liCpmVorgang{7}{10}{6}
+% \liCpmVorgang{9}{10}{9}
+% \liCpmVorgang{6}{9}{11}
+% \liCpmVorgang{8}{10}{7}
+% \liCpmVorgang{4}{5}{1}
 
-% \liCpmScheinvorgang(5>6){}
-% \liCpmScheinvorgang(5>8){}
+% \liCpmVorgang[schein]{5}{6}{}
+% \liCpmVorgang[schein]{5}{8}{}
 % \end{tikzpicture}
 
 % \begin{macro}{\liCpmEreignis}
@@ -890,27 +890,23 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \end{macro}
 
 % \begin{macro}{\liCpmVorgang}
+% |liCpmVORGANG\((.*)>(.*)\)\{(.*)\}|
 %    \begin{macrocode}
-\def\liCpmVorgang(#1>#2)#3{
-  \path[->] (#1) edge node[auto,sloped] {#3} (#2);
-}
-%    \end{macrocode}
-% \end{macro}
+\ExplSyntaxOn
+\NewDocumentCommand { \liCpmVorgang } { O{} m m m  } {
+  \tl_set:Nn \l_schein_tl {}
+  \tl_set:Nn \l_kritisch_tl {}
 
-% \begin{macro}{\liCpmVORGANG}
-% Vorgang für den kritischen Pfad
-%    \begin{macrocode}
-\def\liCpmVORGANG(#1>#2)#3{
-  \path[->,thick] (#1) edge node[auto,sloped] {#3} (#2);
-}
-%    \end{macrocode}
-% \end{macro}
+  \keys_define:nn { cpm } {
+    schein .code:n = {\tl_set:Nn \l_schein_tl {dashed}},
+    kritisch .code:n = {\tl_set:Nn \l_kritisch_tl {thick}},
+  }
 
-% \begin{macro}{\liCpmScheinvorgang}
-%    \begin{macrocode}
-\def\liCpmScheinvorgang(#1>#2)#3{
-  \path[->,dashed] (#1) edge node[auto,sloped] {#3} (#2);
+  \keys_set:nn { cpm } { #1 }
+
+  \path[->,\l_schein_tl,\l_kritisch_tl] (#2) edge node[auto,sloped] {#4} (#3);
 }
+\ExplSyntaxOff
 %    \end{macrocode}
 % \end{macro}
 
