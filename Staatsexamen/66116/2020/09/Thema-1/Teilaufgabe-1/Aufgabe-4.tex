@@ -1,74 +1,117 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
+\liLadePakete{syntax,kontrollflussgraph}
 \begin{document}
 \liAufgabenTitel{White-Box-Testverfahren}
 \section{Aufgabe 4
 \index{White-Box-Testing}
 \footcite{66116:2020:09}}
 
-Diese Aufgabe behandelt Wortpalindrome, also Wörter, die vorwärts und
-rückwärts gelesen jeweils dieselbe Zeichenkette bilden, z. B. Otto oder
-Rentner. Leere Wortpalindrome (also Wortpalindro- me der Wortlänge 0)
-sind dabei nicht zulässig.
+Diese Aufgabe behandelt \emph{Wortpalindrome}, also Wörter, die vorwärts
+und rückwärts gelesen jeweils dieselbe Zeichenkette bilden, z. B.
+\texttt{Otto} oder \texttt{Rentner}. Leere Wortpalindrome (also
+Wortpalindrome der Wortlänge 0) sind dabei nicht zulässig.
 
-Folgende Java-Methode prüft, ob das übergebene Zeichen-Array ein
+Folgende \emph{Java-Methode} prüft, ob das übergebene Zeichen-Array ein
 Wortpalindrom darstellt:
 
-\begin{minted}{java}
-public static boolean istWortpalindrom(char[] wort) {
-boolean resultat = false;
-if (wort != null) {
-int laenge = wort.length;
-if (laenge >= 2) {
-resultat = true;
-for (int i = 0; i < laenge/2; ++i) {
-char cl = wortji];
-char c2 = wort/laenge-1-ij;
-if (Character. toLowerCase (cl) != Character. toLowerCase (c2))
-resultat = false;
-break;
+\liJavaExamen[firstline=6,lastline=28]{66116}{2020}{09}{Palindrom}
 
-}
-
-} else {
-if (laenge == 1) {
-resultat = true;
-}
-
-}
-return resultat;
-}
-}
-\end{minted}
 \begin{enumerate}
 
-\item Geben Sie für die Methode einen Kontrollflussgraphen an, wobei Sie
-die Knoten mit den jeweiligen Zeilennummern im Quelltext beschriften.
+\item Geben Sie für die Methode einen \emph{Kontrollflussgraphen} an,
+wobei Sie die Knoten mit den jeweiligen Zeilennummern im Quelltext
+beschriften.
+\index{Kontrollflussgraph}
 
-\item Geben Sie eine minimale Testmenge an, die das Kriterium der
+\begin{liAntwort}
+\begin{tikzpicture}[kontrollfluss,xscale=0.7,yscale=-0.8]
+\liAnweisung{S}(0,0)
+
+\node[knoten,pin={
+  \liJavaCode{boolean resultat = false;}
+}] at (0,1) (2) {2};
+
+\node[knoten,pin={
+  \liJavaCode{if (wort != null)}
+}] at (0,2) (3) {3};
+
+\node[knoten,pin={
+  \liJavaCode{int laenge = wort.length;}
+}] at (1,3) (4) {4};
+
+\node[knoten,pin={
+  \liJavaCode{if (laenge >= 2)}
+}] at (1,4) (5) {5};
+
+\node[knoten,pin={
+  \liJavaCode{resultat = true; int i = 0;}
+}] at (2,5) (6) {6};
+
+\node[knoten,pin={
+  \liJavaCode{for (i < laenge / 2;)}
+}] at (2,6) (7) {7};
+
+\node[knoten,pin={
+  \liJavaCode{char c1; char c2 …}
+}] at (3,7) (8) {8};
+
+\node[knoten,pin={
+  \liJavaCode{if (Char …) }
+}] at (3,8) (10) {10};
+
+\node[knoten,pin={
+  \liJavaCode{resultat = false; break;}
+}] at (4,9) (12) {12};
+
+\node[knoten,pin={
+  \liJavaCode{if (laenge == 1)}
+}] at (0,10) (17) {17};
+
+\node[knoten,pin={
+  \liJavaCode{if (resultat = true;)}
+}] at (0,11) (18) {18};
+
+\node[knoten,pin={
+  \liJavaCode{return resultat;}
+}] at (0,12) (22) {22};
+
+% \draw[->] (S) -- (1);
+% \draw[->] (1) -- (2);
+% \draw[->] (2) -- (3) \bedingung{above right}{y > x};
+% \draw[->] (2) -- (5) \bedingung{left}{y <= x};
+% \draw[->] (3) -- (4);
+% \draw[->] (4) -- (5);
+% \draw[->] (5) -- (6) \bedingung{above right}{2 * max < 3 * min};
+% \draw[->] (5) -- (E) \bedingung{left}{2 * max >= 3 * min};
+% \draw[->] (6) -- (E);
+\end{tikzpicture}
+\end{liAntwort}
+
+\item Geben Sie eine \emph{minimale Testmenge} an, die das Kriterium der
 Anweisungsüberdeckung erfüllt.
 
-Hinweis: Eine Testmenge ist minimal, wenn es keine Testmenge mit einer
-kleineren Zahl von Testfällen gibt. Die Minimalität muss nicht bewiesen
-werden.
+Hinweis: Eine \emph{Testmenge} ist \emph{minimal}, wenn es keine
+Testmenge mit einer kleineren Zahl von Testfällen gibt. Die Minimalität
+muss \emph{nicht} bewiesen werden.
 
-\item Geben Sie eine minimale Testmenge an, die das Kriterium der
-Boundary-Interior-Pfadüberdeckung erfüllt.
+\item Geben Sie eine \emph{minimale Testmenge} an, die das Kriterium der
+\emph{Boundary-Interior-Pfadüberdeckung} erfüllt.
 
-Hinweis: Das Kriterium Boundary-Interior-Pfadüberdeckung beschreibt
-einen Spezialfall der Pfadüberdeckung, wobei nur Pfade berücksichtigt
-werden, bei denen jede Schleife nicht mehr als zweimal durchlaufen wird.
+Hinweis: Das Kriterium \emph{Boundary-Interior-Pfadüberdeckung}
+beschreibt einen Spezialfall der Pfadüberdeckung, wobei nur Pfade
+berücksichtigt werden, bei denen jede Schleife nicht mehr als zweimal
+durchlaufen wird.
 
 \item Im Falle des Kriteriums Pfadüberdeckung können minimale Testmengen
 sehr groß werden, da die Anzahl der Pfade sehr schnell zunimmt. Wie
-viele mögliche Pfade ergeben sich maximal für eine Schleife, die drei
-einseitig bedingte Anweisungen hintereinander enthält und bis zu zweimal
-durchlaufen wird? Geben Sie Ihren Rechenweg an (das Ergebnis alleine
-gibt keine Punkte).
+viele \emph{mögliche Pfade} ergeben sich maximal für eine Schleife, die
+drei einseitig bedingte Anweisungen hintereinander enthält und bis zu
+zweimal durchlaufen wird? Geben Sie Ihren Rechenweg an (das Ergebnis
+alleine gibt keine Punkte).
 
 \item Könnte für das hier abgebildete Quelltext-Beispiel auch das
-Verfahren der unbegrenzten Pfadüberdeckung (also Abdeckung aller
-möglicher Pfade ohne Beschränkung) als Test- Kriterium gewählt werden?
+Verfahren der \emph{unbegrenzten Pfadüberdeckung} (also Abdeckung aller
+möglicher Pfade ohne Beschränkung) als Test-Kriterium gewählt werden?
 Begründen Sie.
 
 \end{enumerate}

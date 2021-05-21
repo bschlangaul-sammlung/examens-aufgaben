@@ -14,7 +14,7 @@
 \chapter{Testen}
 
 \begin{liQuellen}
-\item \cite[Kapitel 4 „Software-Text“; Seite 157-246]{hoffmann}
+\item \cite[Kapitel 4 „Software-Text“; Seite 157-246]{hoffmann:software}
 \end{liQuellen}
 
 %-----------------------------------------------------------------------
@@ -47,60 +47,61 @@ Testfälle abzudecken.\footcite[Seite 140-141]{schatten}
 %
 %%
 
-\subsection{Äquivalenzklassenzerlegung:}
+\subsection{Äquivalenzklassenzerlegung\footcite[Seite 250]{schneider}}
 
-Das vollständige Testen einer Komponente oder eines Software-Systems ist
-in der Regel aufgrund der Vielzahl an unterschiedenen Werten, die sowohl
-Eingangsparameter als auch Ausgangsparameter annehmen können, kaum
-realisierbar und auch meist nicht sinnvoll. Um die Anzahl der Testdaten
-auf ein vernünftiges Minimum zu reduzieren, bedient man sich der
-Äquivalenzklassenzerlegung. Die Äquivalenzklassenzerlegung hilft dabei,
-Bereiche von Eingabewerten zu identifizieren, die jeweils dieselben
-Ergebnisse liefern. Aus diesen Klassen von Eingabewerte wählt man
-jeweils einen Vertreter (Repräsentanten) aus, der dann für den konkreten
-Testfall verwendet wird.
+Das \memph{vollständige Testen} einer Komponente oder eines
+Software-Systems ist in der Regel aufgrund der Vielzahl an
+unterschiedenen Werten, die sowohl Eingangsparameter als auch
+Ausgangsparameter annehmen können, kaum realisierbar und auch meist
+nicht sinnvoll. Um die Anzahl der Testdaten auf ein vernünftiges Minimum
+zu reduzieren, bedient man sich der Äquivalenzklassenzerlegung. Die
+Äquivalenzklassenzerlegung hilft dabei, \emph{Bereiche von
+Eingabewerten} zu identifizieren, die jeweils \memph{dieselben
+Ergebnisse} liefern. Aus diesen Klassen von Eingabewerte wählt man
+jeweils einen \memph{Vertreter (Repräsentanten)} aus, der dann für den
+konkreten Testfall verwendet wird.
 
 Komplizierter wird die Äquivalenzklassenzerlegung, falls Bedingungen mit
 mehreren Parametern zu testen sind, da sämtliche Kombinationen von
 Parameterklassen getestet werden müssen. Allerdings gilt auch hier
-wieder, dass pro Äquivalenzklassenkombination nur ein Repräsentant
-ausgewählt werden muss und die Anzahl der Testfälle auf diese Weise
-beschränkt werden kann.\footcite[Seite 142]{schatten}
+wieder, dass \memph{pro Äquivalenzklassenkombination nur ein
+Repräsentant} ausgewählt werden muss und die Anzahl der Testfälle auf
+diese Weise beschränkt werden kann.\footcite[Seite 142]{schatten}
 
 %%
 %
 %%
 
-\subsection{Grenzwertanalyse}
+\subsection{Grenzwertanalyse\footcite[Seite 251]{schneider}}
 
-Einen besonderen Stellenwert nehmen Bereichsgrenzen von
-Äquivalenzklassen ein, da diese häufige Ursachen für Fehler sind, die
-beispielsweise durch Tippfehler verursacht werden. Statt eines
+Einen besonderen Stellenwert nehmen \memph{Bereichsgrenzen von
+Äquivalenzklassen} ein, da diese häufige Ursachen für Fehler sind, die
+beispielsweise durch \memph{Tippfehler} verursacht werden. Statt eines
 „\texttt{<=}“ wird ein „\texttt{<}“ geschrieben, was speziell an den
 Systemgrenzen zu einem Fehlverhalten des Systems führt. Diese
 Fehlerquelle kann beispielsweise mit der Grenzwertanalyse erkannt
-werden. Die Kernidee bei der Grenzwertanalyse ist, (a) Grenzbereiche zu
-identifizieren und (b) Testdaten aus dem nahen Umfeld dieser
-Bereichsgrenzen auszuwählen. Dabei empfiehlt es sich, jeweils einen Wert
-aus dem Grenzbereich der einen und der anderen Klasse auszuwählen.
-Optional kann natürlich auch der exakte Grenzwert in einem Testfall
-spezifiziert werden, der aber - bei genauer Analyse - ohnehin einer der
-beiden Klassen zugeordnet werden kann.
+werden. Die Kernidee bei der Grenzwertanalyse ist, (a)
+\memph{Grenzbereiche zu identifizieren} und (b) \memph{Testdaten aus dem
+nahen Umfeld} dieser Bereichsgrenzen auszuwählen. Dabei empfiehlt es
+sich, jeweils einen Wert aus dem Grenzbereich der einen und der anderen
+Klasse auszuwählen. Optional kann natürlich auch der exakte Grenzwert in
+einem Testfall spezifiziert werden, der aber - bei genauer Analyse -
+ohnehin einer der beiden Klassen zugeordnet werden kann.
 \footcite[Seite 142]{schatten}
 
 %-----------------------------------------------------------------------
 %
 %-----------------------------------------------------------------------
 
-\section{White-Box-Testtechniken\footcite[Seite 199-246]{hoffmann}}
+\section{White-Box-Testtechniken\footcite[Seite 199-246]{hoffmann:software}}
 
 \begin{liQuellen}
 \item \cite{wiki:white-box-test}
-\item \cite[Seite 199-246]{hoffmann}
+\item \cite[Seite 199-246]{hoffmann:software}
 \end{liQuellen}
 
-Quellcode ist bekannt und wird
-zum Testen benutzt\footcite[Seite 32]{sosy:fs:5}
+Quellcode ist bekannt und wird zum Testen benutzt\footcite[Seite
+32]{sosy:fs:5}
 
 %%
 %
@@ -139,16 +140,30 @@ Jeder Graph enthält genau \memph{einen Startknoten} und \memph{einen
 Endknoten}. \memph{Verschiedenen Aussprungspunkte} (z. B. mehrere
 return-Anweisungen) werden in einem neuen, \memph{zusätzlich
 eingeführten Knoten} zusammengeführt.\footcite[Seite
-203]{hoffmann}
+203]{hoffmann:software}
+
+Der \memph{kantenmarkierter} Kontrollﬂussgraphen ist ein Graph, indem
+die \memph{Anweisungen den Knoten} und die
+\memph{Verzweigungsbedingungen den Kanten} zugeordnet werden. Die
+meisten White-Box-Tests basieren auf dieser Art der
+Kontrollﬂussmodellierung.\footcite[Seite 203]{hoffmann:software}
+
+\memph{Expandierte Kontrollﬂussgraphen} enthalten für jeden Befehl einen
+separaten Knoten.\footcite[Seite 204]{hoffmann:software}
+
+\memph{Kollabierte Kontrollﬂussgraphen} zeichnen sich dadurch aus, dass
+verzweigungsfreie Befehlsblöcke vollständig in einem einzigen Knoten
+zusammengefasst werden.\footcite[Seite 204]{hoffmann:software}
 
 Der Kontrollflussgraph wird in manchen Aufgaben auch
-\memph{Ablaufdiagramm} genannt. Geschrichelte Kanten können
+\memph{Ablaufdiagramm} genannt. Gestrichelte Kanten können
 eingezeichnet werden, um einen \liJavaCode{false}-Zweig von einem
 \liJavaCode{true}-Zweig besser unterscheiden zu können. Oftmals sind die
-Knoten mit dem Präfix „n“ (für node) benannt. S steht für Start-Knoten
-und E steht für End-Knoten.
+Knoten mit dem Präfix „n“ (für node) benannt. \emph{S} steht für
+Start-Knoten und \emph{E} steht für End-Knoten.
 
-\subsubsection{Kontrollflussgraphen der elementaren Verzweigungs- und Schleifenkonstrukte\footcite[Seite 205]{hoffmann}}
+\subsubsection{Kontrollflussgraphen der elementaren Verzweigungs- und
+Schleifenkonstrukte\footcite[Seite 205]{hoffmann:software}}
 
 \begin{itemize}
 \item \liJavaCode{if (B) X;}
@@ -216,7 +231,7 @@ werden, dass jede Verzweigungsbedingung mindestens \memph{einmal wahr}
 und mindestens \memph{einmal falsch} wird. Da hierdurch alle Knoten
 ebenfalls mindestens einmal besucht werden müssen, ist die
 \memph{Anweisungsüberdeckung} in der Zweigüberdeckung \memph{vollständig
-enthalten}.\footcite[Seite 209]{hoffmann}
+enthalten}.\footcite[Seite 209]{hoffmann:software}
 
 Der Zweigüberdeckungstest wird auch Entscheidungsüberdeckungstest
 genannt, da die Hilfsvariable mindestens einmal mit dem Wert true und
@@ -260,7 +275,7 @@ M = e - n + 2p
 \end{displaymath}
 
 $\rightarrow M = 9 - 8 + 2 \cdot 1 = 3$\footcite[Kapitel 4.4.6
-McCabe-Überdeckung, Seite 216220]{hoffmann}
+McCabe-Überdeckung, Seite 216-220]{hoffmann:software}
 
 %%
 %
@@ -281,7 +296,7 @@ aber nur eine äußerst geringe Praxisbedeutung.
 Das Kriterium der vollständigen Pfadüberdeckung wird erst dann erfüllt,
 wenn für jeden möglichen Pfad, der den Eingangsknoten des
 Kontrollflussgraphen mit dem Ausgangsknoten verbindet, ein separater
-Testfall existiert.\footcite[Seite 210]{hoffmann}
+Testfall existiert.\footcite[Seite 210]{hoffmann:software}
 
 Um die Limitierungen der vollständigen Pfadüberdeckung zu überwinden,
 wurden in der Vergangenheit mehrere Variationen vorgeschlagen, mit deren
@@ -325,7 +340,7 @@ Für Schleifen fester Lauflänge ist diese Testfallgruppe leer.
 Programm auf Pfaden, die den Schleifenkörper betreten und
 \memph{mindestens eine weitere Iteration} ausführen. Die Testfälle
 werden so gewählt, dass \memph{innerhalb der ersten beiden Ausführungen
-alle möglichen Pfade abgearbeitet} werden.\footcite[Seite 212]{hoffmann}
+alle möglichen Pfade abgearbeitet} werden.\footcite[Seite 212]{hoffmann:software}
 \end{description}
 
 %%

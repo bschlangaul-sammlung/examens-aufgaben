@@ -1884,7 +1884,9 @@ von Hanoi-Grafiken]
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-kontrollflussgraph}[2020/11/07]
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \RequirePackage{tikz}
 \usetikzlibrary{positioning}
 \tikzset{
@@ -1922,21 +1924,52 @@ von Hanoi-Grafiken]
     }
   }
 }
+%    \end{macrocode}
 
+% \begin{macro}{\liAnweisung}
+%    \begin{macrocode}
+\def\liAnweisung#1(#2,#3){\node[knoten] at (#2,#3) (#1) {#1};}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\bedingung}
+%    \begin{macrocode}
 \def\bedingung#1#2{node[bedingung,#1]{[\texttt{#2}]}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\KanteWahr}
+%    \begin{macrocode}
 \def\KanteWahr#1{node[bedingung,#1]{\texttt{true}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\KanteFalsch}
+%    \begin{macrocode}
 \def\KanteFalsch#1{node[bedingung,#1]{\texttt{false}}}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\TextzeileKnoten}
+%    \begin{macrocode}
 \def\TextzeileKnoten#1{\raisebox{-2pt}{\tikz[scale=0.5,transform shape] \node[draw,circle]{#1};}}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\KnotenPfad}
+%    \begin{macrocode}
 \ExplSyntaxOn
-\NewDocumentCommand \KnotenPfad { m }
+\NewDocumentCommand { \KnotenPfad }{ m }
 {
   \seq_set_split:Nnn \l_tmpa_seq { - } { #1 }
   \seq_set_map:NNn \l_tmpa_seq \l_tmpa_seq {\TextzeileKnoten{##1}}
   \seq_use:Nn \l_tmpa_seq { ~-~~ }
 }
 \ExplSyntaxOff
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{makros.sty}
