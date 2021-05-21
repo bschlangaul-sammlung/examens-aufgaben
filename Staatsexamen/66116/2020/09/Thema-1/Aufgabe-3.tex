@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
+\liLadePakete{syntax,uml}
 \begin{document}
 \let\j=\liJavaCode
 
@@ -8,30 +8,38 @@
 \index{Entwurfsmuster}
 \footcite{66116:2020:09}}
 
-% [ <<enumeration>>
-% Kategorie
+\begin{tikzpicture}
+\umlclass{TicketHandel}{
+  \umlstatic{- system: TicketHandel} \\
+  - verkaufte Tickets : int
+}{
+  - TicketHandel() \\
+  \umlstatic{+ gibInstanz(): TicketHandel} \\
+  +ticketKaufen(kategorie: Kategorie) : Ticket \\
+  + gibVerkaufteTickets() : int
+}
 
-% ERWACHSEN
-% KIND
+\umlclass[y=-4]{TicketDruckerei}{}{
+  + erstelleTicket(kategorie: Kategorie): Ticket
+}
 
-% TicketHandel
+\umlclass[x=7,y=1,type=enumeration]{Kategorie}{
+  ERWACHSEN\\
+  KIND
+}{}
 
-% - verkaufte Tickets : int
+\umlclass[x=7,y=-1.5,type=interface]{Ticket}{}{
+  gibPreis(): double
+}
 
-% - TicketHandelf() <<interface>>
-% | _ıL _suse>> _ı_ Ticket
-% +ticketKaufen(kategorie: Kategorie) : Ticket | _______ 4 midi.
-% + gibVerkaufteTicketsf{) : int | | <<use>> gibPreis() : double |.
-% |
-% VW | benutzt | I-------- --
-% | 1 - druckerei | | l
-% | TicketDruckerei | | | ErwachsenenTicket | KinderTicket |
-% I m uni
-% | + erstelleTicket(kategorie : Kategorie) : Ticket | | = - | - - |
-% | | | ( _J
-% | L------______ M M
-% <<use>> 1
-% u TTT
+\umlclass[x=5,y=-4]{ErwachsenenTicket}{
+  \umlstatic{- preis: double = 15.0}
+}{}
+\umlclass[x=9,y=-4]{KinderTicket}{
+  \umlstatic{- preis: double = 10.0}
+}{}
+
+\end{tikzpicture}
 
 Ihnen sei ein UML-Klassendiagramm zu folgendem Szenario gegeben. Ein
 Benutzer (nicht im Diagramm enthalten) kann über einen \j{TicketHandel}

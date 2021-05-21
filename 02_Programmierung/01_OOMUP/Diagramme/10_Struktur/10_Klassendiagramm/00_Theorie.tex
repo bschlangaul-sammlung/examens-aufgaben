@@ -66,11 +66,12 @@ Methoden spezifiziert haben.
 Dabei werden diese drei Rubriken (engl. compartment) – Klassenname,
 Attribute, Methoden – jeweils durch eine horizontale
 Linie getrennt.
+\liLatexCode{\umlclass{Name}{Attribute}{Methoden}}
 \footcite{wiki:klassendiagramm}
 \footcite[Seite 49-50 (PDF 65-66)]{uml}
 
 \begin{tikzpicture}
-\umlclass{Lehrer}{Attribute}{Methoden}
+\umlclass{Name}{Attribute}{Methoden}
 \umlsimpleclass[x=3]{Lehrer}
 \umlclass[x=8]{Lehrer}{
 - alter: int\\
@@ -87,6 +88,9 @@ Linie getrennt.
 
 \item[Abstrakte Klassen]
 Kursiv oder mit Untertitle \{abstract\} oder mit <<>>
+\liLatexCode{\umlsimpleclass[type=abstract]{Name}}
+\liLatexCode{\umlsimpleclass[tags=abstract]{Name}}
+\liLatexCode{\umlsimpleclass[type=abstrakt]{Name}}
 
 \begin{tikzpicture}
 \umlsimpleclass[type=abstract,x=0]{Lehrer}
@@ -112,14 +116,16 @@ $-$: private, $+$: public, $\#$: protected, \~{}: package
 \end{tikzpicture}
 
 \item[Klassenattribute]
-Klassenattribute (statische Attribute) werden unterstrichen
+Klassenattribute (statische Attribute) werden unterstrichen \liLatexCode{\umlstatic{- gehalt}}
 \footcite[Seite 118,121]{rupp}
 
+\begin{center}
 \begin{tikzpicture}
 \umlclass{Lehrer}{
   \umlstatic{- gehalt}
 }{}
 \end{tikzpicture}
+\end{center}
 
 %%
 %
@@ -128,6 +134,47 @@ Klassenattribute (statische Attribute) werden unterstrichen
 \item[Multiplizität]
 z. B. 0..1, 1..1, 1, 0..*, *, n..m
 \footcite[Seite 98 (PDF 115)]{uml}
+\liLatexCode{\umlcompo[mult1=1,mult2=1..*]{A}{B}}
+
+%%
+%
+%%
+
+\item[Rollen (Assoziationsenden)]
+\footcite[Seite 145]{rupp}
+\liLatexCode{\umlassoc[arg1=faecher,arg2=lehrer]{Fach}{Lehrer}}
+
+\begin{center}
+\begin{tikzpicture}
+\umlsimpleclass{Fach}
+\umlsimpleclass[x=4]{Lehrer}
+\umlassoc[arg1=faecher,arg2=lehrer]{Fach}{Lehrer}
+\end{tikzpicture}
+\end{center}
+
+\item[Leserichtung]
+
+Oftmals ist der gewählte Assoziationsname nicht für beide
+Assoziationsrichtungen gleicher­ maßen treffend. Ist dies der Fall, so
+kann eine bevorzugte Leserichtung für eine Assoziation angegeben werden.
+Die bevorzugte Leserichtung wird durch ein ausgefülltes Dreieck
+darge­stellt, das nach dem Assoziationsnamen platziert wird und dessen
+Spitze in die gewünschte Leserichtung weist.
+\footcite[Seite 144]{rupp}
+\liLatexCode{
+  \umlassoc[name=fach-lehrer]{Fach}{Lehrer}
+  \node[below=0cm of fach-lehrer-middle] {unterrichtet \liLeserichtungRechts};
+}
+
+\begin{center}
+\begin{tikzpicture}
+\umlsimpleclass{Fach}
+\umlsimpleclass[x=5]{Lehrer}
+\umlassoc[name=fach-lehrer]{Fach}{Lehrer}
+
+\node[below=0cm of fach-lehrer-middle] {unterrichtet \liLeserichtungRechts};
+\end{tikzpicture}
+\end{center}
 
 %%
 %
@@ -142,67 +189,84 @@ z. B. \verb|-div(divident : Int, divisor : Int) : double|
 
 \item[Assoziation] Eine Assoziation beschreibt eine Beziehung zwischen
 zwei oder mehr Klassen. An den Enden von Assoziationen sind häufig
-Multiplizitäten vermerkt.
+Multiplizitäten vermerkt. \liLatexCode{\umlassoc[mult1=1..*,mult2=1]{Fach}{Lehrer}}
 
+\begin{center}
 \begin{tikzpicture}
 \umlsimpleclass{Fach}
 \umlsimpleclass[x=4]{Lehrer}
 \umlassoc[mult1=1..*,mult2=1]{Fach}{Lehrer}
 \end{tikzpicture}
+\end{center}
 
 %%
 %
 %%
 
-\item[Generalisierung (Inheritance)] Eine Generalisierung in der UML ist
+\item[Generalisierung (Inheritance)]
+
+Eine Generalisierung in der UML ist
 eine \emph{gerichtete} Beziehung zwischen einer \emph{generelleren} und
 einer \emph{spezielleren} Klasse. Der Pfeil zeigt von der spezielleren
 Klasse zur generellen Klasse.
 \footcite[Kapitel 6.4.6 Generalisierung, Seite 135]{rupp}
+\liLatexCode{\umlinherit{A}{B}}
 
+\begin{center}
 \begin{tikzpicture}
 \umlsimpleclass[y=1.4,tags=generelle Klasse]{Mensch}
 \umlsimpleclass[tags=spezielle Klasse]{Lehrer}
 \umlinherit{Lehrer}{Mensch}
 \end{tikzpicture}
+\end{center}
 
 \item[Realisierung (Realization)] Gestrichelte Linie mit nicht
 ausgefüllten Dreieck als Pfeilspitze. \liLatexCode{\umlreal{A}{B}}
 \footcite[Kapitel 6.4.13, Seite 164]{rupp}
 
+\begin{center}
 \begin{tikzpicture}
 \umlsimpleclass[]{Implementierung}
 \umlsimpleclass[x=4cm]{Spezifikation}
 \umlreal{Implementierung}{Spezifikation}
 \end{tikzpicture}
+\end{center}
 
 %%
 %
 %%
 
 \item[Aggregation (Aggregation)]
+
 Teil-Ganzes-Beziehung, nicht-ausgefüllte Raute am „Ganzen“-Objekt,
 in Java keine entsprechung
+\liLatexCode{\umlaggreg{A}{B}}
 
+\begin{center}
 \begin{tikzpicture}
 \umlsimpleclass{Unterrichtsstunde}
 \umlsimpleclass[x=6]{Schüler}
 \umlaggreg[mult1=20..*,mult2=12..*]{Unterrichtsstunde}{Schüler}
 \end{tikzpicture}
+\end{center}
 
 %%
 %
 %%
 
 \item[Komposition (Composition)]
+
 starke Aggregation, ausgefüllte Raute, Teilobjekte existenzabhängig von
 Aggregationsobjekt: z. B. Bank, Konto
+\liLatexCode{\umlcompo{A}{B}}
 
+\begin{center}
 \begin{tikzpicture}
 \umlsimpleclass{Schule}
 \umlsimpleclass[x=4]{Klassenzimmer}
 \umlcompo[mult1=1,mult2=1..*]{Schule}{Klassenzimmer}
 \end{tikzpicture}
+\end{center}
 
 \item[Assoziationsklasse]
 beschreibt Assoziation zwischen anderen Klassen beschreibt, wird
@@ -217,11 +281,33 @@ Gestrichelte Line mit offenen Pfeil. Der Pfeil zeigt \emph{vom
 abhängigen auf das unabhängige} Modellelement. \liLatexCode{\umldep{A}{B}}
 \footcite[Kapitel 6.4.10 Abhängigkeitsbeziehung, Seite 159]{rupp}
 
+\begin{center}
 \begin{tikzpicture}
 \umlsimpleclass[tags=abhängig]{Schüler}
 \umlsimpleclass[x=4,tags=unabhängig]{Lehrer}
 \umldep{Schüler}{Lehrer}
 \end{tikzpicture}
+\end{center}
+
+\begin{description}
+\item[Verwendungsbeziehung]
+
+Eine Usage-Beziehung wird als Abhängigkeitsbeziehung  mit dem
+Schlüsselwort «use» modelliert. Der Pfeil zeigt vom „unvollständigen“
+Element auf das benötigte Element.
+\footcite[Kapitel 6.4.11 Verwendungsbeziehung, Seite 161]{rupp}
+\liLatexCode{\umldep[stereo=use]{A}{B}}
+
+\begin{center}
+\begin{tikzpicture}
+\umlsimpleclass[tags=unvollständig]{Schüler}
+\umlsimpleclass[x=4,tags=benötigt]{Lehrer}
+\umldep[stereo=use]{Schüler}{Lehrer}
+\end{tikzpicture}
+\end{center}
+
+\end{description}
+
 \end{description}
 
 %-----------------------------------------------------------------------
@@ -234,27 +320,33 @@ abhängigen auf das unabhängige} Modellelement. \liLatexCode{\umldep{A}{B}}
 \item[Ungerichtete Assoziation]
 Linie mit Beschriftung
 
+\begin{center}
 \begin{tikzpicture}
 \umlsimpleclass{A}
 \umlsimpleclass[x=4]{B}
 \umlassoc{A}{B}
 \end{tikzpicture}
+\end{center}
 
 Assoziation mit sich selbst.
 
+\begin{center}
 \begin{tikzpicture}
 \umlsimpleclass{A}
 \umlassoc[angle1=-90,angle2=0,loopsize=3cm,arg1=next,arg2=previous,mult1=1,mult2=1]{A}{A}
 \end{tikzpicture}
+\end{center}
 
 \item[Gerichtete Assoziation]
 Linie mit Beschriftung und Leserichtungspfeil
 
+\begin{center}
 \begin{tikzpicture}
 \umlsimpleclass{A}
 \umlsimpleclass[x=4]{B}
 \umluniassoc{A}{B}
 \end{tikzpicture}
+\end{center}
 
 \item[Reflexive Assoziation]
 Pfeil mit Beschriftung
@@ -278,11 +370,13 @@ Instanzen der Klasse A die Instanzen der Klasse B in Pfeilrichtung
 \begin{description}
 \item[Unspezifizierte Navigierbarkeit] \liLatexCode{\umlassoc{A}{B}}
 
+\begin{center}
 \begin{tikzpicture}
 \umlsimpleclass{A}
 \umlsimpleclass[x=4]{B}
 \umlassoc{A}{B}
 \end{tikzpicture}
+\end{center}
 
 %%
 %
@@ -290,11 +384,13 @@ Instanzen der Klasse A die Instanzen der Klasse B in Pfeilrichtung
 
 \item[Unidirektionale Navigierbarkeit] \liLatexCode{\umluniassoc{A}{B}}
 
+\begin{center}
 \begin{tikzpicture}
 \umlsimpleclass{A}
 \umlsimpleclass[x=4]{B}
 \umluniassoc{A}{B}
 \end{tikzpicture}
+\end{center}
 \end{description}
 \end{description}
 
