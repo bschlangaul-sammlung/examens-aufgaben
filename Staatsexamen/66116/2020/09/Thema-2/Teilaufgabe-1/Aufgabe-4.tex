@@ -1,0 +1,99 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Objektorientierte Analyse}
+\section{Aufgabe 4
+\index{Objektorientierung}
+\footcite{66116:2020:09}}
+
+Betrachten Sie das folgende Szenario:
+
+Entwickeln Sie für einen Kunden eine einheitliche Online-Plattform, in
+welcher mehrere Restaurants angebunden sind. Die Nutzer des Systems
+sollen Essen wie Pizzen, Burger oder Pasta bestellen und dabei aus einer
+Liste von verschiedenen Gerichten auswählen können. Die Plattform soll
+zusätzliche Optionen (z.B. Lieferung durch einen Lieferdienst oder
+direkte Abholung, inkl. Salat oder einer Flasche Wein) ermöglichen. Die
+Bestellung soll dann von der Plattform an den jeweiligen
+Gaststättenbetreiber gesendet werden. Die Besteller sollen zudem eine
+Bestätigung als Nachricht erhalten. Die jeweiligen Gerichte und Optionen
+haben unterschiedliche Preise, die dem Internetnutzer angezeigt werden
+müssen, bevor er diese auswählt. Der Endpreis muss vor der endgültigen
+Zahlung des Auftrags angezeigt werden. Kunden können (optional) einen
+Benutzeraccount anlegen und erhalten bei häufigen Bestellungen einen
+Rabatt.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Beschreiben Sie kurz ein Verfahren, wie Sie aus der
+Szenariobeschreibung mögliche Kandidaten für Klassen erhalten können.
+
+\begin{liAntwort}
+Verfahren nach Abbott;
+\liFussnoteUrl{http://info.johpie.de/stufe_q1/info_01_verfahren_abbott.pdf}
+
+Objektorientierte Analyse und Design (OOAD)
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Beschreiben Sie kurz ein Verfahren, um Vererbungshierarchien zu
+identifizieren.
+
+\begin{liAntwort}
+Eine Begriffshierachie mit den Substantiven des Textes bilden.
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Geben Sie fünf geeignete Klassen für das obige Szenario an. Nennen
+Sie dabei keine Klassen, welche durch Basisdatentypen wie Integer oder
+String abgedeckt werden können.
+
+\begin{liAntwort}
+\begin{itemize}
+\item Benutzer (Kunde, Gaststättenbetreiber)
+\item Restaurant
+\item Gericht (Pizza, Burger, Pasta)
+\item ZusatzOption (Lieferung, Salat, Wein)
+\item Bestellung
+\end{itemize}
+\end{liAntwort}
+
+%%
+% d)
+%%
+
+\item Nennen Sie drei Klassen für das obige Szenario, die direkt durch
+Basisdatentypen wie Integer oder String abgedeckt werden können.
+
+\begin{liAntwort}
+\begin{itemize}
+\item Nachricht
+\item Preis
+\item Rabatt
+\end{itemize}
+\end{liAntwort}
+
+%%
+% e)
+%%
+
+\item Erstellen Sie ein Sequenzdiagramm für das gegebene System mit
+folgendem Anwendungsfall: Ein Nutzer bestellt zwei Pizzen und eine
+Flasche Wein. Beginnen Sie mit der „Auswahl des Gerichts“ bis hin zur
+„Bestätigung der Bestellung“ sowie „Lieferung an die Haustür“. Das
+Diagramm soll mindestens je einen Akteur für Benutzer (Browser),
+Applikation (Webserver) und Restaurant (Koch und Lieferdienst)
+vorsehen. Die Bezahlung selbst muss nicht modelliert werden.
+\index{Sequenzdiagramm}
+\end{enumerate}
+\end{document}

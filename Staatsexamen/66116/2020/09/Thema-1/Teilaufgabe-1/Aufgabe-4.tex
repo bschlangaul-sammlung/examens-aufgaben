@@ -1,0 +1,75 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{White-Box-Testverfahren}
+\section{Aufgabe 4
+\index{White-Box-Testing}
+\footcite{66116:2020:09}}
+
+Diese Aufgabe behandelt Wortpalindrome, also Wörter, die vorwärts und
+rückwärts gelesen jeweils dieselbe Zeichenkette bilden, z. B. Otto oder
+Rentner. Leere Wortpalindrome (also Wortpalindro- me der Wortlänge 0)
+sind dabei nicht zulässig.
+
+Folgende Java-Methode prüft, ob das übergebene Zeichen-Array ein
+Wortpalindrom darstellt:
+
+\begin{minted}{java}
+public static boolean istWortpalindrom(char[] wort) {
+boolean resultat = false;
+if (wort != null) {
+int laenge = wort.length;
+if (laenge >= 2) {
+resultat = true;
+for (int i = 0; i < laenge/2; ++i) {
+char cl = wortji];
+char c2 = wort/laenge-1-ij;
+if (Character. toLowerCase (cl) != Character. toLowerCase (c2))
+resultat = false;
+break;
+
+}
+
+} else {
+if (laenge == 1) {
+resultat = true;
+}
+
+}
+return resultat;
+}
+}
+\end{minted}
+\begin{enumerate}
+
+\item Geben Sie für die Methode einen Kontrollflussgraphen an, wobei Sie
+die Knoten mit den jeweiligen Zeilennummern im Quelltext beschriften.
+
+\item Geben Sie eine minimale Testmenge an, die das Kriterium der
+Anweisungsüberdeckung erfüllt.
+
+Hinweis: Eine Testmenge ist minimal, wenn es keine Testmenge mit einer
+kleineren Zahl von Testfällen gibt. Die Minimalität muss nicht bewiesen
+werden.
+
+\item Geben Sie eine minimale Testmenge an, die das Kriterium der
+Boundary-Interior-Pfadüberdeckung erfüllt.
+
+Hinweis: Das Kriterium Boundary-Interior-Pfadüberdeckung beschreibt
+einen Spezialfall der Pfadüberdeckung, wobei nur Pfade berücksichtigt
+werden, bei denen jede Schleife nicht mehr als zweimal durchlaufen wird.
+
+\item Im Falle des Kriteriums Pfadüberdeckung können minimale Testmengen
+sehr groß werden, da die Anzahl der Pfade sehr schnell zunimmt. Wie
+viele mögliche Pfade ergeben sich maximal für eine Schleife, die drei
+einseitig bedingte Anweisungen hintereinander enthält und bis zu zweimal
+durchlaufen wird? Geben Sie Ihren Rechenweg an (das Ergebnis alleine
+gibt keine Punkte).
+
+\item Könnte für das hier abgebildete Quelltext-Beispiel auch das
+Verfahren der unbegrenzten Pfadüberdeckung (also Abdeckung aller
+möglicher Pfade ohne Beschränkung) als Test- Kriterium gewählt werden?
+Begründen Sie.
+
+\end{enumerate}
+\end{document}

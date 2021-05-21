@@ -292,11 +292,12 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2018-Herbst_T1-TA1-A2">„Beatles“ Examen 66116 Herbst 2018 T1 TA1 A2</a> (Zustand (State), Klassendiagramm, Zustandsdiagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA1-A4">„Zustand-Entwurfsmuster bei Verwaltung von Prozessen“ Examen 66116 Herbst 2019 T1 TA1 A4</a> (Zustand (State), Zustandsdiagramm, Implementierung in Java)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA1-A1">„Dateisystem: Implementierung durch Kompositum“ Examen 66116 Herbst 2019 T2 TA1 A1</a> (Entwurfsmuster, Kompositum (Composite), Klassendiagramm, Implementierung in Java, Rekursion)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-2/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T2-TA1-A4">„Objektorientierte Analyse“ Examen 66116 Herbst 2020 T2 TA1 A4</a> (Objektorientierung, Sequenzdiagramm)
 
 ### Entwurfsmuster
 
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/02_Programmierung/02_AUD/04_Listen/10_Listen/Aufgabe_Woerterbuch.pdf" download="Aufgabe_Woerterbuch">„Wörterbuch“</a> (Einfach-verkettete Liste, Kompositum (Composite))
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/03_Projektplanung/Entwurfsmuster/90_Kompositium/Aufgabe_Grafik.pdf" download="Aufgabe_Grafik">„Grafik“</a> (Kompositum (Composite))
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/03_Projektplanung/Entwurfsmuster/20_Struktur/30_Kompositium/Aufgabe_Grafik.pdf" download="Aufgabe_Grafik">„Grafik“</a> (Kompositum (Composite))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/03_Projektplanung/Entwurfsmuster/Aufgabe_Grundwissen.pdf" download="Aufgabe_Grundwissen">„Grundwissen“</a> (Entwurfsmuster)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2017-Herbst_T2-TA1-A3">„Entwurfsmuster bei Bankkonten, Hockeyspiel, Dateisystem“ Examen 46116 Herbst 2017 T2 TA1 A3</a> (Entwurfsmuster, Klassendiagramm, Abstrakte Fabrik (Abstract Factory), Beobachter (Observer), Kompositum (Composite))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2016-Frühjahr_T1-TA2-A2">„Entwurfsmuster in UML-Diagramm erkennen“ Examen 66116 Frühjahr 2016 T1 TA2 A2</a> (Klassendiagramm, Abstrakte Fabrik (Abstract Factory), Wiederholer (Iterator), Adapter, Kompositum (Composite), Klassenadapter, Objektadapter, Implementierung in Java)
@@ -305,6 +306,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2018-Herbst_T1-TA1-A2">„Beatles“ Examen 66116 Herbst 2018 T1 TA1 A2</a> (Zustand (State), Klassendiagramm, Zustandsdiagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA1-A4">„Zustand-Entwurfsmuster bei Verwaltung von Prozessen“ Examen 66116 Herbst 2019 T1 TA1 A4</a> (Zustand (State), Zustandsdiagramm, Implementierung in Java)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA1-A1">„Dateisystem: Implementierung durch Kompositum“ Examen 66116 Herbst 2019 T2 TA1 A1</a> (Entwurfsmuster, Kompositum (Composite), Klassendiagramm, Implementierung in Java, Rekursion)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-A3">„Ticket-Handel“ Examen 66116 Herbst 2020 T1 A3</a> (Entwurfsmuster)
 
 ### Projektplanung
 
@@ -1234,7 +1236,11 @@ OCR des oben genannten Scans:
 - 2020 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Scan.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/OCR.txt" download="Staatsexamen-Informatik_66116-2020-Herbst_OCR">OCR.txt</a> 
     - Thema 1 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-A1">Aufgabe 1 (Verifikation)</a> 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-A2">Aufgabe 2 (Projektplanung, CPM-Netzplantechnik, Gantt-Diagramm)</a>
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-A2">Aufgabe 2 (Projektplanung, CPM-Netzplantechnik, Gantt-Diagramm)</a> 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-A3">Aufgabe 3 (Entwurfsmuster)</a> 
+    - Thema 2 
+        - Teilaufgabe 1 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-2/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T2-TA1-A4">Aufgabe 4 (Objektorientierung, Sequenzdiagramm)</a>
 - 2021 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Scan.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/OCR.txt" download="Staatsexamen-Informatik_66116-2021-Frühjahr_OCR">OCR.txt</a> 
 
 ### 66118: Fachdidaktik (Gymnasium)
