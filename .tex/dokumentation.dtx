@@ -81,8 +81,8 @@
 \liLadePakete{
   automaten,
   baum,
-  cyk-algorithmus,
   cpm,
+  cyk-algorithmus,
   entwurfsmuster,
   formale-sprachen,
   gantt,
@@ -93,6 +93,7 @@
   minimierung,
   synthese-algorithmus,
   typographie,
+  uml,
 }
 \EnableCrossrefs
 \CodelineIndex
@@ -3612,8 +3613,8 @@ Erweiterung bereitstellt]
 
 %    \begin{macrocode}
 \RequirePackage{tikz-uml}
-\RequirePackage{fontspec}
 \RequirePackage{tikz-uml-activity}
+\RequirePackage{mathabx}
 \usetikzlibrary{positioning}
 %    \end{macrocode}
 
@@ -3630,17 +3631,30 @@ Erweiterung bereitstellt]
 }
 %    \end{macrocode}
 
-% \begin{macro}{\liLeserichtungLinks}
-% U+25C2 BLACK LEFT-POINTING SMALL TRIANGLE
+% \begin{macro}{\liUmlLeserichtung}
 %    \begin{macrocode}
-\def\liLeserichtungLinks{{\fontspec{DejaVu Sans}◂ }}
-%    \end{macrocode}
-% \end{macro}
+\NewDocumentCommand{ \liUmlLeserichtung } { O{dir=right} m } {
+  \def\@liDirLeft{}
+  \def\@liDirRight{ \blacktriangleright}
+  \pgfkeys{/lese/dir/.is choice}
+  \pgfkeys{/lese/dir/up/.code={\def\@liDirRight{ \blacktriangleup}}}
+  \pgfkeys{/lese/dir/down/.code={\def\@liDirRight{ \blacktriangledown}}}
+  \pgfkeys{/lese/dir/left/.code={\@liDirRight{}\def\@liDirLeft{\blacktriangleleft }}}
+  \pgfkeys{/lese/dir/right/.code={\def\@liDirRight{ \blacktriangleright}}}
 
-% \begin{macro}{\liLeserichtungRechts}
-% U+25B8 BLACK RIGHT-POINTING SMALL TRIANGLE
-%    \begin{macrocode}
-\def\liLeserichtungRechts{ {\fontspec{DejaVu Sans}▸}}
+  \def\@liPos{above}
+  \pgfkeys{/lese/pos/.code={\def\@liPos{##1}}}
+
+  \def\@liDistance{0cm}
+  \pgfkeys{/lese/distance/.code={\def\@liDistance{##1}}}
+
+  \pgfkeys{/lese/.cd,#1}
+
+  \node[\@liPos = \@liDistance of #2-middle] {
+    \@liDirLeft{\footnotesize#2}\@liDirRight
+  };
+}
+
 %    \end{macrocode}
 % \end{macro}
 

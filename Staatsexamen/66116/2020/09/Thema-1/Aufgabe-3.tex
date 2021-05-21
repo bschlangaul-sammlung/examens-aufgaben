@@ -23,22 +23,33 @@
   + erstelleTicket(kategorie: Kategorie): Ticket
 }
 
-\umlclass[x=7,y=1,type=enumeration]{Kategorie}{
+\umlclass[x=8,y=1,type=enumeration]{Kategorie}{
   ERWACHSEN\\
   KIND
 }{}
 
-\umlclass[x=7,y=-1.5,type=interface]{Ticket}{}{
+\umlclass[x=8,y=-1.5,type=interface]{Ticket}{}{
   gibPreis(): double
 }
 
-\umlclass[x=5,y=-4]{ErwachsenenTicket}{
+\umlclass[x=6,y=-4]{ErwachsenenTicket}{
   \umlstatic{- preis: double = 15.0}
 }{}
-\umlclass[x=9,y=-4]{KinderTicket}{
+\umlclass[x=10,y=-4]{KinderTicket}{
   \umlstatic{- preis: double = 10.0}
 }{}
 
+\umlVHVinherit{ErwachsenenTicket}{Ticket}
+\umlVHVinherit{KinderTicket}{Ticket}
+
+\umlHVHdep[stereo=use,pos stereo=1.8,anchor2=-150]{TicketDruckerei}{Ticket}
+\umldep[stereo=use,anchor1=-25]{TicketHandel}{Ticket}
+
+\umlVHVdep[arm1=-1cm,stereo=use,anchor1=-30,  pos stereo=1.5]{TicketDruckerei}{ErwachsenenTicket}
+\umlVHVdep[arm1=-1.5cm,stereo=use,anchor1=-150, pos stereo=1.5]{TicketDruckerei}{KinderTicket}
+
+\umluniassoc[arg1=,mult2=1,arg2=- druckerei,name=benutzt]{TicketHandel}{TicketDruckerei}
+\liUmlLeserichtung[pos=below left,dir=down,distance=0cm]{benutzt}
 \end{tikzpicture}
 
 Ihnen sei ein UML-Klassendiagramm zu folgendem Szenario gegeben. Ein
