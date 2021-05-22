@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{syntax}
 \begin{document}
 \liAufgabenTitel{Relationale Algebra und Optimierung}
 \section{
@@ -11,8 +11,36 @@
 % a)
 %%
 
-\item Betrachten Sie die Relation V. Sie enthält eine Spalte Name sowie
-ein dazugehörendes Jahr.
+% Datenbankname: Division
+\begin{minted}{sql}
+CREATE TABLE V (
+  Name varchar(1),
+  Jahr integer
+);
+
+CREATE TABLE S (
+  Jahr integer
+);
+
+INSERT INTO V VALUES
+  ('A', 2019),
+  ('A', 2020),
+  ('B', 2018),
+  ('B', 2019),
+  ('B', 2020),
+  ('C', 2017),
+  ('C', 2018),
+  ('C', 2020);
+
+INSERT INTO S VALUES
+  (2018),
+  (2019),
+  (2020);
+\end{minted}
+\index{SQL mit Übungsdatenbank}
+
+\item Betrachten Sie die Relation $V$. Sie enthält eine Spalte
+\emph{Name} sowie ein dazugehörendes Jahr.
 
 \begin{center}
 \begin{tabular}{|l|l|}
@@ -84,7 +112,7 @@ Jahr\\\hline\hline
 2020\\\hline
 \end{tabular}
 
-\item weder i., noch ii., noch iii.
+\item ii.,
 
 \end{enumerate}
 
@@ -128,7 +156,18 @@ C \\\hline
 
 \item Formulieren Sie die Divisions-Query aus Teilaufgabe i. in SQL.
 
+\begin{minted}{sql}
+SELECT DISTINCT v1.Name FROM V as v1
+WHERE NOT EXISTS (
+  (SELECT s.Jahr FROM S as s)
+  EXCEPT
+  (SELECT v2.Jahr FROM V as v2 WHERE v2.Name = v1.Name)
+);
+\end{minted}
+\liFussnoteUrl{https://www.geeksforgeeks.org/sql-division/}
+
 \end{enumerate}
+
 %%
 % b)
 %%
@@ -149,25 +188,27 @@ Auf dieser View wird die folgende Query ausgeführt:
 , FROM mv
 ;» WHEREC>D:
 
-Konvertieren Sie die Query und die zugrundeliegenden View in einen Ausdruck der re-
-lationalen Algebra in Form eines Operatorbaums. Führen Sie anschließend eine relationale
-Optimierung durch. Beschreiben und begründen Sie dabei kurz jeden durchgeführten Schritt.
+Konvertieren Sie die Query und die zugrundeliegenden View in einen
+Ausdruck der relationalen Algebra in Form eines Operatorbaums. Führen
+Sie anschließend eine relationale Optimierung durch. Beschreiben und
+begründen Sie dabei kurz jeden durchgeführten Schritt.
 
 %%
 % c)
 %%
 
-\item Gegeben sind die Relationen R, S und U sowie deren Kardinalitäten Tr, Ts und Tr:
+\item Gegeben sind die Relationen R, S und U sowie deren Kardinalitäten
+Tr, Ts und Tr:
 
 R (al, a2, a3) Tr = 200
 S (al, a2, a3) Ts = 100
 U (ul, u2) Iv = 50
 
-Bei der Ausführung des folgenden Query-Plans wurden die Kardinalitäten der Zwischener-
-gebnisse mitgezählt und an den Kanten notiert.
+Bei der Ausführung des folgenden Query-Plans wurden die Kardinalitäten
+der Zwischenergebnisse mitgezählt und an den Kanten notiert.
 
-Leiten Sie aus den Angaben im Ausführungsplan den Anteil der qualifizierten Tupel aller
-Prädikate her und geben Sie diese an.
+Leiten Sie aus den Angaben im Ausführungsplan den Anteil der
+qualifizierten Tupel aller Prädikate her und geben Sie diese an.
 
 Tx
 s0|
