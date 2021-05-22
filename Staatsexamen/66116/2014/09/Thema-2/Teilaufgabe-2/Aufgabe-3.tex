@@ -1,6 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{mathe,syntax,kontrollflussgraph}
 \begin{document}
+\let\c=\liKontrollCode
+
 \liAufgabenTitel{Methode „specialSums()“}
 
 \section{Aufgabe 2: Kontrollflussorientiertes Testen
@@ -64,25 +66,25 @@ geändert würde.
 \index{Kontrollflussgraph}
 
 \begin{liAntwort}
-\begin{tikzpicture}[kontrollfluss,xscale=1,yscale=-1.5]
-\node[knoten] at (0,0.5) (0) {0}; % long sum = 0;
-\node[knoten,pin=if] at (0,1) (1) {1}; % if (until > 0)
-\node[knoten,pin=for-Bedingung] at (1,2) (2) {2}; % for (int i = 1; i <= until; i++)
-\node[knoten,pin=if] at (2,3) (3) {3}; % if (i % 4 == 0 || i % 6 == 0)
-\node[knoten,pin=sum += i] at (3,4) (4) {4}; % sum += i;
-\node[knoten,pin=i++] at (2,5) (5) {5}; % i++
-\node[knoten,pin=return sum] at (0,5.5) (6) {6}; % return sum;
+\begin{liKontrollflussgraph}[xscale=1,yscale=-1.5]
+\node[knoten,pin=\c{long sum = 0;}] at (0,0.5) (0) {0};
+\node[knoten,pin=\c{if (until > 0)}] at (0,1) (1) {1};
+\node[knoten,pin=\c{for (int i = 1; i <= until; i++)}] at (1,2) (2) {2};
+\node[knoten,pin=\c{if (i \% 4 == 0 || i \% 6 == 0)}] at (2,3) (3) {3};
+\node[knoten,pin=\c{sum += i;}] at (3,4) (4) {4};
+\node[knoten,pin=\c{i++}] at (2,5) (5) {5};
+\node[knoten,pin=\c{return sum;}] at (0,5.5) (6) {6};
 
-\draw[->] (0) -- (1);
-\draw[->] (1) -- (2) \bedingung{above right}{until > 0};
-\draw[->] (2) -- (3) \bedingung{above right}{i <= until};
-\draw[->] (3) -- (4) \bedingung{above right}{i \% 4 == 0 || i \% 6 == 0};
-\draw[->] (4) -- (5);
-\draw[->] (1) -- (6) \bedingung{left}{until <= 0};
-\draw[->] (2) -- (6);
-\draw[->] (5) -- (2);
-\draw[->] (3) -- (5);
-\end{tikzpicture}
+\path (0) -- (1);
+\path[wahr] (1) -- (2) \bedingung{above right}{until > 0};
+\path[falsch] (1) -- (6) \bedingung{left}{until <= 0};
+\path[wahr] (2) -- (3) \bedingung{above right}{i <= until};
+\path[falsch] (2) -- (6);
+\path[wahr] (3) -- (4) \bedingung{above right}{i \% 4 == 0 || i \% 6 == 0};
+\path[falsch] (3) -- (5);
+\path (4) -- (5);
+\path (5) -- (2);
+\end{liKontrollflussgraph}
 \end{liAntwort}
 
 %%

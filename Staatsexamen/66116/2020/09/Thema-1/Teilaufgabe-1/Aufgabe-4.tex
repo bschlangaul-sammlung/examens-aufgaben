@@ -1,6 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{syntax,kontrollflussgraph}
 \begin{document}
+\let\c=\liKontrollCode
+
 \liAufgabenTitel{White-Box-Testverfahren}
 \section{Aufgabe 4
 \index{White-Box-Testing}
@@ -24,67 +26,40 @@ beschriften.
 \index{Kontrollflussgraph}
 
 \begin{liAntwort}
-\begin{tikzpicture}[kontrollfluss,xscale=0.7,yscale=-0.8]
-\liAnweisung{S}(0,0)
+\begin{liKontrollflussgraph}[xscale=0.7,yscale=-1.2]
+\node[knoten] at (0,0) (S) {S};
 
-\node[knoten,pin={
-  \liJavaCode{boolean resultat = false;}
-}] at (0,1) (2) {2};
+\node[knoten,pin=\c{boolean resultat = false;}] at (0,1) (2) {2};
+\node[knoten,pin=\c{if (wort != null)}] at (0,2) (3) {3};
+\node[knoten,pin=\c{int laenge = wort.length;}] at (1,3) (4) {4};
+\node[knoten,pin=\c{if (laenge >= 2)}] at (1,4) (5) {5};
+\node[knoten,pin=\c{resultat = true; int i = 0;}] at (2,5) (6) {6};
+\node[knoten,pin=\c{for (i < laenge / 2;)}] at (2,6) (7) {7};
+\node[knoten,pin=\c{char c1; char c2 …}] at (3,7) (8) {8};
+\node[knoten,pin=\c{if (Char…) }] at (2,8) (10) {10};
+\node[knoten,pin=\c{resultat = false; break;}] at (2,9) (12) {12};
+\node[knoten,pin=\c{if (laenge == 1)}] at (1,10) (17) {17};
+\node[knoten,pin=\c{resultat = true;}] at (1,11) (18) {18};
+\node[knoten,pin=180:\c{return resultat;}] at (-1,9) (22) {22};
+\node[knoten] at (-1,10) (E) {E};
 
-\node[knoten,pin={
-  \liJavaCode{if (wort != null)}
-}] at (0,2) (3) {3};
-
-\node[knoten,pin={
-  \liJavaCode{int laenge = wort.length;}
-}] at (1,3) (4) {4};
-
-\node[knoten,pin={
-  \liJavaCode{if (laenge >= 2)}
-}] at (1,4) (5) {5};
-
-\node[knoten,pin={
-  \liJavaCode{resultat = true; int i = 0;}
-}] at (2,5) (6) {6};
-
-\node[knoten,pin={
-  \liJavaCode{for (i < laenge / 2;)}
-}] at (2,6) (7) {7};
-
-\node[knoten,pin={
-  \liJavaCode{char c1; char c2 …}
-}] at (3,7) (8) {8};
-
-\node[knoten,pin={
-  \liJavaCode{if (Char …) }
-}] at (3,8) (10) {10};
-
-\node[knoten,pin={
-  \liJavaCode{resultat = false; break;}
-}] at (4,9) (12) {12};
-
-\node[knoten,pin={
-  \liJavaCode{if (laenge == 1)}
-}] at (0,10) (17) {17};
-
-\node[knoten,pin={
-  \liJavaCode{if (resultat = true;)}
-}] at (0,11) (18) {18};
-
-\node[knoten,pin={
-  \liJavaCode{return resultat;}
-}] at (0,12) (22) {22};
-
-% \draw[->] (S) -- (1);
-% \draw[->] (1) -- (2);
-% \draw[->] (2) -- (3) \bedingung{above right}{y > x};
-% \draw[->] (2) -- (5) \bedingung{left}{y <= x};
-% \draw[->] (3) -- (4);
-% \draw[->] (4) -- (5);
-% \draw[->] (5) -- (6) \bedingung{above right}{2 * max < 3 * min};
-% \draw[->] (5) -- (E) \bedingung{left}{2 * max >= 3 * min};
-% \draw[->] (6) -- (E);
-\end{tikzpicture}
+\path (S) -- (2);
+\path (2) -- (3);
+\path[wahr] (3) -- (4) \bedingung{right}{wort != null};
+\path[falsch] (3) -- (22)  \bedingung{left}{wort == null};
+\path (4) -- (5);
+\path[wahr] (5) -- (6) \bedingung{right}{laenge >= 2};
+\path[falsch] (5) -- (17) \bedingung{left,rotate=70}{laenge < 2};
+\path (6) -- (7);
+\path (7) -- (8);
+\path (8) -- (10);
+\path[wahr] (10) -- (12) \bedingung{right}{c != c};
+\path[falsch] (10) -- (7) \bedingung{left,rotate=70,pos=0.8}{c == c};
+\path (12) -- (22);
+\path (17) -- (18);
+\path (18) -- (22);
+\path (22) -- (E);
+\end{liKontrollflussgraph}
 \end{liAntwort}
 
 \item Geben Sie eine \emph{minimale Testmenge} an, die das Kriterium der

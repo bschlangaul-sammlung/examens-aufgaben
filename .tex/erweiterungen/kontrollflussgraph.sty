@@ -6,7 +6,7 @@
 \RequirePackage{tikz}
 \usetikzlibrary{positioning}
 \tikzset{
-  kontrollfluss/.style={
+  li kontrollfluss/.style={
     knoten/.style={
       circle,
       draw
@@ -28,19 +28,39 @@
       midway,
       font=\scriptsize
     },
+    wahr/.style={
+      thick
+    },
+    falsch/.style={
+      dashed
+    },
+    every path/.style={
+      draw,
+      ->,
+    },
     every pin/.style={
       draw,
       dotted,
       rectangle,
-      pin position=right,
-      font=\scriptsize
+      pin position=right
     },
     every pin edge/.style={
-      dotted
+      dotted,
+      arrows=-,
     }
   }
 }
 %    \end{macrocode}
+
+% \begin{environment}{liKontrollflussgraph}
+%    \begin{macrocode}
+\NewDocumentEnvironment { liKontrollflussgraph } { O{} } {
+  \begin{tikzpicture}[li kontrollfluss,#1]
+} {
+  \end{tikzpicture}
+}
+%    \end{macrocode}
+% \end{environment}
 
 % \begin{macro}{\liAnweisung}
 %    \begin{macrocode}
@@ -51,6 +71,13 @@
 % \begin{macro}{\bedingung}
 %    \begin{macrocode}
 \def\bedingung#1#2{node[bedingung,#1]{[\texttt{#2}]}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liKontrollCode}
+% \liLet{c}{liKontrollCode}
+%    \begin{macrocode}
+\def\liKontrollCode#1{{\tiny\texttt{\textcolor{gray}{#1}}}}
 %    \end{macrocode}
 % \end{macro}
 
