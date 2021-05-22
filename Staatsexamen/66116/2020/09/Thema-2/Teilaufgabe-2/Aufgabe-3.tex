@@ -1,0 +1,183 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Relationale Algebra und Optimierung}
+\section{
+\index{Relationale Algebra}
+\footcite{66116:2020:09}}
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Betrachten Sie die Relation V. Sie enthält eine Spalte Name sowie
+ein dazugehörendes Jahr.
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Name & Jahr \\\hline\hline
+A & 2019 \\\hline
+A & 2020 \\\hline
+B & 2018 \\\hline
+B & 2019 \\\hline
+B & 2020 \\\hline
+C & 2017 \\\hline
+C & 2018 \\\hline
+C & 2020 \\\hline
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+
+%%
+% i.
+%%
+
+\item Gesucht ist eine Relation $S$, die das folgende Ergebnis von $V
+\div S$ berechnet ($\div$ ist die Division der relationalen Algebra):
+
+$V \div S$
+
+\begin{center}
+
+\begin{tabular}{|l|}
+\hline
+Name \\\hline\hline
+B \\\hline
+\end{tabular}
+\end{center}
+
+Welche der nachstehenden Ausprägungen für die Relation liefert das
+gewünschte Ergebnis? Geben Sie eine Begründung an.
+
+\begin{enumerate}
+\item
+
+\begin{tabular}{|l|}
+\hline
+Jahr\\\hline\hline
+2017\\\hline
+2018\\\hline
+2019\\\hline
+2020\\\hline
+\end{tabular}
+
+\item
+
+\begin{tabular}{|l|}
+\hline
+Jahr\\\hline\hline
+2018\\\hline
+2019\\\hline
+2020\\\hline
+\end{tabular}
+
+\item
+
+\begin{tabular}{|l|}
+\hline
+Jahr\\\hline\hline
+2017\\\hline
+2019\\\hline
+2020\\\hline
+\end{tabular}
+
+\item weder i., noch ii., noch iii.
+
+\end{enumerate}
+
+%%
+%
+%%
+
+\begin{liAntwort}
+iv) also weder i., noch ii., noch iii.
+
+\begin{enumerate}
+\item
+
+\begin{tabular}{|l|}
+\hline
+Name \\\hline\hline
+\end{tabular}
+
+\item
+
+\begin{tabular}{|l|}
+\hline
+Name \\\hline\hline
+C \\\hline
+\end{tabular}
+
+\item
+
+\begin{tabular}{|l|}
+\hline
+Name \\\hline\hline
+B \\\hline
+C \\\hline
+\end{tabular}
+\end{enumerate}
+\end{liAntwort}
+
+%%
+% ji.
+%%
+
+\item Formulieren Sie die Divisions-Query aus Teilaufgabe i. in SQL.
+
+\end{enumerate}
+%%
+% b)
+%%
+
+\item Gegeben sind die Tabellen R(A, B) und S(C, D) sowie die folgende View:
+
+ı CREATE VIEW mv (A,C,D) AS
+
+, SELECT DISTINCTA,C,D
+
+»  FROMR,S
+
+« WHEREB=DANDA <> 10;
+
+Auf dieser View wird die folgende Query ausgeführt:
+
+, SELECT DISTINCT A
+, FROM mv
+;» WHEREC>D:
+
+Konvertieren Sie die Query und die zugrundeliegenden View in einen Ausdruck der re-
+lationalen Algebra in Form eines Operatorbaums. Führen Sie anschließend eine relationale
+Optimierung durch. Beschreiben und begründen Sie dabei kurz jeden durchgeführten Schritt.
+
+%%
+% c)
+%%
+
+\item Gegeben sind die Relationen R, S und U sowie deren Kardinalitäten Tr, Ts und Tr:
+
+R (al, a2, a3) Tr = 200
+S (al, a2, a3) Ts = 100
+U (ul, u2) Iv = 50
+
+Bei der Ausführung des folgenden Query-Plans wurden die Kardinalitäten der Zwischener-
+gebnisse mitgezählt und an den Kanten notiert.
+
+Leiten Sie aus den Angaben im Ausführungsplan den Anteil der qualifizierten Tupel aller
+Prädikate her und geben Sie diese an.
+
+Tx
+s0|
+N Ral > Vu
+
+N R.a3 = S.a3 U
+ N
+OR.al > 100 OS.al < 10
+
+R 5
+\end{enumerate}
+
+\end{document}

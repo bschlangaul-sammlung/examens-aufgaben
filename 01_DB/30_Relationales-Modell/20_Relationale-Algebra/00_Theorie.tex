@@ -190,15 +190,27 @@ All-Quantor & $\forall$ & \verb|\forall| & FORALL\\
 %
 %-----------------------------------------------------------------------
 
-\subsection{Division\footcite[Division]{relationale-algebra}}
+\subsection{Division\footcite[Division]{wiki:relationale-algebra}}
+
+\footcite[Seite 31-43]{db:fs:2}
 
 \begin{description}
 \item[Symbol-Schreibweise] $R \div S$
 \end{description}
 
+\noindent
+Da die Division eine abgeleitete Operation ist, definieren wir sie mit
+Hilfe der anderen Operationen der RA. Seien $R$, $S$ Relationen und
+$\beta$ die zu $R$ sowie $\gamma$ die zu $S$ dazugehörigen
+Attributmengen. $R':=\beta \setminus \gamma$.
+
 Die Division ist dann definiert durch:
 
-$R\div S:=\pi_{{R'}}(R)-\pi_{{R'}}((\pi_{{R'}}(R)\times S)-R)$
+\begin{displaymath}
+R\div S :=
+\pi_{R'}(R) -
+\pi_{R'}((\pi_{R'}(R) \times S) - R)
+\end{displaymath}
 
 \begin{minted}{sql}
 SELECT distinct MatrNr
