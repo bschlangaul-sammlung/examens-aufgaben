@@ -1950,7 +1950,10 @@ von Hanoi-Grafiken]
 % \begin{environment}{liKontrollflussgraph}
 %    \begin{macrocode}
 \NewDocumentEnvironment { liKontrollflussgraph } { O{} } {
-  \begin{tikzpicture}[li kontrollfluss,#1]
+  \begin{tikzpicture}[
+    li kontrollfluss,
+    #1
+  ]
 } {
   \end{tikzpicture}
 }
@@ -1964,18 +1967,21 @@ von Hanoi-Grafiken]
 % \end{macro}
 
 % \begin{macro}{\liBedingung}
+% \liLet{b}{liBedingung}
 %    \begin{macrocode}
 \def\liBedingung#1#2{node[bedingung,#1]{[\texttt{#2}]}}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\liBedingungWahr}
+% \liLet{bWahr}{liBedingungWahr}
 %    \begin{macrocode}
 \def\liBedingungWahr#1{node[bedingung,#1]{\texttt{[true]}}}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\liBedingungFalsch}
+% \liLet{bFalsch}{liBedingungFalsch}
 %    \begin{macrocode}
 \def\liBedingungFalsch#1{node[bedingung,#1]{\texttt{[false]}}}
 %    \end{macrocode}
@@ -1988,19 +1994,21 @@ von Hanoi-Grafiken]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\TextzeileKnoten}
+% \begin{macro}{\liKontrollTextzeileKnoten}
+% \liLet{k}{liKontrollTextzeileKnoten}
 %    \begin{macrocode}
-\def\TextzeileKnoten#1{\raisebox{-2pt}{\tikz[scale=0.5,transform shape] \node[draw,circle]{#1};}}
+\def\liKontrollTextzeileKnoten#1{\raisebox{-2pt}{\tikz[scale=0.5,transform shape] \node[draw,circle]{#1};}}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\KnotenPfad}
+% \begin{macro}{\liKontrollKnotenPfad}
+% \liLet{p}{liKontrollKnotenPfad}
 %    \begin{macrocode}
 \ExplSyntaxOn
-\NewDocumentCommand { \KnotenPfad }{ m }
+\NewDocumentCommand { \liKontrollKnotenPfad }{ m }
 {
   \seq_set_split:Nnn \l_tmpa_seq { - } { #1 }
-  \seq_set_map:NNn \l_tmpa_seq \l_tmpa_seq {\TextzeileKnoten{##1}}
+  \seq_set_map:NNn \l_tmpa_seq \l_tmpa_seq {\liKontrollTextzeileKnoten{##1}}
   \seq_use:Nn \l_tmpa_seq { ~-~~ }
 }
 \ExplSyntaxOff

@@ -2,6 +2,9 @@
 \liLadePakete{syntax,kontrollflussgraph}
 \begin{document}
 \let\c=\liKontrollCode
+\let\b=\liBedingung
+\let\p=\liKontrollKnotenPfad
+\let\k=\liKontrollTextzeileKnoten
 
 \liAufgabenTitel{White-Box-Testverfahren}
 \section{Aufgabe 4
@@ -9,9 +12,9 @@
 \footcite{66116:2020:09}}
 
 Diese Aufgabe behandelt \emph{Wortpalindrome}, also Wörter, die vorwärts
-und rückwärts gelesen jeweils dieselbe Zeichenkette bilden, z. B.
+und rückwärts gelesen jeweils dieselbe Zeichenkette bilden, z.\,B.
 \texttt{Otto} oder \texttt{Rentner}. Leere Wortpalindrome (also
-Wortpalindrome der Wortlänge 0) sind dabei nicht zulässig.
+Wortpalindrome der Wortlänge $0$) sind dabei nicht zulässig.
 
 Folgende \emph{Java-Methode} prüft, ob das übergebene Zeichen-Array ein
 Wortpalindrom darstellt:
@@ -20,47 +23,57 @@ Wortpalindrom darstellt:
 
 \begin{enumerate}
 
+%%
+%
+%%
+
 \item Geben Sie für die Methode einen \emph{Kontrollflussgraphen} an,
 wobei Sie die Knoten mit den jeweiligen Zeilennummern im Quelltext
 beschriften.
 \index{Kontrollflussgraph}
 
 \begin{liAntwort}
-\begin{liKontrollflussgraph}[xscale=0.7,yscale=-1.2]
+\begin{liKontrollflussgraph}[xscale=1,yscale=-1.6]
 \node[knoten] at (0,0) (S) {S};
 
-\node[knoten,pin=\c{boolean resultat = false;}] at (0,1) (2) {2};
-\node[knoten,pin=\c{if (wort != null)}] at (0,2) (3) {3};
-\node[knoten,pin=\c{int laenge = wort.length;}] at (1,3) (4) {4};
-\node[knoten,pin=\c{if (laenge >= 2)}] at (1,4) (5) {5};
-\node[knoten,pin=\c{resultat = true; int i = 0;}] at (2,5) (6) {6};
-\node[knoten,pin=\c{for (i < laenge / 2;)}] at (2,6) (7) {7};
-\node[knoten,pin=\c{char c1; char c2 …}] at (3,7) (8) {8};
-\node[knoten,pin=\c{if (Char…) }] at (2,8) (10) {10};
-\node[knoten,pin=\c{resultat = false; break;}] at (2,9) (12) {12};
-\node[knoten,pin=\c{if (laenge == 1)}] at (1,10) (17) {17};
-\node[knoten,pin=\c{resultat = true;}] at (1,11) (18) {18};
-\node[knoten,pin=180:\c{return resultat;}] at (-1,9) (22) {22};
+\node[pin=\c{boolean resultat = false;}] at (0,1) (2) {2};
+\node[pin=\c{if (wort != null)}] at (0,2) (3) {3};
+\node[pin=\c{int laenge = wort.length;}] at (1,3) (4) {4};
+\node[pin=\c{if (laenge >= 2)}] at (1,4) (5) {5};
+\node[pin=\c{resultat = true; int i = 0;}] at (2,5) (6) {6};
+\node[pin=\c{for (i < laenge / 2;)}] at (2,6) (7) {7};
+\node[pin=\c{char c1; char c2 …}] at (3,7) (8) {8};
+\node[pin=\c{if (Char…) }] at (2,8) (10) {10};
+\node[pin=\c{resultat = false; break;}] at (2,9) (12) {12};
+\node[pin=\c{if (laenge == 1)}] at (1,10) (17) {17};
+\node[pin=\c{resultat = true;}] at (1,11) (18) {18};
+\node[pin=180:\c{return resultat;}] at (-1,9) (22) {22};
 \node[knoten] at (-1,10) (E) {E};
 
 \path (S) -- (2);
 \path (2) -- (3);
-\path[wahr] (3) -- (4) \liBedingung{right}{wort != null};
-\path[falsch] (3) -- (22)  \liBedingung{left}{wort == null};
+\path[wahr] (3) -- (4) \b{right}{wort != null};
+\path[falsch] (3) -- (22)  \b{left}{wort == null};
 \path (4) -- (5);
-\path[wahr] (5) -- (6) \liBedingung{right}{laenge >= 2};
-\path[falsch] (5) -- (17) \liBedingung{left,rotate=70}{laenge < 2};
+\path[wahr] (5) -- (6) \b{right}{laenge >= 2};
+\path[falsch] (5) -- (17) \b{left,rotate=70,pos=0.2}{laenge < 2};
 \path (6) -- (7);
-\path (7) -- (8);
+\path[wahr] (7) -- (8) \b{right}{i < laenge / 2};
+\path[falsch] (7) -- (22) \b{left}{i >= laenge / 2};
 \path (8) -- (10);
-\path[wahr] (10) -- (12) \liBedingung{right}{c != c};
-\path[falsch] (10) -- (7) \liBedingung{left,rotate=70,pos=0.8}{c == c};
+\path[wahr] (10) -- (12) \b{right}{c != c};
+\path[falsch] (10) -- (7) \b{left,rotate=70,pos=0.8}{c == c};
 \path (12) -- (22);
-\path (17) -- (18);
+\path[wahr] (17) -- (18) \b{right}{laenge == 1};
+\path[falsch] (17) -- (22) \b{right,rotate=-20,pos=0.99}{laenge != 1};
 \path (18) -- (22);
 \path (22) -- (E);
 \end{liKontrollflussgraph}
 \end{liAntwort}
+
+%%
+%
+%%
 
 \item Geben Sie eine \emph{minimale Testmenge} an, die das Kriterium der
 Anweisungsüberdeckung erfüllt.
@@ -69,6 +82,24 @@ Hinweis: Eine \emph{Testmenge} ist \emph{minimal}, wenn es keine
 Testmenge mit einer kleineren Zahl von Testfällen gibt. Die Minimalität
 muss \emph{nicht} bewiesen werden.
 
+\begin{liAntwort}
+\liJavaCode{isWortpalindrom(new char[] { 'a' })}:\\
+\p{S-2-3-4-5            -17-18-22-E}
+% {S-2-3-4-5-6-7-8-10-12-17-18-22-E}
+
+\liJavaCode{isWortpalindrom(new char[] { 'a', 'b' })}:\\
+\p{S-2-3-4-5-6-7-8-10-12-      22-E}
+% {S-2-3-4-5-6-7-8-10-12-17-18-22-E}
+
+% \liJavaCode{isWortpalindrom(new char[] { 'a', 'a' })}\\
+% \p{S-2-3-4-5-6-7-8-10-         22-E}
+%   {S-2-3-4-5-6-7-8-10-12-17-18-22-E}
+\end{liAntwort}
+
+%%
+%
+%%
+
 \item Geben Sie eine \emph{minimale Testmenge} an, die das Kriterium der
 \emph{Boundary-Interior-Pfadüberdeckung} erfüllt.
 
@@ -76,6 +107,10 @@ Hinweis: Das Kriterium \emph{Boundary-Interior-Pfadüberdeckung}
 beschreibt einen Spezialfall der Pfadüberdeckung, wobei nur Pfade
 berücksichtigt werden, bei denen jede Schleife nicht mehr als zweimal
 durchlaufen wird.
+
+%%
+%
+%%
 
 \item Im Falle des Kriteriums Pfadüberdeckung können minimale Testmengen
 sehr groß werden, da die Anzahl der Pfade sehr schnell zunimmt. Wie
@@ -88,6 +123,26 @@ alleine gibt keine Punkte).
 Verfahren der \emph{unbegrenzten Pfadüberdeckung} (also Abdeckung aller
 möglicher Pfade ohne Beschränkung) als Test-Kriterium gewählt werden?
 Begründen Sie.
+
+\begin{liAntwort}
+Nein. Der Pfad von Konten \k{17} zu Knoten \k{22} wird nie beschritten,
+d. h. wird Zeile 17 betreten, wird auch immer die bedingte Anweisung in
+Zeile 18 ausgeführt.
+
+Statt
+
+\begin{minted}{java}
+if (laenge == 1) {
+  resultat = true;
+}
+\end{minted}
+
+könnte auch nur so geschrieben werden:
+
+\begin{minted}{java}
+resultat = true;
+\end{minted}
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}

@@ -114,8 +114,8 @@ Code möglich ist oder nicht!
 \item Verzweigungsüberdeckung (Branch-Coverage, $C_1$)\index{C1-Test
 Zweigüberdeckung (Branch Coverage)}
 
-\def\TmpPfadEins{\KnotenPfad{nI - n1 - n2 - nE}}
-\def\TmpPfadZwei{\KnotenPfad{nI - n1 - n2 - n3 - n5 - n6 - n3 - n4 - n5 - n6 - nE}}
+\def\TmpPfadEins{\liKontrollKnotenPfad{nI - n1 - n2 - nE}}
+\def\TmpPfadZwei{\liKontrollKnotenPfad{nI - n1 - n2 - n3 - n5 - n6 - n3 - n4 - n5 - n6 - nE}}
 
 \begin{liAntwort}
 \begin{description}
@@ -165,14 +165,14 @@ innerhalb des Schleifenrumpfes wieder alle Pfade!)
 \def\TmpWahr{innere \liJavaCode{if}-Bedingung \liJavaCode{true}}
 \def\TmpFalsch{innere \liJavaCode{if}-Bedingung \liJavaCode{false}}
 
-\TmpWahr: \KnotenPfad{n3 - n4 - n5 - n6}
+\TmpWahr: \liKontrollKnotenPfad{n3 - n4 - n5 - n6}
 
-\TmpFalsch: \KnotenPfad{n3 - n5 - n6}
+\TmpFalsch: \liKontrollKnotenPfad{n3 - n5 - n6}
 
 \begin{description}
 \item[p5]
 
-\KnotenPfad{nI - n1 - n2 - n3 - n4 - n5 - n6 - n3 - n4 - n5 - n6 - nE}
+\liKontrollKnotenPfad{nI - n1 - n2 - n3 - n4 - n5 - n6 - n3 - n4 - n5 - n6 - nE}
 
 (\TmpWahr, \TmpWahr)
 
@@ -184,13 +184,13 @@ innerhalb des Schleifenrumpfes wieder alle Pfade!)
 
 \item[p6]
 
-\KnotenPfad{nI - n1 - n2 - n3 - n4 - n5 - n6 - n3 - n4 - n5 - n6 - nE}
+\liKontrollKnotenPfad{nI - n1 - n2 - n3 - n4 - n5 - n6 - n3 - n4 - n5 - n6 - nE}
 
 (\TmpWahr, \TmpFalsch)
 
 \item[p7]
 
-\KnotenPfad{nI - n1 - n2 - n3 - n5 - n6 - n3 - n5 - n6 - nE}
+\liKontrollKnotenPfad{nI - n1 - n2 - n3 - n5 - n6 - n3 - n5 - n6 - nE}
 
 (\TmpFalsch, \TmpFalsch)
 \end{description}
