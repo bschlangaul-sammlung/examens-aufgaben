@@ -2,6 +2,8 @@
 \liLadePakete{kontrollflussgraph,syntax,spalten}
 \begin{document}
 \let\c=\liKontrollCode
+\let\p=\liKontrollKnotenPfad
+\let\k=\liKontrollTextzeileKnoten
 
 \liAufgabenTitel{Methode „log()“}
 
@@ -14,15 +16,15 @@ Gegeben sei folgende Methode und ihr Kontrollflussgraph:
 \liJavaDatei[firstline=4,lastline=16]{aufgaben/sosy/ab_7/Aufgabe3}
 
 \begin{liKontrollflussgraph}[xscale=1,yscale=-0.8]
-\node[knoten] at (0,0) (S) {S};
-\node[knoten] at (0,1) (1) {1};
-\node[knoten] at (0,2) (2) {2};
-\node[knoten] at (0,3) (3) {3};
-\node[knoten] at (-1,4) (4) {4};
-\node[knoten] at (1,4) (5) {5};
-\node[knoten] at (0,5) (6) {6};
-\node[knoten] at (0,6) (7) {7};
-\node[knoten] at (0,7) (E) {E};
+\node at (0,0) (S) {S};
+\node at (0,1) (1) {1};
+\node at (0,2) (2) {2};
+\node at (0,3) (3) {3};
+\node at (-1,4) (4) {4};
+\node at (1,4) (5) {5};
+\node at (0,5) (6) {6};
+\node at (0,6) (7) {7};
+\node at (0,7) (E) {E};
 
 \path (S) -- (1);
 \path (1) -- (2);
@@ -43,10 +45,7 @@ Gegeben sei folgende Methode und ihr Kontrollflussgraph:
 % (a)
 %%
 
-\item Begründen Sie, warum der Pfad \liKontrollTextzeileKnoten{S} -
-\liKontrollTextzeileKnoten{1} - \liKontrollTextzeileKnoten{2} - \liKontrollTextzeileKnoten{3} -
-\liKontrollTextzeileKnoten{5} - \liKontrollTextzeileKnoten{6} - \liKontrollTextzeileKnoten{7} -
-\liKontrollTextzeileKnoten{2} - \liKontrollTextzeileKnoten{E}
+\item Begründen Sie, warum der Pfad \p{S-1-2-3-5-6-7-2-E}
 infeasible (= nicht überdeckbar) ist, also weshalb es keine Eingabe
 gibt, unter der dieser Pfad durchlaufen werden kann.
 \index{Überdeckbarkeit}
@@ -56,42 +55,42 @@ Damit dieser Pfad durchlaufen werden könnte, müsste die Eingabe $a$
 gleichzeitig $2$ und ungerade sein.
 
 \begin{liKontrollflussgraph}[xscale=1,yscale=-1]
-\node[knoten] at (0,0) (S) {S};
+\node at (0,0) (S) {S};
 
-\node[knoten,pin={
+\node[pin={
   \c{int x = y; int z = 0;}
 }] at (0,1) (1) {1};
 
-\node[knoten,pin={
+\node[pin={
     [pin distance=1cm]
     5:\c{while (x > 1)}
 }] at (0,2) (2) {2};
 
-\node[knoten,pin={
+\node[pin={
   [pin distance=2cm]
   \c{if (x \% 2 == 0)}
 }] at (0,3) (3) {3};
 
-\node[knoten,pin={
+\node[pin={
   [pin distance=1cm]
   180:\c{z++; x /= 2;}
 }] at (-1,4) (4) {4};
 
-\node[knoten,pin={
+\node[pin={
   [pin distance=1cm]
   \c{x--;}
 }] at (1,4) (5) {5};
 
-\node[knoten] at (0,5) (6) {6};
-\node[knoten] at (0,6) (7) {7};
-\node[knoten,pin={
+\node at (0,5) (6) {6};
+\node at (0,6) (7) {7};
+\node[pin={
   -90:\c{return z;}
 }] at (0,7) (E) {E};
 
 \path (S) -- (1);
 \path (1) -- (2);
-\path (2) -- (3) \liBedingung{right}{x > 1};
-\path (3) -- (4);
+\path[wahr] (2) -- (3) \liBedingung{right}{x > 1};
+\path[wahr] (3) -- (4);
 \path[falsch] (3) -- (5);
 \path (4) -- (6);
 \path (5) -- (6);
@@ -110,6 +109,34 @@ vollständigen Schleifen-Inneres-Überdeckung erzielt werden kann, sowie
 gegebenenfalls zu jedem Pfad eine Eingabe, unter der dieser Pfad
 durchlaufen werden kann.
 \index{C2b Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage)}
+
+\begin{liAntwort}
+
+\begin{description}
+\item[ohne Schleifenausführung] \strut
+
+\begin{itemize}
+\item \p{S-1-2-E} (a=1)
+\end{itemize}
+
+\item[boundary-Tests] \strut
+
+\begin{itemize}
+\item \p{S-1-2-3-4-6-7-2-E} \\(a=2)
+\item \p{S-1-2-3-5-6-7-2-E} \\(infeasible)
+\end{itemize}
+
+\item[interior-Tests] \strut
+
+\begin{itemize}
+\item \p{S-1-2-3-4-6-7-2-3-4-6-7-2-E} \\(a=4)
+\item \p{S-1-2-3-4-6-7-2-3-5-6-7-2-E} \\(a=6)
+\item \p{S-1-2-3-5-6-7-2-3-4-6-7-2-E} \\(a=3)
+\item \p{S-1-2-3-5-6-7-2-3-5-6-7-2-E} \\(infeasible)
+\end{itemize}
+\end{description}
+
+\end{liAntwort}
 
 \end{enumerate}
 

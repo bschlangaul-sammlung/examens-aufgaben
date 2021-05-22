@@ -271,7 +271,7 @@ bzw.
 \item gibt an, wie viele Testfälle höchstens nötig sind, um eine
 Zweigüberdeckung zu erreichen
 
-\item i.A. Metrik für “Testbarkeit/Komplexität”
+\item i.A. Metrik für „Testbarkeit/Komplexität”
 \end{itemize}
 
 \noindent
@@ -301,39 +301,33 @@ McCabe-Überdeckung, Seite 216-220]{hoffmann:software}
 \subsubsection{$C_2$-Test: Pfadüberdeckung (Path Coverage)\footcite[Seite 39]{sosy:fs:5}}
 
 Die Pfadüberdeckung ist die mit Abstand mächtigste
-White-Box-Prüftechnik, besitzt aufgrund ihrer immensen Komplexität
-aber nur eine äußerst geringe Praxisbedeutung.
+White-Box-Prüftechnik, besitzt aufgrund ihrer \memph{immensen
+Komplexität} aber nur eine äußerst \memph{geringe Praxisbedeutung}.
 
 %%
 %
 %%
 
-\paragraph{C2a Vollständige Pfadüberdeckung (Full Path Coverage):}
+\paragraph{$C_{2a}$ Vollständige Pfadüberdeckung (Full Path Coverage):}
 
 Das Kriterium der vollständigen Pfadüberdeckung wird erst dann erfüllt,
-wenn für jeden möglichen Pfad, der den Eingangsknoten des
+wenn für \memph{jeden möglichen Pfad}, der den Eingangsknoten des
 Kontrollflussgraphen mit dem Ausgangsknoten verbindet, ein separater
 Testfall existiert.\footcite[Seite 210]{hoffmann:software}
 
 Um die Limitierungen der vollständigen Pfadüberdeckung zu überwinden,
 wurden in der Vergangenheit mehrere Variationen vorgeschlagen, mit deren
-Hilfe sich die kombinatorische Explosion zumindest teilweise eindämmen
-lässt. Von Bedeutung sind in diesem Zusammenhang insbesondere die
-\memph{Boundary-Interior-Pfadüberdeckung} und die \memph{strukturierte
-Pfadüberdeckung}. Beide Variationen basieren auf der Beobachtung, dass
-ein Großteil der Fehler innerhalb eines Schleifenkonstrukts bereits nach
-wenigen Iterationsschritten zum Vorschein kommt. Mit anderen Worten:
-Eine weitere Erhöhung der ausgeführten Schleifeniterationen kann die
-erreichbare Fehlererkennungsrate nur noch marginal steigern. Beide der
-hier vorgestellten Pfadüberdeckungsvarianten tragen diesem Phänomen
-Rechnung und versuchen, die Anzahl der Schleifendurchläufe
-dementsprechend einzugrenzen:
+Hilfe sich die \memph{kombinatorische Explosion} zumindest teilweise
+eindämmen lässt. Von Bedeutung sind in diesem Zusammenhang insbesondere
+die \memph{Boundary-Interior-Pfadüberdeckung} und die
+\memph{strukturierte Pfadüberdeckung}.
 
 %%
 %
 %%
 
-\paragraph{C2b Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage):}
+\paragraph{$C_{2b}$ Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage):}
+\index{C2b Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage)}
 
 \noindent
 Der Boundary-Interior-Pfadtest konstruiert für jede Schleife des
@@ -342,29 +336,34 @@ werden müssen.
 
 \begin{description}
 \item[Äußere Pfade]
+
 Die Testfälle durchlaufen das Programm auf Pfaden, die den
 \memph{Schleifenkörper nicht betreten}. Für Schleifen fester Lauflänge
 sowie für While-Schleifen, die erst am Ende des Schleifenkörpers die
 Wiederholungsbedingung auswerten, ist diese Testfallgruppe leer.
 
-\item[Grenzpfade (boundary paths, boundary test)] Die Testfälle
-durchlaufen das Programm auf Pfaden, die den Schleifenkörper betreten,
-jedoch zu \memph{keiner Wiederholung} führen. Innerhalb des
-Schleifeninneren müssen \memph{alle möglichen Pfade getestet} werden.
-Für Schleifen fester Lauflänge ist diese Testfallgruppe leer.
+\item[Grenzpfade (boundary paths, boundary test)]
 
-\item[Innere Pfade (interior test)] Die Testfälle durchlaufen das
-Programm auf Pfaden, die den Schleifenkörper betreten und
-\memph{mindestens eine weitere Iteration} ausführen. Die Testfälle
-werden so gewählt, dass \memph{innerhalb der ersten beiden Ausführungen
-alle möglichen Pfade abgearbeitet} werden.\footcite[Seite 212]{hoffmann:software}
+Die Testfälle durchlaufen das Programm auf Pfaden, die den
+\memph{Schleifenkörper betreten}, jedoch zu \memph{keiner Wiederholung}
+führen. Innerhalb des Schleifeninneren müssen \memph{alle möglichen
+Pfade getestet} werden. Für Schleifen fester Lauflänge ist diese
+Testfallgruppe leer.
+
+\item[Innere Pfade (interior test)]
+
+Die Testfälle durchlaufen das Programm auf Pfaden, die den
+Schleifenkörper betreten und \memph{mindestens eine weitere Iteration}
+ausführen. Die Testfälle werden so gewählt, dass \memph{innerhalb der
+ersten beiden Ausführungen alle möglichen Pfade abgearbeitet}
+werden.\footcite[Seite 212]{hoffmann:software}
 \end{description}
 
 %%
 %
 %%
 
-\paragraph{C2c Strukturierte Pfadüberdeckung (Structured Path Coverage):}
+\paragraph{$C_{2c}$ Strukturierte Pfadüberdeckung (Structured Path Coverage):}
 
 \noindent
 Anzahl der Schleifendurchläufe auf eine

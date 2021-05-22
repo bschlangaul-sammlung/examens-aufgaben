@@ -108,6 +108,64 @@ beschreibt einen Spezialfall der Pfadüberdeckung, wobei nur Pfade
 berücksichtigt werden, bei denen jede Schleife nicht mehr als zweimal
 durchlaufen wird.
 
+\begin{liAntwort}
+Es gibt noch ganz viele infeasible Pfade, die hier nicht aufgeführt
+werden.
+
+\begin{description}
+
+%%
+%
+%%
+
+\item[Äußere Pfade] \strut
+
+\begin{itemize}
+\item \liJavaCode{isWortpalindrom(null}:\\
+\p{S-2-3                      -22-E}
+% {S-2-3-4-5-6-7-8-10-12-17-18-22-E}
+
+\item \liJavaCode{isWortpalindrom(new char[] { })}:\\
+\p{S-2-3-4-5            -17   -22-E}
+% {S-2-3-4-5-6-7-8-10-12-17-18-22-E}
+
+\item \liJavaCode{isWortpalindrom(new char[] { 'a' })}:\\
+\p{S-2-3-4-5            -17-18-22-E}
+% {S-2-3-4-5-6-7-8-10-12-17-18-22-E}
+
+\end{itemize}
+
+%%
+%
+%%
+
+\item[Grenzpfade (boundary paths, boundary test)]
+
+Für Schleifen fester Lauflänge ist diese Testfallgruppe leer.
+
+\item \liJavaCode{isWortpalindrom(new char[] { 'a', 'a' })}:\\
+\p{S-2-3-4-5-6-7-8-10-7-22-E}
+
+\item \liJavaCode{isWortpalindrom(new char[] { 'a', 'b' })}:\\
+\p{S-2-3-4-5-6-7-8-10-12-22-E}
+
+%%
+%
+%%
+
+\item[Innere Pfade (interior test)] \strut
+
+\begin{itemize}
+\item \liJavaCode{isWortpalindrom(new char[] { 'a', 'a', 'a', 'a' })}:\\
+\p{S-2-3-4-5-6- 7-8-10- 7-8-10- 7-22-E}
+
+\item \liJavaCode{isWortpalindrom(new char[] { 'a', 'b', 'a', 'a' })}:\\
+\p{S-2-3-4-5-6- 7-8-10- 7-8-10- 12-22-E}
+
+\end{itemize}
+\end{description}
+\end{liAntwort}
+
 %%
 %
 %%
@@ -131,23 +189,27 @@ möglicher Pfade ohne Beschränkung) als Test-Kriterium gewählt werden?
 Begründen Sie.
 
 \begin{liAntwort}
-Nein. Der Pfad von Konten \k{17} zu Knoten \k{22} wird nie beschritten,
-d. h. wird Zeile 17 betreten, wird auch immer die bedingte Anweisung in
-Zeile 18 ausgeführt.
 
-Statt
+% Stimmt nicht: Leeres Array
+% Nein. Der Pfad von Konten \k{17} zu Knoten \k{22} wird nie beschritten,
+% d. h. wird Zeile 17 betreten, wird auch immer die bedingte Anweisung in
+% Zeile 18 ausgeführt.
 
-\begin{minted}{java}
-if (laenge == 1) {
-  resultat = true;
-}
-\end{minted}
+% Statt
 
-könnte auch nur so geschrieben werden:
+% \begin{minted}{java}
+% if (laenge == 1) {
+%   resultat = true;
+% }
+% \end{minted}
 
-\begin{minted}{java}
-resultat = true;
-\end{minted}
+% könnte auch nur so geschrieben werden:
+
+% \begin{minted}{java}
+% resultat = true;
+% \end{minted}
+
+Kante 7 nach 22
 \end{liAntwort}
 
 \end{enumerate}
