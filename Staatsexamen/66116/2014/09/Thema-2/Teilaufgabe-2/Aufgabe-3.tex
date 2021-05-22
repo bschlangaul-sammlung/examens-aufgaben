@@ -11,18 +11,18 @@
 }
 
 Im Folgenden ist ein Algorithmus angegeben, der für eine positive Zahl
-\liJavaCode{until} die Summe aller Zahlen bildet, die kleiner als \liJavaCode{until}
-und Vielfache von 4 oder 6 sind. Für nicht positive Zahlen soll 0
-zurückgegeben werden. Der Algorithmus soll also folgender Spezifikation
-genügen:
-\footcite{sosy:ab:7}
+\liJavaCode{until} die Summe aller Zahlen bildet, die kleiner als
+\liJavaCode{until} und Vielfache von $4$ oder $6$ sind. Für nicht
+positive Zahlen soll $0$ zurückgegeben werden. Der Algorithmus soll also
+folgender Spezifikation genügen:
+\footcite[Aufgabe 2: Kontrollflussorientiertes Testen]{sosy:ab:7}
 
 \bigskip
 
 {\footnotesize
 \noindent
 $\texttt{until} > 0 \Rightarrow \texttt{specialSums(until)} =
-\sum \{y | 0 < y < \texttt{until} \land (y\%4 = 0 \lor y\%6 = 0)\}$
+\sum \{y \, | \, 0 < y < \texttt{until} \land (y\%4 = 0 \lor y\%6 = 0)\}$
 
 \noindent
 $\texttt{until} \leq 0 \Rightarrow \texttt{specialSums(until)} = 0$
@@ -50,17 +50,17 @@ geändert würde.
 % (a)
 %%
 
-  % public static long specialSums(int until) {
-  %   long sum = 0; // 0
-  %   if (until > 0) { // 1
-  %     for (int i = 1; i <= until; i++) { // 2 // 5
-  %       if (i % 4 == 0 || i % 6 == 0) { // 3
-  %         sum += i; // 4
-  %       }
-  %     }
-  %   }
-  %   return sum; // 6
-  % }
+% public static long specialSums(int until) {
+%   long sum = 0; // 0
+%   if (until > 0) { // 1
+%     for (int i = 1; i <= until; i++) { // 2 // 5
+%       if (i % 4 == 0 || i % 6 == 0) { // 3
+%         sum += i; // 4
+%       }
+%     }
+%   }
+%   return sum; // 6
+% }
 
 \item Zeichnen Sie das zum Programm gehörige Ablaufdiagramm.
 \index{Kontrollflussgraph}
