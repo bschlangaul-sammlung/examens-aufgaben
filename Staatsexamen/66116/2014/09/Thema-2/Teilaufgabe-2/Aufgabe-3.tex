@@ -2,6 +2,7 @@
 \liLadePakete{mathe,syntax,kontrollflussgraph}
 \begin{document}
 \let\c=\liKontrollCode
+\let\b=\liBedingung
 
 \liAufgabenTitel{Methode „specialSums()“}
 
@@ -31,7 +32,7 @@ $\texttt{until} \leq 0 \Rightarrow \texttt{specialSums(until)} = 0$
 \bigskip\noindent
 wobei $\%$ den Modulo-Operator bezeichnet.
 
-\liJavaDatei[firstline=4,lastline=14]{aufgaben/sosy/ab_7/Aufgabe2}
+\liJavaExamen[firstline=4,lastline=14]{66116}{2014}{09}{SpecialSum}
 
 \noindent
 Beachten Sie, dass der Algorithmus nicht der Spezifikation genügt. Der
@@ -67,20 +68,20 @@ geändert würde.
 
 \begin{liAntwort}
 \begin{liKontrollflussgraph}[xscale=1,yscale=-1.5]
-\node[knoten,pin=\c{long sum = 0;}] at (0,0.5) (0) {0};
-\node[knoten,pin=\c{if (until > 0)}] at (0,1) (1) {1};
-\node[knoten,pin=\c{for (int i = 1; i <= until; i++)}] at (1,2) (2) {2};
-\node[knoten,pin=\c{if (i \% 4 == 0 || i \% 6 == 0)}] at (2,3) (3) {3};
-\node[knoten,pin=\c{sum += i;}] at (3,4) (4) {4};
-\node[knoten,pin=\c{i++}] at (2,5) (5) {5};
-\node[knoten,pin=\c{return sum;}] at (0,5.5) (6) {6};
+\node[pin=\c{long sum = 0;}] at (0,0.5) (0) {0};
+\node[pin=\c{if (until > 0)}] at (0,1) (1) {1};
+\node[pin=\c{for (int i = 1; i <= until; i++)}] at (1,2) (2) {2};
+\node[pin=\c{if (i \% 4 == 0 || i \% 6 == 0)}] at (2,3) (3) {3};
+\node[pin=\c{sum += i;}] at (3,4) (4) {4};
+\node[pin=\c{i++}] at (2,5) (5) {5};
+\node[pin=\c{return sum;}] at (0,5.5) (6) {6};
 
 \path (0) -- (1);
-\path[wahr] (1) -- (2) \liBedingung{above right}{until > 0};
-\path[falsch] (1) -- (6) \liBedingung{left}{until <= 0};
-\path[wahr] (2) -- (3) \liBedingung{above right}{i <= until};
+\path[wahr] (1) -- (2) \b{right}{until > 0};
+\path[falsch] (1) -- (6) \b{left}{until <= 0};
+\path[wahr] (2) -- (3) \b{right}{i <= until};
 \path[falsch] (2) -- (6);
-\path[wahr] (3) -- (4) \liBedingung{above right}{i \% 4 == 0 || i \% 6 == 0};
+\path[wahr] (3) -- (4) \b{right}{i \% 4 == 0 || i \% 6 == 0};
 \path[falsch] (3) -- (5);
 \path (4) -- (5);
 \path (5) -- (2);
@@ -116,15 +117,15 @@ Betrachte den Testfall $\{(0, 0), (5, 4)\}$.
 \begin{description}
 \item[erste if-Bedingung]
 Das erste Tupel mit $\text{until} = 0$ stellt sicher, dass
-die erste if-Bedingung \liJavaCode{false} wird.
+die erste \liJavaCode{if}-Bedingung \liJavaCode{false} wird.
 
 \item[Bedingung der for-Schleife]
-Für die zweite Eingabe $\text{until} = 5$ werden für $i$ die Werte 1, 2,
-3, 4, 5, 6 angenommen. Wobei für $i = 6$ die Bedingung der for-Schleife
+Für die zweite Eingabe $\text{until} = 5$ werden für $i$ die Werte $1, 2,
+3, 4, 5, 6$ angenommen. Wobei für $i = 6$ die Bedingung der for-Schleife
 \liJavaCode{false} ist.
 
-\item[Binnere if-Bedingung]
-Für i = 1, 2, 3, 5 wird die innere if-Bedingung jeweils \liJavaCode{false},
+\item[Innere if-Bedingung]
+Für $i = 1, 2, 3, 5$ wird die innere if-Bedingung jeweils \liJavaCode{false},
 für $i = 4$ wird sie \liJavaCode{true}.
 \end{description}
 
