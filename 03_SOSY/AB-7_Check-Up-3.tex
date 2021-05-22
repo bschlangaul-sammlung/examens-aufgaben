@@ -31,17 +31,17 @@ Gegeben Sei folgende Methode und ihr Kontrollflussgraph:
 \node[knoten] at (-2,6) (nE) {nE};
 
 \draw[->] (nS) -- (n1);
-\draw[->,dashed] (n1) -- (n2) \KanteFalsch{right};
+\draw[->,dashed] (n1) -- (n2) \liBedingungFalsch{right};
 \draw[->] (n2) -- (n3);
-\draw[->,dashed] (n3) -- (n4) \KanteFalsch{below};
-\draw[->] (n3) -- (n5) \KanteWahr{right};
-\draw[->,dashed] (n5) -- (n6) \KanteFalsch{right};
-\draw[->] (n5) -- (n7) \KanteWahr{right};
-\draw[->] (n6) -- (n8) \KanteWahr{right};
+\draw[->,dashed] (n3) -- (n4) \liBedingungFalsch{below};
+\draw[->] (n3) -- (n5) \liBedingungWahr{right};
+\draw[->,dashed] (n5) -- (n6) \liBedingungFalsch{right};
+\draw[->] (n5) -- (n7) \liBedingungWahr{right};
+\draw[->] (n6) -- (n8) \liBedingungWahr{right};
 \draw[->] (n7) -- (n8);
-\draw[->,dashed] (n6) -- (nE) \KanteFalsch{right};
+\draw[->,dashed] (n6) -- (nE) \liBedingungFalsch{right};
 \draw[->] (n4) -- (nE);
-\draw[->] (n1) -- (-2,1) -- (nE) \KanteWahr{left};
+\draw[->] (n1) -- (-2,1) -- (nE) \liBedingungWahr{left};
 \draw[->] (n8) -- (2,6) -- (2,3) -- (n3);
 \end{tikzpicture}
 \end{minipage}
@@ -99,17 +99,17 @@ Fleißaufgabe:
 \node[knoten] at (-2,6) (nE) {nE};
 
 \draw[->] (nS) -- (n1);
-\draw[->,dashed] (n1) -- (n2) \KanteFalsch{right};
+\draw[->,dashed] (n1) -- (n2) \liBedingungFalsch{right};
 \draw[->] (n2) -- (n3);
-\draw[->,dashed] (n3) -- (n4) \KanteFalsch{below};
-\draw[->] (n3) -- (n5) \KanteWahr{right};
-\draw[->,dashed] (n5) -- (n6) \KanteFalsch{right};
-\draw[->] (n5) -- (n7) \KanteWahr{right};
-\draw[->] (n6) -- (n8) \KanteWahr{right};
+\draw[->,dashed] (n3) -- (n4) \liBedingungFalsch{below};
+\draw[->] (n3) -- (n5) \liBedingungWahr{right};
+\draw[->,dashed] (n5) -- (n6) \liBedingungFalsch{right};
+\draw[->] (n5) -- (n7) \liBedingungWahr{right};
+\draw[->] (n6) -- (n8) \liBedingungWahr{right};
 \draw[->] (n7) -- (n8);
-\draw[->,dashed] (n6) -- (nE) \KanteFalsch{right};
+\draw[->,dashed] (n6) -- (nE) \liBedingungFalsch{right};
 \draw[->] (n4) -- (nE);
-\draw[->] (n1) -- (-2,1) -- (nE) \KanteWahr{left};
+\draw[->] (n1) -- (-2,1) -- (nE) \liBedingungWahr{left};
 \draw[->] (n8) -- (2,6) -- (2,3) -- (n3);
 \end{tikzpicture}
 \end{liAntwort}

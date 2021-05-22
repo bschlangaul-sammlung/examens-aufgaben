@@ -1,6 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{syntax,mathe,kontrollflussgraph}
 \begin{document}
+\let\c=\liKontrollCode
+
 \liAufgabenTitel{Methode „binToInt()“ und Kontrollflussgraph}
 
 \section{Aufgabe 5 (Check-Up)\footcite{sosy:ab:7}}
@@ -15,32 +17,32 @@ Gegeben Sei folgende Methode und ihr Kontrollflussgraph:
 \end{minipage}
 %
 \begin{minipage}{4cm}
-\begin{tikzpicture}[li kontrollfluss,xscale=1,yscale=-1.2]
-\node[knoten] at (0,0) (nS) {nS};
-\node[knoten] at (0,1) (n1) {n1};
-\node[knoten] at (0,2) (n2) {n2};
-\node[knoten] at (0,3) (n3) {n3};
-\node[knoten] at (-1.5,3) (n4) {n4};
-\node[knoten] at (0,4) (n5) {n5};
-\node[knoten] at (-1,5) (n6) {n6};
-\node[knoten] at (1,5) (n7) {n7};
-\node[knoten] at (0,6) (n8) {n8};
-\node[knoten] at (-2,6) (nE) {nE};
+\begin{liKontrollflussgraph}[xscale=1,yscale=-1.2]
+\node[knoten] at (0,0) (S) {S};
+\node[knoten] at (0,1) (1) {1};
+\node[knoten] at (0,2) (2) {2};
+\node[knoten] at (0,3) (3) {3};
+\node[knoten] at (-1.5,3) (4) {4};
+\node[knoten] at (0,4) (5) {5};
+\node[knoten] at (-1,5) (6) {6};
+\node[knoten] at (1,5) (7) {7};
+\node[knoten] at (0,6) (8) {8};
+\node[knoten] at (-2,6) (E) {E};
 
-\draw[->] (nS) -- (n1);
-\draw[->,dashed] (n1) -- (n2) \KanteFalsch{right};
-\draw[->] (n2) -- (n3);
-\draw[->,dashed] (n3) -- (n4) \KanteFalsch{below};
-\draw[->] (n3) -- (n5) \KanteWahr{right};
-\draw[->,dashed] (n5) -- (n6) \KanteFalsch{right};
-\draw[->] (n5) -- (n7) \KanteWahr{right};
-\draw[->] (n6) -- (n8) \KanteWahr{right};
-\draw[->] (n7) -- (n8);
-\draw[->,dashed] (n6) -- (nE) \KanteFalsch{right};
-\draw[->] (n4) -- (nE);
-\draw[->] (n1) -- (-2,1) -- (nE) \KanteWahr{left};
-\draw[->] (n8) -- (2,6) -- (2,3) -- (n3);
-\end{tikzpicture}
+\path (S) -- (1);
+\path[falsch] (1) -- (2) \liBedingungFalsch{right};
+\path (2) -- (3);
+\path[falsch] (3) -- (4) \liBedingungFalsch{below};
+\path (3) -- (5) \liBedingungWahr{right};
+\path[falsch] (5) -- (6) \liBedingungFalsch{right};
+\path (5) -- (7) \liBedingungWahr{right};
+\path (6) -- (8) \liBedingungWahr{right};
+\path (7) -- (8);
+\path[falsch] (6) -- (E) \liBedingungFalsch{right};
+\path (4) -- (E);
+\path (1) -- (-2,1) -- (E) \liBedingungWahr{left};
+\path (8) -- (2,6) -- (2,3) -- (3);
+\end{liKontrollflussgraph}
 \end{minipage}
 
 \begin{enumerate}
@@ -53,58 +55,58 @@ Gegeben Sei folgende Methode und ihr Kontrollflussgraph:
 Kontrollflussgraphen an, die zum Erzielen einer vollständigen
 
 \begin{liAntwort}
-\begin{tikzpicture}[li kontrollfluss,xscale=1,yscale=-1.2]
-\node[knoten] at (0,0) (nS) {nS};
+\begin{liKontrollflussgraph}[xscale=1,yscale=-1.2]
+\node[knoten] at (0,0) (S) {S};
 
 \node[knoten,pin={
   \liJavaCode{if (bin.isEmpty())}
-}] at (0,1) (n1) {n1};
+}] at (0,1) (1) {1};
 
 \node[knoten,pin={
   \liJavaCode{int place; int length}
-}] at (0,2) (n2) {n2};
+}] at (0,2) (2) {2};
 
 \node[knoten,pin={
   [pin distance=2cm]
   for-Bedingung \liJavaCode{i >= 0}}
-] at (0,3) (n3) {n3};
+] at (0,3) (3) {3};
 
 \node[knoten,pin={
   180:\liJavaCode{return value;}
-}] at (-1.5,3) (n4) {n4};
+}] at (-1.5,3) (4) {4};
 
 \node[knoten,pin={
   \liJavaCode{if (ch = '1')}
-}] at (0,4) (n5) {n5};
+}] at (0,4) (5) {5};
 
 \node[knoten,pin={
   180:\liJavaCode{else if (ch = '0')}
-}] at (-1,5) (n6) {n6};
+}] at (-1,5) (6) {6};
 
 \node[knoten,pin={
   \liJavaCode{value += place;}
-}] at (1,5) (n7) {n7};
+}] at (1,5) (7) {7};
 
 \node[knoten,pin={
   270:\liJavaCode{place *= 2; i--;}}
-] at (0,6) (n8) {n8};
+] at (0,6) (8) {8};
 
-\node[knoten] at (-2,6) (nE) {nE};
+\node[knoten] at (-2,6) (E) {E};
 
-\draw[->] (nS) -- (n1);
-\draw[->,dashed] (n1) -- (n2) \KanteFalsch{right};
-\draw[->] (n2) -- (n3);
-\draw[->,dashed] (n3) -- (n4) \KanteFalsch{below};
-\draw[->] (n3) -- (n5) \KanteWahr{right};
-\draw[->,dashed] (n5) -- (n6) \KanteFalsch{right};
-\draw[->] (n5) -- (n7) \KanteWahr{right};
-\draw[->] (n6) -- (n8) \KanteWahr{right};
-\draw[->] (n7) -- (n8);
-\draw[->,dashed] (n6) -- (nE) \KanteFalsch{right};
-\draw[->] (n4) -- (nE);
-\draw[->] (n1) -- (-2,1) -- (nE) \KanteWahr{left};
-\draw[->] (n8) -- (2,6) -- (2,3) -- (n3);
-\end{tikzpicture}
+\path (S) -- (1);
+\path[falsch] (1) -- (2) \liBedingungFalsch{right};
+\path (2) -- (3);
+\path[falsch] (3) -- (4) \liBedingungFalsch{below};
+\path (3) -- (5) \liBedingungWahr{right};
+\path[falsch] (5) -- (6) \liBedingungFalsch{right};
+\path (5) -- (7) \liBedingungWahr{right};
+\path (6) -- (8) \liBedingungWahr{right};
+\path (7) -- (8);
+\path[falsch] (6) -- (E) \liBedingungFalsch{right};
+\path (4) -- (E);
+\path (1) -- (-2,1) -- (E) \liBedingungWahr{left};
+\path (8) -- (2,6) -- (2,3) -- (3);
+\end{liKontrollflussgraph}
 \end{liAntwort}
 
 \def\r#1{\textcolor{red}{#1}}
@@ -298,50 +300,50 @@ Nein, da \textbf{p2} nicht überdeckbar ist.
 \item Geben Sie zu jedem Knoten die jeweilige
 Datenfluss-Annotation\index{Datenfluss-annotierter Kontrollflussgraph}
 (\texttt{defs} bzw. \texttt{uses}) für jede betroffene Variable in der
-zeitlichen Reihenfolge ihres Auftretens zur Laufzeit an.
+zeitlichen Reihenfolge ihres AuftreteS zur Laufzeit an.
 
 \begin{liAntwort}
-\begin{tikzpicture}[li kontrollfluss,xscale=1,yscale=-1.2]
-\node[knoten] at (0,0) (nS) {nS};
-\node[knoten] at (0,1) (n1) {n1};
-\node[knoten] at (0,2) (n2) {n2};
-\node[knoten] at (0,3) (n3) {n3};
-\node[knoten] at (-1.5,3) (n4) {n4};
-\node[knoten] at (0,4) (n5) {n5};
-\node[knoten] at (-1,5) (n6) {n6};
-\node[knoten] at (1,5) (n7) {n7};
-\node[knoten] at (0,6) (n8) {n8};
-\node[knoten] at (-2,6) (nE) {nE};
+\begin{liKontrollflussgraph}[xscale=1,yscale=-1.2]
+\node[knoten] at (0,0) (S) {S};
+\node[knoten] at (0,1) (1) {1};
+\node[knoten] at (0,2) (2) {2};
+\node[knoten] at (0,3) (3) {3};
+\node[knoten] at (-1.5,3) (4) {4};
+\node[knoten] at (0,4) (5) {5};
+\node[knoten] at (-1,5) (6) {6};
+\node[knoten] at (1,5) (7) {7};
+\node[knoten] at (0,6) (8) {8};
+\node[knoten] at (-2,6) (E) {E};
 
-\draw[->] (nS) -- (n1);
-\draw[->,dashed] (n1) -- node[name=n1n2]{} (n2);
-\draw[->] (n2) -- (n3);
-\draw[->,dashed] (n3) -- node[name=n3n4]{} (n4);
-\draw[->] (n3) -- node[name=n3n5]{} (n5);
-\draw[->,dashed] (n5) -- node[name=n5n6]{} (n6);
-\draw[->] (n5) -- node[name=n5n7]{} (n7);
-\draw[->] (n6) -- node[name=n6n8]{} (n8);
-\draw[->] (n7) -- (n8);
-\draw[->,dashed] (n6) -- node[name=n6nE]{} (nE);
-\draw[->] (n4) -- (nE);
-\draw[->] (n1) -- node[name=n1nE]{} (-2,1) -- (nE);
-\draw[->] (n8) -- (1.5,6) -- (1.5,3) -- (n3);
+\path (S) -- (1);
+\path[falsch] (1) -- node[name=12]{} (2);
+\path (2) -- (3);
+\path[falsch] (3) -- node[name=34]{} (4);
+\path (3) -- node[name=35]{} (5);
+\path[falsch] (5) -- node[name=56]{} (6);
+\path (5) -- node[name=57]{} (7);
+\path (6) -- node[name=68]{} (8);
+\path (7) -- (8);
+\path[falsch] (6) -- node[name=6E]{} (E);
+\path (4) -- (E);
+\path (1) -- node[name=1E]{} (-2,1) -- (E);
+\path (8) -- (1.5,6) -- (1.5,3) -- (3);
 
-\node[usebox] at (2,0) {def(bin)} edge[dashed] (nS);
-\node[usebox] at (2,2) {def(place), def(value)\\def(length), c-use(bin)} edge[dashed] (n2);
-\node[usebox] at (2,3) {def(i), c-use(length)} edge[dashed] (n3);
-\node[usebox,anchor=east] at (-2.5,3) {c-use(value)} edge[dashed] (n4);
-\node[usebox] at (2,4) {def(ch), c-use(bin)} edge[dashed] (n5);
-\node[usebox] at (2,6) {def(value), c-use(place)} edge[dashed] (n7);
-\node[usebox,anchor=north] at (0,7) {def(place), c-use(place)} edge[dashed] (n8);
-\node[usebox,anchor=north] at (-3.5,7) {c-use(value)} edge[dashed] (nE);
+\node[usebox] at (2,0) {def(bin)} edge[dashed] (S);
+\node[usebox] at (2,2) {def(place), def(value)\\def(length), c-use(bin)} edge[dashed] (2);
+\node[usebox] at (2,3) {def(i), c-use(length)} edge[dashed] (3);
+\node[usebox,anchor=east] at (-2.5,3) {c-use(value)} edge[dashed] (4);
+\node[usebox] at (2,4) {def(ch), c-use(bin)} edge[dashed] (5);
+\node[usebox] at (2,6) {def(value), c-use(place)} edge[dashed] (7);
+\node[usebox,anchor=north] at (0,7) {def(place), c-use(place)} edge[dashed] (8);
+\node[usebox,anchor=north] at (-3.5,7) {c-use(value)} edge[dashed] (E);
 
-\node[usebox] at (-3,0) {p-use(bin)} edge[dashed] (n1n2.center) edge[dashed] (n1nE.center);
-\node[usebox,anchor=west] at (-4,1) {p-use(length)} edge[dashed] (n3n4.center) edge[dashed] (n3n5.center);
-\node[usebox,anchor=west] at (2,4.8) {p-use(ch)} edge[dashed] (n5n6.center) edge[dashed] (n5n7.center);
-\node[usebox] at (-4.5,4.5) {p-use(ch)} edge[dashed] (n6n8.center) edge[dashed] (n6nE.center);
+\node[usebox] at (-3,0) {p-use(bin)} edge[dashed] (12.center) edge[dashed] (1E.center);
+\node[usebox,anchor=west] at (-4,1) {p-use(length)} edge[dashed] (34.center) edge[dashed] (35.center);
+\node[usebox,anchor=west] at (2,4.8) {p-use(ch)} edge[dashed] (56.center) edge[dashed] (57.center);
+\node[usebox] at (-4.5,4.5) {p-use(ch)} edge[dashed] (68.center) edge[dashed] (6E.center);
 
-\end{tikzpicture}
+\end{liKontrollflussgraph}
 \end{liAntwort}
 
 \end{enumerate}

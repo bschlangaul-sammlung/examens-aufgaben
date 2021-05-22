@@ -20,6 +20,7 @@
     },
     bedingung/.style={
       midway,
+      draw=none,
       font=\scriptsize
     },
     knotenbeschriftung/.style={
@@ -33,6 +34,16 @@
     },
     falsch/.style={
       dashed
+    },
+    every node/.style={
+      circle,
+      draw,
+    },
+    every edge/.append style={
+      every node/.style={
+        draw=none,
+        bedingung,
+      }
     },
     every path/.style={
       draw,
@@ -68,9 +79,21 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\bedingung}
+% \begin{macro}{\liBedingung}
 %    \begin{macrocode}
-\def\bedingung#1#2{node[bedingung,#1]{[\texttt{#2}]}}
+\def\liBedingung#1#2{node[bedingung,#1]{[\texttt{#2}]}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liBedingungWahr}
+%    \begin{macrocode}
+\def\liBedingungWahr#1{node[bedingung,#1]{\texttt{[true]}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liBedingungFalsch}
+%    \begin{macrocode}
+\def\liBedingungFalsch#1{node[bedingung,#1]{\texttt{[false]}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -78,18 +101,6 @@
 % \liLet{c}{liKontrollCode}
 %    \begin{macrocode}
 \def\liKontrollCode#1{{\tiny\texttt{\textcolor{gray}{#1}}}}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\KanteWahr}
-%    \begin{macrocode}
-\def\KanteWahr#1{node[bedingung,#1]{\texttt{true}}}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\KanteFalsch}
-%    \begin{macrocode}
-\def\KanteFalsch#1{node[bedingung,#1]{\texttt{false}}}
 %    \end{macrocode}
 % \end{macro}
 

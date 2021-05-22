@@ -76,11 +76,11 @@ geändert würde.
 \node[knoten,pin=\c{return sum;}] at (0,5.5) (6) {6};
 
 \path (0) -- (1);
-\path[wahr] (1) -- (2) \bedingung{above right}{until > 0};
-\path[falsch] (1) -- (6) \bedingung{left}{until <= 0};
-\path[wahr] (2) -- (3) \bedingung{above right}{i <= until};
+\path[wahr] (1) -- (2) \liBedingung{above right}{until > 0};
+\path[falsch] (1) -- (6) \liBedingung{left}{until <= 0};
+\path[wahr] (2) -- (3) \liBedingung{above right}{i <= until};
 \path[falsch] (2) -- (6);
-\path[wahr] (3) -- (4) \bedingung{above right}{i \% 4 == 0 || i \% 6 == 0};
+\path[wahr] (3) -- (4) \liBedingung{above right}{i \% 4 == 0 || i \% 6 == 0};
 \path[falsch] (3) -- (5);
 \path (4) -- (5);
 \path (5) -- (2);
