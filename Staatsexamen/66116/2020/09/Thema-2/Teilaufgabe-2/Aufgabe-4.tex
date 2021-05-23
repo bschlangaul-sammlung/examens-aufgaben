@@ -1,0 +1,89 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{normalformen}
+\begin{document}
+\let\FA=\liFunktionaleAbhaengigkeiten
+
+\liAufgabenTitel{(Entwurfstheorie)}
+\section{Aufgabe 4
+\index{Normalformen}
+\footcite{66116:2020:09}}
+
+Gegeben ist das folgende Relationenschema R in erster Normalform.
+
+R:{[A,B, C, D, E, F]}
+
+Für R gelte folgende Menge FD funktionaler Abhängigkeiten:
+
+\FA{
+  AC -> DE;
+  ACE -> B;
+  E -> B;
+  D -> F;
+  AC -> F;
+  AD -> F;
+}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item R mit FD hat genau einen Kandidatenschlüssel X. Bestimmen Sie
+diesen und begründen Sie Ihre Antwort.
+
+\begin{liAntwort}
+AC ist der Kandidatenschlüssel. AC kommt in keiner rechten Seite der
+Funktionalen Abhängigkeiten vor.
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Berechnen Sie Schritt für Schritt die Hülle $X^+$ von $X := \{ K
+\}$.
+
+\begin{liAntwort}
+\begin{enumerate}
+\item $AC \cup DE$
+\item $ACDE \cup B$ (ACE -> B)
+\item $ACDEB$ (E -> B)
+\item $ACDEB \cup F$ (D -> F)
+\item $ACDEBF$ (AC -> F)
+\item $ACDEBF$ (AD -> F)
+\end{enumerate}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Nennen Sie alle primen und nicht-primen Attribute.
+
+\begin{liAntowrt}
+prim: AC
+
+nicht-prim: BDEF
+\end{liAntowrt}
+
+%%
+% d)
+%%
+
+\item Geben Sie die höchste Normalform an, in der sich die Relation befindet. Begründen Sie.
+
+%%
+% e)
+%%
+
+\item Gegeben ist die folgende Zerlegung von R:
+
+R1ı (A,C,D,E)
+R2 (B,E)
+R3 (D, F)
+
+Weisen Sie nach, dass es sich um eine verlustfreie Zerlegung handelt.
+
+\end{enumerate}
+\end{document}
