@@ -12,14 +12,12 @@
 
 Gegeben sei das Relationenschema \liRelation{A, B, C, D, E, G} mit
 
-\begin{multline}
-F = \{ \\
-  E \rightarrow D, \\
-  C \rightarrow B, \\
-  CE \rightarrow G, \\
-  B \rightarrow A \\
-\}
-\end{multline}
+\FA{
+  E -> D;
+  C -> B;
+  CE -> G;
+  B -> A;
+}
 
 \begin{enumerate}
 
@@ -31,18 +29,7 @@ F = \{ \\
 \index{Schlüsselkandidat}
 
 \begin{liAntwort}
-A, G, D kommen auf keiner linken Seite vor
-
-$\ah{F, \m{C, E}} = R$
-
-$\ah{F, \m{C}} = \m{B} != R$
-
-$\ah{F, \m{E}} = \m{E, D} != R$
-\end{liAntwort}
-
-\begin{liAntwort}
-
-$C$ und $E$ kommen auf keiner rechten Seite der FDs aus $F$ vor, d.h.
+$C$ und $E$ kommen auf keiner rechten Seite der FDs aus $F$ vor, d.\,h.
 $C$ und $E$ müssen Teil jedes Schlüsselkandidaten sein.
 
 Außerdem gilt: $\ah{F, \m{C, E}} = \m{A, B, C, D, E, G} = R$
@@ -53,7 +40,7 @@ minimal, da beide Attribute Teil jedes SK sein müssen.
 $\Rightarrow$ $\m{C, E}$ ist damit der einzige Schlüsselkandidat von $R$
 (da kein SK ohne $C$ und $E$ möglich ist).
 
-Anmerkung:
+\liPseudoUeberschrift{Anmerkung:}
 
 \begin{itemize}
 \item Man könnte hier auch einen Algorithmus zur Bestimmung der
@@ -77,12 +64,6 @@ Superschlüssel!
 \index{Zweite Normalform}
 
 \begin{liAntwort}
-Ist nicht in der 2NF, denn $D$ hängt von $E$ ab, also von einer
-echten Teilmenge des Schlüsselkandidaten $\m{C, E}$. Das gleiche gilt
-für die FD \fa{C -> B}.
-\end{liAntwort}
-
-\begin{liAntwort}
 $R$ ist nicht in 2NF, denn:
 
 Betrachte \fa{E -> D}: $D$ ist ein Nicht-Schlüsselattribut und $E$
@@ -92,7 +73,7 @@ Ebenso ist $B$ nicht voll funktional abhängig vom Schlüsselkandidaten,
 sondern nur von einer echten Teilmenge des Schlüsselkandidaten, nämlich
 $C$.
 
-Anmerkung:
+\liPseudoUeberschrift{Anmerkung:}
 
 \begin{itemize}
 \item Ob alle Attributwerte atomar sind, können wir in einem abstrakten
@@ -107,9 +88,10 @@ Schlüsselattribut) und einem Nicht-Schlüsselattribut gibt.
 
 \item Um der 2NF zu genügen, müsste in folgenden Relationen aufgeteilt
 werden:
-$R1(C, E, G)$,
-$R2(C, B, A)$,
-$R3(E, D)$
+
+\liRelation[$R_1$]{C, E, G}\\
+\liRelation[$R_2$]{C, B, A}\\
+\liRelation[$R_2$]{E, D}
 \end{itemize}
 
 \end{liAntwort}
@@ -120,14 +102,13 @@ $R3(E, D)$
 
 \item Ist $F$ minimal?
 \index{Kanonische Überdeckung}
-\begin{multline}
-F = \{ \\
-  E \rightarrow D, \\
-  C \rightarrow B, \\
-  CE \rightarrow G, \\
-  B \rightarrow A \\
-\}
-\end{multline}
+
+\FA{
+  E -> D;
+  C -> B;
+  CE -> G;
+  B -> A;
+}
 
 \begin{liAntwort}
 Kanonische Überdeckung
@@ -157,8 +138,8 @@ Attributmenge auf den linken Seiten der FDs sind bereits bis auf
 \fa{C, E -> G} einelementig. Bei \fa{C, E -> G} ist \m{CE} der
 Schlüsselkandidat, also kann kein redundantes Attribut vorliegen.
 
-\item Eliminierung redundanter Attribute auf der rechten Seite (hier müssen auch alle
-einelementigen FA’s betrachtet werden)
+\item Eliminierung redundanter Attribute auf der rechten Seite (hier
+müssen auch alle einelementigen FA’s betrachtet werden)
 
 \begin{itemize}
 \item \fa{E -> D}: $\ah{F - \m{E \rightarrow D}, \m{E}} = \m{E}$, d.h.
