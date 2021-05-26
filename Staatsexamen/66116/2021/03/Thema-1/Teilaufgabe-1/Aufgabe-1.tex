@@ -1,0 +1,62 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{private, package-private und protected}
+\section{Aufgabe 1
+\index{Sichtbarkeit}
+\footcite{66116:2021:03}}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Definieren Sie die Bedeutung der Sichtbarkeiten \emph{private},
+\emph{package-private} und \emph{protected} von Feldern in Java-Klassen.
+Erklären Sie diese kurz (je ein Satz).
+
+\begin{liAntwort}
+\begin{description}
+\item[private]
+Das Feld ist innerhalb einer Klasse zugreifbar.
+
+\item[package-private]
+Das Feld ist innerhalb der Klassen eines Packets zugreifbar.
+
+\item[protected]
+Das Feld ist in allen Subklassen und in der eigenen Klasse zugreifbar.
+
+\end{description}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Benennen Sie jeweils einen Grund für den Einsatz der
+Sichtbarkeiten \emph{private}, \emph{package-private} und
+\emph{protected} von Feldern in Java-Klassen.
+
+\begin{liAntwort}
+\begin{description}
+\item[private]
+
+Datenkapselung, Verbergen der internen Implementation. So kann die
+interne Implementation geändert werden, ohne dass die öffentlichen
+Schnittstellen sich ändern.
+
+\item[package-private]
+
+Um die Felder zwar innerhalb deines Packets für alle Klassen zugänglich
+zu machen aber nicht außerhalb, z.\,B. in einem größeren Projekt.
+
+\item[protected]
+
+Wenn eine Klasse vererbt werden soll, z.\,B. abstrakte Klassen.
+
+\end{description}
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}

@@ -1,0 +1,42 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{}
+\section{Aufgabe 2
+\index{}
+\footcite{66116:2021:03}}
+
+Lesen Sie die folgenden Beispielcodes gründlich. Identifizieren Sie für
+jeden Beispielcode den jeweiligen wesentlichen Verstoß gegen die
+Prinzipien guter objektorientierter Programmierung. Benennen und
+erklären Sie jeweils den Verstoß (Fehler) in einem Satz und erläutern
+Sie für jeden Beispielcode, welche Probleme aus dem jeweiligen Fehler
+resultieren können, ebenfalls in einem Satz.
+
+\begin{enumerate}
+\item \liJavaExamen{66116}{2021}{03}{Rectangle}
+
+\begin{liAntwort}
+Es sollte die Methode computeArea in der Klasse Rectangel implementiert
+werden.
+\end{liAntwort}
+
+\item \liJavaExamen{66116}{2021}{03}{CalculateSpeed}
+
+\begin{liAntwort}
+Klassen sollten nach Objekten modelliert werden und nicht nach
+Tätigkeiten (berechne Geschwindigkeit) Besser wäre der Name
+SpeedCalculator gewesen. Außerdem sind die beiden Attribute kilometer
+und miutes in der Main Methode so nicht ansprechbar, weil sie nicht
+statisch sind.
+\end{liAntwort}
+
+\item \liJavaExamen{66116}{2021}{03}{Stack}
+
+\begin{liAntwort}
+Das Feld stck sollte private sein. So wird die interne Implemtation
+verborgen.
+\end{liAntwort}
+\end{enumerate}
+
+\end{document}
