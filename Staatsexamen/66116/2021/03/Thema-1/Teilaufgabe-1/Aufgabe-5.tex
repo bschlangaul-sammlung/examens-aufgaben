@@ -1,0 +1,80 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\let\j=\liJavaCode
+
+\liAufgabenTitel{MyList Kompositium}
+\section{Aufgabe 5
+\index{Einfach-verkettete Liste}
+\footcite{66116:2021:03}}
+
+Die folgende Abbildung stellt den Entwurf der Implementierung einer
+verketteten Liste dar, welche Integer-Werte als Elemente enthalten kann.
+
+% «interface»
+% MyElement
+
+% cakula®Sumf!: Integer
+% de
+
+% MyList
+
+% geiSumf: Integer
+
+% MyEndElement MyRegularElement
+
+% next
+
+% value: Infeger
+
+Die Klassse \j{MyList} stellt die Methode \j{getSum()} zur Verfügung,
+welche die Summe über alle in einer Liste befindlichen Elemente
+berechnet. Ein Ausschnitt der Implementierung sieht folgendermaßen aus:
+
+Gehen Sie im Folgenden davon aus, dass bereits Methoden existieren,
+welche Elemente in die Liste einfügen können.
+
+\begin{enumerate}
+
+%%
+% a
+%%
+
+\item Implementieren Sie in einer objektorientierten Programmiersprache
+Ihrer Wahl, z.\,B. Java, die Methode \j{calculateSum()} der Klassen
+\j{MyEndElement} und \j{MyRegularElement}, so dass rekursiv die Summe
+der Elemente der Liste berechnet wird. Als Abbruchbedingung darf hierbei
+nicht das Feld \j{MyRegluarElement.next} auf den Wert \j{null} überprüft
+werden.
+
+Hinweis: Gehen Sie davon aus, die Implementierung von \j{MyList}
+garantiert, dass \j{MyRegluarElement.next} niemals den Wert \j{null}
+annimmt, sondern das letzte hinzugefügte \j{MyRegularElement} auf eine
+Instanz der Klasse \j{MyEndElement} verweist. Es gibt immer nur eine
+Instanz der Klasse \j{MyEndElement} in einer Liste.
+
+Hinweis: Achten Sie auf die Angabe einer korrekten Methodensignatur.
+
+\begin{liAntwort}
+\liJavaExamen{66116}{2021}{03}{my_list/MyElement}
+\liJavaExamen{66116}{2021}{03}{my_list/MyEndElement}
+\liJavaExamen{66116}{2021}{03}{my_list/MyList}
+\end{liAntwort}
+
+%%
+% b
+%%
+
+\item Nennen Sie den Namen des Entwurfsmusters, auf welchem das oben
+gegebene Klassendiagramm basiert, und ordnen Sie dieses in eine der
+Kategorien von Entwurfsmustern ein.
+
+Hinweis: Es genügt die Angabe eines Musters, falls Sie mehrere Muster
+identifizieren sollten.
+
+\begin{liAntwort}
+Kompositium (Strukturmuster)
+\end{liAntwort}
+\end{enumerate}
+
+\end{document}

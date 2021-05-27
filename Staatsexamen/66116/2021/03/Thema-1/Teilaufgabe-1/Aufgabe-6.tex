@@ -1,0 +1,62 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{entwurfsmuster}
+\begin{document}
+\liAufgabenTitel{Wissen Erbauer}
+\section{Aufgabe 6
+\index{Erbauer (Builder)}
+\footcite{66116:2021:03}}
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Erläutern Sie den Zweck (Intent) des Erzeugungsmusters Erbauer in
+max. drei Sätzen, ohne dabei auf die technische Umsetzung einzugehen.
+
+\begin{liAntwort}
+Die Erzeugung komplexer Objekte wird vereinfacht, indem der
+Konstruktionsprozess in eine spezielle Klasse verlagert wird. Er wird so
+von der Repräsentation getrennt und kann sehr unterschiedliche
+Repräsentationen zurückliefern.
+\footcite[Seite 29]{eilebrecht}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Erklären Sie, wie das Erzeugungsmuster Erbauer umgesetzt werden
+kann (Implementierung). Die Angabe von Code ist hierbei NICHT notwendig!
+
+%%
+% c)
+%%
+
+\item Nennen Sie jeweils einen Vor- und einen Nachteil des
+Erzeugungsmusters Erbauer im Vergleich zu einer Implementierung ohne
+dieses Muster.
+
+\begin{liAntwort}
+\begin{description}
+\item[Vorteil]
+
+Die Implementierungen der Konstruktion und der Repräsentationen werden
+isoliert. Die Erbauer verstecken ihre interne Repräsentation vor dem
+Direktor.
+
+\item[Nachteil]
+
+Es besteht eine enge Kopplung zwischen Produkt, konkretem Erbauer und
+den am Konstruktionsprozess beteiligten Klassen.\footcite{wiki:erbauer}
+\end{description}
+\end{liAntwort}
+
+\end{enumerate}
+
+\begin{liExkurs}[Erbauer (Builder)]
+\liEntwurfsErbauerUml
+
+\liEntwurfsErbauerAkteure
+\end{liExkurs}
+\end{document}

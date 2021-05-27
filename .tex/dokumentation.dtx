@@ -1213,6 +1213,74 @@ zum Setzen von Entwurfsmuster/Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
+% \subsubsection{Erbauer}
+
+% \begin{macro}{\liEntwurfsErbauerUml}
+% Quelle nach der deutschen Wikipedia
+% \begin{liBeispiel}
+% \liEntwurfsErbauerUml
+% \end{liBeispiel}
+%    \begin{macrocode}
+\def\liEntwurfsErbauerUml{
+  \begin{tikzpicture}
+    \umlsimpleclass[x=7,y=0]{Produkt}{}{}
+    \umlclass[x=4,y=3,type=interface]{Erbauer}{}{+ baueTeil()}
+    \umlclass[x=4,y=0]{KonkreterErbauer}{}{
+      + baueTeil()\\
+      gibErgebnis()}
+    \umlclass[x=0,y=3]{Direktor}{}{baue()}
+
+    \umluniaggreg[arg2=erbauer,pos2=0.7,mult2=1]{Direktor}{Erbauer}
+    \umluniassoc{KonkreterErbauer}{Produkt}
+    \umlinherit{KonkreterErbauer}{Erbauer}
+
+  \umlnote[x=0,y=0,width=3cm]{Direktor}{
+    foreach item in structure\\
+    erbauer.baueTeil()
+  }
+  \end{tikzpicture}
+  \footcite{wiki:erbauer}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liEntwurfsErbauerAkteure}
+% Quelle: deutsche Wikipedia
+% \begin{liBeispiel}
+% \liEntwurfsErbauerAkteure
+% \end{liBeispiel}
+%    \begin{macrocode}
+\def\liEntwurfsErbauerAkteure{
+  \begin{description}
+    \item[Erbauer]
+
+    Der Erbauer spezifiziert eine abstrakte Schnittstelle zur Erzeugung der
+    Teile eines komplexen Objektes.
+
+    \item[KonkreterErbauer]
+
+    Der konkrete Erbauer erzeugt die Teile des komplexen Objekts durch
+    Implementierung der Schnittstelle. Außerdem definiert und verwaltet er
+    die von ihm erzeugte Repräsentation des Produkts. Er bietet auch eine
+    Schnittstelle zum Auslesen des Produkts.
+
+    \item[Direktor]
+
+    Der Direktor konstruiert ein komplexes Objekt unter Verwendung der
+    Schnittstelle des Erbauers. Der Direktor arbeitet eng mit dem Erbauer
+    zusammen: Er weiß, welche Baureihenfolge der Erbauer verträgt oder
+    benötigt. Der Direktor entkoppelt somit den Konstruktionsablauf vom
+    Klienten.
+
+    \item[Produkt]
+
+    Das Produkt repräsentiert das zu konstruierende komplexe Objekt.
+    \footcite{wiki:erbauer}
+  \end{description}
+}
+%    \end{macrocode}
+% \end{macro}
+
 % \subsubsection{Zustand}
 
 % \begin{macro}{\liEntwurfsZustandUml}
