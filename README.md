@@ -65,9 +65,10 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 #### Relationale Algebra
 
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Bundesliga-Datenbank.pdf" download="Aufgabe_Bundesliga-Datenbank">„Bundesliga-Datenbank“</a> (Relationale Algebra, SQL, Entity-Relation-Modell)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Division.pdf" download="Aufgabe_Division">„Division“</a> (Relationale Algebra)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Division.pdf" download="Aufgabe_Division">„Division“</a> (Relationale Algebra, Division)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Freizeitcenter.pdf" download="Aufgabe_Freizeitcenter">„Freizeitcenter“</a> (Relationale Algebra)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Universitaet.pdf" download="Aufgabe_Universitaet">„Universität“</a> (Relationale Algebra)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Vater-Muter-Kind.pdf" download="Aufgabe_Vater-Muter-Kind">„Vater-Muter-Kind“</a> (Division)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/30_Relationales-Modell/20_Relationale-Algebra/Aufgabe_Wassned.pdf" download="Aufgabe_Wassned">„Wassned“</a> (Relationale Algebra)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/01_DB/40_Relationale-Anfragesprachen/10_SQL/Aufgabe_Kaufhaus.pdf" download="Aufgabe_Kaufhaus">„Kaufhaus“</a> (SQL, SQL mit Übungsdatenbank, Relationale Algebra)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_46116-2013-Frühjahr_T1-TA2-A2">„Browser-Online-Spiele“ Examen 46116 Frühjahr 2013 T1 TA2 A2</a> (Relationale Algebra, SQL, Tupelkalkül)
@@ -77,6 +78,7 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1996/09/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66111-1996-Herbst_A4">„Gebrauchtwagen“ Examen 66111 Herbst 1996 A4</a> (Dritte Normalform, Relationale Algebra, SQL, GROUP BY)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2016-Frühjahr_T1-TA1-A2">„Polizei“ Examen 66116 Frühjahr 2016 T1 TA1 A2</a> (Entity-Relation-Modell, SQL mit Übungsdatenbank, Relationale Algebra, SQL, VIEW, WITH, UNION)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A6">„Vermischte Datenbank-Fragen“ Examen 66116 Herbst 2019 T2 TA2 A6</a> (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T2-TA2-A3">„Relationale Algebra und Optimierung“ Examen 66116 Herbst 2020 T2 TA2 A3</a> (Relationale Algebra, SQL mit Übungsdatenbank)
 
 #### Tupelkalkül
 
@@ -119,6 +121,7 @@ Hier alle Aufgaben mit einer Übungsdatenbank:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2018-Herbst_T1-TA2-A4">„Triathlon“ Examen 66116 Herbst 2018 T1 TA2 A4</a> (SQL, SQL mit Übungsdatenbank, UPDATE, DESC, AVG, GROUP BY, HAVING, EXCEPT)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A3">„Game of Thrones“ Examen 66116 Herbst 2019 T1 TA2 A3</a> (SQL, SQL mit Übungsdatenbank, Korrelierte Anfrage, DELETE, DROP COLUMN, ALTER TABLE, BETWEEN, CHECK, REFERENCES, NOT NULL)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A7">„Formel-1-Rennen“ Examen 66116 Herbst 2019 T2 TA2 A7</a> (SQL, SQL mit Übungsdatenbank, EXCEPT, Top-N-Query, ALTER TABLE, TRIGGER)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T2-TA2-A3">„Relationale Algebra und Optimierung“ Examen 66116 Herbst 2020 T2 TA2 A3</a> (Relationale Algebra, SQL mit Übungsdatenbank)
 
 Weitere Aufgaben zum Thema „SQL“:
 
@@ -151,6 +154,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A3">„Game of Thrones“ Examen 66116 Herbst 2019 T1 TA2 A3</a> (SQL, SQL mit Übungsdatenbank, Korrelierte Anfrage, DELETE, DROP COLUMN, ALTER TABLE, BETWEEN, CHECK, REFERENCES, NOT NULL)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A6">„Vermischte Datenbank-Fragen“ Examen 66116 Herbst 2019 T2 TA2 A6</a> (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A7">„Formel-1-Rennen“ Examen 66116 Herbst 2019 T2 TA2 A7</a> (SQL, SQL mit Übungsdatenbank, EXCEPT, Top-N-Query, ALTER TABLE, TRIGGER)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T2-TA2-A3">„Relationale Algebra und Optimierung“ Examen 66116 Herbst 2020 T2 TA2 A3</a> (Relationale Algebra, SQL mit Übungsdatenbank)
 
 ### Relationale Entwurfstheorie
 
@@ -176,6 +180,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/09/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2015-Herbst_T1-TA1-A2">„Relation A-H“ Examen 66116 Herbst 2015 T1 TA1 A2</a> (Normalformen)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66116-2017-Frühjahr_T2-TA1-A5">„Entwurfstheorie“ Examen 66116 Frühjahr 2017 T2 TA1 A5</a> (Synthese-Algorithmus)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2018-Frühjahr_T2-TA1-A6">„Synthese-Algorithmus bei Relationenschema A-F“ Examen 66116 Frühjahr 2018 T2 TA1 A6</a> (Synthese-Algorithmus, Dritte Normalform)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T2-TA2-A4">„(Entwurfstheorie)“ Examen 66116 Herbst 2020 T2 TA2 A4</a> (Normalformen)
 
 ### Transaktionsverwaltung
 
@@ -256,6 +261,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2013-Herbst_T1-TA2-A3">„Vermischte Softwaresysteme-Fragen“ Examen 66116 Herbst 2013 T1 TA2 A3</a> (Testen, Model Checking, Refactoring, EXtreme Programming, White-Box-Testing, Black-Box-Testing, Funktionale Anforderungen, Nicht-funktionale Anforderungen, Kontinuierliche Integration (Continuous Integration), Unit-Test, wp-Kalkül)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2016-Herbst_T1-TA2-A1">„Softwaresystem: Begriffe und Konzepte“ Examen 66116 Herbst 2016 T1 TA2 A1</a> (Pflichtenheft, Softwaremaße, Evolutionäre Softwaremodelle, Versionsverwaltungssoftware, Funktionale Anforderungen, Nicht-funktionale Anforderungen, Kontinuierliche Integration (Continuous Integration))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2016-Herbst_T2-TA2-A1">„Wahrheitsgehalt-Tabelle Software Engineering“ Examen 66116 Herbst 2016 T2 TA2 A1</a> (Software Engineering, Agile Methoden, Spiralmodell, Nicht-funktionale Anforderungen, Entwurfsmuster, Schichtenarchitektur, Blackboard-Muster, Einbringen von Abhängigkeiten (Dependency Injection), Sequenzdiagramm, Zustandsdiagramm, Komponentendiagramm, Modell-Präsentation-Steuerung (Model-View-Controller), Einzelstück (Singleton), Kommando (Command), Validation, Verifikation)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-TA1-A5">„Lebenszyklus“ Examen 66116 Herbst 2020 T1 TA1 A5</a> (Projektplanung, SCRUM)
 
 ### Modellierung
 
@@ -293,6 +299,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA1-A4">„Zustand-Entwurfsmuster bei Verwaltung von Prozessen“ Examen 66116 Herbst 2019 T1 TA1 A4</a> (Zustand (State), Zustandsdiagramm, Implementierung in Java)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA1-A1">„Dateisystem: Implementierung durch Kompositum“ Examen 66116 Herbst 2019 T2 TA1 A1</a> (Entwurfsmuster, Kompositum (Composite), Klassendiagramm, Implementierung in Java, Rekursion)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-2/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T2-TA1-A4">„Objektorientierte Analyse“ Examen 66116 Herbst 2020 T2 TA1 A4</a> (Objektorientierung, Sequenzdiagramm)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T1-TA1-A3">„Elementtypen UML-Klassendiagramm“ Examen 66116 Frühjahr 2021 T1 TA1 A3</a> (UML-Diagramme)
 
 ### Entwurfsmuster
 
@@ -306,7 +313,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2018-Herbst_T1-TA1-A2">„Beatles“ Examen 66116 Herbst 2018 T1 TA1 A2</a> (Zustand (State), Klassendiagramm, Zustandsdiagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA1-A4">„Zustand-Entwurfsmuster bei Verwaltung von Prozessen“ Examen 66116 Herbst 2019 T1 TA1 A4</a> (Zustand (State), Zustandsdiagramm, Implementierung in Java)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA1-A1">„Dateisystem: Implementierung durch Kompositum“ Examen 66116 Herbst 2019 T2 TA1 A1</a> (Entwurfsmuster, Kompositum (Composite), Klassendiagramm, Implementierung in Java, Rekursion)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-A3">„Ticket-Handel“ Examen 66116 Herbst 2020 T1 A3</a> (Entwurfsmuster)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-TA1-A3">„Ticket-Handel“ Examen 66116 Herbst 2020 T1 TA1 A3</a> (Entwurfsmuster)
 
 ### Projektplanung
 
@@ -326,7 +333,8 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2016-Frühjahr_T2-TA2-A4">„Projektmanagement“ Examen 66116 Frühjahr 2016 T2 TA2 A4</a> (Gantt-Diagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2017-Herbst_T2-TA2-A1">„Gantt und CPM“ Examen 66116 Herbst 2017 T2 TA2 A1</a> (Gantt-Diagramm)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2018-Herbst_T2-TA1-A1">„Gantt und zwei Softwareentwickler“ Examen 66116 Herbst 2018 T2 TA1 A1</a> (Gantt-Diagramm, CPM-Netzplantechnik)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-A2">„Projektplanung“ Examen 66116 Herbst 2020 T1 A2</a> (Projektplanung, CPM-Netzplantechnik, Gantt-Diagramm)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-TA1-A2">„Projektplanung“ Examen 66116 Herbst 2020 T1 TA1 A2</a> (Projektplanung, CPM-Netzplantechnik, Gantt-Diagramm)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-TA1-A5">„Lebenszyklus“ Examen 66116 Herbst 2020 T1 TA1 A5</a> (Projektplanung, SCRUM)
 
 ### Softwarearchitektur
 
@@ -338,25 +346,26 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/01_Projektmanagement/Aufgabe_Allgemeine-Software-Technik.pdf" download="Aufgabe_Allgemeine-Software-Technik">„Multiple-Choice Allgemeine Software-Technologie“</a> (EXtreme Programming, V-Modell, Wasserfallmodell, SCRUM, Prototyping, Unit-Test, Anforderungsanalyse)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/05_Testen/Black_White-Box-Test/Aufgabe_Groesster-gemeinsamer-Teiler.pdf" download="Aufgabe_Groesster-gemeinsamer-Teiler">„Größter gemeinsamer Teiler“</a> (Datenfluss-annotierter Kontrollflussgraph, Zyklomatische Komplexität nach Mc-Cabe, C2b Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/05_Testen/Black_White-Box-Test/Aufgabe_Grundwissen.pdf" download="Aufgabe_Grundwissen">„Grundwissen“</a> (White-Box-Testing, Black-Box-Testing, Funktionalorienteres Testen, V-Modell)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/05_Testen/Black_White-Box-Test/Aufgabe_Methode-log.pdf" download="Aufgabe_Methode-log">„Methode „log()““</a> (Überdeckbarkeit, C2b Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage))
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/05_Testen/Black_White-Box-Test/Aufgabe_Methode-log.pdf" download="Aufgabe_Methode-log">„Methode „log()““</a> (Kontrollflussgraph, Überdeckbarkeit, C2b Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/05_Testen/Formale-Verifikation/Aufgabe_Grundwissen.pdf" download="Aufgabe_Grundwissen">„Grundwissen“</a> (Formale Verifikation, wp-Kalkül, Hoare-Kalkül, Partielle Korrektheit, Totale Korrektheit, Invariante, Terminierungsfunktion)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/03_SOSY/05_Testen/Formale-Verifikation/Aufgabe_Methode-f.pdf" download="Aufgabe_Methode-f">„Methode „f()““</a> (wp-Kalkül)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46116-2014-Frühjahr_T2-TA1-A1">„Hanoi“ Examen 46116 Frühjahr 2014 T2 TA1 A1</a> (Vollständige Induktion, Terminierungsfunktion)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_46116-2015-Herbst_T2-TA1-A2">„Methode „isPalindrom()““ Examen 46116 Herbst 2015 T2 TA1 A2</a> (C1-Test Zweigüberdeckung (Branch Coverage), C2b Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage), Zyklomatische Komplexität nach Mc-Cabe, C2a Vollständige Pfadüberdeckung (Full Path Coverage), Datenfluss-annotierter Kontrollflussgraph)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_46116-2015-Herbst_T2-TA1-A2">„Methode „isPalindrom()““ Examen 46116 Herbst 2015 T2 TA1 A2</a> (Kontrollflussgraph, C1-Test Zweigüberdeckung (Branch Coverage), C2b Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage), Zyklomatische Komplexität nach Mc-Cabe, C2a Vollständige Pfadüberdeckung (Full Path Coverage), Datenfluss-annotierter Kontrollflussgraph)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2015-Herbst_T2-TA1-A3">„ASCII“ Examen 46116 Herbst 2015 T2 TA1 A3</a> (wp-Kalkül)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46116-2017-Herbst_T1-TA1-A4">„Testen bei Bubblesort“ Examen 46116 Herbst 2017 T1 TA1 A4</a> (Bubblesort, Black-Box-Testing, Anforderungsüberdeckung, Äquivalenzklassenzerlegung, Grenzwertanalyse, Kontrollflussgraph, C2a Vollständige Pfadüberdeckung (Full Path Coverage))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2003/09/Thema-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66112-2003-Herbst_T2-A5">„drei hoch“ Examen 66112 Herbst 2003 T2 A5</a> (Vollständige Induktion)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66115-2014-Frühjahr_T1-A1">„Klasse „LeftFactorial“ und Methode „lfBig()““ Examen 66115 Frühjahr 2014 T1 A1</a> (Rekursion, Vollständige Induktion)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Thema-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66115-2017-Frühjahr_T1-A4">„Methode „sumOfSquares()““ Examen 66115 Frühjahr 2017 T1 A4</a> (Vollständige Induktion)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2013/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2013-Herbst_T1-TA2-A3">„Vermischte Softwaresysteme-Fragen“ Examen 66116 Herbst 2013 T1 TA2 A3</a> (Testen, Model Checking, Refactoring, EXtreme Programming, White-Box-Testing, Black-Box-Testing, Funktionale Anforderungen, Nicht-funktionale Anforderungen, Kontinuierliche Integration (Continuous Integration), Unit-Test, wp-Kalkül)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2014-Herbst_T2-TA2-A3">„Methode „specialSums()““ Examen 66116 Herbst 2014 T2 TA2 A3</a> (Kontrollflussorientieres Testen, C0-Test Anweisungsüberdeckung (Statement Coverage), C1-Test Zweigüberdeckung (Branch Coverage))
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2014-Herbst_T2-TA2-A3">„Methode „specialSums()““ Examen 66116 Herbst 2014 T2 TA2 A3</a> (Kontrollflussorientieres Testen, Kontrollflussgraph, C0-Test Anweisungsüberdeckung (Statement Coverage), C1-Test Zweigüberdeckung (Branch Coverage))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2015-Herbst_T2-TA2-A3">„Methode „doubleFac()“: wp-Kalkül und Schleifeninvariante“ Examen 66116 Herbst 2015 T2 TA2 A3</a> (wp-Kalkül, Invariante, Terminierungsfunktion)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2016-Herbst_T1-TA2-A3">„Sort-Methode und datenflussorientierte Überdeckungskritierien“ Examen 66116 Herbst 2016 T1 TA2 A3</a> (Datenflussorientiertes Testen, Datenfluss-annotierter Kontrollflussgraph, Zyklomatische Komplexität nach Mc-Cabe, C1-Test Zweigüberdeckung (Branch Coverage), all uses)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2016-Herbst_T2-TA2-A1">„Wahrheitsgehalt-Tabelle Software Engineering“ Examen 66116 Herbst 2016 T2 TA2 A1</a> (Software Engineering, Agile Methoden, Spiralmodell, Nicht-funktionale Anforderungen, Entwurfsmuster, Schichtenarchitektur, Blackboard-Muster, Einbringen von Abhängigkeiten (Dependency Injection), Sequenzdiagramm, Zustandsdiagramm, Komponentendiagramm, Modell-Präsentation-Steuerung (Model-View-Controller), Einzelstück (Singleton), Kommando (Command), Validation, Verifikation)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2017-Frühjahr_T2-TA2-A1">„Methode „binToInt()“ und Kontrollflussgraph“ Examen 66116 Frühjahr 2017 T2 TA2 A1</a> (Zyklomatische Komplexität nach Mc-Cabe, Datenfluss-annotierter Kontrollflussgraph)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2017-Frühjahr_T2-TA2-A1">„Methode „binToInt()“ und Kontrollflussgraph“ Examen 66116 Frühjahr 2017 T2 TA2 A1</a> (Kontrollflussgraph, Zyklomatische Komplexität nach Mc-Cabe, Datenfluss-annotierter Kontrollflussgraph)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2017-Frühjahr_T2-TA2-A4">„wp-Kalkül mit Invariante bei Methode „mul()““ Examen 66116 Frühjahr 2017 T2 TA2 A4</a> (wp-Kalkül, Invariante, Totale Korrektheit)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2017-Herbst_T1-TA2-A4">„Code-Inspection bei Binärer Suche“ Examen 66116 Herbst 2017 T1 TA2 A4</a> (Binäre Suche, Design by Contract, Kontrollflussgraph, Vollständige Anweisungsüberdeckung)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-A1">„Verifikation“ Examen 66116 Herbst 2020 T1 A1</a> (Verifikation)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-TA1-A1">„Verifikation“ Examen 66116 Herbst 2020 T1 TA1 A1</a> (Verifikation)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-TA1-A4">„White-Box-Testverfahren“ Examen 66116 Herbst 2020 T1 TA1 A4</a> (White-Box-Testing, Kontrollflussgraph)
 
 ## Technische Informatik
 
@@ -709,7 +718,7 @@ OCR des oben genannten Scans:
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46116-2015-Herbst_T1-TA2-A4">Aufgabe 4</a> 
     - Thema 2 
         - Teilaufgabe 1 
-            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_46116-2015-Herbst_T2-TA1-A2">Aufgabe 2 (C1-Test Zweigüberdeckung (Branch Coverage), C2b Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage), Zyklomatische Komplexität nach Mc-Cabe, C2a Vollständige Pfadüberdeckung (Full Path Coverage), Datenfluss-annotierter Kontrollflussgraph)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_46116-2015-Herbst_T2-TA1-A2">Aufgabe 2 (Kontrollflussgraph, C1-Test Zweigüberdeckung (Branch Coverage), C2b Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage), Zyklomatische Komplexität nach Mc-Cabe, C2a Vollständige Pfadüberdeckung (Full Path Coverage), Datenfluss-annotierter Kontrollflussgraph)</a> 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46116-2015-Herbst_T2-TA1-A3">Aufgabe 3 (wp-Kalkül)</a>
 - 2016 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/03/Scan.pdf" download="Staatsexamen-Informatik_46116-2016-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/03/OCR.txt" download="Staatsexamen-Informatik_46116-2016-Frühjahr_OCR">OCR.txt</a> 
     - Thema 1 
@@ -1139,7 +1148,7 @@ OCR des oben genannten Scans:
     - Thema 2 
         - Teilaufgabe 2 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2014-Herbst_T2-TA2-A2">Aufgabe 2</a> 
-            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2014-Herbst_T2-TA2-A3">Aufgabe 3 (Kontrollflussorientieres Testen, C0-Test Anweisungsüberdeckung (Statement Coverage), C1-Test Zweigüberdeckung (Branch Coverage))</a>
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2014/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2014-Herbst_T2-TA2-A3">Aufgabe 3 (Kontrollflussorientieres Testen, Kontrollflussgraph, C0-Test Anweisungsüberdeckung (Statement Coverage), C1-Test Zweigüberdeckung (Branch Coverage))</a>
 - 2015 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Scan.pdf" download="Staatsexamen-Informatik_66116-2015-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/OCR.txt" download="Staatsexamen-Informatik_66116-2015-Frühjahr_OCR">OCR.txt</a> 
     - Thema 1 
         - Teilaufgabe 1 
@@ -1187,7 +1196,7 @@ OCR des oben genannten Scans:
         - Teilaufgabe 1 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66116-2017-Frühjahr_T2-TA1-A5">Aufgabe 5 (Synthese-Algorithmus)</a> 
         - Teilaufgabe 2 
-            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2017-Frühjahr_T2-TA2-A1">Aufgabe 1 (Zyklomatische Komplexität nach Mc-Cabe, Datenfluss-annotierter Kontrollflussgraph)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2017-Frühjahr_T2-TA2-A1">Aufgabe 1 (Kontrollflussgraph, Zyklomatische Komplexität nach Mc-Cabe, Datenfluss-annotierter Kontrollflussgraph)</a> 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2017-Frühjahr_T2-TA2-A4">Aufgabe 4 (wp-Kalkül, Invariante, Totale Korrektheit)</a>
 - 2017 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/Scan.pdf" download="Staatsexamen-Informatik_66116-2017-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2017/09/OCR.txt" download="Staatsexamen-Informatik_66116-2017-Herbst_OCR">OCR.txt</a> 
     - Thema 1 
@@ -1235,13 +1244,25 @@ OCR des oben genannten Scans:
 - 2020 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Scan.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/OCR.txt" download="Staatsexamen-Informatik_66116-2020-Frühjahr_OCR">OCR.txt</a> 
 - 2020 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Scan.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/OCR.txt" download="Staatsexamen-Informatik_66116-2020-Herbst_OCR">OCR.txt</a> 
     - Thema 1 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-A1">Aufgabe 1 (Verifikation)</a> 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-A2">Aufgabe 2 (Projektplanung, CPM-Netzplantechnik, Gantt-Diagramm)</a> 
-        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-A3">Aufgabe 3 (Entwurfsmuster)</a> 
+        - Teilaufgabe 1 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-TA1-A1">Aufgabe 1 (Verifikation)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-TA1-A2">Aufgabe 2 (Projektplanung, CPM-Netzplantechnik, Gantt-Diagramm)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-TA1-A3">Aufgabe 3 (Entwurfsmuster)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-TA1-A4">Aufgabe 4 (White-Box-Testing, Kontrollflussgraph)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T1-TA1-A5">Aufgabe 5 (Projektplanung, SCRUM)</a> 
     - Thema 2 
         - Teilaufgabe 1 
-            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-2/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T2-TA1-A4">Aufgabe 4 (Objektorientierung, Sequenzdiagramm)</a>
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-2/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T2-TA1-A4">Aufgabe 4 (Objektorientierung, Sequenzdiagramm)</a> 
+        - Teilaufgabe 2 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T2-TA2-A3">Aufgabe 3 (Relationale Algebra, SQL mit Übungsdatenbank)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T2-TA2-A4">Aufgabe 4 (Normalformen)</a>
 - 2021 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Scan.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/OCR.txt" download="Staatsexamen-Informatik_66116-2021-Frühjahr_OCR">OCR.txt</a> 
+    - Thema 1 
+        - Teilaufgabe 1 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T1-TA1-A1">Aufgabe 1 (Sichtbarkeit)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T1-TA1-A2">Aufgabe 2 (Objektorientierung)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T1-TA1-A3">Aufgabe 3 (UML-Diagramme)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T1-TA1-A4">Aufgabe 4 (Implementierung in Java)</a>
 
 ### 66118: Fachdidaktik (Gymnasium)
 
@@ -1298,6 +1319,7 @@ als Markdown-Liste eingebettet werden kann.
             - Equi-Join
             - Natural-Join
             - Theta-Join
+            - Division
         - Tupelkalkül
     - Relationale Anfragesprachen:
         - SQL:
@@ -1368,6 +1390,10 @@ als Markdown-Liste eingebettet werden kann.
         - Abstrakte Klasse
         - Feld (Array)
         - main-Methode
+        - Sichtbarkeit:
+          - Sichtbarkeit private
+          - Sichtbarkeit package-private
+          - Sichtbarkeit protected
 - AUD:
     - Algorithmen und Datenstrukturen
     - Rekursion:
