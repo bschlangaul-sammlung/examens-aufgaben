@@ -1,0 +1,69 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\let\j=\liJavaCode
+
+\liAufgabenTitel{MyParser}
+\section{Aufgabe
+\index{Einbringen von Abhängigkeiten (Dependency Injection)}
+\footcite{66116:2021:03}}
+
+Lesen Sie die folgenden alternativen Codestücke.
+
+\begin{enumerate}
+\item
+
+\begin{minted}{java}
+public class MyParser {
+  private InputStream input;
+
+  public MyParser(String filePath) {
+
+  }
+}
+\end{minted}
+
+\item
+
+\begin{minted}{java}
+public class MyParser {
+  private InputStream input;
+
+  public MyParser(InputStream stream) {
+  }
+}
+\end{minted}
+
+\end{enumerate}
+Beide Codestücke zeigen die Initialisierung einer Klasse namens
+\j{MyParser}. Das zweite Codestück nutzt jedoch hierfür eine Technik
+namens Abhängigkeits-Injektion (Dependency Injection).
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Erklären Sie den Unterschied zwischen beiden Initialisierungen.
+Hinweis: Sie können diese Aufgabe auch lösen, falls Sie die Technik
+nicht kennen.
+
+\begin{liAntwort}
+Die Abhängigkeit von einer Instanz der Klasse InputStream wird erst bei
+der Initialisierung des Objekt übergeben.
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Benennen Sie einen Vorteil dieser Technik.
+
+\begin{liAntwort}
+Die Kopplung zwischen einer Klasse und ihrer Abhängigkeit wird verringert.
+\footcite{wiki:dependency-injection}
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}
