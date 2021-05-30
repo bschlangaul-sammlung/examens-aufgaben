@@ -2,6 +2,7 @@
 \liLadePakete{normalformen}
 \begin{document}
 \let\fa=\liFunktionaleAbhaengigkeit
+\let\FA=\liFunktionaleAbhaengigkeiten
 
 \chapter{Funktionale Abhängigkeiten}
 
@@ -76,23 +77,24 @@ heißt Hülle $F^+$.\footcite[Seite 171]{winter}
 
 Mit Hilfe der Axiome von Armstrong (auch Armstrong-Axiome) lassen sich
 aus einer Menge von funktionalen Abhängigkeiten, die auf einer Relation
-gelten, \textbf{weitere} funktionale Abhängigkeiten \textbf{ableiten}.
+gelten, \memph{weitere funktionale Abhängigkeiten ableiten}.
 Die folgenden drei Regeln reichen aus, um alle funktionalen
-Abhängigkeiten herzuleiten:\footcite[Seite 14]{db:fs:}
+Abhängigkeiten herzuleiten:\footcite[Seite 14]{db:fs:4}
 
-\begin{liLernkartei}{Armstrong-Kalkül}
-
-Zweck: \textbf{weitere} funktionale Abhängigkeiten \textbf{ableiten}.
-
-\begin{compactenum}
-\item \textbf{Reflexivität}:
+%%
 %
-Eine Menge von Attributen bestimmt
-eindeutig die Werte einer Teilmenge dieser Attribute (triviale
-Abhängigkeit), das heißt,
+%%
+
+\liPseudoUeberschrift{Axiome von Armstrong}
+
+\begin{description}
+\item[Reflexivität:]
+%
+Eine Menge von Attributen bestimmt eindeutig die Werte einer Teilmenge
+dieser Attribute (triviale Abhängigkeit), das heißt,
 $\beta \subseteq \alpha \Rightarrow \alpha \rightarrow \beta$ .
 
-\item \textbf{Verstärkung}:
+\item[Verstärkung:]
 %
 Gilt
 $\alpha \rightarrow \beta$, so gilt auch
@@ -101,7 +103,7 @@ für jede Menge von Attributen
 $\gamma$ der
 Relation.
 
-\item \textbf{Transitivität}:
+\item[Transitivität:]
 %
 Gilt
 $\alpha \rightarrow \beta$
@@ -109,21 +111,32 @@ und
 $\beta \rightarrow \gamma$,
 so gilt auch
 $\alpha \rightarrow \gamma$.
-\end{compactenum}
+\end{description}
 
-\noindent
+Die Armstrong-Axiome sind \memph{korrekt} und \memph{vollständig}: Diese
+Regeln sind gültig (korrekt) und alle anderen gültigen Regeln können von
+diesen Regeln abgeleitet werden (vollständig).
+\liFussnoteUrl{https://dbresearch.uni-salzburg.at/teaching/2019ss/db1/db1_06-handout-1x1.pdf}
 
-(abgeleiteten) Regeln
+Um Herleitungen einfacher zu gestalten, können zusätzlich die folgenden
+(abgeleiteten) Regeln verwendet werden:
+\footcite[Axiome von Armstrong]{wiki:funktionale-abhängigkeit}
 
-\begin{compactenum}
-\item \textbf{Vereinigung}:
+%%
+%
+%%
+
+\liPseudoUeberschrift{Abgeleitete Regeln}
+
+\begin{description}
+\item[Vereinigung:]
 %
 Gelten
 $\alpha \rightarrow \beta$
 $\alpha \rightarrow \gamma$ , so gilt auch
 $\alpha \rightarrow \beta \gamma$.
 
-\item \textbf{Dekomposition}:
+\item[Dekomposition:]
 %
 Gilt
 $\alpha \rightarrow \beta \gamma$,
@@ -131,34 +144,35 @@ so gelten auch
 $\alpha \rightarrow \beta$ und
 $\alpha \rightarrow \gamma$ .
 
-\item \textbf{Pseudotransitivität}:
+\item[Pseudotransitivität:]
 %
 Gilt
 $\alpha \rightarrow \beta$ und
 $\beta \gamma \rightarrow \delta$,
 so gilt auch
 $\alpha \gamma \rightarrow \delta$
-\end{compactenum}
-\end{liLernkartei}
+\end{description}
 
 \subsection{Beispiel}
 
-Geg.: Menge $F = \{PersNr \rightarrow Name Wohnort, Fach \rightarrow
-Pflichtfach\}$.
+Geg.: Menge \FA{
+  PersN -> Name, Wohnort;
+  Fach -> Pflichtfach
+}.
 
 Dann sind (z.B.) folgende FD mit Hilfe der Armstrong-Axiome
 ableitbar:
 
 \begin{enumerate}
-\item Axiom 1 (Reflexivität): $PersNr Fach \rightarrow Fach$
+\item Axiom 1 (Reflexivität): \fa{PersNr, Fach -> Fach}
 
-\item Axiom 2 (Verstärkung): Da $PersNr \rightarrow Name Wohnort$ und
+\item Axiom 2 (Verstärkung): Da \fa{PersNr -> Name, Wohnort} und
 ${Fach} \subseteq {Fach}$ gilt, folgt die funktionale Abhängigkeit
-$PersNr Fach \rightarrow Name Wohnort Fach$
+\fa{PersNr, Fach -> Name, Wohnort, Fach}
 
-\item Axiom 3 (Transitivität): Wegen $PersNr Fach \rightarrow Fach$ und
-$Fach \rightarrow Pflichtfach$ folgt die funktionale Abhängigkeit
-$PersNr Fach \rightarrow Pflichtfach$
+\item Axiom 3 (Transitivität): Wegen \fa{PersNr, Fach -> Fach} und
+\fa{Fach -> Pflichtfach} folgt die funktionale Abhängigkeit
+\fa{PersNr, Fach -> Pflichtfach}
 \end{enumerate}
 
 \literatur

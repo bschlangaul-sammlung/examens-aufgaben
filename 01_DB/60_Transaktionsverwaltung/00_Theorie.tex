@@ -218,9 +218,7 @@ Transaktion geändert wurde.
 %
 %-----------------------------------------------------------------------
 
-\section{Zweiphasige Abarbeitung mit Sperren}
-
-\cite[Seite 15]{db:fs:5}
+\section{Zweiphasige Abarbeitung mit Sperren\footcite[Seite 15]{db:fs:5}}
 
 Die Abarbeitung von Transaktionen erfolgt zweiphasig oder genügt dem
 2-Phasen-Sperrprotokoll, wenn keine Transaktion eine Sperre freigibt,
@@ -236,7 +234,7 @@ von dieser Transaktion reserviert und dürfen nicht von anderen
 Transaktionen abgegriffen werden),
 
 \item alle Lesesperren (\textbf{S}hared oder \textbf{R}ead) bis zum
-Ende, d. h. bis zur Aktion commit, hält und
+Ende, d.\,h. bis zur Aktion commit, hält und
 
 \item alle Schreibsperren (e\textbf{X}clusive oder \textbf{W}rite) bis
 nach \texttt{commit} hält.
@@ -287,6 +285,33 @@ Sperren freigibt, aber keine weiteren anfordern darf.
 \item Bei \texttt{EOT} (Transaktionsende) muss eine Transaktion alle
 ihre Sperren zurückgeben
 \end{enumerate}
+
+\section{Spezialfälle des 2-Phasensperrprotokolls}
+
+Es gibt zwei Spezialfälle von 2PL:
+
+\begin{description}
+
+\item[Konservatives 2-Phasen-Sperrprotokoll]
+
+Das konservative 2-Phasen-Sperrprotokoll (Preclaiming), bei welchem zu
+Beginn der Transaktion alle benötigten Sperren auf einmal gesetzt
+werden. Dies verhindert in jedem Fall Deadlocks, führt aber auch zu
+einem hohen Verlust an Parallelität, da eine Transaktion ihre erste
+Operation erst dann ausführen kann, wenn sie alle Sperren erhalten hat.
+
+\item[Striktes 2-Phasen-Sperrprotokoll]
+
+Das strikte 2-Phasen-Sperrprotokoll, bei welchem alle gesetzten
+Write-Locks erst am Ende der Transaktion (nach der letzten Operation)
+freigegeben werden. Dieses Vorgehen verhindert den Schneeballeffekt,
+also das kaskadierende Zurücksetzen von sich gegenseitig beeinflussenden
+Transaktionen. Der Nachteil ist, dass Sperren häufig viel länger
+gehalten werden als nötig und sich somit die Wartezeit von blockierten
+Transaktionen verlängert. Die Read-Locks werden entsprechend dem
+Standard-2PL-Verfahren entfernt.
+\footcite{wiki:sperrverfahren}
+\end{description}
 
 %%
 %
@@ -403,7 +428,7 @@ temporären Puffer in die Datenbank geschrieben (permanent)?
 
 \section{Verdrängungsstrategien}
 
-Ersetzung „schmutziger“ Seiten im Puffer, d.h. Seite Puffer $\neq$ Seite
+Ersetzung „schmutziger“ Seiten im Puffer, d.\,h. Seite Puffer $\neq$ Seite
 DB $\rightarrow$ Seite wurde verändert
 
 \begin{itemize}

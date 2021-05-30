@@ -116,12 +116,64 @@ X & - & - \\
 \item Nennen und erklären Sie kurz die Armstrong-Axiome. Sind diese
 vollständig und korrekt?
 
+\begin{liAntwort}
+
+\begin{description}
+\item[Reflexivität:]
+%
+Eine Menge von Attributen bestimmt eindeutig die Werte einer Teilmenge
+dieser Attribute (triviale Abhängigkeit), das heißt,
+$\beta \subseteq \alpha \Rightarrow \alpha \rightarrow \beta$ .
+
+\item[Verstärkung:]
+%
+Gilt
+$\alpha \rightarrow \beta$, so gilt auch
+$\alpha \gamma \rightarrow \beta \gamma$
+für jede Menge von Attributen
+$\gamma$ der
+Relation.
+
+\item[Transitivität:]
+%
+Gilt
+$\alpha \rightarrow \beta$
+und
+$\beta \rightarrow \gamma$,
+so gilt auch
+$\alpha \rightarrow \gamma$.
+\end{description}
+
+Die Armstrong-Axiome sind korrekt und vollständig: Diese
+Regeln sind gültig (korrekt) und alle anderen gültigen Regeln können von
+diesen Regeln abgeleitet werden (vollständig).
+\liFussnoteUrl{https://dbresearch.uni-salzburg.at/teaching/2019ss/db1/db1_06-handout-1x1.pdf}
+\end{liAntwort}
+
 %%
 % f)
 %%
 
-\item Was versteht man unter einem (Daten-) Katalog (Data Dictionary)
+\item Was versteht man unter einem (Daten-)Katalog (Data Dictionary)
 und was enthält dieser (es genügt eine Auswahl zu nennen)?
+
+\begin{liAntwort}
+Bei einer relationalen Datenbank ist ein Datenkatalog eine Menge von
+Tabellen und Ansichten, die bei Abfragen  nur
+gelesen werden. Das Data-Dictionary ist wie eine Datenbank
+aufgebaut, enthält aber nicht Anwendungsdaten, sondern Metadaten, das
+heißt Daten, welche die Struktur der Anwendungsdaten beschreiben (und
+nicht den Inhalt selbst).
+
+Zu einem Data-Dictionary zur physischen Datenmodellierung gehören genaue Angaben zu:
+
+\begin{itemize}
+\item Tabellen und Datenfeldern
+\item Primär- und Fremdschlüsselbeziehungen
+\item Integritätsbedingungen, z. B. Prüfinformationen
+\end{itemize}
+\liFussnoteUrl{https://de.wikipedia.org/wiki/Data-Dictionary}
+\end{liAntwort}
 
 %%
 % g)
@@ -129,6 +181,31 @@ und was enthält dieser (es genügt eine Auswahl zu nennen)?
 
 \item Erklären Sie das konservative und das strikte
 Zwei-Phasen-Sperrprotokoll.
+
+\begin{liAntwort}
+\begin{description}
+
+\item[Konservatives 2-Phasen-Sperrprotokoll]
+
+Das konservative 2-Phasen-Sperrprotokoll (Preclaiming), bei welchem zu
+Beginn der Transaktion alle benötigten Sperren auf einmal gesetzt
+werden. Dies verhindert in jedem Fall Deadlocks, führt aber auch zu
+einem hohen Verlust an Parallelität, da eine Transaktion ihre erste
+Operation erst dann ausführen kann, wenn sie alle Sperren erhalten hat.
+
+\item[Striktes 2-Phasen-Sperrprotokoll]
+
+Das strikte 2-Phasen-Sperrprotokoll, bei welchem alle gesetzten
+Write-Locks erst am Ende der Transaktion (nach der letzten Operation)
+freigegeben werden. Dieses Vorgehen verhindert den Schneeballeffekt,
+also das kaskadierende Zurücksetzen von sich gegenseitig beeinflussenden
+Transaktionen. Der Nachteil ist, dass Sperren häufig viel länger
+gehalten werden als nötig und sich somit die Wartezeit von blockierten
+Transaktionen verlängert. Die Read-Locks werden entsprechend dem
+Standard-2PL-Verfahren entfernt.
+\footcite{wiki:sperrverfahren}
+\end{description}
+\end{liAntwort}
 
 %%
 % h)
