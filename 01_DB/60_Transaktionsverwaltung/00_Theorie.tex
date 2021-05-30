@@ -2,17 +2,23 @@
 
 \begin{document}
 
-\section{Definition}
+\chapter{Transaktionsverwaltung}
 
-Unter einer Transaktion versteht man die „Bündelung“ mehrerer
-Datenbankoperationen, die in einem Mehrbenutzersystem ohne unerwünschte
-Einflüsse durch andere Transaktionen als Einheit fehlerfrei ausgeführt
-werden sollen.
+\section{Definition Transaktion}
+
+Unter einer Transaktion versteht man die \memph{„Bündelung“ mehrerer
+Datenbankoperationen}, die in einem Mehrbenutzersystem ohne unerwünschte
+Einflüsse durch andere Transaktionen als \memph{Einheit fehlerfrei
+ausgeführt} werden sollen.
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
 
 \section{ACID-Prinzip}
 
 \begin{liQuellen}
-\cite[Kapitel 9.5 „Eigenschaften Von Transaktionen“, Seite 299]{kemper}
+\cite[Kapitel 9.5 „Eigenschaften von Transaktionen“, Seite 305]{kemper}
 \cite[Seite 1]{db:fs:5}
 \cite{wiki:acid}
 \end{liQuellen}
@@ -43,11 +49,17 @@ dauerhaft (persistent).
 
 \end{description}
 
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
 \section{Operationen auf Transaktions-Ebene}
 
 \begin{liQuellen}
 \item \cite[Seite 5]{db:fs:5}
 \item \cite[Seite 211]{winter}
+\item \cite[Kapitel 9.3, Seite 302-302]{kemper}
+
 \end{liQuellen}
 
 \begin{description}
@@ -68,12 +80,13 @@ d.h. sie werden dauerhaft in die Datenbank eingebaut.
 
 \item[abort]
 
-Dieser Befehl führt zu einem Selbstabbruch der Transaktion. Das
+Dieser Befehl führt zu einem \memph{Selbstabbruch} der Transaktion. Das
 Datenbanksystem muss sicherstellen, dass die Datenbasis wieder in den
 Zustand zurückgesetzt wird, der vor Beginn der Transaktionsausführung
 existierte.
 \end{description}
 
+\noindent
 Für den Abschluss einer Transaktion gibt es 2 Möglichkeiten:
 
 \begin{itemize}
@@ -155,7 +168,7 @@ Transaktionsverarbeitung geht in den Endzustand aufgegeben über.
 
 \section{Fehler}
 
-\section{“Einfacher” Fehlerfall}
+\section{„Einfacher” Fehlerfall}
 
 Änderungen durch nicht zu Ende geführte Transaktionen müssen rückgängig
 gemacht werden. Diesen Vorgang nennt man \emph{Rollback}. Dazu müssen

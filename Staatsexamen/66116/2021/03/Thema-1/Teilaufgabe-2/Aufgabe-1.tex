@@ -6,7 +6,9 @@
 \index{Datenbank}
 \footcite{66116:2021:03}}
 
-Beantworten Sie die folgenden Fragen und begründen oder erläutern Sie Ihre Antwort.
+Beantworten Sie die folgenden Fragen und begründen oder erläutern Sie
+Ihre Antwort.
+
 \begin{enumerate}
 
 %%
@@ -27,7 +29,9 @@ wie viele Entitätsinstanzen mit wie vielen Entitätsinstanzen einer
 anderen Entitätsinstanz in Beziehung stehen.
 \liFussnoteUrl{https://usehardware.de/datenbanksysteme-iv-entity-relationship-modell-er-modell-datenbankdarstellungen-i/}
 
-\item[Partizipation] Die Partizipation eines Beziehungstyps (in einem
+\item[Partizipation]
+
+Die Partizipation eines Beziehungstyps (in einem
 Entity-Relationship-Modell) bestimmt, ob alle Entities eines beteiligten
 Entitätstyps an einer bestimmten Beziehung teilnehmen müssen.
 \liFussnoteUrl{https://lehrbuch-wirtschaftsinformatik.org/glossar/kapitel03/Partizipation}
@@ -59,12 +63,34 @@ an der Relation teilnehmen (enthalten sein).
 \item Mit welchen beiden Befehlen kann eine Transaktion beendet werden?
 Nennen Sie diese und erklären Sie den Unterschied.
 
+\begin{liAntwort}
+Für den Abschluss einer Transaktion gibt es 2 Möglichkeiten:
+
+\begin{itemize}
+\item Den erfolgreichen Abschluss mit \texttt{commit}.
+\item Den erfolglosen Abschluss mit \texttt{abort}
+\end{itemize}\footcite[Kapitel 9.3, Seite 302-302]{kemper}
+\end{liAntwort}
+
 %%
 % c)
 %%
 
 \item Erläutern Sie den Unterschied zwischen einer kurzen und einer
 langen Sperre.
+
+\begin{liAntwort}
+\begin{description}
+\item[lange Sperren:]
+
+werden bis EOT gehalten (=> striktes 2PL)
+
+\item[kurze Sperren:]
+
+werden nicht bis EOT gehalten
+\end{description}
+\liFussnoteUrl{https://www.dbs.ifi.lmu.de/Lehre/DBSII/SS2015/vorlesung/DBS2-03-Synchronisation.pdf}
+\end{liAntwort}
 
 %%
 % d)
@@ -73,6 +99,15 @@ langen Sperre.
 \item Stellen Sie außerdem die Kompatibilitätsmatrix zur Umsetzung des
 ACID-Prinzips mit den richtigen Werten dar. S stehe dabei für eine Lese-
 und X für eine Schreibsperre.
+
+\begin{liAntwort}
+\begin{tabular}{lll}
+  & S & X \\
+S & + & - \\
+X & - & - \\
+\end{tabular}
+\footcite[SX-Kompatibilitätsmatrix]{wiki:sperrverfahren}
+\end{liAntwort}
 
 %%
 % e)
