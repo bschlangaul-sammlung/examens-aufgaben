@@ -214,5 +214,48 @@ Standard-2PL-Verfahren entfernt.
 \item Erklären Sie die Begriffe „Steal/NoSteal“ und „Force/NoForce“ im
 Kontext der Systempufferverwaltung eines DBS.
 
+\begin{liAntwort}
+\begin{description}
+\item [No-Steal]
+
+Schmutzige Seiten dürfen nicht aus dem Puffer entfernt und in die
+Datenbank übertragen werden, solange die Transaktion noch aktiv ist. Die
+Datenbank enthält keine Änderungen nicht-erfolgreicher Transaktionen.
+Eine UNDO-Recovery ist nicht erforderlich. langen
+Änderungs-Transaktionen können zu Problemen führen, da große Teile des
+Puffers blockiert werden
+
+\item [Steal]
+
+Schmutzige Seiten dürfen jederzeit ersetzt und in die Datenbank
+eingebracht werden. Die Datenbank kann unbestätigte Änderungen
+enthalten. Eine UNDO-Recovery ist erforderlich. Es handelt sich um eine
+effektivere Puffernutzung bei langen Transaktionen mit vielen
+Änderungen.\footcite[Kapitel 10.2.1 Ersetzung von
+Puffer-Seiten Seite 311-312]{kemper}
+
+\item [Force]
+
+Alle geänderten Seiten werden spätestens bei EOT (vor COMMIT) in die
+Datenbank geschrieben. Bei einem Systemfehler ist keine REDO-Recovery
+erforderlich. Die Force-Strategie benötigt einen hohen I/O-Aufwand, da
+Änderungen jeder Transaktion einzeln geschrieben werden. Die Vielzahl an
+Schreibvorgängen führt zu schlechteren Antwortzeiten, länger gehaltenen
+Sperren und damit zu mehr Sperrkonflikten. Große Datenbank-Puffer werden
+schlecht genutzt.\footcite[Kapitel
+10.2.2 Einbringen von Änderungen einer Transaktion Seite
+312-313]{kemper}
+
+\item [No-Force]
+
+Änderungen können auch erst nach dem COMMIT in die Datenbank geschrieben
+werden. Die Änderungen durch mehrere Transaktionen werden „gesammelt“.
+Beim COMMIT werden lediglich REDO-Informationen in die Log-Datei
+geschrieben. Bei einem Systemfehler ist eine REDO-Recovery erforderlich.
+Die Änderungen auf einer Seite über mehrere Transaktionen hinweg können
+gesammelt werden.\footcite[Seite 25]{db:fs:5}
+\end{description}
+\end{liAntwort}
+
 \end{enumerate}
 \end{document}

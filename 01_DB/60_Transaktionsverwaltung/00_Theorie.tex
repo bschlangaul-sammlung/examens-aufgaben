@@ -337,10 +337,10 @@ Verzögerung der zweiten Transaktion führt.
 \end{itemize}
 
 \begin{itemize}
-\item Deadlock-Situationen müssen entweder vermieden oder vom DBMS
+\item Deadlock-Situationen müssen entweder vermieden oder vom DatenbankMS
 erkannt und aufgelöst werden.
 
-\item Das DBMS kann in diesem Fall eine der beiden Transaktionen
+\item Das DatenbankMS kann in diesem Fall eine der beiden Transaktionen
 abbrechen und diese von Neuem starten.
 \end{itemize}
 
@@ -348,7 +348,7 @@ abbrechen und diese von Neuem starten.
 %
 %-----------------------------------------------------------------------
 
-\section{Recovery-Klassen: Wiederherstellungsmechanismen des DBS nach
+\section{Recovery-Klassen: Wiederherstellungsmechanismen des DatenbankS nach
 Fehlern}
 
 \begin{description}
@@ -416,8 +416,7 @@ beendeten Transaktion auf der Archivkopie noch ausgeführt wurden
 
 \section{Puffer-Verwaltung}
 
-\cite[Seite 25]{db:fs:5}
-\cite[Seite 305]{kemper}
+\cite[Kapitel 10.2.1 Ersetzung von Puffer-Seiten Seite 311]{kemper}
 
 Wann werden Änderungen, die von Transaktionen ausgelöst wurden, vom
 temporären Puffer in die Datenbank geschrieben (permanent)?
@@ -426,81 +425,64 @@ temporären Puffer in die Datenbank geschrieben (permanent)?
 %
 %-----------------------------------------------------------------------
 
-\section{Verdrängungsstrategien}
+\section{Verdrängungsstrategien\footcite[Kapitel 10.2.1 Ersetzung von
+Puffer-Seiten Seite 311-312]{kemper}}
 
-Ersetzung „schmutziger“ Seiten im Puffer, d.\,h. Seite Puffer $\neq$ Seite
-DB $\rightarrow$ Seite wurde verändert
+Ersetzung „schmutziger“ Seiten im Puffer
 
-\begin{itemize}
+\begin{description}
 
-\item No-Steal
+\item [No-Steal]
 
-\begin{itemize}
-\item Schmutzige Seiten dürfen nicht aus dem Puffer entfernt und in die
-DB übertragen werden, solange die Transaktion noch aktiv ist
+Schmutzige Seiten dürfen nicht aus dem Puffer entfernt und in die
+Datenbank übertragen werden, solange die Transaktion noch aktiv ist. Die
+Datenbank enthält keine Änderungen nicht-erfolgreicher Transaktionen.
+Eine UNDO-Recovery ist nicht erforderlich. langen
+Änderungs-Transaktionen können zu Problemen führen, da große Teile des
+Puffers blockiert werden
 
-\item DB enthält keine Änderungen nicht-erfolgreicher TAs
+\item [Steal]
 
-\item UNDO-Recovery ist nicht erforderlich
-
-\item Probleme bei langen Änderungs-TAs, da große Teile des Puffers
-blockiert werden
-\end{itemize}
-
-\item Steal
-
-\begin{itemize}
-\item Schmutzige Seiten dürfen jederzeit ersetzt und in die DB
-eingebracht werden
-
-\item DB kann unbestätigte Änderungen enthalten
-
-\item UNDO-Recovery ist erforderlich
-
-\item Effektivere Puffernutzung bei langen TAs mit vielen Änderungen
-\end{itemize}
-\end{itemize}
+Schmutzige Seiten dürfen jederzeit ersetzt und in die Datenbank
+eingebracht werden. Die Datenbank kann unbestätigte Änderungen
+enthalten. Eine UNDO-Recovery ist erforderlich. Es handelt sich um eine
+effektivere Puffernutzung bei langen Transaktionen mit vielen
+Änderungen.
+\end{description}
 
 %%
 %
 %%
 
-\subsection{Ausschreibestrategien (EOT-Behandlung)}
+\subsection{Ausschreibestrategien (EOT-Behandlung)\footcite[Kapitel
+10.2.2 Einbringen von Änderungen einer Transaktion Seite
+312-313]{kemper}}
 
-\begin{itemize}
+\begin{description}
 
-\item Force
+\item [Force]
 
-\begin{itemize}
-\item Alle geänderten Seiten werden spätestens bei EOT (vor COMMIT) in
-die DB geschrieben
+Alle geänderten Seiten werden spätestens bei EOT (vor COMMIT) in die
+Datenbank geschrieben. Bei einem Systemfehler ist keine REDO-Recovery
+erforderlich. Die Force-Strategie benötigt einen hohen I/O-Aufwand, da
+Änderungen jeder Transaktion einzeln geschrieben werden. Die Vielzahl an
+Schreibvorgängen führt zu schlechteren Antwortzeiten, länger gehaltenen
+Sperren und damit zu mehr Sperrkonflikten. Große Datenbank-Puffer werden
+schlecht genutzt.
 
-\item Keine REDO-Recovery erforderlich bei Systemfehler
+\item [No-Force]
 
-\item Hoher I/O-Aufwand, da Änderungen jeder TA einzeln geschrieben
-werden
+Änderungen können auch erst nach dem COMMIT in die Datenbank geschrieben
+werden. Die Änderungen durch mehrere Transaktionen werden „gesammelt“.
+Beim COMMIT werden lediglich REDO-Informationen in die Log-Datei
+geschrieben. Bei einem Systemfehler ist eine REDO-Recovery erforderlich.
+Die Änderungen auf einer Seite über mehrere Transaktionen hinweg können
+gesammelt werden.\footcite[Seite 25]{db:fs:5}
+\end{description}
 
-\item Vielzahl an Schreibvorgängen führt zu schlechteren Antwortzeiten,
-länger gehaltenen Sperren und damit zu mehr Sperrkonflikten
-
-\item Große DB-Puffer werden schlecht genutzt
-\end{itemize}
-
-\item No-Force
-
-\begin{itemize}
-\item Änderungen können auch erst nach dem COMMIT in die DB geschrieben
-werden, „Sammeln“ von Änderungen durch mehrere Transaktionen
-
-\item Beim COMMIT werden lediglich REDO-Informationen in die Log-Datei
-geschrieben
-
-\item REDO-Recovery erforderlich bei Systemfehler
-
-\item Änderungen auf einer Seite über mehrere TAs hinweg können
-gesammelt werden
-\end{itemize}
-\end{itemize}
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
 
 \section{Das WAL-Prinzip\footcite[Kapitel 10.3.5 Seite 318]{kemper}}
 
