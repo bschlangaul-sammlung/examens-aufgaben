@@ -1,6 +1,11 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{er,syntax}
 \begin{document}
+\let\a=\liErMpAttribute
+\let\d=\liErDatenbankName
+\let\e=\liErMpEntity
+\let\r=\liErMpRelationship
+
 \liAufgabenTitel{Rennstall}
 \section{Aufgabe
 \index{Entity-Relation-Modell}
@@ -11,31 +16,31 @@ Gehen Sie dabei von folgendem Szenario aus:
 \footcite[Aufgabe 5: ER-Diagramm und Relationenmodell vertieft]{db:pu:1}
 
 \begin{itemize}
-\item \mpEntity{Unternehmen} werden ihre eindeutige
-\mpAttribute{Unternehmens-ID} identifiziert. Sie haben eine
-\mpAttribute{Adresse} und \mpRelationship{besitzen} Rennställe.
+\item \e{Unternehmen} werden ihre eindeutige
+\a{Unternehmens-ID} identifiziert. Sie haben eine
+\a{Adresse} und \r{besitzen} Rennställe.
 
-\item Der \mpAttribute{Name} eines \mpEntity{Rennstalls} ist nur
+\item Der \a{Name} eines \e{Rennstalls} ist nur
 innerhalb eines Unternehmens eindeutig. Für jeden Rennstall wird das
-\mpAttribute{Gründungsdatum} gespeichert.
+\a{Gründungsdatum} gespeichert.
 
-\item \mpEntity{Pferde} \mpRelationship{gehören} immer zu einem
-Rennstall. \mpAttribute{Pferdenamen} werden in einem Rennstall nur
+\item \e{Pferde} \r{gehören} immer zu einem
+Rennstall. \a{Pferdenamen} werden in einem Rennstall nur
 jeweils maximal einmal vergeben.
 
-\item \mpEntity{Jockeys} sind in einem Rennstall
-\mpRelationship{beschäftigt}. Jeder Rennstall vergibt seine eigenen
-\mpAttribute{Personalnummern}. Für jeden Jockey werden
-\mpAttribute{Vorname} und \mpAttribute{Name} gespeichert.
+\item \e{Jockeys} sind in einem Rennstall
+\r{beschäftigt}. Jeder Rennstall vergibt seine eigenen
+\a{Personalnummern}. Für jeden Jockey werden
+\a{Vorname} und \a{Name} gespeichert.
 
-\item \mpEntity{Rennen} haben ein \mpAttribute{Datum}, ein
-\mpAttribute{Preisgeld} und einen \mpAttribute{Namen}, über den sie
+\item \e{Rennen} haben ein \a{Datum}, ein
+\a{Preisgeld} und einen \a{Namen}, über den sie
 identifiziert werden.
 
-\item Unternehmen \mpRelationship{unterstützen} Rennen finanziell mit
+\item Unternehmen \r{unterstützen} Rennen finanziell mit
 einem bestimmten Betrag.
 
-\item Jockeys \mpRelationship{nehmen} mit Pferden an Rennen teil. Im
+\item Jockeys \r{nehmen} mit Pferden an Rennen teil. Im
 Rennen erreichen sie einen bestimmten Platz. Die Kombination aus Jockey
 und Pferd ist nicht fest, bei unterschiedlichen Rennen können Jockeys
 verschiedene Pferde reiten. Jockeys können auch mit Rennpferden von

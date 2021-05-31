@@ -1,18 +1,94 @@
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesPackage{lehramt-informatik-uml}[2020/06/13]
+\ProvidesPackage{lehramt-informatik-uml}[2020/06/13 Zum Setzen von
+ER-Diagrammen]
 \RequirePackage{tikz-er2}
 \usetikzlibrary{positioning}
 \RequirePackage{soul}
 \RequirePackage{MnSymbol}
+%    \end{macrocode}
 
-\newcommand{\Entity}[1]{\textbf{#1}}
-\newcommand{\Relationship}[1]{\ul{#1}}
-\newcommand{\Attribute}[1]{\emph{#1}}
+% Let-Abkürzungen:
+%
+% \begin{verbatim}
+% \let\a=\liErMpAttribute
+% \let\d=\liErDatenbankName
+% \let\e=\liErMpEntity
+% \let\r=\liErMpRelationship
+% \end{verbatim}
 
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+
+% \begin{macro}{\liErEntity}
+%    \begin{macrocode}
+\def\liErEntity#1{\textbf{#1}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liErRelationship}
+%    \begin{macrocode}
+\def\liErRelationship#1{\ul{#1}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liErAttribute}
+%    \begin{macrocode}
+\def\liErAttribute#1{\emph{#1}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liErMpEntity}
 % mp = marginpar
-\newcommand{\mpEntity}[1]{\Entity{#1}\marginpar{\Entity{\tiny{}\medsquare{} E: #1}}}
-\newcommand{\mpRelationship}[1]{\Relationship{#1}\marginpar{\Relationship{\tiny{}\meddiamond{} R: #1}}}
-\newcommand{\mpAttribute}[1]{\Attribute{#1}\marginpar{\Attribute{\tiny{}\medcircle{} A: #1}}}
+% \liLet{e}{liErMpEntity}
+%    \begin{macrocode}
+\def\liErMpEntity#1{
+  \liErEntity{#1}
+  \marginpar{
+    \liErEntity{\tiny{}\medsquare{}~E:~#1}
+  }
+}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liErMpRelationship}
+% \liLet{r}{liErMpRelationship}
+%    \begin{macrocode}
+\def\liErMpRelationship#1{
+  \liErRelationship{#1}
+  \marginpar{
+    \liErRelationship{\tiny{}\meddiamond{}~R:~#1}
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liErMpAttribute}
+% \liLet{a}{liErMpAttribute}
+%    \begin{macrocode}
+\def\liErMpAttribute#1{
+  \liErAttribute{#1}
+  \marginpar{
+    \liErAttribute{\tiny{}\medcircle{}~A:~#1}
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liErDatenbankName}
+% \liLet{d}{liErDatenbankName}
 % datenbank name
-\def\dname#1{{\footnotesize\texttt{(#1)}}}
+%    \begin{macrocode}
+\def\liErDatenbankName#1{
+  {
+    \footnotesize\texttt{(#1)}
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
+
+%    \begin{macrocode}

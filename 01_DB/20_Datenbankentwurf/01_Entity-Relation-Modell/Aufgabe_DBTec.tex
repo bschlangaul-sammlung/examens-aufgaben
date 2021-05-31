@@ -2,6 +2,10 @@
 \liLadePakete{er}
 \begin{document}
 \liAufgabenTitel{DBTec}
+\let\a=\liErMpAttribute
+\let\d=\liErDatenbankName
+\let\e=\liErMpEntity
+\let\r=\liErMpRelationship
 
 \section{Aufgabe 3: DBTec
 \index{Entity-Relation-Modell}
@@ -11,37 +15,34 @@ Die Firma \emph{DBTec} fertigt verschiedene Geräte. Für die betriebliche
 Organisation dieser Firma soll eine relationale Datenbank eingesetzt
 werden. Dabei gilt folgendes:
 % Entity: Bauteil
-Jedes \mpEntity{Bauteil}, das verwendet wird, hat eine eindeutige
-\mpAttribute{Nummer} und eine \mpAttribute{Bezeichnung}, die allerdings
-für mehrere verschiedene Bauteile gleich sein kann. Von jedem Teil
-werden außerdem der \mpAttribute{Name des Herstellers}, der
-\mpAttribute{Einkaufspreis} pro Stück und der am Lager vorhandene
-\mpAttribute{Vorrat} gespeichert.
+Jedes \e{Bauteil}, das verwendet wird, hat eine eindeutige \a{Nummer}
+und eine \a{Bezeichnung}, die allerdings für mehrere verschiedene
+Bauteile gleich sein kann. Von jedem Teil werden außerdem der \a{Name
+des Herstellers}, der \a{Einkaufspreis} pro Stück und der am Lager
+vorhandene \a{Vorrat} gespeichert.
 
 % Entity: Gerät
-Jedes herzustellende \mpEntity{Gerät} hat eine eindeutige
-\mpAttribute{Bezeichnung}. Auch von jedem schon gefertigten Gerätetyp
-soll der aktuelle \mpAttribute{Lagerbestand} gespeichert werden, ebenso
-wie der \mpAttribute{Verkaufspreis} des Gerätes. In unserem fiktiven
-Betrieb gilt die Regelung, dass Maschinen, die mehr als 1000,- EUR
-kosten, unentgeltlich an die Kunden ausgeliefert werden; für Geräte, die
-weniger kosten, ist zusätzlich zum Preis eine gerätespezifische
-\mpAttribute{Anliefergebühr} zu entrichten. In der Datenbank ist
-ebenfalls zu speichern, welche Bauteile für welche Geräte
-\mpRelationship{benötigt} werden. Es gibt Bauteile, die für mehrere
-Geräte verwendet werden.
+Jedes herzustellende \e{Gerät} hat eine eindeutige \a{Bezeichnung}. Auch
+von jedem schon gefertigten Gerätetyp soll der aktuelle \a{Lagerbestand}
+gespeichert werden, ebenso wie der \a{Verkaufspreis} des Gerätes. In
+unserem fiktiven Betrieb gilt die Regelung, dass Maschinen, die mehr als
+1000,- EUR kosten, unentgeltlich an die Kunden ausgeliefert werden; für
+Geräte, die weniger kosten, ist zusätzlich zum Preis eine
+gerätespezifische \a{Anliefergebühr} zu entrichten. In der Datenbank ist
+ebenfalls zu speichern, welche Bauteile für welche Geräte \r{benötigt}
+werden. Es gibt Bauteile, die für mehrere Geräte verwendet werden.
 
 % Entity: Kunde
-Von jedem \mpEntity{Kunden} werden der \mpAttribute{Name}, die
-\mpAttribute{Adresse} und die \mpAttribute{Branche} gespeichert. Es kann
-verschiedene Kunden mit demselben Namen oder derselben Adresse geben.
+Von jedem \e{Kunden} werden der \a{Name}, die \a{Adresse} und die
+\a{Branche} gespeichert. Es kann verschiedene Kunden mit demselben Namen
+oder derselben Adresse geben.
 % Relationship: betreutKunde
 Außerdem ist zu jedem Kunden vermerkt, wer aus unserer Firma für die
-entsprechende \mpRelationship{Kundenbetreuung zuständig} ist.
+entsprechende \r{Kundenbetreuung zuständig} ist.
 % Relationship: beliefert
 Natürlich ist auch zu speichern, welche Kunden mit welchen Geräten
-\mpRelationship{beliefert} werden. Es kann sein, dass gewissen Kunden
-für bestimmte Geräte \mpAttribute{Sonderkonditionen} eingeräumt worden
+\r{beliefert} werden. Es kann sein, dass gewissen Kunden
+für bestimmte Geräte \a{Sonderkonditionen} eingeräumt worden
 sind, dies soll ggf. ebenfalls in der Datenbank vermerkt werden.
 
 \begin{enumerate}
@@ -72,10 +73,10 @@ Relationship-Typen und tragen Sie diese in das Modell ein.
 %%
 
 \item In der Firma wird ein neues Betreuungssystem eingeführt. Jeder
-\mpEntity{Kundenbetreuer} ist für die Kunden eines festgelegten Bezirks
-\mpRelationship{zuständig}. Die \mpEntity{Bezirke} sind
-\mpAttribute{durchnummeriert}. Für jeden Bezirk existiert eine
-\mpAttribute{Beschreibung}, die nicht näher festgelegt ist. Erweitern
+\e{Kundenbetreuer} ist für die Kunden eines festgelegten Bezirks
+\r{zuständig}. Die \e{Bezirke} sind
+\a{durchnummeriert}. Für jeden Bezirk existiert eine
+\a{Beschreibung}, die nicht näher festgelegt ist. Erweitern
 Sie Ihr ER-Modell aus Teilaufgabe a) entsprechend. Bezirke werden nur
 festgelegt, wenn es dazu auch Kunden gibt.
 

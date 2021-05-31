@@ -1,6 +1,11 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{er}
 \begin{document}
+\let\a=\liErMpAttribute
+\let\d=\liErDatenbankName
+\let\e=\liErMpEntity
+\let\r=\liErMpRelationship
+
 \liAufgabenTitel{Konsulat}
 
 \section{Aufgabe 3
@@ -17,21 +22,21 @@ gegeben:
 
 \item Jedes Konsulat hat einen Sitz in einer Stadt
 
-\item Zu einem \mpEntity{Konsulat} soll ein eindeutiger
-\mpAttribute{Name} \dname{KonsulatName} (z.\,B. Konsulat Bayern), die
-\mpAttribute{Adresse} und der \mpAttribute{Vor-} \dname{KVorname} bzw.
-\mpAttribute{Nachname} \dname{KNachname} des Konsuls gespeichert werden.
+\item Zu einem \e{Konsulat} soll ein eindeutiger
+\a{Name} \d{KonsulatName} (z.\,B. Konsulat Bayern), die
+\a{Adresse} und der \a{Vor-} \d{KVorname} bzw.
+\a{Nachname} \d{KNachname} des Konsuls gespeichert werden.
 
-\item Für jede \mpEntity{Stadt} sollen der \mpAttribute{Name}
-\dname{StadtName}, die \mpAttribute{Anzahl der Einwohner}
-\dname{EinwohnerAnzahl}, sowie das Land in dem es \mpRelationship{liegt},
+\item Für jede \e{Stadt} sollen der \a{Name}
+\d{StadtName}, die \a{Anzahl der Einwohner}
+\d{EinwohnerAnzahl}, sowie das Land in dem es \r{liegt},
 festgehalten werden. Gehen Sie davon aus, dass eine Stadt nur in
 Zusammenhang mit dem zugehörigen Land identifizierbar ist.
 
-\item Für ein \mpEntity{Land} soll der Name in
-\mpAttribute{Landessprache}, der \mpAttribute{Name des
-Staatspräsidenten} \dname{Staatspräsident} und eine eindeutige
-\mpAttribute{ID} \dname{LandesID} gespeichert werden.
+\item Für ein \e{Land} soll der Name in
+\a{Landessprache}, der \a{Name des
+Staatspräsidenten} \d{Staatspräsident} und eine eindeutige
+\a{ID} \d{LandesID} gespeichert werden.
 \end{itemize}
 
 \begin{enumerate}

@@ -1,6 +1,11 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{er,rmodell}
 \begin{document}
+\let\a=\liErMpAttribute
+\let\d=\liErDatenbankName
+\let\e=\liErMpEntity
+\let\r=\liErMpRelationship
+
 \liAufgabenTitel{Forstverwaltung}
 
 \section{Forstverwaltung
@@ -13,49 +18,44 @@ einer Jagd-Statistik benötigt. Gehen Sie dabei von folgendem Szenario
 aus:
 
 \begin{itemize}
-\item Die Administration von Jagdgebieten obliegt den
-Landkreisen. Jeder \mpEntity{Landkreis} besitzt, neben seinem
-\mpAttribute{Namen} (LName) und der \mpAttribute{Einwohnerzahl}, ein
-eindeutiges \mpAttribute{KFZ-Kennzeichen} \texttt{(KFZKennzeichen)}.
+\item Die Administration von Jagdgebieten obliegt den Landkreisen. Jeder
+\e{Landkreis} besitzt, neben seinem \a{Namen} (LName) und der
+\a{Einwohnerzahl}, ein eindeutiges \a{KFZ-Kennzeichen}
+\texttt{(KFZKennzeichen)}.
 
-\item Die Jagd findet in Jagdgebieten statt. Ein \mpEntity{Jagdgebiet}
-soll dem Landkreis \mpRelationship{zugeteilt} werden, indem es liegt.
-Gehen Sie davon aus, dass Jagdgebiete nicht in mehreren Landkreisen
-liegen können. Zusätzlich ist für jedes Jagdgebiet der
-\mpAttribute{Name} \texttt{(JName)} und die \mpAttribute{Gesamtfläche}
-zu speichern. Dabei ist zu beachten, dass die Namen nur innerhalb eines
-einzelnen Landkreises eindeutig sind.
+\item Die Jagd findet in Jagdgebieten statt. Ein \e{Jagdgebiet} soll dem
+Landkreis \r{zugeteilt} werden, indem es liegt. Gehen Sie davon aus,
+dass Jagdgebiete nicht in mehreren Landkreisen liegen können. Zusätzlich
+ist für jedes Jagdgebiet der \a{Name} \texttt{(JName)} und die
+\a{Gesamtfläche} zu speichern. Dabei ist zu beachten, dass die Namen nur
+innerhalb eines einzelnen Landkreises eindeutig sind.
 
-\item Die Erlaubnis zum Jagen wird durch einen \mpEntity{Jagdschein}
-erteilt. Dieser kann nur von einem Landkreis
-\mpRelationship{ausgestellt} werden und \mpRelationship{beschränkt} sich
-auf ein oder mehrere Jagdgebiete. Er wird durch eine
-\mpAttribute{Jagdschein-Nummer} \texttt{(JSNR)} identifiziert und ist in
-einem bestimmtem Zeitintervall gültig. Dieses soll über zwei Zeitpunkte
-festgelegt werden (\mpAttribute{gültig von} \texttt{(gültigVon)},
-\mpAttribute{gültig bis} \texttt{(gültigBis)}).
+\item Die Erlaubnis zum Jagen wird durch einen \e{Jagdschein} erteilt.
+Dieser kann nur von einem Landkreis \r{ausgestellt} werden und
+\r{beschränkt} sich auf ein oder mehrere Jagdgebiete. Er wird durch eine
+\a{Jagdschein-Nummer} \texttt{(JSNR)} identifiziert und ist in einem
+bestimmtem Zeitintervall gültig. Dieses soll über zwei Zeitpunkte
+festgelegt werden (\a{gültig von} \texttt{(gültigVon)}, \a{gültig bis}
+\texttt{(gültigBis)}).
 
-\item Ein \mpEntity{Jäger} \mpRelationship{besitzt} genau einen
-Jagdschein. Zu einem Jäger sollen \mpAttribute{Name},
-\mpAttribute{Stadt}, \mpAttribute{Straße} und \mpAttribute{Hausnummer},
-gespeichert werden. Da die Jagdtradition innerhalb einer Familie häufig
-von einer zur nächsten Generation weitergegeben wird, kann es vorkommen,
-dass Name und Adresse von zwei unterschiedlichen Jägern gleich ist
-(z.\,B. Vater und Sohn). Aus diesem Grund ist eine eindeutige
-\mpAttribute{Identifikationsnummer} \texttt{(JNR)} notwendig.
+\item Ein \e{Jäger} \r{besitzt} genau einen Jagdschein. Zu einem Jäger
+sollen \a{Name}, \a{Stadt}, \a{Straße} und \a{Hausnummer}, gespeichert
+werden. Da die Jagdtradition innerhalb einer Familie häufig von einer
+zur nächsten Generation weitergegeben wird, kann es vorkommen, dass Name
+und Adresse von zwei unterschiedlichen Jägern gleich ist (z.\,B. Vater
+und Sohn). Aus diesem Grund ist eine eindeutige
+\a{Identifikationsnummer} \texttt{(JNR)} notwendig.
 
 \item Um Statistiken erheben zu können, muss berücksichtigt werden,
-welches \mpEntity{Wild} von welchen Jägern zu welchem Zeitpunkt in
-welchem Jagdgebiet \mpRelationship{erlegt} worden ist. Gehen Sie davon
-aus, dass es mehrere Jäger geben kann, die gemeinsam ein Wild erlegen
-(z.\,B. in einer Jagdgesellschaft). Zu einem Wild gehört die
-\mpAttribute{Art} (z.\,B. Reh), die \mpAttribute{Größe}, das
-\mpAttribute{Gewicht}, sowie eine eindeutige
-\mpAttribute{Identifikationsnummer} \texttt{(WNR)}. Zusätzlich
-unterscheidet man zwischen \mpEntity{Haarwild} und \mpEntity{Federwild},
-wobei beim Haarwild der \mpAttribute{Typ des Gehörns}
-\texttt{(GehörnTyp)} (z.\,B. Hirschgeweih) und beim Federwild die
-\mpAttribute{Flügelspannweite} betrachtet werden soll.
+welches \e{Wild} von welchen Jägern zu welchem Zeitpunkt in welchem
+Jagdgebiet \r{erlegt} worden ist. Gehen Sie davon aus, dass es mehrere
+Jäger geben kann, die gemeinsam ein Wild erlegen (z.\,B. in einer
+Jagdgesellschaft). Zu einem Wild gehört die \a{Art} (z.\,B. Reh), die
+\a{Größe}, das \a{Gewicht}, sowie eine eindeutige
+\a{Identifikationsnummer} \texttt{(WNR)}. Zusätzlich unterscheidet man
+zwischen \e{Haarwild} und \e{Federwild}, wobei beim Haarwild der \a{Typ
+des Gehörns} \texttt{(GehörnTyp)} (z.\,B. Hirschgeweih) und beim
+Federwild die \a{Flügelspannweite} betrachtet werden soll.
 \end{itemize}
 
 \begin{enumerate}

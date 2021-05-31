@@ -1,6 +1,11 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{er}
 \begin{document}
+\let\a=\liErMpAttribute
+\let\d=\liErDatenbankName
+\let\e=\liErMpEntity
+\let\r=\liErMpRelationship
+
 \liAufgabenTitel{Freizeitparks}
 
 \section{Aufgabe 2: ER-Diagramm
@@ -17,34 +22,29 @@ Teilnahme (= Existenzabhängigkeit, Partizipität) von Entitytypen.
 \footcite[DB/ST - Herbst 2018 (46116, nicht vertieft), Thema 1 Teilaufgabe 2 Aufgabe 2]{examen:46116:2018:09}
 
 \begin{itemize}
-\item Der \mpEntity{Freizeitpark} ist in mehrere Gebiete
-\mpRelationship{eingeteilt}.
+\item Der \e{Freizeitpark} ist in mehrere Gebiete \r{eingeteilt}.
 
-\item Ein \mpEntity{Gebiet} hat einen eindeutigen \mpAttribute{Namen}
-und eine \mpAttribute{Beschreibung}.
+\item Ein \e{Gebiet} hat einen eindeutigen \a{Namen} und eine
+\a{Beschreibung}.
 
-\item In jedem Gebiet \mpRelationship{gibt} es eine oder mehrere
-\mpEntity{Attraktionen}. Diese verfügen über eine innerhalb ihres
-Gebiets eindeutige \mpAttribute{Nummer}. Außerdem gibt es zu jeder
-Attraktion einen \mpAttribute{Namen}, eine \mpAttribute{Beschreibung}
-und ein oder mehrere Fotos.
+\item In jedem Gebiet \r{gibt} es eine oder mehrere \e{Attraktionen}.
+Diese verfügen über eine innerhalb ihres Gebiets eindeutige \a{Nummer}.
+Außerdem gibt es zu jeder Attraktion einen \a{Namen}, eine
+\a{Beschreibung} und ein oder mehrere Fotos.
 
-\item Der Freizeitpark \mpRelationship{hat} \mpEntity{Mitarbeiter}. Zu
-diesen werden jeweils eine eindeutige \mpAttribute{ID}, der
-\mpAttribute{Vorname} und der \mpAttribute{Nachname} gespeichert.
-Weiterhin hat jeder Mitarbeiter ein \mpAttribute{Geburtsdatum}, das sich
-aus \mpAttribute{Tag}, \mpAttribute{Monat} und \mpAttribute{Jahr}
-zusammensetzt.
+\item Der Freizeitpark \r{hat} \e{Mitarbeiter}. Zu diesen werden jeweils
+eine eindeutige \a{ID}, der \a{Vorname} und der \a{Nachname}
+gespeichert. Weiterhin hat jeder Mitarbeiter ein \a{Geburtsdatum}, das
+sich aus \a{Tag}, \a{Monat} und \a{Jahr} zusammensetzt.
 
-\item Die Arbeit im Freizeitpark ist in \mpEntity{Schichten}
-organisiert. Eine Schicht kann eindeutig durch das \mpAttribute{Datum}
-und die \mpAttribute{Startzeit} identifiziert werden. Jede Schicht hat
-weiterhin eine \mpAttribute{Dauer}.
+\item Die Arbeit im Freizeitpark ist in \e{Schichten} organisiert. Eine
+Schicht kann eindeutig durch das \a{Datum} und die \a{Startzeit}
+identifiziert werden. Jede Schicht hat weiterhin eine \a{Dauer}.
 
-\item Mitarbeiter können in Schichten an Attraktionen
-\mpRelationship{arbeiten}. Dabei wird die \mpAttribute{Aufgabe}
-gespeichert, die der Mitarbeiter übernimmt. Pro Schicht kann der selbe
-Mitarbeiter nur an maximal einer Attraktion arbeiten.
+\item Mitarbeiter können in Schichten an Attraktionen \r{arbeiten}.
+Dabei wird die \a{Aufgabe} gespeichert, die der Mitarbeiter übernimmt.
+Pro Schicht kann der selbe Mitarbeiter nur an maximal einer Attraktion
+arbeiten.
 \end{itemize}
 
 %\includegraphics[width=\linewidth]{Freizeitpark.eps}

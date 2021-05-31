@@ -1,0 +1,89 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{er}
+\begin{document}
+\let\a=\liErMpAttribute
+\let\d=\liErDatenbankName
+\let\e=\liErMpEntity
+\let\r=\liErMpRelationship
+
+\liAufgabenTitel{Automobilproduktion}
+\section{Aufgabe 2
+\index{Entity-Relation-Modell}
+\footcite{66116:2021:03}}
+
+Erstellen Sie ein möglichst einfaches ER-Schema, das alle gegebenen
+Informationen enthält. Attribute von Entitäten und Beziehungen sind
+anzugeben, Schlüsselattribute durch Unterstreichen zu kennzeichnen.
+Verwenden Sie für die Angabe der Kardinalitäten von Beziehungen die
+Min-Max-Notation. Führen Sie Surrogatschlüssel (künstlich definierte
+Schlüssel) nur dann ein, wenn es nötig ist, und modellieren Sie nur die
+im Text vorkommenden Elemente.
+
+\bigskip
+
+Zunächst gibt es \e{Autos}, die einen eindeutigen \a{Namen}, einen
+\a{Typ} sowie eine Liste an \a{Ausstattungen} besitzen. Autos werden aus
+Bauteilen \r{zusammengesetzt}. Diese besitzen eine ID sowie eine
+Beschreibung.
+
+\bigskip
+
+Jedes \e{Bauteil} wird von genau einem \e{Zulieferer}
+geliefert. Zu jedem Zulieferer werden sein \a{Name} sowie seine
+\a{E-Mail-Adresse} gespeichert.
+
+\bigskip
+
+Weiter gibt es \e{Werke}, die einen
+eindeutigen \a{Namen} sowie einen \a{Standort} besitzen.
+
+\bigskip
+
+Jedes Werk
+\r{besteht} aus \e{Hallen}, welche werksintern eindeutig \a{nummeriert}
+sind. Zudem besitzt eine Halle noch eine gewisse \a{Größe} (in $m^2$).
+
+\bigskip
+
+Es gibt genau zwei Typen von Hallen: \e{Produktionshallen} und
+\e{Ersatzteillager}.
+
+\bigskip
+
+In jeder Produktionshalle wird mindestens ein Auto
+\r{hergestellt}.
+
+\bigskip
+
+Zu den Ersatzteillagern wird \r{festgehalten}, welche Bauteile und wie
+viele davon sich dort befinden.
+
+\bigskip
+
+Zu jedem \e{Mitarbeiter} werden eine eindeutige \a{ID}, sein \a{Vor-}
+und \a{Nachname}, die \a{Adresse (Straße, PLZ, Ort)}, das \a{Gehalt}
+sowie das \a{Geschlecht} gespeichert.
+
+\bigskip
+
+Mitarbeiter werden unter anderem
+in \e{Reinigungskräfte}, \e{Werksarbeiter} und \e{Ingenieure}
+unterteilt.
+
+\bigskip
+
+Zu den Ingenieuren wird zusätzlich der
+\a{Hochschulabschluss} gespeichert. Ingenieure sind genau einem Werk
+\r{zugeordnet}, Werksarbeiter einer \r{Halle}.
+
+\bigskip
+
+Eine Reinigungskraft
+\r{reinigt} mindestens eine Halle. Jede Halle muss regelmäßig gereinigt
+werden.
+
+\bigskip
+
+Weiter sind Ingenieure Projekten \r{zugeteilt}. Zudem wird zu
+jedem Projekt genau ein Ingenieur als \a{Projektleiter} festgehalten.
+\end{document}
