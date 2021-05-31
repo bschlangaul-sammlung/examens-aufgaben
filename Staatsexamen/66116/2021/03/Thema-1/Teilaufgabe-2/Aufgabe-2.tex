@@ -11,6 +11,23 @@
 \index{Entity-Relation-Modell}
 \footcite{66116:2021:03}}
 
+\def\tmp#1#2{#1 #2}
+
+\ExplSyntaxOn
+
+\def\liLets#1{
+  \prop_new:N \l_lets_prop
+  \prop_put_from_keyval:Nn \l_lets_prop {#1}
+  \prop_map_inline:Nn \l_lets_prop {##1 ##2}
+}
+\ExplSyntaxOff
+
+\liLets{a = liErMpAttribute,
+  d = liErDatenbankName,
+  e = liErMpEntity,
+  r = liErMpRelationship,
+}
+
 Erstellen Sie ein möglichst einfaches ER-Schema, das alle gegebenen
 Informationen enthält. Attribute von Entitäten und Beziehungen sind
 anzugeben, Schlüsselattribute durch Unterstreichen zu kennzeichnen.

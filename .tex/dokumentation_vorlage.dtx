@@ -62,18 +62,31 @@
 % \|\\let\\(.*?)=\\(.*?)\|
 % \liLet{$1}{$2}
 \ExplSyntaxOn
-\def\liLet#1#2{
-  \par
-  \noindent
-  \textbf{Let-Abkürzung:~}
+
+\def\li@Let#1#2{
   \texttt{
     \textbackslash let
     \textbackslash#1
     =
     \textbackslash#2
   }
+}
+
+\def\liLet#1#2{
+  \par
+  \noindent
+  \textbf{Let-Abkürzung:~}
+  \li@Let{#1}{#2}
   \par
 }
+
+\def\liLets#1{
+  \prop_new:N \l_lets_prop
+  \prop_put_from_keyval:Nn \l_lets_prop {#1}
+  \liPseudoUeberschrift{Let-Abkürzungen}\par
+  \prop_map_inline:Nn \l_lets_prop {\noindent\li@Let{##1}{##2}\par}
+}
+
 \ExplSyntaxOff
 
 \usepackage{lehramt-informatik-basis}
