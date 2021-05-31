@@ -1,0 +1,158 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Allgemeine Fragen}
+\section{Aufgabe 1
+\index{Datenbank}
+\footcite{66116:2019:03}}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Das ACID-Prinzip fordert unter anderem die Atomaritat und die
+Isolation einer Transaktion. Beschreiben Sie kurz die Bedeutung dieser
+Begriffe.
+
+\begin{liAntwort}
+\begin{description}
+\item[Atomicity]
+
+Eine Transaktion ist atomar, d.\,h. von den vorgesehenen
+Änderungsoperationen auf die Datenbank haben entweder alle oder keine
+eine Wirkung auf die Datenbank.
+
+\item[Isolation]
+
+Eine Transaktion bemerkt das Vorhandensein anderer (parallel
+ablaufender) Transaktionen nicht und beeinflusst auch andere
+Transaktionen nicht.\footcite[Kapitel 9.5 „Eigenschaften von Transaktionen“, Seite 305]{kemper}
+\end{description}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Was versteht man unter physischer Datenunabhängigkeit?
+
+\begin{liAntwort}
+Änderungen an der physischen Speicher- oder der Zugriffsstruktur
+(beispielsweise durch das Anlegen einer Indexstruktur) haben keine
+Auswirkungen auf die logische Struktur der Datenbasis, also auf das
+Datenbankschema.
+\footcite[Seite 20]{db:fs:3}
+\footcite[Kapitel 1.3 Datenunabhängigkeit Seite 24]{kemper}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item In welche drei Ebenen unterteilt die 3-Ebenen-Architektur
+Datenbanksysteme?
+
+\begin{liAntwort}
+
+\begin{description}
+\item[Externe Ebene / (Benutzer)sichten (Views)]
+
+Die externe Ebene stellt den Benutzern und Anwendungen individuelle
+Benutzersichten bereit, wie beispielsweise Formulare, Masken-Layouts,
+Schnittstellen.
+
+\item[Konzeptionelle / logische Ebene]
+
+Die konzeptionelle Ebene beschriebt, welche Daten in der Datenbank
+gespeichert sind, sowie deren Beziehungen. Ziel des Datenbankdesigns ist
+eine vollständige und redundanzfreie Darstellung aller zu speichernden
+Informationen. Hier findet die Normalisierung des relationalen
+Datenbankschemas statt.
+
+\item[Interne / physische Ebene]
+
+Die interne Ebene stellt die physische Sicht der Datenbank im Computer
+dar. Sie beschreibt, wie und wo die Daten in der Datenbank gespeichert
+werden. Oberstes Designziel ist ein effizienter Zugriff auf die
+gespeicherten Informationen, der meist durch bewusst in Kauf genommene
+Redundanz (z. B. Index) erreicht wird.
+\footcite[Seite 443, 13.1.3 Architektur eines Datenbanksystems]{schneider}
+\footcite[Seite 23, 1.2 Datenabstraktion]{kemper}
+\footcite[Seite 20]{db:fs:3}
+\end{description}
+\end{liAntwort}
+
+%%
+% d)
+%%
+
+\item Definieren Sie, was ein Schlüssel ist.
+
+\begin{liAntwort}
+Ein Schlüssel ist ein Attribut oder eine Attributkombination, von der
+alle Attribute einer Relation funktional abhängen.
+\end{liAntwort}
+
+%%
+% e)
+%%
+
+\item Gegeben ist eine Relation R(A, B, C), deren einziger Schlüsselkandidat A ist. Nennen Sie zwei
+Superschlüssel.
+
+%%
+% f)
+%%
+
+\item Gegeben seien 2 Relationen R(A, B, C) und S(C, D, E). Die Relation R enthalte 9 Tupel und die
+Relation S enthalte 7 Tupel. Sei p ein beliebiges Selektionsprädikat. Gegeben seien außerdem folgende Anfragen:
+
+O::
+
+SELECT *
+FROM R NATURAL JOIN S
+WHERE p;
+
+O:.
+
+SELECT DISTINCT A
+FROM R LEFT OUTER JOIN S ON R.C=S.C;
+
+\begin{enumerate}
+\item Wieviele Ergebnistupel liefert die Anfrage Oı mindestens?
+\item Wieviele Ergebnistupel liefert die Anfrage Oı höchstens?
+\item Wieviele Ergebnistupel liefert die Anfrage O, mindestens?
+\item Wieviele Ergebnistupel liefert die Anfrage O, höchstens?
+\end{enumerate}
+
+%%
+% g)
+%%
+
+\item Erläutern Sie, was es bedeutet, wenn ein Attribut prim ist.
+
+%%
+% h)
+%%
+
+\item Nennen Sie die drei Armstrong-Axiome, die dazu dienen aus einer Menge von funktionalen Abhängigkeiten, die auf einer Relation gelten, weitere funktionale Abhängigkeiten abzuleiten.
+
+%%
+% i)
+%%
+
+\item Nennen Sie die höchste Normalform, der die Relation R(A, B, C, D) mit den Abhängigkeiten
+A— C und A, B— D entspricht. Begründen Sie Ihre Antwort.
+
+%%
+% j)
+%%
+
+\item Gegeben seien die Transaktionen Tı, T» und T3. Wie viele mögliche verschiedene serialisierbare
+Schedules gibt es mindestens? (Geben Sie Ihren Rechenweg an.)
+
+\end{enumerate}
+
+\end{document}

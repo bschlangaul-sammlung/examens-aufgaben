@@ -11,23 +11,6 @@
 \index{Entity-Relation-Modell}
 \footcite{66116:2021:03}}
 
-\def\tmp#1#2{#1 #2}
-
-\ExplSyntaxOn
-
-\def\liLets#1{
-  \prop_new:N \l_lets_prop
-  \prop_put_from_keyval:Nn \l_lets_prop {#1}
-  \prop_map_inline:Nn \l_lets_prop {##1 ##2}
-}
-\ExplSyntaxOff
-
-\liLets{a = liErMpAttribute,
-  d = liErDatenbankName,
-  e = liErMpEntity,
-  r = liErMpRelationship,
-}
-
 Erstellen Sie ein möglichst einfaches ER-Schema, das alle gegebenen
 Informationen enthält. Attribute von Entitäten und Beziehungen sind
 anzugeben, Schlüsselattribute durch Unterstreichen zu kennzeichnen.
@@ -38,16 +21,19 @@ im Text vorkommenden Elemente.
 
 \bigskip
 
-Zunächst gibt es \e{Autos}, die einen eindeutigen \a{Namen}, einen
-\a{Typ} sowie eine Liste an \a{Ausstattungen} besitzen. Autos werden aus
-Bauteilen \r{zusammengesetzt}. Diese besitzen eine ID sowie eine
-Beschreibung.
+Zunächst gibt es \e{Autos}, die einen eindeutigen \a{Namen} \d{AName},
+einen \a{Typ} sowie eine Liste an \a{Ausstattungen} besitzen.
 
 \bigskip
 
-Jedes \e{Bauteil} wird von genau einem \e{Zulieferer}
-geliefert. Zu jedem Zulieferer werden sein \a{Name} sowie seine
-\a{E-Mail-Adresse} gespeichert.
+Autos werden aus \e{Bauteilen} \r{zusammengesetzt}. Diese besitzen eine
+\a{ID} sowie eine \a{Beschreibung}.
+
+\bigskip
+
+Jedes Bauteil wird von genau einem \e{Zulieferer} geliefert. Zu jedem
+Zulieferer werden sein \a{Name} \d{ZName} sowie seine \a{E-Mail-Adresse}
+\d{EMailAdresse} gespeichert.
 
 \bigskip
 
@@ -103,4 +89,49 @@ werden.
 
 Weiter sind Ingenieure Projekten \r{zugeteilt}. Zudem wird zu
 jedem Projekt genau ein Ingenieur als \a{Projektleiter} festgehalten.
+
+\begin{tikzpicture}[er2,scale=0.7,transform shape]
+% Werke
+\node[entity] (Werke) {Werke};
+\node[attribute,above left=0.5cm of Werke] {\key{WName}} edge (Werke);
+\node[attribute,above right=0.5cm of Werke] {Standort} edge (Werke);
+
+% Hallen
+\node[entity,below=3 cm of Werke] (Hallen) {Hallen};
+
+% zusammensetzen
+\node[relationship,below=1cm of Werke]{bestehen}
+  edge node[auto]{(1,*)} (Werke) edge node[auto]{(1,*)} (Hallen);
+
+% Produktionshallen
+\node[entity,below left=3 cm of Hallen] (Produktionshallen) {Produktionshallen};
+
+% Ersatzteillager
+\node[entity,below right=3 cm of Hallen] (Ersatzteillager) {Ersatzteillager};
+
+% Autos
+\node[entity,below=3cm of Produktionshallen] (Autos) {Autos};
+\node[attribute,above=1cm of Autos] {\key{AName}} edge (Autos);
+\node[attribute,above left=0.5cm of Autos] {Typ} edge (Autos);
+\node[attribute,left=0.5cm of Autos] {Ausstattungen} edge (Autos);
+
+% Bauteile
+\node[entity,right=6cm of Autos] (Bauteile) {Bauteile};
+\node[attribute,above right=0.5cm of Bauteile] {\key{ID}} edge (Bauteile);
+\node[attribute,right=0.5cm of Bauteile] {Beschreibung} edge (Bauteile);
+
+% zusammensetzen
+\node[relationship,right=1cm of Autos]{zusammen-\\setzen}
+  edge node[auto]{(1,*)} (Autos) edge node[auto]{(1,*)} (Bauteile);
+
+% Zulieferer
+\node[entity,below=3cm of Bauteile] (Zulieferer) {Zulieferer};
+\node[attribute,below right=0.5cm of Zulieferer] {\key{Zname}} edge (Zulieferer);
+\node[attribute,right=0.5cm of Zulieferer] {EmailAdresse} edge (Zulieferer);
+
+% liefern
+\node[relationship,below=1cm of Bauteile]{liefern}
+  edge node[auto]{(1,*)} (Bauteile) edge node[auto]{(1,1)} (Zulieferer);
+
+\end{tikzpicture}
 \end{document}
