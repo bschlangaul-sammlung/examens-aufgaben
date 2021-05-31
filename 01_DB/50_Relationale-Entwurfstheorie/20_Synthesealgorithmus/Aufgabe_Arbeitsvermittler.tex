@@ -1,8 +1,9 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{normalformen}
+\liLadePakete{normalformen,rmodell}
 \begin{document}
 \let\m=\liAttributMenge
 \let\fa=\liFunktionaleAbhaengigkeit
+\let\r=\liRelationMenge
 
 \liAufgabenTitel{Arbeitsvermittler}
 
@@ -42,18 +43,18 @@ Aus diesen Vorgaben ergibt sich (beispielsweise) folgendes relationales
 Schema (Relationen mindestens in 1.NF):
 
 \begin{itemize}
-\item \liRelation{Stellen}{Stellenbezeichnung, AG-Name, AG-Adresse, Gehalt,
+\item \r{Stellen}{Stellenbezeichnung, AG-Name, AG-Adresse, Gehalt,
 Einstellungsdatum, befristet}
 
-\item \liRelation{Bewerber}{Name, Adresse, Gebdatum, Beruf, TelNr,
+\item \r{Bewerber}{Name, Adresse, Gebdatum, Beruf, TelNr,
 Antrittsdatum, aelter25}
 
-\item \liRelation{Branche}{Branchenbezeichnung, Bedarf}
+\item \r{Branche}{Branchenbezeichnung, Bedarf}
 
-\item \liRelation{gehoert\_zu}{Stellenbezeichnung, AG-Name, AG-Adresse,
+\item \r{gehoert\_zu}{Stellenbezeichnung, AG-Name, AG-Adresse,
 Branchenbezeichnung}
 
-\item \liRelation{vermittelt}{Stellenbezeichnung, AG-Name, AG-Adresse,
+\item \r{vermittelt}{Stellenbezeichnung, AG-Name, AG-Adresse,
 Name, Adresse}
 \end{itemize}
 

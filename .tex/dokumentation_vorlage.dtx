@@ -80,11 +80,14 @@
   \par
 }
 
+\prop_new:N \l_lets_prop
+
 \def\liLets#1{
-  \prop_new:N \l_lets_prop
+  \prop_clear:N \l_lets_prop
   \prop_put_from_keyval:Nn \l_lets_prop {#1}
   \liPseudoUeberschrift{Let-Abkürzungen}\par
   \prop_map_inline:Nn \l_lets_prop {\noindent\li@Let{##1}{##2}\par}
+  \bigskip
 }
 
 \ExplSyntaxOff

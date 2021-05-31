@@ -80,11 +80,14 @@
   \par
 }
 
+\prop_new:N \l_lets_prop
+
 \def\liLets#1{
-  \prop_new:N \l_lets_prop
+  \prop_clear:N \l_lets_prop
   \prop_put_from_keyval:Nn \l_lets_prop {#1}
   \liPseudoUeberschrift{Let-Abkürzungen}\par
   \prop_map_inline:Nn \l_lets_prop {\noindent\li@Let{##1}{##2}\par}
+  \bigskip
 }
 
 \ExplSyntaxOff
@@ -1995,7 +1998,7 @@ von Hanoi-Grafiken]
 
 % \begin{macro}{\liHanoi}
 % |\liHanoi{anzahl-scheiben}{gewicht-scheibe/turm-nr,gewicht-scheibe/turm-nr}|,
-% z. B.: |\liHanoi{4}{4/1,3/1,2/3,1/2}|
+% \zB: |\liHanoi{4}{4/1,3/1,2/3,1/2}|
 %    \begin{macrocode}
 \def\li@mset #1[#2]=#3{%
 	\expandafter\xdef\csname #1#2\endcsname{#3}
@@ -2256,7 +2259,7 @@ anderen Paket passen]
 % \begin{environment}{liProjektSprache}
 % |\begin{liProjektSprache}{NameProjektSprache} \end{liProjektSprache}|:
 % Zum Einbetten von projekteigenen Minisprachen/DSLs (Domain-specific
-% language) (z. B. RelationenSchema). Der Inhalt der Umgebung wird nicht
+% language) (\zB RelationenSchema). Der Inhalt der Umgebung wird nicht
 % von TeX kompiliert, sondern von dem Java-Kommandozeilen-Programm
 % |didaktik.java| verarbeitet.
 %    \begin{macrocode}
@@ -2481,6 +2484,18 @@ anderen Paket passen]
 \NewDocumentCommand{\liFussnoteLink} { o m m } {
   \footnote{\href{#3}{#2}\IfNoValueTF{#1}{}{ (#1)}}
 }
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\zB}
+%    \begin{macrocode}
+\def\zB{z.\,B. }
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\ZB}
+%    \begin{macrocode}
+\def\ZB{Z.\,B. }
 %    \end{macrocode}
 % \end{macro}
 
@@ -3283,6 +3298,34 @@ von Pseudo-Code, Hüll-Paket um algorithm2e]
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-relationale-algebra}[2020/12/11]
 \RequirePackage{amssymb}
+%    \end{macrocode}
+
+% \begin{macro}{\ojoin}
+%    \begin{macrocode}
+\def\ojoin{\setbox0=\hbox{$\bowtie$}%
+  \rule[-.02ex]{.25em}{.4pt}\llap{\rule[\ht0]{.25em}{.4pt}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\leftouterjoin}
+%    \begin{macrocode}
+\def\leftouterjoin{\mathbin{\ojoin\mkern-5.8mu\bowtie}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\rightouterjoin}
+%    \begin{macrocode}
+\def\rightouterjoin{\mathbin{\bowtie\mkern-5.8mu\ojoin}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\fullouterjoin}
+%    \begin{macrocode}
+\def\fullouterjoin{\mathbin{\ojoin\mkern-5.8mu\bowtie\mkern-5.8mu\ojoin}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{rmodell.sty}
@@ -3293,6 +3336,13 @@ Makros und Umgebungen zum Setzen des Relationenmodells beim Thema
 Datenbanken.]
 \RequirePackage{soul}
 %    \end{macrocode}
+
+% \liLets{
+%   a = liAttribut,
+%   f = liFremd,
+%   p = liPrimaer,
+%   r = liRelationMenge,
+% }
 
 % \begin{macro}{\liPrimaer}
 % |\liPrimaer{text}|: Unterstreichung für den Primärschlüssel
@@ -3329,11 +3379,12 @@ Datenbanken.]
 %    \end{macrocode}
 % \end{environment}
 
-% \begin{macro}{\liRelation}
-% |\liRelation{name}{attribut, attribut}|: Umhüllen der Attribute
+% \begin{macro}{\liRelationMenge}
+% \liLet{r}{liRelationMenge}
+% |\liRelationMenge{name}{attribut, attribut}|: Umhüllen der Attribute
 % mit geschweiften und dann eckigen Klammern.
 %    \begin{macrocode}
-\def\liRelation#1#2{
+\def\liRelationMenge#1#2{
 \noindent
 #1 : \{[ #2 ]\}
 \par
@@ -3342,6 +3393,7 @@ Datenbanken.]
 % \end{macro}
 
 % \begin{macro}{\liAttribut}
+% \liLet{a}{liAttribut}
 % |\liAttribut{text}|: Gleiche Schrift wie Umgebung |liRmodell|
 %    \begin{macrocode}
 \def\liAttribut#1{{\li@Rmodell@Schrift#1}}
@@ -3463,6 +3515,11 @@ Paket struktex zum Setzen von Struktogrammen]
 % Um das Paket |minted| benutzen zu können, muss |pygmentize|
 % installiert sein. Außerdem müssen die TeX-Dateien mit der
 % Kommandozeilen-Option |--shell-escape| kompiliert werden.
+
+% \liLets{
+%   j = liJavaCode,
+%   s = liSqlCode,
+% }
 
 %    \begin{macrocode}
 \ExplSyntaxOn
@@ -3604,6 +3661,14 @@ Paket struktex zum Setzen von Struktogrammen]
   \inputminted{haskell}{#1}
 }
 \ExplSyntaxOff
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liSqlCode}
+% |\liHaskellCode{sql}|: Zum Setzen von SQL-Code.
+% \liLet{s}{liSqlCode}
+%    \begin{macrocode}
+\def\liSqlCode#1{\mintinline{sql}|#1|}
 %    \end{macrocode}
 % \end{macro}
 

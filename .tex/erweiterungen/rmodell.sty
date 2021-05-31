@@ -5,6 +5,13 @@ Datenbanken.]
 \RequirePackage{soul}
 %    \end{macrocode}
 
+% \liLets{
+%   a = liAttribut,
+%   f = liFremd,
+%   p = liPrimaer,
+%   r = liRelationMenge,
+% }
+
 % \begin{macro}{\liPrimaer}
 % |\liPrimaer{text}|: Unterstreichung für den Primärschlüssel
 %    \begin{macrocode}
@@ -40,11 +47,12 @@ Datenbanken.]
 %    \end{macrocode}
 % \end{environment}
 
-% \begin{macro}{\liRelation}
-% |\liRelation{name}{attribut, attribut}|: Umhüllen der Attribute
+% \begin{macro}{\liRelationMenge}
+% \liLet{r}{liRelationMenge}
+% |\liRelationMenge{name}{attribut, attribut}|: Umhüllen der Attribute
 % mit geschweiften und dann eckigen Klammern.
 %    \begin{macrocode}
-\def\liRelation#1#2{
+\def\liRelationMenge#1#2{
 \noindent
 #1 : \{[ #2 ]\}
 \par
@@ -53,6 +61,7 @@ Datenbanken.]
 % \end{macro}
 
 % \begin{macro}{\liAttribut}
+% \liLet{a}{liAttribut}
 % |\liAttribut{text}|: Gleiche Schrift wie Umgebung |liRmodell|
 %    \begin{macrocode}
 \def\liAttribut#1{{\li@Rmodell@Schrift#1}}

@@ -1,6 +1,9 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{er,syntax,rmodell}
 \begin{document}
+\let\r=\liRelationMenge
+
+
 \liAufgabenTitel{Mitarbeiter-Projekte einer Abteilung}
 
 \section{Aufgabe zum Relationenmodell und zum verfeinertem
@@ -52,13 +55,13 @@ relationales Schema! Geben Sie in geeigneter Weise Schlüssel an.
 
 \begin{liAntwort}
 \begin{liRmodell}
-\liRelation{Abteilung}{\liPrimaer{AbtID}, AName}
-\liRelation{Mitarbeiter}{\liPrimaer{PersID}, MName}
-\liRelation{Projekt}{\liPrimaer{ProjID}, PName}
-\liRelation{gehörtZu}{\liPrimaer{PersID, AbtID}}
-\liRelation{arbeitetMit}{\liPrimaer{PersID}, ProjID}
-\liRelation{istChefvon}{\liPrimaer{PersID}, VorID}
-\liRelation{verantfür}{PersID, \liPrimaer{ProjID}}
+\r{Abteilung}{\liPrimaer{AbtID}, AName}
+\r{Mitarbeiter}{\liPrimaer{PersID}, MName}
+\r{Projekt}{\liPrimaer{ProjID}, PName}
+\r{gehörtZu}{\liPrimaer{PersID, AbtID}}
+\r{arbeitetMit}{\liPrimaer{PersID}, ProjID}
+\r{istChefvon}{\liPrimaer{PersID}, VorID}
+\r{verantfür}{PersID, \liPrimaer{ProjID}}
 \end{liRmodell}
 \end{liAntwort}
 
@@ -71,22 +74,22 @@ relationales Schema! Geben Sie in geeigneter Weise Schlüssel an.
 
 \begin{liAntwort}
 \begin{liRmodell}
-\liRelation{Abteilung}{AbtID, AName}
-\liRelation{Mitarbeiter}{PersID, MName, AbtID, VerantwortlicherID}
+\r{Abteilung}{AbtID, AName}
+\r{Mitarbeiter}{PersID, MName, AbtID, VerantwortlicherID}
 \end{liRmodell}
 
 $\rightarrow$ \liAttribut{gehörtZu} und \liAttribut{istChefVon} wurden
 berücksichtigt
 
 \begin{liRmodell}
-\liRelation{Projekt}{ProjID, PName, VerantwortlicherID}
+\r{Projekt}{ProjID, PName, VerantwortlicherID}
 \end{liRmodell}
 
 $\rightarrow$ zur Vermeidung von NULL-Werten wurde hier
 \liAttribut{verantFür} berücksichtigt
 
 \begin{liRmodell}
-\liRelation{arbeitetMit}{PersID, ProjID}
+\r{arbeitetMit}{PersID, ProjID}
 \end{liRmodell}
 \end{liAntwort}
 \end{enumerate}

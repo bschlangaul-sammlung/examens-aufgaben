@@ -3,6 +3,7 @@
 \liLadePakete{mathe,syntax,relationale-algebra}
 
 \begin{document}
+\let\s=\liSqlCode
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Theorie-Teil
@@ -45,11 +46,13 @@ Symmetrische Differenz & $\bigtriangleup$ & \verb|\bigtriangleup| & \\
 Join & $\bowtie$ & \verb|\bowtie| & JOIN\\
 
 % ⟕
-%Left Outer Join & {\tiny \textifsym{d|><|}} & \verb|{\tiny \textifsym{d|><|}}| & LOJOIN\\
+Left Outer Join & $\leftouterjoin$ & \verb|\leftouterjoin| & LOJOIN\\
 
-% Right Outer Join & ⟖ & {\tiny \textifsym{|><|d}} & ROJOIN\\
+% ⟖
+Right Outer Join & $\rightouterjoin$ & \verb|$\rightouterjoin$|  & ROJOIN\\
 
-% Full Outer Join & ⟗ & {\tiny \textifsym{d|><|d}} & FOJOIN\\
+% ⟗
+Full Outer Join & $\fullouterjoin$ & \verb|$\fullouterjoin$|  & FOJOIN\\
 
 % ⋉ needs \usepackage{amssymb}
 Left Semi Join & $\ltimes$ & \verb|\ltimes| & LSJOIN\\
@@ -235,7 +238,7 @@ WHERE MatrNr NOT IN(
 \footcite{net:pdf:lmu:dbs}
 }
 
-Mit diesen Grundoperationen lassen sich weitere Operationen (z. B. die
+Mit diesen Grundoperationen lassen sich weitere Operationen (\zB die
 Schnittmenge) nachbilden.
 
 \begin{itemize}
@@ -246,6 +249,52 @@ Schnittmenge) nachbilden.
 \item Projektion $R = \pi_{A,B,...}(S)$
 \end{itemize}
 
+\section{Joins\footcite[Seite 44]{db:fs:2}}
+
+\begin{description}
+\item[Natürlicher Verbund (Natural Join) $\bowtie$:]
+
+Zwei Tabellen werden miteinander über ein gleichbenanntes Attribut
+verbunden.
+
+\item[Theta-Join $\bowtie_p$:]
+
+Zwei Tabellen werden miteinander über ein Prädikat verbunden. Das
+Prädikat schreibt vor, welche Bedingungen erfüllt sein müssen, damit
+Tupel der unterschiedlichen Relationen miteinander verbunden werden
+können (\zB \s{INNER JOIN S ON R.A = S.E}).
+
+\item[Äußerer Join:]
+
+Bei äußeren Join-Operatoren werden auch partnerlose Tupel der linken /
+rechten / beider Argumentrelationen „gerettet“.
+
+\begin{description}
+
+\item[Left outer join $\leftouterjoin$:]
+
+Die Tupel der linken Argumentrelation bleiben in jedem Fall erhalten
+(\zB \s{LEFT OUTER JOIN S ON R.A=S.A}).
+
+\item[Right outer join $\rightouterjoin$:]
+
+Die Tupel der rechten Argumentrelation bleiben in jedem Fall erhalten
+(\zB \s{RIGHT OUTER JOIN S ON R.A=S.A}).
+
+\item[Full outer join $\fullouterjoin$:]
+
+Die Tupel beider Argumentrelation bleiben in jedem Fall erhalten (\zB
+\s{FULL OUTER JOIN R USING(A)}).
+
+\end{description}
+
+\item[Semi-Join $\ltimes$ / $\rtimes$ :]
+
+enthält alle Tupel der linken/ rechten Relation, die einen potentiellen
+Join-Partner in der rechten/ linken Relation haben (\zB \s{SELECT
+A,B,C,D FROM R NATURAL JOIN S;}).
+
+\end{description}
 \literatur
 
 \end{document}

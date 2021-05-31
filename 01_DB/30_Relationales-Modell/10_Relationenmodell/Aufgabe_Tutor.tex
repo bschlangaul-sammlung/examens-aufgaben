@@ -1,6 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{er,rmodell}
 \begin{document}
+\let\r=\liRelationMenge
+
 \liAufgabenTitel{Tutor}
 
 \section{
@@ -45,17 +47,17 @@ fest.
 
 \begin{liAntwort}
 \begin{liRmodell}
-\liRelation{Kurs}{\liPrimaer{KursNr}, Kursname}
+\r{Kurs}{\liPrimaer{KursNr}, Kursname}
 
-\liRelation{Tutor}{\liPrimaer{PersNr}, Name, Buero}
+\r{Tutor}{\liPrimaer{PersNr}, Name, Buero}
 \end{liRmodell}
 
 bzw.
 
 \begin{liRmodell}
-\liRelation{Kurs}{KursNr, \liPrimaer{Kursname}}
+\r{Kurs}{KursNr, \liPrimaer{Kursname}}
 
-\liRelation{Tutor}{PersNr, \liPrimaer{Name, Buero}}
+\r{Tutor}{PersNr, \liPrimaer{Name, Buero}}
 \end{liRmodell}
 \end{liAntwort}
 
@@ -85,14 +87,14 @@ der beiden wird als Primärschlüssel ausgewählt. Es gibt folglich acht
 mögliche Relationen:
 
 \begin{liRmodell}
-\liRelation{betreut}{\liPrimaer{PersNr}, KursNr, Sprechstunde)}
-\liRelation{betreut}{PersNr, \liPrimaer{KursNr}, Sprechstunde)}
-\liRelation{betreut}{\liPrimaer{PersNr}, Kursname, Sprechstunde)}
-\liRelation{betreut}{PersNr, \liPrimaer{Kursname}, Sprechstunde)}
-\liRelation{betreut}{\liPrimaer{Name, Büro}, KursNr, Sprechstunde)}
-\liRelation{betreut}{Name, Büro, \liPrimaer{KursNr}, Sprechstunde)}
-\liRelation{betreut}{\liPrimaer{Name, Büro}, Kursname, Sprechstunde)}
-\liRelation{betreut}{Name, Büro, \liPrimaer{Kursname}, Sprechstunde)}
+\r{betreut}{\liPrimaer{PersNr}, KursNr, Sprechstunde}
+\r{betreut}{PersNr, \liPrimaer{KursNr}, Sprechstunde}
+\r{betreut}{\liPrimaer{PersNr}, Kursname, Sprechstunde}
+\r{betreut}{PersNr, \liPrimaer{Kursname}, Sprechstunde}
+\r{betreut}{\liPrimaer{Name, Büro}, KursNr, Sprechstunde}
+\r{betreut}{Name, Büro, \liPrimaer{KursNr}, Sprechstunde}
+\r{betreut}{\liPrimaer{Name, Büro}, Kursname, Sprechstunde}
+\r{betreut}{Name, Büro, \liPrimaer{Kursname}, Sprechstunde}
 \end{liRmodell}
 \end{liAntwort}
 \end{enumerate}

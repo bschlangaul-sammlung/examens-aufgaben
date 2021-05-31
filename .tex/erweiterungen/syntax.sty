@@ -8,6 +8,11 @@
 % installiert sein. Außerdem müssen die TeX-Dateien mit der
 % Kommandozeilen-Option |--shell-escape| kompiliert werden.
 
+% \liLets{
+%   j = liJavaCode,
+%   s = liSqlCode,
+% }
+
 %    \begin{macrocode}
 \ExplSyntaxOn
 %    \end{macrocode}
@@ -148,6 +153,14 @@
   \inputminted{haskell}{#1}
 }
 \ExplSyntaxOff
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liSqlCode}
+% |\liHaskellCode{sql}|: Zum Setzen von SQL-Code.
+% \liLet{s}{liSqlCode}
+%    \begin{macrocode}
+\def\liSqlCode#1{\mintinline{sql}|#1|}
 %    \end{macrocode}
 % \end{macro}
 

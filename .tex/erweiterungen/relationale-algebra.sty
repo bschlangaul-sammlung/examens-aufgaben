@@ -1,3 +1,31 @@
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-relationale-algebra}[2020/12/11]
 \RequirePackage{amssymb}
+%    \end{macrocode}
+
+% \begin{macro}{\ojoin}
+%    \begin{macrocode}
+\def\ojoin{\setbox0=\hbox{$\bowtie$}%
+  \rule[-.02ex]{.25em}{.4pt}\llap{\rule[\ht0]{.25em}{.4pt}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\leftouterjoin}
+%    \begin{macrocode}
+\def\leftouterjoin{\mathbin{\ojoin\mkern-5.8mu\bowtie}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\rightouterjoin}
+%    \begin{macrocode}
+\def\rightouterjoin{\mathbin{\bowtie\mkern-5.8mu\ojoin}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\fullouterjoin}
+%    \begin{macrocode}
+\def\fullouterjoin{\mathbin{\ojoin\mkern-5.8mu\bowtie\mkern-5.8mu\ojoin}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
