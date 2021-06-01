@@ -2499,6 +2499,12 @@ anderen Paket passen]
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\dh}
+%    \begin{macrocode}
+\def\dh{d.\,h. }
+%    \end{macrocode}
+% \end{macro}
+
 %    \begin{macrocode}
 
 %    \end{macrocode}
@@ -2814,6 +2820,15 @@ Attributhülle]
 }
 %    \end{macrocode}
 
+% \liLets{
+%   ah = liAttributHuelle,
+%   ahL = liAttributHuelleLinksReduktion,
+%   fa = liFunktionaleAbhaengigkeit,
+%   FA = liFunktionaleAbhaengigkeiten,
+%   m = liAttributMenge,
+%   r = liRelation,
+% }
+
 %    \begin{macrocode}
 \def\liTeilen#1{
   \directlua{tex.print(normalformen.teilen('#1'))}
@@ -2821,11 +2836,11 @@ Attributhülle]
 %    \end{macrocode}
 
 % \begin{macro}{\liAttributHuelle}
-%    \begin{macrocode}
 % \liLet{ah}{liAttributHuelle}
 % Regulärer Ausdruck zum Konvertieren
 % |AttrHülle\((.*)\)|
 % |\\ah{$1}|
+%    \begin{macrocode}
 \def\liAttributHuelleOhneMathe#1{\text{AttrHülle}(#1)}
 \def\liAttributHuelle#1{
 \ifmmode
@@ -2915,6 +2930,7 @@ Attributhülle]
 % \end{macro}
 
 % \begin{macro}{\liRelation}
+% \liLet{r}{liRelation}
 % Regulärer Ausdruck zum Konvertieren:
 % |\$(R.*)\((.*)\)\$|
 % |\\liRelation[$1]{$2}|
@@ -3787,7 +3803,7 @@ Relation in die 3. Normalform]
       alle~$B~\in~\beta$,~ob~$B~\in~\liAttributHuelle{F~-~(\alpha~
       \rightarrow~\beta)~\cup~(\alpha~\rightarrow~(\beta~-~B)),~
       \alpha}$~gilt.~In~diesem~Fall~ist~B~auf~der~rechten~Seite~
-      überflüssig~und~kann~eleminiert~werden,~d.\,h.~$\alpha~
+      überflüssig~und~kann~eleminiert~werden,~\dh~$\alpha~
       \rightarrow~\beta$~wird~durch~$\alpha~\rightarrow~(\beta~-~B)$~
       ersetzt.
     }

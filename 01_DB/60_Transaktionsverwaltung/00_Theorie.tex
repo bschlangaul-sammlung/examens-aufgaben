@@ -26,7 +26,7 @@ ausgeführt} werden sollen.
 \begin{description}
 \item[Atomicity]
 
-Eine Transaktion ist atomar, d.\,h. von den vorgesehenen
+Eine Transaktion ist atomar, \dh von den vorgesehenen
 Änderungsoperationen auf die Datenbank haben entweder alle oder keine
 eine Wirkung auf die Datenbank.
 
@@ -75,7 +75,7 @@ Befehlsfolge gekennzeichnet.
 
 Hierdurch wird die Beendigung der Transaktion eingeleitet. Alle
 Änderungen der Datenbasis werden durch diesen Befehl festgeschrieben,
-d.h. sie werden dauerhaft in die Datenbank eingebaut.
+\dh sie werden dauerhaft in die Datenbank eingebaut.
 
 \item[abort]
 
@@ -112,7 +112,7 @@ wechseln. Diesen Übergang nennen wir inkarnieren.
 
 \item[aktiv]
 
-Die aktiven (d.h. derzeit rechnenden) Transaktionen konkurrieren
+Die aktiven (\dh derzeit rechnenden) Transaktionen konkurrieren
 untereinander um die Betriebsmittel, wie \zB Hauptspeicher, Rechnerkern
 zur Ausführung von Operationen, etc.
 
@@ -121,7 +121,7 @@ zur Ausführung von Operationen, etc.
 Bei einer Überlast des Systems: (\zB thrashing (Seitenflattern) des
 Puffers) kann die Transaktionsverwaltung einige aktive Transaktionen in
 den Zustand wartend verdrängen. Nach Behebung der Überlast werden diese
-wartenden Transaktionen sukzessive wieder eingebracht, d.h. wieder
+wartenden Transaktionen sukzessive wieder eingebracht, \dh wieder
 aktiviert.
 
 \item[abgeschlossen]
@@ -233,7 +233,7 @@ von dieser Transaktion reserviert und dürfen nicht von anderen
 Transaktionen abgegriffen werden),
 
 \item alle Lesesperren (\textbf{S}hared oder \textbf{R}ead) bis zum
-Ende, d.\,h. bis zur Aktion commit, hält und
+Ende, \dh bis zur Aktion commit, hält und
 
 \item alle Schreibsperren (e\textbf{X}clusive oder \textbf{W}rite) bis
 nach \texttt{commit} hält.
@@ -508,7 +508,7 @@ nicht abgeschlossener Transaktionen aus den modifizierten Seiten der
 materialisierten Datenbasis entfernen zu können.
 
 Beim WAL-Prinzip schreibt man natürlich alle Log-Einträge bis zu dem
-letzten notwendigen aus — d.\,h. man übergeht keine Log-Einträge, die von
+letzten notwendigen aus — \dh man übergeht keine Log-Einträge, die von
 Regel 1. und 2. nicht erfasst sind. Dies ist essentiell, um die
 chronologische Reihenfolge der LogEinträge im Ringpuffer zu wahren.
 

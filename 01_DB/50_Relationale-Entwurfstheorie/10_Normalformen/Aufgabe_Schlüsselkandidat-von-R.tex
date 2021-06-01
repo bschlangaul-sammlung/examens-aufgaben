@@ -1,7 +1,11 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{normalformen}
 \begin{document}
+\let\ah=\liAttributHuelle
+\let\fa=\liFunktionaleAbhaengigkeit
 \let\FA=\liFunktionaleAbhaengigkeiten
+\let\m=\liAttributMenge
+\def\e{\text{ERG}}
 
 \liAufgabenTitel{Schlüsselkandidat von R}
 
@@ -11,8 +15,9 @@
 }
 
 Gegeben sei die Relation \emph{Abstrakt} mit dem Schema
-\liRelation[Abstrakt]{A, B, C, D}
+\liRelation[Abstrakt]{A, B, C, D, E}
 und die Menge der funktionalen Abhängigkeiten
+
 \FA[$F$]{
   A -> B, C;
   C, D -> E;
@@ -22,5 +27,45 @@ und die Menge der funktionalen Abhängigkeiten
 
 \noindent
 Bestimmen Sie die Schlüsselkandidaten von Abstrakt!
+
+\begin{liAntwort}
+Das Attribut $A$ kommt auf keiner rechten Seite der Funktionalen
+Abhängigkeiten aus $F$ vor und kann deshalb in keinem Fall durch ein
+anderes Attribut bestimmt werden. Damit muss $A$ in jedem
+Schlüsselkandidaten von Abstrakt enthalten sein. Ist {A} bereits ein
+Superschlüssel, ist die Menge folglich der (einzig mögliche)
+Schlüsselkandidat. Wir überprüfen die Superschlüsseleigenschaft mit dem
+Attributhüllenalgorithmus:
+
+\bigskip
+
+\noindent
+\begin{tabular}{|l|l|}
+\hline
+ERG & Begründung \\\hline
+$\e = \m{A}$ & Initialisierung \\\hline
+$\e = \m{A} \cup \m{B, C}$ & \fa{A -> B, C} \\\hline
+$\e = \m{A, B, C}$ & \fa{C, D -> E} \\\hline
+$\e = \m{A, B, C} \cup \m{E}$ & \fa{A, C -> E} \\\hline
+$\e = \m{A, B, C, E} \cup \m{D}$ & \fa{B -> D} \\\hline
+$\e = \m{A, B, C, D, E}$ & \\\hline
+\end{tabular}
+
+\bigskip
+\noindent
+$\e = \m{A, B, C, D, E}$ kann bei einem zweiten Durchlauf nicht mehr
+ändern, da die Menge bereits alle Attribute von Abstrakt enthält. Die
+Attributhülle von $A$ über $F$ entspricht der Attributmenge von
+\emph{Abstrakt}.
+
+\bigskip
+\noindent
+$\ah{F, \m{A}} = \m{A, B, C, D, E} = R$
+
+\bigskip
+\noindent
+$\rightarrow \m{A}$ ist der Schlüsselkandidat von \emph{Abstrakt}.
+
+\end{liAntwort}
 
 \end{document}

@@ -2,9 +2,9 @@
 \liLadePakete{normalformen}
 \begin{document}
 \let\ah=\liAttributHuelle
-\let\m=\liAttributMenge
-\let\FA=\liFunktionaleAbhaengigkeiten
 \let\fa=\liFunktionaleAbhaengigkeit
+\let\FA=\liFunktionaleAbhaengigkeiten
+\let\m=\liAttributMenge
 
 \liAufgabenTitel{Abstraktes R}
 
@@ -12,7 +12,7 @@
 
 Gegeben sei das Relationenschema \liRelation{A, B, C, D, E, G} mit
 
-\FA{
+\FA[F]{
   E -> D;
   C -> B;
   CE -> G;
@@ -29,16 +29,17 @@ Gegeben sei das Relationenschema \liRelation{A, B, C, D, E, G} mit
 \index{Schlüsselkandidat}
 
 \begin{liAntwort}
-$C$ und $E$ kommen auf keiner rechten Seite der FDs aus $F$ vor, d.\,h.
-$C$ und $E$ müssen Teil jedes Schlüsselkandidaten sein.
+$C$ und $E$ kommen auf keiner rechten Seite der Funktionalen
+Abhängigkeiten aus $F$ vor, \dh $C$ und $E$ müssen Teil jedes
+Schlüsselkandidaten sein.
 
 Außerdem gilt: $\ah{F, \m{C, E}} = \m{A, B, C, D, E, G} = R$
 
-$\m{C, E}$ ist somit Superschlüssel von $R$. Zudem ist $\m{C, E}$
-minimal, da beide Attribute Teil jedes SK sein müssen.
+\m{C, E} ist somit Superschlüssel von $R$. Zudem ist \m{C, E}
+minimal, da beide Attribute Teil jedes Schlüsselkandidaten sein müssen.
 
 $\Rightarrow$ $\m{C, E}$ ist damit der einzige Schlüsselkandidat von $R$
-(da kein SK ohne $C$ und $E$ möglich ist).
+(da kein Schlüssel ohne $C$ und $E$ möglich ist).
 
 \liPseudoUeberschrift{Anmerkung:}
 
@@ -49,7 +50,7 @@ E\}$. In diesem Fall lässt sich die Schlüsselkandidateneigenschaft
 jedoch einfacher zeigen, sodass man den Algorithmus und somit Zeit
 sparen kann.
 
-\item Achtung! $\m{C, E}$ ist zwar der einzige Schlüsselkandidat, aber
+\item Achtung! \m{C, E} ist zwar der einzige Schlüsselkandidat, aber
 nicht der einzige Superschlüssel, auch \m{A, B, C, D, E, G} wäre ein
 Superschlüssel!
 \end{itemize}
@@ -142,17 +143,17 @@ Schlüsselkandidat, also kann kein redundantes Attribut vorliegen.
 müssen auch alle einelementigen FA’s betrachtet werden)
 
 \begin{itemize}
-\item \fa{E -> D}: $\ah{F - \m{E \rightarrow D}, \m{E}} = \m{E}$, d.h.
+\item \fa{E -> D}: $\ah{F - \m{E \rightarrow D}, \m{E}} = \m{E}$, \dh
 $D \notin \ah{F - \m{E \rightarrow D}, \m{E}}$
 
-\item \fa{C -> B}: $\ah{F - \m{C \rightarrow B}, \m{C}} = \m{C}$, d.h.
+\item \fa{C -> B}: $\ah{F - \m{C \rightarrow B}, \m{C}} = \m{C}$, \dh
 $B \notin \ah{F - \m{C \rightarrow B}, \m{E}}$
 
-\item \fa{CE -> G}: $\ah{F - \m{CE \rightarrow G}, \m{C, E}} = \m{A, B, C, D, E}$, d.h.
+\item \fa{CE -> G}: $\ah{F - \m{CE \rightarrow G}, \m{C, E}} = \m{A, B, C, D, E}$, \dh
 $G \notin \ah{F - \m{CE \rightarrow G}, \m{E}}$
 $\Rightarrow$ $CE \rightarrow G$ ist nicht redundant
 
-\item \fa{B -> A}: $\ah{F - \fa{B -> A}, \m{B}} = \m{B}$, d.h.
+\item \fa{B -> A}: $\ah{F - \fa{B -> A}, \m{B}} = \m{B}$, \dh
 
 $A \notin \ah{F - \m{B \rightarrow A}, \m{E}}$
 $\Rightarrow$ $B \rightarrow A$ ist nicht redundant

@@ -1,0 +1,74 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{normalformen}
+\begin{document}
+\let\ah=\liAttributHuelle
+\let\FA=\liFunktionaleAbhaengigkeiten
+\let\r=\liRelation
+\let\m=\liAttributMenge
+
+\liAufgabenTitel{Normalisierung}
+\section{Aufgabe 6
+\index{Normalformen}
+\footcite{66116:2019:03}}
+
+Gegeben sei das Relationsschema \r{A, B, C, D, E, F}, sowie die Menge
+der zugehörigen funktionalen Abhängigkeiten FD:
+
+\FA{
+  B -> F;
+  CD -> E;
+  C -> A;
+  CD -> A;
+  D -> F;
+  D -> B;
+}
+
+% http://www.ict.griffith.edu.au/normalization_tools/normalization/ind.php
+
+% A,B,C,D,E,F
+
+% B -> F
+% C,D -> E
+% C -> A
+% C,D -> A
+% D -> F
+% D -> B
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Bestimmen Sie den Schlüsselkandidaten der Relation $R$ und
+begründen Sie, warum es keine weiteren Schlüsselkandidaten gibt.
+\index{Schlüsselkandidat}
+
+% Step 1: Find the minimal cover of FDs, which contains
+% B --> F
+% C,D --> E
+% C --> A
+% D --> B
+% Step 2. Find the set of attributes not on the RHS of any FD, which is NotOnRHS = {C,D}. Every CK must contain these attributes.
+% Step 3: NotOnRHS is a superkey, so it is the only candidate key
+
+\begin{liAntwort}
+Der Schlüsselkandidat ist \m{C, D}, da \m{C, D} auf keiner rechten
+Seiten der Funktionalen Abhängigkeiten vorkommt. Außerdem ist \m{C, D}
+ein Superschlüssel da gilt: $\ah{F, \m{C, E}} = \m{A, B, C, D, E, G} =
+R$
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Überführen Sie das Relationsschema $R$ mit Hilfe des
+Synthesealgorithmus in die dritte Normalform. Führen Sie hierfür jeden
+der vier Schritte durch und kennzeichnen Sie Stellen, bei denen nichts
+zu tun ist. Benennen Sie alle Schritte und begründen Sie eventuelle
+Reduktionen.
+\index{Synthese-Algorithmus}
+
+\end{enumerate}
+\end{document}

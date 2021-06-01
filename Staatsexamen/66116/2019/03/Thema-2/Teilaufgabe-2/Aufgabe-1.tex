@@ -1,5 +1,4 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
 \begin{document}
 \liAufgabenTitel{Test-getriebene Entwicklung}
 \section{Aufgabe 1
@@ -43,7 +42,7 @@ Falsch: Komponententests (anderes Wort für Unit- oder Modul-Tests) können beid
 
 \item Akzeptanztests
 
-Akzeptanz- resp. Funktionstests sind immer Black-Box-Tests und nie
+Akzeptanz - resp. Funktionstests sind immer Black-Box-Tests und nie
 White-Box-Tests.
 
 \begin{liAntwort}
@@ -63,6 +62,31 @@ Acceptance testing in extreme programming:  Acceptance tests are black-box syste
 Ein fehlgeschlagener Test und ein Testausführungsfehler bezeichnen
 denselben Sachverhalt.
 
+\begin{liAntwort}
+Falsch:
+
+Fehler (Error)
+
+Der Software-Test konnte durchgeführt werden, das ermittelte
+Ist-Ergebnis und das vorgegebene Soll-Ergebnis weichen jedoch
+voneinander ab. Ein derartiger Fehler liegt z. B. dann vor, wenn ein
+Funktionsaufruf einen abweichenden Wert berechnet.
+
+Fehlschlag (Failure)
+
+Während der Testdurchführung wurde ein Systemversagen festgestellt. Ein
+Fehlschlag liegt z. B. dann vor, wenn das zu testende System einen
+Programmabsturz verursacht und hierdurch erst gar kein Ist-Ergebnis
+ermittelt werden konnte.\footcite{hoffmann:software}
+
+Das Misslingen kann als Ursache einen Fehler (Error) oder ein falsches
+Ergebnis (Failure) haben, die beide per Exception signalisiert werden.
+Der Unterschied zwischen den beiden Begriffen liegt darin, dass Failures
+erwartet werden, während Errors eher unerwartet auftreten.
+\liFussnoteUrl{https://de.wikipedia.org/wiki/JUnit}
+
+\end{liAntwort}
+
 %%
 % e)
 %%
@@ -71,6 +95,15 @@ denselben Sachverhalt.
 
 Tests können hierarchisch strukturiert werden, so dass mit einem Befehl
 das gesamte zu testende System getestet werden kann.
+
+\begin{liAntwort}
+Richtig:
+
+test suite (englisch „Testsammlung“, aus französisch suite Folge,
+Verkettung) bezeichnet eine organisierte Sammlung von Werkzeugen zum
+Testen technischer Apparate und Vorgänge.
+\liFussnoteUrl{https://de.wikipedia.org/wiki/Testsuite}
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}
