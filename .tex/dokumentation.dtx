@@ -2940,7 +2940,10 @@ Attributhülle]
 % |\\liRelation[$1]{$2}|
 %    \begin{macrocode}
 \NewDocumentCommand {\liRelation} { O{R} m } {
-  $\directlua{tex.print(helfer.konvertiere_tiefgestellt('#1'))}$(\textit{\,#2\,})
+  $\directlua{
+    local name = helfer.konvertiere_tiefgestellt('#1')
+    tex.print(name)
+  }$(\textit{\,#2\,})
 }
 %    \end{macrocode}
 % \end{macro}

@@ -1,0 +1,68 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{uml}
+\begin{document}
+\liAufgabenTitel{Umfrage}
+\section{Aufgabe 3
+\index{Anwendungsfalldiagramm}
+\footcite{66116:2019:03}}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Nehmen Sie an, dass in einem System zur Durchführung von Umfragen
+die drei Anwendungsfälle \emph{„Teilnahme“}, \emph{„Fragen beantworten“}
+und \emph{„Registrierung für Verlosung“} gegeben seien. Alle
+Anwendungsfälle sind einem Teilnehmer (an einer Umfrage) zugänglich.
+Stellen Sie die drei Anwendungsfälle in einem UML-Anwendungsfalldiagramm
+(„use case diagram“) dar. Verwenden Sie dabei sowohl die <<extend>> -
+als auch die <<include>>-Beziehung und beschreiben Sie die Bedeutung der
+Beziehungen für die Existenz des „Teilnahme“-Anwendungsfalls.
+
+\begin{liAntwort}
+\begin{tikzpicture}
+\begin{umlsystem}{Umfrage}
+\umlusecase[y=-2]{Teilnahme}
+\umlusecase[y=0,x=2]{Fragen beantworten}
+\umlusecase[y=-4,x=2]{Registrierung für Verlosung}
+\end{umlsystem}
+
+\umlactor[x=-3,y=-2]{user}
+\umlinclude{usecase-1}{usecase-2}
+\umlextend{usecase-3}{usecase-1}
+
+\umlassoc{user}{usecase-1}
+\umlassoc{user}{usecase-2}
+\umlassoc{user}{usecase-3}
+\end{tikzpicture}
+
+\begin{description}
+\item[<<include>>]
+
+Der/die Anwender/in kann nur an der Umfrage teilnehmen, wenn er/sie die
+Fragen beantwortet hat.
+
+\item[<<extend>>]
+
+Der/die Anwender/in kann zusätzlich zur Teilnahme an der Umfrage sich
+für die Verlosung registrieren.
+\end{description}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Welche Informationen sollte eine typische Spezifikation eines
+Anwendungsfalls enthalten?
+
+\begin{liAntwort}
+Ein Use-Case-Diagramm zeigt das externe Verhalten eines Systems aus der
+Sicht der Nutzer, indem es die Nutzer, die Use-Cases und deren
+Beziehungen zueinander darstellt.
+\footcite[Seite 241]{rupp}
+\end{liAntwort}
+\end{enumerate}
+\end{document}
