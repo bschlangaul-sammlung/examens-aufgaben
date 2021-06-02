@@ -4,6 +4,7 @@ Hilfsmakros zum Setzen von Normalformen, Funktionalen Abhänigkeiten,
 Attributhülle]
 \liLadePakete{mathe}
 \directlua{
+  helfer = require('lehramt-informatik-helfer')
   normalformen = require('lehramt-informatik-normalformen')
 }
 %    \end{macrocode}
@@ -119,12 +120,15 @@ Attributhülle]
 
 % \begin{macro}{\liRelation}
 % \liLet{r}{liRelation}
+% \begin{liBeispiel}
+% \liRelation[R3]{A, B, C}
+% \end{liBeispiel}
 % Regulärer Ausdruck zum Konvertieren:
 % |\$(R.*)\((.*)\)\$|
 % |\\liRelation[$1]{$2}|
 %    \begin{macrocode}
 \NewDocumentCommand {\liRelation} { O{R} m } {
-  #1(\textit{\,#2\,})
+  $\directlua{tex.print(helfer.konvertiere_tiefgestellt('#1'))}$(\textit{\,#2\,})
 }
 %    \end{macrocode}
 % \end{macro}
