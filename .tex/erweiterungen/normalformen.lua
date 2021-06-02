@@ -6,6 +6,7 @@ local helfer = require('lehramt-informatik-helfer')
 -- 'nichts' wird durch \emptyset ersetzt
 local function setze_menge (eingabe)
   eingabe = eingabe:gsub('nichts', '\\emptyset{}')
+  eingabe = eingabe:gsub('NICHTS', '\\emptyset{}')
   local elemente = helfer.split(eingabe, '%s*,%s*')
   return '\\{ \\textit{' .. table.concat(elemente, ', ') .. '} \\}'
 end
