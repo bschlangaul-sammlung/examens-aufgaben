@@ -109,7 +109,7 @@ gesammelten Flugmeilen.
 
 \liUmlLeserichtung{bietetAn}
 
-\umlclass[below=2cm of Flugroute]{Flug}{
+\umlclass[below=1.5cm of Flugroute]{Flug}{
   + flugnummer: int\\
   + abflugzeit: int\\
   + ankunftszeit: int\\
@@ -117,14 +117,30 @@ gesammelten Flugmeilen.
 }
 \umlassoc[mult1=0..*,mult2=1,arg2=route]{Flug}{Flugroute}
 
-\umlclass[left=1cm of Flug]{Flugbuchung}{}{}
+\umlclass[left=1cm of Flug]{Flugbuchung}{
+  + grundpreis: double\\
+  + datum: Date
+}{}
+
+\umlclass[below=1cm of Flug]{Sitzplatz}{
+  raucherplatz: boolean\\
+  businessclass: boolean
+}{}
 
 \umlclass[below=1cm of Flugbuchung]{Passagier}{+ adresse}{}
 
-\umlclass[below left=1cm and -0.5cm of Passagier]{PrivatKunde}{}{}
-\umlclass[below right=1cm and -0.5cm of Passagier]{GeschäftsKunde}{+ flugmeilen}{+ gewähreRabatt()}
-\umlclass[below left=1cm and -0.5cm of PrivatKunde]{Erwachsener}{+ flugmeilen}{}
-\umlclass[below right=1cm and -0.5cm of PrivatKunde]{Jugendlicher}{}{+ gewähreRabatt()}
+\umlclass[below left=1cm and -0.5cm of Passagier]{PrivatKunde}{- alter: int}{}
+\umlclass[below right=1cm and -0.5cm of Passagier]{GeschäftsKunde}{
+  - flugmeilen: double
+}
+{+ gewähreRabatt()}
+
+\umlassoc{Passagier}{Sitzplatz}
+\umlassoc{Flugbuchung}{Sitzplatz}
+\umlassoc{Flugbuchung}{Flug}
+
+\umlVHVinherit[arm2=-1.2cm]{PrivatKunde}{Passagier}
+\umlVHVinherit[arm2=-1.2cm]{GeschäftsKunde}{Passagier}
 
 \end{tikzpicture}
 \end{liAntwort}
@@ -147,6 +163,10 @@ Attributwerte!
 Sequenzdiagramm oder Kommunikationsdiagramm!
 \index{Sequenzdiagramm}
 \index{Kommunikationsdiagramm}
+
+\begin{liAntwort}
+text
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}
