@@ -1,0 +1,69 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{uml}
+\begin{document}
+\liAufgabenTitel{Webdienst PizzaNow}
+\section{Aufgabe 2
+\index{Sequenzdiagramm}
+\footcite{66116:2019:03}}
+
+Eine Pizzeria möchte mit dem Webdienst PizzaNow anbieten, Pizzen online
+bestellen zu können. Es gilt die folgende Beschreibung:
+
+\begin{quote}
+\itshape
+„Ein Kunde kann mehrere Pizzen in PizzaNow zu einer Bestellung
+zusammenstellen. Nachdem er die Bestellung abgeschickt hat, wird die
+Pizzeria über diese Bestellung informiert. Dort wird die Bestellung
+bestätigt und der Kunde erhält eine Bestätigung mit
+Zahlungsinformationen. Diese müssen vom jeweiligen Kreditinstitut
+überprüft und bestätigt werden. Danach erhält der Kunde eine Bestätigung
+über den erfolgreichen Bezahlvorgang und die Pizzeria beginnt nach der
+Bestätigung der Bezahlung die Herstellung und im Anschluss die
+Auslieferung der Bestellung.“
+\end{quote}
+
+Modellieren Sie den dargestellten Prozess mit Hilfe eines
+UML-Sequenzdiagramms.
+
+\begin{liAntwort}
+\begin{tikzpicture}[scale=0.6,transform shape]
+\begin{umlseqdiag}
+\umlactor[class=Kunde]{kunde}
+\umlobject[class=Bestellung]{bestellung}
+\umlobject[class=Pizzeria]{pizzeria}
+\umlobject[class=Kreditinstitut]{bank}
+
+\begin{umlfragment}[type=loop]
+  \begin{umlcall}[op=fügePizzaHinzu(), type=synchron, return=true, dt=7]{kunde}{bestellung}
+  \end{umlcall}
+\end{umlfragment}
+
+\begin{umlcall}[op=schickeAb(), type=synchron, return=Zahlungsinformation,dt=5]{kunde}{bestellung}
+  \begin{umlcall}[op=informiere(), type=synchron, return=bestätig]{bestellung}{pizzeria}
+  \end{umlcall}
+\end{umlcall}
+
+\begin{umlcall}[op=bezahle(), type=asynchron,dt=4]{kunde}{bank}
+\end{umlcall}
+
+\begin{umlcallself}[op=überprüfe()]{bank}
+\end{umlcallself}
+
+\begin{umlcall}[op=bestätige(), type=asynchron]{bank}{kunde}
+\end{umlcall}
+
+\begin{umlcall}[op=bestätige(), type=asynchron]{bank}{pizzeria}
+\end{umlcall}
+
+\umlcreatecall[class=Pizza]{pizzeria}{pizza}
+
+\begin{umlcall}[op=liefereAus(), type=asynchron]{pizzeria}{pizza}
+\end{umlcall}
+
+\begin{umlcall}[op=liefereAus(), type=asynchron]{pizza}{kunde}
+\end{umlcall}
+
+\end{umlseqdiag}
+\end{tikzpicture}
+\end{liAntwort}
+\end{document}
