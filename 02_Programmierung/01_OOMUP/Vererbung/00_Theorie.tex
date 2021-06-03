@@ -6,8 +6,85 @@
 % Theorie-Teil
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Vererbung}
+\chapter{Vererbung (Generalisierung – Spezialisierung)}
 
+„Vererbung (generalization) beschreibt eine Beziehung zwischen einer
+allgemeinen Klasse (Basisklasse) und einer spezialisierten Klasse. Die
+spezialisierte Klasse ist vollständig konsistent mit der Basisklasse,
+enthält aber zusätzliche Informationen (Attribute, Operationen,
+Assoziationen). Die allgemeine Klasse wird auch als Oberklasse (super
+class), die spezialisierte als Unterklasse (sub class) bezeichnet.“
+(vgl. Balzert 1999, S 51)
+
+Was bedeutet Vererbung für die abgeleitete Klasse (Unterklasse)?
+
+Eine abgeleitete Klasse erhält von der Basisklasse alle Attribute,
+Methoden und Beziehungen:
+
+\begin{itemize}
+\item Alle Attribute der Basisklasse (Oberklasse) haben einschließlich
+der Spezifikation auch in der abgeleiteten Klasse Gütligkeit.
+
+\item Gleiches gilt auch für die Methoden der Oberklasse. Somit kann die
+abgeleitete Klasse auch auf die vererbten Methoden zugreifen.
+
+\item Hat die Basisklasse eine Beziehung zu anderen Klassen, so hat auch
+die abgeleitete Klasse diese Beziehung.
+\end{itemize}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Vorteile}
+
+\begin{description}
+\item[Verfeinerung der Oberklasse]
+
+Eine abgeleitete Klasse kann durch neue Bestandteile, wie weitere
+Attribute, Methoden und Beziehungen, verfeinert werden. Auf diese Weise
+können neue Typen von Objekten auf der Basis bereits vorhandener
+Objekt-Definitionen festgelegt werden. Weiter können Methoden der
+Basisklasse verändert werden. Dies wird erreicht, indem die Unterklasse
+eine neue Methode erhält, die den gleichen Namen wie die der Oberklasse
+und geänderte Inhalte hat. Dieser Vorgang heißt Redefinieren oder
+Überschreiben.
+
+\item[Redundanz bei der Definition von Klassen vermieden]
+
+Durch die Vererbung entsteht eine Klassen-Hierarchie bzw. eine
+Vererbungsstruktur. Vererbung ist über mehrere Abstraktionsstufen
+möglich. Man erhält so schnell neue Klassen, ohne den gemeinsamen Code
+neu schreiben zu müssen. Dies hat den Vorteil, dass Redundanz bei der
+Definition von Klassen vermieden wird.
+
+\item[Konsistenz des Programmcodes leichter sichergestellt]
+
+Änderungen in der Oberklasse werden sofort für alle abgeleiteten Klassen
+gültig. Auf diese Weise kann die Konsistenz des Programmcodes leichter
+sichergestellt werden.
+
+\item[Code mit geringerem Aufwand entwickelt]
+
+Vererbung trägt dazu bei, dass der Code mit geringerem Aufwand
+entwickelt und gewartet werden kann.
+\footcite[Seite 11]{brinda}
+\end{description}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Nachteile}
+
+\begin{description}
+\item[Abhängigkeitsbeziehungen]
+
+Mit Vererbung schafft man Abhängigkeitsbeziehungen, die dem
+Modularisierungsgedanken nicht entsprechen.
+\liFussnoteUrl{https://inf-schule.de/modellierung/ooppython/ampel/vererbung/konzept_vererbung}
+
+\end{description}
 \literatur
 
 \end{document}

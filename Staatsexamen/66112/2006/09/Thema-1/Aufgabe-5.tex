@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{uml}
 \begin{document}
 \liAufgabenTitel{Flugbuchung}
 
@@ -13,6 +13,51 @@
 
 \item Erklären Sie den Begriff Vererbung \index{Vererbung} und benennen
 Sie die damit verbundenen Vorteile!
+
+\begin{liAntwort}
+Vererbung (generalization) beschreibt eine Beziehung zwischen einer
+allgemeinen Klasse (Basisklasse) und einer spezialisierten Klasse. Die
+spezialisierte Klasse ist vollständig konsistent mit der Basisklasse,
+enthält aber zusätzliche Informationen (Attribute, Operationen,
+Assoziationen). Die allgemeine Klasse wird auch als Oberklasse (super
+class), die spezialisierte als Unterklasse (sub class) bezeichnet.
+(vgl. Balzert 1999, S 51)
+
+\liPseudoUeberschrift{Vorteile}
+
+\begin{description}
+\item[Verfeinerung der Oberklasse]
+
+Eine abgeleitete Klasse kann durch neue Bestandteile, wie weitere
+Attribute, Methoden und Beziehungen, verfeinert werden. Auf diese Weise
+können neue Typen von Objekten auf der Basis bereits vorhandener
+Objekt-Definitionen festgelegt werden. Weiter können Methoden der
+Basisklasse verändert werden. Dies wird erreicht, indem die Unterklasse
+eine neue Methode erhält, die den gleichen Namen wie die der Oberklasse
+und geänderte Inhalte hat. Dieser Vorgang heißt Redefinieren oder
+Überschreiben.
+
+\item[Redundanz bei der Definition von Klassen vermieden]
+
+Durch die Vererbung entsteht eine Klassen-Hierarchie bzw. eine
+Vererbungsstruktur. Vererbung ist über mehrere Abstraktionsstufen
+möglich. Man erhält so schnell neue Klassen, ohne den gemeinsamen Code
+neu schreiben zu müssen. Dies hat den Vorteil, dass Redundanz bei der
+Definition von Klassen vermieden wird.
+
+\item[Konsistenz des Programmcodes leichter sichergestellt]
+
+Änderungen in der Oberklasse werden sofort für alle abgeleiteten Klassen
+gültig. Auf diese Weise kann die Konsistenz des Programmcodes leichter
+sichergestellt werden.
+
+\item[Code mit geringerem Aufwand entwickelt]
+
+Vererbung trägt dazu bei, dass der Code mit geringerem Aufwand
+entwickelt und gewartet werden kann.
+\footcite[Seite 11]{brinda}
+\end{description}
+\end{liAntwort}
 
 %%
 % b)
@@ -53,6 +98,37 @@ gesammelten Flugmeilen.
 \end{itemize}
 \end{itemize}
 
+\begin{liAntwort}
+\begin{tikzpicture}
+\umlclass{Fluggesellschaft}{}{}
+\umlclass[right=2cm of Fluggesellschaft]{Flugroute}{
+  + startFlughafen: String\\
+  + zielFlughafen: String
+}{}
+\umlassoc[mult1=1,mult2=0..*,name=bietetAn]{Fluggesellschaft}{Flugroute}
+
+\liUmlLeserichtung{bietetAn}
+
+\umlclass[below=2cm of Flugroute]{Flug}{
+  + flugnummer: int\\
+  + abflugzeit: int\\
+  + ankunftszeit: int\\
+}{
+}
+\umlassoc[mult1=0..*,mult2=1,arg2=route]{Flug}{Flugroute}
+
+\umlclass[left=1cm of Flug]{Flugbuchung}{}{}
+
+\umlclass[below=1cm of Flugbuchung]{Passagier}{+ adresse}{}
+
+\umlclass[below left=1cm and -0.5cm of Passagier]{PrivatKunde}{}{}
+\umlclass[below right=1cm and -0.5cm of Passagier]{GeschäftsKunde}{+ flugmeilen}{+ gewähreRabatt()}
+\umlclass[below left=1cm and -0.5cm of PrivatKunde]{Erwachsener}{+ flugmeilen}{}
+\umlclass[below right=1cm and -0.5cm of PrivatKunde]{Jugendlicher}{}{+ gewähreRabatt()}
+
+\end{tikzpicture}
+\end{liAntwort}
+
 %%
 % c)
 %%
@@ -61,6 +137,7 @@ gesammelten Flugmeilen.
 mindestens einen Flug enthalten, in dem sowohl ein privater Kunde als
 auch ein Geschäftskunde einen Platz gebucht haben! Wählen Sie geeignete
 Attributwerte!
+\index{Objektdiagramm}
 
 %%
 % d)
