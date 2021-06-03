@@ -110,37 +110,45 @@ gesammelten Flugmeilen.
 \liUmlLeserichtung{bietetAn}
 
 \umlclass[below=1.5cm of Flugroute]{Flug}{
-  + flugnummer: int\\
-  + abflugzeit: int\\
-  + ankunftszeit: int\\
+  - flugnummer: int\\
+  - abflugzeit: int\\
+  - ankunftszeit: int\\
 }{
 }
 \umlassoc[mult1=0..*,mult2=1,arg2=route]{Flug}{Flugroute}
 
 \umlclass[left=1cm of Flug]{Flugbuchung}{
-  + grundpreis: double\\
-  + datum: Date
-}{}
+  - grundpreis: double\\
+  - datum: Date
+}{
+  + berechneTarif(): double
+}
 
 \umlclass[below=1cm of Flug]{Sitzplatz}{
-  raucherplatz: boolean\\
-  businessclass: boolean
+  - raucherplatz: boolean\\
+  - businessclass: boolean
 }{}
 
-\umlclass[below=1cm of Flugbuchung]{Passagier}{+ adresse}{}
+\umlcompo[mult1=1,mult2=20..*]{Flug}{Sitzplatz}
 
-\umlclass[below left=1cm and -0.5cm of Passagier]{PrivatKunde}{- alter: int}{}
-\umlclass[below right=1cm and -0.5cm of Passagier]{GeschäftsKunde}{
+\umlclass[below=1cm of Flugbuchung]{Passagier}{
+  + adresse: String
+}{
+  \textit{+ berechneRabatt(): double}
+}
+
+\umlclass[below left=1cm and -1.5cm of Passagier]{Privatkunde}{- alter: int}{+ berechneRabatt(): double}
+\umlclass[below right=1cm and -1.5cm of Passagier]{Geschäftskunde}{
   - flugmeilen: double
 }
-{+ gewähreRabatt()}
+{+ berechneRabatt(): double}
 
 \umlassoc{Passagier}{Sitzplatz}
-\umlassoc{Flugbuchung}{Sitzplatz}
+\umlassoc{Flugbuchung}{Passagier}
 \umlassoc{Flugbuchung}{Flug}
 
-\umlVHVinherit[arm2=-1.2cm]{PrivatKunde}{Passagier}
-\umlVHVinherit[arm2=-1.2cm]{GeschäftsKunde}{Passagier}
+\umlVHVinherit[arm2=-1.2cm]{Privatkunde}{Passagier}
+\umlVHVinherit[arm2=-1.2cm]{Geschäftskunde}{Passagier}
 
 \end{tikzpicture}
 \end{liAntwort}
@@ -165,7 +173,29 @@ Sequenzdiagramm oder Kommunikationsdiagramm!
 \index{Kommunikationsdiagramm}
 
 \begin{liAntwort}
-text
+\begin{tikzpicture}[scale=0.6,transform shape]
+\begin{umlseqdiag}
+\umlobject[class=Flugbuchung]{buchung}
+\umlactor[class=Passagier]{passagier}
+\umlactor[class=Privatkunde]{privat}
+\umlactor[class=Geschäftskunde]{geschäft}
+
+\begin{umlcall}[op=berechneTarif(),return=double]{buchung}{passagier}
+
+\begin{umlfragment}[type=alt,label=privat,inner xsep=6]
+\begin{umlcall}[op=berechneRabatt(),return=double]{passagier}{privat}
+\end{umlcall}
+
+\umlfpart[geschäft]
+
+\begin{umlcall}[op=berechneRabatt(),return=double]{passagier}{geschäft}
+\end{umlcall}
+\end{umlfragment}
+
+\end{umlcall}
+
+\end{umlseqdiag}
+\end{tikzpicture}
 \end{liAntwort}
 
 \end{enumerate}
