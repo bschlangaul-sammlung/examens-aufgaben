@@ -1,0 +1,77 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{uml}
+\begin{document}
+\liAufgabenTitel{Kartenschalter}
+\section{Aufgabe 4
+\index{Sequenzdiagramm}
+\footcite{66116:2020:03}}
+
+Erstellen Sie ein UML-Sequenzdiagramm zur Abbildung des folgenden
+Szenarios:
+
+\begin{enumerate}
+\item Ein \emph{Kunde} bestellt Karten an einem \emph{Schalter}.
+Daraufhin wird er vom Schalter gefragt, ob er eine Ermäßigung nachweisen
+kann.
+
+\item Der \emph{Kunde} sucht, leider erfolglos, seinen
+Studierendenausweis und sagt dem \emph{Schalter}, dass er keinen
+Ermäßigungsgrund vorweisen kann.
+
+\item Der \emph{Schalter} sagt dem Kunden den Preis der \emph{Karten}
+und der Kunde gibt dem \emph{Schalter} das notwendige Geld.
+
+\item Der \emph{Schalter} erstellt die \emph{Karten}, druckt diese aus
+und übergibt sie dem Kunden.
+
+\item Dieser geht mit den \emph{Karten} zum \emph{Eingang}, worauf die
+\emph{Karten} zum Nachweis des Eintritts zerrissen werden.
+\end{enumerate}
+
+\begin{liAntwort}
+\begin{tikzpicture}
+\begin{umlseqdiag}
+\umlactor[class=Kunde]{kunde}
+\umlobject[class=Schalter]{schalter}
+\umlobject[class=Eingang]{eingang}
+
+\begin{umlcall}[op=bestelle()]{kunde}{schalter}
+
+\end{umlcall}
+
+\begin{umlcall}[op=frage('Ermäßigung')]{schalter}{kunde}
+\end{umlcall}
+
+\begin{umlcallself}[op=suche('Studierendenausweis')]{kunde}
+\end{umlcallself}
+
+\begin{umlcall}[op=sage('keine Ermäßigung')]{kunde}{schalter}
+\end{umlcall}
+
+\begin{umlcall}[op=sage(preis)]{schalter}{kunde}
+\end{umlcall}
+
+\begin{umlcall}[op=zahlen(preis)]{kunde}{schalter}
+\end{umlcall}
+
+\umlcreatecall[class=Karte]{schalter}{karte}
+\begin{umlcall}[op=druckeAus()]{schalter}{karte}
+\end{umlcall}
+
+\begin{umlcall}[op=übergeben(),type=synchron]{schalter}{karte}
+\begin{umlcall}[op=übergeben(),type=synchron]{karte}{kunde}
+\end{umlcall}
+\end{umlcall}
+
+\begin{umlcall}[op=vorzeigen]{kunde}{karte}
+\begin{umlcall}[op=vorzeigen]{karte}{eingang}
+\end{umlcall}
+\end{umlcall}
+
+\begin{umlcall}[op=zerreissen()]{eingang}{karte}
+\end{umlcall}
+
+\end{umlseqdiag}
+\end{tikzpicture}
+\end{liAntwort}
+\end{document}
