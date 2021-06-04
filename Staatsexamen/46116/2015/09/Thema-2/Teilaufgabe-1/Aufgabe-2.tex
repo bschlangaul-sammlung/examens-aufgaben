@@ -14,7 +14,7 @@ Kontrollflussgraph:
 \index{Kontrollflussgraph}
 
 \noindent
-\textbf{Abkürzungen:} nI = nImport, nE = nExport
+\textbf{Abkürzungen:} I = Import, E = Export
 
 \begin{minipage}{9cm}
 \liJavaDatei[firstline=5,lastline=17]{aufgaben/sosy/pu_5/Aufgabe2}
@@ -22,25 +22,25 @@ Kontrollflussgraph:
 %
 \begin{minipage}{4cm}
 \begin{liKontrollflussgraph}[xscale=1,yscale=-1.1]
-\node at (0,0) (nI) {nI};
-\node at (0,1) (n1) {n1};
-\node at (0,2) (n2) {n2};
-\node at (0,3) (n3) {n3};
-\node at (-0.5,4) (n4) {n4};
-\node at (0,5) (n5) {n5};
-\node at (0,6) (n6) {n6};
-\node at (0,7) (nE) {nE};
+\node at (0,0) (I) {I};
+\node at (0,1) (1) {1};
+\node at (0,2) (2) {2};
+\node at (0,3) (3) {3};
+\node at (-0.5,4) (4) {4};
+\node at (0,5) (5) {5};
+\node at (0,6) (6) {6};
+\node at (0,7) (E) {E};
 
-\path (nI) -- (n1);
-\path (n1) -- (n2);
-\path (n2) -- (n3) \bWahr{left};
-\path (n3) -- (n4) \bWahr{above left};
-\path (n4) -- (n5);
-\path (n5) -- (n6);
-\path (n6) -- (nE) \bFalsch{left};
-\path (n2) edge[bend right=50] (nE) \bFalsch{right} ;
-\path (n6) edge[bend right=90] (n3) \bWahr{left} ;
-\path (n3) edge[bend right] (n5) \bFalsch{right} ;
+\path (I) -- (1);
+\path (1) -- (2);
+\path (2) -- (3) \bWahr{left};
+\path (3) -- (4) \bWahr{above left};
+\path (4) -- (5);
+\path (5) -- (6);
+\path (6) -- (E) \bFalsch{left};
+\path (2) edge[bend right=50] (E) \bFalsch{right};
+\path (6) edge[bend right=90] (3) \bWahr{left};
+\path (3) edge[bend right] (5) \bFalsch{right};
 \end{liKontrollflussgraph}
 \end{minipage}
 
@@ -62,46 +62,46 @@ Repräsentanten aller Pfadklassen \textbf{im Kontrollflussgraphen} an,
 Code möglich ist oder nicht!
 
 \begin{liKontrollflussgraph}[xscale=1,yscale=-1.2]
-\node at (0,0) (nI) {nI};
-\node[pin={\c{boolean yesItIs = true;}}] at (0,1) (n1) {n1};
+\node at (0,0) (I) {I};
+\node[pin={\c{boolean yesItIs = true;}}] at (0,1) (1) {1};
 
 \node[pin={
   [pin distance=0.5cm]
   äußeres if \c{if (s != null \&\& s.length() > 1)}
-}] at (0,2) (n2) {n2};
+}] at (0,2) (2) {2};
 
 \node[pin={
   [pin distance=1cm]
   inneres if \c{if (s.charAt(0) != s.charAt(s.length() - 1))}
-}] at (0,3) (n3) {n3};
+}] at (0,3) (3) {3};
 
 \node[pin={
   [pin distance=1.5cm]
   \c{yesItIs = false;}
-}] at (-0.5,4) (n4) {n4};
+}] at (-0.5,4) (4) {4};
 
 \node[pin={
   [pin distance=1.5cm]
   \c{s = s.substring(1, s.length() - 1);}
-}] at (0,5) (n5) {n5};
+}] at (0,5) (5) {5};
 
 \node[pin={
   [pin distance=1cm]
   \c{while (yesItIs \&\& s.length() > 1);}
-}] at (0,6) (n6) {n6};
+}] at (0,6) (6) {6};
 
-\node at (0,7) (nE) {nE};
+\node at (0,7) (E) {E};
 
-\path (nI) -- (n1);
-\path (n1) -- (n2);
-\path (n2) -- node[bedingung,left]{true} (n3);
-\path (n3) -- node[bedingung,above left]{true} (n4);
-\path (n4) -- (n5);
-\path (n5) -- (n6);
-\path (n6) edge[dashed] (nE) \liBedingung{left}{false};
-\path (n2) edge[dashed,bend right=50] node[bedingung,right]{false} (nE);
-\path (n6) edge[bend right=90] node[bedingung,left]{true} (n3);
-\path (n3) edge[dashed,bend right] node[bedingung,right]{false} (n5);
+\path (I) -- (1);
+\path (1) -- (2);
+\path (2) -- (3) \bWahr{left};
+\path (3) -- (4) \bWahr{above left};
+\path (4) -- (5);
+\path (5) -- (6);
+\path (6) -- (E) \bFalsch{left};
+\path (2) edge[bend right=50] (E) \bFalsch{right};
+\path (6) edge[bend right=90] (3) \bWahr{left};
+\path (3) edge[bend right] (5) \bFalsch{right};
 \end{liKontrollflussgraph}
 \end{liAntwort}
 
@@ -114,8 +114,8 @@ Code möglich ist oder nicht!
 \item Verzweigungsüberdeckung (Branch-Coverage, $C_1$)\index{C1-Test
 Zweigüberdeckung (Branch Coverage)}
 
-\def\TmpPfadEins{\liKontrollKnotenPfad{nI - n1 - n2 - nE}}
-\def\TmpPfadZwei{\liKontrollKnotenPfad{nI - n1 - n2 - n3 - n5 - n6 - n3 - n4 - n5 - n6 - nE}}
+\def\TmpPfadEins{\liKontrollKnotenPfad{I - 1 - 2 - E}}
+\def\TmpPfadZwei{\liKontrollKnotenPfad{I - 1 - 2 - 3 - 5 - 6 - 3 - 4 - 5 - 6 - E}}
 
 \begin{liAntwort}
 \begin{description}
@@ -165,14 +165,14 @@ innerhalb des Schleifenrumpfes wieder alle Pfade!)
 \def\TmpWahr{innere \liJavaCode{if}-Bedingung \liJavaCode{true}}
 \def\TmpFalsch{innere \liJavaCode{if}-Bedingung \liJavaCode{false}}
 
-\TmpWahr: \liKontrollKnotenPfad{n3 - n4 - n5 - n6}
+\TmpWahr: \liKontrollKnotenPfad{3 - 4 - 5 - 6}
 
-\TmpFalsch: \liKontrollKnotenPfad{n3 - n5 - n6}
+\TmpFalsch: \liKontrollKnotenPfad{3 - 5 - 6}
 
 \begin{description}
 \item[p5]
 
-\liKontrollKnotenPfad{nI - n1 - n2 - n3 - n4 - n5 - n6 - n3 - n4 - n5 - n6 - nE}
+\liKontrollKnotenPfad{I - 1 - 2 - 3 - 4 - 5 - 6 - 3 - 4 - 5 - 6 - E}
 
 (\TmpWahr, \TmpWahr)
 
@@ -184,13 +184,13 @@ innerhalb des Schleifenrumpfes wieder alle Pfade!)
 
 \item[p6]
 
-\liKontrollKnotenPfad{nI - n1 - n2 - n3 - n4 - n5 - n6 - n3 - n4 - n5 - n6 - nE}
+\liKontrollKnotenPfad{I - 1 - 2 - 3 - 4 - 5 - 6 - 3 - 4 - 5 - 6 - E}
 
 (\TmpWahr, \TmpFalsch)
 
 \item[p7]
 
-\liKontrollKnotenPfad{nI - n1 - n2 - n3 - n5 - n6 - n3 - n5 - n6 - nE}
+\liKontrollKnotenPfad{I - 1 - 2 - 3 - 5 - 6 - 3 - 5 - 6 - E}
 
 (\TmpFalsch, \TmpFalsch)
 \end{description}
@@ -283,31 +283,31 @@ oder prädikativ (\texttt{p-use}) sind.
 
 \begin{liAntwort}
 \begin{tikzpicture}[li kontrollfluss,xscale=1,yscale=-1.2]
-\node at (0,0) (nI) {nI};
-\node at (0,1) (n1) {n1};
-\node at (0,2) (n2) {n2};
-\node at (0,3) (n3) {n3};
-\node at (-0.5,4) (n4) {n4};
-\node at (0,5) (n5) {n5};
-\node at (0,6) (n6) {n6};
-\node at (0,7) (nE) {nE};
+\node at (0,0) (I) {I};
+\node at (0,1) (1) {1};
+\node at (0,2) (2) {2};
+\node at (0,3) (3) {3};
+\node at (-0.5,4) (4) {4};
+\node at (0,5) (5) {5};
+\node at (0,6) (6) {6};
+\node at (0,7) (E) {E};
 
-\path (nI) -- (n1);
-\path (n1) -- (n2);
-\path (n2) -- (n3) \liBedingung{left}{true};
-\path (n3) -- (n4) \liBedingung{right}{true};
-\path (n4) -- (n5);
-\path (n5) -- (n6);
-\path (n6) -- (nE) \liBedingung{left}{false};
-\path (n2) edge[bend right=90] (nE);
-\path (n6) edge[bend right=90] (n3);
-\path (n3) edge[bend right] (n5);
+\path (I) -- (1);
+\path (1) -- (2);
+\path (2) -- (3) \liBedingung{left}{true};
+\path (3) -- (4) \liBedingung{right}{true};
+\path (4) -- (5);
+\path (5) -- (6);
+\path (6) -- (E) \liBedingung{left}{false};
+\path (2) edge[bend right=90] (E);
+\path (6) edge[bend right=90] (3);
+\path (3) edge[bend right] (5);
 
-\node[usebox] at (4,0) {def(s)} edge[dotted] (nI);
-\node[usebox] at (4,1) {def(yesItIs)} edge[dotted] (n1);
-\node[usebox,anchor=east] at (-3,4) {def(yesItIs)} edge[dotted] (n4);
-\node[usebox] at (4,5) {def(s), c-use(s)} edge[dotted] (n5);
-\node[usebox] at (4,7) {c-use(yesItIs)} edge[dotted] (nE);
+\node[usebox] at (4,0) {def(s)} edge[dotted] (I);
+\node[usebox] at (4,1) {def(yesItIs)} edge[dotted] (1);
+\node[usebox,anchor=east] at (-3,4) {def(yesItIs)} edge[dotted] (4);
+\node[usebox] at (4,5) {def(s), c-use(s)} edge[dotted] (5);
+\node[usebox] at (4,7) {c-use(yesItIs)} edge[dotted] (E);
 \end{tikzpicture}
 \end{liAntwort}
 
