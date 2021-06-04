@@ -6,7 +6,7 @@
 \let\bFalsch=\liBedingungFalsch
 
 \liAufgabenTitel{Sort-Methode und datenflussorientierte Überdeckungskritierien}
-\section{Aufgabe 4: Datenflussorientiertes Testen
+\section{Aufgabe 3
 \index{Datenflussorientiertes Testen}
 \footcite{sosy:ab:7}}
 
@@ -14,7 +14,7 @@ Gegeben Sei folgende Java-Methode \liJavaCode{sort} zum Sortieren eines Feldes
 ganzer Zahlen:
 \footcite[Thema 1 Teilaufgabe 2 Aufgabe 3]{examen:66116:2016:09}
 
-\liJavaDatei[firstline=4]{aufgaben/sosy/ab_7/Aufgabe4}
+\liJavaExamen[firstline=4]{66116}{2016}{09}{BubbleSort}
 
 \begin{enumerate}
 
@@ -35,11 +35,11 @@ oder prädikative Verwendung von Variablen).
 ] at (0,1) (1) {1};
 
 \node[
-  pin={\c{do; swapped = false; int index = 0;}}
+  pin={180:\c{do; swapped = false; int index = 0;}}
 ] at (0,2) (2) {2};
 
 \node[
-  pin={\c{for}}
+  pin={[pin distance=1.5cm]\c{for}}
 ] at (1,3) (3) {3};
 
 \node[
@@ -74,14 +74,34 @@ oder prädikative Verwendung von Variablen).
 \path[wahr] (7) -- node[draw=none,name=72]{} (2);
 \path[falsch] (7) -- node[draw=none,name=78]{} (8);
 
-\node[usebox] at (0,0) {def(array, newArray) c-use(array)} edge[dashed] (1);
-\node[usebox] at (-3,1) {def(swapped, index) c-use(array)} edge[dashed] (2);
-\node[usebox] at (2,7) {def(swapTmp, newArray, swapped) \\c-use(newArray, swapTmp, index)} edge[dashed] (5);
-\node[usebox] at (0,9) {c-use(newArray)} edge[dashed] (8);
+\node[usebox] at (0,0) {
+  def(array, swapped, swapTmp)\\
+  c-use(array)\\
+  def(newArray)
+} edge[dashed] (1);
 
-\node[usebox] at (-3,4) {p-use(newArray)} edge[dashed] (72) edge[dashed] (78);
-\node[usebox] at (3,4.5) {p-use(newArray)} edge[dashed] (45) edge[dashed] (46);
-\node[usebox] at (3,4.5) {p-use(index)} edge[dashed] (34) edge[dashed] (37);
+\node[usebox] at (-3,1) {
+  def(swapped, index)
+} edge[dashed] (2);
+
+\node[usebox] at (1,2) {p-use(index, newArray)} edge[dashed] (34) edge[dashed] (37);
+
+\node[usebox] at (3,4.5) {p-use(newArray, index)} edge[dashed] (45) edge[dashed] (46);
+
+\node[usebox] at (2,7) {
+  c-use(index,newArray)\\
+  def(swapTmp)\\
+  c-use(index,newArray)\\
+  def(newArray)\\
+  c-use(swapTmp,index)\\
+  def(newArray,swapped)\\
+  c-use(index)\\
+  def(index)
+} edge[dashed] (5);
+
+\node[usebox] at (-2,6) {p-use(swapped)} edge[dashed] (72) edge[dashed] (78);
+
+\node[usebox] at (0,9) {c-use(newArray)} edge[dashed] (8);
 
 \end{liKontrollflussgraph}
 \end{liAntwort}
@@ -94,6 +114,11 @@ oder prädikative Verwendung von Variablen).
 also die zyklomatische Komplexität nach McCabe.\index{Zyklomatische
 Komplexität nach Mc-Cabe}
 
+\begin{liAntwort}
+Der Graph hat 8 Knoten und 10 Kanten. Daher ist die zyklomatische
+Komplexität nach McCabe gegeben durch 10 - 8 + 2 = 4.
+\end{liAntwort}
+
 %%
 % (c)
 %%
@@ -102,6 +127,13 @@ Komplexität nach Mc-Cabe}
 100\%-ige Verzweigungsüberdeckung dieses Moduls erzielt.\index{C1-Test
 Zweigüberdeckung (Branch Coverage)}
 
+\begin{liAntwort}
+Die Eingabe muss mindestens ein Feld der Länge 3 sein. Ansonsten wäre
+das Feld schon sortiert bzw. bräuchte nur eine Vertauschung und die
+innere if-Bedingung wäre nicht zu 100\% überdeckt. Daher wählt man
+beispielsweise array = [1,3,2].
+\end{liAntwort}
+
 %%
 % (d)
 %%
@@ -109,6 +141,14 @@ Zweigüberdeckung (Branch Coverage)}
 \item Beschreiben Sie kurz, welche Eigenschaften eine Testfallmenge
 allgemein haben muss, damit das datenflussorientierte
 Überdeckungskriterium „all-uses“\index{all uses} erfüllt.
+
+\begin{liAntwort}
+Das Kriterium all-uses ist das Hauptkriterium des datenﬂussorientierten
+Testens, denn es testet den kompletten prädikativen und berechnenden
+Datenﬂuss. Konkret: von jedem Knoten mit einem globalen def(x) einer
+Variable x existiert ein deﬁnitions-freier Pfad bzgl. x (def-clear(x))
+zu jedem erreichbaren Knoten mit einem c-use(x) oder p-use(x)).
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}
