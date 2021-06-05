@@ -1,6 +1,13 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{cpm,mathe,gantt}
 \begin{document}
+\let\f=\footnotesize
+\let\FZ=\liCpmFruehesterI
+\let\SZ=\liCpmSpaetesterI
+\let\v=\liCpmVon
+\let\vz=\liCpmVonZu
+\let\z=\liCpmZu
+
 \liAufgabenTitel{Gantt und CPM}
 
 \section{2 Projektmanagement
@@ -58,11 +65,11 @@ angenommen wird, dass das Projekt zum Zeitpunkt 0 startet!
 \begin{liAntwort}
 \begin{tabular}{|l|r|r|}
 \hline
-\FZ & Nebenrechnung & \\\hline\hline
+$i$ & Nebenrechnung & \FZ \\\hline\hline
 1 &                                                                           & $0$ \\\hline
 2 &                                                                           & $10$ \\\hline
 3 &                                                                           & $22$ \\\hline
-4 & \f$\t{10}(1-2) + \t{8}(2-4) $                                             & $18$ \\\hline
+4 & \f$\vz{10}(1-2) + \vz{8}(2-4) $                                           & $18$ \\\hline
 5 & \f$\max(\v{10}(2) + 5,\v{6}(1),\v{18}(4) + 1) = \max(15,6,19)$            & $19$ \\\hline
 6 & \f$\max(\v{5}(1),\v{22}(3) + 8, \v{19}(5) + 0) = \max(5, 30, 19)$         & $30$ \\\hline
 7 & \f$\v{18}(4) + 12$                                                        & $30$ \\\hline
@@ -82,7 +89,7 @@ gleich der frühesten Zeit und berechnen Sie die spätesten Zeiten!
 \begin{liAntwort}
 \begin{tabular}{|l|r|r|}
 \hline
-\SZ & Nebenrechnung & \\\hline\hline
+$i$ & Nebenrechnung & \SZ \\\hline\hline
 1 & & $0$ \\\hline
 2 & \f$\min(\v{28}(v) - 8, \v{30}(5) - 5)$               & $20$ \\\hline
 3 & \f$\v{30}(6) - 8$                                    & $22$ \\\hline
@@ -103,7 +110,7 @@ gleich der frühesten Zeit und berechnen Sie die spätesten Zeiten!
 \item Berechnen Sie nun für jedes Ereignis die Pufferzeiten!
 
 \begin{liAntwort}
-\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
+\begin{tabular}{|l||l|l|l|l|l|l|l|l|l|l|}
 \hline
 i             & 1 & 2  & 3   & 4  & 5  & 6  & 7  & 8  & 9  & 10 \\\hline\hline
 \FZ & 0 & 10 & 22  & 18 & 19 & 30 & 30 & 33 & 41 & 50 \\\hline

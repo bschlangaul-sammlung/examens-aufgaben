@@ -7,6 +7,15 @@
 \liLadePakete{mathe}
 %    \end{macrocode}
 
+% \liLets{
+%   f = footnotesize,
+%   FZ = liCpmFruehesterI,
+%   SZ = liCpmSpaetesterI,
+%   v = liCpmVon,
+%   vz = liCpmVonZu,
+%   z = liCpmZu,
+% }
+
 % \begin{tikzpicture}[scale=0.8,transform shape]
 % \liCpmEreignis{1}{0}{2}
 % \liCpmEreignis{2}{1}{4}
@@ -85,9 +94,7 @@
 % \subsubsection{Hilfsmakros für Zeitpunkt-Tabelle}
 
 % \begin{verbatim}
-% \let\SZ=\liCpmSpaetesterI
-% \let\FZ=\liCpmFruehesterI
-% \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+% \begin{tabular}{|l||l|l|l|l|l|l|l|l|}
 % \hline
 % $i$ & 1 & 2 & 3  & 4 & 5  & 6  & 7  & 8  \\\hline\hline
 % \FZ & 0 & 5 & 18 & 7 & 19 & 26 & 22 & 30 \\\hline
@@ -96,23 +103,48 @@
 % \end{tabular}
 % \end{verbatim}
 
-% \begin{macro}{\t}
-% t = tmp
+% \begin{macro}{\liCpmVonZu}
+% \liLet{vz}{liCpmVonZu}
+% |\liCpmVonZu{1}(2-3)|: \liCpmVonZu{1}(2-3)
 %    \begin{macrocode}
-\def\t#1(#2-#3){#1_{\scriptscriptstyle(#2\rightarrow#3)}}
+\def\liCpmVonZuOhneMathe#1(#2-#3){#1_{\scriptscriptstyle(#2\rightarrow#3)}}
+\def\liCpmVonZu#1(#2-#3){%
+  \ifmmode%
+    \liCpmVonZuOhneMathe{#1}(#2-#3)%
+  \else%
+    $\liCpmVonZuOhneMathe{#1}(#2-#3)$%
+  \fi%
+}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\v}
-% v = von
+% \begin{macro}{\liCpmVon}
+% \liLet{v}{liCpmVon}
+% |\liCpmVon{1}(2)|: \liCpmVon{1}(2)
 %    \begin{macrocode}
-\def\v#1(#2){#1_{\scriptscriptstyle(\rightarrow#2)}}
+\def\liCpmVonOhneMathe#1(#2){#1_{\scriptscriptstyle(\rightarrow#2)}}
+\def\liCpmVon#1(#2){%
+  \ifmmode%
+    \liCpmVonOhneMathe{#1}(#2)%
+  \else%
+    $\liCpmVonOhneMathe{#1}(#2)$%
+  \fi%
+}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\zu}
+% \begin{macro}{\liCpmZu}
+% \liLet{z}{liCpmZu}
+% |\liCpmZu{1}(2)|: \liCpmZu{1}(2)
 %    \begin{macrocode}
-\def\zu#1(#2){#1_{\scriptscriptstyle(\leftarrow#2)}}
+\def\liCpmZuOhneMathe#1(#2){#1_{\scriptscriptstyle(\leftarrow#2)}}
+\def\liCpmZu#1(#2){%
+  \ifmmode%
+    \liCpmZuOhneMathe{#1}(#2)%
+  \else%
+    $\liCpmZuOhneMathe{#1}(#2)$%
+  \fi%
+}
 %    \end{macrocode}
 % \end{macro}
 
@@ -120,7 +152,7 @@
 % Spätester Zeitpunkt, zu dem Ereignis $i$ eintreten kann
 % \liLet{SZ}{liCpmSpaetesterI}
 %    \begin{macrocode}
-\def\liCpmSpaetesterI{\SZ}
+\def\liCpmSpaetesterI{$SZ_i$}
 %    \end{macrocode}
 % \end{macro}
 
@@ -128,12 +160,8 @@
 % Frühester Zeitpunkt, zu dem Ereignis $i$ eintreten kann.
 % \liLet{FZ}{liCpmFruehesterI}
 %    \begin{macrocode}
-\def\liCpmFruehesterI{\FZ}
+\def\liCpmFruehesterI{$FZ_i$}
 %    \end{macrocode}
 % \end{macro}
-
-%    \begin{macrocode}
-\let\f=\footnotesize
-%    \end{macrocode}
 
 %    \begin{macrocode}

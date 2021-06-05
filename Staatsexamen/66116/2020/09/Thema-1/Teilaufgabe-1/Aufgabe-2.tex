@@ -1,8 +1,12 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{gantt,cpm}
 \begin{document}
-\let\SZ=\liCpmSpaetesterI
+\let\f=\footnotesize
 \let\FZ=\liCpmFruehesterI
+\let\SZ=\liCpmSpaetesterI
+\let\v=\liCpmVon
+\let\vz=\liCpmVonZu
+\let\z=\liCpmZu
 
 \liAufgabenTitel{Projektplanung}
 \section{Aufgabe 2
@@ -156,8 +160,8 @@ Gegeben sei nun das folgende CPM-Netzwerk:
 \item Geben Sie für jedes Ereignis die früheste Zeit an.
 
 \begin{liAntwort}
-\begin{tabular}{|l|l|l|}
-i & Nebenrechnung & \FZ \\\hline
+\begin{tabular}{|l|r|r|}
+$i$ & Nebenrechnung & \FZ \\\hline\hline
 a &                        & 0 \\
 b &                        & 2 \\
 c &                        & 5 \\
@@ -175,8 +179,8 @@ g &                        & 12 \\
 \item Geben Sie für jedes Ereignis die späteste Zeit an.
 
 \begin{liAntwort}
-\begin{tabular}{|l|l|l|}
-i & Nebenrechnung & \SZ \\\hline
+\begin{tabular}{|l|r|r|}
+$i$ & Nebenrechnung & \SZ \\\hline\hline
 a &                        & 0 \\
 b & $\min(2_c, 10_d, 6_f)$ & 2 \\
 c & $\min(9_d, 5_e)$       & 5 \\

@@ -1,6 +1,13 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{cpm}
 \begin{document}
+\let\f=\footnotesize
+\let\FZ=\liCpmFruehesterI
+\let\SZ=\liCpmSpaetesterI
+\let\v=\liCpmVon
+\let\vz=\liCpmVonZu
+\let\z=\liCpmZu
+
 \liAufgabenTitel{Gantt und CPM}
 
 \section{3. Projektmanagement
@@ -45,6 +52,23 @@ Betrachten Sie folgendes CPM-Netzwerk:\footcite{sosy:pu:4}
 \item Berechnen Sie die früheste Zeit für jedes Ereignis, wobei
 angenommen wird, dass das Projekt zum Zeitpunkt 0 startet.
 
+\begin{liAntwort}
+\begin{tabular}{|l|r|r|}
+\hline
+$i$ & Nebenrechnung & \FZ \\\hline\hline
+A & & 0 \\\hline
+B & & 4 \\\hline
+C & & 0 \\\hline
+D & & 1 \\\hline
+E & $\max(4, 1)$ & 4 \\\hline
+F & & 9 \\\hline
+G & & 9 \\\hline
+H & & 9 \\\hline
+J & & 17 \\\hline
+I & $\max(\v{9}(H) + 9, \v{17}(J) + 2)$ & 19 \\\hline
+\end{tabular}
+\end{liAntwort}
+
 %%
 % b)
 %%
@@ -52,11 +76,38 @@ angenommen wird, dass das Projekt zum Zeitpunkt 0 startet.
 \item Setzen Sie anschließend beim letzten Ereignis die späteste Zeit
 gleich der frühesten Zeit und berechnen Sie die spätesten Zeiten.
 
+\begin{liAntwort}
+\begin{tabular}{|l|r|r|}
+\hline
+$i$ & Nebenrechnung & \SZ \\\hline\hline
+A & $\min(3, 0)$  & 0  \\\hline
+B &               & 4  \\\hline
+C &               & 3  \\\hline
+D &               & 4  \\\hline
+E &               & 4  \\\hline
+F &               & 9  \\\hline
+G & $\min(10, 9)$ & 9  \\\hline
+H &               & 10 \\\hline
+J &               & 17 \\\hline
+I &               & 19 \\\hline
+\end{tabular}
+\end{liAntwort}
+
 %%
 % c)
 %%
 
 \item Berechnen Sie nun für jedes Ereignis die Pufferzeiten.
+
+\begin{liAntwort}
+\begin{tabular}{|l||l|l|l|l|l|l|l|l|l|l|}
+\hline
+$i$ & A & B & C & D & E & F & G & H  & J  & I  \\\hline\hline
+\FZ & 0 & 4 & 0 & 1 & 4 & 9 & 9 & 9  & 17 & 19 \\\hline
+\SZ & 0 & 4 & 3 & 4 & 4 & 9 & 9 & 10 & 17 & 19 \\\hline
+GP  & 0 & 0 & 3 & 3 & 0 & 0 & 0 & 1  & 0  & 0 \\\hline
+\end{tabular}
+\end{liAntwort}
 
 %%
 % d)
@@ -64,12 +115,25 @@ gleich der frühesten Zeit und berechnen Sie die spätesten Zeiten.
 
 \item Bestimmen Sie den kritischen Pfad.
 
+\begin{liAntwort}
+$A \rightarrow
+B \rightarrow
+E \rightarrow
+F \rightarrow
+G \rightarrow
+J \rightarrow I$
+\end{liAntwort}
+
 %%
 % e)
 %%
 
 \item Was ist ein Gantt-Diagramm\index{Gantt-Diagramm}? Worin
 unterscheidet es sich vom CPM-Netzwerk?
+
+\begin{liAntwort}
+
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}
