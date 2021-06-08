@@ -1,0 +1,115 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,uml}
+\begin{document}
+\liAufgabenTitel{OOP/OOD - Reverse Engineering}
+\section{Aufgabe 2
+\index{Klassendiagramm}
+\footcite{66116:2015:03}}
+
+Leider ist das Klassendiagramm der folgenden Klassen verloren gegangen.
+Führen Sie ein Reverse Engineering durch und erstellen Sie aus dem
+Quellcode ein vollständiges UML-Klassendiagramm inklusive aller Klassen,
+Schnittstellen, Attribute, Methoden, Konstruktoren, Sichtbarkeiten,
+Assoziationen, Rollennamen, Multiplizitäten, Navigationspfeilen und
+evtl. Stereotypen. Der Quellcode innerhalb von Methoden und
+Konstruktoren soll nicht übertragen werden, wohl aber die
+Methodensignaturen. Assoziationsnamen und deren Leserichtung lassen sich
+aus dem Quellcode nur schwer erahnen und sollen deshalb ebenfalls
+weggelassen werden.
+
+\def\j#1{\liJavaExamen{66116}{2015}{03}{reverse/#1}}
+
+\j{Display}
+\j{PixelPainter}
+\j{HardwareMatrix}
+\j{DisplayUnion}
+\j{RGBDisplay}
+
+\begin{liAntwort}
+\begin{tikzpicture}
+
+%%
+%
+%%
+
+\umlclass[y=0,type=interface]{PixelPainter}
+{}
+{
+  \~{}set(x : int, y : int, color : Color)\\
+  \~{}getHeight() : int\\
+  \~{}getWidth() : int
+}
+
+%%
+%
+%%
+
+\umlclass[y=-4,type=abstract]{Display}
+{
+  %\#hardwareMatrix : HardwareMatrix\\
+  \#lastPaintedX : int \\
+  \#lastPaintedX : int \\
+}
+{
+  +Display(hardwareMatrix : HardwareMatrix)\\
+  +getWidth() : int\\
+  +getHeight() : int\\
+  +clear()\\
+  \textit{\#getWidthFactor() : int}\\
+  \textit{\#getHeightFactor() : int}\\
+}
+
+\umlimpl{Display}{PixelPainter}
+
+%%
+%
+%%
+
+\umlclass[y=-8,type=abstract]{RGBDisplay}
+{}
+{
+  +RGBDisplay(matrix : HardwareMatrix)\\
+  +set(x : int, y : int, color : Color)\\
+  \#getWidthFactor() : int\\
+  \#getHeightFactor() : int\\
+}
+
+\umlinherit{RGBDisplay}{Display}
+
+%%
+%
+%%
+
+\umlclass[y=-12]{DisplayUnion}
+{
+  \umlstatic{+MAX\_DISPLAY\_COUNT : int = 50 \{readOnly\}}\\
+  -currentDisplayCount : int\\
+  -displays : Display[1..50]\\
+}
+{
+  +DisplayUnion(displays[1..50])\\
+  +getDisplayCount() : int\\
+  \#getWidthFactor() : int\\
+  \#getHeightFactor() : int\\
+  +set(x : int, y : int, color : Color)\\
+}
+
+\umlinherit{DisplayUnion}{RGBDisplay}
+
+%%
+%
+%%
+
+\umlclass[x=8,y=-4.1,type=interface]{HardwareMatrix}
+{}
+{
+  \~{}set(x : int, y : int, v : int)\\
+  \~{}getWidth() : int\\
+  \~{}getHeight() : int\\
+}
+
+\umlassoc[arg2=\#hardwareMatrix,pos2=0.6]{Display}{HardwareMatrix}
+\end{tikzpicture}
+\end{liAntwort}
+
+\end{document}
