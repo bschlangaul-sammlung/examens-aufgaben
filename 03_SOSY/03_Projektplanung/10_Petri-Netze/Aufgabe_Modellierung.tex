@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{petri}
 \begin{document}
 \liAufgabenTitel{Modellierung}
 
@@ -16,5 +16,45 @@ gleichzeitig geschrieben werden. Erst wenn eine von beiden bestanden
 wurde, darf die nächste begonnen werden. Wurde eine der beiden Prüfungen
 insgesamt drei mal nicht bestanden, so gilt das gesamte Modul als nicht
 bestanden.
+
+\begin{tikzpicture}[font=\scriptsize]
+\node[place,tokens=1,label=north:Prüfung 1] at (-3,0) (p1) {};
+\node[place,tokens=1,label=north:Semaphore] at (0,0) (s) {};
+\node[place,tokens=1,label=north:Prüfung 2] at (3,0) (p2) {};
+
+\node[place,tokens=0,label=west:P1 schreiben] at (-3,-3) (p1-schreiben) {};
+\node[place,tokens=0,label=east:P2 schreiben] at (3,-3) (p2-schreiben) {};
+
+\node[place,tokens=2,label=west:P1 Versuche] at (-5,-6) (p1-versuche) {};
+\node[place,tokens=0,label=north:P1 nicht bestanden] at (-3,-6) (p1-nicht-bestanden) {};
+\node[place,tokens=0,label=north:P1 bestanden] at (-1,-6) (p1-bestanden) {};
+\node[place,tokens=0,label=north:P2 bestanden] at (1,-6) (p2-bestanden) {};
+\node[place,tokens=0,label=north:P2 nicht bestanden] at (3,-6) (p2-nicht-bestanden) {};
+\node[place,tokens=2,label=east:P2 Versuche] at (5,-6) (p2-versuche) {};
+
+\node[place,tokens=0,label=south:Modul nicht bestanden] at (-3,-9) (modul-nicht-bestanden) {};
+\node[place,tokens=2,label=south:Modul bestanden] at (3,-9) (modul-bestanden) {};
+
+% \node[place,tokens=1,label=$p_3$] at (10,2) (p3) {};
+% \node[place,tokens=0,label=$p_4$] at (6,0) (p4) {};
+% \node[place,tokens=1,label=$p_5$] at (2,0) (p5) {};
+
+% \node[transition,label=$t_1$] at (4,4) {}
+%   edge[pre] (p1)
+%   edge[post] (p2);
+% \node[transition,label=$t_2$] at (8,2) {}
+%   edge[pre] (p2)
+%   edge[pre] (p4)
+%   edge[post] (p3);
+% \node[transition,label=$t_3$] at (4,0) {}
+%   edge[pre] (p5)
+%   edge[post] (p2)
+%   edge[post] (p4);
+% \node[transition,label=east:$t_4$] at (0,2) (t4) {}
+%   edge[post] (p1)
+%   edge[post] (p5);
+
+% \draw[pre,bend left=75] (t4) -- (0,-1) -- (10,-1) -- (p3);
+\end{tikzpicture}
 
 \end{document}
