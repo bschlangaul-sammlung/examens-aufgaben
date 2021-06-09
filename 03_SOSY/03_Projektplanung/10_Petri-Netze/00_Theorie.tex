@@ -6,6 +6,13 @@
 
 \begin{document}
 
+\def\TmpBeschriftung#1{%
+  {%
+    \footnotesize%
+    \itshape#1%
+  }%
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Theorie-Teil
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -20,13 +27,6 @@
 \item \url{https://www.oris-tool.org/}
 \item \url{https://github.com/sarahtattersall/PIPE}
 \end{itemize}
-
-\def\TmpBeschriftung#1{%
-  {%
-    \footnotesize%
-    \itshape#1%
-  }%
-}
 
 \noindent
 Petri-Netze stellen einen Formalismus zur Beschreibung
@@ -185,16 +185,16 @@ eine oder mehrere Marken trägt.
 \footcite{wiki:petri-netz}
 
 \def\TmpInhibitor#1{
-  \begin{tikzpicture}[x=1.5cm,y=0.8cm]
+  \begin{tikzpicture}[li petri,x=1.5cm,y=0.8cm]
     \node[place,tokens=1,label=$p_1$] at (0,2) (A) {};
     \node[place,tokens=#1,label=$p_2$] at (0,0) (B) {};
     \node[place,label=$p_3$] at (2,1) (C) {};
     \node[transition] at (1,1) (t) {$t$}
       edge[pre] (A)
       edge[post] (C)
+      edge[inhibitor] (B)
     ;
 
-    \draw[-{Circle[open,length=2mm,fill=white]}] (B) -- (t);
   \end{tikzpicture}
 }
 

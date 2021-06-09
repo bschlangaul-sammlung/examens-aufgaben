@@ -952,7 +952,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \subsubsection{Hilfsmakros für Zeitpunkt-Tabelle}
 
 % \begin{verbatim}
-% \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+% \begin{tabular}{|l||l|l|l|l|l|l|l|l|}
 % \hline
 % $i$ & 1 & 2 & 3  & 4 & 5  & 6  & 7  & 8  \\\hline\hline
 % \FZ & 0 & 5 & 18 & 7 & 19 & 26 & 22 & 30 \\\hline
@@ -2999,7 +2999,7 @@ Attributhülle]
 % \def\TmpA#1{
 %   \liPetriSetzeSchluessel%
 %   \pgfkeys{/petri/.cd,#1}%
-%   \begin{tikzpicture}
+%   \begin{tikzpicture}[li petri]
 %   \node at (-0.25,-0.25) {};
 %   \node at (\TmpX,\TmpY) {};
 %
@@ -3069,9 +3069,19 @@ Attributhülle]
 % \end{macro}
 
 %    \begin{macrocode}
-\liPetriSetzeSchluessel
+\tikzset{
+  li petri/.style={
+    activated/.style={
+      very thick
+    },
+    inhibitor/.style={
+      {Circle[open,length=2mm,fill=white]}-
+    }
+  }
+}
+%    \end{macrocode}
 
-\tikzset{activated/.style={very thick}}
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{potenzmengen-konstruktion.sty}

@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{petri}
 \begin{document}
 \liAufgabenTitel{Automatisierungsanlage mit zwei Robotern}
 \section{Aufgabe 3
@@ -13,12 +13,12 @@ Kapazitäten, Gewichte und Markierungen so ergänzen sollen, dass die
 darunter angegebenen Anforderungen eingehalten werden:
 
 In der Anlage arbeiten zwei Roboter A und B, die über einen Schalter
-„Einschalten“ aktiviert und \emph{jederzeit} über einen „Notaus
-“-Schalter deaktiviert werden können müssen. Aufgabe der Roboter ist es,
+„Einschalten“ aktiviert und \emph{jederzeit} über einen
+„Notaus“-Schalter deaktiviert werden können müssen. Aufgabe der Roboter ist es,
 jeweils abwechselnd an Bauteilen zu arbeiten, die einzeln über ein
 Förderband „ZufuhrBauteil“ ins System eingefahren und nach der
 Fertigstellung mittels „Abtransport“ aus dem System abgeführt werden.
-Roboter A bringt genau 3 Anbauten vom Typ „A“ an jedes Bauteil’ an und
+Roboter A bringt genau 3 Anbauten vom Typ „A“ an jedes Bauteil an und
 Roboter B macht das entsprechend mit genau 2 Anbauten vom Typ „B“. Die
 Anbauten werden jeweils passend über „ZufuhrA“ auf „A“ bzw. mittels
 „ZufuhrB“ auf „B“ bereitgestellt. Die beiden Roboter dürfen
@@ -31,4 +31,38 @@ am gleichen Bauteil fertig geworden ist (und das fertige Bauteil „auf
 den Platz ‚fertig‘ legt“). Aus Platzgründen darf höchstens ein Bauteil
 auf dem Ausgangsplatz „fertig“ abgestellt werden, ehe es abtransportiert
 wird.
+
+\begin{tikzpicture}[x=2cm,y=2cm,scale=0.7,transform shape]
+  \node[place,label=west:RoboterAus,tokens=1] at (0,-1) (RoboterAus) {};
+
+  \node[place,label=east:A] at (-1.5,-4) (A) {};
+  \node[place,label=east:Bauteil] at (0,-4) (Bauteil) {};
+  \node[place,label=west:B] at (1.5,-4) (B) {};
+
+  \node[place,label=west:RobotBereitA] at (-3,-5) (RobotBereitA) {};
+  \node[place,label=east:RobotBereitB] at (3,-5) (RobotBereitB) {};
+
+  \node[place,label=south:fertig] at (0,-7) (fertig) {};
+
+  \node[transition,label=Notaus] at (0,0) {}
+    edge[pre,bend right=45] (RobotBereitA)
+    edge[pre,bend left=45] (RobotBereitB)
+    edge[post] (RoboterAus);
+
+  \node[transition,label=south:Einschalten] at (0,-2) {}
+    edge[pre] (RoboterAus)
+    edge[post,bend right=60] (RobotBereitA)
+    edge[post,bend left=60] (RobotBereitB);
+
+  \node[transition,label=ZufuhrA] at (-1.5,-3) {}
+    edge[post] node[auto]{3} (A);
+  \node[transition,label=ZufuhrBauteil] at (0,-3) {}
+    edge[post] (Bauteil);
+  \node[transition,label=ZufuhrB] at (1.5,-3) {}
+    edge[post] node[auto]{2} (B);
+
+  \node[transition,label=Abtransport] at (0,-6) {}
+    edge[pre] (fertig);
+\end{tikzpicture}
+
 \end{document}

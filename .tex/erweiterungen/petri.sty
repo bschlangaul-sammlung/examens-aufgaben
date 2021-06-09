@@ -16,7 +16,7 @@
 % \def\TmpA#1{
 %   \liPetriSetzeSchluessel%
 %   \pgfkeys{/petri/.cd,#1}%
-%   \begin{tikzpicture}
+%   \begin{tikzpicture}[li petri]
 %   \node at (-0.25,-0.25) {};
 %   \node at (\TmpX,\TmpY) {};
 %
@@ -86,6 +86,16 @@
 % \end{macro}
 
 %    \begin{macrocode}
-\liPetriSetzeSchluessel
+\tikzset{
+  li petri/.style={
+    activated/.style={
+      very thick
+    },
+    inhibitor/.style={
+      {Circle[open,length=2mm,fill=white]}-
+    }
+  }
+}
+%    \end{macrocode}
 
-\tikzset{activated/.style={very thick}}
+%    \begin{macrocode}
