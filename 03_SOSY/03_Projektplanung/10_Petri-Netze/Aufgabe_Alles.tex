@@ -13,7 +13,7 @@ Gegeben Sei das folgende Petri-Netz:
 \def\TmpCheckup#1{
   \liPetriSetzeSchluessel%
   \pgfkeys{/petri/.cd,#1}%
-  \begin{tikzpicture}
+  \begin{tikzpicture}[li petri]
   \node at (-0.25,-0.25) {};
   \node at (\TmpX,\TmpY) {};
 
@@ -64,7 +64,7 @@ Gegeben Sei das folgende Petri-Netz:
 \end{multicols}
 
 \begin{center}
-\begin{tikzpicture}[x=2cm,y=2cm]
+\begin{tikzpicture}[li petri,x=2cm,y=2cm]
 \def\pfeil#1#2#3#4{\draw[->] (#1) -- (#2) node[pos=0.5,auto,sloped,#4]{#3};}
 \node at (2,3) (002) {(0,0,2)};
 \node at (1,2) (101) {(1,0,1)};

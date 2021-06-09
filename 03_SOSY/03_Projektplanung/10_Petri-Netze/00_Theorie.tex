@@ -121,7 +121,7 @@ Transitionen oder von Transitionen zu Stellen führen.
 \textbf{erlaubt:}
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[li petri]
 \node[place](p) {};
 \node[transition] at (2,0) {} edge[pre] (p);
 \node at (1,0.25) {\ding{51}};
@@ -129,7 +129,7 @@ Transitionen oder von Transitionen zu Stellen führen.
 %
 \hspace{1cm}
 %
-\begin{tikzpicture}
+\begin{tikzpicture}[li petri]
 \node[place] at (2,0) (p) {};
 \node[transition] at (0,0) {} edge[post] (p);
 \node at (1,0.25) {\ding{51}};
@@ -139,7 +139,7 @@ Transitionen oder von Transitionen zu Stellen führen.
 \textbf{nicht erlaubt:}
 
 \begin{center}
-\raisebox{5pt}{\begin{tikzpicture}
+\raisebox{5pt}{\begin{tikzpicture}[li petri]
 \node[transition] at (0,0) (t1) {};
 \node[transition] at (2,0) (t2) {};
 \draw[->] (t1) -- (t2);
@@ -148,7 +148,7 @@ Transitionen oder von Transitionen zu Stellen führen.
 %
 \hspace{1cm}
 %
-\begin{tikzpicture}
+\begin{tikzpicture}[li petri]
 \node[place] at (0,0) (p1) {};
 \node[place] at (2,0) (p2) {};
 \draw[->] (p1) -- (p2);
@@ -233,13 +233,13 @@ erreichbar ist. Eine Verklemmung (= Deadlock) ist ein Zustand, in dem
 keine einzige Transition schalten kann.
 
 \begin{multicols}{2}
-\begin{tikzpicture}
+\begin{tikzpicture}[li petri]
 \node[place] at (0,0) (p1)  {};
 \node[place,tokens=1] at (2,0) (p2) {};
 \node[transition] at (1,0) {} edge[pre] (p1) edge[post] (p2);
 \end{tikzpicture}
 
-\begin{tikzpicture}
+\begin{tikzpicture}[li petri]
 \node[place] at (0,0) (p1)  {};
 \node[transition] at (1,0) {} edge[pre] (p1);
 \end{tikzpicture}
@@ -255,7 +255,7 @@ schalten kann.
 Ein Petri-Netz heißt \emph{lebendig}, wenn alle Transitionen lebendig
 sind. Insbesondere ist jedes lebendige Petri-Netz verklemmungsfrei.
 
-\begin{tikzpicture}
+\begin{tikzpicture}[li petri]
 \node[place,tokens=1] at (0,0) (p1)  {};
 \node[place] at (2,0) (p2) {};
 \node[transition] at (1,1) {} edge[pre] (p2) edge[post] (p1);
@@ -273,7 +273,7 @@ Bei schwacher Lebendigkeit kann es immer wieder \emph{irgendwo} zu
 Schaltungen kommen.
 \footnote{\url{http://wwwlgis.informatik.uni-kl.de/cms/fileadmin/courses/ss2007/Informationssysteme/Kapitel.09.Petrinetze.full.pdf}}
 
-\begin{tikzpicture}
+\begin{tikzpicture}[li petri]
 \node[place,tokens=1] at (0,1) (p1)  {};
 
 \node[place] at (2,1) (p2) {};
@@ -307,7 +307,7 @@ wenn \emph{alle} Stellen des Vorbereichs  markiert sind. Dann wird in
 \footnote{\url{http://ddi.cs.uni-potsdam.de/HyFISCH/Produzieren/SeminarDidaktik/Nebenlaeufigkeit/marken.htm}}
 
 \def\TmpSchaltungEins#1#2#3#4#5{
-  \begin{tikzpicture}
+  \begin{tikzpicture}[li petri]
   \node[place,tokens=#1] at (0,0.5) (p1) {};
   \node[place,tokens=#2] at (0,-0.5) (p2) {};
 
@@ -347,7 +347,7 @@ Gewichtung im Nachbereich nicht überschritten wird.
 
 \def\TmpSchaltungZwei#1#2#3#4{
   \medskip
-  \begin{tikzpicture}
+  \begin{tikzpicture}[li petri]
     \node[place,tokens=#1] at (0,2) (p1) {};
     \node[place,tokens=#2] at (0,0) (p2) {};
 
@@ -382,7 +382,7 @@ nachher:
 
 \def\TmpSchaltungDrei#1#2#3#4{
   \medskip
-  \begin{tikzpicture}
+  \begin{tikzpicture}[li petri]
     \node[place,tokens=#1,label=$s_1$] at (0,2) (p1) {};
     \node[place,tokens=#2,label=$s_2$] at (0,0) (p2) {};
 
@@ -429,7 +429,7 @@ wird als Kante im Graphen vermerkt. Für jede Folgemarkierung wird dieser
 Vorgang wiederholt.\footcite{wiki:erreichbarkeitsgraph}
 
 \def\TmpErreichbar(#1,#2,#3,#4)#5{
-\begin{tikzpicture}[scale=#5,transform shape]
+\begin{tikzpicture}[li petri,scale=#5,transform shape]
     \node[place,label=$s_1$,tokens=#1] at (0,1.5) (s1) {};
     \node[place,label=$s_2$,tokens=#2] at (3,1.5) (s2) {};
     \node[place,label=$s_3$,tokens=#3] at (0,0)   (s3) {};
@@ -460,7 +460,7 @@ Vorgang wiederholt.\footcite{wiki:erreichbarkeitsgraph}
 \liPseudoUeberschrift{Ergebnis} Daraus ergibt sich folgender Erreichbarkeitsgraph:
 
 \begin{center}
-\begin{tikzpicture}[x=2cm,y=2cm]
+\begin{tikzpicture}[li petri,x=2cm,y=2cm]
 \def\pfeil#1#2#3#4{\draw[->] (#1) -- (#2) node[pos=0.5,auto,sloped,#4]{#3};}
 \node at (2,3) (2010) {(2,0,1,0)};
 \node at (1,2) (1110) {(1,1,1,0)};
