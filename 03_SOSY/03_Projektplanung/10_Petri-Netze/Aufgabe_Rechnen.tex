@@ -5,7 +5,7 @@
 
 \section{Aufgabe 3: Rechnen
 \index{Petri-Netz}
-footcite[Seite 2]{sosy:ab:4}}
+\footcite[Seite 2]{sosy:ab:4}}
 
 Gegeben sei die Darstellungsmatrix $A$ und der Belegungsvektor $v$ eines
 Petri-Netzes:
@@ -92,87 +92,5 @@ A \cdot \left(\begin{array}{c}0\\0\\0\\1\end{array}\right) =
 \end{displaymath}
 \end{liAntwort}
 
-\end{enumerate}
-
-\section{Aufgabe 4: Erreichbarkeitsgraph\footcite[Seite 3]{sosy:ab:4}}
-
-Gegeben ist das folgende Petri-Netz:
-
-\begin{center}
-\begin{tikzpicture}[li petri]
-\node[place,tokens=3,label=$p_1$] at (0,2) (p1) {};
-\node[place,label=$p_2$] at (4,4) (p2) {};
-\node[place,label=east:$p_3$] at (4,0) (p3) {};
-
-\node[transition,label=$t_1$] at (2,4) {}
-  edge[pre] (p1)
-  edge[post] node[auto]{2} (p2);
-\node[transition,label=$t_2$] at (2,2) {}
-  edge[pre] node[auto]{2} (p1)
-  edge[post] (p2)
-  edge[post] node[auto]{3} (p3);
-\node[transition,label=$t_3$] at (2,0) {}
-  edge[pre] node[auto]{4} (p3)
-  edge[post] node[auto]{3} (p1);
-\node[transition,label=east:$t_4$] at (4,2) {}
-  edge[pre] node[auto]{3} (p2)
-  edge[post] (p3);
-\end{tikzpicture}
-\end{center}
-
-\begin{enumerate}
-
-%%
-% (a)
-%%
-
-\item Geben Sie die dazugehörige Darstellungsmatrix sowie den
-Belegungsvektor an.
-
-\begin{liAntwort}
-\begin{displaymath}
-A =
-\begin{blockarray}{ccccc}
-      & t_1 & t_2 & t_3 & t_4 \\
-  \begin{block}{c(cccc)}
-  p_1 & -1  & -2  & 3   & 0 \\
-  p_2 & 2   & 1   & 0   & -3 \\
-  p_3 & 0   & 3   & -4  & 1 \\
-  \end{block}
-\end{blockarray}
-\enspace
-,
-\enspace
-v =
-\left(
-  \begin{array}{c}
-  3 \\
-  0 \\
-  0
-  \end{array}
-\right)
-\end{displaymath}
-\end{liAntwort}
-
-%%
-% (b)
-%%
-
-\item Skizzieren Sie den Erreichbarkeitsgraphen des Petri-Netzes.
-
-\begin{liAntwort}
-
-\end{liAntwort}
-
-%%
-% (c)
-%%
-
-\item Begründen Sie anhand des Erreichbarkeitsgraphen, ob das Petri-Netz
-verklemmungsfrei ist oder nicht.
-
-\begin{liAntwort}
-
-\end{liAntwort}
 \end{enumerate}
 \end{document}
