@@ -17,13 +17,17 @@ wurde, darf die nächste begonnen werden. Wurde eine der beiden Prüfungen
 insgesamt drei mal nicht bestanden, so gilt das gesamte Modul als nicht
 bestanden.
 
-\begin{tikzpicture}[li petri,font=\scriptsize]
+\begin{liAntwort}
+Man beachte die sog. Inhibitorkanten Linien mit Punkt am Ende).
+Z. B. kann t 7 nur schalten, wenn die Stelle „Wdh. Versuche P1“ keine Markierung enthält.
+
+\begin{tikzpicture}[li petri,font=\scriptsize,scale=0.8,transform shape]
 \node[place,tokens=1,label=north:Prüfung 1] at (-3,0) (p1) {};
 \node[place,tokens=1,label=north:Semaphore] at (0,0) (s) {};
 \node[place,tokens=1,label=north:Prüfung 2] at (3,0) (p2) {};
 
-\node[place,tokens=0,label=west:P1 schreiben] at (-3,-3) (p1-schreiben) {};
-\node[place,tokens=0,label=east:P2 schreiben] at (3,-3) (p2-schreiben) {};
+\node[place,tokens=0,label=west:P1 geschrieben] at (-3,-3) (p1-geschrieben) {};
+\node[place,tokens=0,label=east:P2 geschrieben] at (3,-3) (p2-geschrieben) {};
 
 \node[place,tokens=2,label=west:P1 Versuche] at (-5,-6) (p1-versuche) {};
 \node[place,tokens=0,label=north:P1 nicht bestanden] at (-3,-6) (p1-nicht-bestanden) {};
@@ -33,28 +37,35 @@ bestanden.
 \node[place,tokens=2,label=east:P2 Versuche] at (5,-6) (p2-versuche) {};
 
 \node[place,tokens=0,label=south:Modul nicht bestanden] at (-3,-9) (modul-nicht-bestanden) {};
-\node[place,tokens=2,label=south:Modul bestanden] at (3,-9) (modul-bestanden) {};
+\node[place,tokens=0,label=south:Modul bestanden] at (3,-9) (modul-bestanden) {};
 
-% \node[place,tokens=1,label=$p_3$] at (10,2) (p3) {};
-% \node[place,tokens=0,label=$p_4$] at (6,0) (p4) {};
-% \node[place,tokens=1,label=$p_5$] at (2,0) (p5) {};
+\node[transition] at (-3,-1.5) (t0) {}
+  edge[pre] (p1) edge[pre] (s) edge[post] (p1-geschrieben);
 
-% \node[transition,label=$t_1$] at (4,4) {}
-%   edge[pre] (p1)
-%   edge[post] (p2);
-% \node[transition,label=$t_2$] at (8,2) {}
-%   edge[pre] (p2)
-%   edge[pre] (p4)
-%   edge[post] (p3);
-% \node[transition,label=$t_3$] at (4,0) {}
-%   edge[pre] (p5)
-%   edge[post] (p2)
-%   edge[post] (p4);
-% \node[transition,label=east:$t_4$] at (0,2) (t4) {}
-%   edge[post] (p1)
-%   edge[post] (p5);
+\node[transition] at (3,-1.5) (t1) {}
+  edge[pre] (p2) edge[pre] (s) edge[post] (p2-geschrieben);
 
-% \draw[pre,bend left=75] (t4) -- (0,-1) -- (10,-1) -- (p3);
+\node[transition] at (-4,-4.5) (t2) {}
+  edge[pre] (p1-geschrieben) edge[post] (p1-nicht-bestanden);
+\node[transition] at (-2,-4.5) (t3) {}
+  edge[pre] (p1-geschrieben) edge[post] (s) edge[post] (p1-bestanden);
+\node[transition] at (2,-4.5) (t4) {}
+  edge[pre] (p2-geschrieben) edge[post] (s) edge[post] (p2-bestanden);
+\node[transition] at (4,-4.5) (t5) {}
+  edge[pre] (p2-geschrieben) edge[post] (p2-nicht-bestanden);
+
+\node[transition] at (-3,-7.5) (t7) {}
+  edge[inhibitor] (p1-versuche) edge[pre] (p1-nicht-bestanden)  edge[post] (modul-nicht-bestanden);
+\node[transition] at (0,-7.5) (t6) {}
+  edge[pre] (p1-bestanden) edge[pre] (p2-bestanden) edge[post] (modul-bestanden);
+\node[transition] at (3,-7.5) (t8) {}
+  edge[inhibitor] (p2-versuche) edge[pre] (p2-nicht-bestanden)  edge[post] (modul-nicht-bestanden);
+
+\node[transition] at (-6,-4.5) (t9) {}
+  edge[pre] (p1-versuche) edge[pre] (p1-nicht-bestanden) edge[post] (p1-geschrieben);
+\node[transition] at (6,-4.5) (t10) {}
+  edge[pre] (p2-versuche) edge[pre] (p2-nicht-bestanden) edge[post] (p2-geschrieben);
 \end{tikzpicture}
+\end{liAntwort}
 
 \end{document}
