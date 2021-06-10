@@ -1,0 +1,57 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{uml}
+\begin{document}
+\liAufgabenTitel{Radiotuner}
+\section{Aufgabe 2
+\index{Zustandsdiagramm}
+\footcite{66116:2015:03}}
+
+Erstellen Sie ein UML-Zustandsdiagramm für einen Radiotuner. Mit dem
+Radiotuner können Sie ein Radioprogramm auf der Frequenz f empfangen.
+Beim Einschalten wird f auf 87,5 MHz gesetzt und der Tuner empfängt. Sie
+können nun die Frequenz in 0,5 MHz Schritten erhöhen oder senken. Bitte
+beachten Sie, dass das Frequenzband für den Radioempfang von 87,5
+MHz bis 108 MHz reicht. Sobald f 87,5 MHz unter- bzw. 108 MHz
+überschreitet, soll f auf 108 MHz bzw. 87,5 MHz gesetzt werden. Weiterhin
+kann ein Suchmodus gestartet werden, der automatisch die Frequenz
+erhöht, bis ein Sender empfangen wird. Wird während des Suchmodus die
+Frequenz verändert oder erneut Suchen ausgeführt, dann wird die Suche
+beendet (und, je nach Knopf, ggf. noch die Frequenz um 0,5 MHz
+verändert).
+
+\noindent
+Die Klasse RadioTuner besitzt folgende Methoden:
+
+\begin{itemize}
+\item tunerOn()
+\item tunerOff()
+\item increaseFrequency()
+\item decreaseFrequency()
+\item seek()
+\item hasReception()
+\end{itemize}
+
+\noindent
+Hinweis: Die Hilfsmethode hasReception() liefert true zurück, genau dann
+wenn ein Sender empfangen wird.
+
+\begin{tikzpicture}[font=\scriptsize]
+
+\umlstateinitial[y=0,name=init]
+
+\begin{umlstate}[x=-5,y=-2,name=rauschen]{empfange Rauschen}
+\end{umlstate}
+
+\begin{umlstate}[x=5,y=-2,name=radio]{empfange Radioprogramm}
+\end{umlstate}
+
+\umltrans[arg={tunerOn()[hasReception() == true]},pos=0.5]{init}{radio}
+\umltrans[arg={tunerOn()[hasReception() == false]},pos=0.5]{init}{rauschen}
+\umltrans[arg={drücke Knopf B},pos=0.5]{rauschen}{radio}
+\umlstatefinal[y=-6,name=final]
+\umltrans[arg={tunerOff()},pos=0.5]{radio}{final}
+\umltrans[arg={tunerOff()},pos=0.5]{rauschen}{final}
+
+\end{tikzpicture}
+
+\end{document}
