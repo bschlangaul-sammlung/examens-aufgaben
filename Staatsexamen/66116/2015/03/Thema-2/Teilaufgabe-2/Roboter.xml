@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><pnml>
+<net id="Net-One" type="P/T net">
+<token id="Default" enabled="true" red="0" green="0" blue="0"/>
+<place id="A">
+<graphics>
+<position x="540.0" y="840.0"/>
+</graphics>
+<name>
+<value>A</value>
+<graphics>
+<offset x="-20.0" y="16.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<place id="B">
+<graphics>
+<position x="1140.0" y="825.0"/>
+</graphics>
+<name>
+<value>B</value>
+<graphics>
+<offset x="-21.0" y="21.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<place id="Bauteil">
+<graphics>
+<position x="840.0" y="840.0"/>
+</graphics>
+<name>
+<value>Bauteil</value>
+<graphics>
+<offset x="81.0" y="20.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<place id="fertig">
+<graphics>
+<position x="915.0" y="1710.0"/>
+</graphics>
+<name>
+<value>fertig</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<place id="RoboterAus">
+<graphics>
+<position x="810.0" y="255.0"/>
+</graphics>
+<name>
+<value>RoboterAus</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,1</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<place id="RoboterBereitA">
+<graphics>
+<position x="150.0" y="1140.0"/>
+</graphics>
+<name>
+<value>RoboterBereitA</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<place id="RoboterBereitB">
+<graphics>
+<position x="1560.0" y="1170.0"/>
+</graphics>
+<name>
+<value>RoboterBereitB</value>
+<graphics>
+<offset x="137.0" y="16.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<transition id="Abtransport">
+<graphics>
+<position x="915.0" y="1530.0"/>
+</graphics>
+<name>
+<value>Abtransport</value>
+<graphics>
+<offset x="-5.0" y="35.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="Einschalten">
+<graphics>
+<position x="810.0" y="375.0"/>
+</graphics>
+<name>
+<value>Einschalten</value>
+<graphics>
+<offset x="62.0" y="58.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="Notaus">
+<graphics>
+<position x="810.0" y="120.0"/>
+</graphics>
+<name>
+<value>Notaus</value>
+<graphics>
+<offset x="40.0" y="-9.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="ZufuhrA">
+<graphics>
+<position x="540.0" y="705.0"/>
+</graphics>
+<name>
+<value>ZufuhrA</value>
+<graphics>
+<offset x="37.0" y="-14.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="ZufuhrB">
+<graphics>
+<position x="1140.0" y="720.0"/>
+</graphics>
+<name>
+<value>ZufuhrB</value>
+<graphics>
+<offset x="20.0" y="-22.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="ZufuhrBauteil">
+<graphics>
+<position x="840.0" y="720.0"/>
+</graphics>
+<name>
+<value>ZufuhrBauteil</value>
+<graphics>
+<offset x="20.0" y="-12.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<arc id="A to ZufuhrA" source="A" target="ZufuhrA">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="541" y="841" curvePoint="false"/>
+<arcpath id="001" x="462" y="762" curvePoint="false"/>
+<arcpath id="002" x="546" y="717" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Bauteil to ZufuhrBauteil" source="Bauteil" target="ZufuhrBauteil">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="839" y="843" curvePoint="false"/>
+<arcpath id="001" x="717" y="762" curvePoint="false"/>
+<arcpath id="002" x="846" y="732" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="B to ZufuhrB" source="B" target="ZufuhrB">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="1142" y="825" curvePoint="false"/>
+<arcpath id="001" x="1092" y="762" curvePoint="false"/>
+<arcpath id="002" x="1146" y="732" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Einschalten to RoboterBereitA" source="Einschalten" target="RoboterBereitA">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="816" y="387" curvePoint="false"/>
+<arcpath id="001" x="417" y="507" curvePoint="false"/>
+<arcpath id="002" x="167" y="1138" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Einschalten to RoboterBereitB" source="Einschalten" target="RoboterBereitB">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="826" y="387" curvePoint="false"/>
+<arcpath id="001" x="1362" y="522" curvePoint="false"/>
+<arcpath id="002" x="1567" y="1167" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="fertig to Abtransport" source="fertig" target="Abtransport">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="927" y="1707" curvePoint="false"/>
+<arcpath id="001" x="927" y="1557" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Notaus to RoboterAus" source="Notaus" target="RoboterAus">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="822" y="147" curvePoint="false"/>
+<arcpath id="001" x="822" y="252" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="RoboterAus to Einschalten" source="RoboterAus" target="Einschalten">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="822" y="281" curvePoint="false"/>
+<arcpath id="001" x="822" y="372" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="RoboterBereitA to Notaus" source="RoboterBereitA" target="Notaus">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="163" y="1137" curvePoint="false"/>
+<arcpath id="001" x="267" y="267" curvePoint="false"/>
+<arcpath id="002" x="816" y="132" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="RoboterBereitB to Notaus" source="RoboterBereitB" target="Notaus">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1572" y="1167" curvePoint="false"/>
+<arcpath id="001" x="1602" y="267" curvePoint="false"/>
+<arcpath id="002" x="826" y="132" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="ZufuhrA to A" source="ZufuhrA" target="A">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="552" y="732" curvePoint="false"/>
+<arcpath id="001" x="552" y="837" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="ZufuhrBauteil to Bauteil" source="ZufuhrBauteil" target="Bauteil">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="852" y="747" curvePoint="false"/>
+<arcpath id="001" x="852" y="837" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="ZufuhrB to B" source="ZufuhrB" target="B">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1152" y="747" curvePoint="false"/>
+<arcpath id="001" x="1152" y="822" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+</net>
+</pnml>

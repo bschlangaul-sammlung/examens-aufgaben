@@ -55,11 +55,11 @@ wird.
     edge[post,bend left=60] (RobotBereitB);
 
   \node[transition,label=ZufuhrA] at (-1.5,-3) {}
-    edge[post] node[auto]{3} (A);
+    edge[post] node[auto]{3} (A) edge[inhibitor,bend right] (A);
   \node[transition,label=ZufuhrBauteil] at (0,-3) {}
-    edge[post] (Bauteil);
+    edge[post] (Bauteil) edge[inhibitor,bend right] (Bauteil);
   \node[transition,label=ZufuhrB] at (1.5,-3) {}
-    edge[post] node[auto]{2} (B);
+    edge[post] node[auto]{2} (B) edge[inhibitor,bend right] (B);<
 
   \node[transition,label=Abtransport] at (0,-6) {}
     edge[pre] (fertig);
