@@ -34,7 +34,8 @@ Gegeben sei das folgende Petri-Netz:\footcite[Seite 9]{examen:46116:2016:03}
 
   \node[transition] at (2,2) {$t_3$}
     edge[pre] (C)
-    edge[post] (A);
+    edge[post] (A)
+    edge[inhibitor,bend right=50] (A);
 
   \node[transition] at (1,1) {$t_4$}
     edge[pre] (A)
@@ -56,6 +57,22 @@ mit der zugehörigen Transition. Beachten Sie die auf 1 beschränkte
 Kapazität von Stelle A oder alternativ die Inhibitor-Kante von A zu
 $t_3$ (beides ist hier semantisch äquivalent).
 
+\def\s#1#2#3{(#1,#2,#3)}
+\def\t#1{$\rightarrow \hspace{0.4cm} t_#1 \rightarrow$}
+
+\begin{center}
+\begin{tabular}{lll}
+\s 1 0 1 & \t2 & \s 0 2 1 \\
+\s 0 2 1 & \t1 & \s 0 0 2 \\
+\s 0 2 1 & \t3 & \s 1 2 0 \\
+\s 1 2 0 & \t4 & \s 0 0 1 \\
+\s 0 0 1 & \t3 & \s 1 0 0 \\
+\s 1 0 0 & \t2 & \s 0 2 0 \\
+\s 0 2 0 & \t1 & \s 0 0 1 \\
+\s 0 0 2 & \t3 & \s 1 0 1 \\
+\end{tabular}
+\end{center}
+
 %%
 % b)
 %%
@@ -67,10 +84,14 @@ ein Petri-Netz lebendig ist?
 % c)
 %%
 
-\item Aufgrund von Transition $t_4$ ist das gegebene Petri-Netz nicht stark
-lebendig. Wie müssten die Pfeilgewichte der Transition t4 verändert
-werden, damit das Petri-Netz mit der gegebenen Startmarkierung
+\item Aufgrund von Transition $t_4$ ist das gegebene Petri-Netz nicht
+stark lebendig. Wie müssten die Pfeilgewichte der Transition $t_4$
+verändert werden, damit das Petri-Netz mit der gegebenen Startmarkierung
 beschränkt bleibt und lebendig wird?
+
+\begin{liAntwort}
+$t_4$ nach C mit Gewicht 2 versehen
+\end{liAntwort}
 
 \end{enumerate}
 
