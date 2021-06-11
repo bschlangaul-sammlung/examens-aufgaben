@@ -50,6 +50,139 @@
     wpkalkuel,
   }
 }
+
+\clist_new:N \g_auf_schluessel_clist
+\clist_set:Nn \g_auf_schluessel_clist {
+  titel,
+  thematik,
+  fussnote,
+  fussnote_seite,
+  relativer_pfad,
+  examen_nummer,
+  examen_jahr,
+  examen_monat,
+  examen_thema_nr,
+  examen_teilaufgabe_nr,
+  examen_aufgabe_nr,
+}
+
+\clist_map_inline:Nn \g_auf_schluessel_clist {
+  \tl_new:c {g_auf_#1_tl}
+}
+
+\cs_new:Npn \_setze_variablen_zurueck: {
+  \clist_map_inline:Nn \g_auf_schluessel_clist {
+    \tl_clear:c {g_auf_##1_tl}
+  }
+}
+
+\keys_define:nn { aufgabentitel }
+{
+  Titel .tl_gset:N = \g_auf_titel_tl,
+  Thematik .tl_gset:N = \g_auf_thematik_tl,
+  Fussnote .tl_gset:N = \g_auf_fussnote_tl,
+  FussnoteSeite .tl_gset:N = \g_auf_fussnote_seite_tl,
+  RelativerPfad .tl_gset:N = \g_auf_relativer_pfad_tl,
+  ExamenNummer .tl_gset:N = \g_auf_examen_nummer_tl,
+  ExamenJahr .tl_gset:N = \g_auf_examen_jahr_tl,
+  ExamenMonat .tl_gset:N = \g_auf_examen_monat_tl,
+  ExamenThemaNr .tl_gset:N = \g_auf_examen_thema_nr_tl,
+  ExamenTeilaufgabeNr .tl_gset:N = \g_auf_examen_teilaufgabe_nr_tl,
+  ExamenAufgabeNr .tl_gset:N = \g_auf_examen_aufgabe_nr_tl,
+}
+
+\cs_gset:Npn \_setze_relativen_pfad: {
+  \tl_if_empty:NTF \g_auf_relativer_pfad_tl
+  {
+    \bool_if:nTF
+    {
+      ! \tl_if_empty_p:N \g_auf_examen_nummer_tl &&
+      ! \tl_if_empty_p:N \g_auf_examen_jahr_tl &&
+      ! \tl_if_empty_p:N \g_auf_examen_monat_tl
+    }
+    {
+      \tl_gset:Nn \g_auf_relativer_pfad_tl {
+        Staatsexamen /
+        \g_auf_examen_nummer_tl /
+        \g_auf_examen_jahr_tl /
+        \g_auf_examen_monat_tl /
+        \tl_if_empty:NTF \g_auf_examen_thema_nr_tl {} { Thema - \g_auf_examen_thema_nr_tl / }
+        \tl_if_empty:NTF \g_auf_examen_teilaufgabe_nr_tl {} { Teilaufgabe - \g_auf_examen_teilaufgabe_nr_tl / }
+        \tl_if_empty:NTF \g_auf_examen_aufgabe_nr_tl {} { Aufgabe - \g_auf_examen_aufgabe_nr_tl .tex }
+      }
+    }
+    {}
+  }
+  {}
+}
+
+\cs_gset:Npn \_gib_examen_titel: {
+  \cs_set:Nn \_trenner: { \, / \, }
+  \bool_if:nTF
+  {
+    ! \tl_if_empty_p:N \g_auf_examen_nummer_tl &&
+    ! \tl_if_empty_p:N \g_auf_examen_jahr_tl &&
+    ! \tl_if_empty_p:N \g_auf_examen_monat_tl &&
+    ! \tl_if_empty_p:N \g_auf_examen_aufgabe_nr_tl
+  }
+  {
+    {
+      \footnotesize
+      \par
+      \noindent
+      Staatsexamen ~
+      \g_auf_examen_nummer_tl \_trenner:
+      \g_auf_examen_jahr_tl \_trenner:
+
+      \tl_case:Nn \g_auf_examen_monat_tl
+      {
+        { 03 } { Frühjahr }
+        { 09 } { Herbst }
+      } \_trenner:
+
+      \tl_if_empty:NTF \g_auf_examen_thema_nr_tl {} {
+        Thema ~ Nr. ~ \g_auf_examen_thema_nr_tl \_trenner:
+      }
+      \tl_if_empty:NTF \g_auf_examen_teilaufgabe_nr_tl {} {
+        Teilaufgabe ~ Nr. ~ \g_auf_examen_teilaufgabe_nr_tl \_trenner:
+      }
+      \tl_if_empty:NTF \g_auf_examen_aufgabe_nr_tl {} {
+        Aufgabe ~ Nr. ~ \g_auf_examen_aufgabe_nr_tl
+      }
+      \par
+      \bigskip
+    }
+  }
+}
+
+% https://raw.githubusercontent.com/Josef-Friedrich/check_zpool_scrub/master/README.md
+\cs_new:Npn \_gib_github_url: {
+  \tl_if_empty:NTF \g_auf_relativer_pfad_tl {} {
+    Github :~\href{
+      \LehramtInformatikGithubRawDomain /
+      \LehramtInformatikGithubTexRepo /
+      \LehramtInformatikGitBranch /
+      \g_auf_relativer_pfad_tl
+    }{
+      \g_auf_relativer_pfad_tl
+    }
+  }
+}
+
+\cs_new:Npn \_gib_aufgaben_titel: {
+  \g_auf_titel_tl
+
+  \tl_if_empty:NTF \g_auf_thematik_tl
+  {}
+  {
+   \, ~ [
+    \g_auf_thematik_tl
+   ]
+  }
+}
+
+\msg_new:nnn { aufgabentitel } { kein-titel }
+  { Der~Schlüssel~ist~zwingend~notwendig }
 \ExplSyntaxOff
 
 % \def\LehramtInformatikRepository{/pfad/zum/repository}

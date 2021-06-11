@@ -1,5 +1,8 @@
 \documentclass{article}
+\usepackage{hyperref}
 \begin{document}
+
+\input /etc/lehramt-informatik.config.tex
 
 \ExplSyntaxOn
 
@@ -37,7 +40,7 @@
   ExamenAufgabeNr .tl_gset:N = \g_auf_examen_aufgabe_nr_tl,
 }
 
-\cs_gset:Npn \_gib_relativen_pfad: {
+\cs_gset:Npn \_setze_relativen_pfad: {
   \tl_if_empty:NTF \g_auf_relativer_pfad_tl
   {
     \bool_if:nTF
@@ -47,18 +50,54 @@
       ! \tl_if_empty_p:N \g_auf_examen_monat_tl
     }
     {
-      Staatsexamen /
-      \g_auf_examen_nummer_tl /
-      \g_auf_examen_jahr_tl /
-      \g_auf_examen_monat_tl /
-      \tl_if_empty:NTF \g_auf_examen_thema_nr_tl {} { Thema - \g_auf_examen_thema_nr_tl / }
-      \tl_if_empty:NTF \g_auf_examen_teilaufgabe_nr_tl {} { Teilaufgabe - \g_auf_examen_teilaufgabe_nr_tl / }
-      \tl_if_empty:NTF \g_auf_examen_aufgabe_nr_tl {} { Aufgabe - \g_auf_examen_aufgabe_nr_tl .tex }
+      \tl_gset:Nn \g_auf_relativer_pfad_tl {
+        Staatsexamen /
+        \g_auf_examen_nummer_tl /
+        \g_auf_examen_jahr_tl /
+        \g_auf_examen_monat_tl /
+        \tl_if_empty:NTF \g_auf_examen_thema_nr_tl {} { Thema - \g_auf_examen_thema_nr_tl / }
+        \tl_if_empty:NTF \g_auf_examen_teilaufgabe_nr_tl {} { Teilaufgabe - \g_auf_examen_teilaufgabe_nr_tl / }
+        \tl_if_empty:NTF \g_auf_examen_aufgabe_nr_tl {} { Aufgabe - \g_auf_examen_aufgabe_nr_tl .tex }
+      }
     }
     {}
   }
+  {}
+}
+
+\cs_gset:Npn \_gib_examen_titel: {
+  \bool_if:nTF
   {
+    ! \tl_if_empty_p:N \g_auf_examen_nummer_tl &&
+    ! \tl_if_empty_p:N \g_auf_examen_jahr_tl &&
+    ! \tl_if_empty_p:N \g_auf_examen_monat_tl &&
+    ! \tl_if_empty_p:N \g_auf_examen_aufgabe_nr_tl
+  }
+  {
+    \noindent
+    \par
+    Staatsexamen ~
+    \g_auf_examen_nummer_tl ~ / ~
+    \g_auf_examen_jahr_tl ~ / ~
+    \g_auf_examen_monat_tl ~ / ~
+    \tl_if_empty:NTF \g_auf_examen_thema_nr_tl {} { Thema ~ Nr. ~ \g_auf_examen_thema_nr_tl ~ / ~ }
+    \tl_if_empty:NTF \g_auf_examen_teilaufgabe_nr_tl {} { Teilaufgabe ~ Nr. ~ \g_auf_examen_teilaufgabe_nr_tl ~ / ~ }
+    \tl_if_empty:NTF \g_auf_examen_aufgabe_nr_tl {} { Aufgabe ~ Nr. ~ \g_auf_examen_aufgabe_nr_tl }
+    \par
+  }
+}
+
+% https://raw.githubusercontent.com/Josef-Friedrich/check_zpool_scrub/master/README.md
+\cs_new:Npn \_gib_github_url: {
+  \tl_if_empty:NTF \g_auf_relativer_pfad_tl {} {
+    Github :~\href{
+      \LehramtInformatikGithubRawDomain /
+      \LehramtInformatikGithubTexRepo /
+      \LehramtInformatikGitBranch /
       \g_auf_relativer_pfad_tl
+    }{
+      \g_auf_relativer_pfad_tl
+    }
   }
 }
 
@@ -68,7 +107,7 @@
   \tl_if_empty:NTF \g_auf_thematik_tl
   {}
   {
-   \, [
+   \, ~ [
     \g_auf_thematik_tl
    ]
   }
@@ -92,6 +131,8 @@
     #1
   }
 
+  \_setze_relativen_pfad:
+
   \tl_if_empty:NTF \g_auf_titel_tl
   {
     \msg_fatal:nn { aufgabentitel } { kein-titel }
@@ -99,10 +140,10 @@
   {
   }
 
-  \_gib_aufgaben_titel:
+  \section{\_gib_aufgaben_titel:}
 
-  \par Relativer~Pfad:~
-  \_gib_relativen_pfad:
+  \par
+  \_gib_github_url:
 }
 
 \ExplSyntaxOff

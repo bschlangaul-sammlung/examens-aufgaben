@@ -1,14 +1,24 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{petri}
 \begin{document}
-\liAufgabenTitel{Petri-Netz}
 
-\section{Aufgabe 2: „Petri-Netze“
+\liSetzeAufgabenTitel{
+  Titel = Aufgabe 2,
+  Thematik = Petri-Netz,
+  Fussnote = sosy:pu:4,
+  ExamenNummer = 46116,
+  ExamenJahr = 2016,
+  ExamenMonat = 03,
+  ExamenThemaNr = 2,
+  ExamenTeilaufgabeNr = 1,
+  ExamenAufgabeNr = 2,
+}
+
 \index{Petri-Netz}
-\footcite{sosy:pu:4}}
 
 Gegeben sei das folgende Petri-Netz:\footcite[Seite 9]{examen:46116:2016:03}
 
+\begin{center}
 \begin{tikzpicture}[li petri,x=2cm,y=2cm]
   \node[place,label=A,label=south east:1,tokens=1] at (1,2) (A) {};
   \node[place,label=south:B] at (0,0) (B) {};
@@ -31,6 +41,7 @@ Gegeben sei das folgende Petri-Netz:\footcite[Seite 9]{examen:46116:2016:03}
     edge[pre] node[auto]{2} (B)
     edge[post] (C);
 \end{tikzpicture}
+\end{center}
 
 \begin{enumerate}
 
@@ -42,8 +53,8 @@ Gegeben sei das folgende Petri-Netz:\footcite[Seite 9]{examen:46116:2016:03}
 Erreichbarkeitsgraphen\index{Erreichbarkeitsgraph}. Die Belegungen sind
 jeweils in der Form [A, B, C] anzugeben. Beschriften Sie auch jede Kante
 mit der zugehörigen Transition. Beachten Sie die auf 1 beschränkte
-Kapazität von Stelle A oder alternativ die Inhibitor-Kante von A zu t3
-(beides ist hier semantisch äquivalent).
+Kapazität von Stelle A oder alternativ die Inhibitor-Kante von A zu
+$t_3$ (beides ist hier semantisch äquivalent).
 
 %%
 % b)
@@ -56,7 +67,7 @@ ein Petri-Netz lebendig ist?
 % c)
 %%
 
-\item Aufgrund von Transition t4 ist das gegebene Petri-Netz nicht stark
+\item Aufgrund von Transition $t_4$ ist das gegebene Petri-Netz nicht stark
 lebendig. Wie müssten die Pfeilgewichte der Transition t4 verändert
 werden, damit das Petri-Netz mit der gegebenen Startmarkierung
 beschränkt bleibt und lebendig wird?
