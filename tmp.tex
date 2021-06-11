@@ -1,0 +1,94 @@
+\documentclass{article}
+\begin{document}
+
+\ExplSyntaxOn
+
+\clist_new:N \g_auf_schluessel_clist
+\clist_set:Nn \g_auf_schluessel_clist {
+  titel,
+  thematik,
+  fussnote,
+  fussnote_seite,
+  relativer_pfad,
+  examen_nummer,
+  examen_jahr,
+  examen_monat,
+  examen_thema_nr,
+  examen_teilaufgabe_nr,
+  examen_aufgabe_nr,
+}
+
+\clist_map_inline:Nn \g_auf_schluessel_clist {
+  \tl_new:c {l_auf_#1_tl}
+}
+
+\keys_define:nn { aufgabentitel }
+{
+  Titel .tl_set:N = \l_auf_titel_tl,
+  Thematik .tl_set:N = \l_auf_thematik_tl,
+  Fussnote .tl_set:N = \l_auf_fussnote_tl,
+  FussnoteSeite .tl_set:N = \l_auf_fussnote_seite_tl,
+  RelativerPfad .tl_set:N = \l_auf_relativer_pfad_tl,
+  ExamenNummer .tl_set:N = \l_auf_examen_nummer_tl,
+  ExamenJahr .tl_set:N = \l_auf_examen_jahr_tl,
+  ExamenMonat .tl_set:N = \l_auf_examen_monat_tl,
+  ExamenThemaNr .tl_set:N = \l_auf_examen_thema_nr_tl,
+  ExamenTeilaufgabeNr .tl_set:N = \l_auf_examen_teilaufgabe_nr_tl,
+  ExamenAufgabeNr .tl_set:N = \l_auf_examen_aufgabe_nr_tl,
+}
+
+\def\liSetzeAufgabenTitel#1{
+  \clist_map_inline:Nn \g_auf_schluessel_clist {
+    \tl_clear:c {l_auf_##1_tl}
+  }
+
+  \tl_clear:N \l_auf_examen_teilaufgabe_nr_tl
+
+  \keys_set:nn { aufgabentitel } {
+    #1
+  }
+
+  \tl_if_empty:NTF \l_auf_titel_tl {} {Titel~„\l_auf_titel_tl“}
+
+  \bool_if:nTF {
+    ! \tl_if_empty_p:N \l_auf_examen_nummer_tl &&
+    ! \tl_if_empty_p:N \l_auf_examen_jahr_tl &&
+    ! \tl_if_empty_p:N \l_auf_examen_monat_tl
+  } {
+    \par\bigskip
+    Staatsexamen /
+    \l_auf_examen_nummer_tl /
+    \l_auf_examen_jahr_tl /
+    \l_auf_examen_monat_tl /
+    \tl_if_empty:NTF \l_auf_examen_thema_nr_tl {} { Thema - \l_auf_examen_thema_nr_tl / }
+    \tl_if_empty:NTF \l_auf_examen_teilaufgabe_nr_tl {} { Teilaufgabe - \l_auf_examen_teilaufgabe_nr_tl / }
+    \tl_if_empty:NTF \l_auf_examen_aufgabe_nr_tl {} { Aufgabe - \l_auf_examen_aufgabe_nr_tl .tex }
+  } {}
+}
+
+\ExplSyntaxOff
+
+\liSetzeAufgabenTitel{
+  Titel = Titel 2,
+  ExamenAufgabeNr = 3,
+}
+
+\liSetzeAufgabenTitel{
+  Titel = Titel 1,
+  ExamenTeilaufgabeNr = 4,
+}
+
+\liSetzeAufgabenTitel{
+  Titel = Titel 1,
+  ExamenNummer = 66116,
+  ExamenJahr = 2021,
+  ExamenMonat = 09,
+  ExamenThemaNr = 1,
+  ExamenTeilaufgabeNr = 2,
+  ExamenAufgabeNr = 3,
+}
+
+\liSetzeAufgabenTitel{
+}
+
+\end{document}
