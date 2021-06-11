@@ -19,57 +19,97 @@
 }
 
 \clist_map_inline:Nn \g_auf_schluessel_clist {
-  \tl_new:c {l_auf_#1_tl}
+  \tl_new:c {g_auf_#1_tl}
 }
 
 \keys_define:nn { aufgabentitel }
 {
-  Titel .tl_set:N = \l_auf_titel_tl,
-  Thematik .tl_set:N = \l_auf_thematik_tl,
-  Fussnote .tl_set:N = \l_auf_fussnote_tl,
-  FussnoteSeite .tl_set:N = \l_auf_fussnote_seite_tl,
-  RelativerPfad .tl_set:N = \l_auf_relativer_pfad_tl,
-  ExamenNummer .tl_set:N = \l_auf_examen_nummer_tl,
-  ExamenJahr .tl_set:N = \l_auf_examen_jahr_tl,
-  ExamenMonat .tl_set:N = \l_auf_examen_monat_tl,
-  ExamenThemaNr .tl_set:N = \l_auf_examen_thema_nr_tl,
-  ExamenTeilaufgabeNr .tl_set:N = \l_auf_examen_teilaufgabe_nr_tl,
-  ExamenAufgabeNr .tl_set:N = \l_auf_examen_aufgabe_nr_tl,
+  Titel .tl_gset:N = \g_auf_titel_tl,
+  Thematik .tl_gset:N = \g_auf_thematik_tl,
+  Fussnote .tl_gset:N = \g_auf_fussnote_tl,
+  FussnoteSeite .tl_gset:N = \g_auf_fussnote_seite_tl,
+  RelativerPfad .tl_gset:N = \g_auf_relativer_pfad_tl,
+  ExamenNummer .tl_gset:N = \g_auf_examen_nummer_tl,
+  ExamenJahr .tl_gset:N = \g_auf_examen_jahr_tl,
+  ExamenMonat .tl_gset:N = \g_auf_examen_monat_tl,
+  ExamenThemaNr .tl_gset:N = \g_auf_examen_thema_nr_tl,
+  ExamenTeilaufgabeNr .tl_gset:N = \g_auf_examen_teilaufgabe_nr_tl,
+  ExamenAufgabeNr .tl_gset:N = \g_auf_examen_aufgabe_nr_tl,
 }
 
-\def\liSetzeAufgabenTitel#1{
-  \clist_map_inline:Nn \g_auf_schluessel_clist {
-    \tl_clear:c {l_auf_##1_tl}
+\cs_gset:Npn \_gib_relativen_pfad: {
+  \tl_if_empty:NTF \g_auf_relativer_pfad_tl
+  {
+    \bool_if:nTF
+    {
+      ! \tl_if_empty_p:N \g_auf_examen_nummer_tl &&
+      ! \tl_if_empty_p:N \g_auf_examen_jahr_tl &&
+      ! \tl_if_empty_p:N \g_auf_examen_monat_tl
+    }
+    {
+      Staatsexamen /
+      \g_auf_examen_nummer_tl /
+      \g_auf_examen_jahr_tl /
+      \g_auf_examen_monat_tl /
+      \tl_if_empty:NTF \g_auf_examen_thema_nr_tl {} { Thema - \g_auf_examen_thema_nr_tl / }
+      \tl_if_empty:NTF \g_auf_examen_teilaufgabe_nr_tl {} { Teilaufgabe - \g_auf_examen_teilaufgabe_nr_tl / }
+      \tl_if_empty:NTF \g_auf_examen_aufgabe_nr_tl {} { Aufgabe - \g_auf_examen_aufgabe_nr_tl .tex }
+    }
+    {}
   }
+  {
+      \g_auf_relativer_pfad_tl
+  }
+}
 
-  \tl_clear:N \l_auf_examen_teilaufgabe_nr_tl
+\cs_new:Npn \_gib_aufgaben_titel: {
+  \g_auf_titel_tl
+
+  \tl_if_empty:NTF \g_auf_thematik_tl
+  {}
+  {
+   \, [
+    \g_auf_thematik_tl
+   ]
+  }
+}
+
+\cs_new:Npn \_setze_variablen_zurueck: {
+  \clist_map_inline:Nn \g_auf_schluessel_clist {
+    \tl_clear:c {g_auf_##1_tl}
+  }
+}
+
+\msg_new:nnn { aufgabentitel } { kein-titel }
+  { Der~Schlüssel~ist~zwingend~notwendig }
+
+\def\liSetzeAufgabenTitel#1{
+  \_setze_variablen_zurueck:
+
+  \tl_clear:N \g_auf_examen_teilaufgabe_nr_tl
 
   \keys_set:nn { aufgabentitel } {
     #1
   }
 
-  \tl_if_empty:NTF \l_auf_titel_tl {} {Titel~„\l_auf_titel_tl“}
+  \tl_if_empty:NTF \g_auf_titel_tl
+  {
+    \msg_fatal:nn { aufgabentitel } { kein-titel }
+  }
+  {
+  }
 
-  \bool_if:nTF {
-    ! \tl_if_empty_p:N \l_auf_examen_nummer_tl &&
-    ! \tl_if_empty_p:N \l_auf_examen_jahr_tl &&
-    ! \tl_if_empty_p:N \l_auf_examen_monat_tl
-  } {
-    \par\bigskip
-    Staatsexamen /
-    \l_auf_examen_nummer_tl /
-    \l_auf_examen_jahr_tl /
-    \l_auf_examen_monat_tl /
-    \tl_if_empty:NTF \l_auf_examen_thema_nr_tl {} { Thema - \l_auf_examen_thema_nr_tl / }
-    \tl_if_empty:NTF \l_auf_examen_teilaufgabe_nr_tl {} { Teilaufgabe - \l_auf_examen_teilaufgabe_nr_tl / }
-    \tl_if_empty:NTF \l_auf_examen_aufgabe_nr_tl {} { Aufgabe - \l_auf_examen_aufgabe_nr_tl .tex }
-  } {}
+  \_gib_aufgaben_titel:
+
+  \par Relativer~Pfad:~
+  \_gib_relativen_pfad:
 }
 
 \ExplSyntaxOff
 
 \liSetzeAufgabenTitel{
-  Titel = Titel 2,
+  Titel = Titel,
+  Thematik = Thematik,
   ExamenAufgabeNr = 3,
 }
 
@@ -89,6 +129,9 @@
 }
 
 \liSetzeAufgabenTitel{
+  Titel = Lol,
+  Thematik = Troll,
+  RelativerPfad = SOSY/Aufgabe-1.tex
 }
 
 \end{document}
