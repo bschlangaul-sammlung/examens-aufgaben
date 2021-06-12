@@ -548,14 +548,27 @@
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-basis}[2020/11/27]
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \RequirePackage{xparse}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \ExplSyntaxOn
+%    \end{macrocode}
+
+% \begin{macro}{\liLadePakete}
+%    \begin{macrocode}
 \NewDocumentCommand{\liLadePakete}{ m }
 {
   \clist_map_inline:nn { #1 } { \RequirePackage{lehramt-informatik-##1} }
 }
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liLadeAllePakete}
+%    \begin{macrocode}
 \def\liLadeAllePakete{
   \liLadePakete{
     automaten,
@@ -598,7 +611,10 @@
     wpkalkuel,
   }
 }
+%    \end{macrocode}
+% \end{macro}
 
+%    \begin{macrocode}
 \clist_new:N \g_auf_schluessel_clist
 \clist_set:Nn \g_auf_schluessel_clist {
   titel,
@@ -613,17 +629,23 @@
   examen_teilaufgabe_nr,
   examen_aufgabe_nr,
 }
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \clist_map_inline:Nn \g_auf_schluessel_clist {
   \tl_new:c {g_auf_#1_tl}
 }
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \cs_new:Npn \_setze_variablen_zurueck: {
   \clist_map_inline:Nn \g_auf_schluessel_clist {
     \tl_clear:c {g_auf_##1_tl}
   }
 }
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \keys_define:nn { aufgabentitel }
 {
   Titel .tl_gset:N = \g_auf_titel_tl,
@@ -638,7 +660,9 @@
   ExamenTeilaufgabeNr .tl_gset:N = \g_auf_examen_teilaufgabe_nr_tl,
   ExamenAufgabeNr .tl_gset:N = \g_auf_examen_aufgabe_nr_tl,
 }
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \cs_gset:Npn \_setze_relativen_pfad: {
   \tl_if_empty:NTF \g_auf_relativer_pfad_tl
   {
@@ -663,7 +687,9 @@
   }
   {}
 }
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \cs_gset:Npn \_gib_examen_titel: {
   \cs_set:Nn \_trenner: { \, / \, }
   \bool_if:nTF
@@ -702,8 +728,9 @@
     }
   }
 }
+%    \end{macrocode}
 
-% https://raw.githubusercontent.com/Josef-Friedrich/check_zpool_scrub/master/README.md
+%    \begin{macrocode}
 \cs_new:Npn \_gib_github_url: {
   \tl_if_empty:NTF \g_auf_relativer_pfad_tl {} {
     Github :~\href{
@@ -716,7 +743,9 @@
     }
   }
 }
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \cs_new:Npn \_gib_aufgaben_titel: {
   \g_auf_titel_tl
 
@@ -728,17 +757,29 @@
    ]
   }
 }
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \msg_new:nnn { aufgabentitel } { kein-titel }
   { Der~Schlüssel~ist~zwingend~notwendig }
-\ExplSyntaxOff
+%    \end{macrocode}
 
-% \def\LehramtInformatikRepository{/pfad/zum/repository}
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
+
+% |\def\LehramtInformatikRepository{/pfad/zum/repository}|
+%    \begin{macrocode}
 \input /etc/lehramt-informatik.config.tex
+%    \end{macrocode}
 
 % biblatex not working with lualatex and babel
-%\RequirePackage{polyglossia}
+%    \begin{macrocode}
+% \RequirePackage{polyglossia}
 % \setmainlanguage{german}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{baum.sty}
@@ -2481,27 +2522,31 @@ von Hanoi-Grafiken]
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-literatur-dummy}[2020/11/27]
+%    \end{macrocode}
 
-%\RequirePackage[stable,multiple]{footmisc}
-
+% \begin{macro}{\literatur}
+%    \begin{macrocode}
 \def\literatur{}
+%    \end{macrocode}
+% \end{macro}
 
-\RequirePackage{xparse}
-\ExplSyntaxOn
+% \begin{macro}{\footcite}
+%    \begin{macrocode}
+% \RequirePackage[stable,multiple]{footmisc}
 \NewDocumentCommand{ \footcite } { o m }{}
-\ExplSyntaxOff
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{literatur.sty}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-literatur}[2020/11/27]
+%    \end{macrocode}
 
-%-----------------------------------------------------------------------
-% Citation
-%-----------------------------------------------------------------------
-
-%
+%    \begin{macrocode}
 \RequirePackage{csquotes}
 \RequirePackage[
   bibencoding=utf8,
@@ -2519,11 +2564,15 @@ von Hanoi-Grafiken]
 \addbibresource{\LehramtInformatikRepository/Quellen/Wikipedia.bib}
 % To allow footnotes in the heading
 \RequirePackage[stable,multiple]{footmisc}
+%    \end{macrocode}
 
-%%
-% \literatur
-%%
+% \begin{macro}{\literatur}
+%    \begin{macrocode}
 \def\literatur{\printbibliography[heading=subbibliography]}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{makros.sty}
