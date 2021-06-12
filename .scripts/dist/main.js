@@ -291,7 +291,7 @@ programm
     .action(function (cmdObj) {
     var e_4, _a;
     var texPfad = path_1.default.join(helfer_1.repositoryPfad, '.tex');
-    var styPfad = path_1.default.join(texPfad, 'erweiterungen');
+    var styPfad = path_1.default.join(texPfad, 'pakete');
     var styS = glob_1.default.sync('**/*.sty', { cwd: styPfad });
     var dtxPfad = path_1.default.join(texPfad, 'dokumentation.dtx');
     var dtxInhalte = [];

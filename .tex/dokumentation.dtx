@@ -544,6 +544,203 @@
 %    \begin{macrocode}
 
 %    \end{macrocode}
+% \subsection{basis.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-basis}[2020/11/27]
+
+\RequirePackage{xparse}
+\ExplSyntaxOn
+\NewDocumentCommand{\liLadePakete}{ m }
+{
+  \clist_map_inline:nn { #1 } { \RequirePackage{lehramt-informatik-##1} }
+}
+
+\def\liLadeAllePakete{
+  \liLadePakete{
+    automaten,
+    baum,
+    checkbox,
+    chomsky-normalform,
+    cpm,
+    cyk-algorithmus,
+    entwurfsmuster,
+    er,
+    formale-sprachen,
+    formale-sprachen,
+    gantt,
+    grafik,
+    graph,
+    hanoi,
+    kontrollflussgraph,
+    makros,
+    master-theorem,
+    mathe,
+    minimierung,
+    normalformen,
+    normalformen,
+    petri,
+    potenzmengen-konstruktion,
+    pseudo,
+    quicksort,
+    relationale-algebra,
+    rmodell,
+    sortieren,
+    spalten,
+    struktogramm,
+    syntaxbaum,
+    syntax,
+    synthese-algorithmus,
+    tabelle,
+    typographie,
+    uml,
+    wasserfall,
+    wpkalkuel,
+  }
+}
+
+\clist_new:N \g_auf_schluessel_clist
+\clist_set:Nn \g_auf_schluessel_clist {
+  titel,
+  thematik,
+  fussnote,
+  fussnote_seite,
+  relativer_pfad,
+  examen_nummer,
+  examen_jahr,
+  examen_monat,
+  examen_thema_nr,
+  examen_teilaufgabe_nr,
+  examen_aufgabe_nr,
+}
+
+\clist_map_inline:Nn \g_auf_schluessel_clist {
+  \tl_new:c {g_auf_#1_tl}
+}
+
+\cs_new:Npn \_setze_variablen_zurueck: {
+  \clist_map_inline:Nn \g_auf_schluessel_clist {
+    \tl_clear:c {g_auf_##1_tl}
+  }
+}
+
+\keys_define:nn { aufgabentitel }
+{
+  Titel .tl_gset:N = \g_auf_titel_tl,
+  Thematik .tl_gset:N = \g_auf_thematik_tl,
+  Fussnote .tl_gset:N = \g_auf_fussnote_tl,
+  FussnoteSeite .tl_gset:N = \g_auf_fussnote_seite_tl,
+  RelativerPfad .tl_gset:N = \g_auf_relativer_pfad_tl,
+  ExamenNummer .tl_gset:N = \g_auf_examen_nummer_tl,
+  ExamenJahr .tl_gset:N = \g_auf_examen_jahr_tl,
+  ExamenMonat .tl_gset:N = \g_auf_examen_monat_tl,
+  ExamenThemaNr .tl_gset:N = \g_auf_examen_thema_nr_tl,
+  ExamenTeilaufgabeNr .tl_gset:N = \g_auf_examen_teilaufgabe_nr_tl,
+  ExamenAufgabeNr .tl_gset:N = \g_auf_examen_aufgabe_nr_tl,
+}
+
+\cs_gset:Npn \_setze_relativen_pfad: {
+  \tl_if_empty:NTF \g_auf_relativer_pfad_tl
+  {
+    \bool_if:nTF
+    {
+      ! \tl_if_empty_p:N \g_auf_examen_nummer_tl &&
+      ! \tl_if_empty_p:N \g_auf_examen_jahr_tl &&
+      ! \tl_if_empty_p:N \g_auf_examen_monat_tl
+    }
+    {
+      \tl_gset:Nn \g_auf_relativer_pfad_tl {
+        Staatsexamen /
+        \g_auf_examen_nummer_tl /
+        \g_auf_examen_jahr_tl /
+        \g_auf_examen_monat_tl /
+        \tl_if_empty:NTF \g_auf_examen_thema_nr_tl {} { Thema - \g_auf_examen_thema_nr_tl / }
+        \tl_if_empty:NTF \g_auf_examen_teilaufgabe_nr_tl {} { Teilaufgabe - \g_auf_examen_teilaufgabe_nr_tl / }
+        \tl_if_empty:NTF \g_auf_examen_aufgabe_nr_tl {} { Aufgabe - \g_auf_examen_aufgabe_nr_tl .tex }
+      }
+    }
+    {}
+  }
+  {}
+}
+
+\cs_gset:Npn \_gib_examen_titel: {
+  \cs_set:Nn \_trenner: { \, / \, }
+  \bool_if:nTF
+  {
+    ! \tl_if_empty_p:N \g_auf_examen_nummer_tl &&
+    ! \tl_if_empty_p:N \g_auf_examen_jahr_tl &&
+    ! \tl_if_empty_p:N \g_auf_examen_monat_tl &&
+    ! \tl_if_empty_p:N \g_auf_examen_aufgabe_nr_tl
+  }
+  {
+    {
+      \footnotesize
+      \par
+      \noindent
+      Staatsexamen ~
+      \g_auf_examen_nummer_tl \_trenner:
+      \g_auf_examen_jahr_tl \_trenner:
+
+      \tl_case:Nn \g_auf_examen_monat_tl
+      {
+        { 03 } { Frühjahr }
+        { 09 } { Herbst }
+      } \_trenner:
+
+      \tl_if_empty:NTF \g_auf_examen_thema_nr_tl {} {
+        Thema ~ Nr. ~ \g_auf_examen_thema_nr_tl \_trenner:
+      }
+      \tl_if_empty:NTF \g_auf_examen_teilaufgabe_nr_tl {} {
+        Teilaufgabe ~ Nr. ~ \g_auf_examen_teilaufgabe_nr_tl \_trenner:
+      }
+      \tl_if_empty:NTF \g_auf_examen_aufgabe_nr_tl {} {
+        Aufgabe ~ Nr. ~ \g_auf_examen_aufgabe_nr_tl
+      }
+      \par
+      \bigskip
+    }
+  }
+}
+
+% https://raw.githubusercontent.com/Josef-Friedrich/check_zpool_scrub/master/README.md
+\cs_new:Npn \_gib_github_url: {
+  \tl_if_empty:NTF \g_auf_relativer_pfad_tl {} {
+    Github :~\href{
+      \LehramtInformatikGithubRawDomain /
+      \LehramtInformatikGithubTexRepo /
+      \LehramtInformatikGitBranch /
+      \g_auf_relativer_pfad_tl
+    }{
+      \g_auf_relativer_pfad_tl
+    }
+  }
+}
+
+\cs_new:Npn \_gib_aufgaben_titel: {
+  \g_auf_titel_tl
+
+  \tl_if_empty:NTF \g_auf_thematik_tl
+  {}
+  {
+   \, ~ [
+    \g_auf_thematik_tl
+   ]
+  }
+}
+
+\msg_new:nnn { aufgabentitel } { kein-titel }
+  { Der~Schlüssel~ist~zwingend~notwendig }
+\ExplSyntaxOff
+
+% \def\LehramtInformatikRepository{/pfad/zum/repository}
+\input /etc/lehramt-informatik.config.tex
+
+% biblatex not working with lualatex and babel
+%\RequirePackage{polyglossia}
+% \setmainlanguage{german}
+
+%    \end{macrocode}
 % \subsection{baum.sty}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
@@ -1746,6 +1943,82 @@ $\liMengeOhneMathe{#1}$%
 %    \begin{macrocode}
 
 %    \end{macrocode}
+% \subsection{formatierung.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-formatierung}[2020/11/27]
+
+%\RequirePackage{fontspec}
+% http://www.tug.org/pracjourn/2006-1/hartke/hartke.pdf
+%\usepackage{mathpple}
+%\usepackage{palatino}
+%\setmainfont{Palatino}
+
+\RequirePackage{mathpazo}
+\RequirePackage[no-math]{fontspec}
+\setmainfont{texgyrepagella}
+\setsansfont{QTAncientOlive}
+\RequirePackage{sectsty}
+\allsectionsfont{\fontspec{QTAncientOlive}}
+
+%-----------------------------------------------------------------------
+% Farben
+%-----------------------------------------------------------------------
+
+\RequirePackage{xcolor}
+\definecolor{infogray}{rgb}{0.97,0.97,0.97}
+
+%-----------------------------------------------------------------------
+% Überschriften
+%-----------------------------------------------------------------------
+
+\RequirePackage{titlesec}
+\titleformat{\chapter}[display]{\sffamily\bfseries}{}{0pt}{\LARGE}
+\titlespacing{\chapter}{0pt}{0pt}{*1}
+\titleformat{\paragraph}[hang]{\sffamily\normalsize\bfseries}{\theparagraph}{1em}{}
+\setcounter{secnumdepth}{0}
+
+%-----------------------------------------------------------------------
+% Listen
+%-----------------------------------------------------------------------
+
+\RequirePackage{paralist}
+\renewcommand\labelitemi{-}
+\renewcommand\labelitemii{-}
+\renewcommand\labelitemiii{-}
+\renewcommand\labelitemiv{-}
+% Counter: enumi enumii enumiii enumiv
+% Styles: \arabic{counter} \alph{counter} \Alph{counter} \roman{counter} \Roman{counter}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+
+%-----------------------------------------------------------------------
+% mdframed
+%-----------------------------------------------------------------------
+
+\RequirePackage{mdframed}
+\mdfsetup{backgroundcolor=infogray}
+
+%-----------------------------------------------------------------------
+% geometry
+%-----------------------------------------------------------------------
+
+%\RequirePackage[margin=3cm]{geometry}
+
+%-----------------------------------------------------------------------
+% fancyhdr
+%-----------------------------------------------------------------------
+
+\RequirePackage{fancyhdr}
+\fancyhead[L,C,R]{}
+\fancyfoot[L]{}
+\fancyfoot[C]{}
+\fancyfoot[R]{\thepage}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+%    \end{macrocode}
 % \subsection{gantt.sty}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
@@ -2202,6 +2475,55 @@ von Hanoi-Grafiken]
 % \end{macro}
 
 %    \begin{macrocode}
+
+%    \end{macrocode}
+% \subsection{literatur-dummy.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-literatur-dummy}[2020/11/27]
+
+%\RequirePackage[stable,multiple]{footmisc}
+
+\def\literatur{}
+
+\RequirePackage{xparse}
+\ExplSyntaxOn
+\NewDocumentCommand{ \footcite } { o m }{}
+\ExplSyntaxOff
+
+%    \end{macrocode}
+% \subsection{literatur.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-literatur}[2020/11/27]
+
+%-----------------------------------------------------------------------
+% Citation
+%-----------------------------------------------------------------------
+
+%
+\RequirePackage{csquotes}
+\RequirePackage[
+  bibencoding=utf8,
+  citestyle=authortitle,
+  backend=biber,
+]{biblatex}
+\addbibresource{\LehramtInformatikRepository/Quellen/01-DB.bib}
+\addbibresource{\LehramtInformatikRepository/Quellen/02-OOMUP.bib}
+\addbibresource{\LehramtInformatikRepository/Quellen/03-AUD.bib}
+\addbibresource{\LehramtInformatikRepository/Quellen/04-SOSY.bib}
+\addbibresource{\LehramtInformatikRepository/Quellen/05-THEO.bib}
+\addbibresource{\LehramtInformatikRepository/Quellen/06-FUMUP.bib}
+\addbibresource{\LehramtInformatikRepository/Quellen/Allgemein.bib}
+\addbibresource{\LehramtInformatikRepository/Quellen/Examen.bib}
+\addbibresource{\LehramtInformatikRepository/Quellen/Wikipedia.bib}
+% To allow footnotes in the heading
+\RequirePackage[stable,multiple]{footmisc}
+
+%%
+% \literatur
+%%
+\def\literatur{\printbibliography[heading=subbibliography]}
 
 %    \end{macrocode}
 % \subsection{makros.sty}

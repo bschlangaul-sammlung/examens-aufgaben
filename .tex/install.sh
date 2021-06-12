@@ -10,8 +10,7 @@ _install() {
 
 rm -f "$HOME"/texmf/tex/lehramt-informatik*
 
-_install .tex/erweiterungen
-_install .tex/basis
+_install .tex/pakete
 _install .tex/klassen
 
 # Fremd-Pakete

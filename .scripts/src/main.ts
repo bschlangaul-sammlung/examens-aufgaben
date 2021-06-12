@@ -265,7 +265,7 @@ programm
   .description('*.sty zu einem dtx zusammenfügen')
   .action(function (cmdObj: object) {
     const texPfad = path.join(repositoryPfad, '.tex')
-    const styPfad = path.join(texPfad, 'erweiterungen')
+    const styPfad = path.join(texPfad, 'pakete')
     const styS = glob.sync('**/*.sty', { cwd: styPfad })
 
     const dtxPfad = path.join(texPfad, 'dokumentation.dtx')
