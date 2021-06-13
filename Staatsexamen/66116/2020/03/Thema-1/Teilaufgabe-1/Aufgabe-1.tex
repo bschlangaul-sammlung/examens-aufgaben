@@ -1,0 +1,78 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{uml}
+\begin{document}
+\liAufgabenTitel{Bankautomat}
+\section{Aufgabe 1
+\index{Zustandsdiagramm zeichnen}
+\footcite{66116:2020:03}}
+
+ (Zustandsdiagramm) [20 PUNKTE]
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Basisfunktion
+
+Erstellen Sie ein Zustandsdiagramm für einen Bankautomat, welcher den im
+Folgenden beschriebenen Authentifizierungsvorgang von Bankkunden
+realisiert. Modellieren Sie dazu soweit nötig sowohl Zustände und
+Transitionsbedingungen als auch die Aktionen der Zustände.
+
+Der Bankautomat startet im Grundzustand und wartet auf das Einlegen
+einer Bankkarte. Wird eine Karte eingelegt, wird diese eingezogen und
+der Automat startet die Überprüfung der Bankkarte. Ist die Karte
+ungültig, wird die Karte ausgeworfen und der Automat wechselt in den
+Grundzustand. Ist die Karte gültig, kann die vierstellige PIN eingelesen
+werden. Nach der Bestätigung der Eingabe wird diese überprüft. Ist die
+PIN gültig, so stoppt der Automat und zeigt eine erfolgreiche
+Authentifizierung an. Ist die PIN ungültig, zeigt der Automat einen
+Fehler an und erlaubt eine erneute Eingabe der PIN.
+
+\begin{liAntwort}
+\begin{tikzpicture}
+
+\umlbasicstate[x=0,y=0]{wartend}
+
+\umlbasicstate[x=8,y=0,do=überprüfe die Karte]{überprüfend}
+
+\umlbasicstate[x=0,y=-4]{Pin einlesend}
+
+\umlbasicstate[x=5,y=-4]{Pin überprüfen}
+
+\umltrans[arg={[Karte eingelegt] / Karte einziehed}]{wartend}{überprüfend}
+
+\umltrans[arg={[ungültig] / Karte auswerfen}]{überprüfend}{wartend}
+
+\umltrans[arg={[gültig]}]{überprüfend}{Pin einlesend}
+
+\umltrans[arg=Bestätigung der Eingabe]{Pin einlesend}{Pin einlesend}
+
+\end{tikzpicture}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Erweiterung
+
+Der Bankautomaten aus Aufgabe a) soll nun so verändert werden, dass ein
+Bankkunde nach dem ersten fehlerhaften Eingeben der PIN die PIN erneut
+eingeben muss. Bei erneuter Falscheingabe, wird eine dritte Eingabe
+möglich. Bei der dritten Falscheingabe der PIN wird die Karte vom
+Automaten eingezogen und der Automat geht wieder in den Ausgangszustand
+über.
+
+Hinweis: Für diese Aufgabe dürfen Sie Ihr Zustandsdiagramm aus a) weiter
+verwenden, wenn Sie eindeutig, z. B. durch den Einsatz von Farben
+kennzeichnen, was nur zur Aufgabe a) gehört und was Abänderungen des
+Zustandsdiagramms aus a) sind. Sie können, falls Sie einen neuen
+Automaten zeichnen, Zustände und Übergänge, die inhaltsgleich zur Lösung
+des Aufgabenteils a) sind mit einem “W“ markieren, statt sie zu
+beschriften. In diesem Fall wird der Text aus der Lösung zu Aufgabenteil
+a) an dieser Stelle wiederholt gedacht.
+\end{enumerate}
+\end{document}
