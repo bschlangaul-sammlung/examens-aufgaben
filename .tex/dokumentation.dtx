@@ -4398,7 +4398,9 @@ Erweiterung bereitstellt]
 %    \begin{macrocode}
 \RequirePackage{tikz-uml}
 \RequirePackage{tikz-uml-activity}
-\RequirePackage{mathabx}
+% Not compatible with wasysym
+%\RequirePackage{mathabx}
+\RequirePackage{wasysym}
 \usetikzlibrary{positioning}
 %    \end{macrocode}
 
@@ -4415,16 +4417,63 @@ Erweiterung bereitstellt]
 }
 %    \end{macrocode}
 
+% \begin{liBeispiel}
+
+% \begin{tikzpicture}
+% \umlclass{TicketHandel}{
+%   \umlstatic{- system: TicketHandel} \\
+%   - verkaufte Tickets : int
+% }{
+%   - TicketHandel() \\
+%   \umlstatic{+ gibInstanz(): TicketHandel} \\
+%   +ticketKaufen(kategorie: Kategorie) : Ticket \\
+%   + gibVerkaufteTickets() : int
+% }
+
+% \umlclass[y=-4]{TicketDruckerei}{}{
+%   + erstelleTicket(kategorie: Kategorie): Ticket
+% }
+
+% \umlclass[x=8,y=1,type=enumeration]{Kategorie}{
+%   ERWACHSEN\\
+%   KIND
+% }{}
+
+% \umlclass[x=8,y=-1.5,type=interface]{Ticket}{}{
+%   gibPreis(): double
+% }
+
+% \umlclass[x=6,y=-4]{ErwachsenenTicket}{
+%   \umlstatic{- preis: double = 15.0}
+% }{}
+% \umlclass[x=10,y=-4]{KinderTicket}{
+%   \umlstatic{- preis: double = 10.0}
+% }{}
+
+% \umlVHVinherit{ErwachsenenTicket}{Ticket}
+% \umlVHVinherit{KinderTicket}{Ticket}
+
+% \umlHVHdep[stereo=use,pos stereo=1.8,anchor2=-150]{TicketDruckerei}{Ticket}
+% \umldep[stereo=use,anchor1=-25]{TicketHandel}{Ticket}
+
+% \umlVHVdep[arm1=-1cm,stereo=use,anchor1=-30,  pos stereo=1.5]{TicketDruckerei}{ErwachsenenTicket}
+% \umlVHVdep[arm1=-1.5cm,stereo=use,anchor1=-150, pos stereo=1.5]{TicketDruckerei}{KinderTicket}
+
+% \umluniassoc[arg1=,mult2=1,arg2=- druckerei,name=benutzt]{TicketHandel}{TicketDruckerei}
+% \liUmlLeserichtung[pos=below left,dir=down,distance=0cm]{benutzt}
+% \end{tikzpicture}
+% \end{liBeispiel}
+
 % \begin{macro}{\liUmlLeserichtung}
 %    \begin{macrocode}
 \NewDocumentCommand{ \liUmlLeserichtung } { O{dir=right} m } {
   \def\@liDirLeft{}
-  \def\@liDirRight{ \blacktriangleright}
+  \def\@liDirRight{ \RIGHTarrow}
   \pgfkeys{/lese/dir/.is choice}
-  \pgfkeys{/lese/dir/up/.code={\def\@liDirRight{ \blacktriangleup}}}
-  \pgfkeys{/lese/dir/down/.code={\def\@liDirRight{ \blacktriangledown}}}
-  \pgfkeys{/lese/dir/left/.code={\@liDirRight{}\def\@liDirLeft{\blacktriangleleft }}}
-  \pgfkeys{/lese/dir/right/.code={\def\@liDirRight{ \blacktriangleright}}}
+  \pgfkeys{/lese/dir/up/.code={\def\@liDirRight{ \UParrow}}}
+  \pgfkeys{/lese/dir/down/.code={\def\@liDirRight{ \DOWNarrow}}}
+  \pgfkeys{/lese/dir/left/.code={\@liDirRight{}\def\@liDirLeft{\LEFTarrow }}}
+  \pgfkeys{/lese/dir/right/.code={\def\@liDirRight{ \RIGHTarrow}}}
 
   \def\@liPos{above}
   \pgfkeys{/lese/pos/.code={\def\@liPos{##1}}}
@@ -4438,7 +4487,6 @@ Erweiterung bereitstellt]
     \@liDirLeft{\footnotesize#2}\@liDirRight
   };
 }
-
 %    \end{macrocode}
 % \end{macro}
 

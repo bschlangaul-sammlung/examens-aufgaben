@@ -13,14 +13,22 @@ mehreren Aufgaben zu einem Examen.]
 \date{}
 %    \end{macrocode}
 
-% Formatierung muss vor literatur sein, sonst Option clash
+% Lade die wichtigsten Pakete. Formatierung muss vor literatur sein, sonst Option clash
 %    \begin{macrocode}
-\liLadePakete{formatierung}
+\liLadePakete{formatierung,literatur-dummy,makros}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\liLadeAllePakete
 %    \end{macrocode}
 
 % Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
 %    \begin{macrocode}
 \RequirePackage[ngerman]{babel}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\RequirePackage{standalone}
 %    \end{macrocode}
 
 %    \begin{macrocode}
@@ -79,8 +87,14 @@ mehreren Aufgaben zu einem Examen.]
 
 % \begin{macro}{\liSetzeAufgabenTitel}
 %    \begin{macrocode}
-\def\liSetzeAufgabenTitel#1{
+\def\liAufgabenTitel#1{
+}
+%    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liSetzeAufgabenTitel}
+%    \begin{macrocode}
+\def\liSetzeAufgabenTitel#1{
 }
 %    \end{macrocode}
 % \end{macro}
