@@ -1,6 +1,9 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{petri}
 \begin{document}
+\let\t=\liPetriTransitionsName
+\let\tp=\liPetriTransPfeile
+\let\k=\liPetriErreichKnotenDrei
 
 \liSetzeAufgabenTitel{
   Titel = Aufgabe 2,
@@ -24,20 +27,20 @@ Gegeben sei das folgende Petri-Netz:\footcite[Seite 9]{examen:46116:2016:03}
   \node[place,label=south:B] at (0,0) (B) {};
   \node[place,label=south:C,tokens=1] at (2,0) (C) {};
 
-  \node[transition] at (1,0) {$t_1$}
+  \node[transition] at (1,0) {\t1}
     edge[pre] node[auto]{2} (B)
     edge[post] (C);
 
-  \node[transition] at (0,2) {$t_2$}
+  \node[transition] at (0,2) {\t2}
     edge[pre] (A)
     edge[post] node[auto]{2} (B);
 
-  \node[transition] at (2,2) {$t_3$}
+  \node[transition] at (2,2) {\t3}
     edge[pre] (C)
     edge[post] (A)
     edge[inhibitor,bend right=50] (A);
 
-  \node[transition] at (1,1) {$t_4$}
+  \node[transition] at (1,1) {\t4}
     edge[pre] (A)
     edge[pre] node[auto]{2} (B)
     edge[post] (C);
@@ -55,26 +58,52 @@ Erreichbarkeitsgraphen\index{Erreichbarkeitsgraph}. Die Belegungen sind
 jeweils in der Form [A, B, C] anzugeben. Beschriften Sie auch jede Kante
 mit der zugehörigen Transition. Beachten Sie die auf 1 beschränkte
 Kapazität von Stelle A oder alternativ die Inhibitor-Kante von A zu
-$t_3$ (beides ist hier semantisch äquivalent).
+\t3 (beides ist hier semantisch äquivalent).
 
-\def\s#1#2#3{(#1,#2,#3)}
-\def\t#1{$\rightarrow \hspace{0.4cm} t_#1 \rightarrow$}
-
+\begin{liAntwort}
 \begin{center}
 \begin{tabular}{lll}
-\s 0 0 1 & \t3 & \s 1 0 0 \\
-\s 0 0 2 & \t3 & \s 1 0 1 \\
-\s 0 2 0 & \t1 & \s 0 0 1 \\
-\s 0 2 1 & \t1 & \s 0 0 2 \\
-\s 0 2 1 & \t3 & \s 1 2 0 \\
-\s 1 0 0 & \t2 & \s 0 2 0 \\
-\s 1 0 1 & \t2 & \s 0 2 1 \\
-\s 1 2 0 & \t1 & \s 1 0 1 \\
-\s 1 2 0 & \t2 & \s 0 4 0 \\
-\s 1 2 0 & \t4 & \s 0 0 1 \\
-\s 0 4 0 & \t2 & \s 0 4 0 \\
+\k001 & \tp3 & \k100 \\
+\k002 & \tp3 & \k101 \\
+\k020 & \tp1 & \k001 \\
+\k021 & \tp1 & \k002 \\
+\k021 & \tp3 & \k120 \\
+\k100 & \tp2 & \k020 \\
+\k101 & \tp2 & \k021 \\
+\k120 & \tp1 & \k101 \\
+\k120 & \tp2 & \k040 \\
+\k120 & \tp4 & \k001 \\
+\k040 & \tp2 & \k040 \\
 \end{tabular}
 \end{center}
+
+\def\K #1#2#3 (#4,#5){\node at (#4,#5) (#1#2#3) {\k#1#2#3};}
+\def\T#1 > #2 > #3{\path[draw,->] (#1) -- node[auto]{\t#2} (#3) ;}
+\def\L#1 > #2{\path[draw,->] (#1) edge[loop] node[auto]{\t#2} (#1) ;}
+
+\begin{tikzpicture}[li petri]
+\K 001 (0,0)
+\K 002 (3,7)
+\K 020 (4,-3)
+\K 021 (0,4)
+\K 100 (5,0)
+\K 101 (-3,7)
+\K 120 (0,2)
+\K 040 (5,2)
+
+\T {001} > 3 > {100}
+\T {002} > 3 > {101}
+\T {020} > 1 > {001}
+\T {021} > 1 > {002}
+\T {021} > 3 > {120}
+\T {100} > 2 > {020}
+\T {101} > 2 > {021}
+\T {120} > 1 > {101}
+\T {120} > 2 > {040}
+\T {120} > 4 > {001}
+\L {040} > 2
+\end{tikzpicture}
+\end{liAntwort}
 
 %%
 % b)
@@ -87,13 +116,13 @@ ein Petri-Netz lebendig ist?
 % c)
 %%
 
-\item Aufgrund von Transition $t_4$ ist das gegebene Petri-Netz nicht
-stark lebendig. Wie müssten die Pfeilgewichte der Transition $t_4$
+\item Aufgrund von Transition \t4 ist das gegebene Petri-Netz nicht
+stark lebendig. Wie müssten die Pfeilgewichte der Transition \t4
 verändert werden, damit das Petri-Netz mit der gegebenen Startmarkierung
 beschränkt bleibt und lebendig wird?
 
 \begin{liAntwort}
-$t_4$ nach C mit Gewicht 2 versehen
+\t4 nach C mit Gewicht 2 versehen
 \end{liAntwort}
 
 \end{enumerate}
