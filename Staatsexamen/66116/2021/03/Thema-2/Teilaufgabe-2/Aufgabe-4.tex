@@ -1,0 +1,118 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{rmodell,syntax}
+\begin{document}
+\liAufgabenTitel{Mitarbeiter einer Abteilung}
+\section{Aufgabe 4
+\index{SQL}
+\footcite{66116:2021:03}}
+
+Gegeben sind folgende Relationen:
+
+\begin{liRmodell}
+Mitarbeiter (\liPrimaer{MitarbeiterID}, Vorname, Nachname, Adresse,
+Gehalt, Vorgesetzter [Mitarbeiter], AbteilungsID[Abteilung])
+
+Vorgesetzter NOT NULL
+
+Abteilung (\liPrimaer{AbteilungsID}, Bezeichnung)
+
+Bezeichnung UNIQUE NOT NULL
+\end{liRmodell}
+
+Verwenden Sie im Folgenden nur Standard-SQL und keine
+produktspezifischen Erweiterungen. Sie dürfen bei Bedarf Views anlegen.
+Geben Sie einen Datensatz nicht mehrfach aus.
+
+% Datenbankname: Abteilung
+\begin{minted}{sql}
+CREATE TABLE Abteilung(
+  AbteilungsID INTEGER PRIMARY KEY,
+  Bezeichnung VARCHAR(30) UNIQUE NOT NULL
+);
+
+CREATE TABLE Mitarbeiter(
+  MitarbeiterID INTEGER PRIMARY KEY,
+  Vorname VARCHAR(30),
+  Nachname VARCHAR(30),
+  Adresse VARCHAR(60),
+  Gehalt DECIMAL(7, 2),
+  Vorgesetzter INTEGER NOT NULL REFERENCES Mitarbeiter(MitarbeiterID),
+  AbteilungsID INTEGER REFERENCES Abteilung(AbteilungsID)
+);
+
+INSERT INTO Abteilung VALUES (1, 'Vertrieb');
+
+INSERT INTO Mitarbeiter VALUES
+(1, 'Karl', 'Landsbach', 'Sigmaringstraße 4, 87153 Farnbach', 2467.23, 1, 1),
+(2, 'Lisa', 'Grätzner', 'Scheidplatz 6, 18434 Tullach', 5382.2, 1, 1);
+\end{minted}
+\index{SQL mit Übungsdatenbank}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Tabelle Mitarbeiter
+anlegt. Gehen Sie davon aus, dass die Tabelle Abteilung bereits
+existiert.
+
+\begin{liAntwort}
+Siehe oben
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die Vor- und Nachnamen der
+Mitarbeiter der Abteilung mit der Bezeichnung Vertrieb ausgibt,
+absteigend sortiert nach MitarbeiterID.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT m.Vorname, m.Nachname
+FROM Mitarbeiter m, Abteilung a
+WHERE
+  a.AbteilungsID = m.AbteilungsID AND
+  a.Bezeichnung = 'Vertrieb'
+ORDER BY m.MitarbeiterID DESC;
+\end{minted}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die Vor- und Nachnamen sowie das
+Gehalt von Mitarbeitern ausgibt, die mehr verdienen als ihr Chef.
+Sortieren Sie die Ausgabe absteigend nach dem Gehalt.
+
+%%
+% d)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die das Gehalt von allen
+Mitarbeitern aus der Abteilung mit der ID 42 um 10\% erhöht.
+
+%%
+% e)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, welche den Vornamen, die
+Nachnamen und das Gehalt der sieben bestbezahlten Mitarbeiter aus der
+Buchhaltung ausgibt. Standardkonforme Sprachkonstrukte, die eine
+Beschränkung der Ausgabe bewirken, sind erlaubt.
+
+%%
+% f)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die für jede Abteilung die
+Mitarbeiter ermittelt, die am wenigsten verdienen. Dabei sollen Vorname,
+Nachname und die Abteilungsbezeichnung der Mitarbeiter ausgegeben
+werden.
+\end{enumerate}
+
+\end{document}
