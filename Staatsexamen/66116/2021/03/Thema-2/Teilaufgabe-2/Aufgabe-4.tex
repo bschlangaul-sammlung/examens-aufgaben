@@ -40,11 +40,17 @@ CREATE TABLE Mitarbeiter(
   AbteilungsID INTEGER REFERENCES Abteilung(AbteilungsID)
 );
 
-INSERT INTO Abteilung VALUES (1, 'Vertrieb');
+INSERT INTO Abteilung VALUES
+  (1, 'Buchhaltung'),
+  (42, 'Vertrieb');
 
 INSERT INTO Mitarbeiter VALUES
-(1, 'Karl', 'Landsbach', 'Sigmaringstraße 4, 87153 Farnbach', 2467.23, 1, 1),
-(2, 'Lisa', 'Grätzner', 'Scheidplatz 6, 18434 Tullach', 5382.2, 1, 1);
+  (1, 'Karl', 'Landsbach', 'Sigmaringstraße 4, 87153 Farnbach', 2467.23, 1, 42),
+  (2, 'Lisa', 'Grätzner', 'Scheidplatz 6, 18434 Tullach', 5382.2, 1, 42),
+  (3, 'Sarah', 'Riedel', 'Am Angera 3, 79527 Töll', 7382.2, 1, 42),
+  (4, 'Franz', 'Rudolf', 'Strewitzstraße 4, 45507 Strewith', 2382.2, 1, 42),
+  (5, 'Sergej', 'Puschkin', 'Radolf 4, 12507 Radstadt', 1382.2, 1, 1);
+
 \end{minted}
 \index{SQL mit Übungsdatenbank}
 
@@ -89,12 +95,32 @@ ORDER BY m.MitarbeiterID DESC;
 Gehalt von Mitarbeitern ausgibt, die mehr verdienen als ihr Chef.
 Sortieren Sie die Ausgabe absteigend nach dem Gehalt.
 
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT m.Vorname, m.Nachname, m.Gehalt
+FROM Mitarbeiter m, Mitarbeiter n
+WHERE
+  m.Vorgesetzter = n.MitarbeiterID AND
+  m.Gehalt > n.Gehalt
+ORDER BY m.Gehalt DESC;
+\end{minted}
+\end{liAntwort}
+
 %%
 % d)
 %%
 
 \item Schreiben Sie eine SQL-Anweisung, die das Gehalt von allen
 Mitarbeitern aus der Abteilung mit der ID 42 um 10\% erhöht.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+UPDATE Mitarbeiter
+SET Gehalt = Gehalt * 1.1
+WHERE AbteilungsID = 42;
+SELECT * FROM Mitarbeiter;
+\end{minted}
+\end{liAntwort}
 
 %%
 % e)
@@ -104,6 +130,22 @@ Mitarbeitern aus der Abteilung mit der ID 42 um 10\% erhöht.
 Nachnamen und das Gehalt der sieben bestbezahlten Mitarbeiter aus der
 Buchhaltung ausgibt. Standardkonforme Sprachkonstrukte, die eine
 Beschränkung der Ausgabe bewirken, sind erlaubt.
+\index{Top-N-Query}
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT m.Vorname, m.Nachname, m.Gehalt
+FROM Mitarbeiter m, Mitarbeiter n, Abteilung a
+WHERE
+  m.Gehalt <= n.Gehalt AND
+  a.AbteilungsID = m.AbteilungsID AND
+  a.AbteilungsID = n.AbteilungsID AND
+  a.Bezeichnung = 'Buchhaltung'
+GROUP BY m.Vorname, m.Nachname, m.Gehalt
+HAVING COUNT(*) <= 7
+ORDER BY m.Gehalt DESC;
+\end{minted}
+\end{liAntwort}
 
 %%
 % f)
@@ -113,6 +155,19 @@ Beschränkung der Ausgabe bewirken, sind erlaubt.
 Mitarbeiter ermittelt, die am wenigsten verdienen. Dabei sollen Vorname,
 Nachname und die Abteilungsbezeichnung der Mitarbeiter ausgegeben
 werden.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT m.Vorname, m.Nachname, m.Gehalt
+FROM Mitarbeiter m, Mitarbeiter n
+WHERE
+  m.Gehalt >= n.Gehalt AND
+  m.AbteilungsID = n.AbteilungsID
+GROUP BY m.Vorname, m.Nachname, m.Gehalt, m.AbteilungsID
+HAVING COUNT(*) <= 1
+ORDER BY m.Gehalt DESC;
+\end{minted}
+\end{liAntwort}
 \end{enumerate}
 
 \end{document}
