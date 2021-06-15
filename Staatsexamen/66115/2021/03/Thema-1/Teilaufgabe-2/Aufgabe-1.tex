@@ -1,0 +1,114 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Sortieren}
+\section{Aufgabe 1
+\index{Sortieralgorithmen}
+\footcite{66115:2021:03}}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Geben Sie für folgende Sortierverfahren jeweils zwei Felder A und
+B an, so dass das jeweilige Sortierverfahren angewendet auf A seine
+Best-Case-Laufzeit und angewendet auf B seine Worst-Case-Laufzeit
+erreicht. (Wir messen die Laufzeit durch die Anzahl der Vergleiche
+zwischen Elementen der Eingabe.) Dabei soll das Feld A die Zahlen
+1,2,...,7 genau einmal enthalten; das Feld B ebenso. Sie bestimmen also
+nur die Reihenfolge der Zahlen.
+
+Wenden Sie als Beleg für Ihre Aussagen das jeweilige Sortierverfahren
+auf die Felder A und B an und geben Sie nach jedem größeren Schritt des
+Algorithmus den Inhalt der Felder an.
+
+Geben Sie außerdem für jedes Verfahren asymptotische Best- und
+Worst-Case-Laufzeit für
+
+ein Feld der Länge n an.
+
+Die im Pseudocode verwendete Unterroutine Swap (A,i,j) vertauscht im
+Feld A die jeweiligen
+
+Elemente mit den Indizes i und j miteinander.
+\begin{enumerate}
+
+%%
+% i)
+%%
+
+\item Insertionsort
+
+\index{Insertionsort}
+
+%%
+% ii)
+%%
+
+\item Standardversion von Quicksort (Pseudocode s.u., Feldindizes beginnen bei 1), bei der
+das letzte Element eines Teilfeldes als Pivot-Element gewählt wird.
+
+%%
+% iii)
+%%
+
+\item QuicksortVar: Variante von Quicksort, bei der immer das mittlere Element eines Teil-
+feldes als Pivot-Element gewählt wird (Pseudocode s.u., nur eine Zeile neu).
+
+Bei einem Aufruf von PartitionVar auf ein Teilfeld Al£..r] wird also erst mithilfe der
+Unterroutine Swap A[|(€+r —1)/2|] mit Afr] vertauscht.
+
+% Quicksort(A, 2 = 1,r = A.length)
+% if 2<r then
+% m = Partition(A, £,r)
+% | Quicksort(A,&,m — 1)
+% Quicksort(A,m +1, r)
+
+% int Partition(int[] A, int £, intr)
+
+% pivot = Alr]
+
+% i=f
+
+% for j = £tor—1do
+
+% if A[ 7] < pivot then
+
+% Swap(A, i, 7)
+% i=i+l
+
+% Swap(A, i,r)
+
+% return i
+
+% QuicksortVar(A, 2 = 1,r =
+% A. length)
+% if 2<r then
+% m = PartitionVar(A, 2,r)
+% QuicksortVar(A, £,m — 1)
+% QuicksortVar(A,m + 1,r)
+
+% int PartitionVar(int[] A, int £, intr)
+% Swap(A,|(£+r-1)/2]|,r) // neu!
+% pivot = Alr]
+% t=
+% for j =£tor—1do
+% if A[ j] < pivot then
+
+% Swap(A, i, j)
+
+% d=i+l
+% Swap(A,i,r)
+% return 7
+\end{enumerate}
+
+%%
+% b)
+%%
+
+\item Geben Sie die asymptotische Best- und Worst-Case-Laufzeit von Mergesort an.
+
+\end{enumerate}
+\end{document}
