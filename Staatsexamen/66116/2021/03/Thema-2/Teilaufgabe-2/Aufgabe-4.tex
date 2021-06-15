@@ -10,13 +10,11 @@ Gegeben sind folgende Relationen:
 
 \begin{liRmodell}
 Mitarbeiter (\liPrimaer{MitarbeiterID}, Vorname, Nachname, Adresse,
-Gehalt, Vorgesetzter [Mitarbeiter], AbteilungsID[Abteilung])
+Gehalt, \liFremd{Vorgesetzter [Mitarbeiter]} NOT NULL, \liFremd{AbteilungsID[Abteilung]})
 
-Vorgesetzter NOT NULL
+\bigskip
 
-Abteilung (\liPrimaer{AbteilungsID}, Bezeichnung)
-
-Bezeichnung UNIQUE NOT NULL
+Abteilung (\liPrimaer{AbteilungsID}, Bezeichnung UNIQUE NOT NULL)
 \end{liRmodell}
 
 Verwenden Sie im Folgenden nur Standard-SQL und keine

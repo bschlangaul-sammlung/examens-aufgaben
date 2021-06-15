@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{rmodell,relationale-algebra}
 \begin{document}
 \liAufgabenTitel{Mitarbeiter einer Abteilung}
 \section{Aufgabe 5
@@ -8,6 +8,16 @@
 
 Formulieren Sie basierend auf den in der letzten Aufgabe gegebenen
 Relationen die geforderten Anfragen in der Relationenalgebra.
+\index{RelaX - relational algebra calculator}
+
+\begin{liRmodell}
+Mitarbeiter (\liPrimaer{MitarbeiterID}, Vorname, Nachname, Adresse,
+Gehalt, \liFremd{Vorgesetzter [Mitarbeiter]} NOT NULL, \liFremd{AbteilungsID[Abteilung]})
+
+\bigskip
+
+Abteilung (\liPrimaer{AbteilungsID}, Bezeichnung UNIQUE NOT NULL)
+\end{liRmodell}
 
 \begin{enumerate}
 
@@ -15,8 +25,34 @@ Relationen die geforderten Anfragen in der Relationenalgebra.
 % a)
 %%
 
+% https://dbis-uibk.github.io/relax/calc/local/uibk/local/0
+
+% Mitarbeiter = {
+% 	Vorname Nachname AbteilungsID
+% 	Sergej Puschkin 1
+% 	Eduard Hans NULL
+% }
+
+% Abteilung = {
+% 	AbteilungsID Bezeichnung
+% 	1 Buchhaltung
+% }
+
+% π Vorname, Nachname (σ Bezeichnung = 'Buchhaltung' (Mitarbeiter ⨝ Abteilung))
+
 \item Formulieren Sie eine Anfrage, welche die Vornamen und Nachnamen
 der Mitarbeiter ausgibt, die in der Buchhaltung arbeiten.
+
+\begin{liAntwort}
+$\pi_{Vorname, Nachname}(
+  \sigma_{\text{Bezeichnung = 'Buchhaltung'}}(
+    \text{Mitarbeiter}
+    \bowtie
+    \text{Abteilung}
+  )
+)
+$
+\end{liAntwort}
 
 %%
 % b)
@@ -24,5 +60,11 @@ der Mitarbeiter ausgibt, die in der Buchhaltung arbeiten.
 
 \item Formulieren Sie eine Anfrage, welche die Vornamen und Nachnamen
 der Mitarbeiter ausgibt, die in keiner Abteilung arbeiten.
+
+% σ AbteilungsID = NULL (Mitarbeiter)
+
+\begin{liAntwort}
+$\sigma_{\text{AbteilungsID} = \text{NULL}}(\text{Mitarbeiter})$
+\end{liAntwort}
 \end{enumerate}
 \end{document}
