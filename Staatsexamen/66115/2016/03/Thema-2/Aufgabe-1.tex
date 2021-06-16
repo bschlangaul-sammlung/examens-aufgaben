@@ -6,6 +6,8 @@
 \index{Formale Sprachen}
 \footcite{66115:2016:03}}
 
+% Info_2021-06-11-2021-06-11_13.34.15.mp4
+
 Beantworten Sie kurz, präzise und mit Begründung folgende Fragen: (Die
 Begründungen müssen keine formellen mathematischen Beweise sein).
 
@@ -21,7 +23,7 @@ definieren?
 \begin{liAntwort}
 \begin{itemize}
 \item reguläre Grammatik
-\item endlicher Automat
+\item endlicher nichtdeterministische und deterministischer Automat
 \item regulärer Ausdruck
 \end{itemize}
 \end{liAntwort}
@@ -29,6 +31,8 @@ definieren?
 %%
 % b)
 %%
+
+% 12 min
 
 \item Was ist die Komplexität des Wortproblems für Typ-3 Sprachen und
 wieso ist das so?\footcite[Aufgabe 5a)]{theo:ab:5}
@@ -40,6 +44,8 @@ $P$, CYK-Algorithmus löst es ein Polynomialzeit.
 %%
 % c)
 %%
+
+% 19 min
 
 \item Sind Syntaxbäume zu einer Grammatik immer eindeutig? Falls nicht,
 geben Sie ein Gegenbeispiel.
@@ -73,8 +79,9 @@ B -> a,
 \item Wie kann man die Äquivalenz zweier Typ-3 Sprachen nachweisen?
 
 \begin{liAntwort}
+Myhill-Nerode-Äquivalenz.
 Wir können von den auf Äquivalenz zu überprüfenden Sprachen jeweils
-einen minimalen endlichen Automaten bilden. Sie diese entstanden zwei
+einen minimalen endlichen Automaten bilden. Sind diese entstanden zwei
 Automaten äquivalent so sind auch die Sprachen äquivalent.
 \footcite{wiki:aequivalenzproblem}
 \end{liAntwort}
@@ -89,7 +96,12 @@ Sprache lösen?
 \begin{liAntwort}
 Da das Komplement einer regulären Sprache wieder eine reguläre Sprache
 ergibt, kann das Wortproblem beim Komplement durch einen deterministisch
-endlichen Automaten gelöst werden.
+endlichen Automaten gelöst werden. Tausche akzeptierende mit nicht
+akzeptierenden Zuständen des zugehörigen Automaten.
+
+Alternativ: Ergebnis des CYK-Algorithmus invertieren oder CYK auf
+Komplement, da reguläre Sprachen unter dem Komplement abgeschlossen
+sind.
 \end{liAntwort}
 
 %%
@@ -98,6 +110,11 @@ endlichen Automaten gelöst werden.
 
 \item Weshalb gilt das Pumping-Lemma für Typ 3 Sprachen?
 
+\begin{liAntwort}
+endliche Anzahl von Zuständen $n$ im Automaten $\rightarrow$ für Wörter
+$|\omega| > n$ muss Zyklus vorhanden sein.
+\end{liAntwort}
+
 %%
 % g)
 %%
@@ -105,6 +122,10 @@ endlichen Automaten gelöst werden.
 \item Ist der Nachweis, dass das Typ-3 Pumping-Lemma für eine gegebene
 Sprache gilt, ausreichend, um zu zeigen, dass die Sprache vom Typ 3 ist?
 Falls nicht, geben Sie ein Gegenbeispiel, mit Begründung.
+
+\begin{liAntwort}
+Nein: Gegenbeispiel \liAusdruck{a^m b^n c^n }{m, n > 1} $\cup$ \liAusdruck{a^m b^n }{m, n \geq 0}
+\end{liAntwort}
 
 %%
 % h)
