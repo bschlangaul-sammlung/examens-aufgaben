@@ -10,20 +10,25 @@ Beantworten Sie kurz, präzise und mit Begründung folgende Fragen: (Die
 Begründungen müssen keine formellen mathematischen Beweise sein)
 \footcite[Aufgabe 9: F2016T2A2 (Check-Up)]{theo:ab:4}
 
+% Info_2021-06-11-2021-06-11_13.34.15
+
 \begin{enumerate}
 
 %%
 % a)
 %%
 
+% 47min
+
 \item Warum genügt es, sich auf Funktionen zu beschränken, die
 natürliche Zahlen auf natürliche Zahlen abbilden, wenn man untersuchen
 will, was heutige Computer im Prinzip berechnen können?
 
 \begin{liAntwort}
-Funktionen über beliebige Mengen können durch eine geeignete
-Nummerierung auf Zahlenfunktionen abgebildet werden.
-%\liFussnoteUrl{https://de.wikipedia.org/wiki/Zahlenfunktion}
+Jede WHILE-berechenbare Funktion ist turing-berechenbar. Jede
+turing-berechenbare Funktion ist WHILE-berechenbar. Jede
+nichtdeterministische Turing-Maschine kann durch eine deterministische
+Turing-Maschine simuliert werden.\footcite[Seite 24-28]{theo:fs:4}
 \end{liAntwort}
 
 %%
@@ -48,6 +53,8 @@ werden, was der Kernaussage dieses Begriffes widersprechen würde.
 % c)
 %%
 
+% 50 min
+
 \item Für reelle Zahlen, wie \zB $\pi$, lässt sich die
 Dezimaldarstellung durch entsprechende Programme beliebig genau
 approximieren. Gilt das für alle reellen Zahlen, \dh lässt sich für
@@ -55,13 +62,8 @@ jede reelle Zahl die Dezimaldarstellung mit entsprechenden Programmen
 beliebig genau approximieren?
 
 \begin{liAntwort}
-Die Voraussetzung für numerisches Rechnen mit reellen Zahlen ist deren
-Darstellung durch ein Ziffernsystem. Die Menge $\mathbb{R}$ der reellen
-Zahlen ist nicht abzählbar (Überabzählbarkeit von $\mathbb{R}$). Es gibt
-deshalb kein Ziffernsystem zur Darstellung von $\mathbb{R}$. Die
-Dezimaldarstellung der reelen Zahlen lässt sich daher nicht beliebig
-genau approximieren.
-%\liFussnoteUrl{https://www3.math.tu-berlin.de/Vorlesungen/SS07/DiskrMaLS/MitZahlenRechnen.pdf}
+Ja mit einer Berechnungsvorschrift, ja solange der speicherplatz reicht,
+z. B. mittels Intervallschachtelung.
 \end{liAntwort}
 
 %%
@@ -81,6 +83,8 @@ Funktionen, die nicht für alle Eingabekombinationen terminieren.
 %%
 % e)
 %%
+
+% 55min
 
 \item Die Ackermannfunktion ist ein Beispiel einer totalen Funktion, die
 While-berechenbar, aber nicht Loop-berechenbar ist. Sie verallgemeinert
@@ -116,15 +120,27 @@ unendlich viele Schleifenkonstrukte enthalten.
 % f)
 %%
 
+% 59 min
+
 \item Geben Sie ein Beispiel einer Menge an, die abzählbar, aber nicht
 rekursiv aufzählbar ist, und begründen Sie es.
 
 \begin{liAntwort}
-Das Komplement des Halteproblems. Das Halteproblem ist rekursiv
-aufzählbar. Wäre das Komplement des Halteproblems auch rekursiv
-aufzählbar, dann wäre das Halteproblem entscheidbar, was es aber nicht
-ist.
-%\liFussnoteUrl{https://www.youtube.com/watch?v=om4ZTOeQuD0}
+\begin{itemize}
+\item Die Menge der Primzahlen. Die Primzahl sind unendlich groß und
+könnten abgezählt werden. Bei Primzahlen gibt es keine
+Berechnungsvorschrift, die z. b. die 7. Primzahl berechnet.
+
+\item Die Menge der Turningmaschine
+
+\item Diagonalsprache
+
+\item Das Komplement des Halteproblems. Die dem Halteproblem
+zugrundeliegende Lösungsmenge ist rekursiv aufzählbar. Wäre das
+Komplement des Halteproblems auch rekursiv aufzählbar, dann wäre das
+Halteproblem entscheidbar, was es aber nicht ist.
+\liFussnoteUrl{https://www.youtube.com/watch?v=om4ZTOeQuD0}
+\end{itemize}
 \end{liAntwort}
 
 %%
@@ -136,7 +152,7 @@ semi-entscheidbar?
 
 \begin{liAntwort}
 Die beiden Begriffe sind äquivalent.
-% \liFussnoteUrl{https://www.youtube.com/watch?v=om4ZTOeQuD0}
+\liFussnoteUrl{https://www.youtube.com/watch?v=om4ZTOeQuD0}
 \end{liAntwort}
 
 \end{enumerate}

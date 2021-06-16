@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{mathe}
 \begin{document}
 \liAufgabenTitel{Verständnis}
 \section{Verständnis Komplexitätstheorie
@@ -16,37 +16,86 @@ Begründungen müssen keine formellen mathematischen Beweise sein)
 % a)
 %%
 
+% 1:08
+
 \item In der O-Notation insbesondere für die Zeitkomplexität von
-Algorithmen lässt man i.A. konstante Faktoren oder kleinere Terme weg.
-\ZB schreibt man anstelle O(3n2+5) einfach nur O(n2). Warum macht man
-das so?
+Algorithmen lässt man i.\,A. konstante Faktoren oder kleinere Terme weg.
+\ZB schreibt man anstelle $\mathcal{O}(3n^2 + 5)$ einfach nur
+$\mathcal{O}(n^2)$. Warum macht man das so?
+
+\begin{liAntwort}
+Das Wachstum im Unendlich ist bestimmt durch den größten Exponenten.
+Konstante falle bei einer asymptotischen. Analyse weg. nicht wesentlich
+schneller
+\end{liAntwort}
 
 %%
 % b)
 %%
 
+% 1h11min
+
 \item Was ist die typische Vorgehensweise, wenn man für ein neues
 Problem die NP-Vollständigkeit untersuchen will?
+
+\begin{liAntwort}
+Die alten Probleme werden reduziert. Das neue Problem ist größer als die
+alten Probleme. Das Problem muss in NP liegen.
+
+\begin{enumerate}
+\item Problem $in$ NP durch Angabe eines nichtdeterministischen
+Algorithmus in Polynomialzeit
+
+\item Problem NP-schwer via Reduktion: $L_{\text{NP-vollständig}} \leq
+L_{\text{neues Problem}}$
+\end{enumerate}
+\end{liAntwort}
 
 %%
 % c)
 %%
 
-\item Was könnte man tun, um P=NP zu beweisen?
+% 1h14min
+
+\item Was könnte man tun, um $P = NP$ zu beweisen?
+
+\begin{liAntwort}
+Es würde genügen, zu einem einzigen NP-Problem beweisen, dass es in P
+liegt.
+
+Zu einem Problem einen deterministen Turingmaschin finden, die es
+in polynomineller Zeit löst.
+\end{liAntwort}
+
 %%
 % d)
 %%
 
+% 1h17min
+
 \item Sind NP-vollständige Problem mit Loop-Programmen lösbar? (Antwort
 mit Begründung!)
+
+\begin{liAntwort}
+nicht lösbar mit Loop-Programmen. Begründung ähnlich wie bei der
+Ackermann-Funktion. z. B. Passwort. Zu Passwort beliebig bräuchte man
+beliebige for schleifen, was dem endlichen Anzahl an Loop-Schleifen
+widerspricht.
+\end{liAntwort}
 
 %%
 % e)
 %%
 
+% 1h26min
+
 \item Wie zeigt man aus der NP-Härte des SAT-Problems die NP-Härte des
 3SAT-Problems? (3SAT ist ein SAT-Problem wobei alle Klauseln maximal 3
 Literale haben.)
+
+\begin{liAntwort}
+in den Lösungen enthalten
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}

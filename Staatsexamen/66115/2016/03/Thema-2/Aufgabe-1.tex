@@ -78,11 +78,13 @@ B -> a,
 
 \item Wie kann man die Äquivalenz zweier Typ-3 Sprachen nachweisen?
 
+% 23 min
+
 \begin{liAntwort}
-Myhill-Nerode-Äquivalenz.
-Wir können von den auf Äquivalenz zu überprüfenden Sprachen jeweils
-einen minimalen endlichen Automaten bilden. Sind diese entstanden zwei
-Automaten äquivalent so sind auch die Sprachen äquivalent.
+Myhill-Nerode-Äquivalenz. Wir können von den auf Äquivalenz zu
+überprüfenden Sprachen jeweils einen minimalen endlichen Automaten
+bilden. Sind diese entstanden zwei Automaten äquivalent so sind auch die
+Sprachen äquivalent.
 \footcite{wiki:aequivalenzproblem}
 \end{liAntwort}
 
@@ -92,6 +94,8 @@ Automaten äquivalent so sind auch die Sprachen äquivalent.
 
 \item Wie kann man das Wortproblem für das Komplement einer Typ-3
 Sprache lösen?
+
+% 25 min
 
 \begin{liAntwort}
 Da das Komplement einer regulären Sprache wieder eine reguläre Sprache
@@ -124,12 +128,26 @@ Sprache gilt, ausreichend, um zu zeigen, dass die Sprache vom Typ 3 ist?
 Falls nicht, geben Sie ein Gegenbeispiel, mit Begründung.
 
 \begin{liAntwort}
-Nein: Gegenbeispiel \liAusdruck{a^m b^n c^n }{m, n > 1} $\cup$ \liAusdruck{a^m b^n }{m, n \geq 0}
+Nein:
+
+Die Sprache $L = \left\{a^mb^nc^n \mid m,n \ge 1\right\} \cup
+\{b^mc^n \mid m,n \ge 0 \}$ ist nicht regulär. Allerdings erfüllt
+$L$ die Eigenschaften des Pumping-Lemmas, denn jedes Wort
+$z \in L$ lässt sich so zerlegen $z = uvw$, dass
+auch für alle $i\ge0$ $uv^iw \in L$. Dazu kann
+$v$ einfach als erster Buchstabe gewählt werden. Dieser ist
+entweder ein $a$, die Anzahl von führenden $a$s
+ist beliebig. Oder er ist ein $b$ oder $c$, ohne
+führende $a$s ist aber die Anzahl von führenden
+$b$s oder $c$s beliebig.
+\liFussnoteUrl{https://de.wikipedia.org/wiki/Pumping-Lemma}
 \end{liAntwort}
 
 %%
 % h)
 %%
+
+% 37 min
 
 \item Geben Sie ein Beispiel, an dem deutlich wird, dass
 deterministische und nichtdeterministische Typ-2 Sprachen
@@ -150,6 +168,8 @@ unterschiedlich sind.
 % i)
 %%
 
+% 39min
+
 \item Worin macht sich der Unterschied zwischen Typ 0 und 1 bemerkbar,
 wenn man Turingmaschinen benutzt, um das Wortproblem vom Typ 0 oder 1 zu
 lösen. Warum ist das so?
@@ -157,6 +177,14 @@ lösen. Warum ist das so?
 
 \begin{liAntwort}
 Typ 0: semi-entscheidbar, Typ 1: entscheidbar
+
+Typ 0: Unendlichkeit des Band kann die unendlich lange Berechenbarkeit
+zustande kommen.
+
+Typ 1: Linear beschränkte Turingmaschine endlich, dadurch Anzahl an
+Kombiniation
+
+Typ 1 Sprachen sind monoton wachsend.
 
 Da Typ 1 nur Wörter verlängert, kann daher in Polynomialzeit überprüft
 werden, ob das Wort in der Sprache liegt, indem die Regeln angewendet
