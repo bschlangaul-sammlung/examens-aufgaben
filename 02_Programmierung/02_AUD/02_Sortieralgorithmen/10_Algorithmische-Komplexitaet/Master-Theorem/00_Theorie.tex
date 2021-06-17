@@ -2,9 +2,11 @@
 \liLadePakete{mathe,master-theorem}
 
 \begin{document}
-\let\T=\liTheta
 \let\O=\liO
 \let\o=\liOmega
+\let\T=\liT
+\let\t=\liTheta
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Theorie-Teil
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -21,7 +23,7 @@ Master-Theorems auf die Funktion $T$ anwenden, so muss man die
 Komplexitätsklasse der Funktion anderweitig berechnen.
 
 \begin{displaymath}
-T(n) = a \cdot T \left( \textstyle{\frac{n}{b}} \right) + f(n)
+T(n) = \T{a}{b} + f(n)
 \end{displaymath}
 
 \begin{itemize}
@@ -41,20 +43,20 @@ die Kombination der Teillösungen entstehen
 
 \begin{description}
 \item[1. Fall:]
-$T(n) \in \T{n^{\log_{b}a}}$
+$T(n) \in \t{n^{\log_{b}a}}$
 
-\hfill falls $f(n) \in \O{n^{\log_{b} a - \varepsilon}}$
+\hfill falls \liBedingungEins
 für $\varepsilon > 0$
 
 \item[2. Fall:]
-$T(n) \in \T{n^{\log_{b}a} \cdot \log n}$
+$T(n) \in \t{n^{\log_{b}a} \cdot \log n}$
 
-\hfill falls $f(n) \in \T{n^{\log_{b}a}}$
+\hfill falls \liBedingungZwei
 
 \item[3. Fall:]
-$T(n) \in \T{f(n)}$
+$T(n) \in \t{f(n)}$
 
-\hfill falls $f(n) \in \o{n^{\log_{b} a + \varepsilon}}$
+\hfill falls \liBedingungDrei
 für $\varepsilon > 0$
 und ebenfalls für ein $c$ mit $0 < c < 1$ und alle hinreichend großen $n$
 gilt:

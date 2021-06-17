@@ -2,6 +2,13 @@
 \ProvidesPackage{lehramt-informatik-master-theorem}[2021/04/13]
 %    \end{macrocode}
 
+% \liLets{
+%   O = liO,
+%   o = liOmega,
+%   T = liT,
+%   t = liTheta,
+% }
+
 %    \begin{macrocode}
 \ExplSyntaxOn
 \RequirePackage{amsmath}
@@ -66,9 +73,14 @@
 % \begin{macro}{\liT}
 % \liLet{T}{liT}
 % |\liT{16}{2}|: \liT{16}{2}
+% |\liT{}{2}|: \liT{}{2}
 %    \begin{macrocode}
 \def\liTOhneMathe#1#2{
-  #1 \cdot T \liRundeKlammer{\frac{n}{#2}}
+  \tl_if_blank:nTF {#1}
+  {}
+  {#1 \cdot }
+  T
+  \liRundeKlammer{\frac{n}{#2}}
 }
 \def\liT#1#2{
   \ifmmode
@@ -76,6 +88,42 @@
   \else
     $\liTOhneMathe{#1}{#2}$
   \fi
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liRekursionsGleichung}
+% |\liRekursionsGleichung|: \liRekursionsGleichung
+%    \begin{macrocode}
+\def\liRekursionsGleichung{
+  $T(n) = \liT{a}{b} + f(n)$
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liBedingungEins}
+% |\liBedingungEins|: \liBedingungEins
+%    \begin{macrocode}
+\def\liBedingungEins{
+  $f(n) \in \liO{n^{\log\sb{b}a - \varepsilon}}$
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liBedingungZwei}
+% |\liBedingungZwei|: \liBedingungZwei
+%    \begin{macrocode}
+\def\liBedingungZwei{
+  $f(n) \in \liTheta{n^{\log\sb{b}a}}$
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liBedingungDrei}
+% |\liBedingungDrei|: \liBedingungDrei
+%    \begin{macrocode}
+\def\liBedingungDrei{
+  $f(n) \in \liOmega{n^{\log\sb{b}a + \varepsilon}}$
 }
 %    \end{macrocode}
 % \end{macro}
