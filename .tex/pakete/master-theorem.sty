@@ -67,18 +67,18 @@
 % \liLet{T}{liT}
 % |\liT{16}{2}|: \liT{16}{2}
 %    \begin{macrocode}
-  \def\liTOhneMathe#1#2{
-    #1 \cdot T \liRundeKlammer{\frac{n}{#2}}
-  }
-  \def\liT#1#2{
-    \ifmmode
-      \liTOhneMathe{#1}{#2}
-    \else
-      $\liTOhneMathe{#1}{#2}$
-    \fi
-  }
-  %    \end{macrocode}
-  % \end{macro}
+\def\liTOhneMathe#1#2{
+  #1 \cdot T \liRundeKlammer{\frac{n}{#2}}
+}
+\def\liT#1#2{
+  \ifmmode
+    \liTOhneMathe{#1}{#2}
+  \else
+    $\liTOhneMathe{#1}{#2}$
+  \fi
+}
+%    \end{macrocode}
+% \end{macro}
 
 %    \begin{macrocode}
 \ExplSyntaxOff
