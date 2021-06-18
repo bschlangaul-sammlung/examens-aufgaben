@@ -1,0 +1,215 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\newmintinline[p]{pascal}{}
+
+\liAufgabenTitel{Algorithmenanalyse}
+\section{Aufgabe 1
+\index{Algorithmen und Datenstrukturen}
+\footcite{66115:2020:09}}
+
+Betrachten Sie die folgende Prozedur \p{countup}, die aus zwei
+ganzzahligen Eingabewerten \p{n} und \p{m} einen ganzzahligen
+Ausgabewert berechnet:
+
+\begin{minted}{pascal}
+procedure countup(n, m : integer): integer
+var x, y : integer;
+begin
+  x := n;
+  y := 0;
+  while (y < m) do
+    x := x - 1;
+    y := y + 1;
+  end while
+  return x;
+end
+\end{minted}
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Führen Sie \p{countup(3,2)} aus. Geben Sie für jeden
+Schleifendurchlauf jeweils den Wert der Variablen \p{n}, \p{m}, \p{x}
+und \p{y} zu Beginn der while-Schleife und den Rückgabewert der Prozedur
+an.
+
+\begin{liAntwort}
+\begin{tabular}{lllll}
+n & m & x & y  & ausgeführter Code, der Änderung bewirkte \\\hline
+3 & 2 & 3 & 0 \\
+3 & 2 & 2 & 1 & \p{x := x - 1; y := y + 1;} \\
+\end{tabular}
+
+Rückgabewert: 1
+\end{liAntwort}
+
+\liJavaDatei{examen/examen_66115/jahr_2020/herbst/counter/CountUp}
+
+%%
+% b)
+%%
+
+\item Gibt es Eingabewerte von \p{n} und \p{m}, für die die Prozedur
+\p{countup} nicht terminiert? Begründen Sie Ihre Antwort.
+
+\begin{liAntwort}
+Nein. Mit jedem Schleifendurchlauf wird der Wert der Variablen \p{y} um
+eins hochgezählt, die Werte, die \p{y} annimmt, sind also mathematisch
+ausgedrückt streng monoton steigend. \p{y} nähert sich \p{m}
+an, bis \p{y} nicht mehr kleiner ist als \p{m} und die Prozedur
+terminiert. An diesem Sachverhält ändern auch sehr große Zahlen, die
+über die Variable \p{m} der Prozedur übergeben werden, nichts.
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Geben Sie die asymptotische worst-case Laufzeit der Prozedur
+\p{countup} in der $\Theta$-Notation in Abhängigkeit von den
+Eingabewerten \p{n} und/oder \p{m} an. Begründen Sie Ihre Antwort.
+
+\begin{liAntwort}
+Die Laufzeit der Prozedur ist immer $\Theta(m)$. Die Laufzeit hängt nur
+von \p{m} ab. Es kann nicht zwischen best-, average and worst-case
+unterschieden werden.
+\end{liAntwort}
+%%
+% d)
+%%
+
+\item
+
+Betrachten Sie nun die folgende Prozedur \p{countdown}, die aus zwei
+ganzzahligen Eingabewerten \p{n} und \p{m} einen ganzzahligen
+Ausgabewert berechnet:
+
+\begin{minted}{pascal}
+procedure countdown(n, m : integer) : integer
+var x, y : integer;
+begin
+  x := n;
+  y := 0;
+  while (n > 0) do
+    if (y < m) then
+      x := x - 1;
+      y := y + 1;
+    else
+      y := 0;
+      n := n / 2; /* Ganzzahldivision */
+    end if
+  end while
+  return x;
+end
+\end{minted}
+
+\liJavaDatei{examen/examen_66115/jahr_2020/herbst/counter/CountDown}
+
+Führen Sie \p{countdown(3, 2)} aus. Geben Sie für jeden
+Schleifendurchlauf jeweils den Wert der Variablen \p{n}, \p{m}, \p{x}
+und \p{y} zu Beginn der \p{while}-Schleife und den Rückgabewert der
+Prozedur an.
+
+\begin{liAntwort}
+\begin{tabular}{lllll}
+n & m & x & y & ausgeführter Code, der Änderung bewirkte \\\hline
+3 & 2 & 3 & 0 & \\
+3 & 2 & 2 & 1 & \p{x := x - 1; y := y + 1;} \\
+3 & 2 & 1 & 2 & \p{x := x - 1; y := y + 1;} \\
+1 & 2 & 1 & 0 & \p{y := 0; n := n / 2;} \\
+1 & 2 & 0 & 1 & \p{x := x - 1; y := y + 1;} \\
+1 & 2 & -1 & 2 & \p{x := x - 1; y := y + 1;} \\
+\end{tabular}
+
+Rückgabewert: -1
+\end{liAntwort}
+
+%%
+% e)
+%%
+
+\item Gibt es Eingabewerte von \p{n} und \p{m}, für die die Prozedur
+\p{countdown} nicht terminiert?
+
+Begründen Sie Ihre Antwort.
+
+\begin{liAntwort}
+Nein.
+
+\begin{description}
+\item[\p{n <= 0}]
+
+terminiert sofort
+
+\item[\p{m < 0}]
+
+Falsch-Block der Wenn-Dann-Bedingung erniedrigt \p{n} \p{n := n / 2;} bis \p{0} erreicht
+ist. Dann terminiert die Prozedur.
+
+\item[\p{m > 0}]
+
+1. Wahr-Block der Wenn-Dann-Bedingung erhöht \p{y} streng monoton bis
+\p{y >= m}. 2. Falsch-Block der Wenn-Dann-Bedingung halbiert \p{n} bis
+\p{0}. 1. und 2. solange bis n = 0
+
+\end{description}
+\end{liAntwort}
+
+%%
+% f)
+%%
+
+\item Geben Sie die asymptotische Laufzeit der Prozedur \p{countdown} in
+der $\Theta$-Notation in Abhängigkeit von den Eingabewerten \p{n}
+und/oder \p{m} an unter der Annahme, dass \p{m >= 0} und \p{n > 0}.
+Begründen Sie Ihre Antwort.
+
+\begin{liAntwort}
+
+Anzahl der while Schleife:
+
+m + 1:
+
+m oft: bis y < m
++1 Halbierung von n und y auf 0 setzen
+
+wegen dem n/2 ist die Laufzeit logarithmisch, ähnlich wie worst case bei
+der Binären Suche.
+
+\begin{tabular}{lllll}
+n & m & x & y & ausgeführter Code, der Änderung bewirkte \\\hline
+16 & 3 & 16 & 0 \\
+16 & 3 & 15 & 1 \\
+16 & 3 & 14 & 2 \\
+16 & 3 & 13 & 3 \\
+8 & 3 & 13 & 0 & \p{y := 0; n := n / 2;} \\
+8 & 3 & 12 & 1 \\
+8 & 3 & 11 & 2 \\
+8 & 3 & 10 & 3 \\
+4 & 3 & 10 & 0 & \p{y := 0; n := n / 2;} \\
+4 & 3 & 9 & 1 \\
+4 & 3 & 8 & 2 \\
+4 & 3 & 7 & 3 \\
+2 & 3 & 7 & 0 & \p{y := 0; n := n / 2;} \\
+2 & 3 & 6 & 1 \\
+2 & 3 & 5 & 2 \\
+2 & 3 & 4 & 3 \\
+1 & 3 & 4 & 0 & \p{y := 0; n := n / 2;} \\
+1 & 3 & 3 & 1 \\
+1 & 3 & 2 & 2 \\
+1 & 3 & 1 & 3 \\
+\end{tabular}
+
+%
+$\Theta((m + 1) \log_2 n)$
+
+Wegkürzen der Konstanten
+
+$\Theta(m \log n)$
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}

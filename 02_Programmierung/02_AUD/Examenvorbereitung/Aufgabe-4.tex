@@ -1,0 +1,67 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,mathe,master-theorem}
+\begin{document}
+\let\j=\liJavaCode
+\let\T=\liT
+
+\liAufgabenTitel{O-Notation}
+\section{Aufgabe 4
+\index{Komplexität}
+\footcite{66115:2020:09}}
+
+\begin{enumerate}
+
+%%
+% c)
+%%
+
+\item Bestimmen Sie eine asymptotische Lösung (in $\Theta$-Schreibweise)
+für die folgende Rekursionsgleichung:
+\index{Master-Theorem}
+
+\def\fn{\textstyle{\frac{1}{2}}n^2 + n}
+
+% https://www.wolframalpha.com/input/?i=T%5Bn%5D%3D%3DT%5Bn%2F2%5D%2B1%2F2n%5E2%2Bn
+\begin{displaymath}
+T(n) = \T{}{2} + \fn
+\end{displaymath}
+
+\begin{liAntwort}
+
+\liRekursionsGleichung
+
+\begin{description}
+\item[$a$:] $a = 1$
+\item[$b$:] $b = 2$
+\item[$f(n)$:] $f(n) = \fn$
+\end{description}
+
+$\log_b a = \log_2 1 = 0$
+
+\begin{description}
+\item[Erster Fall:]
+
+\liBedingungEins
+
+$\fn \notin \liO{n^{-1}}$
+
+\item[Zweiter Fall:]
+
+\liBedingungZwei
+
+$\fn \notin \liTheta{1}$
+
+\item[Dritter Fall:]
+
+\liBedingungDrei
+
+$\varepsilon = 2$
+
+$\fn \in \liOmega{n^2}$
+\end{description}
+
+\end{liAntwort}
+
+\end{enumerate}
+
+\end{document}
