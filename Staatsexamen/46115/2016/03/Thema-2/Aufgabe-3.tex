@@ -47,6 +47,13 @@ entspricht der der linearen Suche.
 Sprosse an, welches nur $\mathcal{O} (\log n)$ Würfe benötigt, dafür
 aber möglicherweise mehr Smartphones verbraucht.
 
+\begin{liAntwort}
+Man startet bei Sprosse $\frac{n}{2}$. Wenn das Smartphone kaputt geht,
+macht man weiter mit der Sprosse in der Mitte der unteren Hälfte,
+ansonsten mit der Sprosse in der Mitte der oberen Hälfte. Das Ganze
+rekursiv.
+\end{liAntwort}
+
 %%
 % c)
 %%
@@ -59,6 +66,11 @@ begründen Sie Ihre Funktionsweise und Wurfzahl.
 Tipp: der erste Testwurf erfolgt von Sprosse $\left\lceil\sqrt{n}\,\right\rceil$.
 
 \begin{liAntwort}
+Das Vorgehen ist folgendermaßen: Man beginnt auf Stufe 0 und falls das
+Handy nicht kaputt geht, addiert man jeweils Wurzel n. Falls das Handy
+kaputt geht, geht man linear in Einerschritten das Intervall von der
+unteren Grenze (d. h. von der Stufe vor der letzten Addition) bis zur
+Kaputtstufe ab.
 
 \begin{liExkurs}[Interpolationssuche]
 Die Interpolationssuche, auch Intervallsuche genannt, ist ein von der

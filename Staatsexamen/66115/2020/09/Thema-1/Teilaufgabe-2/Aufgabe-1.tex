@@ -41,6 +41,7 @@ an.
 n & m & x & y  & ausgeführter Code, der Änderung bewirkte \\\hline
 3 & 2 & 3 & 0 \\
 3 & 2 & 2 & 1 & \p{x := x - 1; y := y + 1;} \\
+3 & 2 & 1 & 2 & diese Schleife läuft nicht mehr durch \p{x := x - 1; y := y + 1;} \\
 \end{tabular}
 
 Rückgabewert: 1
@@ -122,6 +123,7 @@ n & m & x & y & ausgeführter Code, der Änderung bewirkte \\\hline
 1 & 2 & 1 & 0 & \p{y := 0; n := n / 2;} \\
 1 & 2 & 0 & 1 & \p{x := x - 1; y := y + 1;} \\
 1 & 2 & -1 & 2 & \p{x := x - 1; y := y + 1;} \\
+0 & 2 & -1 & 0 & Wert am Ende der While-Schleife, nicht mehr Beginn der while-Schleife \\
 \end{tabular}
 
 Rückgabewert: -1
@@ -144,7 +146,7 @@ Nein.
 
 terminiert sofort
 
-\item[\p{m < 0}]
+\item[\p{m <= 0}]
 
 Falsch-Block der Wenn-Dann-Bedingung erniedrigt \p{n} \p{n := n / 2;} bis \p{0} erreicht
 ist. Dann terminiert die Prozedur.
