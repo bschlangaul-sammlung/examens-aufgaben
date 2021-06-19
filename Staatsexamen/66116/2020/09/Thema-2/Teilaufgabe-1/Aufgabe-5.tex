@@ -1,0 +1,80 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{}
+\section{Aufgabe 5
+\index{Entwurfsmuster}
+\footcite{66116:2020:09}}
+
+ (UML und Entwurfsmuster) [25 PUNKTE]
+
+Wir betrachten Terme über die Rechenarten op € {+, —, x, /}, die rekursiv definiert sind:
+
+e Jedes Literal ist ein Term, z.B. „4“.
+e Jedes Symbol ist ein Term, z.B. „x“.
+e Ist t ein Term, so ist „(t)“ ein (geklammerter) Term.
+
+e Sind tı, t2 Terme, so ist „tı Op ta“ ebenso ein Term.
+
+Beispiele für gültige Terme sind also „A +8“, „Ax x“ oder „A+ (8* x)“.
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Welches Design-Pattern eignet sich hier am besten zur Modellierung dieses Sachverhalts?
+%%
+% b)
+%%
+
+\item Nennen Sie drei wesentliche Vorteile von Design-Pattern im Allgemeinen.
+
+%%
+% c)
+%%
+
+\item Modellieren Sie eine Klassenstruktur in UML, die diese rekursive Struktur von Termen ab-
+bildet. Sehen Sie mindestens einzelne Klassen für die Addition und Multiplikation vor, sowie
+weitere Klassen für geklammerte Terme und Literale, welche ganze Zahlen repräsentieren.
+Gehen Sie bei der Modellierung der Klassenstruktur davon aus, dass eine objektorientierte
+Programmiersprache wie Java zu benutzen ist.
+
+%%
+% d)
+%%
+
+\item Erstellen Sie ein Objektdiagramm, welches den Term t := 4 + (3*2) + (12*y/(8*))
+entsprechend Ihres Klassendiagramms repräsentiert.
+
+%%
+% e)
+%%
+
+\item Überprüfen Sie, ob das Objektdiagramm für den in Teilaufgabe d)
+gegebenen Term eindeutig definiert ist. Begründen Sie Ihre Entscheidung.
+
+%%
+% f)
+%%
+
+\item Die gegebene Klassenstruktur soll mindestens folgende Operationen unterstützen:
+
+\begin{itemize}
+\item das Auswerten von Termen,
+\item das Ausgeben in einer leserlichen Form,
+\item das Auflisten aller verwendeten Symbole.
+Welches Design-Pattern ist hierfür am besten geeignet?
+
+\end{itemize}
+%%
+% g)
+%%
+
+\item Erweitern Sie Ihre Klassenstruktur um die entsprechenden Methoden,
+Klassen und Assoziationen, um die in Teilaufgabe f) genannten
+zusätzlichen Operationen gemäß dem von Ihnen genannten Design Pattern zu
+unterstützen.
+
+\end{enumerate}
+\end{document}
