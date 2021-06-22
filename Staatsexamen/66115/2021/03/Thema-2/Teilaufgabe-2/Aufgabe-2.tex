@@ -10,7 +10,48 @@
 Gegeben sei die folgende Java-Implementierung einer doppelt-verketteten
 Liste.
 
-\liJavaExamen{66115}{2021}{03}{DoubleLinkedList}
+\begin{minted}{java}
+class DoubleLinkedList {
+  private Item head;
+
+  public DoubleLinkedList() {
+    head = null;
+  }
+
+  public Item append(Object val) {
+    if (head == null) {
+      head = new Item(val, null, null);
+      head.prev = head;
+      head.next = head;
+    } else {
+      Item item = new Item(val, head.prev, head);
+      head.prev.next = item;
+      head.prev = item;
+    }
+    return head.prev;
+  }
+
+  public Item search(Object val) {
+    // ...
+  }
+
+  public void delete(Object val) {
+    // ...
+  }
+
+  class Item {
+    private Object val;
+    private Item prev;
+    private Item next;
+
+    public Item(Object val, Item prev, Item next) {
+      this.val = val;
+      this.prev = prev;
+      this.next = next;
+    }
+  }
+}
+\end{minted}
 
 \begin{enumerate}
 
@@ -39,6 +80,10 @@ list.append("c");
 entsprechenden Wert, oder \j{null} falls der Wert nicht in der Liste
 enthalten ist, zurückgibt.
 
+\begin{liAntwort}
+\liJavaExamen[firstline=23,lastline=35]{66115}{2021}{03}{DoubleLinkedList}
+\end{liAntwort}
+
 %%
 %
 %%
@@ -46,9 +91,13 @@ enthalten ist, zurückgibt.
 \item Implementieren Sie in der Klasse \j{DoubleLinkedList} die Methode
 \j{delete}, die das erste Vorkommen eines Wertes aus der Liste entfernt.
 Ist der Wert nicht in der Liste enthalten, terminiert die Methode
-„stillschweigend“, d. h. ohne Änderung der Liste und ohne Fehler-
-meldung. Sie dürfen die Methode \j{search} aus Teilaufgabe b) verwenden,
-auch wenn Sie sie nicht implementiert haben.
+„stillschweigend“, d. h. ohne Änderung der Liste und ohne Fehlermeldung.
+Sie dürfen die Methode \j{search} aus Teilaufgabe b) verwenden, auch
+wenn Sie sie nicht implementiert haben.
+
+\begin{liAntwort}
+\liJavaExamen[firstline=37,lastline=50]{66115}{2021}{03}{DoubleLinkedList}
+\end{liAntwort}
 
 %%
 %
@@ -58,6 +107,15 @@ auch wenn Sie sie nicht implementiert haben.
 und an den bisherigen Implementierungen, um eine Methode \j{size}, die
 die Anzahl der enthaltenen Items zurück gibt, mit Laufzeit
 $\mathcal{O}(1)$ zu realisieren.
+
+\begin{liAntwort}
+In der Klasse wird ein Zähler eingefügt, der bei jedem Aufruf der
+Methode \j{append} eines nach oben gezählt wird und bei jedem
+erfolgreichen Löschen in der delete-Methode eines nach unten gezählt
+wird. Mit return kann der Zählerstand in $\mathcal{O}(1)$ ausgegeben
+werden. Dazu müsste ein Getter zum Ausgeben implementiert werden. Die
+Datenstruktur bleibt unverändert.
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}
