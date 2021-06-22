@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{mathe}
 \begin{document}
 \liAufgabenTitel{Hashing}
 \section{Aufgabe 5
@@ -13,37 +13,90 @@
 
 \item Nennen Sie zwei wünschenswerte Eigenschaften von Hashfunktionen.
 
+\begin{liAntwort}
+\begin{description}
+\item[surjektiv]
+
+Die Abbildung soll surjektiv sein, \dh jeder Index soll berechnet werden
+können.
+
+\item[gleichverteilt]
+
+Durch die Hashfunktion soll möglichst eine Gleichverteilung auf die
+Buckets (Indexliste) erfolgen.
+
+\item[effizient]
+
+Zudum sollte die Verteilung mittels Hashfunktion möglichst effizient
+gewählt werden.
+\footcite{wiki:hashfunktion}
+\end{description}
+\end{liAntwort}
+
 %%
 % b)
 %%
 
 \item Wie viele Elemente können bei Verkettung und wie viele Elemente
-können bei offener Adressierung in einer Hashtabelle mit m Zeilen
+können bei offener Adressierung in einer Hashtabelle mit $m$ Zeilen
 gespeichert werden?
+
+\begin{liAntwort}
+\begin{description}
+\item[Verkettung]
+
+Es darf mehr als ein Element pro Bucket enthalten sein, deswegen können
+beliebig viele Element gespeichert werden.
+
+\item[offene Addressierung]
+
+(normalerweise) eine Element pro Bucket, deshalb ist die Anzahl der
+speicherbaren Elemente höchstens $m$. Können in einem Bucket $k$
+Elemente gespeichert werden, dann beträgt die Anzahl der speicherbaren
+Element $k \cdot m$.
+\end{description}
+\end{liAntwort}
 
 %%
 % c)
 %%
 
-\item Angenommen, in einer Hashtabelle der Größe m sind alle Einträge (mit mindestens einem
-Wert) belegt und insgesamt n Werte abgespeichert.
+\item Angenommen, in einer Hashtabelle der Größe $m$ sind alle Einträge
+(mit mindestens einem Wert) belegt und insgesamt $n$ Werte
+abgespeichert.
 
-Geben Sie in Abhängigkeit von m und n an, wie viele Elemente bei der Suche nach einem
-nicht enthaltenen Wert besucht werden müssen. Sie dürfen annehmen, dass jeder Wert mit
-gleicher Wahrscheinlichkeit und unabhängig von anderen Werten auf jeden der m Plätze
-abgebildet wird (einfaches gleichmäßiges Hashing).
+Geben Sie in Abhängigkeit von $m$ und $n$ an, wie viele Elemente bei der
+Suche nach einem nicht enthaltenen Wert besucht werden müssen. Sie
+dürfen annehmen, dass jeder Wert mit gleicher Wahrscheinlichkeit und
+unabhängig von anderen Werten auf jeden der $m$ Plätze abgebildet wird
+(einfaches gleichmäßiges Hashing).
+
+\begin{liAntwort}
+$\frac{n}{m}$
+Beispiel: 10 Buckets, 30 Elemente: $\frac{30}{10} = 3$ Elemente im
+Bucket, die man durchsuchen muss.
+\end{liAntwort}
 
 %%
 % d)
 %%
 
-\item Betrachten Sie die folgende Hashtabelle mit der Hashfunktion h(x) = x mod 11. Hierbei
-steht @ für eine Zelle, in der kein Wert hinterlegt ist.
+\item Betrachten Sie die folgende Hashtabelle mit der Hashfunktion $h(x)
+= x \mod 11$. Hierbei steht $\emptyset$ für eine Zelle, in der kein Wert
+hinterlegt ist.
 
-Führen Sie nun die folgenden Operationen mit offener Adressierung mit linearem Sondieren
-aus und geben Sie den Zustand der Datenstruktur nach jedem Schritt an. Werden für eine
-Operation mehrere Zellen betrachtet, aber nicht modifiziert, so geben Sie deren Indizes in
-der betrachteten Reihenfolge an.
+\def\l{$\emptyset$}
+
+\begin{tabular}{|r||c|c|c|c|c|c|c|c|c|c|c|}
+Index & 0  & 1  & 2  & 3 & 4  & 5  & 6  & 7  & 8  & 9  & 10 \\\hline
+Wert  & 11 & \l & \l & 3 & \l & 16 & 28 & 18 & \l & \l & 32 \\
+\end{tabular}
+
+Führen Sie nun die folgenden Operationen mit offener Adressierung mit
+linearem Sondieren aus und geben Sie den Zustand der Datenstruktur nach
+jedem Schritt an. Werden für eine Operation mehrere Zellen betrachtet,
+aber nicht modifiziert, so geben Sie deren Indizes in der betrachteten
+Reihenfolge an.
 
 \begin{enumerate}
 
@@ -52,27 +105,72 @@ der betrachteten Reihenfolge an.
 %%
 
 \item Insert 7
+
+\begin{liAntwort}
+\begin{tabular}{|r||c|c|c|c|c|c|c|c|c|c|c|}
+Index & 0  & 1  & 2  & 3 & 4  & 5  & 6  & 7  & 8  & 9  & 10 \\\hline
+Wert  & 11 & \l & \l & 3 & \l & 16 & 28 & 18 & $7_2$ & \l & 32 \\
+\end{tabular}
+\end{liAntwort}
+
 %%
 % ii)
 %%
 
 \item Insert 20
+
+\begin{liAntwort}
+\begin{tabular}{|r||c|c|c|c|c|c|c|c|c|c|c|}
+Index & 0  & 1  & 2  & 3 & 4  & 5  & 6  & 7  & 8     & 9      & 10 \\\hline
+Wert  & 11 & \l & \l & 3 & \l & 16 & 28 & 18 & $7_2$ & $20_1$ & 32 \\
+\end{tabular}
+\end{liAntwort}
+
 %%
 % iii)
 %%
 
 \item Delete 18
+
+\begin{liAntwort}
+\begin{tabular}{|r||c|c|c|c|c|c|c|c|c|c|c|}
+Index & 0  & 1  & 2  & 3 & 4  & 5  & 6  & 7  & 8     & 9      & 10 \\\hline
+Wert  & 11 & \l & \l & 3 & \l & 16 & 28 & del & $7_2$ & $20_1$ & 32 \\
+\end{tabular}
+
+del ist eine Marke, die anzeigt, dass gelöscht wurde und der Bucket
+nicht leer ist.
+\end{liAntwort}
+
 %%
 % iv)
 %%
 
 \item Search 7
 
+\begin{liAntwort}
+\begin{tabular}{|r||c|c|c|c|c|c|c|c|c|c|c|}
+Index & 0  & 1  & 2  & 3 & 4  & 5  & 6  & 7  & 8     & 9      & 10 \\\hline
+Wert  & 11 & \l & \l & 3 & \l & 16 & 28 & del & $7_2$ & $20_1$ & 32 \\
+\end{tabular}
+
+$h(7) = 7 \mod 11 = 7$
+
+7 (Index) $\rightarrow$ del lineares sondieren $\rightarrow$ 8 (Index) $\rightarrow$ gefunden
+\end{liAntwort}
+
 %%
 % v)
 %%
 
 \item Insert 5
+
+\begin{liAntwort}
+\begin{tabular}{|r||c|c|c|c|c|c|c|c|c|c|c|}
+Index & 0  & 1  & 2  & 3 & 4  & 5  & 6  & 7  & 8     & 9      & 10 \\\hline
+Wert  & 11 & \l & \l & 3 & \l & 16 & 28 & $5_3$ & $7_2$ & $20_1$ & 32 \\
+\end{tabular}
+\end{liAntwort}
 \end{enumerate}
 
 \end{enumerate}
