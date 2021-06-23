@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe}
+\liLadePakete{mathe,syntax}
 \begin{document}
 % identisch mit Staatsexamen/46115/2020/03/Thema-2/Aufgabe-6.tex
 
@@ -29,6 +29,7 @@ sortiert, \dh es gilt $A[1].x < A[2].x < \dots < A[n].x$, wobei $n = |R|
 Abstand in $\mathcal{O}(n)$ Zeit berechnet.
 
 \begin{liAntwort}
+\liPseudoUeberschrift{Pseudo-Code}
 \begin{itemize}
 \item Iteriere über die Indizes des Punkte-Arrays $P$ bis zum vorletzten
 Index ($P[n-1]$)
@@ -42,6 +43,10 @@ Durchlauf mit $P[n + 1]$
 Integer.MAX\_VALUE$ definiert). Falls $d < d_{min}$ definiere $d_{min} =
 d$
 \end{itemize}
+
+\liPseudoUeberschrift{Java}
+
+\liJavaExamen[firstline=30,lastline=41]{66115}{2020}{03}{RedBluePairCollection}
 \end{liAntwort}
 
 %%
@@ -85,6 +90,8 @@ gesuchte minimale Abstand ist dann der Abstand zwischen dem gefundenen
 blauen und dem nachfolgenden roten Punkt. Die Binärsuche hat eine
 Worst-case-Laufzeit in $\mathcal{O}(\log n)$ und damit auch in $o(n)$.
 \end{liAntwort}
-
 \end{enumerate}
+
+\liJavaExamen{66115}{2020}{03}{RedBluePairCollection}
+
 \end{document}
