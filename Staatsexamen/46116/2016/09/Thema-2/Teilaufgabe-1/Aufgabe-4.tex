@@ -1,0 +1,62 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{Formale Verifikation mit vollständiger Induktion}
+\section{Aufgabe 4:
+\index{Formale Verifikation}
+\footcite{46116:2016:09}}
+
+Gegeben sei folgende rekursive Methodendeklaration in der Sprache Java.
+Es wird als Vorbedingung vorausgesetzt, dass die Methode \liJavaCode{cn}
+nur für Werte $n \geq 0$ aufgerufen wird.
+
+\begin{minted}{java}
+int cn(int n) {
+  if(n == 0)
+    return 1;
+  else
+    return (4 * (n - 1) + 2) * cn(n - 1) / (n + 1);
+}
+\end{minted}
+
+\noindent
+Sie können im Folgenden vereinfachend annehmen, dass es keinen Überlauf
+in der Berechnung gibt, \dh dass der Datentyp \liJavaCode{int} für die
+Berechnung des Ergebnisses stets ausreicht.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Beweisen Sie mittels vollständiger Induktion, dass der
+Methodenaufruf cn(n) für jedes n > 0 die n-te Catalan-Zahl $C_n$
+berechnet, wobei
+
+\begin{displaymath}
+C_n =
+\frac{(2n)!}
+{(n + 1)!-n!}
+\end{displaymath}
+
+Beim Induktionsschritt können Sie die beiden folgenden Gleichungen
+verwenden:
+
+\begin{enumerate}
+
+\item $(2(n + 1))! = (4n + 2) \cdot (n + 1) \cdot (2n)!$
+
+\item $(a + 2)! \cdot (n+1)! = (n + 2) \cdot (n + 1) \cdot (n + 1)! \cdot n!$
+\end{enumerate}
+
+%%
+% b)
+%%
+
+\item Geben Sie eine geeignete Terminierungsfunktion an und begründen
+Sie, warum der Methodenaufruf \liJavaCode{cn(n)} für jedes $n \geq 0$
+terminiert.
+
+\end{enumerate}
+\end{document}

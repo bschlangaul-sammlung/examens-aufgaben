@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
+\liLadePakete{syntax,uml}
 \begin{document}
 \let\j=\liJavaCode
 
@@ -11,21 +11,39 @@
 Die folgende Abbildung stellt den Entwurf der Implementierung einer
 verketteten Liste dar, welche Integer-Werte als Elemente enthalten kann.
 
-% «interface»
-% MyElement
+\begin{center}
+\begin{tikzpicture}
+\umlclass[x=0,y=0]{MyList}{}{getSum(): Integer}
 
-% cakula®Sumf!: Integer
-% de
+\umlclass[x=4,y=0,type=interface]{MyElement}{}{calculateSum() : Integer}
 
-% MyList
+\umlclass[x=2,y=-3]{MyEndElement}{}{}
+\umlclass[x=6,y=-3]{MyRegularElement}{value : Integer}{}
 
-% geiSumf: Integer
+\umlVHVreal{MyEndElement}{MyElement}
+\umlVHVreal{MyRegularElement}{MyElement}
 
-% MyEndElement MyRegularElement
+\umlHVHuniassoc[arm1=2cm,arg1=next,pos1=0.9,mult2=1,pos=2.8]{MyRegularElement}{MyElement}
 
-% next
+\umluniassoc[arg1=head,mult2=1,pos1=0.3]{MyList}{MyElement}
 
-% value: Infeger
+\end{tikzpicture}
+\end{center}
+
+\begin{minted}{java}
+public class MyList {
+  private MyElement head;
+
+  public MyList() {
+    this.head = new MyEndElement();
+  }
+
+  public int getSum() {
+    // ..
+  }
+}
+
+\end{minted}
 
 Die Klassse \j{MyList} stellt die Methode \j{getSum()} zur Verfügung,
 welche die Summe über alle in einer Liste befindlichen Elemente
