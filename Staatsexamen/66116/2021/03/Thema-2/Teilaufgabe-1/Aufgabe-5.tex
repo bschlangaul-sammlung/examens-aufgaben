@@ -1,136 +1,54 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{syntax}
 \begin{document}
-\liAufgabenTitel{}
+\liAufgabenTitel{Webshop}
 \section{Aufgabe 5
 \index{Implementierung in Java}
 \footcite{66116:2021:03}}
 
- (Implementierung) (20 Punkte)
-a) Nennen Sie vier Programmierparadigmen.
-b) Erlautern Sie die Begriffe Overloading und Overriding, sowie deren Unterschiede.
-c)  Erlautern Sie, wie sich zentrale und dezentrale Versionsverwaltung unterscheiden.
-d)  Eiıstellen Sie ein Sequenzdiagramm zur Methode main der Klasse Webshop.
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Nennen Sie vier Programmierparadigmen.
+
+%%
+% b)
+%%
+
+\item Erlautern Sie die Begriffe Overloading und Overriding, sowie deren
+Unterschiede.
+
+%%
+% c)
+%%
+
+\item Erlautern Sie, wie sich zentrale und dezentrale Versionsverwaltung
+unterscheiden.
+
+%%
+% d)
+%%
+
+\item Eiıstellen Sie ein Sequenzdiagramm zur Methode main der Klasse
+Webshop.
+
 Hinweise:
-e Arithmetische Operationen müssen nicht weiter aufgelöst werden.
-e Listenoperationen müssen nicht explizit dargestellt werden.
-e Aufdas Zeichnen einer passiven Lebenslinie muss nicht geachtet werden.
-e Übertragen Sie das untenstehende Diagramm als Ausgangspunkt in Ihren Bearbeitungsbogen.
-w: Webshop
-create
->» b1:Bestellung
-public class Webshop {
-1
-2 public static void main(String[] args) {
-3
-4 Bestellung bl = new Bestellung();
-5
-6 // ab hier soll modelliert werden
-7 Artikel al = new Artikel ();
-8 al.setName ("Taschenrechner");
-9 al.setPrice (10);
-10
-11 bl.addArticle (al);
-12
-" Bestellung b2 = new Bestellung ();
-te Artikel a2 = new Artikel();
-17 a2.setName ("Lineal");
-a2.setPrice (2.5);
-18
-5 Artikel a3 = new Artikel();
->1 a3.setName ("Bleistift");
-a3.setPrice (0.7);
-22
-5, b2.addArticle (a3);
-ee bl.addArticle(a2);
-27 .
-28 bl.getSize();
-29
-30 b2.getPrice();
-31 }
-32 |}
-33
+\begin{itemize}
+\item Arithmetische Operationen müssen nicht weiter aufgelöst werden.
 
-1 | public class Artikel {
+\item Listenoperationen müssen nicht explizit dargestellt werden.
 
-2
+\item Auf das Zeichnen einer passiven Lebenslinie muss nicht geachtet werden.
 
-3 private String name;
+\item Übertragen Sie das untenstehende Diagramm als Ausgangspunkt in Ihren Bearbeitungsbogen.
+\end{itemize}
 
-4 private double price;
+\end{enumerate}
 
-5
-
-6 public void setName(String name) {
-
-7 this.name = name;
-
-a} 3
-
-9
-10 public void setPrice (double price) {
-il this.price = price;
-12 }
-
-13
-
-14 public double getPrice() {
-
-15 return price;
-
-16 }
-
-171}
-
-1] import java.util.List;
-
-2
-
-3 | public class Bestellung {
-
-4
-
-5 private List<Artikel> articles;
-
-6 //Anzahl an Artikeln
-
-7 private int size = 0;
-
-8 //Gesamtpreis der Bestellung
-
-9 private double price = 0;
-
-10
-
-11 public Bestellung() {
-
-12 articles = new ArrayList<>();
-
-13 }
-
-14
-
-15 public void addArticle(Artikel article) {
-16 //mass nicht weiter aufgelést werden, siehe Hinweise
-17 articles.add(article);
-
-18 size+t+t;
-
-19 //muss nicht weiter aufgelöst werden, siehe Hinweise
-20 price = article.getPrice()+ price;
-21 }
-
-22
-23 public int getSize() {
-24 return size;
-25 }
-26
-27 public double getPrice() {
-
-28 return price;
-
-29 }
-
-30 | }
-
+\liJavaExamen{66116}{2021}{03}{webshop/Webshop}
+\liJavaExamen{66116}{2021}{03}{webshop/Artikel}
+\liJavaExamen{66116}{2021}{03}{webshop/Bestellung}
 \end{document}
