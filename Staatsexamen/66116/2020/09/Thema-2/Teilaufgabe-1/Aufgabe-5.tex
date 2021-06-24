@@ -1,21 +1,30 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{syntax}
 \begin{document}
 \liAufgabenTitel{Terme über die Rechenarten}
 \section{Aufgabe 5
 \index{Entwurfsmuster}
 \footcite{66116:2020:09}}
 
-Wir betrachten Terme über die Rechenarten op € {+, —, x, /}, die rekursiv definiert sind:
+% https://student.cs.uwaterloo.ca/~cs446/1171/Arch_Design_Activity/Composite.pdf
+% https://docplayer.org/9839515-Grundkurs-programmieren-in-java.html
+
+Wir betrachten Terme über die Rechenarten $op \in \{ +, -, \cdot, \div \}$, die
+rekursiv definiert sind:
 
 \begin{itemize}
-\item Jedes Literal ist ein Term, z.B. „4“.
-\item Jedes Symbol ist ein Term, z.B. „x“.
-\item Ist t ein Term, so ist „(t)“ ein (geklammerter) Term.
-\item Sind tı, t2 Terme, so ist „tı Op ta“ ebenso ein Term.
+\item Jedes Literal ist ein Term, \zB „$4$“.
+
+\item Jedes Symbol ist ein Term, \zB „$x$“.
+
+\item Ist $t$ ein Term, so ist „$(t)$“ ein (geklammerter) Term.
+
+\item Sind $t_1$, $t_2$ Terme, so ist „$t_1 \, op \, t_2$“ ebenso ein
+Term.
 
 \end{itemize}
-Beispiele für gültige Terme sind also „A +8“, „Ax x“ oder „A+ (8* x)“.
+Beispiele für gültige Terme sind also „$4 + 8$“, „$4 \cdot x$“ oder „$4
++ (8 \cdot x)$“.
 \begin{enumerate}
 
 %%
@@ -24,6 +33,11 @@ Beispiele für gültige Terme sind also „A +8“, „Ax x“ oder „A+ (8* x)
 
 \item Welches Design-Pattern eignet sich hier am besten zur Modellierung
 dieses Sachverhalts?
+
+\begin{liAntwort}
+Kompositum
+\end{liAntwort}
+
 %%
 % b)
 %%
@@ -36,18 +50,20 @@ Allgemeinen.
 %%
 
 \item Modellieren Sie eine Klassenstruktur in UML, die diese rekursive
-Struktur von Termen abbildet. Sehen Sie mindestens einzelne Klassen
-für die Addition und Multiplikation vor, sowie weitere Klassen für
-geklammerte Terme und Literale, welche ganze Zahlen repräsentieren.
-Gehen Sie bei der Modellierung der Klassenstruktur davon aus, dass eine
-objektorientierte Programmiersprache wie Java zu benutzen ist.
+Struktur von \emph{Termen} abbildet. Sehen Sie mindestens einzelne
+Klassen für die \emph{Addition} und \emph{Multiplikation} vor, sowie
+weitere Klassen für \emph{geklammerte Terme} und \emph{Literale}, welche
+ganze Zahlen repräsentieren. Gehen Sie bei der Modellierung der
+Klassenstruktur davon aus, dass eine objektorientierte
+Programmiersprache wie Java zu benutzen ist.
 
 %%
 % d)
 %%
 
-\item Erstellen Sie ein Objektdiagramm, welches den Term t := 4 + (3*2)
-+ (12*y/(8*)) entsprechend Ihres Klassendiagramms repräsentiert.
+\item Erstellen Sie ein Objektdiagramm, welches den Term $t := 4 + (3
+\cdot 2) + (12 \cdot y / (8 \cdot x))$ entsprechend Ihres
+Klassendiagramms repräsentiert.
 
 %%
 % e)
@@ -70,6 +86,7 @@ unterstützen:
 Welches Design-Pattern ist hierfür am besten geeignet?
 
 \end{itemize}
+
 %%
 % g)
 %%
@@ -78,6 +95,16 @@ Welches Design-Pattern ist hierfür am besten geeignet?
 Klassen und Assoziationen, um die in Teilaufgabe f) genannten
 zusätzlichen Operationen gemäß dem von Ihnen genannten Design Pattern zu
 unterstützen.
+
+\liJavaExamen{66116}{2020}{09}{rechenarten/Addition}
+\liJavaExamen{66116}{2020}{09}{rechenarten/Divison}
+\liJavaExamen{66116}{2020}{09}{rechenarten/GeklammerterTerm}
+\liJavaExamen{66116}{2020}{09}{rechenarten/Literal}
+\liJavaExamen{66116}{2020}{09}{rechenarten/Multiplikation}
+\liJavaExamen{66116}{2020}{09}{rechenarten/Rechenart}
+\liJavaExamen{66116}{2020}{09}{rechenarten/Subtraktion}
+\liJavaExamen{66116}{2020}{09}{rechenarten/Symbol}
+\liJavaExamen{66116}{2020}{09}{rechenarten/Term}
 
 \end{enumerate}
 \end{document}
