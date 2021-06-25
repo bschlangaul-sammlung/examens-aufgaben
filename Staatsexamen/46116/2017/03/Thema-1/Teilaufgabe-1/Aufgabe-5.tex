@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{gantt}
 \begin{document}
 \liAufgabenTitel{Gantt und PERT}
 
@@ -9,15 +9,20 @@
 
 Betrachten Sie die folgende Tabelle zum Projektmanagement:
 
-Arbeitspaket | Dauer (Tage) | Abhängig von
-Al 5
-A2 10
-A3 5 Al
-AA 15 A2, A3
-AS 10 Al
-A6 10 Al, A2
-A7 10 A2, A4
-A8 15 A4, AS
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+Name & Dauer (Tage) & Abhängig von\\\hline\hline
+A1 & 5 & \\\hline
+A2 & 10 & \\\hline
+A3 & 5  & A1 \\\hline
+AA & 15 & A2, A3\\\hline
+AS & 10 & A1 \\\hline
+A6 & 10 & A1, A2\\\hline
+A7 & 10 & A2, A4\\\hline
+A8 & 15 & A4, A5\\\hline
+\end{tabular}
+\end{center}
 
 Tabelle 1: Übersicht Arbeitspakete
 
@@ -30,17 +35,68 @@ Tabelle 1: Übersicht Arbeitspakete
 \item Erstellen Sie ein Gantt-Diagramm, das die in der Tabelle
 angegebenen Abhängigkeiten berücksichtigt.
 
+\begin{liAntwort}
+\begin{center}
+\begin{ganttchart}[
+  x unit=0.24cm,
+  y unit chart=0.8cm,
+  vgrid
+]{1}{40}
+\ganttbar[name=1]{A1}{1}{5} \\
+\ganttbar[name=2]{A2}{1}{10} \\
+\ganttbar[name=3]{A3}{6}{10} \\
+\ganttbar[name=4]{A4}{11}{25} \\
+\ganttbar[name=5]{A5}{6}{15} \\
+\ganttbar[name=6]{A6}{11}{20} \\
+\ganttbar[name=7]{A7}{26}{35} \\
+\ganttbar[name=8]{A8}{26}{40}
+%
+\ganttlink{1}{3}
+%
+\ganttlink{2}{4}
+\ganttlink{3}{4}
+%
+\ganttlink{1}{5}
+%
+\ganttlink[link type=f-s]{1}{6}
+\ganttlink[link type=f-s]{2}{6}
+%
+\ganttlink[link type=f-s]{2}{7}
+\ganttlink[link type=f-s]{4}{7}
+%
+\ganttlink{4}{8}
+\ganttlink[link type=f-s]{5}{8}
+\gantttitlelist[
+  title list options={var=\y, evaluate={} as \x}
+]{1,...,40}{1}\\
+\gantttitlelist[
+  title list options={var=\i, evaluate={int(\i * 5)} as \x}
+]{1,...,8}{5}\\
+\end{ganttchart}
+\end{center}
+\end{liAntwort}
+
 %%
 % b)
 %%
 
 \item Wie lange dauert das Projekt mindestens?
 
+\begin{liAntwort}
+40 Tage
+\end{liAntwort}
+
 %%
 % c)
 %%
 
 \item Geben Sie den oder die kritischen Pfad(e) an.
+
+\begin{liAntwort}
+A2 A4 A8
+
+A1 A3 A4 A8
+\end{liAntwort}
 
 %%
 % d)
