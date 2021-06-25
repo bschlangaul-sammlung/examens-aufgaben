@@ -1,22 +1,27 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{gantt}
 \begin{document}
 \liAufgabenTitel{Projektmanagement}
 \section{Aufgabe 2
 \index{Gantt-Diagramm}
 \footcite{66116:2020:09}}
 
-Betrachten Sie die folgende Tabelle zum Pro jektmanagement:
+Betrachten Sie die folgende Tabelle zum Projektmanagement:
 
-Arbeitspaket | Dauer (Tage) | abhängig von
-Al 5
-A2 5 Al
-A3 10 A2
-A4 25 Al
-A5 10 Al, A3
-A6 10
-A7 5 A2, A3
-A8 10 AA, A5, A6
+\begin{center}
+\begin{tabular}{|c|c|l|}
+\hline
+\textbf{Arbeitspaket} & \textbf{Dauer (Tage)} & \textbf{abhängig von}\\\hline
+A1 & 5  & \\\hline
+A2 & 5  & A1 \\\hline
+A3 & 10 & A2 \\\hline
+A4 & 25 & A1 \\\hline
+A5 & 10 & A1, A3\\\hline
+A6 & 10 & \\\hline
+A7 & 5  & A2, A3 \\\hline
+A8 & 10 & A4, A5, A6 \\\hline
+\end{tabular}
+\end{center}
 
 \begin{enumerate}
 %%
@@ -27,6 +32,45 @@ A8 10 AA, A5, A6
 angegebenen Abhängigkeiten berücksichtigt. Das Diagramm muss nicht
 maßstabsgetreu sein, jedoch jede Information aus der gegebenen Tabelle
 enthalten.
+
+\begin{center}
+\begin{ganttchart}[
+  x unit=0.25cm,
+  y unit chart=0.8cm,
+  vgrid
+]{1}{45}
+\ganttbar[name=4]{A4}{6}{30} \\
+\ganttbar[name=3]{A3}{11}{20} \\
+\ganttbar[name=7]{A7}{21}{25} \\
+\ganttbar[name=2]{A2}{6}{10} \\
+\ganttbar[name=1]{A1}{1}{5} \\
+\ganttbar[name=5]{A5}{21}{30} \\
+\ganttbar[name=6]{A6}{1}{10}\\
+\ganttbar[name=8]{A8}{31}{40}
+\gantttitlelist[
+  title list options={var=\y, evaluate={} as \x}
+]{1,...,45}{1}\\
+\gantttitlelist[
+  title list options={var=\i, evaluate={int(\i * 5)} as \x}
+]{1,...,9}{5}\\
+
+%
+\ganttlink[link type=f-s]{1}{2}
+\ganttlink[link type=f-s]{2}{3}
+%
+\ganttlink[link type=f-s]{1}{4}
+%
+\ganttlink[link type=f-s]{1}{5}
+\ganttlink[link type=f-s]{3}{5}
+%
+\ganttlink[link type=f-s]{2}{7}
+\ganttlink[link type=f-s]{3}{7}
+%
+\ganttlink[link type=f-s]{4}{8}
+\ganttlink[link type=f-s]{5}{8}
+\ganttlink[link type=f-s]{6}{8}
+\end{ganttchart}
+\end{center}
 
 %%
 % b)
