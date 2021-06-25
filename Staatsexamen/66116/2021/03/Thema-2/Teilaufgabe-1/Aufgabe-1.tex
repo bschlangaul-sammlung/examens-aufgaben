@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{cpm}
 \begin{document}
 \liAufgabenTitel{Projektmanagement}
 \section{Aufgabe 1
@@ -8,18 +8,22 @@
 
 Gegeben seien folgende Tätigkeiten mit ihren Abhängigkeiten und Dauern:
 
-Task Dauer (inh) Abhängigkeiten
-
-Tl 3 /
-T2 6 /
-T3 2 Tl
-T4 2 T2
-T5 5 Tl
-T6 3 T4, T5
-T7 6 T3
-T8 7 T4
-T9 4 T6, T8
-T10 1 T7, T9
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Task & Dauer (in h) & Abhängigkeiten \\\hline
+T1   & 3            & / \\
+T2   & 6            & / \\
+T3   & 2            & T1 \\
+T4   & 2            & T2 \\
+T5   & 5            & Tl \\
+T6   & 3            & T4, T5 \\
+T7   & 6            & T3 \\
+T8   & 7            & T4 \\
+T9   & 4            & T6, T8 \\
+T10  & 1            & T7, T9 \\\hline
+\end{tabular}
+\end{center}
 \begin{enumerate}
 
 %%
@@ -27,14 +31,98 @@ T10 1 T7, T9
 %%
 
 \item Zeichnen Sie ein CPM-Diagramm basierend auf der gegebenen
-Aufgabenliste. Benutzen Sie ex- plizite Start- und Endknoten.
+Aufgabenliste. Benutzen Sie explizite Start- und Endknoten.
+
+\begin{liAntwort}
+\liPseudoUeberschrift{Abkürzungen}
+
+\begin{description}
+\item[S] Start
+\item[1S] Start von T1
+\item[1E] Ende von T1
+\item[E] Ende
+\end{description}
+
+\begin{center}
+\begin{tikzpicture}[x=1.5cm,y=1.5cm,scale=0.9,transform shape]
+\liCpmEreignis{S}{0}{1}
+
+\liCpmEreignis{1S}{1}{1}
+\liCpmEreignis{1E}{2}{1}
+
+\liCpmEreignis{2S}{0}{2}
+\liCpmEreignis{2E}{1}{2}
+
+\liCpmEreignis{3S}{3}{0}
+\liCpmEreignis{3E}{4}{0}
+
+\liCpmEreignis{4S}{2}{2}
+\liCpmEreignis{4E}{3}{2}
+
+\liCpmEreignis{5S}{3}{1}
+\liCpmEreignis{5E}{4}{1}
+
+\liCpmEreignis{6S}{4}{2}
+\liCpmEreignis{6E}{5}{2}
+
+\liCpmEreignis{7S}{5}{0}
+\liCpmEreignis{7E}{6}{0}
+
+\liCpmEreignis{8S}{3}{3}
+\liCpmEreignis{8E}{4}{3}
+
+\liCpmEreignis{9S}{5}{3}
+\liCpmEreignis{9E}{6}{3}
+
+\liCpmEreignis{10S}{6}{1}
+\liCpmEreignis{10E}{7}{1}
+
+\liCpmEreignis{E}{7}{2}
+
+\liCpmVorgang{1S}{1E}{3}
+\liCpmVorgang{2S}{2E}{6}
+\liCpmVorgang{3S}{3E}{2}
+\liCpmVorgang{4S}{4E}{2}
+\liCpmVorgang{5S}{5E}{5}
+\liCpmVorgang{6S}{6E}{3}
+\liCpmVorgang{7S}{7E}{6}
+\liCpmVorgang{8S}{8E}{7}
+\liCpmVorgang{9S}{9E}{4}
+\liCpmVorgang{10S}{10E}{1}
+
+\liCpmVorgang[schein]{S}{1S}{}
+\liCpmVorgang[schein]{S}{2S}{}
+
+\liCpmVorgang[schein]{1E}{3S}{}
+
+\liCpmVorgang[schein]{2E}{4S}{}
+
+\liCpmVorgang[schein]{1E}{5S}{}
+
+\liCpmVorgang[schein]{4E}{6S}{}
+\liCpmVorgang[schein]{5E}{6S}{}
+
+\liCpmVorgang[schein]{3E}{7S}{}
+
+\liCpmVorgang[schein]{4E}{8S}{}
+
+\liCpmVorgang[schein]{6E}{9S}{}
+\liCpmVorgang[schein]{8E}{9S}{}
+
+\liCpmVorgang[schein]{7E}{10S}{}
+\liCpmVorgang[schein]{9E}{10S}{}
+
+\liCpmVorgang[schein]{10E}{E}{}
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
 
 %%
 % b)
 %%
 
 \item Als Slack bezeichnet man die Zeit, um die eine Aufgabe bezüglich
-ihres frühesten Startzeitpunk- tes verzögert werden kann, ohne dass es
+ihres frühesten Startzeitpunktes verzögert werden kann, ohne dass es
 Probleme bei der fristgerechten Fertigstellung des Projektes gibt.
 Berechnen Sie den Slack für alle Aktivitäten und ergänzen Sie ihn in
 Ihrem Diagramm.
@@ -44,10 +132,10 @@ Ihrem Diagramm.
 %%
 
 \item Zeichnen Sie den kritischen Pfad in Ihr Diagramm ein oder geben
-Sie die Tasks des kritischen Pfades in der folgenden Form an: Start !  :
-: ! Ende. Sollte es mehrere kritische Pfade geben, geben Sie auch diese
-an. Wie lange ist die Dauer des kritischen Pfades bzw. der kritischen
-Pfade?
+Sie die Tasks des kritischen Pfades in der folgenden Form an: Start !
+$\dots$ ! Ende. Sollte es mehrere kritische Pfade geben, geben Sie auch
+diese an. Wie lange ist die Dauer des kritischen Pfades bzw. der
+kritischen Pfade?
 
 \end{enumerate}
 \end{document}
