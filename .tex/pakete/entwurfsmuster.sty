@@ -190,6 +190,35 @@ zum Setzen von Entwurfsmuster/Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
+% \subsubsection{Dekorierer}
+
+% \begin{macro}{\liEntwurfsDekoriererUml}
+% \begin{liBeispiel}
+% \liEntwurfsDekoriererUml
+% \end{liBeispiel}
+%    \begin{macrocode}
+\def\liEntwurfsDekoriererUml{
+  \begin{tikzpicture}
+    \umlclass[type=abstract]{Komponente}{}{agiere()}
+    \umlclass[below left=1.5cm and 0cm of Komponente]{KonkreteKomponente}{}{agiere()}
+    \umlclass[below right=1.5cm and 0cm of Komponente,type=abstract]{Dekorierer}{}{agiere()}
+
+    \umlVHVreal{KonkreteKomponente}{Komponente}
+    \umlVHVreal{Dekorierer}{Komponente}
+
+    \umlclass[below left=1.5cm and 0cm of Dekorierer]{KonkreterDekoriererA}{}{agiere()}
+    \umlclass[below right=1.5cm and 0cm of Dekorierer]{KonkreterDekoriererB}{}{agiere()}
+
+    \umlVHVinherit{KonkreterDekoriererA}{Dekorierer}
+    \umlVHVinherit{KonkreterDekoriererB}{Dekorierer}
+
+    \umlHVHaggreg[arm1=2cm]{Dekorierer}{Komponente}
+    \footcite{wiki:dekorierer}
+  \end{tikzpicture}
+}
+%    \end{macrocode}
+% \end{macro}
+
 % \subsubsection{Einzelstück}
 
 % \begin{macro}{\liEntwurfsEinzelstueckUml}
@@ -292,6 +321,33 @@ zum Setzen von Entwurfsmuster/Design Patterns]
     Das Produkt repräsentiert das zu konstruierende komplexe Objekt.
     \footcite{wiki:erbauer}
   \end{description}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \subsubsection{Modell-Präsentation-Steuerung}
+
+% \begin{macro}{\liEntwurfsModellPraesentationSteuerungUml}
+% \begin{liBeispiel}
+% \liEntwurfsModellPraesentationSteuerungUml
+% \end{liBeispiel}
+%    \begin{macrocode}
+\def\liEntwurfsModellPraesentationSteuerungUml{
+  \begin{tikzpicture}
+    \umlclass[x=-4cm,type=role]{Präsentation}{}{+aktualisiere()}
+    \umlclass[x=4cm,type=role]{Steuerung}{}{+führeAus()}
+    \umlclass[y=-4cm,type=role]{Modell}{
+      -zustand
+    }{
+      +aktualisiere()\\
+      +frageAn()
+    }
+
+    \umluniassoc[arg2=-modell,mult2=1,mult1=*]{Präsentation}{Modell}
+    \umluniassoc[arg2=-modell,mult2=1,mult1=*]{Steuerung}{Modell}
+    \umlassoc[arg1=präsentation,mult1=1..*,arg2=steuerung,mult2=1..*]{Präsentation}{Steuerung}
+  \end{tikzpicture}
+  \liFussnoteUrl{http://www.cs.sjsu.edu/~pearce/modules/lectures/ood2/mvc/index.htm}
 }
 %    \end{macrocode}
 % \end{macro}
