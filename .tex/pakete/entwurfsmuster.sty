@@ -5,6 +5,58 @@ zum Setzen von Entwurfsmuster/Design Patterns]
 \RequirePackage{lehramt-informatik-uml}
 %    \end{macrocode}
 
+% \subsubsection{Abstrakte Fabrik}
+
+% \begin{macro}{\liEntwurfsAbstrakteFabrikUml}
+% \begin{liBeispiel}
+% \liEntwurfsAbstrakteFabrikUml
+% \end{liBeispiel}
+%    \begin{macrocode}
+\def\liEntwurfsAbstrakteFabrikUml{
+  \begin{tikzpicture}
+    \umlclass[type=abstract]{AbstrakteFabrik}{}{
+      erzeugeProduktA()\\
+      erzeugeProduktB()\\
+    }
+    \umlclass[below left=1cm and -1.5cm of AbstrakteFabrik]{Fabrik1}{}{
+      erzeugeProduktA()\\
+      erzeugeProduktB()\\
+    }
+    \umlclass[below right=1cm and -1.5cm of AbstrakteFabrik]{Fabrik2}{}{
+      erzeugeProduktA()\\
+      erzeugeProduktB()\\
+    }
+    \umlVHVinherit{Fabrik1}{AbstrakteFabrik}
+    \umlVHVinherit{Fabrik2}{AbstrakteFabrik}
+
+    \umlsimpleclass[right=3cm of AbstrakteFabrik,type=abstract]{AbstraktesProduktA}
+    \umlsimpleclass[below left=1cm and -1cm of AbstraktesProduktA]{ProduktA1}
+    \umlsimpleclass[below right=1cm and -1cm of AbstraktesProduktA]{ProduktA2}
+    \umlVHVinherit{ProduktA1}{AbstraktesProduktA}
+    \umlVHVinherit{ProduktA2}{AbstraktesProduktA}
+
+    \umlsimpleclass[above right=0cm and 1cm of AbstraktesProduktA]{Klient}
+
+    \umlsimpleclass[below=4.5cm of AbstraktesProduktA,type=abstract]{AbstraktesProduktB}
+    \umlsimpleclass[below left=1cm and -1cm of AbstraktesProduktB]{ProduktB1}
+    \umlsimpleclass[below right=1cm and -1cm of AbstraktesProduktB]{ProduktB2}
+    \umlVHVinherit{ProduktB1}{AbstraktesProduktB}
+    \umlVHVinherit{ProduktB2}{AbstraktesProduktB}
+
+    \umlVHVdep[arm1=-1.3cm,arm2=-1cm]{Fabrik1}{ProduktA1}
+    \umlVHVdep[arm2=-1cm]{Fabrik1}{ProduktB1}
+
+    \umlVHVdep[arm1=-1.8cm,arm2=-1.5cm]{Fabrik2}{ProduktA2}
+    \umlVHVdep[arm2=-1.5cm]{Fabrik2}{ProduktB2}
+
+    \umluniassoc[anchor2=25]{Klient}{AbstrakteFabrik}
+    \umlVHuniassoc[arm1=-1cm]{Klient}{AbstraktesProduktA}
+    \umlVHuniassoc{Klient}{AbstraktesProduktB}
+  \end{tikzpicture}
+}
+%    \end{macrocode}
+% \end{macro}
+
 % \subsubsection{Adapter}
 
 % \begin{macro}{\liEntwurfsAdapterUml}
@@ -240,6 +292,34 @@ zum Setzen von Entwurfsmuster/Design Patterns]
     Das Produkt repräsentiert das zu konstruierende komplexe Objekt.
     \footcite{wiki:erbauer}
   \end{description}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \subsubsection{Fabrikmethode}
+
+% \begin{macro}{\liEntwurfsFabrikmethodeUml}
+% Quelle nach der deutschen Wikipedia
+% \begin{liBeispiel}
+% \liEntwurfsFabrikmethodeUml
+% \end{liBeispiel}
+%    \begin{macrocode}
+\def\liEntwurfsFabrikmethodeUml{
+  \begin{tikzpicture}
+    \umlsimpleclass[type=abstract]{Produkt}
+    \umlsimpleclass[below=2cm of Produkt]{KonkretesProdukt}
+    \umlinherit{KonkretesProdukt}{Produkt}
+
+    \umlclass[type=abstract,right=4cm of Produkt]{Erzeuger}{}{
+      \textit{erzeugeProdukt()}\\
+    }
+    \umlclass[below=1.2cm of Erzeuger]{KonkreterErzeuger}{}{
+    erzeugeProdukt()
+    }
+    \umlinherit{KonkreterErzeuger}{Erzeuger}
+
+    \umldep{KonkreterErzeuger}{KonkretesProdukt}
+  \end{tikzpicture}
 }
 %    \end{macrocode}
 % \end{macro}
