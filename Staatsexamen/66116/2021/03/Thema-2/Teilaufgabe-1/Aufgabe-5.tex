@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
+\liLadePakete{syntax,uml}
 \begin{document}
 \liAufgabenTitel{Webshop}
 \section{Aufgabe 5
@@ -78,6 +78,7 @@ die komplette History vorhält.
 
 \item Erstellen Sie ein Sequenzdiagramm zur Methode \liJavaCode{main}
 der Klasse Webshop.
+\index{Sequenzdiagramm}
 
 Hinweise:
 \begin{itemize}
@@ -97,4 +98,48 @@ Ihren Bearbeitungsbogen.
 \liJavaExamen{66116}{2021}{03}{webshop/Webshop}
 \liJavaExamen{66116}{2021}{03}{webshop/Artikel}
 \liJavaExamen{66116}{2021}{03}{webshop/Bestellung}
+
+\begin{liAntwort}
+\begin{tikzpicture}[scale=0.5,transform shape]
+\begin{umlseqdiag}
+\umlobject[class=Webshop]{w}
+\umlcreatecall[class=Bestellung]{w}{b1}
+\umlcreatecall[class=Artikel]{w}{a1}
+
+\begin{umlcallself}[op=setName("Taschenrechner")]{a1}
+\begin{umlcallself}[op=setPrice(10)]{a1}
+\begin{umlcall}[op=addArticle()]{a1}{b1}
+\end{umlcall}
+\end{umlcallself}
+\end{umlcallself}
+
+\umlcreatecall[class=Bestellung]{w}{b2}
+
+\umlcreatecall[class=Artikel]{w}{a2}
+
+\begin{umlcallself}[op=setName("Lineal")]{a2}
+\begin{umlcallself}[op=setPrice(1.5)]{a2}
+\end{umlcallself}
+\end{umlcallself}
+
+\umlcreatecall[class=Artikel]{w}{a3}
+
+\begin{umlcallself}[op=setName("Bleistift")]{a3}
+\begin{umlcallself}[op=setPrice(0.7)]{a3}
+\end{umlcallself}
+\begin{umlcall}[op=addArticle()]{a3}{b2}
+\end{umlcall}
+\begin{umlcall}[op=addArticle()]{a2}{b1}
+\end{umlcall}
+\end{umlcallself}
+
+\begin{umlcallself}[op=getSize()]{b1}
+\end{umlcallself}
+
+\begin{umlcallself}[op=getPrice()]{b2}
+\end{umlcallself}
+
+\end{umlseqdiag}
+\end{tikzpicture}
+\end{liAntwort}
 \end{document}
