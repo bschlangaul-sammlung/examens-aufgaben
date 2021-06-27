@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{uml}
 \begin{document}
 \liAufgabenTitel{Fahrkartenautomat}
 \section{Aufgabe 3
@@ -38,6 +38,16 @@ erscheinen.
 \item Geben Sie die im Text erwähnten Akteure für das beschriebene
 System an.
 
+\begin{liAntwort}
+Bahnfahrer
+
+\begin{itemize}
+\item Gelegenheitsfahrer
+
+\item Vielfahrer
+\end{itemize}
+\end{liAntwort}
+
 %%
 % b)
 %%
@@ -46,6 +56,11 @@ System an.
 zwei unterschiedliche Anwendungsfälle des Systems, in die diese
 involviert sind.
 
+\begin{liAntwort}
+EC-Karte
+Bargeld
+\end{liAntwort}
+
 %%
 % c)
 %%
@@ -53,15 +68,70 @@ involviert sind.
 \item Geben Sie mindestens sechs verschiedene Anwendungsfälle für das
 beschriebene System an.
 
+\begin{liAntwort}
+\begin{itemize}
+\item Hilfe anzeigen
+\item Beschwerdeformular ausfüllen
+\item Auswahl
+\begin{itemize}
+\item Einzelfahrkarten
+\item Monatskarte
+\end{itemize}
+\item Einzelfahrkarten kaufen
+\item Zahlen
+\begin{itemize}
+\item Bargeld
+\item EC-Karte
+\end{itemize}
+\item Quittung drucken
+\item Authentifizieren
+
+\begin{itemize}
+\item Bargeld
+\item EC-Karte
+\end{itemize}
+\end{itemize}
+\end{liAntwort}
+
 %%
 % d)
 %%
 
 \item Erstellen Sie aus Ihren vorherigen Antworten ein Use-Case-Diagramm
-für das beschrie- bene System, in dem die Akteure und Anwendungsfälle
+für das beschriebene System, in dem die Akteure und Anwendungsfälle
 inkl. möglicher Generalisierungen und Beziehungen eingetragen sind.
 Achten Sie insbesondere auf mögliche <<include>>- und
 <<extends>>-Beziehungen und Bedingungen für Anwendungsfälle.
+
+\begin{liAntwort}
+\begin{tikzpicture}[scale=0.5,transform shape]
+\begin{umlsystem}{Fahrkartenautomat}
+\umlusecase[y=0,x=0]{Karte kaufen}
+\umlusecase[y=-2,x=0]{Karte bezahlen}
+\umlusecase[y=-4,x=0]{Karte auswählen}
+\umlusecase[y=2,x=0]{Quittung drucken}
+\umlusecase[y=-3,x=-3,width=1.5cm]{Monatskarte auswählen}
+\umlusecase[y=-5,x=-3,width=1.5cm]{Einzelkarte auswählen}
+\end{umlsystem}
+
+\umlactor[x=-6,y=-2]{Bahnfahrer}
+\umlactor[x=-4,y=0]{Vielfahrer}
+\umlactor[x=-4,y=-4]{Gelegenheitsfahrer}
+\umlactor[x=4,y=-2]{Bargeld}
+\umlactor[x=4,y=-4]{EC-Karte}
+\umlinclude{usecase-1}{usecase-2}
+\umlinclude{usecase-2}{usecase-3}
+\umlextend{usecase-4}{usecase-1}
+
+\umlinherit{Vielfahrer}{Bahnfahrer}
+\umlinherit{Gelegenheitsfahrer}{Bahnfahrer}
+
+\umlassoc{Bargeld}{usecase-2}
+\umlassoc{EC-Karte}{usecase-2}
+
+% \umlassoc{user}{usecase-3}
+\end{tikzpicture}
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}
