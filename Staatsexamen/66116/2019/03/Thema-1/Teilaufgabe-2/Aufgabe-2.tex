@@ -1,0 +1,85 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{uml}
+\begin{document}
+\liAufgabenTitel{Roboter in einer Montagehalle}
+\section{Aufgabe 2
+\index{Klassendiagramm}
+\footcite{66116:2019:03}}
+
+Hintergrundinformationen für die Aufgaben 2-5: Modellierung und
+Implementierung eines Programms
+
+Ein autonomer Roboter in einer Montagehalle bekommt einen Auftrag, eine
+Menge von Objekten aus dem Lager (Material, z. B. Schrauben oder
+Werkzeug, z. B. Bohrer) zu holen und anschließend an seinen
+Ausgangspunkt zu bringen. Der Roboter hat einen Namen, der ihn eindeutig
+identifiziert, kennt seine aktuelle Position (x- und y-Koordinate) und
+hat als weitere Eigenschaft den Auftrag, der aus einer Liste von
+Auftragspositionen besteht, die er holen soll. Der Roboter besitzt
+folgende Fähigkeiten (Methoden):
+
+\begin{enumerate}
+\item Er kann sich zu einer angegebenen Position bewegen.
+
+\item Er hat eine Methode, um einen Auftrag abzuarbeiten, d.h. alle
+Auftragspositionen zu holen.
+\end{enumerate}
+
+Alle Objekte im Lager haben jeweils einen Namen, einen Standort mit
+Angabe einer Position (s. oben) und speichern außerdem die jeweils noch
+vorhandene Stückzahl. Es gibt zwei Typen von Objekten: Werkzeuge mit
+einer Methode, mit der ein einzelnes Werkzeug ausgeliehen werden kann,
+und Materialien mit einer Methode, mit der sie verbraucht werden, wobei
+eine gewünschte Stückzahl angegeben wird. Diese vorgegebenen Methoden
+aktualisieren die Stückzahlen der Werkzeuge (Reduktion um 1) bzw.
+Materialien (Reduktion um verbrauchte Stückzahl), wobei hier
+vereinfachend angenommen wird, dass die Stückzahlen der Werkzeuge und
+Materialien immer ausreichend groß sind, um die geforderten Mengen
+bedienen zu können (d.h. Sie können diese beiden Methoden nutzen, ohne
+deren Implementierung angeben zu müssen).
+
+Ein Auftrag (z. B. „Hole Bohrer Typ B1, 100 $\times$ Schrauben M6, 10
+$\times$ Schrauben M10 und 2 $\times$ Blech B72“) besteht aus einer
+Menge von Auftragspositionen. Eine Auftragsposition besteht aus dem Typ
+des zu holenden Objekts (Werkzeug oder Material, soll als Enumeration
+modelliert werden), einem Verweis auf das zu holende Objekt und der zu
+holenden Stückzahl (Quantität; bei Werkzeugen wird diese ignoriert, da
+sie immer 1 ist). Der Roboter soll über die Auftragsposition außerdem
+die Position bestimmen, zu der er fahren muss, um das Objekt zu holen.
+
+Der Roboter arbeitet die Auftragspositionen in der Reihenfolge ab, indem
+er sich von seinem aktuellen Standpunkt immer zur am nächsten liegenden
+Auftragsposition bewegt, um dort das nächste Objekt zu holen. Wir gehen
+der Einfachheit halber davon aus, dass die Montagehalle gut aufgeräumt
+ist und der
+
+Roboter sich quasi entlang der Luftlinie bewegen kann, d.h. die
+Entfernung zwischen zwei Positionen entspricht der euklidischen Distanz
+(Wurzel aus der Summe der Quadrate der Differenzen der x- und
+y-Koordinaten der Positionen). Der Roboter soll zur Kontrolle als
+weitere Eigenschaft „Ergebnis“ die Liste der eingesammelten Objekte zu
+einem Auftrag in der Reihenfolge speichern, in der er sie geholt hat,
+z.B. (M6 M10 B72 B1).
+
+Aufgabe 2 (UML-Modellierung: Klassendiagramm)
+
+Geben Sie ein UML-Klassendiagramm zu der Aufgabenstellung an. Hinweis:
+Bei den Aufgaben 4 und 5 wird Konsistenz des Aktivitätsdiagramms bzw.
+des Codes mit dem Klassendiagramm verlangt.
+
+\begin{liAntwort}
+\begin{tikzpicture}
+\umlclass{Roboter}{
+  name : String\\
+  x : double\\
+  y : double\\
+  auftrag: String[]
+}{
+  geheZuPosition(x: double, y: double)\\
+  arbeiteAuftragAb()
+}
+\umlclass{Roboter}{}{}
+\end{tikzpicture}
+\end{liAntwort}
+
+\end{document}

@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-\liLadePakete{syntax,uml}
+\liLadePakete{syntax,entwurfsmuster}
 
 \begin{document}
 
@@ -41,20 +41,7 @@ Standardelemente werden wesentlich durch eine einzige
 \footcite{wiki:kompositum}
 
 \begin{center}
-\begin{tikzpicture}
-\umlclass[x=2.5,y=3,type=abstract]{Komponente}{}{+ agiere()}
-\umlclass[x=0]{Blatt}{}{+ agiere()}
-\umlclass[x=5]{Kompositum}{}{
-  + agiere()\\
-  + fügeKindHinzu()\\
-  + entferneKind()\\
-  + gibKind()
-}
-
-\umlVHVinherit{Kompositum}{Komponente}
-\umlVHVinherit{Blatt}{Komponente}
-\umlHVHaggreg[anchor1=east,arm1=1.5cm,arg1=eltern,mult1=1,arg2=kind,mult2=0..*,pos2=2.9,pos1=0.4]{Kompositum}{Komponente}
-\end{tikzpicture}
+\liEntwurfsKompositumUml
 \end{center}
 
 Details zum Nachlesen: Klett: Informatik 4, S.27 - 29
@@ -90,26 +77,6 @@ Spezialisierungen derselben Klasse. Mit anderen Worten: Alle
 Standardelemente werden wesentlich durch eine einzige
 (Kompositum-)Klasse definiert.
 \footcite{wiki:kompositum}
-
-\begin{center}
-\begin{tikzpicture}
-\umlclass[x=2.5,y=3,type=abstract]{Komponente}{}{+ agiere()}
-\umlclass[x=0]{Blatt}{}{+ agiere()}
-\umlclass[x=5]{Kompositum}{}{
-  + agiere()\\
-  + fügeKindHinzu()\\
-  + entferneKind()\\
-  + gibKind()
-}
-
-\umlVHVinherit{Kompositum}{Komponente}
-\umlVHVinherit{Blatt}{Komponente}
-\umlHVHaggreg[anchor1=east,arm1=1.5cm,arg1=eltern,mult1=1,arg2=kind,mult2=0..*,pos2=2.9,pos1=0.4]{Kompositum}{Komponente}
-
-\end{tikzpicture}
-\end{center}
-
-Details zum Nachlesen: Klett: Informatik 4, S.27 - 29
 
 \literatur
 
