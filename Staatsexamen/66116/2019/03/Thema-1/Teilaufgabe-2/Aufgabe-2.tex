@@ -77,14 +77,15 @@ des Codes mit dem Klassendiagramm verlangt.
 \umlclass[below=1cm of Roboter]{Auftrag}{}{}
 
 \umlclass[below=1cm of Auftrag]{Auftragsposition}{
+  anzahl : Integer
 }{}
 
-\umlenum[above right=1cm of Auftragsposition]{ObjektTyp}{
+\umlenum[above left=1cm of Auftragsposition]{ObjektTyp}{
   WERKZEUG\\
   MATERIAL
 }{}
 
-\umlclass[right=3cm of Roboter]{Standort}{
+\umlclass[right=2cm of Roboter]{Standort}{
   x : double\\
   y : double\\
 }{}
@@ -93,17 +94,28 @@ des Codes mit dem Klassendiagramm verlangt.
 
 \umlaggreg[arg2=positionen]{Auftrag}{Auftragsposition}
 
-\umlclass[below=2cm of Standort]{LagerObjekt}{}{}
-\umlclass[below left=1cm and -1cm of LagerObjekt]{Werkzeug}{}{}
-\umlclass[below right=1cm and -1cm of LagerObjekt]{Material}{}{}
+\umlclass[below=2cm of Standort]{LagerObjekt}{
+  name : String\\
+  anzahl: Integer\\
+}{}
+\umlclass[below left=1cm and -1cm of LagerObjekt]{Werkzeug}{}{
+  leiheAus(anzahl: Integer)\\
+}
+\umlclass[below right=1cm and -1cm of LagerObjekt]{Material}{}{
+  verbrauche(anzahl: Integer)\\
+}
 
 \umlinherit{Werkzeug}{LagerObjekt}
 \umlinherit{Material}{LagerObjekt}
 
-\umlassoc[arg2=aktuellePosition,pos2=0.6]{Roboter}{Standort}
+\umlassoc[arg2=position,pos2=0.7]{Roboter}{Standort}
 \umlassoc[arg2=position,pos2=0.7]{LagerObjekt}{Standort}
 
 \umlassoc[arg2=auftrag,pos2=0.7]{Roboter}{Auftrag}
+
+\umlassoc[arg2=lagerObjekt,pos2=0.6]{LagerObjekt}{Auftragsposition}
+
+\umlaggreg[arg1=ergebnis,pos1=0.8]{Roboter}{LagerObjekt}
 \end{tikzpicture}
 \end{liAntwort}
 
