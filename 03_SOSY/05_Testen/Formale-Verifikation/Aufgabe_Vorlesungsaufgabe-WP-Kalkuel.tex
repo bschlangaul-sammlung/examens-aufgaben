@@ -1,0 +1,109 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{wpkalkuel,syntax}
+\begin{document}
+\let\wp=\liWpKalkuel
+\let\equivalent=\liWpEquivalent
+\let\erklaerung=\liWpErklaerung
+
+\liAufgabenTitel{Vorlesungsaufgabe WP-Kalkül}
+
+\section{Vorlesungsaufgabe WP-Kalkül\footcite[Seite 21-26]{sosy:fs:5}}
+
+% 40 SOSY/50 Formale Verifikation und Testen/Formale_Verifikation.m4v
+% 15min30s
+
+Bestimmen Sie zur Nachbedingung $Q$ die Vorbedingung $P$!
+
+\begin{description}
+\item[Nachbedingung:] $Q \equiv x + y = 17$
+
+\item[Programmcode:] \strut
+
+\begin{minted}{java}
+// P: ?
+x += 5;
+y *= 2;
+z = z % 4;
+y--;
+// Q: x + y = 17
+\end{minted}
+\end{description}
+
+\begin{liAntwort}
+ist gleichbedeuted mit
+
+\begin{minted}{java}
+x = x + 5;
+y = y * 2;
+z = z % 4;
+y = y - 1;
+\end{minted}
+
+\wp{x += 5; y *= 2; z = z \% 4; y--;}{x + y = 17}
+
+%%
+%
+%%
+
+\erklaerung{$y - 1$ einsetzten}
+
+\equivalent{\wp{x += 5; y *= 2; z = z \% 4;}{x + y - 1 = 17}}
+
+%%
+%
+%%
+
+\erklaerung{die 1 mit $+$ nach rechts bringen}
+
+\equivalent{\wp{x += 5; y *= 2; z = z \% 4;}{x + y = 18}}
+
+%%
+%
+%%
+
+\erklaerung{Im nächsten Schritte müssten wir ein z verändern. Wir haben
+aber in userer Bedingung kein z, deshalb kann es wegfallen.}
+
+\equivalent{\wp{x += 5; y *= 2;}{x + y = 18}}
+
+%%
+%
+%%
+
+\erklaerung{$y \cdot 2$ einsetzten}
+
+\equivalent{\wp{x += 5;}{x + y \cdot 2 = 18}}
+
+%%
+%
+%%
+
+\erklaerung{Auf x wird 5 hinzuaddiert.}
+
+\equivalent{\wp{}{x + 5 + y \cdot 2 = 18}}
+
+%%
+%
+%%
+
+\erklaerung{Wir haben keinen Programmcode mehr. Wir können wp weglassen}
+
+\equivalent{x + 5 + y \cdot 2 = 18}
+
+%%
+%
+%%
+
+\erklaerung{Die 5 nach rechts bringen}
+
+\equivalent{x + y \cdot 2 = 13}
+
+%%
+%
+%%
+
+\erklaerung{Alle Eingaben die Vorbedingung $P \equiv x + y \cdot 2 = 13$ erfüllen,
+erfüllen die Nachbedingung Q $x + y = 17$.}
+\end{liAntwort}
+
+\end{document}

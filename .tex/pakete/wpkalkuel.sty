@@ -5,9 +5,13 @@
 
 % \liLets{
 %   wp = liWpKalkuel,
-%   e = liWpEquivalent,
-%   E = liWpErklaerung,
+%   equivalent = liWpEquivalent,
+%   erklaerung = liWpErklaerung,
 % }
+
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
 
 % \begin{macro}{\liWpKalkuel}
 % \liLet{wp}{liWpKalkuel}
@@ -46,7 +50,7 @@
 % \end{macro}
 
 % \begin{macro}{\liWpEquivalent}
-% \liLet{e}{liWpEquivalent}
+% \liLet{equivalent}{liWpEquivalent}
 %    \begin{macrocode}
 \def\liWpEquivalent#1{
   \MatheEnv{$\equiv$\hspace{1em}$#1$}
@@ -55,13 +59,28 @@
 % \end{macro}
 
 % \begin{macro}{\liWpErklaerung}
-% \liLet{E}{liWpErklaerung}
+% \liLet{erklaerung}{liWpErklaerung}
 %    \begin{macrocode}
+\newlength{\@Skip@Erklaerung@Reset}
 \def\liWpErklaerung#1{
-  \medskip
-  {\footnotesize#1}
+  \setlength{\@Skip@Erklaerung@Reset}{\leftskip}
+  \setlength{\leftskip}{0.5cm}
+
+  \par
+  \noindent
+  {
+    \footnotesize
+    #1
+  }
+  \par
+
+  \setlength{\leftskip}{\@Skip@Erklaerung@Reset}
 }
 %    \end{macrocode}
 % \end{macro}
+
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
 
 %    \begin{macrocode}
