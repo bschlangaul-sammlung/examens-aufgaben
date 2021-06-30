@@ -15,12 +15,10 @@
 %
 %-----------------------------------------------------------------------
 
-\section{Programmverifikation, Korrektheit\footcite[Seite 14]{sosy:fs:5}}
-
-\section{Korrektheit\footcite[Kapitel 6.1.3.1 Seite 178]{schneider}}
+\section{Programmverifikation und Korrektheit\footcite[Seite 14]{sosy:fs:5}}
 
 Verifikation dient dazu, die Korrektheit eines Programms
-\memph{mathematisch} zu beweisen.
+\memph{mathematisch} zu beweisen.\footcite[Kapitel 6.1.3.1 Seite 178]{schneider}
 
 Ein Algorithmus ist dabei
 
@@ -43,11 +41,11 @@ Eingabe ein Ergebnis liefert, also nicht für jede Eingabe terminiert.
 
 Der \text{wp}-Kalkül ist ein Kalkül in der Informatik zur Verifikation
 eines imperativen Programmcodes. Die Abkürzung \text{wp} steht für
-\memph{weakest precondition}, auf deutsch schwächste Vorbedingung. Bei
-der Verifikation geht es nicht darum, die Funktion mit einer bestimmten
-Menge an Eingabedaten auf korrekte Ergebnisse zu testen, sondern darum,
-eine \memph{allgemeingültige Aussage über das korrekte Ablaufen} des
-Programms zu erhalten.
+\memph{weakest precondition} (auf deutsch „schwächste Vorbedingung“).
+Bei der Verifikation geht es nicht darum, die Funktion mit einer
+bestimmten Menge an Eingabedaten auf korrekte Ergebnisse zu testen,
+sondern darum, eine \memph{allgemeingültige Aussage über das korrekte
+Ablaufen} des Programms zu erhalten.
 
 Die Überprüfung der Korrektheit geschieht durch \memph{Rückwärtsanalyse}
 des Programmcodes. Ausgehend von der Nachbedingung wird geprüft, ob
@@ -68,19 +66,70 @@ Programmtext heißt \memph{Vorbedingung P}, eine Zusicherung danach
 
 \section{Beispiel}
 
+% 40 SOSY/50 Formale Verifikation und Testen/Formale_Verifikation.m4v
+% 15min30s
+
+\begin{description}
+\item[Nachbedingung:] $Q \equiv x + y = 17$
+
+\item[Programmcode:]
+
+\begin{minted}{java}
+x += 5;
+y *= 2;
+z = z % 4;
+y--;
+\end{minted}
+
+ist gleichbedeuted mit
+
+\begin{minted}{java}
+x = x + 5;
+y = y * 2;
+z = z % 4;
+y = y - 1;
+\end{minted}
+\end{description}
+
+\noindent
 $\wp{x += 5; y *= 2; z = z \% 4; y--;}{x + y = 17}$
 
+\noindent
+$y - 1$ einsetzten
+
+\noindent
 $\wp{x += 5; y *= 2; z = z \% 4;}{x + y - 1 = 17}$
+
+\noindent
+die 1 mit $+$ nach rechts bringen
 
 $\wp{x += 5; y *= 2; z = z \% 4;}{x + y = 18}$
 
+Im nächsten Schritte müssten wir ein z verändern. Wir haben aber in
+userer Bedingung kein z, deshalb kann es wegfallen.
+
 $\wp{x += 5; y *= 2;}{x + y = 18}$
+
+$y \cdot 2$ einsetzten
 
 $\wp{x += 5;}{x + y \cdot 2 = 18}$
 
+Auf x wird 5 hinzuaddiert.
+
+$\wp{}{x + 5 + y \cdot 2 = 18}$
+
+Wir haben keinen Programmcode mehr. Wir können wp weglassen
+
 $x + 5 + y \cdot 2 = 18$
 
-$x + y \cdot 2 = 13$\footcite[Seite 21-26]{sosy:fs:5}
+Die 5 nach rechts bringen
+
+$x + y \cdot 2 = 13$
+
+Alle Eingaben die Vorbedingung $P \equiv x + y \cdot 2 = 13$ erfüllen,
+erfüllen die Nachbedingung Q $x + y = 17$.
+
+\footcite[Seite 21-26]{sosy:fs:5}
 
 \section{Verzweigung}
 

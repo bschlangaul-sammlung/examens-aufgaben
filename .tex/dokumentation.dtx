@@ -4743,11 +4743,27 @@ Erweiterung bereitstellt]
 \RequirePackage{amsmath}
 %    \end{macrocode}
 
+% \liLets{
+%   wp = liWpKalkuel,
+%   e = liWpEquivalent,
+%   E = liWpErklaerung,
+% }
+
+% \begin{macro}{\liWpKalkuel}
+% \liLet{wp}{liWpKalkuel}
 %    \begin{macrocode}
-\def\wp#1#2{
+\def\liWpKalkuelOhneMathe#1#2{
   \text{wp}(\texttt{\scriptsize"#1"},\thinspace #2)
 }
+\def\liWpKalkuel#1#2{
+  \ifmmode
+    \liWpKalkuelOhneMathe{#1}{#2}
+  \else
+    $\liWpKalkuelOhneMathe{#1}{#2}$
+  \fi
+}
 %    \end{macrocode}
+% \end{macro}
 
 % \begin{macro}{\MatheEnv}
 %    \begin{macrocode}
@@ -4761,23 +4777,34 @@ Erweiterung bereitstellt]
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\Mathe}
 %    \begin{macrocode}
 \def\Mathe#1{
   \MatheEnv{$#1$}
 }
 %    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liWpEquivalent}
+% \liLet{e}{liWpEquivalent}
 %    \begin{macrocode}
-\def\MatheEquiv#1{
+\def\liWpEquivalent#1{
   \MatheEnv{$\equiv$\hspace{1em}$#1$}
 }
 %    \end{macrocode}
+% \end{macro}
 
+% \begin{macro}{\liWpErklaerung}
+% \liLet{E}{liWpErklaerung}
 %    \begin{macrocode}
-\def\Erklaerung#1{
+\def\liWpErklaerung#1{
   \medskip
   {\footnotesize#1}
 }
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 %\Finale

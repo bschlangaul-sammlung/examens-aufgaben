@@ -89,22 +89,22 @@ $\wp{\A\C}{\Q}$
   \wp{\A}{x > 196}
 }
 
-\Erklaerung{Wir lassen $y+=7$ weg, weil in der Nachbedingung kein y
+\liWpErklaerung{Wir lassen $y+=7$ weg, weil in der Nachbedingung kein y
 vorkommt und setzen in den Term $x > 196$ für das $x$ die erste
 Code-Zeile $2 \cdot x + 1 + x \cdot x$ ein.}
 
-\MatheEquiv{
+\liWpEquivalent{
   \wp{}{2 \cdot x + 1 + x \cdot x > 196}
 }
 
-\Erklaerung{Nach der Transmformationsregel \textit{Nichts passiert, die
+\liWpErklaerung{Nach der Transmformationsregel \textit{Nichts passiert, die
 Vorbedingung bleibt gleich} kann das auch so geschrieben werden:}
 
-\MatheEquiv{
+\liWpEquivalent{
   2 \cdot x + 1 + x \cdot x > 196
 }
 
-\Erklaerung{Die erste binomische Formel (Plus-Formel) lautet
+\liWpErklaerung{Die erste binomische Formel (Plus-Formel) lautet
 $(a + b)^2 = a^2 + 2ab + b^2$.
 Man kann die Formel auch umgedreht verwenden:
 $a^2 + 2ab + b^2 = (a + b)^2$.
@@ -119,7 +119,7 @@ $.
 Wir haben für $a$ die Zahl $1$ und für $b$ den Buchstaben $x$
 eingesetzt.}
 
-\MatheEquiv{
+\liWpEquivalent{
   (x + 1)^2 > 196
 }
 
@@ -133,7 +133,7 @@ eingesetzt.}
   \wp{\A\B}{\Q}
 }
 
-\Erklaerung{Für das $x$ in der Nachbedingung setzen wir die erste
+\liWpErklaerung{Für das $x$ in der Nachbedingung setzen wir die erste
 Code-Zeile $2 \cdot x + 1 + x \cdot x$ ein.
 %
 Für das $y$ in der Nachbedingung setzen wir dritte Code-Zeile
@@ -146,19 +146,19 @@ in $y \% 2$ die dritte Anweisung $y = 2 \cdot y$ einfügen: $2 \cdot y \%
 dann in $2 \cdot y \% 2$ die zweite Anweisung $y = y + 7$ einfügen: $2
 \cdot (y + 7) \% 2$}
 
-\MatheEquiv{
+\liWpEquivalent{
   (x + 1)^2 \geq 8 \land 2(y + 7)\%2 = 1
 }
 
-\Erklaerung{Diese Aussage ist falsch, da $2(y + 7)$ immer eine gerade
+\liWpErklaerung{Diese Aussage ist falsch, da $2(y + 7)$ immer eine gerade
 Zahl ergibt und der Rest von einer Division durch zwei einer geraden
 Zahl immer 0 ist und nicht 1.}
 
-\MatheEquiv{
+\liWpEquivalent{
   (x + 1)^2 \geq 8 \land \text{falsch}
 }
 
-\MatheEquiv{
+\liWpEquivalent{
   \text{falsch}
 }
 
@@ -172,9 +172,9 @@ Zahl immer 0 ist und nicht 1.}
   \wp{\A}{x \leq 196}
 }
 
-\Erklaerung{Analog zu Nebenrechnung 1}
+\liWpErklaerung{Analog zu Nebenrechnung 1}
 
-\MatheEquiv{
+\liWpEquivalent{
   (x + 1)^2 \leq 196
 }
 
@@ -188,56 +188,56 @@ Zahl immer 0 ist und nicht 1.}
   \wp{\A\C}{\Q}
 }
 
-\Erklaerung{\code{x*=2;}: $x \cdot 2$ für $x$ einsetzen:}
+\liWpErklaerung{\code{x*=2;}: $x \cdot 2$ für $x$ einsetzen:}
 
-\MatheEquiv{
+\liWpEquivalent{
   \wp{x=2*x+1+x*x;y+=7;y-=8;}
   {(2 \cdot x \geq 8) \land (y \% 2 = 1)}
 }
 
-\Erklaerung{\code{y-=8;}: $y - 8$ für $y$ einsetzen:}
+\liWpErklaerung{\code{y-=8;}: $y - 8$ für $y$ einsetzen:}
 
-\MatheEquiv{
+\liWpEquivalent{
   \wp{x=2*x+1+x*x;y+=7;}
   {(2 \cdot x \geq 8) \land ((y - 8) \% 2 = 1)}
 }
 
-\Erklaerung{\code{y+=7}: $y + 7$ für $y$ einsetzen:}
+\liWpErklaerung{\code{y+=7}: $y + 7$ für $y$ einsetzen:}
 
-\MatheEquiv{
+\liWpEquivalent{
   \wp{x=2*x+1+x*x;}
   {(2 \cdot x \geq 8) \land (((y + 7) - 8) \% 2 = 1)}
 }
 
-\Erklaerung{\code{x=2*x+1+x*x;}: $(x + 1)^2$ für $x$ einsetzen:}
+\liWpErklaerung{\code{x=2*x+1+x*x;}: $(x + 1)^2$ für $x$ einsetzen:}
 
-\MatheEquiv{
+\liWpEquivalent{
 \wp{}
   {(2 \cdot (x + 1)^2 \geq 8) \land (((y + 7) - 8) \% 2 = 1)}
 }
 
-\Erklaerung{Nur noch die Nachbedingung stehen lassen:}
+\liWpErklaerung{Nur noch die Nachbedingung stehen lassen:}
 
-\MatheEquiv{
+\liWpEquivalent{
   (2 \cdot (x + 1)^2 \geq 8) \land ((\textcolor{red}{(y + 7) - 8}) \% 2 = 1)
 }
 
-\Erklaerung{Subtraktion:}
+\liWpErklaerung{Subtraktion:}
 
-\MatheEquiv{
+\liWpEquivalent{
   (2 \cdot (x + 1)^2 \geq 8) \land ((\textcolor{red}{y - 1}) \% 2 = 1)
 }
 
-\Erklaerung{Vereinfachen (links beide Seiten durch 2 teilen und rechts
+\liWpErklaerung{Vereinfachen (links beide Seiten durch 2 teilen und rechts
 von beiden Seiten $1$ abziehen)}
 
-\MatheEquiv{
+\liWpEquivalent{
   (\frac{2 \cdot (x + 1)^2}{2} \geq \frac{8}{2}) \land (((y - 1) \% 2) - 1 = 1 - 1)
 }
 
-\Erklaerung{Zwischenergebnis:}
+\liWpErklaerung{Zwischenergebnis:}
 
-\MatheEquiv{
+\liWpEquivalent{
 ((x + 1)^2 \geq 4) \land y \% 2 = 0
 }
 
@@ -245,10 +245,10 @@ von beiden Seiten $1$ abziehen)}
 
 \liPseudoUeberschrift{Zusammenführung}
 
-\Erklaerung{Die Zwischenergebnisse aus den Nebenrechnungen
+\liWpErklaerung{Die Zwischenergebnisse aus den Nebenrechnungen
 zusammenfügen:}
 
-\MatheEquiv{
+\liWpEquivalent{
   [
     (x + 1)^2 > 196 \land
     \text{falsch}
@@ -260,10 +260,10 @@ zusammenfügen:}
   ]
 }
 
-\Erklaerung{„falsch“ und eine Aussage verbunden mit logischem Und
+\liWpErklaerung{„falsch“ und eine Aussage verbunden mit logischem Und
 „$\land$“ ist insgesamt falsch:}
 
-\MatheEquiv{
+\liWpEquivalent{
   \text{falsch}
   \lor
   [
@@ -272,18 +272,18 @@ zusammenfügen:}
   ]
 }
 
-\Erklaerung{falsch verbunden mit oder weglassen:}
+\liWpErklaerung{falsch verbunden mit oder weglassen:}
 
-\MatheEquiv{
+\liWpEquivalent{
   (x + 1)^2 \leq 196
   \land
   (x + 1)^2 \geq 4 \land y\%2 = 0
 }
 
-\Erklaerung{Umgruppieren, sodass nur noch ein $(x + 1)^2$ geschrieben
+\liWpErklaerung{Umgruppieren, sodass nur noch ein $(x + 1)^2$ geschrieben
 werden muss:}
 
-\MatheEquiv{
+\liWpEquivalent{
   4 \leq (x + 1)^2 \leq 196
   \land
   y\%2 = 0
@@ -291,29 +291,29 @@ werden muss:}
 
 $4 = 2^2$ und $196 = 14^2$
 
-\MatheEquiv{
+\liWpEquivalent{
   2^2 \leq (x + 1)^2 \leq 14^2
   \land
   y\%2 = 0
 }
 
-\Erklaerung{Hoch zwei weg lassen: Betragsklammer $|x|$ oder auch
+\liWpErklaerung{Hoch zwei weg lassen: Betragsklammer $|x|$ oder auch
 Betragsfunktion hinzufügen (Die Betragsfunktion ist festgelegt als
 „Abstand einer Zahl von der Zahl Null“.}
 
-\MatheEquiv{
+\liWpEquivalent{
   2 \leq | x + 1 | \leq 14 \land y\%2 = 0
 }
 
-\Erklaerung{Auf die Gleichung der linken Aussage $-1$ anwenden:}
+\liWpErklaerung{Auf die Gleichung der linken Aussage $-1$ anwenden:}
 
-\MatheEquiv{
+\liWpEquivalent{
   1 \leq |x| \leq 13 \land y\%2 = 0
 }
 
-\Erklaerung{Die Betragsklammer weg lassen:}
+\liWpErklaerung{Die Betragsklammer weg lassen:}
 
-\MatheEquiv{
+\liWpEquivalent{
   (1 \leq x \leq 13 \lor -13 \leq x \leq -1) \land y\%2 = 0
 }
 

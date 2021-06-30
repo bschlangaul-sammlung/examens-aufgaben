@@ -70,41 +70,41 @@ Berechnen Sie hierzu das folgende Kalkül:
 \begin{liAntwort}
 $\wp{R}{a \geq 0}$
 
-\MatheEquiv{
+\liWpEquivalent{
   \wp{if (a > 15) \{a = a - 42;\} else \{ a = -a;\}}{a \geq 0}
 }
 
-\MatheEquiv{
+\liWpEquivalent{
   (a > 15 \land \wp{a = a - 42}{a \geq 0})
   \lor
   (a \leq 15 \land \wp{a = -a}{a \geq 0})
 }
 
-\MatheEquiv{
+\liWpEquivalent{
   (a > 15 \land \wp{}{a - 42 \geq 0})
   \lor
   (a \leq 15 \land \wp{}{-a \geq 0})
 }
 
-\MatheEquiv{
+\liWpEquivalent{
   (a > 15 \land a - 42 \geq 0)
   \lor
   (a \leq 15 \land -a \geq 0)
 }
 
-\MatheEquiv{
+\liWpEquivalent{
   (a > 15 \land a \geq 42)
   \lor
   (a \leq 15 \land a \leq 0)
 }
 
-\MatheEquiv{
+\liWpEquivalent{
   (a \geq 42)
   \lor
   (a \leq 0)
 }
 
-\MatheEquiv{
+\liWpEquivalent{
   a \geq 42
   \lor
   a \leq 0
