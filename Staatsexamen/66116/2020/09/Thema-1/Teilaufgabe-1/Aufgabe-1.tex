@@ -1,6 +1,10 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
+\liLadePakete{syntax,wpkalkuel}
 \begin{document}
+\let\wp=\liWpKalkuel
+\let\equivalent=\liWpEquivalent
+\let\erklaerung=\liWpErklaerung
+
 \liAufgabenTitel{Verifikation}
 \section{Aufgabe 1
 \index{Verifikation}
@@ -40,7 +44,25 @@ Programme auch immer partiell korrekt sind.
 %%
 
 \item Geben Sie die Verifikationsregel für die abweisende Schleife
-while(B) A an.
+\liJavaCode{while(b) { A }}
+an.
+
+\begin{liAntwort}
+Anstattdessen verwendet man eine Art Vollständige Induktion um die
+Funktion der Schleife nachzuweisen.
+
+Um die schwächste Vorbedingung eines Ausdrucks der Form
+„\liJavaCode{while(b) { A }}“ zu finden, verwendet man eine
+\emph{Schleifeninvariante}. Sie ist ein Prädikat für das
+
+\begin{displaymath}
+\{ I \wedge b \} A \{ I \}
+\end{displaymath}
+
+\noindent
+gilt. Die Schleifeninvariante gilt also sowohl vor, während und nach der
+Schleife.
+\end{liAntwort}
 
 %%
 % c)
@@ -49,11 +71,60 @@ while(B) A an.
 \item Erläutern Sie kurz und prägnant die Schritte zur Verifikation
 einer abweisenden Schleife mit Vorbedingung $P$ und Nachbedingung $Q$.
 
+\begin{liAntwort}
+\begin{description}
+\item[Schritt 0:] Schleifeninvariante $I$ finden
+
+\item[Schritt 1:] $I$ gilt vor Schleifenbeginn,\\
+d.h: $P \rightarrow \wp{Code vor Schleife}{I}$
+
+\item[Schritt 2:] $I$ gilt nach jedem Schleifendurchlauf\\
+d.h. $I \land b \Rightarrow \wp{Code in der Schleife}{I}$
+
+\item[Schritt 3:]
+
+Bei Terminierung der Schleife liefert Methode das gewünschte Ergebnis,\\
+d.h. $I \land \neq b \Rightarrow \wp{Code nach der Schleife}{!}$
+
+\footcite[Seite 31]{sosy:fs:5}
+\end{description}
+\end{liAntwort}
+
 %%
 % d)
 %%
 
 \item Wie kann man die Terminierung einer Schleife beweisen?
+
+\begin{liAntwort}
+Zum Beweis der Terminierung einer Schleife muss eine
+Terminierungsfunktion $T$ angeben werden:
+
+\begin{displaymath}
+T \colon V \rightarrow \mathbb{N}
+\end{displaymath}
+
+\noindent
+$V$ ist eine Teilmenge der Ausdrücke über die Variablenwerte der Schleife
+
+Die Terminierungsfunktion muss folgende Eigenschaften besitzen:
+
+\begin{itemize}
+\item Ihre Werte sind natürliche Zahlen (einschließlich 0).
+
+\item Jede Ausführung des Schleifenrumpfs verringert ihren Wert (streng
+monoton fallend).
+
+\item Die Schleifenbedingung ist false, wenn $T = 0$.
+\end{itemize}
+
+$T$ ist die obere Schranke für die noch ausstehende Anzahl von
+Schleifendurchläufen.
+\footcite[Seite 33]{sosy:fs:5}
+
+Beweise für Terminierung sind nicht immer möglich!
+\footcite[Seite 38]{sosy:fs:5}
+\end{liAntwort}
 
 %%
 % e)
@@ -62,6 +133,7 @@ einer abweisenden Schleife mit Vorbedingung $P$ und Nachbedingung $Q$.
 \item Geben Sie für das folgende Suchprogramm die nummerierten
 Zusicherungen an. Lassen Sie dabei jeweils die invariante Vorbedingung
 $P$ des Suchprogramms weg. Schreiben Sie nicht auf dem Aufgabenblatt!
+\index{wp-Kalkül}
 
 $P \equiv n > 0 \land a_0 \dots a_{n-1} \in \mathbb{Z}^n \land \in \mathbb{Z}$
 \begin{minted}{java}

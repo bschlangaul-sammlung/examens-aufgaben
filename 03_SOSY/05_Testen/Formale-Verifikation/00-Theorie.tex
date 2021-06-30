@@ -2,6 +2,9 @@
 \liLadePakete{syntax,mathe,wpkalkuel}
 \usepackage{array}
 \usepackage{multicol}
+\let\wp=\liWpKalkuel
+\let\equivalent=\liWpEquivalent
+\let\erklaerung=\liWpErklaerung
 
 \begin{document}
 
@@ -100,9 +103,9 @@ Schleifendurchgangs verändert werden. Daher ist es nicht einfach möglich
 eine starre Ersetzung vorzunehmen. Anstattdessen verwendet man eine Art
 Vollständige Induktion um die Funktion der Schleife nachzuweisen.
 
-Um die schwächste Vorbedingung eines Ausdrucks der Form „\liJavaCode{while b
-{ A }}“ zu finden verwendet man eine \memph{Schleifeninvariante}. Sie
-ist ein Prädikat für das
+Um die schwächste Vorbedingung eines Ausdrucks der Form
+„\liJavaCode{while(b) { A }}“ zu finden, verwendet man eine
+\memph{Schleifeninvariante}. Sie ist ein Prädikat für das
 
 \begin{displaymath}
 \{ I \wedge b \} A \{ I \}
@@ -122,6 +125,7 @@ while (b) {
 // { I ∧ (¬b) }
 \end{minted}
 
+\noindent
 Nun gilt es nur noch folgende Schritte zu beweisen:
 
 \begin{enumerate}
@@ -207,7 +211,9 @@ Terminierungsfunktion $T$ angeben werden:
 T \colon V \rightarrow \mathbb{N}
 \end{displaymath}
 
+\noindent
 $V$ ist eine Teilmenge der Ausdrücke über die Variablenwerte der Schleife
+
 Die Terminierungsfunktion muss folgende Eigenschaften besitzen:
 
 \begin{itemize}
@@ -258,10 +264,10 @@ keine Schleifen, Rekursionen, Gotos …. Die Wiederholung terminiert.
 
 \section{Terminierungsfunktion bei Rekursion}
 
-Beim Beweis der Terminierung von Rekursionen kann
-genauso wie bei Wiederholungen vorgegangen werden.
-Auch hier wird eine Terminierungsfunktion T konstruiert,
-die mit zunehmender Rekursionstiefe kleiner wird.
+Beim Beweis der Terminierung von Rekursionen kann genauso wie bei
+Wiederholungen vorgegangen werden. Auch hier wird eine
+Terminierungsfunktion $T$ konstruiert, die mit zunehmender
+Rekursionstiefe kleiner wird.
 
 Es muss gelten:
 \begin{itemize}
