@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax,mathe}
+\liLadePakete{syntax,mathe,wpkalkuel}
 \begin{document}
 \liAufgabenTitel{ASCII}
 
@@ -24,24 +24,28 @@ daher keine Überläufe auftreten können.
 \footcite{sosy:pu:5}
 
 \begin{enumerate}
-% \item Sequenz:
-% x = -2 * (x + 2 * vy)?
-% yt= 2* x+yt 2
-% Z-= X- yr zZ
-% Q:=x=yt+z
+\item Sequenz:
+\begin{minted}{java}
+x = -2 * (x + 2 * y);
+y += 2 * x + y + z;
+z -= x - y - z;
+\end{minted}
+
+$Q :\equiv x = y + z$
 
 \item Verzweigung:
 
-% if (x < y) {
-% KX =yit Z
-% } else if (y > 0) {
+\begin{minted}{java}
+if (x < y) {
+  x = y + z;
+} else if (y > 0) {
+  z = y - 1;
+} else {
+  x -= y -= z;
+}
+\end{minted}
 
-% z=y-];
-% } else {
-
-% x -= y = 2;
-% }
-% O:=ex>z
+$Q :\equiv x > z$
 
 \item Mehrfachauswahl:
 
@@ -57,23 +61,23 @@ switch (z) {
 }
 \end{minted}
 
-$Q :\equiv \texttt{"x"} = y$
+$Q :\equiv \texttt{'x'} = y$
 
 Hinweis zu den ASCII-Codes
 
 \begin{itemize}
-\item $\texttt{"x"} = 120_{(10)}$
-\item $\texttt{"y"} = 121_{(10)}$
+\item $\texttt{'x'} = 120_{(10)}$
+\item $\texttt{'y'} = 121_{(10)}$
 \item $\texttt{0x39} = 57_{(10)}$
-\item $\texttt{"?"} = 63_{(10)}$
+\item $\texttt{'?'} = 63_{(10)}$
 \end{itemize}
 
 \end{enumerate}
 
 \begin{liAntwort}
 Mehrfachauswahl in Bedingte Anweisungen umschreiben. Dabei beachten,
-dass bei fehlendem \liJavaCode{break} die Anweisungen im folgenden Fall bzw.
-ggf. in den folgenden Fällen ausgeführt werden:
+dass bei fehlendem \liJavaCode{break} die Anweisungen im folgenden Fall
+bzw. ggf. in den folgenden Fällen ausgeführt werden:
 
 \begin{minted}{java}
 if (z == "x") {
@@ -86,8 +90,9 @@ if (z == "x") {
 }
 \end{minted}
 
-Da kein \liJavaCode{break} im Fall \liJavaCode{z == "x"}. \liJavaCode{--z} bedeutet, dass
-die Variable erst um eins verringert und dann zugewiesen wird.
+Da kein \liJavaCode{break} im Fall \liJavaCode{z == "x"}.
+\liJavaCode{--z} bedeutet, dass die Variable erst um eins verringert und
+dann zugewiesen wird.
 
 \begin{minted}{java}
 if (z == 120) {
