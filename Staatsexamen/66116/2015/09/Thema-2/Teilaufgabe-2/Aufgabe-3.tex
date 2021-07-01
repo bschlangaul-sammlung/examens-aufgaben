@@ -29,7 +29,7 @@ long doubleFac (long n) {
 
 \noindent
 sowie die Vorbedingung $P \equiv n \geq 0$ und Nachbedingung $Q \equiv
-(df = n!!)$ wobei gilt
+(\text{df} = n!!)$ wobei gilt
 
 \begin{equation*}
 n!! :=
@@ -39,12 +39,33 @@ n!! :=
 \end{cases}
 \end{equation*}
 
+%%
+%
+%%
+
+\begin{liExkurs}[Fakultät]
+Die Fakultät ist eine Funktion, die einer natürlichen Zahl
+das Produkt aller natürlichen Zahlen (ohne Null) kleiner und gleich
+dieser Zahl zuordnet.
+%
+Für alle natürlichen Zahlen $n$ ist
+
+\begin{displaymath}
+ n! = 1 \cdot 2 \cdot 3 \dotsm n=\prod_{k=1}^{n}k
+\end{displaymath}
+
+\end{liExkurs}
+
+%%
+%
+%%
+
 \begin{liExkurs}[Doppelfakultät]
-Die seltener verwendete „Doppelfakultät“ oder „doppelte Fakultät“ist für
-gerade $n$ das Produkt aller geraden Zahlen kleiner gleich $n$. Für
+Die seltener verwendete „Doppelfakultät“ oder „doppelte Fakultät“ ist
+für gerade $n$ das Produkt aller geraden Zahlen kleiner gleich $n$. Für
 ungerade $n$ ist es das Produkt aller ungeraden Zahlen kleiner gleich
 $n$.
-
+%
 Sie ist definiert als:
 
 \begin{equation*}
@@ -72,15 +93,16 @@ Datentypen unbeschränkt sind und daher keine Überläufe auftreten können.
 %%
 
 \item Welche der folgenden Bedingungen ist eine zum Beweisen der
-Korrektheit der Methode mittels wp-Kalkül sinnvolle Schleifeninvariante?
+Korrektheit der Methode mittels wp-Kalkül (Floyd-Hoare-Kalkül) sinnvolle
+Schleifeninvariante?
 \index{Invariante}
 
-\begin{itemize}
-\item $\text{df} = n!! − x!! \land x \geq 1$
-\item $\text{df} = (n − x)!! \land x \geq 1$
+\begin{enumerate}
+\item $\text{df} = n!! - x!! \land x \geq 1$
+\item $\text{df} = (n - x)!! \land x \geq 1$
 \item $\text{df} \cdot x!! = n!! \land x \geq 0$
 \item $(\text{df} + x)!! = n!! \land x \geq 0$
-\end{itemize}
+\end{enumerate}
 
 \begin{liAntwort}
 Zunächst wird der Code in einen äquivalenten Code mit while-Schleife
@@ -98,12 +120,27 @@ long doubleFac (long n) {
 }
 \end{minted}
 
+\begin{enumerate}
+\item $\text{df} = n!! - x!! \land x \geq 1$
+\item $\text{df} = (n - x)!! \land x \geq 1$ \\
+
 Die ersten beiden Bedingungen sind unmöglich, da \zB für $n = 2$ nach
-der Schleife $x = 0$ gilt und daher $x \geq 1$ verletzt wäre. Die letzte
-kann es auch nicht sein, da vor der Schleife $df = 1$ und $x = n$ gilt,
-\dh $(\text{df} + x)!! = (1 + n)!!$. Jedoch ist offenbar $(1 + n)!!
-\not = n!!$. Nach dem Ausschlussprinzip ist es daher die dritte
-Bedingung: $I \equiv (\text{df} + x)!! = n!! \land x \geq 0$.
+der Schleife $x = 0$ gilt und daher $x \geq 1$ verletzt wäre.
+
+\item $\text{df} \cdot x!! = n!! \land x \geq 0$ \\
+
+Nach dem Ausschlussprinzip ist es daher die dritte Bedingung: $I \equiv
+(\text{df} + x)!! = n!! \land x \geq 0$.
+
+\item $(\text{df} + x)!! = n!! \land x \geq 0$ \\
+
+Die letzte kann es auch nicht sein, da vor der Schleife $\text{df} = 1$
+und $x = n$ gilt, \dh $(\text{df} + x)!! = (1 + n)!!$. Jedoch ist
+offenbar $(1 + n)!! \not = n!!$.
+\end{enumerate}
+
+$\Rightarrow$ Die Schleifeninvariante lautet:
+$\text{df} \cdot x!! = n!! \land x \geq 0$
 
 \end{liAntwort}
 
@@ -140,7 +177,7 @@ Bedingung tatsächlich eine Invariante der Schleife ist.
 \begin{liAntwort}
 zu zeigen: $I \land \text{Schleifenbedingung} \Rightarrow \wp{Code in der Schleife}{I}$
 
-Bevor wir dies beweisen, zeigen wir erst $x \cdot (x − 2)!! = x!!$.
+Bevor wir dies beweisen, zeigen wir erst $x \cdot (x - 2)!! = x!!$.
 
 \begin{itemize}
 \item Fall $x$ ist gerade ($n!! = 2^k \cdot k!$ für $k := \frac{n}{2}$):
@@ -192,6 +229,26 @@ Dies benutzen wir nun, um den eigentlichen Beweis zu führen:
 
 \item Zeigen Sie formal mittels wp-Kalkül, dass am Ende der Methode die
 Nachbedingung $Q$ erfüllt wird.
+
+\begin{liAntwort}
+z.z. $I \land \neg \text{Schleifenbedingung} \Rightarrow \wp{Code nach der Schleife}{Q}$
+
+Wir vereinfachen den Ausdruck $I \land \neg \text{Schleifenbedingung}$:
+
+$I \land \neg \text{Schleifenbedingung}
+\equiv I \land (x \leq 1)
+\equiv I \land ((x = 0) \lor (x = 1))
+\equiv (I \land (x = 0)) \lor (I \land (x = 1))
+\equiv (df \cdot 1 = n!!)  \lor  (df \cdot 1 = n!!)
+\equiv df = n!!$
+
+Damit gilt:
+
+$\wp{Code nach der Schleife}{Q}
+\equiv \wp{}{df = n!!}
+\equiv df = n!!
+\equiv I \land \neg \text{Schleifenbedingung}$
+\end{liAntwort}
 
 %%
 % (e)
