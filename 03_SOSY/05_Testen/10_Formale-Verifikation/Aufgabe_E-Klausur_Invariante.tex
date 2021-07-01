@@ -2,8 +2,11 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{wpkalkuel,syntax}
 \begin{document}
+\let\wp=\liWpKalkuelOhneMathe
 
-\liJavaDatei[firstline=3]{aufgaben/sosy/eklausur/Invariante}
+Gegeben sei die endrekursive Methode \liJavaCode{geoSum}:
+
+\liJavaDatei[firstline=4,lastline=15]{aufgaben/sosy/eklausur/Invariante}
 
 \begin{description}
 \item[$I_1$:] $\text{res} = 0 \lor \text{res} = 1 - q^i$
@@ -17,7 +20,49 @@
 \item[$I_5$:] $n \geq 0$
 \end{description}
 
-\section{Code vor der Schleife}
+\noindent
+Sie dürfen für die folgenden Antworten annehmen, dass die Precondition
+$P$ gilt und die Methode dann
+
+\begin{displaymath}
+\text{geoSum}(n, q) = 1 - q^{n+1}
+\end{displaymath}
+
+\noindent
+berechnet. Entscheiden Sie, ob die folgenden Vorschläge
+Schleifeninvarianten darstellen können. (Diese müssen nicht unbedingt
+hilfreich für einen Beweis sein.)
+
+\begin{description}
+\item[$I_1$:] $\text{res} = 0 \lor \text{res} = 1 - q^i$
+
+\item[$I_2$:] $\text{res} > 0$
+
+\item[$I_3$:] $\text{res} = 0 \lor \text{res} = 1 - q^{i+1}$
+
+\item[$I_4$:] $\text{res} = 1 - q^{i+1}$
+
+\item[$I_5$:] $n \geq 0$
+\end{description}
+
+\begin{liAntwort}
+\begin{description}
+\item[$I_1$:] keine Invariante
+
+\item[$I_2$:] keine Invariante
+
+\item[$I_3$:] Invariante
+
+\item[$I_4$:] keine Invariante
+
+\item[$I_5$:] Invariante
+\end{description}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\liPseudoUeberschrift{Code vor der Schleife}
 
 \begin{align*}
 \wp{Code vor der Schleife}{I_1}
@@ -25,6 +70,7 @@
 & \equiv \wp{}{0 = 0 \lor 0 = 1 - q^0} \\
 & \equiv 0 = 0 \lor 0 = 1 - q^0 \\
 & \equiv 0 = 0 \lor 0 = 1 \\
+& \equiv 0 = 0 \\
 & \equiv \text{wahr} \\
 \end{align*}
 
@@ -41,7 +87,9 @@
 & \equiv \wp{res = 0; i = 0}{\text{res} = 0 \lor \text{res} = 1 - q^{i+1}} \\
 & \equiv \wp{}{0 = 0 \lor 0 = 1 - q^{0+1}} \\
 & \equiv 0 = 0 \lor 0 = 1 - q \\
-& \equiv \text{wahr für alle } q > 0\\
+& \equiv 0 = 0 \lor q = 1 \\
+& \equiv 0 = 0 \\
+& \equiv \text{wahr}\\
 \end{align*}
 
 \begin{align*}
@@ -49,6 +97,7 @@
 & \equiv \wp{res = 0; i = 0}{\text{res} = 1 - q^{i+1}} \\
 & \equiv \wp{}{0 = 1 - q^{0+1}} \\
 & \equiv 0 = 1 - q \\
+& \equiv q = 1 \\
 & \equiv \text{falsch für alle } q > 0\\
 \end{align*}
 
@@ -59,7 +108,11 @@
 & \equiv \text{wahr für alle } n \geq 0\\
 \end{align*}
 
-\section{Code in der Schleife}
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\liPseudoUeberschrift{Code in der Schleife}
 
 Wir formulieren den Code in der Schleife etwas um:
 
@@ -103,4 +156,5 @@ Wir formulieren den Code in der Schleife etwas um:
 & \equiv n \geq 0 \land i + 1 < n \\
 & \equiv \text{wahr für }n \geq 0 \land i < n - 1 \\
 \end{align*}
+\end{liAntwort}
 \end{document}

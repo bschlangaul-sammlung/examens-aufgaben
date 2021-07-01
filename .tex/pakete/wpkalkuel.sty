@@ -72,12 +72,24 @@
   \par
   \noindent
   {
-    \footnotesize
+    \scriptsize
     #1
   }
   \par
 
   \setlength{\leftskip}{\@Skip@Erklaerung@Reset}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liWpErklaerungVerzweigung}
+%    \begin{macrocode}
+\def\liWpErklaerungVerzweigung{
+  $\liWpKalkuelOhneMathe{if~\{~b~\}~then~\{~a1~\}~else~\{~a2~\}}{Q}
+  \equiv
+  (b \land \liWpKalkuelOhneMathe{a1}{Q})
+  \lor
+  (\neg b \land \liWpKalkuelOhneMathe{a2}{Q})$
 }
 %    \end{macrocode}
 % \end{macro}

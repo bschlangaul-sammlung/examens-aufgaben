@@ -1,0 +1,100 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,mathe,wpkalkuel}
+\begin{document}
+\let\wp=\liWpKalkuel
+\let\equivalent=\liWpEquivalent
+\let\erklaerung=\liWpErklaerung
+
+\section{Totale Korrektheit IV
+\footcite[Totale Korrektheit IV]{sosy:e-klausur}}
+
+Gegeben sei die folgende Methode:
+
+\liJavaDatei[firstline=4,lastline=11]{aufgaben/sosy/totale_korrektheit/Blub}
+
+\noindent
+Berechnen Sie hierzu das folgende Kalkül:
+
+\begin{displaymath}
+\wp{R}{a \geq 0}
+\end{displaymath}
+
+\begin{liAntwort}
+$\wp{R}{a \geq 0}$
+
+\equivalent{
+  \wp{if (a > 15) \{a = a - 42;\} else \{a = -a;\}}{a \geq 0}
+}
+
+%%
+%
+%%
+
+\erklaerung{Aufteilung der Verzweigung in:\\ \liWpErklaerungVerzweigung}
+
+\equivalent{
+  (a > 15 \land \wp{a = a - 42}{a \geq 0})
+  \lor
+  (a \leq 15 \land \wp{a = -a}{a \geq 0})
+}
+
+\erklaerung{Code einsetzen}
+
+\equivalent{
+  (a > 15 \land \wp{}{a - 42 \geq 0})
+  \lor
+  (a \leq 15 \land \wp{}{-a \geq 0})
+}
+
+%%
+%
+%%
+
+\erklaerung{Kein Code mehr verhanden. Wir lassen „wp“ weg.}
+
+\equivalent{
+  (a > 15 \land a - 42 \geq 0)
+  \lor
+  (a \leq 15 \land -a \geq 0)
+}
+
+%%
+%
+%%
+
+\erklaerung{Wir bringen 42 nach rechts und multiplizieren $-a \geq 0$
+mit $-1$.}
+
+\equivalent{
+  (a > 15 \land a \geq 42)
+  \lor
+  (a \leq 15 \land a \leq 0)
+}
+
+%%
+%
+%%
+
+\erklaerung{Die Aussagen reduzieren, redundante Aussagen weglassen}
+
+\equivalent{
+  (a \geq 42)
+  \lor
+  (a \leq 0)
+}
+
+%%
+%
+%%
+
+\erklaerung{Weglassen der Klammern}
+
+\equivalent{
+  a \geq 42
+  \lor
+  a \leq 0
+}
+
+\end{liAntwort}
+
+\end{document}

@@ -85,7 +85,8 @@ mehreren Aufgaben zu einem Examen.]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liSetzeAufgabenTitel}
+% \begin{macro}{\liAufgabenTitel}
+% Momentan eine dummy Makro das die Thematik enthält.
 %    \begin{macrocode}
 \def\liAufgabenTitel#1{
 }
@@ -93,6 +94,8 @@ mehreren Aufgaben zu einem Examen.]
 % \end{macro}
 
 % \begin{macro}{\liSetzeAufgabenTitel}
+% Setzen des Titels über eine plist. Sollte irgendwann einmal in
+% liAufgabenTitel umbenannt werden.
 %    \begin{macrocode}
 \def\liSetzeAufgabenTitel#1{
 }

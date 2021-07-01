@@ -147,6 +147,26 @@
 \ProvidesPackage{lehramt-informatik-aufgaben-einbinden}[2020/06/13]
 %    \end{macrocode}
 
+% \begin{macro}{\liExamensAufgabe}
+% Eine Aufgaben mit den Pfad relativ zu Wurzelverzeichnis dieses
+% Repository einbinden.
+%    \begin{macrocode}
+\def\liAufgabe#1{
+  \input{\LehramtInformatikRepository/#1.tex}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liExamensAufgabe}
+% Eine Examensaufgaben mit den Pfad relativ zu Staatsexamen einbinden,
+% z. B. |\liExamensAufgabe{46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-3}|
+%    \begin{macrocode}
+\def\liExamensAufgabe#1{
+  \input{\LehramtInformatikRepository/Staatsexamen/#1.tex}
+}
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\liExamensAufgabeTTA}
 %    \begin{macrocode}
 \def\liExamensAufgabeTTA #1 / #2 / #3 : Thema #4 Teilaufgabe #5 Aufgabe #6 {
@@ -167,6 +187,23 @@
 %    \begin{macrocode}
 \def\liExamensAufgabeA #1 / #2 / #3 : Aufgabe #4 {
   \input{\LehramtInformatikRepository/Staatsexamen/#1/#2/#3/Aufgabe-#4.tex}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liAufgabenTitel}
+% Momentan eine dummy Makro das die Thematik enthält.
+%    \begin{macrocode}
+\def\liAufgabenTitel#1{
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liSetzeAufgabenTitel}
+% Setzen des Titels über eine plist. Sollte irgendwann einmal in
+% liAufgabenTitel umbenannt werden.
+%    \begin{macrocode}
+\def\liSetzeAufgabenTitel#1{
 }
 %    \end{macrocode}
 % \end{macro}
@@ -604,6 +641,7 @@
 %    \begin{macrocode}
 \def\liLadeAllePakete{
   \liLadePakete{
+    aufgaben-einbinden,
     automaten,
     baum,
     checkbox,
@@ -4812,12 +4850,24 @@ Erweiterung bereitstellt]
   \par
   \noindent
   {
-    \footnotesize
+    \scriptsize
     #1
   }
   \par
 
   \setlength{\leftskip}{\@Skip@Erklaerung@Reset}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liWpErklaerungVerzweigung}
+%    \begin{macrocode}
+\def\liWpErklaerungVerzweigung{
+  $\liWpKalkuelOhneMathe{if~\{~b~\}~then~\{~a1~\}~else~\{~a2~\}}{Q}
+  \equiv
+  (b \land \liWpKalkuelOhneMathe{a1}{Q})
+  \lor
+  (\neg b \land \liWpKalkuelOhneMathe{a2}{Q})$
 }
 %    \end{macrocode}
 % \end{macro}
