@@ -1,9 +1,9 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
+\liLadePakete{vollstaendige-induktion}
 \begin{document}
 \liAufgabenTitel{Formale Verifikation mit vollständiger Induktion}
 \section{Aufgabe 4:
-\index{Formale Verifikation}
+\index{Vollständige Induktion}
 \footcite{46116:2016:09}}
 
 Gegeben sei folgende rekursive Methodendeklaration in der Sprache Java.
@@ -31,14 +31,54 @@ Berechnung des Ergebnisses stets ausreicht.
 %%
 
 \item Beweisen Sie mittels vollständiger Induktion, dass der
-Methodenaufruf \liJavaCode{cn(n)} für jedes $n > 0$ die $n$-te
+Methodenaufruf \liJavaCode{cn(n)} für jedes $n \geq 0$ die $n$-te
 Catalan-Zahl $C_n$ berechnet, wobei
 
 \begin{displaymath}
 C_n =
 \frac{(2n)!}
-{(n + 1)!-n!}
+{(n + 1)! \cdot n!}
 \end{displaymath}
+
+\begin{liExkurs}[Fakultät]
+
+Für alle natürlichen Zahlen  $n$ ist
+
+\begin{displaymath}
+n!=1\cdot 2\cdot 3\dotsm n=\prod _{k=1}^{n}k
+\end{displaymath}
+
+als das Produkt der natürlichen Zahlen von 1 bis $n$ definiert. Da das
+leere Produkt stets 1 ist, gilt
+
+\begin{displaymath}
+0! = 1
+\end{displaymath}
+
+Die Fakultät lässt sich auch rekursiv definieren:
+
+\begin{displaymath}
+n!={
+\begin{cases}1, & n = 0\\
+n \cdot (n - 1)!, & n > 0
+\end{cases}
+}
+\end{displaymath}
+
+Fakultäten für negative oder nicht ganze Zahlen sind nicht definiert. Es
+gibt aber eine Erweiterung der Fakultät auf solche Argumente
+\liFussnoteUrl{https://de.wikipedia.org/wiki/Fakultät_(Mathematik)}
+\end{liExkurs}
+
+\begin{liExkurs}[Catalan-Zahl]
+Die Catalan-Zahlen bilden eine Folge natürlicher Zahlen, die in vielen
+Problemen der Kombinatorik auftritt. Sie sind nach dem belgischen
+Mathematiker Eugène Charles Catalan benannt.
+
+Die Folge der Catalan-Zahlen $C_{0},C_{1},C_{2},C_{3},\dotsc$ beginnt
+mit $1, 1, 2, 5, 14, 42, 132,\dotsc$
+\liFussnoteUrl{https://de.wikipedia.org/wiki/Catalan-Zahl}
+\end{liExkurs}
 
 Beim Induktionsschritt können Sie die beiden folgenden Gleichungen
 verwenden:
@@ -51,7 +91,83 @@ verwenden:
 \end{enumerate}
 
 \begin{liAntwort}
-text
+%%
+%
+%%
+
+\liInduktionAnfang
+
+\begin{align*}
+C_0
+& = \text{cn}(0)\\
+& = \frac{(2 \cdot 0)!}{(0 + 1)! \cdot 0!}\\
+& = \frac{0!}{1! \cdot 0!}\\
+& = \frac{1}{1 \cdot 1}\\
+& = \frac{1}{1}\\
+& = 1\\
+\end{align*}
+
+%%
+%
+%%
+
+\liInduktionVoraussetzung
+
+\begin{align*}
+C_n
+& = \text{cn}(n)\\
+& = \frac{(2n)!}{(n + 1)! \cdot n!}
+\end{align*}
+
+%%
+%
+%%
+
+\liInduktionSchritt
+
+% erklaerung
+\def\e#1{\scriptsize#1}
+% erklaerung gleich mit text
+\def\et#1{\scriptsize\text{#1}}
+
+\def\r#1{\textcolor{blue}{#1}}
+
+\begin{align*}
+C_{n+1}
+& = \text{cn}(n + 1)\\
+& = \frac
+  {(4 \cdot (\r{n + 1} - 1) + 2) \cdot \text{cn}(\r{n + 1} - 1)}
+  {\r{n + 1} + 1}
+  & \et{Java nach Mathe}\\
+%
+& = \frac
+  {(4 \cdot \r{n + 2}) \cdot \text{cn}(\r{n})}
+  {\r{n + 2}}
+  & \et{Addition, Subtraktion}\\
+%
+& = \frac
+  {(4 \cdot n + 2) \cdot \r{(2n)!}}
+  {(n + 2) \cdot \r{(n + 1)! \cdot n!}}
+  & \et{für cn(n) Formel einsetzen}\\
+%
+& = \frac
+  {(4 \cdot n + 2) \cdot (2n)! \r{\cdot (n + 1)}}
+  {(n + 2) \cdot (n + 1)! \cdot n! \r{\cdot (n + 1)}}
+  & \e{\text{oben und unten } \cdot (n + 1)} \\
+%
+& = \frac
+  {(4 \cdot n + 2) \cdot \r{(n + 1) \cdot (2n)!}}
+  {(n + 2) \cdot (n + 1)! \cdot \r{(n + 1) \cdot n!}} & \et{umsortieren} \\
+%
+& = \frac
+  {\r{(2(n + 1))!}}
+  {\r{(n + 2)! \cdot (n + 1)!}} & \et{Hilfsgleichungen verwenden}\\
+%
+& = \frac
+  {(2(\r{n + 1}))!}
+  {((\r{n + 1}) + 1)! \cdot (\r{n + 1})!} & \e{(n + 1) \text{deutlicher machen}}\\
+\end{align*}
+
 \end{liAntwort}
 
 %%
