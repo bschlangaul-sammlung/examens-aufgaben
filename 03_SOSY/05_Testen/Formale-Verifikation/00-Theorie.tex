@@ -69,25 +69,25 @@ Programmtext heißt \memph{Vorbedingung P}, eine Zusicherung danach
 
 \section{Verzweigung}
 
-$\text{\text{wp}}(\text{„}\texttt{IF B THEN <}A_1\texttt{> ELSE <}A_2\texttt{>}\text{“}, Q)
+$\wp{IF B THEN A1 ELSE A2}{Q}
 \equiv
-(B \land \text{\text{wp}}(\texttt{<}A_1\texttt{>}, Q))
+(B \land \wp{A1}{Q})
 \lor
-(\neg B \land \text{\text{wp}}(\texttt{<}A_2\texttt{>}, Q))$
+(\neg B \land \wp{A2}{Q})$
 
 \section{Transformationen}
 
 \begin{enumerate}
-\item $\wp{}{Q} = Q$
+\item $\wp{}{Q} = Q$ \\
 Nichts passiert, die Vorbedingung bleibt gleich
 
-\item $\wp{Fehler}{Q} = \text{falsch}$
+\item $\wp{Fehler}{Q} = \text{falsch}$ \\
 Fehler dürfen nicht auftreten
 
-\item $\wp{A}{Q} \land \wp{A}{R} = \wp{A}{Q \land R}$
+\item $\wp{A}{Q} \land \wp{A}{R} = \wp{A}{Q \land R}$ \\
 Distributivität der Konjunktion
 
-\item $\text{\text{wp}}(A, Q) \lor \text{\text{wp}}(A, R) = \text{\text{wp}}(A, Q \lor R)$
+\item $\wp{A}{Q} \lor \wp{A}{R} = \wp{A}{Q \lor R}$ \\
 Distributivität der Disjunktion
 \end{enumerate}
 
