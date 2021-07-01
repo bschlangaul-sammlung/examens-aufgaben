@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax,mathe,wpkalkuel}
+\liLadePakete{vollstaendige-induktion}
 \begin{document}
 
 Gegeben sei folgende Methode:\footcite{sosy:e-klausur}
@@ -28,19 +28,19 @@ Dabei können Sie davon ausgehen, dass $q > 0$, $ n \in \mathbb{N}_0$
 % Hanoi) (- 1 BE) Sonst sehr schön!
 
 \begin{liAntwort}
-\liPseudoUeberschrift{Induktionsanfang}
+\liInduktionAnfang
 
 \begin{displaymath}
 f(0): \text{geoSum}(0, q) = 1 - q^{0+1} = 1 - q^1 = 1 - q
 \end{displaymath}
 
-\liPseudoUeberschrift{Induktionsvoraussetzung}
+\liInduktionVoraussetzung
 
 \begin{displaymath}
 f(n): \text{geoSum}(n, q) = 1 - q^{n+1}
 \end{displaymath}
 
-\liPseudoUeberschrift{Induktionsschritt}
+\liInduktionSchritt
 
 \begin{align*}
 f(n+1): \text{geoSum}(n + 1, q)

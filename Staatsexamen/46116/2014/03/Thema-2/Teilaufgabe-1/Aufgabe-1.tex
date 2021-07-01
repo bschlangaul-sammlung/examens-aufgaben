@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe,syntax}
+\liLadePakete{vollstaendige-induktion}
 \begin{document}
 \liAufgabenTitel{Hanoi}
 
@@ -39,7 +39,9 @@ Zu zeigen:
 %
 %%
 
-\liPseudoUeberschrift{I. A.} $k=0$
+\liInduktionAnfang
+
+$k=0$
 
 \begin{displaymath}
 \text{hanoi}(0,\text{'A'},\text{'C'}) = 0
@@ -53,7 +55,7 @@ Zu zeigen:
 %
 %%
 
-\liPseudoUeberschrift{I. V.}
+\liInduktionVoraussetzung
 
 \begin{displaymath}
 \text{hanoi}(k,\text{'A'},\text{'C'}) = 2^k - 1
@@ -63,7 +65,9 @@ Zu zeigen:
 %
 %%
 
-\liPseudoUeberschrift{I. S.} $k \rightarrow k + 1$
+\liInduktionSchritt
+
+$k \rightarrow k + 1$
 
 \begin{align*}
 \text{hanoi}(k +  1, \text{'A'},\text{'C'})
