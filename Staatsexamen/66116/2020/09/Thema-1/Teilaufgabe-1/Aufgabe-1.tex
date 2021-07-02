@@ -48,8 +48,9 @@ Programme auch immer partiell korrekt sind.
 an.
 
 \begin{liAntwort}
-Anstattdessen verwendet man eine Art Vollständige Induktion um die
-Funktion der Schleife nachzuweisen.
+Eine abweisende Schleife ist eine while-Schleife, da die
+Schleifenbedingung schon bei der ersten Prüfung falsch sein kann und
+somit die Schleife abgewiesen wird.
 
 Um die schwächste Vorbedingung eines Ausdrucks der Form
 „\liJavaCode{while(b) { A }}“ zu finden, verwendet man eine
@@ -84,7 +85,7 @@ d.h. $I \land b \Rightarrow \wp{Code in der Schleife}{I}$
 \item[Schritt 3:]
 
 Bei Terminierung der Schleife liefert Methode das gewünschte Ergebnis,\\
-d.h. $I \,\land \neq b \Rightarrow \wp{Code nach der Schleife}{I}$
+d.h. $I \,\land \neq b \Rightarrow \wp{Code nach der Schleife}{Q}$
 
 \footcite[Seite 31]{sosy:fs:5}
 \end{description}
@@ -130,9 +131,12 @@ Beweise für Terminierung sind nicht immer möglich!
 % e)
 %%
 
+\newpage
+
 \item Geben Sie für das folgende Suchprogramm die nummerierten
-Zusicherungen an. Lassen Sie dabei jeweils die invariante Vorbedingung
-$P$ des Suchprogramms weg. Schreiben Sie nicht auf dem Aufgabenblatt!
+Zusicherungen an. \textcolor{blue}{Lassen Sie dabei jeweils die
+invariante Vorbedingung $P$ des Suchprogramms weg.}
+Schreiben Sie nicht auf dem Aufgabenblatt!
 \index{wp-Kalkül}
 
 $P \equiv n > 0 \land a_0 \dots a_{n-1} \in \mathbb{Z}^n \land m \in \mathbb{Z}$
@@ -159,29 +163,32 @@ $P \equiv n > 0 \land a_0 \dots a_{n-1} \in \mathbb{Z}^n \land m \in \mathbb{Z}$
 
 \liJavaExamen[firstline=15,lastline=34]{66116}{2020}{09}{Verfikation}
 
-$Q \equiv P \land (i = -1 \land \forall \, 0 \leq k < n \colon a_k \neq m) \lor (i \geq 0 \land a_i = m)$
-
-\begin{liExkurs}[wp-Kalkül und die Verzweigung]
-$\wp{IF B THEN A1 ELSE A2}{Q}
-\equiv
-(B \land \wp{A1}{Q})
-\lor
-(\neg B \land \wp{A2}{Q})$
-\end{liExkurs}
+$Q \equiv P \land (i = -1 \land \forall \, 0 \leq k < n \colon a_k \neq m) \lor
+ (i \geq 0 \land a_i = m)$
 
 \begin{liAntwort}
+Hier fällt die Vorbedingung mit der Invariante zusammen.
+Hier muss keine wp-Kalkül berechnet werden, sondern „nur“ die
+Zuweisungen nachverfolgt werden um zum Schluss die Nachbedingung
+zu erhalten.
+
+Wir haben k mit j ersetzt, damit es besser zum Code passt.
+
+\def\tmp{ $\textcolor{blue}{\land \, P}$}
+
 {
 \renewcommand{\labelenumii}{\arabic{enumii}.}
 \begin{enumerate}
-\item $P$
-\item $P$
-\item $P \land (i = -1 \land j < n)$
-\item $P \land (i = -1 \land j < n)$
-\item $P \land (i = -1 \land j < n)$
-\item 6
-\item 7
-\item 8
-\item $P$
+\item $i = -1$ \tmp % 1
+\item $i = -1 \land j = 0$ \tmp % 2
+\item $i = -1 \land j = 0 \lor j < n$ \tmp % 3
+\item $i = -1 \land 0 \leq j < n$ \tmp % 4
+\item $i = -1 \land a_j = m \land 0 \leq j < n$ \tmp % 5
+\item $i \geq 0 \land a_i = m$ \tmp % 6
+\item $i = -1 \land 0 \leq j < n$ \tmp % 7
+\item $i = -1 \land \forall \, 0 < j \leq n \colon a_j \neq m$ \tmp % 8
+\item $(i = -1 \land \forall \, 0 \leq k < j \colon a_k \neq m) \lor
+(i \geq 0 \land a_i = m)$ \tmp % 9
 \end{enumerate}
 }
 
