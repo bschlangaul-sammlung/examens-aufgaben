@@ -99,7 +99,6 @@ verwenden:
 
 \begin{align*}
 C_0
-& = \text{cn}(0)\\
 & = \frac{(2 \cdot 0)!}{(0 + 1)! \cdot 0!}\\
 & = \frac{0!}{1! \cdot 0!}\\
 & = \frac{1}{1 \cdot 1}\\
@@ -115,9 +114,10 @@ C_0
 
 \begin{align*}
 C_n
-& = \text{cn}(n)\\
 & = \frac{(2n)!}{(n + 1)! \cdot n!}
 \end{align*}
+
+\newpage
 
 %%
 %
@@ -127,45 +127,81 @@ C_n
 
 % erklaerung
 \def\e#1{\scriptsize#1}
+
 % erklaerung gleich mit text
 \def\et#1{\scriptsize\text{#1}}
 
-\def\r#1{\textcolor{blue}{#1}}
+% markieren
+\def\m#1{\textcolor{blue}{#1}}
+
+\liPseudoUeberschrift{Vom Code ausgehend}
 
 \begin{align*}
 C_{n+1}
-& = \text{cn}(n + 1)\\
 & = \frac
-  {(4 \cdot (\r{n + 1} - 1) + 2) \cdot \text{cn}(\r{n + 1} - 1)}
-  {\r{n + 1} + 1}
+  {(4 \cdot (\m{n + 1} - 1) + 2) \cdot \text{cn}(\m{n + 1} - 1)}
+  {\m{n + 1} + 1}
   & \et{Java nach Mathe}\\
 %
 & = \frac
-  {(4 \cdot \r{n + 2}) \cdot \text{cn}(\r{n})}
-  {\r{n + 2}}
-  & \et{Addition, Subtraktion}\\
+  {(4\m{n} + 2) \cdot \text{cn}(\m{n})}
+  {\m{n + 2}}
+  & \et{addiert, subtrahiert}\\
 %
 & = \frac
-  {(4 \cdot n + 2) \cdot \r{(2n)!}}
-  {(n + 2) \cdot \r{(n + 1)! \cdot n!}}
-  & \et{für cn(n) Formel einsetzen}\\
+  {(4n + 2) \cdot \m{(2n)!}}
+  {(n + 2) \cdot \m{(n + 1)! \cdot n!}}
+  & \et{für cn(n) Formel eingesetzt}\\
 %
 & = \frac
-  {(4 \cdot n + 2) \cdot (2n)! \r{\cdot (n + 1)}}
-  {(n + 2) \cdot (n + 1)! \cdot n! \r{\cdot (n + 1)}}
-  & \e{\text{oben und unten } \cdot (n + 1)} \\
+  {(4n + 2) \cdot (2n)! \m{\cdot (n + 1)}}
+  {(n + 2) \cdot (n + 1)! \cdot n! \m{\cdot (n + 1)}}
+  & \e{(n + 1) \text{ multipliziert}} \\
 %
 & = \frac
-  {(4 \cdot n + 2) \cdot \r{(n + 1) \cdot (2n)!}}
-  {(n + 2) \cdot (n + 1)! \cdot \r{(n + 1) \cdot n!}} & \et{umsortieren} \\
+  {(4n + 2) \cdot \m{(n + 1) \cdot (2n)!}}
+  {(n + 2) \cdot (n + 1)! \cdot \m{(n + 1) \cdot n!}}
+  & \et{umsortiert} \\
 %
 & = \frac
-  {\r{(2(n + 1))!}}
-  {\r{(n + 2)! \cdot (n + 1)!}} & \et{Hilfsgleichungen verwenden}\\
+  {\m{(2(n + 1))!}}
+  {\m{(n + 2)! \cdot (n + 1)!}}
+  & \et{Hilfsgleichungen verwendet}\\
 %
 & = \frac
-  {(2(\r{n + 1}))!}
-  {((\r{n + 1}) + 1)! \cdot (\r{n + 1})!} & \e{(n + 1) \text{deutlicher machen}}\\
+  {(2(\m{n + 1}))!}
+  {((\m{n + 1}) + 1)! \cdot (\m{n + 1})!}
+  & \e{(n + 1) \text{ verdeutlicht}}\\
+\end{align*}
+
+\liPseudoUeberschrift{Mathematische Herangehensweise}
+
+\begin{align*}
+C_{n+1}
+& = \frac
+  {(2(\m{n + 1}))!}
+  {((\m{n + 1}) + 1)! \cdot (\m{n + 1})!}
+  & \e{n + 1 \text{ in } C_n \text{ eingesetzt}}\\
+& = \frac
+  {(2(n + 1))!}
+  {(\m{n + 2})! \cdot (n + 1)!}
+  & \et{addiert}\\
+& = \frac
+  {(4n + 2) \cdot \m{(n + 1)} \cdot (2n)!}
+  {(n + 2) \cdot \m{(n + 1)} \cdot (n + 1)! \cdot n!}
+  & \et{Hilfsgleichungen verwendet}\\
+& = \frac
+  {(4n + 2) \cdot (2n)!}
+  {(n + 2) \cdot (n + 1)! \cdot n!}
+  & \e{(n + 1) \text{ gekürzt}} \\
+& = \frac
+  {4n + 2}
+  {n + 2} \cdot \m{C_n} &
+  \et{Catalan-Formel ersetzt}\\
+& = \frac
+  {4((\m{n + 1}) - 1) + 2}
+  {(\m{n + 1}) + 1} \cdot C_{(\m{n + 1}) - 1} &
+  \e{(n + 1) \text{ verdeutlicht}}\\
 \end{align*}
 
 \end{liAntwort}
@@ -174,6 +210,8 @@ C_{n+1}
 % b)
 %%
 
+\newpage
+
 \item Geben Sie eine geeignete Terminierungsfunktion an und begründen
 Sie, warum der Methodenaufruf \liJavaCode{cn(n)} für jedes $n \geq 0$
 terminiert.
@@ -181,7 +219,7 @@ terminiert.
 \begin{liAntwort}
 $T(n) = n$. Diese Funktion verringert sich bei jedem Rekursionsschritt
 um eins. Sie ist monoton fallend und für $T(0) = 0$ definiert. Damit
-ist sie eine Terminierungsfunktion für cn(n).
+ist sie eine Terminierungsfunktion für \liJavaCode{cn(n)}.
 \end{liAntwort}
 
 \end{enumerate}
