@@ -161,38 +161,65 @@ $P \equiv n > 0 \land a_0 \dots a_{n-1} \in \mathbb{Z}^n \land m \in \mathbb{Z}$
 % }
 % \end{minted}
 
-\liJavaExamen[firstline=15,lastline=34]{66116}{2020}{09}{Verfikation}
+\liJavaExamen[firstline=18,lastline=34]{66116}{2020}{09}{Verfikation}
 
 $Q \equiv P \land (i = -1 \land \forall \, 0 \leq k < n \colon a_k \neq m) \lor
  (i \geq 0 \land a_i = m)$
 
 \begin{liAntwort}
-Hier fällt die Vorbedingung mit der Invariante zusammen.
-Hier muss keine wp-Kalkül berechnet werden, sondern „nur“ die
-Zuweisungen nachverfolgt werden um zum Schluss die Nachbedingung
-zu erhalten.
+In dieser Aufgabenstellung fällt die Vorbedingung mit der Invariante
+zusammen. Es muss kein wp-Kalkül berechnet werden, sondern „nur“ die
+Zuweisungen nachverfolgt werden, um zum Schluss die Nachbedingung zu
+erhalten.
 
-Wir haben k mit j ersetzt, damit es besser zum Code passt.
-
+% markierung
+\def\m#1{\textcolor{blue}{#1}}
 \def\tmp{ $\textcolor{blue}{\land \, P}$}
 
 {
 \renewcommand{\labelenumii}{\arabic{enumii}.}
 \begin{enumerate}
-\item $i = -1$ \tmp % 1
-\item $i = -1 \land j = 0$ \tmp % 2
-\item $i = -1 \land j = 0 \lor j < n$ \tmp % 3
-\item $i = -1 \land 0 \leq j < n$ \tmp % 4
-\item $i = -1 \land a_j = m \land 0 \leq j < n$ \tmp % 5
-\item $i \geq 0 \land a_i = m$ \tmp % 6
-\item $i = -1 \land 0 \leq j < n$ \tmp % 7
-\item $i = -1 \land \forall \, 0 < j \leq n \colon a_j \neq m$ \tmp % 8
-\item $(i = -1 \land \forall \, 0 \leq k < j \colon a_k \neq m) \lor
-(i \geq 0 \land a_i = m)$ \tmp % 9
+\item $(i = -1)$ \tmp % 1
+\item
+  $(i = -1) \land
+  (j = 0)$
+  \tmp % 2
+\item
+  $(i = -1) \land
+  (0 \leq j < n)$
+  \tmp % 3
+\item
+  $(i = -1) \land
+  (0 \leq j < n)$
+  \tmp % 4
+\item
+  $(i = -1) \land
+  (a_j = m) \land
+  (0 \leq j < n)$
+  \tmp % 5
+\item
+  $(i \geq 0) \land
+  i = j \land
+  (a_j = m) \land
+  (0 \leq j < n)$
+  \tmp  % 6
+\item
+  $(i = -1) \land
+  (\forall \, 0 \leq j < n \colon a_j \neq m)$
+  \tmp % 7
+\item
+  $(i = -1) \land
+  (\forall \, 0 < j \leq n \colon a_j \neq m)$
+  \tmp % 8
+\item
+  $((i = -1) \land
+  (\forall \, 0 \leq k < j \colon a_k \neq m)) \lor
+  ((i \geq 0) \land (a_i = m))$ \tmp % 9
 \end{enumerate}
 }
-
 \end{liAntwort}
+
+\liPseudoUeberschrift{Code-Beispiel eingebaut in eine Java-Klasse}
 
 \liJavaExamen{66116}{2020}{09}{Verfikation}
 
