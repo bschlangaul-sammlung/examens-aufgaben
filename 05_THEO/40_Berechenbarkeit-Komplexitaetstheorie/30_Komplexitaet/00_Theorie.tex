@@ -1,10 +1,13 @@
 \documentclass{lehramt-informatik-haupt}
+\liLadePakete{mathe}
 
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Theorie-Teil
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Info_2021-06-11-2021-06-11_09.38.05.mp4
 
 \chapter{Komplexitätstheorie}
 
@@ -33,27 +36,111 @@ welche Probleme \emph{„gleich schwierig“} sind.
 \section{Komplexitätsklassen}
 
 \begin{description}
+% 3min
 \item[P]
 enthält alle Probleme, für die eine \memph{deterministische}
-Turingmaschine in polynomieller Zeit eine Lösung berechnen kann.
+Turingmaschine in \memph{polynomieller} Zeit eine Lösung berechnen kann.
 \footcite[Seite 59]{theo:fs:4}
 
 \item[NP]
-enthält alle Probleme, für die eine \memph{nicht-deterministische} (= NP)
-Turingmaschine in polynomieller Zeit eine Lösung berechnen kann.
+% 5min
+enthält alle Probleme, für die eine \memph{nicht-deterministische} (=
+NP) Turingmaschine in \memph{polynomieller} Zeit eine Lösung berechnen
+kann.
 \footcite[Seite 60]{theo:fs:4}
 
 \begin{description}
+% 11min
 \item[NP-schwer] (engl. NP-hard) ist eine Eigenschaft eines
 algorithmischen Problems. Ein NP-schweres Problem ist dabei mindestens
 genauso „schwer“ wie alle Probleme in NP. Das bedeutet, dass ein
-Algorithmus, der ein NP-schweres Problem löst, mithilfe einer Reduktion
-benutzt werden kann, um alle Probleme in NP zu lösen.\footcite{wiki:np-schwer}
+Algorithmus, der ein NP-schweres Problem löst, mithilfe einer
+\memph{Reduktion} benutzt werden kann, um alle Probleme in NP zu
+lösen.\footcite{wiki:np-schwer}
 
 \item[NP-vollständig] sind die Probleme, die in NP liegen
 und NP-schwer sind.\footcite{wiki:np-vollstaendig}
 \end{description}
 \end{description}
+
+% 7min
+\section{Millennium-Problem P=NP}
+
+Das \texttt{P=NP}-Problem gilt als eines der großen offenen Probleme in
+der Informatik. Es wird angenommen, dass es nicht gilt. Was würde es
+bedeuten, wenn wir \texttt{P=NP} zeigen könnten? Fast alle
+kryptographischen Sicherheitsalgorithmen wie Verschlüsselungen usw.
+wären knackbar. Es ergäben sich immense Optimierungsmöglichkeiten bei
+verschiedenen Problemen.
+
+In dem Moment, wo für ein NP-vollständiges Problem ein deterministischer
+Algorithmus in Polynomialzeit gefunden wird, sind alle Probleme in
+\texttt{NP} auch in \texttt{P} und damit \texttt{P=NP}.
+\footcite[Seite 61]{theo:fs:4}
+
+% 14min
+\section{Problemreduktion}
+
+Um die Schwere von Problemen zu vergleichen, werden in der theoretischen
+Informatik Problemreduktionen benutzt: Ein \memph{Problem $A$ heißt
+reduzierbar} auf ein anderes Problem $B$, wenn jeder Algorithmus, der
+\memph{B löst, auch verwendet werden kann, um $A$ zu lösen}, indem man
+eine \memph{Probleminstanz von $A$ umrechnet in eine Instanz von $B$}
+und diese anschließend löst. Sei $L' \subseteq \Sigma$ eine formale
+Sprache. $L'$ heißt dann NP-schwer, wenn gilt:
+
+\begin{displaymath}
+\forall L \in \text{NP} \, \colon \, L \leq_p L'
+\end{displaymath}
+
+(Alle $L$ aus NP sind polynomiell reduzierbar auf $L'$.) Dies bedeutet,
+dass $L'$ mindestens so schwer wie jedes beliebige Problem aus NP ist.
+Es gibt einen Algorithmus $A$, der $L'$ in Polynomialzeit löst, für
+jedes Problem aus NP ebenfalls ein polynomialer Algorithmus konstruieren
+ließe:
+
+\begin{itemize}
+\item führe zuerst die Reduktion auf $L'$ aus und
+\item anschließend Algorithmus $A$.
+\end{itemize}
+
+$L'$ selbst kann jedoch auch schwerer sein. Insbesondere muss $L'$ nicht
+notwendigerweise in NP liegen (liegt $L'$ jedoch zusätzlich in NP, so
+heißt $L'$ NP- vollständig).\footcite[Seite 63]{theo:fs:4}
+
+% 31min
+\section {Polynomialzeitreduktion}
+
+Eine Polynomialzeitreduktion (auch polynomielle Reduktion) ist eine
+spezielle Form der Reduktion in der theoretischen Informatik.
+Zusätzlich zur Reduzierbarkeit wird hier gefordert, dass die
+Reduktion deterministisch in Polynomialzeit berechnet werden kann.
+
+$L_1$ heißt polynomiell reduzierbar auf $L_2$ ($L_1 \leq_p L_2$ ), wenn es
+eine total, berechenbare Funktion $f = \Sigma^* \rightarrow \Sigma^*$
+gibt, so dass gilt:
+$w \in L_1 \Leftrightarrow f(w) \in L_2$
+Es gibt
+eine deterministische Turingmaschine $M$, die $f$ in Polynomialzeit
+berechnet. => $L_2$ ist „mindestens genauso schwer“ wie $L_1$.
+\footcite[Seite 64]{theo:fs:4}
+
+% 36min
+Was muss gezeigt werden:
+
+\begin{itemize}
+\item Es gibt eine Funktion, die Instanzen von $L_1$ auf Instanzen von
+$L_2$ „umbaut“.
+
+\item Die Funktion ist total.
+
+\item Die Funktion arbeitet in Polynomialzeit.
+
+\item Korrektheit der Reduktion: $w \in L_1 \Leftrightarrow f(w) \in L_2$
+\footcite[Seite 65]{theo:fs:4}
+\end{itemize}
+
+% i e 66115:2016:03 1 5
 
 %-----------------------------------------------------------------------
 %
