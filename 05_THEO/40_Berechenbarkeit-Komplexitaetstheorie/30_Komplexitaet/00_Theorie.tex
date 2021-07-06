@@ -146,29 +146,32 @@ $L_2$ „umbaut“.
 %
 %-----------------------------------------------------------------------
 
+% 1min7min
+
 \subsection{Satz von Cook}
 
-Stephen A. Cook zeigte, dass eine Teilmenge der Klasse NP existiert, auf
-die sich alle Probleme aus NP reduzieren lassen. Diese Teilmenge ist
-damit repräsentativ für die Schwierigkeit von NP und wird als
-NP-vollständig (englisch: NP complete) bezeichnet. Der nach ihm benannte
-Satz von Cook sagt aus, dass das Erfüllbarkeitsproblem der Aussagenlogik
-(SAT, v. engl. satisfiability) NP-vollständig ist. Es ist allerdings
-nicht das einzige schwerste Problem, denn Richard M. Karp zeigte, dass
-es in NP Probleme gibt, auf die SAT reduziert werden kann, die also
-genauso schwer sind wie SAT.
+Stephen A. Cook zeigte, dass eine \memph{Teilmenge der Klasse NP
+existiert}, auf die sich alle \memph{Probleme aus NP reduzieren} lassen.
+Diese Teilmenge ist damit repräsentativ für die Schwierigkeit von NP und
+wird als NP-vollständig (englisch: NP complete) bezeichnet. Der nach ihm
+benannte Satz von Cook sagt aus, dass das \memph{Erfüllbarkeitsproblem
+der Aussagenlogik} (SAT, v. engl. satisfiability) NP-vollständig ist.
+
+Es ist allerdings nicht das einzige schwerste Problem, denn Richard M.
+Karp zeigte, dass es in NP Probleme gibt, auf die SAT reduziert werden
+können, die also \memph{genauso schwer sind wie SAT}.
 \footcite[Seite 70]{theo:fs:4}
 
+% 1h11min
 \subsection{SAT und k-SAT}
 
 SAT und k-SAT mit $k \geq 3$, $k \in \mathbb{N}$ (Satz von Cook)
 
-Das Problem fragt, ob eine aussagenlogische Formel erfüllbar ist.
-Anwendungen: Komplexitätstheorie, Verifikation und Entwurf von logischen
-Schaltungen Das Erfüllbarkeitsproblem der Aussagenlogik ist in
-exponentieller Zeit in Abhängigkeit der Anzahl der Variablen
-entscheidbar Wahrheitstabelle. Diese Wahrheitstabelle kann nicht in
-polynomieller Zeit aufgestellt werden.
+Das Problem fragt, ob eine aussagenlogische Formel erfüllbar ist. Das
+Erfüllbarkeitsproblem der \memph{Aussagenlogik} ist in exponentieller
+Zeit in Abhängigkeit der Anzahl der Variablen mit Hilfe einer
+Wahrheitstabelle entscheidbar. Diese \memph{Wahrheitstabelle} kann nicht
+in polynomieller Zeit aufgestellt werden.
 \footcite[Seite 71]{theo:fs:4}
 
 \section{Karps 21 NP-vollständige Probleme}
@@ -182,10 +185,42 @@ Seit 1972 wurden mehr als 10000 Probleme als NP-vollständig
 charakterisiert.
 \footcite[Seite 80]{theo:fs:4}
 
+\section{Aussagenlogische Formeln}
+
+\begin{description}
+\item[Negation:]
+
+$\neg A$
+
+\item[Disjunktion:]
+
+Verknüpfung mit Oder $\lor$
+$A \lor B$
+
+\item[Konjunktion:]
+
+Verknüpfung mit Und $\land$
+$A \land B$
+
+\item[Konjunktive Normalform:]
+Konjunktion von Disjunktionstermen
+$(A \lor B) \land D \land (A \lor B \lor C)$
+\end{description}
+
+3-SAT => höchstens drei Literale (also Variablen) pro Klausel
+Aber beliebig viele verschiedene Variablen: $x_1, x_2, x_3, x_4, \dots$
+Klausel ist ein Disjunktionsterm (=Oder-Term)
+
+Beispiel:
+
+$F = (\neg x_1 \lor x_2 \lor x_3 ) \land (x_2 \lor \neg x_3 \lor x_4 )
+\land (x_1 \lor \neg x$
+\footcite[Seite 72]{theo:fs:4}
 %%
 %
 %%
 
+% 1h20min
 \subsection{Problem des Handlungsreisenden}
 
 (TSP: engl. traveling salesman problem, Optimierungsproblem der
@@ -205,10 +240,11 @@ genau einmal vorkommen\footcite[Seite 73]{theo:fs:4}
 %
 %%
 
+% 1h22min
 \subsection{Hamiltonkreisproblem}
 
-Existiert ein geschlossener Pfad in einem
-Graphen, der jeden Knoten nur genau einmal enthält?
+Existiert ein geschlossener Pfad in einem Graphen, der jeden Knoten nur
+genau einmal enthält?
 
 Wichtiges Problem der Graphentheorie
 Ist eine Verallgemeinerung des TSP, bei welchem nur nach dem kürzesten
@@ -232,28 +268,31 @@ Schranke c exakt zu erreichen). Es ist ein spezielles Rucksackproblem.
 %
 %%
 
+% 1h24min
 \subsection{Rucksackproblem}
 
 (auch englisch knapsack problem) ist ein Optimierungsproblem der
 Kombinatorik.
 
 Aus einer Menge von Objekten, die jeweils ein Gewicht und einen Nutzwert
-haben, soll eine Teilmenge ausgewählt werden, deren Gesamtgewicht eine
-vorgegebene Gewichtsschranke nicht überschreitet. Unter dieser Bedingung
-soll der Nutzwert der ausgewählten Objekte maximiert werden.
+haben, soll eine \memph{Teilmenge ausgewählt} werden, deren
+Gesamtgewicht eine vorgegebene \memph{Gewichtsschranke nicht
+überschreitet}. Unter dieser Bedingung soll der \memph{Nutzwert} der
+ausgewählten Objekte \memph{maximiert} werden.
 \footcite[Seite 75]{theo:fs:4}
 
 %%
 %
 %%
 
+% 1h25min
 \subsection{Cliquenproblem}
 
-(CLIQUE) fragt nach der Existenz einer Clique der Mindestgröße n in
+(CLIQUE) fragt nach der Existenz einer Clique der Mindestgröße $n$ in
 einem gegebenen Graphen.
 
 Eine Clique ist eine Teilmenge von Knoten in einem ungerichteten
-Graphen, bei der jedes Knotenpaar durch eine Kante verbunden ist
+Graphen, bei der \memph{jedes Knotenpaar durch eine Kante verbunden ist}
 (informell: jeder mit jedem innerhalb des Teilgraphen)
 
 Beispiel: In dem nebenstehenden Graphen wird mit der Brute-Force-Methode
@@ -264,11 +303,13 @@ nach einer 4er-Clique gesucht.
 %
 %%
 
+% 1h26min
 \subsection{Stabilitätsproblem}
 
 (Independent Set oder Co-Clique) fragt nach der Existenz einer Teilmenge
-von Knoten in einem gegebenen Graphen der Mindestgröße n , bei denen die
-Knoten zueinander nicht adjazent (=keine direkte Verbindung) sind.
+von Knoten in einem gegebenen Graphen der Mindestgröße $n$, bei denen
+die Knoten zueinander \memph{nicht adjazent} (= keine direkte
+Verbindung) sind.
 
 Das Stabilitätsproblem ist das „Gegenproblem“ zum Cliquenproblem
 
@@ -279,10 +320,28 @@ Beispiel: Die neun blauen Knoten bilden im nebenstehenden Graphen eine
 %
 %%
 
+\subsection{Knotenüberdeckungsproblem}
+
+(VERTEX COVER) fragt, ob zu einem gegebenen einfachen Graphen und einer
+natürlichen Zahl k eine Knotenüberdeckung der Größe von höchstens $k$
+existiert.
+
+Das heißt, ob es eine aus maximal $k$ Knoten bestehende Teilmenge $U$
+der Knotenmenge gibt, so dass \memph{jede Kante des Graphen mit
+mindestens einem Knoten aus $U$} verbunden ist.\footcite[Seite
+78]{theo:fs:4}
+
+Beispiele: Zwei nicht minimale Überdeckungen.
+
+%%
+%
+%%
+
+% 1h29min
 \subsection{COL und k-COL}
 
 COL und k-COL mit $k \geq 3$, $k \in \mathbb{N}$ (graph coloring –
-Färbung eines Graphen) fragt, ob ein gegebener Graph mit k Farben so
+Färbung eines Graphen) fragt, ob ein gegebener Graph mit $k$ Farben so
 färbbar ist, dass zwei benachbarte Knoten niemals die gleiche Farben
 haben.
 
