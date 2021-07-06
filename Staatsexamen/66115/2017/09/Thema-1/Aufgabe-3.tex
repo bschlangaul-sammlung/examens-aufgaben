@@ -1,65 +1,87 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{mathe}
 \begin{document}
 \liAufgabenTitel{}
 \section{Aufgabe 3
 \index{Komplexitätstheorie}
 \footcite{66115:2017:09}}
 
+% Check-Up
+% i o theo ab 4
+% i e 66115:2016:03 2 3
+% i e 66115:2017:09 1 3
+
 Betrachten Sie die folgenden Probleme:
 \footcite[Aufgabe 15: StEx F2016 T2 A3, StEx H2017 T1 A3 (Check-Up)]{theo:ab:4}
 
-3SAT
+%%
+%
+%%
 
-Gegeben: Eine aussagenlogische Formel (p in konjunktiver Normalform
+\liPseudoUeberschrift{3SAT}
 
+\begin{description}
+\item[Gegeben:]
+
+Eine aussagenlogische Formel $\varpi$ in konjunktiver Normalform (drei
+Literale pro Klausel).
+
+\item[Frage:]
+
+Ist $\varpi$ erfüllbar?
+\end{description}
+
+%%
+%
+%%
+
+\liPseudoUeberschrift{NAE-3SAT}
+
+\begin{description}
+\item[Gegeben:]
+
+Eine aussagenlogische Formel $\varpi$ in konjunktiver Normalform
 (drei Literale pro Klausel).
-Frage:
 
-Ist p erfüllbar?
+\item[Frage:]
 
-NAE-3SAT
+Gibt es eine Belegung, die in jeder Klausel mindestens ein Literal wahr
+und mindestens ein Literal falsch macht?
 
-Gegeben: Eine aussagenlogische Formel p in konjunktiver Normalform
+\end{description}
 
-(drei Literale pro Klausel).
-Frage:
+Wir erlauben, dass \texttt{NAE-3SAT}-Formeln Literale der Form
+$\text{false}$ haben, die immer falsch sind. So ist
 
-Gibt es eine Belegung, die in jeder Klausel
-mindestens ein Literal wahr und
+\begin{displaymath}
+(x_1 \lor \text{false} \lor \text{false})
+\land
+(\neg x_1 \lor x_1 \lor x_1)
+\end{displaymath}
 
-mindestens ein Literal falsch macht?
-
-Wir erlauben, dass NAE-3SAT-Formeln Literale der Form false haben, die immer falsch sind.
-So ist
-
-(xi V false V false) A (->a:i V
-
-V xi)
-
-in NAE-3SAT (setze Xi wahr).
+in \texttt{NAE-3SAT} (setze $x_1$ wahr).
 \begin{enumerate}
 
 %%
 % a)
 %%
 
-\item Zeigen Sie, dass sich 3SAT in polynomieller Zeit auf NAE-3SAT
-reduzieren lässt.
+\item Zeigen Sie, dass sich \texttt{3SAT} in polynomieller Zeit auf
+\texttt{NAE-3SAT} reduzieren lässt.
 
 %%
 % b)
 %%
 
-\item Was können Sie aus a) folgern, wenn Sie wissen, dass 3SAT
-NF-vollständig ist?
+\item Was können Sie aus a) folgern, wenn Sie wissen, dass \texttt{3SAT}
+NP-vollständig ist?
 
 %%
 % c)
 %%
 
-\item Was können Sie aus a) folgern, wenn Sie wissen, dass NAE-3SAT
-NF-vollständig ist?
+\item Was können Sie aus a) folgern, wenn Sie wissen, dass
+\texttt{NAE-3SAT} NF-vollständig ist?
 
 \end{enumerate}
 \end{document}
