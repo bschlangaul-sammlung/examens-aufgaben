@@ -1,0 +1,69 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{SAT-3SAT}
+\section{SAT-3SAT
+\index{Polynomialzeitreduktion}
+\footcite[Aufgabe 14, Seite 18]{theo:ab:4}}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Wie zeigt man die aus der NP-Schwere des 3SAT-Problems die NP-Schwere des
+SAT-Problems?
+
+\begin{liAntwort}
+Reduktion 3SAT ≤ p SAT : Jede 3SAT-Problem ist auch ein SAT-Problem,
+weil 3SAT ⊂ SAT → Damit braucht es keine Funktion (bzw.
+Identitäts-/Einheitsfunktion). Die Funktion ist korrekt, total und in
+Polynomialzeit anwendbar. → SAT-Problem ist ebenfalls NP- schwer.
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item Wie zeigt man die aus der NP-Schwere des SAT-Problems die NP-Schwere des
+3SAT-Problems?
+
+\begin{liAntwort}
+Reduktion SAT ≤ p 3SAT : Man muss eine Funktion ﬁnden, die eine
+allgemeine Aussagenlogik in eine Aussagenlogik mit 3 Literalen in
+konjunktiver Normalform umformt.
+
+Durch die boolsche Algebra lässt sich jede logische Aussagenlogik in
+eine konjunkti- ve Normalform bringen. Dies ist eine Konjunktion von
+Disjunktionstermen. Wir formen einen Disjunktionsterm mithilfe einer
+Funktion in ein 3SAT-Problem um. Diese Funktion kann auf jeden
+Disjunktionsterm angewendet werden und damit wird das gesamte
+SAT-Problem auf 3SAT reduzieren.
+
+Die Funktion formt Formel aus SAT mithilfe von Hilfsvariablen h 1 , . .
+. , h n−2 derart um (a 1 ∨ . . . ∨ a n ) → (a 1 ∨ a 2 ∨ h 1 ) ∧ (¬h 1 ∨
+a 3 ∨ h 2 ) ∧ (¬h 2 ∨ a 4 ∨ h 3 ) ∧ . . . ∧ (¬h n−2 ∨ a n )
+
+Diese Funktion ist total, denn jede in SAT enthaltene Aussagenlogik kann
+so umgewandelt werden.
+
+Korrektheit: Die Hilfsvariablen sind wahr, solange bis ein Literal a x
+selber true ist. Ab diesem Zeitpunkt sind dann die Hilfsvariablen dann
+falsch. JA-Instanzen: Der erste und alle mittleren Disjunktionstermen
+sind wahr, weil aufgrund der Nicht-Negierung und Negierung immer ein
+wahres Literal in den Disjunktionster- men. Somit ist dann auch der
+Disjunktionsterm wahr. Da es eine JA-Instanz ist, existiert ein a x
+welches wahr ist. Somit sind ab diesem Zeitpunkt die Hilfvariablen
+falsch. Der letzte Disjunktionsterm wird dadurch sicher wahr, weil ¬h
+n−2 somit wahr ist. NEIN-Instanz: Alle a x sind falsch. Auch hier sind
+wieder der erste und alle mittleren Dis- junktionsterme wahr (gleiche
+Begründung wie oben). Der letzte Disjunktionsterm ist al- lerdings
+falsch, weil die Hilfvariablen durchgehend wahr bleiben und alle a x
+falsch sind. Durch die Konjunktion der Disjunktionsterme ist dann auch
+die Gesamtaussage falsch. Polynomialzeit: Der Algorithmus, der Formeln
+aus SAT nach 3SAT umformt liegt in O(n) und somit in Polynomialzeit.
+\end{liAntwort}
+\end{enumerate}
+
+\end{document}

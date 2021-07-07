@@ -1,17 +1,17 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{}
 \begin{document}
-\liAufgabenTitel{}
-\section{
+\liAufgabenTitel{Raumausstattungsunternehmen}
+\section{Aufgabe 2
 \index{Komplexitätstheorie}
 \footcite{46115:2016:03}}
 
 Ein Raumausstattungsunternehmen steht immer wieder vor dem Problem,
 feststellen zu müssen, ob ein gegebener rechteckiger Fußboden mit
 rechteckigen Teppichresten ohne Verschnitt ausgelegt werden kann. Alle
-Längen sind hier ganzzahlige Meterbeträge. Haben sie beispielsweise
-zwei Reste der Größen 3x5 und einen Rest der Größe 2x5, so kann ein
-Fußboden der Größe 8x5 ausgelegt werden.
+Längen sind hier ganzzahlige Meterbeträge. Haben sie beispielsweise zwei
+Reste der Größen $3 \times 5$ und einen Rest der Größe $2 \times 5$, so
+kann ein Fußboden der Größe $8 \times 5$ ausgelegt werden.
 
 Das Unternehmen beauftragt eine Softwarefirma mit der Entwicklung eines
 Programms, welches diese Frage für beliebige Größen von Fußboden und
@@ -21,7 +21,7 @@ Möglichkeiten durchprobiert und daher für große Eingaben schnell
 ineffizient wird. Auf die Frage, ob man das nicht besser machen könne,
 lautet die Antwort, dass das vorgelegte Problem NP-vollständig sei und
 daher nach derzeitigem Kenntnisstand der theoretischen Informatik nicht
-mehr zu erwarten sei.
+mehr zu erwarten sei.\footcite[Aufgabe 12, Seite 15]{theo:ab:4}
 
 \begin{enumerate}
 
@@ -34,11 +34,14 @@ geben Sie konkret an, wie die obige Beispielinstanz in diesem Format
 aussieht.
 
 \begin{liAntwort}
-(a) Problem L
-1. Alternative
-I = (x 1 , y 1 , . . . , x n , y n , c x , c y )
-2. Alternative
-I = (w 1 , . . . , w n , c)
+Problem $L$
+\begin{description}
+\item[1. Alternative]
+$I = (x_1 , y_1 , \dots , x_n , y_n , c_x , c_y )$
+
+\item[2. Alternative]
+$I = (w_1 , \dots , w_n , c)$
+\end{description}
 \end{liAntwort}
 
 %%
@@ -48,12 +51,19 @@ I = (w 1 , . . . , w n , c)
 \item Begründen Sie, dass das Problem in NP liegt.
 
 \begin{liAntwort}
-(b) es existiert ein nichtdeterministischer Algorithmus in Polyzeit, der Problem entscheidet:
+es existiert ein nichtdeterministischer Algorithmus in Polyzeit, der Problem entscheidet:
+
 • nichtdeterministisch Untermenge raten (O(n))
 • Prüfe: (O(n))
-1. Alt Elementsumme der Produkte (x i , y i ) aus Untermenge = c
+\begin{description}
+\item[1. Alt]
 
-2. Alt Elementsumme der Untermenge = c
+Elementsumme der Produkte (x i , y i ) aus Untermenge = c
+
+\item[2. Alt]
+
+Elementsumme der Untermenge = c
+\end{description}
 \end{liAntwort}
 
 %%
@@ -62,30 +72,55 @@ I = (w 1 , . . . , w n , c)
 
 \item Begründen Sie, dass das Problem NP-schwer ist durch Reduktion vom
 NP-vollständigen Problem SUBSET-SUM.
+\index{Polynomialzeitreduktion}
 
 \begin{liAntwort}
 SU BSET SU M ≤ p L
 
-. Alternative
-Die Funktion f startet TM für L
+\begin{description}
+
+%%
+%
+%%
+
+\item[1. Alternative]
+
 Die Funktion f ersetzt jedes w i durch w i , 1
+
 und c durch c, 1 und startet TM für L
-• Berechenbarkeit: Identität, offen-
-sichtlich in Polyzeit
-• Berechenbarkeit: Hinzufügen von 1
+
+\begin{description}
+\item[Berechenbarkeit:]
+
+Hinzufügen von 1
 für jedes Element, offensichtlich in
-• Korrektheit:
-w
-∈
-Polyzeit
-SU BSET SU M ⇔ f (w) ∈ L
-offensichtlich, selbes Problem
-• Korrektheit:
-w
-∈
-SU BSET SU M ⇔ f (w) ∈ L,
-offensichtlich, selbes Problem mit
+
+\item[Korrektheit:]
+
+w ∈ SU BSET SU M ⇔ f (w) ∈ L, offensichtlich, selbes Problem mit
 lediglich anders notierter Eingabe
+\end{description}
+
+%%
+%
+%%
+
+\item[2. Alternative]
+
+Die Funktion f startet TM für L
+
+\begin{description}
+\item[Berechenbarkeit:]
+
+Identität, offensichtlich in Polyzeit
+
+\item[Korrektheit:]
+
+w ∈ Polyzeit SU BSET SU M ⇔ f (w) ∈ L offensichtlich, selbes Problem
+
+\end{description}
+
+\end{description}
 \end{liAntwort}
 
 \end{enumerate}

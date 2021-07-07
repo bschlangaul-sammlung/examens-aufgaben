@@ -1,0 +1,48 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Reduktion-Turingmaschine}
+\section{Reduktion-Turingmaschine
+\index{Polynomialzeitreduktion}
+\footcite[Aufgabe 10]{theo:ab:4}}
+
+\begin{description}
+%%
+% (a)
+%%
+
+\item Betrachten Sie das folgende Entscheidungsproblem:
+Eingabe: eine geeignete codierte Turingmaschine M
+Ausgabe: entscheiden, ob die Turingmaschine M auf jedes Eingabewort nach
+höchstens 42 Schritten hält.
+Ist dieses Problem entscheidbar? Beweisen Sie Ihre Antwort.
+
+\begin{liAntwort}
+M sei TM. M liest in jedem Schritt höchstens ein Zeichen der Eingabe.
+⇒Eingabe hat höchstens 42 Zeichen.
+⇒Menge der zu entscheidenden Wörter ist endlich.
+⇒Wir können alle Wörter der Sprache aufzählen und damit das Problem lösen.
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item Beweisen Sie mit Hilfe eines Reduktionsbeweises, dass das folgende Problem
+nicht entscheidbar ist:
+Eingabe: zwei (geeignetes codierte) Turingmaschinen M 1 und M 2 sowie ein Ein-
+gabewort ω
+Ausgabe: entscheiden, ob M 1 auf Eingabewort ω hält und M 2 auf ω nicht hält.
+
+\begin{liAntwort}
+Das beschriebene Problem sei H N .
+Die TM M N , die zu H N gehört, sei wie folgt deﬁniert:
+• Wir wählen eine zu ω passende TM M 0 aus dem Halteproblem H 0 aus, so dass
+M = (ω) hält.
+• Wir deﬁnieren eine TM M ⊥ , die zu keiner Eingabe hält.
+Dann ist für M N M 0 (w)\#M ⊥ (w) eine Möglichkeit für das Problem H N . Da aber H 0 nicht
+entscheidbar, so ist auch H N nicht entscheidbar.
+\end{liAntwort}
+
+\end{description}
+\end{document}
