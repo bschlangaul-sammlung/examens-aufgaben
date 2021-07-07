@@ -6,46 +6,66 @@
 \index{Polynomialzeitreduktion}
 \footcite{46115:2016:09}}
 
-Betrachte die beiden folgenden Probleme:
+Betrachten Sie die beiden folgenden Probleme:
 
-V ERT EXCOV ER
+\liPseudoUeberschrift{VERTEX COVER}
 
 \begin{description}
 \item[Gegeben:]
 
-Ein ungerichteter Graph G = (v, E) und eine Zahl k ∈ {1, 2, 3, ...}.
+Ein ungerichteter Graph $G = (V, E)$ und eine Zahl $k \in \{ 1, 2, 3,
+\dots \}$.
+
 \item[Frage:]
 
-Gibt es eine Menge C ⊆ V mit |C| ≤ k, so dass für jede Kante (u, v) aus E
-mindestens einer der Knoten u und v in C ist?
-V ERT EXCOV ER3
+Gibt es eine Menge $C \subseteq V$ mit $|C| \leq k$, so dass für jede
+Kante $(u, v)$ aus $E$ mindestens einer der Knoten $u$ und $v$ in $C$
+ist?
 \end{description}
 
+\liPseudoUeberschrift{VERTEX COVER 3}
+
 \begin{description}
 \item[Gegeben:]
 
-Ein ungerichteter Graph G = (v, E) und eine Zahl k ∈ {3, 4, 5, ...}.
+Ein ungerichteter Graph $G = (V, E)$ und eine Zahl $k \in \{ 3, 4, 5
+\dots \}$.
 
 \item[Frage:]
 
-Gibt es eine Menge C ⊆ V mit |C| ≤ k, so dass für jede Kante (u, v) aus E
-mindestens einer der Knoten u und v in C ist?
-Gib eine polynomielle Reduktion von V ERT EXCOV ER auf V ERT EXCOV ER3 an
-und begründe anschließend, dass die Reduktion korrekt ist.
+Gibt es eine Menge $C \subseteq V$ mit $|C| \leq k$, so dass für jede
+Kante $(u, v)$ aus $E$ mindestens einer der Knoten $u$ und $v$ in $C$
+ist?
+
+Geben Sie eine polynomielle Reduktion von \texttt{VERTEX COVER} auf
+\texttt{VERTEX COVER 3} an und begründe anschließend, dass die
+Reduktion korrekt ist.
 \end{description}
 \footcite[Seite 12, Aufgabe 13]{theo:ab:4}
 
 \begin{liAntwort}
 
-V ERT EXCOV ER ≤ p V ERT EXCOV ER3
+$\texttt{VERTEX COVER} \leq_p \texttt{VERTEX COVER 3}$
 
-f fügt vier neue Knoten, von denen jeweils ein Paar verbunden ist. Außerdem erhöht f k um 2.
+$f$ fügt vier neue Knoten hinzu, von denen jeweils ein Paar verbunden
+ist. Außerdem erhöht $f$ $k$ um $2$.
 
-Total: Jeder Graph kann durch f so verändert werden. Korrektheit: Wenn VC für k in G exis-
-tiert, dann existiert auch VC mit k + 2 Knoten in G 0 , da für den eingefügten Teilgraphen ein VC
-mit k = 2 existiert.
-In Polyzeit berechenbar: für Adjazenzmatrix müssen lediglich 4 neue Spalten/Zeilen ein-
+\begin{description}
+\item[Total:]
+
+Jeder Graph kann durch $f$ so verändert werden.
+
+\item[Korrektheit:]
+
+Wenn VC für k in G existiert, dann existiert auch VC mit $k + 2$ Knoten
+in G 0 , da für den eingefügten Teilgraphen ein VC mit $k = 2$
+existiert.
+
+\item[In Polyzeit berechenbar:]
+
+für Adjazenzmatrix müssen lediglich 4 neue Spalten/Zeilen ein-
 gefügt werden und k+2 berechnet werden.
+\end{description}
 
 \end{liAntwort}
 
