@@ -65,6 +65,8 @@
 %    \end{macrocode}
 % \end{macro}
 
+% Definition einer Komma-getrennten-Liste mit deren Hilfe die
+% vielen globalen Token-List-Variablen definiert werden können.
 %    \begin{macrocode}
 \clist_new:N \g_auf_schluessel_clist
 \clist_set:Nn \g_auf_schluessel_clist {
@@ -82,12 +84,15 @@
 }
 %    \end{macrocode}
 
+% Initialisierung der globalen Token-List-Variablen |\g_auf_***_tl|.
+% |auf| steht für Aufgabe.
 %    \begin{macrocode}
 \clist_map_inline:Nn \g_auf_schluessel_clist {
   \tl_new:c {g_auf_#1_tl}
 }
 %    \end{macrocode}
 
+% Funktion über alle globalen Token-List-Variablen zurückzusetzten.
 %    \begin{macrocode}
 \cs_new:Npn \_setze_variablen_zurueck: {
   \clist_map_inline:Nn \g_auf_schluessel_clist {

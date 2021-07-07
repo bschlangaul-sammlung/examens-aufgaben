@@ -1,0 +1,71 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-aufgaben-titel}[2020/07/07 Zum
+Setzen von Aufgaben-Titel.]
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+
+% \begin{macro}{\liAufgabenTitel}
+% Momentan eine dummy Makro das die Thematik enthält.
+%    \begin{macrocode}
+\def\liAufgabenTitel#1{
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liSetzeAufgabenTitel}
+% Setzen des Titels über eine plist bzw über key-values. Das Makro
+% sollte irgendwann einmal in |\liAufgabenTitel| umbenannt werden.
+%
+% Die Schlüssel-Werte-Paare sind in der Datei basis.sty definiert.
+%
+% \begin{verbatim}
+% \liSetzeAufgabenTitel{
+%   Titel = Aufgabe 2,
+%   Thematik = Petri-Netz,
+%   Fussnote = sosy:pu:4,
+%   RelativerPfad = Staatsexamen/46116/2016/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex,
+%   ExamenNummer = 46116,
+%   ExamenJahr = 2016,
+%   ExamenMonat = 03,
+%   ExamenThemaNr = 2,
+%   ExamenTeilaufgabeNr = 1,
+%   ExamenAufgabeNr = 2,
+% }
+% \end{verbatim}
+%    \begin{macrocode}
+\def\liSetzeAufgabenTitel#1{
+
+  \_setze_variablen_zurueck:
+
+  \tl_clear:N \g_auf_examen_teilaufgabe_nr_tl
+
+  \keys_set:nn { aufgabentitel } {
+    #1
+  }
+
+  \_setze_relativen_pfad:
+
+  \tl_if_empty:NTF \g_auf_titel_tl
+  {
+    \msg_fatal:nn { aufgabentitel } { kein-titel }
+  }
+  {
+  }
+
+  \_gib_examen_titel: {}
+
+  \section{\_gib_aufgaben_titel:}
+
+  \bigskip
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
+
+%    \begin{macrocode}

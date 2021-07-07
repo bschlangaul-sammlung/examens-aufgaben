@@ -6,7 +6,7 @@ Setzen von Aufgabensammlungen, Theorie-Zusammenfassungen etc.]
 \RequirePackage{lehramt-informatik-basis}
 
 % Paket „formatierung“ muss vor „literatur“ sein, sonst Option clash
-\liLadePakete{formatierung,literatur,makros}
+\liLadePakete{formatierung,literatur,makros,aufgabe-titel}
 \RequirePackage{standalone}
 
 % Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
