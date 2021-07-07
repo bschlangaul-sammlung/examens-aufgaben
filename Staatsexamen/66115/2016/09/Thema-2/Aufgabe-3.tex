@@ -1,0 +1,57 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{}
+\section{
+\index{Berechenbarkeit}
+\footcite{66115:2016:09}}
+
+Sei M 0 , M 1 , . . . eine Gödelisierung aller Registermaschinen (RAMs).
+Beantwor- ten Sie folgende Fragen zur Aufzählbarkeit und
+Entscheidbarkeit. Beweisen Sie Ihre Antwort.
+\footcite[Seite, Aufgabe 6]{theo:ab:4}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Ist folgende Menge entscheidbar?
+A = {x ∈ N|x = 100oderM x hält bei Eingabe x}
+
+\begin{liAntwort}
+Ja, x ≥ 100 ist entscheidbar und aufgrund des oder“ ist die 2. Bedingung
+nur für”x < 100 relevant. Da x < 100 eine endliche Menge darstellt, kann
+eine endliche Liste geführt werden und ein Experte kann für jeden Fall
+entscheiden, ob M x hält oder nicht, somit A entscheidbar.
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Ist folgende Menge entscheidbar?
+B = {(x, y) ∈ NxN|M x hält bei Eingabe x genau dann, wenn M y bei Eingabe
+y hält}
+
+\begin{liAntwort}
+Nein, Problem entspricht der parallelen Ausführung des Halteproblems auf
+2 Bändern. Das Halteproblem ist unentscheidbar, damit ist auch die
+parallele Ausfürhung des Halteproblems und damit B unentscheidbar.
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Ist folgende Menge aufzählbar?
+C = {x ∈ N|M x hält bei Eingabe 0 mit dem Ergebnis 1}
+
+\begin{liAntwort}
+Ja, aufzählbar, da Menge aller TM aufzählbar und über natürliche Zahlen
+deﬁniert (die wiederum aufzählbar sind).
+\end{liAntwort}
+\end{enumerate}
+
+\end{document}

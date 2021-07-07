@@ -1,0 +1,41 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{}
+\section{Aufgabe 4
+\index{Berechenbarkeit}
+\footcite{66115:2015:03}}
+
+Sei M 0 , M 1 , . . . eine Gödelisierung aller Registermaschinen (RAMs). Geben Sie
+für die folgenden Mengen D 1 , D 2 , D 3 an, ob sie entscheidbar oder aufzählbar
+sind. Begründen Sie Ihre Behauptungen, wobei Sie die Aufzählbarkeit und Un-
+entscheidbarkeit des speziellen Halteproblems
+K 0 = {x ∈ N|M x haelt bei Eingabe x}
+verwenden dürfen.
+D 1 = {x ∈ N|x < 9973und M x haelt bei Eingabe x}
+D 2 = {x ∈ N|x ≥ 9973und M x haelt bei Eingabe x}
+D 3 = {x ∈ N|M x haelt nicht bei Eingabe x}
+\footcite[Aufgabe 6]{theo:ab:4}
+
+\begin{liAntwort}
+D 1 ist eine endliche Menge und damit entscheidbar. Auch eine endliche
+Teilmenge des Halteproblems. Anschaulich kann man sich dies so
+verstellen: Man stellt dem Rechner eine Liste zur Verfügung, die alle
+haltenden Maschinen M x mit x < 9973 enthält. Diese Liste kann zum
+Beispiel vorab von einem Menschen erstellt worden sein, denn die Menge
+der zu prüfenden Programme ist endlich.
+
+D 2 x ≥ 9973 entscheidbar, L halt semi-entscheidbar → semi-entscheidbar
+(Hier wäre auch eine Argumentation über die Cantorsche Paarungsfunktion
+möglich). Es ist weiterhin nicht entscheidbar. Dazu betrachten wir dei
+Reduktin des speziel- len Halteproblems H 0 : H 0 ≤ D 2 Für alle x <
+9973 lassen wir M x durch eine Turingmaschine M y simulieren, die eine
+höhere Nummer hat.
+
+D 3 ist unentscheidbar, denn angenommen D 3 wäre semi-entscheidbar, dann
+würde sofort folgen, dass L halt entscheidbar ist, da aus der
+Semientscheidbarkeit von L halt und L halt die Entscheidbarkeit von L
+halt folgen würde
+\end{liAntwort}
+
+\end{document}
