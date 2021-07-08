@@ -1,6 +1,7 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{komplexitaetstheorie}
 \begin{document}
+\def\ssp{\liProblemName{SUBSET SUM}}
 \liAufgabenTitel{Raumausstattungsunternehmen}
 \section{Aufgabe 2
 \index{Komplexitätstheorie}
@@ -23,6 +24,10 @@ lautet die Antwort, dass das vorgelegte Problem NP-vollständig sei und
 daher nach derzeitigem Kenntnisstand der theoretischen Informatik nicht
 mehr zu erwarten sei.\footcite[Seite 15, Aufgabe 12]{theo:ab:4}
 
+\begin{liExkurs}[\ssp]
+\liSubsetSum
+\end{liExkurs}
+
 \begin{enumerate}
 
 %%
@@ -37,10 +42,10 @@ aussieht.
 Problem $L$
 \begin{description}
 \item[1. Alternative]
-$I = (x_1 , y_1 , \dots , x_n , y_n , c_x , c_y )$
+$I = \{ x_1, y_1, \dots, x_n, y_n, c_x, c_y \}$
 
 \item[2. Alternative]
-$I = (w_1 , \dots , w_n , c)$
+$I = \{ w_1, \dots, w_n, c \}$
 \end{description}
 \end{liAntwort}
 
@@ -51,18 +56,22 @@ $I = (w_1 , \dots , w_n , c)$
 \item Begründen Sie, dass das Problem in NP liegt.
 
 \begin{liAntwort}
-es existiert ein nichtdeterministischer Algorithmus in Polyzeit, der Problem entscheidet:
+Es existiert ein nichtdeterministischer Algorithmus der das Problem in
+Polynomialzeit entscheidet:
 
-• nichtdeterministisch Untermenge raten (O(n))
-• Prüfe: (O(n))
+\begin{itemize}
+\item nichtdeterministisch Untermenge raten ($\mathcal{O}(n)$)
+\item Prüfe: ($\mathcal{O}(n$))
+\end{itemize}
+
 \begin{description}
-\item[1. Alt]
+\item[1. Alternative]
 
-Elementsumme der Produkte (x i , y i ) aus Untermenge = c
+Elementsumme der Produkte ($x_i, y_i$) aus Untermenge $= c$
 
-\item[2. Alt]
+\item[2. Alternative]
 
-Elementsumme der Untermenge = c
+Elementsumme der Untermenge $= c$
 \end{description}
 \end{liAntwort}
 
@@ -75,7 +84,7 @@ NP-vollständigen Problem SUBSET-SUM.
 \index{Polynomialzeitreduktion}
 
 \begin{liAntwort}
-SU BSET SU M ≤ p L
+\liPolynomiellReduzierbar{\ssp}{L}
 
 \begin{description}
 
@@ -97,8 +106,8 @@ für jedes Element, offensichtlich in
 
 \item[Korrektheit:]
 
-w ∈ SU BSET SU M ⇔ f (w) ∈ L, offensichtlich, selbes Problem mit
-lediglich anders notierter Eingabe
+$w \in \ssp \Leftrightarrow f (w) \in L$, offensichtlich, selbes Problem
+mit lediglich anders notierter Eingabe
 \end{description}
 
 %%
@@ -107,16 +116,16 @@ lediglich anders notierter Eingabe
 
 \item[2. Alternative]
 
-Die Funktion f startet TM für L
+Die Funktion $f$ startet TM für $L$
 
 \begin{description}
 \item[Berechenbarkeit:]
 
-Identität, offensichtlich in Polyzeit
+Identität, offensichtlich in Polynomialzeit
 
 \item[Korrektheit:]
 
-w ∈ Polyzeit SU BSET SU M ⇔ f (w) ∈ L offensichtlich, selbes Problem
+$w \in \ssp \Leftrightarrow f (w) \in L$ offensichtlich, selbes Problem
 
 \end{description}
 

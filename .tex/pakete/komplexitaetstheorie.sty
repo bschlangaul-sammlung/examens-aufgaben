@@ -1,0 +1,78 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-komplexitaetstheorie}[2021/07/08 Zum
+Setzen von Karps NP-vollständigen Problemen, Hilfsmakros für die
+Polynomialzeitreduktion.]
+%    \end{macrocode}
+
+% \liLets{
+%   p = liProblemName,
+%   r = liPolynomiellReduzierbar,
+% }
+
+%    \begin{macrocode}
+\liLadePakete{mathe}
+%    \end{macrocode}
+
+% \begin{macro}{\liStrich}
+% |$L, \liStrich{L}$|: $L, \liStrich{L}$
+%    \begin{macrocode}
+\def\liStrich#1{#1^\prime}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liProblemName}
+% Zu Setzen von Problemnamen wie zum Beispiel SAT, COL, VERTEX COVER
+% \liLet{p}{liProblemName}
+%    \begin{macrocode}
+\def\liProblemName#1{\texttt{#1}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liPolynomiellReduzierbar}
+% \liLet{r}{liPolynomiellReduzierbar}
+%    \begin{macrocode}
+\NewDocumentCommand{ \liPolynomiellReduzierbar } { m O{p}  m } {
+\begin{displaymath}
+  \liProblemName{#1}
+  \preceq_{#2}
+  \liProblemName{#3}
+\end{displaymath}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liKarpVertexCover}
+%    \begin{macrocode}
+\def\liKarpVertexCover{%
+%
+Das Knotenüberdeckungsproblem (\liProblemName{VERTEX COVER}) fragt, ob
+zu einem gegebenen einfachen Graphen und einer natürlichen Zahl $k$ eine
+Knotenüberdeckung der Größe von höchstens $k$ existiert.
+\footcite{wiki:knotenueberdeckung}
+
+Das heißt, ob es eine aus maximal $k$ Knoten bestehende Teilmenge $U$
+der Knotenmenge gibt, so dass jede Kante des Graphen mit
+mindestens einem Knoten aus $U$ verbunden ist.
+\footcite[Seite 78]{theo:fs:4}%
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liSubsetSum}
+% Kein Karp-21-Problem
+%    \begin{macrocode}
+\def\liSubsetSum{%
+%
+Das Teilsummenproblem (\liProblemName{SUBSET SUM} oder
+\liProblemName{SSP}) ist ein spezielles Rucksackproblem.
+\footcite{wiki:teilsummenproblem}
+
+Gegeben sei eine Menge von ganzen Zahlen $I = \{w_1, w_2, \dots, w_n
+\}$. Gesucht ist eine Untermenge, deren Elementsumme maximal, aber nicht
+größer als eine gegebene obere Schranke $c$ ist.
+\footcite[Seite 74]{theo:fs:4}
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}

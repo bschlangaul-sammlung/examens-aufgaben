@@ -1,6 +1,9 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{komplexitaetstheorie}
 \begin{document}
+\def\vc{\liProblemName{VERTEX COVER}}
+\def\vcDrei{\liProblemName{VERTEX COVER 3}}
+
 \liAufgabenTitel{VertexCover}
 \section{Aufgabe 4
 \index{Polynomialzeitreduktion}
@@ -8,7 +11,11 @@
 
 Betrachten Sie die beiden folgenden Probleme:
 
-\liPseudoUeberschrift{VERTEX COVER}
+%%
+%
+%%
+
+\liPseudoUeberschrift{\vc}
 
 \begin{description}
 \item[Gegeben:]
@@ -23,7 +30,11 @@ Kante $(u, v)$ aus $E$ mindestens einer der Knoten $u$ und $v$ in $C$
 ist?
 \end{description}
 
-\liPseudoUeberschrift{VERTEX COVER 3}
+%%
+%
+%%
+
+\liPseudoUeberschrift{\vcDrei}
 
 \begin{description}
 \item[Gegeben:]
@@ -37,16 +48,24 @@ Gibt es eine Menge $C \subseteq V$ mit $|C| \leq k$, so dass für jede
 Kante $(u, v)$ aus $E$ mindestens einer der Knoten $u$ und $v$ in $C$
 ist?
 
-Geben Sie eine polynomielle Reduktion von \texttt{VERTEX COVER} auf
-\texttt{VERTEX COVER 3} an und begründe anschließend, dass die
+Geben Sie eine polynomielle Reduktion von \texttt{\vc} auf
+\texttt{\vcDrei} an und begründe anschließend, dass die
 Reduktion korrekt ist.
 \end{description}
 \footcite[Seite 12, Aufgabe 13]{theo:ab:4}
 
+\begin{liExkurs}[\vc]
+\liKarpVertexCover
+\end{liExkurs}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
 \begin{liAntwort}
+\liPolynomiellReduzierbar{\vc}{\vcDrei}
 
-$\texttt{VERTEX COVER} \leq_p \texttt{VERTEX COVER 3}$
-
+\noindent
 $f$ fügt vier neue Knoten hinzu, von denen jeweils ein Paar verbunden
 ist. Außerdem erhöht $f$ $k$ um $2$.
 
@@ -57,14 +76,14 @@ Jeder Graph kann durch $f$ so verändert werden.
 
 \item[Korrektheit:]
 
-Wenn VC für k in G existiert, dann existiert auch VC mit $k + 2$ Knoten
-in G 0 , da für den eingefügten Teilgraphen ein VC mit $k = 2$
-existiert.
+Wenn \vc{} für $k$ in $G$ existiert, dann existiert auch \vc{} mit $k +
+2$ Knoten in $G^\prime$, da für den eingefügten Teilgraphen ein \vc{}
+mit $k = 2$ existiert.
 
-\item[In Polyzeit berechenbar:]
+\item[In Polynomialzeit berechenbar:]
 
-für Adjazenzmatrix müssen lediglich 4 neue Spalten/Zeilen ein-
-gefügt werden und k+2 berechnet werden.
+Für die Adjazenzmatrix des Graphen müssen lediglich vier neue Spalten
+und Zeilen eingefügt werden und $k + 2$ berechnet werden.
 \end{description}
 
 \end{liAntwort}
