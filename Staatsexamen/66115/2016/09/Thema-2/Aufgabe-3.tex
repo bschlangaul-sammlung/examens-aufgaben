@@ -1,15 +1,38 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{mathe}
 \begin{document}
-\liAufgabenTitel{}
-\section{
+\liAufgabenTitel{Registermaschinen (RAMs)}
+\section{Aufgabe 3
 \index{Berechenbarkeit}
 \footcite{66115:2016:09}}
 
-Sei M 0 , M 1 , . . . eine Gödelisierung aller Registermaschinen (RAMs).
-Beantwor- ten Sie folgende Fragen zur Aufzählbarkeit und
+Sei $M_0, M_1, \dots$ eine Registermaschinen (RAMs).
+Beantworten Sie folgende Fragen zur Aufzählbarkeit und
 Entscheidbarkeit. Beweisen Sie Ihre Antwort.
-\footcite[Seite, Aufgabe 6]{theo:ab:4}
+\footcite[Seite 8, Aufgabe 6]{theo:ab:4}
+
+\begin{liExkurs}[Registermaschinen (RAMs)]
+Die Random Access Machine (kurz RAM) ist eine spezielle Art von
+Registermaschine. Sie hat die Fähigkeit der indirekten Adressierung der
+Register.
+
+Die Random Access Machine besteht aus:
+
+\begin{itemize}
+\item einem Programm bestehend aus endlich vielen durchnummerierten
+Befehlen (beginnend mit Nummer $1$)
+
+\item einem Befehlszähler $b$
+
+\item einem Akkumulator $c(0)$
+
+\item und einem unendlich großen Speicher aus durchnummerierten
+Speicherzellen (Registern) $c(1), c(2), c(3), \dots$
+\end{itemize}
+
+Jedes Register (einschließlich $b$ und $c(0)$) speichert eine beliebig
+große natürliche Zahl.\footcite{wiki:registermaschine}
+\end{liExkurs}
 
 \begin{enumerate}
 
@@ -18,13 +41,16 @@ Entscheidbarkeit. Beweisen Sie Ihre Antwort.
 %%
 
 \item Ist folgende Menge entscheidbar?
-A = {x ∈ N|x = 100oderM x hält bei Eingabe x}
+
+$A = \{ x \in \mathbb{N} \,|\, x = 100 \text{ oder } M_x \text{ hält bei Eingabe
+} x \}$
 
 \begin{liAntwort}
-Ja, x ≥ 100 ist entscheidbar und aufgrund des oder“ ist die 2. Bedingung
-nur für”x < 100 relevant. Da x < 100 eine endliche Menge darstellt, kann
-eine endliche Liste geführt werden und ein Experte kann für jeden Fall
-entscheiden, ob M x hält oder nicht, somit A entscheidbar.
+Ja, $x \geq 100$ ist entscheidbar und aufgrund des „oder“ ist die 2.
+Bedingung nur für $x < 100$ relevant. Da $x < 100$ eine endliche Menge
+darstellt, kann eine endliche Liste geführt werden und ein Experte kann
+für jeden Fall entscheiden, ob $M_x$ hält oder nicht, somit ist $A$
+entscheidbar.
 \end{liAntwort}
 
 %%
@@ -32,13 +58,25 @@ entscheiden, ob M x hält oder nicht, somit A entscheidbar.
 %%
 
 \item Ist folgende Menge entscheidbar?
-B = {(x, y) ∈ NxN|M x hält bei Eingabe x genau dann, wenn M y bei Eingabe
-y hält}
+
+$B = \{
+(x, y) \in \mathbb{N} \times \mathbb{N}
+\,| \,
+M_x
+\text{ hält bei Eingabe }
+x
+\text{ genau dann, wenn }
+M_y
+\text{ bei Eingabe }
+y
+\text{ hält}
+\}$
 
 \begin{liAntwort}
-Nein, Problem entspricht der parallelen Ausführung des Halteproblems auf
-2 Bändern. Das Halteproblem ist unentscheidbar, damit ist auch die
-parallele Ausfürhung des Halteproblems und damit B unentscheidbar.
+Nein. Dieses Problem entspricht der parallelen Ausführung des
+Halteproblems auf zwei Bändern. Das Halteproblem ist unentscheidbar,
+damit ist auch die parallele Ausfürhung des Halteproblems und damit $B$
+unentscheidbar.
 \end{liAntwort}
 
 %%
@@ -46,11 +84,21 @@ parallele Ausfürhung des Halteproblems und damit B unentscheidbar.
 %%
 
 \item Ist folgende Menge aufzählbar?
-C = {x ∈ N|M x hält bei Eingabe 0 mit dem Ergebnis 1}
+
+$C = \{
+x \in \mathbb{N}
+\,|\,
+M_x
+\text{ hält bei Eingabe }
+0
+\text{ mit dem Ergebnis }
+1
+\}$
 
 \begin{liAntwort}
-Ja, aufzählbar, da Menge aller TM aufzählbar und über natürliche Zahlen
-deﬁniert (die wiederum aufzählbar sind).
+Ja, die Menge ist aufzählbar, da die Menge aller Turningmaschinen
+aufzählbar und über natürliche Zahlen definiert ist (die wiederum
+aufzählbar sind).
 \end{liAntwort}
 \end{enumerate}
 
