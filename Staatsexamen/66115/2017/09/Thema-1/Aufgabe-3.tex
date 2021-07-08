@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe}
+\liLadePakete{komplexitaetstheorie}
 \begin{document}
 \liAufgabenTitel{}
 \section{Aufgabe 3
@@ -14,6 +14,23 @@
 Betrachten Sie die folgenden Probleme:
 \footcite[StEx F2016 T2 A3, StEx H2017 T1 A3 (Check-Up), Aufgabe 15]{theo:ab:4}
 
+\begin{liExkurs}[SAT]
+\liProblemSat
+\end{liExkurs}
+
+% https://www.informatik.hu-berlin.de/de/forschung/gebiete/algorithmenII/Lehre/ws09/theo2/skript/thi2-folien-np.pdf
+
+\begin{liExkurs}[NAE3SAT]
+Like 3-satisfiability, an instance of the problem consists of a
+collection of Boolean variables and a collection of clauses, each of
+which combines three variables or negations of variables. However,
+unlike 3-satisfiability, which requires each clause to have at least one
+true Boolean value, NAE3SAT requires that the three values in each
+clause are not all equal to each other (in other words, at least one is
+true, and at least one is false)
+\liFussnoteUrl{https://en.wikipedia.org/wiki/Not-all-equal_3-satisfiability}
+\end{liExkurs}
+
 %%
 %
 %%
@@ -23,12 +40,12 @@ Betrachten Sie die folgenden Probleme:
 \begin{description}
 \item[Gegeben:]
 
-Eine aussagenlogische Formel $\varpi$ in konjunktiver Normalform (drei
+Eine aussagenlogische Formel $\varphi$ in konjunktiver Normalform (drei
 Literale pro Klausel).
 
 \item[Frage:]
 
-Ist $\varpi$ erfüllbar?
+Ist $\varphi$ erfüllbar?
 \end{description}
 
 %%
@@ -40,18 +57,19 @@ Ist $\varpi$ erfüllbar?
 \begin{description}
 \item[Gegeben:]
 
-Eine aussagenlogische Formel $\varpi$ in konjunktiver Normalform
+Eine aussagenlogische Formel $\varphi$ in konjunktiver Normalform
 (drei Literale pro Klausel).
 
 \item[Frage:]
 
-Gibt es eine Belegung, die in jeder Klausel mindestens ein Literal wahr
-und mindestens ein Literal falsch macht?
+Gibt es eine Belegung, die in jeder Klausel mindestens ein Literal
+\emph{wahr} und mindestens ein Literal \emph{falsch} macht?
 
 \end{description}
 
+\noindent
 Wir erlauben, dass \texttt{NAE-3SAT}-Formeln Literale der Form
-$\text{false}$ haben, die immer falsch sind. So ist
+$\text{false}$ haben, die immer \emph{falsch} sind. So ist
 
 \begin{displaymath}
 (x_1 \lor \text{false} \lor \text{false})
@@ -69,6 +87,10 @@ in \texttt{NAE-3SAT} (setze $x_1$ wahr).
 \item Zeigen Sie, dass sich \texttt{3SAT} in polynomieller Zeit auf
 \texttt{NAE-3SAT} reduzieren lässt.
 
+\begin{liAntwort}
+text
+\end{liAntwort}
+
 %%
 % b)
 %%
@@ -76,12 +98,20 @@ in \texttt{NAE-3SAT} (setze $x_1$ wahr).
 \item Was können Sie aus a) folgern, wenn Sie wissen, dass \texttt{3SAT}
 NP-vollständig ist?
 
+\begin{liAntwort}
+text
+\end{liAntwort}
+
 %%
 % c)
 %%
 
 \item Was können Sie aus a) folgern, wenn Sie wissen, dass
 \texttt{NAE-3SAT} NF-vollständig ist?
+
+\begin{liAntwort}
+text
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}
