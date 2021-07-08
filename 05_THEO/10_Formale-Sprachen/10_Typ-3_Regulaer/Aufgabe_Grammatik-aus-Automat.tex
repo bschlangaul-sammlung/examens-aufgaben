@@ -4,19 +4,18 @@
 \liAufgabenTitel{Grammatik aus Automat}
 \section{Grammatik aus Automat
 \index{Reguläre Sprache}
-\footcite{theo:ab:1}}
+\footcite[Seite 4, Aufgabe 3]{theo:ab:1}}
 
-\liAutomat{}
-Sei \liAutomat{zustaende={Z_0, Z_1, Z_2}, alphabet={a, b}, ende={Z_2}} ein
+Sei \liAutomat{zustaende={z_0, z_1, z_2}, alphabet={a, b}, ende={z_2}} ein
 endlicher Automat. Die Übergangsfunktion sei wie in dem unten
 abgebildeten Diagramm definiert.
 \index{Deterministisch endlicher Automat (DEA)}
 
 \begin{center}
 \begin{tikzpicture}[li automat]
-  \node[state,initial] (z0) at (2.43cm,-5.14cm) {$Z_0$};
-  \node[state] (z1) at (6.29cm,-1.71cm) {$Z_1$};
-  \node[state,accepting] (z2) at (8.43cm,-5.57cm) {$Z_2$};
+  \node[state,initial] (z0) at (2.43cm,-5.14cm) {$z_0$};
+  \node[state] (z1) at (6.29cm,-1.71cm) {$z_1$};
+  \node[state,accepting] (z2) at (8.43cm,-5.57cm) {$z_2$};
 
   \path (z0) edge[auto] node{b} (z1);
   \path (z0) edge[auto,bend left] node{a} (z2);
@@ -67,8 +66,7 @@ Startzustand des Automaten.
 \liProduktionen{Z_i -> a Z_j} zu $P$ hinzu.
 
 \item Für jeden Zustand $Z_i \in Z$ füge die Produktion
-\liProduktionen{Z_i -> EPSILON}  zu P dazu.
-
+\liProduktionen{Z_i -> EPSILON} zu $P$ dazu.
 \end{itemize}
 \end{liAntwort}
 \end{enumerate}
