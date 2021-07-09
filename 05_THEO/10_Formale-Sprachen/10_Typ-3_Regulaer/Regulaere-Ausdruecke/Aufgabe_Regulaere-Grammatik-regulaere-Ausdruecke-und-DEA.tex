@@ -54,11 +54,11 @@ $V = \{S, A, B\}$,
 \liAlphabet{a, b},
 $S = S$ und mit
 
-Das Wort „b“ ist nicht in der Grammatik?
-
+% Lösung aus AB 1: Problem das Wort B ist nicht in der Sprache
+% S -> a S | b S | a B,
+% B -> b
 \begin{liProduktionsRegeln}
-S -> a S | b S | a A,
-A -> b
+S -> a S | b S | b
 \end{liProduktionsRegeln}
 \liFlaci{Gfdn0xhwg}
 
@@ -71,8 +71,6 @@ A -> b
 $= (V, \Sigma, P, S)$ mit
 $V = \{S, A, B, C, D, E\}$,
 \liAlphabet{a, b}, $S = S$ und mit
-
-Stimmt nicht. Wörter können auch mit b beginnen.
 
 \begin{liProduktionsRegeln}
 S -> a A | b C,
@@ -95,20 +93,26 @@ E -> b E | b | a D
 Syntaxbaum anhand der erstellten Grammatiken aus der Teilaufgabe a) an:
 \index{Ableitung (Reguläre Sprache)}
 
-\begin{itemize}
+\begin{enumerate}
 \item zum Wort \emph{abba} aus der Sprache $L_0$.
-\item zum Wort \emph{baab} aus der Sprache $L_1$.
-\item zum Wort \emph{aabb} aus der Sprache $L_2$.
-\end{itemize}
 
 \begin{liAntwort}
-\begin{description}
-\item[$\text{Ab}_0$] = \liAbleitung{S -> aS -> abA -> abbB -> aabb}
-\item[$\text{Ab}_1$] = \liAbleitung{S -> bA -> baS -> baaS -> baab}
-\item[$\text{Ab}_2$] = \liAbleitung{S -> aA -> aaB -> aabB -> aabb}
-\end{description}
-
+\liAbleitung{S -> aS -> abA -> abbB -> aabb}
 \end{liAntwort}
+
+\item zum Wort \emph{baab} aus der Sprache $L_1$.
+
+\begin{liAntwort}
+\liAbleitung{S -> bS -> baS -> baaS -> baab}
+\end{liAntwort}
+
+\item zum Wort \emph{aabb} aus der Sprache $L_2$.
+
+\begin{liAntwort}
+\liAbleitung{S -> aA -> aaB -> aabB -> aabb}
+\end{liAntwort}
+\end{enumerate}
+
 %%
 % (c)
 %%
@@ -120,7 +124,8 @@ Syntaxbaum anhand der erstellten Grammatiken aus der Teilaufgabe a) an:
 \begin{description}
 \item[$\text{Reg}_0$] $=$ \texttt{(a|b)*bb(a|b)*}
 
-\item[$\text{Reg}_1$] $=$ \texttt{(b*a+)*b}
+% AB 1: (b*a+)*b
+\item[$\text{Reg}_1$] $=$ \texttt{(b|a)*b}
 
 \item[$\text{Reg}_2$] $=$ \texttt{(aa(a|b)*)|((a|b)*bb)}
 \end{description}
@@ -159,20 +164,112 @@ akzeptiert.
 
 \begin{liAntwort}
 \begin{center}
-% Automatisch generiert mit Flaci
 \begin{tikzpicture}[li automat]
-  \node[state,initial] (z0) at (1.57cm,-2.71cm) {$z_0$};
-  \node[state] (z1) at (5cm,-2.86cm) {$z_1$};
-  \node[state,accepting] (z2) at (4.43cm,-0.86cm) {$z_2$};
+  \node[state,initial] (z0) at (2.14cm,-2.14cm) {$z_0$};
+  \node[state,accepting] (z1) at (5.43cm,-2.14cm) {$z_1$};
 
   \path (z0) edge[auto,loop above] node{$a$} (z0);
   \path (z0) edge[auto,bend left] node{$b$} (z1);
   \path (z1) edge[auto,bend left] node{$a$} (z0);
-  \path (z1) edge[auto] node{$b$} (z2);
+  \path (z1) edge[auto,loop above] node{$b$} (z1);
+\end{tikzpicture}
+\end{center}
+\liFlaci{A53w3wec9}
+\end{liAntwort}
+
+\item[Automat (NEA mit $\varepsilon$-Übergängen) zu $L_2$]:
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[li automat]
+  \node[state,initial] (z0) at (4.14cm,-3.43cm) {$z_0$};
+  \node[state] (z1) at (6.14cm,-2.43cm) {$z_1$};
+  \node[state] (z4) at (6.14cm,-4.57cm) {$z_4$};
+  \node[state] (z2) at (8cm,-2.43cm) {$z_2$};
+  \node[state,accepting] (z3) at (10.14cm,-2.43cm) {$z_3$};
+  \node[state] (z5) at (8.14cm,-4.57cm) {$z_5$};
+  \node[state,accepting] (z6) at (10.14cm,-4.57cm) {$z_6$};
+
+  \path (z0) edge[auto] node{$\varepsilon$} (z1);
+  \path (z0) edge[auto] node{$\varepsilon$} (z4);
+  \path (z1) edge[auto] node{$a$} (z2);
+  \path (z4) edge[auto,loop above] node{$a,b$} (z4);
+  \path (z4) edge[auto] node{$b$} (z5);
+  \path (z2) edge[auto] node{$a$} (z3);
+  \path (z3) edge[auto,loop above] node{$a,b$} (z3);
+  \path (z5) edge[auto] node{$b$} (z6);
+\end{tikzpicture}
+\end{center}
+\liFlaci{Aj5awmjba}
+\end{liAntwort}
+
+\item[Teil-Automat (DEA Wort beginnt mit zwei a) zu $L_2$]:
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[li automat]
+  \node[state,initial] (z0) at (2.71cm,-5.29cm) {$z_0$};
+  \node[state] (z1) at (5.29cm,-5.29cm) {$z_1$};
+  \node[state] (z3) at (2.71cm,-2.86cm) {$z_3$};
+  \node[state,accepting] (z2) at (7.71cm,-5.29cm) {$z_2$};
+
+  \path (z0) edge[auto] node{$a$} (z1);
+  \path (z0) edge[auto] node{$b$} (z3);
+  \path (z1) edge[auto] node{$a$} (z2);
+  \path (z1) edge[auto] node{$b$} (z3);
+  \path (z3) edge[auto,loop above] node{$a,b$} (z3);
   \path (z2) edge[auto,loop above] node{$a,b$} (z2);
 \end{tikzpicture}
 \end{center}
-\liFlaci{Aiq4rcc1c}
+\liFlaci{Apu1c40a9}
+\end{liAntwort}
+
+\item[Teil-Automat (DEA Wort endet auf zwei b) zu $L_2$]:
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[li automat]
+  \node[state] (z5) at (6.71cm,-2.57cm) {$z_5$};
+  \node[state,accepting] (z4) at (2.43cm,-6.57cm) {$z_4$};
+  \node[state,initial] (z3) at (6.86cm,-6.71cm) {$z_3$};
+
+  \path (z5) edge[auto,bend left] node{$b$} (z3);
+  \path (z5) edge[auto,loop above] node{$a$} (z5);
+  \path (z4) edge[auto,loop above] node{$b$} (z4);
+  \path (z4) edge[auto] node{$a$} (z5);
+  \path (z3) edge[auto] node{$b$} (z4);
+  \path (z3) edge[auto,bend left] node{$a$} (z5);
+\end{tikzpicture}
+\end{center}
+\liFlaci{Aj541j43w}
+\end{liAntwort}
+
+\item[Automat (DEA) zu $L_2$]:
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[li automat]
+  \node[state,initial] (z0) at (2.57cm,-8.43cm) {$z_0$};
+  \node[state] (z5) at (5.43cm,-2.29cm) {$z_5$};
+  \node[state] (z3) at (5.29cm,-5.29cm) {$z_3$};
+  \node[state,accepting] (z4) at (2.29cm,-5.29cm) {$z_4$};
+  \node[state,accepting] (z2) at (7.71cm,-8.43cm) {$z_2$};
+  \node[state] (z1) at (5.29cm,-8.43cm) {$z_1$};
+
+  \path (z0) edge[auto] node{$a$} (z1);
+  \path (z0) edge[auto] node{$b$} (z3);
+  \path (z5) edge[auto,loop above] node{$a$} (z5);
+  \path (z5) edge[auto,bend left] node{$b$} (z3);
+  \path (z3) edge[auto,bend left] node{$a$} (z5);
+  \path (z3) edge[auto] node{$b$} (z4);
+  \path (z4) edge[auto] node{$a$} (z5);
+  \path (z4) edge[auto,loop above] node{$b$} (z4);
+  \path (z2) edge[auto,loop above] node{$a,b$} (z2);
+  \path (z1) edge[auto] node{$a$} (z2);
+  \path (z1) edge[auto] node{$b$} (z3);
+\end{tikzpicture}
+\end{center}
+\liFlaci{A5ocw5ac2}
 \end{liAntwort}
 
 \end{description}
