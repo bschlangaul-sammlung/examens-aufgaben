@@ -1,5 +1,12 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe,automaten,formale-sprachen,minimierung}
+\liLadePakete{
+  mathe,
+  automaten,
+  formale-sprachen,
+  minimierung,
+  potenzmengen-konstruktion
+}
+
 \begin{document}
 \def\z#1{$z_#1$}
 \let\f=\liFussnote
@@ -10,16 +17,16 @@
 \liAufgabenTitel{NEA und Minimalisierung}
 \section{Aufgabe 1
 \index{Potenzmengenalgorithmus}
-\footcite{theo:ab:1}}
+\footcite[Aufgabe 6]{theo:ab:1}}
 
-Wir fixieren das Alphabet $\Sigma = \{a, b\}$ und definieren $L
-\subseteq \Sigma^∗$ durch
+Wir fixieren das Alphabet \liAlphabet{a, b} und definieren $L
+\subseteq \Sigma^*$ durch
 
 \begin{center}
-$L = \{ w \,|\, \text{in } w \text{ kommt das Teilwort
-\texttt{bab} vor} \}$
+\liAusdruck{w}{\text{in } w \text{ kommt das Teilwort \texttt{bab} vor}}
 \end{center}
 
+\noindent
 \zB ist \texttt{babaabb} $\in L$, aber
 \texttt{baabaabb} $\notin L$. Der folgende nichtdeterministische
 Automat $A$ erkennt $L$:\footcite{examen:66115:2012:09}

@@ -1,12 +1,12 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe,formale-sprachen}
+\liLadePakete{mathe,formale-sprachen,automaten}
 \begin{document}
 \liAufgabenTitel{Reguläre Grammatik, reguläre Ausdrücke und DEA}
 \section{Reguläre Grammatik, reguläre Ausdrücke und DEA
 \index{Reguläre Sprache}
-\footcite{theo:ab:1}}
+\footcite[Aufgabe 2]{theo:ab:1}}
 
-Gegeben sind die folgenden Sprachen über dem Alphabet $\Sigma = \{a, b\}$:
+Gegeben sind die folgenden Sprachen über dem Alphabet \liAlphabet{a, b}:
 
 \begin{itemize}
 \item \liAusdruck[L_0]{w}{w \text{ enthält mindestens ein \emph{bb}}}
@@ -19,7 +19,7 @@ Gegeben sind die folgenden Sprachen über dem Alphabet $\Sigma = \{a, b\}$:
 % (a)
 %%
 
-\item Gib zu allen Sprachen eine reguläre Grammatik an.
+\item Geben Sie zu allen Sprachen eine reguläre Grammatik an.
 \index{Reguläre Grammatik}
 
 \begin{liAntwort}
@@ -33,14 +33,15 @@ Gegeben sind die folgenden Sprachen über dem Alphabet $\Sigma = \{a, b\}$:
 
 $= (V, \Sigma, P, S)$ mit
 $V = \{S, A, B\}$,
-$\Sigma = \{a, b\}$,i
+\liAlphabet{a, b},
 $S = S$ und mit
 
 \begin{liProduktionsRegeln}
-S -> aS | bA,
-A -> aS | bB | b,
-B -> aB | a | bB | b
+S -> a S | b A,
+A -> a S | b B | b,
+B -> a B | a | b B | b
 \end{liProduktionsRegeln}
+\liFlaci{Gjp92ri0w}
 
 %%
 %
@@ -50,14 +51,16 @@ B -> aB | a | bB | b
 
 $= (V, \Sigma, P, S)$ mit
 $V = \{S, A, B\}$,
-$\Sigma = \{a, b\}$,
+\liAlphabet{a, b},
 $S = S$ und mit
 
+Das Wort „b“ ist nicht in der Grammatik?
+
 \begin{liProduktionsRegeln}
-S -> aS | bA | b,
-A -> aS | bB,
-B -> aS | bB
+S -> a S | b S | a A,
+A -> b
 \end{liProduktionsRegeln}
+\liFlaci{Gfdn0xhwg}
 
 %%
 %
@@ -67,16 +70,19 @@ B -> aS | bB
 
 $= (V, \Sigma, P, S)$ mit
 $V = \{S, A, B, C, D, E\}$,
-$\Sigma = \{a, b\}$, $S = S$ und mit
+\liAlphabet{a, b}, $S = S$ und mit
+
+Stimmt nicht. Wörter können auch mit b beginnen.
 
 \begin{liProduktionsRegeln}
-S -> aA | bC,
-A -> aB | a | bC,
-B -> aB | a | bB | b,
-C -> aD | bE | b,
-D -> bC | aD,
-E -> bE | b | aD
+S -> a A | b C,
+A -> a B | a | b C,
+B -> a B | a | b B | b,
+C -> a D | b E | b,
+D -> b C | a D,
+E -> b E | b | a D
 \end{liProduktionsRegeln}
+\liFlaci{Gib1z1cwi}
 
 \end{description}
 \end{liAntwort}
@@ -85,8 +91,8 @@ E -> bE | b | aD
 % (b)
 %%
 
-\item Gib zu den folgenden Wörtern eine Ableitung bzw. einen Syntaxbaum
-anhand der erstellten Grammatiken aus der Teilaufgabe a) an:
+\item Geben Sie zu den folgenden Wörtern eine Ableitung bzw. einen
+Syntaxbaum anhand der erstellten Grammatiken aus der Teilaufgabe a) an:
 \index{Ableitung (Reguläre Sprache)}
 
 \begin{itemize}
@@ -97,9 +103,9 @@ anhand der erstellten Grammatiken aus der Teilaufgabe a) an:
 
 \begin{liAntwort}
 \begin{description}
-\item[$Ab_0$] = S $\rightarrow$ aS $\rightarrow$ abA $\rightarrow$ abbB $\rightarrow$ aabb
-\item[$Ab_1$] = S $\rightarrow$ bA $\rightarrow$ baS $\rightarrow$ baaS $\rightarrow$ baab
-\item[$Ab_2$] = S $\rightarrow$ aA $\rightarrow$ aaB $\rightarrow$ aabB $\rightarrow$ aabb
+\item[$\text{Ab}_0$] = \liAbleitung{S -> aS -> abA -> abbB -> aabb}
+\item[$\text{Ab}_1$] = \liAbleitung{S -> bA -> baS -> baaS -> baab}
+\item[$\text{Ab}_2$] = \liAbleitung{S -> aA -> aaB -> aabB -> aabb}
 \end{description}
 
 \end{liAntwort}
@@ -107,16 +113,16 @@ anhand der erstellten Grammatiken aus der Teilaufgabe a) an:
 % (c)
 %%
 
-\item Gib zu allen Sprachen einen regulären Ausdruck an.
+\item Geben Sie zu allen Sprachen einen regulären Ausdruck an.
 \index{Reguläre Ausdrücke}
 
 \begin{liAntwort}
 \begin{description}
-\item[$Reg_0$] $=$ \texttt{(a|b)*bb(a|b)*}
+\item[$\text{Reg}_0$] $=$ \texttt{(a|b)*bb(a|b)*}
 
-\item[$Reg_1$] $=$ \texttt{(b*a+)*b}
+\item[$\text{Reg}_1$] $=$ \texttt{(b*a+)*b}
 
-\item[$Reg_2$] $=$ \texttt{(aa(a|b)*)|((a|b)*bb)}
+\item[$\text{Reg}_2$] $=$ \texttt{(aa(a|b)*)|((a|b)*bb)}
 \end{description}
 \end{liAntwort}
 
@@ -124,9 +130,52 @@ anhand der erstellten Grammatiken aus der Teilaufgabe a) an:
 % (d)
 %%
 
-\item Gib zu allen Sprachen einen Automaten an, der die Sprache
+\item Geben Sie zu allen Sprachen einen Automaten an, der die Sprache
 akzeptiert.
 \index{Deterministisch endlicher Automat (DEA)}
+
+\begin{description}
+
+\item[Automat zu $L_0$]:
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[li automat]
+  \node[state,initial] (z0) at (2.29cm,-2.14cm) {$z_0$};
+  \node[state] (z1) at (4.71cm,-2.14cm) {$z_1$};
+  \node[state,accepting] (z2) at (7cm,-2.14cm) {$z_2$};
+
+  \path (z0) edge[auto,bend left] node{$b$} (z1);
+  \path (z0) edge[auto,loop above] node{$a$} (z0);
+  \path (z1) edge[auto] node{$b$} (z2);
+  \path (z1) edge[auto,bend left] node{$a$} (z0);
+  \path (z2) edge[auto,loop above] node{$a,b$} (z2);
+\end{tikzpicture}
+\end{center}
+\liFlaci{Af75ihbc7}
+\end{liAntwort}
+
+\item[Automat zu $L_1$]:
+
+\begin{liAntwort}
+\begin{center}
+% Automatisch generiert mit Flaci
+\begin{tikzpicture}[li automat]
+  \node[state,initial] (z0) at (1.57cm,-2.71cm) {$z_0$};
+  \node[state] (z1) at (5cm,-2.86cm) {$z_1$};
+  \node[state,accepting] (z2) at (4.43cm,-0.86cm) {$z_2$};
+
+  \path (z0) edge[auto,loop above] node{$a$} (z0);
+  \path (z0) edge[auto,bend left] node{$b$} (z1);
+  \path (z1) edge[auto,bend left] node{$a$} (z0);
+  \path (z1) edge[auto] node{$b$} (z2);
+  \path (z2) edge[auto,loop above] node{$a,b$} (z2);
+\end{tikzpicture}
+\end{center}
+\liFlaci{Aiq4rcc1c}
+\end{liAntwort}
+
+\end{description}
 
 \end{enumerate}
 \end{document}

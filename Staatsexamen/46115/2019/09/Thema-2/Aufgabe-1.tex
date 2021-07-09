@@ -1,15 +1,25 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{formale-sprachen,automaten}
+\liLadePakete{
+  formale-sprachen,
+  automaten,
+  potenzmengen-konstruktion,
+}
 \begin{document}
 \let\m=\liMenge
 
 \liAufgabenTitel{Komplemetieren eines NEA}
-\section{Aufgabe 1 (Komplemetieren eines NEA)
+\section{Aufgabe 1
 \index{Potenzmengenalgorithmus}
 \footcite{46115:2019:09}}
 
-Es sei der nichtdeterministische endliche Automat $A = (\m{a, b},\, \m{1,
-2, 3, 4, 5},\, \delta,\, 1,\, \m{4, 5})$ gegeben, wobei $\delta$ durch
+Es sei der nichtdeterministische endliche Automat
+\liAutomat{
+  alphabet={a, b},
+  zustaende={1, 2, 3, 4, 5},
+  ende={4, 5},
+  start={1},
+}
+gegeben, wobei $\delta$ durch
 folgenden Zeichnung beschrieben ist.
 \footcite[Seite 17, Aufgabe 11]{theo:ab:1}
 \index{Nichtdeterministisch endlicher Automat (NEA)}
@@ -41,6 +51,10 @@ Automaten $A'$ , der das Komplement von $L(A)$ akzeptiert!
 \index{Deterministisch endlicher Automat (DEA)}
 
 \begin{liAntwort}
+Zuerst mit Hilfe der Potenzmengenkonstruktion einen deterministischen
+endlichen Automaten erstellen und dann die Zustände mit den Endzuständen
+tauschen.
+
 \def\z#1{
   \liZustandsMengenSammlung{#1}{
     {
