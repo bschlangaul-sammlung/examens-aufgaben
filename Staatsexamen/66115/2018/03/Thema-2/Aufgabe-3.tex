@@ -6,12 +6,11 @@
 \index{Reguläre Sprache}
 \footcite{66115:2018:03}}
 
-Gesucht ist eine reguläre Sprache $C \in \{a, b\}^∗$, deren minimaler
+Gesucht ist eine reguläre Sprache $C \subseteq \{a, b\}^*$, deren minimaler
 deterministischer endlicher Automat (DEA) mindestens 4 Zustände mehr
 besitzt als der minimale nichtdeterministische endliche Automat (NEA).
 Gehen Sie wie folgt vor:
-
-\footcite{theo:ab:1}
+\footcite[Seite 23, Aufgabe 13]{theo:ab:1}
 
 \begin{enumerate}
 
@@ -19,7 +18,7 @@ Gehen Sie wie folgt vor:
 % (a)
 %%
 
-\item Definieren Sie $C \in \{a, b\}$ und erklären Sie kurz, warum es
+\item Definieren Sie $C \subseteq \{a, b\}^*$ und erklären Sie kurz, warum es
 bei dieser Sprache NEAs gibt, die deutlich kleiner als der minimale DEA
 sind.
 
@@ -29,7 +28,7 @@ Sprache mit exponentiellem Blow-Up:
 Ein NEA der Sprache
 
 \begin{align*}
-L_k &= \{ xay | x, y \in \{a, b\}^* \land |y| = k − 1 \}\\
+L_k &= \{ xay \, | \, x, y \in \{a, b\}^* \land |y| = k - 1 \}\\
     &= \{ w \in \{a, b\}^* | \text{ der k-te Buchstabe von hinten ist ein } a\}\\
 \end{align*}
 
@@ -52,12 +51,45 @@ dass er sich immer die letzten n Symbole merken muss.
 \item Geben Sie den minimalen DEA $M$ für $C$ an.
 (Zeichnung des DEA genügt; die Minimalität muss nicht begründet werden.)
 
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[li automat]
+  \node[state,initial] (z0) at (2.14cm,-2.14cm) {$z_0$};
+  \node[state,accepting] (z1) at (2cm,-7cm) {$z_1$};
+  \node[state,accepting] (z2) at (10.43cm,-2.14cm) {$z_2$};
+  \node[state,accepting] (z3) at (8cm,-5cm) {$z_3$};
+  \node[state] (z4) at (8cm,-2.14cm) {$z_4$};
+  \node[state] (z5) at (5.14cm,-2.14cm) {$z_5$};
+  \node[state,accepting] (z6) at (10.43cm,-7cm) {$z_6$};
+  \node[state] (z7) at (5.14cm,-5cm) {$z_7$};
+
+  \path (z0) edge[auto] node{$a$} (z5);
+  \path (z0) edge[auto,loop above] node{$b$} (z0);
+  \path (z1) edge[auto] node{$b$} (z0);
+  \path (z1) edge[auto] node{$a$} (z5);
+  \path (z2) edge[auto,loop above] node{$a$} (z2);
+  \path (z2) edge[auto] node{$b$} (z6);
+  \path (z3) edge[auto] node{$a$} (z4);
+  \path (z3) edge[auto,bend left] node{$b$} (z7);
+  \path (z4) edge[auto] node{$a$} (z2);
+  \path (z4) edge[auto] node{$b$} (z6);
+  \path (z5) edge[auto] node{$a$} (z4);
+  \path (z5) edge[auto] node{$b$} (z7);
+  \path (z6) edge[auto] node{$b$} (z1);
+  \path (z6) edge[auto] node{$a$} (z3);
+  \path (z7) edge[auto] node{$b$} (z1);
+  \path (z7) edge[auto,bend left] node{$a$} (z3);
+\end{tikzpicture}
+\end{center}
+\liFlaci{Ahhefpjir}
+\end{liAntwort}
+
 %%
 % (c)
 %%
 
-\item Geben Sie einen NEA N für $C$ an, der mindestens 4 Zustände
-weniger besitzt als $M$. (Zeichnung des DEA genügt)
+\item Geben Sie einen NEA $N$ für $C$ an, der mindestens $4$ Zustände
+weniger besitzt als $M$. (Zeichnung des NEA genügt)
 
 \begin{liAntwort}
 \begin{center}
@@ -73,6 +105,7 @@ weniger besitzt als $M$. (Zeichnung des DEA genügt)
 \path (0) edge[loop,above] node{a,b} (0);
 \end{tikzpicture}
 \end{center}
+\liFlaci{Ajrz7h5r7}
 \end{liAntwort}
 \end{enumerate}
 \end{document}

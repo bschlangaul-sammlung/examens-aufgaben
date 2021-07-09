@@ -2236,10 +2236,16 @@ $\liMengeOhneMathe{#1}$%
 % Link zur flaci.com Website: |\liFlaci{Grxk1oczg}|: \liFlaci{Grxk1oczg}
 %    \begin{macrocode}
 \def\liFlaci#1{%
+  \par
   {%
-    \footnotesize%
+  \scriptsize
+  \baselineskip=1mm
+    Der Automat auf flaci.com
+    (FLACI: Formale Sprachen, abstrakte  Automaten, Compiler und Interpreter)
+    Ein Projekt der Hochschule Zittau/Görlitz und der Pädagogischen Hochschule Schwyz:
     \href{https://flaci.com/#1}{flaci.com/#1}%
   }%
+  \par
 }
 %    \end{macrocode}
 % \end{macro}
@@ -2292,41 +2298,35 @@ $\liMengeOhneMathe{#1}$%
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-formatierung}[2020/11/27]
+%    \end{macrocode}
 
-%\RequirePackage{fontspec}
-% http://www.tug.org/pracjourn/2006-1/hartke/hartke.pdf
-%\usepackage{mathpple}
-%\usepackage{palatino}
-%\setmainfont{Palatino}
-
+% \subsubsection{Schriftarten / Typographie}
+%    \begin{macrocode}
 \RequirePackage{mathpazo}
 \RequirePackage[no-math]{fontspec}
 \setmainfont{texgyrepagella}
 \setsansfont{QTAncientOlive}
 \RequirePackage{sectsty}
 \allsectionsfont{\fontspec{QTAncientOlive}}
+%    \end{macrocode}
 
-%-----------------------------------------------------------------------
-% Farben
-%-----------------------------------------------------------------------
-
+% \subsubsection{Farben}
+%    \begin{macrocode}
 \RequirePackage{xcolor}
 \definecolor{infogray}{rgb}{0.97,0.97,0.97}
+%    \end{macrocode}
 
-%-----------------------------------------------------------------------
-% Überschriften
-%-----------------------------------------------------------------------
-
+% \subsubsection{Überschriften}
+%    \begin{macrocode}
 \RequirePackage{titlesec}
 \titleformat{\chapter}[display]{\sffamily\bfseries}{}{0pt}{\LARGE}
 \titlespacing{\chapter}{0pt}{0pt}{*1}
 \titleformat{\paragraph}[hang]{\sffamily\normalsize\bfseries}{\theparagraph}{1em}{}
 \setcounter{secnumdepth}{0}
+%    \end{macrocode}
 
-%-----------------------------------------------------------------------
-% Listen
-%-----------------------------------------------------------------------
-
+% \subsubsection{Listen}
+%    \begin{macrocode}
 \RequirePackage{paralist}
 \renewcommand\labelitemi{-}
 \renewcommand\labelitemii{-}
@@ -2336,24 +2336,26 @@ $\liMengeOhneMathe{#1}$%
 % Styles: \arabic{counter} \alph{counter} \Alph{counter} \roman{counter} \Roman{counter}
 \renewcommand{\labelenumi}{(\alph{enumi})}
 \renewcommand{\labelenumii}{(\roman{enumii})}
+%    \end{macrocode}
 
-%-----------------------------------------------------------------------
-% mdframed
-%-----------------------------------------------------------------------
-
+% \subsubsection{Kasten}
+%    \begin{macrocode}
 \RequirePackage{mdframed}
 \mdfsetup{backgroundcolor=infogray}
+%    \end{macrocode}
 
-%-----------------------------------------------------------------------
-% geometry
-%-----------------------------------------------------------------------
+% \begin{environment}{liKasten}
+%    \begin{macrocode}
+\NewDocumentEnvironment { liKasten }{ } {
+  \begin{mdframed}[backgroundcolor=white!0]
+} {
+  \end{mdframed}
+}
+%    \end{macrocode}
+% \end{environment}
 
-%\RequirePackage[margin=3cm]{geometry}
-
-%-----------------------------------------------------------------------
-% fancyhdr
-%-----------------------------------------------------------------------
-
+% \subsubsection{Header}
+%    \begin{macrocode}
 \RequirePackage{fancyhdr}
 \fancyhead[L,C,R]{}
 \fancyfoot[L]{}
@@ -2362,6 +2364,9 @@ $\liMengeOhneMathe{#1}$%
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{gantt.sty}

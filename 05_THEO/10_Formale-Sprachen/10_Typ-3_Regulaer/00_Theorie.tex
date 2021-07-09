@@ -15,7 +15,7 @@
 %
 %-----------------------------------------------------------------------
 
-\section{Grammatik reguläre Sprachen}
+\section{Grundbegriffe}
 
 \begin{description}
 \item[Alphabete]
@@ -41,14 +41,15 @@ gebildet werden kann, ist wie folgt definiert:
 \dh $a \in \Sigma^*$.
 
 \item Werden bereits konstruierte Wörter hintereinandergeschrieben,
-entstehen neue Wörter, \dh sind $v, w \in Σ^*$ , dann ist auch ihre
-Verkettung (Konkatenation) $v, w \in Σ^*$ .
+entstehen neue Wörter, \dh sind $v, w \in \Sigma^*$, dann ist auch ihre
+Verkettung (Konkatenation) $v, w \in \Sigma^*$ .
 
 \item $\varepsilon$ (epsilon), das leere Wort, ist ein Wort über (jedem
-Alphabet) $\Sigma$, \dh es gilt immer $\varepsilon \in Σ^*$. $\varepsilon$
-ist ein definiertes Wort ohne „Ausdehnung“. Es hat die Eigenschaft:
-$\varepsilon w = w \varepsilon = w$ für alle $w \in Σ^*$. Manchmal wird für
-das leere Wort auch das Symbol $\lambda$ (lambda) verwendet.
+Alphabet) $\Sigma$, \dh es gilt immer $\varepsilon \in \Sigma^*$.
+$\varepsilon$ ist ein definiertes Wort ohne „Ausdehnung“. Es hat die
+Eigenschaft: $\varepsilon w = w \varepsilon = w$ für alle $w \in
+\Sigma^*$. Manchmal wird für das leere Wort auch das Symbol $\lambda$
+(lambda) verwendet.
 \end{enumerate}
 
 Mit $\Sigma^+$ bezeichnen wir die Menge aller Wörter über $\Sigma$ ohne
@@ -56,6 +57,7 @@ das leere Wort, \dh $\Sigma^+ = \Sigma^∗ - \{ \varepsilon \}$.
 \footcite[Seite 16]{vossen}
 \end{description}
 
+\noindent
 Sei $\Sigma$ ein Alphabet. Eine formale Sprache $L$ ist eine Teilmenge
 aller Wörter über $\Sigma$:
 
@@ -63,9 +65,12 @@ aller Wörter über $\Sigma$:
 L \subseteq \Sigma^*
 \end{displaymath}
 
-\bigskip
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
 
-\noindent
+\section{Grammatik}
+
 Eine Grammatik ist ein 4-Tupel mit \liGrammatik{} und besteht aus:
 
 \begin{itemize}
@@ -77,39 +82,72 @@ Eine Grammatik ist ein 4-Tupel mit \liGrammatik{} und besteht aus:
 \item Der endlichen Menge an \memph{Produktionen}
 
 \item Und einer \memph{Startvariablen} $S$ mit $S \in V$
+\footcite[Seite 17]{theo:fs:1}
 \end{itemize}
 
-%----------------------------------------------------------------------
+%%
 %
-%-----------------------------------------------------------------------
+%%
 
-\section{Beispiel:}
+\begin{liKasten}
+\subsection{Beispiel}
 
 \liGrammatik{} mit
 
-$V = \{Z, A\}$
+\begin{itemize}
+\item $V = \{Z, A\}$
 
-\liAlphabet{0, 1}
+\item \liAlphabet{0, 1}
 
-\begin{liProduktionsRegeln}
-Z -> 1 a | 1,
+\item \begin{liProduktionsRegeln}
+Z -> 1 A | 1,
 A -> 1 A | 0 A | 1
 \end{liProduktionsRegeln}
+\end{itemize}
+
+\bigskip
+
+oder
+
+\bigskip
+\noindent
+\liGrammatik{variablen={Z, A}, alphabet={0, 1}, produktionen={Z -> 1 A | 1,
+A -> 1 A | 0 A | 1}}
+\end{liKasten}
 
 Eine reguläre Sprache wird durch eine reguläre Grammatik erzeugt, \dh
 eine Grammatik mit Produktionsregeln der Form:
 
-$A \rightarrow \varepsilon$ oder $A \rightarrow 1$ oder $A \rightarrow 0A$
+\liProduktionen{A -> EPSILON} oder
+\liProduktionen{A -> 1} oder
+\liProduktionen{A -> 0 A}
 
-linke Seite: ein Nonterminal rechte Seite: $\varepsilon$ oder ein Terminal
-oder ein Terminal gefolgt von einem Nonterminal
+\begin{description}
+\item[linke Seite:]
+
+ein Nonterminal
+
+\item[rechte Seite:]
+
+$\varepsilon$ oder ein Terminal oder ein Terminal gefolgt von einem
+Nonterminal
+\end{description}
 
 Man spricht hierbei auch von rechtslinearer Grammatik (es gibt auch
-linkslineare Grammatiken)
+linkslineare Grammatiken)\footcite[Seite 18]{theo:fs:1}
 
-\liGrammatik{variablen={Z, A}, alphabet={0, 1}, start=Z}
+%%
+%
+%%
 
-Syntaxbaum zu 100101
+\subsection{Syntax-Baum}
+
+Gegebene Grammatik: \liGrammatik{variablen={Z, A}, alphabet={0, 1}, produktionen={Z -> 1 A | 1,
+A -> 1 A | 0 A | 1}}
+
+\noindent
+Syntaxbaum zum Wort „100101“:
+
 \begin{center}
 \begin{tikzpicture}[level distance=0.7cm]
 \Tree [.Z
@@ -162,27 +200,33 @@ Grammatik gibt. Ansonsten heißt $L$ mehrdeutig.
 %
 %-----------------------------------------------------------------------
 
-\section{Äquivalenzklassen (nach Myhill, Nerode)\footcite{theo:fs:}}
+\section{Äquivalenzklassen (nach Myhill, Nerode)
+\footcite[Seite 60]{theo:fs:1}}
 
 Zwei Wörter $x, y \in \Sigma^*$ sind äquivalent bzgl. einer Sprache $L$,
-wenn für alle $z \in Σ^*$ gilt:
+wenn für alle $z \in \Sigma^*$ gilt:
 
-$xz \in L <=> yz \in L$
+\begin{displaymath}
+x z \in L \Leftrightarrow y z \in L
+\end{displaymath}
+\footcite{wiki:nerode-relation}
 
-Eine Sprache $L$ ist genau dann regulär, wenn sie endlich viele
-Äquivalenzklassen erzeugt.
+Eine Sprache $L$ ist genau dann regulär, wenn sie \memph{endlich viele
+Äquivalenzklassen} erzeugt.\footcite{wiki:satz-myhill-nerode}
 
-Die Anzahl der Äquivalenzklassen einer Sprache entspricht der
-minimalen Anzahl von Zustanden eines DEA, der diese Sprache
-erkennt. (Darauf fußt der Minimalisierungsalgorithmus.)
+Die \memph{Anzahl der Äquivalenzklassen} einer Sprache entspricht der
+\memph{minimalen Anzahl von Zustanden} eines deterministen-endlichen
+Automaten, der diese Sprache erkennt. Darauf fußt der
+Minimalisierungsalgorithmus.
 
+\begin{liKasten}
 \subsection{Beispiel zu Äquivalenzklassen}
 
 $(1|11|111)0^*$ sind alle Binärzahlen, die mit einer, zwei oder drei
 Einsen beginnen, gefolgt von beliebig vielen Nullen.
 
 \begin{enumerate}
-\item Sind x=1 und y=10 in der selben Äquivalenzklasse?
+\item Sind $x=1$ und $y=10$ in der selben Äquivalenzklasse?
 
 Nein, denn anfügen von $z=1$:
 
@@ -203,19 +247,21 @@ Nein, denn anfügen von $z=11$:
 
 \item Sind $x=10$ und $y=110$ in der selben Äquivalenzklasse?
 
-Ja, fügt man nur 0en an, sind die Wörter in $L$, fügt man auch 1en an,
-sind sie nicht in $L$.
+Ja, fügt man nur $0$en an, sind die Wörter in $L$, fügt man auch $1$en
+an, sind sie nicht in $L$.
 \end{enumerate}
+\end{liKasten}
 
-\subsection{Äquivalente Zustände}
+\subsection{Äquivalente Zustände
+\footcite[Seite 62]{theo:fs:1}}
 
-Zwei Zustande $z$, $z'$ eines deterministischen Automaten sind
+Zwei Zustände $z$, $z^\prime$ eines deterministischen Automaten sind
 äquivalent, wenn für alle möglichen Eingaben der Automat entweder in
-beiden Fallen in einen (nicht notwendig gleichen) Endzustand oder in
-beiden Fallen in einen (nicht notwendig gleichen) Nicht-Endzustand
-übergeht.
-
-Äquivalente Zustände können zu einem Zustand verschmolzen
+\memph{beiden Fallen} in einen (nicht notwendig gleichen)
+\memph{Endzustand} oder in beiden Fallen in einen (nicht notwendig
+gleichen) \memph{Nicht-Endzustand} übergeht.
+%
+Äquivalente Zustände können \memph{zu einem Zustand verschmolzen}
 werden.
 
 %-----------------------------------------------------------------------
