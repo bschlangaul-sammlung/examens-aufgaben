@@ -25,10 +25,10 @@
 
 Die Sprache $L$ über den Alphabet \liAlphabet{0, 1} enthält alle Wörter,
 bei denen beim Lesen von links nach rechts der Unterschied in der Zahl
-der $0$en und $1$en stets höchstens 3 ist. Also ist $w \in L$ genau
+der $0$en und $1$en stets höchstens $3$ ist. Also ist $w \in L$ genau
 dann, wenn für alle $u$, $v$ mit $w = uv$ gilt $||u|_0 - |u|_1| \leq 3$.
 Erinnerung: $|w|_a$ bezeichnet die Zahl der $a$’s im Wort $w$.
-\footcite[Aufgabe 10: StEx Frühjahr 2015, Thema 1, Aufgabe 1 (Check-Up)]{theo:ab:1}
+\footcite[Aufgabe 10]{theo:ab:1}
 
 \begin{enumerate}
 
@@ -44,15 +44,16 @@ Folgern Sie, dass der Automat mindestens sieben Zustände haben muss.
 Schreiben Sie Ihr Argumentation schlüssig und vollständig auf.
 
 \begin{liAntwort}
-Ein deterministischen endlicher Automat hat keinen zusätzlichen Speicher
-zur Verfügung, in dem die Anzahl der bisher vorkommenden $0$ und $1$
-gespeichert werden könnte. Ein DEA kann die von der Sprache benötigten
-Anzahl an $0$ und $1$ nur in Form von Zustanden speichern. Um die Anzahl
-von 3 Einsen bzw. 3 Nullen zu speichern, sind also 6 Zustände nötig.
+Ein deterministischer endlicher Automat hat keinen zusätzlichen Speicher
+zur Verfügung, in dem die Anzahl der bisher vorkommenden Einsen und
+Nullen gespeichert werden könnte. Ein deterministischer endlicher
+Automat kann die von der Sprache benötigten Anzahl an Einsen und Nullen
+nur in Form von Zustanden speichern. Um die Anzahl von $3$ Einsen bzw.
+$3$ Nullen zu speichern, sind also 6 Zustände nötig.
 
 Die Wörter $01$ oder $0011$ oder $0101$ etc. haben eine Differenz von
-$0$, wenn die Anzahl an $0$ und $1$ abzogen wird. Um auch diese Wörter
-darstellen zu können, ist mindestens ein weiterer Zustand nötig.
+$0$, wenn die Anzahl an Nullen und Einsen abzogen wird. Um auch diese
+Wörter darstellen zu können, ist mindestens ein weiterer Zustand nötig.
 \end{liAntwort}
 
 %%
@@ -161,7 +162,7 @@ Automaten mit nur drei Zuständen an, $L_2$ erkennt.
 \path (0) edge[above] node{$1$} (1);
 \path (1) edge[above] node{$0$,$1$} (2);
 \end{tikzpicture}
-%\liFlaci{Apwzjufbg}
+\liFlaci{Apwzjufbg}
 \end{center}
 \end{liAntwort}
 

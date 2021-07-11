@@ -103,6 +103,7 @@
   formale-sprachen,
   gantt,
   graph,
+  komplexitaetstheorie,
   makros,
   master-theorem,
   mathe,
@@ -276,6 +277,10 @@ Setzen von Aufgaben-Titel.]
 %    \end{macrocode}
 
 % \subsubsection{Endlicher Automat}
+
+%    \begin{macrocode}
+\liLadePakete{formale-sprachen}
+%    \end{macrocode}
 
 % \begin{verbatim}
 % \begin{tikzpicture}[li automat]
@@ -2231,10 +2236,16 @@ $\liMengeOhneMathe{#1}$%
 % Link zur flaci.com Website: |\liFlaci{Grxk1oczg}|: \liFlaci{Grxk1oczg}
 %    \begin{macrocode}
 \def\liFlaci#1{%
+  \par
   {%
-    \footnotesize%
+  \scriptsize
+  \baselineskip=1mm
+    Der Automat auf flaci.com
+    (FLACI: Formale Sprachen, abstrakte  Automaten, Compiler und Interpreter)
+    Ein Projekt der Hochschule Zittau/Görlitz und der Pädagogischen Hochschule Schwyz:
     \href{https://flaci.com/#1}{flaci.com/#1}%
   }%
+  \par
 }
 %    \end{macrocode}
 % \end{macro}
@@ -2287,41 +2298,35 @@ $\liMengeOhneMathe{#1}$%
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-formatierung}[2020/11/27]
+%    \end{macrocode}
 
-%\RequirePackage{fontspec}
-% http://www.tug.org/pracjourn/2006-1/hartke/hartke.pdf
-%\usepackage{mathpple}
-%\usepackage{palatino}
-%\setmainfont{Palatino}
-
+% \subsubsection{Schriftarten / Typographie}
+%    \begin{macrocode}
 \RequirePackage{mathpazo}
 \RequirePackage[no-math]{fontspec}
 \setmainfont{texgyrepagella}
 \setsansfont{QTAncientOlive}
 \RequirePackage{sectsty}
 \allsectionsfont{\fontspec{QTAncientOlive}}
+%    \end{macrocode}
 
-%-----------------------------------------------------------------------
-% Farben
-%-----------------------------------------------------------------------
-
+% \subsubsection{Farben}
+%    \begin{macrocode}
 \RequirePackage{xcolor}
 \definecolor{infogray}{rgb}{0.97,0.97,0.97}
+%    \end{macrocode}
 
-%-----------------------------------------------------------------------
-% Überschriften
-%-----------------------------------------------------------------------
-
+% \subsubsection{Überschriften}
+%    \begin{macrocode}
 \RequirePackage{titlesec}
 \titleformat{\chapter}[display]{\sffamily\bfseries}{}{0pt}{\LARGE}
 \titlespacing{\chapter}{0pt}{0pt}{*1}
 \titleformat{\paragraph}[hang]{\sffamily\normalsize\bfseries}{\theparagraph}{1em}{}
 \setcounter{secnumdepth}{0}
+%    \end{macrocode}
 
-%-----------------------------------------------------------------------
-% Listen
-%-----------------------------------------------------------------------
-
+% \subsubsection{Listen}
+%    \begin{macrocode}
 \RequirePackage{paralist}
 \renewcommand\labelitemi{-}
 \renewcommand\labelitemii{-}
@@ -2331,24 +2336,26 @@ $\liMengeOhneMathe{#1}$%
 % Styles: \arabic{counter} \alph{counter} \Alph{counter} \roman{counter} \Roman{counter}
 \renewcommand{\labelenumi}{(\alph{enumi})}
 \renewcommand{\labelenumii}{(\roman{enumii})}
+%    \end{macrocode}
 
-%-----------------------------------------------------------------------
-% mdframed
-%-----------------------------------------------------------------------
-
+% \subsubsection{Kasten}
+%    \begin{macrocode}
 \RequirePackage{mdframed}
 \mdfsetup{backgroundcolor=infogray}
+%    \end{macrocode}
 
-%-----------------------------------------------------------------------
-% geometry
-%-----------------------------------------------------------------------
+% \begin{environment}{liKasten}
+%    \begin{macrocode}
+\NewDocumentEnvironment { liKasten }{ } {
+  \begin{mdframed}[backgroundcolor=white!0]
+} {
+  \end{mdframed}
+}
+%    \end{macrocode}
+% \end{environment}
 
-%\RequirePackage[margin=3cm]{geometry}
-
-%-----------------------------------------------------------------------
-% fancyhdr
-%-----------------------------------------------------------------------
-
+% \subsubsection{Header}
+%    \begin{macrocode}
 \RequirePackage{fancyhdr}
 \fancyhead[L,C,R]{}
 \fancyfoot[L]{}
@@ -2357,6 +2364,9 @@ $\liMengeOhneMathe{#1}$%
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{gantt.sty}
@@ -2672,6 +2682,104 @@ von Hanoi-Grafiken]
       \li@minc pos[\j]+={.5}
     }
   \end{tikzpicture}
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+
+%    \end{macrocode}
+% \subsection{komplexitaetstheorie.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-komplexitaetstheorie}[2021/07/08 Zum
+Setzen von Karps NP-vollständigen Problemen, Hilfsmakros für die
+Polynomialzeitreduktion.]
+%    \end{macrocode}
+
+% \liLets{
+%   p = liProblemName,
+%   r = liPolynomiellReduzierbar,
+% }
+
+%    \begin{macrocode}
+\liLadePakete{mathe}
+%    \end{macrocode}
+
+% \begin{macro}{\liStrich}
+% |$L, \liStrich{L}$|: $L, \liStrich{L}$
+%    \begin{macrocode}
+\def\liStrich#1{#1^\prime}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liProblemName}
+% Zu Setzen von Problemnamen wie zum Beispiel SAT, COL, VERTEX COVER
+% \liLet{p}{liProblemName}
+%    \begin{macrocode}
+\def\liProblemName#1{\texttt{#1}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liPolynomiellReduzierbar}
+% \liLet{r}{liPolynomiellReduzierbar}
+%    \begin{macrocode}
+\NewDocumentCommand{ \liPolynomiellReduzierbar } { m O{p}  m } {
+\begin{displaymath}
+  \liProblemName{#1}
+  \preceq_{#2}
+  \liProblemName{#3}
+\end{displaymath}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liProblemVertexCover}
+%    \begin{macrocode}
+\def\liProblemVertexCover{%
+%
+Das \textbf{Knotenüberdeckungsproblem} (\liProblemName{VERTEX COVER})
+fragt, ob zu einem gegebenen einfachen Graphen und einer natürlichen
+Zahl $k$ eine Knotenüberdeckung der Größe von höchstens $k$ existiert.
+\footcite{wiki:knotenueberdeckung}
+
+Das heißt, ob es eine aus maximal $k$ Knoten bestehende Teilmenge $U$
+der Knotenmenge gibt, so dass jede Kante des Graphen mit
+mindestens einem Knoten aus $U$ verbunden ist.
+\footcite[Seite 78]{theo:fs:4}%
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liProblemSubsetSum}
+% Kein Karp-21-Problem
+%    \begin{macrocode}
+\def\liProblemSubsetSum{%
+%
+Das \textbf{Teilsummenproblem} (\liProblemName{SUBSET SUM} oder
+\liProblemName{SSP}) ist ein spezielles Rucksackproblem.
+\footcite{wiki:teilsummenproblem}
+Gegeben sei eine Menge von ganzen Zahlen $I = \{w_1, w_2, \dots, w_n
+\}$. Gesucht ist eine Untermenge, deren Elementsumme maximal, aber nicht
+größer als eine gegebene obere Schranke $c$ ist.
+\footcite[Seite 74]{theo:fs:4}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liProblemSubsetSum}
+% Kein Karp-21-Problem
+%    \begin{macrocode}
+\def\liProblemSat{%
+Das \textbf{Erfüllbarkeitsproblem der Aussagenlogik} \liProblemName{SAT}
+und \liProblemName{k-SAT} mit $k \geq 3$, $k \in \mathbb{N}$ (Satz von
+Cook) fragt, ob eine aussagenlogische Formel erfüllbar
+ist.\footcite{wiki:sat} Das Erfüllbarkeitsproblem der
+\emph{Aussagenlogik} ist in exponentieller Zeit in Abhängigkeit der
+Anzahl der Variablen mit Hilfe einer Wahrheitstabelle entscheidbar.
+Diese \emph{Wahrheitstabelle} kann nicht in polynomieller Zeit
+aufgestellt werden.
+\footcite[Seite 71]{theo:fs:4}
 }
 %    \end{macrocode}
 % \end{macro}

@@ -1,12 +1,78 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{graph}
 \begin{document}
+% delta oder dijkstra „schwarz“
+\def\D#1#2#3{\textbf{(#1, #2, #3)}}
+% „grau“
+\def\d#1#2#3{(#1, #2, #3)}
+% update
+\def\u#1#2#3{(#1, \textcolor{blue}{\textbf{#2}}, \textcolor{blue}{\textbf{#3}})}
+% select
+\def\s#1{\textbf{[}#1\textbf{]}}
+
 \liAufgabenTitel{Negative Kantengewichte}
 \section{Aufgabe 9:
 \index{Algorithmus von Dijkstra}
 \footcite{66115:2018:03}}
 
 Gegeben sei folgender Graph $G$.
+
+\begin{liGraphenFormat}
+s: -1 0
+a: 6 0
+b: 0 -1
+c: 4 0
+d: 1 2
+e: 2 0
+f: 6 2
+g: 2 -2
+h: -2 -2
+a -- c: 4
+a -- f: 9
+b -- e: 6
+b -- g: 4
+b -- s: 3
+c -- d: 7
+c -- e: 5
+c -- f: 1
+d -- e: 3
+d -- f: 4
+d -- s: 8
+e -- g: 4
+e -- s: 13
+g -- h: 3
+h -- s: 5
+\end{liGraphenFormat}
+
+\begin{center}
+\begin{tikzpicture}[li graph]
+\node (a) at (6,0) {a};
+\node (b) at (0,-1) {b};
+\node (c) at (4,0) {c};
+\node (d) at (1,2) {d};
+\node (e) at (2,0) {e};
+\node (f) at (6,2) {f};
+\node (g) at (2,-2) {g};
+\node (h) at (-2,-2) {h};
+\node (s) at (-1,0) {s};
+
+\path[li graph kante] (a) edge node {4} (c);
+\path[li graph kante] (a) edge node {9} (f);
+\path[li graph kante] (b) edge node {6} (e);
+\path[li graph kante] (b) edge node {4} (g);
+\path[li graph kante] (b) edge node {3} (s);
+\path[li graph kante] (c) edge node {7} (d);
+\path[li graph kante] (c) edge node {5} (e);
+\path[li graph kante] (c) edge (f);
+\path[li graph kante] (d) edge node {3} (e);
+\path[li graph kante] (d) edge node {4} (f);
+\path[li graph kante] (d) edge node {8} (s);
+\path[li graph kante] (e) edge node {4} (g);
+\path[li graph kante] (e) edge node {13} (s);
+\path[li graph kante] (g) edge node {3} (h);
+\path[li graph kante] (h) edge node {5} (s);
+\end{tikzpicture}
+\end{center}
 
 \begin{enumerate}
 
@@ -29,6 +95,193 @@ den entstandenen Wegebaum, \dh den Graphen $G$, in dem nur noch
 diejenigen Kanten vorkommen, die Teil der kürzesten Wege von $s$ zu
 allen anderen Knoten sind.
 
+\begin{liAntwort}
+\begin{tabular}{l|l|l}
+Nr & „schwarze“ Knoten & „graue“ Randknoten \\\hline
+1 & \D s - 0 &
+\scriptsize
+% a
+\s{\d b s 3}
+% c
+\d d s 8
+\d e s {13}
+% f
+% g
+\d h s 5
+% \D s - 0
+\\
+
+2 & \D b s 3 &
+\scriptsize
+% a
+% \D b s 3
+% c
+\d d s 8
+\u e b 9
+% f
+\d g b 7
+\s{\d h s 5}
+% \D s - 0
+\\
+
+3 & \D h s 5 &
+\scriptsize
+% a
+% \D b s 3
+% c
+\d d s 8
+\d e b 9
+% f
+\s{\d g b 7}
+% \D h s 5
+% \D s - 0
+\\
+
+4 & \D g b 7 &
+\scriptsize
+% a
+% \D b s 3
+% c
+\s{\d d s 8}
+\d e b 9
+% f
+% \D g b 7
+% \D h s 5
+% \D s - 0
+\\
+
+5 & \D d s 8 &
+\scriptsize
+% a
+% \D b s 3
+\d c d {15}
+% \D d s 8
+\s{\d e b 9}
+\d f d {12}
+% \D g b 7
+% \D h s 5
+% \D s - 0
+\\
+
+6 & \D e b 9 &
+\scriptsize
+% a
+% \D b s 3
+\u c e {14}
+% \D d s 8
+% \D e b 9
+\s{\d f d {12}}
+% \D g b 7
+% \D h s 5
+% \D s - 0
+\\
+
+7 & \D f d {12} &
+\scriptsize
+\d a f {21}
+% \D b s 3
+\s{\u c f {13}}
+% \D d s 8
+% \D e b 9
+% \D f d {12}
+% \D g b 7
+% \D h s 5
+% \D s - 0
+\\
+
+8 & \D c f {13} &
+\scriptsize
+\s{\u a c {17}}
+% \D b s 3
+% \D c f {13}
+% \D d s 8
+% \D e b 9
+% \D f d {12}
+% \D g b 7
+% \D h s 5
+% \D s - 0
+\\
+
+9 & \D a c {17} &
+\scriptsize
+% \D a c {21}
+% \D b s 3
+% \D c f {13}
+% \D d s 8
+% \D e b 9
+% \D f d {12}
+% \D g b 7
+% \D h s 5
+% \D s - 0
+\\
+
+\end{tabular}
+
+\begin{center}
+\begin{tikzpicture}[li graph]
+\node (a) at (6,0) {a};
+\node (b) at (0,-1) {b};
+\node (c) at (4,0) {c};
+\node (d) at (1,2) {d};
+\node (e) at (2,0) {e};
+\node (f) at (6,2) {f};
+\node (g) at (2,-2) {g};
+\node (h) at (-2,-2) {h};
+\node (s) at (-1,0) {s};
+
+\path[li graph kante] (a) edge node {4} (c);
+% \path[li graph kante] (a) edge node {9} (f);
+\path[li graph kante] (b) edge node {6} (e);
+\path[li graph kante] (b) edge node {4} (g);
+\path[li graph kante] (b) edge node {3} (s);
+% \path[li graph kante] (c) edge node {7} (d);
+% \path[li graph kante] (c) edge node {5} (e);
+\path[li graph kante] (c) edge (f);
+% \path[li graph kante] (d) edge node {3} (e);
+\path[li graph kante] (d) edge node {4} (f);
+\path[li graph kante] (d) edge node {8} (s);
+% \path[li graph kante] (e) edge node {4} (g);
+% \path[li graph kante] (e) edge node {13} (s);
+% \path[li graph kante] (g) edge node {3} (h);
+\path[li graph kante] (h) edge node {5} (s);
+\end{tikzpicture}
+\end{center}
+
+\end{liAntwort}
+
+\liPseudoUeberschrift{Alternativer Lösungsweg}
+
+\begin{liAntwort}
+\begin{tabular}{lllllllllll}
+\bf{Nr.}     & \bf{besucht} & \bf{a}       & \bf{b}       & \bf{c}       & \bf{d}       & \bf{e}       & \bf{f}       & \bf{g}       & \bf{h}       & \bf{s}       \\
+\hline
+0            &              & $\infty$     & $\infty$     & $\infty$     & $\infty$     & $\infty$     & $\infty$     & $\infty$     & $\infty$     & 0            \\
+1            & s            & $\infty$     & 3            & $\infty$     & 8            & 13           & $\infty$     & $\infty$     & 5            & \bf{0}       \\
+2            & b            & $\infty$     & \bf{3}       & $\infty$     & 8            & 9            & $\infty$     & 7            & 5            & |            \\
+3            & h            & $\infty$     & |            & $\infty$     & 8            & 9            & $\infty$     & 7            & \bf{5}       & |            \\
+4            & g            & $\infty$     & |            & $\infty$     & 8            & 9            & $\infty$     & \bf{7}       & |            & |            \\
+5            & d            & $\infty$     & |            & 15           & \bf{8}       & 9            & 12           & |            & |            & |            \\
+6            & e            & $\infty$     & |            & 14           & |            & \bf{9}       & 12           & |            & |            & |            \\
+7            & f            & 21           & |            & 13           & |            & |            & \bf{12}      & |            & |            & |            \\
+8            & c            & 17           & |            & \bf{13}      & |            & |            & |            & |            & |            & |            \\
+9            & a            & \bf{17}      & |            & |            & |            & |            & |            & |            & |            & |            \\
+\end{tabular}
+
+\begin{tabular}{llll}
+\bf{nach}                                                         & \bf{Entfernung}                                                   & \bf{Reihenfolge}                                                  & \bf{Pfad}                                                         \\
+\hline
+s  $\rightarrow$  a                                               & 17                                                                & 9                                                                 & s $\rightarrow$ d $\rightarrow$ f $\rightarrow$ c $\rightarrow$ a \\
+s  $\rightarrow$  b                                               & 3                                                                 & 2                                                                 & s $\rightarrow$ b                                                 \\
+s  $\rightarrow$  c                                               & 13                                                                & 8                                                                 & s $\rightarrow$ d $\rightarrow$ f $\rightarrow$ c                 \\
+s  $\rightarrow$  d                                               & 8                                                                 & 5                                                                 & s $\rightarrow$ d                                                 \\
+s  $\rightarrow$  e                                               & 9                                                                 & 6                                                                 & s $\rightarrow$ b $\rightarrow$ e                                 \\
+s  $\rightarrow$  f                                               & 12                                                                & 7                                                                 & s $\rightarrow$ d $\rightarrow$ f                                 \\
+s  $\rightarrow$  g                                               & 7                                                                 & 4                                                                 & s $\rightarrow$ b $\rightarrow$ g                                 \\
+s  $\rightarrow$  h                                               & 5                                                                 & 3                                                                 & s $\rightarrow$ h                                                 \\
+s  $\rightarrow$  s                                               & 0                                                                 & 1                                                                 &                                                                   \\
+\end{tabular}
+\end{liAntwort}
+
 %%
 % b)
 %%
@@ -46,6 +299,39 @@ negativen Kantengewichten unter Umständen ein falsches Ergebnis.
 der Dijkstra-Algorithmus ausgehend von einem von Ihnen ausgezeichneten
 Startknoten ein korrektes Ergebnis liefert.
 
+\begin{liAntwort}
+Startknoten a
+
+\begin{liGraphenFormat}
+a: 0 0
+b: 2 2
+c: 4 0
+a -- b: 10
+b -- c: -9
+a -- c: 2
+\end{liGraphenFormat}
+\begin{tikzpicture}[li graph]
+\node (a) at (0,0) {a};
+\node (b) at (2,2) {b};
+\node (c) at (4,0) {c};
+
+\path[li graph kante] (a) edge node {10} (b);
+\path[li graph kante] (a) edge node {2} (c);
+\path[li graph kante] (b) edge node {-7} (c);
+\end{tikzpicture}
+
+\begin{tabular}{lllll}
+\bf{Nr.}     & \bf{besucht} & \bf{a}       & \bf{b}       & \bf{c}       \\
+\hline
+0            &              & 0            & $\infty$     & $\infty$     \\
+1            & a            & \bf{0}       & 10           & 2            \\
+2            & c            & |            & 10           & \bf{2}       \\
+3            & b            & |            & \bf{10}      & |            \\
+\end{tabular}
+
+Richtig: a - c: 2
+\end{liAntwort}
+
 %%
 % ii)
 %%
@@ -53,6 +339,39 @@ Startknoten ein korrektes Ergebnis liefert.
 \item Geben Sie einen Graphen mit negativen Kantengewichten an, sodass
 der Dijkstra-Algorithmus ausgehend von einem von Ihnen ausgezeichneten
 Startknoten ein falsches Ergebnis liefert.
+
+\begin{liAntwort}
+Startknoten a
+
+\begin{liGraphenFormat}
+a: 0 0
+b: 2 2
+c: 4 0
+a -- b: 10
+b -- c: -9
+a -- c: 2
+\end{liGraphenFormat}
+\begin{tikzpicture}[li graph]
+\node (a) at (0,0) {a};
+\node (b) at (2,2) {b};
+\node (c) at (4,0) {c};
+
+\path[li graph kante] (a) edge node {10} (b);
+\path[li graph kante] (a) edge node {2} (c);
+\path[li graph kante] (b) edge node {-9} (c);
+\end{tikzpicture}
+
+\begin{tabular}{lllll}
+\bf{Nr.}     & \bf{besucht} & \bf{a}       & \bf{b}       & \bf{c}       \\
+\hline
+0            &              & 0            & $\infty$     & $\infty$     \\
+1            & a            & \bf{0}       & 10           & 2            \\
+2            & c            & |            & 10           & \bf{2}       \\
+3            & b            & |            & \bf{10}      & |            \\
+\end{tabular}
+
+falsch: a - c: müsste 1 (10 - 9) sein.
+\end{liAntwort}
 \end{enumerate}
 
 Ein Beweis oder eine Begründung ist jeweils nicht erforderlich.
