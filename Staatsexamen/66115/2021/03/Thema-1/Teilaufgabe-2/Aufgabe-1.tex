@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe}
+\liLadePakete{mathe,pseudo}
 \begin{document}
 \liAufgabenTitel{Sortieren}
 \section{Aufgabe 1
@@ -57,40 +57,57 @@ mittlere Element eines Teilfeldes als Pivot-Element gewählt wird
 (Pseudocode s.u., nur eine Zeile neu).
 
 Bei einem Aufruf von PartitionVar auf ein Teilfeld $A[l \dots r]$ wird
-also erst mithilfe der Unterroutine Swap $A[l + r - 1 / 2]$ mit $A[r]$
+also erst mithilfe der Unterroutine Swap $A\left[\lfloor \frac{l + r - 1}{2} \rfloor\right]$ mit $A[r]$
 vertauscht.
 
-Quicksort(A, l = 1,r = A.length)
-if l < r then
-  m = Partition(A, l, r)
-  Quicksort(A, l, m - 1)
-  Quicksort(A, m + 1, r)
+\begin{function}
+\caption{Quicksort(A, $l = 1$, $r = A.\text{length}$)}
 
-int Partition(int[] A, int l, int r)
-pivot = A[r]
-i = l
-for j = l to r - 1 do
-  if A[j] < pivot then
-    Swap(A, i, 7)
-    i = i + l
-Swap(A, i,r)
-return i
+\If{$l < r$}{
+  $m = \text{Partition}(A, l, r)$\;
+  $\text{Quicksort}(A, l, m - 1)$\;
+  $\text{Quicksort}(A, m + 1, r)$\;
+}
+\end{function}
 
-QuicksortVar(A, l = 1,r = A.length)
-if l < r then
-  m = PartitionVar(A, l, r)
-  QuicksortVar(A, l, m - 1)
-  QuicksortVar(A, m + 1, r)
+\begin{function}
+% int PartitionVar(int[] A, int l, int r)
+\caption{Partition(A, int l, int r)}
+$\text{pivot} = A[r]$\;
+$i = l$\;
+\For{$j = l$ \KwTo $r - 1$}{
+  \If{$A[j] < \text{pivot}$}{
+    $\text{Swap}(A, i, 7)$\;
+    $i = i + l$\;
+  }
+}
+\end{function}
 
-int PartitionVar(int[] A, int l, int r)
-pivot = A[r]
-i = l
-for j = l to r - 1 do
-  if A[ 7] < pivot then
-    Swap(A, i, 7)
-    i = i + l
-Swap(A, i,r)
-return i
+\begin{function}
+\caption{QuicksortVar(A, $l = 1$, $r = A.\text{length}$)}
+
+\If{$l < r$}{
+  $m = \text{PartitionVar}(A, l, r)$\;
+  $\text{QuicksortVar}(A, l, m - 1)$\;
+  $\text{QuicksortVar}(A, m + 1, r)$\;
+}
+\end{function}
+
+\begin{function}
+% int PartitionVar(int[] A, int l, int r)
+\caption{PartitionVar(A, int l, int r)}
+
+$\text{Swap}(A, \lfloor \frac{l + r - 1}{2} \rfloor, r)$\;
+
+$\text{pivot} = A[r]$\;
+$i = l$\;
+\For{$j = l$ \KwTo $r - 1$}{
+  \If{$A[j] < \text{pivot}$}{
+    $\text{Swap}(A, i, 7)$\;
+    $i = i + l$\;
+  }
+}
+\end{function}
 \end{enumerate}
 
 %%

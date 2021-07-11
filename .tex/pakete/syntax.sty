@@ -75,7 +75,11 @@
 % Verzeichnis |./Code/src/main/java/org/bschlangaul| liegt.
 %    \begin{macrocode}
 \NewDocumentCommand{\liJavaDatei}{ O{firstline=3} m }{
-  \inputminted[#1]{java}{\l_pfad_tl/\l_main_tl/#2.java}
+  \inputminted[#1]{java}{
+    \directlua{
+      syntax.drucke_absoluten_pfad('#2', false)
+    }
+  }
 }
 %    \end{macrocode}
 % \end{macro}
@@ -85,7 +89,23 @@
 % die Verzeichnis |./Code/src/test/java/org/bschlangaul| liegt.
 %    \begin{macrocode}
 \NewDocumentCommand{\liJavaTestDatei}{ O{firstline=3} m }{
-  \inputminted[#1]{java}{\l_pfad_tl/\l_test_tl/#2.java}
+  \inputminted[#1]{java}{
+    \directlua{
+      syntax.drucke_absoluten_pfad('#2', true)
+    }
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liGithubLink}
+%    \begin{macrocode}
+\def\liGithubLink#1#2{
+  \begin{flushright}
+    \tiny
+    Code-Beispiel~auf~Github~ansehen:~
+    \href{#1}{#2}
+  \end{flushright}
 }
 %    \end{macrocode}
 % \end{macro}
@@ -102,11 +122,10 @@
     \l_main_tl /
     \directlua{syntax.drucke_relativen_examens_pfad('#2', '#3', '#4', '#5')}
   }
-  % \begin{flushright}
-  %   \tiny
-  %   github:~
-  %   \href{\directlua{syntax.drucke_raw_examen_url('#2', '#3', '#4', '#5')}}{raw}
-  % \end{flushright}
+
+  \liGithubLink
+  {\directlua{syntax.drucke_github_examens_url('#2', '#3', '#4', '#5')}}
+  {\directlua{syntax.drucke_relativen_examens_pfad('#2', '#3', '#4', '#5')}}
 }
 %    \end{macrocode}
 % \end{macro}

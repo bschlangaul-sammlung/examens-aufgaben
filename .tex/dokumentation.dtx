@@ -108,6 +108,7 @@
   master-theorem,
   mathe,
   minimierung,
+  pseudo,
   synthese-algorithmus,
   typographie,
   uml,
@@ -4046,6 +4047,23 @@ von Pseudo-Code, Hüll-Paket um algorithm2e]
 % \end{algorithm}
 % \end{verbatim}
 
+% \begin{algorithm}[H]
+% \KwData{$G = (V,E,w)$: ein zusammenhängender, ungerichteter,
+% kantengewichteter Graph kruskal(G)}
+% $E'\leftarrow \emptyset $\;
+% $L\leftarrow E$\;
+% Sortiere die Kanten in L aufsteigend nach ihrem Kantengewicht.\;
+% \While{$L \neq \emptyset $}{
+%   wähle eine Kante $e\in L$ mit kleinstem Kantengewicht\;
+%   entferne die Kante e aus L\;
+%   \If{der Graph $(V, E' \cup \lbrace e\rbrace)$ keinen Kreis enthält}{
+%     $E'\leftarrow E'\cup \lbrace e\rbrace $\;
+%   }
+% }
+% \KwResult{$M = (V,E')$ ist ein minimaler Spannbaum von G.}
+% \caption{Minimaler Spannbaum nach Kruskal\footcite{wiki:kruskal}}
+% \end{algorithm}
+
 %    \begin{macrocode}
 \RequirePackage[german,boxruled]{algorithm2e}
 %    \end{macrocode}
@@ -4520,7 +4538,11 @@ Paket struktex zum Setzen von Struktogrammen]
 % Verzeichnis |./Code/src/main/java/org/bschlangaul| liegt.
 %    \begin{macrocode}
 \NewDocumentCommand{\liJavaDatei}{ O{firstline=3} m }{
-  \inputminted[#1]{java}{\l_pfad_tl/\l_main_tl/#2.java}
+  \inputminted[#1]{java}{
+    \directlua{
+      syntax.drucke_absoluten_pfad('#2', false)
+    }
+  }
 }
 %    \end{macrocode}
 % \end{macro}
@@ -4530,7 +4552,23 @@ Paket struktex zum Setzen von Struktogrammen]
 % die Verzeichnis |./Code/src/test/java/org/bschlangaul| liegt.
 %    \begin{macrocode}
 \NewDocumentCommand{\liJavaTestDatei}{ O{firstline=3} m }{
-  \inputminted[#1]{java}{\l_pfad_tl/\l_test_tl/#2.java}
+  \inputminted[#1]{java}{
+    \directlua{
+      syntax.drucke_absoluten_pfad('#2', true)
+    }
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liGithubLink}
+%    \begin{macrocode}
+\def\liGithubLink#1#2{
+  \begin{flushright}
+    \tiny
+    Code-Beispiel~auf~Github~ansehen:~
+    \href{#1}{#2}
+  \end{flushright}
 }
 %    \end{macrocode}
 % \end{macro}
@@ -4547,11 +4585,10 @@ Paket struktex zum Setzen von Struktogrammen]
     \l_main_tl /
     \directlua{syntax.drucke_relativen_examens_pfad('#2', '#3', '#4', '#5')}
   }
-  % \begin{flushright}
-  %   \tiny
-  %   github:~
-  %   \href{\directlua{syntax.drucke_raw_examen_url('#2', '#3', '#4', '#5')}}{raw}
-  % \end{flushright}
+
+  \liGithubLink
+  {\directlua{syntax.drucke_github_examens_url('#2', '#3', '#4', '#5')}}
+  {\directlua{syntax.drucke_relativen_examens_pfad('#2', '#3', '#4', '#5')}}
 }
 %    \end{macrocode}
 % \end{macro}

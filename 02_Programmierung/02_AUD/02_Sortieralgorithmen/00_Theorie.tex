@@ -11,6 +11,208 @@
 \cite{wiki:sortierverfahren}
 \end{liQuellen}
 
+\section{Klassifizierung der Sortieralgorithmen}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\subsection{Intern vs. Extern}
+
+\cite[Seite 34]{aud:fs:tafeluebung-11}
+
+\begin{itemize}
+
+%%
+%
+%%
+
+\item internes Sortierverfahren:
+
+\begin{itemize}
+\item stets direkter Zugriff auf \emph{alle} zu sortierenden Elemente
+notwendig\\
+%
+$\rightarrow$ alle Elemente müssen \emph{gleichzeitig} im
+\emph{Hauptspeicher} liegen
+\end{itemize}
+
+%%
+%
+%%
+
+\item externes Sortierverfahren:
+
+\begin{itemize}
+\item Zugriff ist stets auf einen \emph{Teil} der zu sortierenden
+Elemente beschränkt\\
+%
+$\rightarrow$ nur ein \emph{Teil} der Daten muss gleichzeitig im
+\emph{Hauptspeicher} liegen\\
+%
+$\rightarrow$ eignen sich für Sortierung von \emph{Massendaten} auf
+externen Speichermedien
+\end{itemize}
+
+\end{itemize}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\subsection{Vergleichsbasiert vs. Nicht-Vergleichsbasiert\footcite[Seite
+35]{aud:fs:tafeluebung-11}}
+
+\begin{itemize}
+
+%%
+%
+%%
+
+\item vergleichsbasiertes Sortieren:
+
+\begin{itemize}
+\item Algorithmus \emph{vergleicht} mehrfach jeweils \emph{zwei
+Elemente} miteinander
+
+\item Vertauschen von Elementen aufgrund ihrer \emph{relativen Position}
+
+\item Beispiele: \verb|QuickSort|, \verb|MergeSort|
+\end{itemize}
+
+%%
+%
+%%
+
+\item nicht-vergleichsbasiertes Sortieren:
+
+\begin{itemize}
+\item Algorithmus benötigt \emph{keinen direkten Vergleich} zwischen
+zwei Elementen
+
+\item \emph{zählt} stattdessen Werte oder betrachtet
+\emph{„einzelne Stellen“}
+
+\item Beispiele: \verb|CountingSort|, \verb|RadixSort|
+\end{itemize}
+\end{itemize}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\subsection{Stabil vs. Instabil\footcite[Seite 36]{aud:fs:tafeluebung-11}}
+
+\begin{itemize}
+\item stabiles Sortierverfahren:\\
+%
+$\rightarrow$ Sortierverfahren, welches die Eingabereihenfolge von
+Elementen mit \emph{gleichem Wert} beim Sortieren \emph{bewahrt}
+
+Insbesondere dann wichtig, wenn hintereinander nach \emph{mehreren
+Kriterien} sortiert wird.
+\end{itemize}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\subsection{In-Place vs. Out-Of-Place}
+
+\begin{itemize}
+
+%%
+%
+%%
+
+\item in-place (in situ)
+
+\begin{itemize}
+\item Speicherverbrauch unabhängig von Eingabegröße\\
+%
+$\rightarrow$ braucht nur eine konstante Menge an zusätzlichem
+Speicher\\
+%
+$\rightarrow$ überschreibt im Allgemeinen die Eingabe- mit den
+Ausgabedaten
+\end{itemize}
+
+%%
+%
+%%
+
+\item out-of-place (ex situ)
+
+\begin{itemize}
+\item Speicherverbrauch abhängig von Eingabegröße\\
+%
+$\rightarrow$ Speicherverbrauch steigt mit Anzahl der zu sortierenden
+Elemente
+\end{itemize}
+
+\end{itemize}
+
+\noindent
+\textbf{Achtung:} Aufrufstapel  \emph{Rekursive Algorithmen}, deren
+Aufruftiefe von der Eingabegröße abhängt, arbeiten genaugenommen
+\emph{out-of-place}, denn für die Funktionsschachteln auf dem
+Aufrufestapel wird Speicherplatz benötigt. Manchmal bezeichnet man aber
+auch solche Algorithmen mit einem Speicherverbrauch von
+$\mathcal{O}(log(n))$ als in-place.
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\subsection{Laufzeitkomplexität}
+
+ \cite[Seite 38]{aud:fs:tafeluebung-11}
+
+\begin{itemize}
+
+%%
+%
+%%
+
+\item für die Laufzeitkomplexität unterscheidet man verschiedene Fälle:
+
+\begin{itemize}
+\item Best-Case
+\item Average-Case
+\item Worst-Case
+\end{itemize}
+
+%%
+%
+%%
+
+\item adaptive Sortierverfahren:
+
+\begin{itemize}
+\item Laufzeit abhängig vom \emph{Grad der Vorsortierung}
+
+$\rightarrow$ \emph{schneller}, wenn Eingabe schon \emph{„einigermaßen“
+sortiert} ist
+
+$\rightarrow$ Laufzeit in \emph{Best-Case} und \emph{Worst-Case}
+\emph{unterschiedlich}
+
+\end{itemize}
+
+%%
+%
+%%
+
+\item \emph{untere Schranken} für die Laufzeit (n: Anzahl an Elementen):
+
+\begin{itemize}
+\item vergleichsbasiertes Sortieren: nicht besser möglich als
+$\mathcal{O}(log(n))$
+\item nicht-vergleichsbasiertes Sortieren: lineare Laufzeit möglich
+\end{itemize}
+
+\end{itemize}
+
 \literatur
 
 \end{document}
