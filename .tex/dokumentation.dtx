@@ -2238,11 +2238,10 @@ $\liMengeOhneMathe{#1}$%
 \def\liFlaci#1{%
   \par
   {%
-  \scriptsize
-  \baselineskip=1mm
-    Der Automat auf flaci.com
-    (FLACI: Formale Sprachen, abstrakte  Automaten, Compiler und Interpreter)
-    Ein Projekt der Hochschule Zittau/Görlitz und der Pädagogischen Hochschule Schwyz:
+    \scriptsize
+    Der Automat auf flaci.com (FLACI: Formale Sprachen, abstrakte
+    Automaten, Compiler und Interpreter) Ein Projekt der Hochschule
+    Zittau/Görlitz und der Pädagogischen Hochschule Schwyz:
     \href{https://flaci.com/#1}{flaci.com/#1}%
   }%
   \par
@@ -4026,8 +4025,32 @@ einzusetzen bei der Potenzmengen-Konstruktion (Potenzmengen-Algorithmus)]
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-pseudo}[2020/12/30 Paket zum Setzen
 von Pseudo-Code, Hüll-Paket um algorithm2e]
+%    \end{macrocode}
 
+% \begin{verbatim}
+% \begin{algorithm}[H]
+% \KwData{$G = (V,E,w)$: ein zusammenhängender, ungerichteter,
+% kantengewichteter Graph kruskal(G)}
+% $E'\leftarrow \emptyset $\;
+% $L\leftarrow E$\;
+% Sortiere die Kanten in L aufsteigend nach ihrem Kantengewicht.\;
+% \While{$L \neq \emptyset $}{
+%   wähle eine Kante $e\in L$ mit kleinstem Kantengewicht\;
+%   entferne die Kante e aus L\;
+%   \If{der Graph $(V, E' \cup \lbrace e\rbrace)$ keinen Kreis enthält}{
+%     $E'\leftarrow E'\cup \lbrace e\rbrace $\;
+%   }
+% }
+% \KwResult{$M = (V,E')$ ist ein minimaler Spannbaum von G.}
+% \caption{Minimaler Spannbaum nach Kruskal\footcite{wiki:kruskal}}
+% \end{algorithm}
+% \end{verbatim}
+
+%    \begin{macrocode}
 \RequirePackage[german,boxruled]{algorithm2e}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{quicksort.sty}
