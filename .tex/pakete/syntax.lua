@@ -85,12 +85,30 @@ local export = {
     KONF[schluessel] = wert
   end,
 
+  -- absoluten pfad
+
   drucke_absoluten_pfad = function(relativer_pfad)
     tex.print(gib_absoluten_pfad(relativer_pfad))
   end,
 
+  drucke_absoluten_examens_pfad = function(nummer, jahr, monat, pfad)
+    tex.print(gib_absoluten_pfad(gib_relativen_examens_pfad(nummer, jahr, monat, pfad)))
+  end,
+
+  -- relativen
+
+  drucke_relativen_pfad = function(relativer_pfad)
+    tex.print(gib_relativen_pfad(relativer_pfad))
+  end,
+
   drucke_relativen_examens_pfad = function(nummer, jahr, monat, pfad)
     tex.print(gib_relativen_examens_pfad(nummer, jahr, monat, pfad))
+  end,
+
+  -- url
+
+  drucke_github_url = function(relativer_pfad)
+    tex.print(gib_github_url(relativer_pfad))
   end,
 
   drucke_github_examens_url = function(nummer, jahr, monat, pfad)
