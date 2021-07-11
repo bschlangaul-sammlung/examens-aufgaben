@@ -15,8 +15,6 @@
 %
 %%
 
-\section{Komplexitätstheorie}
-
 \memph{Komplexität} bezeichnet die „Kompliziertheit“ von Problemen,
 Algorithmen und Daten.
 %
@@ -109,20 +107,23 @@ notwendigerweise in NP liegen (liegt $L'$ jedoch zusätzlich in NP, so
 heißt $L'$ NP- vollständig).\footcite[Seite 63]{theo:fs:4}
 
 % 31min
-\section {Polynomialzeitreduktion}
+\section{Polynomialzeitreduktion}
 
 Eine Polynomialzeitreduktion (auch polynomielle Reduktion) ist eine
 spezielle Form der Reduktion in der theoretischen Informatik.
 Zusätzlich zur Reduzierbarkeit wird hier gefordert, dass die
 Reduktion deterministisch in Polynomialzeit berechnet werden kann.
+\footcite{wiki:polynomialzeitreduktion}
 
-$L_1$ heißt polynomiell reduzierbar auf $L_2$ ($L_1 \leq_p L_2$ ), wenn es
-eine total, berechenbare Funktion $f = \Sigma^* \rightarrow \Sigma^*$
+$L_1$ heißt polynomiell reduzierbar auf $L_2$ ($L_1 \leq_p L_2$ ), wenn
+es eine total, berechenbare Funktion $f = \Sigma^* \rightarrow \Sigma^*$
 gibt, so dass gilt:
+%
 $w \in L_1 \Leftrightarrow f(w) \in L_2$
-Es gibt
-eine deterministische Turingmaschine $M$, die $f$ in Polynomialzeit
-berechnet. => $L_2$ ist „mindestens genauso schwer“ wie $L_1$.
+%
+Es gibt eine deterministische Turingmaschine $M$, die $f$ in
+Polynomialzeit berechnet. $L_2$ ist also \emph{„mindestens genauso
+schwer“} wie $L_1$.
 \footcite[Seite 64]{theo:fs:4}
 
 % 36min
@@ -184,6 +185,46 @@ klassische NP-vollständige Probleme bezeichnet.\footcite{wiki:karps-21}
 Seit 1972 wurden mehr als 10000 Probleme als NP-vollständig
 charakterisiert.
 \footcite[Seite 80]{theo:fs:4}
+
+\begin{description}
+\item[SATISFIABILITY:] das Erfüllbarkeitsproblem der Aussagenlogik für Formeln in konjunktiver Normalform
+\begin{description}
+    \item[CLIQUE:] Cliquenproblem
+\begin{description}
+        \item[SET PACKING:] Mengenpackungsproblem
+        \item[VERTEX COVER:] Knotenüberdeckungsproblem
+\begin{description}
+            \item[SET COVERING:] Mengenüberdeckungsproblem
+            \item[FEEDBACK ARC SET:] Feedback Arc Set
+            \item[FEEDBACK NODE SET:] Feedback Vertex Set
+            \item[DIRECTED HAMILTONIAN CIRCUIT:] siehe Hamiltonkreisproblem
+\begin{description}
+                \item[UNDIRECTED HAMILTONIAN CIRCUIT:] siehe Hamiltonkreisproblem
+\end{description}
+\end{description}
+\end{description}
+    \item[0-1 INTEGER PROGRAMMING:] siehe Integer Linear Programming
+    \item[3-SAT:] siehe 3-SAT
+\begin{description}
+        \item[CHROMATIC NUMBER:] graph coloring problem
+\begin{description}
+            \item[CLIQUE COVER]
+            \item[EXACT COVER:] Problem der exakten Überdeckung
+\begin{description}
+                \item[3-dimensional MATCHING:] 3-dimensional matching (Stable Marriage mit drei Geschlechtern)
+                \item[STEINER TREE:] Steinerbaumproblem
+                \item[HITTING SET:] Hitting-Set-Problem
+                \item[KNAPSACK:] Rucksackproblem
+\begin{description}
+                    \item[JOB SEQUENCING:] Job sequencing
+                    \item[PARTITION:] Partitionsproblem
+                        \item[- MAX-CUT:] Maximaler Schnitt
+\end{description}
+\end{description}
+\end{description}
+\end{description}
+\end{description}
+\end{description}
 
 \section{Aussagenlogische Formeln}
 
