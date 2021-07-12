@@ -25,8 +25,6 @@
   syntax.importiere_konfiguration('github_raw_domain', '\LehramtInformatikGithubRawDomain')
   syntax.importiere_konfiguration('github_tex_repo', '\LehramtInformatikGithubTexRepo')
   syntax.importiere_konfiguration('github_code_repo', '\LehramtInformatikGithubCodeRepo')
-  syntax.importiere_konfiguration('code_main', 'src/main/java/org/bschlangaul')
-  syntax.importiere_konfiguration('code_test', 'src/test/java/org/bschlangaul')
   syntax.importiere_konfiguration('git_branch', '\LehramtInformatikGitBranch')
 }
 %    \end{macrocode}
@@ -85,10 +83,10 @@
 % Verzeichnis |./Code/src/main/java/org/bschlangaul| liegt.
 %    \begin{macrocode}
 \NewDocumentCommand{\liJavaDatei}{ O{firstline=3} m }{
-  \inputminted[#1]{java}{\detokenize{\directlua{syntax.drucke_absoluten_pfad('\detokenize{#2}', false)}}}
+  \inputminted[#1]{java}{\directlua{syntax.drucke_absoluten_pfad('#2', false)}}
   \li@GithubLink
     {\directlua{syntax.drucke_github_url('#2', false)}}
-    {\directlua{syntax.drucke_github_url('#2', false)}}
+    {\detokenize{\directlua{syntax.drucke_relativen_repo_pfad('#2', false)}}}
 }
 %    \end{macrocode}
 % \end{macro}
