@@ -67,14 +67,8 @@
   \begin{flushright}
     \tiny
     Code-Beispiel~auf~Github~ansehen:~
-    \href{#1}{#2}
+    \href{#1}{\nolinkurl{#2}}
   \end{flushright}
-}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\def\li@JavaDatei#1#2#3#4{
-
 }
 %    \end{macrocode}
 
@@ -83,10 +77,14 @@
 % Verzeichnis |./Code/src/main/java/org/bschlangaul| liegt.
 %    \begin{macrocode}
 \NewDocumentCommand{\liJavaDatei}{ O{firstline=3} m }{
-  \inputminted[#1]{java}{\directlua{syntax.drucke_absoluten_pfad('#2', false)}}
+  \inputminted[#1]{java}{
+    \directlua{
+      syntax.drucke_absoluten_pfad('#2', false)
+    }
+  }
   \li@GithubLink
     {\directlua{syntax.drucke_github_url('#2', false)}}
-    {\detokenize{\directlua{syntax.drucke_relativen_repo_pfad('#2', false)}}}
+    {\directlua{syntax.drucke_relativen_repo_pfad('#2', false)}}
 }
 %    \end{macrocode}
 % \end{macro}
@@ -96,10 +94,14 @@
 % die Verzeichnis |./Code/src/test/java/org/bschlangaul| liegt.
 %    \begin{macrocode}
 \NewDocumentCommand{\liJavaTestDatei}{ O{firstline=3} m }{
-  \inputminted[#1]{java}{\directlua{syntax.drucke_absoluten_pfad('#2', true)}}
+  \inputminted[#1]{java}{
+    \directlua{
+      syntax.drucke_absoluten_pfad('#2', true)
+    }
+  }
   \li@GithubLink
     {\directlua{syntax.drucke_github_url('#2', true)}}
-    {\directlua{syntax.drucke_github_url('#2', true)}}
+    {\directlua{syntax.drucke_relativen_repo_pfad('#2', true)}}
 }
 %    \end{macrocode}
 % \end{macro}
