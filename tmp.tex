@@ -12,6 +12,14 @@
   \draw[-latex] ([xshift=1mm]reihe.#1 south) -- ++(0,-0.25) -| ([xshift=-1mm]reihe.#2 south);
 }
 
+\def\markierung#1#2{\node[
+  draw,
+  very thick,
+  fit=(reihe.#1) (reihe.#2),
+  inner sep=0pt
+] {};
+}
+
 \tikzset{li sortierung zahlenreihe/.style={
   draw,thin,
   font=\large,
@@ -19,25 +27,15 @@
   rectangle split,
 }}
 
-\begin{tikzpicture}[
+\tikz[
   rectangle split parts=5,
-]
-\node [li sortierung zahlenreihe] (reihe) {\nodepart{one} 2 \nodepart{two} 1 \nodepart{three} 3};
+]{
 
-\node[
-  draw,
-  very thick,
-  fit=(reihe.two split south) (reihe.three split north),
-  inner sep=0pt
-] {};
-
-% \node at (a.two split north){n};
-% \node at (a.one split south){s};
-
-\pfeil{one}{two}
-\pfeil{two}{three}
-
-\pfeilUnten{three}{one}
-\end{tikzpicture}
+  \node[li sortierung zahlenreihe] (reihe) {\nodepart{one} 2 \nodepart{two} 1 \nodepart{three} 3};
+  \pfeil{one}{two}
+  \pfeil{two}{three}
+  \markierung{two split south}{three split north}
+  \pfeilUnten{three}{one}
+}
 
 \end{document}

@@ -27,29 +27,6 @@ Schleife verlassen. Durch das Verschieben „nach rechts“ wird die
 Position $j$ in der Folge frei, an der das gemerkte Element eingefügt
 werden muss.\footcite[Seite 125]{saake}
 
-\def\pfeil#1#2{\draw[-latex] ([xshift=1mm]a.#1 north) -- ++(0,0.25) -| ([xshift=-1mm]a.#2 north);}
-
-\tikzset{li sortierung zahlenreihe/.style={
-  draw,
-  font=\large,
-  rectangle split horizontal,
-  rectangle split,
-}}
-
-\begin{tikzpicture}[
-  rectangle split parts=3,
-]
-\node [li sortierung zahlenreihe] (a) {2 \nodepart{two} 1 \nodepart{three} 3};
-
-\node[draw=red, very thick, fit=(a.one split south) (a.two split north), inner sep=0pt] {};
-
-% \node at (a.two split north){n};
-% \node at (a.one split south){s};
-
-\pfeil{one}{two}
-\pfeil{two}{three}
-\end{tikzpicture}
-
 \begin{itemize}
 \item Funktionsweise:
 
