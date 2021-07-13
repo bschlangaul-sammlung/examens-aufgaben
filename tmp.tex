@@ -1,4 +1,43 @@
-\documentclass{article}
+\documentclass{lehramt-informatik-aufgabe}
+\usepackage{tikz}
+\usetikzlibrary{shapes.multipart,positioning,fit}
+
 \begin{document}
+
+\def\pfeil#1#2{
+  \draw[-latex] ([xshift=1mm]reihe.#1 north) -- ++(0,0.25) -| ([xshift=-1mm]reihe.#2 north);
+}
+
+\def\pfeilUnten#1#2{
+  \draw[-latex] ([xshift=1mm]reihe.#1 south) -- ++(0,-0.25) -| ([xshift=-1mm]reihe.#2 south);
+}
+
+\tikzset{li sortierung zahlenreihe/.style={
+  draw,thin,
+  font=\large,
+  rectangle split horizontal,
+  rectangle split,
+}}
+
+\begin{tikzpicture}[
+  rectangle split parts=5,
+]
+\node [li sortierung zahlenreihe] (reihe) {\nodepart{one} 2 \nodepart{two} 1 \nodepart{three} 3};
+
+\node[
+  draw,
+  very thick,
+  fit=(reihe.two split south) (reihe.three split north),
+  inner sep=0pt
+] {};
+
+% \node at (a.two split north){n};
+% \node at (a.one split south){s};
+
+\pfeil{one}{two}
+\pfeil{two}{three}
+
+\pfeilUnten{three}{one}
+\end{tikzpicture}
 
 \end{document}
