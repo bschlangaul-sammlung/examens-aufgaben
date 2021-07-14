@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-\liLadePakete{graph,pseudo,syntax}
+\liLadePakete{graph,pseudo,syntax,tabelle}
 
 \begin{document}
 
@@ -13,7 +13,7 @@
 %
 %-----------------------------------------------------------------------
 
-\section{Definition}
+\section{Definition „Spannbaum“}
 
 Es sei $G$ ein zusammenhängender Graph und $S$ ein zusammenhängender
 Teilgraph von G. $S$ ist ein Spannbaum von $G$, falls $S$ \memph{alle
@@ -23,11 +23,11 @@ Knoten von $G$ enthält} und $S$ \memph{zyklenfrei} ist.
 %
 %-----------------------------------------------------------------------
 
-\section{Minimaler Spannbaum}
+\section{Definition „Minimaler Spannbaum“}
 
 $S$ ist ein minimaler Spannbaum, falls $S$ ein Spannbaum von $G$ ist,
 und die Summe der \memph{Kantengewichte} in $S$ \memph{kleiner oder
-gleich der aller anderen möglichen Spannbäume} $S‘$ von $G$ ist
+gleich der aller anderen möglichen Spannbäume} $S^\prime$ von $G$ ist
 \footcite[Seite 29 (PDF 23)]{aud:fs:6}.
 
 %-----------------------------------------------------------------------
@@ -38,10 +38,7 @@ gleich der aller anderen möglichen Spannbäume} $S‘$ von $G$ ist
 
 Durch den Algorithmus von Kruskal wird ein \memph{minimaler Spannbaum}
 eines ungerichteten, zusammenhängenden und kantengewichteten Graphen
-bestimmt. Sollen bespielsweise Rohrleitungen so verlegt werden, dass
-jeder Punkt erreicht wird, kann dieser Algorithmus zum Einsatz kommen.
-Wie viele Meter Rohr benötigt man mindestens? Auf diese Frage liefert
-der Algorithmus eine Antwort.
+bestimmt.
 \footcite[Seite 30 (PDF 24)]{aud:fs:6}
 
 Der Algorithmus von Kruskal nutzt die Kreiseigenschaft minimaler
@@ -213,15 +210,40 @@ EG & $9$\\\hline
 
 \section{Vergleich Kruskal und Prim}
 
-\begin{tabular}{l|l}
-\textbf{Kruskal} & \textbf{Prim} \\\hline
+\noindent
+\begin{tabularx}{\linewidth}{r||X|X}
+&
+\textbf{Kruskal} &
+\textbf{Prim} \\\hline\hline
 
+Arbeitsweise &
 sortiert Kanten nach Gewichten &
 Startknoten $\rightarrow$ Nachbarknoten \\
 
+Kanten-Sichtweise &
+globale Sicht &
+lokale Sicht \\
+
+Zyklen-Vermeidung &
+aktiv &
+passiv \\
+
+Gierigkeit &
+greedy &
+greedy \\
+
+Teilgraph &
 mehrere Teilgraphen möglich &
 nur ein Teilgraph möglich \\
-\end{tabular}
+
+Datenstrukturen &
+Union-Find &
+Min-Heap\\
+
+Laufzeit &
+$\mathcal{O}\bigl(\left|E\right| \cdot \log(\left|E\right|)\bigr)$ &
+$\mathcal{O}\bigl(\left|E\right| + \left|V\right| \cdot \log(\left|V\right|)\bigr)$ \\
+\end{tabularx}
 
 \literatur
 

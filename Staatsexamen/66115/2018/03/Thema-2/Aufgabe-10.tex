@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{graph}
 \begin{document}
 \liAufgabenTitel{}
 \section{Aufgabe 10:
@@ -12,26 +12,63 @@
 %%
 
 \item Berechnen Sie mithilfe des Algorithmus von Prim ausgehend vom
-Knoten a einen minimalen Spannbaum des ungerichteten Graphen G, der
+Knoten $a$ einen minimalen Spannbaum des ungerichteten Graphen $G$, der
 durch folgende Adjazenzmatrix gegeben ist:
 
-ıabedefgh
-a-146---5
-bi-3-4-7c43-1----
-d6-1-9620
-e-4-9-55fi---65---
-g-7-25--8
-h5--0--81
+% Info_2021-06-18-2021-06-18_13.18.21.mp4
+% 2h06m
+
+\begin{liGraphenFormat}
+a: 1 1
+b: 2 2
+c: 3 4
+d: 6 7
+e: 9 0
+f: 5 2
+g: 9 4
+h: 8 4
+a -- b: 1
+a -- c: 4
+a -- d: 6
+a -- h: 5
+b -- c: 3
+b -- e: 4
+b -- g: 7
+d -- e: 9
+d -- f: 6
+d -- g: 2
+d -- h: 0
+e -- f: 5
+e -- g: 5
+g -- h: 8
+h -- h: 1
+\end{liGraphenFormat}
+
+\[
+\begin{blockarray}{cccccccc}
+   & a & b & c & d & e & f & g & h \\
+\begin{block}{c(ccccccc)}
+ a & 0 & 1 & 4 & 6 & 0 & 0 & 0 & 5 \\
+ b & 1 & 0 & 3 & 0 & 4 & 0 & 7 & 0 \\
+ c & 4 & 3 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ d & 6 & 0 & 0 & 0 & 9 & 6 & 2 & 0 \\
+ e & 0 & 4 & 0 & 9 & 0 & 5 & 5 & 0 \\
+ f & 0 & 0 & 0 & 6 & 5 & 0 & 0 & 0 \\
+ g & 0 & 7 & 0 & 2 & 5 & 0 & 0 & 8 \\
+ h & 5 & 0 & 0 & 0 & 0 & 0 & 8 & 0 \\
+\end{block}
+\end{blockarray}
+\]
 
 Erstellen Sie dazu eine Tabelle mit zwei Spalten und stellen Sie jeden
 einzelnen Schritt des Verfahrens in einer eigenen Zeile dar. Geben Sie
-in der ersten Spalte denjenigen Knoten v, der vom Algorithmus als
-nächstes in den Ergebnisbaum aufgenommen wird (dieser sog. „schwarze“
-Knoten ist damit fertiggestellt), als Tripel (v,p,6) mit v als
-Knotenname, p als aktueller Vorgängerknoten und 6 als aktuelle Distanz
-von v zu p an. Führen Sie in der zweiten Spalte alle anderen vom
-aktuellen Spannbaum direkt erreichbaren Knoten v (sog. „graue Randknoten
-“) ebenfalls als Tripel (v,p,6) auf.
+in der ersten Spalte denjenigen Knoten $v$, der vom Algorithmus als
+nächstes in den Ergebnisbaum aufgenommen wird (dieser sog. „schwarze
+“Knoten ist damit fertiggestellt), als Tripel $(v, p, \delta)$ mit $v$
+als Knotenname, $p$ als aktueller Vorgängerknoten und $\delta$ als
+aktuelle Distanz von $v$ zu $p$ an. Führen Sie in der zweiten Spalte
+alle anderen vom aktuellen Spannbaum direkt erreichbaren Knoten $v$
+(sog. „graue Randknoten“) ebenfalls als Tripel $(v, p, \delta)$ auf.
 
 Zeichnen Sie anschließend den entstandenen Spannbaum und geben sein
 Gewicht an.
@@ -42,8 +79,8 @@ Gewicht an.
 
 \item Welche Worst-Case-Laufzeitkomplexität hat der Algorithmus von
 Prim, wenn die grauen Knoten in einem Heap (= Halde) nach Distanz
-verwaltet werden? Sei dabei n die Anzahl an Knoten und m die Anzahl an
-Kanten des Graphen. Eine Begründung ist nicht erforderlich.
+verwaltet werden? Sei dabei $n$ die Anzahl an Knoten und $m$ die Anzahl
+an Kanten des Graphen. Eine Begründung ist nicht erforderlich.
 
 %%
 % c)
