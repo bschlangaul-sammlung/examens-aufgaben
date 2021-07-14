@@ -8,10 +8,8 @@ export function öffneDurchStichwort (stichwort: string) {
     console.log(`Das Stichwort ${stichwort} gibt es nicht. War ${stichwortBaum.findeÄhnliches(stichwort)} gemeint?`)
   } else {
     for (const aufgabe of aufgaben) {
-      console.log(aufgabe.pfad)
       console.log(aufgabe.texEinbindenMakro)
-
-      //öffneProgramm('code', aufgabe.pfad)
+      öffneProgramm('code', aufgabe.pfad)
     }
   }
 }
