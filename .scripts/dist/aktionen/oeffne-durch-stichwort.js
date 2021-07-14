@@ -13,7 +13,6 @@ var __values = (this && this.__values) || function(o) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.öffneDurchStichwort = void 0;
 var sammlung_1 = require("../sammlung");
-var helfer_1 = require("../helfer");
 function öffneDurchStichwort(stichwort) {
     var e_1, _a;
     var aufgaben = sammlung_1.stichwortVerzeichnis.gibAufgabenMitStichwort(stichwort);
@@ -25,7 +24,8 @@ function öffneDurchStichwort(stichwort) {
             for (var aufgaben_1 = __values(aufgaben), aufgaben_1_1 = aufgaben_1.next(); !aufgaben_1_1.done; aufgaben_1_1 = aufgaben_1.next()) {
                 var aufgabe = aufgaben_1_1.value;
                 console.log(aufgabe.pfad);
-                helfer_1.öffneProgramm('code', aufgabe.pfad);
+                console.log(aufgabe.texEinbindenMakro);
+                //öffneProgramm('code', aufgabe.pfad)
             }
         }
         catch (e_1_1) { e_1 = { error: e_1_1 }; }

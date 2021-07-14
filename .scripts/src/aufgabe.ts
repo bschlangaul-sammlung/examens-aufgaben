@@ -7,6 +7,9 @@ import { sammleStichwörter, gibInhaltEinesTexMakros } from './tex'
 import { Examen, ExamenSammlung } from './examen'
 
 export class Aufgabe {
+  /**
+   * Der absolute Pfad zur Aufgabe
+   */
   pfad: string
   inhalt?: string
 
@@ -71,6 +74,12 @@ export class Aufgabe {
     }
     return 0
   }
+
+  get texEinbindenMakro(): string {
+    let relativerPfad = macheRelativenPfad(this.pfad)
+    relativerPfad = relativerPfad.replace('.tex' , '')
+    return `\\liAufgabe{${relativerPfad}}`
+  }
 }
 
 export class ExamensAufgabe extends Aufgabe {
@@ -94,8 +103,12 @@ export class ExamensAufgabe extends Aufgabe {
     }
     const gruppen = treffer.groups
     this.aufgabe = parseInt(gruppen.aufgabe)
-    if (gruppen.thema) this.thema = parseInt(gruppen.thema)
-    if (gruppen.teilaufgabe) this.teilaufgabe = parseInt(gruppen.teilaufgabe)
+    if (gruppen.thema) {
+      this.thema = parseInt(gruppen.thema)
+    }
+    if (gruppen.teilaufgabe) {
+      this.teilaufgabe = parseInt(gruppen.teilaufgabe)
+    }
   }
 
   static istExamensAufgabe (pfad: string): boolean {
@@ -148,6 +161,13 @@ export class ExamensAufgabe extends Aufgabe {
     } else {
       return `Aufgabe-${arg1}.tex`
     }
+  }
+
+  get texEinbindenMakro(): string {
+    let relativerPfad = macheRelativenPfad(this.pfad)
+    relativerPfad = relativerPfad.replace('Staatsexamen/' , '')
+    relativerPfad = relativerPfad.replace('.tex' , '')
+    return `\\liExamensAufgabe{${relativerPfad}}`
   }
 }
 

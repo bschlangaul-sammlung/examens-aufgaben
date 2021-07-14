@@ -99,6 +99,15 @@ var Aufgabe = /** @class */ (function () {
         }
         return 0;
     };
+    Object.defineProperty(Aufgabe.prototype, "texEinbindenMakro", {
+        get: function () {
+            var relativerPfad = helfer_1.macheRelativenPfad(this.pfad);
+            relativerPfad = relativerPfad.replace('.tex', '');
+            return "\\liAufgabe{" + relativerPfad + "}";
+        },
+        enumerable: false,
+        configurable: true
+    });
     Aufgabe.pfadRegExp = /.*Aufgabe_.*\.tex/;
     return Aufgabe;
 }());
@@ -115,10 +124,12 @@ var ExamensAufgabe = /** @class */ (function (_super) {
         }
         var gruppen = treffer.groups;
         _this.aufgabe = parseInt(gruppen.aufgabe);
-        if (gruppen.thema)
+        if (gruppen.thema) {
             _this.thema = parseInt(gruppen.thema);
-        if (gruppen.teilaufgabe)
+        }
+        if (gruppen.teilaufgabe) {
             _this.teilaufgabe = parseInt(gruppen.teilaufgabe);
+        }
         return _this;
     }
     ExamensAufgabe.istExamensAufgabe = function (pfad) {
@@ -191,6 +202,16 @@ var ExamensAufgabe = /** @class */ (function (_super) {
             return "Aufgabe-" + arg1 + ".tex";
         }
     };
+    Object.defineProperty(ExamensAufgabe.prototype, "texEinbindenMakro", {
+        get: function () {
+            var relativerPfad = helfer_1.macheRelativenPfad(this.pfad);
+            relativerPfad = relativerPfad.replace('Staatsexamen/', '');
+            relativerPfad = relativerPfad.replace('.tex', '');
+            return "\\liExamensAufgabe{" + relativerPfad + "}";
+        },
+        enumerable: false,
+        configurable: true
+    });
     ExamensAufgabe.pfadRegExp = /(?<nummer>\d{5})\/(?<jahr>\d{4})\/(?<monat>\d{2})\/(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/;
     ExamensAufgabe.schwacherPfadRegExp = /(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/;
     return ExamensAufgabe;

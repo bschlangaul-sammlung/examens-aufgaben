@@ -9,7 +9,9 @@ export function öffneDurchStichwort (stichwort: string) {
   } else {
     for (const aufgabe of aufgaben) {
       console.log(aufgabe.pfad)
-      öffneProgramm('code', aufgabe.pfad)
+      console.log(aufgabe.texEinbindenMakro)
+
+      //öffneProgramm('code', aufgabe.pfad)
     }
   }
 }
