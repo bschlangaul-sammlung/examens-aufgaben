@@ -39,30 +39,48 @@ F -- H: 10
 H -> D: 10
 \end{liGraphenFormat}
 
-\begin{tikzpicture}
-\node[li graph knoten] (A) at (2,5) {A};
-\node[li graph knoten] (B) at (3,3) {B};
-\node[li graph knoten] (C) at (0,3) {C};
-\node[li graph knoten] (D) at (5,1) {D};
-\node[li graph knoten] (E) at (4,5) {E};
-\node[li graph knoten] (F) at (7,1) {F};
-\node[li graph knoten] (G) at (1,0) {G};
-\node[li graph knoten] (H) at (6,4) {H};
+\begin{tikzpicture}[li graph]
+\node (A) at (2,5) {A};
+\node (B) at (3,3) {B};
+\node (C) at (0,3) {C};
+\node (D) at (5,1) {D};
+\node (E) at (4,5) {E};
+\node (F) at (7,1) {F};
+\node (G) at (1,0) {G};
+\node (H) at (6,4) {H};
 
-\path[li graph kante] (A) edge node {10} (B);
-\path[li graph kante,->] (A) edge node {70} (C);
-\path[li graph kante] (A) edge node {40} (E);
-\path[li graph kante] (B) edge node {50} (C);
-\path[li graph kante] (B) edge node {90} (D);
-\path[li graph kante] (B) edge node {20} (G);
-\path[li graph kante] (B) edge node {90} (H);
-\path[li graph kante] (C) edge node {20} (G);
-\path[li graph kante] (D) edge node {80} (F);
-\path[li graph kante] (D) edge node {75} (G);
-\path[li graph kante] (E) edge node {5} (H);
-\path[li graph kante] (F) edge node {10} (H);
-\path[li graph kante,->] (H) edge node {10} (D);
+\path (A) edge node {10} (B);
+\path[->] (A) edge node {70} (C);
+\path (A) edge node {40} (E);
+\path (B) edge node {50} (C);
+\path (B) edge node {90} (D);
+\path (B) edge node {20} (G);
+\path (B) edge node {90} (H);
+\path (C) edge node {20} (G);
+\path (D) edge node {80} (F);
+\path (D) edge node {75} (G);
+\path (E) edge node {5} (H);
+\path (F) edge node {10} (H);
+\path[->] (H) edge node {10} (D);
 \end{tikzpicture}
+
+Adjazenz-Matrix
+
+\[
+\begin{blockarray}{ccccccccc}
+    &  A &  B &  C &  D &  E &  F &  G &  H \\
+\begin{block}{c(cccccccc)}
+  A &  * & 10 & 70 &  - & 40 &  - &  - &  - \\
+  B & 10 &  * & 50 & 90 &  - &  - & 20 & 90 \\
+  C &  - & 50 &  * &  - &  - &  - & 20 &  - \\
+  D &  - & 90 &  - &  * &  - & 80 & 75 &  - \\
+  E & 40 &  - &  - &  - &  * &  - &  - &  5 \\
+  F &  - &  - &  - & 80 &  - &  * &  - & 10 \\
+  G &  - & 20 & 20 & 75 &  - &  - &  * &  - \\
+  H &  - & 90 &  - & 10 &  5 & 10 &  - &  * \\
+\end{block}
+\end{blockarray}
+\]
 
 \begin{enumerate}
 
@@ -75,16 +93,16 @@ Adjazenzmatix an.
 
 \[
 \begin{blockarray}{ccccccccc}
-  & A  & B  & C  & D  & E  & F  & G  & H  \\
+    &  A &  B &  C &  D &  E &  F &  G &  H \\
 \begin{block}{c(cccccccc)}
-A & 0  & 10 & 70 & 0  & 40 & 0  & 0  & 0  \\
-B & 10 & 0  & 50 & 90 & 0  & 0  & 20 & 90 \\
-C & 0  & 50 & 0  & 0  & 0  & 0  & 20 & 0  \\
-D & 0  & 90 & 0  & 0  & 0  & 80 & 75 & 0  \\
-E & 40 & 0  & 0  & 0  & 0  & 0  & 0  & 5  \\
-F & 0  & 0  & 0  & 80 & 0  & 0  & 0  & 10 \\
-G & 0  & 20 & 20 & 75 & 0  & 0  & 0  & 0  \\
-H & 0  & 90 & 0  & 10 & 5  & 10 & 0  & 0  \\
+  A &  * & 10 & 70 &  - & 40 &  - &  - &  - \\
+  B & 10 &  * & 50 & 90 &  - &  - & 20 & 90 \\
+  C &  - & 50 &  * &  - &  - &  - & 20 &  - \\
+  D &  - & 90 &  - &  * &  - & 80 & 75 &  - \\
+  E & 40 &  - &  - &  - &  * &  - &  - &  5 \\
+  F &  - &  - &  - & 80 &  - &  * &  - & 10 \\
+  G &  - & 20 & 20 & 75 &  - &  - &  * &  - \\
+  H &  - & 90 &  - & 10 &  5 & 10 &  - &  * \\
 \end{block}
 \end{blockarray}
 \]

@@ -734,12 +734,13 @@ Setzen von Aufgaben-Titel.]
     sortieren,
     spalten,
     struktogramm,
-    syntaxbaum,
     syntax,
+    syntaxbaum,
     synthese-algorithmus,
     tabelle,
     typographie,
     uml,
+    vollstaendige-induktion,
     wasserfall,
     wpkalkuel,
   }
@@ -1927,7 +1928,7 @@ zum Setzen von Entwurfsmuster/Design Patterns]
 % \subsection{er.sty}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesPackage{lehramt-informatik-uml}[2020/06/13 Zum Setzen von
+\ProvidesPackage{lehramt-informatik-er}[2020/06/13 Zum Setzen von
 ER-Diagrammen]
 \RequirePackage{tikz-er2}
 \usetikzlibrary{positioning}
@@ -2496,12 +2497,12 @@ TikZ, um Grafiken zeichnen zu können.]
 % \node (d) at (3,0) {d};
 % \node (e) at (3,3) {e};
 %
-% \path[li graph kante,->] (a) edge (b);
-% \path[li graph kante] (b) edge (d);
-% \path[li graph kante,->] (b) edge node {3} (e);
-% \path[li graph kante] (c) edge (d);
-% \path[li graph kante] (d) edge node {4} (a);
-% \path[li graph kante,->] (d) edge node {2} (e);
+% \path[->] (a) edge (b);
+% \path (b) edge (d);
+% \path[->] (b) edge node {3} (e);
+% \path (c) edge (d);
+% \path (d) edge node {4} (a);
+% \path[->] (d) edge node {2} (e);
 % \end{tikzpicture}
 % \end{verbatim}
 
@@ -2512,12 +2513,12 @@ TikZ, um Grafiken zeichnen zu können.]
 % \node (c) at (4,1) {c};
 % \node (d) at (3,0) {d};
 % \node (e) at (3,3) {e};
-% \path[li graph kante,->] (a) edge (b);
-% \path[li graph kante] (b) edge (d);
-% \path[li graph kante,->] (b) edge node {3} (e);
-% \path[li graph kante] (c) edge (d);
-% \path[li graph kante] (d) edge node {4} (a);
-% \path[li graph kante,->] (d) edge node {2} (e);
+% \path[->] (a) edge (b);
+% \path (b) edge (d);
+% \path[->] (b) edge node {3} (e);
+% \path (c) edge (d);
+% \path (d) edge node {4} (a);
+% \path[->] (d) edge node {2} (e);
 % \end{tikzpicture}
 % \end{liBeispiel}
 
@@ -2526,7 +2527,17 @@ TikZ, um Grafiken zeichnen zu können.]
   li graph/.style={
     every node/.style={
       rectangle,
-      draw
+      draw,
+    },
+    every edge/.style={
+      >={Stealth[black]},
+      draw,
+    },
+    every edge/.append style={
+      every node/.style={
+        sloped,
+        auto,
+      }
     }
   },
   li graph kante/.style={

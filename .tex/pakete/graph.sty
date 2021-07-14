@@ -53,12 +53,12 @@
 % \node (d) at (3,0) {d};
 % \node (e) at (3,3) {e};
 %
-% \path[li graph kante,->] (a) edge (b);
-% \path[li graph kante] (b) edge (d);
-% \path[li graph kante,->] (b) edge node {3} (e);
-% \path[li graph kante] (c) edge (d);
-% \path[li graph kante] (d) edge node {4} (a);
-% \path[li graph kante,->] (d) edge node {2} (e);
+% \path[->] (a) edge (b);
+% \path (b) edge (d);
+% \path[->] (b) edge node {3} (e);
+% \path (c) edge (d);
+% \path (d) edge node {4} (a);
+% \path[->] (d) edge node {2} (e);
 % \end{tikzpicture}
 % \end{verbatim}
 
@@ -69,12 +69,12 @@
 % \node (c) at (4,1) {c};
 % \node (d) at (3,0) {d};
 % \node (e) at (3,3) {e};
-% \path[li graph kante,->] (a) edge (b);
-% \path[li graph kante] (b) edge (d);
-% \path[li graph kante,->] (b) edge node {3} (e);
-% \path[li graph kante] (c) edge (d);
-% \path[li graph kante] (d) edge node {4} (a);
-% \path[li graph kante,->] (d) edge node {2} (e);
+% \path[->] (a) edge (b);
+% \path (b) edge (d);
+% \path[->] (b) edge node {3} (e);
+% \path (c) edge (d);
+% \path (d) edge node {4} (a);
+% \path[->] (d) edge node {2} (e);
 % \end{tikzpicture}
 % \end{liBeispiel}
 
@@ -83,7 +83,17 @@
   li graph/.style={
     every node/.style={
       rectangle,
-      draw
+      draw,
+    },
+    every edge/.style={
+      >={Stealth[black]},
+      draw,
+    },
+    every edge/.append style={
+      every node/.style={
+        sloped,
+        auto,
+      }
     }
   },
   li graph kante/.style={
