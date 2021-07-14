@@ -1,0 +1,78 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{graph}
+\begin{document}
+\liAufgabenTitel{Studiflix}
+\section{Algorithmus von Prim
+\index{Algorithmus von Prim}
+}
+
+\liFussnoteUrl{https://studyflix.de/informatik/prim-algorithmus-1293}
+
+\begin{liGraphenFormat}
+B: 3 4
+A: 0 5
+C: 5 5
+D: 2 2
+E: 5 2
+F: 0 0
+G: 3 0
+A -- B: 14
+A -- D: 10
+B -- D: 18
+B -- E: 13
+C -- B: 16
+C -- E: 9
+D -- E: 30
+D -- F: 17
+D -- G: 12
+E -- G: 16
+F -- G: 22
+\end{liGraphenFormat}
+
+\begin{tikzpicture}[li graph]
+\node (A) at (0,5) {A};
+\node (B) at (3,4) {B};
+\node (C) at (5,5) {C};
+\node (D) at (2,2) {D};
+\node (E) at (5,2) {E};
+\node (F) at (0,0) {F};
+\node (G) at (3,0) {G};
+
+\path[li graph kante] (A) edge node {14} (B);
+\path[li graph kante] (A) edge node {10} (D);
+\path[li graph kante] (B) edge node {18} (D);
+\path[li graph kante] (B) edge node {13} (E);
+\path[li graph kante] (C) edge node {16} (B);
+\path[li graph kante] (C) edge node {9} (E);
+\path[li graph kante] (D) edge node {30} (E);
+\path[li graph kante] (D) edge node {17} (F);
+\path[li graph kante] (D) edge node {12} (G);
+\path[li graph kante] (E) edge node {16} (G);
+\path[li graph kante] (F) edge node {22} (G);
+\end{tikzpicture}
+
+\begin{liAntwort}
+\begin{tikzpicture}[li graph]
+\node (A) at (0,5) {A};
+\node (B) at (3,4) {B};
+\node (C) at (5,5) {C};
+\node (D) at (2,2) {D};
+\node (E) at (5,2) {E};
+\node (F) at (0,0) {F};
+\node (G) at (3,0) {G};
+
+\path[li graph kante,li markierung] (A) edge node {14} (B);
+\path[li graph kante,li markierung] (A) edge node {10} (D);
+\path[li graph kante] (B) edge node {18} (D);
+\path[li graph kante,li markierung] (B) edge node {13} (E);
+\path[li graph kante] (C) edge node {16} (B);
+\path[li graph kante,li markierung] (C) edge node {9} (E);
+\path[li graph kante] (D) edge node {30} (E);
+\path[li graph kante,li markierung] (D) edge node {17} (F);
+\path[li graph kante,li markierung] (D) edge node {12} (G);
+\path[li graph kante] (E) edge node {16} (G);
+\path[li graph kante] (F) edge node {22} (G);
+\end{tikzpicture}
+\end{liAntwort}
+
+\end{document}
