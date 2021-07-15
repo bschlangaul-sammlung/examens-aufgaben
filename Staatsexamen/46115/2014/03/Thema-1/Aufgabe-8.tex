@@ -40,35 +40,62 @@ H & \infty & 9      & \infty & \infty & \infty & 4      & 5      & 0      \\
 % 7,0,7,0,3,11,0,5
 % 0,9,0,0,0,4,5,0
 
+\begin{liGraphenFormat}
+A: 2 5
+B: 5 6
+C: 5 1
+D: 7 0
+E: 2 0
+F: 5 3
+G: 0 1
+H: 3 4.5
+A -- B: 8
+A -- E: 8
+A -- G: 7
+B -- D*: 2
+B -- H: 9
+C -- D*: 5
+C -- E: 8
+C -- F*
+C -- G: 7
+D -- E: 6
+D -- F: 6
+E -- F: 6
+E -- G*: 3
+F -- G: 11
+F -- H*: 4
+G -- H*: 5
+\end{liGraphenFormat}
+
 \begin{minipage}{8cm}
-\graph knoten {
-  \knoten{A}(2,5)
-  \knoten{B}(5,6)
-  \knoten{C}(5,1)
-  \knoten{D}(7,0)
-  \knoten{E}(2,0)
-  \knoten{F}(5,3)
-  \knoten{G}(0,1)
-  \knoten{H}(3,4.5)
-} kanten {
-  \kante(A-B){8}
-  \KANTE(A-C){-1}
-  \kante(A-E){8}
-  \kante(A-G){7}
-  \KANTE(B-D){2}
-  \kante(B-H){9}
-  \KANTE(C-D){5}
-  \kante(C-E){8}
-  \KANTE(C-F){1}
-  \kante(C-G){7}
-  \kante(D-E){6}
-  \kante(D-F){6}
-  \kante(E-F){6}
-  \KANTE(E-G){3}
-  \kante(F-G){11}
-  \KANTE(F-H){4}
-  \KANTE(G-H){5}
-}
+\begin{tikzpicture}[li graph]
+\node (A) at (2,5) {A};
+\node (B) at (5,6) {B};
+\node (C) at (5,1) {C};
+\node (D) at (7,0) {D};
+\node (E) at (2,0) {E};
+\node (F) at (5,3) {F};
+\node (G) at (0,1) {G};
+\node (H) at (3,4.5) {H};
+
+\path (A) edge node {8} (B);
+\path (A) edge node {8} (E);
+\path (A) edge node {7} (G);
+\path[li markierung] (B) edge node {2} (D);
+\path (B) edge node {9} (H);
+\path[li markierung] (C) edge node {5} (D);
+\path (C) edge node {8} (E);
+\path[li markierung] (C) edge node {1} (F);
+\path (C) edge node {7} (G);
+\path (D) edge node {6} (E);
+\path (D) edge node {6} (F);
+\path (E) edge node {6} (F);
+\path[li markierung] (E) edge node {3} (G);
+\path (F) edge node {11} (G);
+\path[li markierung] (F) edge node {4} (H);
+\path[li markierung] (G) edge node {5} (H);
+\end{tikzpicture}
+
 \end{minipage}
 \begin{minipage}{4cm}
 \begin{tabular}{lr}

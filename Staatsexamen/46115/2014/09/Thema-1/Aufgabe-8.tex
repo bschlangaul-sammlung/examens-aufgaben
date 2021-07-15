@@ -8,32 +8,60 @@
 \footcite[Thema 1 Aufgabe 8]{examen:46115:2014:09}
 }
 
-\graph knoten {
-  \knoten{a}(8,3)
-  \knoten{b}(2,3)
-  \knoten{c}(2,1)
-  \knoten{d}(0,1)
-  \knoten{e}(7,5)
-  \knoten{f}(7,2)
-  \knoten{g}(5,0)
-  \knoten{h}(0,5)
-  \knoten{s}(5,3)
-} kanten {
-  \kanteO(a-e)
-  \kanteO(a-f)
-  \kanteO(a-s)
-  \kanteO(b-c)
-  \kanteO(b-d)
-  \kanteO(b-h)
-  \kanteO(c-d)
-  \kanteO(c-h)
-  \kanteO(c-s)
-  \kanteO(d-h)
-  \kanteO(e-f)
-  \kanteO(f-s)
-  \kanteO(g-s)
-  \kanteO(h-s)
-}
+\begin{liGraphenFormat}
+a: 8 3
+b: 2 3
+c: 2 1
+d: 0 1
+e: 7 5
+f: 7 2
+g: 5 0
+h: 0 5
+s: 5 3
+a -- e
+a -- f
+a -- s
+b -- c
+b -- d
+b -- h
+c -- d
+c -- h
+c -- s
+d -- h
+e -- f
+f -- s
+g -- s
+h -- s
+\end{liGraphenFormat}
+
+\begin{center}
+\begin{tikzpicture}[li graph]
+\node (a) at (8,3) {a};
+\node (b) at (2,3) {b};
+\node (c) at (2,1) {c};
+\node (d) at (0,1) {d};
+\node (e) at (7,5) {e};
+\node (f) at (7,2) {f};
+\node (g) at (5,0) {g};
+\node (h) at (0,5) {h};
+\node (s) at (5,3) {s};
+
+\path (a) edge node {1} (e);
+\path (a) edge node {1} (f);
+\path (a) edge node {1} (s);
+\path (b) edge node {1} (c);
+\path (b) edge node {1} (d);
+\path (b) edge node {1} (h);
+\path (c) edge node {1} (d);
+\path (c) edge node {1} (h);
+\path (c) edge node {1} (s);
+\path (d) edge node {1} (h);
+\path (e) edge node {1} (f);
+\path (f) edge node {1} (s);
+\path (g) edge node {1} (s);
+\path (h) edge node {1} (s);
+\end{tikzpicture}
+\end{center}
 
 \begin{enumerate}
 

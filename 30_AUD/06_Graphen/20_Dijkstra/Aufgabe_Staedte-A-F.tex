@@ -46,26 +46,48 @@ Dijkstra (führen Sie den Algorithmus händisch durch!) die Routen und die
 Preise für die preiswertesten Flugverbindungen von der Stadt A zu jeder
 der anderen Städte.
 
-\graph knoten {
-  \knoten{A}(6,6)
-  \knoten{B}(8,4)
-  \knoten{C}(8,2)
-  \knoten{D}(6,0)
-  \knoten{E}(1,0)
-  \knoten{F}(0,4)
-  \knoten{G}(2,6)
-} kanten {
-  \kante(A-B){$300$}
-  \kante(A-F){$1000$}
-  \kante(B-C){$1000$}
-  \kante(B-D){$700$}
-  \kante(B-E){$300$}
-  \kante(B-G){$1000$}
-  \kante(C-F){$200$}
-  \kante(D-F){$400$}
-  \kante(E-F){$300$}
-  \kante(F-G){$300$}
-}
+\begin{liGraphenFormat}
+A: 6 6
+B: 8 4
+C: 8 2
+D: 6 0
+E: 1 0
+F: 0 4
+G: 2 6
+A -- B: 300
+A -- F: 1000
+B -- C: 1000
+B -- D: 700
+B -- E: 300
+B -- G: 1000
+C -- F: 200
+D -- F: 400
+E -- F: 300
+F -- G: 300
+\end{liGraphenFormat}
+
+Als TikZ-Umgebung
+
+\begin{tikzpicture}[li graph]
+\node (A) at (6,6) {A};
+\node (B) at (8,4) {B};
+\node (C) at (8,2) {C};
+\node (D) at (6,0) {D};
+\node (E) at (1,0) {E};
+\node (F) at (0,4) {F};
+\node (G) at (2,6) {G};
+
+\path (A) edge node {300} (B);
+\path (A) edge node {1000} (F);
+\path (B) edge node {1000} (C);
+\path (B) edge node {700} (D);
+\path (B) edge node {300} (E);
+\path (B) edge node {1000} (G);
+\path (C) edge node {200} (F);
+\path (D) edge node {400} (F);
+\path (E) edge node {300} (F);
+\path (F) edge node {300} (G);
+\end{tikzpicture}
 
 \noindent
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
