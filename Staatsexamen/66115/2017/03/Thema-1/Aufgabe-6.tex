@@ -23,15 +23,26 @@ halten.
 \item Zeigen Sie, dass $E$ unentscheidbar ist (etwa durch Reduktion vom
 Halteproblem $H_0$).
 
+% Info_2021-05-07-2021-05-07_13.30.16.mp4
+% 1h34min - 1h47min
 \begin{liAntwort}
+zu zeigen: $L_H \leq L \rightarrow L$ ist genauso unentscheidbar wie $L_H$
+
+Eingabeinstanzen von $L_H (TM(M), u)$ durch Funktion umbauen in
+Eingabeinstanzen von $L (TM (M^\prime))$.
+
+Idee: Turingmaschine so modifizieren, dass sie zunächst
+1000 Schritte macht und dann $M$ auf $u$ startet.
+\footcite[Seite 53]{theo:fs:4}
+
 Dazu definieren wir die Funktion $f : \Sigma^* \rightarrow \Sigma^*$ wie
 folgt:
 
 \begin{equation*}
 f(u) =
 \begin{cases}
-c(M’) &
-\text{falls }u = c(M')w\text{ ist für eine Turingmaschine }M\text{ und Eingabe }w\\
+c(M^\prime) &
+\text{falls }u = c(M^\prime)w\text{ ist für eine Turingmaschine }M\text{ und Eingabe }w\\
 
 0 & \text{sonst}
 \end{cases}
@@ -44,16 +55,21 @@ Dabei sei M’ eine Turingmaschine, die sich wie folgt verhält:
 \item Startet M
 \end{enumerate}
 
-\begin{itemize}
-\item total
+\begin{description}
+\item [total:]
 
-\item berechenbar: Syntaxcheck, 1000 Schritte über 1000 weitere Zustände
-realisierbar
+ja
 
-\item Korrektheit: $u \in L_{halt} \Leftrightarrow u = c(M)w$ für TM $M$, die auf $w$ hält
-$\Leftrightarrow f(u) = c(M')$,
-wobei $M'$ 1000 Schritte macht und dann hält $\Leftrightarrow f(u) \in L$
-\end{itemize}
+\item [berechenbar:]
+
+Syntaxcheck, 1000 Schritte über 1000 weitere Zustände realisierbar
+
+\item [Korrektheit:]
+
+$u \in L_{halt} \Leftrightarrow u = c(M)w$ für TM $M$, die auf $w$ hält
+$\Leftrightarrow f(u) = c(M^\prime)$, wobei $M^\prime$ $1000$ Schritte
+macht und dann hält $\Leftrightarrow f(u) \in L$
+\end{description}
 \end{liAntwort}
 \footcite[Seite 54]{theo:fs:4}
 

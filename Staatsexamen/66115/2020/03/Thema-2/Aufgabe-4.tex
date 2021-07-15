@@ -1,0 +1,64 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen}
+\begin{document}
+\liAufgabenTitel{Berechenbarkeitstheorie}
+\section{Aufgabe 4
+\index{Berechenbarkeit}
+\footcite{66115:2020:03}}
+
+% Info_2021-05-07-2021-05-07_13.30.16.mp4
+% 1h47min - 1h57min
+
+\liAusdruck[A]{(M)}{M\text{ ist Turingmaschine, die bei Eingabe }101\text{ hält}}.
+Dabei bezeichnet (M) die Gödelnummer der Turingmaschine $M$.
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Zeigen Sie, dass $A$ unentscheidbar ist.
+
+\begin{liAntwort}
+Reduktionsbeweis von H 0 ≤ A:
+TM U
+\begin{enumerate}
+
+\item Die zu 𝑀 ′ ∈ 𝐻 0 passende TM 𝑀 ∗ ∈ 𝐴 aus A suchen mit < 𝑀 ′ > = < 𝑀 ∗ >
+\item 101 auf das Band schreiben
+\item 𝑀 ∗ auf 101 starten
+\end{enumerate}
+Damit könnte U H 0 entscheiden, was aber ein Widerspruch zu H0 semi-
+entscheidbar ist. Damit ist A ebenfalls semi-entscheidbar.
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item Zeigen Sie, dass $A$ semi-entscheidbar ist.
+
+\begin{liAntwort}
+siehe a)
+\end{liAntwort}
+
+%%
+% (c)
+%%
+
+\item Ist das Komplement $A^c$ von $A$ entscheidbar? Ist es semi-entscheidbar? Begründen
+Sie Ihre Antworten.
+
+Hinweis: Sie können die Aussagen aus Teilaufgabe a) und b) verwenden, auch wenn Sie sie
+nicht bewiesen haben.
+
+\begin{liAntwort}
+Wenn $A$ unentscheidbar ist, dann kann entweder $A$ oder $A^c$
+semi-entscheidbar sein. Wären beide semi-entscheidbar, dann wäre $A$
+aber ebenfalls entscheidbar, was aber nach Voraussetzung ausgeschlossen
+ist.
+\footcite[Seite 52]{theo:fs:4}
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}
