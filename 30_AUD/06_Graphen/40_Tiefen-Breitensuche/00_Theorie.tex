@@ -30,41 +30,68 @@ Keller) verwendet. Der konkrete Durchlauf hängt von der Reihenfolge der
 Knoten in den Adjazenzlisten ab.
 \footcite[Seite 40 (PDF 33)]{aud:fs:6}
 
-\def\TmpGraph{
-  \graph knoten {
-    \knoten{A}(1,5)
-    \knoten{B}(0,4)
-    \knoten{C}(0,2)
-    \knoten{D}(1,0)
-    \knoten{E}(2,2)
-    \knoten{F}(3,1)
-    \knoten{G}(6,2)
-    \knoten{H}(5,3)
-    \knoten{I}(4,5)
-    \knoten{J}(5,5)
-    \knoten{K}(6,4)
-    \knoten{L}(7,3)
-    \knoten{M}(8,0)
-  } kanten {
-    \kanteO(A-B)
-    \kanteO(A-C)
-    \kanteO(A-E)
-    \kanteO(B-C)
-    \kanteO(C-E)
-    \kanteO(C-I)
-    \kanteO(D-E)
-    \kanteO(D-F)
-    \kanteO(F-G)
-    \kanteO(F-H)
-    \kanteO(F-I)
-    \kanteO(F-M)
-    \kanteO(I-J)
-    \kanteO(L-K)
-    \kanteO(M-L)
-  }
-}
+\begin{liGraphenFormat}
+A: 1 5
+B: 0 4
+C: 0 2
+D: 1 0
+E: 2 2
+F: 3 1
+G: 6 2
+H: 5 3
+I: 4 5
+J: 5 5
+K: 6 4
+L: 7 3
+M: 8 0
+A -- B
+A -- C
+A -- E
+B -- C
+C -- E
+C -- I
+D -- E
+D -- F
+F -- G
+F -- H
+F -- I
+F -- M
+I -- J
+L -- K
+M -- L
+\end{liGraphenFormat}
 
-\TmpGraph
+\begin{tikzpicture}[li graph]
+\node (A) at (1,5) {A};
+\node (B) at (0,4) {B};
+\node (C) at (0,2) {C};
+\node (D) at (1,0) {D};
+\node (E) at (2,2) {E};
+\node (F) at (3,1) {F};
+\node (G) at (6,2) {G};
+\node (H) at (5,3) {H};
+\node (I) at (4,5) {I};
+\node (J) at (5,5) {J};
+\node (K) at (6,4) {K};
+\node (L) at (7,3) {L};
+\node (M) at (8,0) {M};
+
+\path (A) edge node {1} (B);
+\path (A) edge node {1} (C);
+\path (A) edge node {1} (E);
+\path (B) edge node {1} (C);
+\path (C) edge node {1} (E);
+\path (C) edge node {1} (I);
+\path (D) edge node {1} (E);
+\path (D) edge node {1} (F);
+\path (F) edge node {1} (G);
+\path (F) edge node {1} (H);
+\path (F) edge node {1} (I);
+\path (F) edge node {1} (M);
+\path (I) edge node {1} (J);
+\path (L) edge node {1} (K);
+\path (M) edge node {1} (L);
+\end{tikzpicture}
 
 \def\TmpBesuch#1{\strut\par\textbf{Besuchte Knoten:} #1}
 \def\TmpStack#1{\par\textbf{Stack:} #1}

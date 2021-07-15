@@ -2540,90 +2540,11 @@ TikZ, um Grafiken zeichnen zu können.]
       }
     }
   },
-  li graph kante/.style={
-    >={Stealth[black]},
-    every node/.style={
-      sloped,
-      auto,
-    },
-    every edge/.style={
-      draw=black,
-    }
-  },
   li markierung/.style={
     ultra thick,
   }
 }
 %    \end{macrocode}
-
-% \begin{macro}{\graph}
-%    \begin{macrocode}
-\def\graph knoten #1 kanten #2 {
-  \begin{center}
-  \begin{tikzpicture}
-  \begin{scope}[every node/.style={circle,draw}]
-  #1
-  \end{scope}
-
-  \begin{scope}[>={Stealth[black]},
-                every node/.style={fill=white,circle},
-                every edge/.style={draw=black}]
-  #2
-  \end{scope}
-  \end{tikzpicture}
-  \end{center}
-}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\knoten}
-% |\\node\s*\((.*)\)\s*at\s*\((\d+),(\d+)\)\s*\{.*\}\s*;|
-% |\knoten{$1}($2,$3)|
-%    \begin{macrocode}
-\def\knoten#1(#2,#3){
-  \node (#1) at (#2,#3) {#1};
-}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\kante}
-% |\\path \((.*)\) edge node \{(.*)\} \((.*)\);|
-% |\kante($1-$3){$2}|
-%    \begin{macrocode}
-\def\kante(#1-#2)#3{
-  \path (#1) edge node {#3} (#2);
-}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\kanteO}
-% |\\draw\s*\((.*)\)\s*--\s*\((.*)\);|
-% Kante ohne Gewicht
-%    \begin{macrocode}
-\def\kanteO(#1-#2){
-  \path (#1) edge (#2);
-}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\kanteR}
-% Kante geRichtet
-% |\\path \[->\] \((.*)\) edge node \{(.*)\} \((.*)\);|
-% |\kanteR($1>$3){$2}|
-%    \begin{macrocode}
-\def\kanteR(#1>#2)#3{
-  \path[->] (#1) edge node {#3} (#2);
-}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\KANTE}
-%    \begin{macrocode}
-\def\KANTE(#1-#2)#3{
-  \path[ultra thick] (#1) edge node {#3} (#2);
-}
-%    \end{macrocode}
-% \end{macro}
 
 % \begin{environment}{liGraphenFormat}
 % Dummy-Umgebung, zum Parsen durch Java gedacht.
