@@ -1,6 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{formale-sprachen,automaten}
 \begin{document}
+\let\t=\liTuringUebergangZelle
+
 \liAufgabenTitel{Binärzahl dekrementieren}
 \section{Binärzahl dekrementieren
 \index{Turing-Maschine}
@@ -54,6 +56,50 @@ sich
 \end{center}
 
 mit unten angegebener Übergangsfunktion:
+
+\begin{tabular}{lllll}
+δ &
+0 &
+1 &
+d &
+Kommentar\\\hline
+
+z0 &
+∅ &
+∅ &
+\t{z1, LEER, R} &
+Gehe auf erstes Zeichen des Wortes\\\hline
+
+z1 &
+\t{z1, 0, R} &
+\t{z1, 1, R} &
+\t{z2, LEER, L} &
+Gehe ans rechte Ende des Wortes\\\hline
+
+z2 &
+\t{z2, 1, L} &
+\t{z3, 0, L} &
+∅ &
+Flippe alle 0 Bits bis die erste 1 erreicht wird, setzte diese auf 0\\\hline
+
+z3 &
+\t{z3, 0, L} &
+\t{z3, 1, L} &
+\t{z4, LEER, R} &
+suche linkes Ende des Wortes\\\hline
+
+z4 &
+\t{z4, LEER, R} &
+\t{z5, 1, L} &
+\t{z5, 0, L} &
+lösche führende Nullen , schreibe evtl. 0 aufs Band\\\hline
+
+z5 &
+∅ &
+∅ &
+∅ &
+Endzustand\\\hline
+\end{tabular}
 
 \begin{center}
 \begin{tikzpicture}[li turingmaschine]
