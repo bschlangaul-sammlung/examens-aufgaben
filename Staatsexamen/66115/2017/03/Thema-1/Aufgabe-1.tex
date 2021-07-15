@@ -1,6 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{graph}
 \begin{document}
+\def\p{ $\rightarrow$ }
+
 \liAufgabenTitel{Bayerischee Autobahnen}
 \section{Aufgabe 1 (Graphalgorithmen)
 \index{Algorithmus von Dijkstra}
@@ -10,22 +12,83 @@ Die folgende Abbildung zeigt die wichtigsten bayerischen Autobahnen
 zusammen mit einigen anliegenden Orten und die Entfernungen zwischen
 diesen.
 
-Entfernungstabelle
+\liPseudoUeberschrift{Entfernungstabelle}
 
-\begin{tabular}{lll}
-von & nach & km\\
-Würzburg & Nürnberg & 115\\
-Nürnberg & Regensburg & 105\\
-Regensburg & AK Deggendorf & 70\\
-AK Deggendorf & Passau & 50\\
-Hof & Nürnberg & 135\\
-Nürnberg & Ingolstadt & 90\\
-Ingolstadt & AD Holledau & 20\\
-AD Holledau & München & 50\\
-München & AK Deggendorf & 140\\
-Hof & Regensburg & 170\\
-Regensburg & AD Holledau & 70\\
+\begin{tabular}{l|l|l}
+von           & nach          & km\\\hline\hline
+Würzburg      & Nürnberg      & 115\\
+Nürnberg      & Regensburg    & 105\\
+Regensburg    & AK Deggendorf & 70\\
+AK Deggendorf & Passau        & 50\\\hline
+Hof           & Nürnberg      & 135\\
+Nürnberg      & Ingolstadt    & 90\\
+Ingolstadt    & AD Holledau   & 20\\
+AD Holledau   & München       & 50\\\hline
+München       & AK Deggendorf & 140\\\hline
+Hof           & Regensburg    & 170\\
+Regensburg    & AD Holledau   & 70\\
 \end{tabular}
+
+\liPseudoUeberschrift{Abkürzungen}
+
+\begin{tabular}{ll}
+D  & Deggendorf\\
+HF & Hof\\
+HD & Holledau\\
+I  & Ingolstadt\\
+M  & München\\
+N  & Nürnberg\\
+P  & Passau\\
+R  & Regensburg\\
+W  & Würzburg\\
+\end{tabular}
+
+\begin{liGraphenFormat}
+HF: 4 8
+W: 0 7
+N: 1 5
+I: 2 3
+HD: 2 1
+M: 3 0
+R: 4 4
+D: 5 3
+P: 6 1
+D -- M: 140
+D -- P: 50
+D -- R: 70
+HD -- I: 20
+HD -- M: 50
+HD -- R: 70
+HF -- N: 135
+HF -- R: 170
+I -- N: 90
+N -- R: 105
+N -- W: 115
+\end{liGraphenFormat}
+
+\begin{tikzpicture}[li graph,x=1.5cm]
+\node (D) at (5,3) {D};
+\node (HD) at (2,1) {HD};
+\node (HF) at (4,8) {HF};
+\node (I) at (2,3) {I};
+\node (M) at (3,0) {M};
+\node (N) at (1,5) {N};
+\node (P) at (6,1) {P};
+\node (R) at (4,4) {R};
+\node (W) at (0,7) {W};
+
+\path (D) edge node {140} (M);
+\path (D) edge node {50} (P);
+\path (D) edge node {70} (R);
+\path (HD) edge node {20} (I);
+\path (HD) edge node {50} (M);
+\path (HD) edge node {70} (R);
+\path (HF) edge node {135} (N);
+\path (HF) edge node {170} (R);
+\path (I) edge node {90} (N);
+\path (N) edge node {105} (R);
+\path (N) edge node {115} (W);
+\end{tikzpicture}
 
 \begin{enumerate}
 
@@ -33,14 +96,29 @@ Regensburg & AD Holledau & 70\\
 % a)
 %%
 
-\item Bestimmen Sie mit dem Algorithmus von Dijkstra den kürzesten Weg
-von Ingolstadt zu allen anderen Orten. Verwenden Sie zur Lösung eine
-Tabelle gemäß folgendem Muster und markieren Sie in jeder Zeile den
-jeweils als nächstes zu betrachtenden Ort. Setzen Sie für die noch zu
-bearbeitenden Orte eine Prioritätswarteschlange ein, \dh bei gleicher
-Entfernung wird der ältere Knoten gewählt.
+\item Bestimmen Sie mit dem Algorithmus von \emph{Dijkstra} den
+kürzesten Weg von Ingolstadt zu allen anderen Orten. Verwenden Sie zur
+Lösung eine Tabelle gemäß folgendem Muster und markieren Sie in jeder
+Zeile den jeweils als nächstes zu betrachtenden Ort. Setzen Sie für die
+noch zu bearbeitenden Orte eine Prioritätswarteschlange ein, \dh bei
+gleicher Entfernung wird der ältere Knoten gewählt.
 
-Ergebnis:
+\begin{liAntwort}
+\begin{tabular}{lllllllllll}
+\bf{Nr.}     & \bf{besucht} & \bf{D}       & \bf{HD}      & \bf{HF}      & \bf{I}       & \bf{M}       & \bf{N}       & \bf{P}       & \bf{R}       & \bf{W}       \\
+\hline
+0            &              & $\infty$     & $\infty$     & $\infty$     & 0            & $\infty$     & $\infty$     & $\infty$     & $\infty$     & $\infty$     \\
+1            & I            & $\infty$     & 20           & $\infty$     & \bf{0}       & $\infty$     & 90           & $\infty$     & $\infty$     & $\infty$     \\
+2            & HD           & $\infty$     & \bf{20}      & $\infty$     & |            & 70           & 90           & $\infty$     & 90           & $\infty$     \\
+3            & M            & 210          & |            & $\infty$     & |            & \bf{70}      & 90           & $\infty$     & 90           & $\infty$     \\
+4            & N            & 210          & |            & 225          & |            & |            & \bf{90}      & $\infty$     & 90           & 205          \\
+5            & R            & 160          & |            & 225          & |            & |            & |            & $\infty$     & \bf{90}      & 205          \\
+6            & D            & \bf{160}     & |            & 225          & |            & |            & |            & 210          & |            & 205          \\
+7            & W            & |            & |            & 225          & |            & |            & |            & 210          & |            & \bf{205}     \\
+8            & P            & |            & |            & 225          & |            & |            & |            & \bf{210}     & |            & |            \\
+9            & HF           & |            & |            & \bf{225}     & |            & |            & |            & |            & |            & |            \\
+\end{tabular}
+\end{liAntwort}
 
 %%
 % b)
@@ -55,10 +133,39 @@ muss. Geben Sie die Ortspaare (Autobahnsegmente) in der Reihenfolge an,
 in der Sie sie in Ihre Verkabelungsliste aufnehmen.
 \index{Algorithmus von Kruskal}
 
+\begin{liAntwort}
+
+\end{liAntwort}
+
 \item Um Touristen den Besuch aller Orte so zu ermöglichen, dass sie
 dabei jeden Autobahnabschnitt genau einmal befahren müssen, bedarf es
 zumindest eines sogenannten offenen Eulerzugs. Zwischen welchen zwei
 Orten würden Sie eine Autobahn bauen, damit das bayerische Autobahnnetz
 mindestens einen Euler-Pfad enthält?
+
+\begin{liExkurs}[offener Eulerzug]
+Ein offener Eulerzug ist gegeben, wenn Start- und Endknoten nicht gleich
+sein müssen, wenn also statt eines Zyklus lediglich eine Kantenfolge
+verlangt wird, welche jede Kante des Graphen genau einmal enthält. Ein
+bekanntes Beispiel ist das „Haus vom Nikolaus“.
+\end{liExkurs}
+
+\begin{liAntwort}
+Zwischen Deggendorf und Würzburg
+
+P \p
+D \p
+R \p
+N \p
+\textbf{W} \p
+\textbf{D}\p
+M \p
+HD \p
+R \p
+HF \p
+N \p
+I \p
+HD
+\end{liAntwort}
 \end{enumerate}
 \end{document}
