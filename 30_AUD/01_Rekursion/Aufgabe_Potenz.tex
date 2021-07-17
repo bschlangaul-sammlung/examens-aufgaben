@@ -5,7 +5,7 @@
 
 \section{Potenz
 \index{Rekursion}
-\footcite[Aufgabe 2: Rekursion, Seite 2]{aud:ab:1}}
+\footcite[Aufgabenblatt 1: Abstrakte Klassen, Interface, Rekursion, Seite 2, Aufgabe 2]{aud:ab:1}}
 
 Gegeben ist folgende Methode.
 
@@ -23,23 +23,27 @@ wichtige Bestandteile der rekursiven Methode ein.
 \begin{liAntwort}
 Die Methode mit dem Namen \liJavaCode{function} ruft sich in der letzten
 Code-Zeile selbst auf. Außerdem gibt es eine Abbruchbedingung
-(\liJavaCode{if (e == 1) { return b * 1; }}), womit verhindert wird, dass die
-Rekursion unendlich weiter läuft.
+(\liJavaCode{if (e == 1) { return b * 1; }}), womit verhindert wird,
+dass die Rekursion unendlich weiter läuft.
 \end{liAntwort}
 
 %%
 % (b)
 %%
 
-\item Geben Sie die Rekursionsvorschrift für die Methode \liJavaCode{function}
-an. Denken Sie dabei an die Angabe der Zahlenbereiche!
+\item Geben Sie die Rekursionsvorschrift für die Methode
+\liJavaCode{function} an. Denken Sie dabei an die Angabe der
+Zahlenbereiche!
 
 \begin{liAntwort}
 \begin{equation*}
 \text{int function(int b, int e)} =
 \begin{cases}
-\text{return b*1}, & \text{falls e = 1}.\\
-\text{return b*function(b,e-1)}, & \text{falls e > 1}.
+\text{return b*1}, &
+\text{falls e = 1}.\\
+
+\text{return b*function(b,e-1)}, &
+\text{falls e > 1}.\\
 \end{cases}
 \end{equation*}
 \end{liAntwort}
@@ -48,7 +52,8 @@ an. Denken Sie dabei an die Angabe der Zahlenbereiche!
 % (c)
 %%
 
-\item Erklären Sie kurz, was die Methode \liJavaCode{function} berechnet.
+\item Erklären Sie kurz, was die Methode \liJavaCode{function}
+berechnet.
 
 \begin{liAntwort}
 Die Methode \liJavaCode{function} berechnet die Potenz $b^e$.
