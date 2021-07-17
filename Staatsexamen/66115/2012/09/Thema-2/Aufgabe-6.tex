@@ -5,23 +5,40 @@
 
 \section{Aufgabe 4: Komplexität
 \index{Komplexität}
-\footcite[Thema 2 Aufgabe 6: O-Notation]{examen:66115:2012:09}
+\footcite[Aufgabe 6]{examen:66115:2012:09}
 }
 
-Gegeben seien die Funktionen $f : N \rightarrow N$ und $g : N \rightarrow N$ , wobei $f (n)
-= (n - 1)^3$ und $g(n) = (2n + 3)(3n + 2)$. Geben Sie an, welche der
-folgenden Aussagen gelten. Beweisen Sie Ihre Angaben.
+Gegeben seien die Funktionen
+$f \colon \mathbb{N} \rightarrow \mathbb{N}$ und
+$g \colon \mathbb{N} \rightarrow \mathbb{N}$, wobei $f (n) = (n - 1)^3$ und $g(n) = (2n + 3)(3n +
+2)$. Geben Sie an, welche der folgenden Aussagen gelten. Beweisen Sie
+Ihre Angaben.
 
-\footcite{aud:ab:2}
+\footcite[Aufgabe 4]{aud:ab:2}
 \begin{enumerate}
 \item $f(n) \in \mathcal{O}(g(n))$
 \item $g(n) \in \mathcal{O}(f(n))$
 \end{enumerate}
 
+\begin{liExkurs}[Regel von L’Hospital]
+Die Regel von de L’Hospital ist ein Hilfsmittel zum Berechnen von
+Grenzwerten bei Brüchen $\frac{f}{g}$ von Funktionen $f$ und $g$, wenn
+Zähler und Nenner entweder beide gegen $0$ oder beide gegen (+ oder -)
+unendlich gehen. Wenn in einem solchen Fall auch der Grenzwert des
+Bruches der Ableitungen existiert, so hat dieser denselben Wert wie der
+ursprüngliche Grenzwert:
+\footnote{\url{https://de.serlo.org/mathe/funktionen/grenzwerte-stetigkeit-differenzierbarkeit/grenzwert/regel-l-hospital}}
+
+\begin{displaymath}
+\lim_{x \to x_0} \frac{f(x)}{g(x)} = \lim_{x \to x_0} \frac{f'(x)}{g'(x)}
+\end{displaymath}
+
+\end{liExkurs}
+
 \begin{liAntwort}
 Es gilt Aussage (b), da $f(n) \in \mathcal{O}(n^3)$ und $g(n) \in
 \mathcal{O}(n^2)$ und der Grenzwert $\lim$ bei größer werdendem $n$
-gegen $0$ geht. Damit wächst $f (n)$ stärker als $g(n)$, sodass nur
+gegen $0$ geht. Damit wächst $f(n)$ stärker als $g(n)$, sodass nur
 Aussage (b) gilt und nicht (a). Dafür nutzen wir die formale Definition
 des $\mathcal{O}$-Kalküls, indem wir den Grenzwert $\frac{f}{g}$ bzw.
 $\frac{g}{f}$ bilden:
@@ -68,6 +85,7 @@ $\frac{g}{f}$ bilden:
 0
 \end{displaymath}
 }
+Hinweis: Hierbei haben wir bei die Regel von L’Hospital angewendet.
 \end{liAntwort}
 
 \end{document}
