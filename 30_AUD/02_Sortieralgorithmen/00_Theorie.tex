@@ -162,6 +162,49 @@ $\mathcal{O}(log(n))$
 
 \end{itemize}
 
+\section{Vergleich der Sortieralgorithmen}
+
+\def\O#1{\mathcal{O}(#1)}
+% O(n)
+\def\n{$\O{n}$}
+% O n quadrat
+\def\nq{$\O{n^2}$}
+\def\nlogn{$\O{n \cdot \log(n)}$}
+% Markierung
+\def\m#1{\textcolor{blue}{#1}}
+
+% Vergleich n quadrat durch vier
+\def\vnqv{\sim $\frac{n^2}{4}$}
+% Vergleich n quadrat durch zwei
+\def\vnqz{\sim $\frac{n^2}{2}$}
+
+\subsection{Laufzeit\footcite[Seite 35]{aud:fs:2}}
+
+\renewcommand{\arraystretch}{1.5}
+
+\begin{tabular}{r|ccc}
+                      & Best   & Average& Worst \\\hline\hline
+\bf{Binary Tree Sort} & \nlogn & \nlogn & \m{\nq} \\\hline
+
+\bf{Bubblesort}       & \m{\n} & \nq    & \nq   \\
+Vergleiche            & $n-1$  & \vnqz  & \vnqz \\
+Kopieraktionen        & $0$    & \vnqv  & \vnqz \\\hline
+
+\bf{Heapsort}         & \nlogn & \nlogn & \nlogn \\\hline
+
+\bf{Insertionsort}    & \m{\n} & \nq    & \nq \\
+Vergleiche            & $n-1$  & \vnqv  & \vnqz \\
+Kopieraktionen        & $0$    & \vnqv  & \vnqz \\\hline
+
+\bf{Mergesort}        & \nlogn & \nlogn & \nlogn \\\hline
+
+\bf{Quicksort}        & \nlogn & \nlogn & \m{\nq} \\\hline
+
+\bf{Selectionsort}    & \nq    & \nq    & \nq \\
+Vergleiche            & \vnqz  & \vnqz  & \vnqz \\
+Kopieraktionen        & $0$    & $3n$   & $3n$ \\\hline
+\end{tabular}
+
 \literatur
 
 \end{document}
