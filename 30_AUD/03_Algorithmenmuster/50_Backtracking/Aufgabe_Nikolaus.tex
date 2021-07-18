@@ -1,19 +1,16 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{syntax}
+\usepackage{tikz}
 \begin{document}
 \liAufgabenTitel{Nikolaus}
 
 \section{Das Haus des Nikolaus
 \index{Backtracking}
-\footcite[Seite 2-3]{aud:ab:3}
-}
-
-\begin{liExkurs}[Quelle]
-Diese Aufgabe stammt von der Website oberstufeninformatik.de. Die
+\footcite[Diese Aufgabe stammt von der Website oberstufeninformatik.de. Die
 Materialien sind nicht Freeware, sondern Beerware. Voraussetzung für
 den Einsatz ist, dass der Benutzer ein Bier zum Wohle des Autors Horst
-Gierhardt trinkt \footcite{net:pdf:nikolaus}.
-\end{liExkurs}
+Gierhardt trinkt, Seite 2-3, Aufgabe 3]{aud:ab:3}
+}
 
 \noindent
 Hier ist das \emph{„Haus des Nikolaus“} mit einer bestimmten
@@ -23,6 +20,20 @@ in der Form 123451352 ausgegeben werden. Das Programm soll eine einfache
 Anpassung an andere Graphen ermöglichen. Der Ausschluss von gespiegelten
 Lösungen ist nicht gefordert.
 
+\begin{center}
+\begin{tikzpicture}[rounded corners=8pt]
+\node[label=180:1] (eins) at (0,0) {};
+\node[label=0:2] (zwei) at (2,0) {};
+\node[label=3] (drei) at (2,2) {};
+\node[label=4] (vier) at (1,3.25) {};
+\node[label=5] (fünf) at (0,2) {};
+
+\draw[thick]
+(eins) -- (fünf) -- (vier) -- (drei) -- (zwei) -- (fünf) -- (drei) -- (eins) -- (zwei);
+\end{tikzpicture}
+\end{center}
+
+\begin{liExkurs}[Backtracking]
 Eine Lösung lässt sich nach dem Prinzip \emph{Versuch und Testen}
 ermitteln. Eine vermutete Teillösung muss wieder verworfen werden, wenn
 ein Test ihre Ungültigkeit nachgewiesen hat. Man nennt diesen Ansatz
@@ -40,8 +51,9 @@ gefärbt werden, dass benachbarte Länder immer unterschiedliche Farben
 bekommen.
 
 \item[Labyrinth-Problem:] Ein Labyrinth mit Sackgassen und Verzweigungen
-ist zu durch- laufen, um den Ausgang zu finden.
+ist zu durchlaufen, um den Ausgang zu finden.
 \end{description}
+\end{liExkurs}
 
 \noindent
 Konkreter:
@@ -80,10 +92,10 @@ wird jeweils eine Lösung erfasst.
 Es bieten sich folgende Methoden zur Strukturierung des Programmes an:
 
 \begin{enumerate}
-\item \liJavaCode{void initArrays()}
+\item \liJavaCode{void initialsiereFelder()}
 \item \liJavaCode{void zeichneKante(int von, int nach)}
-\item \liJavaCode{void loescheKante(int von, int nach)}
-\item \liJavaCode{void loesungAusgeben()}
+\item \liJavaCode{void löscheKante(int von, int nach)}
+\item \liJavaCode{void gibLösungAus()}
 \item \liJavaCode{void versucheKanteZuZeichnen(int start)}: Die rekursive
 Methode soll vom Punkt start weitere Kanten zeichen.
 
@@ -91,14 +103,14 @@ Methode soll vom Punkt start weitere Kanten zeichen.
 
 \begin{minted}{java}
 public static void main(String[] arg) {
-  initArrays();
-  for (int punktNr=1; punktNr<=maxPunktAnz; punktNr++) {
-    loesungsWeg[0] = punktNr; // Startpunkt eintragen
+  initialsiereFelder();
+  for (int punktNr = 1; punktNr <= maxPunktAnzahl; punktNr++) {
+    lösungsWeg[0] = punktNr; // Startpunkt eintragen
     versucheKanteZuZeichnen(punktNr);
-  } // for punktNr
-  Out.println();
-  Out.println("Es ergaben sich " + loesungsAnzahl + " Loesungen.");
-} // main
+  }
+  System.out.println();
+  System.out.println("Es ergaben sich " + lösungsAnzahl + " Loesungen.");
+}
 \end{minted}
 
 \end{enumerate}

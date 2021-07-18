@@ -4,6 +4,7 @@
 \liAufgabenTitel{Wegberechnung im Gitter}
 
 \section{Wegberechnung im Gitter
+\index{Dynamische Programmierung}
 \footcite[Seite 1, Dynamische Programmierung, Aufgabe 2]{aud:ab:3}}
 
 Betrachten Sie das folgende Gitter mit $m + 1$ Zeilen und $n + 1$
@@ -70,4 +71,60 @@ Einfachheit halber weglassen.
 \begin{liAntwort}
 \liJavaDatei[firstline=32,lastline=46]{aufgaben/aud/ab_3/Gitter}
 \end{liAntwort}
+
+\begin{liAntwort}
+\liPseudoUeberschrift{Die komplette Java-Klasse}
+\liJavaDatei{aufgaben/aud/ab_3/Gitter}
+
+%%
+%
+%%
+
+\liPseudoUeberschrift{Text-Ausgabe}
+
+\begin{minted}{md}
+Anzahl der Wege von 2x2: 6
+Gitter:
+ x 0 1 2
+ 0 0 1 1
+ 1 1 2 3
+ 2 1 3 6
+
+Anzahl der Wege von 3x3: 20
+Gitter:
+  x  0  1  2  3
+  0  0  1  1  1
+  1  1  2  3  4
+  2  1  3  6 10
+  3  1  4 10 20
+
+Anzahl der Wege von 4x4: 70
+Gitter:
+  x  0  1  2  3  4
+  0  0  1  1  1  1
+  1  1  2  3  4  5
+  2  1  3  6 10 15
+  3  1  4 10 20 35
+  4  1  5 15 35 70
+
+Anzahl der Wege von 5x5: 252
+Gitter:
+   x   0   1   2   3   4   5
+   0   0   1   1   1   1   1
+   1   1   2   3   4   5   6
+   2   1   3   6  10  15  21
+   3   1   4  10  20  35  56
+   4   1   5  15  35  70 126
+   5   1   6  21  56 126 252
+\end{minted}
+
+%%
+%
+%%
+
+\liPseudoUeberschrift{Test-Datei}
+
+\liJavaTestDatei{aufgaben/aud/ab_3/GitterTest}
+\end{liAntwort}
+
 \end{document}
