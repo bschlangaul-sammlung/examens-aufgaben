@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe}
+\liLadePakete{mathe,syntax}
 \begin{document}
 \liAufgabenTitel{Rucksackproblem}
 
@@ -18,9 +18,9 @@ Tragfähigkeit des Rucksacks nicht überschreitet.
 Mathematisch exakt kann das Rucksackproblem wie folgt formuliert werden:
 
 Gegeben ist eine endliche Menge von Objekten $U$. Durch eine
-Gewichtsfunktion $w : U \rightarrow \mathbb{R}^+$ wird den Objekten ein
-Gewicht und durch eine Nutzenfunktion $v : U \rightarrow \mathbb{R}^+$
-ein festgelegter Nutzwert zugeordnet.
+Gewichtsfunktion $w \colon U \rightarrow \mathbb{R}^+$ wird den Objekten
+ein Gewicht und durch eine Nutzenfunktion $v \colon U \rightarrow
+\mathbb{R}^+$ ein festgelegter Nutzwert zugeordnet.
 
 Des Weiteren gibt es eine vorgegebene Gewichtsschranke $B \in
 \mathbb{R}^+$. Gesucht ist eine Teilmenge $K \subseteq U$, die die
@@ -34,10 +34,13 @@ mittels Backtracking und formulieren Sie einen entsprechenden
 Algorithmus. Gehen Sie davon aus, dass die Gewichtsschranke $B$ sowie
 die Anzahl an Objekten $N$ beliebig, aber fest vorgegeben sind.
 
+\bigskip
+
+\noindent
 Das Programm soll folgende Ausgaben liefern:
 
 \begin{enumerate}
-\item  Maximaler Nutzwert, der durch eine Objektauswahl unter Einhaltung
+\item Maximaler Nutzwert, der durch eine Objektauswahl unter Einhaltung
 der Gewichtsschranke $B$ erreicht werden kann.
 
 \item Das durch die maximierende Objektmenge erreichte Gesamtgewicht.
@@ -48,6 +51,6 @@ des Nutzwerts beigetragen haben.
 \end{enumerate}
 
 \begin{liAntwort}
-Foundations of Algorithms Using Java
+\liJavaExamen{66115}{2018}{09}{Rucksack}
 \end{liAntwort}
 \end{document}
