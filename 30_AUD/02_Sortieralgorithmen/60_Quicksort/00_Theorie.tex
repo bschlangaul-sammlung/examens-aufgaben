@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-\liLadePakete{syntax}
+\liLadePakete{syntax,quicksort}
 
 \begin{document}
 
@@ -64,6 +64,13 @@ $\rightarrow$ out-of-place
 \section{Weitere Implementation (Pivot-Element in der Mitte)}
 
 \liJavaDatei[firstline=13,lastline=63]{sortier/QuickSortMitte}
+
+\QSinitialize{8, 2, 1, 5, 9, 7, 3}
+\loop
+\QSpivotStep
+\ifnum\value{pivotcount}>0
+  \QSsortStep
+\repeat
 
 \literatur
 
