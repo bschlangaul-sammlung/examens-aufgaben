@@ -14,6 +14,9 @@
 Der Hauptsatz der Laufzeitfunktionen ist bekanntlich folgendermaßen
 definiert:
 
+\liMasterFaelle
+
+\noindent
 Bestimmen und begründen Sie formal mit Hilfe dieses Satzes welche
 Komplexität folgende Laufzeitfunktionen haben.
 
@@ -26,6 +29,31 @@ Komplexität folgende Laufzeitfunktionen haben.
 
 \item $T(n) = \T{8}{2} + 5n^2$
 
+\begin{liAntwort}
+\liMasterVariablen
+
+$a = 8$
+
+$b = 2$
+
+$f(n) = 5n^2$
+
+\begin{description}
+
+\item[1. Fall] für $\varepsilon = 4$: \\
+$f(n) = 5n^2 \in \O{n^{\log_2 {8 - 4}}} = \O{n^{\log_2 4}} = \O{n^2}$
+
+\item[2. Fall] \strut\\
+$f(n) = 5n^2 \notin \t{n^{\log_2 {8}}} = \t{n^3}$
+
+\item[3. Fall] \strut\\
+$f(n) = 5n^2 \notin \O{n^{\log_2 {8 + \varepsilon}}}$
+
+$\Rightarrow T(n) \in \t{n^2}$
+\end{description}
+
+\end{liAntwort}
+
 %%
 % (b)
 %%
@@ -33,6 +61,29 @@ Komplexität folgende Laufzeitfunktionen haben.
 % https://www.wolframalpha.com/input/?i=T%5Bn%5D%3D%3D9T%5Bn%2F3%5D%2B5n%5E2
 
 \item $T(n) = \T{9}{3} + 5n^2$
+
+\begin{liAntwort}
+$a = 9$
+
+$b = 3$
+
+$f(n) = 5n^2$
+
+\begin{description}
+
+\item[1. Fall] \strut\\
+$f(n) = 5n^2 \notin \O{n^{\log_3 {9 - \varepsilon}}}$ für $\varepsilon > 0$
+
+\item[2. Fall] \strut\\
+$f(n) = 5n^2 \in \t{n^{\log_3 {9}}} = \t{n^2}$
+
+\item[3. Fall] \strut\\
+$f(n) = 5n^2 \notin \O{n^{\log_3 {9 + \varepsilon}}}$ für $\varepsilon > 0$
+
+$\Rightarrow T(n) \in \t{n^2 \cdot \log n}$
+\end{description}
+
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}
