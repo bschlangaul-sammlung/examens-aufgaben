@@ -27,8 +27,8 @@ Kante genau einmal} besucht wird. Man geht vom jeweiligen Knoten
 Algorithmus dort \memph{rekursiv} fort. Bei schon besuchten Knoten wird
 abgebrochen. Als Hilfsstruktur wird ein \memph{Stack} (Stapelspeicher,
 Keller) verwendet. Der konkrete Durchlauf hängt von der Reihenfolge der
-Knoten in den Adjazenzlisten ab.
-\footcite[Seite 40 (PDF 33)]{aud:fs:6}
+Knoten in den Adjazenzlisten bzw. in der Adjazenzmatrix ab.
+\footcite[Seite 40]{aud:fs:6}
 
 \begin{liGraphenFormat}
 A: 1 5
@@ -61,6 +61,7 @@ L -- K
 M -- L
 \end{liGraphenFormat}
 
+\begin{center}
 \begin{tikzpicture}[li graph]
 \node (A) at (1,5) {A};
 \node (B) at (0,4) {B};
@@ -76,22 +77,23 @@ M -- L
 \node (L) at (7,3) {L};
 \node (M) at (8,0) {M};
 
-\path (A) edge node {1} (B);
-\path (A) edge node {1} (C);
-\path (A) edge node {1} (E);
-\path (B) edge node {1} (C);
-\path (C) edge node {1} (E);
-\path (C) edge node {1} (I);
-\path (D) edge node {1} (E);
-\path (D) edge node {1} (F);
-\path (F) edge node {1} (G);
-\path (F) edge node {1} (H);
-\path (F) edge node {1} (I);
-\path (F) edge node {1} (M);
-\path (I) edge node {1} (J);
-\path (L) edge node {1} (K);
-\path (M) edge node {1} (L);
+\path (A) edge node {} (B);
+\path (A) edge node {} (C);
+\path (A) edge node {} (E);
+\path (B) edge node {} (C);
+\path (C) edge node {} (E);
+\path (C) edge node {} (I);
+\path (D) edge node {} (E);
+\path (D) edge node {} (F);
+\path (F) edge node {} (G);
+\path (F) edge node {} (H);
+\path (F) edge node {} (I);
+\path (F) edge node {} (M);
+\path (I) edge node {} (J);
+\path (L) edge node {} (K);
+\path (M) edge node {} (L);
 \end{tikzpicture}
+\end{center}
 
 \def\TmpBesuch#1{\strut\par\textbf{Besuchte Knoten:} #1}
 \def\TmpStack#1{\par\textbf{Stack:} #1}
@@ -211,7 +213,7 @@ ein übergebnisener Startknoten existiert, dann müssen erst alle Knoten
 als nicht besucht markiert werden und dann vom Startknoten aus das
 Besuchen der Knoten gestartet werden
 \end{itemize}
-\footcite[Seite 45 (PDF 45)]{aud:fs:6}
+\footcite[Seite 45]{aud:fs:6}
 
 \section{Pseudocode: Tiefensuche mit explizitem Stack\footcite[Seite 51 (PDF 45)]{aud:fs:6}}
 
@@ -235,7 +237,7 @@ funktion dfs(G: Graph, k: Startknoten in G) {
 }
 \end{minted}
 
-\liJavaDatei[firstline=34,lastline=74]{graph/TiefenSucheStapel}
+\liJavaDatei[firstline=34,lastline=74]{graph/algorithmen/TiefenSucheStapel}
 
 %-----------------------------------------------------------------------
 %
@@ -246,18 +248,52 @@ funktion dfs(G: Graph, k: Startknoten in G) {
 \begin{liQuellen}
 \item \cite[Seite 53-64 (PDF 46-57)]{aud:fs:6}
 \item \cite[Kapitel 6.2.2.2 Graphalgorithmen, Seite 185]{schneider}
+\item \cite{wiki:breitensuche}
 \end{liQuellen}
 
-Der Breitendurchlauf ist Verfahren zum Durchlaufen eines Graphen bei dem
-jeder Knoten genau einmal besucht wird. Man geht von einem Knoten
-\memph{erst zu allen Nachbarknoten} \memph{bevor deren Nachbarn} besucht
-werden. Bei schon besuchten Knoten wird abgebrochen. Als Hilfsstruktur
-wird eine Queue (Warteschlange) verwendet.
+Der Breitendurchlauf (englisch \memph{breadth-first search},
+\memph{BFS})\footcite{wiki:breitensuche}  ist Verfahren zum Durchlaufen
+eines Graphen bei dem jeder Knoten genau einmal besucht wird. Man geht
+von einem Knoten \memph{erst zu allen Nachbarknoten} \memph{bevor deren
+Nachbarn} besucht werden. Bei schon besuchten Knoten wird abgebrochen.
+Als Hilfsstruktur wird eine \memph{Queue (Warteschlange)} verwendet.
 
 Der konkrete Durchlauf hängt von der Reihenfolge der Knoten in den
 Adjazenzlisten ab.
 
-\TmpGraph
+\begin{center}
+\begin{tikzpicture}[li graph]
+\node (A) at (1,5) {A};
+\node (B) at (0,4) {B};
+\node (C) at (0,2) {C};
+\node (D) at (1,0) {D};
+\node (E) at (2,2) {E};
+\node (F) at (3,1) {F};
+\node (G) at (6,2) {G};
+\node (H) at (5,3) {H};
+\node (I) at (4,5) {I};
+\node (J) at (5,5) {J};
+\node (K) at (6,4) {K};
+\node (L) at (7,3) {L};
+\node (M) at (8,0) {M};
+
+\path (A) edge node {} (B);
+\path (A) edge node {} (C);
+\path (A) edge node {} (E);
+\path (B) edge node {} (C);
+\path (C) edge node {} (E);
+\path (C) edge node {} (I);
+\path (D) edge node {} (E);
+\path (D) edge node {} (F);
+\path (F) edge node {} (G);
+\path (F) edge node {} (H);
+\path (F) edge node {} (I);
+\path (F) edge node {} (M);
+\path (I) edge node {} (J);
+\path (L) edge node {} (K);
+\path (M) edge node {} (L);
+\end{tikzpicture}
+\end{center}
 
 \begin{description}
 
@@ -346,7 +382,7 @@ funktion bfs(G: Graph, k: Startknoten in G) {
 }
 \end{minted}
 
-\liJavaDatei[firstline=37,lastline=77]{graph/BreitenSucheWarteschlange}
+\liJavaDatei[firstline=37,lastline=77]{graph/algorithmen/BreitenSucheWarteschlange}
 
 \literatur
 

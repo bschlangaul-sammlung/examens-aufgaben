@@ -1,0 +1,43 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{quicksort}
+\begin{document}
+\liAufgabenTitel{Quicksort}
+\section{Aufgabe 7
+\index{Quicksort}
+\footcite{66115:2018:03}}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Gegeben ist das folgende Array von Zahlen: $[23, 5, 4, 67, 30, 15, 25, 21]$.
+
+Sortieren Sie das Array mittels Quicksort in-situ aufsteigend von links
+nach rechts. Geben Sie die (Teil-)Arrays nach jeder Swap-Operation (auch
+wenn Elemente mit sich selber getauscht werden) und am Anfang jedes
+Aufrufs der rekursiven Methode an. Verwenden Sie als Pivotelement
+jeweils das rechteste Element im Teilarray und markieren Sie dieses
+entsprechend. Teilarrays der Länge $\leq 2$ dürfen im rekursiven Aufruf durch
+direkten Vergleich sortiert werden. Geben Sie am Ende das sortierte
+Array an.
+
+\QSinitialize{23, 5, 4, 67, 30, 15, 25, 21}
+\loop
+\QSpivotStep
+\ifnum\value{pivotcount}>0
+  \QSsortStep
+\repeat
+
+%%
+% b)
+%%
+
+\item Welche Worst-Case-Laufzeit (O-Notation) hat Quicksort für n
+Elemente? Geben Sie ein Array mit fünf Elementen an, in welchem die
+Quicksort-Variante aus (a) diese Wort-Case-Laufzeit benötigt (ohne
+Begründung).
+
+\end{enumerate}
+\end{document}
