@@ -1,0 +1,59 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{}
+\section{Aufgabe 5
+\index{Graphen}
+\footcite{66115:2013:03}}
+
+Drei Missionare und drei Kannibalen befinden sich am Ufer eines Flusses
+und möchten diesen überqueren. Dazu steht ihnen ein Boot zur Verfügung,
+das ein oder zwei Personen befördern kann. Verbleiben an einem Ufer mehr
+Kannibalen als Missionare, so werden die Missionare verspeist. Die Frage
+besteht nun darin, wie alle Personen unversehrt auf die andere Seite des
+Flusses gelangen.
+
+Im Anfangszustand befinden sich alle Personen und das Boot auf einer
+Seite des Flusses. Nehmen Sie an, es sei die linke Seite des Flusses. Im
+Zielzustand befinden sich alle Personen und das Boot auf der anderen
+Seite des Flusses. Jeden Zustand kann man durch folgendes Fünftupel
+beschreiben:
+
+Missionareyngs X Kannibalen;;„xs X Missionareyeens X Kannibalenyechıs X
+Boolposition
+
+Dabei werden die Elemente für Missionare und Kannibalen durch natürliche
+Zahlen und die Bootsposition durch einen der Strings „links“ oder
+„rechts“ modelliert. Der Anfangszustand wäre somit also (3, 3, 0, 0, »
+links") und der Zielzustand (0, 0, 3, 3, „rechts‘“).
+
+Schreiben Sie Algorithmen zur Lösung dieses Suchproblems und retten Sie
+die Missionare! Es ist empfehlenswert (aber nicht zwingend), hierzu eine
+funktionale Programmiersprache zu verwenden. Gehen Sie im Einzelnen vor,
+wie folgt:
+\begin{enumerate}
+
+\item a.) Schreiben Sie eine Funktion, die alle möglichen Überfahrten
+von links nach rechts oder umgekehrt modelliert, d. h. die zu einem
+gegebenen Zustand die Liste der möglichen Folgezustände im Sinne der o.
+g. Regeln berechnet. Gehen Sie dazu von allen möglichen Überfahrten aus
+und überprüfen Sie für jede konkrete Überfahrt mittels einer geeigneter
+Funktion, ob diese zu einem zulässigen Zustand führt. Zustände, die die
+Missionare nicht überleben, gelten im Sinne des Rettungsvorhabens
+ebenfalls als nicht zulässig. Nicht zulässige Zustände werden nicht in
+die Liste der möglichen Folgezustände eingefügt.
+
+\item b.) Geben Sie eine Funktion an, die feststellt, ob ein Zyklus
+vorliegt, d. h. ob ein Zustand in einer Liste bereits besuchter Zustände
+schon enthalten ist.
+
+\item c.) Verwenden Sie Ihre Ergebnisse aus a.) und b.), um eine
+Funktion anzugeben, die dieses Suchproblem mittels Breitensuche löst.
+(Sie können die Funktionen aus a.) und b.) hier auch dann verwenden,
+wenn Sie diese Teilaufgaben nicht vollständig gelöst haben.) Die
+Funktion erhält als Eingabe einen Start- und einen Zielzustand und
+liefert als Ergebnis die erste gefundene Liste von Zuständen, die das
+Problem löst.
+\index{Breitensuche}
+\end{enumerate}
+\end{document}
