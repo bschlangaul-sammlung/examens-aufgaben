@@ -1,0 +1,118 @@
+\documentclass{lehramt-informatik-haupt}
+\liLadePakete{mathe,normalformen,pseudo}
+
+\begin{document}
+\let\ah=\liAttributHuelle
+\let\m=\liAttributMenge
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\chapter{Schlüssel}
+
+\begin{description}
+\item[Superschlüssel]
+
+(gelegentlich auch Oberschlüssel genannt) Attribut oder
+Attributkombination, von der \memph{alle Attribute} einer Relation
+funktional \memph{abhängen}.
+\footcite[Seite 181 Kapitel 6.2 „Superschlüssel“]{kemper}
+
+\item[Schlüsselkandidat]
+
+(auch \memph{Kandidatenschlüssel} oder Alternativschlüssel genannt) ist
+ein \memph{Minimaler} Superschlüssel. Keine Teilmenge dieses
+Superschlüssels ist ebenfalls Superschlüssel.
+
+\item[Primärschlüssel]
+
+\memph{Unter allen Schlüsselkandidaten} einer Relation wird ein
+sogenannter Primärschlüssel \memph{ausgewählt}.
+
+\item[Schlüsselattribut]
+
+Attribut, das \memph{Teil eines Schlüsselkandidaten} ist.
+
+\item[Nicht-Schlüsselattribut]
+
+Attribut, das an \memph{keinem} der Schlüsselkandidaten beteiligt ist.
+\footcite[Seite 7]{db:fs:4}
+\end{description}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\subsection{Bestimmung von Schlüsselkandidaten ohne Algorithmus}
+
+Schlüsselkandidaten können manchmal auch ohne Anwendung des Algorithmus
+gefunden werden. Bestimmen Sie die Menge X= {A 1 , ..., A n } der
+Attribute, die auf keiner rechten Seite einer funktionalen Abhängigkeit
+aus F (Menge der funktionalen Abhängigkeiten) vorkommen. Diese Attribute
+kann man nicht durch Ableiten gewinnen. Sie müssen in jedem
+Schlüsselkandidaten vorhanden sein sein. Auch Attribute, die in keiner
+der Funktionalen Abhängigkeiten in irgendeiner Weise vorkommen, müssen
+Teil jedes Schlüsselkandidaten sein.
+
+Bestimmen Sie dann die Attributhülle von X, um zu prüfen, ob X
+Superschlüssel von R ist. Falls ja, ist X einziger Schlüsselkandidat, da
+man alle darin enthaltenen Attribute nicht aus Ableitungen gewinnen kann
+und weil die Schlüsselkandidaten minimal sind. Falls nein, muss entweder
+der Algorithmus zur Bestimmung von Schlüsselkandidaten angewendet werden
+oder man findet die Schlüsselkandidaten durch „systematischen“ Aufbau,
+ausgehend von der Menge X.
+\footcite[Seite 11]{db:fs:4}
+
+\begin{itemize}
+\item Attribute, die auf \memph{keiner rechten Seite} einer
+Funktionalen Abhängigkeit vorkommen.
+
+\item Attribute, die in \memph{keiner Funktionalen Abhängigkeit}
+vorkommen.
+\end{itemize}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\subsection{Algorithmus zur Bestimmung von Schlüsselkandidaten\footcite[Seite 8]{db:fs:4}}
+
+\href{http://www.ict.griffith.edu.au/normalization_tools/normalization/ind.php}
+{Normalization Tool of the Griffith Univerity}
+
+\begin{algorithm}
+
+\Begin{
+  $Erg \longleftarrow \m{}$\;
+  $Test \longleftarrow \m{\m{\textit{alle Attribute der Relation}}}$\;
+  $K \longleftarrow \m{\textit{alle Attribute der Relation}}$\;
+  \While{bis $\textit{Test}$ leer ist}{
+    \tcc{Wähle ein Attribut aus $K$}
+    \ForEach{$A \longleftarrow K$}{
+      \tcc{Also die Menge $K$ ohne das Attribut $A$}
+      \If{$\ah{F,K \SLASH \m{A}} = R$}{
+        streiche $K$ aus $\textit{Test}$\;
+        füge $K \SLASH \m{A}$ in $\textit{Test}$ ein\;
+        \tcc{$K$ selbst bleibt unverändert}
+      }
+    }
+  }
+
+entferne ein anderes Attribut aus $K$, so lange, bis alle
+Attribute reihum untersucht wurden.\;
+
+wenn kein $K\m{A}$ Superschlüssel $\Rightarrow$
+$K$ ist Schlüsselkandidat!
+Füge $K$ zu $Erg$ hinzu und lösche $K$ aus $\textit{Test}$.\;
+
+mache dasselbe mit allen Mengen, die jetzt in $\textit{Test}$ sind,
+bis $\textit{Test}$ leer ist\;
+}
+
+\caption{Algorithmus zur Bestimmung von Schlüsselkandidaten}
+\end{algorithm}
+
+\literatur
+
+\end{document}

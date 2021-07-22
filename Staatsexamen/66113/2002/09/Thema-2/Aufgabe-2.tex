@@ -1,0 +1,162 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe,normalformen,spalten}
+\begin{document}
+\let\ah=\liAttributHuelle
+\let\m=\liAttributMenge
+\let\FA=\liFunktionaleAbhaengigkeiten
+
+\liAufgabenTitel{}
+\section{2. Datenbanksysteme: Funktionale Abhängigkeiten, Normalisierung
+\index{Normalformen}
+\footcite{66113:2002:09}}
+
+Gegeben sei ein Relationenschema $R$ mit Attributen $A, B, C, D$. Für
+dieses Relationenschema seien die folgenden Mengen an funktionalen
+Abhängigkeiten (FDs) gegeben:
+\footcite[Seite 12]{db:fs:4}
+
+\begin{multicols}{2}
+\begin{enumerate}
+\item \FA{
+  A -> B;
+  B -> C;
+  A -> D;
+}
+
+\item \FA{
+  A -> B;
+  B -> C;
+  C -> D;
+  C -> A;
+}
+
+\columnbreak
+
+\item \FA{
+  A, B -> C;
+  B -> D;
+}
+
+\item \FA{
+  A, B -> C;
+  A, C -> D;
+  A, D -> B;
+}
+
+\item \FA{
+  A, B -> C;
+  A -> D;
+  C, D -> A;
+}
+\end{enumerate}
+\end{multicols}
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Bestimmen Sie für das Relationschema R für jede der angegebenen
+Mengen an funktionalen Abhängigkeiten jeweils alle möglichen
+Schlüssel(-kandidaten)'
+
+\begin{liAntwort}
+\liPseudoUeberschrift{Abkürzung}
+
+$A$ kommt auf keiner rechten Seite der FD’s vor.
+Man kann es über FD's nicht erreichen. $A$ muss also Teil des
+Schlüsselkandidaten sein.
+
+\begin{displaymath}
+\ah{F, \m{A}} = R \rightarrow \textit{Superschlüssel}
+\end{displaymath}
+
+$A$ ist minimal, deshalb handelt es bei $A$ um einen Schlüsselkandidat.
+Jeder weitere Schlüsselkandidat muss ebenfalls minimal sein und zudem
+$A$ enthalten. Daraus folgt, dass $A$ der einzige Schlüsselkandidat ist.
+
+%%
+%
+%%
+
+\liPseudoUeberschrift{Mit Hilfe des Algorithmus:}
+
+$Test = \m{\m{A, B, C, D}}$ $Erg = \m{}$
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item $K = \m{A, B, C, D}$
+
+$K \SLASH A: \ah{F, \m{B, C, D}} = \m{B, C, D}$ !\\
+
+$K \SLASH B: \ah{F, \m{A, C, D}} = R$\\
+$\rightarrow Test = \m{\m{A, C, D}}$ \\
+
+$K \SLASH C: \ah{F, \m{A, B, D}} = R$\\
+$\rightarrow Test = \m{\m{A, C, D}, \m{A, B, D}}$ \\
+
+$K \SLASH D: \ah{F, \m{A, B, C}} = R$\\
+$\rightarrow Test = \m{\m{A, C, D}, \m{A, B, D}, \m{A, B, C}}$ \\
+
+%%
+% 2.
+%%
+
+\item $K = \m{A, C, D}$
+
+$K \SLASH A: \ah{F, \m{C, D}} = \m{C, D}$ !\\
+
+$K \SLASH C: \ah{F, \m{A, D}} = R$\\
+$\rightarrow Test = \m{\m{A, D}, \m{A, C, D}, \m{A, B, D}, \m{A, B, C}}$ \\
+
+$K \SLASH C: \ah{F, \m{A, C}} = R$\\
+$\rightarrow Test = \m{\m{A, C}, \m{A, D}, \m{A, C, D}, \m{A, B, D}, \m{A, B, C}}$ \\
+
+%%
+% 3.
+%%
+
+\item $K = \m{A, C}$
+
+$K \SLASH A: \ah{F, \m{C}} = \m{C}$ !\\
+
+$K \SLASH C: \ah{F, \m{A}} = R$\\
+$\rightarrow Test = \m{\m{A}, \m{A, D}, \m{A, C, D}, \m{A, B, D}, \m{A, B, C}}$ \\
+
+%%
+% 4.
+%%
+
+\item $K = \m{A}$
+
+$K \SLASH A$: ! $\rightarrow$ kein Superschlüssel ohne A mehr möglich\\
+$\rightarrow$ dieses K wandert in Ergebnis und wird in Test gelöscht
+
+$\rightarrow Test = \m{\m{A, D}, \m{A, C, D}, \m{A, B, D}, \m{A, B, C}}$ \\
+$\rightarrow Erg = \m{\m{A}}$ \\
+\end{enumerate}
+
+analog verfahren wir mit den übrigen Mengen in Test, wie man bereits
+sieht bleibt $\m{A}$ einziger Schlüsselkandidat.
+
+\end{liAntwort}
+
+\item Geben Sie für jede der Mengen an funktionalen Abhängigkeiten an,
+ob das Relationenschema R in 2. Normalform (2NF) und ob es in 3.
+Normalform (3NF) ist. Begründen Sie dies jeweils kurz!
+
+\item Für die Fälle, in denen R nicht in 2NF bzw. 3NF ist, geben Sie
+bitte neue Relationenschemata in 3NF an! Erläutern Sie die dazu
+durchzuführenden Schritte jeweils kurz!
+
+\item Untersuchen Sie für die Fälle d) und e), ob das Relationenschema
+in Boyce-Codd-Normalform (BCNEF) ist! Geben Sie jeweils eine kurze
+Begründung an! Wenn das Relationenschema nicht in BCNF ist, erläutern
+Sie, ob eine Zerlegung in eine seman- tisch äquivalente Menge an
+Relationenschemata in BCNF möglich ist.
+\end{enumerate}
+\end{document}
