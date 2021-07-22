@@ -1,7 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{rmodell,normalformen}
+\liLadePakete{rmodell,normalformen,synthese-algorithmus}
 \begin{document}
 \let\FA=\liFunktionaleAbhaengigkeiten
+\let\schrittE=\liSyntheseUeberErklaerung
 
 \liAufgabenTitel{}
 \section{Aufgabe 3
@@ -15,9 +16,11 @@ Gegeben sei folgendes relationales Schema R in erster Normalform:
 \end{center}
 
 \noindent
-Für R gelte folgende Menge FD funktionaler Abhängigkeiten:
+Für $R$ gelte folgende Menge $FD$ funktionaler Abhängigkeiten:
 
 \bigskip
+
+% didaktik.java db A,B,C,D,E,F A,D,F->E;B,C->A,E;D->B;D,E->C,B;A->F;
 
 \FA{
   A, D, F -> E;
@@ -33,9 +36,9 @@ Für R gelte folgende Menge FD funktionaler Abhängigkeiten:
 % a)
 %%
 
-\item Bestimmen Sie alle Kandidatenschlüssel/Schlüsselkandidaten von R
-mit FD. Hinweis: Die Angabe von Attributmengen, die keine
-Kandidatenschlüssel sind, führt zu Abzügen.
+\item Bestimmen Sie alle Kandidatenschlüssel/Schlüsselkandidaten von $R$
+mit $FD$. \textit{Hinweis: Die Angabe von Attributmengen, die keine
+Kandidatenschlüssel sind, führt zu Abzügen.}
 
 \begin{liAntwort}
 \begin{itemize}
@@ -49,7 +52,7 @@ Kandidatenschlüssel sind, führt zu Abzügen.
 % b)
 %%
 
-\item Prüfen Sie, ob R mit FD in 2NF bzw. 3NF ist.
+\item Prüfen Sie, ob $R$ mit $FD$ in 2NF bzw. 3NF ist.
 
 \begin{liAntwort}
 
@@ -60,7 +63,7 @@ Kandidatenschlüssel sind, führt zu Abzügen.
 %%
 
 \item Bestimmen Sie mit folgenden Schritten eine kanonische Überdeckung
-FD. von FD:
+$FD_C$ von $FD$:
 
 \begin{enumerate}
 
@@ -68,11 +71,18 @@ FD. von FD:
 % I.
 %%
 
-\item Führen Sie eine Linksreduktion von FD durch. Geben Sie die Menge
-funktionaler Abhängigkeiten nach der Linksreduktion an (FD,).
+\item Führen Sie eine Linksreduktion von $FD$ durch. Geben Sie die Menge
+funktionaler Abhängigkeiten nach der Linksreduktion an ($FD_L$).
 
 \begin{liAntwort}
-
+\schrittE{1-1}
+\FA{
+  A, D, F -> E;
+  B, C -> A, E;
+  D -> B;
+  D, E -> C, B;
+  A -> F;
+}
 \end{liAntwort}
 
 %%
@@ -80,22 +90,25 @@ funktionaler Abhängigkeiten nach der Linksreduktion an (FD,).
 %%
 
 \item Führen Sie eine Rechtsreduktion des Ergebnisses der Linksreduktion
-(F'D,) durch. Geben Sie die Menge funktionaler Abhängigkeiten nach der
-Rechtsreduktion an (F’D,).
+($FD_L$) durch. Geben Sie die Menge funktionaler Abhängigkeiten nach der
+Rechtsreduktion an ($FD_R$).
 
 \begin{liAntwort}
-
+\schrittE{1-2}
 \end{liAntwort}
 
 %%
 % III.
 %%
 
-\item Bestimmen Sie eine kanonische Überdeckung FD. von FD auf Basis des
-Ergebnisses der Rechtsreduktion (FD;).
+\item Bestimmen Sie eine kanonische Überdeckung $FD$. von $FD$ auf Basis
+des Ergebnisses der Rechtsreduktion ($FD_R$).
 
 \begin{liAntwort}
-
+\begin{itemize}
+\item \schrittE{1-3}
+\item \schrittE{1-4}
+\end{itemize}
 \end{liAntwort}
 \end{enumerate}
 
@@ -103,12 +116,17 @@ Ergebnisses der Rechtsreduktion (FD;).
 % d)
 %%
 
-\item Zerlegen Sie R mit FD. mithilfe des Synthesealgorithmus in 3NF.
-Geben Sie zudem alle funktionalen Abhängigkeiten der erzeugten
+\item Zerlegen Sie $R$ mit $FD_C$ mithilfe des Synthesealgorithmus in
+3NF. Geben Sie zudem alle funktionalen Abhängigkeiten der erzeugten
 Relationenschemata an.
+\index{Synthese-Algorithmus}
 
 \begin{liAntwort}
-
+\begin{itemize}
+\item \schrittE{2}
+\item \schrittE{3}
+\item \schrittE{4}
+\end{itemize}
 \end{liAntwort}
 
 %%
