@@ -26,33 +26,33 @@ FK (Strecken\_ID, Jahr) referenziert Rennen (Strecken\_ID, Jahr)
 % Datenbankname: formel1
 \begin{minted}{sql}
 CREATE TABLE Fahrer (
-  Fahrer_ID integer PRIMARY KEY,
-  Fahrername varchar(100) NOT NULL,
-  Nation varchar(100) NOT NULL,
-  Rennstall varchar(100) NOT NULL
+  Fahrer_ID INTEGER PRIMARY KEY,
+  Fahrername VARCHAR(100) NOT NULL,
+  Nation VARCHAR(100) NOT NULL,
+  Rennstall VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE Strecke (
-  Strecken_ID integer PRIMARY KEY,
-  Streckenname varchar(100) NOT NULL,
-  Land varchar(100) NOT NULL,
-  Länge numeric(5,3) NOT NULL
+  Strecken_ID INTEGER PRIMARY KEY,
+  Streckenname VARCHAR(100) NOT NULL,
+  Land VARCHAR(100) NOT NULL,
+  Länge NUMERIC(5,3) NOT NULL
 );
 
 CREATE TABLE Rennen (
-  Strecken_ID integer REFERENCES Strecke(Strecken_ID),
-  Jahr integer NOT NULL,
-  Wetter varchar(10) NOT NULL,
+  Strecken_ID INTEGER REFERENCES Strecke(Strecken_ID),
+  Jahr INTEGER NOT NULL,
+  Wetter VARCHAR(10) NOT NULL,
   PRIMARY KEY (Strecken_ID, Jahr)
 );
 
 CREATE TABLE Rennteilnahme (
-  Fahrer_ID integer REFERENCES Fahrer(Fahrer_ID),
-  Strecken_ID integer REFERENCES Strecke(Strecken_ID),
-  Jahr integer NOT NULL,
-  Rundenbestzeit numeric(5,3) NOT NULL,
-  Gesamtzeit numeric(5,3) NOT NULL,
-  disqualifiziert boolean NOT NULL,
+  Fahrer_ID INTEGER REFERENCES Fahrer(Fahrer_ID),
+  Strecken_ID INTEGER REFERENCES Strecke(Strecken_ID),
+  Jahr INTEGER NOT NULL,
+  Rundenbestzeit NUMERIC(5,3) NOT NULL,
+  Gesamtzeit NUMERIC(5,3) NOT NULL,
+  disqualifiziert BOOLEAN NOT NULL,
   PRIMARY KEY (Fahrer_ID, Strecken_ID, Jahr)
 );
 
