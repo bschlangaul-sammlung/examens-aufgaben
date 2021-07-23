@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-\liLadePakete{mathe,normalformen,pseudo}
+\liLadePakete{mathe,normalformen,pseudo,syntax}
 
 \begin{document}
 \let\ah=\liAttributHuelle
@@ -10,6 +10,17 @@
 %-----------------------------------------------------------------------
 
 \chapter{Schlüssel}
+
+\section{Online-Tools zur Bestimmung von Schlüssel}
+
+\begin{itemize}
+\item \href{https://normalizer.db.in.tum.de/index.py}{DB->normalizer der TU München}
+
+\item \href{http://www.ict.griffith.edu.au/normalization_tools/normalization/ind.php}
+{Normalization Tool der Universität Griffith, Australien}
+\end{itemize}
+
+\section{Definitionen der wichtigsten Begriffe}
 
 \begin{description}
 \item[Superschlüssel]
@@ -44,7 +55,7 @@ Attribut, das an \memph{keinem} der Schlüsselkandidaten beteiligt ist.
 %
 %-----------------------------------------------------------------------
 
-\subsection{Bestimmung von Schlüsselkandidaten ohne Algorithmus}
+\section{Bestimmung von Schlüsselkandidaten ohne Algorithmus}
 
 Schlüsselkandidaten können manchmal auch ohne Anwendung des Algorithmus
 gefunden werden. Bestimmen Sie die Menge X= {A 1 , ..., A n } der
@@ -64,6 +75,8 @@ oder man findet die Schlüsselkandidaten durch „systematischen“ Aufbau,
 ausgehend von der Menge X.
 \footcite[Seite 11]{db:fs:4}
 
+\subsection{Zusammenfassung}
+
 \begin{itemize}
 \item Attribute, die auf \memph{keiner rechten Seite} einer
 Funktionalen Abhängigkeit vorkommen.
@@ -76,10 +89,7 @@ vorkommen.
 %
 %-----------------------------------------------------------------------
 
-\subsection{Algorithmus zur Bestimmung von Schlüsselkandidaten\footcite[Seite 8]{db:fs:4}}
-
-\href{http://www.ict.griffith.edu.au/normalization_tools/normalization/ind.php}
-{Normalization Tool of the Griffith Univerity}
+\section{Algorithmus zur Bestimmung von Schlüsselkandidaten\footcite[Seite 8]{db:fs:4}}
 
 \begin{algorithm}
 
@@ -112,6 +122,22 @@ bis $\textit{Test}$ leer ist\;
 
 \caption{Algorithmus zur Bestimmung von Schlüsselkandidaten}
 \end{algorithm}
+
+%%
+%
+%%
+
+\liPseudoUeberschrift{Algorithmus zur Bestimmung aller Superschlüssel in Java}
+
+\liJavaDatei[firstline=180,lastline=204]{db/AlgorithmenSammlung}
+
+%%
+%
+%%
+
+\liPseudoUeberschrift{Algorithmus zur Bestimmung aller Schlüsselkandidaten in Java}
+
+\liJavaDatei[firstline=206,lastline=231]{db/AlgorithmenSammlung}
 
 \literatur
 
