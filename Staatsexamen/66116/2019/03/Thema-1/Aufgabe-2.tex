@@ -1,0 +1,162 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{rmodell,syntax}
+\begin{document}
+
+\let\a=\liAttribut
+\let\f=\liFremd
+\let\p=\liPrimaer
+\let\r=\liRelationMenge
+
+\liAufgabenTitel{Medikamente}
+\section{Aufgabe 2
+\index{SQL}
+\footcite{66116:2019:03}}
+
+Gegeben sei der folgende Ausschnitt des Schemas für die Verwaltung der
+Einnahme von Medikamenten:
+
+\begin{liRmodell}
+\r{Person}{
+  ID : INTEGER,
+  Name : VARCHAR(255),
+  Wohnort : VARCHAR(255)
+}
+
+\r{Hersteller}{
+  ID : INTEGER,
+  Name : VARCHAR(255),
+  Standort : VARCHAR(255),
+  AnzahlMitarbeiter : INTEGER
+}
+
+\r{Medikament}{
+  ID : INTEGER
+  Name : VARCHAR(255),
+  Kosten : INTEGER,
+  Wirkstoff : VARCHAR(255),
+  produziert\_von : INTEGER
+}
+
+\r{nimmt}{
+  Person : INTEGER,
+  Medikament : INTEGER,
+  von : DATE,
+  bis : DATE
+}
+
+\r{hat\_Unverträglichkeit\_gegen}{
+  Person : INTEGER,
+  Medikament : INTEGER
+}
+
+\end{liRmodell}
+
+Die Tabelle \a{Person} beschreibt Personen über eine eindeutige ID,
+deren Namen und Wohnort. Die Tabelle \a{Medikament} enthält
+Informationen über Medikamente, unter anderem deren Namen, Kosten,
+Wirkstoffe und einen Verweis auf den Hersteller dieses Medikaments. Die
+Tabelle \a{Hersteller} verwaltet verschiedene Hersteller von
+Medikamenten. Die Tabelle \a{hat\_Unverträglichkeit\_gegen} speichert
+die IDs von Personen zusammen mit den IDs von Medikamenten, gegen die
+diese Person eine Unverträglichkeit hat. Die Tabelle \a{nimmt} hingegen
+verwaltet die Einnahme der verschiedenen Medikamente und speichert zudem
+in welchem Zeitraum eine Person welches Medikament genommen hat bzw.
+nimmt.
+
+Beachten Sie bei der Formulierung der SQL-Anweisungen, dass die
+Ergebnisrelationen keine Duplikate enthalten dürfen. Sie dürfen
+geeignete Views definieren.
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Schreiben Sie SQL-Anweisungen, die für die bereits existierende
+Tabelle \a{nimmt} alle benötigten Fremdschlüsselconstraints anlegt.
+Erläutern Sie kurz, warum die Spalten \a{von} und \a{bis} Teil des
+Primärschlüssels sind.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+ALTER TABLE nimmt
+ADD CONSTRAINT FK_Person
+FOREIGN KEY (Person) REFERENCES Person(ID),
+ADD CONSTRAINT FK_Medikament
+FOREIGN KEY (Medikament) REFERENCES Medikament(ID);
+\end{minted}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, welche sowohl den \a{Namen} als
+auch die \a{ID} von \a{Personen} und \a{Medikamenten} ausgibt, bei denen
+die Person das jeweilige Medikament nimmt.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT DISTINCT
+  p.ID as Personen_ID,
+  p.Name as Peronen_Name,
+  m.ID as Medikamenten_ID,
+  m.Name as Medikamenten_Name
+FROM Person p, Medikament m, nimmt n
+WHERE n.Person = p.ID AND n.Medikament = n.Medikament;
+\end{minted}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, welche die ID und den Namen der
+Medikamente mit den niedrigsten Kosten je Hersteller bestimmt.
+
+%%
+% d)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Anzahl aller Personen
+ermittelt, die ein Medikament genommen haben, gegen welches sie eine
+Unverträglichkeit entwickelt haben.
+
+%%
+%
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die ID und den Namen
+derjenigen Personen ermittelt, die weder ein Medikament mit dem
+Wirkstoff Paracetamol noch ein Medikament mit dem Wirkstoff Ibuprofen
+genommen haben.
+
+%%
+%
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, welche die Herstellernamen und
+die Anzahl der bekannten Unverträglichkeiten gegen Medikamente dieses
+Herstellers ermittelt. Das Ergebnis soll aufsteigend nach der Anzahl der
+bekannten Unverträglichkeiten sortiert werden.
+
+%%
+%
+%%
+
+\item Formulieren Sie eine Anfrage in relationaler Algebra, welche die
+Wohnorte aller Personen bestimmt, welche ein Medikament mit demWirkstoff
+Paracetamol nehmen oder genommen haben. Die Lösung kann als Baum- oder
+als Term-Schreibweise angegeben werden.
+
+%%
+%
+%%
+
+\item Formulieren Sie eine Anfrage in relationaler Algebra, welche die
+Namen aller Personen bestimmt, die von allen bekannten Herstellern,
+deren Standort München ist, Medikamente nehmen oder genommen haben. Die
+Lösung kann als Baum- oder als Term-Schreibweise angegeben werden.
+
+\end{enumerate}
+\end{document}
