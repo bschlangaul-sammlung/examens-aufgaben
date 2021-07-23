@@ -6,10 +6,10 @@
 
 \section{Definition „Physische Datenunabhängigkeit“:}
 
-Änderungen an der physischen Speicher- oder der Zugriffsstruktur
+Änderungen an der \memph{physischen} Speicher- oder der Zugriffsstruktur
 (beispielsweise durch das Anlegen einer Indexstruktur) haben keine
-Auswirkungen auf die logische Struktur der Datenbasis, also auf das
-Datenbankschema.
+Auswirkungen auf die \memph{logische} Struktur der Datenbasis, also auf
+das Datenbankschema.
 \footcite[Seite 20]{db:fs:3}
 \footcite[Kapitel 1.3 Datenunabhängigkeit Seite 24]{kemper}
 
@@ -29,24 +29,24 @@ Trennung des Datenbankschemas in 3 verschiedene Beschreibungsebenen:
 \item[Externe Ebene / (Benutzer)sichten (Views)]
 
 Die externe Ebene stellt den Benutzern und Anwendungen individuelle
-Benutzersichten bereit, wie beispielsweise Formulare, Masken-Layouts,
-Schnittstellen.
+Benutzersichten bereit, wie beispielsweise \memph{Formulare}, \memph{Masken-Layouts},
+\memph{Schnittstellen}.
 
 \item[Konzeptionelle / logische Ebene]
 
-Die konzeptionelle Ebene beschriebt, welche Daten in der Datenbank
-gespeichert sind, sowie deren Beziehungen. Ziel des Datenbankdesigns ist
-eine vollständige und redundanzfreie Darstellung aller zu speichernden
-Informationen. Hier findet die Normalisierung des relationalen
-Datenbankschemas statt.
+Die konzeptionelle Ebene beschriebt, \memph{welche Daten} in der
+Datenbank \memph{gespeichert} sind, sowie \memph{deren Beziehungen.}
+Ziel des Datenbankdesigns ist eine vollständige und redundanzfreie
+\memph{Darstellung aller zu speichernden Informationen}. Hier findet die
+Normalisierung des relationalen Datenbankschemas statt.
 
 \item[Interne / physische Ebene]
 
 Die interne Ebene stellt die physische Sicht der Datenbank im Computer
-dar. Sie beschreibt, wie und wo die Daten in der Datenbank gespeichert
-werden. Oberstes Designziel ist ein effizienter Zugriff auf die
-gespeicherten Informationen, der meist durch bewusst in Kauf genommene
-Redundanz (\zB Index) erreicht wird.
+dar. Sie beschreibt, \memph{wie und wo die Daten in der Datenbank
+gespeichert werden}. Oberstes Designziel ist ein effizienter Zugriff auf
+die gespeicherten Informationen, der meist durch bewusst in Kauf
+genommene Redundanz (\zB Index) erreicht wird.
 \end{description}
 
 \subsection{Vorteile des Modells:}
@@ -54,17 +54,16 @@ Redundanz (\zB Index) erreicht wird.
 \begin{description}
 \item[physischen Datenunabhängigkeit]
 
-da die interne von der konzeptionellen und externen Ebene getrennt ist.
-Physische Änderungen, \zB des Speichermediums oder des
-Datenbankprodukts, wirken sich nicht auf die konzeptionelle oder externe
-Ebene aus.
+Da die interne von der konzeptionellen und externen Ebene getrennt ist,
+wirken sich physische Änderungen, \zB des Speichermediums oder des
+Datenbankprodukts, nicht auf die konzeptionelle oder externe Ebene aus.
 
 \item[logischen Datenunabhängigkeit]
 
-da die konzeptionelle und die externe Ebene getrennt sind. Dies
-bedeutet, dass Änderungen an der Datenbankstruktur (konzeptionelle
-Ebene) keine Auswirkungen auf die externe Ebene, also die
-Masken-Layouts, Listen und Schnittstellen haben.
+Da die konzeptionelle und die externe Ebene getrennt sind, haben
+Änderungen an der Datenbankstruktur (konzeptionelle Ebene) keine
+Auswirkungen auf die externe Ebene, also die Masken-Layouts, Listen und
+Schnittstellen.
 \end{description}
 
 Allgemein: höhere Robustheit gegenüber Änderungen

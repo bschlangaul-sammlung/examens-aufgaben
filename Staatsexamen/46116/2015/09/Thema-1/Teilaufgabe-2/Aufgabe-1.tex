@@ -3,7 +3,7 @@
 \begin{document}
 \liAufgabenTitel{Theoriefragen Datenbank}
 
-\section{
+\section{Aufgabe 1
 \footcite[Thema 1 Aufgabe 1]{46116:2015:09}}
 
 Erläutern Sie die folgenden Begriffe in knappen Worten:
@@ -17,16 +17,51 @@ Erläutern Sie die folgenden Begriffe in knappen Worten:
 
 \item Datenunabhängigkeit\index{Datenunabhängigkeit}
 
+\begin{liAntwort}
+Änderungen an der physischen Speicher- oder der Zugriffsstruktur
+(beispielsweise durch das Anlegen einer Indexstruktur) haben keine
+Auswirkungen auf die logische Struktur der Datenbasis, also auf das
+Datenbankschema.
+\end{liAntwort}
+
 %%
 % (b)
 %%
 
 \item Superschlüssel\index{Superschlüssel}
 
+\begin{liAntwort}
+Ein Superschlüssel ist ein Attribut oder Attributkombination, von der
+alle Attribute einer Relation funktional abhängen.
+\end{liAntwort}
+
 %%
 % (c)
 %%
 
 \item Referentielle Integrität\index{Referentielle Integrität}
+
+\begin{liAntwort}
+Unter Referentieller Integrität verstehen wir Bedingungen, die zur
+Sicherung der Datenintegrität bei Nutzung relationaler Datenbanken
+beitragen können. Demnach dürfen Datensätze über ihre
+Fremdschlüssel nur auf existierende Datensätze verweisen.
+
+Danach besteht die Referentieller Integrität grundsätzlich aus zwei
+Teilen:
+
+\begin{enumerate}
+
+\item Ein neuer Datensatz mit einem Fremdschlüssel kann nur dann in
+einer Tabelle eingefügt werden, wenn in der referenzierten Tabelle ein
+Datensatz mit entsprechendem Wert im Primärschlüssel oder einem
+eindeutigen Alternativschlüssel existiert.
+
+\item Eine Datensatzlöschung oder Änderung des Schlüssels in einem
+Primär-Datensatz ist nur möglich, wenn zu diesem Datensatz keine
+abhängigen Datensätze in Beziehung stehen.
+\footcite{wiki:referentielle-Integritaet}
+\end{enumerate}
+\end{liAntwort}
 \end{enumerate}
 \end{document}
