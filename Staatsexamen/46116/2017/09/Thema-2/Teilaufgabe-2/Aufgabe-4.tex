@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
+\liLadePakete{syntax,rmodell}
 \begin{document}
 \liAufgabenTitel{Turmspringen}
 
@@ -10,15 +10,18 @@
 \noindent
 Für die bayerische Meisterschaft im Turmspringen ist folgendes
 Datenbankschema angelegt:
-\footcite[SQL-Anfragen auf mehreren Tabellen]{db:ab:2}
+\footcite[SQL-Anfragen auf mehreren Tabellen, Aufgabe 4]{db:ab:2}
 
-\begin{minted}{md}
-Springer (Startnummer, Nachname, Vorname, Geburtsdatum, Körpergröße)
-Sprung (SID, Beschreibung, Schwierigkeit)
-springt (SID, Startnummer, Durchgang)
-FK (SID) referenziert Sprung (SID)
+\begin{liRmodell}
+\liRelationMenge{Springer}{\liPrimaer{Startnummer}, Nachname, Vorname, Geburtsdatum, Körpergröße}
+
+\liRelationMenge{Sprung}{\liPrimaer{SID}, Beschreibung, Schwierigkeit}
+
+\liRelationMenge{springt}{\liPrimaer{SID, Startnummer, Durchgang}}
+
+FK (SID) referenziert Sprung (SID)\\
 FK (Startnummer) referenziert Springer (Startnummer)
-\end{minted}
+\end{liRmodell}
 
 \noindent
 Das Attribut Schwierigkeit kann die Werte 1 bis 10 annehmen, das
@@ -58,7 +61,7 @@ FROM Springer, Sprung, springt
 WHERE
   Sprung.SID = springt.SID AND
   Springer.Startnummer = springt.Startnummer AND
-  springt.Durchgang = 1
+  springt.Durchgang = 1 AND
   Sprung.Schwierigkeit < 6;
 \end{minted}
 \end{liAntwort}
@@ -71,8 +74,7 @@ WHERE
 präzise, wonach mit folgender Abfrage gesucht wird:\index{GROUP BY}
 
 \begin{minted}{sql}
-SELECT springt.Startnummer, s.Nachname, s.Vorname,
-MAX (springt.Durchgang)
+SELECT springt.Startnummer, s.Nachname, s.Vorname, MAX(springt.Durchgang)
 FROM springt, Springer s
 WHERE springt.Startnummer = s.Startnummer
 GROUP BY springt.Startnummer, s.Nachname, s.Vorname
@@ -84,11 +86,14 @@ die Anzahl der Sprünge, d. h. die Anzahl der Durchgänge der
 einzelnen Springer an.
 \end{liAntwort}
 
-\item Gesucht ist die „durchschnittliche Körpergröße“ all der Springer,
-die vor dem 01.01.2000 geboren wurden. Formulieren Sie eine
-[entsprechende] SQL-Anweisung, [...] wobei die Spalte mit der
-durchschnittlichen Körpergröße genau diesen Namen „durchschnittliche
-Körpergröße“ haben soll.
+%%
+%
+%%
+
+\item Gesucht ist die \emph{„durchschnittliche Körpergröße“} all der
+Springer, die vor dem 01.01.2000 geboren wurden. Formulieren Sie eine
+SQL-Anweisung, wobei die Spalte mit der durchschnittlichen Körpergröße
+genau diesen Namen \emph{„durchschnittliche Körpergröße“} haben soll.
 
 \begin{liAntwort}
 Umlaute und Leerzeichen sind bei Spaltenbeschriftungen nicht erlaubt.
