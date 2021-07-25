@@ -1,33 +1,92 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{rmodell,syntax}
 \begin{document}
+\let\a=\liAttribut
+\let\f=\liFremd
+\let\p=\liPrimaer
+\let\r=\liRelationMenge
+
 \liAufgabenTitel{Gebrauchtwagen}
 \section{SQL
 \index{SQL}
 \footcite{examen:66116:2012:03}
 }
 
+\begin{liRelationenSchemaFormat}
+Fahrzeug (
+  MNR[Modell] {INTEGER},
+  FZGNR* {char(12)},
+  Baujahr {INTEGER},
+  KMStand {INTEGER},
+  Preis {INTEGER}
+)
+
+Modell (
+  MNR* {INTEGER},
+  HNR[Hersteller] {INTEGER},
+  Typ {char(20)},
+  Neupreis {INTEGER},
+  ps {INTEGER}
+)
+
+Hersteller (
+  HNR* {INTEGER},
+  Name {char(20)}
+)
+\end{liRelationenSchemaFormat}
+
+\noindent
 Gegeben sei das folgende Relationenschema:
 
-Fahrzeug (MNR:int (3)
+\begin{liRmodell}
+\r{Fahrzeug}{\f{MNR[Modell]}, \p{FZGNR}, Baujahr, KMStand, Preis}
+\r{Modell}{\p{MNR}, \f{HNR[Hersteller]}, Typ, Neupreis, ps}
+\r{Hersteller}{\p{HNR}, Name}
+\end{liRmodell}
 
-t '
-ne a i
-KMStand: int (
+% Datenbankname: gebrauchtwagen
+\begin{minted}{sql}
+CREATE TABLE Hersteller (
+  HNR INTEGER PRIMARY KEY,
+  Name CHAR(20)
+);
 
-FZGNR: char (12) Baujahr:int (4),
-5), P int
+CREATE TABLE Modell (
+  MNR INTEGER PRIMARY KEY,
+  HNR INTEGER REFERENCES Hersteller(HNR),
+  Typ CHAR(20),
+  Neupreis INTEGER,
+  ps INTEGER
+);
 
-7
-r Preis (5))
+CREATE TABLE Fahrzeug (
+  MNR INTEGER REFERENCES Modell(MNR),
+  FZGNR CHAR(12) PRIMARY KEY,
+  Baujahr INTEGER,
+  KMStand INTEGER,
+  Preis INTEGER
+);
 
-Modell (MNR:int (3), HNR:int (3), Typ:char{20), Neupreis:int (5),
-ps:int(3)) ,
+INSERT INTO Hersteller VALUES
+  (1, 'BMW'),
+  (2, 'VW'),
+  (3, 'Daimler');
 
-Hersteller (HNR:int (3), Name:char(20))
+INSERT INTO Modell VALUES
+  (1, 1, '1er', 30134, 122),
+  (2, 1, '2er', 42134, 180),
+  (3, 2, 'Gold', 19278, 90);
 
-Dabei sind die Schlüsselattribute jeweils unterstrichen und zusätzlich für alle Attribute die Typen
-angegeben. Formulieren Sie die folgenden Anfragen bzw. Anweisungen in SQL.
+INSERT INTO Fahrzeug VALUES
+  (1, 1, 2010, 60134, 11154),
+  (2, 2, 2017, 82134, 19130),
+  (3, 3, 2002, 119278, 9278);
+\end{minted}
+\index{SQL mit Übungsdatenbank}
+
+Dabei sind die Schlüsselattribute jeweils unterstrichen und zusätzlich
+für alle Attribute die Typen angegeben. Formulieren Sie die folgenden
+Anfragen bzw. Anweisungen in SQL.
 
 \begin{enumerate}
 
@@ -35,36 +94,97 @@ angegeben. Formulieren Sie die folgenden Anfragen bzw. Anweisungen in SQL.
 % a)
 %%
 
-\item Geben Sie die Anweisungen in SQL-DDL an, die notwendig sind, um die Relationen „Fahrzeug“,
-„Modell“ und „Hersteller“ zu erzeugen. Achten Sie dabei darauf, die Primärschlüssel der
-Relationen zu kennzeichnen.
+\item Geben Sie die Anweisungen in SQL-DDL an, die notwendig sind, um
+die Relationen „Fahrzeug“, „Modell“ und „Hersteller“ zu erzeugen. Achten
+Sie dabei darauf, die Primärschlüssel der Relationen zu kennzeichnen.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+CREATE TABLE IF NOT EXISTS Hersteller (
+  HNR INTEGER PRIMARY KEY,
+  Name CHAR(20)
+);
+
+CREATE TABLE IF NOT EXISTS Modell (
+  MNR INTEGER PRIMARY KEY,
+  HNR INTEGER REFERENCES Hersteller(HNR),
+  Typ CHAR(20),
+  Neupreis INTEGER,
+  ps INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS Fahrzeug (
+  MNR INTEGER REFERENCES Modell(MNR),
+  FZGNR CHAR(12) PRIMARY KEY,
+  Baujahr INTEGER,
+  KMStand INTEGER,
+  Preis INTEGER
+);
+\end{minted}
+\end{liAntwort}
 
 %%
 % b)
 %%
 
-\item Bestimmen Sie die Typen aller Modelle des Herstellers mit Namen BMW.
+\item Bestimmen Sie die Typen aller Modelle des Herstellers mit Namen
+BMW.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT m.Typ
+FROM Modell m, Hersteller h
+WHERE h.HNR = m.HNR AND h.Name = 'BMW'
+GROUP BY m.Typ;
+\end{minted}
+\end{liAntwort}
 
 %%
 % c)
 %%
 
-\item Bestimmen Sie den Mindestpreis, bezogen auf das Attribut „Preis“, der Fahrzeuge eines jeden
-Herstellers.
+\item Bestimmen Sie den Mindestpreis, bezogen auf das Attribut „Preis“,
+der Fahrzeuge eines jeden Herstellers.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT h1.Name AS Hersteller, (
+  SELECT MIN(f.Preis)
+  FROM Fahrzeug f, Modell m, Hersteller h2
+  WHERE
+    f.MNR = m.MNR AND
+    m.HNR = h2.HNR AND
+    H2.HNR = h1.HNR
+) AS Mindestpreis
+FROM Hersteller h1;
+\end{minted}
+\end{liAntwort}
 
 %%
 % d)
 %%
 
-\item Bestimmen Sie die Namen der Hersteller, für die von jedem ihrer Modelle mindestens ein
-Fahrzeug in der Datenbank gespeichert ist.
+\item Bestimmen Sie die Namen der Hersteller, für die von jedem ihrer
+Modelle mindestens ein Fahrzeug in der Datenbank gespeichert ist.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT h.Name AS Hersteller
+FROM Fahrzeug f, Modell m, Hersteller h
+WHERE
+  f.MNR = m.MNR AND
+  m.HNR = h.HNR
+GROUP BY h.Name;
+\end{minted}
+\end{liAntwort}
 
 %%
 % e)
 %%
 
-\item Bestimmen Sie die Namen aller Hersteller, von denen mindestens fünf Fahrzeuge eines beliebigen
-Modells in der Datenbank gespeichert sind.
+\item Bestimmen Sie die Namen aller Hersteller, von denen mindestens
+fünf Fahrzeuge eines beliebigen Modells in der Datenbank gespeichert
+sind.
 \end{enumerate}
 
 \end{document}

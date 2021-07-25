@@ -1,23 +1,80 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{syntax,rmodell}
 \begin{document}
+\let\a=\liAttribut
+\let\f=\liFremd
+\let\p=\liPrimaer
+\let\r=\liRelationMenge
+
 \liAufgabenTitel{Vater und Mutter}
 \section{3.SQL
 \index{SQL}
 \footcite{66116:2015:09}}
 
+\noindent
 Gegeben seien folgende Relationen:
-Mensch(ID, MutterID, VaterID)
-Mann(ID)
 
-Frau(ID)
+\begin{liRelationenSchemaFormat}
+Mensch(ID*, MutterID, VaterID)
+Mann(ID*)
+Frau(ID*)
+\end{liRelationenSchemaFormat}
 
+\begin{liRmodell}
+\r{Mensch}{\p{ID}, MutterID, VaterID}
+\r{Mann}{\p{ID}}
+\r{Frau}{\p{ID}}
+\end{liRmodell}
+
+% Datenbankname: vater_mutter
+\begin{minted}{sql}
+CREATE TABLE Mensch (
+  ID INTEGER PRIMARY KEY,
+  MutterID INTEGER,
+  VaterID INTEGER
+);
+
+CREATE TABLE Mann (
+  ID INTEGER PRIMARY KEY
+);
+
+CREATE TABLE Frau (
+  ID INTEGER PRIMARY KEY
+);
+
+INSERT INTO Mensch VALUES
+  (1, 42, 41),
+  (2, 42, 41),
+  (3, 42, 41),
+  (4, 42, 41),
+  (42, NULL, 1),
+  (41, NULL, NULL);
+
+INSERT INTO Mann VALUES
+  (1),
+  (3),
+  (41);
+
+INSERT INTO Frau VALUES
+  (2),
+  (4),
+  (42);
+
+CREATE VIEW VaterKind AS
+SELECT Mensch.VaterID, Mensch.ID as KindID
+FROM Mensch
+WHERE
+  Mensch.VaterID IS NOT NULL;
+\end{minted}
+\index{SQL mit Übungsdatenbank}
+
+\noindent
 Das zugehörige ER-Modell für dieses relationale Datenbankschema sieht
 folgendermaßen aus:
 
-Disjunkte
-Spezialisierung
+\bigskip
 
+\noindent
 Bearbeiten Sie folgende Teilaufgaben:
 
 \begin{enumerate}
@@ -28,12 +85,35 @@ Bearbeiten Sie folgende Teilaufgaben:
 
 \item Finden Sie die Töchter der Frau mit ID 42.
 
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT Mensch.ID
+FROM Mensch, Frau
+WHERE
+  Mensch.MutterID = Frau.id AND
+  Frau.ID = 42;
+\end{minted}
+\end{liAntwort}
+
 %%
 % b)
 %%
 
-\item Gibt es Männer, die ihre eigenen Großväter sind? Formulieren Sie eine
-geeignete SQL-Anfrage.
+\item Gibt es Männer, die ihre eigenen Großväter sind? Formulieren Sie
+eine geeignete SQL-Anfrage.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT Mensch.ID
+FROM Mann, Mensch
+WHERE
+  Mensch.ID = Mann.id AND (
+    Mensch.VaterID IN (SELECT v.ID FROM Mensch v WHERE v.VaterID = Mensch.ID)
+    OR
+    Mensch.MutterID IN (SELECT v.ID FROM Mensch v WHERE v.VaterID = Mensch.ID)
+  );
+\end{minted}
+\end{liAntwort}
 
 %%
 % c)
@@ -43,12 +123,36 @@ geeignete SQL-Anfrage.
 Vätern (VaterID) ihre Kinder (KinderID) zuordnet. Diese View darf keine
 NULL-Werte enthalten.
 
+\begin{liAntwort}
+
+\begin{minted}{sql}
+-- Wir erzeuge bereits beim Erstellen der Datenbank diese View, damit
+-- sie für spätere Aufgaben zur Verfügung steht.
+DROP VIEW IF EXISTS VaterKind;
+CREATE VIEW VaterKind AS
+SELECT Mensch.VaterID, Mensch.ID as KindID
+FROM Mensch
+WHERE
+  Mensch.VaterID IS NOT NULL;
+SELECT * FROM VaterKind;
+\end{minted}
+\end{liAntwort}
+
 %%
 % d)
 %%
 
 \item Verwenden Sie die View aus c), um alle Väter zurückzugeben,
 absteigend geordnet nach der Anzahl ihrer Kinder.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT VaterID, COUNT(VaterID) as Anzahl
+FROM VaterKind
+GROUP BY VaterID
+ORDER BY Anzahl DESC;
+\end{minted}
+\end{liAntwort}
 
 %%
 % e)
@@ -57,13 +161,12 @@ absteigend geordnet nach der Anzahl ihrer Kinder.
 \item Hugo möchte mit folgender Anfrage auf Basis der View aus c) alle
 kinderlosen Männer erhalten:
 
+\begin{minted}{sql}
 SELECT VaterID
-
 FROM VaterKind
-
 GROUP BY VaterID
-
 HAVING COUNT(KindID) = 0
+\end{minted}
 
 \begin{enumerate}
 
@@ -73,6 +176,12 @@ HAVING COUNT(KindID) = 0
 
 \item Was ist das Ergebnis von Hugos Anfrage und warum?
 
+\begin{liAntwort}
+Die Anfrage liefert kein Ergebnis. Da die View laut Angabe keine
+Null-Werte enthalten darf, sind in der View nur Männer verzeichnet, die
+wirklich Väter sind.
+\end{liAntwort}
+
 %%
 % ii.
 %%
@@ -80,8 +189,17 @@ HAVING COUNT(KindID) = 0
 \item Formulieren Sie eine Anfrage, die tatsächlich alle kinderlosen
 Männer zurückliefert.
 
-\end{enumerate}
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT * FROM Mann
+EXCEPT
+SELECT VaterID
+FROM VaterKind
+GROUP BY VaterID;
+\end{minted}
+\end{liAntwort}
 
+\end{enumerate}
 \end{enumerate}
 
 Hinweis: Denken Sie daran, dass SQL auch Mengenoperationen kennt.
