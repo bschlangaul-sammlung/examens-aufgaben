@@ -12,6 +12,12 @@ Für die bayerische Meisterschaft im Turmspringen ist folgendes
 Datenbankschema angelegt:
 \footcite[SQL-Anfragen auf mehreren Tabellen, Aufgabe 4]{db:ab:2}
 
+\begin{liRelationenSchemaFormat}
+Springer(Startnummer*, Nachname, Vorname, Geburtsdatum, Körpergröße)
+Sprung(SID*, Beschreibung, Schwierigkeit)
+springt(SID[Sprung], Startnummer[Springer], Durchgang)
+\end{liRelationenSchemaFormat}
+
 \begin{liRmodell}
 \liRelationMenge{Springer}{\liPrimaer{Startnummer}, Nachname, Vorname, Geburtsdatum, Körpergröße}
 
@@ -22,6 +28,43 @@ Datenbankschema angelegt:
 FK (SID) referenziert Sprung (SID)\\
 FK (Startnummer) referenziert Springer (Startnummer)
 \end{liRmodell}
+
+% Datenbankname: turmspringen
+\begin{minted}{sql}
+CREATE TABLE Springer (
+  Startnummer INTEGER PRIMARY KEY,
+  Nachname VARCHAR(20),
+  Vorname VARCHAR(20),
+  Geburtsdatum DATE,
+  Körpergröße INTEGER
+);
+
+CREATE TABLE Sprung (
+  SID INTEGER PRIMARY KEY,
+  Beschreibung VARCHAR(50),
+  Schwierigkeit INTEGER
+);
+
+CREATE TABLE springt (
+  SID INTEGER REFERENCES Sprung(SID),
+  Startnummer INTEGER REFERENCES Springer(Startnummer),
+  Durchgang INTEGER
+);
+
+INSERT INTO Springer VALUES
+  (1, 'Schrempf', 'Andreas', '1998-01-23', 190),
+  (2, 'Schulz', 'Alexej', '1999-12-22', 182);
+
+INSERT INTO Sprung VALUES
+  (1, '10m', 2),
+  (2, '15m', 5);
+
+INSERT INTO springt VALUES
+  (1, 1, 1),
+  (1, 1, 2),
+  (2, 2, 1);
+\end{minted}
+\index{SQL mit Übungsdatenbank}
 
 \noindent
 Das Attribut Schwierigkeit kann die Werte 1 bis 10 annehmen, das
@@ -39,10 +82,10 @@ SQL-Anweisung, welche in der Ausgabe mit dem größten Springer beginnt.
 
 \begin{liAntwort}
 \begin{minted}{sql}
-SELECT Vorname, Nachname
+SELECT Vorname, Nachname, Körpergröße
 FROM Springer
-WHERE Koerpergroesse > 180
-ORDER BY Koerpergroesse DESC;
+WHERE Körpergröße > 180
+ORDER BY Körpergröße DESC;
 \end{minted}
 \end{liAntwort}
 
@@ -99,17 +142,19 @@ genau diesen Namen \emph{„durchschnittliche Körpergröße“} haben soll.
 Umlaute und Leerzeichen sind bei Spaltenbeschriftungen nicht erlaubt.
 
 \begin{minted}{sql}
-SELECT AVG(Koerpergroesse) AS durchschnittliche_Koerpergroesse
+SELECT AVG(Körpergröße) AS durchschnittliche_Koerpergroesse
 FROM SPRINGER
 WHERE Geburtsdatum < DATE('2000-01-01');
 \end{minted}
 \end{liAntwort}
 
+oder
+
 \begin{liAntwort}
 \begin{minted}{sql}
-SELECT AVG(Koerpergroesse) AS durchschnittliche_Koerpergroesse
+SELECT AVG(Körpergröße) AS durchschnittliche_Koerpergroesse
 FROM SPRINGER
-WHERE Geburtsdatum < '01.01.2001';
+WHERE Geburtsdatum < '01.01.2000';
 \end{minted}
 \end{liAntwort}
 
