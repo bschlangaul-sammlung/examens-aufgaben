@@ -8,7 +8,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Tupelkalkül
-\footcite[Seite 100]{kemper}}
+\footcite[Seite 100-104]{kemper}}
 
 %-----------------------------------------------------------------------
 %
@@ -84,8 +84,8 @@ Existenzquantor & $\exists$ & \verb|\exists| & es existiert mindestens ein Eleme
 \subsection{Kalkül}
 
 In formalen Wissenschaften wie Logik und Mathematik ein formales System
-von Regeln, mit denen sich aus gegebenen Aussagen (Axiomen) weitere
-Aussagen ableiten lassen.
+von Regeln, mit denen sich \memph{aus gegebenen Aussagen}
+(\memph{Axiomen}) \memph{weitere Aussagen} ableiten lassen.
 \footcite{wiki:kalkuel}
 
 %%
@@ -121,17 +121,16 @@ Aussagesatz, zum Beispiel „Sokrates ist ein Mensch“, entsteht.
 %
 %-----------------------------------------------------------------------
 
-\section{Grundlagen Relationales Tupelkalkül}
+\section{Grundlagen des Relationalen Tupelkalküls}
 
-\begin{itemize}
-\item Verwandt mit der Relationalen Algebra, gleich mächtig, aber
-deklarativ ausgerichtet
-
-\item Basiert auf dem
-\href{https://de.wikipedia.org/wiki/Pr%C3%A4dikatenlogik_erster_Stufe}
+Der Tupelkalkül ist verwandt mit der Relationalen Algebra und gleich
+mächtig, aber deklarativ ausgerichtet. Er basiert auf dem
+\href{https://de.wikipedia.org/wiki/Prädikatenlogik_erster_Stufe}
 {mathematischen Prädikatenkalkül erster Stufe}.
 
-\item Form: $\{t | P(t)\}$
+\begin{center}
+Form: $\{t | P(t)\}$
+\end{center}
 
 \begin{itemize}
 \item $t$: Tupelvariable
@@ -140,20 +139,18 @@ deklarativ ausgerichtet
 
 \item $P$: Prädikat, das erfüllt sein muss, damit $t$ ins Ergebnis
 aufgenommen wird
-
-\item Datenbankprädikate werden als $P(t)$ oder $t \in P$ geschrieben,
-auf einzelne Elemente des Tupels (Attribute) greift man durch
-Punktnotation mit Angabe des Attributnamens zu: $t.A$ (bzw. durch
-Zugriff über den Index $t[i]$)
-
-\item $t$ ist freie Variable, \dh $t$ darf nicht durch Existenz- oder
-Allquantor quantifiziert sein
-
-\item Aufbau nicht existierender Tupel: durch den Tupelkonstruktor:
-$\{[t_1.A_1,...,t_n.A_n] | P(t_1,...,t_n)\}$
-
 \end{itemize}
-\end{itemize}
+
+Die Datenbankprädikate werden als $P(t)$ oder $t \in P$ geschrieben. Auf
+einzelne Elemente des Tupels (Attribute) greift man durch Punktnotation
+mit Angabe des Attributnamens zu ($t.A$) bzw. durch Zugriff über den
+Index $t[i]$.
+%
+$t$ ist eine freie Variable, \dh $t$ darf nicht durch einen Existenz- oder
+Allquantor quantifiziert sein.
+%
+Der Aufbau nicht existierender Tupel erfolgt durch den Tupelkonstruktor:
+$\{[t_1.A_1,\dots,t_n.A_n] | P(t_1,...,t_n)\}$\footcite[Seite 24-25]{db:fs:3}
 
 %-----------------------------------------------------------------------
 %
@@ -163,7 +160,7 @@ $\{[t_1.A_1,...,t_n.A_n] | P(t_1,...,t_n)\}$
 
 \begin{mdframed}
 \noindent
-$KUNDE (kdnr, kname, adresse, ort)$
+$KUNDE (kdnr, kname, adress, ort)$
 
 \noindent
 $AUFTRAG (auftragsnr, kdnr, warennr, menge)$
