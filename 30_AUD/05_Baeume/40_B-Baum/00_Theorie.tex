@@ -1,6 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-\usepackage{multicol}
-\liLadePakete{baum}
+\liLadePakete{baum,syntax,spalten}
 
 \begin{document}
 
@@ -36,7 +35,7 @@ die Baumhöhe vollständig ausgeglichen ist.
 Ein Baum heißt genau dann B-Baum, wenn gilt:
 %
 
-\begin{itemize}
+\begin{enumerate}
 \item Jeder Knoten außer der Wurzel enthält zwischen \memph{$k$ und $2k$
 Elemente} (Schlüsselwerte), $k$ wird als \memph{Ordnung} des B-Baums
 bezeichnet.
@@ -49,10 +48,9 @@ bezeichnet.
 %
 \item Alle Blätter haben die \memph{gleiche Tiefe}, \dh alle Wege von
 der Wurzel bis zu den Blättern sind gleich lang. Pfade haben die Länge
-$h-1$, wobei $h$ die Höhe des gesamten Baums ist.
-\end{itemize}
-
-\footcite[Seite 32 (PDF 26)]{aud:fs:5}
+$h - 1$, wobei $h$ die Höhe des gesamten Baums ist.
+\end{enumerate}
+\footcite[Seite 32]{aud:fs:5}
 
 %-----------------------------------------------------------------------
 %
@@ -66,7 +64,7 @@ Wenn in einem Blattknoten die \memph{maximale Anzahl} von Elementen
 Elemente werden aufgeteilt und ein neuer Knoten entsteht. Das
 \memph{mittlere Element} des ursprünglichen Knotens wird dabei \memph{in
 den Elternknoten integriert}.
-\footcite[Seite 32 (PDF 26)]{aud:fs:5}
+\footcite[Seite 32]{aud:fs:5}
 
 %-----------------------------------------------------------------------
 %
@@ -74,28 +72,25 @@ den Elternknoten integriert}.
 
 \section{Suchen}
 
-\begin{enumerate}
-\item Beginnend mit dem Wurzelknoten werden die Knoten jeweils
-\memph{von links nach rechts} durchsucht:
-
-\item \memph{Stimmt} ein Element mit dem gesuchtem Schlüsselwert
+Beginnend mit dem Wurzelknoten werden die Knoten jeweils \memph{von
+links nach rechts} durchsucht:
+%
+\memph{Stimmt} ein Element mit dem gesuchtem Schlüsselwert
 \memph{überein}, ist der Satz \memph{gefunden}.
-
-\item Ist das \memph{Element größer} als der gesuchte Wert, wird die
+%
+Ist das \memph{Element größer} als der gesuchte Wert, wird die
 Suche im \memph{links} hängenden Unterbaum \memph{fortgesetzt}.
-
-\item Ist das \memph{Element kleiner} als der gesuchte Wert, wird der
+%
+Ist das \memph{Element kleiner} als der gesuchte Wert, wird der
 Vergleich mit dem \memph{nächsten Element der Wurzel wiederholt}.
-
-\item Ist auch das letztes Element der Wurzel noch kleiner als der
+%
+Ist auch das letztes Element der Wurzel noch kleiner als der
 gesuchte Wert, dann wird die Suche im rechten Unterbaum des Elements
 fortgesetzt.
-
-\item Falls ein weiterer Abstieg in den Unterbaum nicht möglich ist
+%
+Falls ein weiterer Abstieg in den Unterbaum nicht möglich ist
 (\dh Blattknoten), wird die Suche abgebrechen. Dann ist kein Satz mit
 dem gewünschten Schlüsselwert vorhanden.
-\end{enumerate}
-
 \footcite[Seite 37 (PDF 31)]{aud:fs:5}
 
 %-----------------------------------------------------------------------
@@ -104,7 +99,7 @@ dem gewünschten Schlüsselwert vorhanden.
 
 \section{Löschen}
 
-Suche den Knoten, in dem das zu löschende Element E liegt.
+Suche den Knoten, in dem das zu löschende Element $E$ liegt.
 
 \begin{itemize}
 \item Falls das Element $E$ im Blattknoten liegt, dann lösche $E$ dort
@@ -128,15 +123,16 @@ gewählten Blattknoten.
 entstehenden Unterlauf in diesem Blattknoten.
 \end{itemize}
 \end{itemize}
-
-\footcite[Seite 39 (PDF 32)]{aud:fs:5}
+\footcite[Seite 39]{aud:fs:5}
 
 \subsection{Hinweise zum Unterlauf:}
 
 Ein Unterlauf entsteht auf Blattebene. Der Unterlauf wird durch Mischen
 des Unterlaufknotens mit seinem Nachbarknoten und dem darüberliegenden
 Element beseitig.
-\footcite[Seite 40 (PDF 33)]{aud:fs:5}
+\footcite[Seite 40]{aud:fs:5}
+
+\liJavaDatei{baum/BBaum}
 
 \literatur
 

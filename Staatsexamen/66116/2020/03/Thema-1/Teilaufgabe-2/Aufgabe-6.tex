@@ -1,0 +1,37 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{baum}
+\begin{document}
+\liAufgabenTitel{Physische Datenstrukturen)}
+\section{Aufgabe 6
+\index{B-Baum}
+\footcite{66116:2020:03}}
+
+Fügen Sie die Zahl 4 in den folgenden B-Baum ein.
+
+10 20 5 6 7 8 12 14 16 18 25 30
+
+ 5 6 7 8 10  12 14 16 18 20 25 30
+
+Zeichnen Sie den vollständigen, resultierenden Baum.
+
+\begin{tikzpicture}[
+  li bbaum,
+  level 1/.style={level distance=10mm,sibling distance=32mm},
+  level 2/.style={level distance=10mm,sibling distance=20mm},
+]
+\node {7 \nodepart{two} 12 \nodepart{three} 18} [->]
+  child {
+    node {5 \nodepart{two} 6}
+  }
+  child {
+    node {8 \nodepart{two} 10}
+  }
+  child {
+    node {14 \nodepart{two} 16}
+  }
+  child {
+    node {20 \nodepart{two} 25 \nodepart{three} 30}
+  };
+\end{tikzpicture}
+
+\end{document}
