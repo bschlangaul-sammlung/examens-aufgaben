@@ -3,7 +3,7 @@
 \begin{document}
 \let\FA=\liFunktionaleAbhaengigkeiten
 
-\liAufgabenTitel{}
+\liAufgabenTitel{Relation Prüfung}
 \section{Aufgabe 6
 \index{Normalformen}
 \footcite{66116:2021:03}}
@@ -13,15 +13,33 @@ Prüfungsname, Dozent, Prüfungstyp, ECTS) mit den beiden
 Schlüsselkandidaten (Prüfungsnummer, Fakultät) und (Fakultät,
 Prüfungsname, Dozent).
 
+% N Prüfungsnummer
+% F Fakultät
+% P Prüfungsname
+% D Dozent
+% T Prüfungstyp
+% E ECTS
+
+% NFPDTE
+% NF->PDTE
+% FPD->NTE
+
+\begin{liAntwort}
 \FA{
-  Prüfungsnummer, Fakultät -> Prüfungsname, Dozent, Prüfungstyp, ECTS;
-  Fakultät, Prüfungsname, Dozent -> Prüfungsnummer, Prüfungstyp, ECTS;
+  Prüfungsnummer, Fakultät -> Prüfungstyp, ECTS;
+  Fakultät, Prüfungsname, Dozent -> Prüfungsnummer;
 }
+\end{liAntwort}
+
+% \FA{
+%   Prüfungsnummer, Fakultät -> Prüfungsname, Dozent, Prüfungstyp, ECTS;
+%   Fakultät, Prüfungsname, Dozent -> Prüfungsnummer, Prüfungstyp, ECTS;
+% }
 
 Alle Attributwerte sind atomar. Es gelten nur die durch die
 Schlüsselkandidaten implizierten funktionalen Abhängigkeit.
 
-Geben Sie die höchste Normalform an, die die Relation Prüfung erfüllt.
+Geben Sie die höchste Normalform an, die die Relation-Prüfung erfüllt.
 Zeigen Sie, dass alle Bedingungen für diese Normalform erfüllt sind
 und dass mindestens eine Bedingung der nächsthöheren Normalform verletzt
 ist. Beziehen Sie sich bei der Begründung auf die gegebene Relation und
