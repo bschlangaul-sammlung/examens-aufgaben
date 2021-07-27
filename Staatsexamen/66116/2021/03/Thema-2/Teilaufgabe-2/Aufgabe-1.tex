@@ -1,0 +1,101 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Vermischte Fragen}
+\section{Aufgabe 1
+\index{DB}
+\footcite{66116:2021:03}}
+
+Beantworten Sie die folgenden Fragen und begründen oder erläutern Sie
+Ihre Antwort.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Kann ein Tupel mehrfach im Ergebnis einer SQL-Anfrage enthalten
+sein?
+
+\begin{liAntwort}
+Ja. Ein Tupel kann mehrmals in eine Tabelle gespeichert werden und die
+Ausgabe über eine \texttt{SELECT} Anfrage liefert dann dieses Tupel
+mehrfach aus. Um die mehrfache Ausgabe zu verhindert gibt es in SQL das
+Schlüsselwort\texttt{DISTINCT}. In der relationalen Algebra hingegeben
+sind die Tupel in einer Relation eindeutig.
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Was ist der Unterschied zwischen einem \texttt{INNER JOIN} und
+einem \texttt{OUTER JOIN}?
+
+\begin{liAntwort}
+Ein \texttt{INNER JOIN} entspricht der Schnittmenge $A \cap B$
+
+Ein \texttt{OUTER JOIN} entspricht der Vereinigung $A \cup B$
+\liFussnoteUrl{https://stackoverflow.com/a/38578}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Welche Auswirkung hat die Verwendung von \texttt{ON DELETE
+CASCADE} bei einem Fremdschlüsselattribut?
+
+\begin{liAntwort}
+Ist \texttt{ON DELETE CASCADE} bei einem Fremdschlüsselattribut gesetzt,
+so wird der referenzierte Datensatz bei einem Löschvorgang mitgelöscht.
+\end{liAntwort}
+
+%%
+% d)
+%%
+
+\item Kann eine abgebrochene (aborted) Transaktion wieder fortgesetzt
+werden?
+
+\begin{liAntwort}
+Eine Transaktion kann nicht fortgesetzt werden. Sie muss zurückgesetzt
+und wiederholt werden.
+\end{liAntwort}
+
+%%
+% e)
+%%
+
+\item Was versteht man unter einer \texttt{stored procedure} im Kontext
+einer Programmierschnittstelle für relationale Datenbanken (z.B JDBC)?
+
+\begin{liAntwort}
+Eine  \texttt{stored procedure} bildet eine Gruppe von SQL-Befehlm, die
+eine logische Einheiten bildet und einer bestimmten Aufgabe zuzuordnen
+sind.  \texttt{stored procedure} werden dazu benutzt eine mehrere
+Anweisungen und Abfragen zu koppeln
+
+Beispielsweise können bei einer Angestellten-Datenbank können die
+Aufgaben „einstellen“, „entlassen“, „befördern“ als \texttt{stored
+procedure} kompiliert werden und dann mit unterschiedlichen Parametern
+ausgefürt werden.
+\liFussnoteUrl{https://docs.oracle.com/javase/tutorial/jdbc/basics/storedprocedures.html}
+\end{liAntwort}
+
+%%
+% f)
+%%
+
+\item Was sind \texttt{check constraints} und wie wirken sich diese aus?
+
+\begin{liAntwort}
+Constraints definieren Bedingungen, die beim Einfügen, Ändern und
+Löschen von Datensätzen in der Datenbank erfüllt werden müssen. Wird
+beispielsweise eine Bedinung bei Einfügen eines Datensatzen nicht
+erfüllt, so kann dieser Datensatz nicht gespeichert werden.i
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}
