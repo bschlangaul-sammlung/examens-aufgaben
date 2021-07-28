@@ -7,6 +7,7 @@
 % Theorie-Teil
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% AUD_5_Teil1.m4v 43min
 \chapter{B-Bäume}
 
 \begin{liQuellen}
@@ -85,19 +86,20 @@ Suche im \memph{links} hängenden Unterbaum \memph{fortgesetzt}.
 Ist das \memph{Element kleiner} als der gesuchte Wert, wird der
 Vergleich mit dem \memph{nächsten Element der Wurzel wiederholt}.
 %
-Ist auch das letztes Element der Wurzel noch kleiner als der
-gesuchte Wert, dann wird die Suche im rechten Unterbaum des Elements
+Ist auch das letztes Element der Wurzel noch kleiner als der gesuchte
+Wert, dann wird die Suche im \memph{rechten Unterbaum} des Elements
 fortgesetzt.
 %
 Falls ein weiterer Abstieg in den Unterbaum nicht möglich ist
 (\dh Blattknoten), wird die Suche abgebrechen. Dann ist kein Satz mit
 dem gewünschten Schlüsselwert vorhanden.
-\footcite[Seite 37 (PDF 31)]{aud:fs:5}
+\footcite[Seite 37]{aud:fs:5}
 
 %-----------------------------------------------------------------------
 %
 %-----------------------------------------------------------------------
 
+% AUD_5_Teil1.m4v 55min
 \section{Löschen}
 
 Suche den Knoten, in dem das zu löschende Element $E$ liegt.
@@ -130,7 +132,13 @@ entstehenden Unterlauf in diesem Blattknoten.
 
 Ein Unterlauf entsteht auf Blattebene. Der Unterlauf wird durch Mischen
 des Unterlaufknotens mit seinem Nachbarknoten und dem darüberliegenden
-Element beseitig.
+Elemen  durchgeführt, dabei wird sozusagen ein Splitt rückwärts
+durchgeführt. Wurde einmal mit dem Mischen auf Blattebene begonnen, muss
+das evtl. nach oben fortgesetzt werden. Mischen wird so lange
+fortgesetzt, bis kein Unterlauf mehr existiert oder die Wurzel erreicht
+ist. Wird die Wurzel erreicht, kann der Baum in der Höhe um 1
+schrumpfen. Beim Mischen kann auch wieder ein Überlauf entstehen, d.h.
+es muss wieder gesplittet werde.
 \footcite[Seite 40]{aud:fs:5}
 
 \liJavaDatei{baum/BBaum}
