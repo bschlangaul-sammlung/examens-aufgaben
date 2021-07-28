@@ -54,13 +54,13 @@ der Elemente.\footcite[Seite 77]{winter}
 %
 %-----------------------------------------------------------------------
 
-\section{Vom ER-Modell zum Relationenmodell\footcite[Seite 33]{db:fs:1}}
+\section{Vom Entity-Relationship-Modell zum Relationenmodell\footcite[Seite 33]{db:fs:1}}
 
-Für jeden Entity-Typen wird ein \memph{Relationenschema} festgelegt.
+Wir legen für jeden Entity-Typen ein \memph{Relationenschema} festgelegt.
 %
-Für jeden Relation\-ship-Typen wird (zunächst) ein Relationenschema
-festgelegt, das zusätzlich zu den Attributen des Relationship-Typs die
-\memph{Schlüssel der zugehörigen Entity-Typen} enthält, welche
+Ebenso erstellen wir (zunächst) für jeden Relation\-ship-Typen ein
+Relationenschema, das zusätzlich zu den Attributen des Relationship-Typs
+die \memph{Schlüssel der zugehörigen Entity-Typen} enthält, welche
 \memph{Fremdschlüssel} genannt werden. Das/die Schlüsselattribut/e
 werden/wird unterstrichen.
 %
@@ -81,7 +81,7 @@ Es gibt eine vereinfachte Notation:
 %
 %-----------------------------------------------------------------------
 
-\section{Verfeinertes Relationenschema\footcite[Seite 34]{db:fs:1}}
+\section{Das verfeinertes Relationenschema\footcite[Seite 34]{db:fs:1}}
 
 Jedes Relationenmodell kann \memph{verfeinert} werden, indem Relationen,
 deren Schlüssel aus den \memph{gleichen Attributen} besteht,
@@ -90,11 +90,14 @@ Grundsätzlich können \memph{nur} Relationen eliminiert werden,
 die \memph{1:1 bzw. 1:N}-Beziehungen repräsentieren.
 
 \begin{description}
-\item[1:N-Beziehungen] Integration in Relation der N-Seite (ansonsten
-ergeben sich Anomalien!).
+\item[1:N-Beziehungen]
 
-\item[1:1-Beziehungen] Integration in beide Relationen möglich, aber:
-Abwägen, wo mehr „Lehrstellen“ in Form von NULL-Werten entstehen.
+Integration in Relation der N-Seite (ansonsten ergeben sich Anomalien!).
+
+\item[1:1-Beziehungen]
+
+Integration in beide Relationen möglich, aber: Abwägen, wo mehr
+„Lehrstellen“ in Form von NULL-Werten entstehen.
 \end{description}
 
 \noindent
@@ -107,31 +110,44 @@ Die genaue Überführung, die automatisiert werden kann, erfolgt in 7
 Schritten:
 
 \begin{description}
-\item[Starke Entitätstypen:] Für jeden starken Entitätstyp wird eine
-Relation mit seinen Attributen und seinen Primärschlüssel erstellt.
+\item[Starke Entitätstypen:]
 
-\item[Schwache Entitätstypen:] Für jeden schwachen Entitätstyp wird eine
-Relation erstellt. Der Primärschlüssel des starken Entitätstyps wird als
-Fremdschlüssel ergänzt, um den schwachen Entitätstyp zu identifizieren.
+Für jeden starken Entitätstyp wird eine Relation mit seinen Attributen
+und seinen Primärschlüssel erstellt.
 
-\item[1:1-Beziehungstypen:] Für einen 1:1-Beziehungstyp zweier
-Entitätstypen wird eine der beiden Relationen um den Fremdschlüssel
-für die jeweils andere Relation erweitert.
+\item[Schwache Entitätstypen:]
 
-\item[1:N-Beziehungstypen:] Für den 1:N-Beziehungstyp zweier
-Entitätstypen wird der Fremdschlüssel der „1“-Relation in die „N
-“-Relation geschrieben.
+Für jeden schwachen Entitätstyp wird eine Relation erstellt. Der
+Primärschlüssel des starken Entitätstyps wird als Fremdschlüssel
+ergänzt, um den schwachen Entitätstyp zu identifizieren.
 
-\item[N:M-Beziehungstypen:] Für jeden N:M-Beziehungstyp wird eine neue
-Relation mit den Fremschlüsseln der beiden Relation ergänzt.
+\item[1:1-Beziehungstypen:]
 
-\item[Mehrwertige Attribute:] Für jedes mehrwertige Attribut wird eine
-Relation erstellt und als Fremdschlüssel der Primärschlüssel des
-zugehörigen Entitätstyps verwendetn.1
+Für einen 1:1-Beziehungstyp zweier Entitätstypen wird eine der beiden
+Relationen um den Fremdschlüssel für die jeweils andere Relation
+erweitert.
 
-\item[n-äre Beziehungstypen:] Für jeden Beziehungstyp mit einem Grad $n
-> 2$ wird eine neue Relation erstellt.\footcite[Überführung in ein
-relationales Modell]{wiki:entity-relationship-modell}
+\item[1:N-Beziehungstypen:]
+
+Für den 1:N-Beziehungstyp zweier Entitätstypen wird der Fremdschlüssel
+der „1“-Relation in die „N“-Relation geschrieben.
+
+\item[N:M-Beziehungstypen:]
+
+Für jeden N:M-Beziehungstyp wird eine neue Relation mit den
+Fremschlüsseln der beiden Relation ergänzt.
+
+\item[Mehrwertige Attribute:]
+
+Für jedes mehrwertige Attribut wird eine Relation erstellt und als
+Fremdschlüssel der Primärschlüssel des zugehörigen Entitätstyps
+verwendetn.1
+
+\item[n-äre Beziehungstypen:]
+
+Für jeden Beziehungstyp mit einem Grad $n > 2$ wird eine neue Relation
+erstellt.\footcite[Überführung in ein relationales
+Modell]{wiki:entity-relationship-modell}
 
 \end{description}
 

@@ -1,6 +1,11 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{er}
 \begin{document}
+\let\a=\liErMpAttribute
+\let\d=\liErDatenbankName
+\let\e=\liErMpEntity
+\let\r=\liErMpRelationship
+
 \liAufgabenTitel{Online-Marktplatze}
 \section{Aufgabe 2
 \index{Entity-Relation-Modell}
@@ -13,22 +18,63 @@ und geben Sie die Kardinalitäten in Chen-Notation (= Funktionalitäten)
 an. Kennzeichnen Sie auch die totale Teilnahme von Entity-Typen an
 Beziehungstypen.
 
-Es gibt Produkte. Diese haben eine eindeutige Bezeichnung, einen
-Beschreibungstext und eine Bewertung. Außerdem gibt es Personen, die
-entweder Kunde, Händler oder beides sind. Jede Person hat einen
-Nachnamen, einen oder mehrere Vornamen, ein Geburtsdatum und eine
-E-Mail-Adresse, mit der diese eindeutig identifiziert werden kann.
+Es gibt \e{Produkte}. Diese haben eine eindeutige \a{Bezeichnung}, einen
+\a{Beschreibungstext} und eine \a{Bewertung}. Außerdem gibt es
+\e{Personen}, die entweder \e{Kunde}, \e{Händler} oder beides sind. Jede
+Person hat einen \a{Nachnamen}, einen oder mehrere \a{Vornamen}, ein
+\a{Geburtsdatum} und eine \a{E-Mail-Adresse}, mit der diese eindeutig
+identifiziert werden kann.
 
-Das System verwaltet außerdem Zahlungsmittel. Jedes Zahlungsmittel ist
-entweder eine Kreditkarte oder eine Bankverbindung für Lastschriften.
-Für das Lastschriftverfahren wird die international eindeutige IBAN und
-der Name des Kontoinhabers erfasst, bei Zahlung mit Kreditkarte der Name
-des Karteninhabers, die eindeutige Kartennummer, das Ablaufdatum sowie
-der Kartenanbieter. Es gibt Transaktionen. Jede Transaktion bezieht sich
-stets auf ein Produkt, einen Kunden, einen Händler und auf ein
-Zahlungsmittel, das für die Transaktion verwendet wird. Jede Transaktion
-enthält außerdem den Preis, auf den sich Kunde und Händler geeinigt
-haben, das Abschlussdatum sowie eine Lieferadresse, an die das Produkt
+Das System verwaltet außerdem \e{Zahlungsmittel}. Jedes Zahlungsmittel
+ist entweder eine \e{Kreditkarte} oder eine \e{Bankverbindung} für
+Lastschriften. Für das Lastschriftverfahren wird die international
+eindeutige \a{IBAN} und der Name des \a{Kontoinhabers} erfasst, bei
+Zahlung mit Kreditkarte der Name des \a{Karteninhabers}, die eindeutige
+\a{Kartennummer}, das \a{Ablaufdatum} sowie der \a{Kartenanbieter}. Es
+gibt \e{Transaktionen}. Jede Transaktion bezieht sich stets auf ein
+Produkt, einen Kunden, einen Händler und auf ein Zahlungsmittel, das für
+die Transaktion verwendet wird. Jede Transaktion enthält außerdem den
+\a{Preis}, auf den sich Kunde und Händler geeinigt haben, das
+\a{Abschlussdatum} sowie eine \a{Lieferadresse}, an die das Produkt
 versandt wird.
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[er2,scale=0.7,transform shape]
+% Produkt
+\node[entity] (Produkt) {Produkt};
+\node[attribute,above=1cm of Produkt] {Bezeichnung} edge (Produkt);
+\node[attribute,above=1cm of Produkt] {Beschreibungstext} edge (Produkt);
+\node[attribute,above=1cm of Produkt] {Bewertung} edge (Produkt);
+
+% Person
+\node[entity] (Person) {Person};
+\node[attribute,above=1cm of Person] {Nachnamen} edge (Person);
+\node[attribute,above=1cm of Person] {Vornamen} edge (Person);
+\node[attribute,above=1cm of Person] {Geburtsdatum} edge (Person);
+\node[attribute,above=1cm of Person] {E-Mail-Adresse} edge (Person);
+
+% Kunde
+\node[entity] (Kunde) {Kunde};
+
+% Händler
+\node[entity] (Händler) {Händler};
+
+% Zahlungsmittel
+\node[entity] (Zahlungsmittel) {Zahlungsmittel};
+\node[attribute,above=1cm of Zahlungsmittel] {Name} edge (Zahlungsmittel);
+
+% Bankverbindung
+\node[entity] (Bankverbindung) {Bankverbindung};
+\node[attribute,above=1cm of Bankverbindung] {IBAN} edge (Bankverbindung);
+
+% Kreditkarte
+\node[entity] (Kreditkarte) {Kreditkarte};
+\node[attribute,above=1cm of Kreditkarte] {Kartennummer} edge (Kreditkarte);
+\node[attribute,above=1cm of Kreditkarte] {Ablaufdatum} edge (Kreditkarte);
+\node[attribute,above=1cm of Kreditkarte] {Kartenanbieter} edge (Kreditkarte);
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
 
 \end{document}
