@@ -13,7 +13,7 @@
 
 Im Folgenden finden Sie die Beschreibung eines Online-Marktplatzes.
 Erstellen Sie zu dieser Beschreibung ein erweitertes ER-Diagramm.
-Kennzeichnen Sie die Primärschlüssel durch passendes Un- terstreichen
+Kennzeichnen Sie die Primärschlüssel durch passendes Unterstreichen
 und geben Sie die Kardinalitäten in Chen-Notation (= Funktionalitäten)
 an. Kennzeichnen Sie auch die totale Teilnahme von Entity-Typen an
 Beziehungstypen.
@@ -41,40 +41,55 @@ versandt wird.
 \begin{liAntwort}
 \begin{center}
 \begin{tikzpicture}[er2,scale=0.7,transform shape]
-% Produkt
-\node[entity] (Produkt) {Produkt};
-\node[attribute,above=1cm of Produkt] {Bezeichnung} edge (Produkt);
-\node[attribute,above=1cm of Produkt] {Beschreibungstext} edge (Produkt);
-\node[attribute,above=1cm of Produkt] {Bewertung} edge (Produkt);
 
 % Person
 \node[entity] (Person) {Person};
+\node[attribute,right=1cm of Person] {E-Mail-Adresse} edge (Person);
+\node[attribute,above left=1cm of Person] {Vornamen} edge (Person);
 \node[attribute,above=1cm of Person] {Nachnamen} edge (Person);
-\node[attribute,above=1cm of Person] {Vornamen} edge (Person);
-\node[attribute,above=1cm of Person] {Geburtsdatum} edge (Person);
-\node[attribute,above=1cm of Person] {E-Mail-Adresse} edge (Person);
+\node[attribute,above right=1cm of Person] {Geburtsdatum} edge (Person);
 
 % Kunde
-\node[entity] (Kunde) {Kunde};
+\node[entity,below left=3cm of Person] (Kunde) {Kunde};
 
 % Händler
-\node[entity] (Händler) {Händler};
+\node[entity,below right=3cm of Person] (Händler) {Händler};
+
+% Transaktion
+\node[relationship,below=4cm of Person] (Transaktion) {Transaktion};
+\node[attribute,left=1cm of Transaktion] {Preis} edge (Transaktion);
+\node[attribute,below=1cm of Transaktion] {Abschlussdatum} edge (Transaktion);
+\node[attribute,right=1cm of Transaktion] {Lieferadresse} edge (Transaktion);
 
 % Zahlungsmittel
-\node[entity] (Zahlungsmittel) {Zahlungsmittel};
-\node[attribute,above=1cm of Zahlungsmittel] {Name} edge (Zahlungsmittel);
+\node[entity,below=3cm of Händler] (Zahlungsmittel) {Zahlungsmittel};
 
 % Bankverbindung
-\node[entity] (Bankverbindung) {Bankverbindung};
-\node[attribute,above=1cm of Bankverbindung] {IBAN} edge (Bankverbindung);
+\node[entity,below left=of Zahlungsmittel] (Bankverbindung) {Bankverbindung};
+\node[attribute,below=1cm of Bankverbindung] {IBAN} edge (Bankverbindung);
 
 % Kreditkarte
-\node[entity] (Kreditkarte) {Kreditkarte};
-\node[attribute,above=1cm of Kreditkarte] {Kartennummer} edge (Kreditkarte);
-\node[attribute,above=1cm of Kreditkarte] {Ablaufdatum} edge (Kreditkarte);
-\node[attribute,above=1cm of Kreditkarte] {Kartenanbieter} edge (Kreditkarte);
+\node[entity,below right=of Zahlungsmittel] (Kreditkarte) {Kreditkarte};
+\node[attribute,below left=1cm of Kreditkarte] {Kartennummer} edge (Kreditkarte);
+\node[attribute,below=1cm of Kreditkarte] {Ablaufdatum} edge (Kreditkarte);
+\node[attribute,below right=1cm of Kreditkarte] {Kartenanbieter} edge (Kreditkarte);
+
+% Produkt
+\node[entity,below=of Kunde] (Produkt) {Produkt};
+\node[attribute,left=1cm of Produkt] {Bezeichnung} edge (Produkt);
+\node[attribute,below left=1cm of Produkt] {Beschreibungstext} edge (Produkt);
+\node[attribute,below=1cm of Produkt] {Bewertung} edge (Produkt);
 \end{tikzpicture}
 \end{center}
 \end{liAntwort}
 
+% Person(Nachname, Vorname, Geburtsdatum, E-Mail-Adresse)
+
+% Produkt(Bezeichnung, Beschreibungstext, Bewertung)
+
+% Transaktion(Käufer, Händler, Produkt, Zahlungsmittel)
+
+% Kreditkarte()
+
+% Bankverbindung()
 \end{document}
