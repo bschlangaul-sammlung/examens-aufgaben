@@ -10,13 +10,14 @@
 }
 \begin{enumerate}
 
-\item Gegeben ist der unten vereinfacht dargestellte B-Baum der Klasse τ (2,
-h) . Fügen Sie die (Datensätze mit den) Schlüsselwerte(n) 67, 57, 61,
-75, 5, 13, 2, 91, 9, 17, 10 und 8 ein. Geben Sie in jedem Einfügeschritt
-die verwendete Maÿnahme (einfaches Einfügen in einen Knoten, Splitten)
-an und zeichnen Sie den Baum nach jedem Knotensplit neu. Als Splitfaktor
-wird dabei m = 1 gewählt.
+\item Gegeben ist der unten vereinfacht dargestellte B-Baum der Klasse
+der Ordnung 2. Fügen Sie die Schlüsselwerte $67$, $57$, $61$, $75$, $5$,
+$13$, $2$, $91$, $9$, $17$, $10$ und $8$ ein. Geben Sie in jedem
+Einfügeschritt die verwendete Maßnahme (einfaches Einfügen in einen
+Knoten, Splitten) an und zeichnen Sie den Baum nach jedem Knotensplit
+neu.
 
+\begin{center}
 \begin{tikzpicture}[
   li bbaum,
   level 1/.style={level distance=15mm,sibling distance=20mm},
@@ -33,6 +34,7 @@ wird dabei m = 1 gewählt.
     node {71 \nodepart{two} 78}
   };
 \end{tikzpicture}
+\end{center}
 
 \begin{liAntwort}
 
@@ -40,10 +42,13 @@ wird dabei m = 1 gewählt.
 %
 %%
 
-Schlüsselwert 67 (einfaches Einfügen)
-Schlüsselwert 57 (einfaches Einfügen)
-Schlüsselwert 61 (Splitten)
+\begin{compactitem}
+\item Schlüsselwert 67 (einfaches Einfügen)
+\item Schlüsselwert 57 (einfaches Einfügen)
+\item Schlüsselwert 61 (Splitten)
+\end{compactitem}
 
+\begin{center}
 \begin{tikzpicture}[
   li bbaum,
   level 1/.style={level distance=15mm,sibling distance=22mm},
@@ -63,16 +68,20 @@ Schlüsselwert 61 (Splitten)
     node {67 \nodepart{two} 71 \nodepart{three} 78}
   };
 \end{tikzpicture}
+\end{center}
 
 %%
 %
 %%
 
-Schlüsselwert 75 (einfaches Einfügen)
-Schlüsselwert 5 (einfaches Einfügen)
-Schlüsselwert 13 (einfaches Einfügen)
-Schlüsselwert 2 (Splitten)
+\begin{compactitem}
+\item Schlüsselwert 75 (einfaches Einfügen)
+\item Schlüsselwert 5 (einfaches Einfügen)
+\item Schlüsselwert 13 (einfaches Einfügen)
+\item Schlüsselwert 2 (Splitten)
+\end{compactitem}
 
+\begin{center}
 \begin{tikzpicture}[
   li bbaum,
   level 1/.style={level distance=15mm,sibling distance=22mm},
@@ -95,21 +104,114 @@ Schlüsselwert 2 (Splitten)
     node {67 \nodepart{two} 71 \nodepart{three} 75 \nodepart{four} 78}
   };
 \end{tikzpicture}
+\end{center}
+
+\begin{compactitem}
+\item Schlüsselwert 91 (Splitten)
+\end{compactitem}
+
+\begin{center}
+\begin{tikzpicture}[
+  li bbaum,
+  level 1/.style={level distance=15mm,sibling distance=55mm},
+  level 2/.style={level distance=10mm,sibling distance=15mm}
+]
+\node{54} [->]
+  child {
+    node {7 \nodepart{two} 15}
+      child {
+        node {2 \nodepart{two} 5}
+      }
+      child {
+        node {11 \nodepart{two} 13}
+      }
+      child {
+        node {21 \nodepart{two} 33}
+      }
+  }
+  child {
+    node {63 \nodepart{two} 75}
+      child {
+        node {57  \nodepart{two} 61}
+      }
+      child {
+        node {67 \nodepart{two} 71}
+      }
+      child {
+        node {78 \nodepart{two} 91}
+      }
+};
+\end{tikzpicture}
+\end{center}
+
+%%
+%
+%%
+
+\begin{compactitem}
+\item Schlüsselwert 9 (einfaches Einfügen)
+\item Schlüsselwert 17 (einfaches Einfügen)
+\item Schlüsselwert 10 (einfaches Einfügen)
+\item Schlüsselwert 8 (Splitt)
+\end{compactitem}
+
+\begin{center}
+\begin{tikzpicture}[
+  li bbaum,
+  scale=0.8,
+  transform shape,
+  level 1/.style={level distance=15mm,sibling distance=61mm},
+  level 2/.style={level distance=10mm,sibling distance=18mm}
+]
+\node{54} [->]
+  child {
+    node {7 \nodepart{two} 10 \nodepart{three} 15}
+      child {
+        node {2 \nodepart{two} 5}
+      }
+      child {
+        node {8 \nodepart{two}  9}
+      }
+      child {
+        node {11 \nodepart{four} 13}
+      }
+      child {
+        node {17 \nodepart{two} 21 \nodepart{three} 33}
+      }
+  }
+  child {
+    node {63 \nodepart{two} 75}
+      child {
+        node {57  \nodepart{two} 61}
+      }
+      child {
+        node {67 \nodepart{two} 71}
+      }
+      child {
+        node {78 \nodepart{two} 91}
+      }
+};
+\end{tikzpicture}
+\end{center}
+
 \end{liAntwort}
 
-\item Gegeben ist der unten dargestellte B-Baum der Klasse τ (2, h) .
-Löschen Sie die (Datensätze mit den) Schlüsselwerte(n) 24, 51, 87, 34,
-71, 19, 31 und 8 . Geben Sie in jedem Löschschritt die verwendete
-Maÿnahme (einfaches Löschen, Mischen, Ausgleichen) an und zeichnen Sie
-den Baum nach jeder Veränderung der Knotenstruktur (Mischen,
-Ausgleichen) neu. Für Ausgleichsoperationen sollen nur unmittelbare
-Nachbarknoten herangezogen werden.
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\item Gegeben ist der unten dargestellte B-Baum der Ordnung 2. Löschen
+Sie die Schlüsselwerte $24$, $51$, $87$, $34$, $71$, $19$, $31$ und $8$.
+Geben Sie in jedem Löschschritt die verwendete Maßnahme (einfaches
+Löschen, Mischen, Ausgleichen) an und zeichnen Sie den Baum nach jeder
+Veränderung der Knotenstruktur (Mischen, Ausgleichen) neu. Für
+Ausgleichsoperationen sollen nur unmittelbare Nachbarknoten herangezogen
+werden.
 
 \begin{tikzpicture}[
   li bbaum,
   level 1/.style={level distance=15mm,sibling distance=64mm},
   level 2/.style={level distance=10mm,sibling distance=20mm},
-  level 3/.style={level distance=10mm,sibling distance=20mm},
 ]
 \node {36} [->]
   child {
@@ -137,6 +239,47 @@ Nachbarknoten herangezogen werden.
     }
   };
 \end{tikzpicture}
+
+\begin{liAntwort}
+\begin{compactitem}
+\item Schlüsselwert 24 (einfaches Löschen)
+\item Schlüsselwert 51 (einfaches Löschen)
+
+\end{compactitem}
+
+\begin{tikzpicture}[
+  li bbaum,
+  level 1/.style={level distance=15mm,sibling distance=64mm},
+  level 2/.style={level distance=10mm,sibling distance=20mm},
+]
+\node {36} [->]
+  child {
+    node {13 \nodepart{two} 22}
+    child {
+      node {1 \nodepart{two} 8}
+    }
+    child {
+      node {15 \nodepart{two} 19}
+    }
+    child {
+      node {31 \nodepart{two} 34}
+    }
+  }
+  child {
+    node {61 \nodepart{two} 82}
+    child {
+      node {37 \nodepart{two} 54 \nodepart{three} 59}
+    }
+    child {
+      node {63 \nodepart{two} 71}
+    }
+    child {
+      node {89}
+    }
+  };
+\end{tikzpicture}
+
+\end{liAntwort}
 
 \end{enumerate}
 
