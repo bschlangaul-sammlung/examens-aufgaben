@@ -1,5 +1,6 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
+\liLadePakete{syntax,relationale-algebra}
+
 \begin{document}
 \liAufgabenTitel{Optimierung}
 \section{Aufgabe 7
@@ -45,7 +46,13 @@ AND Rechnung.Summe < 100;
 \end{minted}
 
 \begin{liAntwort}
-
+\begin{tikzpicture}
+\node (pi) {$\pi_{\text{Kunde.Name, Kunde.Geburtsdatum}}$};
+\node[below=of pi] (sigma) {$\sigma_{\text{Kunde.ID = Rechnung.Kunde} \land \text{Rechnung.Summe < 100}}$} edge (pi);
+\node[below=of sigma] (x) {$\times$} edge (sigma);
+\node[below left=of x]{Kunde} edge(x);
+\node[below right=of x]{Rechnung} edge(x);
+\end{tikzpicture}
 \end{liAntwort}
 
 %%
@@ -54,11 +61,17 @@ AND Rechnung.Summe < 100;
 
 \item Nennen Sie zwei Möglichkeiten, den algebraischen Term bzw. den
 Anfragegraphen aus der vorhergehenden Teilaufgabe logisch (d. h.
-algebraisch) zu optimieren. Beziehen Sie sich auf kon- krete Stellen und
+algebraisch) zu optimieren. Beziehen Sie sich auf konkrete Stellen und
 Operatoren des von Ihnen aufgestellten algebraischen Ausdrucks.
 
 \begin{liAntwort}
-
+\begin{tikzpicture}
+\node (pi) {$\pi_{\text{Kunde.Name, Kunde.Geburtsdatum}}$};
+\node[below=of pi] (theta join) {$\bowtie_{\text{Kunde.ID = Rechnung.Kunde}}$} edge (pi);
+\node[below left=of theta join]{Kunde} edge(theta join);
+\node[below right=of theta join] (sigma rechnung) {$\sigma_{\text{Summe < 100}}$} edge (theta join);
+\node[below=of sigma rechnung]{Rechnung} edge(sigma rechnung);
+\end{tikzpicture}
 \end{liAntwort}
 
 \end{enumerate}
