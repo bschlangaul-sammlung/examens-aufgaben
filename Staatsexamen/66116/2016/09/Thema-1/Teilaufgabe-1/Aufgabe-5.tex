@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{baum}
 \begin{document}
 \liAufgabenTitel{}
 \section{Physische Datenorganisation
@@ -24,7 +24,65 @@ Reihe nach ein. Zeichnen Sie den Endzustand des Baums nach jedem
 Einfügevorgang. Falls Sie Zwischenschritte zeichnen, kennzeichnen Sie
 die sieben Endzustände deutlich.
 
-3, 7, 13, 11, 9, 10, 8
+\centerline{3, 7, 13, 11, 9, 10, 8}
+
+\begin{liAntwort}
+\begin{compactitem}
+\item 3 (einfaches Einfügen)
+\item 7 (einfaches Einfügen)
+\item 13 (Split)
+\end{compactitem}
+
+\begin{center}
+\begin{tikzpicture}[
+  li bbaum,
+  level 1/.style={level distance=15mm,sibling distance=22mm},
+]
+\node {7}
+  child {node {3}}
+  child {node {13}};
+\end{tikzpicture}
+\end{center}
+
+\begin{compactitem}
+\item 11 (einfaches Einfügen)
+\item 9 (Split)
+\end{compactitem}
+
+\begin{center}
+\begin{tikzpicture}[
+  li bbaum,
+  level 1/.style={level distance=15mm,sibling distance=22mm},
+]
+\node {7 \nodepart{two} 11}
+  child {node {3}}
+  child {node {9}}
+  child {node {13}};
+\end{tikzpicture}
+\end{center}
+
+\begin{compactitem}
+\item 10 (einfaches Einfügen)
+\item 8 (Doppel-Split)
+\end{compactitem}
+
+\begin{center}
+\begin{tikzpicture}[
+  li bbaum,
+  level 1/.style={level distance=15mm,sibling distance=22mm},
+]
+\node{9}
+  child {node {7}
+    child {node {3}}
+    child {node {8}}
+  }
+  child {node {11}
+    child {node {10}}
+    child {node {13}}
+  };
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
 
 %%
 % c)
