@@ -1,6 +1,11 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{rmodell}
 \begin{document}
+\let\a=\liAttribut
+\let\f=\liFremd
+\let\p=\liPrimaer
+\let\r=\liRelationMenge
+
 \liAufgabenTitel{Autoverleih}
 \section{Aufgabe 3
 \index{Relationenmodell}
@@ -25,7 +30,20 @@ Fremdschlüsselattributl[Relationl],
 Attribut1 UNIQUE
 Attribut2 NOT NULL
 
-% https://en.wikipedia.org/wiki/Enhanced_entity%E2%80%93relationship_model
-% https://www.tutorialride.com/dbms/enhanced-entity-relationship-model-eer-model.htm
+\begin{liExkurs}[Enhanced entity-relationship model]
+\url{https://en.wikipedia.org/wiki/Enhanced_entity–relationship_model}
+\url{https://www.tutorialride.com/dbms/enhanced-entity-relationship-model-eer-model.htm}
+\end{liExkurs}
+
+\begin{liAntwort}
+\r{Fahrzeug}{\p{Kennzeichen}, Modell, Farbe}
+\r{Firma}{\p{Name}, Umsatz}
+\r{Person}{\p{Handynummer}, Vorname, Nachname}
+\r{Mieter}{\p{Mieter-Nr}, Handynummer[Person], Name[Firma]}
+\r{mietet}{\p{Mieter-Nr[Mieter], Kennzeichen[Fahrzeug]}}
+\r{Hersteller}{Hersteller}
+\r{Automarke}{\p{Automarke}, Hersteller}
+\r{produziert}{\p{Kennzeichen, Hersteller[Hersteller]}}
+\end{liAntwort}
 
 \end{document}

@@ -1,0 +1,65 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{Optimierung}
+\section{Aufgabe 7
+\index{DB}
+\footcite{66116:2021:03}}
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Erläutern Sie kurz, was Indizes sind und warum diese in
+Datenbanksystemen verwendet werden.
+
+\begin{liAntwort}
+Ein Datenbankindex ist eine von der Datenstruktur getrennte
+Indexstruktur in einer Datenbank, die die Suche und das Sortieren nach
+bestimmten Feldern beschleunigt.
+
+Ein Index besteht aus einer Ansammlung von Zeigern (Verweisen), die eine
+Ordnungsrelation auf eine oder mehrere Spalten in einer Tabelle
+definieren. Wird bei einer Abfrage eine indizierte Spalte als
+Suchkriterium herangezogen, sucht das Datenbankmanagementsystem (DBMS)
+die gewünschten Datensätze anhand dieser Zeiger. In der Regel finden
+hier B+-Bäume Anwendung. Ohne Index müsste die Spalte sequenziell
+durchsucht werden, während eine Suche mit Hilfe des Baums nur
+logarithmische Komplexität hat.
+\liFussnoteUrl{https://de.wikipedia.org/wiki/Datenbankindex}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Übertragen Sie folgendes SQL-Statement in einen nicht optimierten
+algebraischen Term oder in einen Anfragegraphen.
+
+\begin{minted}{sql}
+SELECT Kunde.Name, Kunde.Geburtsdatum
+FROM Kunde, Rechnung
+WHERE Kunde.ID = Rechnung.Kunde
+AND Rechnung.Summe < 100;
+\end{minted}
+
+\begin{liAntwort}
+
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Nennen Sie zwei Möglichkeiten, den algebraischen Term bzw. den
+Anfragegraphen aus der vorhergehenden Teilaufgabe logisch (d. h.
+algebraisch) zu optimieren. Beziehen Sie sich auf kon- krete Stellen und
+Operatoren des von Ihnen aufgestellten algebraischen Ausdrucks.
+
+\begin{liAntwort}
+
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}
