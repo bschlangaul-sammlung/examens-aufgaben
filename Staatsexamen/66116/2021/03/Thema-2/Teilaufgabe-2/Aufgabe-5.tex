@@ -44,10 +44,10 @@ Abteilung (\liPrimaer{AbteilungsID}, Bezeichnung UNIQUE NOT NULL)
 der Mitarbeiter ausgibt, die in der Buchhaltung arbeiten.
 
 \begin{liAntwort}
-$\pi_{Vorname, Nachname}(
+$\pi_{\text{Vorname, Nachname}}(
   \sigma_{\text{Bezeichnung = 'Buchhaltung'}}(
     \text{Mitarbeiter}
-    \bowtie
+    \bowtie_{\text{Mitarbeiter.AbteilungsID = Abteilung.AbteilungsID}}
     \text{Abteilung}
   )
 )
@@ -64,7 +64,11 @@ der Mitarbeiter ausgibt, die in keiner Abteilung arbeiten.
 % σ AbteilungsID = NULL (Mitarbeiter)
 
 \begin{liAntwort}
-$\sigma_{\text{AbteilungsID} = \text{NULL}}(\text{Mitarbeiter})$
+$
+\pi_{\text{Vorname, Nachname}}(
+  \sigma_{\text{AbteilungsID} = \text{NULL}}(\text{Mitarbeiter})
+)
+$
 \end{liAntwort}
 \end{enumerate}
 \end{document}

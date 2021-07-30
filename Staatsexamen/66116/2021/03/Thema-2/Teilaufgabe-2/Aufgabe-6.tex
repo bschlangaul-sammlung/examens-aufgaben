@@ -24,18 +24,6 @@ Prüfungsname, Dozent).
 % NF->PDTE
 % FPD->NTE
 
-\begin{liAntwort}
-\FA{
-  Prüfungsnummer, Fakultät -> Prüfungstyp, ECTS;
-  Fakultät, Prüfungsname, Dozent -> Prüfungsnummer;
-}
-\end{liAntwort}
-
-% \FA{
-%   Prüfungsnummer, Fakultät -> Prüfungsname, Dozent, Prüfungstyp, ECTS;
-%   Fakultät, Prüfungsname, Dozent -> Prüfungsnummer, Prüfungstyp, ECTS;
-% }
-
 Alle Attributwerte sind atomar. Es gelten nur die durch die
 Schlüsselkandidaten implizierten funktionalen Abhängigkeit.
 
@@ -44,4 +32,46 @@ Zeigen Sie, dass alle Bedingungen für diese Normalform erfüllt sind
 und dass mindestens eine Bedingung der nächsthöheren Normalform verletzt
 ist. Beziehen Sie sich bei der Begründung auf die gegebene Relation und
 nennen Sie nicht nur die allgemeinen Definitionen der Normalformen.
+
+\begin{liAntwort}
+\FA{
+  Prüfungsnummer, Fakultät -> Prüfungsname, Dozent, Prüfungstyp, ECTS;
+  Fakultät, Prüfungsname, Dozent -> Prüfungsnummer, Prüfungstyp, ECTS;
+}
+
+Höchste Normalform: 4NF
+
+Siehe Taschenbuch Seite 449
+
+\begin{description}
+\item[1NF]
+
+Alle Werte sind atomar.
+
+\item[2NF]
+
+Es ist 1NF und jedes Attribut ist Teil des Schlüsselkandidaten
+(Prüfungsnummer, Fakultät oder Fakultät, Prüfungsname, Dozent) oder das
+Attribut ist von einem Schlüsselkandidaten voll funktional abhängig
+(Prüfungsname, Dozent, Prüfungstyp, ECTS oder Prüfungsnummer,
+Prüfungstyp, ECTS).
+
+\item[3NF]
+
+Ist in 2NF und ein Nichtschlüsselattribut darf nur vom
+Schlüsselkandidaten abhängen (Prüfungsname, Dozent, Prüfungstyp, ECTS
+hängt von Prüfungsnummer, Fakultät ab) und (Prüfungsnummer, Prüfungstyp,
+ECTS hängt von Fakultät, Prüfungsname, Dozent ab).
+
+\item[BCNF]
+
+Jede Determinate ist Schlüsselkandidat (Prüfungsnummer, Fakultät und
+Fakultät, Prüfungsname, Dozent).
+
+\item[4NF]
+
+keine paarweise Unabhängigkeiten mehrwertigen Abhängigkeiten zwischen
+ihren Attributen.
+\end{description}
+\end{liAntwort}
 \end{document}
