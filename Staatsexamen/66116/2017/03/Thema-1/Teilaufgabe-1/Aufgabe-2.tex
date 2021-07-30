@@ -6,15 +6,105 @@
 \index{B-Baum}
 \footcite{66116:2017:03}}
 
-Konstruieren Sie einen B-Baum, dessen Knoten maximal 4 Einträge
+Konstruieren Sie einen B-Baum, dessen Knoten maximal $4$ Einträge
 enthalten können, indem Sie der Reihe nach diese Suchschlüsssel
 einfügen:
 
+\begin{center}
 8, 10, 12, 20, 5, 30, 25, 11
+\end{center}
 
-AnschlieBend löschen Sie den Eintrag mit dem Suchschlüssel 8.
+\noindent
+Anschließend löschen Sie den Eintrag mit dem Suchschlüssel $8$.
 
 Zeigen Sie jeweils graphisch den entstehenden Baum nach relevanten
-Zwischenschritten; insbesondere nach Einfügen der 5 sowie nach dem
-Einfügen der 11 und nach dem Löschen der 8.
+Zwischenschritten; insbesondere nach Einfügen der $5$ sowie nach dem
+Einfügen der $11$ und nach dem Löschen der $8$.
+
+\begin{liAntwort}
+
+%%
+%
+%%
+
+\begin{compactitem}
+\item Schlüsselwert 8 (einfaches Einfügen)
+\item Schlüsselwert 10 (einfaches Einfügen)
+\item Schlüsselwert 12 (einfaches Einfügen)
+\item Schlüsselwert 20 (einfaches Einfügen)
+\end{compactitem}
+
+\begin{center}
+\begin{tikzpicture}[
+  li bbaum,
+  level 1/.style={level distance=10mm,sibling distance=32mm},
+]
+\node {8 \nodepart{two} 10 \nodepart{three} 12 \nodepart{four} 20};
+\end{tikzpicture}
+\end{center}
+
+%%
+%
+%%
+
+\begin{compactitem}
+\item Schlüsselwert 5 (Split)
+\end{compactitem}
+
+\begin{center}
+\begin{tikzpicture}[
+  li bbaum,
+  level 1/.style={level distance=15mm,sibling distance=20mm},
+]
+\node {10} [->]
+  child {node {5 \nodepart{two} 8}}
+  child {node {12 \nodepart{two} 20}}
+;
+\end{tikzpicture}
+\end{center}
+
+%%
+%
+%%
+
+\begin{compactitem}
+\item Schlüsselwert 30 (einfaches Einfügen)
+\item Schlüsselwert 25 (einfaches Einfügen)
+\item Schlüsselwert 11 (Split)
+\end{compactitem}
+
+\begin{center}
+\begin{tikzpicture}[
+  li bbaum,
+  level 1/.style={level distance=15mm,sibling distance=20mm},
+]
+\node {10 \nodepart{two} 20} [->]
+  child {node {5 \nodepart{two} 8}}
+  child {node {11 \nodepart{two} 12}}
+  child {node {25 \nodepart{two} 30}}
+;
+\end{tikzpicture}
+\end{center}
+
+%%
+%
+%%
+
+\begin{compactitem}
+\item Löschen des Schlüsselwerts 8 (Mischen/Verschmelzen)
+\end{compactitem}
+
+\begin{center}
+\begin{tikzpicture}[
+  li bbaum,
+  level 1/.style={level distance=15mm,sibling distance=20mm},
+]
+\node {20} [->]
+  child {node {5 \nodepart{two} 10 \nodepart{three} 11 \nodepart{four} 12}}
+  child {node {25 \nodepart{two} 30}}
+;
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
+
 \end{document}

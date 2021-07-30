@@ -103,9 +103,6 @@ dem gewünschten Schlüsselwert vorhanden.
 % AUD_5_Teil1.m4v 55min
 \section{Löschen}
 
-
-
-
 Suche den Knoten, in dem das zu löschende Element $E$ liegt.
 
 \begin{itemize}
@@ -144,6 +141,44 @@ ist. Wird die Wurzel erreicht, kann der Baum in der Höhe um 1
 schrumpfen. Beim Mischen kann auch wieder ein Überlauf entstehen, d.h.
 es muss wieder gesplittet werde.
 \footcite[Seite 40]{aud:fs:5}
+
+\subsection{Verschiebung / Rotation / Ausgleichen}
+
+Enthält der für den Abstieg ausgewählte Unterbaum nur die minimale
+Schlüsselanzahl, aber ein vorausgehender oder nachfolgender
+Geschwisterknoten hat mindestens Schlüssel, wird ein Schlüssel in den
+ausgewählten Knoten verschoben.
+
+\subsection{Verschmelzung / Mischen}
+
+Enthalten sowohl der für den Abstieg ausgewählte Unterbaum  als auch
+sein unmittelbar vorausgehender und nachfolgender Geschwisterknoten
+genau die minimale Schlüsselanzahl, ist eine Verschiebung nicht möglich.
+In diesem Fall wird eine Verschmelzung des ausgewählten Unterbaumes mit
+dem vorausgehenden oder nachfolgenden Geschwisterknoten gemäß Abbildung
+5 durchgeführt. Dazu wird der Schlüssel aus dem Vaterknoten, welcher die
+Wertebereiche der Schlüssel in den beiden zu verschmelzenden Knoten
+trennt, als mittlerer Schlüssel in den verschmolzenen Knoten verschoben.
+Die beiden Verweise auf die jetzt verschmolzenen Kindknoten werden durch
+einen Verweis auf den neuen Knoten ersetzt.
+
+\subsection{Löschen aus inneren Knoten}
+
+Wird der zu löschende Schlüssel bereits in einem inneren Knoten
+gefunden, kann dieser nicht direkt gelöscht werden, weil er für die
+Trennung der Wertebereiche seiner beiden Unterbäume benötigt wird. In
+diesem Fall wird sein symmetrischer Vorgänger (oder sein symmetrischer
+Nachfolger) gelöscht und an seine Stelle kopiert. Der symmetrische
+Vorgänger ist der größte Blattknoten im linken Unterbaum, befindet sich
+also dort ganz rechts außen. Der symmetrische Nachfolger ist
+entsprechend der kleinste Blattknoten im rechten Unterbaum und befindet
+sich dort ganz links außen. Die Entscheidung, in welchen Unterbaum der
+Abstieg für die Löschung stattfindet, wird davon abhängig gemacht,
+welcher genügend Schlüssel enthält. Haben beide nur die minimale
+Schlüsselanzahl, werden die Unterbäume verschmolzen. Damit wird keine
+Trennung der Wertebereiche mehr benötigt und der Schlüssel kann direkt
+gelöscht werden.
+\footcite{wiki:bbaum}
 
 \liJavaDatei{baum/BBaum}
 
