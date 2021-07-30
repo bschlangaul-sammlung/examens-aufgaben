@@ -46,6 +46,7 @@ AND Rechnung.Summe < 100;
 \end{minted}
 
 \begin{liAntwort}
+\begin{center}
 \begin{tikzpicture}
 \node (pi) {$\pi_{\text{Kunde.Name, Kunde.Geburtsdatum}}$};
 \node[below=of pi] (sigma) {$\sigma_{\text{Kunde.ID = Rechnung.Kunde} \land \text{Rechnung.Summe < 100}}$} edge (pi);
@@ -53,6 +54,7 @@ AND Rechnung.Summe < 100;
 \node[below left=of x]{Kunde} edge(x);
 \node[below right=of x]{Rechnung} edge(x);
 \end{tikzpicture}
+\end{center}
 \end{liAntwort}
 
 %%
@@ -69,6 +71,7 @@ Zuerst Selection und dann Join
 
 Theta-Join
 
+\begin{center}
 \begin{tikzpicture}
 \node (pi) {$\pi_{\text{Kunde.Name, Kunde.Geburtsdatum}}$};
 \node[below=of pi] (theta join) {$\bowtie_{\text{Kunde.ID = Rechnung.Kunde}}$} edge (pi);
@@ -76,6 +79,7 @@ Theta-Join
 \node[below right=of theta join] (sigma rechnung) {$\sigma_{\text{Summe < 100}}$} edge (theta join);
 \node[below=of sigma rechnung]{Rechnung} edge(sigma rechnung);
 \end{tikzpicture}
+\end{center}
 \end{liAntwort}
 
 \end{enumerate}

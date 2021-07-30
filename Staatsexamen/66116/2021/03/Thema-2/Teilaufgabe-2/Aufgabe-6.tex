@@ -2,6 +2,7 @@
 \liLadePakete{normalformen}
 \begin{document}
 \let\FA=\liFunktionaleAbhaengigkeiten
+\let\t=\texttt
 
 \liAufgabenTitel{Relation Prüfung}
 \section{Aufgabe 6
@@ -50,23 +51,23 @@ Alle Werte sind atomar.
 
 \item[2NF]
 
-Es ist 1NF und jedes Attribut ist Teil des Schlüsselkandidaten
-(Prüfungsnummer, Fakultät oder Fakultät, Prüfungsname, Dozent) oder das
-Attribut ist von einem Schlüsselkandidaten voll funktional abhängig
-(Prüfungsname, Dozent, Prüfungstyp, ECTS oder Prüfungsnummer,
-Prüfungstyp, ECTS).
+Ist in 1NF und jedes Attribut ist Teil des Schlüsselkandidaten
+(\t{Prüfungsnummer, Fakultät} oder \t{Fakultät, Prüfungsname, Dozent})
+oder das Attribut ist von einem Schlüsselkandidaten voll funktional
+abhängig (\t{Prüfungsname, Dozent, Prüfungstyp, ECTS} oder
+\t{Prüfungsnummer, Prüfungstyp, ECTS}).
 
 \item[3NF]
 
 Ist in 2NF und ein Nichtschlüsselattribut darf nur vom
-Schlüsselkandidaten abhängen (Prüfungsname, Dozent, Prüfungstyp, ECTS
-hängt von Prüfungsnummer, Fakultät ab) und (Prüfungsnummer, Prüfungstyp,
-ECTS hängt von Fakultät, Prüfungsname, Dozent ab).
+Schlüsselkandidaten abhängen (\t{Prüfungsname, Dozent, Prüfungstyp,
+ECTS} hängt von \t{Prüfungsnummer, Fakultät} ab) und (\t{Prüfungsnummer,
+Prüfungstyp, ECTS} hängt von \t{Fakultät, Prüfungsname, Dozent} ab).
 
 \item[BCNF]
 
-Jede Determinate ist Schlüsselkandidat (Prüfungsnummer, Fakultät und
-Fakultät, Prüfungsname, Dozent).
+Jede Determinate ist Schlüsselkandidat (\t{Prüfungsnummer, Fakultät} und
+\t{Fakultät, Prüfungsname, Dozent}).
 
 \item[4NF]
 

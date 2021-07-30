@@ -156,12 +156,13 @@ werden.
 
 \begin{liAntwort}
 \begin{minted}{sql}
-SELECT m.Vorname, m.Nachname, m.Gehalt, m.AbteilungsID
-FROM Mitarbeiter m, Mitarbeiter n
+SELECT m.Vorname, m.Nachname, m.Gehalt, a.Bezeichnung
+FROM Mitarbeiter m, Mitarbeiter n, Abteilung a
 WHERE
   m.Gehalt >= n.Gehalt AND
-  m.AbteilungsID = n.AbteilungsID
-GROUP BY m.Vorname, m.Nachname, m.Gehalt, m.AbteilungsID
+  m.AbteilungsID = n.AbteilungsID AND
+  m.AbteilungsID = a.AbteilungsID
+GROUP BY m.Vorname, m.Nachname, m.Gehalt, m.AbteilungsID, a.Bezeichnung
 HAVING COUNT(*) <= 1
 ORDER BY m.Gehalt DESC;
 \end{minted}
