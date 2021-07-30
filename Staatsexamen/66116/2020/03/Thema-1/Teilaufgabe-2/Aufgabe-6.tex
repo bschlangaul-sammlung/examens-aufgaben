@@ -6,32 +6,51 @@
 \index{B-Baum}
 \footcite{66116:2020:03}}
 
-Fügen Sie die Zahl 4 in den folgenden B-Baum ein.
+Fügen Sie die Zahl $4$ in den folgenden B-Baum ein.
 
-10 20 5 6 7 8 12 14 16 18 25 30
-
- 5 6 7 8 10  12 14 16 18 20 25 30
+\begin{center}
+\begin{tikzpicture}[
+  li bbaum,
+  level 1/.style={level distance=15mm,sibling distance=28mm},
+  level 2/.style={level distance=10mm,sibling distance=20mm},
+]
+\node {10 \nodepart{two} 20 \nodepart{three} . \nodepart{four} .} [->]
+  child {
+    node {5 \nodepart{two} 6 \nodepart{three} 7 \nodepart{four} 8}
+  }
+  child {
+    node {12 \nodepart{two} 14 \nodepart{three} 16 \nodepart{four} 18}
+  }
+  child {
+    node {25 \nodepart{two} 30 \nodepart{three} . \nodepart{four} .}
+  };
+\end{tikzpicture}
+\end{center}
 
 Zeichnen Sie den vollständigen, resultierenden Baum.
 
+\begin{liAntwort}
+\begin{center}
 \begin{tikzpicture}[
   li bbaum,
-  level 1/.style={level distance=10mm,sibling distance=32mm},
+  level 1/.style={level distance=15mm,sibling distance=28mm},
   level 2/.style={level distance=10mm,sibling distance=20mm},
 ]
-\node {7 \nodepart{two} 12 \nodepart{three} 18} [->]
+\node {6 \nodepart{two} 10 \nodepart{three}  20 \nodepart{four} .} [->]
   child {
-    node {5 \nodepart{two} 6}
+    node {4 \nodepart{two} 5 \nodepart{three} . \nodepart{four} .}
   }
   child {
-    node {8 \nodepart{two} 10}
+    node {7 \nodepart{two} 8 \nodepart{three} . \nodepart{four} .}
   }
   child {
-    node {14 \nodepart{two} 16}
+    node {12 \nodepart{two} 14 \nodepart{three} 16 \nodepart{four} 18}
   }
   child {
-    node {20 \nodepart{two} 25 \nodepart{three} 30}
+    node {25 \nodepart{two} 30 \nodepart{three} . \nodepart{four} .}
   };
 \end{tikzpicture}
+\end{center}
+\end{liAntwort}
 
 \end{document}

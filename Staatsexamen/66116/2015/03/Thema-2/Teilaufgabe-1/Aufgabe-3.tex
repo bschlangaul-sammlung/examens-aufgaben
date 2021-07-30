@@ -1,12 +1,55 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{baum}
 \begin{document}
 \liAufgabenTitel{Indexstrukturen}
 \section{Aufgabe 3
 \index{B-Baum}
 \footcite{66116:2015:03}}
 
-Als Indexstruktur einer Datenbank sei folgender B-Baum (k = 2) gegeben:
+Als Indexstruktur einer Datenbank sei folgender B-Baum ($k = 2$)
+gegeben:
+
+\begin{center}
+\begin{tikzpicture}[
+  li bbaum,
+  scale=0.8,
+  transform shape,
+  level 1/.style={level distance=15mm,sibling distance=80mm},
+  level 2/.style={level distance=15mm,sibling distance=20mm}
+]
+\node{40} [->]
+  child {
+    node {33 \nodepart{two} 37}
+      child {
+        node {31 \nodepart{two} 32}
+      }
+      child {
+        node {34 \nodepart{two} 35 \nodepart{three} 36}
+      }
+      child {
+        node {38 \nodepart{two} 39}
+      }
+  }
+  child {
+    node {43 \nodepart{two} 46 \nodepart{three} 49 \nodepart{four} 53 }
+      child {
+        node {41  \nodepart{two} 42}
+      }
+      child {
+        node {44 \nodepart{two} 45}
+      }
+      child {
+        node {47 \nodepart{two} 48}
+      }
+      child {
+        node {50 \nodepart{two} 51}
+      }
+      child {
+        node {54 \nodepart{two} 55 \nodepart{three} 57 \nodepart{four} 58}
+      }
+};
+\end{tikzpicture}
+\end{center}
 
 Führen Sie nacheinander die folgenden Operationen aus. Geben Sie die
 auftretenden Zwischenergebnisse an. Teilbäume, die sich in einem Schritt
@@ -22,11 +65,104 @@ rechts liegende Knoten zu bevorzugen.
 
 \item Einfügen des Wertes 56
 
+\begin{liAntwort}
+
+\begin{center}
+\begin{tikzpicture}[
+  li bbaum,
+  scale=0.6,
+  transform shape,
+  level 1/.style={level distance=15mm,sibling distance=60mm},
+  level 2/.style={level distance=15mm,sibling distance=20mm}
+]
+\node{40 \nodepart{two} 49} [->]
+  child {
+    node {33 \nodepart{two} 37}
+      child {
+        node {31 \nodepart{two} 32}
+      }
+      child {
+        node {34 \nodepart{two} 35 \nodepart{three} 36}
+      }
+      child {
+        node {38 \nodepart{two} 39}
+      }
+  }
+  child {
+    node {43 \nodepart{two} 46}
+      child {
+        node {41  \nodepart{two} 42}
+      }
+      child {
+        node {44 \nodepart{two} 45}
+      }
+      child {
+        node {47 \nodepart{two} 48}
+      }
+  }
+  child {
+    node {53 \nodepart{two} 56}
+      child {
+        node {50 \nodepart{two} 51}
+      }
+      child {
+        node {54 \nodepart{two} 55}
+      }
+      child {
+        node {57 \nodepart{two} 58}
+      }
+  };
+\end{tikzpicture}
+\end{center}
+
+\end{liAntwort}
+
 %%
 % b)
 %%
 
 \item Löschen des Wertes 37
-\end{enumerate}
 
+\begin{center}
+\begin{tikzpicture}[
+  li bbaum,
+  scale=0.8,
+  transform shape,
+  level 1/.style={level distance=15mm,sibling distance=80mm},
+  level 2/.style={level distance=15mm,sibling distance=20mm}
+]
+\node{40} [->]
+  child {
+    node {33 \nodepart{two} 37}
+      child {
+        node {31 \nodepart{two} 32}
+      }
+      child {
+        node {34 \nodepart{two} 35 \nodepart{three} 36}
+      }
+      child {
+        node {38 \nodepart{two} 39}
+      }
+  }
+  child {
+    node {43 \nodepart{two} 46 \nodepart{three} 49 \nodepart{four} 53 }
+      child {
+        node {41  \nodepart{two} 42}
+      }
+      child {
+        node {44 \nodepart{two} 45}
+      }
+      child {
+        node {47 \nodepart{two} 48}
+      }
+      child {
+        node {50 \nodepart{two} 51}
+      }
+      child {
+        node {54 \nodepart{two} 55 \nodepart{three} 57 \nodepart{four} 58}
+      }
+};
+\end{tikzpicture}
+\end{center}
+\end{enumerate}
 \end{document}
