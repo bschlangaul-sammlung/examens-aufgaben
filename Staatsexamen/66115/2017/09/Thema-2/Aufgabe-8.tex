@@ -71,7 +71,7 @@ Suchbaumeigenschaft.
 \end{tikzpicture}
 \end{center}
 
-% 42 13 66 28 50 99 61 55
+% 42 13 66 28 50 99 61 55 lösche 50
 
 \begin{liAntwort}
 \begin{minipage}{0.5\linewidth}
@@ -127,6 +127,85 @@ neuen Blatt aus beginnend wieder her, wobei möglichst viele Knoten der
 Halde unverändert bleiben und die Halde zu jedem Zeitpunkt
 links-vollständig sein soll. Geben Sie nur das Endergebnis an.
 
+\begin{center}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.3
+  [.19
+    [.28
+      [.42 ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.24 ]
+  ]
+  [.7
+    [.11 ]
+    [.12 ]
+  ]
+]
+\end{tikzpicture}
+\end{center}
+
+\begin{liDiagramm}{Nach dem Einfügen von „13“}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.3
+  [.19
+    [.28
+      [.42 ]
+      [.13 ]
+    ]
+    [.24 ]
+  ]
+  [.7
+    [.11 ]
+    [.12 ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Vertauschen von „13“ und „28“}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.3
+  [.19
+    [.13
+      [.42 ]
+      [.28 ]
+    ]
+    [.24 ]
+  ]
+  [.7
+    [.11 ]
+    [.12 ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Vertauschen von „13“ und „19“}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.3
+  [.13
+    [.19
+      [.42 ]
+      [.28 ]
+    ]
+    [.24 ]
+  ]
+  [.7
+    [.11 ]
+    [.12 ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
 %%
 % (d)
 %%
@@ -134,6 +213,14 @@ links-vollständig sein soll. Geben Sie nur das Endergebnis an.
 \item Geben Sie für die ursprüngliche Min-Halde aus Teilaufgabe c)(\dh
 ohne den neu eingefügten Knoten mit dem Wert 13) die Feld-Einbettung
 (Array-Darstellung) an.
+
+\begin{liAntwort}
+\begin{tabular}{llllllll}
+\bf{0} & \bf{1} & \bf{2} & \bf{3} & \bf{4} & \bf{5} & \bf{6} & \bf{7} \\
+\hline
+3      & 19     & 7      & 28     & 24     & 11     & 12     & 42     \\
+\end{tabular}
+\end{liAntwort}
 
 %%
 % (e)
@@ -144,6 +231,76 @@ Max-Halde und stellen Sie anschließend die Halden-Eigenschaft ausgehend
 von einer neuen Wurzel wieder her, wobei möglichst viele Knoten der
 Halde unverändert bleiben und die Halde zu jedem Zeitpunkt
 links-vollständig sein soll. Geben Sie nur das Endergebnis an.
+
+\begin{center}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.42
+  [.24
+    [.21
+      [.13 ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.19 ]
+  ]
+  [.28
+    [.3 ]
+    [.7 ]
+  ]
+]
+\end{tikzpicture}
+\end{center}
+
+\begin{liDiagramm}{Nach dem Entfernen von „42“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.42
+  [.24
+    [.21
+      [.13 ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.19 ]
+  ]
+  [.28
+    [.3 ]
+    [.7 ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Vertauschen von „42“ und „13“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.13
+  [.24
+    [.21 ]
+    [.19 ]
+  ]
+  [.28
+    [.3 ]
+    [.7 ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Vertauschen von „13“ und „28“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.28
+  [.24
+    [.21 ]
+    [.19 ]
+  ]
+  [.13
+    [.3 ]
+    [.7 ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
 
 %%
 % (f)
@@ -162,11 +319,116 @@ Zeichnen Sie den Baum vor und nach den Rotationen.
 
 \item AVL-Baum A
 
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{24};
+  [.\node[label=0]{11};
+    [.\node[label=0]{3}; ]
+    [.\node[label=0]{12}; ]
+  ]
+  [.\node[label=0]{28}; ]
+]
+\end{tikzpicture}
+
+\begin{liDiagramm}{Nach Einfügen von „13“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-2]{24};
+  [.\node[label=+1]{11};
+    [.\node[label=0]{3}; ]
+    [.\node[label=+1]{12};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{13}; ]
+    ]
+  ]
+  [.\node[label=0]{28}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-2]{24};
+  [.\node[label=-1]{12};
+    [.\node[label=-1]{11};
+      [.\node[label=0]{3}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.\node[label=0]{13}; ]
+  ]
+  [.\node[label=0]{28}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Rechtsrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{12};
+  [.\node[label=-1]{11};
+    [.\node[label=0]{3}; ]
+    \edge[blank]; \node[blank]{};
+  ]
+  [.\node[label=0]{24};
+    [.\node[label=0]{13}; ]
+    [.\node[label=0]{28}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
 %%
 % ii)
 %%
 
 \item AVL-Baum B
+
+\begin{center}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{24};
+  [.\node[label=0]{19};
+    [.\node[label=0]{12}; ]
+    [.\node[label=0]{21}; ]
+  ]
+  [.\node[label=0]{28}; ]
+]
+\end{tikzpicture}
+\end{center}
+
+\begin{liDiagramm}{Nach Einfügen von „13“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-2]{24};
+  [.\node[label=-1]{19};
+    [.\node[label=+1]{12};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{13}; ]
+    ]
+    [.\node[label=0]{21}; ]
+  ]
+  [.\node[label=0]{28}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Rechtsrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{19};
+  [.\node[label=+1]{12};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=0]{13}; ]
+  ]
+  [.\node[label=0]{24};
+    [.\node[label=0]{21}; ]
+    [.\node[label=0]{28}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
 \end{enumerate}
 \end{enumerate}
 \end{document}
