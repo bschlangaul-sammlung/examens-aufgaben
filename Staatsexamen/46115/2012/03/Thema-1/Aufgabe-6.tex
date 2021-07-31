@@ -1,0 +1,107 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{graph}
+\begin{document}
+\liAufgabenTitel{}
+\section{Aufgabe 6
+\index{Algorithmus von Dijkstra}
+\footcite{46115:2012:03}}
+
+Gegeben sei der folgende gerichtete Graph $G = (V, E, d)$ mit den
+angegebenen Kantengewichten.
+
+\begin{liGraphenFormat}
+A: 0 1
+B: 1 2
+C: 2 2
+D: 3 1
+E: 1 0
+F: 2 0
+A -> B: 1
+A -> E: 7
+B -> C: 3
+C -> D: 6
+C -> E: 3
+C -> F: 5
+E -> F: 1
+F -> C: 1
+F -> D: 2
+\end{liGraphenFormat}
+
+\begin{center}
+\begin{tikzpicture}[li graph,x=2cm,y=1.5cm]
+\node (A) at (0,1) {A};
+\node (B) at (1,2) {B};
+\node (C) at (2,2) {C};
+\node (D) at (3,1) {D};
+\node (E) at (1,0) {E};
+\node (F) at (2,0) {F};
+
+\path[->] (A) edge node {} (B);
+\path[->] (A) edge node {7} (E);
+\path[->] (B) edge node {3} (C);
+\path[->] (C) edge node {3} (E);
+\path[->] (C) edge[bend left] node {5} (F);
+\path[->] (C) edge node {6} (D);
+\path[->] (E) edge node {} (F);
+\path[->] (F) edge[bend left] node {} (C);
+\path[->] (F) edge node {2} (D);
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Geben Sie eine formale Beschreibung des abgebildeten Graphen $G$
+durch Auflistung von $V$, $E$ und $d$ an.
+\index{Adjazenzliste}
+
+\begin{liAntwort}
+\begin{tabular}{llll}
+A & $\rightarrow$ B & $\rightarrow$ E \\
+B & $\rightarrow$ C \\
+C & $\rightarrow$ D & $\rightarrow$ E & $\rightarrow$ F \\
+D \\
+E & $\rightarrow$ F \\
+F & $\rightarrow$ C & $\rightarrow$ D \\
+\end{tabular}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Erstellen Sie die Adjazenzmatrix $A$ zum Graphen $G$.
+\index{Adjazenzmatrix}
+
+\begin{liAntwort}
+\[
+\begin{blockarray}{ccccccc}
+   & A & B & C & D & E & F \\
+\begin{block}{c(cccccc)}
+ A & * & 1 & - & - & 7 & - \\
+ B & - & * & 3 & - & - & - \\
+ C & - & - & * & 6 & 3 & 5 \\
+ D & - & - & - & * & - & - \\
+ E & - & - & - & - & * & 1 \\
+ F & - & - & 1 & 2 & - & * \\
+\end{block}
+\end{blockarray}
+\]
+
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Berechnen Sie unter Verwendung des Algorithmus nach Dijkstra -
+vom Knoten $A$ beginnend - den kürzesten Weg, um alle Knoten zu besuchen.
+Die Restknoten werden in einer Halde (engl. Heap) gespeichert. Geben Sie
+zu jedem Arbeitsschritt den Inhalt dieser Halde an.
+\index{Halde (Heap)}
+
+\end{enumerate}
+\end{document}
