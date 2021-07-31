@@ -16,9 +16,9 @@
 % i)
 %%
 
-\item Fügen Sie nacheinander die Zahlen 7, 1, 12, 8, 10, 3, 5 in einen
-leeren binären Suchbaum ein und zeichnen Sie den Suchbaum nach „8“ und
-nach „3“.
+\item Fügen Sie nacheinander die Zahlen $7$, $1$, $12$, $8$, $10$, $3$,
+$5$ in einen leeren binären Suchbaum ein und zeichnen Sie den Suchbaum
+nach „$8$“ und nach „$3$“.
 
 \begin{liDiagramm}{Nach Einfügen von „8“}
 \begin{tikzpicture}[li binaer baum]
@@ -78,7 +78,7 @@ nach „3“.
 % ii)
 %%
 
-\item Löschen Sie die „1“ aus dem in (i) erstellten Suchbaum und
+\item Löschen Sie die „$1$“ aus dem in (i) erstellten Suchbaum und
 zeichnen Sie den Suchbaum.
 
 \begin{liDiagramm}{Nach Löschen von „1“}
@@ -107,6 +107,171 @@ zeichnen Sie den Suchbaum.
 \item Fügen Sie 7, 1, 12, 8, 10, 3, 5 in einen leeren MIN-Heap ein,
 der bzgl. „$\leq$“ angeordnet ist.
 Geben Sie den Heap nach jedem Element an.
+
+\begin{liDiagramm}{Nach dem Einfügen von „7“}
+\begin{tabular}{l}
+\bf{0} \\
+\hline
+7      \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.7 ]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach dem Einfügen von „1“}
+\begin{tabular}{ll}
+\bf{0} & \bf{1} \\
+\hline
+7      & 1      \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.7
+  [.1 ]
+  \edge[blank]; \node[blank]{};
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Vertauschen von „1“ und „7“}
+\begin{tabular}{ll}
+\bf{0} & \bf{1} \\
+\hline
+1      & 7      \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.1
+  [.7 ]
+  \edge[blank]; \node[blank]{};
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach dem Einfügen von „12“}
+\begin{tabular}{lll}
+\bf{0} & \bf{1} & \bf{2} \\
+\hline
+1      & 7      & 12     \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.1
+  [.7 ]
+  [.12 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach dem Einfügen von „8“}
+\begin{tabular}{llll}
+\bf{0} & \bf{1} & \bf{2} & \bf{3} \\
+\hline
+1      & 7      & 12     & 8      \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.1
+  [.7
+    [.8 ]
+    \edge[blank]; \node[blank]{};
+  ]
+  [.12 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach dem Einfügen von „10“}
+\begin{tabular}{lllll}
+\bf{0} & \bf{1} & \bf{2} & \bf{3} & \bf{4} \\
+\hline
+1      & 7      & 12     & 8      & 10     \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.1
+  [.7
+    [.8 ]
+    [.10 ]
+  ]
+  [.12 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach dem Einfügen von „3“}
+\begin{tabular}{llllll}
+\bf{0} & \bf{1} & \bf{2} & \bf{3} & \bf{4} & \bf{5} \\
+\hline
+1      & 7      & 12     & 8      & 10     & 3      \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.1
+  [.7
+    [.8 ]
+    [.10 ]
+  ]
+  [.12
+    [.3 ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Vertauschen von „3“ und „12“}
+\begin{tabular}{llllll}
+\bf{0} & \bf{1} & \bf{2} & \bf{3} & \bf{4} & \bf{5} \\
+\hline
+1      & 7      & 3      & 8      & 10     & 12     \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.1
+  [.7
+    [.8 ]
+    [.10 ]
+  ]
+  [.3
+    [.12 ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach dem Einfügen von „5“}
+\begin{tabular}{lllllll}
+\bf{0} & \bf{1} & \bf{2} & \bf{3} & \bf{4} & \bf{5} & \bf{6} \\
+\hline
+1      & 7      & 3      & 8      & 10     & 12     & 5      \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.1
+  [.7
+    [.8 ]
+    [.10 ]
+  ]
+  [.3
+    [.12 ]
+    [.5 ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
 \end{enumerate}
 
 %%
@@ -114,8 +279,17 @@ Geben Sie den Heap nach jedem Element an.
 %%
 
 \item Was ist die worst-case Laufzeit in O-Notation
-für das Einfügen eines Elements in einen Heap der Größe n?
+für das Einfügen eines Elements in einen Heap der Größe $n$?
 Begründen Sie ihre Antwort.
+
+\begin{liAntwort}
+Die worst-case Laufzeit berechnet sich aus dem Aufwand für das
+Durchsickern eines eingefügten Elementes. Da das Durchsickern entlang
+eines Pfades im Baum erfolgt, entspricht der Aufwand im ungünstigsten
+Fall der Höhe des Baumes, \dh $\log_2 n$. Insgesamt ergibt sich somit
+eine worst-case Laufzeit von $\mathcal{O}(\log n)$.
+\footcite[Seite 413]{saake}
+\end{liAntwort}
 \end{enumerate}
 
 \end{document}
