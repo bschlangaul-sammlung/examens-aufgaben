@@ -59,13 +59,54 @@ durch Auflistung von $V$, $E$ und $d$ an.
 \index{Adjazenzliste}
 
 \begin{liAntwort}
+$G = (V, E, d)$
+
+mit
+
+$V =
+\{
+  A, B, C, D, E F
+\}$
+
+und
+
+$E =
+\{
+  (A, B),
+  (A, E),
+  (B, C),
+  (C, D),
+  (C, E),
+  (C, F),
+  (E, F),
+  (F, C),
+  (F, D),
+\}$
+
+und
+
+$d =
+\{
+  1,
+  7,
+  3,
+  6,
+  3,
+  5,
+  1,
+  1,
+  2
+\}$
+
+\liPseudoUeberschrift{Als Adjazenzliste}
+
 \begin{tabular}{llll}
-A & $\rightarrow$ B & $\rightarrow$ E \\
-B & $\rightarrow$ C \\
-C & $\rightarrow$ D & $\rightarrow$ E & $\rightarrow$ F \\
-D \\
-E & $\rightarrow$ F \\
-F & $\rightarrow$ C & $\rightarrow$ D \\
+A: & $\rightarrow$ B & $\xrightarrow{~7~}$ E \\
+B: & $\xrightarrow{~3~}$ C \\
+C: & $\xrightarrow{~6~}$ D & $\xrightarrow{~3~}$ E & $\xrightarrow{~5~}$ F \\
+D: \\
+E: & $\rightarrow$ F \\
+F: & $\rightarrow$ C & $\xrightarrow{~2~}$ D \\
 \end{tabular}
 \end{liAntwort}
 
@@ -102,6 +143,32 @@ vom Knoten $A$ beginnend - den kürzesten Weg, um alle Knoten zu besuchen.
 Die Restknoten werden in einer Halde (engl. Heap) gespeichert. Geben Sie
 zu jedem Arbeitsschritt den Inhalt dieser Halde an.
 \index{Halde (Heap)}
+
+\begin{liAntwort}
+
+\begin{tabular}{llllllll}
+\bf{Nr.}     & \bf{besucht} & \bf{A}       & \bf{B}       & \bf{C}       & \bf{D}       & \bf{E}       & \bf{F}       \\
+\hline
+0            &              & 0            & $\infty$     & $\infty$     & $\infty$     & $\infty$     & $\infty$     \\
+1            & A            & \bf{0}       & 1            & $\infty$     & $\infty$     & 7            & $\infty$     \\
+2            & B            & |            & \bf{1}       & 4            & $\infty$     & 7            & $\infty$     \\
+3            & C            & |            & |            & \bf{4}       & 10           & 7            & 9            \\
+4            & E            & |            & |            & |            & 10           & \bf{7}       & 8            \\
+5            & F            & |            & |            & |            & 10           & |            & \bf{8}       \\
+6            & D            & |            & |            & |            & \bf{10}      & |            & |            \\
+\end{tabular}
+
+\begin{tabular}{llll}
+\bf{nach}                                         & \bf{Entfernung}                                   & \bf{Reihenfolge}                                  & \bf{Pfad}                                         \\
+\hline
+A  $\rightarrow$  A                               & 0                                                 & 1                                                 &                                                   \\
+A  $\rightarrow$  B                               & 1                                                 & 2                                                 & A $\rightarrow$ B                                 \\
+A  $\rightarrow$  C                               & 4                                                 & 3                                                 & A $\rightarrow$ B $\rightarrow$ C                 \\
+A  $\rightarrow$  D                               & 10                                                & 6                                                 & A $\rightarrow$ B $\rightarrow$ C $\rightarrow$ D \\
+A  $\rightarrow$  E                               & 7                                                 & 4                                                 & A $\rightarrow$ E                                 \\
+A  $\rightarrow$  F                               & 8                                                 & 5                                                 & A $\rightarrow$ E $\rightarrow$ F                 \\
+\end{tabular}
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}

@@ -1,9 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-\usepackage{amsmath}
-\usepackage{blkarray}
-\usepackage{tikz}
-\usetikzlibrary{arrows.meta}
-
+\liLadePakete{graph}
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -13,7 +9,7 @@
 \chapter{Graphen}
 
 \begin{liQuellen}
-\item \cite[Seite 445-481 (PDF 461-505)]{saake}
+\item \cite[Seite 445-481]{saake}
 \item \cite{wiki:graph}
 \end{liQuellen}
 
@@ -63,32 +59,6 @@ Darstellung von Graphen ist auf unterschiedliche Weise möglich:
 \end{compactitem}
 \footcite[Seite 4]{aud:fs:6}
 
-\begin{tikzpicture}
-\begin{scope}[every node/.style={circle,draw}]
-\node (A) at (0,0) {A};
-\node (B) at (0,-3) {B};
-\node (C) at (3,-2.5) {C};
-\node (D) at (5,0) {D};
-\node (E) at (6,-3) {E};
-\node (F) at (4,-5) {F};
-\end{scope}
-
-\begin{scope}[>={Stealth[black]},
-              every node/.style={fill=white,circle},
-              every edge/.style={draw=black}]
-\path [->] (A) edge node {20} (B);
-\path [->] (B) edge node {10} (D);
-\path [->] (B) edge node {50} (C);
-\path [->] (B) edge node {60} (F);
-\path [->] (C) edge node {20} (D);
-\path [->] (C) edge node {10} (F);
-\path [->] (D) edge node {20} (E);
-\path [->] (D) edge node {30} (A);
-\path [->] (E) edge node {10} (C);
-\path [->] (E) edge node {30} (F);
-\end{scope}
-\end{tikzpicture}
-
 %-----------------------------------------------------------------------
 %
 %-----------------------------------------------------------------------
@@ -111,10 +81,66 @@ Spalte}.
 
 \subsection{Die Adjazenzmatrix eines ungerichteten Graphen}
 
+\begin{liGraphenFormat}
+A: 0 0
+B: 0 -3
+C: 2.5 -2
+D: 2 0
+E: 5 0
+F: 4 -3
+A -- B
+B -- D
+B -- C
+B -- F
+C -- D
+C -- F
+D -- E
+D -- A
+E -- C
+E -- F
+\end{liGraphenFormat}
+
+\begin{center}
+\begin{tikzpicture}[li graph]
+\node (A) at (0,0) {A};
+\node (B) at (0,-3) {B};
+\node (C) at (2.5,-2) {C};
+\node (D) at (2,0) {D};
+\node (E) at (5,0) {E};
+\node (F) at (4,-3) {F};
+
+\path (A) edge node {} (B);
+\path (B) edge node {} (C);
+\path (B) edge node {} (D);
+\path (B) edge node {} (F);
+\path (C) edge node {} (D);
+\path (C) edge node {} (F);
+\path (D) edge node {} (A);
+\path (D) edge node {} (E);
+\path (E) edge node {} (C);
+\path (E) edge node {} (F);
+\end{tikzpicture}
+\end{center}
+
+\noindent
 Eine Verbindung (Kante) zwischen zwei Knoten in einem ungerichteten
 Graphen ist in beide Richtungen gültig. Überträgt man die Verbindungen
 in die Matrix, erhält man eine \memph{symmetrische, an der Diagonalen
 gespiegelte Adjazenzmatrix}.
+
+\[
+\begin{blockarray}{ccccccc}
+   & A & B & C & D & E & F \\
+\begin{block}{c(cccccc)}
+ A & * & 1 & - & 1 & - & - \\
+ B & 1 & * & 1 & 1 & - & 1 \\
+ C & - & 1 & * & 1 & 1 & 1 \\
+ D & 1 & 1 & 1 & * & 1 & - \\
+ E & - & - & 1 & 1 & * & 1 \\
+ F & - & 1 & 1 & - & 1 & * \\
+\end{block}
+\end{blockarray}
+\]
 
 %%
 %
@@ -122,71 +148,157 @@ gespiegelte Adjazenzmatrix}.
 
 \subsection{Die Adjazenzmatrix eines gerichteten Graphen}
 
+\begin{liGraphenFormat}
+A: 0 0
+B: 0 -3
+C: 2.5 -2
+D: 2 0
+E: 5 0
+F: 4 -3
+A -> B
+B -> D
+B -> C
+B -> F
+C -> D
+C -> F
+D -> E
+D -> A
+E -> C
+E -> F
+\end{liGraphenFormat}
+
+\begin{center}
+\begin{tikzpicture}[li graph]
+\node (A) at (0,0) {A};
+\node (B) at (0,-3) {B};
+\node (C) at (2.5,-2) {C};
+\node (D) at (2,0) {D};
+\node (E) at (5,0) {E};
+\node (F) at (4,-3) {F};
+
+\path[->] (A) edge node {} (B);
+\path[->] (B) edge node {} (C);
+\path[->] (B) edge node {} (D);
+\path[->] (B) edge node {} (F);
+\path[->] (C) edge node {} (D);
+\path[->] (C) edge node {} (F);
+\path[->] (D) edge node {} (A);
+\path[->] (D) edge node {} (E);
+\path[->] (E) edge node {} (C);
+\path[->] (E) edge node {} (F);
+\end{tikzpicture}
+\end{center}
+
+\noindent
 Beim gerichteten Graphen sind die Verbindungen zwischen den Knoten
 jeweils nur in einer Richtung gültig. Im Graphen erfolgt die Darstellung
 der \memph{Richtung mit einem Pfeil}. Für die Adjazenzmatrix haben die
 gerichteten Kanten zur Folge, dass \memph{keine Symmetrie mehr} besteht.
 
-%%
-%
-%%
-
-\subsection{Die Adjazenzmatrix für Graphen mit Kantengewichten}
-
-In gewichteten Graphen haben die Kanten sogenannte Kosten oder Gewichte.
-In einer Matrix für gewichtete Graphen werden keine Nullen und Einsen,
-sondern die \memph{Werte für das jeweilige Gewicht} der Kante zwischen
-den Knoten eingetragen.
-\footnote{\url{https://www.bigdata-insider.de/was-ist-eine-adjazenzmatrix-a-845891/}}
-
 \[
 \begin{blockarray}{ccccccc}
-& A & B & C & D & E & F \\
+   & A & B & C & D & E & F \\
 \begin{block}{c(cccccc)}
-A & 0  & 20 & 0  & 0  & 0  & 0  \\
-B & 0  & 0  & 50 & 10 & 0  & 60 \\
-C & 0  & 0  & 0  & 20 & 0  & 10 \\
-D & 30 & 0  & 0  & 0  & 20 & 0  \\
-E & 0  & 0  & 10 & 0  & 0  & 30 \\
-F & 0  & 0  & 0  & 0  & 0  & 0  \\
+ A & * & 1 & - & - & - & - \\
+ B & - & * & 1 & 1 & - & 1 \\
+ C & - & - & * & 1 & - & 1 \\
+ D & 1 & - & - & * & 1 & - \\
+ E & - & - & 1 & - & * & 1 \\
+ F & - & - & - & - & - & * \\
 \end{block}
 \end{blockarray}
 \]
 
-%https://tex.stackexchange.com/a/24378
-\usetikzlibrary{matrix,arrows,fit}
+%%
+%
+%%
 
-\tikzset{circarrow/.style={
-        *->,
-        shorten <=-2pt
-    }
-}
+\subsection{Die Adjazenzmatrix eines gewichteten Graphens}
 
-\begin{tikzpicture}[>=stealth]
-\matrix (M) [matrix of nodes,%
-   column sep=-\pgflinewidth,%
-   row sep=1mm,%
-   nodes in empty cells,
-   nodes={draw, fill=gray!20,%
-     minimum width=.5cm, outer sep=0pt,%
-     minimum height=.7cm, anchor=center},
-   column 1/.style={nodes={minimum height=.8cm}}]%
-{
-  &[2mm] 2 & &[2mm] 5 & /  \\
- & 1 & & 5 & &[2mm] 3 & &[2mm] 4 & / \\
- & 2 & & 5 & & 3 & /\\
-};
+\begin{liGraphenFormat}
+A: 0 0
+B: 0 -3
+C: 2.5 -2
+D: 2 0
+E: 5 0
+F: 4 -3
+A -> B: 20
+B -> D: 10
+B -> C: 50
+B -> F: 60
+C -> D: 20
+C -> F: 10
+D -> E: 20
+D -> A: 30
+E -> C: 10
+E -> F: 30
+\end{liGraphenFormat}
 
-\foreach \i in {1,2,3}{
- \path (M-\i-1) [late options={label=left:\i}];
- \draw[->] (M-\i-1)--(M-\i-2.west);
- \draw[->] (M-\i-3.center)--(M-\i-4.west);
-}
+\begin{center}
+\begin{tikzpicture}[li graph]
+\node (A) at (0,0) {A};
+\node (B) at (0,-3) {B};
+\node (C) at (2.5,-2) {C};
+\node (D) at (2,0) {D};
+\node (E) at (5,0) {E};
+\node (F) at (4,-3) {F};
 
-\draw[->] (M-2-5.center)--(M-2-6.west);
-\draw[->] (M-2-7.center)--(M-2-8.west);
-\draw[->] (M-3-5.center)--(M-3-6.west);
+\path[->] (A) edge node {20} (B);
+\path[->] (B) edge node {50} (C);
+\path[->] (B) edge node {10} (D);
+\path[->] (B) edge node {60} (F);
+\path[->] (C) edge node {20} (D);
+\path[->] (C) edge node {10} (F);
+\path[->] (D) edge node {30} (A);
+\path[->] (D) edge node {20} (E);
+\path[->] (E) edge node {10} (C);
+\path[->] (E) edge node {30} (F);
 \end{tikzpicture}
+\end{center}
+
+\noindent
+In gewichteten Graphen haben die Kanten sogenannte \memph{Kosten} oder
+\memph{Gewichte}. In einer Matrix für gewichtete Graphen werden die
+\memph{Werte für das jeweilige Gewicht} der Kante zwischen den Knoten
+eingetragen.
+\footnote{\url{https://www.bigdata-insider.de/was-ist-eine-adjazenzmatrix-a-845891/}}
+
+\[
+\begin{blockarray}{ccccccc}
+    &  A &  B &  C &  D &  E &  F \\
+\begin{block}{c(cccccc)}
+  A &  * & 20 &  - &  - &  - &  - \\
+  B &  - &  * & 50 & 10 &  - & 60 \\
+  C &  - &  - &  * & 20 &  - & 10 \\
+  D & 30 &  - &  - &  * & 20 &  - \\
+  E &  - &  - & 10 &  - &  * & 30 \\
+  F &  - &  - &  - &  - &  - &  * \\
+\end{block}
+\end{blockarray}
+\]
+
+\section{Adjazenzliste}
+
+\begin{center}
+\begin{tabular}{llll}
+A: & $\xrightarrow{~20~}$ B \\
+B: & $\xrightarrow{~50~}$ C & $\xrightarrow{~10~}$ D & $\xrightarrow{~60~}$ F \\
+C: & $\xrightarrow{~20~}$ D & $\xrightarrow{~10~}$ F \\
+D: & $\xrightarrow{~30~}$ A & $\xrightarrow{~20~}$ E \\
+E: & $\xrightarrow{~10~}$ C & $\xrightarrow{~30~}$ F \\
+F: \\
+\end{tabular}
+\end{center}
+
+\noindent
+Wir speichern zu jedem Knoten $V$ eines Graphen seine Nachbarknoten in
+einem Feld oder einer Liste der Länge $|V|$. Zur Repräsentation von
+gewichteten Graphen werden in den Listen Tupel von Knoten und
+Kantengewichten gespeichert. Ein Vorteil von Adjazenzlisten ist der
+geringe Platzbedarf von $O(|V|+|E|)$. Außerdem sind die $n$ Nachfolger
+eines Knotens in $\mathcal{O}(n)$ erreichbar, unabhängig von der
+Gesamtzahl der Knoten. Jedoch ist nicht mehr in $\mathcal{O}(1)$
+bestimmbar, ob eine bestimmte Kante existiert.\footcite[Seite 7]{aud:fs:6}
 
 \literatur
 \end{document}
