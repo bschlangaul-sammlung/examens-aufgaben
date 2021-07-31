@@ -24,11 +24,13 @@ NULL ausgezeichnet werden muss, geben Sie dies an.
 
 Beispiel:
 
+\begin{liRmodell}
 Relation1 (Primärschlüssel, Attributl, Attribut2,
 Fremdschlüsselattributl[Relationl],
-(Fremdschlüssel2 Attributl, Fremdschltissel2 Attribut2) [Relation2]);
+(Fremdschlüssel2 Attributl, Fremdschlüsssel2 Attribut2) [Relation2]);
 Attribut1 UNIQUE
 Attribut2 NOT NULL
+\end{liRmodell}
 
 \begin{liExkurs}[Enhanced entity-relationship model]
 \url{https://en.wikipedia.org/wiki/Enhanced_entity–relationship_model}
@@ -36,14 +38,14 @@ Attribut2 NOT NULL
 \end{liExkurs}
 
 \begin{liAntwort}
-\r{Fahrzeug}{\p{Kennzeichen}, Modell, Farbe}
-\r{Firma}{\p{Name}, Umsatz}
-\r{Person}{\p{Handynummer}, Vorname, Nachname}
-\r{Mieter}{\p{Mieter-Nr}, Handynummer[Person], Name[Firma]}
-\r{mietet}{\p{Mieter-Nr[Mieter], Kennzeichen[Fahrzeug]}}
-\r{Hersteller}{Hersteller}
-\r{Automarke}{\p{Automarke}, Hersteller}
-\r{produziert}{\p{Kennzeichen, Hersteller[Hersteller]}}
+\begin{liRmodell}
+\r{Automarke}{\p{AName, Name[Firma]}}
+\r{Fahrzeug}{\p{Kennzeichen}, Mieter-Nr[Mieter], Name[Firma], Modell, Farbe}
+\r{Firma}{\p{Name}, Umsatz, Mieter-Nr}
+\r{Hersteller}{\p{Name[Firma]}}
+\r{Mieter}{\p{Mieter-Nr}}
+\r{Person}{\p{Handynummer}, Vorname, Nachname, Mieter-Nr[Mieter]}
+\end{liRmodell}
 \end{liAntwort}
 
 \end{document}
