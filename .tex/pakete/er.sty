@@ -1,10 +1,19 @@
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-er}[2020/06/13 Zum Setzen von
 ER-Diagrammen]
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \RequirePackage{tikz-er2}
 \usetikzlibrary{positioning}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \RequirePackage{soul}
-\RequirePackage{MnSymbol}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\RequirePackage{fontawesome}
 %    \end{macrocode}
 
 % \liLets{
@@ -43,10 +52,10 @@ ER-Diagrammen]
 \def\liErMpEntity#1{
   \liErEntity{#1}
   \marginpar{
-    \liErEntity{\tiny{}\medsquare{}~E:~#1}
+    \liErEntity{\tiny\faSquareO{}~E:~#1}
   }
 }
-%    \end{macrocode}
+%    \end{macrocode}\Box
 % \end{macro}
 
 % \begin{macro}{\liErMpRelationship}
@@ -55,7 +64,7 @@ ER-Diagrammen]
 \def\liErMpRelationship#1{
   \liErRelationship{#1}
   \marginpar{
-    \liErRelationship{\tiny{}\meddiamond{}~R:~#1}
+    \liErRelationship{\tiny\faGg{}~R:~#1}
   }
 }
 %    \end{macrocode}
@@ -67,7 +76,7 @@ ER-Diagrammen]
 \def\liErMpAttribute#1{
   \liErAttribute{#1}
   \marginpar{
-    \liErAttribute{\tiny{}\medcircle{}~A:~#1}
+    \liErAttribute{\tiny\faCircleThin{}~A:~#1}
   }
 }
 %    \end{macrocode}

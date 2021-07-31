@@ -1,5 +1,6 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{er}
+\usepackage{fontawesome}
 \begin{document}
 \let\a=\liErMpAttribute
 \let\d=\liErDatenbankName
@@ -31,7 +32,7 @@ Lastschriften. Für das Lastschriftverfahren wird die international
 eindeutige \a{IBAN} und der Name des \a{Kontoinhabers} erfasst, bei
 Zahlung mit Kreditkarte der Name des \a{Karteninhabers}, die eindeutige
 \a{Kartennummer}, das \a{Ablaufdatum} sowie der \a{Kartenanbieter}. Es
-gibt \e{Transaktionen}. Jede Transaktion bezieht sich stets auf ein
+gibt \r{Transaktionen}. Jede Transaktion bezieht sich stets auf ein
 Produkt, einen Kunden, einen Händler und auf ein Zahlungsmittel, das für
 die Transaktion verwendet wird. Jede Transaktion enthält außerdem den
 \a{Preis}, auf den sich Kunde und Händler geeinigt haben, das
@@ -44,41 +45,59 @@ versandt wird.
 
 % Person
 \node[entity] (Person) {Person};
-\node[attribute,right=1cm of Person] {E-Mail-Adresse} edge (Person);
-\node[attribute,above left=1cm of Person] {Vornamen} edge (Person);
-\node[attribute,above=1cm of Person] {Nachnamen} edge (Person);
+\node[attribute,right=1cm of Person] {\key{E-Mail}} edge (Person);
+\node[multi attribute,above left=1cm of Person] {Vornamen} edge (Person);
+\node[attribute,left=1cm of Person] {Nachnamen} edge (Person);
 \node[attribute,above right=1cm of Person] {Geburtsdatum} edge (Person);
 
 % Kunde
-\node[entity,below left=3cm of Person] (Kunde) {Kunde};
+\node[entity,below left=1cm of Person] (Kunde) {Kunde};
 
 % Händler
-\node[entity,below right=3cm of Person] (Händler) {Händler};
+\node[entity,below right=1cm of Person] (Händler) {Händler};
+
+\node[specialization,below=0.2cm of Person]{is-a}
+  edge (Kunde) edge (Händler) edge (Person);
 
 % Transaktion
-\node[relationship,below=4cm of Person] (Transaktion) {Transaktion};
-\node[attribute,left=1cm of Transaktion] {Preis} edge (Transaktion);
-\node[attribute,below=1cm of Transaktion] {Abschlussdatum} edge (Transaktion);
+\node[relationship,below=2cm of Person] (Transaktion) {Transaktion}
+  edge node[auto]{1} (Kunde)
+  edge node[auto]{1} (Händler);
+\node[attribute,below=1cm of Transaktion] {Preis} edge (Transaktion);
+\node[attribute,left=1cm of Transaktion,text width=2cm] {Abschlussdatum} edge (Transaktion);
 \node[attribute,right=1cm of Transaktion] {Lieferadresse} edge (Transaktion);
 
 % Zahlungsmittel
-\node[entity,below=3cm of Händler] (Zahlungsmittel) {Zahlungsmittel};
+\node[entity,below=4cm of Händler] (Zahlungsmittel) {Zahlungsmittel}
+  edge node[auto]{1} (Transaktion);
+\node[attribute,right=1cm of Zahlungsmittel] {Inhaber} edge (Zahlungsmittel);
 
 % Bankverbindung
-\node[entity,below left=of Zahlungsmittel] (Bankverbindung) {Bankverbindung};
-\node[attribute,below=1cm of Bankverbindung] {IBAN} edge (Bankverbindung);
+\node[entity,below left=1cm and 0cm of Zahlungsmittel] (Bankverbindung) {Bankverbindung};
+\node[attribute,below left=1cm of Bankverbindung] {\key{IBAN}} edge (Bankverbindung);
 
 % Kreditkarte
-\node[entity,below right=of Zahlungsmittel] (Kreditkarte) {Kreditkarte};
-\node[attribute,below left=1cm of Kreditkarte] {Kartennummer} edge (Kreditkarte);
-\node[attribute,below=1cm of Kreditkarte] {Ablaufdatum} edge (Kreditkarte);
-\node[attribute,below right=1cm of Kreditkarte] {Kartenanbieter} edge (Kreditkarte);
+\node[entity,below right=3cm and -2cm of Zahlungsmittel]
+(Kreditkarte) {Kreditkarte};
+
+\node[attribute,below left=1cm of Kreditkarte]
+{\key{Nummer}} edge (Kreditkarte);
+
+\node[attribute,below right=1cm of Kreditkarte,text width=2cm]
+{Ablaufdatum} edge (Kreditkarte);
+
+\node[attribute,right=1cm of Kreditkarte]
+{Anbieter} edge (Kreditkarte);
+
+\node[generalization,below=0.8cm of Zahlungsmittel]{is-a}
+  edge (Zahlungsmittel) edge (Bankverbindung) edge (Kreditkarte);
 
 % Produkt
-\node[entity,below=of Kunde] (Produkt) {Produkt};
-\node[attribute,left=1cm of Produkt] {Bezeichnung} edge (Produkt);
-\node[attribute,below left=1cm of Produkt] {Beschreibungstext} edge (Produkt);
-\node[attribute,below=1cm of Produkt] {Bewertung} edge (Produkt);
+\node[entity,below=4cm of Kunde] (Produkt) {Produkt}
+  edge node[auto]{1} (Transaktion);
+\node[attribute,left=1cm of Produkt] {\key{Bezeichnung}} edge (Produkt);
+\node[attribute,below left=1cm of Produkt,text width=2cm] {Beschreibungstext} edge (Produkt);
+\node[attribute,above left=1cm of Produkt] {Bewertung} edge (Produkt);
 \end{tikzpicture}
 \end{center}
 \end{liAntwort}

@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{syntax}
 \begin{document}
 \liAufgabenTitel{Vermischte Fragen}
 \section{Aufgabe 1
@@ -19,11 +19,41 @@ Ihre Antwort.
 sein?
 
 \begin{liAntwort}
-Ja. Ein Tupel kann mehrmals in eine Tabelle gespeichert werden und die
-Ausgabe über eine \texttt{SELECT} Anfrage liefert dann dieses Tupel
-mehrfach aus. Um die mehrfache Ausgabe zu verhindert, gibt es in SQL das
-Schlüsselwort\texttt{DISTINCT}. In der relationalen Algebra hingegeben
-sind die Tupel in einer Relation eindeutig.
+Ja. Geben wir nur eine Teilmenge an Attributen aus (\zB ohne
+Primärschlüssel), so kann ein und dasselbe Tupel durchaus mehrfach in
+der Ausgabe erscheinen.
+
+Außerdem ist es möglich eine Tabelle ohne \texttt{PRIMARY KEY}
+anzulegen. In so einer Tabelle kann dann eine Tupel mehrmals gespeichert
+werden und über \texttt{SELECT * FROM ...} mehrmals ausgegeben werden.
+(getestet in MySQL und in PostgreSQL).
+
+\begin{minted}{sql}
+CREATE TABLE tmp (
+  tmp INTEGER
+);
+
+INSERT INTO tmp VALUES
+  (1),
+  (1),
+  (1);
+
+SELECT * FROM tmp;
+\end{minted}
+
+\begin{minted}{md}
++------+
+| tmp  |
++------+
+|    1 |
+|    1 |
+|    1 |
++------+
+\end{minted}
+
+Um die mehrfache Ausgabe zu verhindert, gibt es in SQL das
+Schlüsselwort \texttt{DISTINCT}. In der relationalen Algebra hingegeben
+sind die Tupel einer Relation eindeutig.
 \end{liAntwort}
 
 %%
@@ -97,6 +127,5 @@ Löschen von Datensätzen in der Datenbank erfüllt werden müssen. Wird
 beispielsweise eine Bedinung bei Einfügen eines Datensatzen nicht
 erfüllt, so kann dieser Datensatz nicht gespeichert werden.
 \end{liAntwort}
-
 \end{enumerate}
 \end{document}
