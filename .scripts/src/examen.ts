@@ -27,7 +27,11 @@ export class Examen {
   }
 
   get pfad (): string {
-    return path.join(repositoryPfad, Examen.erzeugePfad(this.nummer, this.jahr, this.monatMitNullen), 'Scan.pdf')
+    return path.join(
+      repositoryPfad,
+      Examen.erzeugePfad(this.nummer, this.jahr, this.monatMitNullen),
+      'Scan.pdf'
+    )
   }
 
   get jahreszeit (): string {
@@ -36,7 +40,9 @@ export class Examen {
     } else if (this.monat === 9) {
       return 'Herbst'
     }
-    zeigeFehler('Die Monatsangabe in der Klasse Staatsexamen darf nur 3 oder 9 lauten.')
+    zeigeFehler(
+      'Die Monatsangabe in der Klasse Staatsexamen darf nur 3 oder 9 lauten.'
+    )
   }
 
   get dateiName (): string {
@@ -59,23 +65,31 @@ export class Examen {
     return `Examen ${this.nummer} ${this.jahreszeit} ${this.jahr}`
   }
 
-  static erzeugeExamenDurchTextArgumente (nummer: string, jahr: string, monat: string) {
+  static erzeugeExamenDurchTextArgumente (
+    nummer: string,
+    jahr: string,
+    monat: string
+  ) {
     return new Examen(parseInt(nummer), parseInt(jahr), parseInt(monat))
   }
 
   static erzeugeExamenVonPfad (pfad: string) {
     const treffer = pfad.match(Examen.regExp)
     if (!treffer || !treffer.groups) {
-     zeigeFehler(`Konnten den Examenspfad nicht lesen: ${pfad}`)
+      zeigeFehler(`Konnten den Examenspfad nicht lesen: ${pfad}`)
     }
     const gruppen = treffer.groups
-    return Examen.erzeugeExamenDurchTextArgumente(gruppen.nummer, gruppen.jahr, gruppen.monat)
+    return Examen.erzeugeExamenDurchTextArgumente(
+      gruppen.nummer,
+      gruppen.jahr,
+      gruppen.monat
+    )
   }
 
   static gibReferenzVonPfad (pfad: string) {
     const treffer = pfad.match(Examen.regExp)
     if (!treffer || !treffer.groups) {
-     zeigeFehler(`Konnten den Examenspfad nicht lesen: ${pfad}`)
+      zeigeFehler(`Konnten den Examenspfad nicht lesen: ${pfad}`)
     }
     const gruppen = treffer.groups
     return `${gruppen.nummer}:${gruppen.jahr}:${gruppen.monat}`
@@ -84,19 +98,31 @@ export class Examen {
   static erzeugeExamenVonReferenz (referenz: string) {
     const ergebnis = referenz.split(':')
     if (ergebnis.length !== 3) {
-     zeigeFehler('Eine Staatsexamens-Referenz muss in diesem Format sein: 66116:2020:09')
+      zeigeFehler(
+        'Eine Staatsexamens-Referenz muss in diesem Format sein: 66116:2020:09'
+      )
     }
-    return Examen.erzeugeExamenDurchTextArgumente(ergebnis[0], ergebnis[1], ergebnis[2])
+    return Examen.erzeugeExamenDurchTextArgumente(
+      ergebnis[0],
+      ergebnis[1],
+      ergebnis[2]
+    )
   }
 
-  static erzeugePfad (nummer: string | number, jahr: string | number, monat: string | number) {
+  static erzeugePfad (
+    nummer: string | number,
+    jahr: string | number,
+    monat: string | number
+  ) {
     return path.join('Staatsexamen', `${nummer}`, `${jahr}`, `${monat}`)
   }
 
   static teileReferenz (referenz: string): ExamenReferenz {
     const tmp = referenz.split(':')
     if (tmp.length !== 3) {
-      console.log('Eine Staatsexamens-Referenz muss in diesem Format sein: 66116:2020:09')
+      console.log(
+        'Eine Staatsexamens-Referenz muss in diesem Format sein: 66116:2020:09'
+      )
       process.exit(1)
     }
     return {

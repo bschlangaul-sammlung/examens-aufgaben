@@ -8,16 +8,25 @@ import glob from 'glob'
 import { Command } from 'commander'
 
 import { Aufgabe, ExamensAufgabe } from './aufgabe'
-import { repositoryPfad, öffneVSCode, zeigeFehler, leseDatei, schreibeDatei, führeAus, öffneProgramm } from './helfer'
+import {
+  repositoryPfad,
+  öffneVSCode,
+  zeigeFehler,
+  leseDatei,
+  schreibeDatei,
+  führeAus,
+  öffneProgramm
+} from './helfer'
 
+import { erzeugeAufgabenTitel } from './aktionen/erzeuge-aufgaben-titel'
 import { erzeugeAufgabenVorlage } from './aktionen/erzeuge-aufgaben-vorlage'
-import { erzeugeReadme } from './aktionen/erzeuge-readme'
 import { erzeugeExamensAufgabeVorlage } from './aktionen/erzeuge-examens-aufgabe-vorlage'
+import { erzeugeReadme } from './aktionen/erzeuge-readme'
 import { führeSqlAus } from './aktionen/fuehre-sql-aus'
-import { öffne } from './aktionen/oeffne'
-import { öffneDurchStichwort } from './aktionen/oeffne-durch-stichwort'
 import { generiereExamenSammlungPdf } from './aktionen/erzeuge-examens-uebersicht'
 import { konvertiereFlaciZuTikz } from './aktionen/konvertiere-flaci-zu-tikz'
+import { öffne } from './aktionen/oeffne'
+import { öffneDurchStichwort } from './aktionen/oeffne-durch-stichwort'
 
 const programm = new Command()
 programm.description(`Repository-Pfad: ${repositoryPfad}`)
@@ -25,7 +34,10 @@ programm.name('lehramt-informatik.js')
 programm.version('0.1.0')
 
 programm.on('command:*', function () {
-  console.error('Ungültiger Befehl: %s\nBenutze das Argument --help, um eine Liste der verfügbaren Befehle anzuzeigen.', programm.args.join(' '))
+  console.error(
+    'Ungültiger Befehl: %s\nBenutze das Argument --help, um eine Liste der verfügbaren Befehle anzuzeigen.',
+    programm.args.join(' ')
+  )
   process.exit(1)
 })
 
@@ -52,14 +64,21 @@ programm
   .command('erzeuge-examens-aufgabe <referenz> <thema> [teilaufgabe] [aufgabe]')
   .description('Erzeuge eine Examensaufgabe im Verzeichnis „Staatsexamen“.')
   .alias('e')
-  .action(function (ref: string, arg1: string, arg2: string, arg3: string): void {
+  .action(function (
+    ref: string,
+    arg1: string,
+    arg2: string,
+    arg3: string
+  ): void {
     const pfad = erzeugeExamensAufgabeVorlage(ref, arg1, arg2, arg3)
     öffneVSCode(pfad)
   })
 
 programm
   .command('oeffne <referenz...>')
-  .description('Öffne eine Staatsexamen oder andere Materialien durch die Referenz, z. B. 66116:2020:09.')
+  .description(
+    'Öffne eine Staatsexamen oder andere Materialien durch die Referenz, z. B. 66116:2020:09.'
+  )
   .alias('o')
   .action(function (referenz: string[], cmdObj: object): void {
     if (referenz.length === 1) {
@@ -94,9 +113,13 @@ programm
       pfad = path.join(staatsexamenPath, pfad)
       if (pfad.match(ExamensAufgabe.schwacherPfadRegExp)) {
         console.log(pfad)
-        const ergebnis = childProcess.spawnSync('/usr/local/texlive/bin/x86_64-linux/latexmk', ['-shell-escape', '-cd', '--lualatex', pfad], {
-          encoding: 'utf-8'
-        })
+        const ergebnis = childProcess.spawnSync(
+          '/usr/local/texlive/bin/x86_64-linux/latexmk',
+          ['-shell-escape', '-cd', '--lualatex', pfad],
+          {
+            encoding: 'utf-8'
+          }
+        )
 
         if (ergebnis.status !== 0) {
           console.log(ergebnis.stdout)
@@ -110,21 +133,36 @@ programm
 
 programm
   .command('sql <tex-datei>')
-  .description('Führe SQL-Code in einer TeX-Datei aus. Der Code muss in \\begin{minted}{sql}…\\end{minted} eingerahmt sein.')
+  .description(
+    'Führe SQL-Code in einer TeX-Datei aus. Der Code muss in \\begin{minted}{sql}…\\end{minted} eingerahmt sein.'
+  )
   .alias('s')
-  .option('-a, --anfrage <nummer>', 'Führe nur die Anfrage mit der gegebenen Nummer aus.')
-  .option('-n, --nicht-loeschen', 'Die Datenbank und die temporären SQL-Dateien am Ende der Ausführung nicht löschen.')
-
+  .option(
+    '-a, --anfrage <nummer>',
+    'Führe nur die Anfrage mit der gegebenen Nummer aus.'
+  )
+  .option(
+    '-n, --nicht-loeschen',
+    'Die Datenbank und die temporären SQL-Dateien am Ende der Ausführung nicht löschen.'
+  )
   .action(führeSqlAus)
 
 programm
   .command('code [glob]')
   .alias('c')
-  .description('Öffne die mit glob spezifizierten Dateien in Visual Studio Code')
+  .description(
+    'Öffne die mit glob spezifizierten Dateien in Visual Studio Code'
+  )
   .option('-n, --kein-index', 'Öffne nur die Dateien, die keinen Index haben.')
-  .option('-t, --kein-titel', 'Öffne nur die Dateien, die keinen Titel haben. \\liAufgabenTitel{}.')
+  .option(
+    '-t, --kein-titel',
+    'Öffne nur die Dateien, die keinen Titel haben. \\liAufgabenTitel{}.'
+  )
 
-  .action(function (globMuster: string, cmdObj: { [schlüssel: string]: any }): void {
+  .action(function (
+    globMuster: string,
+    cmdObj: { [schlüssel: string]: any }
+  ): void {
     function öffneMitAusgabe (pfad: string) {
       console.log(pfad)
       öffneVSCode(pfad)
@@ -138,7 +176,10 @@ programm
       dateiPfad = path.resolve(dateiPfad)
       if (cmdObj.keinIndex || cmdObj.keinTitel) {
         const aufgabe = new Aufgabe(dateiPfad)
-        if ((cmdObj.keinIndex && aufgabe.stichwörter.length == 0) || (cmdObj.keinTitel && !aufgabe.titel)) {
+        if (
+          (cmdObj.keinIndex && aufgabe.stichwörter.length == 0) ||
+          (cmdObj.keinTitel && !aufgabe.titel)
+        ) {
           öffneMitAusgabe(dateiPfad)
         }
       } else {
@@ -150,12 +191,15 @@ programm
 programm
   .command('seiten-loeschen <pdf-datei>')
   .alias('l')
-  .description('Gerade Seiten in einer PDF-Datei löschen. Die erste, dritte Seite etc. bleibt bestehen.')
+  .description(
+    'Gerade Seiten in einer PDF-Datei löschen. Die erste, dritte Seite etc. bleibt bestehen.'
+  )
   .action(function (datei: string): void {
     childProcess.spawnSync('pdftk', [
       `A=${datei}`,
       'cat',
-      'Aodd', 'output',
+      'Aodd',
+      'output',
       `${datei}_ungerade.pdf`
     ])
   })
@@ -178,14 +222,20 @@ programm
   .command('ocr <pdf-datei>')
   .description('Texterkennung in einer PDF-Datei durchführen.')
   .action(function (datei: string): void {
-    const process = childProcess.spawnSync('ocrmypdf', [
-      '--deskew',
-      '--rotate-pages',
-      '-l', 'deu+eng',
-      '--sidecar', `${datei}.txt`,
-      datei,
-      datei
-    ], { encoding: 'utf-8' })
+    const process = childProcess.spawnSync(
+      'ocrmypdf',
+      [
+        '--deskew',
+        '--rotate-pages',
+        '-l',
+        'deu+eng',
+        '--sidecar',
+        `${datei}.txt`,
+        datei,
+        datei
+      ],
+      { encoding: 'utf-8' }
+    )
     if (process.status !== 0) {
       console.log(process.stderr)
     }
@@ -199,8 +249,10 @@ programm
     const process = childProcess.spawnSync('pdftk', [
       datei,
       'cat',
-      '1-endeast', 'output',
-      '--sidecar', `${datei}_rotated.pdf`
+      '1-endeast',
+      'output',
+      '--sidecar',
+      `${datei}_rotated.pdf`
     ])
     if (process.status !== 0) {
       console.log(process.stderr)
@@ -213,7 +265,10 @@ programm
   .description('a) b) ... i) iii) durch \\item ersetzen.')
   .action(function (dateiPfad: string): void {
     let inhalt = leseDatei(dateiPfad)
-    inhalt = inhalt.replace(/\n(\(?[abcdefghijv]+\)\s*)/g, '\n%%\n% $1\n%%\n\n\\item ')
+    inhalt = inhalt.replace(
+      /\n(\(?[abcdefghijv]+\)\s*)/g,
+      '\n%%\n% $1\n%%\n\n\\item '
+    )
     schreibeDatei(dateiPfad, inhalt)
   })
 
@@ -238,13 +293,15 @@ programm
         !pfad.match(/target/)
       ) {
         console.log(pfad)
-        const match = pfad.match(/examen_(?<nummer>\d{5})_(?<jahr>\d{4})_(?<monat>\d{2})\/$/)
+        const match = pfad.match(
+          /examen_(?<nummer>\d{5})_(?<jahr>\d{4})_(?<monat>\d{2})\/$/
+        )
         if (match && match.groups) {
           const monat = match?.groups.monat === '03' ? 'fruehjahr' : 'herbst'
           const neuerPfad = `src/main/java/org/bschlangaul/examen/examen_${match?.groups.nummer}/jahr_${match?.groups.jahr}/${monat}`
           console.log(neuerPfad)
           try {
-            fs.mkdirSync(neuerPfad, {recursive: true})
+            fs.mkdirSync(neuerPfad, { recursive: true })
             fs.renameSync(pfad, neuerPfad)
           } catch (error) {
             console.log(error)
@@ -271,18 +328,27 @@ programm
     const dtxPfad = path.join(texPfad, 'dokumentation.dtx')
     const dtxInhalte: string[] = []
 
-    function leseSty(dateiName: string): void {
+    function leseSty (dateiName: string): void {
       const inhalt = leseDatei(path.join(styPfad, dateiName))
-      const prefix =  '%    \\end{macrocode}\n' +
-        '% \\subsection{' + dateiName +  '}\n' +
+      const prefix =
+        '%    \\end{macrocode}\n' +
+        '% \\subsection{' +
+        dateiName +
+        '}\n' +
         '%    \\begin{macrocode}\n'
       dtxInhalte.push(prefix + inhalt)
     }
 
-    function kompiliereDtxDatei(): void {
+    function kompiliereDtxDatei (): void {
       führeAus('lualatex --shell-escape dokumentation.dtx', texPfad)
-      führeAus('makeindex -s gglo.ist -o dokumentation.gls dokumentation.glo', texPfad)
-      führeAus('makeindex -s gind.ist -o dokumentation.ind dokumentation.idx', texPfad)
+      führeAus(
+        'makeindex -s gglo.ist -o dokumentation.gls dokumentation.glo',
+        texPfad
+      )
+      führeAus(
+        'makeindex -s gind.ist -o dokumentation.ind dokumentation.idx',
+        texPfad
+      )
       führeAus('lualatex --shell-escape dokumentation.dtx', texPfad)
     }
 
@@ -290,11 +356,22 @@ programm
       leseSty(sty)
     }
 
-    const dtxVorlage = leseDatei(path.join(texPfad, 'dokumentation_vorlage.dtx'))
-    schreibeDatei(dtxPfad, dtxVorlage.replace('{{ einbinden }}', dtxInhalte.join('\n')))
+    const dtxVorlage = leseDatei(
+      path.join(texPfad, 'dokumentation_vorlage.dtx')
+    )
+    schreibeDatei(
+      dtxPfad,
+      dtxVorlage.replace('{{ einbinden }}', dtxInhalte.join('\n'))
+    )
 
     kompiliereDtxDatei()
     öffneProgramm('/usr/bin/xdg-open', path.join(texPfad, 'dokumentation.pdf'))
   })
+
+programm
+  .command('aufgaben-titel <texDatei>')
+  .alias('at')
+  .description('Erzeuge den Titlel in einer TeX-Datei')
+  .action(erzeugeAufgabenTitel)
 
 programm.parse(process.argv)

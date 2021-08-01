@@ -85,7 +85,8 @@ var Aufgabe = /** @class */ (function () {
     });
     Object.defineProperty(Aufgabe.prototype, "link", {
         get: function () {
-            return helfer_1.generiereLink(this.titelFormatiert, this.pfad, path_1.default.basename(this.pfad)) + this.stichwörterFormatiert;
+            return (helfer_1.generiereLink(this.titelFormatiert, this.pfad, path_1.default.basename(this.pfad)) +
+                this.stichwörterFormatiert);
         },
         enumerable: false,
         configurable: true
@@ -186,7 +187,8 @@ var ExamensAufgabe = /** @class */ (function (_super) {
     });
     Object.defineProperty(ExamensAufgabe.prototype, "link", {
         get: function () {
-            return helfer_1.generiereLink(this.titelKurz, this.pfad, this.dateiName) + this.stichwörterFormatiert;
+            return (helfer_1.generiereLink(this.titelKurz, this.pfad, this.dateiName) +
+                this.stichwörterFormatiert);
         },
         enumerable: false,
         configurable: true

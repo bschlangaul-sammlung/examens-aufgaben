@@ -1,7 +1,12 @@
 import yaml from 'js-yaml'
 import glob from 'glob'
 
-import { leseRepoDatei, repositoryPfad, zeigeFehler, öffneVSCode } from './helfer'
+import {
+  leseRepoDatei,
+  repositoryPfad,
+  zeigeFehler,
+  öffneVSCode
+} from './helfer'
 import { Aufgabe, AufgabenSammlung } from './aufgabe'
 import { findBestMatch } from 'string-similarity'
 
@@ -70,10 +75,10 @@ export class StichwortBaum {
         if (typeof baum[s] === 'boolean') {
           return true
         } else {
-          return <Baum> baum[s]
+          return <Baum>baum[s]
         }
       } else if (typeof baum[s] === 'object') {
-        const ergebnis = this.gibUnterBaum(stichwort, <Baum> baum[s])
+        const ergebnis = this.gibUnterBaum(stichwort, <Baum>baum[s])
         if (ergebnis) return ergebnis
       }
     }
@@ -87,7 +92,7 @@ export class StichwortBaum {
         flacherBaum.add(s)
       } else {
         flacherBaum.add(s)
-        this.verflacheBaum(<Baum> baum[s], flacherBaum)
+        this.verflacheBaum(<Baum>baum[s], flacherBaum)
       }
     }
     return flacherBaum
@@ -121,7 +126,10 @@ export class StichwortVerzeichnis {
   stichwortBaum: StichwortBaum
   aufgabenSammlung: AufgabenSammlung
 
-  constructor (stichwortBaum: StichwortBaum, aufgabenSammlung: AufgabenSammlung) {
+  constructor (
+    stichwortBaum: StichwortBaum,
+    aufgabenSammlung: AufgabenSammlung
+  ) {
     this.stichwortBaum = stichwortBaum
     this.aufgabenSammlung = aufgabenSammlung
     const dateien = glob.sync('**/*.tex', { cwd: repositoryPfad })
@@ -132,8 +140,13 @@ export class StichwortVerzeichnis {
         for (const stichwort of aufgabe.stichwörter) {
           if (!stichwortBaum.existiertStichwort(stichwort)) {
             öffneVSCode(pfad)
-            console.log('Möglicherweise war dieses Stichwort gemeint: ' + this.stichwortBaum.findeÄhnliches(stichwort))
-            zeigeFehler(`Das Stichwort „${stichwort}“ in der Datei „${pfad}“ gibt es nicht.`)
+            console.log(
+              'Möglicherweise war dieses Stichwort gemeint: ' +
+                this.stichwortBaum.findeÄhnliches(stichwort)
+            )
+            zeigeFehler(
+              `Das Stichwort „${stichwort}“ in der Datei „${pfad}“ gibt es nicht.`
+            )
           }
           if (this.verzeichnis[stichwort]) {
             this.verzeichnis[stichwort].add(aufgabe)

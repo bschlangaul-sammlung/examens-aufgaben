@@ -159,7 +159,8 @@ var StichwortVerzeichnis = /** @class */ (function () {
                             var stichwort = _d.value;
                             if (!stichwortBaum.existiertStichwort(stichwort)) {
                                 helfer_1.öffneVSCode(pfad);
-                                console.log('Möglicherweise war dieses Stichwort gemeint: ' + this.stichwortBaum.findeÄhnliches(stichwort));
+                                console.log('Möglicherweise war dieses Stichwort gemeint: ' +
+                                    this.stichwortBaum.findeÄhnliches(stichwort));
                                 helfer_1.zeigeFehler("Das Stichwort \u201E" + stichwort + "\u201C in der Datei \u201E" + pfad + "\u201C gibt es nicht.");
                             }
                             if (this.verzeichnis[stichwort]) {

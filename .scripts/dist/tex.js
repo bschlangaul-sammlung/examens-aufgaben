@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.sammleStichwörterEinerDatei = exports.sammleStichwörter = exports.gibInhaltEinesTexMakros = void 0;
 var helfer_1 = require("./helfer");
 function assembleMacroRegExp(macroName) {
-    return new RegExp('\\' + macroName + '\{([^\}]*)\}', 'g');
+    return new RegExp('\\' + macroName + '{([^}]*)}', 'g');
 }
 function säubereStichwort(stichwort) {
     return stichwort.replace(/\s+/g, ' ');

@@ -17,12 +17,17 @@ function generiereMarkdownAufgabenListe (aufgabenListe: Set<Aufgabe>): string {
 }
 
 function ersetzeStichwörterInReadme (inhalt: string): string {
-  return inhalt.replace(/\{\{ stichwort "([^"]*)" \}\}/g, function (treffer, stichwort) {
-    return generiereMarkdownAufgabenListe(stichwortVerzeichnis.gibAufgabenMitStichwortUnterBaum(stichwort))
+  return inhalt.replace(/\{\{ stichwort "([^"]*)" \}\}/g, function (
+    treffer,
+    stichwort
+  ) {
+    return generiereMarkdownAufgabenListe(
+      stichwortVerzeichnis.gibAufgabenMitStichwortUnterBaum(stichwort)
+    )
   })
 }
 
-export function erzeugeReadme() {
+export function erzeugeReadme () {
   let inhalt = leseRepoDatei('README_template.md')
 
   inhalt = ersetzeStichwörterInReadme(inhalt)

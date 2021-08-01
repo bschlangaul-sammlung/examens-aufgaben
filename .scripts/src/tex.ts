@@ -1,14 +1,17 @@
 import { leseRepoDatei } from './helfer'
 
 function assembleMacroRegExp (macroName: String): RegExp {
-  return new RegExp('\\' + macroName + '\{([^\}]*)\}', 'g')
+  return new RegExp('\\' + macroName + '{([^}]*)}', 'g')
 }
 
 function säubereStichwort (stichwort: string): string {
   return stichwort.replace(/\s+/g, ' ')
 }
 
-export function gibInhaltEinesTexMakros (makroName: string, markup: string): string | undefined {
+export function gibInhaltEinesTexMakros (
+  makroName: string,
+  markup: string
+): string | undefined {
   const regExp = assembleMacroRegExp(makroName)
   const übereinstimmung = regExp.exec(markup)
   if (übereinstimmung) return übereinstimmung[1]

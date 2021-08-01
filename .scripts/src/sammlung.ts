@@ -8,4 +8,7 @@ export const aufgabenSammlung = new AufgabenSammlung(examenSammlung)
 
 export const stichwortBaum = new StichwortBaum()
 
-export const stichwortVerzeichnis = new StichwortVerzeichnis(stichwortBaum, aufgabenSammlung)
+export const stichwortVerzeichnis = new StichwortVerzeichnis(
+  stichwortBaum,
+  aufgabenSammlung
+)

@@ -40,12 +40,19 @@ var TexDateiMitSql = /** @class */ (function () {
         if (redselig)
             console.log(pygmentize.stdout);
         var prozess = child_process_1.default.spawnSync('sudo', [
-            '-u', 'postgres',
+            '-u',
+            'postgres',
             'psql',
             '--quiet',
-            '-f', datei,
-            '-v', 'ON_ERROR_STOP=1',
-        ], { encoding: 'utf-8', env: { PGPASSWORD: 'postgres' }, shell: '/usr/bin/zsh' });
+            '-f',
+            datei,
+            '-v',
+            'ON_ERROR_STOP=1'
+        ], {
+            encoding: 'utf-8',
+            env: { PGPASSWORD: 'postgres' },
+            shell: '/usr/bin/zsh'
+        });
         if (prozess.status !== 0) {
             console.log(chalk_1.default.red(prozess.stderr));
             console.log(chalk_1.default.red(prozess.stdout));
@@ -70,9 +77,9 @@ var TexDateiMitSql = /** @class */ (function () {
         }
     };
     TexDateiMitSql.prototype.erzeugeCodeDatenbankErstellung = function (datenbankName) {
-        return "DROP DATABASE IF EXISTS " + datenbankName + ";\n" +
+        return ("DROP DATABASE IF EXISTS " + datenbankName + ";\n" +
             ("CREATE DATABASE " + datenbankName + ";\n") +
-            ("\\c " + datenbankName + "\n"); // mysql: USE name;
+            ("\\c " + datenbankName + "\n")); // mysql: USE name;
     };
     TexDateiMitSql.prototype.findeErzeugungsCode = function () {
         var regExp = /% ?Datenbankname: ?(\w+).*?\\begin\{minted\}\{sql\}(.*?)\\end\{minted\}/gs;

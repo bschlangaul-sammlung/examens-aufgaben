@@ -3,7 +3,14 @@ import fs from 'fs'
 
 import { examensTitel } from '../examen'
 import { ExamensAufgabe } from '../aufgabe'
-import { repositoryPfad, generiereLink, LinkEinstellung, macheRelativenPfad, macheRepoPfad, schreibeDatei } from '../helfer'
+import {
+  repositoryPfad,
+  generiereLink,
+  LinkEinstellung,
+  macheRelativenPfad,
+  macheRepoPfad,
+  schreibeDatei
+} from '../helfer'
 import { aufgabenSammlung, examenSammlung } from '../sammlung'
 import glob from 'glob'
 
@@ -58,7 +65,11 @@ function leseAufgaben (relativerPfad: string): ExamensAufgabeBaum {
   const dateien = glob.sync('**/*.tex', { cwd: relativerPfad })
   const baum: ExamensAufgabeBaum = {}
   for (const pfad of dateien) {
-    if (pfad.match(/(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/)) {
+    if (
+      pfad.match(
+        /(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/
+      )
+    ) {
       const segmente = pfad.split(path.sep)
       let unterBaum: ExamensAufgabeBaum = baum
       for (const segment of segmente) {
@@ -69,7 +80,7 @@ function leseAufgaben (relativerPfad: string): ExamensAufgabeBaum {
           unterBaum[segmentLesbar] = pfad
         }
         if (segment.indexOf('.tex') === -1) {
-          unterBaum = <ExamensAufgabeBaum> unterBaum[segmentLesbar]
+          unterBaum = <ExamensAufgabeBaum>unterBaum[segmentLesbar]
         }
       }
     }
@@ -96,16 +107,26 @@ function erzeugeEinrückung (ebene: number): string {
  * @param {string} pfad
  * @param {integer} ebene
  */
-function generiereAufgabenRekursiv (aufgabenBaum: ExamensAufgabeBaum, pfad: string, ebene: number = 1): string {
+function generiereAufgabenRekursiv (
+  aufgabenBaum: ExamensAufgabeBaum,
+  pfad: string,
+  ebene: number = 1
+): string {
   const ausgabe = []
   // title: Thema 1, Teilaufgabe 2, Aufgabe 3
   for (const titel in aufgabenBaum) {
     if (typeof aufgabenBaum[titel] === 'string') {
-      const aufgabenPfad = path.join(pfad, <string> aufgabenBaum[titel])
-      const aufgabe = <ExamensAufgabe> aufgabenSammlung.gib(aufgabenPfad)
+      const aufgabenPfad = path.join(pfad, <string>aufgabenBaum[titel])
+      const aufgabe = <ExamensAufgabe>aufgabenSammlung.gib(aufgabenPfad)
       ausgabe.push(erzeugeEinrückung(ebene) + aufgabe.gibTitelNurAufgabe(true))
     } else {
-      ausgabe.push(`${erzeugeEinrückung(ebene)}${titel} ${generiereAufgabenRekursiv(<ExamensAufgabeBaum> aufgabenBaum[titel], pfad, ebene + 1)}`)
+      ausgabe.push(
+        `${erzeugeEinrückung(ebene)}${titel} ${generiereAufgabenRekursiv(
+          <ExamensAufgabeBaum>aufgabenBaum[titel],
+          pfad,
+          ebene + 1
+        )}`
+      )
     }
   }
   return ausgabe.join(' ')
@@ -133,8 +154,18 @@ class AusgabeSammler {
   }
 }
 
-function erzeugeDateiLink (pfad: string, dateiName: string, downloadDateiName: string, einstellungen?: LinkEinstellung): string {
-  return generiereLink(dateiName, path.join(pfad, dateiName), downloadDateiName, einstellungen)
+function erzeugeDateiLink (
+  pfad: string,
+  dateiName: string,
+  downloadDateiName: string,
+  einstellungen?: LinkEinstellung
+): string {
+  return generiereLink(
+    dateiName,
+    path.join(pfad, dateiName),
+    downloadDateiName,
+    einstellungen
+  )
 }
 
 export function generiereExamensÜbersicht () {
@@ -150,9 +181,22 @@ export function generiereExamensÜbersicht () {
         for (const monat of monatsVerzeichnisse) {
           const examen = examenSammlung.gib(nummer, jahr, monat)
           const monatsPfad = path.join(jahrPfad, monat)
-          const scanLink = erzeugeDateiLink(monatsPfad, 'Scan.pdf', `${examen.dateiName}_Scan.pdf`)
-          const ocrLink = erzeugeDateiLink(monatsPfad, 'OCR.txt', `${examen.dateiName}_OCR.txt`, { linkePdf: false })
-          ausgabe.add(`- ${examen.jahrJahreszeit}: ${scanLink} ${ocrLink} ${generiereAufgabenBaum(monatsPfad)}`)
+          const scanLink = erzeugeDateiLink(
+            monatsPfad,
+            'Scan.pdf',
+            `${examen.dateiName}_Scan.pdf`
+          )
+          const ocrLink = erzeugeDateiLink(
+            monatsPfad,
+            'OCR.txt',
+            `${examen.dateiName}_OCR.txt`,
+            { linkePdf: false }
+          )
+          ausgabe.add(
+            `- ${
+              examen.jahrJahreszeit
+            }: ${scanLink} ${ocrLink} ${generiereAufgabenBaum(monatsPfad)}`
+          )
         }
       }
     }
@@ -173,7 +217,9 @@ export function generiereExamenSammlungPdf () {
           const examen = examenSammlung.gib(nummer, jahr, monat)
           ausgabe.add(`\n\\liTrennSeite{${examen.jahreszeit} ${examen.jahr}}`)
 
-          let scanPfad = macheRelativenPfad(path.join(jahrPfad, monat, 'Scan.pdf'))
+          let scanPfad = macheRelativenPfad(
+            path.join(jahrPfad, monat, 'Scan.pdf')
+          )
           //scanPfad = scanPfad.replace(`Staatsexamen/${nummer}/`, '')
 
           const includePdf = `\\liBindePdfEin{${scanPfad}}`
@@ -190,6 +236,9 @@ export function generiereExamenSammlungPdf () {
 \\begin{document}
 ${ergebnis}
 \\end{document}`
-    schreibeDatei(macheRepoPfad('Staatsexamen', nummer, 'Examensammlung.tex'), texMarkup)
+    schreibeDatei(
+      macheRepoPfad('Staatsexamen', nummer, 'Examensammlung.tex'),
+      texMarkup
+    )
   }
 }

@@ -22,14 +22,15 @@ var glob_1 = __importDefault(require("glob"));
 var commander_1 = require("commander");
 var aufgabe_1 = require("./aufgabe");
 var helfer_1 = require("./helfer");
+var erzeuge_aufgaben_titel_1 = require("./aktionen/erzeuge-aufgaben-titel");
 var erzeuge_aufgaben_vorlage_1 = require("./aktionen/erzeuge-aufgaben-vorlage");
-var erzeuge_readme_1 = require("./aktionen/erzeuge-readme");
 var erzeuge_examens_aufgabe_vorlage_1 = require("./aktionen/erzeuge-examens-aufgabe-vorlage");
+var erzeuge_readme_1 = require("./aktionen/erzeuge-readme");
 var fuehre_sql_aus_1 = require("./aktionen/fuehre-sql-aus");
-var oeffne_1 = require("./aktionen/oeffne");
-var oeffne_durch_stichwort_1 = require("./aktionen/oeffne-durch-stichwort");
 var erzeuge_examens_uebersicht_1 = require("./aktionen/erzeuge-examens-uebersicht");
 var konvertiere_flaci_zu_tikz_1 = require("./aktionen/konvertiere-flaci-zu-tikz");
+var oeffne_1 = require("./aktionen/oeffne");
+var oeffne_durch_stichwort_1 = require("./aktionen/oeffne-durch-stichwort");
 var programm = new commander_1.Command();
 programm.description("Repository-Pfad: " + helfer_1.repositoryPfad);
 programm.name('lehramt-informatik.js');
@@ -151,7 +152,8 @@ programm
             dateiPfad = path_1.default.resolve(dateiPfad);
             if (cmdObj.keinIndex || cmdObj.keinTitel) {
                 var aufgabe = new aufgabe_1.Aufgabe(dateiPfad);
-                if ((cmdObj.keinIndex && aufgabe.stichwörter.length == 0) || (cmdObj.keinTitel && !aufgabe.titel)) {
+                if ((cmdObj.keinIndex && aufgabe.stichwörter.length == 0) ||
+                    (cmdObj.keinTitel && !aufgabe.titel)) {
                     öffneMitAusgabe(dateiPfad);
                 }
             }
@@ -176,7 +178,8 @@ programm
     child_process_1.default.spawnSync('pdftk', [
         "A=" + datei,
         'cat',
-        'Aodd', 'output',
+        'Aodd',
+        'output',
         datei + "_ungerade.pdf"
     ]);
 });
@@ -200,7 +203,8 @@ programm
     var process = child_process_1.default.spawnSync('ocrmypdf', [
         '--deskew',
         '--rotate-pages',
-        '-l', 'deu+eng',
+        '-l',
+        'deu+eng',
         '--sidecar',
         datei + ".txt",
         datei,
@@ -218,7 +222,8 @@ programm
     var process = child_process_1.default.spawnSync('pdftk', [
         datei,
         'cat',
-        '1-endeast', 'output',
+        '1-endeast',
+        'output',
         '--sidecar',
         datei + "_rotated.pdf"
     ]);
@@ -298,7 +303,9 @@ programm
     function leseSty(dateiName) {
         var inhalt = helfer_1.leseDatei(path_1.default.join(styPfad, dateiName));
         var prefix = '%    \\end{macrocode}\n' +
-            '% \\subsection{' + dateiName + '}\n' +
+            '% \\subsection{' +
+            dateiName +
+            '}\n' +
             '%    \\begin{macrocode}\n';
         dtxInhalte.push(prefix + inhalt);
     }
@@ -326,4 +333,9 @@ programm
     kompiliereDtxDatei();
     helfer_1.öffneProgramm('/usr/bin/xdg-open', path_1.default.join(texPfad, 'dokumentation.pdf'));
 });
+programm
+    .command('aufgaben-titel <texDatei>')
+    .alias('at')
+    .description('Erzeuge den Titlel in einer TeX-Datei')
+    .action(erzeuge_aufgaben_titel_1.erzeugeAufgabenTitel);
 programm.parse(process.argv);

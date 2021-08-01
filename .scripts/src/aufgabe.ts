@@ -2,7 +2,13 @@ import path from 'path'
 import fs from 'fs'
 import glob from 'glob'
 
-import { leseRepoDatei, repositoryPfad, generiereLink, macheRelativenPfad, zeigeFehler } from './helfer'
+import {
+  leseRepoDatei,
+  repositoryPfad,
+  generiereLink,
+  macheRelativenPfad,
+  zeigeFehler
+} from './helfer'
 import { sammleStichwörter, gibInhaltEinesTexMakros } from './tex'
 import { Examen, ExamenSammlung } from './examen'
 
@@ -62,7 +68,10 @@ export class Aufgabe {
   }
 
   get link (): string {
-    return generiereLink(this.titelFormatiert, this.pfad, path.basename(this.pfad)) + this.stichwörterFormatiert
+    return (
+      generiereLink(this.titelFormatiert, this.pfad, path.basename(this.pfad)) +
+      this.stichwörterFormatiert
+    )
   }
 
   static vergleichePfade (a: Aufgabe, b: Aufgabe): number {
@@ -75,9 +84,9 @@ export class Aufgabe {
     return 0
   }
 
-  get texEinbindenMakro(): string {
+  get texEinbindenMakro (): string {
     let relativerPfad = macheRelativenPfad(this.pfad)
-    relativerPfad = relativerPfad.replace('.tex' , '')
+    relativerPfad = relativerPfad.replace('.tex', '')
     return `\\liAufgabe{${relativerPfad}}`
   }
 }
@@ -99,7 +108,7 @@ export class ExamensAufgabe extends Aufgabe {
     examen.aufgaben[pfad] = this
     const treffer = pfad.match(ExamensAufgabe.pfadRegExp)
     if (!treffer || !treffer.groups) {
-     zeigeFehler(`Konnten den Pfad der Examensaufgabe nicht lesen: ${pfad}`)
+      zeigeFehler(`Konnten den Pfad der Examensaufgabe nicht lesen: ${pfad}`)
     }
     const gruppen = treffer.groups
     this.aufgabe = parseInt(gruppen.aufgabe)
@@ -150,12 +159,19 @@ export class ExamensAufgabe extends Aufgabe {
   }
 
   get link (): string {
-    return generiereLink(this.titelKurz, this.pfad, this.dateiName) + this.stichwörterFormatiert
+    return (
+      generiereLink(this.titelKurz, this.pfad, this.dateiName) +
+      this.stichwörterFormatiert
+    )
   }
 
   static erzeugePfad (arg1: number, arg2?: number, arg3?: number): string {
     if (arg1 && arg2 && arg3) {
-      return path.join(`Thema-${arg1}`, `Teilaufgabe-${arg2}`, `Aufgabe-${arg3}.tex`)
+      return path.join(
+        `Thema-${arg1}`,
+        `Teilaufgabe-${arg2}`,
+        `Aufgabe-${arg3}.tex`
+      )
     } else if (arg1 && arg2 && !arg3) {
       return path.join(`Thema-${arg1}`, `Aufgabe-${arg2}.tex`)
     } else {
@@ -163,10 +179,10 @@ export class ExamensAufgabe extends Aufgabe {
     }
   }
 
-  get texEinbindenMakro(): string {
+  get texEinbindenMakro (): string {
     let relativerPfad = macheRelativenPfad(this.pfad)
-    relativerPfad = relativerPfad.replace('Staatsexamen/' , '')
-    relativerPfad = relativerPfad.replace('.tex' , '')
+    relativerPfad = relativerPfad.replace('Staatsexamen/', '')
+    relativerPfad = relativerPfad.replace('.tex', '')
     return `\\liExamensAufgabe{${relativerPfad}}`
   }
 }

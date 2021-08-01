@@ -22,7 +22,10 @@ var os_1 = require("os");
 var path_1 = __importDefault(require("path"));
 var basisPfadExterneDateien = path_1.default.join(os_1.homedir(), 'git-repositories/content/informatik-studium');
 function analysierteBibDatei(dateiPfad) {
-    var parser = new biblatex_csl_converter_1.BibLatexParser(helfer_1.leseRepoDatei(dateiPfad), { processUnexpected: true, processUnknown: true });
+    var parser = new biblatex_csl_converter_1.BibLatexParser(helfer_1.leseRepoDatei(dateiPfad), {
+        processUnexpected: true,
+        processUnknown: true
+    });
     return parser.parse();
 }
 var BibtexReferenzZuDateiKonverter = /** @class */ (function () {
@@ -44,9 +47,11 @@ var BibtexReferenzZuDateiKonverter = /** @class */ (function () {
      */
     BibtexReferenzZuDateiKonverter.prototype.findeMehrerePdfDatien = function (eingabe) {
         var ergebnis = eingabe.split('.pdf');
-        ergebnis = ergebnis.map(function (dateiBasisName) {
+        ergebnis = ergebnis
+            .map(function (dateiBasisName) {
             return dateiBasisName.trim().replace(/^, +/, '');
-        }).filter(function (dateiBasisName) {
+        })
+            .filter(function (dateiBasisName) {
             return dateiBasisName ? true : false;
         });
         return ergebnis;

@@ -20,7 +20,7 @@ interface AufgabenVorlagenWerte {
   zitatReferenz?: string
 }
 
-function gibVorlage(werte: AufgabenVorlagenWerte = {}) {
+function gibVorlage (werte: AufgabenVorlagenWerte = {}) {
   let titel = ''
   if (werte.titel) titel = werte.titel
 
@@ -30,18 +30,29 @@ function gibVorlage(werte: AufgabenVorlagenWerte = {}) {
   let zitatReferenz = ''
   if (werte.zitatReferenz) zitatReferenz = werte.zitatReferenz
 
-  return '\\documentclass{lehramt-informatik-aufgabe}\n' +
-  '\\liLadePakete{}\n' +
-  '\\begin{document}\n' +
-  '\\liAufgabenTitel{' + titel + '}\n' +
-  '\\section{' + aufgabenName + '\n' +
-  '\\index{}\n' +
-  '\\footcite{' + zitatReferenz + '}}\n' +
-  '\n' +
-  '\\end{document}\n'
+  return (
+    '\\documentclass{lehramt-informatik-aufgabe}\n' +
+    '\\liLadePakete{}\n' +
+    '\\begin{document}\n' +
+    '\\liAufgabenTitel{' +
+    titel +
+    '}\n' +
+    '\\section{' +
+    aufgabenName +
+    '\n' +
+    '\\index{}\n' +
+    '\\footcite{' +
+    zitatReferenz +
+    '}}\n' +
+    '\n' +
+    '\\end{document}\n'
+  )
 }
 
-export function erzeugeAufgabenVorlage (pfad: string, werte: AufgabenVorlagenWerte) {
+export function erzeugeAufgabenVorlage (
+  pfad: string,
+  werte: AufgabenVorlagenWerte
+) {
   fs.mkdirSync(path.dirname(pfad), { recursive: true })
   if (!fs.existsSync(pfad)) {
     fs.writeFileSync(pfad, gibVorlage(werte), { encoding: 'utf-8' })

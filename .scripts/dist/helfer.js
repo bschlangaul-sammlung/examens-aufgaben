@@ -104,7 +104,11 @@ function generiereLink(text, pfad, dateiName, einstellung) {
 }
 exports.generiereLink = generiereLink;
 function führeAus(programm, cwd) {
-    var process = child_process_1.default.spawnSync(programm, { cwd: cwd, encoding: 'utf-8', shell: true });
+    var process = child_process_1.default.spawnSync(programm, {
+        cwd: cwd,
+        encoding: 'utf-8',
+        shell: true
+    });
     if (process.status !== 0)
         throw Error(process.stderr + process.stdout);
     console.log(process.stdout);

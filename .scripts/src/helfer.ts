@@ -3,9 +3,14 @@ import path from 'path'
 import childProcess from 'child_process'
 import chalk from 'chalk'
 
-const konfigurationsDateiPfad = path.join(path.sep, 'etc', 'lehramt-informatik.config.tex')
+const konfigurationsDateiPfad = path.join(
+  path.sep,
+  'etc',
+  'lehramt-informatik.config.tex'
+)
 
-const githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main'
+const githubRawUrl =
+  'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main'
 
 export function leseDatei (pfad: string) {
   return fs.readFileSync(pfad, { encoding: 'utf-8' })
@@ -50,7 +55,12 @@ export interface LinkEinstellung {
   alsHtml?: boolean
 }
 
-export function generiereLink (text: string, pfad: string, dateiName: string, einstellung?: LinkEinstellung): string {
+export function generiereLink (
+  text: string,
+  pfad: string,
+  dateiName: string,
+  einstellung?: LinkEinstellung
+): string {
   let linkePdf = true
   let alsLink = true
   let alsHtml = true
@@ -74,7 +84,11 @@ export function generiereLink (text: string, pfad: string, dateiName: string, ei
 }
 
 export function führeAus (programm: string, cwd: string) {
-  const process = childProcess.spawnSync(programm, { cwd: cwd, encoding: 'utf-8', shell: true })
+  const process = childProcess.spawnSync(programm, {
+    cwd: cwd,
+    encoding: 'utf-8',
+    shell: true
+  })
   if (process.status !== 0) throw Error(process.stderr + process.stdout)
   console.log(process.stdout)
 }

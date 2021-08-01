@@ -10,13 +10,13 @@ class TexDateiMitSql {
   datenbankName: string
   anzahlAnfragen: number = 0
 
-  constructor(pfad: string) {
+  constructor (pfad: string) {
     this.pfad = pfad
     this.inhalt = leseDatei(pfad)
     this.datenbankName = this.findeErzeugungsCode()
   }
 
-  private gibTemporärenPfad(bezeichner: string): string {
+  private gibTemporärenPfad (bezeichner: string): string {
     return `${this.pfad}_${bezeichner}_tmp.sql`
   }
 
@@ -25,33 +25,47 @@ class TexDateiMitSql {
     return `anfrage${anfrageNummerFormatiert}`
   }
 
-  private gibTemporärenAnfragenPfad(anfrageNummer: number): string {
+  private gibTemporärenAnfragenPfad (anfrageNummer: number): string {
     return this.gibTemporärenPfad(this.gibAnfrageBezeichner(anfrageNummer))
   }
 
-  private gibTemporärenErzeugungsPfad(): string {
+  private gibTemporärenErzeugungsPfad (): string {
     return this.gibTemporärenPfad(`erzeugung`)
   }
 
-  private gibTemporärenLöschungsPfad(): string {
+  private gibTemporärenLöschungsPfad (): string {
     return this.gibTemporärenPfad(`loeschung`)
   }
 
-  private schreibeTemporäreSqlDatei(bezeichner: string, inhalt: string): void {
+  private schreibeTemporäreSqlDatei (bezeichner: string, inhalt: string): void {
     fs.writeFileSync(`${this.pfad}_${bezeichner}_tmp.sql`, inhalt)
   }
 
   private führePostgresqlAus (datei: string, redselig: boolean = true) {
-    const pygmentize = childProcess.spawnSync('pygmentize', ['-l', 'sql', datei], { encoding: 'utf-8' })
+    const pygmentize = childProcess.spawnSync(
+      'pygmentize',
+      ['-l', 'sql', datei],
+      { encoding: 'utf-8' }
+    )
     if (redselig) console.log(pygmentize.stdout)
-    const prozess = childProcess.spawnSync('sudo',
-    [
-      '-u', 'postgres',
-      'psql',
-      '--quiet',
-      '-f', datei,
-      '-v', 'ON_ERROR_STOP=1',
-    ], { encoding: 'utf-8', env: { PGPASSWORD: 'postgres' }, shell: '/usr/bin/zsh' })
+    const prozess = childProcess.spawnSync(
+      'sudo',
+      [
+        '-u',
+        'postgres',
+        'psql',
+        '--quiet',
+        '-f',
+        datei,
+        '-v',
+        'ON_ERROR_STOP=1'
+      ],
+      {
+        encoding: 'utf-8',
+        env: { PGPASSWORD: 'postgres' },
+        shell: '/usr/bin/zsh'
+      }
+    )
     if (prozess.status !== 0) {
       console.log(chalk.red(prozess.stderr))
       console.log(chalk.red(prozess.stdout))
@@ -65,7 +79,7 @@ class TexDateiMitSql {
     this.führePostgresqlAus(this.gibTemporärenErzeugungsPfad(), false)
   }
 
-  führeAnfrageAus(anfragenNummer: number): void {
+  führeAnfrageAus (anfragenNummer: number): void {
     this.erzeugeDatenbank()
     console.log(chalk.red(`Anfrage Nummer ${anfragenNummer}:\n`))
     this.führePostgresqlAus(this.gibTemporärenAnfragenPfad(anfragenNummer))
@@ -78,28 +92,38 @@ class TexDateiMitSql {
   }
 
   private erzeugeCodeDatenbankErstellung (datenbankName: string): string {
-    return `DROP DATABASE IF EXISTS ${datenbankName};\n` +
+    return (
+      `DROP DATABASE IF EXISTS ${datenbankName};\n` +
       `CREATE DATABASE ${datenbankName};\n` +
-      `\\c ${datenbankName}\n` // mysql: USE name;
+      `\\c ${datenbankName}\n`
+    ) // mysql: USE name;
   }
 
   findeErzeugungsCode (): string {
     const regExp = /% ?Datenbankname: ?(\w+).*?\\begin\{minted\}\{sql\}(.*?)\\end\{minted\}/gs
     const datenbank = regExp.exec(this.inhalt)
     if (!datenbank) {
-      zeigeFehler('Keine Erzeugungs-Code gefunden: % Datenbankname: Name\\begin{minted}{sql}…\\end{minted}')
+      zeigeFehler(
+        'Keine Erzeugungs-Code gefunden: % Datenbankname: Name\\begin{minted}{sql}…\\end{minted}'
+      )
     }
     // postgresql \c funktioniert nur mit klein geschriebenen Datenbank-Namen
     const datenbankName = datenbank[1].toLowerCase()
     const erzeugungsCode = datenbank[2]
     this.inhalt = this.inhalt.replace(regExp, '')
 
-    this.schreibeTemporäreSqlDatei('erzeugung', this.erzeugeCodeDatenbankErstellung(datenbankName) + erzeugungsCode)
+    this.schreibeTemporäreSqlDatei(
+      'erzeugung',
+      this.erzeugeCodeDatenbankErstellung(datenbankName) + erzeugungsCode
+    )
     return datenbankName
   }
 
   erzeugeLöschungsCode (): void {
-    this.schreibeTemporäreSqlDatei('loeschung', `DROP DATABASE IF EXISTS ${this.datenbankName};\n`)
+    this.schreibeTemporäreSqlDatei(
+      'loeschung',
+      `DROP DATABASE IF EXISTS ${this.datenbankName};\n`
+    )
   }
 
   findeAnfragen (): void {
@@ -110,7 +134,10 @@ class TexDateiMitSql {
       übereinstimmung = re.exec(this.inhalt)
       if (übereinstimmung) {
         zähler++
-        this.schreibeTemporäreSqlDatei(this.gibAnfrageBezeichner(zähler), `\\c ${this.datenbankName} \n` + übereinstimmung[1])
+        this.schreibeTemporäreSqlDatei(
+          this.gibAnfrageBezeichner(zähler),
+          `\\c ${this.datenbankName} \n` + übereinstimmung[1]
+        )
       }
     } while (übereinstimmung)
     this.anzahlAnfragen = zähler
@@ -127,7 +154,10 @@ class TexDateiMitSql {
   }
 }
 
-export function führeSqlAus (pfad: string, cmdObj: { [optionen: string]: any }): void {
+export function führeSqlAus (
+  pfad: string,
+  cmdObj: { [optionen: string]: any }
+): void {
   const datei = new TexDateiMitSql(pfad)
   datei.findeAnfragen()
   if (cmdObj.anfrage) {

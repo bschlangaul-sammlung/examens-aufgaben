@@ -17,15 +17,21 @@ function gibVorlage(werte) {
     var zitatReferenz = '';
     if (werte.zitatReferenz)
         zitatReferenz = werte.zitatReferenz;
-    return '\\documentclass{lehramt-informatik-aufgabe}\n' +
+    return ('\\documentclass{lehramt-informatik-aufgabe}\n' +
         '\\liLadePakete{}\n' +
         '\\begin{document}\n' +
-        '\\liAufgabenTitel{' + titel + '}\n' +
-        '\\section{' + aufgabenName + '\n' +
-        '\\index{}\n' +
-        '\\footcite{' + zitatReferenz + '}}\n' +
+        '\\liAufgabenTitel{' +
+        titel +
+        '}\n' +
+        '\\section{' +
+        aufgabenName +
         '\n' +
-        '\\end{document}\n';
+        '\\index{}\n' +
+        '\\footcite{' +
+        zitatReferenz +
+        '}}\n' +
+        '\n' +
+        '\\end{document}\n');
 }
 function erzeugeAufgabenVorlage(pfad, werte) {
     fs_1.default.mkdirSync(path_1.default.dirname(pfad), { recursive: true });

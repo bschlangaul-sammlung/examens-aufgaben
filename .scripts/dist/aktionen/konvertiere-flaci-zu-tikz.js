@@ -46,11 +46,13 @@ function formatiereZustand(state) {
 function formatiereÜbergang(trans, states) {
     var source = states[trans.Source];
     var target = states[trans.Target];
-    var eingabeSymbole = '$' + trans.Labels.map(function (value) {
-        if (value === '')
-            return '\\varepsilon';
-        return value;
-    }).join(',') + '$';
+    var eingabeSymbole = '$' +
+        trans.Labels.map(function (value) {
+            if (value === '')
+                return '\\varepsilon';
+            return value;
+        }).join(',') +
+        '$';
     var optionen = bestimmeÜbergangsOptionen(trans);
     return "  \\path (" + source + ") edge" + formatiereOptionen(optionen) + " node{" + eingabeSymbole + "} (" + target + ");";
 }
@@ -91,9 +93,11 @@ function formatiereKellerÜbergang(trans, states) {
             var übergang = [];
             übergang.push(formatiereKellerZeichen(label[1]));
             übergang.push(formatiereKellerZeichen(label[0]));
-            var kellerAktion = label[2].map(function (value) {
+            var kellerAktion = label[2]
+                .map(function (value) {
                 return formatiereKellerZeichen(value);
-            }).join(' ');
+            })
+                .join(' ');
             if (kellerAktion === '')
                 kellerAktion = 'EPSILON';
             übergang.push(kellerAktion);
@@ -228,7 +232,9 @@ function formatiereAutomat(def) {
     else {
         envOption = 'li turingmaschine';
     }
-    var inhalt = statesRendered.join('\n') + '\n\n' + transitionsRendered.join('\n').replace(/\n$/, '');
+    var inhalt = statesRendered.join('\n') +
+        '\n\n' +
+        transitionsRendered.join('\n').replace(/\n$/, '');
     var tikzPicture = formatiereTexEnv('center', formatiereTexEnv('tikzpicture', inhalt, envOption));
     var liAntwort = tikzPicture + '\n' + formatiereFlaciLink(def);
     return formatiereTexEnv('liAntwort', liAntwort);

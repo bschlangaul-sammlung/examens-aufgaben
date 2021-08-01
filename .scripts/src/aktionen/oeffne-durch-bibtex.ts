@@ -4,17 +4,23 @@ import glob from 'glob'
 import { homedir } from 'os'
 import path from 'path'
 
-const basisPfadExterneDateien =  path.join(homedir(), 'git-repositories/content/informatik-studium')
+const basisPfadExterneDateien = path.join(
+  homedir(),
+  'git-repositories/content/informatik-studium'
+)
 
-function analysierteBibDatei(dateiPfad: string) {
-  let parser = new BibLatexParser(leseRepoDatei(dateiPfad), {processUnexpected: true, processUnknown: true})
+function analysierteBibDatei (dateiPfad: string) {
+  let parser = new BibLatexParser(leseRepoDatei(dateiPfad), {
+    processUnexpected: true,
+    processUnknown: true
+  })
   return parser.parse()
 }
 
 class BibtexReferenzZuDateiKonverter {
   index: { [referenz: string]: string[] }
 
-  constructor() {
+  constructor () {
     this.index = {}
   }
 
@@ -23,7 +29,9 @@ class BibtexReferenzZuDateiKonverter {
     for (const key in entries) {
       const entry = entries[key]
       if (entry.unexpected_fields && entry.unexpected_fields.file) {
-        this.index[entry.entry_key] = this.findeMehrerePdfDatien(entry.unexpected_fields.file)
+        this.index[entry.entry_key] = this.findeMehrerePdfDatien(
+          entry.unexpected_fields.file
+        )
       }
     }
   }
@@ -34,11 +42,13 @@ class BibtexReferenzZuDateiKonverter {
    */
   findeMehrerePdfDatien (eingabe: string): string[] {
     let ergebnis = eingabe.split('.pdf')
-    ergebnis = ergebnis.map(function(dateiBasisName: string): string {
-      return dateiBasisName.trim().replace(/^, +/, '')
-    }).filter(function(dateiBasisName: string): boolean {
-      return dateiBasisName ? true : false
-    })
+    ergebnis = ergebnis
+      .map(function (dateiBasisName: string): string {
+        return dateiBasisName.trim().replace(/^, +/, '')
+      })
+      .filter(function (dateiBasisName: string): boolean {
+        return dateiBasisName ? true : false
+      })
     return ergebnis
   }
 
@@ -66,7 +76,10 @@ export function öffneDurchBibtex (referenz: string) {
       externeDateien.filter(function (externerDateiPfad: string) {
         if (externerDateiPfad.includes(`${dateiName}.pdf`)) {
           console.log(`Öffne Datei: ${externerDateiPfad}`)
-          öffneProgramm('xdg-open', path.join(basisPfadExterneDateien, externerDateiPfad))
+          öffneProgramm(
+            'xdg-open',
+            path.join(basisPfadExterneDateien, externerDateiPfad)
+          )
         }
       })
     }

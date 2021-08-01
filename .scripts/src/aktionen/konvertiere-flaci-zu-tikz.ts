@@ -96,7 +96,7 @@ interface StateNames {
   [stateId: number]: string
 }
 
-function formatierteLänge(länge: number, spiegeln: boolean = false): string {
+function formatierteLänge (länge: number, spiegeln: boolean = false): string {
   if (spiegeln) {
     länge = länge * -1
   }
@@ -120,23 +120,34 @@ function formatiereZustand (state: FlaciZustand): string {
   if (state.Start) additionsOptions = ',initial'
   if (state.Final) additionsOptions = additionsOptions + ',accepting'
   let name = formatiereZustandsName(state)
-  const koordinate = `at (${formatierteLänge(state.x)},${formatierteLänge(state.y, true)})`
+  const koordinate = `at (${formatierteLänge(state.x)},${formatierteLänge(
+    state.y,
+    true
+  )})`
   return `  \\node[state${additionsOptions}] (${state.Name}) ${koordinate} {${name}};`
 }
 
 function formatiereÜbergang (trans: FlaciÜbergang, states: StateNames) {
   const source = states[trans.Source]
   const target = states[trans.Target]
-  const eingabeSymbole = '$' + trans.Labels.map(value => {
-    if (value === '') return '\\varepsilon'
-    return value
-  }).join(',') + '$'
+  const eingabeSymbole =
+    '$' +
+    trans.Labels.map(value => {
+      if (value === '') return '\\varepsilon'
+      return value
+    }).join(',') +
+    '$'
 
   const optionen = bestimmeÜbergangsOptionen(trans)
-  return `  \\path (${source}) edge${formatiereOptionen(optionen)} node{${eingabeSymbole}} (${target});`
+  return `  \\path (${source}) edge${formatiereOptionen(
+    optionen
+  )} node{${eingabeSymbole}} (${target});`
 }
 
-function bestimmeÜbergangsOptionen(trans: FlaciÜbergang | FlaciKellerÜbergang | FlaciTuringÜbergang, standardOption: string = 'auto'): string[] {
+function bestimmeÜbergangsOptionen (
+  trans: FlaciÜbergang | FlaciKellerÜbergang | FlaciTuringÜbergang,
+  standardOption: string = 'auto'
+): string[] {
   let optionen = [standardOption]
   if (trans.Source === trans.Target) {
     // loop above ergibt eine kleiner Schleife, ähnlich wie loop left etc.
@@ -157,13 +168,16 @@ function formatiereOptionen (optionen: string[]): string {
   return ''
 }
 
-function formatiereKellerZeichen(zeichen: string): string {
+function formatiereKellerZeichen (zeichen: string): string {
   if (zeichen === '') return 'EPSILON'
   if (zeichen === '#') return 'KELLERBODEN'
   return zeichen
 }
 
-function formatiereKellerÜbergang (trans: FlaciKellerÜbergang, states: StateNames) {
+function formatiereKellerÜbergang (
+  trans: FlaciKellerÜbergang,
+  states: StateNames
+) {
   const source = states[trans.Source]
   const target = states[trans.Target]
 
@@ -172,9 +186,11 @@ function formatiereKellerÜbergang (trans: FlaciKellerÜbergang, states: StateNa
     const übergang = []
     übergang.push(formatiereKellerZeichen(label[1]))
     übergang.push(formatiereKellerZeichen(label[0]))
-    let kellerAktion = label[2].map((value) => {
-      return formatiereKellerZeichen(value)
-    }).join(' ')
+    let kellerAktion = label[2]
+      .map(value => {
+        return formatiereKellerZeichen(value)
+      })
+      .join(' ')
     if (kellerAktion === '') kellerAktion = 'EPSILON'
     übergang.push(kellerAktion)
     übergänge.push('    ' + übergang.join(', '))
@@ -183,15 +199,20 @@ function formatiereKellerÜbergang (trans: FlaciKellerÜbergang, states: StateNa
   const optionen = bestimmeÜbergangsOptionen(trans, 'above')
   const übergängeFormatiert = übergänge.join(';\n') + ';'
 
-  return `  \\liKellerKante${formatiereOptionen(optionen)}{${source}}{${target}}{\n${übergängeFormatiert}\n  }\n`
+  return `  \\liKellerKante${formatiereOptionen(
+    optionen
+  )}{${source}}{${target}}{\n${übergängeFormatiert}\n  }\n`
 }
 
-function formatiereTuringZeichen(zeichen: string): string {
+function formatiereTuringZeichen (zeichen: string): string {
   if (zeichen === '☐') return 'LEER'
   return zeichen
 }
 
-function formatiereTuringÜbergang (trans: FlaciTuringÜbergang, states: StateNames) {
+function formatiereTuringÜbergang (
+  trans: FlaciTuringÜbergang,
+  states: StateNames
+) {
   const source = states[trans.Source]
   const target = states[trans.Target]
 
@@ -207,19 +228,25 @@ function formatiereTuringÜbergang (trans: FlaciTuringÜbergang, states: StateNa
   const optionen = bestimmeÜbergangsOptionen(trans, 'above')
   const übergängeFormatiert = übergänge.join(';\n') + ';'
 
-  return `  \\liTuringKante${formatiereOptionen(optionen)}{${source}}{${target}}{\n${übergängeFormatiert}\n  }\n`
+  return `  \\liTuringKante${formatiereOptionen(
+    optionen
+  )}{${source}}{${target}}{\n${übergängeFormatiert}\n  }\n`
 }
 
-function formatiereFlaciLink(def: FlaciDefinition) {
+function formatiereFlaciLink (def: FlaciDefinition) {
   return `\\liFlaci{A${def.GUID}}`
 }
 
-function formatiereTexEnv(name: string, inhalt: string, optionen: string | null = null): string {
+function formatiereTexEnv (
+  name: string,
+  inhalt: string,
+  optionen: string | null = null
+): string {
   let opt = ''
   if (optionen != null) {
     opt = '[' + optionen + ']'
   }
-  return '\\begin{' + name +  '}' + opt + '\n' + inhalt + '\n\\end{' + name +  '}'
+  return '\\begin{' + name + '}' + opt + '\n' + inhalt + '\n\\end{' + name + '}'
 }
 
 type AutomatenTyp = 'endlicher' | 'keller' | 'turing'
@@ -251,10 +278,14 @@ function formatiereAutomat (def: FlaciDefinition): string {
         transitionsRendered.push(formatiereÜbergang(transition, stateNames))
       } else if (automatenTyp === 'keller') {
         const trans = transition as any
-        transitionsRendered.push(formatiereKellerÜbergang(<FlaciKellerÜbergang> trans, stateNames))
+        transitionsRendered.push(
+          formatiereKellerÜbergang(<FlaciKellerÜbergang>trans, stateNames)
+        )
       } else {
         const trans = transition as any
-        transitionsRendered.push(formatiereTuringÜbergang(<FlaciTuringÜbergang> trans, stateNames))
+        transitionsRendered.push(
+          formatiereTuringÜbergang(<FlaciTuringÜbergang>trans, stateNames)
+        )
       }
     }
   }
@@ -262,22 +293,24 @@ function formatiereAutomat (def: FlaciDefinition): string {
   let envOption: string
   if (automatenTyp === 'endlicher') {
     envOption = 'li automat'
-  } else if (automatenTyp === 'keller'){
+  } else if (automatenTyp === 'keller') {
     envOption = 'li kellerautomat'
   } else {
     envOption = 'li turingmaschine'
   }
-  const inhalt = statesRendered.join('\n') + '\n\n' + transitionsRendered.join('\n').replace(/\n$/, '')
-  const tikzPicture = formatiereTexEnv('center', formatiereTexEnv(
-    'tikzpicture',
-    inhalt,
-    envOption
-  ))
+  const inhalt =
+    statesRendered.join('\n') +
+    '\n\n' +
+    transitionsRendered.join('\n').replace(/\n$/, '')
+  const tikzPicture = formatiereTexEnv(
+    'center',
+    formatiereTexEnv('tikzpicture', inhalt, envOption)
+  )
   const liAntwort = tikzPicture + '\n' + formatiereFlaciLink(def)
   return formatiereTexEnv('liAntwort', liAntwort)
 }
 
-export function konvertiereFlaciZuTikz(jsonDateiPfad: string) {
+export function konvertiereFlaciZuTikz (jsonDateiPfad: string) {
   if (!jsonDateiPfad.match(/^\//)) {
     jsonDateiPfad = path.join(process.cwd(), jsonDateiPfad)
   }
