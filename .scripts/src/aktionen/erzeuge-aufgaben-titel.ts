@@ -1,8 +1,59 @@
 import { ExamensAufgabe } from '../aufgabe'
 import { aufgabenSammlung } from '../sammlung'
 
+interface Titel {
+  Titel: string
+  Thematik?: string
+  Fussnote?: string
+  FussnoteSeite?: string
+  RelativerPfad: string
+  ExamenNummer?: number
+  ExamenJahr?: number
+  ExamenMonat?: string
+  ExamenThemaNr?: number
+  ExamenTeilaufgabeNr?: number
+  ExamenAufgabeNr?: number
+}
+
+function sammleDaten (dateiPfad: string): Titel {
+  const aufgabe = aufgabenSammlung.gib(dateiPfad)
+  const titel: Titel = {
+    Titel: aufgabe.titelFormatiert,
+    Thematik: aufgabe.titel,
+    RelativerPfad: aufgabe.relativerPfad
+  }
+
+  if (aufgabe.istExamen) {
+    const examensAufgabe: ExamensAufgabe = aufgabe as ExamensAufgabe
+
+    titel.ExamenNummer = examensAufgabe.examen.nummer
+    titel.ExamenJahr = examensAufgabe.examen.jahr
+    titel.ExamenMonat = examensAufgabe.examen.monatMitNullen
+
+    if (examensAufgabe.thema != null) {
+      titel.ExamenThemaNr = examensAufgabe.thema
+    }
+    if (examensAufgabe.teilaufgabe != null) {
+      titel.ExamenTeilaufgabeNr = examensAufgabe.teilaufgabe
+    }
+
+    titel.ExamenAufgabeNr = examensAufgabe.aufgabe
+  }
+
+  return titel
+}
+
+function macheTex (titel: Titel): string {
+  const schlüsselWertPaare: string[] = []
+  Object.keys(titel).forEach(schlüssel => {
+    const wert = titel[schlüssel as keyof Titel]
+    schlüsselWertPaare.push(`  ${schlüssel} = ${wert},`)
+  })
+  const schlüsselWerte: string = schlüsselWertPaare.join('\n')
+  return `\\liSetzeAufgabenTitel{\n${schlüsselWerte}\n}`
+}
+
 /**
- *
  * ```latex
  * \liSetzeAufgabenTitel{
  *   Titel = Aufgabe 2,
@@ -18,42 +69,11 @@ import { aufgabenSammlung } from '../sammlung'
  * }
  * ```
  */
-export function erzeugeAufgabenTitel (dateiPfad: string) {
+export function erzeugeAufgabenTitel (dateiPfad: string): void {
   console.log(dateiPfad)
 
-  const aufgabe = aufgabenSammlung.gib(dateiPfad)
-  const titel: any = {
-    Thematik: aufgabe.titel,
-    RelativerPfad: aufgabe.relativerPfad
-  }
+  const titel = sammleDaten(dateiPfad)
+  const texMarkup = macheTex(titel)
 
-  if (aufgabe.istExamen) {
-    const examensAufgabe: ExamensAufgabe = aufgabe as ExamensAufgabe
-
-    titel['ExamenNummer'] = examensAufgabe.examen.nummer
-    titel['ExamenJahr'] = examensAufgabe.examen.jahr
-    titel['ExamenMonat'] = examensAufgabe.examen.monatMitNullen
-
-    if (examensAufgabe.thema != null) {
-      titel['ExamenThemaNr'] = examensAufgabe.thema
-    }
-    if (examensAufgabe.teilaufgabe != null) {
-      titel['ExamenTeilaufgabeNr'] = examensAufgabe.teilaufgabe
-    }
-
-    titel['ExamenAufgabeNr'] = examensAufgabe.aufgabe
-  }
-
-  const schlüsselWertPaare: string[] = []
-  for (const schlüssel in titel) {
-    const wert = titel[schlüssel]
-    schlüsselWertPaare.push(`  ${schlüssel} = ${wert},`)
-  }
-
-  console.log(titel)
-
-  const schlüsselWerte: string = schlüsselWertPaare.join('\n')
-
-  const texMakro: string = `\\liSetzeAufgabenTitel{\n${schlüsselWerte}\n}`
-  console.log(texMakro)
+  console.log(texMarkup)
 }
