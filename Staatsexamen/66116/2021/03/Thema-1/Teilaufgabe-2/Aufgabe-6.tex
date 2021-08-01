@@ -1,0 +1,116 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{Fußballweltmeisterschaft}
+\section{Aufgabe 6
+\index{SQL}
+\footcite{66116:2021:03}}
+
+Gegeben ist folgendes Relationenschema zur Verwaltung von Daten aus der Fußballweltmeisterschaft:
+
+NATION (Land, Kapitän, Trainer)
+Kapitän ist Fremdschlüssel zu Spieler\_ID in SPIELER.
+
+MATCH (Match\_ID, Ort, Datum, Teaml, Team2, ToreTeaml, ToreTeam2)
+Teami ist Fremdschlüssel zu Land in NATION.
+Team2 ist Fremdschlüssel zu Land in NATION.
+
+SPIELER (Spieler\_ID, Name, Vorname, Wohnort, Land)
+Land ist Fremdschlüssel zu Land in NATION.
+
+PLATZVERWEISE (Platzverweis\_ID,Match\_ID, Spieler\_ID, Spielminute)
+Match\_ID ist Fremdschlüsssel zu Match\_ID in MATCH.
+Spieler\_ID ist Fremdschlüssel zu Spieler\_ID in SPIELER.
+
+Die Primärschlüssel der Relationen sind wie üblich durch Unterstreichen
+gekennzeichnet. Pro Ort und Datum findet jeweils nur ein Spiel statt.
+
+Formulieren Sie folgende Abfragen in SQL. Vermeiden Sie nach Möglichkeit
+übermäßige Nutzung von Joins und Views.
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Ermitteln Sie die Anzahl der Platzverweise pro Spieler und geben
+Sie jeweils Name und Vorname des Spielers mit aus. Die Ausgabe soll nach
+der Anzahl der Platzverweise absteigend erfolgen.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT COUNT(*) AS Anzahl, S.Name, S.Vorname
+FROM Platzverweise P, Spieler S
+WHERE P.Spieler_ID = S.Spieler_ID
+GROUP BY P.Spieler_ID
+ORDER BY Anzahl DESC;
+\end{minted}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Welches ist die maximale Anzahl an Toren, die eine Mannschaft
+insgesamt im Turnier erzielt hat? (Sie dürfen der Einfachheit halber
+annehmen, dass jede Mannschaft jeweils mindestens einmal als Teami und
+Team2 angetreten ist.)
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT Team1Tore.Team, SUM(Team1Tore.Summe + Team2Tore.Summe) AS Tore
+FROM (SELECT Team1 AS Team, SUM(ToreTeam1) AS Summe
+ FROM Match
+ GROUP BY Team1) AS Team1Tore,
+ (SELECT Team2 AS Team, SUM(ToreTeam2) AS Summe
+ FROM Match
+ GROUP BY Team2) AS Team2Tore
+WHERE Team1Tore.Team = Team2Tore.Team
+\end{minted}
+
+\begin{minted}{sql}
+SELECT Team1 AS Team, SUM(ToreTeam1) AS Summe
+FROM Match
+GROUP BY Team1
+UNION
+SELECT Team2 AS Team, SUM(ToreTeam2) AS Summe
+FROM Match
+GROUP BY Team2
+\end{minted}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Wie viele Tore sind im Turnier insgesamt gefallen?
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT SUM(ToreTeam1 + ToreTeam2) AS GesamtanzahlTore
+FROM Match
+\end{minted}
+\end{liAntwort}
+
+%%
+% d)
+%%
+
+\item Ermitteln Sie die Namen und Länder der fünf Spieler, die nach der
+kürzesten Spielzeit einen Platzverweis erhielten. Die Ausgabe soll
+nummeriert erfolgen (beginnend bei 1 für die kürzeste Spielzeit).
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT S.Name, S.Land, COUNT(*) AS Rang
+FROM Spieler S, Platzverweise P1, Platzverweise P2
+WHERE S.Spieler_ID = P2.Spieler_ID
+AND P1.Spielminute <= P2.Spielminute
+GROUP BY P2.Spieler_ID
+HAVING COUNT(*) < 6
+ORDER BY Rang;
+\end{minted}
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}

@@ -1,0 +1,116 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe}
+\begin{document}
+\liAufgabenTitel{}
+\section{Aufgabe 5
+\index{Transaktionen}
+\footcite{66116:2021:03}}
+
+Gegeben sind die folgenden transaktionsähnlichen Abläufe. (Zunächst wird
+auf das Setzen von Sperren verzichtet.) Hierbei steht R(X) für ein
+Lesezugriff auf X und W(X) für einen Schreibzugriff auf X.
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+T1 & T2 \\\hline
+R(A) & R(D) \\
+A := A-10 & D := D-20 \\
+W(A) & W(D) \\
+R(C)   & R(A) \\
+R(B) & A := A+20 \\
+B := B+10 & W(A) \\
+W(B)      &
+\\\hline
+\end{tabular}
+\end{center}
+
+\noindent
+Betrachten Sie folgenden Schedule:
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+T1 & T2 \\\hline
+
+R(A) & \\
+
+& R(D) \\
+& D := D-20 \\
+& W(D) \\
+& R(A) \\
+& A := A+20 \\
+& W(A) \\
+
+A := A-10 & \\
+W(A) & \\
+R(C) & \\
+R(B) & \\
+B := B+10 & \\
+W(B) & \\\hline
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Geben Sie die Werte von $A$, $B$, $C$ und $D$ nach Ablauf des Schedules
+an, wenn mit $A = 100$, $B = 200$, $C = \text{true}$ und $D = 150$ begonnen wird.
+
+\begin{liAntwort}
+\begin{description}
+\item[A] 90 (A := A - 10 := 100 - 10) T2 schreibt 120 in A, was aber von T1 wiederüberschrieben wird.
+\item[B] 210 (B wird nur in T1 gelesen, verändert und geschriebe)
+\item[C] true (C wird nur in T1 gelesen)
+\item[D] 130 (D wird nur in T2 gelesen, verändert und geschrieben)
+\end{description}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Geben Sie den Dependency-Graphen des Schedules an.
+
+\begin{liAntwort}
+
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Geben Sie alle auftretenden Konflikte an.
+
+\begin{liAntwort}
+
+\end{liAntwort}
+
+%%
+% d)
+%%
+
+\item Begründen Sie, ob der Schedule serialisierbar ist.
+
+\begin{liAntwort}
+
+\end{liAntwort}
+
+%%
+% e)
+%%
+
+\item Beschreiben Sie, wie die beiden Transaktionen mit LOCK Aktionen
+erweitert werden können, so dass nur noch serialisierbare Schedules
+ausgeführt werden können. Die Angabe eines konkreten Schedules ist nicht
+zwingend notwendig.
+
+\begin{liAntwort}
+
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}
