@@ -22,6 +22,12 @@ export class Aufgabe {
   stichwörter: string[] = []
   titel?: string
 
+  /**
+   * Zeigt an, ob die Aufgabe eine normale Aufgabe ist oder eine Examensaufgabe.
+   * Dieser Wert wird in der spezialisierten Klasse Examensaufgabe auf wahr gesetzt.
+   */
+  istExamen: boolean = false
+
   static pfadRegExp: RegExp = /.*Aufgabe_.*\.tex/
 
   constructor (pfad: string) {
@@ -89,6 +95,10 @@ export class Aufgabe {
     relativerPfad = relativerPfad.replace('.tex', '')
     return `\\liAufgabe{${relativerPfad}}`
   }
+
+  get relativerPfad (): string {
+    return macheRelativenPfad(this.pfad)
+  }
 }
 
 export class ExamensAufgabe extends Aufgabe {
@@ -105,6 +115,7 @@ export class ExamensAufgabe extends Aufgabe {
   constructor (pfad: string, examen: Examen) {
     super(pfad)
     this.examen = examen
+    this.istExamen = true
     examen.aufgaben[pfad] = this
     const treffer = pfad.match(ExamensAufgabe.pfadRegExp)
     if (!treffer || !treffer.groups) {

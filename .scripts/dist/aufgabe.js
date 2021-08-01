@@ -38,6 +38,11 @@ var tex_1 = require("./tex");
 var Aufgabe = /** @class */ (function () {
     function Aufgabe(pfad) {
         this.stichwörter = [];
+        /**
+         * Zeigt an, ob die Aufgabe eine normale Aufgabe ist oder eine Examensaufgabe.
+         * Dieser Wert wird in der spezialisierten Klasse Examensaufgabe auf wahr gesetzt.
+         */
+        this.istExamen = false;
         this.pfad = Aufgabe.normalisierePfad(pfad);
         if (fs_1.default.existsSync(this.pfad)) {
             this.inhalt = helfer_1.leseRepoDatei(this.pfad);
@@ -109,6 +114,13 @@ var Aufgabe = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    Object.defineProperty(Aufgabe.prototype, "relativerPfad", {
+        get: function () {
+            return helfer_1.macheRelativenPfad(this.pfad);
+        },
+        enumerable: false,
+        configurable: true
+    });
     Aufgabe.pfadRegExp = /.*Aufgabe_.*\.tex/;
     return Aufgabe;
 }());
@@ -118,6 +130,7 @@ var ExamensAufgabe = /** @class */ (function (_super) {
     function ExamensAufgabe(pfad, examen) {
         var _this = _super.call(this, pfad) || this;
         _this.examen = examen;
+        _this.istExamen = true;
         examen.aufgaben[pfad] = _this;
         var treffer = pfad.match(ExamensAufgabe.pfadRegExp);
         if (!treffer || !treffer.groups) {
