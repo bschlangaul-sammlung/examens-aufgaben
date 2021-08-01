@@ -35,6 +35,28 @@ Nichtschlüsselkandidaten
 \end{description}
 \end{liLernkartei}
 
+2NF verletzt
+
+\FA{
+  A -> C;
+  B -> C;
+}
+
+3NF verletzt
+
+\FA{
+  A -> BC;
+  B -> C;
+}
+
+BCNF verletzt
+
+\FA{
+  AB -> C;
+  AC -> B;
+  B -> C;
+}
+
 %-----------------------------------------------------------------------
 %
 %-----------------------------------------------------------------------
@@ -235,7 +257,7 @@ Normalform (3NF)]{wiki:normalisierung}
 Sei $R$ eine Relationenschema in erster Normalform. Sei $F$ eine Menge
 einfacher nichttrivialer funktionaler Abhängigkeiten für $R$. $R$ ist in
 Boyce-Codd-Normalform (BCNF) bzgl. $F$, falls für jede FD $X \rightarrow
-A$ aus $F$ gilt: $X$ ist ein Superschlüssel von $R$.
+A$ aus $F$ gilt: $X$ ist ein Schlüsselkandidat von $R$.
 \footcite[Boyce-Codd-Normalform (BCNF)]{wiki:normalisierung}
 
 Ein Relationenschema ist in der Boyce-Codd-Normalform, wenn es in der
@@ -256,7 +278,11 @@ Schlüsselkandidaten sind.
 
 \liPseudoUeberschrift{BCNF verletzt}
 
-\FA[$R_{\text{Sportler}}$]{Name, Sportart -> Verein;}
+\FA[$R_{\text{Sportler}}$]{
+  Name, Verein -> Sportart;
+  Name, Sportart -> Verein;
+  Verein -> Sportart;
+}
 
 \liPseudoUeberschrift{in BCNF}
 
