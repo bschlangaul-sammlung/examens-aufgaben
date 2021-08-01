@@ -1,0 +1,169 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{relationale-algebra}
+\begin{document}
+\liAufgabenTitel{}
+\section{Aufgabe 3
+\index{Relationale Algebra}
+\footcite{66116:2021:03}}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Gegeben seien die folgenden beiden Relationen R1 und R2:
+
+\liPseudoUeberschrift{R1}
+
+\begin{tabular}{|l|l|l|}
+\hline
+P  & Q       & S \\ \hline
+10 & einfach & 5 \\ \hline
+15 & b       & 8 \\ \hline
+13 & einfach & 6 \\ \hline
+\end{tabular}
+
+\liPseudoUeberschrift{R2}
+
+\begin{tabular}{|l|l|l|}
+\hline
+A  & B & C \\ \hline
+10 & b & 6 \\ \hline
+13 & c & 3 \\ \hline
+10 & b & 5 \\ \hline
+\end{tabular}
+
+Geben Sie das Ergebnis des folgenden relationalen Ausdrucks an:
+
+\begin{center}
+$R_1 \bowtie_ {R_1.P = R_2.A} R_2$ (Equi-Join)
+\end{center}
+
+\begin{liAntwort}
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+P  & Q       & S & A  & B & C \\ \hline
+10 & einfach & 5 & 10 & b & 6 \\ \hline
+10 & einfach & 5 & 10 & b & 5 \\ \hline
+13 & einfach & 6 & 13 & c & 3 \\ \hline
+\end{tabular}
+\end{liAntwort}
+
+%%
+% a)?
+%%
+
+\item Zeichnen Sie den Operatorbaum zu folgender Abfrage in relationaler Algebra:
+
+\begin{liAntwort}
+\begin{tikzpicture}
+\node
+  (pi) {$\pi_{\text{NAME, BERUF, PNAME}}$};
+
+% joins
+\node[below=of pi]
+  (join person abt proj) {$\bowtie$}
+  edge (pi);
+
+\node[below right=of join person abt proj]
+  (join abt proj) {$\bowtie$}
+  edge (join person abt proj);
+
+% person
+\node[below left=of join person abt proj]
+  (pi person) {$\pi_{\,\text{ANR, NAME, BERUF}}$}
+  edge (join person abt proj);
+
+\node[below=of pi person]
+  (person) {PERSON}
+  edge (pi person);
+
+% abt
+\node[below left=of join abt proj]
+  (pi abt) {$\pi_{\,\text{ANR}}$}
+  edge (join abt proj);
+
+\node[below=of pi abt]
+  (sigma abt) {$\sigma_{\,\text{EIN} > 1 000 000}$}
+  edge (pi abt);
+
+\node[below=of sigma abt]
+  (abt) {ABT}
+  edge (sigma abt);
+
+% proj
+\node[below right=of join abt proj]
+  (pi proj) {$\pi_{\,\text{ANR, PNAME}}$}
+  edge (join abt proj);
+
+\node[below=of pi proj]
+  (sigma proj) {$\sigma_{\,\text{ORT = DD}}$}
+  edge (pi proj);
+
+\node[below=of sigma proj]
+  (proj) {PROJ}
+  edge (sigma proj);
+\end{tikzpicture}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Ist der linke (bzw. rechte) Verbundoperator (Left- bzw. Right-Outer Join) assoziativ? Falls ja,
+beweisen Sie die Aussage, falls nein, geben Sie ein Gegenbeispiel an.
+
+\begin{liAntwort}
+Nein. Beleg durch Gegenbeispiel:
+
+\liPseudoUeberschrift{R1}
+
+\begin{tabular}{|l|l|}
+\hline
+A & B  \\ \hline
+1 & 2  \\ \hline
+2 & 15 \\ \hline
+\end{tabular}
+
+\liPseudoUeberschrift{R2}
+
+\begin{tabular}{|l|l|}
+\hline
+A  & C  \\ \hline
+1  & 35 \\ \hline
+2  & 12 \\ \hline
+13 & 5  \\ \hline
+\end{tabular}
+
+\liPseudoUeberschrift{R3}
+
+\begin{tabular}{|l|l|}
+\hline
+B   & C  \\ \hline
+2   & 35 \\ \hline
+100 & 35 \\ \hline
+\end{tabular}
+
+\liPseudoUeberschrift{(R1 LEFT OUTER JOIN R2) LEFT OUTER JOIN R3}
+
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+R1.A & R1.B & R2.A & R2.C & R3.B & R3.C \\ \hline
+1    & 2    & 1    & 35   & 2    & 35   \\ \hline
+2    & 15   & 2    & 12   & NULL & NULL \\ \hline
+\end{tabular}
+
+\liPseudoUeberschrift{R1 LEFT OUTER JOIN (R2 LEFT OUTER JOIN R3)}
+
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+R1.A & R1.B & R2.A & R2.C & R3.B & R3.C \\ \hline
+1    & 2    & 1    & 35   & 2    & 35   \\ \hline
+2    & 15   & NULL & NULL & NULL & NULL \\ \hline
+\end{tabular}
+
+(Nur wenn beide Tabellen leer sind, wären auch die Outer Joins assoziativ).
+\end{liAntwort}
+\end{enumerate}
+\end{document}

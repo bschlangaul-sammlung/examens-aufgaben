@@ -2,22 +2,28 @@
 \ProvidesPackage{lehramt-informatik-typographie}[2021/03/20 Typographische Makros,
 die das Erscheinungsbild verändern. Die Schriftdefinition sind in
 formatierung.sty definiert.]
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \ExplSyntaxOn
-%\RequirePackage{wasysym}
+%    \end{macrocode}
+
+% Mit dem Packet wasysym gab es Unverträglichkeiten, deshalb verwenden wir fontawesome.
+%    \begin{macrocode}
+\RequirePackage{fontawesome}
 %    \end{macrocode}
 
 % \begin{macro}{\liErledigt}
 % |\liErledigt|: \liErledigt
 %    \begin{macrocode}
-\let\liErledigt=\CheckedBox
+\let\liErledigt=\faCheckSquareO
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\liNichtsZuTun}
 % |\liNichtsZuTun|: \liNichtsZuTun
 %    \begin{macrocode}
-\def\liNichtsZuTun{\liErledigt{}~Nichts~zu~tun}
+\def\liNichtsZuTun{\faCheckSquareO{}~Nichts~zu~tun}
 %    \end{macrocode}
 % \end{macro}
 
@@ -42,3 +48,6 @@ formatierung.sty definiert.]
 
 %    \begin{macrocode}
 \ExplSyntaxOff
+%    \end{macrocode}
+
+%    \begin{macrocode}

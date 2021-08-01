@@ -10,33 +10,83 @@
 \RequirePackage{amssymb}
 %    \end{macrocode}
 
+% Zum Zeichen von Operatorenbäumen verwenden wir TikZ
+
+% \begin{verbatim}
+% \begin{tikzpicture}
+%   \node
+%     (pi) {$\pi_{\text{Kunde.Name, Kunde.Geburtsdatum}}$};
+
+%   \node[below=of pi]
+%     (theta join) {$\bowtie_{\text{Kunde.ID = Rechnung.Kunde}}$}
+%     edge (pi);
+
+%   \node[below left=of theta join]
+%     {Kunde}
+%     edge(theta join);
+
+%   \node[below right=of theta join]
+%     (sigma rechnung) {$\sigma_{\text{Summe < 100}}$}
+%     edge (theta join);
+
+%   \node[below=of sigma rechnung]
+%     {Rechnung}
+%     edge(sigma rechnung);
+% \end{tikzpicture}
+% \end{verbatim}
+%
+% \begin{liBeispiel}
+% \begin{tikzpicture}
+%   \node
+%     (pi) {$\pi_{\text{Kunde.Name, Kunde.Geburtsdatum}}$};
+%
+%   \node[below=of pi]
+%     (theta join) {$\bowtie_{\text{Kunde.ID = Rechnung.Kunde}}$}
+%     edge (pi);
+%
+%   \node[below left=of theta join]
+%     {Kunde}
+%     edge(theta join);
+%
+%   \node[below right=of theta join]
+%     (sigma rechnung) {$\sigma_{\text{Summe < 100}}$}
+%     edge (theta join);
+%
+%   \node[below=of sigma rechnung]
+%     {Rechnung}
+%     edge(sigma rechnung);
+% \end{tikzpicture}
+% \end{liBeispiel}
 %    \begin{macrocode}
 \RequirePackage{tikz}
 \usetikzlibrary{positioning}
 %    \end{macrocode}
 
-% \begin{macro}{\ojoin}
+% Privates Makros, das zwei Querstriche erzeugt.
 %    \begin{macrocode}
-\def\ojoin{\setbox0=\hbox{$\bowtie$}%
-  \rule[-.02ex]{.25em}{.4pt}\llap{\rule[\ht0]{.25em}{.4pt}}}
+\def\o@join{\setbox0=\hbox{$\bowtie$}%
+  \rule[-.02ex]{.25em}{.4pt}\llap{\rule[\ht0]{.25em}{.4pt}}%
+}
 %    \end{macrocode}
-% \end{macro}
 
 % \begin{macro}{\leftouterjoin}
+% |A \leftouterjoin B|: $A \leftouterjoin B$
 %    \begin{macrocode}
-\def\leftouterjoin{\mathbin{\ojoin\mkern-5.8mu\bowtie}}
+\def\leftouterjoin{\mathbin{\o@join\mkern-5.8mu\bowtie}}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\rightouterjoin}
+% |A \rightouterjoin B|: $A \rightouterjoin B$
 %    \begin{macrocode}
-\def\rightouterjoin{\mathbin{\bowtie\mkern-5.8mu\ojoin}}
+\def\rightouterjoin{\mathbin{\bowtie\mkern-5.8mu\o@join}}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\fullouterjoin}
+% |A \fullouterjoin B|: $A \fullouterjoin B$
 %    \begin{macrocode}
-\def\fullouterjoin{\mathbin{\ojoin\mkern-5.8mu\bowtie\mkern-5.8mu\ojoin}}
+\def\fullouterjoin{\mathbin{\o@join\mkern-5.8mu\bowtie\mkern-5.8mu\o@join}}
 %    \end{macrocode}
 % \end{macro}
 

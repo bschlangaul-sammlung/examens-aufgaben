@@ -1,0 +1,128 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{normalformen,synthese-algorithmus}
+\begin{document}
+\let\FA=\liFunktionaleAbhaengigkeiten
+\let\schrittE=\liSyntheseUeberErklaerung
+
+\liAufgabenTitel{Normalisierung}
+\section{Aufgabe 4
+\index{Normalformen}
+\footcite{66116:2021:03}}
+
+Gegeben ist das folgende Relationenschema in erster Normalform,
+bestehend aus zwei Relationen:
+
+\begin{center}
+\texttt{Relation1(A, B, C, D, E)\\
+Relation2(F, G, H, A, E)}
+\end{center}
+
+\noindent
+In diesem Schema gelten die folgenden funktionalen Abhängigkeiten:
+
+\bigskip
+
+\FA{
+  A, B -> C;
+  A, B, C -> E;
+  A -> D;
+  F, G -> H, A;
+  G, H -> E;
+}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Nennen Sie die Bedingungen, damit ein Schema in erster Normalform
+ist.
+
+\begin{liAntwort}
+Ein Schema ist in erster Normalform, wenn es ausschließlich atomare
+Attributwerte aufweist.
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Überprüfen Sie, ob das Schema in zweiter Normalform ist.
+
+\begin{liAntwort}
+Eine Relation ist in 2NF, wenn sie in 1NF ist und jedes
+Nichtschlüsselattribut von jedem Schlüsselkandidaten voll funktional
+abhängig ist.
+ 
+Der Schlüsselkandidat ist (A, B) in Relation 1 sowie (F, G) in Relation
+2.
+
+Das Nichtschlüsselartribut D in Relation 1 ist nicht voll funktional
+abhängig von (A, B), sondern nur von A. Somit ist das Schema nicht in
+2NF. Alle anderen Nichtschlüsselattribute sind voll funktional abhängig.
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Wenden Sie den Synthesealgorithmus an, um das Schema in ein Schema
+in dritter Normalform zu überführen.
+
+\begin{liAntwort}
+\begin{enumerate}
+\item \schrittE{1}
+\begin{enumerate}
+\item \schrittE{1-1}
+
+\FA{
+  A, B -> C;
+  A, B -> E;
+  A -> D;
+  F, G -> H, A;
+  G, H -> E;
+}
+
+\item \schrittE{1-2}
+
+nichts zu tun
+
+\item \schrittE{1-3}
+
+nichts zu tun
+
+\item \schrittE{1-4}
+
+\FA{
+  A, B -> C, E;
+  A -> D;
+  F, G -> H, A;
+  G, H -> E;
+}
+
+\end{enumerate}
+\item \schrittE{2}
+\item \schrittE{3}
+\item \schrittE{4}
+\end{enumerate}
+\end{liAntwort}
+
+%%
+% d)
+%%
+
+\item Sei nun das Relationenschema R(A,B,C,D) in erster Normalform
+gegeben. In R gelten die folgenden funktionalen Abhängigkeiten:
+
+\FA{
+ A, B -> D;
+ B -> C;
+ C -> B;
+}
+
+Welches ist die höchste Normalform, in der sich das Schema R befindet?
+Begründen Sie Ihre Entscheidung.
+
+\end{enumerate}
+\end{document}
