@@ -67,33 +67,33 @@ K2 & S5 & S4 & 17.07.2011\\\hline
 % Datenbankname: mitfahrgelegenheit
 \begin{minted}{sql}
 CREATE TABLE Stadt (
-  SID varchar(100) NOT NULL PRIMARY KEY,
-  SName varchar(100) NOT NULL,
-  Bundesland varchar(100) NOT NULL
+  SID VARCHAR(100) NOT NULL PRIMARY KEY,
+  SName VARCHAR(100) NOT NULL,
+  Bundesland VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE Anfrage (
-  KID varchar(100) NOT NULL,
-  Start varchar(100) DEFAULT NULL REFERENCES Stadt (SID),
-  Ziel varchar(100) DEFAULT NULL REFERENCES Stadt (SID),
+  KID VARCHAR(100) NOT NULL,
+  Start VARCHAR(100) DEFAULT NULL REFERENCES Stadt (SID),
+  Ziel VARCHAR(100) DEFAULT NULL REFERENCES Stadt (SID),
   Datum date NOT NULL,
   PRIMARY KEY (KID, Start, Ziel, Datum)
 );
 
 CREATE TABLE Angebot (
-  KID varchar(100) NOT NULL,
-  Start varchar(100) DEFAULT NULL REFERENCES Stadt (SID),
-  Ziel varchar(100) DEFAULT NULL REFERENCES Stadt (SID),
+  KID VARCHAR(100) NOT NULL,
+  Start VARCHAR(100) DEFAULT NULL REFERENCES Stadt (SID),
+  Ziel VARCHAR(100) DEFAULT NULL REFERENCES Stadt (SID),
   Datum date NOT NULL,
   Plätze integer DEFAULT NULL,
   PRIMARY KEY (Datum, KID)
 );
 
 CREATE TABLE Kunde (
-  KID varchar(100) NOT NULL PRIMARY KEY,
-  Name varchar(100) DEFAULT NULL,
-  Vorname varchar(100) DEFAULT NULL,
-  Stadt varchar(100) DEFAULT NULL REFERENCES Stadt (SID)
+  KID VARCHAR(100) NOT NULL PRIMARY KEY,
+  Name VARCHAR(100) DEFAULT NULL,
+  Vorname VARCHAR(100) DEFAULT NULL,
+  Stadt VARCHAR(100) DEFAULT NULL REFERENCES Stadt (SID)
 );
 
 INSERT INTO Stadt (SID, SName, Bundesland) VALUES

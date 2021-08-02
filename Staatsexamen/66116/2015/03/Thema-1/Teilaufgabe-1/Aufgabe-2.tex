@@ -21,14 +21,14 @@ Auszeichnung\_Stück (CD\_ID, Position, Typ).
 \begin{minted}{sql}
 CREATE TABLE Interpret (
   Interpreten_ID integer PRIMARY KEY,
-  Name varchar(40),
+  Name VARCHAR(40),
   Bühnenstart date,
-  Geschäftsadresse varchar(100)
+  Geschäftsadresse VARCHAR(100)
 );
 
 CREATE TABLE CD (
   CD_ID integer PRIMARY KEY,
-  Name varchar(20),
+  Name VARCHAR(20),
   Interpreten_ID integer,
   Erscheinungsdatum date
 );
@@ -36,19 +36,19 @@ CREATE TABLE CD (
 CREATE TABLE Musikstück (
   CD_ID integer,
   Position integer,
-  Titel varchar(50),
+  Titel VARCHAR(50),
   Länge integer
 );
 
 CREATE TABLE Auszeichnung_CD (
   CD_ID integer,
-  Typ varchar(20)
+  Typ VARCHAR(20)
 );
 
 CREATE TABLE Auszeichnung_Stück (
   CD_ID integer,
   Position integer,
-  Typ varchar(20)
+  Typ VARCHAR(20)
 );
 
 INSERT INTO Interpret VALUES

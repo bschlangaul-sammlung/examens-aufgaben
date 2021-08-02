@@ -27,21 +27,21 @@ Unternehmen(Nummer, Name, Adresse)
 \begin{minted}{sql}
 CREATE TABLE unternehmen (
   Nummer integer NOT NULL PRIMARY KEY,
-  Name varchar(20) DEFAULT NULL,
-  Adresse varchar(50) DEFAULT NULL
+  Name VARCHAR(20) DEFAULT NULL,
+  Adresse VARCHAR(50) DEFAULT NULL
 );
 
 CREATE TABLE abteilung (
   Nummer integer NOT NULL PRIMARY KEY,
-  Name varchar(20) DEFAULT NULL,
+  Name VARCHAR(20) DEFAULT NULL,
   Budget float DEFAULT NULL,
-  Manager varchar(20) NOT NULL,
+  Manager VARCHAR(20) NOT NULL,
   UntNr integer DEFAULT NULL REFERENCES unternehmen (Nummer)
 );
 
 CREATE TABLE mitarbeiter (
   Nummer integer NOT NULL PRIMARY KEY,
-  Name varchar(20) NOT NULL,
+  Name VARCHAR(20) NOT NULL,
   Alter integer NOT NULL,
   Gehalt float NOT NULL,
   AbtNr integer NOT NULL REFERENCES abteilung (Nummer)

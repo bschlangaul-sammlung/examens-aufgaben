@@ -90,16 +90,16 @@ Zeitstempel sind in MEZ.
 % Datenbankname: fluginformationssystem
 \begin{minted}{sql}
 CREATE TABLE Flughaefen (
-  Code varchar(3) PRIMARY KEY,
-  Stadt varchar(20),
+  Code VARCHAR(3) PRIMARY KEY,
+  Stadt VARCHAR(20),
   Transferzeit integer
 );
 
 CREATE TABLE Verbindungen (
   ID integer PRIMARY KEY,
-  Von varchar(3) REFERENCES Flughaefen(Code),
-  Nach varchar(3) REFERENCES Flughaefen(Code),
-  Linie varchar(20),
+  Von VARCHAR(3) REFERENCES Flughaefen(Code),
+  Nach VARCHAR(3) REFERENCES Flughaefen(Code),
+  Linie VARCHAR(20),
   Abflug timestamp,
   Ankunft timestamp
 );

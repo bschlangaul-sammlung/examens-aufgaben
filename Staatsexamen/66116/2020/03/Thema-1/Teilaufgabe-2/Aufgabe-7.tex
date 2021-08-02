@@ -1,0 +1,70 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{normalformen}
+\begin{document}
+\let\FA=\liFunktionaleAbhaengigkeiten
+
+\liAufgabenTitel{Zehnkampf}
+\section{Aufgabe 7
+\index{SQL}
+\footcite{66116:2020:03}}
+
+Gegeben sei die Relation Zehnkampf, welche die Ergebnisse eines
+Zehnkampfwettkampfes verwaltet. Eine beispielhafte Ausprägung ist in
+nachfolgender Tabelle gegeben.
+
+Hinweise: Jeder Athlet kann in jeder Disziplin maximal ein Ergebnis
+erzielen. Außerdem können Sie davon ausgehen, dass jeder Name eindeutig
+ist.
+
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Name  & Disziplin  & Leistung & Einheit    & Punkte \\\hline
+John  & 100m       & 10.21    & Sekunden   & 845 \\
+Peter & Hochsprung & 213      & Zentimeter & 812 \\
+Peter & 100m       & 10.10    & Sekunden   & 920 \\
+Hans  & 100m       & 10.21    & Sekunden   & 845 \\
+Hans  & 400m       & 44.12    & Sekunden   & 910 \\
+\end{tabular}
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Bestimmen Sie alle funktionale Abhängigkeiten, die sinnvollerweise
+in der Relation Zehnkampf gelten.
+
+\begin{liAntwort}
+\FA{
+  Disziplin -> Einheit;
+  Disziplin, Leistung -> Punkte;
+  Name, Disziplin -> Leistung;
+}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Normalisieren Sie die Relation Zehnkampf unter Beachtung der von
+Ihnen identifzierten funktionalen Abhängigkeiten. Unterstreichen Sie
+alle Schlüssel des resultierenden Schemas.
+
+\begin{liAntwort}
+
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Bestimmen Sie in SQL den Athleten (oder bei Punktgleichheit, die
+Athleten), der in der Summe am meisten Punkte in allen Disziplinen
+erzielt hat. Benutzen Sie dazu die noch nicht normalisierte
+Ausgangsrelation Zehnkampf.
+
+\begin{liAntwort}
+
+\end{liAntwort}
+\end{enumerate}
+\end{document}

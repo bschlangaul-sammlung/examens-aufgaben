@@ -23,10 +23,10 @@ Erstelle SQL-Abfragen, die die folgenden Informationen liefern:
 % | Field                | Type         | Null | Key | Default | Extra |
 % +----------------------+--------------+------+-----+---------+-------+
 % | Liga_Nr              | int(1)       | NO   | PRI | NULL    |       |
-% | Verband              | varchar(255) | NO   |     | NULL    |       |
+% | Verband              | VARCHAR(255) | NO   |     | NULL    |       |
 % | Erstaustragung       | date         | NO   |     | NULL    |       |
 % | Meister              | int(11)      | YES  | MUL | NULL    |       |
-% | Rekordspieler        | varchar(255) | YES  |     | NULL    |       |
+% | Rekordspieler        | VARCHAR(255) | YES  |     | NULL    |       |
 % | Spiele_Rekordspieler | int(11)      | YES  |     | NULL    |       |
 % +----------------------+--------------+------+-----+---------+-------+
 
@@ -53,8 +53,8 @@ Erstelle SQL-Abfragen, die die folgenden Informationen liefern:
 % | Spieler_ID   | int(11)      | NO   | PRI | NULL    | auto_increment |
 % | Vereins_ID   | int(11)      | NO   | MUL | NULL    |                |
 % | Trikot_Nr    | int(11)      | YES  |     | NULL    |                |
-% | Spieler_Name | varchar(255) | NO   |     | NULL    |                |
-% | Land         | varchar(255) | YES  |     | NULL    |                |
+% | Spieler_Name | VARCHAR(255) | NO   |     | NULL    |                |
+% | Land         | VARCHAR(255) | YES  |     | NULL    |                |
 % | Spiele       | int(11)      | YES  |     | NULL    |                |
 % | Tore         | int(11)      | YES  |     | NULL    |                |
 % | Vorlagen     | int(11)      | YES  |     | NULL    |                |
@@ -66,7 +66,7 @@ Erstelle SQL-Abfragen, die die folgenden Informationen liefern:
 % | Field | Type         | Null | Key | Default | Extra          |
 % +-------+--------------+------+-----+---------+----------------+
 % | V_ID  | int(11)      | NO   | PRI | NULL    | auto_increment |
-% | Name  | varchar(255) | NO   | UNI | NULL    |                |
+% | Name  | VARCHAR(255) | NO   | UNI | NULL    |                |
 % | Liga  | int(1)       | YES  | MUL | NULL    |                |
 % +-------+--------------+------+-----+---------+----------------+
 
@@ -74,16 +74,16 @@ Erstelle SQL-Abfragen, die die folgenden Informationen liefern:
 \begin{minted}{sql}
 CREATE TABLE Liga (
   Liga_Nr integer NOT NULL PRIMARY KEY,
-  Verband varchar(255) NOT NULL,
+  Verband VARCHAR(255) NOT NULL,
   Erstaustragung date NOT NULL,
   Meister integer DEFAULT NULL,
-  Rekordspieler varchar(255) DEFAULT NULL,
+  Rekordspieler VARCHAR(255) DEFAULT NULL,
   Spiele_Rekordspieler integer DEFAULT NULL
 );
 
 CREATE TABLE Verein (
   V_ID integer NOT NULL PRIMARY KEY,
-  Name varchar(255) NOT NULL UNIQUE,
+  Name VARCHAR(255) NOT NULL UNIQUE,
   Liga integer DEFAULT NULL REFERENCES Liga (Liga_Nr)
 );
 
@@ -102,8 +102,8 @@ CREATE TABLE Spieler (
   Spieler_ID integer NOT NULL PRIMARY KEY,
   Vereins_ID integer NOT NULL REFERENCES Verein (V_ID),
   Trikot_Nr integer DEFAULT NULL,
-  Spieler_Name varchar(255) NOT NULL,
-  Land varchar(255) DEFAULT NULL,
+  Spieler_Name VARCHAR(255) NOT NULL,
+  Land VARCHAR(255) DEFAULT NULL,
   Spiele integer DEFAULT NULL,
   Tore integer DEFAULT NULL,
   Vorlagen integer DEFAULT NULL

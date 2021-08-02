@@ -25,32 +25,32 @@ Musiker (Vorname, Name, GebJahr, BName, \underline{ID})\\
 \begin{minted}{sql}
 CREATE TABLE Album (
   ANr integer PRIMARY KEY,
-  Titel varchar(20) NOT NULL,
-  Typ varchar(20),
-  Firma varchar(20),
+  Titel VARCHAR(20) NOT NULL,
+  Typ VARCHAR(20),
+  Firma VARCHAR(20),
   Preis decimal(5,0)
 );
 
 CREATE TABLE Band (
-  BName varchar(20) PRIMARY KEY,
-  Musikrichtung varchar(20),
+  BName VARCHAR(20) PRIMARY KEY,
+  Musikrichtung VARCHAR(20),
   Gruendungsjahr integer,
   Aktiv smallint
 );
 
 CREATE TABLE herausgegeben (
   ANr integer REFERENCES Album(ANr),
-  BName varchar(20) REFERENCES Band(BName),
+  BName VARCHAR(20) REFERENCES Band(BName),
   Jahr integer,
   PRIMARY KEY (ANr, BName)
 );
 
 CREATE TABLE Musiker (
   ID integer PRIMARY KEY,
-  Vorname varchar(20),
-  Name varchar(20),
+  Vorname VARCHAR(20),
+  Name VARCHAR(20),
   GebJahr integer,
-  BName varchar(20) REFERENCES Band(BName)
+  BName VARCHAR(20) REFERENCES Band(BName)
 );
 
 INSERT INTO Album (ANr, Titel, Typ, Firma, Preis) VALUES

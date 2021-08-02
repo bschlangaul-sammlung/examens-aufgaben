@@ -39,17 +39,17 @@ FK (Name) references Festung(Name)}
 \begin{minted}{sql}
 CREATE TABLE Figur (
   Id integer PRIMARY KEY,
-  Name varchar(20),
+  Name VARCHAR(20),
   Schwertkunst integer,
   Lebendig boolean,
-  Titel varchar(50)
+  Titel VARCHAR(50)
 );
 
 CREATE TABLE Familie (
   Id integer PRIMARY KEY,
-  Name varchar(20),
+  Name VARCHAR(20),
   Reichtum numeric(11,2),
-  Anführer varchar(20)
+  Anführer VARCHAR(20)
 );
 
 CREATE TABLE gehört_zu (
@@ -58,29 +58,29 @@ CREATE TABLE gehört_zu (
 );
 
 CREATE TABLE Drache (
-  Name varchar(20) PRIMARY KEY,
+  Name VARCHAR(20) PRIMARY KEY,
   Lebendig boolean
 );
 
 CREATE TABLE besitzt (
   Id integer REFERENCES Figur(Id),
-  Name varchar(20) REFERENCES Drache(Name)
+  Name VARCHAR(20) REFERENCES Drache(Name)
 );
 
 CREATE TABLE Festung (
-  Name varchar(20) PRIMARY KEY,
-  Ort varchar(30),
+  Name VARCHAR(20) PRIMARY KEY,
+  Ort VARCHAR(30),
   Ruine boolean
 );
 
 CREATE TABLE besetzt (
   Familie integer REFERENCES Familie(Id),
-  Festung varchar(20) REFERENCES Festung(Name)
+  Festung VARCHAR(20) REFERENCES Festung(Name)
 );
 
 CREATE TABLE lebt (
   Id integer REFERENCES Figur(Id),
-  Name varchar(20) REFERENCES Festung(Name)
+  Name VARCHAR(20) REFERENCES Festung(Name)
 );
 
 INSERT INTO Figur VALUES
@@ -262,7 +262,7 @@ zugeordnet, hat einen eindeutigen Namen und eine Stärke zwischen 0 und
 \begin{liAntwort}
 \begin{minted}{sql}
 CREATE TABLE Waffen (
-  Name varchar(20) PRIMARY KEY,
+  Name VARCHAR(20) PRIMARY KEY,
   Figur integer NOT NULL REFERENCES Figur(Id),
   Stärke integer NOT NULL CHECK(Stärke BETWEEN 0 AND 5)
 );

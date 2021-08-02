@@ -1,0 +1,167 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{Universitätssschema}
+\section{Aufgabe 8
+\index{SQL}
+\footcite{66116:2020:03}}
+
+\begin{minted}{sql}
+CREATE TABLE Assistenten (
+  PersNr INTEGER PRIMARY KEY,
+  Name VARCHAR(20) DEFAULT NULL,
+  Fachgebiet VARCHAR(30) DEFAULT NULL,
+  Boss INTEGER DEFAULT NULL
+);
+
+CREATE TABLE Professoren (
+  PersNr INTEGER PRIMARY KEY,
+  Name VARCHAR(30) DEFAULT NULL,
+  Rang VARCHAR(30) DEFAULT NULL,
+  Raum INTEGER DEFAULT NULL
+);
+
+CREATE TABLE Studierende (
+  MatrNr INTEGER PRIMARY KEYL,
+  Name VARCHAR(15) NOT NULL,
+  Semester INTEGER NOT NULL
+);
+
+CREATE TABLE hören (
+  MatrNr INTEGER NOT NULL,
+  VorlNr INTEGER NOT NULL
+);
+
+CREATE TABLE prüfen (
+  MatrNr INTEGER PRIMARY KEY,
+  VorlNr INTEGER NOT NULL,
+  PersNr INTEGER NOT NULL,
+  Note INTEGER NOT NULL
+);
+
+CREATE TABLE voraussetzen (
+  Vorgaenger INTEGER NOT NULL,
+  Nachfolger INTEGER NOT NULL
+);
+
+CREATE TABLE Vorlesungen (
+  VorlNr INTEGER PRIMARY KEY,
+  Titel VARCHAR(30) DEFAULT NULL,
+  SWS INTEGER DEFAULT NULL,
+  gelesenVon INTEGER DEFAULT NULL
+);
+
+INSERT INTO Assistenten (PersNr, Name, Fachgebiet, Boss) VALUES
+  (3002, 'Platon', 'Ideenlehre', 2125),
+  (3003, 'Aristoteles', 'Syllogistik', 2125),
+  (3004, 'Wittgenstein', 'Sprachtheorie', 2126),
+  (3005, 'Rhetikus', 'Planetenbewegung', 2127),
+  (3006, 'Newton', 'Kaplersche Gesetze', 2127),
+  (3007, 'Spinosa', 'Gott und Natur', 2124);
+
+INSERT INTO hören (MatrNr, VorlNr) VALUES
+  (25403, 5022),
+  (26120, 5001),
+  (27550, 4052),
+  (27550, 5001),
+  (28106, 5041),
+  (28106, 5052),
+  (28106, 5216),
+  (28106, 5259),
+  (29120, 5001),
+  (29120, 5041),
+  (29120, 5049),
+  (29555, 5001),
+  (29555, 5022);
+
+INSERT INTO Professoren (PersNr, Name, Rang, Raum) VALUES
+  (2125, 'Sokrates', 'C4', 226),
+  (2126, 'Russel', 'C4', 226),
+  (2127, 'Kopernikus', 'C3', 226),
+  (2133, 'Popper', 'C3', 226),
+  (2134, 'Augustinus', 'C3', 226),
+  (2136, 'Curie', 'C4', 226),
+  (2137, 'Kant', 'C4', 226);
+
+INSERT INTO prüfen (MatrNr, VorlNr, PersNr, Note) VALUES
+  (28106, 5001, 2126, 1),
+  (25403, 5041, 2125, 2),
+  (27550, 4630, 2137, 2),
+  (25403, 4630, 2137, 5);
+
+INSERT INTO Studierende (MatrNr, Name, Semester) VALUES
+  (24002, 'Xenokrates', 18),
+  (25403, 'Jonas', 12),
+  (26120, 'Fichte', 10),
+  (26830, 'Aristoxenos', 8),
+  (27550, 'Schopenhauer', 6),
+  (28106, 'Carnap', 3),
+  (29120, 'Theophrastos', 2),
+  (2955, 'Feuerbach', 2);
+
+INSERT INTO Vorlesungen (VorlNr, Titel, SWS, gelesenVon) VALUES
+  (4052, 'Logik', 4, 2125),
+  (4630, 'Die 3 Kritiken', 4, 2137),
+  (5001, 'Grundzüge', 4, 2137),
+  (5022, 'Glaube und Wissen', 2, 2134),
+  (5041, 'Ethik', 4, 2125),
+  (5043, 'Erkenntnisstheorie', 3, 2126),
+  (5049, 'Mäeutik', 2, 2125),
+  (5052, 'Wissenschaftstheorie', 3, 2126),
+  (5216, 'Bioethik', 2, 2126),
+  (5259, 'Der Wiener Kreis', 2, 2133);
+\end{minted}
+
+Gegeben sei das Universitätssschema aus Aufgabe 3 (siehe Anhang - Seite
+10). Formulieren Sie folgende Anfragen in SQL-92:
+
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Welche Vorlesungen liest der Boss des Assistenten Platon (nur
+Vorlesungsnummer und Titel ausgeben)?
+
+%%
+%
+%%
+
+\item Welche Studierende haben sich schon in mindestens einer direkten
+Voraussetzung von ’Wissenschaftstheorie’ prüfen lassen?
+
+%%
+%
+%%
+
+\item Wie viele Studierende hören ’Ethik’?
+
+%%
+%
+%%
+
+\item Welche Studierende sind im gleichen Semester? — Geben Sie Paare
+von Studierenden aus.
+
+Achten Sie darauf, dass ein/e Studierende/r mit sich selbst kein Paar
+bildet. — Achten Sie auch darauf, dass kein Paar doppelt ausgeben wird:
+wenn das Paar StudentA, StudentB im Ergebnis enthalten ist, soll nicht
+auch noch das Paar StudentB, StudentA ausgegeben werden.
+
+%%
+%
+%%
+
+\item In welchen Fächern ist die Durchschnittsnote schlechter als 2?
+Geben Sie die Vorlesungsnummer und den Titel aus.
+
+%%
+%
+%%
+
+\item Finden Sie alle Paare von Studierenden (MatrNr duplikatfrei
+ausgeben), die mindestens zwei Vorlesungen gemeinsam hören.
+
+\end{enumerate}
+\end{document}
