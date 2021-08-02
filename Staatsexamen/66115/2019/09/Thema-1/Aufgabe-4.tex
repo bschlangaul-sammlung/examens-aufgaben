@@ -1,0 +1,74 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe,komplexitaetstheorie}
+\begin{document}
+\liAufgabenTitel{SAT DOPPELSAT}
+\section{Aufgabe 4
+\index{Komplexität}
+\footcite{66115:2019:09}}
+
+Betrachten Sie die folgenden Probleme:
+
+\liProblemBeschreibung
+{SAT}
+{Aussagenlogische Formel F in KNF}
+{Gibt es mindestens eine erfüllende Belegung für F?}
+
+\liProblemBeschreibung
+{DOPPELSAT}
+{Aussagenlogische Formel F' in KNF}
+{Gibt es mindestens eine erfüllende Belegung für F, in der
+mindestens zwei Literale pro Klausel wahr sind?}
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Führen Sie eine polynomielle Reduktion von SAT auf DOPPELSAT durch.
+
+\begin{liAntwort}
+https://courses.cs.washington.edu/courses/csep531/09wi/handouts/sol4.pdf
+
+DOUBLE-SAT is in NP. The polynomial size certificate consists of two assignments f1 and f2.
+First, the verifier verifies if f1 6= f2. Then, it verifies if both assignments satisfy φ by subtituting
+the values for the variables and evaluate the clauses of φ. Both checks can be done in linear time.
+DOUBLE-SAT is NP-hard. We give a reduction from SAT. Given an instance φ of SAT
+which is a CNF formula of n variables x1,x2,...xn, we construct a new variable xn+1 and let
+ψ = φ ∧(xn+1 ∨¬xn+1) be the corresponding instance of DOUBLE-SAT.
+We claim that φ has a satisfying assignment iff ψ has at least two satisfying assignments. On
+one hand, if φ has a satisfying assignment f, we can obtain two distinct satisfying assignments
+of ψ by extending f with xn+1 = T and xn+1 = F respectively. On the other hand, if ψ has at
+least two sastisyfing assignments then the restriction of any of them to the set {x1,x2,...xn} is
+a satisfying assignment for φ.
+Thus, DOUBLE-SAT is NP-complete.
+
+https://cs.stackexchange.com/questions/6371/proving-double-sat-is-np-complete
+
+Here is one solution:
+
+Clearly Double-SAT belongs to ${\sf NP}$, since a NTM can decide Double-SAT as follows: On a Boolean input formula $\phi(x_1,\ldots,x_n)$, nondeterministically guess 2 assignments and verify whether both satisfy $\phi$.
+
+To show that Double-SAT is ${\sf NP}$-Complete, we give a reduction from SAT to Double-SAT, as follows:
+
+On input $\phi(x_1,\ldots,x_n)$:
+
+1. Introduce a new variable $y$.
+2. Output formula $\phi'(x_1,\ldots,x_n, y) = \phi(x_1,\ldots,x_n) \wedge (y \vee \bar y)$.
+
+If $\phi (x_1,\ldots,x_n)$ belongs to SAT, then $\phi$ has at least 1 satisfying assignment, and therefore $\phi'(x_1,\ldots,x_n, y)$ has at least 2 satisfying assignments as we can satisfy the new clause ($y \vee \bar y$) by assigning either $y = 1$ or $y = 0$ to the new variable $y$, so $\phi'$($x_1$, ... ,$x_n$, $y$) $\in$ Double-SAT.
+
+ On the other hand, if $\phi(x_1,\ldots,x_n)\notin \text{SAT}$, then clearly $\phi' (x_1,\ldots,x_n, y) = \phi (x_1,\ldots,x_n) \wedge (y \vee \bar y)$ has no satisfying assignment either, so $\phi'(x_1,\ldots,x_n,y) \notin  \text{Double-SAT}$.
+
+Therefore, $\text{SAT} \leq_p \text{Double-SAT}$, and hence Double-SAT is ${\sf NP}$-Complete.
+
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item Zeigen Sie, dass DOPPELSAT NP-vollständig ist.
+
+\end{enumerate}
+\end{document}
