@@ -1,24 +1,29 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{syntax,normalformen}
 \begin{document}
 \liAufgabenTitel{Schlüssel}
 \section{Aufgabe 5
 \index{Schlüssel}
 \footcite{66116:2020:03}}
 
-Gegeben sei die Relation
-
-R: {[A,B,C]}
+Gegeben sei die Relation \liRelation{A,B,C}
 
 \begin{enumerate}
 \item Schreiben Sie eine SQL-Anfrage, mit der sich zeigen lässt, ob das
-Paar A,B ein Superschlüssel der Relation R ist. Beschreiben Sie ggf.
+Paar A, B ein Superschlüssel der Relation R ist. Beschreiben Sie ggf.
 textuell - falls nicht eindeutig ersichtlich - wie das Ergebnis Ihrer
-Anfrage interpretiert werden muss, um zu erkennen ob A,B ein
+Anfrage interpretiert werden muss, um zu erkennen ob A, B ein
 Superschlüssel ist.
 
 \begin{liAntwort}
-
+Diese Anfrage darf keine Ergebnisse liefern, dann ist das Paar A, B ein
+Superschlüssel.
+\begin{minted}{sql}
+SELECT *
+FROM R
+GROUP BY A, B
+HAVING COUNT(*) > 1;
+\end{minted}
 \end{liAntwort}
 
 \item Erläutern Sie den Unterschied zwischen einem Superschlüssel und
@@ -26,6 +31,13 @@ einem Kandidatenschlüssel. Tipp: Was muss gelten, damit A,B ein
 Kandidatenschlüssel ist und nicht nur ein Superschlüssel?
 
 \begin{liAntwort}
+Ein Superschlüssel ist ein Attribut oder
+eine Attributkombination, von der \emph{alle Attribute} einer Relation
+funktional \emph{abhängen}.
+\footcite[Seite 181 Kapitel 6.2 „Superschlüssel“]{kemper}
+
+Ein Kandidatenschlüssel ist ein \emph{minimaler} Superschlüssel. Keine
+Teilmenge dieses Superschlüssels ist ebenfalls Superschlüssels.
 
 \end{liAntwort}
 
@@ -33,7 +45,12 @@ Kandidatenschlüssel ist und nicht nur ein Superschlüssel?
 minimale Ausprägung der Relation R an, die diese Eigenschaft erfüllt.
 
 \begin{liAntwort}
-
+\begin{tabular}{lll}
+A & B & C \\
+1 & 2 & 3 \\
+2 & 1 & 4 \\
+1 & 1 & 5 \\
+\end{tabular}
 \end{liAntwort}
 
 \end{enumerate}

@@ -9,7 +9,7 @@
 Unter einer Transaktion versteht man die \memph{„Bündelung“ mehrerer
 Datenbankoperationen}, die in einem Mehrbenutzersystem ohne unerwünschte
 Einflüsse durch andere Transaktionen als \memph{Einheit fehlerfrei
-ausgeführt} werden sollen.
+ausgeführt} werden sollen.\footcite[Seite 1]{db:fs:5}
 
 %-----------------------------------------------------------------------
 %
@@ -18,9 +18,9 @@ ausgeführt} werden sollen.
 \section{ACID-Prinzip}
 
 \begin{liQuellen}
-\cite[Kapitel 9.5 „Eigenschaften von Transaktionen“, Seite 305]{kemper}
-\cite[Seite 1]{db:fs:5}
-\cite{wiki:acid}
+\item \cite[Kapitel 9.5 „Eigenschaften von Transaktionen“, Seite 305]{kemper}
+\item \cite[Seite 1]{db:fs:5}
+\item \cite{wiki:acid}
 \end{liQuellen}
 
 \begin{description}
@@ -57,8 +57,7 @@ dauerhaft (persistent).
 \begin{liQuellen}
 \item \cite[Seite 5]{db:fs:5}
 \item \cite[Seite 211]{winter}
-\item \cite[Kapitel 9.3, Seite 302-302]{kemper}
-
+\item \cite[Kapitel 9.3, Seite 302-303]{kemper}
 \end{liQuellen}
 
 \begin{description}
@@ -100,7 +99,7 @@ Für den Abschluss einer Transaktion gibt es 2 Möglichkeiten:
 \section{Zustandsübergänge einer Transaktion}
 
 \begin{liQuellen}
-\item \cite[Kapitel 9.7, Seite 301]{kemper}
+\item \cite[Kapitel 9.7, Seite 307]{kemper}
 \item \cite[Seite 5]{db:fs:5}
 \end{liQuellen}
 
@@ -165,19 +164,24 @@ Transaktionsverarbeitung geht in den Endzustand aufgegeben über.
 %
 %-----------------------------------------------------------------------
 
-\section{Fehler}
+\section{Fehlerbehandlung}
 
-\section{„Einfacher” Fehlerfall}
+%%
+%
+%%
 
-Änderungen durch nicht zu Ende geführte Transaktionen müssen rückgängig
-gemacht werden. Diesen Vorgang nennt man \emph{Rollback}. Dazu müssen
-gegebenenfalls die zuletzt gültigen Werte der geänderten
-Datenbankobjekte in die Datenbank geschrieben werden.
+\subsection{„Einfacher” Fehlerfall}
+
+Änderungen durch nicht zu Ende geführte Transaktionen müssen
+\memph{rückgängig gemacht werden}. Diesen Vorgang nennt man
+\memph{Rollback}. Dazu müssen gegebenenfalls die zuletzt gültigen Werte
+der geänderten Datenbankobjekte in die Datenbank geschrieben werden.
 
 Es muss sichergestellt werden, dass die Änderungen erfolgreich zu Ende
-geführter Transaktionen tatsächlich permanent gemacht werden. Dazu
-müssen gegebenenfalls die neuen Werte der Datenbankobjekte erneut auf
-die Datenbank geschrieben werden.
+geführter Transaktionen tatsächlich \memph{permanent} gemacht werden.
+Dazu müssen gegebenenfalls die \memph{neuen Werte der Datenbankobjekte
+erneut} auf die Datenbank geschrieben werden.\footcite[Seite
+11]{db:fs:5}
 
 %%
 %
@@ -185,8 +189,9 @@ die Datenbank geschrieben werden.
 
 \subsection{Das Lost-Update-Problem\footcite{wiki:verlorenes-update}}
 
-Änderungen in einer Datenbank, die durch eine Transaktion vorgenommen
-wurden, gehen aufgrund unkontrollierter Parallelausführung verloren.
+\memph{Änderungen} in einer Datenbank, die durch eine Transaktion
+vorgenommen wurden, gehen aufgrund unkontrollierter Parallelausführung
+verloren.\footcite[11.1.1 Verlorengegangenee Änderungen, Seite 332]{kemper}
 
 \emph{„Überschreiben“}
 
@@ -197,7 +202,7 @@ wurden, gehen aufgrund unkontrollierter Parallelausführung verloren.
 \subsection{Das Dirty-Read-Problem\footcite{wiki:schreib-lese-konflikt}}
 
 Der Wert eines Datenobjekts, der noch nicht permanent gespeichert wurde,
-wird gelesen.
+wird \memph{gelesen}.\footcite[11.1.2 Abhängigkeit von nicht freigegebenen Änderungen, Seite 332]{kemper}
 
 \emph{„Zwischenstände lesen“}
 
@@ -207,9 +212,9 @@ wird gelesen.
 
 \subsection{Das Unrepeatable-Read-Problem\footcite{wiki:nichtwiederholbares-lesen}}
 
-Während einer Transaktion wird der Wert eines Datenobjekts zweimal
-gelesen, wobei dieser Wert aber in der Zwischenzeit von einer anderen
-Transaktion geändert wurde.
+Während einer Transaktion wird der Wert eines Datenobjekts
+\memph{zweimal gelesen}, wobei dieser Wert aber in der Zwischenzeit von
+einer anderen Transaktion \memph{geändert} wurde.\footcite[11.1.3 Phantomproblem, Seite 333]{kemper}
 
 \emph{„Verschiedene Zwischenstände lesen“}
 
@@ -233,7 +238,7 @@ von dieser Transaktion reserviert und dürfen nicht von anderen
 Transaktionen abgegriffen werden),
 
 \item alle Lesesperren (\textbf{S}hared oder \textbf{R}ead) bis zum
-Ende, \dh bis zur Aktion commit, hält und
+Ende, \dh bis zur Aktion \texttt{commit}, hält und
 
 \item alle Schreibsperren (e\textbf{X}clusive oder \textbf{W}rite) bis
 nach \texttt{commit} hält.
@@ -245,7 +250,7 @@ werden, ohne dass vorher die Lesesperre aufgehoben werden muss.
 
 \item Reine \emph{Lesesperren} auf ein Element können \emph{mehrere}
 Transaktionen gleichzeitig besitzen, dann ist jedoch \emph{keine
-Schreibsperre} mehr möglich.
+Schreibsperre} mehr möglich.\footcite[11.6.2 Zwei-Phasen-Sperrprotokoll, Seite 346]{kemper}
 \end{itemize}
 
 %%
@@ -298,6 +303,7 @@ Beginn der Transaktion alle benötigten Sperren auf einmal gesetzt
 werden. Dies verhindert in jedem Fall Deadlocks, führt aber auch zu
 einem hohen Verlust an Parallelität, da eine Transaktion ihre erste
 Operation erst dann ausführen kann, wenn sie alle Sperren erhalten hat.
+\footcite[11.7.2 Preclaiming zur Vermeidung von Verklemmungen, Seite 350]{kemper}
 
 \item[Striktes 2-Phasen-Sperrprotokoll]
 
@@ -308,7 +314,7 @@ also das kaskadierende Zurücksetzen von sich gegenseitig beeinflussenden
 Transaktionen. Der Nachteil ist, dass Sperren häufig viel länger
 gehalten werden als nötig und sich somit die Wartezeit von blockierten
 Transaktionen verlängert. Die Read-Locks werden entsprechend dem
-Standard-2PL-Verfahren entfernt.
+Standard-2PL-Verfahren entfernt.\footcite[11.6.3 Kaskadierendes Rücksetzen, Seite 348]{kemper}
 \footcite{wiki:sperrverfahren}
 \end{description}
 

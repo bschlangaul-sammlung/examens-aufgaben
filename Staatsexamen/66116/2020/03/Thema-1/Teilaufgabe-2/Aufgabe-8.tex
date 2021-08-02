@@ -67,7 +67,9 @@ CREATE TABLE voraussetzen (
   FOREIGN KEY (Nachfolger) REFERENCES Vorlesungen(VorlNr)
 );
 
-INSERT INTO Studierende (MatrNr, Name, Semester) VALUES
+INSERT INTO Studierende
+  (MatrNr, Name, Semester)
+VALUES
   (24002, 'Xenokrates', 18),
   (25403, 'Jonas', 12),
   (26120, 'Fichte', 10),
@@ -77,7 +79,9 @@ INSERT INTO Studierende (MatrNr, Name, Semester) VALUES
   (29120, 'Theophrastos', 2),
   (29555, 'Feuerbach', 2);
 
-INSERT INTO Professoren (PersNr, Name, Rang, Raum) VALUES
+INSERT INTO Professoren
+  (PersNr, Name, Rang, Raum)
+VALUES
   (2125, 'Sokrates', 'C4', 226),
   (2126, 'Russel', 'C4', 226),
   (2127, 'Kopernikus', 'C3', 226),
@@ -86,7 +90,9 @@ INSERT INTO Professoren (PersNr, Name, Rang, Raum) VALUES
   (2136, 'Curie', 'C4', 226),
   (2137, 'Kant', 'C4', 226);
 
-INSERT INTO Assistenten (PersNr, Name, Fachgebiet, Boss) VALUES
+INSERT INTO Assistenten
+  (PersNr, Name, Fachgebiet, Boss)
+VALUES
   (3002, 'Platon', 'Ideenlehre', 2125),
   (3003, 'Aristoteles', 'Syllogistik', 2125),
   (3004, 'Wittgenstein', 'Sprachtheorie', 2126),
@@ -94,7 +100,9 @@ INSERT INTO Assistenten (PersNr, Name, Fachgebiet, Boss) VALUES
   (3006, 'Newton', 'Kaplersche Gesetze', 2127),
   (3007, 'Spinosa', 'Gott und Natur', 2134);
 
-INSERT INTO Vorlesungen (VorlNr, Titel, SWS, gelesenVon) VALUES
+INSERT INTO Vorlesungen
+  (VorlNr, Titel, SWS, gelesenVon)
+VALUES
   (4052, 'Logik', 4, 2125),
   (4630, 'Die 3 Kritiken', 4, 2137),
   (5001, 'Grundzüge', 4, 2137),
@@ -106,7 +114,9 @@ INSERT INTO Vorlesungen (VorlNr, Titel, SWS, gelesenVon) VALUES
   (5216, 'Bioethik', 2, 2126),
   (5259, 'Der Wiener Kreis', 2, 2133);
 
-INSERT INTO hören (MatrNr, VorlNr) VALUES
+INSERT INTO hören
+  (MatrNr, VorlNr)
+VALUES
   (25403, 5022),
   (26120, 5001),
   (27550, 4052),
@@ -119,7 +129,9 @@ INSERT INTO hören (MatrNr, VorlNr) VALUES
   (29120, 5041),
   (29120, 5049),
   (29555, 5001),
-  (29555, 5022);
+  (29555, 5022),
+  (28106, 5001),
+  (28106, 5022);
 
 INSERT INTO prüfen
   (MatrNr, VorlNr, PersNr, Note)
@@ -129,7 +141,9 @@ VALUES
   (27550, 4630, 2137, 2),
   (25403, 4630, 2137, 5);
 
-INSERT INTO voraussetzen VALUES
+INSERT INTO voraussetzen
+  (Vorgänger, Nachfolger)
+VALUES
   (5001, 5041),
   (5001, 5043),
   (5001, 5049),
@@ -233,6 +247,23 @@ wenn das Paar \emph{StudentA}, \emph{StudentB} im Ergebnis enthalten
 ist, soll nicht auch noch das Paar \emph{StudentB}, \emph{StudentA}
 ausgegeben werden.
 
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT s1.Name, s2.Name
+FROM Studierende s1, Studierende s2
+WHERE
+  s1.Semester = s2.Semester AND
+  s1.MatrNr < s2.MatrNr;
+\end{minted}
+
+\begin{minted}{md}
+     name     |   name
+--------------+-----------
+ Theophrastos | Feuerbach
+(1 row)
+\end{minted}
+\end{liAntwort}
+
 %%
 %
 %%
@@ -240,12 +271,49 @@ ausgegeben werden.
 \item In welchen Fächern ist die Durchschnittsnote schlechter als 2?
 Geben Sie die Vorlesungsnummer und den Titel aus.
 
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT v.VorlNr, v.Titel
+FROM prüfen p, Vorlesungen v
+WHERE p.VorlNr = v.VorlNr
+GROUP BY v.VorlNr, v.Titel
+HAVING AVG(p.Note) >  2;
+\end{minted}
+
+\begin{minted}{md}
+ vorlnr |     titel
+--------+----------------
+   4630 | Die 3 Kritiken
+(1 row)
+\end{minted}
+\end{liAntwort}
+
 %%
 %
 %%
 
 \item Finden Sie alle Paare von Studierenden (\emph{MatrNr} duplikatfrei
 ausgeben), die mindestens zwei Vorlesungen gemeinsam hören.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT h1.MatrNr, h2.MatrNr
+FROM hören h1, hören h2
+WHERE
+  h1.VorlNr = h2.VorlNr AND
+  h1.MatrNr < h2.MatrNr
+GROUP BY h1.MatrNr, h2.MatrNr
+HAVING COUNT(*) > 1;
+\end{minted}
+
+\begin{minted}{md}
+ matrnr | matrnr
+--------+--------
+  28106 |  29120
+  28106 |  29555
+(2 rows)
+\end{minted}
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}
