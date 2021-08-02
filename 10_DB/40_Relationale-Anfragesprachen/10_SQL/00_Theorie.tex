@@ -127,10 +127,10 @@ Primärschlüssel-Kennzeichnung, impliziert automatisch \verb|NOT NULL|,
 jede Tabelle benötigt einen Primärschlüssel!
 
 \begin{minted}{sql}
-CREATE TABLE CUSTOMERS (
-   ID INTEGER NOT NULL,
-   NAME VARCHAR(20) NOT NULL,
-   PRIMARY KEY (ID, NAME)
+CREATE TABLE Customers (
+  Id INTEGER NOT NULL,
+  Name VARCHAR(20) NOT NULL,
+  PRIMARY KEY (Id, Name)
 );
 \end{minted}
 
@@ -139,6 +139,19 @@ CREATE TABLE CUSTOMERS (
 Kennzeichnung von Fremdschlüsseln, null-Werte möglich, wenn nicht
 explizit \verb|NOT NULL| gesetzt (\verb|UNIQUE FOREIGN KEY| um
 1:1-Beziehung zu modellieren)
+
+\begin{minted}{sql}
+CREATE TABLE ist_Fachlehrkraft_von (
+  Klasse INTEGER NOT NULL,
+  Fach VARCHAR(20) NOT NULL,
+  Lehrkraft INTEGER NOT NULL,
+  Stundenzahl INTEGER NOT NULL,
+  PRIMARY KEY (Klasse, Fach, Lehrkraft),
+  FOREIGN KEY (Klasse) REFERENCES Klasse(Name),
+  FOREIGN KEY (Fach) REFERENCES Fach(Name),
+  FOREIGN KEY (Lehrkraft) REFERENCES Lehrkraft(PersNr)
+);
+\end{minted}
 
 \item[CHECK (Attributname IN / (BETWEEN) AND)]
 
