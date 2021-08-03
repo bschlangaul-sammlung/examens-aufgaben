@@ -97,6 +97,15 @@ jede Eingabe terminiert.
 \end{description}
 \footcite[Seite 37]{theo:fs:4}
 
+\begin{liExkurs}[Abzählbarkeit / Abzählbare Menge]
+In der Mengenlehre wird eine Menge $A$ als abzählbar unendlich
+bezeichnet, wenn sie die gleiche Mächtigkeit hat wie die Menge der
+natürlichen Zahlen $\mathbb{N}$. Dies bedeutet, dass es eine Bijektion
+zwischen $A$ und der Menge der natürlichen Zahlen gibt, die Elemente der
+Menge $A$ also „durchnummeriert“ werden können.
+\liFussnoteUrl{https://de.wikipedia.org/wiki/Abzählbare_Menge}
+\end{liExkurs}
+
 %-----------------------------------------------------------------------
 %
 %-----------------------------------------------------------------------
@@ -110,15 +119,68 @@ Eine Sprache ist genau dann aufzählbar, wenn sie semi-entscheidbar ist.
 
 Eine Sprache ist genau dann entscheidbar, wenn $L$ und $\overline{L}$
 aufzählbar sind.
+\footcite[Seite 37]{theo:fs:4}
+
+Die Klasse der Typ-0-Sprachen ist mit der von allg. Turing-Maschinen
+akzeptierten Sprachen identisch.
+
+Die Klasse der kontextsensitiven (Typ-1) Sprachen ist mit der Klasse der
+Sprachen identisch, die von linear beschränkten Turing-Maschinen
+akzeptiert werden.
+\footcite[Seite 38]{theo:fs:4}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
+\section{Unentscheidbarkeit}
+
+Zu jedem Alphabet $\Sigma$ gibt es (unendlich viele) unentscheidbare
+Sprachen.
+
+Dieser Satz zeigt uns harte theoretische Grenzen auf!
 \footcite[Seite 39]{theo:fs:4}
 
-\begin{liExkurs}[Abzählbarkeit / Abzählbare Menge]
-In der Mengenlehre wird eine Menge $A$ als abzählbar unendlich
-bezeichnet, wenn sie die gleiche Mächtigkeit hat wie die Menge der
-natürlichen Zahlen $\mathbb{N}$. Dies bedeutet, dass es eine Bijektion
-zwischen $A$ und der Menge der natürlichen Zahlen gibt, die Elemente der
-Menge $A$ also „durchnummeriert“ werden können.
-\liFussnoteUrl{https://de.wikipedia.org/wiki/Abzählbare_Menge}
-\end{liExkurs}
+• Allgemeines Halteproblem:
+
+Gegeben:
+Gefragt:
+Turingmaschine 𝑇 und das Eingabewort 𝜔
+Terminiert 𝑇 unter der Eingabe 𝜔 ?
+• Beweis von Turing (1936):
+Das allgemeine Halteproblem ist unentscheidbar.
+
+Beweis Halteproblem
+
+Wir listen alle Wörter der Sprache in einer Tabelle in den Spalten auf.
+Für jedes Wort 𝜔 𝑖 geben wir an, ob die Turing-Maschine 𝑇 𝑗 hält
+
+Wir nehmen an, dass das Halteproblem entscheidbar ist.
+\footcite[Seite 41]{theo:fs:4}
+
+Dann würde eine TM H existieren, die für ein Paar (𝑇, 𝜔)
+entscheidet, T bei der Eingabe von 𝜔 terminiert.
+Zudem würde eine TM H‘ existieren,
+• die das Element (i,j) analog zu H bestimmt
+• gilt (i,j) = ja, dann geht H‘ in eine Endlosschleife über,
+terminiert also nie!
+• gilt (i,j) = nein, terminiert H‘ in einem Endzustand.
+Da H‘ eine TM ist, muss sie in der Tabelle vorkommen.
+Aber: Keine Zeile der Tabelle entspricht der TM H‘
+Widerspruch zur Annahme der Existenz von H‘
+Widerspruch zur Annahme der Entscheidbarkeit.
+\footcite[Seite 42]{theo:fs:4}
+
+\section{Satz von Rice:}
+
+Mit E sei eine nichttriviale funktionale Eigenschaft von Turingmaschinen
+gegeben.
+Dann ist das folgende Problem unentscheidbar:
+• Gegeben: Turingmaschine T
+• Gefragt: Besitzt T die Eigenschaft E?
+\footcite[Seite 43]{theo:fs:4}
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
 
 \end{document}
