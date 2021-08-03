@@ -1,0 +1,101 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax,formale-sprachen,automaten}
+\begin{document}
+\liAufgabenTitel{Reguläre Sprachen}
+\section{Aufgabe 1
+\index{Reguläre Sprache}
+\footcite{66115:2021:03}}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Sei
+
+\liAusdruck[L_1]{w \in \{ a, b, c \}^* }
+{w
+\text{ enthält genau zweimal den Buchstaben }
+a
+\text{ und der vorletzte Buchstabe
+ist ein }
+c}
+
+Geben Sie einen regulären Ausdruck für die Sprache $L_1$ an.
+
+\begin{liAntwort}
+\begin{minted}{md}
+(
+  ((b|c)* a (b|c)* a (b|c)* c (b|c))
+  |
+  ((b|c)* a (b|c)* c a)
+)
+\end{minted}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Konstruieren Sie einen deterministischen endlichen Automaten für
+die Sprache $L_2$:
+
+\liAusdruck[L_2]{w \in \{ a, b \}^* }
+{w
+\text{ enthält genau einmal das Teilwort }
+aab}
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[li automat]
+  \node[state,initial] (z0) at (3.14cm,-4cm) {$z_0$};
+  \node[state] (z1) at (5.29cm,-4cm) {$z_1$};
+  \node[state] (z2) at (8.29cm,-4cm) {$z_2$};
+  \node[state,accepting] (z3) at (10.86cm,-4cm) {$z_3$};
+  \node[state] (z4) at (3.14cm,-2cm) {$z_4$};
+  \node[state] (z5) at (7.29cm,-6.43cm) {$z_5$};
+  \node[state] (z6) at (4cm,-6.43cm) {$z_6$};
+
+  \path (z0) edge[auto,bend left] node{$b$} (z4);
+  \path (z0) edge[auto] node{$a$} (z1);
+  \path (z1) edge[auto] node{$a$} (z2);
+  \path (z1) edge[auto] node{$b$} (z6);
+  \path (z2) edge[auto] node{$b$} (z3);
+  \path (z2) edge[auto] node{$a$} (z5);
+  \path (z3) edge[auto,loop above] node{$a,b$} (z3);
+  \path (z4) edge[auto,bend left] node{$a$} (z0);
+  \path (z4) edge[auto,loop above] node{$b$} (z4);
+  \path (z5) edge[auto] node{$a$} (z1);
+  \path (z5) edge[auto] node{$b$} (z6);
+  \path (z6) edge[auto,loop above] node{$a,b$} (z6);
+\end{tikzpicture}
+\end{center}
+\liFlaci{Ahf2oduri}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Sei $\mathbb{N} = \liMenge{1,2,3,\dots}$ die Menge der strikt
+positiven natürlichen Zahlen. Sei
+
+\liAusdruck[L_3]
+%
+{\# a^{i_1} \# a^{i_1} \# \cdots a^{i_{n-1}} \# a^{i_n} \#}
+%
+{n,i_1,\dots,i_n \in \mathbb{N}
+\text{ und es existiert }
+j \in \mathbb{N}
+\text{ mit }
+i_j = n + 1}
+
+eine Sprache über Alphabet \liMenge{\#, a}.
+
+So ist \zB $\#a\#aaa\# \in L_3$ (da das Teilwort $a^3 = aaa$ vorkommt)
+und $\#a\#a\#a\#a\# \in L_3$ (da das Teilwort $a^5 = aaaaa$ nicht
+vorkommt). Beweisen Sie, dass $L_3$ nicht regulär ist.
+
+\end{enumerate}
+\end{document}
