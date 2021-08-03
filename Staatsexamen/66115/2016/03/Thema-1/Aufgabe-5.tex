@@ -1,9 +1,12 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{komplexitaetstheorie}
 \begin{document}
+\let\n=\liProblemName
+\let\r=\liPolynomiellReduzierbar
+
 \liAufgabenTitel{k-COL}
 \section{Komplexität
-\index{Komplexitätstheorie}
+\index{Polynomialzeitreduktion}
 \footcite{66115:2016:03}}
 
 % Info_2021-06-11-2021-06-11_09.38.05.mp4
@@ -11,30 +14,26 @@
 
 Das Problem k-COL ist wie folgt definiert:
 
-\begin{description}
-\item[Gegeben:]
-
-Ein ungerichteter Graph $G = (V, E)$.
-
-\item[Frage:]
-
-Kann man jedem Knoten $v$ in $V$ eine Zahl $z(v) \in \{1, \dots ,k\}$
+\liProblemBeschreibung
+{k-Col}
+{Ein ungerichteter Graph $G = (V, E)$.}
+{Kann man jedem Knoten $v$ in $V$ eine Zahl $z(v) \in \{1, \dots ,k\}$
 zuordnen, so dass für alle Kanten $(u_1,u_2) \in E$ gilt: $z(u_1) \neq
-z(u_2)?$
-\end{description}
+z(u_2)?$}
 
 \noindent
-Zeigen Sie, dass man 3-COL in polynomieller Zeit auf 4-COL reduzieren
-kann. Beschreiben Sie dazu die Reduktion und zeigen Sie anschließend
-ihre Korrektheit.
+Zeigen Sie, dass man \n{3-Col} in polynomieller Zeit auf \n{4-Col}
+reduzieren kann. Beschreiben Sie dazu die Reduktion und zeigen Sie
+anschließend ihre Korrektheit.
 
 \begin{liAntwort}
-Zu Zeigen: 3-COL $\leq_P$ 4-COL
+Zu Zeigen: \liPolynomiellReduzierbar{3-COL}{4-Col}
 
-also 4-COL ist mindestens so schwer wie 3-COL Eingabeinstanz von 3-COL
-durch eine Funktion in eine Eingabeinstanz von 4-COL umbauen so, dass
-jede JA- bzw. NEIN-Instanz von 3-COL eine JA- bzw. NEIN-Instanz von
-4-COL ist.
+\noindent
+also \n{4-Col} ist mindestens so schwer wie \n{3-COL} Eingabeinstanz von
+\n{3-COL} durch eine Funktion in eine Eingabeinstanz von \n{4-Col}
+umbauen so, dass jede JA- bzw. NEIN-Instanz von \n{3-COL} eine JA- bzw.
+NEIN-Instanz von \n{4-Col} ist.
 \footcite[Seite 67]{theo:fs:4}
 
 Funktion ergänzt einen beliebigen gegebenen Graphen um einen

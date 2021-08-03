@@ -2650,12 +2650,18 @@ Polynomialzeitreduktion.]
 %    \end{macrocode}
 
 % \liLets{
-%   p = liProblemName,
+%   n = liProblemName,
 %   r = liPolynomiellReduzierbar,
+%   b = liProblemBeschreibung,
 % }
 
 %    \begin{macrocode}
 \liLadePakete{mathe}
+%    \end{macrocode}
+
+% Für das Makro |\liProblemBeschreibung{}{}{}| benötigt.
+%    \begin{macrocode}
+\RequirePackage{mdframed}
 %    \end{macrocode}
 
 % \begin{macro}{\liStrich}
@@ -2667,21 +2673,48 @@ Polynomialzeitreduktion.]
 
 % \begin{macro}{\liProblemName}
 % Zu Setzen von Problemnamen wie zum Beispiel SAT, COL, VERTEX COVER
-% \liLet{p}{liProblemName}
+% \liLet{n}{liProblemName}
+% |\liProblemName|: \liProblemName{Sat} \liProblemName{Vertex Cover}
 %    \begin{macrocode}
-\def\liProblemName#1{\texttt{#1}}
+\def\liProblemName#1{\texttt{\textsc{#1}}}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\liProblemBeschreibung}
+% Zu setzen von Problem-Beschreibungen:
+%
+% \begin{verbatim}
+% \liProblemBeschreibung
+% {}
+% {}
+% {}
+% \end{verbatim}
+%
+% \begin{liBeispiel}
+% \liProblemBeschreibung
+% {Clique}
+% {Ein ungerichteter Graph $G = (V, E)$, eine Zahl $k \in \mathcal{N}$}
+% {Gibt es eine Menge $S \subseteq V$ mit $|S| = k$, sodass für alle
+% Knoten $u \neq v \in V$ gilt, dass $\{ u, v \}$ eine Kante in $E$
+% ist?}
+% \end{liBeispiel}
 % \liLet{b}{liProblemBeschreibung}
 %    \begin{macrocode}
 \def\liProblemBeschreibung#1#2#3{
-  \centerline{\liProblemName{#1}}
-  \begin{description}
-  \item[Gegeben:] #2
-  \item[Frage:] #3
-  \end{description}
+  \begin{mdframed}[
+    userdefinedwidth=9cm,
+    align=center,
+    backgroundcolor=white!0,
+  ]
+    \centerline{\large\liProblemName{#1}}
+
+    \medskip
+
+    \begin{description}
+    \item[Gegeben:] #2
+    \item[Frage:] #3
+    \end{description}
+  \end{mdframed}
 }
 %    \end{macrocode}
 % \end{macro}
