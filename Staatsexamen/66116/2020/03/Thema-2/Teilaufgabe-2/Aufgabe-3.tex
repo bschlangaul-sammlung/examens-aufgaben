@@ -1,0 +1,162 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{normalformen}
+\begin{document}
+\let\FA=\liFunktionaleAbhaengigkeiten
+\liAufgabenTitel{}
+\section{Aufgabe 3
+\index{Normalformen}
+\footcite{66116:2020:03}}
+
+Gegeben sei folgendes relationales Schema R in erster Normalform:
+
+\begin{center}
+R:{[A,B,C,D,E,F]}
+\end{center}
+
+\noindent
+Für $R$ gelte folgende Menge FD funktionaler Abhängigkeiten:
+
+\FA{
+  A -> F;
+  C, E, F -> A, B;
+  A, E -> B;
+  B, C -> D;
+  A, F -> C;
+}
+
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Bestimmen Sie alle Kandidatenschlüssel/Schlüsselkandidaten von $R$
+mit FD. Begründen Sie Ihre Antwort. Begründen Sie zudem, warum es keine
+weiteren Kandidatenschlüssel/Schlüsselkandidaten gibt.
+
+\emph{Hinweis: Die Angabe von Attributmengen, die keine
+Kandidatenschlüssel sind, führt zu Abzügen.}
+
+\begin{liAntwort}
+E muss in allen Superschlüsseln enthalten sein, denn es steht nicht auf
+der rechten Seite von FD (*).
+
+D kann in keinem Schlüsselkandidaten vorkommen, denn es steht nur auf
+der rechten Seite von FD (**).
+
+E allein ist kein Schlüsselkandidat (***).
+
+AE führt über FD zu B, A zu F, AF zu C und BC zu D, also ist AE ein
+Superschlüssel und damit wegen (*) und (***) ein Schlüsselkandidat.
+Wegen (*) enthält jeder Superschlüssel, der A enthält, AE. Also ist kein
+weiterer Superschlüssel, der A enthält, ein Schlüsselkandidat (****).
+
+BE, CE und EF sind keine Superschlüssel, also auch keine
+Schlüsselkandidaten.
+
+BCE ist kein Superschlüssel, da A und F nicht erreicht werden können.
+
+BEF ist kein Superschlüssel, da A, D und F nicht erreicht werden können.
+
+CEF führt über FD zu AB, BC führt dann zu D, also ist CEF ein
+Superschlüssel. Wegen (*), (**) und weil CE und EF keine Superschlüssel
+sind, ist CEF ein Schlüsselkandidat.
+
+Das waren alle dreielementigen Buchstabenkombinationen, die (*), (**)
+und (****) genügen. Vierelementig ist nur BCEF und das enthält CEF, ist
+also kein Schlüsselkandidat.
+
+Die einzigen Schlüsselkandidaten sind folglich AE und CEF.
+\end{liAntwort}
+
+%%
+% 2.
+%%
+
+\item Prüfen Sie, ob R mit FD in 2NF bzw. 3NF ist.
+
+\begin{liAntwort}
+R mit FD ist nicht in 2NF, denn bei Wahl des Schlüsselkandidaten AE
+hängt F von A, also nur einem Teil des Schlüssels, ab. Also ist AE → F
+nicht voll funktional. Damit ist R mit FD auch nicht in 3NF, denn 3NF
+$\subseteq$ 2NF.
+\end{liAntwort}
+
+%%
+% 3.
+%%
+
+\item Bestimmen Sie mit folgenden Schritten eine kanonische Überdeckung
+FDc von FD. Begründen Sie jede Ihrer Entscheidungen:
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Führen Sie eine Linksreduktion von FD durch. Geben Sie die Menge
+funktionaler Abhängigkeiten nach der Linksreduktion an (FD;).
+
+\begin{liAntwort}
+\FA{
+  A -> F;
+  C, E, F -> A, B;
+  A, E -> B;
+  B, C -> D;
+  A -> C;
+}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Führen Sie eine Rechtsreduktion des Ergebnisses der Linksreduktion
+(FD;) durch. Geben Sie die Menge funktionaler Abhängigkeiten nach der
+Rechtsreduktion an (FD).
+
+\begin{liAntwort}
+\FA{
+  A -> F;
+  C, E, F -> A;
+  A, E -> B;
+  B, C -> D;
+  A -> C;
+}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Bestimmen Sie eine kanonische Überdeckung FD. von FD auf Basis des
+Ergebnisses der Rechtsreduktion (FD).
+
+\begin{liAntwort}
+\FA{
+  A -> F, C;
+  C, E, F -> A;
+  A, E -> B;
+  B, C -> D;
+}
+\end{liAntwort}
+
+\end{enumerate}
+%%
+% 4.
+%%
+
+\item Zerlegen Sie R mit FDc mithilfe des Synthesealgorithmus in 3NF.
+Geben Sie zudem alle funktionalen Abhängigkeiten der erzeugten
+Relationenschemata an.
+
+%%
+% 5.
+%%
+
+\item Prüfen Sie für alle Relationen der Zerlegung aus 4., ob sie
+jeweils in BCNF sind.
+
+\end{enumerate}
+\end{document}

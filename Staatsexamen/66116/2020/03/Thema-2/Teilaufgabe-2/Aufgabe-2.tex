@@ -49,24 +49,69 @@ geeignete Views definieren.
 % 1.
 %%
 
-\item Schreiben Sie SQL-Anweisungen, welche die Tabelle hat\_getragen
-inklusive aller benötig- ten Fremdschlüsselconstraints anlegt. Erläutern
+\item Schreiben Sie SQL-Anweisungen, welche die Tabelle \texttt{hat\_getragen}
+inklusive aller benötigten Fremdschlüsselconstraints anlegt. Erläutern
 Sie kurz, warum die Spalte Datum Teil des Primärschlüssels ist.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+CREATE TABLE hat_getragen (
+  PromiName VARCHAR(255) REFERENCES Promi.Name,
+  KleidungsstueckID INTEGER REFERENCES Kleidungsstueck.ID,
+  Datum DATE,
+  PRIMARY KEY (PromiName, KleidungsstueckID, Datum)
+)
+\end{minted}
+
+Das Datenbanksystem achtet selbst darauf, dass Felder des
+Primärschlüssels nicht NULL sind. Deshalb muss man NOT NULL bei keinem
+der drei Felder angeben.
+\end{liAntwort}
 
 %%
 % 2.
 %%
 
 \item Schreiben Sie eine SQL-Anweisung, welche die Namen der Promis
-ausgibt, die eine Sommer- Kollektion promoten (Saison ist ’”Sommer’).
+ausgibt, die eine Sommer-Kollektion promoten (Saison ist ’”Sommer’).
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT P.PromiName FROM promotet P JOIN Kollektion K ON
+P.KollektionName = K.Name
+WHERE K.Saison = 'Sommer'
+   SELECT P.PromiName FROM promotet P, Kollektion K
+WHERE K.Saison = 'Sommer' AND P.KollektionName = K.Name;
+\end{minted}
+\end{liAntwort}
 
 %%
 % 3.
 %%
 
 \item Schreiben Sie eine SQL-Anweisung, die die Namen aller Promis und
-der Kollektionen be- stimmt, welche der Promi zwar promotet, aber daraus
+der Kollektionen bestimmt, welche der Promi zwar promotet, aber daraus
 noch kein Kleidungsstück getragen hat.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT * FROM promotet P
+WHERE P.KollektionName NOT IN (SELECT K.Name FROM Kollektion K
+INNER JOIN Kleidungsstueck S ON S.gehoert_zu = K.Name
+INNER JOIN hat_getragen T ON T.KleidungsstueckID = S.ID
+WHERE T.PromiName = P.PromiName)
+\end{minted}
+
+\begin{minted}{sql}
+
+SELECT P.PromiName, P.KollektionName FROM promotet P) EXCEPT
+(SELECT P.PromiName, P.KollektionName FROM promotet P
+INNER JOIN Kollektion K ON P.KollektionName = K.Name
+INNER JOIN Kleidungsstueck S ON S.gehoert_zu = K.Name
+INNER JOIN hat_getragen T ON T.KleidungsstueckID = S.ID
+WHERE T.PromiName = P.PromiName
+\end{minted}
+\end{liAntwort}
 
 %%
 % 4.
@@ -94,6 +139,14 @@ WHERE k.Name = kl.gehoert_zu and k.Jahr = 2018
 GROUP BY k.Name
 HAVING COUNT(k1.Hauptbestandteil)>10
 \end{minted}
+
+\begin{liAntwort}
+-- Kollektion -- beschreibt die Anzahl der Tupel in der Tabelle
+Kollektion. Die minimale Anzahl an Tupeln im Ergebnis ist 0, da es sein
+kann, dass keine Kollektion den Anforderungen k.Jahr = 2018 oder HAVING
+COUNT(...) genügt. Die maximale Anzahl an Tupeln im Ergebnis ist --
+Kollektion --, da nur Namen aus Kollektion ausgewählt werden.
+\end{liAntwort}
 
 %%
 % b)
@@ -137,6 +190,17 @@ GROUP BY k.Name
 
 )
 \end{minted}
+
+\begin{liAntwort}
+Die minimale Anzahl an Tupeln im Ergebnis ist 0, da es sein kann, dass
+keine Kollektion promotet wird. Die maximale Anzahl ist das Minimum von
+-- Kollektion -- und 30, da die Promis, die Kollektionen beworben haben,
+die älter als 30 Jahre sind, selbst mindestens 30 Jahre alt sein müssen.
+
+Zugrundeliegende Annahmen: Kollektionen werden nur im Erscheinungsjahr
+von Promis beworben; Neugeborene, die Kollektionen bewerben, werden ggf.
+Promis.
+\end{liAntwort}
 
 %%
 % 6.
