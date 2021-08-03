@@ -1,0 +1,179 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{Mode-Kollektionen}
+\section{Aufgabe 2
+\index{SQL}
+\footcite{66116:2020:03}}
+
+Gegeben sei der folgende Ausschnitt eines Schemas für die Verwaltung von
+Kollektionen:
+
+Promi : {| Kleidungsstueck : {|
+Name : VARCHAR(255), ID : INTEGER,
+Alter : INTEGER, Hauptbestandteil : VARCHAR(255),
+Wohnort : VARCHAR.(255) gehoert\_zu : VARCHAR.(255)
+
+I} 1}
+
+Kollektion : {|
+Name : VARCHAR(255),
+Jahr : INTEGER,
+
+Saison : VARCHAR(255) hat\_getragen : {[
+]} PromiName : VARCHAR.(355),
+KleidungsstuecklD : INTEGER,
+promotet: {| Datum : DATE
+PromiName : VARCHAR(255), 1}
+
+KollektionName : VARCHAR(255)
+
+|}
+
+Die Tabelle Promi beschreibt Promis über ihren eindeutigen Namen, ihr
+Alter und ihren Wohnort. Kollektion enthält Informationen über
+Kollektionen, nämlich deren eindeutigen Namen, das Jahr und die Saison.
+Die Tabelle promotet verwaltet über Referenzen, welcher Promi welche
+Kollektion promotet. Kleidungsstück speichert die IDs von
+Kleidungsstücken zusammen mit dem Hauptbe- standteil und einer Referenz
+auf die zugehörige Kollektion. Die Tabelle hat\_getragen verwaltet über
+Referenzen, welcher Promi welches Kleidungsstück an welchem Datum
+getragen hat.
+
+Beachten Sie bei der Formulierung der SQL-Anweisungen, dass die
+Ergebnisrelationen keine Du- plikate enthalten dürfen. Sie dürfen
+geeignete Views definieren.
+\begin{enumerate}
+
+%%
+% 1.
+%%
+
+\item Schreiben Sie SQL-Anweisungen, welche die Tabelle hat\_getragen
+inklusive aller benötig- ten Fremdschlüsselconstraints anlegt. Erläutern
+Sie kurz, warum die Spalte Datum Teil des Primärschlüssels ist.
+
+%%
+% 2.
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, welche die Namen der Promis
+ausgibt, die eine Sommer- Kollektion promoten (Saison ist ’”Sommer’).
+
+%%
+% 3.
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Namen aller Promis und
+der Kollektionen be- stimmt, welche der Promi zwar promotet, aber daraus
+noch kein Kleidungsstück getragen hat.
+
+%%
+% 4.
+%%
+
+\item Bestimmen Sie für die folgenden SQL-Anweisungen die minimale und
+maximale Anzahl an Tupeln im Ergebnis. Beziehen Sie sich dabei auf die
+Größe der einzelnen Tabellen.
+
+Verwenden Sie für die Lösung folgende Notation:
+— Promi — beschreibt die Größe der Tabelle Promi.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item
+
+\begin{minted}{sql}
+SELECT k.Name
+FROM Kollektion k, Kleidungsstueck kl
+WHERE k.Name = kl.gehoert_zu and k.Jahr = 2018
+GROUP BY k.Name
+HAVING COUNT(k1.Hauptbestandteil)>10
+\end{minted}
+
+%%
+% b)
+%%
+
+\item
+
+\begin{minted}{sql}
+SELECT DISTINCT k.Jahr
+FROM Kollektion kK
+WHERE k.Name IN (
+SELECT pr.KollektionName
+FROM Promi p, promotet pr
+WHERE p.Alter < 30 AND pr.PromiName = p.Name
+\end{minted}
+\end{enumerate}
+
+%%
+% 5.
+%%
+
+\item Beschreiben Sie den Effekt der folgenden SQL-Anfrage in
+natürlicher Sprache
+
+\begin{minted}{sql}
+SELECT pr.KollektionName
+FROM promotet pr, Promi p
+WHERE pr.PromiName = p.Name
+GROUP BY pr.KollektionNane
+HAVING COUNT (*) IN (
+
+SELECT MAX(anzahl)
+
+FROM (
+SELECT k.Name, COUNT(*) AS anzahl
+FROM Kollektion k, promotet pr
+WHERE k.Name = pr.KollektionName
+GROUP BY k.Name
+
+)
+
+)
+\end{minted}
+
+%%
+% 6.
+%%
+
+\item Formulieren Sie folgende SQL-Anfrage in relationaler Algebra. Die
+Lösung kann in Baum- oder in Term-Schreibweise angegeben werden, wobei
+eine Schreibweise genügt.
+
+\begin{minted}{sql}
+
+SELECT p.Wohnort
+
+FROM Promi p, promotet pr, Kollektion k
+WHERE p.Name = pr.PromiName
+
+AND k.Name pr.KollektionName
+
+AND k.Jahr 2018
+\end{minted}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Konvertieren Sie zunächst die gegebene SQL-Anfrage in die
+zugehörige Anfrage in re- lationaler Algebra nach Standard-Algorithmus.
+
+%%
+% b)
+%%
+
+\item Führen Sie anschließend eine relationale Optimierung durch.
+Beschreiben und be- gründen Sie dabei kurz jeden durchgeführten Schritt.
+
+\end{enumerate}
+\end{enumerate}
+\end{document}

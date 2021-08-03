@@ -1,0 +1,103 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Wetterdienst}
+\section{Aufgabe 1
+\index{Entity-Relation-Modell}
+\footcite{66116:2020:03}}
+
+Hinweis: Bei Wahl dieser Aufgabe wird Wissen über das erweiterte Entity-
+Relationship-Modell (beispielsweise schwache Entity-Typen, Vererbung)
+sowie die Verfeinerung eines relationalen Sche- mas vorausgesetzt.
+
+Gegeben seien folgende Informationen:
+\begin{itemize}
+
+\item Ein Wetterdienst - identifiziert durch einen eindeutigen Namen -
+betreibt mehrere Wetterstationen, die mit einer eindeutigen Nummer je
+Wetterdienst identifiziert werden können. Jede Wetterstation hat zudem
+mehrere Messgeräte, die wiederum pro Wetterstation einen eindeutigen
+Code besitzen und zudem eine Betriebsdauer.
+
+\item Ein Wetterdienst hat eine Adresse.
+
+\item Bei den Messgeräten wird unter anderem zwischen manuellen und
+digitalen Messgeräten unterschieden. Dabei kann ein Messgerät immer nur
+zu einer Kategorie gehören.
+
+\item Meteorologen sind Mitarbeiter eines Wetterdienstes, haben einen
+Namen und werden über eine Personalnummer identifiziert. Zudem soll
+gespeichert werden, in welcher Wetterstation welcher Mitarbeiter zu
+welchem Zeitpunkt arbeitet.
+
+\item Meteorologen können für eine Menge an Messgeräten verantwortlich
+sein. Manuelle Messgeräte werden von Meteorologen abgelesen.
+
+\item Ein Wettermoderator präsentiert das vorhergesagte Wetter eines
+Wetterdienstes für einen Fernsehsender.
+
+\item Für einen Wettermoderator wird der eindeutige Name und die Größe
+gespeichert. Ein Fernsehsender wird ebenfalls über den eindeutigen
+Namen identifiziert.
+
+\end{itemize}
+
+\begin{enumerate}
+\item Erstellen Sie für das oben gegebene Szenario ein geeignetes ER-Diagramm.
+
+Verwenden Sie dabei - wenn angebracht - das Prinzip der
+Spezialisierung. Kennzeichnen Sie die Primärschlüssel der Entity-Typen,
+totale Teilnahmen (existenzabhängige Beziehungen) und schwache
+Entity-Typen.
+
+Zeichnen Sie die Funktionalitäten der Relationship-Typen in das Diagramm
+ein.
+
+\item Überführen Sie das in Teilaufgabe a) erstellte ER-Modell in ein
+verfeinertes relationales Schema. Kennzeichnen Sie die Schlüssel durch
+Unterstreichen. Datentypen müssen nicht angegeben werden. Die einzelnen
+Schritte müssen angegeben werden.
+
+\begin{liAntwort}
+1. Schritt: Starke Entity-Typen einfügen
+Wetterdienst { Name, Adresse }
+Meteorologe { Personalnummer, Name }
+Wettermoderator { Name, Größe }
+Fernsehsender { Name }
+2. Schritt: Schwache Entity-Typen einfügen
+Wetterstation { Name [Wetterdienst], Nummer }
+Messgeraet { Name [Wetterdienst], Nummer [Wetterstation], Code, Betriebsdauer }
+3. Schritt: Is-A-Beziehung einfügen
+ManuellesMessgeraet { Name [Wetterdienst], Nummer [Wetterstation], Code [Messgeraet] }
+DigitalesMessgeraet { Name [Wetterdienst], Nummer [Wetterstation], Code [Messgeraet] }
+4. Schritt: Beziehungen einfügen
+Betreibt { Name [Wetterdienst], Nummer }
+Hat { Name [Wetterdienst], Nummer [Wetterstation], Code [Messgeraet] }
+ArbeitetIn { Personalnummer [Meteorologe], Name [Wetterdienst], Nummer [Wetterstation], Zeitpunkt }
+IstMitarbeiterVon { Personalnummer [Meteorologe], Name [Wetterdienst] }
+IstVerantwortlichFür { Personalnummer [Meteorologe], Name [Wetterdienst], Nummer [Wetterstation],
+Code [Messgeraet] }
+LiestAb { Personalnummer [Meteorologe], Name [Wetterdienst], Nummer [Wetterstation], Code
+[Messgeraet] }
+PraesentiertWetter { ModeratorenName [Wettermoderator], FernsehsenderName [Fernsehsender],
+WetterdienstName [Wetterdienst] }
+(Bei PraesentiertWetter sind nur zwei Felder Teil des Primärschlüssels, da es sich um eine 1 : 1 : n-
+Beziehung handelt.)
+5. Schritt: Verfeinerung
+Wetterdienst { Name, Adresse }
+Wetterstation { Name [Wetterdienst], Nummer [Wetterstation] }
+Messgeraet { Name [Wetterdienst], Nummer [Wetterstation], Code [Messgeraet], Betriebsdauer,
+VerantwortlicherMitarbeiterPersonalnummer [Meteorologe] }
+ManuellesMessgeraet { Name [Wetterdienst], Nummer [Wetterstation], Code [Messgeraet] }
+DigitalesMessgeraet { Name [Wetterdienst], Nummer [Wetterstation], Code [Messgeraet] }
+Meteorologe { Personalnummer, Name, WetterdienstName [Wetterdienst] }
+ArbeitetIn { Personalnummer [Meteorologe], Name [Wetterdienst], Nummer [Wetterstation], Zeitpunkt }
+LiestAb { Personalnummer [Meteorologe], Name [Wetterdienst], Nummer [Wetterstation], Code
+[Messgeraet] }
+Wettermoderator { Name, Größe }
+Fernsehsender { Name }
+PraesentiertWetter { ModeratorenName [Wettermoderator], FernsehsenderName [Fernsehsender],
+WetterdienstName [Wetterdienst] }
+\end{liAntwort}
+\end{enumerate}
+\end{document}
