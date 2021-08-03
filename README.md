@@ -65,6 +65,7 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66111/1997/09/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66111-1997-Herbst_A3">„Fertigung“ Examen 66111 Herbst 1997 A3</a> (Entity-Relation-Modell, Relationenmodell)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2016-Frühjahr_T1-TA1-A1">„Forstverwaltung“ Examen 66116 Frühjahr 2016 T1 TA1 A1</a> (Entity-Relation-Modell, Relationenmodell)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2018-Frühjahr_T2-TA1-A2">„Zirkus“ Examen 66116 Frühjahr 2018 T2 TA1 A2</a> (Entity-Relation-Modell, Relationenmodell)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T2-TA2-A3">„Autoverleih“ Examen 66116 Frühjahr 2021 T2 TA2 A3</a> (Relationenmodell)
 
 #### Relationale Algebra
 
@@ -84,7 +85,9 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/03/Thema-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2019-Frühjahr_T1-A2">„Medikamente“ Examen 66116 Frühjahr 2019 T1 A2</a> (SQL, SQL mit Übungsdatenbank, Relationale Algebra)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/03/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2019-Frühjahr_T2-TA1-A3">Examen 66116 Frühjahr 2019 T2 TA1 A3</a> (Relationale Algebra, RelaX - relational algebra calculator)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A6">„Vermischte Datenbank-Fragen“ Examen 66116 Herbst 2019 T2 TA2 A6</a> (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_T1-TA2-A3">„Universitätsschema“ Examen 66116 Frühjahr 2020 T1 TA2 A3</a> (Relationale Algebra, Tupelkalkül)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T2-TA2-A3">„Relationale Algebra und Optimierung“ Examen 66116 Herbst 2020 T2 TA2 A3</a> (Relationale Algebra, SQL mit Übungsdatenbank)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T1-TA2-A3">Examen 66116 Frühjahr 2021 T1 TA2 A3</a> (Relationale Algebra)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-2/Teilaufgabe-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T2-TA2-A5">„Mitarbeiter einer Abteilung“ Examen 66116 Frühjahr 2021 T2 TA2 A5</a> (Relationale Algebra, RelaX - relational algebra calculator)
 
 #### Tupelkalkül
@@ -92,6 +95,7 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/10_DB/30_Relationales-Modell/30_Tupelkalkuel/Aufgabe_Xenokrates.pdf" download="Aufgabe_Xenokrates">„Xenokrates“</a> (Tupelkalkül)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2013/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_46116-2013-Frühjahr_T1-TA2-A2">„Browser-Online-Spiele“ Examen 46116 Frühjahr 2013 T1 TA2 A2</a> (Relationale Algebra, SQL, Tupelkalkül)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2018-Frühjahr_T2-TA1-A4">„Tupelkalkül bei Dozenten-Datenbank“ Examen 66116 Frühjahr 2018 T2 TA1 A4</a> (Tupelkalkül)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_T1-TA2-A3">„Universitätsschema“ Examen 66116 Frühjahr 2020 T1 TA2 A3</a> (Relationale Algebra, Tupelkalkül)
 
 ### Relationale Anfragesprachen
 
@@ -132,7 +136,9 @@ Hier alle Aufgaben mit einer Übungsdatenbank:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/03/Thema-1/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2019-Frühjahr_T1-A2">„Medikamente“ Examen 66116 Frühjahr 2019 T1 A2</a> (SQL, SQL mit Übungsdatenbank, Relationale Algebra)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A3">„Game of Thrones“ Examen 66116 Herbst 2019 T1 TA2 A3</a> (SQL, SQL mit Übungsdatenbank, Korrelierte Anfrage, DELETE, DROP COLUMN, ALTER TABLE, BETWEEN, CHECK, REFERENCES, NOT NULL)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A7">„Formel-1-Rennen“ Examen 66116 Herbst 2019 T2 TA2 A7</a> (SQL, SQL mit Übungsdatenbank, EXCEPT, Top-N-Query, ALTER TABLE, TRIGGER)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Thema-1/Teilaufgabe-2/Aufgabe-8.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_T1-TA2-A8">„Universitätssschema“ Examen 66116 Frühjahr 2020 T1 TA2 A8</a> (SQL, SQL mit Übungsdatenbank)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T2-TA2-A3">„Relationale Algebra und Optimierung“ Examen 66116 Herbst 2020 T2 TA2 A3</a> (Relationale Algebra, SQL mit Übungsdatenbank)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T1-TA2-A6">„Fußballweltmeisterschaft“ Examen 66116 Frühjahr 2021 T1 TA2 A6</a> (SQL, SQL mit Übungsdatenbank, Top-N-Query)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T2-TA2-A4">„Mitarbeiter einer Abteilung“ Examen 66116 Frühjahr 2021 T2 TA2 A4</a> (SQL, SQL mit Übungsdatenbank, Top-N-Query)
 
 Weitere Aufgaben zum Thema „SQL“:
@@ -167,7 +173,10 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T1-TA2-A3">„Game of Thrones“ Examen 66116 Herbst 2019 T1 TA2 A3</a> (SQL, SQL mit Übungsdatenbank, Korrelierte Anfrage, DELETE, DROP COLUMN, ALTER TABLE, BETWEEN, CHECK, REFERENCES, NOT NULL)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A6">„Vermischte Datenbank-Fragen“ Examen 66116 Herbst 2019 T2 TA2 A6</a> (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A7">„Formel-1-Rennen“ Examen 66116 Herbst 2019 T2 TA2 A7</a> (SQL, SQL mit Übungsdatenbank, EXCEPT, Top-N-Query, ALTER TABLE, TRIGGER)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Thema-1/Teilaufgabe-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_T1-TA2-A7">„Zehnkampf“ Examen 66116 Frühjahr 2020 T1 TA2 A7</a> (SQL)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Thema-1/Teilaufgabe-2/Aufgabe-8.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_T1-TA2-A8">„Universitätssschema“ Examen 66116 Frühjahr 2020 T1 TA2 A8</a> (SQL, SQL mit Übungsdatenbank)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T2-TA2-A3">„Relationale Algebra und Optimierung“ Examen 66116 Herbst 2020 T2 TA2 A3</a> (Relationale Algebra, SQL mit Übungsdatenbank)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T1-TA2-A6">„Fußballweltmeisterschaft“ Examen 66116 Frühjahr 2021 T1 TA2 A6</a> (SQL, SQL mit Übungsdatenbank, Top-N-Query)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T2-TA2-A4">„Mitarbeiter einer Abteilung“ Examen 66116 Frühjahr 2021 T2 TA2 A4</a> (SQL, SQL mit Übungsdatenbank, Top-N-Query)
 
 ### Relationale Entwurfstheorie
@@ -197,7 +206,11 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2018-Frühjahr_T2-TA1-A6">„Synthese-Algorithmus bei Relationenschema A-F“ Examen 66116 Frühjahr 2018 T2 TA1 A6</a> (Synthese-Algorithmus, Dritte Normalform)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/03/Thema-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2019-Frühjahr_T1-A3">Examen 66116 Frühjahr 2019 T1 A3</a> (Relationale Entwurfstheorie, Synthese-Algorithmus)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/03/Thema-2/Teilaufgabe-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2019-Frühjahr_T2-TA1-A6">„Normalisierung“ Examen 66116 Frühjahr 2019 T2 TA1 A6</a> (Normalformen, Schlüsselkandidat, Synthese-Algorithmus)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_T1-TA2-A4">„Relation A-F“ Examen 66116 Frühjahr 2020 T1 TA2 A4</a> (Synthese-Algorithmus)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Thema-1/Teilaufgabe-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_T1-TA2-A5">„Schlüssel“ Examen 66116 Frühjahr 2020 T1 TA2 A5</a> (Schlüssel)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_T2-TA2-A4">„(Entwurfstheorie)“ Examen 66116 Herbst 2020 T2 TA2 A4</a> (Normalformen)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T1-TA2-A4">„Normalisierung“ Examen 66116 Frühjahr 2021 T1 TA2 A4</a> (Normalformen)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T2-TA2-A6">„Relation Prüfung“ Examen 66116 Frühjahr 2021 T2 TA2 A6</a> (Normalformen)
 
 ### Transaktionsverwaltung
 
@@ -205,6 +218,8 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/10_DB/60_Transaktionsverwaltung/Aufgabe_PKW.pdf" download="Aufgabe_PKW">„PKW“</a> (Transaktionen, Deadlock)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/10_DB/60_Transaktionsverwaltung/Aufgabe_Tabelle-TAB.pdf" download="Aufgabe_Tabelle-TAB">„Tabelle TAB“</a> (Transaktionsverwaltung, Lost-Update, Dirty-Read)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_46116-2016-Frühjahr_T1-TA1-A5">„Transaktionen“ Examen 46116 Frühjahr 2016 T1 TA1 A5</a> (Transaktionen, ACID, Serialisierbarkeitsgraph, Zwei-Phasen-Sperrprotokoll)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_T2-TA2-A4">Examen 66116 Frühjahr 2020 T2 TA2 A4</a> (Transaktionen)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T1-TA2-A5">Examen 66116 Frühjahr 2021 T1 TA2 A5</a> (Transaktionen)
 
 ## Programmierung
 
@@ -264,6 +279,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/Thema-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2014-Herbst_T2-A6">„Selectionsort“ Examen 66115 Herbst 2014 T2 A6</a> (Selectionsort, Implementierung in Java, Komplexität, Halde (Heap))
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66115-2015-Frühjahr_T2-A5">„Sortieren mit Stapel“ Examen 66115 Frühjahr 2015 T2 A5</a> (Stapel (Stack), Komplexität)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/03/Thema-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66115-2018-Frühjahr_T2-A7">„Quicksort“ Examen 66115 Frühjahr 2018 T2 A7</a> (Quicksort)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T1-A4">„SAT DOPPELSAT“ Examen 66115 Herbst 2019 T1 A4</a> (Komplexität)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T1-A5">„Notation des Informatik-Duden“ Examen 66115 Herbst 2019 T1 A5</a> (Quicksort)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T1-A6">„Sortieren von O-Klassen“ Examen 66115 Herbst 2019 T1 A6</a> (Komplexität)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/03/Thema-2/Aufgabe-8.pdf" download="Staatsexamen-Informatik_66115-2020-Frühjahr_T2-A8">„Nächstes rot-blaues Paar auf der x-Achse“ Examen 66115 Frühjahr 2020 T2 A8</a> (Komplexität)
@@ -655,6 +671,8 @@ OCR des oben genannten Scans:
     - Thema 1 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2011/03/Thema-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_46115-2011-Frühjahr_T1-A3">Aufgabe 3 (B-Baum, AVL-Baum)</a>
 - 2012 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2012/03/Scan.pdf" download="Staatsexamen-Informatik_46115-2012-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2012/03/OCR.txt" download="Staatsexamen-Informatik_46115-2012-Frühjahr_OCR">OCR.txt</a> 
+    - Thema 1 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2012/03/Thema-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_46115-2012-Frühjahr_T1-A6">Aufgabe 6 (Algorithmus von Dijkstra, Adjazenzliste, Adjazenzmatrix, Halde (Heap))</a>
 - 2013 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Scan.pdf" download="Staatsexamen-Informatik_46115-2013-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/OCR.txt" download="Staatsexamen-Informatik_46115-2013-Frühjahr_OCR">OCR.txt</a> 
     - Thema 2 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Thema-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46115-2013-Frühjahr_T2-A4">Aufgabe 4 (Streutabellen (Hashing))</a> 
@@ -1160,6 +1178,7 @@ OCR des oben genannten Scans:
 - 2019 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Scan.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/OCR.txt" download="Staatsexamen-Informatik_66115-2019-Herbst_OCR">OCR.txt</a> 
     - Thema 1 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T1-A3">Aufgabe 3 (Kontextfreie Sprache)</a> 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T1-A4">Aufgabe 4 (Komplexität)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T1-A5">Aufgabe 5 (Quicksort)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T1-A6">Aufgabe 6 (Komplexität)</a> 
         - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66115-2019-Herbst_T1-A7">Aufgabe 7 (Bäume)</a> 
@@ -1368,10 +1387,18 @@ OCR des oben genannten Scans:
         - Teilaufgabe 1 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Thema-1/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_T1-TA1-A1">Aufgabe 1 (Zustandsdiagramm zeichnen)</a> 
         - Teilaufgabe 2 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_T1-TA2-A3">Aufgabe 3 (Relationale Algebra, Tupelkalkül)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_T1-TA2-A4">Aufgabe 4 (Synthese-Algorithmus)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Thema-1/Teilaufgabe-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_T1-TA2-A5">Aufgabe 5 (Schlüssel)</a> 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Thema-1/Teilaufgabe-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_T1-TA2-A6">Aufgabe 6 (B-Baum)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Thema-1/Teilaufgabe-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_T1-TA2-A7">Aufgabe 7 (SQL)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Thema-1/Teilaufgabe-2/Aufgabe-8.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_T1-TA2-A8">Aufgabe 8 (SQL, SQL mit Übungsdatenbank)</a> 
     - Thema 2 
         - Teilaufgabe 1 
-            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Thema-2/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_T2-TA1-A4">Aufgabe 4 (Sequenzdiagramm)</a>
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Thema-2/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_T2-TA1-A4">Aufgabe 4 (Sequenzdiagramm)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Thema-2/Teilaufgabe-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_T2-TA1-A5">Aufgabe 5 (Implementierung in Java)</a> 
+        - Teilaufgabe 2 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2020-Frühjahr_T2-TA2-A4">Aufgabe 4 (Transaktionen)</a>
 - 2020 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/Scan.pdf" download="Staatsexamen-Informatik_66116-2020-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2020/09/OCR.txt" download="Staatsexamen-Informatik_66116-2020-Herbst_OCR">OCR.txt</a> 
     - Thema 1 
         - Teilaufgabe 1 
@@ -1409,6 +1436,10 @@ OCR des oben genannten Scans:
         - Teilaufgabe 2 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T1-TA2-A1">Aufgabe 1 (Datenbank)</a> 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T1-TA2-A2">Aufgabe 2 (Entity-Relation-Modell)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T1-TA2-A3">Aufgabe 3 (Relationale Algebra)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T1-TA2-A4">Aufgabe 4 (Normalformen)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T1-TA2-A5">Aufgabe 5 (Transaktionen)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T1-TA2-A6">Aufgabe 6 (SQL, SQL mit Übungsdatenbank, Top-N-Query)</a> 
     - Thema 2 
         - Teilaufgabe 1 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T2-TA1-A1">Aufgabe 1 (CPM-Netzplantechnik)</a> 
@@ -1418,8 +1449,11 @@ OCR des oben genannten Scans:
         - Teilaufgabe 2 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T2-TA2-A1">Aufgabe 1 (DB)</a> 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T2-TA2-A2">Aufgabe 2 (Entity-Relation-Modell)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-2/Teilaufgabe-2/Aufgabe-3.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T2-TA2-A3">Aufgabe 3 (Relationenmodell)</a> 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T2-TA2-A4">Aufgabe 4 (SQL, SQL mit Übungsdatenbank, Top-N-Query)</a> 
-            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-2/Teilaufgabe-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T2-TA2-A5">Aufgabe 5 (Relationale Algebra, RelaX - relational algebra calculator)</a>
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-2/Teilaufgabe-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T2-TA2-A5">Aufgabe 5 (Relationale Algebra, RelaX - relational algebra calculator)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T2-TA2-A6">Aufgabe 6 (Normalformen)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T2-TA2-A7">Aufgabe 7 (DB)</a>
 
 ### 66118: Fachdidaktik (Gymnasium)
 

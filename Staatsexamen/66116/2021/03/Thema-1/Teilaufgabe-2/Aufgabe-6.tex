@@ -16,6 +16,9 @@ Platzverweise (Platzverweis_ID*, Spiel_ID[Spiel], Spieler_ID[Spieler], Spielminu
 Gegeben ist folgendes Relationenschema zur Verwaltung von Daten aus der
 Fußballweltmeisterschaft:
 
+Die Tabelle Match wurde in Spiel umgenannt, da es sonst zu Konfliken mit
+der SQL-Syntax kommt, da match ein SQL Schlüsselwort ist.
+
 Nation (Land, Kapitän, Trainer)
 Kapitän ist Fremdschlüssel zu Spieler\_ID in Spieler.
 
@@ -72,9 +75,12 @@ CREATE TABLE Platzverweise (
 INSERT INTO Spieler
   (Spieler_ID, Name, Vorname, Wohnort, Land)
 VALUES
-  (1, 'Matthäus', 'Lothar', 'Herzogenaurach', 'Deutschlad'),
+  (1, 'Matthäus', 'Lothar', 'Herzogenaurach', 'Deutschland'),
   (2, 'Rizzitelli', 'Luca', 'Genua', 'Italien'),
-  (3, 'Beckham', 'David', 'London', 'England');
+  (3, 'Beckham', 'David', 'London', 'England'),
+  (4, 'Babel', 'Markus', 'München', 'Deutschland'),
+  (5, 'Bodden', 'Olaf', 'Kalkar', 'Deutschland'),
+  (6, 'Häßler', 'Thomas', 'Berlin', 'Deutschland');
 
 INSERT INTO Nation
   (Land, Kapitän, Trainer)
@@ -87,12 +93,20 @@ INSERT INTO Spiel
   (Spiel_ID, Ort, Datum, Team1, Team2, ToreTeam1, ToreTeam2)
 VALUES
   (1, 'München', '2021-08-01', 'Deutschland', 'Italien', 1, 1),
-  (2, 'Nürnberg', '2021-08-02', 'Deutschland', 'England', 1, 5);
+  (2, 'Nürnberg', '2021-08-02', 'England', 'Deutschland', 1, 5),
+  (3, 'Fürth', '2021-08-03', 'Italien', 'England', 3, 1),
+  (4, 'Leverkusen', '2021-08-05', 'Deutschland', 'England', 3, 1);
 
 INSERT INTO Platzverweise
   (Platzverweis_ID, Spiel_ID, Spieler_ID, Spielminute)
 VALUES
-  (1, 1, 1, 37);
+  (1, 1, 1, 37),
+  (2, 1, 2, 36),
+  (3, 1, 3, 35),
+  (4, 1, 4, 34),
+  (5, 1, 5, 33),
+  (6, 1, 6, 32),
+  (7, 2, 1, 31);
 \end{minted}
 \index{SQL mit Übungsdatenbank}
 
@@ -116,10 +130,15 @@ ORDER BY Anzahl DESC;
 \end{minted}
 
 \begin{minted}{md}
- anzahl |   name   | vorname
---------+----------+---------
-      1 | Matthäus | Lothar
-(1 row)
+ anzahl |    name    | vorname
+--------+------------+---------
+      2 | Matthäus   | Lothar
+      1 | Bodden     | Olaf
+      1 | Beckham    | David
+      1 | Rizzitelli | Luca
+      1 | Babel      | Markus
+      1 | Häßler     | Thomas
+(6 rows)
 \end{minted}
 \end{liAntwort}
 
@@ -134,27 +153,25 @@ Team2 angetreten ist.)
 
 \begin{liAntwort}
 \begin{minted}{sql}
-SELECT Team1Tore.Team, SUM(Team1Tore.Summe + Team2Tore.Summe) AS Tore
-FROM (
-  SELECT Team1 AS Team, SUM(ToreTeam1) AS Summe
-  FROM Spiel
-  GROUP BY Team1, ToreTeam1
-) AS Team1Tore, (
-  SELECT Team2 AS Team, SUM(ToreTeam2) AS Summe
-  FROM Spiel
-  GROUP BY Team2, ToreTeam2
-) AS Team2Tore
-WHERE Team1Tore.Team = Team2Tore.Team;
+SELECT MAX(tmp2.Summe) FROM (
+  SELECT Team, SUM(Summe) as Summe FROM (
+    SELECT Team1 AS Team, SUM(ToreTeam1) AS Summe
+      FROM Spiel
+      GROUP BY Team1, ToreTeam1
+    UNION
+    SELECT Team2 AS Team, SUM(ToreTeam2) AS Summe
+      FROM Spiel
+      GROUP BY Team2, ToreTeam2
+  ) AS tmp
+  GROUP BY Team
+) as tmp2;
 \end{minted}
 
-\begin{minted}{sql}
-SELECT Team1 AS Team, SUM(ToreTeam1) AS Summe
-FROM Spiel
-GROUP BY Team1
-UNION
-SELECT Team2 AS Team, SUM(ToreTeam2) AS Summe
-FROM Spiel
-GROUP BY Team2
+\begin{minted}{md}
+ max
+-----
+   9
+(1 row)
 \end{minted}
 \end{liAntwort}
 
@@ -178,6 +195,7 @@ FROM Spiel;
 \item Ermitteln Sie die Namen und Länder der fünf Spieler, die nach der
 kürzesten Spielzeit einen Platzverweis erhielten. Die Ausgabe soll
 nummeriert erfolgen (beginnend bei 1 für die kürzeste Spielzeit).
+\index{Top-N-Query}
 
 \begin{liAntwort}
 \begin{minted}{sql}
@@ -186,10 +204,17 @@ FROM Spieler s, Platzverweise p1, Platzverweise p2
 WHERE
   s.Spieler_ID = p2.Spieler_ID AND
   p1.Spielminute <= p2.Spielminute
-GROUP BY p2.Spieler_ID
+GROUP BY s.Name, s.Land, p2.Spieler_ID
 HAVING COUNT(*) < 6
 ORDER BY Rang;
 \end{minted}
+
+Der Erstplatzierte kommt durch die WHERE-Bedingungen nur einmal in der
+Relation vor, weil sein Eintrag genau einmal mit sich selbst vorkommt.
+Alle anderen Einträge, bei denen die \texttt{p2.Spieler\_ID}, der
+Spieler mit der „geringsten Minute“ ist, werden ja eliminiert, da ja nur
+die Einträge behalten werden, die der Bedingung \texttt{p1.Spielminute
+<= p2.Spielminute} entsprechen.
 \end{liAntwort}
 
 \end{enumerate}
