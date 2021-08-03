@@ -1,33 +1,101 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
+\liLadePakete{syntax,rmodell}
 \begin{document}
 \liAufgabenTitel{Fußballweltmeisterschaft}
 \section{Aufgabe 6
 \index{SQL}
 \footcite{66116:2021:03}}
 
+\begin{liRelationenSchemaFormat}
+Nation (Land*, Kapitän[Spieler_ID], Trainer)
+Spiel (Spiel_ID*, Ort, Datum, Team1[Nation], Team2[Nation], ToreTeam1, ToreTeam2)
+Spieler (Spieler_ID*, Name, Vorname, Wohnort, Land[Nation])
+Platzverweise (Platzverweis_ID*, Spiel_ID[Spiel], Spieler_ID[Spieler], Spielminute)
+\end{liRelationenSchemaFormat}
+
 Gegeben ist folgendes Relationenschema zur Verwaltung von Daten aus der
 Fußballweltmeisterschaft:
 
-NATION (Land, Kapitän, Trainer)
-Kapitän ist Fremdschlüssel zu Spieler\_ID in SPIELER.
+Nation (Land, Kapitän, Trainer)
+Kapitän ist Fremdschlüssel zu Spieler\_ID in Spieler.
 
-MATCH (Match\_ID, Ort, Datum, Team1, Team2, ToreTeam1, ToreTeam2)
-Teami ist Fremdschlüssel zu Land in NATION.
-Team2 ist Fremdschlüssel zu Land in NATION.
+Spiel (Spiel\_ID, Ort, Datum, Team1, Team2, ToreTeam1, ToreTeam2)
+Team1 ist Fremdschlüssel zu Land in Nation.
+Team2 ist Fremdschlüssel zu Land in Nation.
 
-SPIELER (Spieler\_ID, Name, Vorname, Wohnort, Land)
-Land ist Fremdschlüssel zu Land in NATION.
+Spieler (Spieler\_ID, Name, Vorname, Wohnort, Land)
+Land ist Fremdschlüssel zu Land in Nation.
 
-PLATZVERWEISE (Platzverweis\_ID,Match\_ID, Spieler\_ID, Spielminute)
-Match\_ID ist Fremdschlüsssel zu Match\_ID in MATCH.
-Spieler\_ID ist Fremdschlüssel zu Spieler\_ID in SPIELER.
+Platzverweise (Platzverweis\_ID,Spiel\_ID, Spieler\_ID, Spielminute)
+Spiel\_ID ist Fremdschlüsssel zu Spiel\_ID in Spiel.
+Spieler\_ID ist Fremdschlüssel zu Spieler\_ID in Spieler.
 
 Die Primärschlüssel der Relationen sind wie üblich durch Unterstreichen
 gekennzeichnet. Pro Ort und Datum findet jeweils nur ein Spiel statt.
 
 Formulieren Sie folgende Abfragen in SQL. Vermeiden Sie nach Möglichkeit
 übermäßige Nutzung von Joins und Views.
+
+% Datenbankname: weltmeisterschaft
+\begin{minted}{sql}
+CREATE TABLE Spieler (
+  Spieler_ID INTEGER PRIMARY KEY,
+  Name VARCHAR(20),
+  Vorname VARCHAR(20),
+  Wohnort VARCHAR(50),
+  Land VARCHAR(50)
+);
+
+CREATE TABLE Nation (
+  Land VARCHAR(50) PRIMARY KEY,
+  Kapitän INTEGER REFERENCES Spieler(Spieler_ID),
+  Trainer VARCHAR(50)
+);
+
+CREATE TABLE Spiel (
+  Spiel_ID INTEGER PRIMARY KEY,
+  Ort VARCHAR(50),
+  Datum DATE,
+  Team1 VARCHAR(50) REFERENCES Nation(Land),
+  Team2 VARCHAR(50) REFERENCES Nation(Land),
+  ToreTeam1 INTEGER,
+  ToreTeam2 INTEGER
+);
+
+CREATE TABLE Platzverweise (
+  Platzverweis_ID INTEGER PRIMARY KEY,
+  Spiel_ID INTEGER REFERENCES Spiel(Spiel_ID),
+  Spieler_ID INTEGER REFERENCES Spieler(Spieler_ID),
+  Spielminute VARCHAR(50)
+);
+
+INSERT INTO Spieler
+  (Spieler_ID, Name, Vorname, Wohnort, Land)
+VALUES
+  (1, 'Matthäus', 'Lothar', 'Herzogenaurach', 'Deutschlad'),
+  (2, 'Rizzitelli', 'Luca', 'Genua', 'Italien'),
+  (3, 'Beckham', 'David', 'London', 'England');
+
+INSERT INTO Nation
+  (Land, Kapitän, Trainer)
+VALUES
+  ('Deutschland', 1, 'Joachim Löw'),
+  ('Italien', 2, 'Giovanni Trapatoni'),
+  ('England', 3, 'Boris Johnson');
+
+INSERT INTO Spiel
+  (Spiel_ID, Ort, Datum, Team1, Team2, ToreTeam1, ToreTeam2)
+VALUES
+  (1, 'München', '2021-08-01', 'Deutschland', 'Italien', 1, 1),
+  (2, 'Nürnberg', '2021-08-02', 'Deutschland', 'England', 1, 5);
+
+INSERT INTO Platzverweise
+  (Platzverweis_ID, Spiel_ID, Spieler_ID, Spielminute)
+VALUES
+  (1, 1, 1, 37);
+\end{minted}
+\index{SQL mit Übungsdatenbank}
+
 \begin{enumerate}
 
 %%
@@ -40,11 +108,18 @@ der Anzahl der Platzverweise absteigend erfolgen.
 
 \begin{liAntwort}
 \begin{minted}{sql}
-SELECT COUNT(*) AS Anzahl, S.Name, S.Vorname
-FROM Platzverweise P, Spieler S
-WHERE P.Spieler_ID = S.Spieler_ID
-GROUP BY P.Spieler_ID
+SELECT COUNT(*) AS Anzahl, s.Name, s.Vorname
+FROM Platzverweise p, Spieler s
+WHERE p.Spieler_ID = s.Spieler_ID
+GROUP BY s.Name, s.Vorname
 ORDER BY Anzahl DESC;
+\end{minted}
+
+\begin{minted}{md}
+ anzahl |   name   | vorname
+--------+----------+---------
+      1 | Matthäus | Lothar
+(1 row)
 \end{minted}
 \end{liAntwort}
 
@@ -54,28 +129,31 @@ ORDER BY Anzahl DESC;
 
 \item Welches ist die maximale Anzahl an Toren, die eine Mannschaft
 insgesamt im Turnier erzielt hat? (Sie dürfen der Einfachheit halber
-annehmen, dass jede Mannschaft jeweils mindestens einmal als Teami und
+annehmen, dass jede Mannschaft jeweils mindestens einmal als Team1 und
 Team2 angetreten ist.)
 
 \begin{liAntwort}
 \begin{minted}{sql}
 SELECT Team1Tore.Team, SUM(Team1Tore.Summe + Team2Tore.Summe) AS Tore
-FROM (SELECT Team1 AS Team, SUM(ToreTeam1) AS Summe
- FROM Match
- GROUP BY Team1) AS Team1Tore,
- (SELECT Team2 AS Team, SUM(ToreTeam2) AS Summe
- FROM Match
- GROUP BY Team2) AS Team2Tore
-WHERE Team1Tore.Team = Team2Tore.Team
+FROM (
+  SELECT Team1 AS Team, SUM(ToreTeam1) AS Summe
+  FROM Spiel
+  GROUP BY Team1, ToreTeam1
+) AS Team1Tore, (
+  SELECT Team2 AS Team, SUM(ToreTeam2) AS Summe
+  FROM Spiel
+  GROUP BY Team2, ToreTeam2
+) AS Team2Tore
+WHERE Team1Tore.Team = Team2Tore.Team;
 \end{minted}
 
 \begin{minted}{sql}
 SELECT Team1 AS Team, SUM(ToreTeam1) AS Summe
-FROM Match
+FROM Spiel
 GROUP BY Team1
 UNION
 SELECT Team2 AS Team, SUM(ToreTeam2) AS Summe
-FROM Match
+FROM Spiel
 GROUP BY Team2
 \end{minted}
 \end{liAntwort}
@@ -89,7 +167,7 @@ GROUP BY Team2
 \begin{liAntwort}
 \begin{minted}{sql}
 SELECT SUM(ToreTeam1 + ToreTeam2) AS GesamtanzahlTore
-FROM Match
+FROM Spiel;
 \end{minted}
 \end{liAntwort}
 
@@ -103,11 +181,12 @@ nummeriert erfolgen (beginnend bei 1 für die kürzeste Spielzeit).
 
 \begin{liAntwort}
 \begin{minted}{sql}
-SELECT S.Name, S.Land, COUNT(*) AS Rang
-FROM Spieler S, Platzverweise P1, Platzverweise P2
-WHERE S.Spieler_ID = P2.Spieler_ID
-AND P1.Spielminute <= P2.Spielminute
-GROUP BY P2.Spieler_ID
+SELECT s.Name, s.Land, COUNT(*) AS Rang
+FROM Spieler s, Platzverweise p1, Platzverweise p2
+WHERE
+  s.Spieler_ID = p2.Spieler_ID AND
+  p1.Spielminute <= p2.Spielminute
+GROUP BY p2.Spieler_ID
 HAVING COUNT(*) < 6
 ORDER BY Rang;
 \end{minted}
