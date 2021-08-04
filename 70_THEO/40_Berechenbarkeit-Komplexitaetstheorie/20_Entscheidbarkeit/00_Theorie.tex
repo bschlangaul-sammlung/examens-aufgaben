@@ -173,14 +173,43 @@ Widerspruch zur Annahme der Entscheidbarkeit.
 
 \section{Satz von Rice:}
 
-Mit E sei eine nichttriviale funktionale Eigenschaft von Turingmaschinen
-gegeben.
+Mit $E$ sei eine nichttriviale funktionale Eigenschaft von
+Turingmaschinen gegeben.\footcite[Seite 324]{hoffmann}
+
 Dann ist das folgende Problem unentscheidbar:
-• Gegeben: Turingmaschine T
-• Gefragt: Besitzt T die Eigenschaft E?
+\begin{description}
+\item[Gegeben:] Turingmaschine T
+
+\item[Gefragt:] Besitzt T die Eigenschaft E?
+\end{description}
 \footcite[Seite 43]{theo:fs:4}
+
 %-----------------------------------------------------------------------
 %
 %-----------------------------------------------------------------------
 
+\section{Reduktionen:}
+
+$L_1$ heißt reduzierbar auf $L_2$ ($L_1 \leq L_2$), wenn es eine totale,
+berechenbare Funktion $f \colon \Sigma^* \rightarrow \Gamma^*$ gibt, so dass gilt:
+
+\begin{displaymath}
+\omega \in L_1 \Leftrightarrow f(\omega) \in L_2
+\end{displaymath}
+
+Wenn man $L_2$ lösen könnte, dann kann man auch $L_1$ lösen. Damit $L_2$
+mindestens so unentscheidbar ist wie $L_1$, nimm für $L_1$ ein bekanntes
+unentscheidbares Problem!
+\footcite[Seite 44]{theo:fs:4}
+
+\subsection{Vorgehen Reduktionsbeweise:}
+
+Es gibt eine Funktion, die Instanzen von $L_1$ auf Instanzen von $L_2$
+„umbaut“.
+
+\begin{itemize}
+\item Die Funktion ist total.
+\item Die Funktion ist berechenbar.
+\item Korrektheit der Reduktion.
+\end{itemize}
 \end{document}
