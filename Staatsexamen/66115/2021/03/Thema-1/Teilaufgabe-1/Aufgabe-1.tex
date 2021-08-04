@@ -1,0 +1,78 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen}
+\begin{document}
+
+\liAufgabenTitel{Reguläre Sprachen Automaten zuordnen}
+\section{Aufgabe 1
+\index{Reguläre Sprache}
+\footcite{66115:2021:03}}
+
+Im Folgenden bezeichnet $a^i = a \dots a$ und $\varepsilon$ steht für
+das leere Wort (\dh insbesondere $a^i = \varepsilon$).
+
+Die Menge $\mathbb{N}_0 = \liMenge{0,1,2,\dots}$ ist die Menge aller
+nicht-negativer Ganzzahlen.
+
+Die Sprachen $L_1, \dots , L_{12}$ seien definiert als:
+
+\begin{enumerate}
+%%
+% a)
+%%
+
+\item Ordnen Sie jedem der folgenden nichtdeterministischen endlichen
+Automaten $N_j, j = 1,\dots,6$, (die alle über dem Alphabet
+\liAlphabet{a} arbeiten) \textbf{jeweils eine} der Sprachen $L_i \in
+\liMenge{L_1, \dots , L_{12}}$ zu, sodass $L_i$, genau die von $N_i$,
+\textbf{akzeptierte Sprache} ist.
+
+\begin{liAntwort}
+\begin{itemize}
+\item $N_1 = L_6$ (mindestens ein $a$)
+
+\item $N_2 = L_8$ (ungerade Anzahl an $a$’s: $1, 5, 7, \dots$)
+
+\item $N_3 = L_2$ (gerade Anzahl an $a$’s: $2, 4, 6, \dots$)
+
+\item $N_4 = L_{12}$ (leeres Wort)
+
+\item $N_5 = L_8$ (ungerade Anzahl an $a$’s: $1, 5, 7, \dots$)
+
+\item $N_6 = L_11$ (die Sprache akzeptiert nicht)
+\end{itemize}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Zeigen Sie für eine der Sprachen $L_1, \dots, L_{12}$ dass diese
+\textbf{nicht regulär} ist.
+
+\begin{liAntwort}
+\liAusdruck[L_10]{a^n}{n \in \mathbb{N}_0, n\text{ ist Primzahl}}
+
+ist nicht regulär, da sich sonst jede Primzahl $p$ einer bestimmten
+Mindestgröße $j$ als Summe von natürlichen Zahlen $u + v + w$ darstellen
+ließe, so dass $v \geq 1$ und für alle $i \geq 0$ auch $u + iv + w = p +
+(i − 1)v$ prim ist. Dies ist jedoch für $i = p + 1$ wegen $p + (p + 1 −
+1)v = p(1 + v)$ nicht der
+Fall.\liFussnoteUrl{https://www.informatik.hu-berlin.de/de/forschung/gebiete/algorithmenII/Lehre/ws13/einftheo/einftheo-skript.pdf}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Konstruieren Sie für den folgenden nichtdeterministischen
+endlichen Automaten (der Worte über dem Alphabet \liAlphabet{a,b}
+verarbeitet) einen äquivalenten deterministischen endlichen Automaten
+mithilfe der Potenzmengenkonstruktion. Zeichnen Sie dabei nur die vom
+Startzustand erreichbaren Zustände. Erläutern Sie Ihr Vorgehen.
+
+\begin{liAntwort}
+
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}
