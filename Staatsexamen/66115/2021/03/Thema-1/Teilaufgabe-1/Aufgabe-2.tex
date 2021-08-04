@@ -1,0 +1,41 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,cyk-algorithmus}
+\begin{document}
+\let\l=\liKurzeTabellenLinie
+
+\liAufgabenTitel{CYK mit Wort „aaaccbbb“}
+\section{Aufgabe 2
+\index{CYK-Algorithmus}
+\footcite{66115:2021:03}}
+
+Sei \liGrammatik{} eine kontextfreie Grammatik mit Variablen $V =
+\liMenge{S, A, B, C, D}$, Terminalzeichen \liAlphabet{a,b,c},
+Produktionen
+
+\begin{liProduktionsRegeln}
+S -> A D | C C | c,
+A -> a,
+B -> b,
+C -> C C | c,
+D -> S B | C B,
+\end{liProduktionsRegeln}
+
+und Startsymbol $S$. Führen Sie den Algorithmus von Cocke, Younger und
+Kasami (CYK-Algorithmus) für $G$ und das Wort $aaaccbbb$ aus. Liegt
+$aaaccbbb$ in der durch $G$ erzeugten Sprache? Erläutern Sie Ihr
+Vorgehen und den Ablauf des CYK-Algorithmus.
+
+\begin{liAntwort}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+a   & a   & a   & c   & c   & b   & b   & b   \\\hline\hline
+-   & -   & -   & S,C & D,D & -   & -   \l7
+-   & -   & -   & D,D & -   & -   \l6
+-   & -   & S,S & -   & -   \l5
+-   & -   & D,D & -   \l4
+-   & S,S & -   \l3
+-   & D,D  \l2
+S,S \l1
+\end{tabular}
+\end{liAntwort}
+
+\end{document}

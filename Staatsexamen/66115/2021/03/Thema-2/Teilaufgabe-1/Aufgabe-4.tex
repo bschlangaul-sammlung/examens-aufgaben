@@ -1,30 +1,72 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{komplexitaetstheorie}
 \begin{document}
-\liAufgabenTitel{CLIQUE ALMOSTCLIQUE}
+\let\n=\liProblemName
+\liAufgabenTitel{CLIQUE - ALMOST CLIQUE}
 \section{Aufgabe 4
 \index{Polynomialzeitreduktion}
 \footcite{66115:2021:03}}
-
- (Komplexität) [30 PUNKTE]
 
 Betrachten Sie die folgenden Probleme:
 
 \liProblemBeschreibung
 {Clique}
 {Ein ungerichteter Graph $G = (V, E)$, eine Zahl $k \in \mathcal{N}$}
-{Gibt es eine Menge $S \subseteq V$ mit $|S| = k$, sodass für alle Knoten $u \neq v \in V$ gilt,
+{Gibt es eine Menge $S \subseteq V$ mit $|S| = k$,
+sodass für alle Knoten $u \neq v \in V$ gilt,
 dass $\{ u, v \}$ eine Kante in $E$ ist?}
 
 \liProblemBeschreibung
 {Almost Clique}
-{Ein ungerichteter Graph G = (V, E), eine Zahl k e N}
-{Gibt es eine Menge S C V mit |S| = k, sodass die Anzahl der Kanten zwischen
-Knoten in S genau ke) — 1 ist?}
+{Ein ungerichteter Graph $G = (V, E)$, eine Zahl $k \in \mathcal{N}$}
+{Gibt es eine Menge $S \subseteq V$ mit $|S| = k$,
+sodass die Anzahl der Kanten zwischen
+Knoten in $S$ genau $\frac{k(k - 1)}{2} - 1$ ist?}
 
-Zeigen Sie, dass das Problem ALMOSTCLIQUE NP-vollständig ist. Nutzen Sie
-dafür die NP- Vollständigkeit von CLIQUE.
+\noindent
+Zeigen Sie, dass das Problem \n{Almost Clique} NP-vollständig ist.
+Nutzen Sie dafür die NP-Vollständigkeit von \n{Clique}.
 
-Hinweis: Die Anzahl der Kanten einer k-Clique sind AD,
+Hinweis: Die Anzahl der Kanten einer $k$-Clique sind $\frac{k(k -
+1)}{2}$.
 
+\begin{liExkurs}[Cliquenproblem]
+\liProblemClique
+\end{liExkurs}
+
+\begin{liExkurs}[\n{Almost Clique}]
+Eine Gruppe von Knoten wird \n{Almost Clique} genannt, wenn nur eine
+Kante ergänzt werden muss, damit sie zu einer Clique wird.
+\end{liExkurs}
+
+\begin{liAntwort}
+You can reduce to this from $CLIQUE$.
+
+Given a graph $G=(V,E)$ and $t$, construct a new graph $G^*$ by adding
+two new vertices $\{v_{n+1},v_{n +2}\}$ and connecting them with all of
+$G$'s vertices but removing the edge $\{v_{n+1},v_{n+2}\}$, i.e. they
+are not neighbors in $G^*$. return $G^*$ and $t+2$.
+
+If $G$ has a $t$ sized clique by adding it to the two vertices we get an
+$t+2$ almost clique in $G^*$ (by adding $\{v_{n+1},v_{n+2}\}$).
+
+If $G^*$ has a $t+2$ almost clique we can look at three cases:
+
+1) It contains the two vertices $\{v_{n+1},v_{n+2}\}$, then the missing
+edge must be $\{v_{n+1},v_{n+2}\}$ and this implies that the other $t$
+vertices form a $t$ clique in $G$.
+
+2) It contains one of the vertices $\{v_{n+1},v_{n+2}\}$, say w.l.o.g.
+$v_{n+1}$, then the missing edge must be inside $G$, say $e=\{u,v\}\in
+G$. If we remove $u$ and $v_{n+1}$ then the other $t$ vertices, which
+are in $G$ must form a clique of size $t$.
+
+3) It does not contain any of the vertices $\{v_{n+1},v_{n+2}\}$, then
+it is clear that this group is in $G$ and must contain a clique of size
+$t$.
+
+It is also clear that the reduction is in polynomial time, actually in
+linear time, log-space.
+\liFussnoteUrl{https://cs.stackexchange.com/a/76627}
+\end{liAntwort}
 \end{document}
