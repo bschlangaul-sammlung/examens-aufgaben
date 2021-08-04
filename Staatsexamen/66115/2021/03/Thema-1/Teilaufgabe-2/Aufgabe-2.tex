@@ -1,0 +1,51 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{Minimum und Maximum}
+\section{Aufgabe 2
+\index{Lineare Suche}
+\footcite{66115:2021:03}}
+
+\begin{enumerate}
+%%
+% a)
+%%
+
+\item Argumentieren Sie, warum man das Maximum von $n$ Zahlen nicht mit
+weniger als $n - 1$ Vergleichen bestimmen kann.
+
+\begin{liAntwort}
+Wenn die $n$ Zahlen in einem unsortierten Zustand vorliegen, müssen wir
+alle Zahlen betrachten, um das Maximum zu finden. Wir brauchen dazu $n -
+1$ und nicht $n$ Vergleiche, da wir die erste Zahl zu Beginn des
+Algorithmus als Maximum definieren und anschließend die verbleibenden
+Zahlen $n - 1$ mit dem aktuelle Maximum vergleichen.
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Geben Sie einen Algorithmus im Pseudocode an, der das Maximum
+eines Feldes der Länge $n$ mit genau $n - 1$ Vergleichen bestimmt.
+
+\begin{liAntwort}
+\liJavaExamen[firstline=5,lastline=13]{66115}{2021}{03}{MinimumMaximum.java}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Wenn man das Minimum und das Maximum von $n$ Zahlen bestimmen
+will, dann kann das natürlich mit $2n - 2$ Vergleichen erfolgen. Zeigen
+Sie, dass man bei jedem beliebigen Feld mit deutlich weniger Vergleichen
+auskommt, wenn man die beiden Werte statt in zwei separaten Durchläufen
+in einem Durchlauf geschickt bestimmt.
+
+\begin{liAntwort}
+\liJavaExamen[firstline=15]{66115}{2021}{03}{MinimumMaximum.java}
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}
