@@ -1,32 +1,39 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{formale-sprachen}
 \begin{document}
 \liAufgabenTitel{Foliensatz}
 \section{Pumping-Lemma
 \index{Pumping-Lemma (Kontextfreie Sprache)}
 \footcite[Seite 42]{theo:fs:2}}
 
-$L = a^n b^n c^n \in \mathbb{N}$
-Ich behaupte, $L$ sei kontextfrei.
+Gegeben sei die Sprachen
 
-\begin{enumerate}
-\item Also gibt es eine Pumpzahl. Sie sei j.
+\begin{center}
+\liAusdruck{a^n b^n c^n}{n \in \mathbb{N}}
+\end{center}
+
+\noindent
+Weisen Sie nach, dass $L$ nicht kontextfrei ist.
+
+\begin{liAntwort}
+\begin{itemize}
+\item Also gibt es eine Pumpzahl. Sie sei $j$.
 (Wähle geschickt ein „langes“ Wort...)
 $a^j b^j c^j$ ist ein Wort aus $L$, das sicher länger als $j$ ist.
 
-\item  Da $L$ kontextfrei ist, muss es nach dem Pumping-Lemma auch für
+\item Da $L$ kontextfrei ist, muss es nach dem Pumping-Lemma auch für
 dieses Wort eine beliebige Zerlegung geben:
 
-$a^j b^j c^j = uvwx$y mit $|vx| \geq 1$ und $|vwx| \leq j$
+$a^j b^j c^j = uvwxy$ mit $|vx| \geq 1$ und $|vwx| \leq j$
 
-\item  Weil $vwx$ höchstens $j$ lang ist, kann es nie $a$‘s und $c$‘s
+\item Weil $vwx$ höchstens $j$ lang ist, kann es nie $a$‘s und $c$‘s
 zugleich enthalten (es stehen $j$ $b$‘s dazwischen!).
 
 \item Andererseits enthält $vx$ mindestens ein Zeichen. Das Wort $\omega
 = uv^0 wx^0 y = uwy$ enthält dann nicht mehr gleich viele $a$‘s, $b$‘s
 und $c$‘s. (Widerspruch)!
 
-\item Die Behauptung war falsch! => $L$ ist nicht kontextfrei!
-
-\end{enumerate}
+\item Die Behauptung war falsch! $\Rightarrow$ $L$ ist nicht kontextfrei!
+\end{itemize}
+\end{liAntwort}
 \end{document}
