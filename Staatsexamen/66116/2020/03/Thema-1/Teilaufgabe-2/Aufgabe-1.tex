@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{er}
+\liLadePakete{er,rmodell,syntax}
 \begin{document}
 \liAufgabenTitel{Einwohnermeldeamt}
 \section{Aufgabe 1
@@ -22,8 +22,8 @@ Sie die Funktionalitätsangaben im Diagramm.
 % Menschen
 \node[entity] (Menschen) {Menschen};
 \node[attribute,above left=1cm of Menschen] {\key{Steuernummer}} edge (Menschen);
-\node[attribute,above=1cm of Menschen] {Vornamen} edge (Menschen);
-\node[attribute,above right=1cm of Menschen] {Name} edge (Menschen);
+\node[attribute,above right=1cm of Menschen] {Vorname} edge (Menschen);
+\node[attribute,above=1cm of Menschen] {Name} edge (Menschen);
 
 \node[relationship,left=1cm of Menschen] (verheiratet) {verheiratet\_mit};
 \node[relationship,right=1cm of Menschen] (befreundet) {befreundet\_mit};
@@ -90,6 +90,18 @@ Datentypen müssen nicht angegeben werden.
 
 \begin{liAntwort}
 
+\begin{liRmodell}
+Menschen(\liPrimaer{Steuernummer}, Name, Vorname)
+
+Orte(\liPrimaer{Name}, \liPrimaer{Bundesland}, Einwohneranzahl)
+
+verheiratet\_mit(\liFremd{Mensch[Menschen]}, \liFremd{Ehepartner[Menschen]})
+
+befreundet\_mit(\liFremd{Mensch[Menschen]}, \liFremd{Freund[Menschen]})
+
+geboren(Datum, \liFremd{Steuernummer}, \liFremd{Geburtsort[Orte]}, \liFremd{Geburtsbundesland[Orte]})
+
+\end{liRmodell}
 \end{liAntwort}
 
 %%
@@ -100,7 +112,21 @@ Datentypen müssen nicht angegeben werden.
 Relationen zusammenfassen.
 
 \begin{liAntwort}
+\begin{liRmodell}
+Menschen(%
+  \liPrimaer{Steuernummer},
+  Name,
+  Vorname,
+  \liFremd{Ehepartner[Menschen]},
+  Geburtsdatum,
+  \liFremd{Geburtsort[Orte]},
+  \liFremd{Geburtsbundesland[Orte]}%
+)
 
+Orte(\liPrimaer{Name}, \liPrimaer{Bundesland}, Einwohneranzahl)
+
+befreundet\_mit(\liFremd{Mensch[Menschen]}, \liFremd{Freund[Menschen]})
+\end{liRmodell}
 \end{liAntwort}
 
 %%
@@ -110,7 +136,30 @@ Relationen zusammenfassen.
 \item Geben Sie sinnvolle SQL Datentypen für Ihr verfeinertes Schema an.
 
 \begin{liAntwort}
+\begin{minted}{sql}
+CREATE TABLE Menschen (
+  Steuernummer BIGINT PRIMARY KEY,
+  Name VARCHAR(30),
+  Vorname VARCHAR(30),
+  Ehepartner BIGINT REFERENCES Steuernummer,
+  Geburtsdatum DATE,
+  Geburtsort VARCHAR(30) REFERENCES Orte(Name),
+  Geburtsbundesland VARCHAR(30) REFERENCES Orte(Bundesland)
+);
 
+CREATE TABLE Orte (
+  Name VARCHAR(30),
+  Bundesland VARCHAR(30),
+  Einwohneranzahl INTEGER,
+  PRIMARY KEY (Name, Bundesland)
+);
+
+CREATE TABLE befreundet_mit (
+  Mensch BIGINT REFERENCES Mensch(Steuernummer),
+  Freund BIGINT REFERENCES Mensch(Steuernummer),
+  PRIMARY KEY (Mensch, Freund)
+);
+\end{minted}
 \end{liAntwort}
 
 \end{enumerate}

@@ -1,13 +1,12 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{mathe}
 \begin{document}
 \liAufgabenTitel{Universitätsschema}
 \section{Aufgabe 3
 \index{Relationale Algebra}
 \footcite{66116:2020:03}}
 
-Gegeben sei ein Universitätsschema (eine beispielhafte Ausprägung hängt
-der Klausur an - Seite 10).
+Gegeben sei ein Universitätsschema.
 
 \begin{enumerate}
 
@@ -19,20 +18,40 @@ der Klausur an - Seite 10).
 Formulieren Sie die Anfrage im Tupelkalkül.
 \index{Tupelkalkül}
 
+\begin{liAntwort}
+$\{ s \in \text{Studierende} \land h \in \text{hören} | \neg \exists \text{s.MatrNr} = \text{h.MatrNr} \}$
+\end{liAntwort}
+
 %%
 % b)
 %%
 
-\item Geben Sie einen Ausdruck an, der die Relation -hoeren erzeugt.
-Diese enthält für jeden Studierenden und jede Vorlesung, die der
-Studierende nicht hört, einen Eintrag mit Matri- kelnummer und
-Vorlesungsnummer. Formulieren Sie die Anfrage in relationaler Algebra.
+\item Geben Sie einen Ausdruck an, der die Relation \neg \texttt{hören}
+erzeugt. Diese enthält für jeden Studierenden und jede Vorlesung, die
+der Studierende \textbf{nicht} hört, einen Eintrag mit Matrikelnummer
+und Vorlesungsnummer. Formulieren Sie die Anfrage in
+\textbf{relationaler Algebra}.
+
+\begin{liAntwort}
+$\rho_{\neg \text{hören}} \left(
+(
+  \pi_{\text{MatrNr}}(\text{Studierende})
+  \times
+  \pi_{\text{VorlNr}}(\text{Vorlesungen})
+) - \text{hören}
+\right)
+$
+\end{liAntwort}
 
 %%
 % c)
 %%
 
-\item Finden Sie alle Studierenden, die keine Vorlesung hören.
-Formulieren Sie die Anfrage in relationaler Algebra.
+\item Finden Sie alle Studierenden, die \textbf{keine} Vorlesung hören.
+Formulieren Sie die Anfrage in \textbf{relationaler Algebra}.
+
+\begin{liAntwort}
+$\pi_{\text{MatrNr}}(\text{Studierende}) - \pi_{\text{MatrNr}}(\text{hören})$
+\end{liAntwort}
 \end{enumerate}
 \end{document}
