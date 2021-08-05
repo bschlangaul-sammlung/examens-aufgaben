@@ -1,0 +1,117 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{er}
+\begin{document}
+\liAufgabenTitel{Einwohnermeldeamt}
+\section{Aufgabe 1
+\index{Entity-Relation-Modell}
+\footcite{66116:2020:03}}
+
+Gegeben sei folgendes ER-Diagramm:
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Übernehmen Sie das ER-Diagramm auf Ihre Bearbeitung und ergänzen
+Sie die Funktionalitätsangaben im Diagramm.
+
+\begin{center}
+\begin{tikzpicture}[er2,scale=0.7,transform shape]
+% Menschen
+\node[entity] (Menschen) {Menschen};
+\node[attribute,above left=1cm of Menschen] {\key{Steuernummer}} edge (Menschen);
+\node[attribute,above=1cm of Menschen] {Vornamen} edge (Menschen);
+\node[attribute,above right=1cm of Menschen] {Name} edge (Menschen);
+
+\node[relationship,left=1cm of Menschen] (verheiratet) {verheiratet\_mit};
+\node[relationship,right=1cm of Menschen] (befreundet) {befreundet\_mit};
+
+\draw (verheiratet.north) edge[auto] node{$\bigcirc$} (Menschen);
+\draw (verheiratet.south) edge[auto,swap] node{$\bigcirc$} (Menschen);
+
+\draw (befreundet.north) edge[auto,swap] node{$\bigcirc$} (Menschen);
+\draw (befreundet.south) edge[auto] node{$\bigcirc$} (Menschen);
+
+\node[relationship,below=1cm of Menschen] (geboren) {geboren}
+  edge[auto] node{$\bigcirc$} (Menschen);
+\node[attribute,right=1cm of geboren] {Datum}
+  edge (geboren);
+
+% Orte
+\node[entity,below=3cm of Menschen] (Orte) {Orte}
+ edge[auto] node{$\bigcirc$} (geboren);
+\node[attribute,below left=1cm of Orte] {Einwohneranzahl} edge (Orte);
+\node[attribute,left=1cm of Orte] {\key{Bundesland}} edge (Orte);
+\node[attribute,above left=1cm of Orte] {\key{Name}} edge (Orte);
+\end{tikzpicture}
+\end{center}
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[er2,scale=0.7,transform shape]
+% Menschen
+\node[entity] (Menschen) {Menschen};
+\node[attribute,above left=1cm of Menschen] {\key{Steuernummer}} edge (Menschen);
+\node[attribute,above=1cm of Menschen] {Vornamen} edge (Menschen);
+\node[attribute,above right=1cm of Menschen] {Name} edge (Menschen);
+
+\node[relationship,left=1cm of Menschen] (verheiratet) {verheiratet\_mit};
+\node[relationship,right=1cm of Menschen] (befreundet) {befreundet\_mit};
+
+\draw (verheiratet.north) edge[auto] node{1} (Menschen);
+\draw (verheiratet.south) edge[auto,swap] node{1} (Menschen);
+
+\draw (befreundet.north) edge[auto,swap] node{n} (Menschen);
+\draw (befreundet.south) edge[auto] node{m} (Menschen);
+
+\node[relationship,below=1cm of Menschen] (geboren) {geboren}
+  edge[auto] node{n} (Menschen);
+\node[attribute,right=1cm of geboren] {Datum}
+  edge (geboren);
+
+% Orte
+\node[entity,below=3cm of Menschen] (Orte) {Orte}
+ edge[auto] node{1} (geboren);
+\node[attribute,below left=1cm of Orte] {Einwohneranzahl} edge (Orte);
+\node[attribute,left=1cm of Orte] {\key{Bundesland}} edge (Orte);
+\node[attribute,above left=1cm of Orte] {\key{Name}} edge (Orte);
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Übersetzen Sie das ER-Diagramm in ein relationales Schema. -
+Datentypen müssen nicht angegeben werden.
+
+\begin{liAntwort}
+
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Verfeinern Sie das Schema aus Teilaufgabe b) indem Sie die
+Relationen zusammenfassen.
+
+\begin{liAntwort}
+
+\end{liAntwort}
+
+%%
+% d)
+%%
+
+\item Geben Sie sinnvolle SQL Datentypen für Ihr verfeinertes Schema an.
+
+\begin{liAntwort}
+
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}

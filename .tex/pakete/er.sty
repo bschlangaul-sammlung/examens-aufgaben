@@ -8,6 +8,66 @@ ER-Diagrammen]
 \usetikzlibrary{positioning}
 %    \end{macrocode}
 
+% \begin{verbatim}
+% \begin{tikzpicture}[er2,scale=0.7,transform shape]
+% % Person
+% \node[entity] (Person) {Person};
+% \node[attribute,right=1cm of Person] {\key{E-Mail}} edge (Person);
+% \node[multi attribute,above left=1cm of Person] {Vornamen} edge (Person);
+% \node[attribute,left=1cm of Person] {Nachnamen} edge (Person);
+% \node[attribute,above right=1cm of Person] {Geburtsdatum} edge (Person);
+%
+% % Kunde
+% \node[entity,below left=1cm of Person] (Kunde) {Kunde};
+%
+% % Händler
+% \node[entity,below right=1cm of Person] (Händler) {Händler};
+%
+% \node[specialization,below=0.2cm of Person]{is-a}
+%   edge (Kunde) edge (Händler) edge (Person);
+%
+% % Transaktion
+% \node[relationship,below=2cm of Person] (Transaktion) {Transaktion}
+%   edge node[auto]{1} (Kunde)
+%   edge node[auto]{1} (Händler);
+% \node[attribute,below=1cm of Transaktion] {Preis} edge (Transaktion);
+% \node[attribute,left=1cm of Transaktion,text width=2cm] {Abschlussdatum} edge (Transaktion);
+% \node[attribute,right=1cm of Transaktion] {Lieferadresse} edge (Transaktion);
+%
+% % Zahlungsmittel
+% \node[entity,below=4cm of Händler] (Zahlungsmittel) {Zahlungsmittel}
+%   edge node[auto]{1} (Transaktion);
+% \node[attribute,right=1cm of Zahlungsmittel] {Inhaber} edge (Zahlungsmittel);
+%
+% % Bankverbindung
+% \node[entity,below left=1cm and 0cm of Zahlungsmittel] (Bankverbindung) {Bankverbindung};
+% \node[attribute,below left=1cm of Bankverbindung] {\key{IBAN}} edge (Bankverbindung);
+%
+% % Kreditkarte
+% \node[entity,below right=3cm and -2cm of Zahlungsmittel]
+% (Kreditkarte) {Kreditkarte};
+%
+% \node[attribute,below left=1cm of Kreditkarte]
+% {\key{Nummer}} edge (Kreditkarte);
+%
+% \node[attribute,below right=1cm of Kreditkarte,text width=2cm]
+% {Ablaufdatum} edge (Kreditkarte);
+%
+% \node[attribute,right=1cm of Kreditkarte]
+% {Anbieter} edge (Kreditkarte);
+%
+% \node[generalization,below=0.8cm of Zahlungsmittel]{is-a}
+%   edge (Zahlungsmittel) edge (Bankverbindung) edge (Kreditkarte);
+%
+% % Produkt
+% \node[entity,below=4cm of Kunde] (Produkt) {Produkt}
+%   edge node[auto]{1} (Transaktion);
+% \node[attribute,left=1cm of Produkt] {\key{Bezeichnung}} edge (Produkt);
+% \node[attribute,below left=1cm of Produkt,text width=2cm] {Beschreibungstext} edge (Produkt);
+% \node[attribute,above left=1cm of Produkt] {Bewertung} edge (Produkt);
+% \end{tikzpicture}
+% \end{verbatim}
+
 %    \begin{macrocode}
 \RequirePackage{soul}
 %    \end{macrocode}
