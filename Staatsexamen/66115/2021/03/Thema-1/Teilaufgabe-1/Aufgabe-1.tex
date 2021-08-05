@@ -121,7 +121,7 @@ Zustandsmenge & Eingabe $a$ & Eingabe $b$ \\\hline
 \begin{center}
 \begin{tikzpicture}[li automat,scale=0.6,transform shape]
   \node[state,initial,accepting] (Z0) at (3.43cm,-9.14cm) {\z0};
-  \node[state] (Z1) at (6.86cm,-9.14cm) {\z1};
+  \node[state] (Z1) at (6.86cm,-11cm) {\z1};
   \node[state,accepting] (Z2) at (3.57cm,-1.29cm) {\z2};
   \node[state,accepting] (Z5) at (9.71cm,-6.86cm) {\z5};
   \node[state] (ZT) at (13.86cm,-6.57cm) {$Z_T$};
@@ -134,7 +134,7 @@ Zustandsmenge & Eingabe $a$ & Eingabe $b$ \\\hline
   \path (Z1) edge[auto] node{$b$} (ZT);
   \path (Z2) edge[auto] node{$a$} (Z4);
   \path (Z2) edge[auto,loop above] node{$b$} (Z2);
-  \path (Z5) edge[auto,loop above] node{$a$} (Z5);
+  \path (Z5) edge[auto,loop left] node{$a$} (Z5);
   \path (Z5) edge[auto] node{$b$} (ZT);
   \path (ZT) edge[auto,loop above] node{$a,b$} (ZT);
   \path (Z4) edge[auto] node{$a$} (Z3);
