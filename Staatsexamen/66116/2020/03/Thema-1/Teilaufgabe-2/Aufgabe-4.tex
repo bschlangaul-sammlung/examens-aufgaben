@@ -1,7 +1,13 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{normalformen}
+\liLadePakete{normalformen,synthese-algorithmus}
 \begin{document}
 \let\FA=\liFunktionaleAbhaengigkeiten
+\let\ah=\liAttributHuelle
+\let\FA=\liFunktionaleAbhaengigkeiten
+\let\m=\liAttributMenge
+\let\r=\liRelation
+\let\schrittE=\liSyntheseUeberErklaerung
+
 \liAufgabenTitel{Relation A-F}
 \section{Aufgabe 4
 \index{Synthese-Algorithmus}
@@ -9,7 +15,11 @@
 
 Gegeben sei die Relation
 
-R:{[A,B,C,D,E, F]}
+\begin{center}
+\liRelation{A, B, C, D, E, F}
+\end{center}
+
+\noindent
 mit den FDs
 
 \FA{
@@ -26,14 +36,69 @@ mit den FDs
 
 \item Geben Sie alle Kandidatenschlüssel an.
 
+\begin{liAntwort}
+\begin{itemize}
+\item A, D
+\item B, D
+\end{itemize}
+\end{liAntwort}
+
 %%
 % b)
 %%
 
 \item Überführen Sie die Relation mittels Synthesealgorithmus in die 3.
-NF. Geben Sie alle Relationen in der 3. NF an und unterstreichen Sie in
-jeder einen Kandidatenschlüssel. — Falls Sie Zwischenschritte notieren,
-machen Sie das Endergebnis klar kenntlich.
+NF. Geben Sie alle Relationen in der 3. NF an und \textbf{unterstreichen
+Sie in jeder einen Kandidatenschlüssel.} — Falls Sie Zwischenschritte
+notieren, machen Sie das Endergebnis \textbf{klar kenntlich.}
+
+\begin{liAntwort}
+\begin{enumerate}
+\item \schrittE{1}
+\begin{enumerate}
+\item \schrittE{1-1}
+
+\FA{
+  A -> B, C, F;
+  B -> A, B, F;
+  C, D -> E, F;
+}
+
+\item \schrittE{1-2}
+
+\FA{
+  A -> B, C;
+  B -> A, F;
+  C, D -> E;
+}
+
+\item \schrittE{1-3}
+
+nichts zu tun
+
+\item \schrittE{1-4}
+
+nichts zu tun
+
+\end{enumerate}
+\item \schrittE{2}
+
+\liRelation[R1]{A, B, C}
+\liRelation[R2]{A, B, F}
+\liRelation[R3]{C, D, E, F}
+
+\item \schrittE{3}
+
+\liRelation[R1]{A, B, C}
+\liRelation[R2]{A, B, F}
+\liRelation[R3]{C, D, E, F}
+\liRelation[R4]{A, D}
+
+\item \schrittE{4}
+
+nichts zu tun
+\end{enumerate}
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}
