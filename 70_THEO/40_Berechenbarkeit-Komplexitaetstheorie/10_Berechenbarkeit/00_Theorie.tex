@@ -232,7 +232,7 @@ Turing-Maschine $T$ simulieren (ausführen) kann.\footcite[Seite
 
 Für jeden Eintrag der Übergangstabelle wird eine Binärzahl erzeugt.
 Startzustand, Eingabesymbol, Folgesymbol, Ausgabesymbol und Richtung
-werden als Einserketten unär kodiert mit Null als Trennzeichen Nach dem
+werden als Einserketten unär kodiert mit Null als Trennzeichen. Nach dem
 gleichen Schema werden die erstellten Bitsequenzen zu einer großen
 Binärzahl verschmolzen. Die erzeugte Zahl heißt die \memph{Gödelnummer}
 der TM $T$. Die Kodierung wird als \memph{Gödelisierung} bezeichnet.
@@ -247,7 +247,7 @@ Klasse der intuitiv berechenbaren Funktionen überein.
 Der Begriff der intuitiv berechenbaren Funktion bedarf an dieser Stelle
 besonderer Aufmerksamkeit. Er bezeichnet eine Funktion, die von einem
 Menschen – in welcher Form auch immer – ausgerechnet werden kann. Damit
-besagt die Church’sche These nichts anderes, als dass je- de Funktion,
+besagt die Church’sche These nichts anderes, als dass jede Funktion,
 die überhaupt in irgendeiner Weise berechenbar ist, auch durch eine
 Turing-Maschine berechnet werden kann. Die Church’sche These ist kein
 Satz im mathematisch präzisen Sinne, da der Begriff der intuitiv
@@ -287,6 +287,8 @@ Definitionsbereich & Wertebereich\\
 \end{tabular}
 \end{center}
 
+\subsection{Totale Funktion}
+
 Eine (totale) Funktion ist eine Relation $R \subseteq M \times N$ über
 dem Deﬁnitionsbereich $M$ und dem Wertebereich $N$, welche folgende
 Eigenschaften hat:
@@ -306,6 +308,22 @@ Funktion. Wenn diese auch linkstotal – also eine Funktion – ist, dann
 sagt man zur Verdeutlichung auch totale Funktion.
 \footcite{wiki:relation}
 \end{liExkurs}
+
+\subsection{Primitiv-rekursive Funktion}
+
+Primitiv-rekursive Funktionen sind totale Funktionen, die aus einfachen
+Grundfunktionen (konstante 0-Funktion, Projektionen auf ein Argument und
+Nachfolgefunktion) durch Komposition und (primitive) Rekursion gebildet
+werden können.
+
+Alle primitiv-rekursiven Funktionen sind im intuitiven Sinn berechenbar.
+
+Für primitiv-rekursive Funktionen ist es möglich, ein Komplexitätsmaß zu
+definieren, \dh es kann die Dauer der Berechnung eines ihrer
+Funktionswerte vorab ermittelt werden.
+
+Die Klasse der primitiv-rekursiven Funktionen und die der
+LOOP-berechenbaren Funktionen sind äquivalent.\footcite{wiki:primitiv-rekursive-funktion}
 
 \section{Partielle Funktion}
 
@@ -328,7 +346,10 @@ nicht umgekehrt. Insofern kann der Begriff der partiellen Funktion
 irreführend sein. Um auszudrücken, dass eine partielle Funktion sogar
 eine Funktion im eigentlichen Sinn ist, sagt man gelegentlich, es handle
 sich um eine totale Funktion. Der Unterschied zwischen partiellen
-Funktionen und (totalen) Funktionen ist: Für partielle Funktionen
+Funktionen und (totalen) Funktionen ist:
+
+\noindent
+Für partielle Funktionen
 
 \begin{displaymath}
 f\colon \;X \rightharpoonup Y
@@ -348,7 +369,8 @@ für (totale) Funktionen
 f \colon \; X \to Y
 \end{displaymath}
 
- gilt
+\noindent
+gilt
 
 \begin{displaymath}
 \operatorname {Def} (f)=X .
@@ -385,11 +407,12 @@ f \colon \; X \to Y
 \subsection{Surjektiv}
 
 Surjektive Funktionen besitzen die Eigenschaft, die Zielmenge
-vollständig auszuschöpfen, d. h., jedes Element besitzt mindestens ein
+vollständig auszuschöpfen, \dh jedes Element besitzt mindestens ein
 Urbild in der Definitionsmenge.\footcite[Seite 51]{hoffmann}
 
-jedes Element der Zielmenge mindestens einmal als Funktionswert annimmt.
-Das heißt, jedes Element der Zielmenge hat ein nichtleeres Urbild.
+Eine Surjektive Funktion ist eine Funktion, die jedes Element der
+Zielmenge mindestens einmal als Funktionswert annimmt. Das heißt, jedes
+Element der Zielmenge hat ein nichtleeres Urbild.
 \footcite{wiki:surjektiv}
 
 Jedes Element des Wertebereichs wird von mindestens einem Pfeil getroffen.
@@ -506,7 +529,7 @@ Im Jahr 1962 rief der ungarische Mathematiker Tibor Radó den Wettbewerb
 des ﬂeißigen Bibers ins Leben. Fleißige Biber (busy beaver) der Größe
 $n$ sind Turing-Maschinen mit $n$ Zuständen, die möglichst viele Einsen
 auf ein mit Nullen vorinitialisiertes Band schreiben. Endlosschleifen
-sind dabei explizit verboten, \dh, die Turing-Maschine muss nach endlich
+sind dabei explizit verboten, \dh die Turing-Maschine muss nach endlich
 vielen Schritten terminieren. Der Endzustand zählt nicht als Zustand.
 \footcite[Seite 337]{hoffmann}
 \footcite{wiki:busy-beaver}
