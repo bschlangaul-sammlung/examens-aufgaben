@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{normalformen}
+\liLadePakete{normalformen,rmodell,syntax}
 \begin{document}
 \let\FA=\liFunktionaleAbhaengigkeiten
 
@@ -8,31 +8,54 @@
 \index{SQL}
 \footcite{66116:2020:03}}
 
-Gegeben sei die Relation Zehnkampf, welche die Ergebnisse eines
+Gegeben sei die Relation \emph{Zehnkampf}, welche die Ergebnisse eines
 Zehnkampfwettkampfes verwaltet. Eine beispielhafte Ausprägung ist in
 nachfolgender Tabelle gegeben.
 
-Hinweise: Jeder Athlet kann in jeder Disziplin maximal ein Ergebnis
-erzielen. Außerdem können Sie davon ausgehen, dass jeder Name eindeutig
-ist.
+\textbf{Hinweise:} Jeder Athlet kann in jeder Disziplin maximal ein
+Ergebnis erzielen. Außerdem können Sie davon ausgehen, dass jeder Name
+eindeutig ist.
 
+\begin{center}
 \begin{tabular}{|l|l|l|l|l|}
 \hline
-Name  & Disziplin  & Leistung & Einheit    & Punkte \\\hline
-John  & 100m       & 10.21    & Sekunden   & 845 \\
-Peter & Hochsprung & 213      & Zentimeter & 812 \\
-Peter & 100m       & 10.10    & Sekunden   & 920 \\
-Hans  & 100m       & 10.21    & Sekunden   & 845 \\
-Hans  & 400m       & 44.12    & Sekunden   & 910 \\
+Name    & Disziplin  & Leistung & Einheit    & Punkte \\\hline
+John    & 100m       & 10.21    & Sekunden   & 845 \\
+Peter   & Hochsprung & 213      & Zentimeter & 812 \\
+Peter   & 100m       & 10.10    & Sekunden   & 920 \\
+Hans    & 100m       & 10.21    & Sekunden   & 845 \\
+Hans    & 400m       & 44.12    & Sekunden   & 910 \\
+$\dots$ & $\dots$    & $\dots$  & $\dots$    & $\dots$ \\
 \end{tabular}
+\end{center}
 \begin{enumerate}
+
+% Datenbankname: Zehnkampf
+\begin{minted}{sql}
+CREATE TABLE Zehnkampf (
+  Name VARCHAR(30),
+  Disziplin VARCHAR(30),
+  Leistung FLOAT,
+  Einheit VARCHAR(30),
+  Punkte INTEGER,
+  PRIMARY KEY(Name, Disziplin, Leistung)
+);
+
+INSERT INTO Zehnkampf VALUES
+  ('John', '100m', 10.21, 'Sekunden', 845),
+  ('Peter', 'Hochsprung', 213, 'Zentimeter', 812),
+  ('Peter', '100m', 10.10, 'Sekunden', 920),
+  ('Hans', '100m', 10.21, 'Sekunden', 845),
+  ('Hans', '400m', 44.12, 'Sekunden', 910);
+\end{minted}
+\index{SQL mit Übungsdatenbank}
 
 %%
 % a)
 %%
 
-\item Bestimmen Sie alle funktionale Abhängigkeiten, die sinnvollerweise
-in der Relation Zehnkampf gelten.
+\item Bestimmen Sie alle funktionale Abhängigkeiten, die
+\textbf{sinnvollerweise} in der Relation Zehnkampf gelten.
 
 \begin{liAntwort}
 \FA{
@@ -51,7 +74,11 @@ Ihnen identifzierten funktionalen Abhängigkeiten. Unterstreichen Sie
 alle Schlüssel des resultierenden Schemas.
 
 \begin{liAntwort}
+\liRelationMenge{$R_1$}{\liPrimaer{Disziplin}, Einheit}
 
+\liRelationMenge{$R_2$}{\liPrimaer{Disziplin}, \liPrimaer{Leistung}, Punkte}
+
+\liRelationMenge{$R_3$}{\liPrimaer{Name}, \liPrimaer{Disziplin}, Leistung}
 \end{liAntwort}
 
 %%
@@ -61,10 +88,29 @@ alle Schlüssel des resultierenden Schemas.
 \item Bestimmen Sie in SQL den Athleten (oder bei Punktgleichheit, die
 Athleten), der in der Summe am meisten Punkte in allen Disziplinen
 erzielt hat. Benutzen Sie dazu die noch nicht normalisierte
-Ausgangsrelation Zehnkampf.
+Ausgangsrelation \emph{Zehnkampf}.
+\index{Top-N-Query}
 
 \begin{liAntwort}
+\begin{minted}{sql}
+CREATE VIEW GesamtPunkte AS
+  SELECT Name, SUM(Punkte) As Punkte
+  FROM Zehnkampf
+  GROUP BY Name;
 
+SELECT g1.Name, g1.Punkte, COUNT(*) AS Rang
+FROM GesamtPunkte g1, GesamtPunkte g2
+WHERE g1.Punkte <= g2.Punkte
+GROUP BY g1.Name, g1.Punkte
+HAVING COUNT(*) = 1;
+\end{minted}
+
+\begin{minted}{md}
+ name | punkte | rang
+------+--------+------
+ Hans |   1755 |    1
+(1 row)
+\end{minted}
 \end{liAntwort}
 \end{enumerate}
 \end{document}
