@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{formale-sprachen}
+\liLadePakete{formale-sprachen,automaten}
 \begin{document}
 \liAufgabenTitel{Berechen- und Entscheidbarkeit}
 \section{Aufgabe 3
@@ -42,6 +42,10 @@ if (b, x, y) = ( falls b=0
 Zeigen Sie, dass g: N > N primitiv rekursiv ist. (Sie dürfen obige
 Funktion if als primitiv rekursiv voraussetzen.)
 
+%%
+% 2.
+%%
+
 \item Sei \liAlphabet{a, b, c} und $L \subseteq \Sigma^*$ mit
 \liAusdruck{a^i b^i c^i}{i \in N}.
 \begin{enumerate}
@@ -53,6 +57,68 @@ Funktion if als primitiv rekursiv voraussetzen.)
 \item Beschreiben Sie eine Turingmaschine, welche die Sprache Z
 entscheidet. Eine textuelle Beschreibung der Konstruktionsidee ist
 ausreichend.
+\index{Turing-Maschine}
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[li turingmaschine]
+  \node[state,initial] (q0) at (2.14cm,-2.57cm) {$q_0$};
+  \node[state] (q1) at (5.14cm,-2.57cm) {$q_1$};
+  \node[state] (q2) at (7.43cm,-2.57cm) {$q_2$};
+  \node[state] (q3) at (9.86cm,-2.57cm) {$q_3$};
+  \node[state] (q4) at (2.14cm,-4.71cm) {$q_4$};
+  \node[state,accepting] (q5) at (5cm,-4.71cm) {$q_5$};
+
+  \liTuringKante[above]{q0}{q1}{
+    a, X, R;
+  }
+
+  \liTuringKante[above]{q0}{q4}{
+    Y, Y, R;
+  }
+
+  \liTuringKante[above]{q1}{q2}{
+    b, Y, R;
+  }
+
+  \liTuringKante[above,loop above]{q1}{q1}{
+    a, a, R;
+    Y, Y, R;
+  }
+
+  \liTuringKante[above]{q2}{q3}{
+    c, Z, L;
+  }
+
+  \liTuringKante[above,loop above]{q2}{q2}{
+    b, b, R;
+    Z, Z, R;
+  }
+
+  \liTuringKante[above,loop above]{q3}{q3}{
+    a, a, L;
+    Y, Y, L;
+    b, b, L;
+    Z, Z, L;
+  }
+
+  \liTuringKante[above,bend left]{q3}{q0}{
+    X, X, R;
+  }
+
+  \liTuringKante[above]{q4}{q5}{
+    LEER, LEER, L;
+  }
+
+  \liTuringKante[above,loop below]{q4}{q4}{
+    Y, Y, R;
+    Z, Z, R;
+  }
+\end{tikzpicture}
+\end{center}
+\liFlaci{Apew1n7g9}
+\liFussnoteUrl{https://scanftree.com/automata/turing-machine-for-a-to-power-n-b-to-power-n-c-to-power-n}
+\end{liAntwort}
 
 %%
 % b)
@@ -60,10 +126,46 @@ ausreichend.
 
 \item Geben Sie Zeit- und Speicherkomplexität (abhängig von der Länge
 der Eingabe) Ihrer Turingmaschine an.
+
+\begin{liAntwort}
+\begin{description}
+\item[Speicherkomplexität] $n$ (Das Eingabewort wird einmal überschrieben)
+\item[Zeitkomplexität]
+
+the turing machine time complexity is the number of transition execution will executed is call time complexity of the turing machine. first we start we main loop execution is (n/3)-1.
+ transition(a,x,R) from state 1 to 2= 1.
+transition (a,a,R) and (y,y,R) on state 2 is = (n/3)-1.
+transition (b,y,R) from state 2 to 3=1.
+on state 3 (b,b,R) and  (z,z,R)=(n/3)-1.
+transition (c,z,L) from state 3 to 4=1.
+on state 4 (y,y,L),(b,b,L),(z,z,L) and state 5 (a,a,L)= (n/3)-1.
+transition (a,a,L) form state 4 to 5 =1.
+transition (x,x,R) from 5 to1 =1
+total(n+2)
+following transition will executed
+transition(a,x,R) from state 1 to 2= 1.
+transition (y,y,R) on state 2 is = (n/3)-1.
+transition (b,y,R) from state 2 to 3=1.
+ transition (z,z,R) on state 3=(n/3)-1
+transition (c,z,L) from state 3 to 4=1.
+on state 4 (y,y,L) ,(z,z,L) and state  (n/3)-1.
+transition (x,x,R) from state 54 to 6 =1
+transition on state 6 (y,y,R),(z,z,R)= (n/3)
+transition (d,d,R) from state 6 to 7 =1
+total =(4n/3)+2
+over alti time complexity (n+2)(n/3)-1+ (4n/3)+2
+\liFussnoteUrl{https://www.youtube.com/watch?v=vwnz9e_Lrfo}
+\end{description}
+\end{liAntwort}
 \end{enumerate}
 
-\item Sei \& = {0, 1}. Jedes we L* kodiert eine Turingmaschine M,. Die
-von M, berechnete Funktion bezeichnen wir mit gy.
+%%
+% 3.
+%%
+
+\item Sei \liAlphabet{0, 1}. Jedes $w \in \Sigma^*$ kodiert eine
+Turingmaschine $M_w$. Die von  $M_w$ berechnete Funktion bezeichnen wir
+mit $\varphi_w(x)$.
 
 \begin{enumerate}
 
@@ -71,13 +173,18 @@ von M, berechnete Funktion bezeichnen wir mit gy.
 % a)
 %%
 
-\item Warum ist {w e £* | 3x: @,(\&) = xx} nicht entscheidbar?
+\item Warum ist
+\liAusdruck
+{w \in \Sigma^*}
+{\exists x \colon \varphi_w(x) = xx} nicht entscheidbar?
 
 %%
 % b)
 %%
 
-\item Warum ist {w e Z* | 3x: w= xx} entscheidbar?
+\item Warum ist \liAusdruck
+{w \in \Sigma^*}
+{\exists x \colon w = xx} entscheidbar?
 
 \end{enumerate}
 \end{enumerate}
