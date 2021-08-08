@@ -5,7 +5,7 @@
 
 \section{
 \index{Transaktionen}
-Aufgabe 6 (Check-Up)\footcite{db:ab:6}
+Aufgabe 6 (Check-Up)\footcite[Aufgabe 6]{db:ab:6}
 }
 
 \begin{enumerate}
@@ -20,34 +20,65 @@ Rechts-vor-Links-Vorfahrtsregelung gilt. Welches Problem tritt hier auf?
 
 \begin{liAntwort}
 Es tritt eine sogenannte Deadlock-Situation\index{Deadlock} auf. Rein
-theoretisch müsste der Verkehr zum erliegen kommen, denn jedes Auto
+theoretisch müsste der Verkehr zum Erliegen kommen, denn jedes Auto
 müsste einem anderen Auto die Vorfahrt gewähren. Jedes KFZ ist mit einem
-Verkehrsteilnehmer konfrontiert, der von rechts kommt. In der Praxis
-würde sich eine solche Sitation jedoch durch Blickkontakt, Handzeichen
-oder durch den Besitz eines Mercedes auflösen lassen.
+Verkehrsteilnehmer konfrontiert, der von rechts kommt.
 \end{liAntwort}
 
 %%
 % (b)
 %%
 
-\item Gegeben sind die Transaktionen T1 und T2. Geben Sie eine
-quasiparallele Verarbeitung von T1 und T2 an, bei der es zum „gleichen“
-Problem wie in Aufgabe a) kommt.
+\item Gegeben sind die Transaktionen $T_1$ und $T_2$.
+
+\begin{center}
+\begin{tabular}{|l|}
+\hline
+$T_1$ \\\hline
+BOT \\\hline
+$\dots$ \\\hline
+SELECT F1 FROM TAB \\\hline
+$\dots$ \\\hline
+SELECT F2 FROM TAB \\\hline
+$\dots$ \\\hline
+COMMIT WORK \\\hline
+\end{tabular}
+%
+\begin{tabular}{|l|}
+\hline
+$T_2$ \\\hline
+BOT \\\hline
+$\dots$ \\\hline
+SELECT F2 FROM TAB \\\hline
+$\dots$ \\\hline
+SELECT F1 FROM TAB \\\hline
+$\dots$ \\\hline
+COMMIT WORK \\\hline
+\end{tabular}
+%
+\begin{tabular}{|l|l|}
+\hline
+\multicolumn{2}{|c|}{TAB} \\\hline
+F1 & F2 \\\hline
+2 & 3 \\\hline
+\end{tabular}
+\end{center}
+
+Geben Sie eine quasiparallele Verarbeitung von $T_1$ und $T_2$ an, bei
+der es zum „gleichen“ Problem wie in Aufgabe a) kommt.
 
 Hinweis: Wir nehmen an, dass eine Spalte F der Tabelle TAB durch
 \texttt{rlock(F)} bzw. \texttt{xlock(F)} gesperrt werden kann.
 
 \begin{liAntwort}
-
 In der 8. Zeile entsteht ein Deadlock, da von verschiedenen
 Transaktionen \texttt{rlocks} auf \texttt{F2} gesetzt wurden. Jetzt will
-\texttt{T1} auf \texttt{F2} einen \texttt{xlock} setzten, was nicht
-möglich ist, weil der \texttt{rlock} von \texttt{T2} noch nicht frei
+\texttt{$T_1$} auf \texttt{F2} einen \texttt{xlock} setzten, was nicht
+möglich ist, weil der \texttt{rlock} von \texttt{$T_2$} noch nicht frei
 gegeben wurde.
 
 \begin{tabular}{|l|l|l|l}
-   & T1                     & T2                 &          \\
+   & $T_1$                     & $T_2$                 &          \\
 1  & BOT                    &                    &          \\
 2  &                        & BOT                &          \\
 3  & rlock(F1)              &                    &          \\

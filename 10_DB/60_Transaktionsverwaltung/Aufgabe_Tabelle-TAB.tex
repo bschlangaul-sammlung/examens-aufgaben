@@ -5,52 +5,57 @@
 
 \section{Aufgabe „Tabelle TAB“
 \index{Transaktionsverwaltung}
-\footcite{db:ab:6}}
+\footcite[Aufgabe 3]{db:ab:6}}
 
 Die Transaktionen eines Transaktionsprogramms besteht aus SQL-Befehlen.
-Die Transaktionen T1 und T2 arbeiten auf der Tabelle TAB.
+Die Transaktionen $T_1$ und $T_2$ arbeiten auf der Tabelle TAB.
 
-\begin{multicols}{2}
-\liPseudoUeberschrift{Transaktion T1}
-
+\begin{center}
 \begin{tabular}{|l|}
 \hline
+Transaktion $T_1$     \\\hline\hline
 BOT                   \\\hline
 SELECT FROM TAB       \\\hline
-NEUF:-F+5             \\\hline
+NEUF := F+5           \\\hline
 UPDATE TAB SET F=NEUF \\\hline
 COMMIT WORK           \\\hline
 \end{tabular}
-
-\liPseudoUeberschrift{Transaktion T2}
-
+%
 \begin{tabular}{|l|}
 \hline
+Transaktion $T_2$     \\\hline\hline
 BOT                   \\\hline
 SELECT FROM TAB       \\\hline
-NEUF:-F*2             \\\hline
+NEUF := F*2           \\\hline
 UPDATE TAB SET F=NEUF \\\hline
 COMMIT WORK           \\\hline
 \end{tabular}
-\end{multicols}
+%
+\begin{tabular}{|l|}
+\hline
+TAB \\\hline\hline
+F \\\hline
+2 \\\hline
+\end{tabular}
+\end{center}
 
 \noindent
 Die quasiparallele Abarbeitung erfolgt in folgenden Schritten:
 
 \begin{center}
-\begin{tabular}{|l|l|l|}
+\begin{tabular}{|r|l|l|}
 \hline
-Schritt & T1                    & T2                    \\\hline
-1       &                       & BOT                   \\\hline
-2       & BOT                   &                       \\\hline
-3       & SELCT F FROM TAB      &                       \\\hline
-4       &                       & SELECT F FROM TAB     \\\hline
-5       &                       & NEUF := F*2           \\\hline
-6       & NEUF := F+5           &                       \\\hline
-7       & UPDATE TAB SET F=NEUF &                       \\\hline
-8       & COMMIT WORK           &                       \\\hline
-9       &                       & UPDATE TAB SET F=NEUF \\\hline
-10      &                       & COMMIT WORK           \\\hline
+   & $T_1$                 & $T_2$                 \\\hline\hline
+1  &                       & BOT                   \\\hline
+2  & BOT                   &                       \\\hline
+3  & SELCT F FROM TAB      &                       \\\hline
+4  &                       & SELECT F FROM TAB     \\\hline
+5  &                       & NEUF := F*2           \\\hline
+6  & NEUF := F+5           &                       \\\hline
+7  & UPDATE TAB SET F=NEUF &                       \\\hline
+8  & COMMIT WORK           &                       \\\hline
+9  &                       & UPDATE TAB SET F=NEUF \\\hline
+10 &                       & COMMIT WORK           \\\hline
 \end{tabular}
 \end{center}
 
@@ -64,18 +69,50 @@ Schritt & T1                    & T2                    \\\hline
 Begründung!\index{Lost-Update}
 
 \begin{liAntwort}
-Nein, es liegt ein Lost-Update-Fehlerfall vor. In Schritt 3 bzw. 4
-lesen T1 bzw. T2 denselben Wert aus der Tabelle TAB. Der von T1 in
+Nein, es liegt ein Lost-Update-Fehlerfall vor. In Schritt 3 bzw. 4 lesen
+$T_1$ bzw. $T_2$ denselben Wert aus der Tabelle TAB. Der von $T_1$ in
 Schritt 7 in die Tabelle zurückgeschriebene Wert wird in Schritt 9 von
-T2 überschrieben.
+$T_2$ überschrieben.
 \end{liAntwort}
 
 %%
 %
 %%
 
-\item Konstruieren Sie unter Verwendung von T1 und T2 einen
+\item Konstruieren Sie unter Verwendung von $T_1$ und $T_2$ einen
 Dirty-Read-Fehlerfall.
 \index{Dirty-Read}
+
+\begin{liAntwort}
+
+\begin{center}
+\begin{tabular}{|r|l|l|}
+\hline
+   & $T_1$                 & $T_2$                 \\\hline\hline
+1  &                       & BOT                   \\\hline
+2  & BOT                   &                       \\\hline
+3  & SELCT F FROM TAB      &                       \\\hline
+4  & NEUF := F+5           &                       \\\hline
+5  & UPDATE TAB SET F=NEUF &                       \\\hline
+6  &                       & SELECT F FROM TAB     \\\hline
+7  &                       & NEUF := F*2           \\\hline
+8  & ABORT                 &                       \\\hline
+9  &                       & UPDATE TAB SET F=NEUF \\\hline
+10 &                       & COMMIT WORK           \\\hline
+\end{tabular}
+\end{center}
+
+Dirty-Read bedeutet, dass von zwei gleichzeitig ablaufenden
+Transaktionen die eine Transaktion Daten liest, die von der anderen
+Transaktion geschrieben bzw. geändert werden, jedoch noch nicht
+bestätigt (committed) sind. Somit ist noch nicht sichergestellt, dass
+diese Daten permanent in die Datenbank übernommen werden. Findet dann
+ein Abort statt, hat die eine Transaktion Daten ausgelesen, die am Ende
+nicht in der Datenbank ankommen.
+
+Sobald $T_1$ committed hat, kann es dazu nicht mehr kommen, da dann die
+Änderungen von $T_1$ permanent in der Datenbank festgeschrieben sind und
+$T_2$ auf sichere, garantierte Werte zugreift.
+\end{liAntwort}
 \end{enumerate}
 \end{document}
