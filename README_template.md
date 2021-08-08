@@ -157,14 +157,13 @@ Weitere Aufgaben zum Thema „SQL“:
 
 {{ stichwort "Erweiteter Potenzmengenalgorithmus" }}
 
-#### Pumping-Lemma
+#### Pumping-Lemma (Reguläre Sprache)
 
 {{ stichwort "Pumping-Lemma (Reguläre Sprache)" }}
 
 #### Minimierungsalgorithmus
 
 {{ stichwort "Minimierungsalgorithmus" }}
-
 
 ### Kontextfreie Sprachen
 
@@ -183,6 +182,26 @@ Weitere Aufgaben zum Thema „SQL“:
 #### Chomsky-Normalform
 
 {{ stichwort "Chomsky-Normalform" }}
+
+#### CYK-Algorithmus
+
+{{ stichwort "CYK-Algorithmus" }}
+
+### Pumping-Lemma (Kontextfreie Sprache)
+
+{{ stichwort "Pumping-Lemma (Kontextfreie Sprache)" }}
+
+### Kontextsensitive Sprache
+
+{{ stichwort "Kontextsensitive Grammatik" }}
+
+#### Kontextsensitive Grammatik
+
+{{ stichwort "Kontextsensitive Grammatik" }}
+
+#### Turing-Maschine
+
+{{ stichwort "Turing-Maschine" }}
 
 # Aufgaben geordnet nach Staatsexamen
 
