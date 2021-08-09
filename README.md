@@ -1902,8 +1902,6 @@ als Markdown-Liste eingebettet werden kann.
         - Polynomialzeitreduktion
 
 
-{{ einbinden "docs/tex.md" }}
-
 ## TeX-Klassen und Pakete installieren
 
 ```

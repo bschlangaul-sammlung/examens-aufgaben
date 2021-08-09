@@ -265,8 +265,6 @@ als Markdown-Liste eingebettet werden kann.
 
 {{ stichwortverzeichnis }}
 
-{{ einbinden "docs/tex.md" }}
-
 ## TeX-Klassen und Pakete installieren
 
 ```
