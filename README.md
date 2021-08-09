@@ -1,6 +1,20 @@
-# lehramt-informatik
+# Aufgaben- und Materialsammlung „Lehramt Informatik“
 
-Materialsammlung für das Studium Lehramt Informatik in Bayern.
+Aufgaben- und Materialsammlung mit Lösungen für das Studium „Lehramt
+Informatik“ in Bayern.
+
+Alle Aufgaben und Materialen sind „geTeX’t“, d.h. mit Hilfe des Textsatz
+Programms TeX gesetzt. Im Ordner
+[.tex](https://github.com/hbschlang/lehramt-informatik/tree/main/.tex)
+findet sich eine mittlerweile umfangreiche Sammlungen an Hilfs-Klassen
+und -Paketen, die benötigt werden, um die Aufgaben setzen zu können.
+
+Zu diesem Repository, das vorallem TeX- und PDF-Dateien enthält, gehört
+ein [Git-Repository mit
+Java-Code](https://github.com/hbschlang/Java-Didaktik-Beispiele).
+Dieses Java-Repository ist als
+[git submodule](https://git-scm.com/book/de/v2/Git-Tools-Submodule)
+eingebunden.
 
 ## Abkürzungen der Modulnamen
 
@@ -466,24 +480,24 @@ Weitere Aufgaben zum Thema „SQL“:
 
 ### Ein-Adress-Befehl-Assembler
 
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/Assembler/10_Ein-Adress/Aufgabe_01-Vorlesungsaufgaben.pdf" download="Aufgabe_01-Vorlesungsaufgaben">„Vorlesungsaufgaben“</a> (Ein-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/Assembler/10_Ein-Adress/Aufgabe_02-Abitur-2013-III-Fakultaet.pdf" download="Aufgabe_02-Abitur-2013-III-Fakultaet">„Abitur 2013 III“</a> (Ein-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/Assembler/10_Ein-Adress/Aufgabe_03-Abitur-2013-IV-Pulverdosen.pdf" download="Aufgabe_03-Abitur-2013-IV-Pulverdosen">„Pulverdosen“</a> (Ein-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/Assembler/10_Ein-Adress/Aufgabe_04-Abitur-2015-IV-Papyrus-Rhind.pdf" download="Aufgabe_04-Abitur-2015-IV-Papyrus-Rhind">„Papyrus Rhind“</a> (Ein-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/Assembler/10_Ein-Adress/Aufgabe_05-Abitur-2017-IV-Primzahl.pdf" download="Aufgabe_05-Abitur-2017-IV-Primzahl">„Primzahl“</a> (Ein-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/Assembler/10_Ein-Adress/Aufgabe_06-Abitur-2019-IV-Collatz.pdf" download="Aufgabe_06-Abitur-2019-IV-Collatz">„Collatz“</a> (Ein-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/Assembler/10_Ein-Adress/Aufgabe_Abitur-2018-III.pdf" download="Aufgabe_Abitur-2018-III">„Abitur 2018“</a> (Ein-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/Assembler/10_Ein-Adress/Aufgabe_Abitur-2018-IV.pdf" download="Aufgabe_Abitur-2018-IV">„funkyFunction“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/10_Ein-Adress/Aufgabe_01-Vorlesungsaufgaben.pdf" download="Aufgabe_01-Vorlesungsaufgaben">„Vorlesungsaufgaben“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/10_Ein-Adress/Aufgabe_02-Abitur-2013-III-Fakultaet.pdf" download="Aufgabe_02-Abitur-2013-III-Fakultaet">„Abitur 2013 III“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/10_Ein-Adress/Aufgabe_03-Abitur-2013-IV-Pulverdosen.pdf" download="Aufgabe_03-Abitur-2013-IV-Pulverdosen">„Pulverdosen“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/10_Ein-Adress/Aufgabe_04-Abitur-2015-IV-Papyrus-Rhind.pdf" download="Aufgabe_04-Abitur-2015-IV-Papyrus-Rhind">„Papyrus Rhind“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/10_Ein-Adress/Aufgabe_05-Abitur-2017-IV-Primzahl.pdf" download="Aufgabe_05-Abitur-2017-IV-Primzahl">„Primzahl“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/10_Ein-Adress/Aufgabe_06-Abitur-2019-IV-Collatz.pdf" download="Aufgabe_06-Abitur-2019-IV-Collatz">„Collatz“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/10_Ein-Adress/Aufgabe_Abitur-2018-III.pdf" download="Aufgabe_Abitur-2018-III">„Abitur 2018“</a> (Ein-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/10_Ein-Adress/Aufgabe_Abitur-2018-IV.pdf" download="Aufgabe_Abitur-2018-IV">„funkyFunction“</a> (Ein-Adress-Befehl-Assembler)
 
 ### Mehr-Adress-Befehl-Assembler
 
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/Assembler/20_Mehr-Adress/Aufgabe_07-Vorlesungsaufgaben.pdf" download="Aufgabe_07-Vorlesungsaufgaben">„Vorlesungsaufgaben“</a> (Mehr-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/Assembler/20_Mehr-Adress/Aufgabe_08-Euklid.pdf" download="Aufgabe_08-Euklid">„Euklidscher Algorithmus“</a> (Mehr-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/Assembler/20_Mehr-Adress/Aufgabe_09-Wurzel.pdf" download="Aufgabe_09-Wurzel">„Intervallschachtelung von Wurzeln“</a> (Mehr-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/Assembler/20_Mehr-Adress/Aufgabe_10-Fakultaet.pdf" download="Aufgabe_10-Fakultaet">„Fakultät“</a> (Mehr-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/Assembler/20_Mehr-Adress/Aufgabe_11-Fibonacci.pdf" download="Aufgabe_11-Fibonacci">„Fibonacci-Zahlen“</a> (Mehr-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/Assembler/20_Mehr-Adress/Aufgabe_12-Potenz.pdf" download="Aufgabe_12-Potenz">„Potenzberechnung“</a> (Mehr-Adress-Befehl-Assembler)
-- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/Assembler/20_Mehr-Adress/Aufgabe_Beispiele.pdf" download="Aufgabe_Beispiele">„Beispiele“</a> (Mehr-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/20_Mehr-Adress/Aufgabe_07-Vorlesungsaufgaben.pdf" download="Aufgabe_07-Vorlesungsaufgaben">„Vorlesungsaufgaben“</a> (Mehr-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/20_Mehr-Adress/Aufgabe_08-Euklid.pdf" download="Aufgabe_08-Euklid">„Euklidscher Algorithmus“</a> (Mehr-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/20_Mehr-Adress/Aufgabe_09-Wurzel.pdf" download="Aufgabe_09-Wurzel">„Intervallschachtelung von Wurzeln“</a> (Mehr-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/20_Mehr-Adress/Aufgabe_10-Fakultaet.pdf" download="Aufgabe_10-Fakultaet">„Fakultät“</a> (Mehr-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/20_Mehr-Adress/Aufgabe_11-Fibonacci.pdf" download="Aufgabe_11-Fibonacci">„Fibonacci-Zahlen“</a> (Mehr-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/20_Mehr-Adress/Aufgabe_12-Potenz.pdf" download="Aufgabe_12-Potenz">„Potenzberechnung“</a> (Mehr-Adress-Befehl-Assembler)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/50_TECH/20_Mehr-Adress/Aufgabe_Beispiele.pdf" download="Aufgabe_Beispiele">„Beispiele“</a> (Mehr-Adress-Befehl-Assembler)
 
 ## Theoretische Informatik
 
