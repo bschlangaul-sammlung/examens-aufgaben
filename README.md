@@ -16,6 +16,8 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/10_DB/10_Uebersicht/Aufgabe_Terminologie.pdf" download="Aufgabe_Terminologie">„Terminologie“</a> (Datenbanksystem, Datenbank, Datenbankmanagementsystem)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2015/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_46116-2015-Herbst_T1-TA2-A1">„Theoriefragen Datenbank“ Examen 46116 Herbst 2015 T1 TA2 A1</a> (Datenunabhängigkeit, Superschlüssel, Referentielle Integrität)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46116/2017/03/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf" download="Staatsexamen-Informatik_46116-2017-Frühjahr_T1-TA2-A4">„Tupelidentifikator“ Examen 46116 Frühjahr 2017 T1 TA2 A4</a> (Physische Datenorganisation)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66114/2016/09/Thema-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66114-2016-Herbst_T2-A5">„Tupel-Identifikator und BBaum (k=2)“ Examen 66114 Herbst 2016 T2 A5</a> (Physische Datenorganisation, Tupel-Identifikator, B-Baum)
+- <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66116-2016-Herbst_T1-TA1-A5">Examen 66116 Herbst 2016 T1 TA1 A5</a> (B-Baum, Tupel-Identifikator)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/03/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2019-Frühjahr_T2-TA1-A1">„Allgemeine Fragen“ Examen 66116 Frühjahr 2019 T2 TA1 A1</a> (Datenbank)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf" download="Staatsexamen-Informatik_66116-2019-Herbst_T2-TA2-A6">„Vermischte Datenbank-Fragen“ Examen 66116 Herbst 2019 T2 TA2 A6</a> (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)
 - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2021-Frühjahr_T1-TA2-A1">„Vermischte Fragen“ Examen 66116 Frühjahr 2021 T1 TA2 A1</a> (Datenbank)
@@ -1096,6 +1098,8 @@ OCR des oben genannten Scans:
 - 2015 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66114/2015/09/Scan.pdf" download="Staatsexamen-Informatik_66114-2015-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66114/2015/09/OCR.txt" download="Staatsexamen-Informatik_66114-2015-Herbst_OCR">OCR.txt</a> 
 - 2016 Frühjahr: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66114/2016/03/Scan.pdf" download="Staatsexamen-Informatik_66114-2016-Frühjahr_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66114/2016/03/OCR.txt" download="Staatsexamen-Informatik_66114-2016-Frühjahr_OCR">OCR.txt</a> 
 - 2016 Herbst: <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66114/2016/09/Scan.pdf" download="Staatsexamen-Informatik_66114-2016-Herbst_Scan">Scan.pdf</a> <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66114/2016/09/OCR.txt" download="Staatsexamen-Informatik_66114-2016-Herbst_OCR">OCR.txt</a> 
+    - Thema 2 
+        - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66114/2016/09/Thema-2/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66114-2016-Herbst_T2-A5">Aufgabe 5 (Physische Datenorganisation, Tupel-Identifikator, B-Baum)</a>
 
 ### 66115: Theoretische Informatik / Algorithmen (vertieft)
 
@@ -1366,7 +1370,7 @@ OCR des oben genannten Scans:
     - Thema 1 
         - Teilaufgabe 1 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf" download="Staatsexamen-Informatik_66116-2016-Herbst_T1-TA1-A4">Aufgabe 4 (SQL, SQL mit Übungsdatenbank, VIEW, WITH, DELETE)</a> 
-            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66116-2016-Herbst_T1-TA1-A5">Aufgabe 5 (B-Baum)</a> 
+            - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf" download="Staatsexamen-Informatik_66116-2016-Herbst_T1-TA1-A5">Aufgabe 5 (B-Baum, Tupel-Identifikator)</a> 
         - Teilaufgabe 2 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf" download="Staatsexamen-Informatik_66116-2016-Herbst_T1-TA2-A1">Aufgabe 1 (Pflichtenheft, Softwaremaße, Evolutionäre Softwaremodelle, Versionsverwaltungssoftware, Funktionale Anforderungen, Nicht-funktionale Anforderungen, Kontinuierliche Integration (Continuous Integration))</a> 
             - <a href="https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf" download="Staatsexamen-Informatik_66116-2016-Herbst_T1-TA2-A2">Aufgabe 2 (UML-Diagramme, Anwendungsfalldiagramm, Klassendiagramm, Implementierung in Java)</a> 
@@ -1568,7 +1572,8 @@ als Markdown-Liste eingebettet werden kann.
         - Datenunabhängigkeit
         - Drei-Schichten-Modell
         - Unionkompatibilität
-        - Physische Datenorganisation
+        - Physische Datenorganisation:
+            - Tupel-Identifikator
     - Datenbankentwurf:
         - Entity-Relation-Modell:
             - IS-A

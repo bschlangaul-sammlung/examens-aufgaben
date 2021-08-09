@@ -1,10 +1,11 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{baum}
+\liLadePakete{}
 \begin{document}
-\liAufgabenTitel{}
-\section{Physische Datenorganisation
-\index{B-Baum}
-\footcite{66116:2016:09}}
+\liAufgabenTitel{Tupel-Identifikator und BBaum (k=2)}
+\section{Aufgabe 5
+\index{Physische Datenorganisation}
+\footcite{66114:2016:09}}
+
 \begin{enumerate}
 
 %%
@@ -48,66 +49,9 @@ Schlüsselwerte pro Knoten) die im Folgenden gegebenen Schlüsselwerte der
 Reihe nach ein. Zeichnen Sie den Endzustand des Baums nach jedem
 Einfügevorgang. Falls Sie Zwischenschritte zeichnen, kennzeichnen Sie
 die sieben Endzustände deutlich.
+\index{B-Baum}
 
-\centerline{3, 7, 13, 11, 9, 10, 8}
-
-\begin{liAntwort}
-\begin{compactitem}
-\item 3 (einfaches Einfügen)
-\item 7 (einfaches Einfügen)
-\item 13 (Split)
-\end{compactitem}
-
-\begin{center}
-\begin{tikzpicture}[
-  li bbaum,
-  level 1/.style={level distance=15mm,sibling distance=22mm},
-]
-\node {7}
-  child {node {3}}
-  child {node {13}};
-\end{tikzpicture}
-\end{center}
-
-\begin{compactitem}
-\item 11 (einfaches Einfügen)
-\item 9 (Split)
-\end{compactitem}
-
-\begin{center}
-\begin{tikzpicture}[
-  li bbaum,
-  level 1/.style={level distance=15mm,sibling distance=22mm},
-]
-\node {7 \nodepart{two} 11}
-  child {node {3}}
-  child {node {9}}
-  child {node {13}};
-\end{tikzpicture}
-\end{center}
-
-\begin{compactitem}
-\item 10 (einfaches Einfügen)
-\item 8 (Doppel-Split)
-\end{compactitem}
-
-\begin{center}
-\begin{tikzpicture}[
-  li bbaum,
-  level 1/.style={level distance=15mm,sibling distance=22mm},
-]
-\node{9}
-  child {node {7}
-    child {node {3}}
-    child {node {8}}
-  }
-  child {node {11}
-    child {node {10}}
-    child {node {13}}
-  };
-\end{tikzpicture}
-\end{center}
-\end{liAntwort}
+3, 7, 13, 11, 9, 10, 8
 
 %%
 % c)
@@ -116,6 +60,7 @@ die sieben Endzustände deutlich.
 \item Gegeben ist der folgende B-Baum:
 
 Die folgenden Teilaufgaben sind voneinander unabhängig.
+
 \begin{enumerate}
 
 %%
@@ -142,5 +87,6 @@ Sie Zwischenschritte zeichnen, kennzeichnen Sie den Endzustand deutlich.
 und zeichnen Sie den Endzustand des Baums nach dem Löschvorgang. Falls
 Sie Zwischenschritte zeichnen, kennzeichnen Sie den Endzustand deutlich.
 \end{enumerate}
+
 \end{enumerate}
 \end{document}
