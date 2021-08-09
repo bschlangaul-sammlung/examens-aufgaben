@@ -35,20 +35,25 @@ eingebunden.
 
 # Aufgaben geordnet nach Themen
 
+
+
 ## Datenbanksysteme (DB)
 
 Das Kapitel „Datenbanksysteme“ ist in etwa so gegliedert wie das
 Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 
+
 ### Übersicht
 
 {{ stichwort "Datenbank-Übersicht" }}
+
 
 ### Datenbankentwurf
 
 #### Entity-Relation-Modell
 
 {{ stichwort "Entity-Relation-Modell" }}
+
 
 ### Relationales Modell
 
@@ -63,6 +68,7 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 #### Tupelkalkül
 
 {{ stichwort "Tupelkalkül" }}
+
 
 ### Relationale Anfragesprachen
 
@@ -90,37 +96,139 @@ Weitere Aufgaben zum Thema „SQL“:
 
 {{ stichwort "SQL" }}
 
+
 ### Relationale Entwurfstheorie
 
 #### Normalformen
 
 {{ stichwort "Normalformen" }}
 
+
 ### Transaktionsverwaltung
 
 {{ stichwort "Transaktionsverwaltung" }}
 
-## Programmierung
 
-### Objektorientierte Modellierung und Programmierung (OOMUP)
 
-#### Vererbung
+## Objektorientierte Modellierung und Programmierung (OOMUP)
+
+### Vererbung
 
 {{ stichwort "Vererbung" }}
 
-### Algorithmen und Datenstrukturen (AUD)
 
-#### Rekursion
+
+## Algorithmen und Datenstrukturen (AUD)
+
+
+### Rekursion
 
 {{ stichwort "Rekursion" }}
 
-#### Suche
+
+### Suche
 
 {{ stichwort "Suche" }}
 
-#### Sortieralgorithmen
 
-{{ stichwort "Sortieralgorithmen" }}
+### Sortieralgorithmen
+
+#### Bubblesort
+
+{{ stichwort "Bubblesort" }}
+
+#### Selectionsort
+
+{{ stichwort "Selectionsort" }}
+
+#### Insertionsort
+
+{{ stichwort "Insertionsort" }}
+
+#### Quicksort
+
+{{ stichwort "Quicksort" }}
+
+#### Mergesort
+
+{{ stichwort "Mergesort" }}
+
+#### Heapsort
+
+{{ stichwort "Heapsort" }}
+
+
+### Algorithmische Komplexität (O-Notation)
+
+{{ stichwort "Algorithmische Komplexität (O-Notation)" }}
+
+#### Master-Theorem
+
+{{ stichwort "Master-Theorem" }}
+
+
+### Algorithmenmuster
+
+{{ stichwort "Algorithmenmuster" }}
+
+
+### Listen
+
+#### Einfach-verkettete Liste
+
+{{ stichwort "Einfach-verkettete Liste" }}
+
+### Doppelt-verkettete Liste
+
+{{ stichwort "Doppelt-verkettete Liste" }}
+
+### Stapel (Stack)
+
+{{ stichwort "Stapel (Stack)" }}
+
+### Warteschlange (Queue)
+
+{{ stichwort "Warteschlange (Queue)" }}
+
+
+### Bäume
+
+#### Binärbaum
+
+{{ stichwort "Binärbaum" }}
+
+#### AVL-Baum
+
+{{ stichwort "AVL-Baum" }}
+
+#### Halde (Heap)
+
+{{ stichwort "Halde (Heap)" }}
+
+#### B-Baum
+
+{{ stichwort "B-Baum" }}
+
+#### Streutabellen (Hashing)
+
+{{ stichwort "Streutabellen (Hashing)" }}
+
+
+### Graphen
+
+#### Algorithmus von Dijkstra
+
+{{ stichwort "Algorithmus von Dijkstra" }}
+
+#### Minimaler Spannbaum
+
+{{ stichwort "Minimaler Spannbaum" }}
+
+#### Knotensuchalgorithmen
+
+{{ stichwort "Knotensuchalgorithmen" }}
+
+
 
 ## Softwaresysteme (SOSY)
 
@@ -150,6 +258,8 @@ Weitere Aufgaben zum Thema „SQL“:
 
 {{ stichwort "Testen" }}
 
+
+
 ## Technische Informatik
 
 ### Ein-Adress-Befehl-Assembler
@@ -160,7 +270,10 @@ Weitere Aufgaben zum Thema „SQL“:
 
 {{ stichwort "Mehr-Adress-Befehl-Assembler" }}
 
+
+
 ## Theoretische Informatik
+
 
 ### Reguläre Sprachen
 
@@ -196,6 +309,7 @@ Weitere Aufgaben zum Thema „SQL“:
 
 {{ stichwort "Minimierungsalgorithmus" }}
 
+
 ### Kontextfreie Sprachen
 
 #### Kontextfreie Grammtik
@@ -221,6 +335,7 @@ Weitere Aufgaben zum Thema „SQL“:
 ### Pumping-Lemma (Kontextfreie Sprache)
 
 {{ stichwort "Pumping-Lemma (Kontextfreie Sprache)" }}
+
 
 ### Kontextsensitive Sprache
 
