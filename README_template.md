@@ -3,17 +3,20 @@
 Aufgaben- und Materialsammlung mit Lösungen für das Studium „Lehramt
 Informatik“ in Bayern.
 
-Alle Aufgaben und Materialen sind „geTeX’t“, d.h. mit Hilfe des Textsatz
-Programms TeX gesetzt. Im Ordner
+__TeX:__ Alle Aufgaben und Materialen sind „geTeX’t“, d. h. mit Hilfe
+des Textsatzsystems [TeX](https://www.ctan.org/) bzw. mit der
+Makrossammlung [LaTeX](https://www.latex-project.org) gesetzt. Im Ordner
 [.tex](https://github.com/hbschlang/lehramt-informatik/tree/main/.tex)
-findet sich eine mittlerweile umfangreiche Sammlungen an Hilfs-Klassen
-und -Paketen, die benötigt werden, um die Aufgaben setzen zu können.
+befindet sich eine mittlerweile umfangreiche [Sammlungen an
+Hilfs-Klassen und
+-Paketen](https://github.com/hbschlang/lehramt-informatik/raw/main/.tex/dokumentation.pdf),
+die benötigt werden, um die Aufgaben zu setzen.
 
-Zu diesem Repository, das vorallem TeX- und PDF-Dateien enthält, gehört
-ein [Git-Repository mit
-Java-Code](https://github.com/hbschlang/Java-Didaktik-Beispiele).
-Dieses Java-Repository ist als
-[git submodule](https://git-scm.com/book/de/v2/Git-Tools-Submodule)
+__Java:__ Zu diesem Repository, das vorallem TeX- und PDF-Dateien
+enthält, gehört ein [Git-Repository mit
+Java-Code](https://github.com/hbschlang/Java-Didaktik-Beispiele). Dieses
+Java-Repository ist als [git
+submodule](https://git-scm.com/book/de/v2/Git-Tools-Submodule)
 eingebunden.
 
 ## Abkürzungen der Modulnamen
