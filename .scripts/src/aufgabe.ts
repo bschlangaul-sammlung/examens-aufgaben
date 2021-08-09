@@ -77,7 +77,7 @@ export class Aufgabe {
    * Formatierter Link zur Tex-Datei.
    */
    get linkTex (): string {
-    return generiereLink('(.tex)', this.pfad, path.basename(this.pfad), { linkePdf: false, alsMarkdown: true })
+    return generiereLink('.tex', this.pfad, path.basename(this.pfad), { linkePdf: false, alsMarkdown: true })
   }
 
   /**
@@ -86,9 +86,9 @@ export class Aufgabe {
   get link (): string {
     const dateiName = path.basename(this.pfad)
     return (
-      generiereLink(this.titelFormatiert, this.pfad, dateiName) + ' ' +
-      this.linkTex + ' ' +
-      this.stichwörterFormatiert
+      generiereLink(this.titelFormatiert, this.pfad, dateiName) +
+      this.stichwörterFormatiert +
+      ' (' + this.linkTex + ') '
     )
   }
 
@@ -183,9 +183,9 @@ export class ExamensAufgabe extends Aufgabe {
 
   get link (): string {
     return (
-      generiereLink(this.titelKurz, this.pfad, this.dateiName) + ' ' +
-      this.linkTex + ' ' +
-      this.stichwörterFormatiert
+      generiereLink(this.titelKurz, this.pfad, this.dateiName) +
+      this.stichwörterFormatiert +
+      ' (' + this.linkTex + ') '
     )
   }
 

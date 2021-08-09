@@ -93,7 +93,7 @@ var Aufgabe = /** @class */ (function () {
          * Formatierter Link zur Tex-Datei.
          */
         get: function () {
-            return helfer_1.generiereLink('(.tex)', this.pfad, path_1.default.basename(this.pfad), { linkePdf: false, alsMarkdown: true });
+            return helfer_1.generiereLink('.tex', this.pfad, path_1.default.basename(this.pfad), { linkePdf: false, alsMarkdown: true });
         },
         enumerable: false,
         configurable: true
@@ -104,9 +104,9 @@ var Aufgabe = /** @class */ (function () {
          */
         get: function () {
             var dateiName = path_1.default.basename(this.pfad);
-            return (helfer_1.generiereLink(this.titelFormatiert, this.pfad, dateiName) + ' ' +
-                this.linkTex + ' ' +
-                this.stichwörterFormatiert);
+            return (helfer_1.generiereLink(this.titelFormatiert, this.pfad, dateiName) +
+                this.stichwörterFormatiert +
+                ' (' + this.linkTex + ') ');
         },
         enumerable: false,
         configurable: true
@@ -215,9 +215,9 @@ var ExamensAufgabe = /** @class */ (function (_super) {
     });
     Object.defineProperty(ExamensAufgabe.prototype, "link", {
         get: function () {
-            return (helfer_1.generiereLink(this.titelKurz, this.pfad, this.dateiName) + ' ' +
-                this.linkTex + ' ' +
-                this.stichwörterFormatiert);
+            return (helfer_1.generiereLink(this.titelKurz, this.pfad, this.dateiName) +
+                this.stichwörterFormatiert +
+                ' (' + this.linkTex + ') ');
         },
         enumerable: false,
         configurable: true
