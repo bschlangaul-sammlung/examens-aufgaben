@@ -2,6 +2,20 @@
 
 Materialsammlung für das Studium Lehramt Informatik in Bayern.
 
+## Abkürzungen der Modulnamen
+
+| Abk.  | Modulename                                          |
+|-------|-----------------------------------------------------|
+| MATHE | Mathematische Grundlagen                            |
+| DB    | Datenbanksysteme                                    |
+| OOMUP | Objektorientierte Modellierung und Programmierung   |
+| AUD   | Algorithmen und Datenstrukturen                     |
+| FUMUP | Funktionale Modellierung und Programmierung         |
+| SOSY  | Softwaresysteme und Softwareentwicklungspraktikum   |
+| TECH  | Technische Informatik                               |
+| THEO  | Theoretische Informatik                             |
+| DDI   | Didaktik der Informatik                             |
+
 # Aufgaben geordnet nach Themen
 
 ## Datenbanksysteme (DB)
