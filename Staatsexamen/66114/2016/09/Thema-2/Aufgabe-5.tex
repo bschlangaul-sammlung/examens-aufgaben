@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{baum}
 \begin{document}
 \liAufgabenTitel{Tupel-Identifikator und BBaum (k=2)}
 \section{Aufgabe 5
@@ -44,20 +44,92 @@ Die eigentliche TID-Adresse bleibt stabil.
 % b)
 %%
 
-\item Fügen Sie in einen anfangs leeren B-Baum mit k = 1 (maximal 2
+\item Fügen Sie in einen anfangs leeren B-Baum mit $k = 1$ (maximal 2
 Schlüsselwerte pro Knoten) die im Folgenden gegebenen Schlüsselwerte der
 Reihe nach ein. Zeichnen Sie den Endzustand des Baums nach jedem
 Einfügevorgang. Falls Sie Zwischenschritte zeichnen, kennzeichnen Sie
 die sieben Endzustände deutlich.
 \index{B-Baum}
 
+\begin{center}
 3, 7, 13, 11, 9, 10, 8
+\end{center}
+
+\begin{liAntwort}
+\begin{center}
+\begin{tikzpicture}[
+  li bbaum,
+  level 1/.style={level distance=10mm,sibling distance=32mm},
+  level 2/.style={level distance=10mm,sibling distance=20mm},
+]
+\node {9} [->]
+  child {
+    node {7}
+    child {
+      node {3}
+    }
+    child {
+      node {8}
+    }
+  }
+  child {
+    node {11}
+    child {
+      node {10}
+    }
+    child {
+      node {13}
+    }
+  };
+\end{tikzpicture}
+\end{center}
+\end{liAntwort}
 
 %%
 % c)
 %%
 
 \item Gegeben ist der folgende B-Baum:
+
+\begin{center}
+\begin{tikzpicture}[
+  li bbaum,
+  level 1/.style={level distance=15mm,sibling distance=32mm},
+  level 2/.style={level distance=15mm,sibling distance=15mm},
+]
+\node {6 \nodepart{two} 19} [->]
+  child {
+    node {3}
+    child {
+      node {0}
+    }
+    child {
+      node {4 \nodepart{two} 5}
+    }
+  }
+  child {
+    node {13 \nodepart{two} 17}
+    child {
+      node {9}
+    }
+    child {
+      node {14}
+    }
+    child {
+      node {18}
+    }
+  }
+  child {
+    node {42}
+    child {
+      node {40}
+    }
+    child {
+      node {43}
+    }
+  };
+\end{tikzpicture}
+\end{center}
 
 Die folgenden Teilaufgaben sind voneinander unabhängig.
 

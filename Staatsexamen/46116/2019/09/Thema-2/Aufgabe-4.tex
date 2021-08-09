@@ -1,0 +1,61 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{relationale-algebra}
+\begin{document}
+\liAufgabenTitel{Harry Potter}
+\section{Aufgabe 4
+\index{Relationale Algebra}
+\footcite{46116:2019:09}}
+
+Gegeben ist das Datenbankenschema aus Aufgabe 3.
+
+\bigskip
+
+\noindent
+Übertragen Sie die folgenden Ausdrücke in die relationale Algebra.
+Beschreiben Sie diese Ausdrücke umgangssprachlich, bevor Sie die
+Ausdrücke umformen.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item $\{ s | s \in \text{Schüler} \land \neg \exists t \in \text{teil\_von} (t.\text{Id} = s.\text{Id}) \}$
+\index{Tupelkalkül}
+
+\begin{liAntwort}
+$\text{Schüler} - (\text{Schüler} \bowtie \pi_{Id}(\text{teil\_von}))$
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item $\{ s |
+s \in \text{Schüler} \land
+\exists t \in \text{teil\_von} (r.\text{Id} = s.\text{Id}) \land
+\exists h \in \text{Haus} (f.\text{Name} = h.\text{Name}) \land
+\exists q \in \text{Quidditch} (h.\text{Name} = q.\text{Haus} \land q.\text{Captain} = \text{'Harry Potter'}) \}$
+
+\begin{liAntwort}
+\begin{multline*}
+\sigma_{\text{Id}, \text{SName}, \text{Patronus}, \text{Haarfarbe}, \text{Aktiv}, \text{Gesamtnote}} (\\
+  (
+  \rho_{\text{Sname} \leftarrow \text{Name}}(\text{Schüler})
+  \bowtie
+  \text{teil\_von}
+  )\\
+  \bowtie\\
+  (
+    \text{Haus}
+    \bowtie_{\text{Haus.Name} = \text{Quidditch.Haus}}
+    (\sigma_{\text{Captain} = \text{'Harry Potter'}} (\text{Quidditch}))
+  )\\
+)
+\end{multline*}
+\end{liAntwort}
+
+\end{enumerate}
+
+\end{document}

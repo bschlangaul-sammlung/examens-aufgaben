@@ -25,7 +25,7 @@ Max. Degree = 5 entspricht k = 2
 Eine ausgeglichene Baumstruktur ist der von R. Bayer und E. McCreight
 entwickelte B-Baum. Hierbei \memph{steht der Name „B“ für balanciert},
 breit, buschig oder auch Bayer, nicht jedoch für binär. Die Grundidee
-des B-Baumes ist es gerade, dass der Verzweigungsgrad varüert, während
+des B-Baumes ist es gerade, dass der Verzweigungsgrad variiert, während
 die Baumhöhe vollständig ausgeglichen ist.
 \footcite[Seite 386]{saake}
 
@@ -103,33 +103,32 @@ dem gewünschten Schlüsselwert vorhanden.
 % AUD_5_Teil1.m4v 55min
 \section{Löschen}
 
-Suche den Knoten, in dem das zu löschende Element $E$ liegt.
+Suche den Knoten, in dem das zu löschende Element
+liegt.\footcite[Seite 39]{aud:fs:5}
 
-\begin{itemize}
-\item Falls das Element $E$ im Blattknoten liegt, dann lösche $E$ dort
-und behandle ggf. entstehenden Unterlauf durch Mischen.
+\subsection{Löschen aus Blattknoten}
 
-\item Falls das Element $E$ in einem inneren Knoten liegt, dann
-untersuche den linken und rechten Unterbaum von $E$:
+\subsubsection{Verschiebung / Rotation / Ausgleichen}
 
-\begin{itemize}
-\item Betrachte den Blattknoten mit dem direkten Vorgänger $E'$ von $E$
-und den Blattknoten mit direktem Nachfolger $E''$ von $E$.
+Enthält der für den Abstieg ausgewählte Unterbaum nur die minimale
+Schlüsselanzahl, aber ein vorausgehender oder nachfolgender
+Geschwisterknoten hat mindestens Schlüssel, wird ein Schlüssel in den
+ausgewählten Knoten verschoben.
+\footcite{wiki:bbaum}
 
-\item Wähle den Blattknoten aus, der mehr Elemente hat. Falls beide
-Blattknoten gleich viele Elemente haben, wähle zufällig einen der beiden
-aus.
+\subsubsection{Verschmelzung / Mischen}
 
-\item Ersetze das zu löschende Element $E$ durch $E'$ bzw. $E''$ aus dem
-gewählten Blattknoten.
-
-\item Lösche $E'$ bzw. $E''$ im gewählten Blattknoten und behandle ggf.
-entstehenden Unterlauf in diesem Blattknoten.
-\end{itemize}
-\end{itemize}
-\footcite[Seite 39]{aud:fs:5}
-
-\subsection{Hinweise zum Unterlauf:}
+Enthalten sowohl der für den Abstieg ausgewählte Unterbaum  als auch
+sein unmittelbar vorausgehender und nachfolgender Geschwisterknoten
+genau die minimale Schlüsselanzahl, ist eine Verschiebung nicht möglich.
+In diesem Fall wird eine Verschmelzung des ausgewählten Unterbaumes mit
+dem vorausgehenden oder nachfolgenden Geschwisterknotendurchgeführt.
+Dazu wird der Schlüssel aus dem Vaterknoten, welcher die Wertebereiche
+der Schlüssel in den beiden zu verschmelzenden Knoten trennt, als
+mittlerer Schlüssel in den verschmolzenen Knoten verschoben. Die beiden
+Verweise auf die jetzt verschmolzenen Kindknoten werden durch einen
+Verweis auf den neuen Knoten ersetzt.
+\footcite{wiki:bbaum}
 
 Ein Unterlauf entsteht auf Blattebene. Der Unterlauf wird durch Mischen
 des Unterlaufknotens mit seinem Nachbarknoten und dem darüberliegenden
@@ -141,26 +140,6 @@ ist. Wird die Wurzel erreicht, kann der Baum in der Höhe um 1
 schrumpfen. Beim Mischen kann auch wieder ein Überlauf entstehen, d.h.
 es muss wieder gesplittet werde.
 \footcite[Seite 40]{aud:fs:5}
-
-\subsection{Verschiebung / Rotation / Ausgleichen}
-
-Enthält der für den Abstieg ausgewählte Unterbaum nur die minimale
-Schlüsselanzahl, aber ein vorausgehender oder nachfolgender
-Geschwisterknoten hat mindestens Schlüssel, wird ein Schlüssel in den
-ausgewählten Knoten verschoben.
-
-\subsection{Verschmelzung / Mischen}
-
-Enthalten sowohl der für den Abstieg ausgewählte Unterbaum  als auch
-sein unmittelbar vorausgehender und nachfolgender Geschwisterknoten
-genau die minimale Schlüsselanzahl, ist eine Verschiebung nicht möglich.
-In diesem Fall wird eine Verschmelzung des ausgewählten Unterbaumes mit
-dem vorausgehenden oder nachfolgenden Geschwisterknoten gemäß Abbildung
-5 durchgeführt. Dazu wird der Schlüssel aus dem Vaterknoten, welcher die
-Wertebereiche der Schlüssel in den beiden zu verschmelzenden Knoten
-trennt, als mittlerer Schlüssel in den verschmolzenen Knoten verschoben.
-Die beiden Verweise auf die jetzt verschmolzenen Kindknoten werden durch
-einen Verweis auf den neuen Knoten ersetzt.
 
 \subsection{Löschen aus inneren Knoten}
 
@@ -179,6 +158,25 @@ Schlüsselanzahl, werden die Unterbäume verschmolzen. Damit wird keine
 Trennung der Wertebereiche mehr benötigt und der Schlüssel kann direkt
 gelöscht werden.
 \footcite{wiki:bbaum}
+
+Falls das Element $E$ in einem inneren Knoten liegt, dann
+untersuche den linken und rechten Unterbaum von $E$:
+
+\begin{itemize}
+\item Betrachte den Blattknoten mit dem direkten Vorgänger $E'$ von $E$
+und den Blattknoten mit direktem Nachfolger $E''$ von $E$.
+
+\item Wähle den Blattknoten aus, der mehr Elemente hat. Falls beide
+Blattknoten gleich viele Elemente haben, wähle zufällig einen der beiden
+aus.
+
+\item Ersetze das zu löschende Element $E$ durch $E'$ bzw. $E''$ aus dem
+gewählten Blattknoten.
+
+\item Lösche $E'$ bzw. $E''$ im gewählten Blattknoten und behandle ggf.
+entstehenden Unterlauf in diesem Blattknoten.\footcite[Seite
+39]{aud:fs:5}
+\end{itemize}
 
 \liJavaDatei{baum/BBaum}
 
