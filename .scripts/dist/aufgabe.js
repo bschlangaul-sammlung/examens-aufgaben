@@ -88,9 +88,24 @@ var Aufgabe = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
-    Object.defineProperty(Aufgabe.prototype, "link", {
+    Object.defineProperty(Aufgabe.prototype, "linkTex", {
+        /**
+         * Formatierter Link zur Tex-Datei.
+         */
         get: function () {
-            return (helfer_1.generiereLink(this.titelFormatiert, this.pfad, path_1.default.basename(this.pfad)) +
+            return helfer_1.generiereLink('(.tex)', this.pfad, path_1.default.basename(this.pfad), { linkePdf: false, alsMarkdown: true });
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Aufgabe.prototype, "link", {
+        /**
+         * Formatierter Link zur PDF-Datei auf Github mit den Stichwörtern.
+         */
+        get: function () {
+            var dateiName = path_1.default.basename(this.pfad);
+            return (helfer_1.generiereLink(this.titelFormatiert, this.pfad, dateiName) + ' ' +
+                this.linkTex + ' ' +
                 this.stichwörterFormatiert);
         },
         enumerable: false,
@@ -200,7 +215,8 @@ var ExamensAufgabe = /** @class */ (function (_super) {
     });
     Object.defineProperty(ExamensAufgabe.prototype, "link", {
         get: function () {
-            return (helfer_1.generiereLink(this.titelKurz, this.pfad, this.dateiName) +
+            return (helfer_1.generiereLink(this.titelKurz, this.pfad, this.dateiName) + ' ' +
+                this.linkTex + ' ' +
                 this.stichwörterFormatiert);
         },
         enumerable: false,

@@ -50,33 +50,65 @@ export function macheRepoPfad (...args: string[]) {
 }
 
 export interface LinkEinstellung {
-  alsLink?: boolean
+  /**
+   * Als Markdown-Link ausgeben
+   */
+  alsMarkdown?: boolean
+
+  /**
+   * Wenn wahr wird die PDF-Datei verlink und nicht die TeX-Datei.
+   */
   linkePdf?: boolean
+
+  /**
+   * Als HTML-Link ausgeben
+   */
   alsHtml?: boolean
 }
 
+/**
+ * Generiere eine Markdown- oder HTML-Link.
+ *
+ * @param text Der Text, der als Link gesetzt werden soll.
+ * @param pfad Der Datei-Pfad, zu dem gelinkt werden soll.
+ * @param downloadDateiName Der Dateiname, den die Datei haben soll, wenn sie
+ * heruntergeladen wird. Dieser Parameter wird nur berücksichtig, wenn die Link
+ * als HTML ausgegeben wird.
+ * @param einstellung
+ *
+ * @returns Ein Link zu einer Datei auf Github, entweder im Markdown- oder im
+ * HTML-Format.
+ */
 export function generiereLink (
   text: string,
   pfad: string,
-  dateiName: string,
+  downloadDateiName: string,
   einstellung?: LinkEinstellung
 ): string {
   let linkePdf = true
-  let alsLink = true
+  let alsMarkdown = true
   let alsHtml = true
   if (einstellung) {
-    if (einstellung.linkePdf !== undefined) linkePdf = einstellung.linkePdf
-    if (einstellung.alsLink !== undefined) alsLink = einstellung.alsLink
-    if (einstellung.alsHtml !== undefined) alsHtml = einstellung.alsHtml
+    if (einstellung.linkePdf !== undefined) {
+      linkePdf = einstellung.linkePdf
+    }
+    if (einstellung.alsMarkdown !== undefined) {
+      alsMarkdown = einstellung.alsMarkdown
+    }
+    if (einstellung.alsHtml !== undefined) {
+      alsHtml = einstellung.alsHtml
+    }
   }
   pfad = pfad.replace(repositoryPfad, '')
   pfad = pfad.replace(/^\//, '')
-  if (linkePdf) pfad = pfad.replace(/\.[\w]+$/, '.pdf')
+  if (linkePdf) {
+    pfad = pfad.replace(/\.[\w]+$/, '.pdf')
+  }
 
-  if (alsLink) {
+  if (alsMarkdown) {
     if (alsHtml) {
-      dateiName = dateiName.replace(/\.[a-z]{3,5}$/, '')
-      return `<a href="${githubRawUrl}/${pfad}" download="${dateiName}">${text}</a>`
+      downloadDateiName = downloadDateiName.replace(/\.[a-z]{3,5}$/, '')
+      return `<a href="${githubRawUrl}/${pfad}" download="${downloadDateiName}">${text}</a>`
     }
     return `[${text}](${githubRawUrl}/${pfad})`
   }

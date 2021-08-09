@@ -73,9 +73,21 @@ export class Aufgabe {
     return ''
   }
 
+  /**
+   * Formatierter Link zur Tex-Datei.
+   */
+   get linkTex (): string {
+    return generiereLink('(.tex)', this.pfad, path.basename(this.pfad), { linkePdf: false, alsMarkdown: true })
+  }
+
+  /**
+   * Formatierter Link zur PDF-Datei auf Github mit den Stichwörtern.
+   */
   get link (): string {
+    const dateiName = path.basename(this.pfad)
     return (
-      generiereLink(this.titelFormatiert, this.pfad, path.basename(this.pfad)) +
+      generiereLink(this.titelFormatiert, this.pfad, dateiName) + ' ' +
+      this.linkTex + ' ' +
       this.stichwörterFormatiert
     )
   }
@@ -171,7 +183,8 @@ export class ExamensAufgabe extends Aufgabe {
 
   get link (): string {
     return (
-      generiereLink(this.titelKurz, this.pfad, this.dateiName) +
+      generiereLink(this.titelKurz, this.pfad, this.dateiName) + ' ' +
+      this.linkTex + ' ' +
       this.stichwörterFormatiert
     )
   }
