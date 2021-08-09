@@ -40,19 +40,21 @@ s \in \text{Schüler} \land
 
 \begin{liAntwort}
 \begin{multline*}
-\sigma_{\text{Id}, \text{SName}, \text{Patronus}, \text{Haarfarbe}, \text{Aktiv}, \text{Gesamtnote}} (\\
-  (
+\sigma_{\text{Id}, \text{SName}, \text{Patronus}, \text{Haarfarbe}, \text{Aktiv}, \text{Gesamtnote}} \biggl(\\
+  \Bigl(
   \rho_{\text{Sname} \leftarrow \text{Name}}(\text{Schüler})
   \bowtie
   \text{teil\_von}
-  )\\
+  \Bigr)\\
   \bowtie\\
-  (
+  \Bigl(
     \text{Haus}
     \bowtie_{\text{Haus.Name} = \text{Quidditch.Haus}}
-    (\sigma_{\text{Captain} = \text{'Harry Potter'}} (\text{Quidditch}))
-  )\\
-)
+    \bigl(
+      \sigma_{\text{Captain} = \text{'Harry Potter'}} (\text{Quidditch})
+    \bigr)
+  \Bigr)\\
+\biggr)
 \end{multline*}
 \end{liAntwort}
 

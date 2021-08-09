@@ -120,14 +120,15 @@ ausgewählten Knoten verschoben.
 
 Enthalten sowohl der für den Abstieg ausgewählte Unterbaum  als auch
 sein unmittelbar vorausgehender und nachfolgender Geschwisterknoten
-genau die minimale Schlüsselanzahl, ist eine Verschiebung nicht möglich.
-In diesem Fall wird eine Verschmelzung des ausgewählten Unterbaumes mit
-dem vorausgehenden oder nachfolgenden Geschwisterknotendurchgeführt.
-Dazu wird der Schlüssel aus dem Vaterknoten, welcher die Wertebereiche
-der Schlüssel in den beiden zu verschmelzenden Knoten trennt, als
-mittlerer Schlüssel in den verschmolzenen Knoten verschoben. Die beiden
-Verweise auf die jetzt verschmolzenen Kindknoten werden durch einen
-Verweis auf den neuen Knoten ersetzt.
+\memph{genau die minimale Schlüsselanzahl}, ist eine Verschiebung nicht
+möglich. In diesem Fall wird eine Verschmelzung des ausgewählten
+Unterbaumes mit dem vorausgehenden oder nachfolgenden
+Geschwisterknotendurchgeführt. Dazu wird der Schlüssel aus dem
+Vaterknoten, welcher die Wertebereiche der Schlüssel in den beiden zu
+verschmelzenden Knoten trennt, als mittlerer Schlüssel in den
+verschmolzenen Knoten verschoben. Die beiden Verweise auf die jetzt
+verschmolzenen Kindknoten werden durch einen Verweis auf den neuen
+Knoten ersetzt.
 \footcite{wiki:bbaum}
 
 Ein Unterlauf entsteht auf Blattebene. Der Unterlauf wird durch Mischen
@@ -137,7 +138,7 @@ durchgeführt. Wurde einmal mit dem Mischen auf Blattebene begonnen, muss
 das evtl. nach oben fortgesetzt werden. Mischen wird so lange
 fortgesetzt, bis kein Unterlauf mehr existiert oder die Wurzel erreicht
 ist. Wird die Wurzel erreicht, kann der Baum in der Höhe um 1
-schrumpfen. Beim Mischen kann auch wieder ein Überlauf entstehen, d.h.
+schrumpfen. Beim Mischen kann auch wieder ein Überlauf entstehen, \dh
 es muss wieder gesplittet werde.
 \footcite[Seite 40]{aud:fs:5}
 
@@ -146,17 +147,17 @@ es muss wieder gesplittet werde.
 Wird der zu löschende Schlüssel bereits in einem inneren Knoten
 gefunden, kann dieser nicht direkt gelöscht werden, weil er für die
 Trennung der Wertebereiche seiner beiden Unterbäume benötigt wird. In
-diesem Fall wird sein symmetrischer Vorgänger (oder sein symmetrischer
-Nachfolger) gelöscht und an seine Stelle kopiert. Der symmetrische
-Vorgänger ist der größte Blattknoten im linken Unterbaum, befindet sich
-also dort ganz rechts außen. Der symmetrische Nachfolger ist
-entsprechend der kleinste Blattknoten im rechten Unterbaum und befindet
-sich dort ganz links außen. Die Entscheidung, in welchen Unterbaum der
-Abstieg für die Löschung stattfindet, wird davon abhängig gemacht,
-welcher genügend Schlüssel enthält. Haben beide nur die minimale
-Schlüsselanzahl, werden die Unterbäume verschmolzen. Damit wird keine
-Trennung der Wertebereiche mehr benötigt und der Schlüssel kann direkt
-gelöscht werden.
+diesem Fall wird sein \memph{symmetrischer Vorgänger} (oder sein
+symmetrischer \memph{Nachfolger}) gelöscht und \memph{an seine Stelle
+kopiert}. Der symmetrische Vorgänger ist der größte Blattknoten im
+linken Unterbaum, befindet sich also dort ganz rechts außen. Der
+symmetrische Nachfolger ist entsprechend der kleinste Blattknoten im
+rechten Unterbaum und befindet sich dort ganz links außen. Die
+\memph{Entscheidung}, in welchen Unterbaum der Abstieg für die Löschung
+stattfindet, wird davon abhängig gemacht, \memph{welcher genügend
+Schlüssel enthält}. Haben beide nur die minimale Schlüsselanzahl, werden
+die Unterbäume verschmolzen. Damit wird keine Trennung der Wertebereiche
+mehr benötigt und der Schlüssel kann direkt gelöscht werden.
 \footcite{wiki:bbaum}
 
 Falls das Element $E$ in einem inneren Knoten liegt, dann
