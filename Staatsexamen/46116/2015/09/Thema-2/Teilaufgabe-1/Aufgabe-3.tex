@@ -1,6 +1,10 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{syntax,mathe,wpkalkuel}
 \begin{document}
+\let\wp=\liWpKalkuel
+\let\equivalent=\liWpEquivalent
+\let\erklaerung=\liWpErklaerung
+
 \liAufgabenTitel{ASCII}
 
 \section{Aufgabe 3: „Formale Verifikation“
@@ -32,6 +36,79 @@ z -= x - y - z;
 \end{minted}
 
 $Q :\equiv x = y + z$
+
+\begin{liAntwort}
+Code umformulieren:
+
+\begin{minted}{java}
+x = -2 * (x + 2 * y);
+y = y + 2 * x + y + z;
+z = z - (x - y - z);
+\end{minted}
+
+\wp{x=-2*(x+2*y);y=2*y+2*x+z;z=z-(x-y-z);}{x = y + z}
+
+\equivalent{\wp{x=-2*(x+2*y);y=2*y+2*x+z;z=z-(x-y-z);}{x = y + z}}
+
+\erklaerung{$z$ eingesetzen}
+
+\equivalent{\wp{x=-2*(x+2*y);y=2*y+2*x+z;}{x = y + (z - (x - y - z))}}
+
+\erklaerung{Innere Klammer auflösen}
+
+\equivalent{\wp{x=-2*(x+2*y);y=2*y+2*x+z;}{x = y + (- x + y - 2z)}}
+
+\erklaerung{Klammer auflösen}
+
+\equivalent{\wp{x=-2*(x+2*y);y=2*y+2*x+z;}{x = - x + 2y + 2z}}
+
+\erklaerung{$-x$ auf beiden Seiten}
+
+\equivalent{\wp{x=-2*(x+2*y);y=2*y+2*x+z;}{0 = -2x + 2y + 2z}}
+
+\erklaerung{$\div 2$ auf beiden Seiten}
+
+\equivalent{\wp{x=-2*(x+2*y);y=2*y+2*x+z;}{0 = -x + y + z}}
+
+\erklaerung{$y$ einsetzen}
+
+\equivalent{\wp{x=-2*(x+2*y);}{0 = -x + (2y + 2x + z) + z}}
+
+\erklaerung{Term vereinfachen}
+
+\equivalent{\wp{x=-2*(x+2*y);}{0 = x + 2y + 2z}}
+
+\erklaerung{$x$ einsetzen}
+
+\equivalent{\wp{}{0 = (-2(x + 2y)) + 2y + 2z}}
+
+\erklaerung{wp weglassen}
+
+\equivalent{0 = (-2(x + 2y)) + 2y + 2z}
+
+\erklaerung{ausmultiplizieren}
+
+\equivalent{0 = (-2x - 4y) + 2y + 2z}
+
+\erklaerung{Klammer auflösen, vereinfachen}
+
+\equivalent{0 = -2x - 2y + 2z}
+
+\erklaerung{$\div 2$ auf beiden Seiten}
+
+\equivalent{0 = -x - y + z}
+
+\erklaerung{$x$ nach links holen mit $+ x$ auf beiden Seiten}
+
+\equivalent{x = -y + z}
+
+\erklaerung{$y$ ganz nach links schreiben}
+
+\equivalent{x = z - y}
+
+$x = -2 \cdot (x + 2 \cdot y)$
+
+\end{liAntwort}
 
 \item Verzweigung:
 
@@ -90,6 +167,7 @@ if (z == "x") {
 }
 \end{minted}
 
+\noindent
 Da kein \liJavaCode{break} im Fall \liJavaCode{z == "x"}.
 \liJavaCode{--z} bedeutet, dass die Variable erst um eins verringert und
 dann zugewiesen wird.
@@ -105,6 +183,7 @@ if (z == 120) {
 }
 \end{minted}
 
+\noindent
 Vereinfachung / Zusammenfassung:
 
 \begin{minted}{java}

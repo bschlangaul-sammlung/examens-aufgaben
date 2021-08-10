@@ -15,7 +15,8 @@ Gegeben sei folgendes Programm:
 
 \begin{minted}{java}
 int f(int x, int y) {
-  /* P */ x = 2 * x + 1 + x * x;
+  /* P */
+  x = 2 * x + 1 + x * x;
   y += 7;
   if (x > 196) {
     y = 2 * y;
@@ -27,6 +28,7 @@ int f(int x, int y) {
 }
 \end{minted}
 
+\noindent
 Bestimmen Sie die schwächste Vorbedingung (weakest precondition), für
 die die Nachbedingung $Q := (x \geq 8) \land (y \% 2 = 1)$ noch
 zutrifft.
@@ -93,7 +95,7 @@ $\wp{\A\C}{\Q}$
   \wp{\A}{x > 196}
 }
 
-\erklaerung{Wir lassen $y+=7$ weg, weil in der Nachbedingung kein y
+\erklaerung{Wir lassen $y+=7$ weg, weil in der Nachbedingung kein $y$
 vorkommt und setzen in den Term $x > 196$ für das $x$ die erste
 Code-Zeile $2 \cdot x + 1 + x \cdot x$ ein.}
 
@@ -293,7 +295,7 @@ werden muss:}
   y\%2 = 0
 }
 
-$4 = 2^2$ und $196 = 14^2$
+\erklaerung{$4 = 2^2$ und $196 = 14^2$}
 
 \equivalent{
   2^2 \leq (x + 1)^2 \leq 14^2
