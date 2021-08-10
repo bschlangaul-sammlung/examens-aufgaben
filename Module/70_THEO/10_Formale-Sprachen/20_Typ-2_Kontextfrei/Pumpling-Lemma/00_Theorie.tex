@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-\liLadePakete{formale-sprachen}
+\liLadePakete{formale-sprachen,pumping-lemma}
 
 \begin{document}
 
@@ -11,15 +11,7 @@
 
 \chapter{Pumping Lemma für die kontextfreie Sprachen}
 
-Sei $L$ eine kontextfreie Sprache. Dann gibt es eine Zahl $j$, so dass
-sich alle Wörter $\omega \in L$ mit $|\omega| \geq j$ zerlegen lassen in
-$\omega = uvwxy$, so dass die folgenden Eigenschaften erfüllt sind:
-
-\begin{enumerate}
-\item $|vx| \geq 1$
-\item $|vwx| \leq j$
-\item Für alle $i \in \mathbb{N}_0$ gilt $u v^i w x^i y \in L$
-\end{enumerate}
+\liPumpingKontextfrei
 
 Das Pumping-Lemma dient zum Nachweis, dass eine Sprache nicht
 kontextfrei ist.

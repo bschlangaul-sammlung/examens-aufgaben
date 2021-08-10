@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{formale-sprachen}
+\liLadePakete{formale-sprachen,pumping-lemma}
 \begin{document}
 \liAufgabenTitel{Palindrom mit Alphabet abc}
 \section{Aufgabe 3
@@ -18,6 +18,10 @@ Dabei ist $\hat{w}$ das zu $w$ gespiegelte Wort.
 \item Zeigen Sie, dass $L$ nicht regulär ist.
 \index{Pumping-Lemma (Reguläre Sprache)}
 
+\begin{liExkurs}[Pumping-Lemma für Reguläre Sprachen]
+\liPumpingRegulaer
+\end{liExkurs}
+
 \begin{liAntwort}
 $L$ ist regulär.
 Dann gilt für $L$ das Pumping-Lemma.
@@ -29,7 +33,7 @@ $a^j b c b a^j = uvw$ ist eine passende Zerlegung laut Lemma.
 Da $|uv| < j$, ist
 $u = a^x$, $v = a^y$, $w = a^z b c b a^j$, wobei
 $y > 0$ und
-$x + y + z = j$
+$x + y + z = j$.
 Aber dann
 $u v^0 w= a^{x+z} b c b a^j \notin L$, da $x + z < j$.
 Widerspruch.

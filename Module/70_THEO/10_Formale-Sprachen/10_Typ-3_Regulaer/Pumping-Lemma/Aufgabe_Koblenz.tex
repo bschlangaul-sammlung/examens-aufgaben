@@ -1,9 +1,9 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{formale-sprachen}
+\liLadePakete{formale-sprachen,pumping-lemma}
 \begin{document}
 \let\m=\liMenge
 
-\liAufgabenTitel{Koblenz}
+\liAufgabenTitel{Koblenz, Sprache „w w“}
 \section{Pumping-Lemma
 \index{Pumping-Lemma (Reguläre Sprache)}
 \footcite{}}
@@ -12,8 +12,12 @@ Zeigen oder widerlegen Sie: Die folgenden Sprachen über dem Alphabet
 \liAlphabet{a, b, c} sind regulär.
 \footnote{\url{https://userpages.uni-koblenz.de/~dpeuter/teaching/17ss_gti/blatt04_loesung.pdf}}
 
+\begin{liExkurs}[Pumping-Lemma für Reguläre Sprachen]
+\liPumpingRegulaer
+\end{liExkurs}
+
 \begin{displaymath}
-L_1 = \m{w w | w \in \m{a, b} * }
+L_1 = \m{w w | w \in \m{a, b}^* }
 \end{displaymath}
 
 \begin{liAntwort}
@@ -24,11 +28,11 @@ stärkeren Variante des Pumping-Lemmas erfüllen.
 \liPseudoUeberschrift{Beweis durch Widerspruch:}
 
 \noindent
-Sei $j \in \mathbb{N}$ die Konstante aus dem Pumping-Lemma und
-$\omega = a^j b a^j b$ ein Wort aus $L_1$ ($|\omega| > j$ gilt offensichtlich).
+Sei $j \in \mathbb{N}$ die Konstante aus dem Pumping-Lemma und $\omega =
+a^j b a^j b$ ein Wort aus $L_1$ ($|\omega| > j$ gilt offensichtlich).
 
-Dann müsste $\omega$ nach dem Pumping-Lemma zerlegbar sein in $\omega = uvw$ mit
-$|v| \geq 1$ und $|uv| < j$.
+Dann müsste $\omega$ nach dem Pumping-Lemma zerlegbar sein in $\omega =
+uvw$ mit $|v| \geq 1$ und $|uv| < j$.
 %
 $uv$ kann wegen $|uv| < j$ kein $b$ enthalten und liegt komplett im
 ersten $a^j$.

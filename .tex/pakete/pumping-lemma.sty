@@ -1,0 +1,55 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-pumping-lemma}[2021/08/11 Enthält die
+Definitionen für das Pumping-Lemma in der Regulären Sprache und
+in der Kontextfreien Sprache]
+%    \end{macrocode}
+
+% \begin{macro}{\liPumpingRegulaer}
+%    \begin{macrocode}
+\def\liPumpingRegulaer{
+  Es sei $L$ eine reguläre Sprache. Dann gibt es eine Zahl $j$, sodass für
+  alle Wörter $\omega \in L$ mit $|\omega| \geq j$ (jedes Wort $\omega$ in
+  $L$ mit Mindestlänge $j$) jeweils eine Zerlegung $\omega = uvw$
+  existiert, sodass die folgenden Eigenschaften erfüllt sind:
+
+  \begin{enumerate}
+  \item $|v| \geq 1$
+  (Das Wort $v$ ist nicht leer.)
+
+  \item $|uv| \leq j$
+  (Die beiden Wörter $u$ und $v$ haben zusammen höchstens die Länge $j$.)
+
+  \item Für alle $i = 0, 1, 2, \dots$ gilt $uv^iw \in L$
+  (Für jede natürliche Zahl (mit $0$) $i$ ist das Wort $uv^{i}w$ in der
+  Sprache $L$)
+  \end{enumerate}
+
+  Die kleinste Zahl $j$, die diese Eigenschaften erfüllt, wird
+  Pumping-Zahl der Sprache $L$ genannt.\footcite{wiki:pumping-lemma}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liPumpingKontextfrei}
+%    \begin{macrocode}
+\def\liPumpingKontextfrei{
+  Es sei $L$ eine kontextfreie Sprache. Dann gibt es eine Zahl $j$, sodass
+  sich alle Wörter $\omega \in L$ mit $|\omega| \geq j$ zerlegen lassen in
+  $\omega = uvwxy$, sodass die folgenden Eigenschaften erfüllt sind:
+
+  \begin{enumerate}
+  \item $|vx| \geq 1$
+  (Die Wörter $v$ und $x$ sind nicht leer.)
+
+  \item $|vwx| \leq j$
+  (Die Wörter $v$, $w$ und $x$ haben zusammen höchstens die Länge $j$.)
+
+  \item Für alle $i \in \mathbb{N}_0$ gilt $u v^i w x^i y \in L$ (Für jede
+  natürliche Zahl (mit $0$) $i$ ist das Wort $u v^i w x^i y$ in der
+  Sprache $L$)
+  \end{enumerate}
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
