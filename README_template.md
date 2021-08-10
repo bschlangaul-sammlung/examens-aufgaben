@@ -44,29 +44,22 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 
 
 ### Übersicht
-
 {{ stichwort "Datenbank-Übersicht" }}
 
 
 ### Datenbankentwurf
 
 #### Entity-Relation-Modell
-
 {{ stichwort "Entity-Relation-Modell" }}
 
 
 ### Relationales Modell
 
 #### Relationenmodell
-
 {{ stichwort "Relationenmodell" }}
-
 #### Relationale Algebra
-
 {{ stichwort "Relationale Algebra" }}
-
 #### Tupelkalkül
-
 {{ stichwort "Tupelkalkül" }}
 
 
@@ -89,23 +82,19 @@ CREATE TABLE
 ```
 
 Hier alle Aufgaben mit einer Übungsdatenbank:
-
 {{ stichwort "SQL mit Übungsdatenbank" }}
 
 Weitere Aufgaben zum Thema „SQL“:
-
 {{ stichwort "SQL" }}
 
 
 ### Relationale Entwurfstheorie
 
 #### Normalformen
-
 {{ stichwort "Normalformen" }}
 
 
 ### Transaktionsverwaltung
-
 {{ stichwort "Transaktionsverwaltung" }}
 
 
@@ -113,7 +102,6 @@ Weitere Aufgaben zum Thema „SQL“:
 ## Objektorientierte Modellierung und Programmierung (OOMUP)
 
 ### Vererbung
-
 {{ stichwort "Vererbung" }}
 
 
@@ -122,110 +110,73 @@ Weitere Aufgaben zum Thema „SQL“:
 
 
 ### Rekursion
-
 {{ stichwort "Rekursion" }}
 
 
 ### Suche
-
 {{ stichwort "Suche" }}
 
 
 ### Sortieralgorithmen
 
 #### Bubblesort
-
 {{ stichwort "Bubblesort" }}
-
 #### Selectionsort
-
 {{ stichwort "Selectionsort" }}
-
 #### Insertionsort
-
 {{ stichwort "Insertionsort" }}
-
 #### Quicksort
-
 {{ stichwort "Quicksort" }}
-
 #### Mergesort
-
 {{ stichwort "Mergesort" }}
-
 #### Heapsort
-
 {{ stichwort "Heapsort" }}
 
 
 ### Algorithmische Komplexität (O-Notation)
-
 {{ stichwort "Algorithmische Komplexität (O-Notation)" }}
 
 #### Master-Theorem
-
 {{ stichwort "Master-Theorem" }}
 
 
 ### Algorithmenmuster
-
 {{ stichwort "Algorithmenmuster" }}
 
 
 ### Listen
 
 #### Einfach-verkettete Liste
-
 {{ stichwort "Einfach-verkettete Liste" }}
-
 ### Doppelt-verkettete Liste
-
 {{ stichwort "Doppelt-verkettete Liste" }}
-
 ### Stapel (Stack)
-
 {{ stichwort "Stapel (Stack)" }}
-
 ### Warteschlange (Queue)
-
 {{ stichwort "Warteschlange (Queue)" }}
 
 
 ### Bäume
 
 #### Binärbaum
-
 {{ stichwort "Binärbaum" }}
-
 #### AVL-Baum
-
 {{ stichwort "AVL-Baum" }}
-
 #### Halde (Heap)
-
 {{ stichwort "Halde (Heap)" }}
-
 #### B-Baum
-
 {{ stichwort "B-Baum" }}
-
 #### Streutabellen (Hashing)
-
 {{ stichwort "Streutabellen (Hashing)" }}
 
 
 ### Graphen
 
 #### Algorithmus von Dijkstra
-
 {{ stichwort "Algorithmus von Dijkstra" }}
-
 #### Minimaler Spannbaum
-
 {{ stichwort "Minimaler Spannbaum" }}
-
 #### Knotensuchalgorithmen
-
 {{ stichwort "Knotensuchalgorithmen" }}
 
 
@@ -234,19 +185,33 @@ Weitere Aufgaben zum Thema „SQL“:
 
 
 ### Projektmanagement
-
 {{ stichwort "Projektmanagement" }}
 
 
 ### Projektplanung
-
 {{ stichwort "Projektplanung" }}
 
-### Modellierung
+### Modellierung: UML-Diagramme
 
-#### UML-Diagramme
+#### Struktur-Diagramme
 
-{{ stichwort "UML-Diagramme" }}
+##### Klassendiagramm
+{{ stichwort "Klassendiagramm" }}
+##### Objektdiagramm
+{{ stichwort "Objektdiagramm" }}
+
+#### Verhaltens-Diagramme
+
+##### Sequenzdiagramm
+{{ stichwort "Sequenzdiagramm" }}
+##### Kommunikationsdiagramm
+{{ stichwort "Kommunikationsdiagramm" }}
+##### Aktivitätsdiagramm
+{{ stichwort "Aktivitätsdiagramm" }}
+##### Anwendungsfalldiagramm
+{{ stichwort "Anwendungsfalldiagramm" }}
+##### Zustandsdiagramm
+{{ stichwort "Zustandsdiagramm" }}
 
 
 ### Entwurfsmuster
@@ -292,163 +257,90 @@ Weitere Aufgaben zum Thema „SQL“:
 {{ stichwort "Einbringen von Abhängigkeiten (Dependency Injection)" }}
 
 
-#####
-
-{{ stichwort "" }}
-
-###
-
-{{ stichwort "" }}
-
-###
-
-{{ stichwort "" }}
-
-###
-
-{{ stichwort "" }}
-
-###
-
-{{ stichwort "" }}
-
-###
-
-{{ stichwort "" }}
-
-###
-
-{{ stichwort "" }}
-
-###
-
-{{ stichwort "" }}
-
-###
-
-{{ stichwort "" }}
-
-
-
-
-
 ### Softwarearchitektur
-
 {{ stichwort "Softwarearchitektur" }}
 
 
 ### Testen
 
-{{ stichwort "Testen" }}
-
 #### Kontrollflussorientieres Testen
-
 {{ stichwort "Kontrollflussorientieres Testen" }}
-
 #### Datenflussorientiertes Testen
-
 {{ stichwort "Datenflussorientiertes Testen" }}
 
 #### Formale Verifikation
 
 ##### wp-Kalkül
-
 {{ stichwort "wp-Kalkül" }}
-
 ##### Vollständige Induktion
-
 {{ stichwort "Vollständige Induktion" }}
 
 
 
-## Technische Informatik
+## Technische Informatik (TECH)
 
 ### Ein-Adress-Befehl-Assembler
-
 {{ stichwort "Ein-Adress-Befehl-Assembler" }}
-
 ### Mehr-Adress-Befehl-Assembler
-
 {{ stichwort "Mehr-Adress-Befehl-Assembler" }}
 
 
 
-## Theoretische Informatik
+## Theoretische Informatik (THEO)
 
 
 ### Reguläre Sprachen
 
 #### Reguläre Grammatik
-
 {{ stichwort "Reguläre Grammatik" }}
-
 #### Reguläre Ausdrücke
-
 {{ stichwort "Reguläre Ausdrücke" }}
-
 #### Deterministisch endlicher Automat (DEA)
-
 {{ stichwort "Deterministisch endlicher Automat (DEA)" }}
-
 #### Nichtdeterministisch endlicher Automat (NEA)
-
 {{ stichwort "Nichtdeterministisch endlicher Automat (NEA)" }}
-
 #### Potenzmengenalgorithmus
-
 {{ stichwort "Potenzmengenalgorithmus" }}
-
 #### Erweiteter Potenzmengenalgorithmus
-
 {{ stichwort "Erweiteter Potenzmengenalgorithmus" }}
-
 #### Pumping-Lemma (Reguläre Sprache)
-
 {{ stichwort "Pumping-Lemma (Reguläre Sprache)" }}
-
 #### Minimierungsalgorithmus
-
 {{ stichwort "Minimierungsalgorithmus" }}
 
 
 ### Kontextfreie Sprachen
 
 #### Kontextfreie Grammtik
-
 {{ stichwort "Kontextfreie Grammtik" }}
-
 #### Ableitung (Kontextfreie Sprache)
-
 {{ stichwort "Ableitung (Kontextfreie Sprache)" }}
-
 #### Kellerautomat
-
 {{ stichwort "Kellerautomat" }}
-
 #### Chomsky-Normalform
-
 {{ stichwort "Chomsky-Normalform" }}
-
 #### CYK-Algorithmus
-
 {{ stichwort "CYK-Algorithmus" }}
-
 ### Pumping-Lemma (Kontextfreie Sprache)
-
 {{ stichwort "Pumping-Lemma (Kontextfreie Sprache)" }}
 
 
 ### Kontextsensitive Sprache
-
-{{ stichwort "Kontextsensitive Grammatik" }}
+{{ stichwort "Kontextsensitive Sprache" }}
 
 #### Kontextsensitive Grammatik
-
 {{ stichwort "Kontextsensitive Grammatik" }}
-
 #### Turing-Maschine
-
 {{ stichwort "Turing-Maschine" }}
+
+### Berechenbarkeit
+{{ stichwort "Berechenbarkeit" }}
+
+### Entscheidbarkeit
+{{ stichwort "Entscheidbarkeit" }}
+
+### Komplexitätstheorie
+{{ stichwort "Komplexitätstheorie" }}
 
 # Aufgaben geordnet nach Staatsexamen
 
