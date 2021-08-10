@@ -1,0 +1,98 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Bubble- und Quicksort bei 25,1,12,27,30,9,33,34,18,16}
+\section{Aufgabe 8
+\index{Sortieralgorithmen}
+\footcite{46115:2016:03}}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Sortieren Sie das Array mit den Integer Zahlen
+
+\begin{center}
+25, 1, 12, 27, 30, 9, 33, 34, 18, 16
+\end{center}
+
+\begin{enumerate}
+
+%%
+% i)
+%%
+
+\item mit \emph{BubbleSort}
+\index{Bubblesort}
+
+\begin{liAntwort}
+\footnotesize
+\begin{verbatim}
+ 25  1   12  27  30  9   33  34  18  16  Eingabe
+ 25  1   12  27  30  9   33  34  18  16  Durchlauf Nr. 1
+>25  1<  12  27  30  9   33  34  18  16  vertausche (i 0<>1)
+ 1  >25  12< 27  30  9   33  34  18  16  vertausche (i 1<>2)
+ 1   12  25  27 >30  9<  33  34  18  16  vertausche (i 4<>5)
+ 1   12  25  27  9   30  33 >34  18< 16  vertausche (i 7<>8)
+ 1   12  25  27  9   30  33  18 >34  16< vertausche (i 8<>9)
+ 1   12  25  27  9   30  33  18  16  34  Durchlauf Nr. 2
+ 1   12  25 >27  9<  30  33  18  16  34  vertausche (i 3<>4)
+ 1   12  25  9   27  30 >33  18< 16  34  vertausche (i 6<>7)
+ 1   12  25  9   27  30  18 >33  16< 34  vertausche (i 7<>8)
+ 1   12  25  9   27  30  18  16  33  34  Durchlauf Nr. 3
+ 1   12 >25  9<  27  30  18  16  33  34  vertausche (i 2<>3)
+ 1   12  9   25  27 >30  18< 16  33  34  vertausche (i 5<>6)
+ 1   12  9   25  27  18 >30  16< 33  34  vertausche (i 6<>7)
+ 1   12  9   25  27  18  16  30  33  34  Durchlauf Nr. 4
+ 1  >12  9<  25  27  18  16  30  33  34  vertausche (i 1<>2)
+ 1   9   12  25 >27  18< 16  30  33  34  vertausche (i 4<>5)
+ 1   9   12  25  18 >27  16< 30  33  34  vertausche (i 5<>6)
+ 1   9   12  25  18  16  27  30  33  34  Durchlauf Nr. 5
+ 1   9   12 >25  18< 16  27  30  33  34  vertausche (i 3<>4)
+ 1   9   12  18 >25  16< 27  30  33  34  vertausche (i 4<>5)
+ 1   9   12  18  16  25  27  30  33  34  Durchlauf Nr. 6
+ 1   9   12 >18  16< 25  27  30  33  34  vertausche (i 3<>4)
+ 1   9   12  16  18  25  27  30  33  34  Durchlauf Nr. 7
+ 1   9   12  16  18  25  27  30  33  34  Ausgabe
+\end{verbatim}
+\end{liAntwort}
+
+%%
+% ii)
+%%
+
+\item mit \emph{Quicksort}, wenn als Pivotelement das jeweils erste
+Element gewählt wird.\index{Quicksort}
+
+\end{enumerate}
+
+Beschreiben Sie die Abläufe der Sortierverfahren
+
+\begin{enumerate}
+
+%%
+% i)
+%%
+
+\item bei \emph{BubbleSort} durch eine Angabe der Zwischenergebnisse
+nach jedem Durchlauf
+
+%%
+% ii)
+%%
+
+\item bei \emph{Quicksort} durch die Angabe der Zwischenergebnisse nach
+den rekursiven Aufrufen.
+
+\end{enumerate}
+%%
+% b)
+%%
+
+\item Welche Laufzeit (asymptotisch, in O-Notation) hat BubbleSort bei
+beliebig großen Arrays mit n Elementen. Begründen Sie Ihre Antwort.
+
+\end{enumerate}
+\end{document}

@@ -24,6 +24,30 @@ verglichen werden und geben Sie den Zustand des gesamten Feldes jeweils
 neu an, wenn Sie eine Vertauschung durchgeführt haben.
 \index{Bubblesort}
 
+\begin{liAntwort}
+% didaktik.java sortiere 15 4 10 7 1 8 10 -b
+\begin{verbatim}
+ 15  4   10  7   1   8   10  Eingabe
+ 15  4   10  7   1   8   10  Durchlauf Nr. 1
+>15  4<  10  7   1   8   10  vertausche (i 0<>1)
+ 4  >15  10< 7   1   8   10  vertausche (i 1<>2)
+ 4   10 >15  7<  1   8   10  vertausche (i 2<>3)
+ 4   10  7  >15  1<  8   10  vertausche (i 3<>4)
+ 4   10  7   1  >15  8<  10  vertausche (i 4<>5)
+ 4   10  7   1   8  >15  10< vertausche (i 5<>6)
+ 4   10  7   1   8   10  15  Durchlauf Nr. 2
+ 4  >10  7<  1   8   10  15  vertausche (i 1<>2)
+ 4   7  >10  1<  8   10  15  vertausche (i 2<>3)
+ 4   7   1  >10  8<  10  15  vertausche (i 3<>4)
+ 4   7   1   8   10  10  15  Durchlauf Nr. 3
+ 4  >7   1<  8   10  10  15  vertausche (i 1<>2)
+ 4   1   7   8   10  10  15  Durchlauf Nr. 4
+>4   1<  7   8   10  10  15  vertausche (i 0<>1)
+ 1   4   7   8   10  10  15  Durchlauf Nr. 5
+ 1   4   7   8   10  10  15  Ausgabe
+\end{verbatim}
+\end{liAntwort}
+
 %%
 % (b)
 %%
@@ -33,6 +57,28 @@ neu an, wenn Sie eine Vertauschung durchgeführt haben.
 verglichen werden und geben Sie den Zustand des gesamten Feldes jeweils
 neu an, wenn Sie eine Vertauschung durchgeführt haben.
 \index{Selectionsort}
+
+\begin{liAntwort}
+% didaktik.java sortiere 15 4 10 7 1 8 10 -s
+\begin{verbatim}
+ 15  4   10  7   1   8   10  Eingabe
+ 15  4   10  7   1   8   10* markiere (i 6)
+>15  4   10  7   1   8   10< vertausche (i 0<>6)
+ 10  4   10  7   1   8*  15  markiere (i 5)
+>10  4   10  7   1   8<  15  vertausche (i 0<>5)
+ 8   4   10  7   1*  10  15  markiere (i 4)
+ 8   4  >10  7   1<  10  15  vertausche (i 2<>4)
+ 8   4   1   7*  10  10  15  markiere (i 3)
+>8   4   1   7<  10  10  15  vertausche (i 0<>3)
+ 7   4   1*  8   10  10  15  markiere (i 2)
+>7   4   1<  8   10  10  15  vertausche (i 0<>2)
+ 1   4*  7   8   10  10  15  markiere (i 1)
+ 1  >4   7   8   10  10  15  vertausche (i 1<>1)
+ 1*  4   7   8   10  10  15  markiere (i 0)
+>1   4   7   8   10  10  15  vertausche (i 0<>0)
+ 1   4   7   8   10  10  15  Ausgabe
+\end{verbatim}
+\end{liAntwort}
 
 %%
 % (c)
