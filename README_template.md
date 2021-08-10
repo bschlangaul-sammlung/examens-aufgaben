@@ -232,9 +232,15 @@ Weitere Aufgaben zum Thema „SQL“:
 
 ## Softwaresysteme (SOSY)
 
+
 ### Projektmanagement
 
 {{ stichwort "Projektmanagement" }}
+
+
+### Projektplanung
+
+{{ stichwort "Projektplanung" }}
 
 ### Modellierung
 
@@ -242,21 +248,116 @@ Weitere Aufgaben zum Thema „SQL“:
 
 {{ stichwort "UML-Diagramme" }}
 
+
 ### Entwurfsmuster
 
-{{ stichwort "Entwurfsmuster" }}
+#### Erzeugungsmuster (Creational Patterns)
 
-### Projektplanung
+##### Abstrakte Fabrik (Abstract Factory)
+{{ stichwort "Abstrakte Fabrik (Abstract Factory)" }}
+##### Einzelstück (Singleton)
+{{ stichwort "Einzelstück (Singleton)" }}
+##### Erbauer (Builder)
+{{ stichwort "Erbauer (Builder)" }}
 
-{{ stichwort "Projektplanung" }}
+#### Strukturmuster (Structural Patterns)
+
+##### Adapter
+{{ stichwort "Adapter" }}
+##### Dekorierer (Decorator)
+{{ stichwort "Dekorierer (Decorator)" }}
+##### Kompositum (Composite)
+{{ stichwort "Kompositum (Composite)" }}
+##### Stellvertreter (Proxy)
+{{ stichwort "Stellvertreter (Proxy)" }}
+
+#### Verhaltensmuster (Behavioral Patterns)
+
+##### Beobachter (Observer)
+{{ stichwort "Beobachter (Observer)" }}
+##### Kommando (Command)
+{{ stichwort "Kommando (Command)" }}
+##### Schablone (Template)
+{{ stichwort "Schablone (Template)" }}
+##### Wiederholer (Iterator)
+{{ stichwort "Wiederholer (Iterator)" }}
+##### Zustand (State)
+{{ stichwort "Zustand (State)" }}
+
+#### Sonstige Entwurfsmuster
+
+##### Modell-Präsentation-Steuerung (Model-View-Controller)
+{{ stichwort "Modell-Präsentation-Steuerung (Model-View-Controller)" }}
+##### Einbringen von Abhängigkeiten (Dependency Injection)
+{{ stichwort "Einbringen von Abhängigkeiten (Dependency Injection)" }}
+
+
+#####
+
+{{ stichwort "" }}
+
+###
+
+{{ stichwort "" }}
+
+###
+
+{{ stichwort "" }}
+
+###
+
+{{ stichwort "" }}
+
+###
+
+{{ stichwort "" }}
+
+###
+
+{{ stichwort "" }}
+
+###
+
+{{ stichwort "" }}
+
+###
+
+{{ stichwort "" }}
+
+###
+
+{{ stichwort "" }}
+
+
+
+
 
 ### Softwarearchitektur
 
 {{ stichwort "Softwarearchitektur" }}
 
+
 ### Testen
 
 {{ stichwort "Testen" }}
+
+#### Kontrollflussorientieres Testen
+
+{{ stichwort "Kontrollflussorientieres Testen" }}
+
+#### Datenflussorientiertes Testen
+
+{{ stichwort "Datenflussorientiertes Testen" }}
+
+#### Formale Verifikation
+
+##### wp-Kalkül
+
+{{ stichwort "wp-Kalkül" }}
+
+##### Vollständige Induktion
+
+{{ stichwort "Vollständige Induktion" }}
 
 
 
