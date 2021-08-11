@@ -51,19 +51,9 @@ export function macheRepoPfad (...args: string[]) {
 
 export interface LinkEinstellung {
   /**
-   * Als Markdown-Link ausgeben
-   */
-  alsMarkdown?: boolean
-
-  /**
-   * Wenn wahr wird die PDF-Datei verlink und nicht die TeX-Datei.
+   * Wenn wahr, wird die PDF-Datei verlink und nicht die TeX-Datei.
    */
   linkePdf?: boolean
-
-  /**
-   * Als HTML-Link ausgeben
-   */
-  alsHtml?: boolean
 }
 
 /**
@@ -82,21 +72,12 @@ export interface LinkEinstellung {
 export function generiereLink (
   text: string,
   pfad: string,
-  downloadDateiName: string,
   einstellung?: LinkEinstellung
 ): string {
   let linkePdf = true
-  let alsMarkdown = true
-  let alsHtml = true
   if (einstellung) {
     if (einstellung.linkePdf !== undefined) {
       linkePdf = einstellung.linkePdf
-    }
-    if (einstellung.alsMarkdown !== undefined) {
-      alsMarkdown = einstellung.alsMarkdown
-    }
-    if (einstellung.alsHtml !== undefined) {
-      alsHtml = einstellung.alsHtml
     }
   }
   pfad = pfad.replace(repositoryPfad, '')
@@ -105,14 +86,7 @@ export function generiereLink (
     pfad = pfad.replace(/\.[\w]+$/, '.pdf')
   }
 
-  if (alsMarkdown) {
-    if (alsHtml) {
-      downloadDateiName = downloadDateiName.replace(/\.[a-z]{3,5}$/, '')
-      return `<a href="${githubRawUrl}/${pfad}" download="${downloadDateiName}">${text}</a>`
-    }
-    return `[${text}](${githubRawUrl}/${pfad})`
-  }
-  return text
+  return `[${text}](${githubRawUrl}/${pfad})`
 }
 
 export function führeAus (programm: string, cwd: string) {

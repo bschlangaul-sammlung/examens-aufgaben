@@ -76,8 +76,8 @@ export class Aufgabe {
   /**
    * Formatierter Link zur Tex-Datei.
    */
-   get linkTex (): string {
-    return generiereLink('.tex', this.pfad, path.basename(this.pfad), { linkePdf: false, alsMarkdown: true })
+  get linkTex (): string {
+    return generiereLink('.tex', this.pfad, { linkePdf: false })
   }
 
   /**
@@ -86,9 +86,11 @@ export class Aufgabe {
   get link (): string {
     const dateiName = path.basename(this.pfad)
     return (
-      generiereLink(this.titelFormatiert, this.pfad, dateiName) +
+      generiereLink(this.titelFormatiert, this.pfad) +
       this.stichwörterFormatiert +
-      ' (' + this.linkTex + ') '
+      ' (' +
+      this.linkTex +
+      ') '
     )
   }
 
@@ -156,8 +158,12 @@ export class ExamensAufgabe extends Aufgabe {
 
   get aufgabenReferenz (): string {
     const output = []
-    if (this.thema) output.push(`T${this.thema}`)
-    if (this.teilaufgabe) output.push(`TA${this.teilaufgabe}`)
+    if (this.thema) {
+      output.push(`T${this.thema}`)
+    }
+    if (this.teilaufgabe) {
+      output.push(`TA${this.teilaufgabe}`)
+    }
     output.push(`A${this.aufgabe}`)
     return output.join(' ')
   }
@@ -171,7 +177,7 @@ export class ExamensAufgabe extends Aufgabe {
   gibTitelNurAufgabe (alsMarkdownLink: boolean = false): string {
     const ausgabe = `Aufgabe ${this.aufgabe}${this.stichwörterFormatiert}`
     if (alsMarkdownLink) {
-      return generiereLink(ausgabe, this.pfad, this.dateiName)
+      return generiereLink(ausgabe, this.pfad)
     }
     return ausgabe
   }
@@ -183,9 +189,11 @@ export class ExamensAufgabe extends Aufgabe {
 
   get link (): string {
     return (
-      generiereLink(this.titelKurz, this.pfad, this.dateiName) +
+      generiereLink(this.titelKurz, this.pfad) +
       this.stichwörterFormatiert +
-      ' (' + this.linkTex + ') '
+      ' (' +
+      this.linkTex +
+      ') '
     )
   }
 

@@ -90,19 +90,11 @@ exports.macheRepoPfad = macheRepoPfad;
  * @returns Ein Link zu einer Datei auf Github, entweder im Markdown- oder im
  * HTML-Format.
  */
-function generiereLink(text, pfad, downloadDateiName, einstellung) {
+function generiereLink(text, pfad, einstellung) {
     var linkePdf = true;
-    var alsMarkdown = true;
-    var alsHtml = true;
     if (einstellung) {
         if (einstellung.linkePdf !== undefined) {
             linkePdf = einstellung.linkePdf;
-        }
-        if (einstellung.alsMarkdown !== undefined) {
-            alsMarkdown = einstellung.alsMarkdown;
-        }
-        if (einstellung.alsHtml !== undefined) {
-            alsHtml = einstellung.alsHtml;
         }
     }
     pfad = pfad.replace(exports.repositoryPfad, '');
@@ -110,14 +102,7 @@ function generiereLink(text, pfad, downloadDateiName, einstellung) {
     if (linkePdf) {
         pfad = pfad.replace(/\.[\w]+$/, '.pdf');
     }
-    if (alsMarkdown) {
-        if (alsHtml) {
-            downloadDateiName = downloadDateiName.replace(/\.[a-z]{3,5}$/, '');
-            return "<a href=\"" + githubRawUrl + "/" + pfad + "\" download=\"" + downloadDateiName + "\">" + text + "</a>";
-        }
-        return "[" + text + "](" + githubRawUrl + "/" + pfad + ")";
-    }
-    return text;
+    return "[" + text + "](" + githubRawUrl + "/" + pfad + ")";
 }
 exports.generiereLink = generiereLink;
 function führeAus(programm, cwd) {

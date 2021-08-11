@@ -161,8 +161,8 @@ var AusgabeSammler = /** @class */ (function () {
     };
     return AusgabeSammler;
 }());
-function erzeugeDateiLink(pfad, dateiName, downloadDateiName, einstellungen) {
-    return helfer_1.generiereLink(dateiName, path_1.default.join(pfad, dateiName), downloadDateiName, einstellungen);
+function erzeugeDateiLink(pfad, dateiName, einstellungen) {
+    return helfer_1.generiereLink(dateiName, path_1.default.join(pfad, dateiName), einstellungen);
 }
 function generiereExamensÜbersicht() {
     var e_3, _a, e_4, _b;
@@ -182,8 +182,8 @@ function generiereExamensÜbersicht() {
                             var monat = monatsVerzeichnisse_1_1.value;
                             var examen = sammlung_1.examenSammlung.gib(nummer, jahr, monat);
                             var monatsPfad = path_1.default.join(jahrPfad, monat);
-                            var scanLink = erzeugeDateiLink(monatsPfad, 'Scan.pdf', examen.dateiName + "_Scan.pdf");
-                            var ocrLink = erzeugeDateiLink(monatsPfad, 'OCR.txt', examen.dateiName + "_OCR.txt", { linkePdf: false });
+                            var scanLink = erzeugeDateiLink(monatsPfad, 'Scan.pdf');
+                            var ocrLink = erzeugeDateiLink(monatsPfad, 'OCR.txt', { linkePdf: false });
                             ausgabe.add("- " + examen.jahrJahreszeit + ": " + scanLink + " " + ocrLink + " " + generiereAufgabenBaum(monatsPfad));
                         }
                     }

@@ -157,13 +157,11 @@ class AusgabeSammler {
 function erzeugeDateiLink (
   pfad: string,
   dateiName: string,
-  downloadDateiName: string,
   einstellungen?: LinkEinstellung
 ): string {
   return generiereLink(
     dateiName,
     path.join(pfad, dateiName),
-    downloadDateiName,
     einstellungen
   )
 }
@@ -183,13 +181,11 @@ export function generiereExamensÜbersicht () {
           const monatsPfad = path.join(jahrPfad, monat)
           const scanLink = erzeugeDateiLink(
             monatsPfad,
-            'Scan.pdf',
-            `${examen.dateiName}_Scan.pdf`
+            'Scan.pdf'
           )
           const ocrLink = erzeugeDateiLink(
             monatsPfad,
             'OCR.txt',
-            `${examen.dateiName}_OCR.txt`,
             { linkePdf: false }
           )
           ausgabe.add(

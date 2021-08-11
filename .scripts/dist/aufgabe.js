@@ -93,7 +93,7 @@ var Aufgabe = /** @class */ (function () {
          * Formatierter Link zur Tex-Datei.
          */
         get: function () {
-            return helfer_1.generiereLink('.tex', this.pfad, path_1.default.basename(this.pfad), { linkePdf: false, alsMarkdown: true });
+            return helfer_1.generiereLink('.tex', this.pfad, { linkePdf: false });
         },
         enumerable: false,
         configurable: true
@@ -104,9 +104,11 @@ var Aufgabe = /** @class */ (function () {
          */
         get: function () {
             var dateiName = path_1.default.basename(this.pfad);
-            return (helfer_1.generiereLink(this.titelFormatiert, this.pfad, dateiName) +
+            return (helfer_1.generiereLink(this.titelFormatiert, this.pfad) +
                 this.stichwörterFormatiert +
-                ' (' + this.linkTex + ') ');
+                ' (' +
+                this.linkTex +
+                ') ');
         },
         enumerable: false,
         configurable: true
@@ -177,10 +179,12 @@ var ExamensAufgabe = /** @class */ (function (_super) {
     Object.defineProperty(ExamensAufgabe.prototype, "aufgabenReferenz", {
         get: function () {
             var output = [];
-            if (this.thema)
+            if (this.thema) {
                 output.push("T" + this.thema);
-            if (this.teilaufgabe)
+            }
+            if (this.teilaufgabe) {
                 output.push("TA" + this.teilaufgabe);
+            }
             output.push("A" + this.aufgabe);
             return output.join(' ');
         },
@@ -201,7 +205,7 @@ var ExamensAufgabe = /** @class */ (function (_super) {
         if (alsMarkdownLink === void 0) { alsMarkdownLink = false; }
         var ausgabe = "Aufgabe " + this.aufgabe + this.stichwörterFormatiert;
         if (alsMarkdownLink) {
-            return helfer_1.generiereLink(ausgabe, this.pfad, this.dateiName);
+            return helfer_1.generiereLink(ausgabe, this.pfad);
         }
         return ausgabe;
     };
@@ -215,9 +219,11 @@ var ExamensAufgabe = /** @class */ (function (_super) {
     });
     Object.defineProperty(ExamensAufgabe.prototype, "link", {
         get: function () {
-            return (helfer_1.generiereLink(this.titelKurz, this.pfad, this.dateiName) +
+            return (helfer_1.generiereLink(this.titelKurz, this.pfad) +
                 this.stichwörterFormatiert +
-                ' (' + this.linkTex + ') ');
+                ' (' +
+                this.linkTex +
+                ') ');
         },
         enumerable: false,
         configurable: true
