@@ -1,6 +1,10 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{cpm}
 \begin{document}
+\let\f=\footnotesize
+\let\FZ=\liCpmFruehesterI
+\let\SZ=\liCpmSpaetesterI
+
 \liAufgabenTitel{Projektmanagement}
 \section{Aufgabe 1
 \index{CPM-Netzplantechnik}
@@ -16,7 +20,7 @@ T1   & 3            & / \\
 T2   & 6            & / \\
 T3   & 2            & T1 \\
 T4   & 2            & T2 \\
-T5   & 5            & Tl \\
+T5   & 5            & T1 \\
 T6   & 3            & T4, T5 \\
 T7   & 6            & T3 \\
 T8   & 7            & T4 \\
@@ -115,27 +119,142 @@ Aufgabenliste. Benutzen Sie explizite Start- und Endknoten.
 \liCpmVorgang[schein]{10E}{E}{}
 \end{tikzpicture}
 \end{center}
+
+Mit weniger Knoten (Knoten ist der Start einer Aufgabe)
+
+\begin{center}
+\begin{tikzpicture}[x=1.5cm,y=1.5cm,scale=0.9,transform shape]
+\liCpmEreignis{S}{0}{0}
+
+\liCpmEreignis{T1}{1}{1}
+\liCpmEreignis{T2}{1}{-1}
+\liCpmEreignis{T3}{2}{2}
+\liCpmEreignis{T4}{2}{-1}
+\liCpmEreignis{T5}{2}{0.5}
+\liCpmEreignis{T6}{3}{0}
+\liCpmEreignis{T7}{4}{2}
+\liCpmEreignis{T8}{4}{-1}
+\liCpmEreignis{T9}{5}{0}
+\liCpmEreignis{T10}{6}{0}
+\liCpmEreignis{E}{7}{0}
+
+\liCpmVorgang[schein]{S}{T1}{}
+\liCpmVorgang[schein]{S}{T2}{}
+% 3
+\liCpmVorgang{T1}{T3}{3}
+
+% 4
+\liCpmVorgang{T2}{T4}{6}
+
+% 5
+\liCpmVorgang{T1}{T5}{3}
+
+% 6
+\liCpmVorgang{T4}{T6}{2}
+\liCpmVorgang{T5}{T6}{5}
+
+% 7
+\liCpmVorgang{T3}{T7}{2}
+
+% 8
+\liCpmVorgang{T4}{T8}{2}
+
+% 9
+\liCpmVorgang{T6}{T9}{3}
+\liCpmVorgang{T8}{T9}{7}
+
+% 10
+\liCpmVorgang{T7}{T10}{6}
+\liCpmVorgang{T9}{T10}{4}
+\liCpmVorgang{T10}{E}{1}
+\end{tikzpicture}
+\end{center}
+
+% \begin{center}
+% \begin{tikzpicture}[x=1.5cm,y=1.5cm,scale=0.9,transform shape]
+% \liCpmEreignis{S}{0}{0}
+
+% \liCpmEreignis{T1}{1}{1}
+% \liCpmEreignis{T2}{1}{-1}
+% \liCpmEreignis{T3}{2}{2}
+% \liCpmEreignis{T4}{2}{-1}
+% \liCpmEreignis{T5}{2}{0.5}
+% \liCpmEreignis{T6}{3}{0}
+% \liCpmEreignis{T7}{4}{2}
+% \liCpmEreignis{T8}{4}{-1}
+% \liCpmEreignis{T9}{5}{0}
+% \liCpmEreignis{T10}{6}{0}
+% \liCpmEreignis{E}{7}{0}
+
+% \liCpmVorgang[schein]{S}{T1}{}
+% \liCpmVorgang[schein]{S}{T2}{}
+% \liCpmVorgang{T1}{T3}{3}
+% \liCpmVorgang{T1}{T5}{5}
+% \liCpmVorgang{T2}{T4}{6}
+% \liCpmVorgang{T3}{T7}{2}
+% \liCpmVorgang{T3}{T7}{3}
+% \liCpmVorgang{T4}{T6}{3}
+% \liCpmVorgang{T4}{T8}{7}
+% \liCpmVorgang{T5}{T6}{3}
+% \liCpmVorgang{T6}{T9}{4}
+% \liCpmVorgang{T7}{T10}{1}
+% \liCpmVorgang{T8}{T9}{4}
+% \liCpmVorgang{T9}{T10}{1}
+% \liCpmVorgang[schein]{T10}{E}{1}
+
+% \end{tikzpicture}
+% \end{center}
 \end{liAntwort}
 
 %%
 % b)
 %%
 
-\item Als Slack bezeichnet man die Zeit, um die eine Aufgabe bezüglich
-ihres frühesten Startzeitpunktes verzögert werden kann, ohne dass es
-Probleme bei der fristgerechten Fertigstellung des Projektes gibt.
-Berechnen Sie den Slack für alle Aktivitäten und ergänzen Sie ihn in
-Ihrem Diagramm.
+\item Als \emph{Slack} bezeichnet man die Zeit, um die eine Aufgabe
+bezüglich ihres frühesten Startzeitpunktes verzögert werden kann, ohne
+dass es Probleme bei der fristgerechten Fertigstellung des Projektes
+gibt. Berechnen Sie den Slack für alle Aktivitäten und ergänzen Sie ihn
+in Ihrem Diagramm.
+
+\begin{tabular}{|c|r|r|}
+$i$ & Nebenrechnung            & \FZ \\\hline\hline
+T1  &                          & 0 \\
+T2  &                          & 0 \\
+T3  &                          & 3 \\
+T4  &                          & 6 \\
+T5  &                          & 3 \\
+T6  & $\max(8_{T4}, 8_{T5})$   & 8 \\
+T7  &                          & 5 \\
+T8  &                          & 8 \\
+T9  & $\max(11_{T6}, 15_{T4})$ & 15 \\
+T10 & $\max(19_{T9}, 11_{T7})$ & 19 \\
+E   &                          & 20 \\
+\end{tabular}
+
+\begin{tabular}{|l|r|r|}
+$i$ & Nebenrechnung & \SZ \\\hline\hline
+T1  & $\min(11_{T3}, 7_{T5})$  & 7 \\
+T2  &                          & 2 \\
+T3  &                          & 11 \\
+T4  & $\min(12_{T6}, 8_{T8})$  & 8 \\
+T5  &                          & 7 \\
+T6  &                          & 12 \\
+T7  &                          & 13 \\
+T8  &                          & 8 \\
+T9  &                          & 15 \\
+T10 &                          & 19 \\
+E   &                          & 20 \\
+\end{tabular}
 
 %%
 % c)
 %%
 
 \item Zeichnen Sie den kritischen Pfad in Ihr Diagramm ein oder geben
-Sie die Tasks des kritischen Pfades in der folgenden Form an: Start !
-$\dots$ ! Ende. Sollte es mehrere kritische Pfade geben, geben Sie auch
-diese an. Wie lange ist die Dauer des kritischen Pfades bzw. der
-kritischen Pfade?
+Sie die Tasks des kritischen Pfades in der folgenden Form an:
+\textbf{Start} ! $\dots$ ! \textbf{Ende}. Sollte es mehrere kritische
+Pfade geben, geben Sie auch diese an. Wie lange ist die Dauer des
+kritischen Pfades bzw. der kritischen Pfade?
 
 \end{enumerate}
 \end{document}
