@@ -4,6 +4,10 @@
 \let\wp=\liWpKalkuel
 \let\equivalent=\liWpEquivalent
 \let\erklaerung=\liWpErklaerung
+% markierung
+\def\m#1{\textcolor{blue}{#1}}
+% kommentar
+\def\k#1{\hfill{\scriptsize(#1)}}
 
 \liAufgabenTitel{ASCII}
 
@@ -25,9 +29,14 @@ Die Variablen $x$, $y$ und $z$ in folgenden Pseudo-Codes seien
 ganzzahlig (vom Typ int). Zur Vereinfachung nehmen Sie bitte im
 Folgenden an, dass die verwendeten Datentypen unbeschränkt sind und
 daher keine Überläufe auftreten können.
-\footcite{sosy:pu:5}
+\footcite{sosy:pu:5:4}
 
 \begin{enumerate}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
 \item Sequenz:
 \begin{minted}{java}
 x = -2 * (x + 2 * y);
@@ -108,6 +117,10 @@ $x = -2 \cdot (x + 2 \cdot y)$
 
 \end{liAntwort}
 
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
+
 \item Verzweigung:
 
 \begin{minted}{java}
@@ -121,6 +134,83 @@ if (x < y) {
 \end{minted}
 
 $Q :\equiv x > z$
+
+\begin{liAntwort}
+\begin{description}
+\item[1. Fall:] $x < y$
+\item[2. Fall:] $x \geq y \land y > 0$
+\item[3. Fall:] $x \geq y \land y \leq 0$
+\end{description}
+
+Code umformulieren:
+
+\begin{minted}{java}
+if (x < y) {
+  x = y + z;
+} else if (x >= y && y > 0) {
+  z = y - 1;
+} else {
+  y = y - z;
+  x = x - y;
+}
+\end{minted}
+
+\wp{if(x<y)\{x=y+z;\}else if(x>=y\&\&y>0)\{z=y-1;\}else\{y=y-z;x=x-y;\}}
+{x > z}
+
+$\equiv$ \k{In mehrere kleinere wp-Kalküle aufsplitten}
+
+\begin{align*}
+\Bigl( (x < y) & \land \wp{x=y+z;}{x > z} \, \Bigr) \lor \\
+\Bigl( (x \geq y \land y > 0) & \land \wp{z=y-1;}{x > z} \Bigr) \, \lor \\
+\Bigl( (x \geq y \land y \leq 0) & \land \wp{y=y-z;x=x-y;}{x > z} \Bigr) \\
+\end{align*}
+
+$\equiv$ \k{Code einsetzen}
+
+\begin{align*}
+\Bigl( (x < y) & \land \wp{}{\m{y + z} > z} \, \Bigr) \lor \\
+\Bigl( (x \geq y \land y > 0) & \land \wp{}{x > \m{y - 1}} \Bigr) \, \lor \\
+\Bigl( (x \geq y \land y \leq 0) & \land \wp{y=y-z;}{\m{x - y} > z} \Bigr) \\
+\end{align*}
+
+$\equiv$ \k{wp-Kalkül-Schreibweise weg lassen, Code weiter einsetzen}
+
+\begin{align*}
+\Bigl( (x < y) & \land y + z > z \, \Bigr) \lor \\
+\Bigl( (x \geq y \land y > 0) & \land x > y - 1 \Bigr) \, \lor \\
+\Bigl( (x \geq y \land y \leq 0) & \land \wp{}{x - \m{(y - z)} > z} \Bigr) \\
+\end{align*}
+
+$\equiv$ \k{Terme vereinfachen, wp-Kalkül-Schreibweise weg lassen}
+
+\begin{align*}
+\Bigl( x < y & \land \m{y > 0} \, \Bigr) \lor \\
+\Bigl( \m{x \geq y}\footnote{$x > y - 1 \land x \geq y$ ergibt $x \geq y$} &\land y > 0 \Bigr) \, \lor \\
+\Bigl( (x \geq y \land y \leq 0) & \land x - (y - z) > z \Bigr) \\
+\end{align*}
+
+$\equiv$ \k{letzten Term vereinfachen}
+
+\begin{align*}
+\Bigl( x < y & \land y > 0 \, \Bigr) \, \lor \\
+\Bigl( x \geq y & \land y > 0 \Bigr) \, \lor \\
+\Bigl( (x \geq y \land y \leq 0) & \land \m{x - y > 0} \Bigr) \\
+\end{align*}
+
+$\equiv$ \k{ein $\land$ eleminieren}
+
+\begin{align*}
+\Bigl( x < y & \land y > 0 \, \Bigr) \, \lor \\
+\Bigl( x \geq y & \land y > 0 \Bigr) \, \lor \\
+\Bigl( y \leq 0 & \land \m{x > y} \Bigr) \\
+\end{align*}
+
+\end{liAntwort}
+
+%-----------------------------------------------------------------------
+%
+%-----------------------------------------------------------------------
 
 \item Mehrfachauswahl:
 
