@@ -15,7 +15,7 @@
 
 \begin{center}
 \liAusdruck{w w_1 w w_2}{w, w_1, w_2
-\in \{ a,b,c \}^* \text{ und } 2|w| \geq |w_1| + |w_2]}
+\in \{ a,b,c \}^* \text{ und } 2|w| \geq |w_1| + |w_2|}
 \end{center}
 
 nicht kontextfrei
@@ -26,7 +26,60 @@ ist. \index{Pumping-Lemma (Kontextfreie Sprache)}
 \end{liExkurs}
 
 \begin{liAntwort}
+Es gibt eine Pumpzahl. Sie sei $j$. $a^j b^j a^j c^j$ ist ein Wort aus
+$L$, das sicher länger als $j$ ist. Außerdem gilt $2|a^j| \geq |b^j| +
+|c^j|$. Unser gewähltes Wort ist deshalb in $L$.
 
+Da $|vwx| \leq j$ und $|xv| \geq 1$ sein muss, liegt $vwx$ entweder in
+$w$, $w_1$ oder $w_2$.
+
+\liPseudoUeberschrift{Aufteilung: $vwx$ in $w$ (erstes $w$):}
+
+\begin{description}
+\item[u]: $\varepsilon$
+\item[v]: $a$
+\item[w]: $a^{j - 2}$
+\item[x]: $a$
+\item[y]: $b^j a^j c^j$
+\end{description}
+
+Es gilt $uv^iwx^iy \notin L$ für alle $i \in \mathbb{N}_0$, da $a^j
+b^j a^j c^j \notin L$ für $i = 0$, da
+$|a^{j-2}| + |a^j| < |b^j| + |c^j|$
+
+\liPseudoUeberschrift{Aufteilung: $vwx$ in $w$ (zweites $w$):}
+
+\begin{description}
+\item[u]: $a^j b^j$
+\item[v]: $a$
+\item[w]: $a^{j - 2}$
+\item[x]: $a$
+\item[y]: $c^j$
+\end{description}
+
+Es gilt $uv^iwx^iy \notin L$ für alle $i \in \mathbb{N}_0$, da $a^j
+b^j a^j c^j \notin L$ für $i = 0$, da
+$|a^j| + |a^{j-2}| < |b^j| + |c^j|$
+
+\liPseudoUeberschrift{Aufteilung: $vwx$ in $w_1$:}
+
+\begin{description}
+\item[u]: $a^j$
+\item[v]: $b$
+\item[w]: $b^{j - 2}$
+\item[x]: $b$
+\item[y]: $a^j c^j$
+\end{description}
+
+Es gilt nicht $uv^iwx^iy \in L$ für alle $i \in \mathbb{N}_0$, da $a^j
+b^j a^j c^j \notin L$ für alle $i > 2$ da
+$2|a^j| < |b^{j - 2 + 2i}| + |c^j|$ für alle $i > 2$
+
+\liPseudoUeberschrift{Aufteilung: $vwx$ in $w_2$:}
+
+Analog zur Aufteilung $vwx$ in $w_1$
+
+\Rightarrow $L$ ist nicht kontextfrei.
 \end{liAntwort}
 
 %%
@@ -35,10 +88,14 @@ ist. \index{Pumping-Lemma (Kontextfreie Sprache)}
 
 \item Betrachten Sie die Aussage
 
+\bigskip
+
 \centerline{Seien $L_1, \dots, I_n$ beliebige kontextfreie Sprachen.}
 
 \centerline{Dann ist $\bigcap_{i=1}^n, L_i$ immer eine entscheidbare
 Sprache.}
+
+\bigskip
 
 Entscheiden Sie, ob diese Aussage wahr ist oder nicht und begründen Sie
 Ihre Antwort.
@@ -62,10 +119,6 @@ negativen natürlichen Zahlen. Es ist bekannt, dass \liAusdruck{a^n b^n
 c^n}{n \in \mathbb{N}} keine kontextfreie Sprache ist. Ist die
 Komplementsprache $L_5 = \{a, b, c \}^* \setminus \, L$ kontextfrei?
 Begründen Sie Ihre Antwort.
-
-\begin{liAntwort}
-
-\end{liAntwort}
 
 \end{enumerate}
 \end{document}

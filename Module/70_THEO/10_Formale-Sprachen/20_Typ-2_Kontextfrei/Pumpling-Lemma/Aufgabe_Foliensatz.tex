@@ -20,24 +20,26 @@ Weisen Sie nach, dass $L$ nicht kontextfrei ist.
 \end{liExkurs}
 
 \begin{liAntwort}
-\begin{itemize}
-\item Also gibt es eine Pumpzahl. Sie sei $j$.
-(Wähle geschickt ein „langes“ Wort...)
-$a^j b^j c^j$ ist ein Wort aus $L$, das sicher länger als $j$ ist.
+Also gibt es eine Pumpzahl. Sie sei $j$. (Wähle geschickt ein „langes“
+Wort...) $a^j b^j c^j$ ist ein Wort aus $L$, das sicher länger als $j$
+ist.
 
-\item Da $L$ kontextfrei ist, muss es nach dem Pumping-Lemma auch für
+Da $L$ kontextfrei ist, muss es nach dem Pumping-Lemma auch für
 dieses Wort eine beliebige Zerlegung geben:
 
 $a^j b^j c^j = uvwxy$ mit $|vx| \geq 1$ und $|vwx| \leq j$
 
-\item Weil $vwx$ höchstens $j$ lang ist, kann es nie $a$‘s und $c$‘s
+Weil $vwx$ höchstens $j$ lang ist, kann es nie $a$‘s und $c$‘s
 zugleich enthalten (es stehen $j$ $b$‘s dazwischen!).
 
-\item Andererseits enthält $vx$ mindestens ein Zeichen. Das Wort $\omega
+Andererseits enthält $vx$ mindestens ein Zeichen. Das Wort $\omega
 = uv^0 wx^0 y = uwy$ enthält dann nicht mehr gleich viele $a$‘s, $b$‘s
 und $c$‘s. (Widerspruch)!
 
-\item Die Behauptung war falsch! $\Rightarrow$ $L$ ist nicht kontextfrei!
-\end{itemize}
+Die Behauptung ist falsch.
+
+\noindent
+$\Rightarrow$ $L$ ist nicht kontextfrei!
+
 \end{liAntwort}
 \end{document}

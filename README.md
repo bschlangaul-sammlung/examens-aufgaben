@@ -1872,16 +1872,10 @@ kann ganz normaler Text - also auch mit Leerzeichen eingesetzt werden.
 Die einzelnen Stichwörter werden in der YAML-Datei
 `Stichwortverzeichnis.yml` hinterlegt. Ein Stichwort muss eindeutig
 sein, d. h. es darf nicht doppelt vorkommen. Durch die YAML-Syntax kann
-die hierarchische Struktur des Verzeichnisses besser verwaltet werden.
+die hierarchische Struktur des Verzeichnisses verwaltet werden.
 Alle Stichwörter beginnen mit `- `, damit die YAML-Datei hier unten
 als Markdown-Liste eingebettet werden kann.
 
-# Diese Stichwörter können in den TeX-Dateien (über das Makro
-# \index{Mein Stichwort}) verwendet werden. In der Markdown-Datei
-# `README_template.md` lässt sich dann eine Auflistungen aller Aufgaben
-# mit einem bestimmen Stichwort `{{ stichwort "Mein Stichwort" }}`
-# erzeugen. In die Auflistung werden alle untergeordneten Stichworte
-# mit einbezogen.
 - DB:
     - Datenbank-Übersicht:
         - Datenbank
