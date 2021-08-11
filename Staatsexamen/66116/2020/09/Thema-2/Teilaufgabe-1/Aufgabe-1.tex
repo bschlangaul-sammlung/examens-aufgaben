@@ -7,12 +7,38 @@
 \footcite{66116:2020:09}}
 
 \begin{enumerate}
+
 %%
 % a)
 %%
 
 \item Nennen Sie fünf Phasen, die im Wasserfallmodell durchlaufen werden
-sowie deren jeweiliges Ziel bzw. Ergebnis(-dokument).
+sowie deren jeweiliges Ziel bzw.
+Ergebnis(-dokument).\index{Wasserfallmodell}
+
+\begin{liAntwort}
+\begin{description}
+\item[Anforderung]
+
+Lasten- und Pflichtenheft
+
+\item[Entwurf]
+
+Softwarearchitektur in Form von Struktogrammen, UML-Diagrammen etc.
+
+\item[Implementierung]
+
+Software
+
+\item[Überprüfung]
+
+überarbeitete Software
+
+\item[Einsatz und Wartung]
+
+erneut überarbeitete Software, verbesserte Wartung
+\end{description}
+\end{liAntwort}
 
 %%
 % b)
@@ -21,6 +47,29 @@ sowie deren jeweiliges Ziel bzw. Ergebnis(-dokument).
 \item Nennen Sie drei Arten der Softwarewartung und geben Sie jeweils
 eine kurze Beschreibung an.
 
+\begin{liAntwort}
+\begin{description}
+\item[korrektive Wartung]
+
+Korrektur von Fehlern, die schon beim Kunden in Erscheinung
+getreten sind
+
+\item[präventive Wartung]
+
+Korrektur von Fehlern, die beim Kunden
+noch nicht in Erscheinung getreten sind
+
+\item[adaptive Wartung]
+
+Anpassung der Software an neue Anforderungen
+
+\item[perfektionierende Wartung]
+
+Verbesserung von Performance und Wartbarkeit und Behebung von technical
+depts
+\end{description}
+\end{liAntwort}
+
 %%
 % c)
 %%
@@ -28,20 +77,91 @@ eine kurze Beschreibung an.
 \item Eine grundlegende Komponente des Extreme Programming ist
 „Continuous Integration“. Erklären Sie diesen Begriff und warum man
 davon einen Vorteil erwartet.
+\index{Kontinuierliche Integration (Continuous Integration)}
+\index{EXtreme Programming}
+
+\begin{liAntwort}
+Die Software wird nach jeder Änderung (push) automatisch kompiliert und
+auch getestet. Man erwartet sich davon einen Vorteil, weil Fehler
+schneller erkannt werden und die aktuelle Version des Systems ständig
+verfügbar ist.
+\end{liAntwort}
 
 %%
 % d)
 %%
 
 \item Nennen Sie zwei Softwaremetriken und geben Sie jeweils einen Vor-
-und Nachteil an, der im Projektmanagement von Bedeutung ist.
+und Nachteil an, der im Projektmanagement von Bedeutung
+ist.\index{Softwaremaße}
+
+\begin{liAntwort}
+\liPseudoUeberschrift{Anzahl der Code-Zeilen}
+
+\begin{description}
+\item[Vorteil:]
+
+Ist sehr einfach zu bestimmen.
+
+\item[Nachteil:]
+
+Entwickler können die Zeilenzahl manipulieren (zusätzliche Leerzeilen,
+Zeilen aufteilen), ohne dass sich die Qualität des Codes verändert.
+\end{description}
+
+\liPseudoUeberschrift{Zyklomatische Komplexität}
+
+\begin{description}
+\item[Vorteil:]
+
+Trifft eine Aussage über die Qualität des Algorithmus.
+
+\item[Nachteil:]
+
+Ist für Menschen nicht intuitiv zu erfassen. Zwei Codes, die dasselbe
+Problem lösen können die gleiche Zyklomatische Komplexität haben, obwohl
+der eine wesentlich schlechter zu verstehen ist (Spaghetticode!).
+\end{description}
+\end{liAntwort}
 
 %%
 % e)
 %%
 
 \item Nennen und beschreiben Sie kurz drei wichtige Aktivitäten, welche
-innerhalb einer Sprint- Iteration von Scrum durchlaufen werden.
+innerhalb einer Sprint-Iteration von Scrum durchlaufen werden.
+\index{SCRUM}
+
+\begin{liAntwort}
+\begin{description}
+\item[Sprint Planning]
+
+Im Sprint Planning werden zwei Fragen beantwortet:
+
+\begin{itemize}
+\item Was kann im kommenden Sprint entwickelt werden?
+\item Wie wird die Arbeit im kommenden Sprint erledigt?
+\end{itemize}
+
+Die Sprint-Planung wird daher häufig in zwei Teile geteilt. Sie dauert
+in Summe maximal 2 Stunden je Sprint-Woche, beispielsweise maximal acht
+Stunden für einen 4-Wochen-Sprint.
+
+\item[Daily Scrum]
+
+Zu Beginn eines jeden Arbeitstages trifft sich das Entwicklerteam zu
+einem max. 15-minütigen Daily Scrum. Zweck des Daily Scrum ist der
+Informationsaustausch.
+
+\item[Sprint Review]
+
+Das Sprint Review steht am Ende des Sprints. Hier überprüft das
+Scrum-Team das Inkrement, um das Product Backlog bei Bedarf anzupassen.
+Das Entwicklungsteam präsentiert seine Ergebnisse und es wird überprüft,
+ob das zu Beginn gesteckte Ziel erreicht wurde.
+\footcite{wiki:scrum}
+\end{description}
+\end{liAntwort}
 
 %%
 % f)
@@ -49,6 +169,21 @@ innerhalb einer Sprint- Iteration von Scrum durchlaufen werden.
 
 \item Erläutern Sie den Unterschied zwischen dem Product-Backlog und dem
 Sprint-Backlog.
+
+\begin{liAntwort}
+\begin{description}
+\item[Product Backlog]
+
+Das Product Backlog ist eine geordnete Auflistung der Anforderungen an
+das Produkt.
+
+\item[Sprint Backlog]
+
+Das Sprint Backlog ist der aktuelle Plan der für einen Sprint zu
+erledigenden Aufgaben.
+\footcite{wiki:scrum}
+\end{description}
+\end{liAntwort}
 
 %%
 % g)
@@ -58,6 +193,16 @@ Sprint-Backlog.
 kleinere Teams (max. 10 Personen) gut geeignet ist, und zeigen Sie einen
 Lösungsansatz, wie auch größere Firmen agile Methoden sinnvoll einsetzen
 können.
+
+\begin{liAntwort}
+Bei agilen Entwicklungsmethoden finden daily scrums statt, die in der
+intendierten Kürze nur in kleinen Teams umsetzbar sind. Außerdem ist in
+größeren Teams oft eine Hierarchie vorhanden, die eine schnelle
+Entscheidungsfindung verhindert. Man könnte die große Firma in viele
+kleine Teams einteilen, die jeweils an kleinen (Teil-)Projekten
+arbeiten. Eventuell können die product owner der einzelnen Teams nach
+agilen Methoden zusammenarbeiten.
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}
