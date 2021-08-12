@@ -48,40 +48,40 @@ Aufgabenliste. Benutzen Sie explizite Start- und Endknoten.
 \end{description}
 
 \begin{center}
-\begin{tikzpicture}[x=1.5cm,y=1.5cm,scale=0.9,transform shape]
-\liCpmEreignis{S}{0}{1}
+\begin{tikzpicture}[x=1.2cm,y=1.5cm,scale=0.9,transform shape]
+\liCpmEreignis{S}{0}{0}
 
 \liCpmEreignis{1S}{1}{1}
 \liCpmEreignis{1E}{2}{1}
 
-\liCpmEreignis{2S}{0}{2}
-\liCpmEreignis{2E}{1}{2}
+\liCpmEreignis{2S}{1}{-1}
+\liCpmEreignis{2E}{2}{-1}
 
-\liCpmEreignis{3S}{3}{0}
-\liCpmEreignis{3E}{4}{0}
+\liCpmEreignis{3S}{3}{1}
+\liCpmEreignis{3E}{4}{1}
 
-\liCpmEreignis{4S}{2}{2}
-\liCpmEreignis{4E}{3}{2}
+\liCpmEreignis{4S}{3}{-2}
+\liCpmEreignis{4E}{4}{-2}
 
-\liCpmEreignis{5S}{3}{1}
-\liCpmEreignis{5E}{4}{1}
+\liCpmEreignis{5S}{3}{0}
+\liCpmEreignis{5E}{4}{0}
 
-\liCpmEreignis{6S}{4}{2}
-\liCpmEreignis{6E}{5}{2}
+\liCpmEreignis{6S}{4}{-1}
+\liCpmEreignis{6E}{5}{-1}
 
-\liCpmEreignis{7S}{5}{0}
-\liCpmEreignis{7E}{6}{0}
+\liCpmEreignis{7S}{5}{1}
+\liCpmEreignis{7E}{6}{1}
 
-\liCpmEreignis{8S}{3}{3}
-\liCpmEreignis{8E}{4}{3}
+\liCpmEreignis{8S}{5}{-2}
+\liCpmEreignis{8E}{6}{-2}
 
-\liCpmEreignis{9S}{5}{3}
-\liCpmEreignis{9E}{6}{3}
+\liCpmEreignis{9S}{6}{-1}
+\liCpmEreignis{9E}{7}{-1}
 
-\liCpmEreignis{10S}{6}{1}
-\liCpmEreignis{10E}{7}{1}
+\liCpmEreignis{10S}{7}{0}
+\liCpmEreignis{10E}{8}{0}
 
-\liCpmEreignis{E}{7}{2}
+\liCpmEreignis{E}{9}{0}
 
 \liCpmVorgang{1S}{1E}{3}
 \liCpmVorgang{2S}{2E}{6}
@@ -120,7 +120,11 @@ Aufgabenliste. Benutzen Sie explizite Start- und Endknoten.
 \end{tikzpicture}
 \end{center}
 
-Mit weniger Knoten (Knoten ist der Start einer Aufgabe)
+Teilen wir einen Task in zwei Knoten auf, so wird das Diagramm sehr
+unübersichtlich. Wir verwenden pro Task nur einen Knoten. Es gibt zwei
+Möglichkeiten:
+
+\liPseudoUeberschrift{Knoten sind Anfang der Tasks}
 
 \begin{center}
 \begin{tikzpicture}[x=1.5cm,y=1.5cm,scale=0.9,transform shape]
@@ -170,40 +174,41 @@ Mit weniger Knoten (Knoten ist der Start einer Aufgabe)
 \end{tikzpicture}
 \end{center}
 
-% \begin{center}
-% \begin{tikzpicture}[x=1.5cm,y=1.5cm,scale=0.9,transform shape]
-% \liCpmEreignis{S}{0}{0}
+\liPseudoUeberschrift{Knoten sind Ende der Tasks}
 
-% \liCpmEreignis{T1}{1}{1}
-% \liCpmEreignis{T2}{1}{-1}
-% \liCpmEreignis{T3}{2}{2}
-% \liCpmEreignis{T4}{2}{-1}
-% \liCpmEreignis{T5}{2}{0.5}
-% \liCpmEreignis{T6}{3}{0}
-% \liCpmEreignis{T7}{4}{2}
-% \liCpmEreignis{T8}{4}{-1}
-% \liCpmEreignis{T9}{5}{0}
-% \liCpmEreignis{T10}{6}{0}
-% \liCpmEreignis{E}{7}{0}
+\begin{center}
+\begin{tikzpicture}[x=1.5cm,y=1.5cm,scale=0.9,transform shape]
+\liCpmEreignis{S}{0}{0}
 
-% \liCpmVorgang[schein]{S}{T1}{}
-% \liCpmVorgang[schein]{S}{T2}{}
-% \liCpmVorgang{T1}{T3}{3}
-% \liCpmVorgang{T1}{T5}{5}
-% \liCpmVorgang{T2}{T4}{6}
-% \liCpmVorgang{T3}{T7}{2}
-% \liCpmVorgang{T3}{T7}{3}
-% \liCpmVorgang{T4}{T6}{3}
-% \liCpmVorgang{T4}{T8}{7}
-% \liCpmVorgang{T5}{T6}{3}
-% \liCpmVorgang{T6}{T9}{4}
-% \liCpmVorgang{T7}{T10}{1}
-% \liCpmVorgang{T8}{T9}{4}
-% \liCpmVorgang{T9}{T10}{1}
-% \liCpmVorgang[schein]{T10}{E}{1}
+\liCpmEreignis{T1}{1}{1}
+\liCpmEreignis{T2}{1}{-1}
+\liCpmEreignis{T3}{2}{2}
+\liCpmEreignis{T4}{2}{-1}
+\liCpmEreignis{T5}{2}{0.5}
+\liCpmEreignis{T6}{3}{0}
+\liCpmEreignis{T7}{4}{2}
+\liCpmEreignis{T8}{4}{-1}
+\liCpmEreignis{T9}{5}{0}
+\liCpmEreignis{T10}{6}{0}
+\liCpmEreignis{E}{7}{0}
 
-% \end{tikzpicture}
-% \end{center}
+\liCpmVorgang{S}{T1}{3}
+\liCpmVorgang{S}{T2}{6}
+\liCpmVorgang{T1}{T3}{2}
+\liCpmVorgang{T1}{T5}{5}
+\liCpmVorgang{T2}{T4}{2}
+\liCpmVorgang{T3}{T7}{6}
+\liCpmVorgang{T4}{T6}{3}
+\liCpmVorgang{T4}{T8}{7}
+\liCpmVorgang{T5}{T6}{3}
+\liCpmVorgang{T6}{T9}{4}
+\liCpmVorgang{T7}{T10}{1}
+\liCpmVorgang{T8}{T9}{4}
+\liCpmVorgang{T9}{T10}{1}
+\liCpmVorgang[schein]{T10}{E}{}
+
+\end{tikzpicture}
+\end{center}
 \end{liAntwort}
 
 %%
@@ -216,7 +221,10 @@ dass es Probleme bei der fristgerechten Fertigstellung des Projektes
 gibt. Berechnen Sie den Slack für alle Aktivitäten und ergänzen Sie ihn
 in Ihrem Diagramm.
 
-\begin{tabular}{|c|r|r|}
+\begin{liAntwort}
+\liPseudoUeberschrift{Knoten sind Anfang der Tasks}
+
+\begin{tabular}{|l|r|r|}
 $i$ & Nebenrechnung            & \FZ \\\hline\hline
 T1  &                          & 0 \\
 T2  &                          & 0 \\
@@ -230,13 +238,12 @@ T9  & $\max(11_{T6}, 15_{T4})$ & 15 \\
 T10 & $\max(19_{T9}, 11_{T7})$ & 19 \\
 E   &                          & 20 \\
 \end{tabular}
-
 \begin{tabular}{|l|r|r|}
 $i$ & Nebenrechnung & \SZ \\\hline\hline
-T1  & $\min(11_{T3}, 7_{T5})$  & 7 \\
-T2  &                          & 2 \\
+T1  & $\min(8_{T3}, 4_{T5})$   & 4 \\
+T2  &                          & 0 \\
 T3  &                          & 11 \\
-T4  & $\min(12_{T6}, 8_{T8})$  & 8 \\
+T4  & $\min(12_{T6}, 6_{T8})$  & 6 \\
 T5  &                          & 7 \\
 T6  &                          & 12 \\
 T7  &                          & 13 \\
@@ -245,6 +252,55 @@ T9  &                          & 15 \\
 T10 &                          & 19 \\
 E   &                          & 20 \\
 \end{tabular}
+
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+$i$ & T1 & T2 & T3  & T4 & T5 & T6 & T7 & T8 & T9 & T10 & E  \\\hline\hline
+\FZ & 0  & 0  & 3   & 6  & 3  & 8  & 5  & 8  & 15 & 19  & 20 \\\hline
+\SZ & 4  & 0  & 11  & 6  & 7  & 12 & 13 & 8  & 15 & 19  & 20  \\\hline
+GP  & 4  & 0  & 8   & 0  & 4  & 4  & 8  & 0  & 0  & 0   & 0  \\\hline
+\end{tabular}
+
+\liPseudoUeberschrift{Knoten sind Ende der Tasks}
+
+\begin{tabular}{|l|r|r|}
+$i$ & Nebenrechnung            & \FZ \\\hline\hline
+T1  &                          & 3 \\
+T2  &                          & 6 \\
+T3  &                          & 5 \\
+T4  &                          & 8 \\
+T5  &                          & 8 \\
+T6  & $\max(11_{T4}, 11_{T5})$ & 11 \\
+T7  &                          & 11 \\
+T8  &                          & 15 \\
+T9  & $\max(15_{T6}, 19_{T8})$ & 19 \\
+T10 & $\max(20_{T9}, 12_{T7})$ & 20 \\
+E   &                          & 20 \\
+\end{tabular}
+\begin{tabular}{|l|r|r|}
+$i$ & Nebenrechnung & \SZ \\\hline\hline
+T1  & $\min(11_{T3}, 7_{T5})$  & 7 \\
+T2  &                          & 6 \\
+T3  &                          & 13 \\
+T4  & $\min(12_{T6}, 8_{T8})$  & 8 \\
+T5  &                          & 12 \\
+T6  &                          & 15 \\
+T7  &                          & 19 \\
+T8  &                          & 15 \\
+T9  &                          & 19 \\
+T10 &                          & 20 \\
+E   &                          & 20 \\
+\end{tabular}
+
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+$i$ & T1 & T2 & T3 & T4 & T5 & T6 & T7 & T8 & T9 & T10 & E  \\\hline\hline
+\FZ & 3  & 6  & 5  & 8  & 8  & 11 & 11 & 15 & 19 & 20  & 20 \\\hline
+\SZ & 7  & 6  & 13 & 8  & 12 & 15 & 19 & 15 & 19 & 20  & 20  \\\hline
+GP  & 4  & 0  & 8  & 0  & 4  & 4  & 8  & 0  & 0  & 0   & 0  \\\hline
+\end{tabular}
+
+\end{liAntwort}
 
 %%
 % c)
@@ -255,6 +311,12 @@ Sie die Tasks des kritischen Pfades in der folgenden Form an:
 \textbf{Start} ! $\dots$ ! \textbf{Ende}. Sollte es mehrere kritische
 Pfade geben, geben Sie auch diese an. Wie lange ist die Dauer des
 kritischen Pfades bzw. der kritischen Pfade?
+
+\begin{liAntwort}
+Kritischer Pfad: \textbf{Start} ! T2 ! T4 ! T8 ! T9 ! T10 ! \textbf{Ende}
+
+Dauer: 20 h
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}
