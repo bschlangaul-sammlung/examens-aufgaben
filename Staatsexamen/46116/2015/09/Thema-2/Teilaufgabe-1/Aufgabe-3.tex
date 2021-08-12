@@ -284,5 +284,42 @@ if (z == 120) {
   y = 120;
 }
 \end{minted}
+
+\wp{if(z==120)\{y=120;y=119;\}else if(z==121)\{y=120;\}else\{y=120;\}}
+{120 = y}
+
+\bigskip
+
+$\equiv$ \k{In mehrere kleinere wp-Kalküle aufsplitten}
+
+\begin{align*}
+\Bigl( (z = 120) & \land \wp{y=120;y=119;}{120 = y} \Bigr) \lor \\
+\Bigl( ((z \neq 120) \land (z = 121)) & \land \wp{y=120;}{120 = y} \Bigr) \, \lor \\
+\Bigl( ((z \neq 120) \land (z \neq 121)) & \land \wp{y=120;}{120 = y} \Bigr) \\
+\end{align*}
+
+$\equiv$ \k{Code einsetzen}
+
+\begin{align*}
+\Bigl( (z = 120) & \land \wp{y=120;}{120 = \m{119}} \Bigr) \lor \\
+\Bigl( ((z \neq 120) \land (z = 121)) & \land \wp{}{120 = \m{120}} \Bigr) \, \lor \\
+\Bigl( ((z \neq 120) \land (z \neq 121)) & \land \wp{}{120 = \m{120}} \Bigr) \\
+\end{align*}
+
+$\equiv$ \k{vereinfachen}
+
+\begin{align*}
+& \m{\text{false}} \, \lor\\
+\Bigl( (z = 121) & \land \m{\text{true}} \, \Bigr) \lor \\
+\Bigl( ((z \neq 120) \land (z \neq 121)) & \land  \m{\text{true}} \Bigr) \\
+\end{align*}
+
+$\equiv \text{false} \lor (z = 121) \lor ((z \neq 120) \land (z \neq 121))$
+
+$\equiv (z = 121) \lor (z \neq 121)$
+
+$\equiv z \neq 121$
+
+Alle Zahlen außer 120 sind möglich bzw. alle Zeichen außer ’x’.
 \end{liAntwort}
 \end{document}
