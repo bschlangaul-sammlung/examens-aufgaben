@@ -23,8 +23,6 @@ eine kurze Begründung, warum das Master-Theorem nicht anwendbar ist!
 % a)
 %%
 
-% https://www.wolframalpha.com/input/?i=T%5Bn%5D%3D%3D16T%5Bn%2F2%5D%2B40n-6
-
 \item $T(n) = \T{16}{2} + 40n - 6$
 
 \begin{liAntwort}
@@ -51,10 +49,6 @@ $\Rightarrow T(n) \in \t{n^4}$
 % b)
 %%
 
-% T[n]==27T[n/3]+3n^2*log_2(n)
-
-% https://www.wolframalpha.com/input/?i=T%5Bn%5D%3D%3D27T%5Bn%2F3%5D%2B3n%5E2*log_2%28n%29
-
 \item $T(n) = \T{27}{3} + 3n^2 \log n$
 
 \begin{liAntwort}
@@ -65,20 +59,20 @@ $\Rightarrow T(n) \in \t{n^4}$
 
 \liMasterFallRechnung
 % 1. Fall
-{}
+{$f(n) = 3n^2 \log n = n \in \O{n^{\log_3 {27 - 24}}} = \O{n^{\log_3 3}} = \O{n}$}
 % 2. Fall
-{}
+{$f(n) = 3n^2 \log n = n \notin \t{n^{\log_3 {27}}} = \t{n^3}$}
 % 3. Fall
-{}
+{$f(n) = 3n^2 \log n = n \notin \o{n^{\log_3 {27 + \varepsilon}}}$}
 
-\liMasterWolframLink{}
+$\Rightarrow T(n) \in \t{n^3}$
+
+\liMasterWolframLink{T[n]==27T[n/3]\%2B3n^2*log(n)}
 \end{liAntwort}
 
 %%
 % c)
 %%
-
-% https://www.wolframalpha.com/input/?i=T%5Bn%5D%3D%3D4*T%5Bn%2F2%5D%2B3n%5E2%2Blog_2%28n%29
 
 \item $T(n) = \T{4}{2} + 3n^2 + \log n$
 
@@ -90,20 +84,20 @@ $\Rightarrow T(n) \in \t{n^4}$
 
 \liMasterFallRechnung
 % 1. Fall
-{}
+{$f(n) = 3n^2 + \log n = n^2 = n \notin \O{n^{\log_2 {4 - \varepsilon}}}$}
 % 2. Fall
-{}
+{$f(n) = 3n^2 + \log n = n^2 = n \in \t{n^{\log_2 {4}}} = \t{n^2}$}
 % 3. Fall
-{}
+{$f(n) = 3n^2 + \log n = n^2 = n \notin \o{n^{\log_2 {4 + \varepsilon}}}$}
 
-\liMasterWolframLink{}
+$\Rightarrow T(n) \in \t{n^2 \log n}$
+
+\liMasterWolframLink{T[n]==4T[n/2]\%2B3n^2\%2Blog(n)}
 \end{liAntwort}
 
 %%
 % d)
 %%
-
-% https://www.wolframalpha.com/input/?i=T%5Bn%5D%3D%3D4*T%5Bn%2F2%5D%2B100*log_2%28n%29%E2%88%9A%282N%29+%2B+n%5E%28-2%29
 
 \item $T(n)= \T{4}{2} + 100 \log n + \sqrt{2n} + n^{-2}$
 
@@ -115,13 +109,15 @@ $\Rightarrow T(n) \in \t{n^4}$
 
 \liMasterFallRechnung
 % 1. Fall
-{}
+{$f(n) = 100 \log n + \sqrt{2n} + n^{-2} = n \in \O{n^{\log_2 {4 - 2}}} = \O{n}$}
 % 2. Fall
-{}
+{$f(n) = 100 \log n + \sqrt{2n} + n^{-2} = n \notin \t{n^{\log_2 {4}}} = \t{n^2}$}
 % 3. Fall
-{}
+{$f(n) = 100 \log n + \sqrt{2n} + n^{-2} = n \notin \o{n^{\log_2 {4 + \varepsilon}}}$}
 
-\liMasterWolframLink{}
+$\Rightarrow T(n) \in \t{n^2}$
+
+\liMasterWolframLink{T[n]==4*T[n/2]\%2B100*log_2(n)√(2N)\%2Bn^(-2)}
 \end{liAntwort}
 
 \end{enumerate}
