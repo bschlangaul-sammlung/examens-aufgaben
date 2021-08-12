@@ -9,6 +9,42 @@
 %   t = liTheta,
 % }
 
+% \begin{verbatim}
+% \liMasterVariablenDeklaration
+% {3} % a
+% {3} % b
+% {\mathcal{O}(1)} % f(n)
+%
+% \liMasterFallRechnung
+% % 1. Fall
+% {für $\varepsilon = 4$: \\
+% $f(n) = 5n^2 \in \O{n^{\log_2 {8 - 4}}} = \O{n^{\log_2 4}} = \O{n^2}$}
+% % 2. Fall
+% {$f(n) = 5n^2 \notin \t{n^{\log_2 {8}}} = \t{n^3}$}
+% % 3. Fall
+% {$f(n) = 5n^2 \notin \o{n^{\log_2 {8 + \varepsilon}}}$}
+%
+% \liMasterWolframLink{T[n]=9T[n/3]\%2B5n^2}
+% \end{verbatim}
+
+% \begin{verbatim}
+% \liMasterVariablenDeklaration
+% {} % a
+% {} % b
+% {} % f(n) ohne $mathe$
+%
+% \liMasterFallRechnung
+% % 1. Fall
+% {}
+% % 2. Fall
+% {}
+% % 3. Fall
+% {}
+%
+% $\Rightarrow T(n) \in \t{n^2 \cdot \log n}$
+% \liMasterWolframLink{T[n]=9T[n/3]\%2B5n^2}
+% \end{verbatim}
+
 %    \begin{macrocode}
 \ExplSyntaxOn
 \RequirePackage{amsmath}
@@ -136,7 +172,7 @@
 %    \begin{macrocode}
 \def\liMasterVariablen{
   \begin{displaymath}
-  T(n) = \T{a}{b} + f(n)
+  T(n) = \liT{a}{b} + f(n)
   \end{displaymath}
 
   \begin{itemize}
@@ -162,18 +198,18 @@
 \def\liMasterFaelle{
   \begin{description}
   \item[1. Fall:]
-  $T(n) \in \t{n^{\log_{b}a}}$
+  $T(n) \in \liTheta{n^{\log\sb{b}a}}$
 
   \hfill falls \liBedingungEins
   für $\varepsilon > 0$
 
   \item[2. Fall:]
-  $T(n) \in \t{n^{\log_{b}a} \cdot \log n}$
+  $T(n) \in \liTheta{n^{\log\sb{b}a} \cdot \log n}$
 
   \hfill falls \liBedingungZwei
 
   \item[3. Fall:]
-  $T(n) \in \t{f(n)}$
+  $T(n) \in \liTheta{f(n)}$
 
   \hfill falls \liBedingungDrei
   für $\varepsilon > 0$
@@ -181,6 +217,79 @@
   gilt:
   $a \cdot f(\textstyle {\frac {n}{b}})\leq c \cdot f(n)$
   \end{description}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liMasterVariablenDeklaration}
+%    \begin{macrocode}
+\def\liMasterVariablenDeklaration#1#2#3{
+  \begin{description}
+    \item[Allgemeine Rekursionsgleichung:] \strut
+
+    \liRekursionsGleichung
+
+    \item[Anzahl der rekursiven Aufrufe ($a$):] \strut
+
+    #1
+
+    \item[Anteil Verkleinerung des Problems ($b$):] \strut
+
+    um $\frac{1}{#2}$ also $b = #2$
+
+    \item[Laufzeit der rekursiven Funktion ($f(n)$):] \strut
+
+    $#3$
+
+    \item[Ergibt folgende Rekursionsgleichung:] \strut
+
+    $T(n) = \liT{#1}{#2} + #3$
+  \end{description}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liMasterFallRechnung}
+%    \begin{macrocode}
+\def\liMasterFallRechnung#1#2#3{
+  \begin{description}
+  \item[1. Fall:] \liBedingungEins:
+
+  #1
+
+  \item[2. Fall:] \liBedingungZwei:
+
+  #2
+
+  \item[3. Fall:] \liBedingungDrei:
+
+  #3
+  \end{description}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liMasterExkurs}
+%    \begin{macrocode}
+\def\liMasterExkurs{
+  \begin{liExkurs}[Master-Theorem]
+  \liMasterVariablen
+
+  \noindent
+  Dann gilt:
+
+  \liMasterFaelle
+  \end{liExkurs}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liMasterWolframLink}
+% Link zu Wolframalpha (+ durch Prozent 2B ersetzen)
+%    \begin{macrocode}
+\def\liMasterWolframLink#1{
+  Berechne die Rekursionsgleichung auf WolframAlpha:
+  \href{https://www.wolframalpha.com/input/?i=#1}{WolframAlpha}
 }
 %    \end{macrocode}
 % \end{macro}

@@ -1,9 +1,12 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{master-theorem}
 \begin{document}
+\let\O=\liO
+\let\o=\liOmega
 \let\T=\liT
+\let\t=\liTheta
 
-\liAufgabenTitel{}
+\liAufgabenTitel{4 Rekursionsgleichungen}
 \section{Aufgabe 1
 \index{Master-Theorem}
 \footcite{66115:2011:03}}
@@ -13,6 +16,8 @@ Rekursionsgleichungen möglichst scharfe asymptotische untere und obere
 Schranken, falls das Master-Theorem anwendbar ist! Geben Sie andernfalls
 eine kurze Begründung, warum das Master-Theorem nicht anwendbar ist!
 
+\liMasterExkurs
+
 \begin{enumerate}
 %%
 % a)
@@ -21,6 +26,26 @@ eine kurze Begründung, warum das Master-Theorem nicht anwendbar ist!
 % https://www.wolframalpha.com/input/?i=T%5Bn%5D%3D%3D16T%5Bn%2F2%5D%2B40n-6
 
 \item $T(n) = \T{16}{2} + 40n - 6$
+
+\begin{liAntwort}
+\liMasterVariablenDeklaration
+{16} % a
+{2} % b
+{40n - 6} % f(n) ohne $mathe$
+
+\liMasterFallRechnung
+% 1. Fall
+{für $\varepsilon = 14$: \\
+$f(n) = 40n - 6 \in \O{n^{\log_2 {16 - 14}}} = \O{n^{\log_2 2}} = \O{n}$}
+% 2. Fall
+{$f(n) = 40n - 6 \notin \t{n^{\log_2 {16}}} = \t{n^4}$}
+% 3. Fall
+{$f(n) = 40n - 6 \notin \o{n^{\log_2 {16 + \varepsilon}}}$}
+
+$\Rightarrow T(n) \in \t{n^4}$
+
+\liMasterWolframLink{T[n]=16T[n/2]\%2B40n-6}
+\end{liAntwort}
 
 %%
 % b)
@@ -32,6 +57,23 @@ eine kurze Begründung, warum das Master-Theorem nicht anwendbar ist!
 
 \item $T(n) = \T{27}{3} + 3n^2 \log n$
 
+\begin{liAntwort}
+\liMasterVariablenDeklaration
+{27} % a
+{3} % b
+{3n^2 \log n} % f(n) ohne $mathe$
+
+\liMasterFallRechnung
+% 1. Fall
+{}
+% 2. Fall
+{}
+% 3. Fall
+{}
+
+\liMasterWolframLink{}
+\end{liAntwort}
+
 %%
 % c)
 %%
@@ -40,6 +82,23 @@ eine kurze Begründung, warum das Master-Theorem nicht anwendbar ist!
 
 \item $T(n) = \T{4}{2} + 3n^2 + \log n$
 
+\begin{liAntwort}
+\liMasterVariablenDeklaration
+{4} % a
+{2} % b
+{3n^2 + \log n} % f(n) ohne $mathe$
+
+\liMasterFallRechnung
+% 1. Fall
+{}
+% 2. Fall
+{}
+% 3. Fall
+{}
+
+\liMasterWolframLink{}
+\end{liAntwort}
+
 %%
 % d)
 %%
@@ -47,6 +106,23 @@ eine kurze Begründung, warum das Master-Theorem nicht anwendbar ist!
 % https://www.wolframalpha.com/input/?i=T%5Bn%5D%3D%3D4*T%5Bn%2F2%5D%2B100*log_2%28n%29%E2%88%9A%282N%29+%2B+n%5E%28-2%29
 
 \item $T(n)= \T{4}{2} + 100 \log n + \sqrt{2n} + n^{-2}$
+
+\begin{liAntwort}
+\liMasterVariablenDeklaration
+{4} % a
+{2} % b
+{100 \log n + \sqrt{2n} + n^{-2}} % f(n) ohne $mathe$
+
+\liMasterFallRechnung
+% 1. Fall
+{}
+% 2. Fall
+{}
+% 3. Fall
+{}
+
+\liMasterWolframLink{}
+\end{liAntwort}
 
 \end{enumerate}
 

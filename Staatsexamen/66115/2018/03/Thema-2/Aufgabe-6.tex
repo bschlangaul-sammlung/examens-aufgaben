@@ -1,12 +1,16 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax,mathe}
+\liLadePakete{syntax,mathe,master-theorem}
 \begin{document}
-\liAufgabenTitel{Master-Theorem und Methode „m()“}
+\liAufgabenTitel{Methode „m()“}
 
-\section{Beispiel-Aufgabe zum Master-Theorem \index{Master-Theorem}
+\section{Aufgabe 6 \index{Master-Theorem}
 \footcite[Seite 39 (PDF 26)]{aud:fs:2}
 \footcite[Thema 2 Aufgabe 6]{examen:66115:2018:03}
 }
+
+Der Hauptsatz der Laufzeitfunktionen ist bekanntlich folgendermaßen definiert:
+
+\liMasterExkurs
 
 \begin{enumerate}
 
@@ -16,53 +20,43 @@ aufgerufen wird. Geben Sie dazu eine Rekursionsgleichung $T(n)$ an,
 welche die Anzahl an Rechenschritten von \liJavaCode{m} in Abhängigkeit
 von der Länge \liJavaCode{n = r.length} berechnet.
 
-\begin{minted}{java}
-public static int m(int[] r, int lo, int hi) {
-  if (lo < 8 || hi <= 10 || lo >= r.length || hi > r.length) {
-    throw new IllegalArgumentException();
-  }
+\liJavaExamen[firstline=5,lastline=21]{66115}{2018}{03}{MasterTheorem}
 
-  if (hi - lo == 1) {
-    return r[lo];
-  } else if (hi - lo == 2) {
-    return Math.max(r[lo], r[lo + 1]); // 0(1)
-  } else {
-    int s = (hi - lo) / 3;
-    int x = m(r, lo, lo + s);
-    int y = m(r, lo + s, lo + 2 * s);
-    int z = m(r, lo + 2 * s, hi);
-    return Math.max(Math.max(x, y), 2); // 0(1)
-  }
-}
-\end{minted}
-\end{enumerate}
+\begin{liAntwort}
+\liMasterVariablenDeklaration
+{3} % a
+{3} % b
+{\mathcal{O}(1)} % f(n)
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Ordnen Sie die rekursive Funktion T(n) aus (a) einem der drei
+Fälle des Mastertheorems zu und geben Sie die resultierende
+Zeitkomplexität an. Zeigen Sie dabei, dass die Voraussetzung des Falles
+erfüllt ist.
 
 \begin{liAntwort}
 
-Allgemeine Rekursionsgleichung: $T(n) = a \cdot T(\frac{n}{b}) + f(n)$
-
-$a$ (Anzahl der rekursiven Aufrufe): 3
-
-$b$ (Um welchen Anteil wird das Problem durch den Aufruf verkleinert):
-um $\frac{1}{3}$ also $b = 3$
-
-Für den obigen Code:  $T(n) = 3 \cdot T(\frac{n}{3}) + \mathcal{O}(1)$
-
-1. Fall:
-$f(n) \in \mathcal{O}\left(n^{\log_{3}3-\varepsilon}\right) =
+\liMasterFallRechnung
+% 1. Fall
+{$f(n) \in \mathcal{O}\left(n^{\log_{3}3-\varepsilon}\right) =
 \mathcal{O}\left(n^{1-\varepsilon}\right) =
 \mathcal{O}\left(1\right) \text{ für } \varepsilon = 1
-$
-
-2. Fall:
-$f(n) \notin \Theta \left(n^{{\log_{3}3}}\right) =
+$}
+% 2. Fall
+{$f(n) \notin \Theta \left(n^{{\log_{3}3}}\right) =
 \Theta \left(n^1\right)
-$
-
-3. Fall:
-$f(n) \notin \Omega \left(n^{\log_{3}3 + \varepsilon}\right) =
-\Omega \left(n^{1 + \varepsilon}\right)$
+$}
+% 3. Fall
+{$f(n) \notin \Omega \left(n^{\log_{3}3 + \varepsilon}\right) =
+\Omega \left(n^{1 + \varepsilon}\right)$}
 
 Also: $T(n)\in \Theta \left(n^{\log_{b}a}\right)$
+
 \end{liAntwort}
+\end{enumerate}
+
 \end{document}
