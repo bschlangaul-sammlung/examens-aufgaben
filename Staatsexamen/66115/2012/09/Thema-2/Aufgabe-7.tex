@@ -1,19 +1,92 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{baum}
 \begin{document}
-\liAufgabenTitel{Leere Heap}
+\liAufgabenTitel{3,5,1,2,4 in leerer Suchbaum und Heap}
 
-\section{Aufgabe 7: Heap
-\index{Halde (Heap)}
+\section{Aufgabe 7
 \footcite[Thema 2 Aufgabe 7]{66115:2012:09}
 }
 
-Fügen Sie nacheinander die Zahlen \texttt{3}, \texttt{5}, \texttt{1},
-\texttt{2}, \texttt{4} in einen leeren Heap ein. Geben Sie die
-Ergebnisse an (Zeichnung).
-\footcite[Zeichnen der Heap)]{aud:ab:7}
+\begin{enumerate}
 
-\begin{minipage}[t][5cm][b]{0.32\linewidth}
+%%
+% a)
+%%
+
+\item Fügen Sie nacheinander die Zahlen $3,5,1,2,4$
+
+\begin{enumerate}
+
+%%
+% (i)
+%%
+
+\item in einen leeren binären Suchbaum ein
+
+\begin{liDiagramm}{Nach Einfügen von „3“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.3 ]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „5“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.3
+  \edge[blank]; \node[blank]{};
+  [.5 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „1“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.3
+  [.1 ]
+  [.5 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „2“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.3
+  [.1
+    \edge[blank]; \node[blank]{};
+    [.2 ]
+  ]
+  [.5 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „4“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.3
+  [.1
+    \edge[blank]; \node[blank]{};
+    [.2 ]
+  ]
+  [.5
+    [.4 ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+%%
+% (ii)
+%%
+
+\item in einen leeren Heap ein
+\index{Halde (Heap)}
+
+\begin{liDiagramm}{Erstellen einer Max.-Halde, einfügen von 3 und 5, Versickern notwendig}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node(3){3};
@@ -22,10 +95,9 @@ Ergebnisse an (Zeichnung).
 ]
 \draw[dotted,<->] (3) .. controls +(west:1) .. (5);
 \end{tikzpicture}
-Erstellen einer Max.-Halde, einfügen von 3 und 5, Versickern notwendig
-\end{minipage}
-%
-\begin{minipage}[t][5cm][b]{0.32\linewidth}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Einfügen von 1 und 2 ohne Änderungen, Einfügen von 4, versickern notwendig}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.5
@@ -37,10 +109,9 @@ Erstellen einer Max.-Halde, einfügen von 3 und 5, Versickern notwendig
 ]
 \draw[dotted,<->] (3) .. controls +(east:0.5) .. (4);
 \end{tikzpicture}
-Einfügen von 1 und 2 ohne Änderungen, Einfügen von 4, versickern notwendig
-\end{minipage}
-%
-\begin{minipage}[t][5cm][b]{0.32\linewidth}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Fertiger Heap}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.5
@@ -51,6 +122,285 @@ Einfügen von 1 und 2 ohne Änderungen, Einfügen von 4, versickern notwendig
   [.1 ]
 ]
 \end{tikzpicture}
-Fertiger Heap
-\end{minipage}
+\end{liDiagramm}
+\footcite[Zeichnen der Heap)]{aud:ab:7}
+
+%%
+%
+%%
+
+\liPseudoUeberschrift{Ausführlicher als Max-Halde}
+
+\begin{liDiagramm}{Nach dem Einfügen von „3“}
+\begin{tabular}{l}
+\bf{0} \\
+\hline
+3      \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.3 ]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach dem Einfügen von „5“}
+\begin{tabular}{ll}
+\bf{0} & \bf{1} \\
+\hline
+3      & 5      \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.3
+  [.5 ]
+  \edge[blank]; \node[blank]{};
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Vertauschen von „5“ und „3“}
+\begin{tabular}{ll}
+\bf{0} & \bf{1} \\
+\hline
+5      & 3      \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.5
+  [.3 ]
+  \edge[blank]; \node[blank]{};
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach dem Einfügen von „1“}
+\begin{tabular}{lll}
+\bf{0} & \bf{1} & \bf{2} \\
+\hline
+5      & 3      & 1      \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.5
+  [.3 ]
+  [.1 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach dem Einfügen von „2“}
+\begin{tabular}{llll}
+\bf{0} & \bf{1} & \bf{2} & \bf{3} \\
+\hline
+5      & 3      & 1      & 2      \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.5
+  [.3
+    [.2 ]
+    \edge[blank]; \node[blank]{};
+  ]
+  [.1 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach dem Einfügen von „4“}
+\begin{tabular}{lllll}
+\bf{0} & \bf{1} & \bf{2} & \bf{3} & \bf{4} \\
+\hline
+5      & 3      & 1      & 2      & 4      \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.5
+  [.3
+    [.2 ]
+    [.4 ]
+  ]
+  [.1 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Vertauschen von „4“ und „3“}
+\begin{tabular}{lllll}
+\bf{0} & \bf{1} & \bf{2} & \bf{3} & \bf{4} \\
+\hline
+5      & 4      & 1      & 2      & 3      \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.5
+  [.4
+    [.2 ]
+    [.3 ]
+  ]
+  [.1 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+%%
+%
+%%
+
+\liPseudoUeberschrift{Ausführlicher als Min-Halde}
+
+\begin{liDiagramm}{Nach dem Einfügen von „3“}
+\begin{tabular}{l}
+\bf{0} \\
+\hline
+3      \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.3 ]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach dem Einfügen von „5“}
+\begin{tabular}{ll}
+\bf{0} & \bf{1} \\
+\hline
+3      & 5      \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.3
+  [.5 ]
+  \edge[blank]; \node[blank]{};
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach dem Einfügen von „1“}
+\begin{tabular}{lll}
+\bf{0} & \bf{1} & \bf{2} \\
+\hline
+3      & 5      & 1      \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.3
+  [.5 ]
+  [.1 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Vertauschen von „1“ und „3“}
+\begin{tabular}{lll}
+\bf{0} & \bf{1} & \bf{2} \\
+\hline
+1      & 5      & 3      \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.1
+  [.5 ]
+  [.3 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach dem Einfügen von „2“}
+\begin{tabular}{llll}
+\bf{0} & \bf{1} & \bf{2} & \bf{3} \\
+\hline
+1      & 5      & 3      & 2      \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.1
+  [.5
+    [.2 ]
+    \edge[blank]; \node[blank]{};
+  ]
+  [.3 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Vertauschen von „2“ und „5“}
+\begin{tabular}{llll}
+\bf{0} & \bf{1} & \bf{2} & \bf{3} \\
+\hline
+1      & 2      & 3      & 5      \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.1
+  [.2
+    [.5 ]
+    \edge[blank]; \node[blank]{};
+  ]
+  [.3 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach dem Einfügen von „4“}
+\begin{tabular}{lllll}
+\bf{0} & \bf{1} & \bf{2} & \bf{3} & \bf{4} \\
+\hline
+1      & 2      & 3      & 5      & 4      \\
+\end{tabular}
+
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.1
+  [.2
+    [.5 ]
+    [.4 ]
+  ]
+  [.3 ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\end{enumerate}
+
+Geben Sie die Ergebnisse an (Zeichnung)
+
+%%
+% b)
+%%
+
+\item Geben Sie zwei Merkmale an, bei denen sich Heaps und binäre
+Suchbäume wesentlich unterscheiden. Ein wesentlicher Unterschied
+zwischen Bubblesort und Mergesort ist \zB die \emph{worst case} Laufzeit
+mit $\mathcal{O}(n^2)$ für Bubblesort und $\mathcal{O}(n \log n)$ für
+Mergesort.
+
+\begin{liAntwort}
+\begin{tabular}{lll}
+& Binärer Suchbaum & Heap \\\hline
+Suchen beliebiger Wert (worst case) &
+$\mathcal{O}(\log(n))$ &
+$\mathcal{O}(n)$ \\
+
+Suchen Min-Max (average case) &
+$\mathcal{O}(\log(n))$ &
+$\mathcal{O}(1)$ \\
+\end{tabular}
+
+\liFussnoteUrl{https://cs.stackexchange.com/q/27860}
+\end{liAntwort}
+
+\end{enumerate}
 \end{document}

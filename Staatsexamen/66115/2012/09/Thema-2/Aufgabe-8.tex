@@ -1,0 +1,259 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{baum}
+\begin{document}
+\liAufgabenTitel{AVL 15,9,25,4,10,23,33,2,27; Einfüge 1,28; Löschen 15}
+\section{Aufgabe 8
+\index{AVL-Baum}
+\footcite{66115:2012:09}}
+
+Gegeben sei der folgende AVL-Baum $T$. Führen Sie auf $T$ folgende
+Operationen durch.
+
+% didaktik.java baum -a 15 9 25 4 10 23 33 2 27  -t -v
+\begin{center}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{15};
+  [.\node[label=-1]{9};
+    [.\node[label=-1]{4};
+      [.\node[label=0]{2}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.\node[label=0]{10}; ]
+  ]
+  [.\node[label=+1]{25};
+    [.\node[label=0]{23}; ]
+    [.\node[label=-1]{33};
+      [.\node[label=0]{27}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{center}
+
+\begin{liAntwort}
+Wir führen alle Operationen am Ursprungsbaum $T$ durch und nicht am
+veränderten Baum.
+\end{liAntwort}
+
+\begin{enumerate}
+%%
+% (a)
+%%
+
+\item Einfüge-Operationen:
+
+\begin{enumerate}
+
+%%
+%
+%%
+
+\item Fügen Sie den Wert $1$ in $T$ ein. Balancieren Sie falls nötig und
+geben Sie den entstandenen Baum (als Zeichnung) an.
+
+% didaktik.java baum -a 15 9 25 4 10 23 33 2 27 1 -t -v
+\begin{liDiagramm}{Nach Einfügen von „1“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{15};
+  [.\node[label=-2]{9};
+    [.\node[label=-2]{4};
+      [.\node[label=-1]{2};
+        [.\node[label=0]{1}; ]
+        \edge[blank]; \node[blank]{};
+      ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.\node[label=0]{10}; ]
+  ]
+  [.\node[label=+1]{25};
+    [.\node[label=0]{23}; ]
+    [.\node[label=-1]{33};
+      [.\node[label=0]{27}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Rechtsrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{15};
+  [.\node[label=-1]{9};
+    [.\node[label=0]{2};
+      [.\node[label=0]{1}; ]
+      [.\node[label=0]{4}; ]
+    ]
+    [.\node[label=0]{10}; ]
+  ]
+  [.\node[label=+1]{25};
+    [.\node[label=0]{23}; ]
+    [.\node[label=-1]{33};
+      [.\node[label=0]{27}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+%%
+%
+%%
+
+\item Fügen Sie nun den Wert $28$ in $T$ ein. Balancieren Sie falls
+nötig und geben Sie den entstandenen Baum (als Zeichnung) an.
+
+% didaktik.java baum -a 15 9 25 4 10 23 33 2 27 28 -t -v
+
+\begin{liDiagramm}{Nach Einfügen von „28“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{15};
+  [.\node[label=-1]{9};
+    [.\node[label=-1]{4};
+      [.\node[label=0]{2}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.\node[label=0]{10}; ]
+  ]
+  [.\node[label=+2]{25};
+    [.\node[label=0]{23}; ]
+    [.\node[label=-2]{33};
+      [.\node[label=+1]{27};
+        \edge[blank]; \node[blank]{};
+        [.\node[label=0]{28}; ]
+      ]
+      \edge[blank]; \node[blank]{};
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{15};
+  [.\node[label=-1]{9};
+    [.\node[label=-1]{4};
+      [.\node[label=0]{2}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.\node[label=0]{10}; ]
+  ]
+  [.\node[label=+2]{25};
+    [.\node[label=0]{23}; ]
+    [.\node[label=-2]{33};
+      [.\node[label=-1]{28};
+        [.\node[label=0]{27}; ]
+        \edge[blank]; \node[blank]{};
+      ]
+      \edge[blank]; \node[blank]{};
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Rechtsrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{15};
+  [.\node[label=-1]{9};
+    [.\node[label=-1]{4};
+      [.\node[label=0]{2}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.\node[label=0]{10}; ]
+  ]
+  [.\node[label=+1]{25};
+    [.\node[label=0]{23}; ]
+    [.\node[label=0]{28};
+      [.\node[label=0]{27}; ]
+      [.\node[label=0]{33}; ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+\end{enumerate}
+
+%%
+% (b)
+%%
+
+\item Löschen Sie aus $T$ den Wert $15$. Balancieren Sie falls nötig und
+geben Sie den entstandenen Baum (als Zeichnung) an.
+
+% didaktik.java baum -a 15 9 25 4 10 23 33 2 27 lösche 15 -t -v
+
+\begin{liDiagramm}{Nach Löschen von „15“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{23};
+  [.\node[label=-1]{9};
+    [.\node[label=-1]{4};
+      [.\node[label=0]{2}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.\node[label=0]{10}; ]
+  ]
+  [.\node[label=+2]{25};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=-1]{33};
+      [.\node[label=0]{27}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Rechtsrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{23};
+  [.\node[label=-1]{9};
+    [.\node[label=-1]{4};
+      [.\node[label=0]{2}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.\node[label=0]{10}; ]
+  ]
+  [.\node[label=+2]{25};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=+1]{27};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{33}; ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{23};
+  [.\node[label=-1]{9};
+    [.\node[label=-1]{4};
+      [.\node[label=0]{2}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.\node[label=0]{10}; ]
+  ]
+  [.\node[label=0]{27};
+    [.\node[label=0]{25}; ]
+    [.\node[label=0]{33}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\end{enumerate}
+\end{document}
