@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax,mathe}
+\liLadePakete{syntax,mathe,komplexitaetstheorie,pseudo}
 \begin{document}
 \liAufgabenTitel{Gutschein}
 \section{Aufgabe 4
@@ -14,6 +14,11 @@ Da Gutscheine nicht in Bargeld ausgezahlt werden können, ist die Frage,
 ob man eine Teilfolge der Waren findet, sodass man genau den Gutschein
 ausnutzt. Formal ist dies die Frage, ob es eine Menge von Indizes $I$
 mit $I \subseteq \{1, \dots, n \}$ gibt, sodass $\sum_{i \in I} w_i = G$
+
+\begin{liExkurs}[Teilsummenproblem]
+\liProblemSubsetSum
+\end{liExkurs}
+
 \begin{enumerate}
 
 %%
@@ -57,9 +62,8 @@ $51$
 %%
 
 \item Sei \emph{table} eine $(n \times (G + 1))$-Tabelle mit Einträgen
-$\text{table}[i,k]$, für $1 < i < n$ und $0 \leq k \leq G$, sodass
+$\text{table}[i,k]$, für $1 \leq i \leq n$ und $0 \leq k \leq G$, sodass
 
-\begin{liAntwort}
 \begin{equation*}
 \text{table}[i,k] =
 \begin{cases}
@@ -70,7 +74,6 @@ $\text{table}[i,k]$, für $1 < i < n$ und $0 \leq k \leq G$, sodass
 \textbf{false} & \text{sonst}
 \end{cases}
 \end{equation*}
-\end{liAntwort}
 
 Geben Sie einen Algorithmus in Pseudo-Code oder Java an, der die Tabelle
 \emph{table} mit \emph{dynamischer Programmierung} in
@@ -79,9 +82,33 @@ die Korrektheit und die Laufzeit Ihres Algorithmus. Welcher Eintrag in
 \emph{table} löst das GUTSCHEIN-Problem?
 
 \begin{liAntwort}
+Pseudo-Code stimmt nicht mit dem Java-Code überein. Möglichweise stimmt
+der Pseudo-Code nicht.
+
+\begin{algorithm}[H]
+\newcommand{\meinkommentar}[1]{\texttt{\scriptsize #1}}
+\SetCommentSty{meinkommentar}
+
+table = boolean array $n \times (G +  1)$
+\tcp*{Initialisiere ein boolsches Feld mit n Zeilen nummeriert
+von 1 bis n und G + 1 Spalten nummeriert von 0 bis G}
+
+\For(\tcp*{Durchlaufe alle weiteren Zeilen}){$j$ in $2 \dots n$}{
+  \For(\tcp*{Durchlaufe jede Spalte in dieser Zeile}){$k$ in $0 \dots G$}{
+    \If(\tcp*{Wenn in der vorherigen Zeile in dieser Spalte true steht}){\text{table}[j - 1][k] == \text{true}}{
+      $\text{table}[j - 1][k] = \text{true}$ \tcp*[r]{schreibe hier auch true}
+      \If(\tcp*{Wenn der neue Warenwert addiert das Gutscheinvolumen nicht übersteigt..}){$k + w_j \leq G$}{
+        $\text{table}[j][k + w_j] = \text{true}$ \tcp*{markiere diesen Zustand, da er auch „erreichbar ist“}
+      }
+    }
+  }
+}
+\caption{Gutschein-Problem}
+\end{algorithm}
+
 \liJavaExamen{66115}{2020}{09}{Gutschein}
 
-Die äußere for-Schleife läuft n mal und die innere for-Schleife G mal.
+Die äußere for-Schleife läuft $n$ mal und die innere for-Schleife $G$ mal.
 Der letzte Eintrag in der Tabelle, also der Wert in der Zelle:\\
 \liJavaCode{tabelle[warenWerte.length][gutscheinBetrag]}.
 
@@ -104,24 +131,26 @@ Der letzte Eintrag in der Tabelle, also der Wert in der Zelle:\\
 \item \liJavaCode{gutscheinDP(7, new int[] { 1, 2, 3 });}: falsch (f)
 
 \begin{minted}{md}
-[
-  [w, f, f, f, f, f, f, f],
-  [w, w, f, f, f, f, f, f],
-  [w, w, w, w, f, f, f, f],
-  [w, w, w, w, w, w, w, f]
+[   0  1  2  3  4  5  6  7 G
+ 0 [w, f, f, f, f, f, f, f],
+ 1 [w, w, f, f, f, f, f, f],
+ 2 [w, w, w, w, f, f, f, f],
+ 3 [w, w, w, w, w, w, w, f]
+ W
 ]
 \end{minted}
 
 \item \liJavaCode{gutscheinDP(10, new int[] { 10, 30, 40, 20, 15 });}: wahr (w)
 
 \begin{minted}{md}
-[
-  [w, f, f, f, f, f, f, f, f, f, f],
-  [w, f, f, f, f, f, f, f, f, f, w],
-  [w, f, f, f, f, f, f, f, f, f, w],
-  [w, f, f, f, f, f, f, f, f, f, w],
-  [w, f, f, f, f, f, f, f, f, f, w],
-  [w, f, f, f, f, f, f, f, f, f, w]
+[    0  1  2  3  4  5  6  7  8  9  10 G
+ 0  [w, f, f, f, f, f, f, f, f, f, f],
+ 10 [w, f, f, f, f, f, f, f, f, f, w],
+ 30 [w, f, f, f, f, f, f, f, f, f, w],
+ 40 [w, f, f, f, f, f, f, f, f, f, w],
+ 20 [w, f, f, f, f, f, f, f, f, f, w],
+ 15 [w, f, f, f, f, f, f, f, f, f, w]
+ W
 ]
 \end{minted}
 \end{itemize}
