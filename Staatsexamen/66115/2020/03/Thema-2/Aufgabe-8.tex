@@ -1,6 +1,11 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{mathe,syntax}
+\liLadePakete{mathe,syntax,pseudo,grafik}
 \begin{document}
+\def\blauesZeichen{\bullet}
+\def\rotesZeichen{x}
+\def\b#1{\node at (#1,0){\blauesZeichen};}
+\def\r#1{\node at (#1,0){\rotesZeichen};}
+
 % identisch mit Staatsexamen/46115/2020/03/Thema-2/Aufgabe-6.tex
 
 \liAufgabenTitel{Nächstes rot-blaues Paar auf der x-Achse}
@@ -13,6 +18,27 @@ Punkten auf der x-Achse. Gesucht ist der minimale euklidische Abstand
 $d(r, b)$ über alle Punktepaare $(r,b)$ mit $r \in R$ und $b \in B$.
 Hier ist eine Beispielinstanz:
 
+\begin{center}
+\begin{tikzpicture}
+\draw (0,0) -- (8,0);
+\node at (-1,0){x-Achse};
+\r{0.1}
+\r{0.5}
+\b{2}
+\node[label=r] at (3,0) (rot) {\rotesZeichen};
+\node[label=b] at (3.7,0) {\blauesZeichen} edge[bend left,swap] (rot);
+\r{8}
+\b{5}
+\b{5.2}
+\b{5.4}
+\b{6}
+
+\node[label=blau] at (9,0.5) {\blauesZeichen};
+\node[label=rot] at (9,-0.5) {\rotesZeichen};
+\end{tikzpicture}
+\end{center}
+
+\noindent
 Die Eingabe wird in einem Feld $A$ übergeben. Jeder Punkt $A[i]$ mit $1
 \leq i \leq n$ hat eine x-Koordinate $A[i].x$ und eine Farbe $A[i].color
 \in \{ \text{rot}, \text{blau} \}$. Das Feld $A$ ist nach x-Koordinate
@@ -30,19 +56,22 @@ Abstand in $\mathcal{O}(n)$ Zeit berechnet.
 
 \begin{liAntwort}
 \liPseudoUeberschrift{Pseudo-Code}
-\begin{itemize}
-\item Iteriere über die Indizes des Punkte-Arrays $P$ bis zum vorletzten
-Index ($P[n-1]$)
 
-\item Falls $P[n].color = P[n + 1].color$, dann gehe zum nächsten
-Durchlauf mit $P[n + 1]$
+\begin{algorithm}[H]
+\newcommand{\meinkommentar}[1]{\texttt{\scriptsize #1}}
+\SetCommentSty{meinkommentar}
+$d_{min} := \max$ \tcp*{Setze $d_{min}$ zuerst auf einen maximalen Wert.}
 
-\item Andernfalls berechne $d = P[n + 1].x - P[n].x$
+\For(\tcp*{Iteriere über die Indizes des Punkte-Arrays $P$ bis zum vorletzten
+Index $P[n-1]$}){$i$ in $0 \dots$ vorletzter Index}{
 
-\item Vergleiche $d$ mit $d_{min}$ (ist anfangs als $d_{min} =
-Integer.MAX\_VALUE$ definiert). Falls $d < d_{min}$ definiere $d_{min} =
-d$
-\end{itemize}
+  \If(\tcp*{Berechne den Abstand nur, wenn die Punkte unterschiedliche Farben haben}){$P[n].color \neq P[n + 1].color$}{
+    $d = P[n + 1].x - P[n].x$\\
+    \If{$d < d_{min}$}{$d_{min} = d$}
+  }
+}
+\caption{Minimaler Euklidischer Abstand}
+\end{algorithm}
 
 \liPseudoUeberschrift{Java}
 
@@ -77,18 +106,20 @@ Integer.MAX\_VALUE$ geblieben ist)
 
 \item Wir betrachten nun den Spezialfall, dass alle blauen Punkte links
 von allen roten Punkten liegen. Beschreiben Sie in Worten, wie man in
-dieser Situation den gesuchten Abstand in $o(n)$ Zeit berechnen kann. (Ihr
-Algorithmus darf also insbesondere nicht Laufzeit $\Theta(n)$ haben.)
+dieser Situation den gesuchten Abstand in $o(n)$ Zeit berechnen kann.
+(Ihr Algorithmus darf also insbesondere nicht Laufzeit $\Theta(n)$
+haben.)
 
 \begin{liAntwort}
-Zuerst muss man den letzten blauen Punkt finden. Das ist mit einer
-binären Suche möglich. (Man beginnt mit dem ganzen Array als Suchbereich
-und betrachtet den mittleren Punkt. Wenn er blau ist, wiederholt man die
-Suche in der zweiten Hälfte des Suchbereichs, sonst in der ersten, bis
-man einen blauen Punkt gefolgt von einem roten Punkt gefunden hat.) Der
-gesuchte minimale Abstand ist dann der Abstand zwischen dem gefundenen
-blauen und dem nachfolgenden roten Punkt. Die Binärsuche hat eine
-Worst-case-Laufzeit in $\mathcal{O}(\log n)$ und damit auch in $o(n)$.
+Zuerst müssen wir den letzten blauen Punkt finden. Das ist mit einer
+binären Suche möglich. Wir beginnen mit dem ganzen Feld als Suchbereich
+und betrachten den mittleren Punkt. Wenn er blau ist, wiederholen wir
+die Suche in der zweiten Hälfte des Suchbereichs, sonst in der ersten,
+bis wir einen blauen Punkt gefolgt von einem roten Punkt gefunden haben.
+
+Der gesuchte minimale Abstand ist dann der Abstand zwischen dem
+gefundenen blauen und dem nachfolgenden roten Punkt. Die Binärsuche hat
+eine Worst-case-Laufzeit von $\mathcal{O}(\log n)$.
 \end{liAntwort}
 \end{enumerate}
 

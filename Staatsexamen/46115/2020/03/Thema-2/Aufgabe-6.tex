@@ -1,8 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{mathe,syntax,pseudo,grafik}
+
 \begin{document}
 % identisch mit Staatsexamen/66115/2020/03/Thema-2/Aufgabe-8.tex
-
 \liAufgabenTitel{Nächstes rot-blaues Paar auf der x-Achse}
 \section{Aufgabe 6
 \index{Algorithmische Komplexität (O-Notation)}
@@ -10,13 +10,14 @@
 
 Gegeben seien zwei nichtleere Mengen $R$ und $B$ von roten bzw. blauen
 Punkten auf der x-Achse. Gesucht ist der minimale euklidische Abstand
-d(r, b) über alle Punktepaare (r,b) mitr € R und be B. Hier ist eine
-Beispielinstanz:
+$d(r, b)$ über alle Punktepaare $(r,b)$ mit $r \in R$ und $b \in B$.
+Hier ist eine Beispielinstanz:
 
-Die Eingabe wird in einem Feld A übergeben. Jeder Punkt Al) mit 1<i<n
-hat eine r- Koordinate Ali].x und eine Farbe Alil.color € { rot, blau }.
-Das Feld A ist nach x-Koordinate sortiert, \dh es gilt A[1].x < Al2].x
-< --- < Alnl.x, wobein = |R| + |B|.
+Die Eingabe wird in einem Feld $A$ übergeben. Jeder Punkt $A[i]$ mit $1
+\leq i \leq n$ hat eine x-Koordinate $A[i].x$ und eine Farbe $A[i].color
+\in \{ \text{rot}, \text{blau} \}$. Das Feld $A$ ist nach x-Koordinate
+sortiert, \dh es gilt $A[1].x < A[2].x < \dots < A[n].x$, wobei $n = |R|
++ |B|$.
 
 \begin{enumerate}
 
@@ -25,7 +26,31 @@ Das Feld A ist nach x-Koordinate sortiert, \dh es gilt A[1].x < Al2].x
 %%
 
 \item Geben Sie in Worten einen Algorithmus an, der den gesuchten
-Abstand in O(n) Zeit berechnet.
+Abstand in $\mathcal{O}(n)$ Zeit berechnet.
+
+\begin{liAntwort}
+\liPseudoUeberschrift{Pseudo-Code}
+
+\begin{algorithm}[H]
+\newcommand{\meinkommentar}[1]{\texttt{\scriptsize #1}}
+\SetCommentSty{meinkommentar}
+$d_{min} := \max$ \tcp*{Setze $d_{min}$ zuerst auf einen maximalen Wert.}
+
+\For(\tcp*{Iteriere über die Indizes des Punkte-Arrays $P$ bis zum vorletzten
+Index $P[n-1]$}){$i$ in $0 \dots$ vorletzter Index}{
+
+  \If(\tcp*{Berechne den Abstand nur, wenn die Punkte unterschiedliche Farben haben}){$P[n].color \neq P[n + 1].color$}{
+    $d = P[n + 1].x - P[n].x$\\
+    \If{$d < d_{min}$}{$d_{min} = d$}
+  }
+}
+\caption{Minimaler Euklidischer Abstand}
+\end{algorithm}
+
+\liPseudoUeberschrift{Java}
+
+\liJavaExamen[firstline=30,lastline=41]{66115}{2020}{03}{RedBluePairCollection}
+\end{liAntwort}
 
 %%
 % (b)
@@ -33,11 +58,21 @@ Abstand in O(n) Zeit berechnet.
 
 \item Begründen Sie kurz die Laufzeit Ihres Algorithmus.
 
+\begin{liAntwort}
+Da das Array der Länge $n$ nur einmal durchlaufen wird, ist die Laufzeit
+$\mathcal{O}(n)$ sichergestellt.
+\end{liAntwort}
+
 %%
 % (c)
 %%
 
 \item Begründen Sie die Korrektheit Ihres Algorithmus.
+
+\begin{liAntwort}
+In $d_{min}$ steht am Ende der gesuchte Wert (sofern nicht $d_{min} =
+Integer.MAX\_VALUE$ geblieben ist)
+\end{liAntwort}
 
 %%
 % (d)
@@ -45,8 +80,23 @@ Abstand in O(n) Zeit berechnet.
 
 \item Wir betrachten nun den Spezialfall, dass alle blauen Punkte links
 von allen roten Punkten liegen. Beschreiben Sie in Worten, wie man in
-dieser Situation den gesuchten Abstand in o(n) Zeit berechnen kann. (Ihr
-Algorithmus darf also insbesondere nicht Laufzeit O(n) haben.)
+dieser Situation den gesuchten Abstand in $o(n)$ Zeit berechnen kann.
+(Ihr Algorithmus darf also insbesondere nicht Laufzeit $\Theta(n)$
+haben.)
 
+\begin{liAntwort}
+Zuerst müssen wir den letzten blauen Punkt finden. Das ist mit einer
+binären Suche möglich. Wir beginnen mit dem ganzen Feld als Suchbereich
+und betrachten den mittleren Punkt. Wenn er blau ist, wiederholen wir
+die Suche in der zweiten Hälfte des Suchbereichs, sonst in der ersten,
+bis wir einen blauen Punkt gefolgt von einem roten Punkt gefunden haben.
+
+Der gesuchte minimale Abstand ist dann der Abstand zwischen dem
+gefundenen blauen und dem nachfolgenden roten Punkt. Die Binärsuche hat
+eine Worst-case-Laufzeit von $\mathcal{O}(\log n)$.
+\end{liAntwort}
 \end{enumerate}
+
+\liJavaExamen{66115}{2020}{03}{RedBluePairCollection}
+
 \end{document}
