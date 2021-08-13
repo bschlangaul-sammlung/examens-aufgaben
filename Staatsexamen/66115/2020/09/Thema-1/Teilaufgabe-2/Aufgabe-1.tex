@@ -41,13 +41,14 @@ an.
 n & m & x & y  & ausgeführter Code, der Änderung bewirkte \\\hline
 3 & 2 & 3 & 0 \\
 3 & 2 & 2 & 1 & \p{x := x - 1; y := y + 1;} \\
-3 & 2 & 1 & 2 & diese Schleife läuft nicht mehr durch \p{x := x - 1; y := y + 1;} \\
 \end{tabular}
 
 Rückgabewert: 1
-\end{liAntwort}
+
+\liPseudoUeberschrift{Java-Implementation der Prozedur}
 
 \liJavaDatei{examen/examen_66115/jahr_2020/herbst/counter/CountUp}
+\end{liAntwort}
 
 %%
 % b)
@@ -58,11 +59,11 @@ Rückgabewert: 1
 
 \begin{liAntwort}
 Nein. Mit jedem Schleifendurchlauf wird der Wert der Variablen \p{y} um
-eins hochgezählt, die Werte, die \p{y} annimmt, sind also mathematisch
-ausgedrückt streng monoton steigend. \p{y} nähert sich \p{m}
-an, bis \p{y} nicht mehr kleiner ist als \p{m} und die Prozedur
-terminiert. An diesem Sachverhält ändern auch sehr große Zahlen, die
-über die Variable \p{m} der Prozedur übergeben werden, nichts.
+eins hochgezählt. Die Werte, die \p{y} annimmt, sind streng monoton
+steigend. \p{y} nähert sich \p{m} an, bis \p{y} nicht mehr kleiner ist
+als \p{m} und die Prozedur terminiert. An diesem Sachverhält ändern auch
+sehr große Zahlen, die über die Variable \p{m} der Prozedur übergeben
+werden, nichts.
 \end{liAntwort}
 
 %%
@@ -107,8 +108,6 @@ begin
 end
 \end{minted}
 
-\liJavaDatei{examen/examen_66115/jahr_2020/herbst/counter/CountDown}
-
 Führen Sie \p{countdown(3, 2)} aus. Geben Sie für jeden
 Schleifendurchlauf jeweils den Wert der Variablen \p{n}, \p{m}, \p{x}
 und \p{y} zu Beginn der \p{while}-Schleife und den Rückgabewert der
@@ -123,10 +122,13 @@ n & m & x & y & ausgeführter Code, der Änderung bewirkte \\\hline
 1 & 2 & 1 & 0 & \p{y := 0; n := n / 2;} \\
 1 & 2 & 0 & 1 & \p{x := x - 1; y := y + 1;} \\
 1 & 2 & -1 & 2 & \p{x := x - 1; y := y + 1;} \\
-0 & 2 & -1 & 0 & Wert am Ende der While-Schleife, nicht mehr Beginn der while-Schleife \\
 \end{tabular}
 
 Rückgabewert: -1
+
+\liPseudoUeberschrift{Java-Implementation der Prozedur}
+
+\liJavaDatei{examen/examen_66115/jahr_2020/herbst/counter/CountDown}
 \end{liAntwort}
 
 %%
@@ -148,15 +150,14 @@ terminiert sofort
 
 \item[\p{m <= 0}]
 
-Falsch-Block der Wenn-Dann-Bedingung erniedrigt \p{n} \p{n := n / 2;} bis \p{0} erreicht
-ist. Dann terminiert die Prozedur.
+Der Falsch-Block der Wenn-Dann-Bedingung erniedrigt \p{n} \p{n := n /
+2;} bis \p{0} erreicht ist. Dann terminiert die Prozedur.
 
 \item[\p{m > 0}]
 
-1. Wahr-Block der Wenn-Dann-Bedingung erhöht \p{y} streng monoton bis
-\p{y >= m}. 2. Falsch-Block der Wenn-Dann-Bedingung halbiert \p{n} bis
-\p{0}. 1. und 2. solange bis n = 0
-
+Der erste Wahr-Block der Wenn-Dann-Bedingung erhöht \p{y} streng monoton
+bis \p{y >= m}. 2. Falsch-Block der Wenn-Dann-Bedingung halbiert \p{n}
+bis \p{0}. 1. und 2. solange bis $n = 0$
 \end{description}
 \end{liAntwort}
 
@@ -170,16 +171,15 @@ und/oder \p{m} an unter der Annahme, dass \p{m >= 0} und \p{n > 0}.
 Begründen Sie Ihre Antwort.
 
 \begin{liAntwort}
+Anzahl der Wiederholungen der while-Schleife: $m + 1$:
 
-Anzahl der while Schleife:
+\begin{itemize}
+\item $m$ oft: bis $y < m$
+\item $+1$ Halbierung von $n$ und $y$ auf $0$ setzen
+\end{itemize}
 
-m + 1:
-
-m oft: bis y < m
-+1 Halbierung von n und y auf 0 setzen
-
-wegen dem n/2 ist die Laufzeit logarithmisch, ähnlich wie worst case bei
-der Binären Suche.
+wegen dem \p{n/2} ist die Laufzeit logarithmisch, ähnlich wie der worst
+case bei der Binären Suche.
 
 \begin{tabular}{lllll}
 n & m & x & y & ausgeführter Code, der Änderung bewirkte \\\hline
@@ -205,12 +205,11 @@ n & m & x & y & ausgeführter Code, der Änderung bewirkte \\\hline
 1 & 3 & 1 & 3 \\
 \end{tabular}
 
-%
 $\Theta((m + 1) \log_2 n)$
 
-Wegkürzen der Konstanten
+Wegkürzen der Konstanten:
 
-$\Theta(m \log n)$
+$\Rightarrow \Theta(m \log n)$
 \end{liAntwort}
 
 \end{enumerate}

@@ -29,8 +29,8 @@ in $\mathcal{O}$-Notation ist $\mathcal{O}(n)$.
 
 Die \j{while}-Schleife wird genau $n$ mal ausgeführt. In der Schleife
 wird die Variable \j{i} in der Zeile \j{i = i + 1;} inkrementiert. \j{i}
-wird mit 0 initialisiert. Die \j{while}-Schleife endet wenn \j{i} gleich
-groß ist wir \j{n}.
+wird mit 0 initialisiert. Die \j{while}-Schleife endet, wenn \j{i} gleich
+groß ist als \j{n}.
 \end{liAntwort}
 
 %%
@@ -70,58 +70,40 @@ für die folgende Rekursionsgleichung:
 
 \def\fn{\textstyle{\frac{1}{2}}n^2 + n}
 
-% https://www.wolframalpha.com/input/?i=T%5Bn%5D%3D%3DT%5Bn%2F2%5D%2B1%2F2n%5E2%2Bn
 \begin{displaymath}
 T(n) = \T{}{2} + \fn
 \end{displaymath}
 
+\liMasterExkurs
+
 \begin{liAntwort}
 
-\liRekursionsGleichung
+\liMasterVariablenDeklaration
+{1} % a
+{2} % b
+{\fn} % f(n) ohne $mathe$
 
-\begin{description}
-\item[$a$:] $a = 1$
-\item[$b$:] $b = 2$
-\item[$f(n)$:] $f(n) = \fn$
-\end{description}
+Nebenrechnung: $\log_b a = \log_2 1 = 0$
 
-$\log_b a = \log_2 1 = 0$
-
-\begin{description}
-\item[Erster Fall:]
-
-\liBedingungEins
-
-$\fn \notin \liO{n^{-1}}$
-
-\item[Zweiter Fall:]
-
-\liBedingungZwei
-
-$\fn \notin \liTheta{1}$
-
-\item[Dritter Fall:]
-
-\liBedingungDrei
-
-$\varepsilon = 2$
-
-$\fn \in \liOmega{n^2}$
-
-Für eine Abschätzung suchen wir eine Konstante, damit gilt:
-
-$1 \cdot f(\frac{n}{2}) \leq c \cdot f(n)$
-
-$\frac{1}{2} \cdot \frac{1}{4} n^2 + \frac{1}{2}n  \leq c \cdot (\frac{1}{2} \cdot n^2 + n)$
-
-Damit folgt $c = \frac{1}{4}$
-
-und $0 < c < 1$
+\liMasterFallRechnung
+% 1. Fall
+{$\fn \notin \liO{n^{-1}}$}
+% 2. Fall
+{$\fn \notin \liTheta{1}$}
+% 3. Fall
+{$\varepsilon = 2$ \\
+$\fn \in \liOmega{n^2}$ \\
+Für eine Abschätzung suchen wir eine Konstante, damit gilt: \\
+$1 \cdot f(\frac{n}{2}) \leq c \cdot f(n)$ \\
+$\frac{1}{2} \cdot \frac{1}{4} n^2 + \frac{1}{2}n  \leq c \cdot (\frac{1}{2} \cdot n^2 + n)$ \\
+Damit folgt $c = \frac{1}{4}$ \\
+und $0 < c < 1$}
 
 $\Rightarrow \Theta(\frac{1}{2}n^2 + n)$
 
 $\Rightarrow \Theta(n^2)$
-\end{description}
+
+\liMasterWolframLink{T[n]=T[n/2]\%2B1/2n^2\%2Bn}
 \end{liAntwort}
 \end{enumerate}
 

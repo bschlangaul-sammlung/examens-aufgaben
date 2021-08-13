@@ -1,5 +1,9 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{syntax}
+
+\usepackage{tikz}
+\usetikzlibrary{calc,shapes.multipart,chains,arrows,positioning}
+
 \begin{document}
 \let\j=\liJavaCode
 \liAufgabenTitel{DoubleLinkedList}
@@ -71,6 +75,40 @@ list.append("b");
 list.append("c");
 \end{minted}
 
+\begin{liAntwort}
+\begin{tikzpicture}[
+  list/.style={
+    rectangle split,
+    rectangle split parts=3,
+    draw,
+    rectangle split horizontal,
+    minimum size=18pt,
+    inner sep=5pt,
+    text=black,
+  },
+  ->,
+  start chain
+]
+
+  \node[list,on chain] (A) {\nodepart{second} a};
+  \node[list,on chain] (B) {\nodepart{second} b};
+  \node[list,on chain] (C) {\nodepart{second} c};
+
+  \node (head) [left= of A] {head};
+
+  \path[*->] let \p1 = (A.three), \p2 = (A.center) in (\x1,\y2) edge [bend left] ($(B.one)+(0,0.2)$);
+  \path[*->] let \p1 = (B.three), \p2 = (B.center) in (\x1,\y2) edge [bend left] ($(C.one)+(0,0.2)$);
+
+  \draw[*->] (head) -- ($(A.one)+(0.2,0.1)$);
+  \path[*->] ($(B.one)+(0.1,0.1)$) edge [bend left] ($(A.three)+(0,-0.05)$);
+  \path[*->] ($(C.one)+(0.1,0.1)$) edge [bend left] ($(B.three)+(0,-0.05)$);
+
+  \path[*->] ($(C.three)+(0.1,0.1)$) edge [bend left] ($(A.one)+(0,-0.05)$);
+  \path[*->] ($(A.one)+(0.1,0.2)$) edge [bend left] ($(C.three)+(0,0.2)$);
+
+\end{tikzpicture}
+\end{liAntwort}
+
 %%
 %
 %%
@@ -91,7 +129,7 @@ enthalten ist, zurückgibt.
 \item Implementieren Sie in der Klasse \j{DoubleLinkedList} die Methode
 \j{delete}, die das erste Vorkommen eines Wertes aus der Liste entfernt.
 Ist der Wert nicht in der Liste enthalten, terminiert die Methode
-„stillschweigend“, d. h. ohne Änderung der Liste und ohne Fehlermeldung.
+„stillschweigend“, \dh ohne Änderung der Liste und ohne Fehlermeldung.
 Sie dürfen die Methode \j{search} aus Teilaufgabe b) verwenden, auch
 wenn Sie sie nicht implementiert haben.
 
@@ -110,11 +148,11 @@ $\mathcal{O}(1)$ zu realisieren.
 
 \begin{liAntwort}
 In der Klasse wird ein Zähler eingefügt, der bei jedem Aufruf der
-Methode \j{append} eines nach oben gezählt wird und bei jedem
-erfolgreichen Löschen in der delete-Methode eines nach unten gezählt
-wird. Mit return kann der Zählerstand in $\mathcal{O}(1)$ ausgegeben
-werden. Dazu müsste ein Getter zum Ausgeben implementiert werden. Die
-Datenstruktur bleibt unverändert.
+Methode \j{append} um eins nach oben gezählt wird und bei jedem
+erfolgreichen Löschen in der \j{delete}-Methode um eins nach unten
+gezählt wird. Mit \j{return} kann der Zählerstand in $\mathcal{O}(1)$
+ausgegeben werden. Dazu müsste ein Getter zum Ausgeben implementiert
+werden. Die Datenstruktur bleibt unverändert.
 \end{liAntwort}
 
 \end{enumerate}
