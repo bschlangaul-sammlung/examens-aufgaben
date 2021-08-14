@@ -40,15 +40,58 @@ $j$ miteinander.
 \index{Insertionsort}
 
 \begin{liAntwort}
-\begin{description}
-\item[Best-Case] \strut
+\liPseudoUeberschrift{Best-Case}
 
 \liVertauschen{1 2 3 4 5 6 7}
 
-\item[Worst-Case] \strut
+% didaktik.java sortiere 1 2 3 4 5 6 7 -i
+\begin{verbatim}
+ 1  2  3  4  5  6  7  Eingabe
+ 1  2* 3  4  5  6  7  markiere (i 1)
+ 1  2  3* 4  5  6  7  markiere (i 2)
+ 1  2  3  4* 5  6  7  markiere (i 3)
+ 1  2  3  4  5* 6  7  markiere (i 4)
+ 1  2  3  4  5  6* 7  markiere (i 5)
+ 1  2  3  4  5  6  7* markiere (i 6)
+ 1  2  3  4  5  6  7  Ausgabe
+\end{verbatim}
+
+\liPseudoUeberschrift{Worst-Case}
 
 \liVertauschen{7 6 5 4 3 2 1}
-\end{description}
+
+% didaktik.java sortiere 7 6 5 4 3 2 1 -i
+\begin{verbatim}
+ 7  6  5  4  3  2  1  Eingabe
+ 7  6* 5  4  3  2  1  markiere (i 1)
+>7  7< 5  4  3  2  1  vertausche (i 0<>1)
+ 6  7  5* 4  3  2  1  markiere (i 2)
+ 6 >7  7< 4  3  2  1  vertausche (i 1<>2)
+>6  6< 7  4  3  2  1  vertausche (i 0<>1)
+ 5  6  7  4* 3  2  1  markiere (i 3)
+ 5  6 >7  7< 3  2  1  vertausche (i 2<>3)
+ 5 >6  6< 7  3  2  1  vertausche (i 1<>2)
+>5  5< 6  7  3  2  1  vertausche (i 0<>1)
+ 4  5  6  7  3* 2  1  markiere (i 4)
+ 4  5  6 >7  7< 2  1  vertausche (i 3<>4)
+ 4  5 >6  6< 7  2  1  vertausche (i 2<>3)
+ 4 >5  5< 6  7  2  1  vertausche (i 1<>2)
+>4  4< 5  6  7  2  1  vertausche (i 0<>1)
+ 3  4  5  6  7  2* 1  markiere (i 5)
+ 3  4  5  6 >7  7< 1  vertausche (i 4<>5)
+ 3  4  5 >6  6< 7  1  vertausche (i 3<>4)
+ 3  4 >5  5< 6  7  1  vertausche (i 2<>3)
+ 3 >4  4< 5  6  7  1  vertausche (i 1<>2)
+>3  3< 4  5  6  7  1  vertausche (i 0<>1)
+ 2  3  4  5  6  7  1* markiere (i 6)
+ 2  3  4  5  6 >7  7< vertausche (i 5<>6)
+ 2  3  4  5 >6  6< 7  vertausche (i 4<>5)
+ 2  3  4 >5  5< 6  7  vertausche (i 3<>4)
+ 2  3 >4  4< 5  6  7  vertausche (i 2<>3)
+ 2 >3  3< 4  5  6  7  vertausche (i 1<>2)
+>2  2< 3  4  5  6  7  vertausche (i 0<>1)
+ 1  2  3  4  5  6  7  Ausgabe
+\end{verbatim}
 \end{liAntwort}
 
 %%
@@ -59,18 +102,6 @@ $j$ miteinander.
 Feldindizes beginnen bei 1), bei der das letzte Element eines Teilfeldes
 als Pivot-Element gewählt wird.
 \index{Quicksort}
-
-%%
-% iii)
-%%
-
-\item \textbf{QuicksortVar}: Variante von Quicksort, bei der immer das
-mittlere Element eines Teilfeldes als Pivot-Element gewählt wird
-(Pseudocode s.u., nur eine Zeile neu).
-
-Bei einem Aufruf von PartitionVar auf ein Teilfeld $A[l \dots r]$ wird
-also erst mithilfe der Unterroutine Swap $A\left[\lfloor \frac{l + r - 1}{2} \rfloor\right]$ mit $A[r]$
-vertauscht.
 
 \begin{function}
 \caption{Quicksort(A, $l = 1$, $r = A.\text{length}$)}
@@ -94,6 +125,89 @@ $i = l$\;
   }
 }
 \end{function}
+
+\begin{liAntwort}
+\liPseudoUeberschrift{Best-Case}
+
+\liVertauschen{1  3  2  6  5  7  4}
+
+% didaktik.java sortiere 1 3 2 6 5 7 4 -q --rechts
+\begin{verbatim}
+ 1  3  2  6  5  7  4  zerlege
+ 1  3  2  6  5  7  4* markiere (i 6)
+>1< 3  2  6  5  7  4  vertausche (i 0<>0)
+ 1 >3< 2  6  5  7  4  vertausche (i 1<>1)
+ 1  3 >2< 6  5  7  4  vertausche (i 2<>2)
+ 1  3  2 >6  5  7  4< vertausche (i 3<>6)
+ 1  3  2              zerlege
+ 1  3  2*             markiere (i 2)
+>1< 3  2              vertausche (i 0<>0)
+ 1 >3  2<             vertausche (i 1<>2)
+             5  7  6  zerlege
+             5  7  6* markiere (i 6)
+            >5< 7  6  vertausche (i 4<>4)
+             5 >7  6< vertausche (i 5<>6)
+\end{verbatim}
+
+\liPseudoUeberschrift{Worst-Case}
+
+\liVertauschen{7 6 5 4 3 2 1}
+
+% didaktik.java sortiere 1 2 3 4 5 6 7 -q --rechts
+\begin{verbatim}
+ 1  2  3  4  5  6  7  zerlege
+ 1  2  3  4  5  6  7* markiere (i 6)
+>1< 2  3  4  5  6  7  vertausche (i 0<>0)
+ 1 >2< 3  4  5  6  7  vertausche (i 1<>1)
+ 1  2 >3< 4  5  6  7  vertausche (i 2<>2)
+ 1  2  3 >4< 5  6  7  vertausche (i 3<>3)
+ 1  2  3  4 >5< 6  7  vertausche (i 4<>4)
+ 1  2  3  4  5 >6< 7  vertausche (i 5<>5)
+ 1  2  3  4  5  6 >7< vertausche (i 6<>6)
+ 1  2  3  4  5  6     zerlege
+ 1  2  3  4  5  6*    markiere (i 5)
+>1< 2  3  4  5  6     vertausche (i 0<>0)
+ 1 >2< 3  4  5  6     vertausche (i 1<>1)
+ 1  2 >3< 4  5  6     vertausche (i 2<>2)
+ 1  2  3 >4< 5  6     vertausche (i 3<>3)
+ 1  2  3  4 >5< 6     vertausche (i 4<>4)
+ 1  2  3  4  5 >6<    vertausche (i 5<>5)
+ 1  2  3  4  5        zerlege
+ 1  2  3  4  5*       markiere (i 4)
+>1< 2  3  4  5        vertausche (i 0<>0)
+ 1 >2< 3  4  5        vertausche (i 1<>1)
+ 1  2 >3< 4  5        vertausche (i 2<>2)
+ 1  2  3 >4< 5        vertausche (i 3<>3)
+ 1  2  3  4 >5<       vertausche (i 4<>4)
+ 1  2  3  4           zerlege
+ 1  2  3  4*          markiere (i 3)
+>1< 2  3  4           vertausche (i 0<>0)
+ 1 >2< 3  4           vertausche (i 1<>1)
+ 1  2 >3< 4           vertausche (i 2<>2)
+ 1  2  3 >4<          vertausche (i 3<>3)
+ 1  2  3              zerlege
+ 1  2  3*             markiere (i 2)
+>1< 2  3              vertausche (i 0<>0)
+ 1 >2< 3              vertausche (i 1<>1)
+ 1  2 >3<             vertausche (i 2<>2)
+ 1  2                 zerlege
+ 1  2*                markiere (i 1)
+>1< 2                 vertausche (i 0<>0)
+ 1 >2<                vertausche (i 1<>1)
+\end{verbatim}
+\end{liAntwort}
+
+%%
+% iii)
+%%
+
+\item \textbf{QuicksortVar}: Variante von Quicksort, bei der immer das
+mittlere Element eines Teilfeldes als Pivot-Element gewählt wird
+(Pseudocode s.u., nur eine Zeile neu).
+
+Bei einem Aufruf von PartitionVar auf ein Teilfeld $A[l \dots r]$ wird
+also erst mithilfe der Unterroutine Swap $A\left[\lfloor \frac{l + r - 1}{2} \rfloor\right]$ mit $A[r]$
+vertauscht.
 
 \begin{function}
 \caption{QuicksortVar(A, $l = 1$, $r = A.\text{length}$)}
@@ -120,6 +234,88 @@ $i = l$\;
   }
 }
 \end{function}
+
+\begin{liAntwort}
+\liPseudoUeberschrift{Best-Case}
+
+\liVertauschen{1  2  3  4  5  6  7}
+
+% didaktik.java sortiere 1 2 3 4 5 6 7 -q --mitte
+\begin{verbatim}
+ 1  2  3  4  5  6  7  zerlege
+ 1  2  3  4* 5  6  7  markiere (i 3)
+ 1  2  3 >4  5  6  7< vertausche (i 3<>6)
+>1< 2  3  7  5  6  4  vertausche (i 0<>0)
+ 1 >2< 3  7  5  6  4  vertausche (i 1<>1)
+ 1  2 >3< 7  5  6  4  vertausche (i 2<>2)
+ 1  2  3 >7  5  6  4< vertausche (i 3<>6)
+ 1  2  3              zerlege
+ 1  2* 3              markiere (i 1)
+ 1 >2  3<             vertausche (i 1<>2)
+>1< 3  2              vertausche (i 0<>0)
+ 1 >3  2<             vertausche (i 1<>2)
+             5  6  7  zerlege
+             5  6* 7  markiere (i 5)
+             5 >6  7< vertausche (i 5<>6)
+            >5< 7  6  vertausche (i 4<>4)
+             5 >7  6< vertausche (i 5<>6)
+ 1  2  3  4  5  6  7  Ausgabe
+\end{verbatim}
+
+\liPseudoUeberschrift{Worst-Case}
+
+\liVertauschen{2 4 6 7 1 5 3}
+
+% didaktik.java sortiere 2 4 6 7 1 5 3  -q --mitte
+\begin{verbatim}
+ 2  4  6  7  1  5  3  zerlege
+ 2  4  6  7* 1  5  3  markiere (i 3)
+ 2  4  6 >7  1  5  3< vertausche (i 3<>6)
+>2< 4  6  3  1  5  7  vertausche (i 0<>0)
+ 2 >4< 6  3  1  5  7  vertausche (i 1<>1)
+ 2  4 >6< 3  1  5  7  vertausche (i 2<>2)
+ 2  4  6 >3< 1  5  7  vertausche (i 3<>3)
+ 2  4  6  3 >1< 5  7  vertausche (i 4<>4)
+ 2  4  6  3  1 >5< 7  vertausche (i 5<>5)
+ 2  4  6  3  1  5 >7< vertausche (i 6<>6)
+ 2  4  6  3  1  5     zerlege
+ 2  4  6* 3  1  5     markiere (i 2)
+ 2  4 >6  3  1  5<    vertausche (i 2<>5)
+>2< 4  5  3  1  6     vertausche (i 0<>0)
+ 2 >4< 5  3  1  6     vertausche (i 1<>1)
+ 2  4 >5< 3  1  6     vertausche (i 2<>2)
+ 2  4  5 >3< 1  6     vertausche (i 3<>3)
+ 2  4  5  3 >1< 6     vertausche (i 4<>4)
+ 2  4  5  3  1 >6<    vertausche (i 5<>5)
+ 2  4  5  3  1        zerlege
+ 2  4  5* 3  1        markiere (i 2)
+ 2  4 >5  3  1<       vertausche (i 2<>4)
+>2< 4  1  3  5        vertausche (i 0<>0)
+ 2 >4< 1  3  5        vertausche (i 1<>1)
+ 2  4 >1< 3  5        vertausche (i 2<>2)
+ 2  4  1 >3< 5        vertausche (i 3<>3)
+ 2  4  1  3 >5<       vertausche (i 4<>4)
+ 2  4  1  3           zerlege
+ 2  4* 1  3           markiere (i 1)
+ 2 >4  1  3<          vertausche (i 1<>3)
+>2< 3  1  4           vertausche (i 0<>0)
+ 2 >3< 1  4           vertausche (i 1<>1)
+ 2  3 >1< 4           vertausche (i 2<>2)
+ 2  3  1 >4<          vertausche (i 3<>3)
+ 2  3  1              zerlege
+ 2  3* 1              markiere (i 1)
+ 2 >3  1<             vertausche (i 1<>2)
+>2< 1  3              vertausche (i 0<>0)
+ 2 >1< 3              vertausche (i 1<>1)
+ 2  1 >3<             vertausche (i 2<>2)
+ 2  1                 zerlege
+ 2* 1                 markiere (i 0)
+>2  1<                vertausche (i 0<>1)
+>1< 2                 vertausche (i 0<>0)
+ 1 >2<                vertausche (i 1<>1)
+\end{verbatim}
+\end{liAntwort}
+
 \end{enumerate}
 
 %%
@@ -129,6 +325,12 @@ $i = l$\;
 \item Geben Sie die asymptotische Best- und Worst-Case-Laufzeit von
 \textbf{Mergesort} an.
 \index{Mergesort}
+
+\begin{liAntwort}
+Best-Case: $\mathcal{O}(n\cdot \log(n))$
+
+Worst-Case: $\mathcal{O}(n^2)$
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}
