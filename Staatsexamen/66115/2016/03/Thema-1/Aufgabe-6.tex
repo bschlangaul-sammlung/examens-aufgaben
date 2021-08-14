@@ -1,0 +1,79 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{1 45 8 53 9 2 17 10}
+\section{Aufgabe 6
+\index{Quicksort}
+\footcite{66115:2016:03}}
+
+Sortieren Sie die Werte
+
+\begin{center}
+1 45 8 53 9 2 17 10
+\end{center}
+
+mit Quicksort.
+
+% sortiere 1 45 8 53 9 2 17 10 -q
+\begin{liAntwort}
+Sortieralgorithmus nach Saake
+\begin{verbatim}
+ 1   45  8   53  9   2   17  10  zerlege
+ 1   45  8   53* 9   2   17  10  markiere (i 3)
+ 1   45  8  >53  9   2   17  10< vertausche (i 3<>7)
+>1<  45  8   10  9   2   17  53  vertausche (i 0<>0)
+ 1  >45< 8   10  9   2   17  53  vertausche (i 1<>1)
+ 1   45 >8<  10  9   2   17  53  vertausche (i 2<>2)
+ 1   45  8  >10< 9   2   17  53  vertausche (i 3<>3)
+ 1   45  8   10 >9<  2   17  53  vertausche (i 4<>4)
+ 1   45  8   10  9  >2<  17  53  vertausche (i 5<>5)
+ 1   45  8   10  9   2  >17< 53  vertausche (i 6<>6)
+ 1   45  8   10  9   2   17 >53< vertausche (i 7<>7)
+ 1   45  8   10  9   2   17      zerlege
+ 1   45  8   10* 9   2   17      markiere (i 3)
+ 1   45  8  >10  9   2   17<     vertausche (i 3<>6)
+>1<  45  8   17  9   2   10      vertausche (i 0<>0)
+ 1  >45  8<  17  9   2   10      vertausche (i 1<>2)
+ 1   8  >45  17  9<  2   10      vertausche (i 2<>4)
+ 1   8   9  >17  45  2<  10      vertausche (i 3<>5)
+ 1   8   9   2  >45  17  10<     vertausche (i 4<>6)
+ 1   8   9   2                   zerlege
+ 1   8*  9   2                   markiere (i 1)
+ 1  >8   9   2<                  vertausche (i 1<>3)
+>1<  2   9   8                   vertausche (i 0<>0)
+ 1  >2<  9   8                   vertausche (i 1<>1)
+ 1   2  >9   8<                  vertausche (i 2<>3)
+ 1   2                           zerlege
+ 1*  2                           markiere (i 0)
+>1   2<                          vertausche (i 0<>1)
+>2   1<                          vertausche (i 0<>1)
+                     17  45      zerlege
+                     17* 45      markiere (i 5)
+                    >17  45<     vertausche (i 5<>6)
+                    >45  17<     vertausche (i 5<>6)
+\end{verbatim}
+
+Sortieralgorithmus nach Horare
+% sortiere 1 45 8 53 9 2 17 10 -Q
+\begin{verbatim}
+ 1   45  8   53  9   2   17  10  zerlege
+ 1   45  8   53* 9   2   17  10  markiere (i 3)
+ 1   45  8  >53  9   2   17  10< vertausche (i 3<>7)
+ 1   45  8   10  9   2   17      zerlege
+ 1   45  8   10* 9   2   17      markiere (i 3)
+ 1  >45  8   10  9   2<  17      vertausche (i 1<>5)
+ 1   2   8  >10  9<  45  17      vertausche (i 3<>4)
+ 1   2   8   9                   zerlege
+ 1   2*  8   9                   markiere (i 1)
+ 1   2                           zerlege
+ 1*  2                           markiere (i 0)
+         8   9                   zerlege
+         8*  9                   markiere (i 2)
+                 10  45  17      zerlege
+                 10  45* 17      markiere (i 5)
+                 10 >45  17<     vertausche (i 5<>6)
+                 10  17          zerlege
+                 10* 17          markiere (i 4)
+\end{verbatim}
+\end{liAntwort}
+\end{document}
