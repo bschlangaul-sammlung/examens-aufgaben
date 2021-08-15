@@ -1,0 +1,67 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Top-Level-Domains (TLD)}
+\section{Aufgabe 2
+\index{Sortieralgorithmen}
+\footcite{66115:2017:03}}
+
+In dieser Aufgabe sei vereinfachend angenommen, dass sich
+Top-Level-Domains (TLD) ausschließlich aus zwei oder drei der 26
+Kleinbuchstaben des deutschen Alphabets ohne Umlaute zusammensetzen. Im
+Folgenden sollen TLDs lexikographisch aufsteigend sortiert werden, d.h.
+eine TLD $(s_1, s_2)$ mit zwei Buchstaben (z. B. „co“ für Kolumbien)
+wird also vor einer TLD $(t_1, t_2, t_3)$ der Länge drei (z. B. „com“)
+einsortiert, wenn $s_1 < t_1  \lor (s_1 = t_1 \land s_2 \leq t_2)$ gilt.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Sortieren Sie zunächst die Reihung [„de“, „com“, „uk“, „org“,
+„co“, „net“, „fr“, „ee“] schrittweise unter Verwendung des
+Radix-Sortierverfahrens (Bucketsort). Erstellen Sie dazu eine Tabelle
+wie das folgende Muster und tragen Sie dabei in das Feld „Stelle“ die
+Position des Buchstabens ein, nach dem im jeweiligen Durchgang sortiert
+wird (das Zeichen am TLD-Anfang habe dabei die „Stelle“ 1).
+\index{Bucketsort}
+
+\begin{tabular}{lllllllll}
+Stelle & \multicolumn{7}{l}{Reihung} \\
+       & de & com & uk & org & co & net & fr & ee \\
+\end{tabular}
+
+%%
+% b)
+%%
+
+\item Sortieren Sie nun die gleiche Reihung wieder schrittweise, diesmal
+jedoch unter Verwendung des Mergesort-Verfahrens (Sortieren durch
+Mischen). Erstellen Sie dazu eine Tabelle wie das folgende Muster und
+vermerken Sie in der ersten Spalte jeweils welche Operation durchgeführt
+wurde: Wenn Sie die Reihung geteilt haben, schreiben Sie in die linke
+Spalte ein T und markieren Sie die Stelle, an der Sie die Reihung
+geteilt haben, mit einem senkrechten Strich „| “. Wenn Sie zwei
+Teilreihungen durch Mischen zusammengeführt haben, schreiben Sie ein M
+in die linke Spalte und unterstreichen Sie die zusammengemischten
+Einträge. Beginnen Sie mit dem rekursiven Abstieg immer in der linken
+Hälfte einer (Teil-)Reihung.
+
+Op. | Reihung
+
+T | de, com, uk, org | co, net, fr, ee
+
+%%
+% c)
+%%
+
+\item Implementieren Sie das Sortierverfahren Quicksort für String-TLDs
+in einer gängigen Programmiersprache Ihrer Wahl. Ihr Programm (Ihre
+Methode) wird mit drei Parametern gestartet: dem String-Array mit den zu
+sortierenden TLDs selbst sowie jeweils der Position des ersten und des
+letzten zu sortierenden Eintrags im Array.
+
+\end{enumerate}
+\end{document}

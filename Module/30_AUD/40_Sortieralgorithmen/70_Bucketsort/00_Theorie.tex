@@ -1,0 +1,49 @@
+\documentclass{lehramt-informatik-haupt}
+\liLadePakete{syntax}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorie-Teil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Bucketsort}
+
+\begin{liQuellen}
+\item \cite[Seite 65-58]{aud:fs:tafeluebung-11}
+\item \cite{wiki:bucketsort}
+\end{liQuellen}
+
+BucketSort
+; Sortieren durch einfaches Fachverteilen
+• Voraussetzung:
+• Werte sind Elemente einer bekannten, endlichen Multimenge
+• auf der Multimenge ist eine Totalordnung definiert
+• für jeden möglichen Wert steht ein Fach zur Verfügung
+• Vorgehen:
+1. alle Elemente in das jeweils passende entsprechende Fach einsortieren
+2. die Elemente aus den Fächern der Reihe nach einsammeln
+
+BucketSort ist nicht-vergleichsbasiert, denn das Verfahren vergleicht nie zwei Elemente
+direkt miteinander.
+
+Eigenschaften von BucketSort:
+• Laufzeitkomplexität:
+O( n + m ) (im Best-, Average- und Worst-Case)
+• bei n zu sortierenden Werten
+• und m Fächern (also m möglichen Werten)
+• benötigt Speicher für die Fächer
+• Stabilität einfach zu erreichen
+; out-of-place
+Hinweis
+
+In einer Variation des Algorithmus kann man auch jeweils ein Bucket für
+mehrere mögliche Werte haben. In diesem Fall werden die einzelnen
+Buckets beim Einfügen mit einem weiteren Sortierverfahren (z.B.
+InsertionSort) sortiert.\footcite[Seite 65-58]{aud:fs:tafeluebung-11}
+
+\liJavaDatei[firstline=3,lastline=76]{sortier/Bucket}
+
+\literatur
+
+\end{document}
