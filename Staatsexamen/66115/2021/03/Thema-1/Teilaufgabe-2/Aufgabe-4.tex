@@ -1,0 +1,133 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{graph,spalten}
+\begin{document}
+\liAufgabenTitel{Kürzeste-Wege-Bäume und minimale Spannbäume}
+\section{Aufgabe 4
+\index{Graphen}
+\footcite{66115:2021:03}}
+
+Die Algorithmen von Dijkstra und Jarník-Prim gehen ähnlich vor. Beide
+berechnen, ausgehend von einem Startknoten, einen Baum. Allerdings
+berechnet der Algorithmus von Dijkstra\index{Algorithmus von Dijkstra}
+einen Kürzesten-Wege-Baum, während der Algorithmus von
+Jarník-Prim\index{Algorithmus von Prim} einen minimalen Spannbaum
+berechnet.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Geben Sie einen ungerichteten gewichteten Graphen $G$ mit
+höchstens fünf Knoten und einen Startknoten $s$ von $G$ an, so dass
+\textbf{Dijkstra}($G$, $s$) und \textbf{Jarník-Prim}($G$, $s$) ausgehend
+von $s$ verschiedene Bäume in $G$ liefern. Geben Sie beide Bäume an.
+
+\begin{liGraphenFormat}
+A: 0 0
+B: 1 1
+S: 2 0
+C: 1 -1
+A -- B: 1
+A -- C: 1
+A -- S: 2
+B -- S: 2
+C -- S: 2
+\end{liGraphenFormat}
+
+\begin{liAntwort}
+\begin{multicols}{2}
+\liPseudoUeberschrift{Originalgraph}
+
+\begin{tikzpicture}[li graph]
+\node (A) at (0,0) {A};
+\node (B) at (1,1) {B};
+\node (C) at (1,-1) {C};
+\node (S) at (2,0) {S};
+
+\path (A) edge node {1} (B);
+\path (A) edge node {1} (C);
+\path (A) edge node {2} (S);
+\path (B) edge node {2} (S);
+\path (C) edge node {2} (S);
+\end{tikzpicture}
+
+\liPseudoUeberschrift{Dijkstra-Wegebaum von S aus:}
+
+\begin{tikzpicture}[li graph]
+\node (A) at (0,0) {A};
+\node (B) at (1,1) {B};
+\node (C) at (1,-1) {C};
+\node (S) at (2,0) {S};
+
+\path (A) edge node {2} (S);
+\path (B) edge node {2} (S);
+\path (C) edge node {2} (S);
+\end{tikzpicture}
+
+\columnbreak
+
+\liPseudoUeberschrift{Minimaler Spannbaum 1}
+
+\begin{tikzpicture}[li graph]
+\node (A) at (0,0) {A};
+\node (B) at (1,1) {B};
+\node (C) at (1,-1) {C};
+\node (S) at (2,0) {S};
+
+\path (A) edge node {1} (B);
+\path (A) edge node {1} (C);
+\path (A) edge node {2} (S);
+\end{tikzpicture}
+
+\liPseudoUeberschrift{Minimaler Spannbaum 2}
+
+\begin{tikzpicture}[li graph]
+\node (A) at (0,0) {A};
+\node (B) at (1,1) {B};
+\node (C) at (1,-1) {C};
+\node (S) at (2,0) {S};
+
+\path (A) edge node {1} (B);
+\path (A) edge node {1} (C);
+\path (B) edge node {2} (S);
+\end{tikzpicture}
+
+\liPseudoUeberschrift{Minimaler Spannbaum 3}
+
+\begin{tikzpicture}[li graph]
+\node (A) at (0,0) {A};
+\node (B) at (1,1) {B};
+\node (C) at (1,-1) {C};
+\node (S) at (2,0) {S};
+
+\path (A) edge node {1} (B);
+\path (A) edge node {1} (C);
+\path (C) edge node {2} (S);
+\end{tikzpicture}
+\end{multicols}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Geben Sie eine unendlich große Menge von Graphen an, auf denen der
+Algorithmus von Jarník-Prim asymptotisch schneller ist als der
+Algorithmus von Kruskal, der ebenfalls minimale Spannbäume berechnet.
+
+\emph{Hinweis:} Für einen Graphen mit $n$ Knoten und $m$ Kanten benötigt
+Jarník-Prim $\mathcal{O}(m + n \log n)$ Zeit, Kruskal $\mathcal{O}(m
+\log m)$ Zeit.
+
+%%
+% c)
+%%
+
+\item Sei $Z$ die Menge der zusammenhängenden Graphen und $G \in Z$. Sei
+$n$ die Anzahl der Knoten von $G$ und $m$ die Anzahl der Kanten von $G$.
+Entscheiden Sie mit Begründung, ob $\log m \in \Theta(\log n)$ gilt.
+
+\end{enumerate}
+\end{document}

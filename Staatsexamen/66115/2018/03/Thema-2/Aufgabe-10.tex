@@ -160,12 +160,55 @@ Prim, wenn die grauen Knoten in einem Heap (= Halde) nach Distanz
 verwaltet werden? Sei dabei $n$ die Anzahl an Knoten und $m$ die Anzahl
 an Kanten des Graphen. Eine Begründung ist nicht erforderlich.
 
+\begin{liAntwort}
+$\mathcal{O}(n \cdot \log(n) + m)$
+\end{liAntwort}
+
 %%
 % c)
 %%
 
 \item Zeigen Sie durch ein kleines Beispiel, dass ein minimaler
 Spannbaum eines ungerichteten Graphen nicht immer eindeutig ist.
+
+\begin{liGraphenFormat}
+a: 0 0
+b: 2 2
+c: 4 0
+a -- b: 1
+b -- c: 1
+a -- c: 1
+\end{liGraphenFormat}
+
+\begin{liAntwort}
+\begin{tikzpicture}[li graph]
+\node (a) at (0,0) {a};
+\node (b) at (1,1) {b};
+\node (c) at (2,0) {c};
+
+\path (a) edge node {1} (b);
+\path (a) edge node {1} (c);
+\path (b) edge node {1} (c);
+\end{tikzpicture}
+\hspace{0.5cm}
+\begin{tikzpicture}[li graph]
+\node (a) at (0,0) {a};
+\node (b) at (1,1) {b};
+\node (c) at (2,0) {c};
+
+\path (a) edge node {1} (b);
+\path (a) edge node {1} (c);
+\end{tikzpicture}
+\hspace{0.5cm}
+\begin{tikzpicture}[li graph]
+\node (a) at (0,0) {a};
+\node (b) at (1,1) {b};
+\node (c) at (2,0) {c};
+
+\path (a) edge node {1} (b);
+\path (b) edge node {1} (c);
+\end{tikzpicture}
+\end{liAntwort}
 
 %%
 % d)
@@ -175,5 +218,10 @@ Spannbaum eines ungerichteten Graphen nicht immer eindeutig ist.
 einem beliebigen Algorithmus für minimale Spannbäume berechnet werden
 kann. In welcher Laufzeitkomplexität kann ein maximaler Spannbaum
 berechnet werden?
+
+\begin{liAntwort}
+Alle Kantengewichte negieren. In $\mathcal{O}(n \cdot \log(n) + m)$ wie
+der Algorithmus von Prim.
+\end{liAntwort}
 \end{enumerate}
 \end{document}
