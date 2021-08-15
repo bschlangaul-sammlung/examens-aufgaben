@@ -33,10 +33,10 @@ schlechtesten Fall.
 \index{Lineare Suche}
 
 \begin{liAntwort}
-Die Zahl der Würfe im schlechtesten Fall ist $\mathcal{O} (k)$, wobei $k$
-die Anzahl der Sprossen ist. Geht das Smartphone erst bei der höchsten
-Sprosse kaputt, muss es $k$ mal heruntergeworfen werden. Die Komplexität
-entspricht der der linearen Suche.
+Die Zahl der Würfe im schlechtesten Fall ist $\mathcal{O} (k)$, wobei
+$k$ die Anzahl der Sprossen ist. Geht das Smartphone erst bei der
+höchsten Sprosse kaputt, muss es $k$ mal heruntergeworfen werden. Die
+Komplexität entspricht der der linearen Suche.
 \end{liAntwort}
 
 %%
@@ -44,7 +44,7 @@ entspricht der der linearen Suche.
 %%
 
 \item Geben Sie nun ein Verfahren zur Ermittlung der höchsten sicheren
-Sprosse an, welches nur $\mathcal{O} (\log n)$ Würfe benötigt, dafür
+Sprosse an, welches nur $\mathcal{O}(\log n)$ Würfe benötigt, dafür
 aber möglicherweise mehr Smartphones verbraucht.
 
 \begin{liAntwort}
@@ -65,13 +65,6 @@ begründen Sie Ihre Funktionsweise und Wurfzahl.
 
 Tipp: der erste Testwurf erfolgt von Sprosse $\left\lceil\sqrt{n}\,\right\rceil$.
 
-\begin{liAntwort}
-Das Vorgehen ist folgendermaßen: Man beginnt auf Stufe 0 und falls das
-Handy nicht kaputt geht, addiert man jeweils Wurzel n. Falls das Handy
-kaputt geht, geht man linear in Einerschritten das Intervall von der
-unteren Grenze (d. h. von der Stufe vor der letzten Addition) bis zur
-Kaputtstufe ab.
-
 \begin{liExkurs}[Interpolationssuche]
 Die Interpolationssuche, auch Intervallsuche genannt, ist ein von der
 binären Suche abgeleitetes Suchverfahren, das auf Listen und Feldern zum
@@ -91,22 +84,28 @@ Bereich begonnen werden dürfte.
 Quadratische Binärsuche ist ein Suchalgorithmus ähnlich der Binärsuche
 oder Interpolationssuche. Es versucht durch Reduzierung des Intervalls
 in jedem Rekursionsschritt die Nachteile der Interpolationssuche zu
-vermeiden. Idee
+vermeiden.
 
 Nach dem Muster der Interpolationssuche wird zunächst in jedem
-rekursiven Schritt die vermutete Position k interpoliert. Anschließend
+rekursiven Schritt die vermutete Position $k$ interpoliert. Anschließend
 wird – um die Nachteile der Interpolationssuche zu vermeiden – das
-Intervall der Länge n $\sqrt{n}$ gesucht, in
+Intervall der Länge $\sqrt{n}$ gesucht, in
 dem sich der gesuchte Wert befindet. Auf dieses Intervall wird der
 nächste rekursive Aufruf der Suche angewendet.
 
 Auf diese Weise verkleinert sich der Suchraum bei gegebener Liste der
-Länge n bei jedem rekursiven Schritt auf eine Liste der Länge $n$
+Länge $n$ bei jedem rekursiven Schritt auf eine Liste der Länge $n$
 $\sqrt n$.
 \liFussnoteUrl{https://de.wikipedia.org/wiki/Quadratische_Binärsuche}
 \end{liExkurs}
 
-http://www.inf.fu-berlin.de/lehre/WS06/HA/skript/vorlesung6.pdf
+\begin{liAntwort}
+Das Vorgehen ist folgendermaßen: Man beginnt auf Stufe 0 und falls das
+Handy nicht kaputt geht, addiert man jeweils Wurzel n. Falls das Handy
+kaputt geht, geht man linear in Einerschritten das Intervall von der
+unteren Grenze (\dh von der Stufe vor der letzten Addition) bis zur
+Kaputtstufe ab.
+\liFussnoteUrl{http://www.inf.fu-berlin.de/lehre/WS06/HA/skript/vorlesung6.pdf}
 
 \end{liAntwort}
 
