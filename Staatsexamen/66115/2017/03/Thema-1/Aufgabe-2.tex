@@ -1,6 +1,11 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{syntax}
 \begin{document}
+% fett
+\let\f=\textbf
+% unterstrich
+\def\u{\_}
+\def\U{\textbf{\_}}
 \liAufgabenTitel{Top-Level-Domains (TLD)}
 \section{Aufgabe 2
 \index{Sortieralgorithmen}
@@ -9,10 +14,10 @@
 In dieser Aufgabe sei vereinfachend angenommen, dass sich
 Top-Level-Domains (TLD) ausschließlich aus zwei oder drei der 26
 Kleinbuchstaben des deutschen Alphabets ohne Umlaute zusammensetzen. Im
-Folgenden sollen TLDs lexikographisch aufsteigend sortiert werden, d.h.
+Folgenden sollen TLDs lexikographisch aufsteigend sortiert werden, \dh
 eine TLD $(s_1, s_2)$ mit zwei Buchstaben (z. B. „co“ für Kolumbien)
 wird also vor einer TLD $(t_1, t_2, t_3)$ der Länge drei (z. B. „com“)
-einsortiert, wenn $s_1 < t_1  \lor (s_1 = t_1 \land s_2 \leq t_2)$ gilt.
+einsortiert, wenn $s_1 < t_1 \lor (s_1 = t_1 \land s_2 \leq t_2)$ gilt.
 
 \begin{enumerate}
 
@@ -26,12 +31,21 @@ Radix-Sortierverfahrens (Bucketsort). Erstellen Sie dazu eine Tabelle
 wie das folgende Muster und tragen Sie dabei in das Feld „Stelle“ die
 Position des Buchstabens ein, nach dem im jeweiligen Durchgang sortiert
 wird (das Zeichen am TLD-Anfang habe dabei die „Stelle“ 1).
-\index{Bucketsort}
+\index{Bucketsort}\index{Radixsort}
 
+\begin{liExkurs}[Alphabet]
+abcdefghijklmnopqrstuvwxyz
+\end{liExkurs}
+
+\begin{liAntwort}
 \begin{tabular}{lllllllll}
 Stelle & \multicolumn{7}{l}{Reihung} \\
-       & de & com & uk & org & co & net & fr & ee \\
+       & de\u     & com      & uk\u     & org      & co\u     & net     & fr\u     & ee\u     \\
+3      & de\U     & uk\U     & co\U     & fr\U     & ee\U     & or\f{g} & co\f{m}  & ne\f{t}  \\
+2      & d\f{e}\u & e\f{e}\u & n\f{e}t  & u\f{k}\u & c\f{o}\u & c\f{o}m & f\f{r}\u & o\f{r}g  \\
+1      & \f{c}o\u & \f{c}om  & \f{d}e\u & \f{e}e\u & \f{f}r\u & \f{n}et & \f{o}rg  & \f{u}k\u \\
 \end{tabular}
+\end{liAntwort}
 
 %%
 % b)
@@ -43,15 +57,39 @@ Mischen). Erstellen Sie dazu eine Tabelle wie das folgende Muster und
 vermerken Sie in der ersten Spalte jeweils welche Operation durchgeführt
 wurde: Wenn Sie die Reihung geteilt haben, schreiben Sie in die linke
 Spalte ein T und markieren Sie die Stelle, an der Sie die Reihung
-geteilt haben, mit einem senkrechten Strich „| “. Wenn Sie zwei
+geteilt haben, mit einem senkrechten Strich „|“. Wenn Sie zwei
 Teilreihungen durch Mischen zusammengeführt haben, schreiben Sie ein M
 in die linke Spalte und unterstreichen Sie die zusammengemischten
 Einträge. Beginnen Sie mit dem rekursiven Abstieg immer in der linken
 Hälfte einer (Teil-)Reihung.
+\index{Mergesort}
 
-Op. | Reihung
+% 1 co
+% 2 com
+% 3 de
+% 4 ee
+% 5 fr
+% 6 net
+% 7 org
+% 8 uk
 
-T | de, com, uk, org | co, net, fr, ee
+\begin{verbatim}
+O | Reihung
+T | de_   com   uk_   org | co_   net   fr_   ee_
+T | de_   com | uk_   org
+T | de_ | com
+M | com   de_
+T |             uk_ | org
+M |             org   uk_
+M | com   de_   org   uk_
+T |                         co_   net | fr_   ee_
+T |                         co_ | net
+M |                         co_   net
+T |                                     fr_ | ee_
+T |                                     ee_ | fr_
+M |                         co_   ee_   fr_   net
+M | co_   com   de_   ee_   fr_   net   org   uk_
+\end{verbatim}
 
 %%
 % c)
@@ -62,6 +100,11 @@ in einer gängigen Programmiersprache Ihrer Wahl. Ihr Programm (Ihre
 Methode) wird mit drei Parametern gestartet: dem String-Array mit den zu
 sortierenden TLDs selbst sowie jeweils der Position des ersten und des
 letzten zu sortierenden Eintrags im Array.
+\index{Quicksort}
+
+\begin{liAntwort}
+\liJavaExamen{66115}{2017}{03}{Quicksort}
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}
