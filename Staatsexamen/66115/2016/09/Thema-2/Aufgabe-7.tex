@@ -1,0 +1,191 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{pseudo,mathe,master-theorem}
+\begin{document}
+\let\O=\liO
+\let\o=\liOmega
+\let\T=\liT
+\let\t=\liTheta
+
+\liAufgabenTitel{Sortieren mit Quicksort}
+\section{Aufgabe 7
+\index{Quicksort}
+\footcite{66115:2016:09}}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Gegeben ist die Ausgabe der Methode \textbf{Partition} (s. Pseudocode),
+rekonstruieren Sie die Eingabe.
+
+Konkret sollen Sie das Array A = (\_, \_, 1, \_, \_) so
+vervollständigen, dass der Aufruf Partition(A, 1, 5) die Zahl 3
+zurückgibt und nach dem Aufruf gilt, dass A = (1, 2, 3, 4, 5) ist.
+
+Geben Sie A nach jedem Durchgang der for-Schleife in \textbf{Partition}
+an.
+
+\begin{liAntwort}
+%  didaktik.java sortiere 2 4 1 5 3  -q --rechts
+\begin{verbatim}
+ 2  4  1  5  3  Eingabe
+ 2  4  1  5  3  zerlege
+ 2  4  1  5  3* markiere (i 4)
+>2< 4  1  5  3  vertausche (i 0<>0)
+ 2 >4  1< 5  3  vertausche (i 1<>2)
+ 2  1 >4  5  3< vertausche (i 2<>4)
+ 2  1           zerlege
+ 2  1*          markiere (i 1)
+>2  1<          vertausche (i 0<>1)
+          5  4  zerlege
+          5  4* markiere (i 4)
+         >5  4< vertausche (i 3<>4)
+ 1  2  3  4  5  Ausgabe
+\end{verbatim}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Beweisen Sie die Korrektheit von \textbf{Partition} (\zB mittels
+einer Schleifeninvarianten)!
+
+%%
+% c)
+%%
+
+\item Geben Sie für jede natürliche Zahl $n$ eine Instanz $I_n$, der
+Länge $n$ an, so dass QuickSort($I_n$) $\Omega(n^2)$ Zeit benötigt.
+Begründen Sie Ihre Behauptung.
+
+\begin{liAntwort}
+$I_n = 1, 2, 3, \dots, n$
+
+Die Methode \textbf{Partition} wird $n$ mal aufgerufen, weil bei jedem
+Aufruf der Methode nur eine Zahl, nämlich die größte Zahl, abgespalten
+wird.
+
+\begin{itemize}
+\item Partition(A, 1, $n$)
+\item Partition(A, 1, $n-1$)
+\item Partition(A, 1, $n-2$)
+\item Partition(A, 1, $\dots$)
+\item Partition(A, 1, $1$)
+\end{itemize}
+
+In der For-Schleife der Methode Partition wird bei jeder Wiederholung
+ein Vertauschvorgang durchgeführt (Die Zahlen werden mit sich
+selbst getauscht.)
+
+\begin{verbatim}
+ 1  2  3  4  5  6  7  zerlege
+ 1  2  3  4  5  6  7* markiere (i 6)
+>1< 2  3  4  5  6  7  vertausche (i 0<>0)
+ 1 >2< 3  4  5  6  7  vertausche (i 1<>1)
+ 1  2 >3< 4  5  6  7  vertausche (i 2<>2)
+ 1  2  3 >4< 5  6  7  vertausche (i 3<>3)
+ 1  2  3  4 >5< 6  7  vertausche (i 4<>4)
+ 1  2  3  4  5 >6< 7  vertausche (i 5<>5)
+ 1  2  3  4  5  6 >7< vertausche (i 6<>6)
+ 1  2  3  4  5  6     zerlege
+ 1  2  3  4  5  6*    markiere (i 5)
+>1< 2  3  4  5  6     vertausche (i 0<>0)
+ 1 >2< 3  4  5  6     vertausche (i 1<>1)
+ 1  2 >3< 4  5  6     vertausche (i 2<>2)
+ 1  2  3 >4< 5  6     vertausche (i 3<>3)
+ 1  2  3  4 >5< 6     vertausche (i 4<>4)
+ 1  2  3  4  5 >6<    vertausche (i 5<>5)
+ 1  2  3  4  5        zerlege
+ 1  2  3  4  5*       markiere (i 4)
+>1< 2  3  4  5        vertausche (i 0<>0)
+ 1 >2< 3  4  5        vertausche (i 1<>1)
+ 1  2 >3< 4  5        vertausche (i 2<>2)
+ 1  2  3 >4< 5        vertausche (i 3<>3)
+ 1  2  3  4 >5<       vertausche (i 4<>4)
+ 1  2  3  4           zerlege
+ 1  2  3  4*          markiere (i 3)
+>1< 2  3  4           vertausche (i 0<>0)
+ 1 >2< 3  4           vertausche (i 1<>1)
+ 1  2 >3< 4           vertausche (i 2<>2)
+ 1  2  3 >4<          vertausche (i 3<>3)
+ 1  2  3              zerlege
+ 1  2  3*             markiere (i 2)
+>1< 2  3              vertausche (i 0<>0)
+ 1 >2< 3              vertausche (i 1<>1)
+ 1  2 >3<             vertausche (i 2<>2)
+ 1  2                 zerlege
+ 1  2*                markiere (i 1)
+>1< 2                 vertausche (i 0<>0)
+ 1 >2<                vertausche (i 1<>1)
+\end{verbatim}
+
+\end{liAntwort}
+
+%%
+% d)
+%%
+
+\item Was müsste Partition (in Linearzeit) leisten, damit QuickSort
+Instanzen der Länge n in $\mathcal{O}(n \cdot \log n)$ Zeit sortiert?
+Zeigen Sie, dass Partition mit der von Ihnen geforderten Eigenschaft zur
+gewünschten Laufzeit von QuickSort führt.
+
+\liMasterExkurs
+
+\begin{liAntwort}
+Die Methode \textbf{Partition} müsste die Instanzen der Länge $n$ in
+zwei gleich große Teile spalten ($\frac{n - 1}{2}$).
+
+\liMasterVariablenDeklaration
+{2} % a
+{2} % b
+{n} % f(n)
+\liMasterFallRechnung
+% 1. Fall
+{für $\varepsilon = 4$: \\
+$f(n) = n \notin \O{n^{\log_2 {2 - \varepsilon}}}$}
+% 2. Fall
+{$f(n) = n \in \t{n^{\log_2 {2}}} = \t{n}$}
+% 3. Fall
+{$f(n) = n \notin \o{n^{\log_2 {2 + \varepsilon}}}$}
+
+$\Rightarrow T(n) \in \t{n^{\log_2 {2}} \cdot \log n} = \t{n \cdot \log n}$
+
+\liMasterWolframLink{T[n]=2T[n/2]\%2Bn}
+\end{liAntwort}
+
+\begin{function}
+\caption{Quicksort(A, $l = 1$, $r = A.\text{length}$)}
+
+\If{$l < r$}{
+  $m = \text{Partition}(A, l, r)$\;
+  $\text{Quicksort}(A, l, m - 1)$\;
+  $\text{Quicksort}(A, m + 1, r)$\;
+}
+\end{function}
+
+\begin{function}
+% int PartitionVar(int[] A, int l, int r)
+\caption{Partition(A, int l, int r)}
+$\text{pivot} = A[r]$\;
+$i = l$\;
+\For{$j = l$ \KwTo $r - 1$}{
+  \If{$A[j] \leq \text{pivot}$}{
+    $\text{Swap}(A, i, j)$\;
+    $i = i + l$\;
+  }
+}
+\end{function}
+
+\begin{function}
+\caption{Swap(A, int l, int r)}
+temp = A[i]\;
+A[i] = A[y]\;
+A[j] = temp\;
+\end{function}
+
+\end{enumerate}
+\end{document}
