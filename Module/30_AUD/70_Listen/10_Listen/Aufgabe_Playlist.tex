@@ -24,7 +24,7 @@
   Knoten gibKnoten()
 }
 
-\umlclass[x=6]
+\umlclass[x=5.5]
 {Knoten}
 {
 }
@@ -34,7 +34,19 @@
   MusikStück gibMusikstück()
 }
 
-\umlclass[x=13]
+\umlaggreg[%
+  angle1=10,
+  angle2=90,
+  loopsize=3cm,
+  mult1=1,
+  mult2=0..1,
+  pos1=0.05,
+  pos2=0.95,
+  name=nächster,
+]{Knoten}{Knoten}
+\liUmlLeserichtung[pos=above right,dir=right,distance=3cm]{nächster}
+
+\umlclass[x=11]
 {MusikStueck}
 {
   String titel
@@ -43,20 +55,11 @@
   String gibTitel()
 }
 
-\umlaggreg[mult1=1,mult2=1,arg={verwaltet \liLeserichtungRechts}]{Knoten}{MusikStueck}
+\umlassoc[pos1=0.4,name=erster]{MusikListe}{Knoten}
+\liUmlLeserichtung[pos=below,dir=right,distance=0.2cm]{erster}
 
-% \umlaggreg[
-%   angle1=10,
-%   angle2=90,
-%   loopsize=3cm,
-%   mult1=1,
-%   mult2=0..1,
-%   pos1=0.05,
-%   pos2=0.95,
-%   arg1={nächster \liLeserichtungRechts},
-% ]{Knoten}{Knoten}
-
-\umlassoc[arg1=erster \liLeserichtungRechts, pos1=0.4]{MusikListe}{Knoten}
+\umlaggreg[mult1=1,mult2=1,name=verwaltet]{Knoten}{MusikStueck}
+\liUmlLeserichtung[pos=below right,dir=right,distance=0.2cm and -0.3cm]{verwaltet}
 
 \end{tikzpicture}
 \end{center}
@@ -68,20 +71,20 @@ Das Klassendiagramm zeigt den Aufbau einer Playlist.
 
 \begin{liAntwort}
 \liPseudoUeberschrift{Klasse „MusikListe“}
-\liJavaDatei[firstline=3,lastline=66]{aufgaben/aud/ab_4/musikliste/MusikListe}
+\liJavaDatei[firstline=3,lastline=66]{aufgaben/aud/listen/musikliste/MusikListe}
 
 \liPseudoUeberschrift{Klasse „Knoten“}
-\liJavaDatei[firstline=3,lastline=24]{aufgaben/aud/ab_4/musikliste/Knoten}
+\liJavaDatei[firstline=3,lastline=24]{aufgaben/aud/listen/musikliste/Knoten}
 
 \liPseudoUeberschrift{Klasse „MusikStueck“}
-\liJavaDatei[firstline=3]{aufgaben/aud/ab_4/musikliste/MusikStueck}
+\liJavaDatei{aufgaben/aud/listen/musikliste/MusikStueck}
 \end{liAntwort}
 
 \item Schreiben Sie eine Testklasse, in der Sie eine Playlist mit
 mindestens vier Liedern erstellen.
 
 \begin{liAntwort}
-\liJavaDatei[firstline=3,lastline=16]{aufgaben/aud/ab_4/musikliste/TestKlasse}
+\liJavaTestDatei[firstline=8,lastline=30]{aufgaben/aud/listen/musikliste/MusikListeTest}
 \end{liAntwort}
 \end{enumerate}
 
@@ -104,7 +107,7 @@ die Liste der erstellten Musikstücke angesprochen werden kann.
 \index{Implementierung in Java}
 
 \begin{liAntwort}
-\liJavaDatei[firstline=12,lastline=13]{aufgaben/aud/ab_4/musikliste/MusikListe}
+\liJavaDatei[firstline=12,lastline=15]{aufgaben/aud/listen/musikliste/MusikListe}
 \end{liAntwort}
 
 %%
@@ -116,7 +119,7 @@ der Methode \liJavaCode{aktualisiereAnzahl()} auf dem aktuellen Stand
 gehalten werden kann.
 
 \begin{liAntwort}
-\liJavaDatei[firstline=14,lastline=15]{aufgaben/aud/ab_4/musikliste/MusikListe}
+\liJavaDatei[firstline=5,lastline=6]{aufgaben/aud/listen/musikliste/MusikListe}
 \end{liAntwort}
 
 %%
@@ -127,7 +130,7 @@ gehalten werden kann.
 aller Lieder in der Liste als \liJavaCode{String} zurückgeben.
 
 \begin{liAntwort}
-\liJavaDatei[firstline=32,lastline=43]{aufgaben/aud/ab_4/musikliste/MusikListe}
+\liJavaDatei[firstline=32,lastline=43]{aufgaben/aud/listen/musikliste/MusikListe}
 \end{liAntwort}
 
 %%
@@ -138,7 +141,7 @@ aller Lieder in der Liste als \liJavaCode{String} zurückgeben.
 entnommen werden können.
 
 \begin{liAntwort}
-\liJavaDatei[firstline=45,lastline=53]{aufgaben/aud/ab_4/musikliste/MusikListe}
+\liJavaDatei[firstline=45,lastline=53]{aufgaben/aud/listen/musikliste/MusikListe}
 \end{liAntwort}
 
 %%
@@ -150,7 +153,7 @@ bestimmten Position in der Musikliste abgespeichert ist. Implementieren
 Sie dazu die Methode \liJavaCode{gibKnoten()}.
 
 \begin{liAntwort}
-\liJavaDatei[firstline=55,lastline=66]{aufgaben/aud/ab_4/musikliste/MusikListe}
+\liJavaDatei[firstline=55,lastline=66]{aufgaben/aud/listen/musikliste/MusikListe}
 \end{liAntwort}
 
 %%
@@ -163,8 +166,8 @@ hinzu.
 \index{Doppelt-verkettete Liste}
 
 \begin{liAntwort}
-\liJavaDatei[firstline=5,lastline=5]{aufgaben/aud/ab_4/musikliste/Knoten}
-\liJavaDatei[firstline=22,lastline=28]{aufgaben/aud/ab_4/musikliste/Knoten}
+\liJavaDatei[firstline=5,lastline=5]{aufgaben/aud/listen/musikliste/Knoten}
+\liJavaDatei[firstline=22,lastline=28]{aufgaben/aud/listen/musikliste/Knoten}
 \end{liAntwort}
 
 %%
@@ -175,7 +178,7 @@ hinzu.
 Testklasse.
 
 \begin{liAntwort}
-\liJavaDatei[firstline=17,lastline=29]{aufgaben/aud/ab_4/musikliste/TestKlasse}
+\liJavaTestDatei{aufgaben/aud/listen/musikliste/MusikListeTest}
 \end{liAntwort}
 
 \end{enumerate}
@@ -194,12 +197,12 @@ in der Klasse Knoten existieren!
 
 \begin{liAntwort}
 \liPseudoUeberschrift{Klasse „MusikListe“}
-\liJavaDatei[firstline=68,lastline=74]{aufgaben/aud/ab_4/musikliste/MusikListe}
+\liJavaDatei[firstline=67,lastline=74]{aufgaben/aud/listen/musikliste/MusikListe}
 
 \liPseudoUeberschrift{Klasse „Knoten“}
-\liJavaDatei[firstline=34,lastline=40]{aufgaben/aud/ab_4/musikliste/Knoten}
+\liJavaDatei[firstline=34,lastline=40]{aufgaben/aud/listen/musikliste/Knoten}
 
 \liPseudoUeberschrift{Klasse „TestKlasse“}
-\liJavaDatei[firstline=30,lastline=20]{aufgaben/aud/ab_4/musikliste/TestKlasse}
+\liJavaTestDatei[firstline=45,lastline=50]{aufgaben/aud/listen/musikliste/MusikListeTest}
 \end{liAntwort}
 \end{document}

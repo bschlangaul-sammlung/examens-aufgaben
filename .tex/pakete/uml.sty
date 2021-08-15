@@ -74,6 +74,10 @@ Erweiterung bereitstellt]
 % \end{liBeispiel}
 
 % \begin{macro}{\liUmlLeserichtung}
+% \begin{verbatim}
+% \umluniassoc[arg1=,mult2=1,arg2=- druckerei,name=benutzt]{TicketHandel}{TicketDruckerei}
+% \liUmlLeserichtung[pos=below left,dir=down,distance=0cm]{benutzt}
+% \end{verbatim}
 %    \begin{macrocode}
 \NewDocumentCommand{ \liUmlLeserichtung } { O{dir=right} m } {
   \def\@liDirLeft{}
@@ -81,7 +85,7 @@ Erweiterung bereitstellt]
   \pgfkeys{/lese/dir/.is choice}
   \pgfkeys{/lese/dir/up/.code={\def\@liDirRight{ \UParrow}}}
   \pgfkeys{/lese/dir/down/.code={\def\@liDirRight{ \DOWNarrow}}}
-  \pgfkeys{/lese/dir/left/.code={\@liDirRight{}\def\@liDirLeft{\LEFTarrow }}}
+  \pgfkeys{/lese/dir/left/.code={\def\@liDirRight{}\def\@liDirLeft{\LEFTarrow }}}
   \pgfkeys{/lese/dir/right/.code={\def\@liDirRight{ \RIGHTarrow}}}
 
   \def\@liPos{above}
