@@ -3,11 +3,14 @@
 \begin{document}
 \liAufgabenTitel{Klasse „Stapel“ mit Methode „merge()“}
 
-\section{Herbst 2014 (66115) - Thema 2 Aufgabe 5
+\section{Aufgabe 5
 \index{Stapel (Stack)}
 \footcite[Herbst 2014 (66115) - Thema 2 Aufgabe 5, Seite 5]{examen:66115:2014:09}}
 
-Gegeben sei eine Standarddatenstruktur Stapel (Stack) mit den Operationen
+Gegeben sei eine Standarddatenstruktur Stapel (Stack) mit den
+Operationen
+
+\bigskip
 
 \begin{compactitem}
 \item \liJavaCode{void push(Element e)}
@@ -15,6 +18,9 @@ Gegeben sei eine Standarddatenstruktur Stapel (Stack) mit den Operationen
 \item \liJavaCode{boolean isEmpty()}.
 \end{compactitem}
 
+\bigskip
+
+\noindent
 sowie dem Standardkonstruktor \liJavaCode{Stapel()}, der einen leeren Stapel
 zur Verfügung stellt.\footcite[Seite 2-3, Aufgabe 5]{aud:ab:4}
 
@@ -24,16 +30,37 @@ zur Verfügung stellt.\footcite[Seite 2-3, Aufgabe 5]{aud:ab:4}
 % (a)
 %%
 
-\item Geben Sie eine Methode \liJavaCode{Stapel merge(Stapel s, Stapel t)} an,
-die einen aufsteigend geordneten Stapel zurückgibt, unter der Bedingung,
-dass die beiden übergebenen Stapel aufsteigend sortiert sind, \dh
-\liJavaCode{S.pop()} liefert das größte Element in \liJavaCode{s} zurück und
-\liJavaCode{T.pop()} liefert das größte Element in \liJavaCode{t} zurück. Als
-Hilfsdatenstruktur dürfen Sie nur Stapel verwenden, keine Felder oder
-Listen.
+\item Geben Sie eine Methode \liJavaCode{Stapel merge(Stapel s, Stapel
+t)} an, die einen aufsteigend geordneten Stapel zurückgibt, unter der
+Bedingung, dass die beiden übergebenen Stapel aufsteigend sortiert sind,
+\dh \liJavaCode{S.pop()} liefert das größte Element in \liJavaCode{s}
+zurück und \liJavaCode{T.pop()} liefert das größte Element in
+\liJavaCode{t} zurück. Als Hilfsdatenstruktur dürfen Sie nur Stapel
+verwenden, keine Felder oder Listen.
+
+\noindent
+Hinweis: Nehmen Sie an, dass Objekte der Klasse \liJavaCode{Element},
+die auf dem Stapel liegen mit \liJavaCode{compareTo()} vergleichen
+werden können. Zum Testen haben wir Ihnen eine Klasse
+\liJavaCode{StapelTest} zur Verfügung gestellt, sie können Ihre Methode
+hier einfügen und testen, ob die Stapel korrekt sortiert werden.
+Überlegen Sie auch, was geschieht, wenn einer der Stapel (oder beide)
+leer ist!
 
 \begin{liAntwort}
 \liJavaExamen[firstline=46,lastline=65]{66115}{2014}{09}{Stapel}
+
+\liPseudoUeberschrift{Komplette Klasse Stapel}
+
+\liJavaExamen{66115}{2014}{09}{Stapel}
+
+\liPseudoUeberschrift{Komplette Klasse Element}
+
+\liJavaExamen{66115}{2014}{09}{Element}
+
+\liPseudoUeberschrift{Test-Klasse}
+
+\liJavaTestDatei{examen/examen_66115/jahr_2014/herbst/StapelTest}
 \end{liAntwort}
 
 %%
@@ -41,14 +68,13 @@ Listen.
 %%
 
 \item Analysieren Sie die Laufzeit Ihrer Methode.
+\index{Algorithmische Komplexität (O-Notation)}
+
+\begin{liAntwort}
+Best case: $\mathcal{O}(1)$
+Worst case: $\mathcal{O}(n^2)$
+\end{liAntwort}
 
 \end{enumerate}
 
-\noindent
-Hinweis: Nehmen Sie an, dass Objekte der Klasse \liJavaCode{Element}, die auf
-dem Stapel liegen mit \liJavaCode{compareTo()} vergleichen werden können. Zum
-Testen haben wir Ihnen eine Klasse \liJavaCode{StapelTest} zur Verfügung
-gestellt, sie können Ihre Methode hier einfügen und testen, ob die
-Stapel korrekt sortiert werden. Überlegen Sie auch, was geschieht, wenn
-einer der Stapel (oder beide) leer ist!
 \end{document}

@@ -9,6 +9,7 @@
 
 Gegeben seien die Standardstrukturen Stapel (Stack) und Schlange (Queue)
 mit folgenden Standardoperationen:
+\footcite[Aufgabe 4]{aud:ab:4}
 
 \begin{center}
 \begin{tabular}{l|l}
@@ -21,11 +22,12 @@ Stapel & Schlange \\\hline
 \end{center}
 
 \noindent
-Beim Stapel gibt die Operation \liJavaCode{top()} das gleiche Element wie
-\liJavaCode{pop()} zurück, bei der Schlange gibt \liJavaCode{head()} das gleiche
-Element wie \liJavaCode{dequeue()} zurück. Im Unterschied zu \liJavaCode{pop()},
-beziehungsweise \liJavaCode{dequeue()}, wird das Element bei \liJavaCode{top()} und
-\liJavaCode{head()} nicht aus der Datenstruktur entfernt.
+Beim Stapel gibt die Operation \liJavaCode{top()} das gleiche Element
+wie \liJavaCode{pop()} zurück, bei der Schlange gibt \liJavaCode{head()}
+das gleiche Element wie \liJavaCode{dequeue()} zurück. Im Unterschied zu
+\liJavaCode{pop()}, beziehungsweise \liJavaCode{dequeue()}, wird das
+Element bei \liJavaCode{top()} und \liJavaCode{head()} nicht aus der
+Datenstruktur entfernt.
 
 \begin{enumerate}
 
@@ -33,14 +35,14 @@ beziehungsweise \liJavaCode{dequeue()}, wird das Element bei \liJavaCode{top()} 
 %
 %%
 
-\item Geben Sie in Pseudocode einen Algorithmus \liJavaCode{sort(Stapel s)}
-an, der als Eingabe einen Stapel \liJavaCode{s} mit \liJavaCode{n} Zahlen erhält und
-die Zahlen in \liJavaCode{s} sortiert. (Sie dürfen die Zahlen wahlweise
-entweder aufsteigend oder absteigend sortieren.) Verwenden Sie als
-Hilfsdatenstruktur ausschließlich eine Schlange \liJavaCode{q}. Sie erhalten
-volle Punktzahl, wenn Sie außer \liJavaCode{s} und \liJavaCode{q} keine weiteren
-Variablen benutzen. Sie dürfen annehmen, dass alle Zahlen in \liJavaCode{s}
-verschieden sind.
+\item Geben Sie in Pseudocode einen Algorithmus \liJavaCode{sort(Stapel
+s)} an, der als Eingabe einen Stapel \liJavaCode{s} mit \liJavaCode{n}
+Zahlen erhält und die Zahlen in \liJavaCode{s} sortiert. (Sie dürfen die
+Zahlen wahlweise entweder aufsteigend oder absteigend sortieren.)
+Verwenden Sie als Hilfsdatenstruktur ausschließlich eine Schlange
+\liJavaCode{q}. Sie erhalten volle Punktzahl, wenn Sie außer
+\liJavaCode{s} und \liJavaCode{q} keine weiteren Variablen benutzen. Sie
+dürfen annehmen, dass alle Zahlen in \liJavaCode{s} verschieden sind.
 
 \begin{liAntwort}
 \begin{minted}{md}
@@ -55,15 +57,32 @@ while q not empty:
 
 \liPseudoUeberschrift{Als Java-Code}
 
-\liJavaExamen[firstline=5,lastline=25]{66115}{2015}{03}{Sort}
+\liJavaExamen[firstline=5,lastline=25]{66115}{2015}{03}{schlange/Sort}
+
+\liPseudoUeberschrift{Klasse Sort}
+
+\liJavaExamen{66115}{2015}{03}{schlange/Sort}
+
+\liPseudoUeberschrift{Klasse Schlange}
+
+\liJavaExamen{66115}{2015}{03}{schlange/Schlange}
+
+\liPseudoUeberschrift{Klasse Element}
+
+\liJavaExamen{66115}{2015}{03}{schlange/Element}
+
+\liPseudoUeberschrift{Test-Klasse}
+
+\liJavaTestDatei{examen/examen_66115/jahr_2015/fruehjahr/schlange/TestCase}
+
 \end{liAntwort}
 
 %%
 %
 %%
 
-\item Analysieren Sie die Laufzeit\index{Algorithmische Komplexität (O-Notation)} Ihrer Methode in
-Abhängigkeit von $n$.
+\item Analysieren Sie die Laufzeit\index{Algorithmische Komplexität
+(O-Notation)} Ihrer Methode in Abhängigkeit von $n$.
 
 \begin{liAntwort}
 Zeitkomplexität: $\mathcal{O}(n^2)$, da es zwei ineinander
