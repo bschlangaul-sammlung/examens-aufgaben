@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
+\liLadePakete{syntax,rmodell}
 \begin{document}
 \liAufgabenTitel{Personalverwaltung}
 
@@ -8,45 +8,49 @@
 \footcite[Thema 1 Teilaufgabe 1 Aufgabe 4]{examen:66116:2016:09}}
 
 Gegeben sind folgende Relationen aus einer Personalverwaltung:
-\footcite{db:pu:3}
+\footcite[Aufgabe 1]{db:pu:3}
 
-\begin{minted}{md}
-Mitarbeiter (MitarbeiterID), Vorname, Nachname, Vorgesetzter[Mitarbeiter], AbteilungsID[Abteilung], Telefonnummer, Gehalt)
-Abteilung (AbteilungsID, Bezeichnung)
-\end{minted}
+\begin{liRmodell}
+\liRelationMenge{Mitarbeiter}{
+\liPrimaer{MitarbeiterID}, Vorname, Nachname, \liFremd{Vorgesetzter[Mitarbeiter]}, \liFremd{AbteilungsID[Abteilung]}, Telefonnummer, Gehalt}
+
+\liRelationMenge{Abteilung}{\liPrimaer{AbteilungsID}, Bezeichnung}
+\end{liRmodell}
 
 % Datenbankname: Personalverwaltung
 \begin{minted}{sql}
 CREATE TABLE Abteilung(
-  AbteilungsID Integer PRIMARY KEY,
+  AbteilungsID INTEGER PRIMARY KEY,
   Bezeichnung VARCHAR(30)
 );
 
 CREATE TABLE Mitarbeiter(
-  MitarbeiterID Integer PRIMARY KEY,
+  MitarbeiterID INTEGER PRIMARY KEY,
   Vorname VARCHAR(30),
   Nachname VARCHAR(30),
-  Vorgesetzter Integer REFERENCES Mitarbeiter(MitarbeiterID),
-  AbteilungsID Integer REFERENCES Abteilung(AbteilungsID),
-  Telefonnummer Integer,
-  Gehalt double precision
+  Vorgesetzter INTEGER REFERENCES Mitarbeiter(MitarbeiterID),
+  AbteilungsID INTEGER REFERENCES Abteilung(AbteilungsID),
+  Telefonnummer VARCHAR(50),
+  Gehalt DOUBLE PRECISION
 );
 
 INSERT INTO Abteilung VALUES
   (1, 'Buchhaltung'),
-  (2, 'Geschaeftemacher'),
-  (3, 'Buchhaltung'),
-  (4, 'Qualitaetskontrolle'),
-  (5, 'Qualitaetskontrolle');
+  (2, 'Vertrieb'),
+  (42, 'Managment'),
+  (4, 'Qualitätskontrolle'),
+  (5, 'Produktion');
 
-INSERT INTO Mitarbeiter VALUES
-  (1, 'Hans', 'Meier', 11, 1, 2313432, 12345),
-  (2, 'Fred', 'Maier', 11, 2, 233413432, 1233),
-  (11, 'Hans', 'Mueller', NULL, 3, 3432, 1230454),
-  (3, 'Hans', 'Fuchs', 2, 1, 2313344, 2345),
-  (4, 'Fred', 'Hase', 11, 2, 432, 12334),
-  (12, 'Gerd', 'Mueller', NULL, 3, 345552, 154),
-  (6, 'Juergen', 'Schmidt', 12, 5, 97854, 6654);
+INSERT INTO Mitarbeiter
+  (MitarbeiterID, Vorname, Nachname, Vorgesetzter, AbteilungsID, Telefonnummer, Gehalt)
+VALUES
+  (1,  'Hans',   'Meier',    11,   4, '023/13432', 2335),
+  (2,  'Fred',   'Wolitz',   11,   2, '0233/413432', 1233),
+  (11, 'Lea',    'Müller',   NULL, 42, '0343/3452', 5875),
+  (3,  'Till',   'Fuchs',    2,    1, '023/13344', 2345),
+  (4,  'Fred',   'Hase',     11,   4, '04/453432', 1334),
+  (12, 'Gerd',   'Navratil', NULL, 42, '0345/552', 7154),
+  (6,  'Jürgen', 'Schmidt',  12,   5, '097/dfg854', 654);
 \end{minted}
 \index{SQL mit Übungsdatenbank}
 
@@ -70,6 +74,14 @@ WHERE
   a.Bezeichnung = 'Buchhaltung'
 ORDER BY m.MitarbeiterID DESC;
 \end{minted}
+
+\begin{verbatim}
+ vorname | nachname
+---------+----------
+ Till    | Fuchs
+ Hans    | Meier
+(2 rows)
+\end{verbatim}
 \end{liAntwort}
 
 %%
@@ -88,6 +100,19 @@ SELECT m.Nachname AS Mitarbeiter, v.Nachname AS Vorgesetzter
 FROM Mitarbeiter m LEFT OUTER JOIN Mitarbeiter v
 ON m.Vorgesetzter = v.MitarbeiterID;
 \end{minted}
+
+\begin{verbatim}
+ mitarbeiter | vorgesetzter
+-------------+--------------
+ Meier       | Müller
+ Wolitz      | Müller
+ Müller      |
+ Fuchs       | Wolitz
+ Hase        | Müller
+ Navratil    |
+ Schmidt     | Navratil
+(7 rows)
+\end{verbatim}
 \end{liAntwort}
 
 %%
@@ -106,7 +131,7 @@ Verwenden Sie jedoch keine datenbanksystemspezifischen Erweiterungen wie
 
 \begin{liAntwort}
 \begin{minted}{sql}
-CREATE VIEW Durchschnittsgehaelter AS
+CREATE VIEW Durchschnittsgehälter AS
 SELECT Abteilung.AbteilungsID, Bezeichnung,
   AVG (Gehalt) AS Durchschnittsgehalt
 FROM Mitarbeiter, Abteilung
@@ -114,12 +139,22 @@ WHERE Mitarbeiter.AbteilungsID = Abteilung.AbteilungsID
 GROUP BY Abteilung.AbteilungsID, Bezeichnung;
 
 SELECT a.Bezeichnung, a.Durchschnittsgehalt, COUNT (*) AS Rang
-FROM Durchschnittsgehaelter a, Durchschnittsgehaelter b
+FROM Durchschnittsgehälter a, Durchschnittsgehälter b
 WHERE a.Durchschnittsgehalt <= b.Durchschnittsgehalt
 GROUP BY a.AbteilungsID, a.Bezeichnung, a.Durchschnittsgehalt
-HAVING COUNT (*) <= 10
+HAVING COUNT(*) <= 10
 ORDER BY Rang ASC;
 \end{minted}
+
+\begin{verbatim}
+ bezeichnung | durchschnittsgehalt | rang
+-------------+---------------------+------
+ Managment   |              6514.5 |    1
+ Buchhaltung |                2340 |    2
+ Vertrieb    |              1283.5 |    3
+ Produktion  |                 654 |    4
+(4 rows)
+\end{verbatim}
 \end{liAntwort}
 
 %%
@@ -130,11 +165,37 @@ ORDER BY Rang ASC;
 aus der Abteilung mit der AbteilungsID 42 um 5\% erhöht.
 
 \begin{liAntwort}
+\begin{verbatim}
+ vorname | nachname | gehalt
+---------+----------+--------
+ Lea     | Müller   |   5875
+ Gerd    | Navratil |   7154
+(2 rows)
+\end{verbatim}
+
 \begin{minted}{sql}
+SELECT Vorname, Nachname, Gehalt
+FROM MITARBEITER
+WHERE AbteilungsId = 42
+ORDER BY Gehalt;
+
 UPDATE Mitarbeiter
 SET Gehalt = 1.05 * Gehalt
 WHERE AbteilungsID = 42;
+
+SELECT Vorname, Nachname, Gehalt
+FROM MITARBEITER
+WHERE AbteilungsId = 42
+ORDER BY Gehalt;
 \end{minted}
+
+\begin{verbatim}
+ vorname | nachname |      gehalt
+---------+----------+-------------------
+ Lea     | Müller   |           6168.75
+ Gerd    | Navratil | 7511.700000000001
+(2 rows)
+\end{verbatim}
 \end{liAntwort}
 
 %%
@@ -148,17 +209,64 @@ werden. \verb|ON DELETE CASCADE| ist für keine der Tabellen gesetzt.
 Schreiben Sie die zum Löschen notwendigen SQL-Anfragen.\index{DELETE}
 
 \begin{liAntwort}
+\begin{verbatim}
+ vorname | nachname
+---------+----------
+ Hans    | Meier
+ Fred    | Wolitz
+ Lea     | Müller
+ Till    | Fuchs
+ Fred    | Hase
+ Gerd    | Navratil
+ Jürgen  | Schmidt
+(7 rows)
+
+ abteilungsid |    bezeichnung
+--------------+--------------------
+            1 | Buchhaltung
+            2 | Vertrieb
+           42 | Managment
+            4 | Qualitätskontrolle
+            5 | Produktion
+(5 rows)
+\end{verbatim}
+
 \begin{minted}{sql}
+SELECT Vorname, Nachname FROM Mitarbeiter;
+SELECT * FROM Abteilung;
+
 DELETE FROM Mitarbeiter
-WHERE AbteilungsID = ANY (
+WHERE AbteilungsID IN (
   SELECT a.AbteilungsID
   FROM Abteilung a
-  WHERE a.Bezeichnung = 'Qualitaetskontrolle'
+  WHERE a.Bezeichnung = 'Qualitätskontrolle'
 );
 
 DELETE FROM Abteilung
-WHERE Bezeichnung = 'Qualitaetskontrolle';
+WHERE Bezeichnung = 'Qualitätskontrolle';
+
+SELECT Vorname, Nachname FROM Mitarbeiter;
+SELECT * FROM Abteilung;
 \end{minted}
+
+\begin{verbatim}
+ vorname | nachname
+---------+----------
+ Fred    | Wolitz
+ Lea     | Müller
+ Till    | Fuchs
+ Gerd    | Navratil
+ Jürgen  | Schmidt
+(5 rows)
+
+ abteilungsid | bezeichnung
+--------------+-------------
+            1 | Buchhaltung
+            2 | Vertrieb
+           42 | Managment
+            5 | Produktion
+(4 rows)
+\end{verbatim}
 \end{liAntwort}
 
 %%
@@ -173,10 +281,10 @@ kann, ohne die gegebenen Relationen, die Tabellen als abgelegt sind, zu
 verändern. Sie brauchen hierzu keinen SQL-Code schreiben.
 
 \begin{liAntwort}
-VIEW Erstellen, die zwar Namen und ID der anderen Mitarbeiter, sowie
-ihre Telefonnummern enthält (evtl. auch Abteilungsbezeichnung und ID),
-aber eben nicht das Gehalt: Mitarbeiter arbeiten auf eingeschränkter
-Sicht
+Wir könnten eine VIEW erstellen, die zwar Namen und ID der anderen
+Mitarbeiter, sowie ihre Telefonnummern enthält (evtl. auch
+Abteilungsbezeichnung und ID), aber eben nicht das Gehalt: Mitarbeiter
+arbeiten auf eingeschränkter Sicht.
 
 Alternativ mit \verb|GRANT|:
 

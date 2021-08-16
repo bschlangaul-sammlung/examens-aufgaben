@@ -3,15 +3,15 @@
 \begin{document}
 \liAufgabenTitel{Kundenverwaltungssystem}
 
-\section{Aufgabe 2: SQL\footcite{db:pu:3}}
+\section{Aufgabe 4\footcite[Aufgabe 2]{db:pu:3}}
 \index{SQL}
 Gegeben sind folgende Relationen aus einem Kundenverwaltungssystem:
-\footcite[Thema 1 Teilaufgabe 1 Aufgabe 4]{examen:46116:2018:09}
+\footcite[Thema 1 Teilaufgabe 1 ]{examen:46116:2018:09}
 
 \begin{liRmodell}
-\liRelation{Kunde}{\liPrimaer{ID}, Vorname, Nachname, PLZ}
-\liRelation{Produkt}{\liPrimaer{GTIN}, Bezeichnung, Bruttopreis, MWStSatz)}
-\liRelation{Kauf}{\liPrimaer{ID[Kunde], GTIN[Produkt], Datum}, Menge}
+\liRelationMenge{Kunde}{\liPrimaer{ID}, Vorname, Nachname, PLZ}
+\liRelationMenge{Produkt}{\liPrimaer{GTIN}, Bezeichnung, Bruttopreis, MWStSatz)}
+\liRelationMenge{Kauf}{\liPrimaer{ID[Kunde], GTIN[Produkt], Datum}, Menge}
 \end{liRmodell}
 
 % Datenbankname: kundenverwaltungssystem
@@ -39,29 +39,29 @@ CREATE TABLE Kauf(
 );
 
 INSERT INTO Kunde VALUES
-  (1, 'Max', 'Mustermann',91052),
-  (2, 'Erika', 'Musterfrau',91052),
-  (3, 'Max', 'Meyer',91058),
-  (4, 'Hans', 'Schmidt',91054),
-  (5, 'Eva', 'Müller',91056),
-  (6, 'Hanna', 'Winter',20251),
-  (7, 'Bert', 'Sommer',20251),
-  (8, 'Jakob', 'Sommer',20251);
+  (1, 'Max', 'Mustermann', 91052),
+  (2, 'Erika', 'Musterfrau', 91052),
+  (3, 'Max', 'Meyer', 91058),
+  (4, 'Hans', 'Schmidt', 91054),
+  (5, 'Eva', 'Müller', 91056),
+  (6, 'Hanna', 'Winter', 20251),
+  (7, 'Bert', 'Sommer', 20251),
+  (8, 'Jakob', 'Sommer', 20251);
 
 INSERT INTO Produkt VALUES
-  (123, 'Buch', 12.30,19),
-  (124, 'Kaffee', 4.30,7),
-  (125, 'Pullover', 36.40,19),
-  (113, 'Heft', 2.30,19),
-  (023, 'Honig', 3.20,7),
-  (155, 'T-Shirt', 19.30,19),
-  (189, 'Nudeln', 1.30,7),
-  (004, 'Sonnenbrille', 40.60,19),
-  (324, 'Hammer', 22.80,19),
-  (112, 'Topf', 50.20,19),
-  (453, 'Klopapier', 3.30,7),
-  (765, 'Duschgel', 1.89,19),
-  (889, 'Deko', 5.89,19);
+  (123, 'Buch', 12.30, 19),
+  (124, 'Kaffee', 4.30, 7),
+  (125, 'Pullover', 36.40, 19),
+  (113, 'Heft', 2.30, 19),
+  (023, 'Honig', 3.20, 7),
+  (155, 'T-Shirt', 19.30, 19),
+  (189, 'Nudeln', 1.30, 7),
+  (004, 'Sonnenbrille', 40.60, 19),
+  (324, 'Hammer', 22.80, 19),
+  (112, 'Topf', 50.20, 19),
+  (453, 'Klopapier', 3.30, 7),
+  (765, 'Duschgel', 1.89, 19),
+  (889, 'Deko', 5.89, 19);
 
 INSERT INTO Kauf VALUES
   (1, 123, '2019-04-11', 1),
@@ -130,6 +130,15 @@ FROM Kunde
 WHERE PLZ = 20251
 ORDER BY Nachname DESC, Vorname DESC;
 \end{minted}
+
+\begin{verbatim}
+ vorname | nachname
+---------+----------
+ Hanna   | Winter
+ Jakob   | Sommer
+ Bert    | Sommer
+(3 rows)
+\end{verbatim}
 \end{liAntwort}
 
 %%
@@ -150,6 +159,13 @@ WHERE k.ID = x.ID AND p.GTIN = x.GTIN
 GROUP BY Datum, Nachname, k.ID
 HAVING COUNT (*) > 10;
 \end{minted}
+
+\begin{verbatim}
+  nachname  |  sum
+------------+--------
+ Mustermann | 713.86
+(1 row)
+\end{verbatim}
 \end{liAntwort}
 
 %%
@@ -239,19 +255,34 @@ produktspezifischen Anweisungen wie beispielsweise \verb|ROWNUM|,
 
 \begin{liAntwort}
 \begin{minted}{sql}
-WITH Gesamtverkauf AS
-(SELECT k.GTIN, Bezeichnung, SUM (Menge) AS Gesamtmenge)
-FROM Produkt p, Kauf k
-WHERE p.GTIN = k.GTIN
-GROUP BY k.GTIN, Bezeichnung)
+WITH Gesamtverkauf AS (
+  SELECT k.GTIN, Bezeichnung, SUM(Menge) AS Gesamtmenge
+  FROM Produkt p, Kauf k
+  WHERE p.GTIN = k.GTIN
+  GROUP BY k.GTIN, Bezeichnung
+)
 
 SELECT g1.Bezeichnung, COUNT (*) AS Rang
 FROM Gesamtverkauf g1, Gesamtverkauf g2
 WHERE g1.Gesamtmenge <= g2.Gesamtmenge
 GROUP BY g1.GTIN, g1.Bezeichnung
-HAVING COUNT (*) <=10
+HAVING COUNT (*) <= 10
 ORDER BY Rang;
 \end{minted}
+
+\begin{verbatim}
+ bezeichnung  | rang
+--------------+------
+ Topf         |    1
+ Kaffee       |    2
+ Sonnenbrille |    3
+ T-Shirt      |    4
+ Klopapier    |    5
+ Duschgel     |    6
+ Hammer       |    7
+ Heft         |    8
+(8 rows)
+\end{verbatim}
 \end{liAntwort}
 
 %%
@@ -262,14 +293,32 @@ ORDER BY Rang;
 noch nie gekauft wurden.\index{DELETE}
 
 \begin{liAntwort}
+\begin{verbatim}
+ count
+-------
+    13
+(1 row)
+\end{verbatim}
+
 \begin{minted}{sql}
+SELECT COUNT(*) FROM Produkt;
+
 DELETE FROM Produkt
 WHERE GTIN NOT IN
 (
   SELECT DISTINCT GTIN
   FROM Kauf
 );
+
+SELECT COUNT(*) FROM Produkt;
 \end{minted}
+
+\begin{verbatim}
+ count
+-------
+    12
+(1 row)
+\end{verbatim}
 \end{liAntwort}
 \end{enumerate}
 
