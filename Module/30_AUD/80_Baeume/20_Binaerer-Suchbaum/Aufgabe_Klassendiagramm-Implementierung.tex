@@ -1,11 +1,11 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{uml,syntax}
 \begin{document}
-\liAufgabenTitel{Klassendiagramm und Implementierung}
+\liAufgabenTitel{Binärbaum: Klassendiagramm und Implementierung}
 
 \section{Klassendiagramm und Implementierung
 \index{Binärbaum}
-\footcite[Aufgabe 1: Binärbaum, Seite 1]{aud:pu:5}}
+\footcite[Binärbaum, Seite 1, Aufgabe 1]{aud:pu:5}}
 
 \begin{enumerate}
 
@@ -14,6 +14,7 @@
 %%
 
 \item Erstellen Sie ein Klassendiagramm für einen Binärbaum.
+\index{Klassendiagramm}
 
 \begin{liAntwort}
 \liPseudoUeberschrift{einfacher Binärbaum}
@@ -34,7 +35,8 @@
 \umlsimpleclass[x=5,y=3]{Datenknoten}
 \umlsimpleclass[x=5,y=1]{Inhalt}
 
-\umlassoc[mult2=1,stereo=wurzel \liLeserichtungRechts]{Binärbaum}{Baumelement}
+\umlassoc[mult2=1,name=wurzel]{Binärbaum}{Baumelement}
+\liUmlLeserichtung[pos=above,dir=right,distance=0cm]{wurzel}
 \umlVHVinherit{Abschluss}{Baumelement}
 \umlVHVinherit{Datenknoten}{Baumelement}
 
@@ -49,20 +51,25 @@
 
 \item Entwerfen Sie eine mögliche Implementierung zur Erzeugung eines
 binären Baumes in Java.
+\index{Implementierung in Java}
 
 \begin{liAntwort}
 \liPseudoUeberschrift{einfacher Binärbaum}
 
-\liJavaDatei[firstline=3]{baum/einfach/Baum}
-\liJavaDatei[firstline=3]{baum/einfach/Knoten}
+\liJavaDatei{aufgaben/aud/baum/einfach/Baum}
+\liJavaDatei{aufgaben/aud/baum/einfach/Knoten}
 
 \liPseudoUeberschrift{Binärbaum mit Kompositum}
 
-\liJavaDatei[firstline=3]{baum/kompositum/Ahnenbaum}
-\liJavaDatei[firstline=3]{baum/kompositum/Baumelement}
-\liJavaDatei[firstline=3]{baum/kompositum/Abschluss}
-\liJavaDatei[firstline=3]{baum/kompositum/Datenknoten}
-\liJavaDatei[firstline=3]{baum/kompositum/Person}
+\liJavaDatei{aufgaben/aud/baum/kompositum/Binaerbaum}
+\liJavaDatei{aufgaben/aud/baum/kompositum/Baumelement}
+\liJavaDatei{aufgaben/aud/baum/kompositum/Abschluss}
+\liJavaDatei{aufgaben/aud/baum/kompositum/Datenknoten}
+\liJavaDatei{aufgaben/aud/baum/kompositum/Datenelement}
+\liJavaDatei{aufgaben/aud/baum/kompositum/Inhalt}
+
+\liJavaTestDatei{aufgaben/aud/baum/kompositum/BinaerbaumTest}
+
 \end{liAntwort}
 \end{enumerate}
 

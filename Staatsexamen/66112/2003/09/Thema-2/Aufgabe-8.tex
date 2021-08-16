@@ -3,11 +3,10 @@
 \begin{document}
 \liAufgabenTitel{Klasse „BinBaum“}
 
-\section{Aufgabe 2: Suchbaum
+\section{Aufgabe 8
 \index{Binärbaum}
-\footcite[Seite 1]{aud:pu:5}}
-
-\footcite[Abgewandelt von Herbst 2003, Thema 2 Aufgabe 8, Seite 8]{examen:66112:2003:09}
+\footcite{examen:66112:2003:09}
+}
 
 \begin{enumerate}
 
@@ -17,38 +16,58 @@
 
 \item Implementieren Sie in einer objektorientierten Sprache einen
 binären Suchbaum für ganze Zahlen! Dazu gehören Methoden zum Setzen und
-Ausgeben der Attribute \liJavaCode{zahl}, \liJavaCode{linker_teilbaum} und
-\liJavaCode{rechter_teilbaum}. Design: eine Klasse \liJavaCode{Knoten} und eine
-Klasse \liJavaCode{BinBaum}. Ein Knoten hat einen linken und einen rechten
-Nachfolger. Ein Baum verwaltet die Wurzel. Er hängt neue Knoten an und
-löscht Knoten.
+Ausgeben der Attribute \liJavaCode{zahl}, \liJavaCode{linker_teilbaum}
+und \liJavaCode{rechter_teilbaum}. Design: eine Klasse
+\liJavaCode{Knoten} und eine Klasse \liJavaCode{BinBaum}. Ein Knoten hat
+einen linken und einen rechten Nachfolger. Ein Baum verwaltet die
+Wurzel. Er hängt neue Knoten an und löscht Knoten.
+\footcite[Abgewandelt von Herbst 2003, Thema 2 Aufgabe 8, Seite 8, Seite 1, Aufgabe 2]{aud:pu:5}
+\index{Implementierung in Java}
+
+\begin{liAntwort}
+\liJavaExamen[firstline=3,lastline=9]{66112}{2003}{09}{BinBaum}
+\liJavaExamen{66112}{2003}{09}{Knoten}
+\end{liAntwort}
 
 %%
 % (b)
 %%
 
-\item Schreiben Sie eine Methode \liJavaCode{fuegeEin(...)}, die eine Zahl in
-den Baum einfügt!
+\item Schreiben Sie eine Methode \liJavaCode{fügeEin(...)}, die eine
+Zahl in den Baum einfügt!
+
+\begin{liAntwort}
+\liJavaExamen[firstline=11,lastline=36]{66112}{2003}{09}{BinBaum}
+\end{liAntwort}
 
 %%
 % (c)
 %%
 
-\item Schreiben Sie eine Methode \liJavaCode{postOrder(...)}, die die Zahlen
-in der Reihenfolge postorder ausgibt!
+\item Schreiben Sie eine Methode \liJavaCode{void
+besuchePostOrder(...)}, die die Zahlen in der Reihenfolge postorder
+ausgibt!
+
+\begin{liAntwort}
+\liJavaExamen[firstline=38,lastline=53]{66112}{2003}{09}{BinBaum}
+\end{liAntwort}
 
 %%
 % (d)
 %%
 
 \item Ergänzen Sie Ihr Programm um die rekursiv implementierte Methode
-\liJavaCode{summe(...)}, die die Summe der Zahlen des Unterbaums, dessen
-Wurzel der Knoten ist, zurückgibt! Falls der Unterbaum leer ist, ist der
-Rückgabewert 0!
+\liJavaCode{int berechneSumme(...)}, die die Summe der Zahlen des
+Unterbaums, dessen Wurzel der Knoten ist, zurückgibt! Falls der
+Unterbaum leer ist, ist der Rückgabewert 0!
 
 \begin{minted}{java}
 int summe (Knoten x)...
 \end{minted}
+
+\begin{liAntwort}
+\liJavaExamen[firstline=55,lastline=73]{66112}{2003}{09}{BinBaum}
+\end{liAntwort}
 
 %%
 % (e)
@@ -65,8 +84,17 @@ die eingefügten Zahlen in der Reihenfolge der Traversierungsmöglichkeit
 % (f)
 %%
 
-\item Implementieren Sie eine Operation \liJavaCode{isSorted(...)}, die für
-einen (Teil-)baum feststellt, ob er sortiert ist.
+\item Implementieren Sie eine Operation \liJavaCode{isSorted(...)}, die
+für einen (Teil-)baum feststellt, ob er sortiert ist.
+
+\begin{liAntwort}
+\liJavaExamen[firstline=75,lastline=92]{66112}{2003}{09}{BinBaum}
+\end{liAntwort}
 \end{enumerate}
+
+\begin{liAntwort}
+\liJavaExamen{66112}{2003}{09}{BinBaum}
+\liJavaExamen{66112}{2003}{09}{Knoten}
+\end{liAntwort}
 
 \end{document}
