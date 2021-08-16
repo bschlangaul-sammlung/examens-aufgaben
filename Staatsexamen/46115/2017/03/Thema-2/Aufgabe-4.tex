@@ -1,0 +1,70 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenTitel{händisch sortieren, implementieren, Komplexität}
+\section{Aufgabe 4
+\index{Bubblesort}
+\footcite{46115:2017:03}}
+
+Bei Bubblesort wird eine unsortierte Folge von Elementen $a_1,
+a_2,\dots, a_n$, von links nach rechts durchlaufen, wobei zwei
+benachbarte Elemente $a_i$ und $a_{i + 1}$ getauscht werden, falls sie
+nicht in der richtigen Reihenfolge stehen. Dies wird so lange
+wiederholt, bis die Folge sortiert ist.
+
+\begin{enumerate}
+%%
+% a)
+%%
+
+\item Sortieren Sie die folgende Zahlenfolge mit Bubblesort. Geben Sie
+die neue Zahlenfolge nach jedem (Tausch-)Schritt an: $3$, $2$, $4$, $1$
+
+\begin{liAntwort}
+\begin{verbatim}
+ 3  2  4  1  Eingabe
+ 3  2  4  1  Durchlauf Nr. 1
+>3  2< 4  1  vertausche (i 0<>1)
+ 2  3 >4  1< vertausche (i 2<>3)
+ 2  3  1  4  Durchlauf Nr. 2
+ 2 >3  1< 4  vertausche (i 1<>2)
+ 2  1  3  4  Durchlauf Nr. 3
+>2  1< 3  4  vertausche (i 0<>1)
+ 1  2  3  4  Durchlauf Nr. 4
+ 1  2  3  4  Ausgabe
+\end{verbatim}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Geben Sie den Bubblesort-Algorithmus für ein Array von natürlichen
+Zahlen in einer Programmiersprache Ihrer Wahl an. Die Funktion
+\liJavaCode{swap (index1, index2)} kann verwendet werden, um zwei
+Elemente des Arrays zu vertauschen.
+
+\begin{liAntwort}
+\liJavaDatei{examen/examen_46115/jahr_2017/fruehjahr/BubbleSort}
+
+\liPseudoUeberschrift{Test}
+
+\liJavaTestDatei{examen/examen_46115/jahr_2017/fruehjahr/BubbleSortTest}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Geben Sie eine obere Schranke für die Laufzeit an. Beschreiben Sie
+mögliche Eingabedaten, mit denen diese Schranke erreicht wird.
+
+\begin{liAntwort}
+$\mathcal{O}(n^2)$
+
+Diese obere Schranke wird erreicht, wenn die Zahlenfolgen in der
+umgekehrten Reihenfolge bereits sortiert ist, \zB 4, 3, 2, 1.
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}
