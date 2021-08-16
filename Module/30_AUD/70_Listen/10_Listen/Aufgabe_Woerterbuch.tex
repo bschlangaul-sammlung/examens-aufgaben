@@ -3,7 +3,7 @@
 \begin{document}
 \liAufgabenTitel{Wörterbuch}
 
-\section{Aufgabe 5: Listen (Check-Up)
+\section{Aufgabe 5: Listen
 \index{Einfach-verkettete Liste}
 \footcite[Seite 4, Aufgabe 5]{aud:ab:5}
 }
@@ -20,56 +20,47 @@ verweisen kann, enthält jeweils einen Eintrag des Wörterbuchs. Ein
 Eintrag besteht aus dem deutschen und dem zugehörigen englischen Wort.
 Diese können natürlich jeweils zurückgegeben werden.
 
-\item Mit der Methode \liJavaCode{einfuegen (String deutsch, String englisch)}
-soll ein neuer Eintrag in das Wörterbuch eingefügt werden können. Wie in
-jedem Wörterbuch müssen die (deutschen) Einträge jedoch alphabetisch
-sortiert sein, sodass nicht an einer beliebigen Stelle eingefügt werden
-kann. Um die korrekte Einfügeposition zu finden, ist das Vergleichen von
-Strings notwendig. Recherchieren Sie dazu, wie die Methode
-\liJavaCode{compareTo()} in Java funktioniert!
+\item Mit der Methode \liJavaCode{einfuegen (String deutsch, String
+englisch)} soll ein neuer Eintrag in das Wörterbuch eingefügt werden
+können. Wie in jedem Wörterbuch müssen die (deutschen) Einträge jedoch
+alphabetisch sortiert sein, sodass nicht an einer beliebigen Stelle
+eingefügt werden kann. Um die korrekte Einfügeposition zu finden, ist
+das Vergleichen von Strings notwendig. Recherchieren Sie dazu, wie die
+Methode \liJavaCode{compareTo()} in Java funktioniert!
 
-\item Der Aufruf der Methode \liJavaCode{uebersetze(String deutsch)} auf der
-Liste soll nun für ein übergebenes deutsches Wort die englische
+\item Der Aufruf der Methode \liJavaCode{uebersetze(String deutsch)} auf
+der Liste soll nun für ein übergebenes deutsches Wort die englische
 Übersetzung ausgeben.
 
-%%
-%
-%%
+\end{itemize}
 
-\subsection{Lösung}
+\begin{liAntwort}
 
-\paragraph{Klasse \texttt{WörterbuchEintrag}}
+\liPseudoUeberschrift{Klasse \texttt{WörterbuchEintrag}}
 
+\noindent
 Die abstrakte Klasse im Kompositumentwurfsmuster von der sowohl die
 primitive Klasse als auch die Behälterklasse erben.
 
-\begin{liAntwort}
-\liJavaDatei[firstline=3]{aufgaben/aud/ab_5/WoerterbuchEintrag}
-\end{liAntwort}
+\liJavaDatei[firstline=3]{aufgaben/aud/listen/woerterbuch/WoerterbuchEintrag}
 
-%%
-%
-%%
+\liPseudoUeberschrift{Klasse \texttt{WortPaar}}
 
-\paragraph{Klasse \texttt{WortPaar}}
-
+\noindent
 Das Listenelement (die primitive Klasse im Kompositumentwurfsmuster).
 
-\begin{liAntwort}
-\liJavaDatei[firstline=3]{aufgaben/aud/ab_5/WortPaar}
-\end{liAntwort}
+\liJavaDatei[firstline=3]{aufgaben/aud/listen/woerterbuch/WortPaar}
 
-%%
-%
-%%
+\liPseudoUeberschrift{Klasse \texttt{Wörterbuch}}
 
-\paragraph{Klasse \texttt{Wörterbuch}}
-
+\noindent
 Die Behälterklasse im Kompositumentwurfsmuster.
 
-\begin{liAntwort}
-\liJavaDatei[firstline=6]{aufgaben/aud/ab_5/Woerterbuch}
-\end{liAntwort}
+\liJavaDatei[firstline=6]{aufgaben/aud/listen/woerterbuch/Woerterbuch}
 
-\end{itemize}
+\liPseudoUeberschrift{Test}
+
+\liJavaTestDatei{aufgaben/aud/listen/woerterbuch/WoerterbuchTest}
+
+\end{liAntwort}
 \end{document}

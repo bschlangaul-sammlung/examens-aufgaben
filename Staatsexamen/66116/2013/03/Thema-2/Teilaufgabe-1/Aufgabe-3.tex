@@ -1,16 +1,33 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{baum}
 \begin{document}
-\liAufgabenTitel{}
+\liAufgabenTitel{Wissensfragen, Ordnung k = 2, Einfügen, Löschen}
 \section{Aufgabe 3
 \index{B-Baum}
 \footcite{66116:2013:03}}
 
-Gegeben sei der folgende B-Baum
+Gegeben sei der folgende B-Baum:\footcite[Aufgabe 4]{aud:ab:5}
 
-1 2 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21
-
-1 2 3 4 5
+\begin{center}
+\begin{tikzpicture}[
+  li bbaum,
+  level 1/.append style={level distance=10mm,sibling distance=55mm},
+  level 2/.append style={level distance=10mm,sibling distance=18mm}
+]
+\node{12}[->]
+  child{node{6 \nodepart{two} 9}
+    child{node {1 \nodepart{two} 2 \nodepart{three} 4 \nodepart{four} 5}}
+    child{node {7 \nodepart{two} 8}}
+    child{node {10 \nodepart{two} 11}}
+  }
+  child{node{15 \nodepart{two} 19}
+    child{node {13 \nodepart{two} 14}}
+    child{node {16 \nodepart{two} 17 \nodepart{three} 18}}
+    child{node {20 \nodepart{two} 21}}
+  }
+;
+\end{tikzpicture}
+\end{center}
 
 \begin{enumerate}
 
@@ -38,8 +55,9 @@ Für den gegeben Baum kann die Ordnung $k = 2$ angegeben werden.
 \item Was sind die Vorteile von B-Bäumen im Vergleich zu binären Baumen?
 
 \begin{liAntwort}
-B-Bäume sind immer höhenbalanciert und  die  Lokalität
-von Operationen.\liFussnoteUrl{http://wwwbayer.in.tum.de/lehre/WS2001/HSEM-bayer/BTreesAusarbeitung.pdf}
+B-Bäume sind immer höhenbalanciert. B-Bäume haben eine geringere Höhe,
+wodurch eine schnellere Suche möglich wird, da weniger Aufrufe nötig
+sind.\liFussnoteUrl{http://wwwbayer.in.tum.de/lehre/WS2001/HSEM-bayer/BTreesAusarbeitung.pdf}
 \end{liAntwort}
 
 %%
@@ -52,31 +70,75 @@ von Operationen.\liFussnoteUrl{http://wwwbayer.in.tum.de/lehre/WS2001/HSEM-bayer
 B-Bäume werden für Hintergrundspeicherung (z. B. von Datenbanksystemen,
 Dateisystem) verwendet. Die Knotengrößen werden auf die
 Seitenkapazitäten abgestimmt.\footcite[Seite 223]{kemper}
+
+B-Bäume sind eine daten- und Indexstruktur, die häuﬁg in Datenbanken und
+Daeisystemen eingesetzt werden. Da ein B-Baum immer vollständig
+balanciert ist und die Schlüssel sortiert gespeichert werden, ist ein
+schnelles Aufﬁnden von Inhalten gegeben.
 \end{liAntwort}
 
 %%
 % 4.
 %%
 
-\item Fügen Sie den Wert 3 in den B-Baum ein, und zeichnen Sie den
+\item Fügen Sie den Wert $3$ in den B-Baum ein, und zeichnen Sie den
 vollständigen B-Baum nach dem Einfügen und möglichen darauf folgenden
 Operationen.
 
 \begin{liAntwort}
-
+\begin{center}
+\begin{tikzpicture}[
+  li bbaum,
+  level 1/.append style={level distance=10mm,sibling distance=55mm},
+  level 2/.append style={level distance=10mm,sibling distance=16mm}
+]
+\node{12}[->]
+  child{node{\textbf{3} \nodepart{two} 6 \nodepart{three} 9}
+    child{node {\textbf{1} \nodepart{two} \textbf{2}}}
+    child{node {\textbf{4} \nodepart{two} \textbf{5}}}
+    child{node {7 \nodepart{two} 8}}
+    child{node {10 \nodepart{two} 11}}
+  }
+  child{node{15 \nodepart{two} 19}
+    child{node {13 \nodepart{two} 14}}
+    child{node {16 \nodepart{two} 17 \nodepart{three} 18}}
+    child{node {20 \nodepart{two} 21}}
+  }
+;
+\end{tikzpicture}
+\end{center}
 \end{liAntwort}
 
 %%
 % 5.
 %%
 
-\item Entfernen Sie aus dem ursprünglichen B-Baum den Wert 19. Zeichnen
+\item Entfernen Sie aus dem ursprünglichen B-Baum den Wert $19$. Zeichnen
 Sie das vollständige Ergebnis nach dem Löschen und möglichen darauf
 folgenden Operationen. Sollte es mehrere richtige Lösungen geben, reicht
 es eine Lösung zu zeichnen.
 
 \begin{liAntwort}
-
+\begin{center}
+\begin{tikzpicture}[
+  li bbaum,
+  level 1/.append style={level distance=10mm,sibling distance=55mm},
+  level 2/.append style={level distance=10mm,sibling distance=18mm}
+]
+\node{12}[->]
+  child{node{6 \nodepart{two} 9}
+    child{node {1 \nodepart{two} 2 \nodepart{three} 4 \nodepart{four} 5}}
+    child{node {7 \nodepart{two} 8}}
+    child{node {10 \nodepart{two} 11}}
+  }
+  child{node{15 \nodepart{two} \textbf{18}}
+    child{node {13 \nodepart{two} 14}}
+    child{node {16 \nodepart{two} 17}}
+    child{node {20 \nodepart{two} 21}}
+  }
+;
+\end{tikzpicture}
+\end{center}
 \end{liAntwort}
 \end{enumerate}
 

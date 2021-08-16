@@ -5,7 +5,7 @@
 
 \section{Aufgabe zum Hashing
 \index{Streutabellen (Hashing)}
-\footcite[Seite 1]{aud:ab:5}}
+\footcite[Seite 1, Aufgabe 1]{aud:ab:5}}
 
 \begin{enumerate}
 
@@ -22,26 +22,26 @@ dann, welche Werte $h(k')$ für $k' = a \cdot 11 + k$ mit $a > 0$ und $0
 
 \begin{liAntwort}
 
+Nein, $h$ ist keine gute Hashfunktion. Betrachten wir zunächst die
+Wertetabelle von $h$ für $0 \leq k < 11$. Wir erhalten
+
 \begin{center}
-\begin{tabular}{|c|c|}
+\begin{tabular}{|c|c|c|}
 \hline
-$k$ & $h(k)$\\\hline\hline
-0 & 0\\\hline
-1 & 1\\\hline
-2 & 4\\\hline
-3 & 9\\\hline
-4 & 5\\\hline
-5 & 3\\\hline
-6 & 3\\\hline
-7 & 5\\\hline
-8 & 9\\\hline
-9 & 4\\\hline
-10 & 1\\\hline
+$k$ & Nebenrechnung                & $h(k)$\\\hline\hline
+0   & $0^2 \mod 11 = 0 \mod 11$    & 0\\\hline
+1   & $1^2 \mod 11 = 1 \mod 11$    & 1\\\hline
+2   & $2^2 \mod 11 = 4 \mod 11$    & 4\\\hline
+3   & $3^2 \mod 11 = 9 \mod 11$    & 9\\\hline
+4   & $4^2 \mod 11 = 16 \mod 11$   & 5\\\hline
+5   & $5^2 \mod 11 = 25 \mod 11$   & 3\\\hline
+6   & $6^2 \mod 11 = 36 \mod 11$   & 3\\\hline
+7   & $7^2 \mod 11 = 49 \mod 11$   & 5\\\hline
+8   & $8^2 \mod 11 = 64 \mod 11$   & 9\\\hline
+9   & $9^2 \mod 11 = 81 \mod 11$   & 4\\\hline
+10  & $10^2 \mod 11 = 100 \mod 11$ & 1\\\hline
 \end{tabular}
 \end{center}
-
-Nein, $h$ ist keine gute Hashfunktion. Betrachten wir zunächst die
-Wertetabelle von $h$ für $0 \leq k < 11$ . Wir erhalten
 
 Wir sehen, dass nie die Werte $2$, $6$, $7$, $8$ und $10$ eingenommen
 werden. Man könnte nun noch hoffen, dass das vielleicht für irgendein
@@ -51,10 +51,10 @@ mit $a > 0$ und $0 \leq k < 11$ folgendes gilt:
 
 \begin{align*}
 h(k')
-  &= (k')^2 mod 11\\
-  &= (a \cdot 11 + k)^2 mod 11\\
-  &= (a^2 \cdot 11^2 + 2ak \cdot 11 + k^2) mod 11\\
-  &= (k^2) mod 11\\
+  &= (k')^2 \mod 11\\
+  &= (a \cdot 11 + k)^2 \mod 11\\
+  &= (a^2 \cdot 11^2 + 2ak \cdot 11 + k^2) \mod 11\\
+  &= (k^2) \mod 11\\
   &= h(k)
 \end{align*}
 
@@ -159,7 +159,7 @@ Die verwendete Hashfunktion beim linearen Sondieren:
 
 \bigskip
 
-Es ergeben sich folgende Sondierungsfolgen:
+Mit Schrittweite $-1$ ergeben sich folgende Sondierungsfolgen:
 {
 \setlength{\tabcolsep}{2pt}
 \footnotesize
