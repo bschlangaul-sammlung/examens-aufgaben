@@ -6,7 +6,8 @@ aud:ab:4 ok
 aud:ab:5 ok
 
 aud:pu:4 ok
-aud:pu:5
+aud:pu:5 ok
+aud:pu:6 ok
 
 # Examensvorbereitungen
 

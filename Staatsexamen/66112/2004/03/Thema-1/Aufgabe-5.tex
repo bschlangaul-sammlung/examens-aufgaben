@@ -13,7 +13,7 @@ kürzester Wege. Gegeben sei der folgende Graph, in dem Städte durch
 Kanten verbunden sind. Die Kantengewichte geben Fahrzeiten an. Außer den
 durch Pfeile als nur in eine Richtung befahrbar gekennzeichneten Straßen
 sind alle Straßen in beiden Richtungen befahrbar.
-\footcite{aud:pu:6}
+\footcite[Aufgabe 1]{aud:pu:6}
 
 \begin{liGraphenFormat}
 A: 2 5
@@ -39,6 +39,7 @@ F -- H: 10
 H -> D: 10
 \end{liGraphenFormat}
 
+\begin{center}
 \begin{tikzpicture}[li graph]
 \node (A) at (2,5) {A};
 \node (B) at (3,3) {B};
@@ -63,24 +64,7 @@ H -> D: 10
 \path (F) edge node {10} (H);
 \path[->] (H) edge node {10} (D);
 \end{tikzpicture}
-
-Adjazenz-Matrix
-
-\[
-\begin{blockarray}{ccccccccc}
-    &  A &  B &  C &  D &  E &  F &  G &  H \\
-\begin{block}{c(cccccccc)}
-  A &  * & 10 & 70 &  - & 40 &  - &  - &  - \\
-  B & 10 &  * & 50 & 90 &  - &  - & 20 & 90 \\
-  C &  - & 50 &  * &  - &  - &  - & 20 &  - \\
-  D &  - & 90 &  - &  * &  - & 80 & 75 &  - \\
-  E & 40 &  - &  - &  - &  * &  - &  - &  5 \\
-  F &  - &  - &  - & 80 &  - &  * &  - & 10 \\
-  G &  - & 20 & 20 & 75 &  - &  - &  * &  - \\
-  H &  - & 90 &  - & 10 &  5 & 10 &  - &  * \\
-\end{block}
-\end{blockarray}
-\]
+\end{center}
 
 \begin{enumerate}
 
@@ -90,7 +74,9 @@ Adjazenz-Matrix
 
 \item Geben Sie zu dem obigen Graphen zunächst eine Darstellung als
 Adjazenzmatix an.
+\index{Adjazenzmatrix}
 
+\begin{liAntwort}
 \[
 \begin{blockarray}{ccccccccc}
     &  A &  B &  C &  D &  E &  F &  G &  H \\
@@ -106,13 +92,43 @@ Adjazenzmatix an.
 \end{block}
 \end{blockarray}
 \]
+\end{liAntwort}
 
 %%
 % b)
 %%
 
 \item Berechnen Sie nun mit Hilfe des Algorithmus von Dijkstra die
-kürzesten Wege vom Knoten A zu allen anderen Knoten.
+kürzesten Wege vom Knoten $A$ zu allen anderen Knoten.
+
+\begin{liAntwort}
+\begin{tabular}{llllllllll}
+\bf{Nr.}     & \bf{besucht} & \bf{A}       & \bf{B}       & \bf{C}       & \bf{D}       & \bf{E}       & \bf{F}       & \bf{G}       & \bf{H}       \\
+\hline
+0            &              & 0            & $\infty$     & $\infty$     & $\infty$     & $\infty$     & $\infty$     & $\infty$     & $\infty$     \\
+1            & A            & \bf{0}       & 10           & 70           & $\infty$     & 40           & $\infty$     & $\infty$     & $\infty$     \\
+2            & B            & |            & \bf{10}      & 60           & 100          & 40           & $\infty$     & 30           & 100          \\
+3            & G            & |            & |            & 50           & 100          & 40           & $\infty$     & \bf{30}      & 100          \\
+4            & E            & |            & |            & 50           & 100          & \bf{40}      & $\infty$     & |            & 45           \\
+5            & H            & |            & |            & 50           & 55           & |            & 55           & |            & \bf{45}      \\
+6            & C            & |            & |            & \bf{50}      & 55           & |            & 55           & |            & |            \\
+7            & D            & |            & |            & |            & \bf{55}      & |            & 55           & |            & |            \\
+8            & F            & |            & |            & |            & |            & |            & \bf{55}      & |            & |            \\
+\end{tabular}
+
+\begin{tabular}{llll}
+\bf{nach}                                         & \bf{Entfernung}                                   & \bf{Reihenfolge}                                  & \bf{Pfad}                                         \\
+\hline
+A  $\rightarrow$  A                               & 0                                                 & 1                                                 &                                                   \\
+A  $\rightarrow$  B                               & 10                                                & 2                                                 & A $\rightarrow$ B                                 \\
+A  $\rightarrow$  C                               & 50                                                & 6                                                 & A $\rightarrow$ B $\rightarrow$ G $\rightarrow$ C \\
+A  $\rightarrow$  D                               & 55                                                & 7                                                 & A $\rightarrow$ E $\rightarrow$ H $\rightarrow$ D \\
+A  $\rightarrow$  E                               & 40                                                & 4                                                 & A $\rightarrow$ E                                 \\
+A  $\rightarrow$  F                               & 55                                                & 8                                                 & A $\rightarrow$ E $\rightarrow$ H $\rightarrow$ F \\
+A  $\rightarrow$  G                               & 30                                                & 3                                                 & A $\rightarrow$ B $\rightarrow$ G                 \\
+A  $\rightarrow$  H                               & 45                                                & 5                                                 & A $\rightarrow$ E $\rightarrow$ H                 \\
+\end{tabular}
+\end{liAntwort}
 \end{enumerate}
 
 \end{document}
