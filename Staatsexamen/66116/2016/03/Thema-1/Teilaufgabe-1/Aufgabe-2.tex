@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax,mathe}
+\liLadePakete{syntax,mathe,rmodell}
 \begin{document}
 \liAufgabenTitel{Polizei}
 
@@ -9,22 +9,15 @@
 
 \noindent
 Gehen Sie dabei von dem dazugehörigen relationalen Schema aus:
-\footcite{db:pu:3}
+\footcite[Aufgabe 4]{db:pu:3}
 
-\bigskip
-
-{
-\noindent
-\ttfamily
-\footnotesize
-Polizist: \{[\underline{PersNr}, DSID, Vorname, Nachname, Dienstgrad, Gehalt]\}\\
-Dienststelle: \{[\underline{DSID}, Name, Strasse, HausNr, Stadt ]\}\\
-Fall: \{[\underline{AkZ}, Titel, Beschreibung, Status ]\}\\
-Arbeitet\_An: \{[\underline{PersNr}, AkZ, Von, Bis]\}\\
-Vorgesetzte: \{[\underline{PersNr}, PersNr, Vorgesetzter]\}
-}
-
-\bigskip
+\begin{liRmodell}
+\liRelationMenge{Polizist}{\liPrimaer{PersNr}, DSID, Vorname, Nachname, Dienstgrad, Gehalt}
+\liRelationMenge{Dienststelle}{\liPrimaer{DSID}, Name, Strasse, HausNr, Stadt}
+\liRelationMenge{Fall}{\liPrimaer{AkZ}, Titel, Beschreibung, Status}
+\liRelationMenge{Arbeitet\_An}{\liPrimaer{PersNr}, AkZ, Von, Bis}
+\liRelationMenge{Vorgesetzte}{\liPrimaer{PersNr}, PersNr, Vorgesetzter}
+\end{liRmodell}
 
 % Datenbankname: polizei
 \begin{minted}{sql}
@@ -46,23 +39,23 @@ CREATE TABLE Dienststelle (
 CREATE TABLE Polizist (
   PersNr INTEGER Primary KEY,
   DSID INTEGER REFERENCES Dienststelle(DSID),
-  Vorname VARCHAR (30),
-  Nachname VARCHAR (30),
-  Dienstgrad VARCHAR (30),
+  Vorname VARCHAR(30),
+  Nachname VARCHAR(30),
+  Dienstgrad VARCHAR(30),
   Gehalt INT
 );
 
 CREATE TABLE Arbeitet_An (
-  PersNr INTEGER References Polizist(PersNr),
-  AkZ VARCHAR (30) References Fall(AkZ),
+  PersNr INTEGER REFERENCES Polizist(PersNr),
+  AkZ VARCHAR(30) REFERENCES Fall(AkZ),
   Von DATE,
   Bis DATE,
   PRIMARY KEY (PersNr, AkZ)
 );
 
 CREATE TABLE Vorgesetzte (
-  PersNr INTEGER References Polizist(PersNr),
-  PersNr_Vorgesetzter INTEGER References Polizist(PersNr),
+  PersNr INTEGER REFERENCES Polizist(PersNr),
+  PersNr_Vorgesetzter INTEGER REFERENCES Polizist(PersNr),
   PRIMARY KEY (PersNr, PersNr_Vorgesetzter)
 );
 
@@ -82,15 +75,20 @@ INSERT INTO Fall VALUES
   ('VR30932', 'Mord im Fussballstadion', 'Toter BVB-Fan', 'bearbeitet'),
   ('XZ1508', 'Steuerhinterziehung', 'Durchsuchung eines Hauses', 'bearbeitet');
 
-INSERT INTO Arbeitet_An VALUES
-  (1, 'VR30932', '2012-02-15', '2012-04-12'),
-  (2, 'XZ1508', '2012-02-13', '2012-02-15');
+INSERT INTO Arbeitet_An
+  (PersNr, AkZ, Von, Bis)
+VALUES
+  (1, 'VR30932', '2011-02-15', '2011-06-06'),
+  (2, 'VR30932', '2011-02-15', '2011-06-06'),
+  (2, 'XZ1508', '2012-02-13', '2012-02-14');
 
-INSERT INTO Vorgesetzte VALUES
-  (1,3),
-  (1,4),
-  (2,5),
-  (2,4);
+INSERT INTO Vorgesetzte
+  (PersNr, PersNr_Vorgesetzter)
+VALUES
+  (1, 3),
+  (1, 4),
+  (2, 5),
+  (2, 4);
 \end{minted}
 \index{SQL mit Übungsdatenbank}
 
@@ -132,7 +130,7 @@ $
 \pi_{\text{Titel}}(
   \sigma_{\text{Nachname} = \mlq \text{Mayer} \mrq}(\text{Polizist})
   \bowtie_{\text{PersNr}}
-  \text{Arbeitet\_an}
+  \text{Arbeitet\_An}
   \bowtie_{\text{AkZ}}
   \text{Fall}
 )
@@ -156,6 +154,13 @@ WHERE
   d.Stadt = 'München' AND
   p.Nachname = 'Schmidt';
 \end{minted}
+
+\begin{verbatim}
+ anzahl_polizisten
+-------------------
+                 1
+(1 row)
+\end{verbatim}
 \end{liAntwort}
 
 %%
@@ -171,15 +176,22 @@ enthalten sind.
 \begin{liAntwort}
 \begin{minted}{sql}
 SELECT DISTINCT d.Name
-FROM Dienststelle d, Polizist p, Arbeitet_an a
+FROM Dienststelle d, Polizist p, Arbeitet_An a
 WHERE
   a.AkZ = 'XZ1508' AND
   p.PersNr = a.PersNr AND
   p.DSID = d.DSID AND
-  a.Von >= '2012-02-14' AND
-  a.Bis <= '2012-02-14'
+  a.Von <= '2012-02-14' AND
+  a.Bis >= '2012-02-14'
 ORDER BY d.Name ASC;
 \end{minted}
+
+\begin{verbatim}
+             name
+-------------------------------
+ Dienststelle Nürnberg (Mitte)
+(1 row)
+\end{verbatim}
 \end{liAntwort}
 
 %%
@@ -202,7 +214,17 @@ CREATE VIEW ErstrebenswerteDienstgrade AS (
   GROUP BY Dienstgrad
   HAVING (AVG(Gehalt) > 2500)
 );
+
+SELECT * FROM ErstrebenswerteDienstgrade;
 \end{minted}
+
+\begin{verbatim}
+   dienstgrad
+-----------------
+ Polizeikommisar
+ Polizeimeister
+(2 rows)
+\end{verbatim}
 \end{liAntwort}
 
 %%
@@ -224,26 +246,131 @@ Polizisten.\index{WITH}\index{UNION}
 Hinweis: Sie dürfen Views verwenden, um Teilergebnisse auszudrücken.
 
 \begin{liAntwort}
+Vorarbeiten:
+\begin{minted}{sql}
+  SELECT p.Vorname, p.Nachname
+  FROM Polizist p, Arbeitet_An a, Fall f
+  WHERE
+    p.PersNr = a.PersNr AND
+    a.AkZ = f.Akz AND
+    f.Titel LIKE '%Fussball%';
+\end{minted}
+
+\begin{verbatim}
+ vorname | nachname
+---------+----------
+ Hans    | Müller
+ Josef   | Fischer
+(2 rows)
+\end{verbatim}
+
+\liPseudoUeberschrift{Lösungsansatz 1}
 
 \begin{minted}{sql}
-WITH RECURSIVE meins (PersNr, VN, NN, DG, VN_VG, NN_VG, DG_VG) AS (
-SELECT p1.PersNr, p1.Vorname as VN, p1.Nachname AS VN, p1.Dienstgrad AS DG_VG
-  FROM Polizist p1, Fall f, Arbeitet_An a, Polizist p2, Vorgesetzte v
+WITH RECURSIVE Fussball_Vorgesetzte (PersNr, VN, NN, DG, PN_VG, VN_VG, NN_VG, DG_VG) AS
+(
+  SELECT
+    p1.PersNr,
+    p1.Vorname AS VN,
+    p1.Nachname AS NN,
+    p1.Dienstgrad AS DG,
+    p2.PersNr AS PN_VG,
+    p2.Vorname AS VN_VG,
+    p2.Nachname AS NN_VG,
+    p2.Dienstgrad AS DG_VG
+  FROM Polizist p1, Fall f, Arbeitet_An a, Vorgesetzte v
+  LEFT JOIN Polizist p2 ON v.PersNr_Vorgesetzter = p2.PersNr
   WHERE
     p1.PersNr = a.PersNr AND
     a.AkZ = f.Akz AND
     f.Titel LIKE '%Fussball%' AND
-    v.PersNr_Vorgesetzter = p2.PersNr
+    p1.PersNr = v.PersNr
+
   UNION ALL
-  SELECT m.PersNr, m.Vorname, m.Nachname, p.Vorname AS VN,
-    p.Nachname AS VN, p.Dienstgrad AS DG_VG
-  FROM meins m, Polizist p, Vorgesetzte v
-  WHERE m.PersNr = v.PersNr AND p.PersNr_Vorgesetzter = p.PersNr
+
+  SELECT
+    m.PersNr,
+    m.VN AS VN,
+    m.NN AS NN,
+    m.DG AS DG,
+    p.PersNr AS PN_VG,
+    p.Vorname AS VN_VG,
+    p.Nachname AS NN_VG,
+    p.Dienstgrad AS DG_VG
+  FROM Fussball_Vorgesetzte m, Vorgesetzte v
+  LEFT JOIN Polizist p ON v.PersNr_Vorgesetzter = p.PersNr
+  WHERE m.PN_VG = v.PersNr
 )
-SELECT VN, NN, NN, DG, VN_DG, NN_VG, DG_VG
-FROM meins
+
+SELECT VN, NN, DG, VN_VG, NN_VG, DG_VG
+FROM Fussball_Vorgesetzte
 ORDER BY NN DESC;
 \end{minted}
+
+\begin{verbatim}
+  vn   |   nn    |         dg          |   vn_vg   |  nn_vg   |        dg_vg
+-------+---------+---------------------+-----------+----------+---------------------
+ Hans  | Müller  | Polizeimeister      | Andreas   | Schmidt  | Polizeikommisar
+ Hans  | Müller  | Polizeimeister      | Stefan    | Hoffmann | Polizeidirektor
+ Josef | Fischer | Polizeihauptmeister | Stefan    | Hoffmann | Polizeidirektor
+ Josef | Fischer | Polizeihauptmeister | Sebastian | Wagner   | Polizeioberkommisar
+(4 rows)
+\end{verbatim}
+
+\liPseudoUeberschrift{Lösungsansatz 2}
+
+\begin{minted}{sql}
+CREATE VIEW naechste_Vorgesetzte AS
+  SELECT
+    p.PersNR,
+    p.Vorname,
+    p.Nachname,
+    p.Dienstgrad,
+    v.PersNr_Vorgesetzter AS Vorgesetzter
+  FROM Polizist p LEFT JOIN Vorgesetzte v
+  ON p.PersNr = v.PersNr;
+
+WITH RECURSIVE Fussball_Vorgesetzte (VN, NN, DG, VN_VG, NN_VG, DG_VG) AS (
+  SELECT
+    x.Vorname AS VN,
+    x.Nachname AS NN,
+    x.Dienstgrad AS DG,
+    y.Vorname AS VN_VG,
+    y.Nachname AS NN_VG,
+    y.Dienstgrad AS DG_VG
+  FROM naechste_Vorgesetzte x, Fall f, Arbeitet_An a,
+  naechste_Vorgesetzte y
+  WHERE
+    f.Titel LIKE '%Fussball%' AND
+    f.AkZ = a.AkZ AND
+    x.PersNr = a.PersNr AND
+    x.Vorgesetzter = y.PersNr
+  UNION ALL
+  SELECT
+    a.Vorname AS VN,
+    a.Nachname AS NN,
+    a.Dienstgrad AS DB,
+    Vorname AS VN_VG,
+    Nachname AS NN_VG,
+    Dienstgrad AS DG_VG
+  FROM naechste_Vorgesetzte a INNER JOIN Fussball_Vorgesetzte
+  ON a.Vorgesetzter = PersNr
+)
+
+SELECT *
+FROM Fussball_Vorgesetzte;
+\end{minted}
+
+\begin{verbatim}
+  vn   |   nn    |         dg          |   vn_vg   |  nn_vg   |        dg_vg
+-------+---------+---------------------+-----------+----------+---------------------
+ Hans  | Müller  | Polizeimeister      | Andreas   | Schmidt  | Polizeikommisar
+ Hans  | Müller  | Polizeimeister      | Stefan    | Hoffmann | Polizeidirektor
+ Josef | Fischer | Polizeihauptmeister | Stefan    | Hoffmann | Polizeidirektor
+ Josef | Fischer | Polizeihauptmeister | Sebastian | Wagner   | Polizeioberkommisar
+(4 rows)
+\end{verbatim}
+
 \end{liAntwort}
 \end{enumerate}
 

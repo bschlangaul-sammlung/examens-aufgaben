@@ -39,14 +39,14 @@ CREATE TABLE Kauf(
 );
 
 INSERT INTO Kunde VALUES
-  (1, 'Max', 'Mustermann', 91052),
+  (1, 'Max',  'Mustermann',  91052),
   (2, 'Erika', 'Musterfrau', 91052),
-  (3, 'Max', 'Meyer', 91058),
-  (4, 'Hans', 'Schmidt', 91054),
-  (5, 'Eva', 'Müller', 91056),
-  (6, 'Hanna', 'Winter', 20251),
-  (7, 'Bert', 'Sommer', 20251),
-  (8, 'Jakob', 'Sommer', 20251);
+  (3, 'Max',   'Meyer',      91058),
+  (4, 'Hans',  'Schmidt',    91054),
+  (5, 'Eva',   'Müller',     91056),
+  (6, 'Hanna', 'Winter',     20251),
+  (7, 'Bert',  'Sommer',     20251),
+  (8, 'Jakob', 'Sommer',     20251);
 
 INSERT INTO Produkt VALUES
   (123, 'Buch', 12.30, 19),
@@ -63,7 +63,9 @@ INSERT INTO Produkt VALUES
   (765, 'Duschgel', 1.89, 19),
   (889, 'Deko', 5.89, 19);
 
-INSERT INTO Kauf VALUES
+INSERT INTO Kauf
+  (ID, GTIN, Datum, Menge)
+VALUES
   (1, 123, '2019-04-11', 1),
   (1, 124, '2019-04-11', 21),
   (1, 125, '2019-04-11', 1),
@@ -181,32 +183,8 @@ sobald es von mindestens einem Kunden aus diesem PLZ-Bereich gekauft
 wurde. Produkte, die bisher noch gar nicht verkauft worden sind, müssen
 nicht berücksichtigt werden.\index{HAVING}\index{EXCEPT}
 
-\begin{minted}{sql}
-SELECT PLZ
-FROM Kunde k
-GROUP BY PLZ
-HAVING NOT EXISTS (
-  SELECT DISTINCT Kauf.GTIN
-  FROM Kauf, Kunde
-  WHERE Kauf.ID = Kunde.ID AND Kunde.PLZ = k.PLZ
-);
-\end{minted}
-
 \begin{liAntwort}
-in Mysql gibt es kein EXCEPT
-
-\begin{minted}{sql}
-SELECT GTIN FROM
-(SELECT GTIN, PLZ
-FROM Kunde, Produkt)
-EXCEPT
-(SELECT DISTINCT x.GTIN, k.PLZ
-FROM Kunde k, Kauf x
-WHERE k.ID = x.ID)
-\end{minted}
-\end{liAntwort}
-
-\begin{liAntwort}
+Die beiden Lösungswege liefern leider unterschiedliche Ergebnisse.
 \begin{minted}{sql}
 WITH tmp AS (
   SELECT x.GTIN, k.PLZ
@@ -215,31 +193,72 @@ WITH tmp AS (
   GROUP BY x.GTIN, k.PLZ
 )
 
-SELECT GTIN
+SELECT DISTINCT GTIN
 FROM tmp
-WHERE EXISTS
-(SELECT Kunde.PLZ
-FROM Kunde LEFT OUTER JOIN tmp
-ON Kunde.PLZ = tmp.PLZ
-WHERE tmp.PLZ IS NULL);
+WHERE EXISTS (
+  SELECT Kunde.PLZ
+  FROM Kunde LEFT OUTER JOIN tmp
+  ON Kunde.PLZ = tmp.PLZ
+  WHERE tmp.PLZ IS NULL
+)
+ORDER BY GTIN;
 \end{minted}
 
-oder eleganter
+\begin{verbatim}
+ gtin
+------
+    4
+   23
+  112
+  113
+  123
+  124
+  125
+  155
+  189
+  324
+  453
+  765
+(12 rows)
+\end{verbatim}
+
+oder
 
 \begin{minted}{sql}
-SELECT DISTINCT GTIN
-FROM
-(SELECT GTIN, PLZ
-FROM Kunde, Produkt)
-EXCEPT
-(SELECT x.GTIN, k.PLZ
-FROM Kunde k, Kauf x
-WHERE x.ID = k.ID
-GROUP BY x.GTIN, k.PLZ)
+SELECT DISTINCT GTIN FROM (
+  (
+    SELECT GTIN, PLZ
+    FROM Kunde, Produkt
+  )
+  EXCEPT
+  (
+    SELECT x.GTIN, k.PLZ
+    FROM Kunde k, Kauf x
+    WHERE x.ID = k.ID
+    GROUP BY x.GTIN, k.PLZ
+  )
+) as tmp
+ORDER BY GTIN;
 \end{minted}
 
-Statt WITH koennen auch VIEWs erstellt werden !
-Eine Konstruktion mit NOT IN sollte auch moeglich sein
+\begin{verbatim}
+ gtin
+------
+    4
+   23
+  112
+  113
+  123
+  124
+  125
+  155
+  189
+  324
+  453
+  765
+  889
+(13 rows)
+\end{verbatim}
 \end{liAntwort}
 
 %%
