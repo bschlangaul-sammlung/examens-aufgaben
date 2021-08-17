@@ -16,7 +16,8 @@ Sortieren Sie das Array händisch mit:
 
 \item Bubblesort\index{Bubblesort}
 
-erster Durchgang a
+\begin{liAntwort}
+erster Durchgang
 
 \liVertauschen{5 7 9 >3 <6 1 2 8}
 
@@ -66,11 +67,41 @@ fertig
 
 \liVertauschen{1 2 3 5 6 7 8 9}
 
+% didaktik.java sortiere 5 7 9 3 6 1 2 8 -b
+\begin{verbatim}
+ 5  7  9  3  6  1  2  8  Eingabe
+ 5  7  9  3  6  1  2  8  Durchlauf Nr. 1
+ 5  7 >9  3< 6  1  2  8  vertausche [2<>3]
+ 5  7  3 >9  6< 1  2  8  vertausche [3<>4]
+ 5  7  3  6 >9  1< 2  8  vertausche [4<>5]
+ 5  7  3  6  1 >9  2< 8  vertausche [5<>6]
+ 5  7  3  6  1  2 >9  8< vertausche [6<>7]
+ 5  7  3  6  1  2  8  9  Durchlauf Nr. 2
+ 5 >7  3< 6  1  2  8  9  vertausche [1<>2]
+ 5  3 >7  6< 1  2  8  9  vertausche [2<>3]
+ 5  3  6 >7  1< 2  8  9  vertausche [3<>4]
+ 5  3  6  1 >7  2< 8  9  vertausche [4<>5]
+ 5  3  6  1  2  7  8  9  Durchlauf Nr. 3
+>5  3< 6  1  2  7  8  9  vertausche [0<>1]
+ 3  5 >6  1< 2  7  8  9  vertausche [2<>3]
+ 3  5  1 >6  2< 7  8  9  vertausche [3<>4]
+ 3  5  1  2  6  7  8  9  Durchlauf Nr. 4
+ 3 >5  1< 2  6  7  8  9  vertausche [1<>2]
+ 3  1 >5  2< 6  7  8  9  vertausche [2<>3]
+ 3  1  2  5  6  7  8  9  Durchlauf Nr. 5
+>3  1< 2  5  6  7  8  9  vertausche [0<>1]
+ 1 >3  2< 5  6  7  8  9  vertausche [1<>2]
+ 1  2  3  5  6  7  8  9  Durchlauf Nr. 6
+ 1  2  3  5  6  7  8  9  Ausgabe
+\end{verbatim}
+\end{liAntwort}
+
 %%
 % (b)
 %%
 
 \item Mergesort\index{Mergesort}
+\begin{liAntwort}
 
 \begin{forest}
   /tikz/arrows=->, /tikz/>=latex, /tikz/nodes={draw},
@@ -102,12 +133,34 @@ fertig
 \myNodes
 \end{forest}
 
+% didaktik.java sortiere 5 7 9 3 6 1 2 8 -m
+\begin{verbatim}
+ 5  7  9  3  6  1  2  8  Eingabe
+ 5  7  9  3||6  1  2  8  teile [3]
+ 5  7||9  3              teile [1]
+ 5||7                    teile [0]
+ 5  7                    Nach dem Mischen [0-1]
+       9||3              teile [2]
+       3  9              Nach dem Mischen [2-3]
+ 3  5  7  9              Nach dem Mischen [0-3]
+             6  1||2  8  teile [5]
+             6||1        teile [4]
+             1  6        Nach dem Mischen [4-5]
+                   2||8  teile [6]
+                   2  8  Nach dem Mischen [6-7]
+             1  2  6  8  Nach dem Mischen [4-7]
+ 1  2  3  5  6  7  8  9  Nach dem Mischen
+ 1  2  3  5  6  7  8  9  Ausgabe
+\end{verbatim}
+\end{liAntwort}
+
 %%
 % (c)
 %%
 
 \item Quicksort\index{Quicksort}
 
+\begin{liAntwort}
 \QSinitialize{5,7,9,3,6,1,2,8}
 
 \loop
@@ -115,6 +168,44 @@ fertig
 \ifnum\value{pivotcount}>0
   \QSsortStep
 \repeat
+
+% didaktik.java sortiere 5 7 9 3 6 1 2 8 -q
+\begin{verbatim}
+ 5  7  9  3  6  1  2  8  Eingabe
+ 5  7  9  3  6  1  2  8  zerlege
+ 5  7  9  3* 6  1  2  8  markiere [3]
+ 5  7  9 >3  6  1  2  8< vertausche [3<>7]
+>5  7  9  8  6  1< 2  3  vertausche [0<>5]
+ 1 >7  9  8  6  5  2< 3  vertausche [1<>6]
+ 1  2 >9  8  6  5  7  3< vertausche [2<>7]
+ 1  2                    zerlege [0-1]
+ 1* 2                    markiere [0]
+>1  2<                   vertausche [0<>1]
+>2  1<                   vertausche [0<>1]
+          8  6  5  7  9  zerlege [3-7]
+          8  6  5* 7  9  markiere [5]
+          8  6 >5  7  9< vertausche [5<>7]
+         >8  6  9  7  5< vertausche [3<>7]
+             6  9  7  8  zerlege [4-7]
+             6  9* 7  8  markiere [5]
+             6 >9  7  8< vertausche [5<>7]
+            >6< 8  7  9  vertausche [4<>4]
+             6 >8< 7  9  vertausche [5<>5]
+             6  8 >7< 9  vertausche [6<>6]
+             6  8  7 >9< vertausche [7<>7]
+             6  8  7     zerlege [4-6]
+             6  8* 7     markiere [5]
+             6 >8  7<    vertausche [5<>6]
+            >6< 7  8     vertausche [4<>4]
+             6 >7< 8     vertausche [5<>5]
+             6  7 >8<    vertausche [6<>6]
+             6  7        zerlege [4-5]
+             6* 7        markiere [4]
+            >6  7<       vertausche [4<>5]
+            >7  6<       vertausche [4<>5]
+ 1  2  3  5  6  7  8  9  Ausgabe
+\end{verbatim}
+\end{liAntwort}
 
 \end{enumerate}
 

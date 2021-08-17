@@ -1,6 +1,10 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{vollstaendige-induktion}
+\liLadePakete{syntax,vollstaendige-induktion}
+
 \begin{document}
+\def\lf#1{\text{lfLong}(#1)}
+\def\sk#1{\sum^{#1}_{k=0}k!}
+
 \liAufgabenTitel{Klasse „LeftFactorial“ und Methode „lfBig()“}
 
 \section{Aufgabe 1: „Rekursion und Induktion“
@@ -9,56 +13,54 @@
 \footcite[Thema 1 Aufgabe 1b Seite 2-3]{examen:66115:2014:03}}
 
 \begin{enumerate}
-\item Gegeben sei die Methode \verb|BigInteger lfBig(int n)| zur
-Berechnung der eingeschränkten Linksfakultät:\footcite[Seite 25]{aud:fs:1}
 
-\begin{minted}{java}
-import java.math.Biginteger;
-import static java.math.BigInteger.*;
+%%
+% a)
+%%
 
-public class LeftFactorial {
-  // returns the left factorial !n
-  BigInteger lfBig(int n) {
-    if (n <= 0 || n >= Short.MAX_VALUE) {
-      return ZERO;
-    } else if (n == 1) {
-    return ONE;
-    } else {
-      return sub(mul(n, lfBig(n - 1)), mul(n - 1, lfBig(n - 2)));
-    }
-  }
-}
-\end{minted}
+\item Gegeben sei die Methode \liJavaCode{BigInteger lfBig(int n)} zur
+Berechnung der eingeschränkten Linksfakultät:\footcite[Seite
+25]{aud:fs:1}
+
+\liJavaExamen[firstline=3,lastline=30]{66115}{2014}{03}{LeftFactorial}
 
 Implementieren Sie unter Verwendung des Konzeptes der \emph{dynamischen
-Programmierung} die Methode \verb|BigInteger dpBig(int n)|, die jede
-$!n$
-auch bei mehrfachem Aufrufen mit dem gleichen Parameter höchstens einmal
-rekursiv berechnet. Sie dürfen der Klasse \verb|LeftFactorial| genau ein
-Attribut beliebigen Datentyps hinzufügen und die in \verb|lfBig(int)|
-verwendeten Methoden und Konstanten ebenfalls nutzen.
+Programmierung} die Methode \liJavaCode{BigInteger dp(int n)}, die
+jede $!n$ auch bei mehrfachem Aufrufen mit dem gleichen Parameter
+höchstens einmal rekursiv berechnet. Sie dürfen der Klasse
+\liJavaCode{LeftFactorial} genau ein Attribut beliebigen Datentyps
+hinzufügen und die in \liJavaCode{lfBig(int)} verwendeten Methoden und
+Konstanten ebenfalls nutzen.\footcite[Aufgabe 5]{aud:pu:1}
+\index{Implementation in Java}
 
-\item Betrachten Sie nun die Methode \verb|lfLong(int)| zur Berechnung
-der vorangehend definierten Linksfakultät ohne obere Schranke. Nehmen
-Sie im Folgenden an, dass der Datentyp \verb|long| unbeschränkt ist und
-daher kein Überlauf auftritt.
+\begin{liAntwort}
+Wir führen ein Attribut mit dem Namen \liJavaCode{store} ein und
+erzeugen ein Feld vom Typ \liJavaCode{BigInteger} mit der Länge $n+1$.
+Die Länge des Feld $n+1$ hat den Vorteil, dass nicht ständig $n-1$
+verwendet werden muss, um den gewünschten Wert zu erhalten.
 
-\begin{minted}{java}
-long lfLong(int n) {
-  if (n <= 0) {
-    return 0;
-  } else if (n == 1) {
-    return 1;
-  } else {
-    return n * lfLong(n - 1) - (n - 1) * lfLong(n - 2);
-  }
-}
-\end{minted}
+In der untenstehenden Implementation gibt es zwei Methoden mit dem Namen
+\liJavaCode{dp}. Die untenstehende Methode ist nur eine Hüllmethode, mit
+der nach außen hin die Berechnung gestartet und das
+\liJavaCode{store}-Feld neu gesetzt wird. So ist es möglich
+\liJavaCode{dp()} mehrmals hintereinander mit verschiedenen Werten
+aufzurufen (siehe \liJavaCode{main()}-Methode).
+
+\liJavaExamen[firstline=32,lastline=52]{66115}{2014}{03}{LeftFactorial}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Betrachten Sie nun die Methode \liJavaCode{lfLong(int)} zur
+Berechnung der vorangehend definierten Linksfakultät ohne obere
+Schranke. Nehmen Sie im Folgenden an, dass der Datentyp
+\liJavaCode{long} unbeschränkt ist und daher kein Überlauf auftritt.
+
+\liJavaExamen[firstline=54,lastline=62]{66115}{2014}{03}{LeftFactorial}
 
 Beweisen Sie \emph{formal} mittels \emph{vollständiger Induktion}:
-
-\def\lf#1{\text{lfLong}(#1)}
-\def\sk#1{\sum^{#1}_{k=0}k!}
 
 \begin{displaymath}
 \forall n \geq 0: \lf{n} \equiv \sk{n-1}
@@ -126,5 +128,12 @@ gilt:
 \end{split}
 \end{equation}
 \end{liAntwort}
+
+\begin{liAntwort}
+\liPseudoUeberschrift{Komplette Klasse LeftFactorial}
+
+\liJavaExamen{66115}{2014}{03}{LeftFactorial}
+\end{liAntwort}
+
 \end{enumerate}
 \end{document}
