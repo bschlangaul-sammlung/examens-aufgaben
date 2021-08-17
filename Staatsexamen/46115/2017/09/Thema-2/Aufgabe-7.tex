@@ -1,10 +1,23 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
-\usepackage{tikz}
-\usetikzlibrary{chains,fit,shapes,shapes.multipart}
+\liLadePakete{syntax,grafik}
 \begin{document}
+\def\TmpSchreibtischLauf#1#2#3#4#5#6#7{
+  \noindent
+  \begin{tikzpicture}
+  \node (qs) [unsorted] {
+  \nodepart{one} #1
+  \nodepart{two} #2
+  \nodepart{three} #3
+  \nodepart{four} #4
+  \nodepart{five} #5
+  \nodepart{six} #6
+  };
 
-\section{Aufgabe zum InsertionSort
+  \node[sorted, fit=(qs.north west) (qs.south west) (qs.#7 split)] {};
+  \end{tikzpicture}
+}
+
+\section{Aufgabe 7
 \index{Insertionsort}
 \footcite[Thema 2 Aufgabe 7]{examen:46115:2017:09}
 }
@@ -19,8 +32,10 @@ dar, nachdem das jeweils nächste Element in die Endposition verschoben
 wurde. Der bereits sortierte Teilbereich steht vor |||. Gleiche Elemente
 tragen zwecks Unterscheidung ihre \emph{„Objektidentität“} als Index
 (\zB \liJavaCode{"A1".equals("A2")} aber \liJavaCode{"A1" != "A2"})
-\footcite[Seite 1]{aud:pu:2}
+\footcite[Seite 1, Aufgabe 1]{aud:pu:2}
+\index{Schreibtischlauf (Sortierung)}
 
+\usetikzlibrary{chains,fit,shapes,shapes.multipart}
 \tikzset{
   sorted/.style = {
     draw,
@@ -38,22 +53,11 @@ tragen zwecks Unterscheidung ihre \emph{„Objektidentität“} als Index
   },
 }
 
-\def\TmpSchreibtischLauf#1#2#3#4#5#6#7{
-  \noindent
-  \begin{tikzpicture}
-  \node (qs) [unsorted] {
-  \nodepart{one} #1
-  \nodepart{two} #2
-  \nodepart{three} #3
-  \nodepart{four} #4
-  \nodepart{five} #5
-  \nodepart{six} #6
-  };
+\begin{center}
+\TmpSchreibtischLauf{$L$}{$A_1$}{$B_1$}{$F$}{$A_2$}{$B_2$}{one}
+\end{center}
 
-  \node[sorted, fit=(qs.north west) (qs.south west) (qs.#7 split)] {};
-  \end{tikzpicture}
-}
-
+\begin{liAntwort}
 \begin{center}
 \TmpSchreibtischLauf{$L$}{$A_1$}{$B_1$}{$F$}{$A_2$}{$B_2$}{one}
 
@@ -78,6 +82,7 @@ tragen zwecks Unterscheidung ihre \emph{„Objektidentität“} als Index
 \node[sorted, fit=(qs.north west) (qs.south west) (qs.south east)] {};
 \end{tikzpicture}
 \end{center}
+\end{liAntwort}
 
 \item Ergänzen Sie die folgende Methode\index{Implementierung in Java}
 so, dass sie die Zeichenketten im Feld \liJavaCode{a} lexikographisch
@@ -86,6 +91,7 @@ passen, \dh sie muss \emph{iterativ} sowie \emph{in-situ}
 (\emph{in-place}) arbeiten und die relative Reihenfolge gleicher
 Elemente jederzeit beibehalten. Sie dürfen davon ausgehen, dass kein
 Eintrag im Feld null ist.
+\index{Implementierung in Java}
 
 \begin{minted}{java}
 void sortierenDurchEinfuegen(String[] a) {
@@ -94,7 +100,8 @@ void sortierenDurchEinfuegen(String[] a) {
 }
 \end{minted}
 
+\begin{liAntwort}
 \liJavaExamen[firstline=5,lastline=16]{46115}{2017}{09}{InsertionSort}
-
+\end{liAntwort}
 \end{enumerate}
 \end{document}

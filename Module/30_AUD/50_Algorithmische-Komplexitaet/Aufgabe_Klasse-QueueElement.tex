@@ -5,13 +5,14 @@
 
 \section{Aufgabe zur Komplexität
 \index{Algorithmische Komplexität (O-Notation)}
-\footcite[Seite 3]{aud:pu:2}}
+\footcite[Seite 3, Aufgabe 3]{aud:pu:2}}
 
 \noindent
 Der Konstruktor \liJavaCode{QueueElement(...)} und die Methode
-\liJavaCode{setNext(...)} sowie \liJavaCode{getNext(...)} haben $\mathcal{O}(1)$.
-Gib die Zeitkomplexität der Methode \liJavaCode{append(int content)} an, die
-einer Schlange ein neues Element anhängt.
+\liJavaCode{setNext(...)} sowie \liJavaCode{getNext(...)} haben
+$\mathcal{O}(1)$. Geben Sie die Zeitkomplexität der Methode
+\liJavaCode{append(int content)} an, die einer Schlange ein neues
+Element anhängt.
 
 \begin{minted}{java}
 public void append(int contents) {
@@ -20,16 +21,18 @@ QueueElement newElement = new QueueElement(contents) ;
     first = newElement;
     last = newElement;
   } else {
-    last.setNext(newElement); // neues Element hinten anhaengen
-    last = last.getNext(); // angehaengtes Element ist Letztes
+    // Ein neues Element hinten anhängen.
+    last.setNext(newElement);
+    // Das angehängte Element als Letztes setzen.
+    last = last.getNext();
   }
 }
 \end{minted}
 
 \begin{liAntwort}
 Das Anhängen eines neuen Elements in die gegebene Warteschlange hat
-konstanten Rechenzeitbedarf $\mathcal{O}(1)$, egal wie lange die
-Schlange ist, da man das letzte Element direkt ansprechen kann.
+die konstanten Rechenzeitbedarf von $\mathcal{O}(1)$, egal wie lange die
+Schlange ist, da wir das letzte Element direkt ansprechen können.
 \end{liAntwort}
 
 \end{document}

@@ -9,6 +9,7 @@ db:pu:3
 aud:ab:4 ok
 aud:ab:5 ok
 
+aud:pu:2
 aud:pu:3 ok
 aud:pu:4 ok
 aud:pu:5 ok
