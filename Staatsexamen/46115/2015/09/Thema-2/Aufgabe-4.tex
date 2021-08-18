@@ -1,0 +1,87 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe,syntax,vollstaendige-induktion}
+\begin{document}
+% m = markierung
+\def\m#1{\textcolor{blue}{#1}}
+\liAufgabenTitel{Methode function: Formale Verifikation - Induktionsbeweis}
+\section{Aufgabe 4
+\index{Vollständige Induktion}
+\footcite{46115:2015:09}}
+
+Gegeben sei die folgende Methode \liJavaCode{function}:
+
+\liJavaExamen[firstline=4,lastline=9]{46115}{2015}{09}{Induktion}
+
+\noindent
+Beweisen Sie folgenden Zusammenhang mittels vollständiger Induktion:
+
+\begin{displaymath}
+\forall n \geq 1 \colon \text{function}(n) = f(n)\text{ mit }
+f(n) := 1 - \frac{1}{n + 1}
+\end{displaymath}
+
+\noindent
+Hinweis: Eventuelle Rechenungenauigkeiten, wie z. B. in Java, bei der
+Behandlung von Fließkommazahlen (z. B. double) sollen beim Beweis nicht
+berücksichtigt werden - Sie dürfen also annehmen, Fließkommazahlen
+würden mathematische Genauigkeit aufweisen.
+
+\begin{liAntwort}
+\liInduktionAnfang
+
+$f(1) := 1 - \frac{1}{1 + 1} = 1 - \frac{1}{2} = \frac{1}{2}$
+
+\liInduktionVoraussetzung
+
+$f(n) := 1 - \frac{1}{n + 1}$
+
+\liInduktionSchritt
+
+\liPseudoUeberschrift{zu zeigen:}
+
+$f(n + 1) := 1 - \frac{1}{(n + 1) + 1} = f(n)$
+
+\liPseudoUeberschrift{Vorarbeiten (Java in Mathe umwandeln):}
+
+$\text{function}(n) = \frac{1}{n \cdot (n + 1)} + f(n - 1)$
+
+\begin{align*}
+f(n + 1) & := \frac{1}{\m{(n + 1)} \cdot (\m{(n + 1) }+ 1)} + f(\m{(n + 1)} - 1)& n + 1 \text{ einsetzen}\\
+& = \frac{1}{(n + 1) \cdot (\m{n + 2})} + f(\text{n})
+&  \text{ vereinfachen}\\
+%
+& = \frac{1}{(n + 1) \cdot (n + 2)} + \m{1 - \frac{1}{n + 1}}
+& \text{für } f(n) \text{ Formel einsetzen}\\
+%
+& = 1 + \m{\frac{1}{(n + 1) \cdot (n + 2)}} - \frac{1}{n + 1}
+& \text{1. Bruch an 2. Stelle geschrieben}\\
+%
+& = 1 + \frac{1}{(n + 1) \cdot (n + 2)} - \frac{1 \cdot \m{(n + 2)}}{(n + 1) \cdot \m{(n + 2)}}
+& \text{2. Bruch mit }(n + 2) \text{ erweitert}\\
+%
+& = 1 + \frac{1 - (n + 2)}{(n + 1) \cdot (n + 2)}
+& \text{die 2 Brüche subtrahiert}\\
+%
+& = 1 + \frac{1 - n \m{-} 2}{(n + 1) \cdot (n + 2)}
+& \text{minus plus ist minus}\\
+%
+& = 1 + \frac{\m{-1} - n}{(n + 1) \cdot (n + 2)}
+& \text{eins minus zwei ist minus eins}\\
+%
+& = 1 + \frac{\m{-1 \cdot (1 + n)}}{(n + 1) \cdot (n + 2)}
+& (n + 1) \text{ ausklammern}\\
+%
+& = 1 + \left(\m{-1 \cdot} \frac{(1 + n)}{(n + 1) \cdot (n + 2)}\right)
+& \text{minus vor den Bruch bringen}\\
+%
+& = 1 \m{-} \frac{(1 + n)}{(n + 1) \cdot (n + 2)}
+& \text{plus minus ist minus}\\
+%
+& = 1 - \m{\frac{1}{n + 2}}
+& (n + 1) \text{ gekürzt}\\
+%
+& = 1 - \frac{1}{\m{(n + 1)} + 1}
+& \text{Umformen zur Verdeutlichung}\\
+\end{align*}
+\end{liAntwort}
+\end{document}
