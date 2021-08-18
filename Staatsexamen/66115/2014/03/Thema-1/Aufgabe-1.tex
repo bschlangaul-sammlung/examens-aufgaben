@@ -2,7 +2,9 @@
 \liLadePakete{syntax,vollstaendige-induktion}
 
 \begin{document}
+% lf = lfLong
 \def\lf#1{\text{lfLong}(#1)}
+% sk = summe k
 \def\sk#1{\sum^{#1}_{k=0}k!}
 
 \liAufgabenTitel{Klasse „LeftFactorial“ und Methode „lfBig()“}
@@ -22,6 +24,20 @@
 Berechnung der eingeschränkten Linksfakultät:\footcite[Seite
 25]{aud:fs:1}
 
+\begin{equation*}
+!n :=
+\begin{cases}
+n \cdot !(n - 1) - (n - 1) \cdot !(n - 2) &
+\text{falls } 1 < n < 32767 \\
+
+1 &
+\text{falls } n = 1 \\
+
+0 &
+\text{sonst } \\
+\end{cases}
+\end{equation*}
+
 \liJavaExamen[firstline=3,lastline=30]{66115}{2014}{03}{LeftFactorial}
 
 Implementieren Sie unter Verwendung des Konzeptes der \emph{dynamischen
@@ -31,7 +47,7 @@ höchstens einmal rekursiv berechnet. Sie dürfen der Klasse
 \liJavaCode{LeftFactorial} genau ein Attribut beliebigen Datentyps
 hinzufügen und die in \liJavaCode{lfBig(int)} verwendeten Methoden und
 Konstanten ebenfalls nutzen.\footcite[Aufgabe 5]{aud:pu:1}
-\index{Implementation in Java}
+\index{Implementierung in Java}
 
 \begin{liAntwort}
 Wir führen ein Attribut mit dem Namen \liJavaCode{store} ein und
@@ -83,16 +99,18 @@ n=1 \Rightarrow
 1
 \end{displaymath}
 
-\begin{displaymath}
-n=2 \Rightarrow
-\lf{2} =
-2 \cdot \lf{1} - 1 \cdot \lf{0} =
-2 =
-\sk{1} =
-1! + 0! =
-1 + 1 =
-2
-\end{displaymath}
+\begin{equation*}
+\begin{split}
+n=2 \Rightarrow & \lf{2}\\
+& = (n+1) \cdot \sk{n-1} - n \cdot \sk{n-2} \\
+& = 2 \cdot \lf{1} - 1 \cdot \lf{0} \\
+& = 2 \\
+& = \sk{1} \\
+& = 1! + 0! \\
+& = 1 + 1 \\
+& = 2
+\end{split}
+\end{equation*}
 
 %%
 %
@@ -104,15 +122,13 @@ n=2 \Rightarrow
 \lf{n} = \sk{n-1}
 \end{displaymath}
 
-gilt:
-
 %%
 %
 %%
 
 \liInduktionSchritt
 
-\begin{equation}
+\begin{equation*}
 \begin{split}
 \lf{n+1} & = (n+1) \cdot \lf{n} - n \cdot \lf{n-1} \\
 & = (n+1) \cdot \sk{n-1} - n \cdot \sk{n-2} \\
@@ -126,7 +142,7 @@ gilt:
 & = \sk{n} \\
 & = \sk{(n+1)-1}
 \end{split}
-\end{equation}
+\end{equation*}
 \end{liAntwort}
 
 \begin{liAntwort}
