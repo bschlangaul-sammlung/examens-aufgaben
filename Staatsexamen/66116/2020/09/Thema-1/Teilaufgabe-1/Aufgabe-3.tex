@@ -45,7 +45,7 @@
 \umlHVHdep[stereo=use,pos stereo=1.8,anchor2=-150]{TicketDruckerei}{Ticket}
 \umldep[stereo=use,anchor1=-25]{TicketHandel}{Ticket}
 
-\umlVHVdep[arm1=-1cm,stereo=use,anchor1=-30,  pos stereo=1.5]{TicketDruckerei}{ErwachsenenTicket}
+\umlVHVdep[arm1=-1cm,stereo=use,anchor1=-30, pos stereo=1.5]{TicketDruckerei}{ErwachsenenTicket}
 \umlVHVdep[arm1=-1.5cm,stereo=use,anchor1=-150, pos stereo=1.5]{TicketDruckerei}{KinderTicket}
 
 \umluniassoc[arg1=,mult2=1,arg2=- druckerei,name=benutzt]{TicketHandel}{TicketDruckerei}
@@ -71,12 +71,33 @@ jeweils den Namen des Musters sowie die Elemente des Klassendiagramms
 an, mit denen diese Muster im Zusammenhang stehen. ACHTUNG: Es handelt
 sich dabei \emph{nicht} um das \emph{Interface}- oder das
 \emph{Vererbungs}muster.
+\index{Einzelstück (Singleton)}
+\index{Fabrikmethode (Factory Method)}
 
 \begin{liAntwort}
-Einzelstück (Singleton): \j{TicketHandel}
+\liPseudoUeberschrift{Einzelstück (Singleton)}
 
 \liEntwurfsEinzelstueckUml
 \liEntwurfsEinzelstueckAkteure
+
+\begin{tabular}{l|l}
+\textbf{Klasse}       & \textbf{Akteur} \\\hline\hline
+\j{TicketHandel}      & Einzelstück\\
+\end{tabular}
+
+\liPseudoUeberschrift{Fabrikmethode (Factory Method)}
+
+\liEntwurfsFabrikmethodeUml
+\liEntwurfsFabrikmethodeAkteure
+
+\begin{tabular}{l|l}
+\textbf{Klasse}       & \textbf{Akteur} \\\hline\hline
+\j{ErwachsenenTicket} & KonkretesProdukt\\
+\j{KinderTicket}      & KonkretesProdukt\\
+\j{TicketDruckerei}   & KonkreterErzeuger\\
+\j{Ticket}            & Produkt\\
+-                     & Erzeuger\\
+\end{tabular}
 \end{liAntwort}
 
 %%
