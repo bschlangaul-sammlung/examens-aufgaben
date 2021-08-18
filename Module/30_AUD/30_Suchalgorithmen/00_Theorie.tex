@@ -11,6 +11,8 @@
 
 \begin{liQuellen}
 \item \cite[Seite 120-123]{saake}
+\item \cite[Seite 17]{aud:fs:2}
+\item \cite{wiki:binaere-suche}
 \end{liQuellen}
 
 %-----------------------------------------------------------------------
@@ -25,26 +27,30 @@ Suchen.
 Die Suche in unsortierter Datenmenge ist langwierig. Es gibt keine
 Möglichkeit, das ideal zu gestalten.
 %
-Das Suchen in sortierten Daten ist sinnvoll, denn es kann optimiert
-werden.
+Das \memph{Suchen in sortierten Daten} ist sinnvoll, denn es kann
+optimiert werden.
 
 \subsection{Möglichkeiten:}
 
 \begin{description}
-\item[Sequenzielle Suche:] Es wird eine Folge vom ersten Element an
-durchlaufen. Die Suche ist beendet, wenn das gesuchte Element gefunden
-ist oder die gesamte Folge ohne Ergebnis durchlaufen wurde.
+\item[Sequenzielle Suche:]
 
-\item[Binäre Suche:] Wir „verkleinern“ die zu durchsuchenden Menge durch
-Herausgreifen eines Elements aus der Folge und vergleichen, ob mein
-gesuchtes Element vor oder nach diesem Element in der Folge liegt. Es
-muss nur noch eine Hälfte durchsucht werden. In dieser fahren wir analog
-fort.
+Es wird eine Folge vom \memph{ersten Element} an durchlaufen. Die Suche
+ist beendet, wenn das gesuchte Element gefunden ist oder die
+\memph{gesamte Folge} ohne Ergebnis durchlaufen wurde.
+
+\item[Binäre Suche:]
+
+Wir „verkleinern“ die zu durchsuchenden Menge durch Herausgreifen eines
+Elements aus der Folge und vergleichen, ob mein gesuchtes Element vor
+oder nach diesem Element in der Folge liegt. Es muss nur noch eine
+Hälfte durchsucht werden. In dieser fahren wir analog fort.
 \end{description}
 
+\noindent
 Ein Bewertungskriterium für das Suchverfahren ist der
 Berechnungsaufwand. Wie viele Schritte sind durchschnittlich nötig, um
-eine Folge zu durchlaufen?\footcite[Seite 16 (PDF 8)]{aud:fs:2}
+eine Folge zu durchlaufen?\footcite[Seite 16]{aud:fs:2}
 
 %-----------------------------------------------------------------------
 %
@@ -62,8 +68,6 @@ dar. Ordnung und spätere Suche müssen sich auf denselben Schlüssel
 beziehen.
 \footcite{wiki:binaere-suche}
 
-\cite[Seite 17 (PDF 9)]{aud:fs:2}
-
 \section{Iterativer Ansatz}
 
 \liJavaDatei[firstline=7,lastline=22]{suche/BinaereSuche}
@@ -74,13 +78,19 @@ beziehen.
 
 \section{Komplexität}
 
-Im schlechtesten Fall muss nicht die gesamte Folge durchsucht werden.
-Nach dem ersten Teilen der Folge bleiben nur noch $\frac{n}{2}$
-Elemente, nach dem zweiten Schritt $\frac{n}{4}$, nach dem dritten
-$\frac{n}{8}$ usw. Allgemein bedeutet dies, dass im $i$-ten Durchlauf
-maximal $\frac{n}{2^i}$ Elemente zu durchsuchen sind. Entsprechend
-werden $\log_2 n$ Schritte benötigt.
-\footcite[Seite 122]{saake}
+Bei der Binären Suche muss im schlechtesten Fall nicht die gesamte Folge
+durchsucht werden. Nach dem ersten Teilen der Folge bleiben nur noch
+$\frac{n}{2}$ Elemente, nach dem zweiten Schritt $\frac{n}{4}$, nach dem
+dritten $\frac{n}{8}$ usw. Allgemein bedeutet dies, dass im $i$-ten
+Durchlauf maximal $\frac{n}{2^i}$ Elemente zu durchsuchen sind.
+Entsprechend werden $\log_2 n$ Schritte benötigt.\footcite[Seite
+122]{saake}
+
+Um in einem Feld mit $n$ Einträgen die An- oder Abwesenheit eines
+Schlüssels festzustellen, werden maximal $\lceil \log _{2}(n+1)\rceil
+=\lfloor \log _{2}(n)+1\rfloor$ Vergleichsschritte benötigt. Somit hat
+die binäre Suche in der Landau-Notation ausgedrückt die Zeitkomplexität
+$\mathcal{O}(\log\ n)$.\footcite{wiki:binaere-suche}
 
 \literatur
 
