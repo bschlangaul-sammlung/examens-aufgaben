@@ -4,6 +4,51 @@ Hilfsmakros zum Setzen der Vollständigen Induktion, vor allem die
 Überschriften für die einzelnen Schritte]
 %    \end{macrocode}
 
+% \liLets{
+%   m = liInduktionMarkierung,
+%   e = liInduktionErklaerung,
+% }
+
+% \begin{verbatim}
+% \begin{align*}
+% C_{n+1}
+% & = \frac
+%     {(4 \cdot (\m{n + 1} - 1) + 2) \cdot \text{cn}(\m{n + 1} - 1)}
+%     {\m{n + 1} + 1}
+% & \e{Java nach Mathe}\\
+% %
+% & = \frac
+%     {(4\m{n} + 2) \cdot \text{cn}(\m{n})}
+%     {\m{n + 2}}
+% & \e{addiert, subtrahiert}\\
+% %
+% & = \frac
+%     {(4n + 2) \cdot \m{(2n)!}}
+%     {(n + 2) \cdot \m{(n + 1)! \cdot n!}}
+% & \e{für cn(n) Formel eingesetzt}\\
+% %
+% & = \frac
+%     {(4n + 2) \cdot (2n)! \m{\cdot (n + 1)}}
+%     {(n + 2) \cdot (n + 1)! \cdot n! \m{\cdot (n + 1)}}
+% & \e{$(n + 1)$ multipliziert} \\
+% %
+% & = \frac
+%     {(4n + 2) \cdot \m{(n + 1) \cdot (2n)!}}
+%     {(n + 2) \cdot (n + 1)! \cdot \m{(n + 1) \cdot n!}}
+% & \e{umsortiert} \\
+% %
+% & = \frac
+%     {\m{(2(n + 1))!}}
+%     {\m{(n + 2)! \cdot (n + 1)!}}
+% & \e{Hilfsgleichungen verwendet}\\
+% %
+% & = \frac
+%     {(2(\m{n + 1}))!}
+%     {((\m{n + 1}) + 1)! \cdot (\m{n + 1})!}
+% & \e{$(n + 1)$ verdeutlicht}\\
+% \end{align*}
+% \end{verbatim}
+
 % Lade häufig benötigte Pakete
 %    \begin{macrocode}
 \RequirePackage{lehramt-informatik-typographie}
@@ -14,6 +59,23 @@ Hilfsmakros zum Setzen der Vollständigen Induktion, vor allem die
 %    \begin{macrocode}
 \ExplSyntaxOn
 %    \end{macrocode}
+
+% \begin{macro}{\liInduktionMarkierung}
+% Hilfsmakro um Teile von mathematischen Formeln markieren zu können.
+% \liLet{m}{liInduktionMarkierung}
+%    \begin{macrocode}
+\def\liInduktionMarkierung#1{\textcolor{blue}{#1}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liInduktionErklaerung}
+% Gedacht für die rechte Spalte in der align-Umgebung. Das text-Makro
+% ist dann nicht mehr nötig.
+% \liLet{e}{liInduktionErklaerung}
+%    \begin{macrocode}
+\def\liInduktionErklaerung#1{\scriptsize\text{#1}}
+%    \end{macrocode}
+% \end{macro}
 
 % \begin{macro}{\liInduktionAnfang}
 %    \begin{macrocode}

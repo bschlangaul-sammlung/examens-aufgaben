@@ -1,6 +1,9 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{vollstaendige-induktion}
 \begin{document}
+\let\m=\liInduktionMarkierung
+\let\e=\liInduktionErklaerung
+
 \liAufgabenTitel{Hanoi}
 
 \section{Aufgabe 1: „Formale Verifikation“
@@ -67,14 +70,38 @@ $k=0$
 
 \liInduktionSchritt
 
+\begin{align*}
+\text{hanoi}(k, \text{'A'},\text{'C'})
+& = 1 +
+    \text{hanoi}(k - 1, \text{'A'},\text{'B'}) +
+    \text{hanoi}(k - 1, \text{'B'},\text{'C'})\\
+\end{align*}
+
 $k \rightarrow k + 1$
 
 \begin{align*}
-\text{hanoi}(k +  1, \text{'A'},\text{'C'})
-& = 1 + \text{hanoi}(k, \text{'A'},\text{'B'}) + \text{hanoi}(k, \text{'B'},\text{'C'})\\
-& = 1 + 2^k - 1 +  2^k - 1 \\
-& = 2 \cdot 2^k - 1 \\
-& = 2^{k+1} - 1 \\
+\text{hanoi}(\m{k + 1}, \text{'A'},\text{'C'})
+& = 1 +
+    \text{hanoi}(\m{(k + 1)} - 1, \text{'A'},\text{'B'}) + \\
+    & \hspace{1cm}
+    \text{hanoi}(\m{(k + 1)} - 1, \text{'B'},\text{'C'})\\
+& = 1 +
+    \text{hanoi}(\m{k}, \text{'A'},\text{'B'}) +\\
+    & \hspace{1cm}
+    \text{hanoi}(\m{k}, \text{'B'},\text{'C'})
+& \e{$k + 1 - 1 = k$}\\
+%
+& = 1 +
+    \m{2^k - 1} + \m{2^k - 1}
+& \e{Formeln eingesetzt}\\
+%
+& = 2^k + 2^k \m{- 1}
+& \e{$1 - 1 - 1 = - 1$}\\
+%
+& = \m{2 \cdot 2^k} - 1
+& \e{$2^k + 2^k = 2 \cdot 2^k$}
+\\
+& = 2^{\m{k+1}} - 1 & \e{$2 \cdot 2^k = 2^{k+1}$} \\
 \end{align*}
 
 \end{liAntwort}

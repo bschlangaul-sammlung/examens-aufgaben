@@ -1,14 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{vollstaendige-induktion}
 \begin{document}
-% e = erklaerung
-\def\e#1{\scriptsize#1}
-
-% et = erklaerung mit text
-\def\et#1{\scriptsize\text{#1}}
-
-% m = markierung
-\def\m#1{\textcolor{blue}{#1}}
+\let\m=\liInduktionMarkierung
+\let\e=\liInduktionErklaerung
 
 \section{Geometrische Summenformel}
 
@@ -48,15 +42,15 @@ f(n)
 %
 & = \m{(1 - q) \cdot q^n +
     \text{geoSum}(n - 1, q)}
-& \et{Java-Code in Mathe-Formel umgewandelt}\\
+& \e{Java-Code in Mathe-Formel umgewandelt}\\
 %
 & = (1 - q) \cdot q^n +
     \m{1 - q^{(n - 1) + 1}}
-& \et{für rekursiven Methodenaufruf gegebene Formel eingesetzt}\\
+& \e{für rekursiven Methodenaufruf gegebene Formel eingesetzt}\\
 %
 & = (1 - q) \cdot q^n +
     1 - q^{\m{n}}
-& \et{Addition im Exponent}\\
+& \e{Addition im Exponent}\\
 \end{align*}
 
 \begin{align*}
@@ -65,20 +59,20 @@ f(n+1)
 %
 & = (1 - q) \cdot q^{n + 1} +
     1 - q^{n + 1}
-& \et{von Java konvertierte Formel verwendet und n + 1 eingesetzt}\\
+& \e{von Java konvertierte Formel verwendet und $n + 1$ eingesetzt}\\
 %
 & = \m{q^{n + 1} - q^{(n + 1) + 1}} +
     1 - q^{n + 1}
-& \et{ausmultipliziert}\\
+& \e{ausmultipliziert}\\
 %
 & = - q^{(n + 1) + 1} + 1
-& \e{q^{n + 1} - q^{n + 1} = 0}\\
+& \e{$q^{n + 1} - q^{n + 1} = 0$}\\
 %
 & =  1 \m{- q^{(n + 1) + 1}}
-& \et{Kommutativgesetz der Addition}\\
+& \e{Kommutativgesetz der Addition}\\
 %
 & =  1 - q^{(\m{n + 1}) + 1}
-& \et{was zu zeigen war}\\
+& \e{was zu zeigen war}\\
 \end{align*}
 \end{liAntwort}
 

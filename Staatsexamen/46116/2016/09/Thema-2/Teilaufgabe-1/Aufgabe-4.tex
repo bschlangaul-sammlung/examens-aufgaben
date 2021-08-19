@@ -1,14 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{vollstaendige-induktion}
 \begin{document}
-% e = erklaerung
-\def\e#1{\scriptsize#1}
-
-% et = erklaerung mit text
-\def\et#1{\scriptsize\text{#1}}
-
-% m = markierung
-\def\m#1{\textcolor{blue}{#1}}
+\let\m=\liInduktionMarkierung
+\let\e=\liInduktionErklaerung
 
 \liAufgabenTitel{Formale Verifikation mit vollständiger Induktion}
 \section{Aufgabe 4:
@@ -141,37 +135,37 @@ C_{n+1}
 & = \frac
     {(4 \cdot (\m{n + 1} - 1) + 2) \cdot \text{cn}(\m{n + 1} - 1)}
     {\m{n + 1} + 1}
-& \et{Java nach Mathe}\\
+& \e{Java nach Mathe}\\
 %
 & = \frac
     {(4\m{n} + 2) \cdot \text{cn}(\m{n})}
     {\m{n + 2}}
-& \et{addiert, subtrahiert}\\
+& \e{addiert, subtrahiert}\\
 %
 & = \frac
     {(4n + 2) \cdot \m{(2n)!}}
     {(n + 2) \cdot \m{(n + 1)! \cdot n!}}
-& \et{für cn(n) Formel eingesetzt}\\
+& \e{für cn(n) Formel eingesetzt}\\
 %
 & = \frac
     {(4n + 2) \cdot (2n)! \m{\cdot (n + 1)}}
     {(n + 2) \cdot (n + 1)! \cdot n! \m{\cdot (n + 1)}}
-& \e{(n + 1) \text{ multipliziert}} \\
+& \e{$(n + 1)$ multipliziert} \\
 %
 & = \frac
     {(4n + 2) \cdot \m{(n + 1) \cdot (2n)!}}
     {(n + 2) \cdot (n + 1)! \cdot \m{(n + 1) \cdot n!}}
-& \et{umsortiert} \\
+& \e{umsortiert} \\
 %
 & = \frac
     {\m{(2(n + 1))!}}
     {\m{(n + 2)! \cdot (n + 1)!}}
-& \et{Hilfsgleichungen verwendet}\\
+& \e{Hilfsgleichungen verwendet}\\
 %
 & = \frac
     {(2(\m{n + 1}))!}
     {((\m{n + 1}) + 1)! \cdot (\m{n + 1})!}
-& \e{(n + 1) \text{ verdeutlicht}}\\
+& \e{$(n + 1)$ verdeutlicht}\\
 \end{align*}
 
 \liPseudoUeberschrift{Mathematische Herangehensweise}
@@ -181,32 +175,32 @@ C_{n+1}
 & = \frac
     {(2(\m{n + 1}))!}
     {((\m{n + 1}) + 1)! \cdot (\m{n + 1})!}
-& \e{n + 1 \text{ in } C_n \text{ eingesetzt}}\\
+& \e{$n + 1$ in $C_n$ eingesetzt}\\
 %
 & = \frac
     {(2(n + 1))!}
     {(\m{n + 2})! \cdot (n + 1)!}
-& \et{addiert}\\
+& \e{addiert}\\
 %
 & = \frac
     {(4n + 2) \cdot \m{(n + 1)} \cdot (2n)!}
     {(n + 2) \cdot \m{(n + 1)} \cdot (n + 1)! \cdot n!}
-& \et{Hilfsgleichungen verwendet}\\
+& \e{Hilfsgleichungen verwendet}\\
 %
 & = \frac
     {(4n + 2) \cdot (2n)!}
     {(n + 2) \cdot (n + 1)! \cdot n!}
-& \e{(n + 1) \text{ gekürzt}} \\
+& \e{$(n + 1)$ gekürzt} \\
 %
 & = \frac
     {4n + 2}
-    {n + 2} \cdot \m{C_n} &
-\et{Catalan-Formel ersetzt}\\
+    {n + 2} \cdot \m{C_n}
+& \e{Catalan-Formel ersetzt}\\
 %
 & = \frac
     {4((\m{n + 1}) - 1) + 2}
     {(\m{n + 1}) + 1} \cdot C_{(\m{n + 1}) - 1}
-& \e{(n + 1) \text{ verdeutlicht}}\\
+& \e{$(n + 1)$ verdeutlicht}\\
 \end{align*}
 
 \end{liAntwort}

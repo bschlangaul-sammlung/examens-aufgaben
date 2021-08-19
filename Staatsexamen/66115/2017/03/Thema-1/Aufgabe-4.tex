@@ -1,6 +1,10 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{vollstaendige-induktion}
+
 \begin{document}
+\let\m=\liInduktionMarkierung
+\let\e=\liInduktionErklaerung
+
 \liAufgabenTitel{Methode „sumOfSquares()“}
 
 \section{Aufgabe 4: Vollständige Induktion
@@ -11,6 +15,8 @@
 Sie dürfen im Folgenden davon ausgehen, dass keinerlei Under- oder
 Overflows auftreten.
 \footcite[Thema 1 Aufgabe 4]{examen:66115:2017:03}
+
+\bigskip
 
 \noindent
 Gegeben sei folgende rekursive Methode für $n \geq 0$:
@@ -58,7 +64,7 @@ $\texttt{sumOfSquares(0)} \overset{\texttt{if}}{=} 0 = f(0)$
 
 Für ein festes $n \in \mathbb{N}$ gelte:
 
-$\texttt{sumOfSquares(0)} = f(n)$
+$\texttt{sumOfSquares(n)} = f(n)$
 
 %%
 %
@@ -66,45 +72,54 @@ $\texttt{sumOfSquares(0)} = f(n)$
 
 \liInduktionSchritt
 
-% https://mathcs.org/analysis/reals/infinity/answers/sm_sq_cb.html
-
 $n \rightarrow n + 1$
 
-$\texttt{sumOfSquares(n+1)} \overset{\texttt{else}}{=}$
-
-$\texttt{(n+1)*(n+1)*sumOfSquares(n)} \overset{\texttt{I.H.}}{=}$
-
-$(n + 1) \cdot (n + 1) + f(n)$
-
-$(n + 1)^2 + \frac{n(n + 1)(2n + 1)}{6}$
-
-$\frac{6(n + 1)^2}{6} + \frac{n(n + 1)(2n + 1)}{6}$
-
-$\frac{6(n + 1)^2 + n(n + 1)(2n + 1)}{6}$
-
-$\frac{(n + 1) \cdot (6(n + 1) + n(2n + 1))}{6}$
-
-$\frac{(n + 1) \cdot (6n + 6 + 2n^2 + n))}{6}$
-
-$\frac{(n + 1) \cdot (2n^2 + 7n + 6))}{6}$
-$\frac{(n + 1) \cdot (n + 2) (2n + 3))}{6}$
-
-Neben $2n^2 + 7n + 6 = (n + 2) (2n + 3) = n \cdot 2n + 2 \cdot 2n + 3 \cdot n + 2 \cdot 6$
-
-% $\frac{6(n^2 + 2 \cdot n \cdot 1 + 1^2) + n(n + 1)(2n + 1)}{6}$
-
-% $\frac{6n^2 + 12n + 6 + n(n + 1)(2n + 1)}{6}$
-
-% $\frac{6n^2 + 12n + 6 + (n^2 + n)(2n + 1)}{6}$
-
-% $\frac{6n^2 + 12n + 6 + (n^2 + n)2n + (n^2 + n)1}{6}$
-
-% $\frac{6n^2 + 12n + 6 + 2n^3 + 2n^2 + n^2 + n}{6}$
-
-% $\frac{6n^2 + 13n + 6 + 2n^3 + 2n^2 + n^2 + n}{6}$
-
-% $\frac{9n^2 + 6 + 2n^3 + n}{6}$
-
+\begin{align*}
+f(n + 1)
+& = \texttt{sumOfSquares(n+1)}
+& \e{Java-Methode eingesetzt}\\
+%
+& \overset{\texttt{else}}{=} \texttt{(n+1)*(n+1) + sumOfSquares(n)}
+& \e{Java-Code der else-Verzweigung verwendet}\\
+%
+& \overset{\texttt{I.H.}}{=} (n + 1) (n + 1) + f(n)
+& \e{mathematisch notiert}\\
+%
+& = (n + 1) (n + 1) + \m{\frac{n(n + 1)(2n + 1)}{6}}
+& \e{Formel eingesetzt}\\
+%
+& = \m{(n + 1)^2} + \frac{n(n + 1)(2n + 1)}{6}
+& \e{potenziert}\\
+%
+& = \frac{\m{6}(n + 1)^2}{\m{6}} + \frac{n(n + 1)(2n + 1)}{6}
+& \e{$(n + 1)^2$ in Bruch umgewandelt}\\
+%
+& = \frac{6(n + 1)^2 + n(n + 1)(2n + 1)}{\m{6}}
+& \e{Addition gleichnamiger Brüche}\\
+%
+& = \frac{\m{(n + 1)} 6 (n + 1) + \m{(n + 1)}n(2n + 1)}{\m{6}}
+& \e{$n + 1$ ausklammern vorbereitet}\\
+%
+%
+& = \frac{\m{(n + 1)(}6(n + 1) + n(2n + 1)\m{)}}{6}
+& \e{$n + 1$ ausklammert}\\
+%
+& = \frac{(n + 1)(\m{6n + 6 + 2n^2 + n}))}{6}
+& \e{Klammern ausmultiplizieren / auflösen}\\
+%
+& = \frac{(n + 1)(2n^2 + \m{7n} + 6)}{6}
+& \e{umsortiert, addiert $6n + n = 7n$}\\
+%
+& = \frac{(n + 1)(2n^2 + \m{3n + 4n} + 6)}{6}
+& \e{Ausklammern vorbereitet}\\
+%
+& = \frac{(n + 1)\m{(n + 2)} (2n + 3)}{6}
+& \e{$(n + 2)$ ausgeklammert}\\
+%
+& = \frac{\m{(n + 1)}(\m{(n + 1)} + 1) (2\m{(n + 1)} + 1))}{6}
+& \e{$(n + 1)$ verdeutlicht}\\
+\end{align*}
+\liFussnoteUrl{https://mathcs.org/analysis/reals/infinity/answers/sm_sq_cb.html}
 \end{liAntwort}
 
 %%

@@ -1,8 +1,9 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{mathe,syntax,vollstaendige-induktion}
 \begin{document}
-% m = markierung
-\def\m#1{\textcolor{blue}{#1}}
+\let\m=\liInduktionMarkierung
+\let\e=\liInduktionErklaerung
+
 \liAufgabenTitel{Methode function: Formale Verifikation - Induktionsbeweis}
 \section{Aufgabe 4
 \index{Vollständige Induktion}
@@ -50,57 +51,57 @@ f(n + 1)
 & = \frac{1}{\m{(n + 1)} \cdot
     (\m{(n + 1) }+ 1)} +
     f(\m{(n + 1)} - 1)
-& n + 1 \text{ einsetzen}\\
+& \e{$n + 1$ eingesetzt}\\
 %
 & = \frac{1}{(n + 1) \cdot
     (\m{n + 2})} + f(\text{n})
-& \text{ vereinfachen}\\
+& \e{vereinfacht}\\
 %
 & = \frac{1}{(n + 1) \cdot (n + 2)} +
     \m{1 - \frac{1}{n + 1}}
-& \text{für } f(n) \text{ Formel einsetzen}\\
+& \e{für $f(n)$ Formel einsetzt}\\
 %
 & = 1 +
     \m{\frac{1}{(n + 1) \cdot (n + 2)}} -
     \frac{1}{n + 1}
-& \text{1. Bruch an 2. Stelle geschrieben}\\
+& \e{1. Bruch an 2. Stelle geschrieben}\\
 %
 & = 1 +
     \frac{1}{(n + 1) \cdot (n + 2)} -
     \frac{1 \cdot \m{(n + 2)}}{(n + 1) \cdot \m{(n + 2)}}
-& \text{2. Bruch mit }(n + 2) \text{ erweitert}\\
+& \e{2. Bruch mit $(n + 2)$ erweitert}\\
 %
 & = 1 +
     \frac{1 - (n + 2)}{(n + 1) \cdot (n + 2)}
-& \text{die 2 Brüche subtrahiert}\\
+& \e{die 2 Brüche subtrahiert}\\
 %
 & = 1 +
     \frac{1 - n \m{-} 2}{(n + 1) \cdot (n + 2)}
-& \text{minus plus ist minus}\\
+& \e{minus plus ist minus}\\
 %
 & = 1 +
     \frac{\m{-1} - n}{(n + 1) \cdot (n + 2)}
-& \text{eins minus zwei ist minus eins}\\
+& \e{eins minus zwei ist minus eins}\\
 %
 & = 1 +
     \frac{\m{-1 \cdot (1 + n)}}{(n + 1) \cdot (n + 2)}
-& (n + 1) \text{ ausklammern}\\
+& \e{$(n + 1)$ ausgeklammert}\\
 %
 & = 1 +
     \left(\m{-1 \cdot} \frac{(1 + n)}{(n + 1) \cdot (n + 2)}\right)
-& \text{minus vor den Bruch bringen}\\
+& \e{minus vor den Bruch bringen}\\
 %
 & = 1 \m{-}
     \frac{(1 + n)}{(n + 1) \cdot (n + 2)}
-& \text{plus minus ist minus}\\
+& \e{plus minus ist minus}\\
 %
 & = 1 -
     \m{\frac{1}{n + 2}}
-& (n + 1) \text{ gekürzt}\\
+& \text{$(n + 1)$ gekürzt}\\
 %
 & = 1 -
     \frac{1}{\m{(n + 1)} + 1}
-& \text{Umformen zur Verdeutlichung}\\
+& \e{Umformen zur Verdeutlichung}\\
 \end{align*}
 \end{liAntwort}
 \end{document}
