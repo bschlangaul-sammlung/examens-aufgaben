@@ -29,7 +29,7 @@ Berechnung der eingeschränkten Linksfakultät:\footcite[Seite
 \begin{equation*}
 !n :=
 \begin{cases}
-n \cdot !(n - 1) - (n - 1) \cdot !(n - 2) &
+n !(n - 1) - (n - 1) !(n - 2) &
 \text{falls } 1 < n < 32767 \\
 
 1 &
@@ -104,8 +104,8 @@ n=1 \Rightarrow
 \begin{equation*}
 \begin{split}
 n=2 \Rightarrow & \lf{2}\\
-& = (n+1) \cdot \sk{n-1} - n \cdot \sk{n-2} \\
-& = 2 \cdot \lf{1} - 1 \cdot \lf{0} \\
+& = (n+1) \sk{n-1} - n \sk{n-2} \\
+& = 2 \lf{1} - 1 \lf{0} \\
 & = 2 \\
 & = \sk{1} \\
 & = 1! + 0! \\
@@ -130,21 +130,33 @@ n=2 \Rightarrow & \lf{2}\\
 
 \liInduktionSchritt
 
-\begin{equation*}
-\begin{split}
-\lf{n+1} & = (n+1) \cdot \lf{n} - n \cdot \lf{n-1} \\
-& = (n+1) \cdot \sk{n-1} - n \cdot \sk{n-2} \\
-& = (n+1) \cdot \Big((n-1)! + \sk{n-2}\Big) - n \cdot \sk{n-2} \\
-& = (n+1)(n-1)! + (n+1) \cdot \sk{n-2} - n \cdot \sk{n-2} \\
-& = (n+1)(n-1)! \cdot \sk{n-2} + n \cdot \sk{n-2} - n \cdot \sk{n-2} \\
+\begin{align*}
+A(n + 1) \\
+& =\lf{n+1}\\
+& = (n+1) \lf{n} - n \lf{n-1} \\
+& = (n+1) \m{\sk{n-1}} - n \m{\sk{(n - 1) -1}}
+& \e{Formel eingesetzt}\\
+%
+& = (n+1) \sk{n-1} - n \sk{n\m{-2}}
+& \e{subtrahiert}\\
+%
+& = (n+1) \Big(\m{(n-1)!} + \sk{\m{n-2}}\Big) - n \sk{n-2}
+& \e{Element aus Summenformel abgespalten}\\
+%
+& = \m{(n+1)}(n-1)! + \m{(n+1)} \sk{n-2} - n \sk{n-2}
+& \e{Klammer ausmultipliziert}\\
+%
+& = (n+1)(n-1)! \sk{n-2} + n \sk{n-2} - n \sk{n-2} \\
 & = (n+1)(n-1)! + \sk{n-2} \\
-& = n \cdot (n-1)! + (n-1)! + \sk{n-2} \\
-& = n \cdot (n-1)! + \sk{n-1} \\
-& = n! + \sk{n-1} \\
-& = \sk{n} \\
-& = \sk{(n+1)-1}
-\end{split}
-\end{equation*}
+& = n (n-1)! + (n-1)! + \sk{n-2} \\
+& = n (n-1)! + \sk{n-1} \\
+& = \m{n!} + \sk{n-1}
+& \e{Fakultät erhöht}\\
+& = \sk{\m{n}}
+& \e{Element zum Summenzeichen hinzugefügt}\\
+& = \sk{\m{(n+1)}-1}
+& \e{mit $(n+1)$ an der Stelle von $n$}\\
+\end{align*}
 \end{liAntwort}
 
 \begin{liAntwort}
