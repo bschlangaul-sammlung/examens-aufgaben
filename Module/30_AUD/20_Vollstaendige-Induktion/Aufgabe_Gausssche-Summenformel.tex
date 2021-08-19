@@ -9,19 +9,22 @@
 \section{Gaußsche Summenformel
 \index{Vollständige Induktion}}
 
-Die Gaußsche Summenformel lautet: Für alle natürlichen Zahlen $n \geq 1$
-gilt
+Gegeben sei folgende rekursive Methodendeklaration in der Sprache Java.
+Es wird als Vorbedingung vorausgesetzt, dass die Methode \liJavaCode{sum}
+nur für Werte $n \geq 0$ aufgerufen wird.
 
 \liJavaDatei[firstline=8,lastline=14]{aufgaben/aud/induktion/Gauss}
 
-\begin{flalign*}
-\operatorname{A}(n):
-\hspace{1cm}
-1+2+\cdots+n = \frac{n(n+1)}{2}&&\\
-\end{flalign*}
-
 \noindent
-Sie kann durch vollständige Induktion bewiesen werden.
+Beweisen Sie mittels vollständiger Induktion, dass der Methodenaufruf
+\liJavaCode{sum(n)} die Summe der ersten $n$ aufeinanderfolgenden
+natürlichen Zahlen für alle $n \geq 0$ berechnet, wobei gilt
+
+\begin{displaymath}
+\sum_{k=0}^{n}k = \frac{n(n+1)}{2}
+\end{displaymath}
+
+\begin{liAntwort}
 
 %%
 %
@@ -29,68 +32,61 @@ Sie kann durch vollständige Induktion bewiesen werden.
 
 \liInduktionAnfang
 
-Der Induktionsanfang ergibt sich unmittelbar:
+\begin{displaymath}
+\sum_{k=0}^{0}k = \frac{0(0+1)}{2} = \frac{0}{2} = 0
+\end{displaymath}
 
-\begin{flalign*}
-\operatorname{A}(1):
-\hspace{1cm}
-1 = \frac{1(1+1)}{2}&&\\
-\end{flalign*}
+\begin{displaymath}
+\texttt{sum(0)} = 0
+\end{displaymath}
 
 \liInduktionVoraussetzung
 
-\noindent
-Im Induktionsschritt ist zu zeigen, dass aus der Induktionsvoraussetzung
+\begin{displaymath}
+\sum_{k=0}^{n}k = \frac{n(n+1)}{2}
+\end{displaymath}
 
-\begin{flalign*}
-\operatorname{A}(n):
-\hspace{1cm}
-1+2+\cdots+n = \frac{n(n+1)}{2}&&\\
-\end{flalign*}
+\begin{displaymath}
+\texttt{sum(n)} = n + \frac{(n-1)((n-1)+1)}{2} = n + \frac{(n-1)n}{2}
+\end{displaymath}
 
 \liInduktionSchritt
 
-\noindent
-die Induktionsbehauptung
-
-\begin{flalign*}
-\operatorname{A}(n+1):
-\hspace{1cm}
-1+2+\cdots+n+(n+1) = \frac{(n+1)\bigl((n+1)+1\bigr)}{2} &&\text{für }n \geq 1\\
-\end{flalign*}
-
-\noindent
-folgt. Dies gelingt folgendermaßen (Die Induktionsvoraussetzung ist rot
-markiert.):
+\begin{displaymath}
+\sum_{k=0}^{n+1}k = \frac{(n+1)\bigl((n+1)+1\bigr)}{2}
+\end{displaymath}
 
 \begin{align*}
-A(n+1)
-& = \m{1 + 2 + \cdots + n} + (n + 1) \\
+\texttt{sum(n+1)}
+&= \m{(n+1)} + \frac{(\m{(n+1)}-1)\m{(n+1)})}{2}
+& \e{$n+1-1=n$}\\
 %
-& = \m{\frac{n(n + 1)}{2}} + (n + 1) \\
+& = (n + 1) + \m{\frac{n(n + 1)}{2}}
+& \e{$(n+1)$ eingesetzt}\\
+%
+& = \frac{\m{2}(n + 1)}{\m{2}} + \frac{n(n + 1)}{2}
+& \e{$(n+1)$ als Bruch geschrieben}\\
 %
 &
-= \frac{n(n+1)+2(n+1)}{\m{2}} &
+= \frac{2(n+1) + n(n+1)}{\m{2}} &
 \e{Hauptnenner $2$}\\
 %
 &
-= \frac{(n+2)\m{(n+1)}}{2} &
+= \frac{(2 + n)\m{(n+1)}}{2} &
 \e{$(n+1)$ ausgeklammert} \\
+%
+& = \frac{(\m{n + 2})(n+1)}{2} &
+\e{Kommutativgesetz angewandt} \\
 %
 &
 = \frac{\m{(n+1)(n+2)}}{2} &
-\e{Umgedreht nach Kommutativgesetz} \\
+\e{getauscht nach Kommutativgesetz} \\
 %
 &
 = \frac{\m{(n+1)}\bigl(\m{(n+1)}+1\bigr)}{2} &
 \e{mit $(n+1)$ an der Stelle von $n$}\\
 \end{align*}
-
-\bigskip
-
-\noindent
-Schließlich der Induktionsschluss: Damit ist die Aussage
-$\operatorname{A}(n)$ für alle $n \geq 1$ bewiesen.
+\end{liAntwort}
 
 \liJavaTestDatei{aufgaben/aud/induktion/GaussTest}
 
