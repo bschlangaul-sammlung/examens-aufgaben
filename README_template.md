@@ -3,6 +3,15 @@
 Aufgaben- und Materialsammlung mit Lösungen für das Studium „Lehramt
 Informatik“ in Bayern.
 
+__Intention:__ insgemein Hoffnung auf Kontributionen
+(Fehlerkorrekturen, weitere Lösungen etc.) durch die „Community“ durch
+Pull-Request oder per-Mail an hermine.bschlangaul@gmx.net. Lösungen ohne
+Gewähr ...
+
+__Lizenz:__ Public Domain, siehe Datei „LICENSE“ im Repository, d. h.
+Weiterverwendung ohne Namensnennung sowohl der kompilieren PDF-Dateien
+als auch der TeX-Datei ist möglich.
+
 __TeX:__ Alle Aufgaben und Materialen sind „geTeX’t“, d. h. mit Hilfe
 des Textsatzsystems [TeX](https://www.ctan.org/) bzw. mit der
 Makrossammlung [LaTeX](https://www.latex-project.org) gesetzt. Im Ordner
