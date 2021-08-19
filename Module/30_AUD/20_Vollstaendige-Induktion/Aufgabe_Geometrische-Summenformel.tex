@@ -1,6 +1,12 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{vollstaendige-induktion}
 \begin{document}
+% e = erklaerung
+\def\e#1{\scriptsize#1}
+
+% et = erklaerung mit text
+\def\et#1{\scriptsize\text{#1}}
+
 % m = markierung
 \def\m#1{\textcolor{blue}{#1}}
 
@@ -21,18 +27,6 @@ Weisen Sie mittels vollständiger Induktion nach, dass
 \noindent
 Dabei können Sie davon ausgehen, dass $q > 0$, $ n \in \mathbb{N}_0$
 
-% Manuelle Rückmeldung:
-% Beim Induktionsanfang fehlt ein f(0) oder Ähnliches (je nachdem, wie
-
-% Also ist
-
-% du die Funktion nennen möchtest) (-1 BE) Du musst ja zeigen, dass für
-% n=0 der Programmcode und die Formel auf das gleiche Ergebnis kommen.
-% Beim Induktionsschritt fehlt der "Start" mit dem Programmcode, der ist
-% nur in der Behauptung vorhanden. Du musst da näher am Programmcode
-% bleiben als bei mathematischen Beispielen (vgl. Aufgabe mit Türme von
-% Hanoi) (- 1 BE) Sonst sehr schön!
-
 \begin{liAntwort}
 \liInduktionAnfang
 
@@ -49,12 +43,42 @@ f(n): \text{geoSum}(n, q) = 1 - q^{n+1}
 \liInduktionSchritt
 
 \begin{align*}
-f(n+1): \text{geoSum}(n + 1, q)
-& = (1 - q)^{(n + 1) + 1} + \text{geoSum}(n, q) \\
-& = (1 - q)^{n + 1 + 1} + (1 - q)^{n + 1} \\
-& = 1 - q^{n + 1} + q^{n + 1} \cdot (1 - q) \\
-& = 1 - q^{n + 1} + q^{n + 1} - q^{n + 2} \\
-& = 1 - q^{(n + 1) + 1}
+f(n)
+& = \text{geoSum}(n, q)\\
+%
+& = \m{(1 - q) \cdot q^n +
+    \text{geoSum}(n - 1, q)}
+& \et{Java-Code in Mathe-Formel umgewandelt}\\
+%
+& = (1 - q) \cdot q^n +
+    \m{1 - q^{(n - 1) + 1}}
+& \et{für rekursiven Methodenaufruf gegebene Formel eingesetzt}\\
+%
+& = (1 - q) \cdot q^n +
+    1 - q^{\m{n}}
+& \et{Addition im Exponent}\\
+\end{align*}
+
+\begin{align*}
+f(n+1)
+& = \text{geoSum}(n + 1, q)\\
+%
+& = (1 - q) \cdot q^{n + 1} +
+    1 - q^{n + 1}
+& \et{von Java konvertierte Formel verwendet und n + 1 eingesetzt}\\
+%
+& = \m{q^{n + 1} - q^{(n + 1) + 1}} +
+    1 - q^{n + 1}
+& \et{ausmultipliziert}\\
+%
+& = - q^{(n + 1) + 1} + 1
+& \e{q^{n + 1} - q^{n + 1} = 0}\\
+%
+& =  1 \m{- q^{(n + 1) + 1}}
+& \et{Kommutativgesetz der Addition}\\
+%
+& =  1 - q^{(\m{n + 1}) + 1}
+& \et{was zu zeigen war}\\
 \end{align*}
 \end{liAntwort}
 

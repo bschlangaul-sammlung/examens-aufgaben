@@ -46,41 +46,60 @@ $f(n + 1) := 1 - \frac{1}{(n + 1) + 1} = f(n)$
 $\text{function}(n) = \frac{1}{n \cdot (n + 1)} + f(n - 1)$
 
 \begin{align*}
-f(n + 1) & := \frac{1}{\m{(n + 1)} \cdot (\m{(n + 1) }+ 1)} + f(\m{(n + 1)} - 1)& n + 1 \text{ einsetzen}\\
-& = \frac{1}{(n + 1) \cdot (\m{n + 2})} + f(\text{n})
-&  \text{ vereinfachen}\\
+f(n + 1)
+& = \frac{1}{\m{(n + 1)} \cdot
+    (\m{(n + 1) }+ 1)} +
+    f(\m{(n + 1)} - 1)
+& n + 1 \text{ einsetzen}\\
 %
-& = \frac{1}{(n + 1) \cdot (n + 2)} + \m{1 - \frac{1}{n + 1}}
+& = \frac{1}{(n + 1) \cdot
+    (\m{n + 2})} + f(\text{n})
+& \text{ vereinfachen}\\
+%
+& = \frac{1}{(n + 1) \cdot (n + 2)} +
+    \m{1 - \frac{1}{n + 1}}
 & \text{für } f(n) \text{ Formel einsetzen}\\
 %
-& = 1 + \m{\frac{1}{(n + 1) \cdot (n + 2)}} - \frac{1}{n + 1}
+& = 1 +
+    \m{\frac{1}{(n + 1) \cdot (n + 2)}} -
+    \frac{1}{n + 1}
 & \text{1. Bruch an 2. Stelle geschrieben}\\
 %
-& = 1 + \frac{1}{(n + 1) \cdot (n + 2)} - \frac{1 \cdot \m{(n + 2)}}{(n + 1) \cdot \m{(n + 2)}}
+& = 1 +
+    \frac{1}{(n + 1) \cdot (n + 2)} -
+    \frac{1 \cdot \m{(n + 2)}}{(n + 1) \cdot \m{(n + 2)}}
 & \text{2. Bruch mit }(n + 2) \text{ erweitert}\\
 %
-& = 1 + \frac{1 - (n + 2)}{(n + 1) \cdot (n + 2)}
+& = 1 +
+    \frac{1 - (n + 2)}{(n + 1) \cdot (n + 2)}
 & \text{die 2 Brüche subtrahiert}\\
 %
-& = 1 + \frac{1 - n \m{-} 2}{(n + 1) \cdot (n + 2)}
+& = 1 +
+    \frac{1 - n \m{-} 2}{(n + 1) \cdot (n + 2)}
 & \text{minus plus ist minus}\\
 %
-& = 1 + \frac{\m{-1} - n}{(n + 1) \cdot (n + 2)}
+& = 1 +
+    \frac{\m{-1} - n}{(n + 1) \cdot (n + 2)}
 & \text{eins minus zwei ist minus eins}\\
 %
-& = 1 + \frac{\m{-1 \cdot (1 + n)}}{(n + 1) \cdot (n + 2)}
+& = 1 +
+    \frac{\m{-1 \cdot (1 + n)}}{(n + 1) \cdot (n + 2)}
 & (n + 1) \text{ ausklammern}\\
 %
-& = 1 + \left(\m{-1 \cdot} \frac{(1 + n)}{(n + 1) \cdot (n + 2)}\right)
+& = 1 +
+    \left(\m{-1 \cdot} \frac{(1 + n)}{(n + 1) \cdot (n + 2)}\right)
 & \text{minus vor den Bruch bringen}\\
 %
-& = 1 \m{-} \frac{(1 + n)}{(n + 1) \cdot (n + 2)}
+& = 1 \m{-}
+    \frac{(1 + n)}{(n + 1) \cdot (n + 2)}
 & \text{plus minus ist minus}\\
 %
-& = 1 - \m{\frac{1}{n + 2}}
+& = 1 -
+    \m{\frac{1}{n + 2}}
 & (n + 1) \text{ gekürzt}\\
 %
-& = 1 - \frac{1}{\m{(n + 1)} + 1}
+& = 1 -
+    \frac{1}{\m{(n + 1)} + 1}
 & \text{Umformen zur Verdeutlichung}\\
 \end{align*}
 \end{liAntwort}
