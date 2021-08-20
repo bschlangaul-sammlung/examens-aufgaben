@@ -278,7 +278,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - [„Kleintierpraxis“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/20_OOMUP/Vererbung/Aufgabe_Kleintierpraxis.pdf) (Vererbung, Klassendiagramm, Implementierung in Java) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/20_OOMUP/Vererbung/Aufgabe_Kleintierpraxis.tex)) 
 - [„Banksystem“ Examen 66112 Herbst 2002 T1 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2002/09/Thema-1/Aufgabe-4.pdf) (Vererbung, Abstrakte Klasse, Implementierung in Java, Klassendiagramm) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2002/09/Thema-1/Aufgabe-4.tex)) 
 - [„Flugbuchung“ Examen 66112 Herbst 2006 T1 A5](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/09/Thema-1/Aufgabe-5.pdf) (Vererbung, Klassendiagramm, Objektdiagramm, Sequenzdiagramm, Kommunikationsdiagramm) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2006/09/Thema-1/Aufgabe-5.tex)) 
-- [„Kunden und Angestellte einer Firma“ Examen 66116 Frühjahr 2015 T1 TA2 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf) (Vererbung, Implementierung in Java, Interface, Abstrakte Klasse) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.tex)) 
+- [„Kunden und Angestellte einer Firma“ Examen 66116 Frühjahr 2015 T1 TA2 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf) (Implementierung in Java, Vererbung, Interface, Abstrakte Klasse, Adapter) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.tex)) 
 - [„UML-Diagramme entspreched Java-Code zeichnen“ Examen 66116 Frühjahr 2018 T2 TA2 A1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf) (Vererbung, Interface, Abstrakte Klasse, Klassendiagramm, Objektdiagramm, Sequenzdiagramm) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-2/Aufgabe-1.tex)) 
 
 
@@ -530,6 +530,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - [„Graph a-h“ Examen 66115 Herbst 2019 T2 A8](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-2/Aufgabe-8.pdf) (Minimaler Spannbaum) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-2/Aufgabe-8.tex)) 
 - [„Kürzeste-Wege-Bäume und minimale Spannbäume“ Examen 66115 Frühjahr 2021 T1 TA2 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2021/03/Thema-1/Teilaufgabe-2/Aufgabe-4.pdf) (Graphen, Algorithmus von Dijkstra, Algorithmus von Prim) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2021/03/Thema-1/Teilaufgabe-2/Aufgabe-4.tex)) 
 #### Knotensuchalgorithmen
+- [„Knoten-1-20“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/30_AUD/90_Graphen/30_Tiefen-Breitensuche/Aufgabe_Knoten-1-20.pdf) (Breitensuche, Tiefensuche) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/30_AUD/90_Graphen/30_Tiefen-Breitensuche/Aufgabe_Knoten-1-20.tex)) 
 - [Aufgabe](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/30_AUD/90_Graphen/30_Tiefen-Breitensuche/Aufgabe_favtutor.com.pdf) (Tiefensuche) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/30_AUD/90_Graphen/30_Tiefen-Breitensuche/Aufgabe_favtutor.com.tex)) 
 - [„dfs-number“ Examen 46115 Herbst 2014 T1 A8](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/Thema-1/Aufgabe-8.pdf) (Tiefensuche, Stapel (Stack)) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2014/09/Thema-1/Aufgabe-8.tex)) 
 - [Examen 66115 Frühjahr 2012 T1 A7](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/03/Thema-1/Aufgabe-7.pdf) (Breitensuche) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2012/03/Thema-1/Aufgabe-7.tex)) 
@@ -588,6 +589,7 @@ Weitere Aufgaben zum Thema „SQL“:
 ##### Klassendiagramm
 - [„Fußballmeisterschaft“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/20_OOMUP/Diagramme/10_Struktur/10_Klassendiagramm/Aufgabe_Fußballmeisterschaft.pdf) (Klassendiagramm) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/20_OOMUP/Diagramme/10_Struktur/10_Klassendiagramm/Aufgabe_Fußballmeisterschaft.tex)) 
 - [„Gasthausen“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/20_OOMUP/Diagramme/10_Struktur/10_Klassendiagramm/Aufgabe_Gasthausen.pdf) (Klassendiagramm) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/20_OOMUP/Diagramme/10_Struktur/10_Klassendiagramm/Aufgabe_Gasthausen.tex)) 
+- [„Hunde“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/20_OOMUP/Diagramme/10_Struktur/10_Klassendiagramm/Aufgabe_Hunde.pdf) (Klassendiagramm, Klasse, Getter-Methode, Setter-Methode, Feld (Array)) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/20_OOMUP/Diagramme/10_Struktur/10_Klassendiagramm/Aufgabe_Hunde.tex)) 
 - [„Universitätsverwaltung“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/20_OOMUP/Diagramme/10_Struktur/10_Klassendiagramm/Aufgabe_Universitätsverwaltung.pdf) (Klassendiagramm) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/20_OOMUP/Diagramme/10_Struktur/10_Klassendiagramm/Aufgabe_Universitätsverwaltung.tex)) 
 - [„Alle UML-Diagramme“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/20_OOMUP/Diagramme/Aufgabe_Alle-UML-Diagramme.pdf) (UML-Diagramme, Klassendiagramm, Objektdiagramm, Zustandsdiagramm Wissen, Sequenzdiagramm, Aktivitätsdiagramm, Anwendungsfalldiagramm, Kommunikationsdiagramm) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/20_OOMUP/Diagramme/Aufgabe_Alle-UML-Diagramme.tex)) 
 - [„Bankkonten“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/20_OOMUP/Vererbung/Aufgabe_Bankkonten.pdf) (Vererbung, Generalisierung, Spezialisierung, Klassendiagramm, Implementierung in Java) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/20_OOMUP/Vererbung/Aufgabe_Bankkonten.tex)) 
@@ -678,6 +680,7 @@ Weitere Aufgaben zum Thema „SQL“:
 #### Strukturmuster (Structural Patterns)
 
 ##### Adapter
+- [„Kunden und Angestellte einer Firma“ Examen 66116 Frühjahr 2015 T1 TA2 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf) (Implementierung in Java, Vererbung, Interface, Abstrakte Klasse, Adapter) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.tex)) 
 - [„Entwurfsmuster in UML-Diagramm erkennen“ Examen 66116 Frühjahr 2016 T1 TA2 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) (Klassendiagramm, Abstrakte Fabrik (Abstract Factory), Wiederholer (Iterator), Adapter, Kompositum (Composite), Klassenadapter, Objektadapter, Implementierung in Java) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-2/Aufgabe-2.tex)) 
 ##### Dekorierer (Decorator)
 
@@ -1689,7 +1692,7 @@ OCR des oben genannten Scans:
             - [Aufgabe 3 (Normalformen)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) 
         - Teilaufgabe 2 
             - [Aufgabe 2 (Zustandsdiagramm zeichnen)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) 
-            - [Aufgabe 3 (Vererbung, Implementierung in Java, Interface, Abstrakte Klasse)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf) 
+            - [Aufgabe 3 (Implementierung in Java, Vererbung, Interface, Abstrakte Klasse, Adapter)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf) 
     - Thema 2 
         - Teilaufgabe 1 
             - [Aufgabe 3 (B-Baum)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2015/03/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf) 
@@ -2012,6 +2015,8 @@ als Markdown-Liste eingebettet werden kann.
           - Sichtbarkeit private
           - Sichtbarkeit package-private
           - Sichtbarkeit protected
+        - Getter-Methode
+        - Setter-Methode
 - AUD:
     - Algorithmen und Datenstrukturen
     - Rekursion:
@@ -2114,6 +2119,7 @@ als Markdown-Liste eingebettet werden kann.
                 - Einzelstück (Singleton)
                 - Erbauer (Builder)
                 - Fabrikmethode (Factory Method)
+                - Einfache Fabrik (Simple Factory)
             - Strukturmuster (Structural Patterns):
                 - Adapter:
                     - Klassenadapter
