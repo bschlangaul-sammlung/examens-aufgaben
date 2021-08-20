@@ -1551,7 +1551,7 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %
 % Präfix: |\liEntwurfs| +
 % Name des Entwurfsmuster |DeutscherName| +
-% Suffix: (|ohne|, |Uml| oder |Akteure|)
+% Suffix: (|Uml|, |Akteure|, |Code|, |ohne|)
 %
 % \subsubsection{Reihenfolge}
 %
@@ -1560,6 +1560,8 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 % Uml-Klassendiagramm |\liEntwurfsEinzelstueckUml|
 % \item |Akteure|:
 % Akteure, beteiligte Klassen |\liEntwurfsEinzelstueckAkteure|
+% \item |Code|:
+% Allgemeines Code-Beispiel |\liEntwurfsEinzelstueckCode|
 % \item |ohne|:
 % Ohne Suffix, Bündelung der einzelnen Makros eines Entwurfsmusters
 % |\liEntwurfsEinzelstueckAkteure|
@@ -1568,6 +1570,16 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \begin{macrocode}
 \RequirePackage{lehramt-informatik-uml}
 %    \end{macrocode}
+
+% \begin{macro}{\li@EntwurfsCodeAllgemein}
+% Allgemeine Code-Beispiele zu den UML-Diagrammen und Stellvertretern
+%    \begin{macrocode}
+\RequirePackage{lehramt-informatik-syntax}
+\def\li@EntwurfsCode#1#2{
+  \liJavaDatei{entwurfsmuster/#1/allgemein/#2}
+}
+%    \end{macrocode}
+% \end{macro}
 
 % \subsubsection{Abstrakte Fabrik (Abstract Factory)}
 
@@ -1621,10 +1633,21 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\liEntwurfsAbstrakteFabrikCode}
+%    \begin{macrocode}
+\def\liEntwurfsAbstrakteFabrikCode{
+  \li@EntwurfsCode{abstrakte_fabrik}{Produkte}
+  \li@EntwurfsCode{abstrakte_fabrik}{AbstrakteFabrik}
+  \li@EntwurfsCode{abstrakte_fabrik}{Klient}
+}
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\liEntwurfsAbstrakteFabrik}
 %    \begin{macrocode}
 \def\liEntwurfsAbstrakteFabrik{
   \liEntwurfsAbstrakteFabrikUml
+  \liEntwurfsAbstrakteFabrikCode
 }
 %    \end{macrocode}
 % \end{macro}
@@ -1686,11 +1709,23 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\liEntwurfsAdapterCode}
+%    \begin{macrocode}
+\def\liEntwurfsAdapterCode{
+  \li@EntwurfsCode{adapter}{Dienst}
+  \li@EntwurfsCode{adapter}{Ziel}
+  \li@EntwurfsCode{adapter}{Adapter}
+  \li@EntwurfsCode{adapter}{Klient}
+}
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\liEntwurfsAdapter}
 %    \begin{macrocode}
 \def\liEntwurfsAdapter{
   \liEntwurfsAdapterUml
   \liEntwurfsAdapterAkteure
+  \liEntwurfsAdapterCode
 }
 %    \end{macrocode}
 % \end{macro}
@@ -1771,11 +1806,25 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\liEntwurfsBeobachterCode}
+%    \begin{macrocode}
+\def\liEntwurfsBeobachterCode{
+  \li@EntwurfsCode{beobachter}{Gegenstand}
+  \li@EntwurfsCode{beobachter}{KonkreterGegenstand}
+  \li@EntwurfsCode{beobachter}{Beobachter}
+  \li@EntwurfsCode{beobachter}{KonkreterBeobachterA}
+  \li@EntwurfsCode{beobachter}{KonkreterBeobachterB}
+  \li@EntwurfsCode{beobachter}{Klient}
+}
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\liEntwurfsBeobachter}
 %    \begin{macrocode}
 \def\liEntwurfsBeobachter{
   \liEntwurfsBeobachterUml
   \liEntwurfsBeobachterAkteure
+  \liEntwurfsBeobachterCode
 }
 %    \end{macrocode}
 % \end{macro}
@@ -1809,11 +1858,25 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\liEntwurfsDekoriererCode}
+%    \begin{macrocode}
+\def\liEntwurfsDekoriererCode{
+  \li@EntwurfsCode{dekorierer}{Komponente}
+  \li@EntwurfsCode{dekorierer}{KonkreteKomponente}
+  \li@EntwurfsCode{dekorierer}{Dekorierer}
+  \li@EntwurfsCode{dekorierer}{KonkreterDekoriererA}
+  \li@EntwurfsCode{dekorierer}{KonkreterDekoriererB}
+  \li@EntwurfsCode{dekorierer}{Klient}
+}
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\liEntwurfsDekorierer}
 %    \begin{macrocode}
 \def\liEntwurfsDekorierer{
   \liEntwurfsDekoriererUml
   \liEntwurfsDekoriererAkteure
+  \liEntwurfsDekoriererCode
 }
 %    \end{macrocode}
 % \end{macro}
@@ -1916,11 +1979,20 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\liEntwurfsEinzelstueckCode}
+%    \begin{macrocode}
+\def\liEntwurfsEinzelstueckCode{
+  \li@EntwurfsCode{einzelstueck}{Einzelstueck}
+}
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\liEntwurfsEinzelstueck}
 %    \begin{macrocode}
 \def\liEntwurfsEinzelstueck{
   \liEntwurfsEinzelstueckUml
   \liEntwurfsEinzelstueckAkteure
+  \liEntwurfsEinzelstueckCode
 }
 %    \end{macrocode}
 % \end{macro}
