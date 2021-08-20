@@ -6,7 +6,7 @@ Setzen einer Aufgabe]
 \RequirePackage{lehramt-informatik-basis}
 
 % Formatierung muss vor literatur sein, sonst Option clash
-\liLadePakete{formatierung,literatur-dummy,makros,aufgaben-titel}
+\liLadePakete{formatierung,literatur-dummy,makros,aufgaben-titel,kopf-fusszeilen}
 
 % Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
 \RequirePackage[ngerman]{babel}
