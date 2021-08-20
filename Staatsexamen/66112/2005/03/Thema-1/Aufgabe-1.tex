@@ -9,9 +9,10 @@
 Datenstrukturen, Präsenzübung 4, Universität Bayreuth]{aud:pu:7}}
 
 Betrachten Sie folgendes Klassendiagramm\index{Klassendiagramm}, das
-doppelt-verkettete Listen spezifiziert. Die Assoziation head zeigt auf
-das erste Element der Liste. Die Assoziationen \liJavaCode{previous} und
-\liJavaCode{next} zeigen auf das vorherige bzw. folgende Element.
+doppelt-verkettete Listen spezifiziert. Die Assoziation
+\liJavaCode{head} zeigt auf das erste Element der Liste. Die
+Assoziationen \liJavaCode{previous} und \liJavaCode{next} zeigen auf das
+vorherige bzw. folgende Element.
 \footcite[Thema 1 Aufgabe 1]{examen:66112:2005:03}
 
 \begin{center}
@@ -32,9 +33,18 @@ das erste Element der Liste. Die Assoziationen \liJavaCode{previous} und
   insert(i: Integer)\\
 }
 
-\umluniassoc[arg=head,mult=1]{DoublyLinkedList}{ListElem}
+\umluniassoc[arg=head,mult=1,pos=0.7]{DoublyLinkedList}{ListElem}
 
-\umlassoc[pos1=0.3,arg1=previous,arg2=next,mult1=1,mult2=1,angle1=-30,angle2=30,loopsize=3cm,]{ListElem}{ListElem}
+\umlassoc[%
+  pos1=0.3,
+  arg1=previous,
+  arg2=next,
+  mult1=1,
+  mult2=1,
+  angle1=-30,
+  angle2=30,
+  loopsize=3cm,
+]{ListElem}{ListElem}
 \end{tikzpicture}
 \end{center}
 
@@ -49,11 +59,12 @@ objektorientierten Sprache (\zB Java oder C++), das heißt:
 %%
 
 \item Implementieren Sie die Klasse \liJavaCode{ListElem}. Die Methode
-\liJavaCode{insert} ordnet eine ganze Zahl \liJavaCode{i} in eine aufsteigend
-geordnete doppelt-verkettete Liste \liJavaCode{l} an die korrekte Stelle ein.
-Sei \zB das Objekt \liJavaCode{l} eine Repräsentation der Liste \liJavaCode{[0,
-2, 2, 6, 8]} dann liefert \liJavaCode{l.insert(3)} eine Repräsentation der
-Liste \liJavaCode{[0, 2, 2, 3, 6, 8]}.
+\liJavaCode{insert} ordnet eine ganze Zahl \liJavaCode{i} in eine
+aufsteigend geordnete doppelt-verkettete Liste \liJavaCode{l} an die
+korrekte Stelle ein. Sei \zB das Objekt \liJavaCode{l} eine
+Repräsentation der Liste \liJavaCode{[0, 2, 2, 6, 8]} dann liefert
+\liJavaCode{l.insert(3)} eine Repräsentation der Liste \liJavaCode{[0,
+2, 2, 3, 6, 8]}.
 
 \begin{liAntwort}
 \liJavaExamen{66112}{2005}{03}{ListElem}
@@ -63,11 +74,11 @@ Liste \liJavaCode{[0, 2, 2, 3, 6, 8]}.
 % (b)
 %%
 
-\item Implementieren Sie die Klasse \liJavaCode{DoublyLinkedList}, wobei die Methode
-insert eine Zahl i in eine aufsteigend geordnete Liste einordnet. Die
-Methode check überprüft, ob eine Liste korrekt verkettet ist, d. h. ob
-für jedes ListElem-Objekt o, das über den head der Liste erreichbar ist,
-der Vorgänger des Nachfolgers von o gleich o ist.
+\item Implementieren Sie die Klasse \liJavaCode{DoublyLinkedList}, wobei
+die Methode insert eine Zahl i in eine aufsteigend geordnete Liste
+einordnet. Die Methode check überprüft, ob eine Liste korrekt verkettet
+ist, d. h. ob für jedes ListElem-Objekt o, das über den head der Liste
+erreichbar ist, der Vorgänger des Nachfolgers von o gleich o ist.
 \end{enumerate}
 
 \begin{liAntwort}

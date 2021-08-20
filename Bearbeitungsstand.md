@@ -14,6 +14,22 @@ aud:pu:3 ok
 aud:pu:4 ok
 aud:pu:5 ok
 aud:pu:6 ok
+aud:pu:7
+- Aufgabe 1
+- Aufgabe 2
+- Aufgabe 3
+- Aufgabe 4
+- Aufgabe 5
+- Aufgabe 6
+- Aufgabe 7
+- Aufgabe 8
+- Aufgabe 9
+- Aufgabe 10
+- Aufgabe 11
+- Aufgabe 12
+- Aufgabe 13
+- Aufgabe 14
+- Aufgabe 15
 
 # Examensvorbereitungen
 
