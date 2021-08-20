@@ -1,11 +1,31 @@
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesPackage{lehramt-informatik-entwurfsmuster}[2021/05/06 Hilfsmakros
-zum Setzen von Entwurfsmuster/Design Patterns]
+\ProvidesPackage{lehramt-informatik-entwurfsmuster}[2021/05/06
+Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
+%    \end{macrocode}
+%
+% \subsubsection{Namensschema der Entwurfsmuster-Makros:}
+%
+% Präfix: |\liEntwurfs| +
+% Name des Entwurfsmuster |DeutscherName| +
+% Suffix: (|ohne|, |Uml| oder |Akteure|)
+%
+% \subsubsection{Reihenfolge}
+%
+% \begin{enumerate}
+% \item |Uml|:
+% Uml-Klassendiagramm |\liEntwurfsEinzelstueckUml|
+% \item |Akteure|:
+% Akteure, beteiligte Klassen |\liEntwurfsEinzelstueckAkteure|
+% \item |ohne|:
+% Ohne Suffix, Bündelung der einzelnen Makros eines Entwurfsmusters
+% |\liEntwurfsEinzelstueckAkteure|
+% \end{enumerate}
 
+%    \begin{macrocode}
 \RequirePackage{lehramt-informatik-uml}
 %    \end{macrocode}
 
-% \subsubsection{Abstrakte Fabrik}
+% \subsubsection{Abstrakte Fabrik (Abstract Factory)}
 
 % \begin{macro}{\liEntwurfsAbstrakteFabrikUml}
 % \begin{liBeispiel}
@@ -53,6 +73,14 @@ zum Setzen von Entwurfsmuster/Design Patterns]
     \umlVHuniassoc[arm1=-1cm]{Klient}{AbstraktesProduktA}
     \umlVHuniassoc{Klient}{AbstraktesProduktB}
   \end{tikzpicture}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liEntwurfsAbstrakteFabrik}
+%    \begin{macrocode}
+\def\liEntwurfsAbstrakteFabrik{
+  \liEntwurfsAbstrakteFabrikUml
 }
 %    \end{macrocode}
 % \end{macro}
@@ -114,7 +142,16 @@ zum Setzen von Entwurfsmuster/Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \subsubsection{Beobachter}
+% \begin{macro}{\liEntwurfsAdapter}
+%    \begin{macrocode}
+\def\liEntwurfsAdapter{
+  \liEntwurfsAdapterUml
+  \liEntwurfsAdapterAkteure
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \subsubsection{Beobachter (Observer)}
 
 % \begin{macro}{\liEntwurfsBeobachterUml}
 % \begin{liBeispiel}
@@ -190,7 +227,16 @@ zum Setzen von Entwurfsmuster/Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \subsubsection{Dekorierer}
+% \begin{macro}{\liEntwurfsBeobachter}
+%    \begin{macrocode}
+\def\liEntwurfsBeobachter{
+  \liEntwurfsBeobachterUml
+  \liEntwurfsBeobachterAkteure
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \subsubsection{Dekorierer (Decorator)}
 
 % \begin{macro}{\liEntwurfsDekoriererUml}
 % \begin{liBeispiel}
@@ -219,7 +265,61 @@ zum Setzen von Entwurfsmuster/Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \subsubsection{Einzelstück}
+% \begin{macro}{\liEntwurfsDekorierer}
+%    \begin{macrocode}
+\def\liEntwurfsDekorierer{
+  \liEntwurfsDekoriererUml
+  \liEntwurfsDekoriererAkteure
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \subsubsection{Einfache Fabrik (Simple Factory)}
+
+% \begin{macro}{\liEntwurfsEinfacheFabrikUml}
+% Quelle: \url{https://refactoring.guru/design-patterns/factory-comparison}
+% \begin{liBeispiel}
+% \liEntwurfsEinfacheFabrikUml
+% \end{liBeispiel}
+%    \begin{macrocode}
+\def\liEntwurfsEinfacheFabrikUml{
+  \begin{tikzpicture}
+    \umlclass{EinfacheFabrik}{
+    }{
+      \umlstatic{erzeuge(): Produkt}\\
+    }
+  \end{tikzpicture}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liEntwurfsEinfacheFabrikAkteure}
+% Quelle: frei überstetzt aus GoF
+% \begin{liBeispiel}
+% \liEntwurfsEinfacheFabrikAkteure
+% \end{liBeispiel}
+%    \begin{macrocode}
+\def\liEntwurfsEinfacheFabrikAkteure{
+  \begin{description}
+    \item[EinfacheFabrik]
+
+    Eine Klasse mit einer Erzeugunsmethode, die über eine größere
+    Bedingung verschiedene Objekt instanziert.
+  \end{description}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liEntwurfsEinfacheFabrik}
+%    \begin{macrocode}
+\def\liEntwurfsEinfacheFabrik{
+  \liEntwurfsEinfacheFabrikUml
+  \liEntwurfsEinfacheFabrikAkteure
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \subsubsection{Einzelstück (Singleton)}
 
 % \begin{macro}{\liEntwurfsEinzelstueckUml}
 % Quelle nach der deutschen Wikipedia
@@ -257,7 +357,16 @@ zum Setzen von Entwurfsmuster/Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \subsubsection{Erbauer}
+% \begin{macro}{\liEntwurfsEinzelstueck}
+%    \begin{macrocode}
+\def\liEntwurfsEinzelstueck{
+  \liEntwurfsEinzelstueckUml
+  \liEntwurfsEinzelstueckAkteure
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \subsubsection{Erbauer (Builder)}
 
 % \begin{macro}{\liEntwurfsErbauerUml}
 % Quelle nach der deutschen Wikipedia
@@ -325,7 +434,16 @@ zum Setzen von Entwurfsmuster/Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \subsubsection{Fabrikmethode}
+% \begin{macro}{\liEntwurfsErbauer}
+%    \begin{macrocode}
+\def\liEntwurfsErbauer{
+  \liEntwurfsErbauerUml
+  \liEntwurfsErbauerAkteure
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \subsubsection{Fabrikmethode (Factory Method)}
 
 % \begin{macro}{\liEntwurfsFabrikmethodeUml}
 % Quelle nach der deutschen Wikipedia
@@ -359,35 +477,44 @@ zum Setzen von Entwurfsmuster/Design Patterns]
 % \liEntwurfsFabrikmethodeAkteure
 % \end{liBeispiel}
 %    \begin{macrocode}
-  \def\liEntwurfsFabrikmethodeAkteure{
-    \begin{description}
-      \item[Produkt]
+\def\liEntwurfsFabrikmethodeAkteure{
+  \begin{description}
+    \item[Produkt]
 
-      Das Produkt ist der Basistyp (Klasse oder Schnittstelle) für das
-      zu erzeugende Produkt.
+    Das Produkt ist der Basistyp (Klasse oder Schnittstelle) für das
+    zu erzeugende Produkt.
 
-      \item[KonkretesProdukt]
+    \item[KonkretesProdukt]
 
-      KonkretesProdukt implementiert die Produkt-Schnittstelle.
+    KonkretesProdukt implementiert die Produkt-Schnittstelle.
 
-      \item[Erzeuger]
+    \item[Erzeuger]
 
-      Der Erzeuger deklariert die Fabrikmethode, um ein solches Produkt
-      zu erzeugen und kann eine Default-Implementierung beinhalten.
+    Der Erzeuger deklariert die Fabrikmethode, um ein solches Produkt
+    zu erzeugen und kann eine Default-Implementierung beinhalten.
 
-      \item[KonkreterErzeuger]
+    \item[KonkreterErzeuger]
 
-      KonkreterErzeuger überschreibt die Fabrikmethode, um die ihm
-      entsprechenden konkreten Produkte zu erzeugen (z. B. indem er den
-      Konstruktor einer konkreten Produkt-Klasse aufruft).
+    KonkreterErzeuger überschreibt die Fabrikmethode, um die ihm
+    entsprechenden konkreten Produkte zu erzeugen (z. B. indem er den
+    Konstruktor einer konkreten Produkt-Klasse aufruft).
 
-      \footcite{wiki:fabrikmethode}
-    \end{description}
-  }
-  %    \end{macrocode}
-  % \end{macro}
+    \footcite{wiki:fabrikmethode}
+  \end{description}
+}
+%    \end{macrocode}
+% \end{macro}
 
-% \subsubsection{Kompositum}
+% \begin{macro}{\liEntwurfsFabrikmethode}
+%    \begin{macrocode}
+\def\liEntwurfsFabrikmethode{
+  \liEntwurfsFabrikmethodeUml
+  \liEntwurfsFabrikmethodeAkteure
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \subsubsection{Kompositum (Composite)}
 
 % \begin{macro}{\liEntwurfsKompositumUml}
 % \begin{liBeispiel}
@@ -418,7 +545,16 @@ zum Setzen von Entwurfsmuster/Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \subsubsection{Modell-Präsentation-Steuerung}
+% \begin{macro}{\liEntwurfsFabrikmethode}
+%    \begin{macrocode}
+\def\liEntwurfsKompositum{
+  \liEntwurfsKompositumUml
+  \liEntwurfsKompositumAkteure
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \subsubsection{Modell-Präsentation-Steuerung (Model-View-Controller)}
 
 % \begin{macro}{\liEntwurfsModellPraesentationSteuerungUml}
 % \begin{liBeispiel}
@@ -445,7 +581,16 @@ zum Setzen von Entwurfsmuster/Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \subsubsection{Zustand}
+% \begin{macro}{\liEntwurfsModellPraesentationSteuerung}
+%    \begin{macrocode}
+\def\liEntwurfs{
+  \liEntwurfsModellPraesentationSteuerungUml
+  \liEntwurfsModellPraesentationSteuerungAkteure
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \subsubsection{Zustand (State)}
 
 % \begin{macro}{\liEntwurfsZustandUml}
 % Quelle: Englische Wikipedia, so ähnlich wie in GoF
@@ -494,6 +639,15 @@ zum Setzen von Entwurfsmuster/Design Patterns]
     implementiert das Verhalten, das mit dem Zustand des Kontextobjektes
     verbunden ist.
   \end{description}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liEntwurfsZustand}
+%    \begin{macrocode}
+\def\liEntwurfsZustand{
+  \liEntwurfsZustandUml
+  \liEntwurfsZustandAkteure
 }
 %    \end{macrocode}
 % \end{macro}

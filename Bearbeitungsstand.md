@@ -28,7 +28,7 @@ aud:pu:7
 - Aufgabe 11
 - Aufgabe 12
 - Aufgabe 13
-- Aufgabe 14
+- Aufgabe 14 ok
 - Aufgabe 15
 
 # Examensvorbereitungen

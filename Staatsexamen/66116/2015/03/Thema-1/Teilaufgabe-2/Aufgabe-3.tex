@@ -1,26 +1,27 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
+\liLadePakete{syntax,entwurfsmuster}
 \begin{document}
 \liAufgabenTitel{Kunden und Angestellte einer Firma}
 
-\section{Aufgabe 2: Vererbung\index{Vererbung} und Abstrakte Klassen II
-\footcite{aud:pu:7}}
+\section{Aufgabe 3
+\footcite[Vererbung und Abstrakte Klassen II, Aufgabe 2]{aud:pu:7}}
 
 In dieser Aufgabe implementieren\index{Implementierung in Java} Sie ein
 konzeptionelles Datenmodell für eine Firma, die Personendaten von
 Angestellten und Kunden verwalten möchte. Gegeben seien dazu folgende
 Aussagen:
+\index{Vererbung}
 \footcite[Thema 1 Teilaufgabe 2 Aufgabe 3 Seite 5]{examen:66116:2015:03}
 
 \begin{itemize}
-\item Eine Person hat einen Namen und ein Geschlecht (männlich oder
-weiblich).
+\item Eine \emph{Person} hat einen \emph{Namen} und ein
+\emph{Geschlecht} (männlich oder weiblich).
 
-\item Ein Angestellter ist eine Person, zu der zusätzlich das monatliche
-Gehalt gespeichert wird.
+\item Ein \emph{Angestellter} ist eine \emph{Person}, zu der zusätzlich
+das monatliche \emph{Gehalt} gespeichert wird.
 
-\item Ein Kunde ist eine Person, zu der zusätzlich eine Kundennummer
-hinterlegt wird.
+\item Ein \emph{Kunde} ist eine \emph{Person}, zu der zusätzlich eine
+\emph{Kundennummer} hinterlegt wird.
 \end{itemize}
 
 \begin{enumerate}
@@ -31,15 +32,16 @@ hinterlegt wird.
 
 \item Geben Sie in einer objektorientierten Programmiersprache Ihrer
 Wahl (geben Sie diese an) eine Implementierung des aus den obigen
-Aussagen resultierenden konzeptionellen Datenmodells in Form von Klassen
-und Interfaces an. Gehen Sie dabei wie folgt vor:
+Aussagen resultierenden konzeptionellen Datenmodells in Form von
+\textbf{Klassen} und \textbf{Interfaces} an. Gehen Sie dabei wie folgt
+vor:
 
 \begin{itemize}
-\item Schreiben Sie ein Interface\index{Interface} \liJavaCode{Person} sowie
-zwei davon erbende Interfaces \liJavaCode{Angestellter} und \liJavaCode{Kunde}. Die
-Interfaces sollen jeweils lesende Zugriffsmethoden (Getter) die
-entsprechenden Attribute (Name, Geschlecht, Gehalt, Kundennummer)
-deklarieren.
+\item Schreiben Sie ein Interface\index{Interface} \liJavaCode{Person}
+sowie zwei davon erbende Interfaces \liJavaCode{Angestellter} und
+\liJavaCode{Kunde}. Die Interfaces sollen jeweils lesende
+Zugriffsmethoden (Getter) die entsprechenden Attribute (Name,
+Geschlecht, Gehalt, Kundennummer) deklarieren.
 
 \begin{liAntwort}
 \liJavaExamen{66116}{2015}{03}{Person}
@@ -48,17 +50,18 @@ deklarieren.
 \end{liAntwort}
 
 \item Schreiben Sie eine abstrakte Klasse\index{Abstrakte Klasse}
-\liJavaCode{PersonImpl}, die das Interface \liJavaCode{Person} implementiert. Für
-jedes Attribut soll ein Objektfeld angelegt werden. Außerdem soll ein
-Konstruktor definiert werden, der alle Objektfelder initialisiert.
+\liJavaCode{PersonImpl}, die das Interface \liJavaCode{Person}
+implementiert. Für jedes Attribut soll ein Objektfeld angelegt werden.
+Außerdem soll ein Konstruktor definiert werden, der alle Objektfelder
+initialisiert.
 
 \begin{liAntwort}
 \liJavaExamen{66116}{2015}{03}{PersonImpl}
 \end{liAntwort}
 
 \item Schreiben Sie zwei Klassen \liJavaCode{AngestellterImpl} und
-\liJavaCode{KundeImpl}, die von \liJavaCode{PersonImpl} erben und die jeweils
-dazugehörigen Interfaces implementieren. Es sollen wiederum
+\liJavaCode{KundeImpl}, die von \liJavaCode{PersonImpl} erben und die
+jeweils dazugehörigen Interfaces implementieren. Es sollen wiederum
 Konstruktoren definiert werden, die alle Objektfelder initialisieren und
 dabei auf den Konstruktor der Basisklasse \liJavaCode{PersonImpl} Bezug
 nehmen.
@@ -68,5 +71,40 @@ nehmen.
 \liJavaExamen{66116}{2015}{03}{KundeImpl}
 \end{liAntwort}
 \end{itemize}
+
+%%
+% b)
+%%
+
+\item Verwenden Sie das Entwurfsmuster \textbf{Adapter}, um zu
+ermöglichen, dass vorhandene Angestellte die Rolle eines Kunden
+einnehmen können. Der Adapter soll eine zusätzliche Klasse sein, die das
+Kunden-Interface implementiert. Wenn möglich, sollen Methodenaufrufe an
+den adaptierten Angestellten delegiert werden. Möglicherweise müssen Sie
+neue Objektfelder einführen.\index{Adapter}
+
+\begin{liExkurs}[Entwurfsmuster Adapter]
+\liEntwurfsAdapter
+\end{liExkurs}
+
+%%
+% c)
+%%
+
+\item Verwenden Sie das Entwurfsmuster \textbf{Simple Factory}, um die
+Erzeugung von Angestellten, Kunden, sowie Adapter-Instanzen aus Aufgabe
+(b) zu vereinheitlichen. Die entsprechende Erzeugungs-Methode soll neben
+einem Typ-Diskriminator (\zB einem Aufzählungstypen oder mehreren
+booleschen Werten) alle Parameter übergeben bekommen, die für den
+Konstruktor irgendeiner Implementierungsklasse des Interface \j{Person}
+notwendig sind.
+
+Hinweis: Um eine Adapter-Instanz zu erzeugen, müssen Sie möglicherweise
+zwei Konstruktoren aufrufen.
+
+\begin{liExkurs}[Entwurfsmuster Einfache Fabrik]
+\liEntwurfsEinfacheFabrik
+\end{liExkurs}
+
 \end{enumerate}
 \end{document}

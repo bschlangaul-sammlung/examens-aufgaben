@@ -1,0 +1,108 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{uml,syntax}
+\begin{document}
+\let\j=\liJavaCode
+
+\liAufgabenTitel{Hunde}
+\section{Klassendiagramm und Programmierung
+\index{Klassendiagramm}
+\footcite[Aufgabe 15]{aud:pu:7}}
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Erstelle Sie ein Klassendiagramm zu folgender Aufgabenstellung:
+
+Es gibt eine Klasse \j{Hund}, von der keine Objekte erzeugt werden
+sollen. Jeder Hund hat einen Namen (\j{String}), ein Alter in Jahren
+(\j{int}) und ein Gewicht in kg (\j{double}). Jeder Hund kann bellen,
+älter werden (um jeweils 1 Jahr), eine gewisse Menge an Hundefutter
+fressen und dabei schwerer werden, und Gassi gehen, wobei er wieder an
+Gewicht verliert. Hunde sind entweder Chihuahuas, Bernhardiner oder
+Schäferhunde. Chihuahuas bellen mit einem wuffwuff, wiegen
+durchschnittlich 2 kg, fressen maximal 0,09 kg pro Tag und verlieren ca.
+0,04 kg pro Gassi-Gang. Ein Bernhardiner bellt mit einem lauten WAUWAU,
+wiegt durchschnittlich 95 kg, frisst maximal 0,5 kg pro Tag und verliert
+pro Gassi-Gang ca. 0,2 kg. Bernhardiner tragen eine Glocke um den Hals
+oder nicht. Ein Schäferhund bellt mit einem wauwau, wiegt
+durchschnittlich 30 kg, frisst maximal 0,3 kg pro Tag und verliert ca.
+0,15 kg pro Gassi-Gang. Ein Schäferhund hat die Ausbildung zum
+Blindenhund absolviert oder nicht.
+\index{Klasse}
+
+%%
+% (b)
+%%
+
+\item Erstellen Sie nun zunächst die Klasse \j{Hund} mit den oben
+angegebenen Attributen und folgenden Methoden:
+
+\begin{itemize}
+\item Methode \j{bellen();}
+
+\item Methode \j{altern();}
+
+\item Methode \j{fressen(double futter);}
+
+\item Methode \j{fressen():} Verwendet als Futtermenge die maximale
+Menge pro Tag
+
+\item Methode \j{gassiGehen();}
+\end{itemize}
+
+%%
+% (c)
+%%
+
+\item Erstellen Sie nun die Klassen \j{Chihuahua}, \j{Bernhardiner} und
+\j{Schaeferhund} mit ihren speziﬁschen Attributen und überschreiben Sie
+die in Teilaufgabe b) genannten Methoden.
+
+%%
+% (d)
+%%
+
+\item Erstellen Sie alle benötigten Getter- und Setter-Methoden.
+\index{Getter-Methode}
+\index{Setter-Methode}
+
+%%
+% (e)
+%%
+
+\item Erstellen Sie in einer Klasse \j{Zwinger} ein Hunde-Array
+\j{zwinger}, das Platz für zehn Hunde-Objekte hat, und folgende
+Methoden:\index{Feld (Array)}
+
+\begin{itemize}
+\item Eine Methode \j{belegen()}, die die folgenden vier Hunde in die
+ersten vier Zwingerplätze setzt:
+
+\begin{itemize}
+\item Chihuahua Tim, 2 Jahre alt, 1,8 kg schwer
+\item Blindenhund Alex, 4 Jahre alt, 40 kg schwer
+\item Berhardinerin Eva, 5 Jahre alt, 82 kg schwer
+\item Schäferhündin Lilli, 3 Jahre alt, 34 kg schwer
+\end{itemize}
+
+\item Eine Methode \j{fuettern()}, die alle Hunde im Zwinger mit ihrer
+maximalen Futtermenge versorgt.
+
+\item Eine Methode \j{fuetterzeit()}, die alle Hunde im Zwinger bellen
+lässt.
+
+\item Eine Methode \j{gassiGehen()}, die alle Hunde im Zwinger Gassi
+gehen lässt.
+
+\end{itemize}
+\end{enumerate}
+
+\liJavaDatei{aufgaben/oomup/klassendiagramm/hunde/Hund}
+\liJavaDatei{aufgaben/oomup/klassendiagramm/hunde/Bernhardiner}
+\liJavaDatei{aufgaben/oomup/klassendiagramm/hunde/Chihuahua}
+\liJavaDatei{aufgaben/oomup/klassendiagramm/hunde/Schaeferhund}
+\liJavaDatei{aufgaben/oomup/klassendiagramm/hunde/Zwinger}
+
+\end{document}
