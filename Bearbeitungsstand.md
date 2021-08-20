@@ -131,9 +131,9 @@ i e 46116:2016:09 2 1 4
 
 ### Lebenszyklus, Vorgehensmodelle
 
-i e 66116:2021:03 2 1 2
-i e 66116:2020:09 1 1 5
-i e 66116:2020:09 2 1 1
+i e 66116:2021:03 2 1 2 ok
+i e 66116:2020:09 1 1 5 ok
+i e 66116:2020:09 2 1 1 ok
 
 ### Modellierung mit UML
 
