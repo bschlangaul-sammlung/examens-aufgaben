@@ -3113,6 +3113,36 @@ aufgestellt werden.
 %    \begin{macrocode}
 
 %    \end{macrocode}
+% \subsection{kopf-fusszeilen.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-kopf-fusszeilen}[2021/08/20 Kopf-
+und Fußzeilen mit Hilfe des Pakets fancyhdr.]
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\fancyhead{}
+\fancyhead[RO,LE]{{\scriptsize\LehramtInformatikTitel}}
+\fancyhead[LO,RE]{{\scriptsize\today}}
+\fancyfoot{}
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[LO,CE]{{\scriptsize\LehramtInformatikAutorName}}
+\fancyfoot[CO,RE]{{\scriptsize\LehramtInformatikAutorEmail}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
+
+%    \begin{macrocode}
+
+%    \end{macrocode}
 % \subsection{literatur-dummy.sty}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
