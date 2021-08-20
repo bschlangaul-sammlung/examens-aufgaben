@@ -1828,10 +1828,17 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \begin{macrocode}
 \def\liEntwurfsEinfacheFabrikUml{
   \begin{tikzpicture}
-    \umlclass{EinfacheFabrik}{
+    \umlsimpleclass[type=abstract]{Produkt}
+    \umlsimpleclass[below left=1cm and -0.65cm of Produkt]{ProduktA}
+    \umlsimpleclass[below right=1cm and -0.65cm of Produkt]{ProduktB}
+    \umlVHVinherit{Produkt}{ProduktA}
+    \umlVHVinherit{Produkt}{ProduktB}
+    \umlclass[below right=0cm and 1.5cm of Produkt]{EinfacheFabrik}{
     }{
-      \umlstatic{erzeuge(): Produkt}\\
+      \umlstatic{erzeuge(diskriminator): Produkt}\\
     }
+    \umlVHVdep[arm1=-1.5cm]{EinfacheFabrik}{ProduktA}
+    \umlVHVdep[arm1=-1.5cm]{EinfacheFabrik}{ProduktB}
   \end{tikzpicture}
 }
 %    \end{macrocode}
@@ -1849,6 +1856,14 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 
     Eine Klasse mit einer Erzeugunsmethode, die über eine größere
     Bedingung verschiedene Objekt instanziert.
+
+    \item[Produkt]
+
+    Eine abstrakte Klasse, die von den konkreten Produkten geerbt wird.
+
+    \item[KonkretesProdukt]
+
+    Ein konkretes Produkt, das von der einfachen Fabrik erzeugt wird.
   \end{description}
 }
 %    \end{macrocode}

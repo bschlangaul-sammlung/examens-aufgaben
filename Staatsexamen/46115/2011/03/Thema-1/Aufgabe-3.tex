@@ -4,10 +4,10 @@
 \begin{document}
 \liAufgabenTitel{2-3-4-Baum}
 
-\section{Aufgabe 9: Bäume
+\section{Aufgabe 2-3-4-B-Baum und AVL-Baum
 \index{B-Baum}\index{AVL-Baum}
 \footcite[entnommen aus Algorithmen und
-Datenstrukturen, Übungsblatt 6, Universität Würzburg]{aud:pu:7}}
+Datenstrukturen, Übungsblatt 6, Universität Würzburg, Aufgabe 9]{aud:pu:7}}
 
 \begin{enumerate}
 
@@ -19,8 +19,13 @@ Datenstrukturen, Übungsblatt 6, Universität Würzburg]{aud:pu:7}}
 4)\footnote{ein Baum, für den folgendes gilt: Er besitzt in einem Knoten
 max. 3 Schlüssel-Einträge und 4 Kindknoten und minimal einen Schlüssel
 und 2 Nachfolger} der Reihe nach die folgenden Schlüssel ein:
+\index{B-Baum}
+
+\bigskip
 
 \centerline{$1$, $2$, $3$, $5$, $7$, $8$, $9$, $4$, $11$, $12$, $13$, $6$.}
+
+\bigskip
 
 Dokumentieren Sie die Zwischenschritte so,
 dass die Entstehung des Baumes und nicht nur das Endergebnis
@@ -36,14 +41,12 @@ Aufgabe 3]{examen:46115:2011:03}
 %
 %%
 
-\item 1, 2, 3 einfügen:
+\item 1, 2, 3 (Einfaches Einfügen):
 
 \begin{tikzpicture}[
   scale=0.8,
   transform shape,
   li bbaum,
-  level 1/.style={level distance=10mm,sibling distance=32mm},
-  level 2/.style={level distance=10mm,sibling distance=20mm},
 ]
 \node {1 \nodepart{two} 2 \nodepart{three} 3};
 \end{tikzpicture}
@@ -52,13 +55,13 @@ Aufgabe 3]{examen:46115:2011:03}
 %
 %%
 
-\item 5 einfügen:
+\item 5 (Split):
 
 \begin{tikzpicture}[
   scale=0.8,
   transform shape,
   li bbaum,
-  level 1/.style={level distance=8mm,sibling distance=25mm},
+  level 1/.style={level distance=12mm,sibling distance=25mm},
 ]
 \node {2} [->]
   child {node {1}}
@@ -70,13 +73,13 @@ Aufgabe 3]{examen:46115:2011:03}
 %
 %%
 
-\item 7 einfügen:
+\item 7 (Einfaches Einfügen):
 
 \begin{tikzpicture}[
   scale=0.8,
   transform shape,
   li bbaum,
-  level 1/.style={level distance=8mm,sibling distance=25mm},
+  level 1/.style={level distance=12mm,sibling distance=25mm},
 ]
 \node {2} [->]
   child {node {1}}
@@ -88,13 +91,13 @@ Aufgabe 3]{examen:46115:2011:03}
 %
 %%
 
-\item 8 einfügen:
+\item 8 (Split):
 
 \begin{tikzpicture}[
   scale=0.8,
   transform shape,
   li bbaum,
-  level 1/.style={level distance=10mm,sibling distance=15mm},
+  level 1/.style={level distance=12mm,sibling distance=15mm},
 ]
 \node {2 \nodepart{two} 5} [->]
   child {node {1}}
@@ -107,13 +110,13 @@ Aufgabe 3]{examen:46115:2011:03}
 %
 %%
 
-\item 9 und 4 einfügen:
+\item 9, 4 (Einfaches Einfügen):
 
 \begin{tikzpicture}[
   scale=0.8,
   transform shape,
   li bbaum,
-  level 1/.style={level distance=10mm,sibling distance=15mm},
+  level 1/.style={level distance=12mm,sibling distance=15mm},
 ]
 \node {2 \nodepart{two} 5} [->]
   child {node {1}}
@@ -126,13 +129,13 @@ Aufgabe 3]{examen:46115:2011:03}
 %
 %%
 
-\item 11 einfügen:
+\item 11 (Split):
 
 \begin{tikzpicture}[
   scale=0.8,
   transform shape,
   li bbaum,
-  level 1/.style={level distance=10mm,sibling distance=15mm},
+  level 1/.style={level distance=12mm,sibling distance=15mm},
 ]
 \node {2 \nodepart{two} 5 \nodepart{three} 8} [->]
   child {node {1}}
@@ -146,13 +149,13 @@ Aufgabe 3]{examen:46115:2011:03}
 %
 %%
 
-\item 12 einfügen:
+\item 12 (Einfaches Einfügen):
 
 \begin{tikzpicture}[
   scale=0.8,
   transform shape,
   li bbaum,
-  level 1/.style={level distance=10mm,sibling distance=15mm},
+  level 1/.style={level distance=12mm,sibling distance=15mm},
 ]
 \node {2 \nodepart{two} 5 \nodepart{three} 8} [->]
   child {node {1}}
@@ -166,13 +169,13 @@ Aufgabe 3]{examen:46115:2011:03}
 %
 %%
 
-\item 13 einfügen (zwei Splits):
+\item 13 (zwei Splits):
 
 \begin{tikzpicture}[
   scale=0.8,
   transform shape,
   li bbaum,
-  level 1/.style={level distance=7mm,sibling distance=31mm},
+  level 1/.style={level distance=12mm,sibling distance=31mm},
   level 2/.style={level distance=10mm,sibling distance=12mm},
 ]
 \node {5} [->]
@@ -192,14 +195,14 @@ Aufgabe 3]{examen:46115:2011:03}
 %
 %%
 
-\item 6 einfügen:
+\item 6 (Einfaches Einfügen):
 
 \begin{tikzpicture}[
   scale=0.8,
   transform shape,
   li bbaum,
-  level 1/.style={level distance=7mm,sibling distance=31mm},
-  level 2/.style={level distance=10mm,sibling distance=12mm},
+  level 1/.style={level distance=12mm,sibling distance=31mm},
+  level 2/.style={level distance=15mm,sibling distance=12mm},
 ]
 \node {5} [->]
   child {node {2}
@@ -223,6 +226,322 @@ Aufgabe 3]{examen:46115:2011:03}
 
 \item Zeichnen Sie einen Rot-Schwarz-Baum oder einen AVL-Baum, der
 dieselben Einträge enthält.
+\index{AVL-Baum}
+
+\begin{liDiagramm}{Nach Einfügen von „1“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{1}; ]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „2“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=+1]{1};
+  \edge[blank]; \node[blank]{};
+  [.\node[label=0]{2}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „3“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=+2]{1};
+  \edge[blank]; \node[blank]{};
+  [.\node[label=+1]{2};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=0]{3}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{2};
+  [.\node[label=0]{1}; ]
+  [.\node[label=0]{3}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „5“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=+1]{2};
+  [.\node[label=0]{1}; ]
+  [.\node[label=+1]{3};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=0]{5}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „7“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=+2]{2};
+  [.\node[label=0]{1}; ]
+  [.\node[label=+2]{3};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=+1]{5};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{7}; ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=+1]{2};
+  [.\node[label=0]{1}; ]
+  [.\node[label=0]{5};
+    [.\node[label=0]{3}; ]
+    [.\node[label=0]{7}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „8“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=+2]{2};
+  [.\node[label=0]{1}; ]
+  [.\node[label=+1]{5};
+    [.\node[label=0]{3}; ]
+    [.\node[label=+1]{7};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{8}; ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{5};
+  [.\node[label=0]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=0]{3}; ]
+  ]
+  [.\node[label=+1]{7};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=0]{8}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „9“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=+1]{5};
+  [.\node[label=0]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=0]{3}; ]
+  ]
+  [.\node[label=+2]{7};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=+1]{8};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{9}; ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{5};
+  [.\node[label=0]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=0]{3}; ]
+  ]
+  [.\node[label=0]{8};
+    [.\node[label=0]{7}; ]
+    [.\node[label=0]{9}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „4“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{5};
+  [.\node[label=+1]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=+1]{3};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{4}; ]
+    ]
+  ]
+  [.\node[label=0]{8};
+    [.\node[label=0]{7}; ]
+    [.\node[label=0]{9}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „11“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{5};
+  [.\node[label=+1]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=+1]{3};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{4}; ]
+    ]
+  ]
+  [.\node[label=+1]{8};
+    [.\node[label=0]{7}; ]
+    [.\node[label=+1]{9};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{11}; ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „12“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{5};
+  [.\node[label=+1]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=+1]{3};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{4}; ]
+    ]
+  ]
+  [.\node[label=+2]{8};
+    [.\node[label=0]{7}; ]
+    [.\node[label=+2]{9};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=+1]{11};
+        \edge[blank]; \node[blank]{};
+        [.\node[label=0]{12}; ]
+      ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{5};
+  [.\node[label=+1]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=+1]{3};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{4}; ]
+    ]
+  ]
+  [.\node[label=+1]{8};
+    [.\node[label=0]{7}; ]
+    [.\node[label=0]{11};
+      [.\node[label=0]{9}; ]
+      [.\node[label=0]{12}; ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „13“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=+1]{5};
+  [.\node[label=+1]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=+1]{3};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{4}; ]
+    ]
+  ]
+  [.\node[label=+2]{8};
+    [.\node[label=0]{7}; ]
+    [.\node[label=+1]{11};
+      [.\node[label=0]{9}; ]
+      [.\node[label=+1]{12};
+        \edge[blank]; \node[blank]{};
+        [.\node[label=0]{13}; ]
+      ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{5};
+  [.\node[label=+1]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=+1]{3};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{4}; ]
+    ]
+  ]
+  [.\node[label=0]{11};
+    [.\node[label=0]{8};
+      [.\node[label=0]{7}; ]
+      [.\node[label=0]{9}; ]
+    ]
+    [.\node[label=+1]{12};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{13}; ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „6“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=+1]{5};
+  [.\node[label=+1]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=+1]{3};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{4}; ]
+    ]
+  ]
+  [.\node[label=-1]{11};
+    [.\node[label=-1]{8};
+      [.\node[label=-1]{7};
+        [.\node[label=0]{6}; ]
+        \edge[blank]; \node[blank]{};
+      ]
+      [.\node[label=0]{9}; ]
+    ]
+    [.\node[label=+1]{12};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{13}; ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
 
 %%
 % (c)
@@ -230,7 +549,7 @@ dieselben Einträge enthält.
 
 \item Geben Sie eine möglichst gute untere Schranke (in
 $\Omega$-Notation) für die Anzahl der Schlüssel in einem 2-3-4-Baum der
-Höhe h an.
+Höhe $h$ an.
 
 Hinweis: Überlegen Sie sich, wie ein 2-3-4-Baum mit Höhe $h$ und
 möglichst wenigen Schlüsseln aussieht.
