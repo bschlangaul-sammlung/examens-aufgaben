@@ -1,7 +1,7 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{graph,syntax}
 \begin{document}
-\liAufgabenTitel{dfs-number}
+\liAufgabenTitel{dfs-number Graph s,a-h}
 
 \section{Aufgabe 8
 \index{Tiefensuche}
@@ -34,35 +34,6 @@ g -- s
 h -- s
 \end{liGraphenFormat}
 
-\begin{center}
-\begin{tikzpicture}[li graph]
-\node (a) at (8,3) {a};
-\node (b) at (2,3) {b};
-\node (c) at (2,1) {c};
-\node (d) at (0,1) {d};
-\node (e) at (7,5) {e};
-\node (f) at (7,2) {f};
-\node (g) at (5,0) {g};
-\node (h) at (0,5) {h};
-\node (s) at (5,3) {s};
-
-\path (a) edge node {1} (e);
-\path (a) edge node {1} (f);
-\path (a) edge node {1} (s);
-\path (b) edge node {1} (c);
-\path (b) edge node {1} (d);
-\path (b) edge node {1} (h);
-\path (c) edge node {1} (d);
-\path (c) edge node {1} (h);
-\path (c) edge node {1} (s);
-\path (d) edge node {1} (h);
-\path (e) edge node {1} (f);
-\path (f) edge node {1} (s);
-\path (g) edge node {1} (s);
-\path (h) edge node {1} (s);
-\end{tikzpicture}
-\end{center}
-
 \begin{enumerate}
 
 %%
@@ -78,14 +49,34 @@ Reihenfolge der besuchten Knoten, also die \texttt{dfs-number} der
 Knoten, und den Inhalt des Stacks in jedem Schritt an.
 \footcite[Seite 2: Tiefensuche, Breitensuche, Aufgabe 3]{aud:ab:6}
 
-\begin{minted}{java}
-public static void main(String[] args) {
-  TiefenSucheStapel ts = new TiefenSucheStapel(20);
-  ts.fügeKnotenUndKantenEin("a-e a-f a-s b-c b-d b-h c-d c-h c-s d-h e-f f-s g-s h-s");
-  ts.gibMatrixAus();
-  ts.starteTiefenSucheStapel("s");
-}
-\end{minted}
+\begin{center}
+\begin{tikzpicture}[li graph]
+\node (a) at (8,3) {a};
+\node (b) at (2,3) {b};
+\node (c) at (2,1) {c};
+\node (d) at (0,1) {d};
+\node (e) at (7,5) {e};
+\node (f) at (7,2) {f};
+\node (g) at (5,0) {g};
+\node (h) at (0,5) {h};
+\node (s) at (5,3) {s};
+
+\path (a) edge node {} (e);
+\path (a) edge node {} (f);
+\path (a) edge node {} (s);
+\path (b) edge node {} (c);
+\path (b) edge node {} (d);
+\path (b) edge node {} (h);
+\path (c) edge node {} (d);
+\path (c) edge node {} (h);
+\path (c) edge node {} (s);
+\path (d) edge node {} (h);
+\path (e) edge node {} (f);
+\path (f) edge node {} (s);
+\path (g) edge node {} (s);
+\path (h) edge node {} (s);
+\end{tikzpicture}
+\end{center}
 
 \begin{liAntwort}
 In der Musterlösung auf Seite 3 lautet das Ergebnis s, a, e, f, c, b, d, h, g.
@@ -118,15 +109,6 @@ Ich glaube jedoch diese Lösung ist richtig:
 diese soll mit einer Queue umgesetzt werden. Als Startknoten wird wieder
 $s$ verwendet. Geben Sie auch hier die Reihenfolge der besuchten Knoten
 und den Inhalt der Queue bei jedem Schritt an.
-
-\begin{minted}{java}
-public static void main(String[] args) {
-  BreitenSucheWarteschlange bs = new BreitenSucheWarteschlange(20);
-  bs.fügeKnotenUndKantenEin("a-e a-f a-s b-c b-d b-h c-d c-h c-s d-h e-f f-s g-s h-s");
-  bs.gibMatrixAus();
-  bs.starteBreitenSuche("s");
-}
-\end{minted}
 
 \begin{liAntwort}
 \textbf{fett:} Knoten, der entnommen wird.

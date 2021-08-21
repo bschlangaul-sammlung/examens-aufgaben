@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-\liLadePakete{graph,syntax}
+\liLadePakete{graph,syntax,pseudo}
 
 \begin{document}
 
@@ -217,27 +217,25 @@ Besuchen der Knoten gestartet werden
 
 \section{Pseudocode: Tiefensuche mit explizitem Stack\footcite[Seite 51 (PDF 45)]{aud:fs:6}}
 
-\begin{minted}{md}
-funktion dfs(G: Graph, k: Startknoten in G) {
-  S := leerer Stack;
-  lege k oben auf S;
-  markiere k;
-
-  solange S nicht leer ist fuehre aus {
-    a := entferne oberstes Element von S;
-    bearbeite Knoten a;
-
-    fuer alle Nachfolger n von a fuehre aus {
-      falls n noch nicht markiert fuehre aus {
-        lege n oben auf S;
-        markiere n;
-      }
+\begin{algorithm}[H]
+\KwData{$G$: Graph, $k$: Startknoten in $G$}
+  $S$ := leerer Stack\;
+  lege $k$ oben auf $S$\;
+  markiere $k$\;
+\While{$S$ nicht leer ist}{
+  $a$ := entferne oberstes Element von $S$\;
+  bearbeite Knoten $a$\;
+    \For{alle Nachfolger $n$ von $a$}{
+    \If{$n$ noch nicht markiert}{
+      lege $n$ oben auf $S$\;
+      markiere $n$\;
     }
   }
 }
-\end{minted}
+\caption{Tiefensuche mit explizitem Stack}
+\end{algorithm}
 
-\liJavaDatei[firstline=34,lastline=74]{graph/algorithmen/TiefenSucheStapel}
+\liJavaDatei{graph/algorithmen/TiefenSucheStapel}
 
 %-----------------------------------------------------------------------
 %
@@ -360,29 +358,27 @@ w:
 ENDE
 
 \section{Pseudocode Breitensuche mit Queue
-\footcite[Seite 64 PDF (56)]{aud:fs:6}}
+\footcite[Seite 64]{aud:fs:6}}
 
-\begin{minted}{md}
-funktion bfs(G: Graph, k: Startknoten in G) {
-  Q := leere Queue:
-  fuege k in Q ein;
-  markiere k;
-
-  solange Q nicht leer ist fuehre aus {
-    a := entferne vorderstes Element aus Q;
-    bearbeite Knoten a;
-
-    fuer alle Nachfolger n von a fuehre aus {
-      falls n noch nicht markiert fuehre aus {
-        fuege n hinten in Q ein;
-        markiere n;
-      }
+\begin{algorithm}[H]
+\KwData{$G$: Graph, $k$: Startknoten in $G$}
+  $Q$ := leerer Queue\;
+  füge $k$ in $Q$\;
+  markiere $k$\;
+\While{$Q$ nicht leer}{
+  $a$ := entferne vorderstes Element aus $Q$\;
+  bearbeite Knoten $a$\;
+  \For{alle Nachfolger $n$ von $a$}{
+    \If{$n$ noch nicht markiert}{
+      füge $n$ hinten in $Q$\;
+      markiere $n$\;
     }
   }
 }
-\end{minted}
+\caption{Breitensuche mit Queue}
+\end{algorithm}
 
-\liJavaDatei[firstline=37,lastline=77]{graph/algorithmen/BreitenSucheWarteschlange}
+\liJavaDatei{graph/algorithmen/BreitenSucheWarteschlange}
 
 \literatur
 
