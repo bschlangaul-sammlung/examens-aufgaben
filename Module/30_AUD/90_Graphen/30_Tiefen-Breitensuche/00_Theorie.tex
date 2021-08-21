@@ -95,106 +95,34 @@ M -- L
 \end{tikzpicture}
 \end{center}
 
-\def\TmpBesuch#1{\strut\par\textbf{Besuchte Knoten:} #1}
-\def\TmpStack#1{\par\textbf{Stack:} #1}
-
-Startknoten A:
-
-\begin{description}
-
-\item[A:]
-\TmpBesuch{A, B}
-\TmpStack{A}
-
-\item[B:]
-\TmpBesuch{A, B, C}
-\TmpStack{A, B}
-
-\item[C:]
-\TmpBesuch{A, B, C, E}
-\TmpStack{A, B, C}
-
-\item[B:]
-A, B, C
-\TmpStack{A, B, C}
-
-\item[C:]
-A, B, C, E
-\TmpStack{A, B, C, E}
-
-\item[E:]
-A, B, C, E, D
-\TmpStack{A, B, C, E}
-
-\item[E:]
-A und C schon
-markiert
-A, B, C, E, D
-\TmpStack{A, B, C, E, D}
-
-\item[D:]
-A, B, C, E, D, F
-\TmpStack{A, B, C, E, D}
-
-\item[F:]
-A, B, C, E, D, F, M
-\TmpStack{A, B, C, E, D, F}
-
-\item[M:]
-A, B, C, E, D, F, M, L
-\TmpStack{A, B, C, E, D, F, M}
-
-\item[L:]
-A, B, C, E, D, F, M, L, K
-\TmpStack{A, B, C, E, D, F, M, L}
-
-\item[K:] keine Kinder
-A, B, C, E, D, F, M, L, K
-\TmpStack{A, B, C, E, D, F, M, L}
-
-\item[L:] alle Kinder schon markiert
-A, B, C, E, D, F, M, L, K
-\TmpStack{A, B, C, E, D, F, M}
-
-\item[M:] alle Kinder schon markiert
-A, B, C, E, D, F, M, L, K
-\TmpStack{A, B, C, E, D, F}
-
-\item[F:]
-A, B, C, E, D, F, M, L, K, G
-\TmpStack{A, B, C, E, D, F}
-
-\item[G:] keine Kinder
-
-\item[F:]
-A, B, C, E, D, F, M, L, K, G, H
-\TmpStack{A, B, C, E, D, F}
-
-\item[H:] keine Kinder
-
-\item[F:]
-A, B, C, E, D, F, M, L, K, G, H, I
-\TmpStack{A, B, C, E, D, F}
-
-\item[I:]
-A, B, C, E, D, F, M, L, K, G, H, I, J
-\TmpStack{A, B, C, E, D, F, I}
-
-\item[J:] keine Kinder
-I: alle Kinder markiert
-F: alle Kinder markiert
-D: alle Kinder markiert
-E: alle Kinder markiert
-C: alle Kinder markiert
-B: alle Kinder markiert
-A: alle Kinder markiert
-
-A, B, C, E, D, F, M, L, K, G, H, I, J
-\TmpStack{leer}
-
-\end{description}
-
-ENDE
+\begin{verbatim}
+      add A [A]
+del A       []
+      add B [B]
+      add C [C, B]
+      add E [E, C, B]
+del E       [C, B]
+      add D [D, C, B]
+del D       [C, B]
+      add F [F, C, B]
+del F       [C, B]
+      add G [G, C, B]
+      add H [H, G, C, B]
+      add I [I, H, G, C, B]
+      add M [M, I, H, G, C, B]
+del M       [I, H, G, C, B]
+      add L [L, I, H, G, C, B]
+del L       [I, H, G, C, B]
+      add K [K, I, H, G, C, B]
+del K       [I, H, G, C, B]
+del I       [H, G, C, B]
+      add J [J, H, G, C, B]
+del J       [H, G, C, B]
+del H       [G, C, B]
+del G       [C, B]
+del C       [B]
+del B       []
+\end{verbatim}
 
 \subsection{Implementierung der Tiefensuche}
 
@@ -293,69 +221,34 @@ Adjazenzlisten ab.
 \end{tikzpicture}
 \end{center}
 
-\begin{description}
-
-\item[A:]
-A, B, C, E
-w: B, C, E
-
-\item[B:] alle Kinder markiert
-
-A, B, C, E
-w: C, E
-
-\item[C:] A, B und E markiert
-
-A, B, C, E, I
-w: E, I
-
-\item[E:] A und C markiert
-
-A, B, C, E, I, D
-w: I, D
-
-\item[I:] C markiert
-
-A, B, C, E, I, D, F, J
-w: D, F, J
-
-\item[D:] E, F sind markiert
-A, B, C, E, I, D, F, J
-w: F, J
-
-\item[F:] I ist markiert
-A, B, C, E, I, D, F, J, M
-w: J, M, G, H
-
-\item[J:] keine Kinder
-
-A, B, C, E, I, D, F, J, M,
-G, H
-w: M, G, H
-
-\item[M:]
-
-A, B, C, E, I, D, F, J, M, G, H, L
-w: G, H, L
-
-\item[G:] keine Kinder
-A, B, C, E, I, D, F, J, M, G, H, L
-w: H, L
-
-\item[H:] keine Kinder
-A, B, C, E, I, D, F, J, M, G, H, L
-w: L
-
-\item[L:]
-A, B, C, E, I, D, F, J, M, G, H, L, K
-w: K
-
-\item[K:] keine Kinder
-A, B, C, E, I, D, F, J, M, G, H, L, K
-w:
-\end{description}
-
-ENDE
+\begin{verbatim}
+      add A [A]
+del A       []
+      add B [B]
+      add C [B, C]
+      add E [B, C, E]
+del B       [C, E]
+del C       [E]
+      add I [E, I]
+del E       [I]
+      add D [I, D]
+del I       [D]
+      add F [D, F]
+      add J [D, F, J]
+del D       [F, J]
+del F       [J]
+      add G [J, G]
+      add H [J, G, H]
+      add M [J, G, H, M]
+del J       [G, H, M]
+del G       [H, M]
+del H       [M]
+del M       []
+      add L [L]
+del L       []
+      add K [K]
+del K       []
+\end{verbatim}
 
 \section{Pseudocode Breitensuche mit Queue
 \footcite[Seite 64]{aud:fs:6}}
