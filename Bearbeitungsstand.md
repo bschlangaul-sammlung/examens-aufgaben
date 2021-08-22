@@ -20,7 +20,7 @@ aud:pu:7
 - Aufgabe 3
 - Aufgabe 4
 - Aufgabe 5
-- Aufgabe 6
+- Aufgabe 6 ok
 - Aufgabe 7
 - Aufgabe 8
 - Aufgabe 9 ok
