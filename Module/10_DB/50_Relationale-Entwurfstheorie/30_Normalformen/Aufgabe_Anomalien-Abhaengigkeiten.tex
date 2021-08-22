@@ -10,7 +10,7 @@
 \liAufgabenTitel{Anomalien Abhängigkeiten}
 
 \section{Anomalien und Abhängigkeiten
-\footcite[Seite 1, Aufgabe 1: Anomalien und Abhängigkeiten]{db:ab:5}
+\footcite[Seite 1, Aufgabe 1: Anomalien und Abhängigkeiten, Aufgabe 1]{db:ab:5}
 }
 
 Gegeben ist die Relation \emph{Abteilungsmitarbeiter}, repräsentiert
@@ -19,12 +19,15 @@ Abteilung keine Mitarbeiter mit identischem Namen existieren. Die
 Abteilungsnummer ist eindeutig, es kann aber durchaus sein, dass mehrere
 Abteilungen die gleiche Bezeichnung tragen.
 
-\begin{tabular}{lllll}
-Name           & Straße       & Ort     & AbtNr & Bezeichnung \\
-Schweizer      & Hauptstraße  & Zürich  & A3    & Finanzen    \\
-Deutscher      & Lindenstraße & Passau  & A4    & Informatik  \\
-Österreicher   & Nebenstraße  & Wien    & A4    & Informatik
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{Name}  & \textbf{Straße} & \textbf{Ort} & \textbf{AbtNr} & \textbf{Bezeichnung} \\\hline
+Schweizer      & Hauptstraße     & Zürich       & A3             & Finanzen   \\\hline
+Deutscher      & Lindenstraße    & Passau       & A4             & Informatik \\\hline
+Österreicher   & Nebenstraße     & Wien         & A4             & Informatik \\\hline
 \end{tabular}
+\end{center}
 
 \begin{enumerate}
 
@@ -40,26 +43,26 @@ eine mögliche Änderungsanomalie an!
 \item[Update-Anomalie]
 \index{Update-Anomalie}
 
-Die Abteilung A4 wird umbenannt, beispielsweise in Softwareabteilung.
-Die Änderung wird aus Versehen nicht in allen Tupeln mit AbtNr = A4
-vollzogen.
+Die Abteilung \emph{A4} wird umbenannt, beispielsweise in
+\emph{Softwareabteilung}. Die Änderung wird aus Versehen nicht in allen
+Tupeln mit \emph{AbtNr = A4} vollzogen.
 
 \item[Delete-Anomalie]
 \index{Delete-Anomalie}
 
-Herr Schweizer (aus der Abteilung A4) verlässt die Firma und wird aus
-der Datenbank gelöscht. Damit gehen auch die Daten über die Abteilung A3
+Herr \emph{Schweizer} (aus der Abteilung A4) verlässt die Firma und wird aus
+der Datenbank gelöscht. Damit gehen auch die Daten über die Abteilung \emph{A3}
 verloren.
 
 \item[Insert-Anomalie]
 \index{Insert-Anomalie}
 
-Es wird eine neue Abteilung A5 (Hardwareabteilung) geschaffen, der aber
-noch keine Mitarbeiter zugeteilt sind. Damit müsste ein Tupel (NULL,
-NULL, NULL, A5, Hardwareabteilung) in die Datenbank eingefügt werden. Da
-aber das Attribut Name sicher in jedem Schlüsselkandidaten enthalten
-sein muss, kann der Wert von Name keinen Nullwert enthalten. Das Tupel
-kann nicht eingefügt werden.
+Es wird eine neue Abteilung \emph{A5} (\emph{Hardwareabteilung})
+geschaffen, der aber noch keine Mitarbeiter zugeteilt sind. Damit müsste
+ein Tupel (NULL, NULL, NULL, A5, Hardwareabteilung) in die Datenbank
+eingefügt werden. Da aber das Attribut \emph{Name} sicher in jedem
+Schlüsselkandidaten enthalten sein muss, kann der Wert von Name keinen
+Nullwert enthalten. Das Tupel kann nicht eingefügt werden.
 
 \end{description}
 \end{liAntwort}
@@ -76,26 +79,32 @@ Entscheidung kurz.
 
 \begin{liAntwort}
 \begin{itemize}
-\item \fa{AbtNr -> Bezeichnung} \\
-Die Abteilungsnummer ist eindeutig (als „künstliches“
-Unterscheidungsmerkmal für Abteilungen) und legt damit die Abteilung
+\item \fa{AbtNr -> Bezeichnung}
+
+Die \emph{Abteilungsnummer} ist eindeutig (als „künstliches“
+Unterscheidungsmerkmal für \emph{Abteilungen}) und legt damit die
+\emph{Abteilung}
 eindeutig fest.
 
-\item \fa{Name, AbtNr -> Strasse, Ort} \\
-Da der Name innerhalb der Abteilung eindeutig ist, ist damit der
-Mitarbeiter und folglich auch die Adressdaten eindeutig festgelegt. Da
-es sich bei dieser Attributkombination um den Primärschlüssel handelt,
-bestimmt diese Attributkombination auch das Attribut „Bezeichnung“,
-allerdings darf es nicht in diese FA aufgenommen werden, da die
-Abteilungsbezeichnung nicht von der Kombination aus Name \& AbtNr
-abhängig, sondern nur von der AbtNr allein, somit muss dies als
-einzelne FA formuliert werden und kann hier nicht aufgenommen werden
+\item \fa{Name, AbtNr -> Strasse, Ort}
+
+Da der \emph{Name} innerhalb der \emph{Abteilung} eindeutig ist, ist
+damit der \emph{Mitarbeiter} und folglich auch die \emph{Adressdaten}
+eindeutig festgelegt. Da es sich bei dieser Attributkombination um den
+Primärschlüssel handelt, bestimmt diese Attributkombination auch das
+Attribut \emph{Bezeichnung}, allerdings darf es nicht in diese
+Funktionale Abhängigkeit aufgenommen werden, da die
+Abteilungsbezeichnung nicht von der Kombination aus \emph{Name} \&
+\emph{AbtNr} abhängig, sondern nur von der \emph{AbtNr} allein, somit
+muss dies als einzelne Funktionale Abhängigkeit formuliert werden und
+kann hier nicht aufgenommen werden
 
 $\rightarrow$ der Rückschluss daraus wäre nämlich, dass sich die
-Bezeichnung der Abteilung nur aus der Kombination von Mitarbeiter und
-AbtNr erkennen lässt und nicht allein aus der AbtNr und das wäre ja
-nicht korrekt. Grundsätzlich gilt: Primärschlüssel und FA’s müssen
-getrennt betrachtet werden!
+\emph{Bezeichnung} der \emph{Abteilung} nur aus der Kombination von
+\emph{Mitarbeiter} und \emph{AbtNr} erkennen lässt und nicht allein aus
+der \emph{AbtNr} und das wäre ja nicht korrekt. Grundsätzlich gilt:
+Primärschlüssel und Funktionale Abhängigkeiten müssen getrennt
+betrachtet werden.
 
 \FA[F]{
   Name, AbtNr -> Strasse, Ort;
@@ -140,12 +149,13 @@ $\ah{F, \m{Name, AbtNr}} = \m{Name, AbtNr, Strasse, Ort, Bezeichnung}$
 % (d)
 %%
 
-\item Ist \m{Name, Bezeichnung} (bzw. \m{Name, AbtNr} ein Superschlüssel
+\item Ist \m{Name, Bezeichnung} bzw. \m{Name, AbtNr} ein Superschlüssel
 der Relation Abteilungsmitarbeiter? Kurze Begründung!
 \index{Superschlüssel}
 
 \begin{liAntwort}
-${Name, AbtNr}$
+\m{Name, AbtNr}, da die Attributhülle von \m{Name, AbtNr} alle Attribute
+der Relation umfasst und \m{Name, Bezeichnung} nicht.
 \end{liAntwort}
 
 \end{enumerate}
