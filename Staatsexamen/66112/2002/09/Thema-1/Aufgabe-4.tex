@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
+\liLadePakete{syntax,uml}
 \begin{document}
 \liAufgabenTitel{Banksystem}
 
@@ -44,6 +44,30 @@ Datenstruktur „ArrayList“ und verwenden Sie diese.}
 Die Klasse Konto ist abstrakt, da ein Konto immer entweder ein Spar-
 \emph{oder} ein Girokonto
 ist. Ein Objekt der Klasse Konto ist deshalb nicht sinnvoll.
+
+\begin{tikzpicture}
+\umlclass{Bank}{- name}{}
+\umlclass[below right=1cm of Bank]{Konto}{
+\# kontonummer\\
+\# kontostand}{}
+\umlclass[below left=1cm of Konto]{Girokonto}{
+- kreditrahmen\\
+- jahresgebühr}{}
+\umlclass[below right=1cm of Konto]{Sparkonto}{
+- zinssatz\\}{}
+
+\umlassoc[arg=führt,pos=0.6]{Bank}{Konto}
+
+\umlinherit{Girokonto}{Konto}
+\umlinherit{Sparkonto}{Konto}
+
+\umlclass[right=2cm of Konto]{Besitzer}{
+- name\\
+- kundennumer}{}
+
+\umlassoc[arg=besitzer,pos=0.6]{Besitzer}{Konto}
+
+\end{tikzpicture}
 \end{liAntwort}
 
 %%
