@@ -2,8 +2,8 @@
 \liLadePakete{normalformen,synthese-algorithmus}
 \begin{document}
 \let\ah=\liAttributHuelle
-\let\ahl=\liAttributHuelleLinksReduktionInline
-\let\ahr=\liAttributHuelleRechtsReduktionInline
+\let\ahl=\liLinksReduktionInline
+\let\ahr=\liRechtsReduktionInline
 \let\fa=\liFunktionaleAbhaengigkeit
 \let\FA=\liFunktionaleAbhaengigkeiten
 \let\m=\liAttributMenge
@@ -53,13 +53,13 @@ Wir betrachten nur die zusammengesetzten Attribute:
 \begin{itemize}
 \item \fa{A, E -> D}:
 
-\ahl{A, E}{E}{A, E, F, B, \textbf{D}} \\
-\ahl{A, E}{A}{E}
+$D \in$ \ahl{A, E}{E}{A, E, F, B, \textbf{D}} \\
+$D \notin$ \ahl{A, E}{A}{E}
 
 \item \fa{A, G -> H}:
 
-$\ah{F, \m{A}} = \m{A, E, F, B, D}$ \\
-$\ah{F, \m{G}} = \m{G}$
+$H \notin$ \ahl{A, G}{G}{A, E, F, B, D} \\
+$H \notin$ \ahl{A, G}{A}{G}
 \end{itemize}
 
 \FA{
@@ -67,7 +67,7 @@ $\ah{F, \m{G}} = \m{G}$
   A -> B, D;
   A -> D;
   A -> E, F;
-  AG -> H;
+  A, G -> H;
 }
 
 %%
@@ -94,29 +94,29 @@ Nur die Attribute betrachten, die rechts doppelt vorkommen:
 weggelassen werden. Wenn gilt \fa{A -> B, D}, dann gilt auch \fa{A -> B}
 und \fa{A -> D}
 
-\FA{%
+\FA{
   F -> E;
   A -> B, D;
   A -> NICHTS;
   A -> F;
-  AG -> H;
+  A, G -> H;
 }
 
 \item \schrittE{1-3}
 
-\FA{%
+\FA{
   F -> E;
   A -> B, D;
   A -> F;
-  AG -> H;
+  A, G -> H;
 }
 
 \item \schrittE{1-4}
 
-\FA{%
+\FA{
   F -> E;
   A -> B, D, F;
-  AG -> H;
+  A, G -> H;
 }
 
 \end{enumerate}

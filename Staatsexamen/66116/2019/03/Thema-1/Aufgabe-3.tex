@@ -3,8 +3,10 @@
 \begin{document}
 \let\FA=\liFunktionaleAbhaengigkeiten
 \let\schrittE=\liSyntheseUeberErklaerung
+\let\ahl=\liLinksReduktionInline
+\let\m=\liAttributMenge
 
-\liAufgabenTitel{}
+\liAufgabenTitel{Relation A-F}
 \section{Aufgabe 3
 \index{Relationale Entwurfstheorie}
 \footcite{66116:2019:03}}
@@ -83,6 +85,16 @@ funktionaler Abhängigkeiten nach der Linksreduktion an ($FD_L$).
   D, E -> C, B;
   A -> F;
 }
+
+$E \notin$ \ahl{A, D, F}{A}{B, D, F}\\
+$E \notin$ \ahl{A, D, F}{D}{A, F} \\
+$E \notin$ \ahl{A, D, F}{F}{A, B, D}
+
+$\m{A, E} \notin$ \ahl{B, C}{B}{C}\\
+$\m{A, E} \notin$ \ahl{B, C}{C}{B}
+
+$\m{C, B} \notin$ \ahl{D, E}{D}{E}\\
+$\m{C, B} \notin$ \ahl{D, E}{E}{B, D}
 \end{liAntwort}
 
 %%

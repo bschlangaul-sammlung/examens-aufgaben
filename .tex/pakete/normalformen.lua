@@ -26,6 +26,7 @@ local function setze_funk_abhaengigkeit(eingabe, fuer_mathe)
 end
 
 local function drucke_funk_abhaengigkeiten(eingabe)
+  eingabe = eingabe:gsub("%s+", "")
   local abhaengigkeiten = helfer.split(eingabe, '%s*;%s*')
   local ausgabe = ''
   for index, abhaengigkeit in ipairs(abhaengigkeiten) do

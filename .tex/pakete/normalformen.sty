@@ -11,9 +11,9 @@ Attributhülle]
 
 % \liLets{
 %   ah = liAttributHuelle,
-%   ahL = liAttributHuelleLinksReduktion,
-%   ahl = liAttributHuelleLinksReduktionInline,
-%   ahr = liAttributHuelleLinksReduktionInline,
+%   ahL = liLinksReduktion,
+%   ahl = liLinksReduktionInline,
+%   ahr = liRechtsReduktionInline,
 %   fa = liFunktionaleAbhaengigkeit,
 %   FA = liFunktionaleAbhaengigkeiten,
 %   m = liAttributMenge,
@@ -65,13 +65,13 @@ Attributhülle]
 %    \end{macrocode}
 % \end{environment}
 
-% \begin{macro}{\liAttributHuelleLinksReduktion}
+% \begin{macro}{\liLinksReduktion}
 % Nur innerhalb von |liAHuelle| zu verwenden
 % bzw. |multline|
-% \liLet{ahL}{liAttributHuelleLinksReduktion}
+% \liLet{ahL}{liLinksReduktion}
 % |\ahL{ursprüngliche linke Attributmenge}{ohne dieses Attribut}{Ergebnis}|
 %    \begin{macrocode}
-\def\liAttributHuelleLinksReduktion#1#2#3{
+\def\liLinksReduktion#1#2#3{
   \shoveleft{
     \liAttributHuelleOhneMathe{FA,
     \liAttributMenge{#1 \string\ #2}} =
@@ -83,12 +83,12 @@ Attributhülle]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liAttributHuelleLinksReduktionInline}
-% \liLet{ahL}{liAttributHuelleLinksReduktionInline}
+% \begin{macro}{\liLinksReduktionInline}
+% \liLet{ahL}{liLinksReduktionInline}
 % |\ahl{ursprüngliche linke Attributmenge}{ohne dieses Attribut}{Ergebnis}|
-% |\ahl{A, E}{E}{A, E, F, B, \textbf{D}}|: \liAttributHuelleLinksReduktionInline{A, E}{E}{A, E, F, B, \textbf{D}}
+% |\ahl{A, E}{E}{A, E, F, B, \textbf{D}}|: \liLinksReduktionInline{A, E}{E}{A, E, F, B, \textbf{D}}
 %    \begin{macrocode}
-\def\liAttributHuelleLinksReduktionInline#1#2#3{
+\def\liLinksReduktionInline#1#2#3{
   $\liAttributHuelleOhneMathe{F,
   \liAttributMenge{#1 \string\ #2}} =
   \liAttributMenge{#3}$
@@ -96,11 +96,11 @@ Attributhülle]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liAttributHuelleLinksReduktionInline}
-% \liLet{ahr}{liAttributHuelleLinksReduktionInline}
+% \begin{macro}{\liLinksReduktionInline}
+% \liLet{ahr}{liLinksReduktionInline}
 % |\ahr{gelöschte FA}{neue FA ohne rechts Attribut}{gegebene Attribute}{Ergebnis}|
 %    \begin{macrocode}
-\def\liAttributHuelleRechtsReduktionInline#1#2#3#4{
+\def\liRechtsReduktionInline#1#2#3#4{
   $\liAttributHuelleOhneMathe{
     F \setminus
     \liFunktionaleAbhaengigkeit{#1}
