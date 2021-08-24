@@ -102,8 +102,13 @@ Attributhülle]
 %    \begin{macrocode}
 \def\liAttributHuelleRechtsReduktionInline#1#2#3#4{
   $\liAttributHuelleOhneMathe{
-    F \string\
-    \liFunktionaleAbhaengigkeit{#1} \cup \liFunktionaleAbhaengigkeit{#2},
+    F \setminus
+    \liFunktionaleAbhaengigkeit{#1}
+    \def\tmp{#2}\ifx\tmp\empty
+    \else
+      \cup \liFunktionaleAbhaengigkeit{#2}
+    \fi
+    ,
     \liAttributMenge{#3}
   } =
   \liAttributMenge{#4}$

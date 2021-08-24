@@ -3,9 +3,13 @@
 \begin{document}
 \let\ah=\liAttributHuelle
 \let\ahl=\liAttributHuelleLinksReduktionInline
+\let\ahr=\liAttributHuelleRechtsReduktionInline
 \let\fa=\liFunktionaleAbhaengigkeit
 \let\FA=\liFunktionaleAbhaengigkeiten
 \let\m=\liAttributMenge
+\let\r=\liRelation
+\let\u=\underline
+
 \let\schrittE=\liSyntheseUeberErklaerung
 
 \liAufgabenTitel{Relation A-H}
@@ -19,7 +23,7 @@
 die 3. Normalform!
 
 \begin{center}
-\liRelation[R]{A, B, C, D, E, F, G, H}
+\r[R]{A, B, C, D, E, F, G, H}
 \end{center}
 
 \FA{
@@ -58,11 +62,12 @@ $\ah{F, \m{A}} = \m{A, E, F, B, D}$ \\
 $\ah{F, \m{G}} = \m{G}$
 \end{itemize}
 
-\FA{F -> E;
-A -> B, D;
-A -> D;
-A -> E, F;
-AG -> H;
+\FA{
+  F -> E;
+  A -> B, D;
+  A -> D;
+  A -> E, F;
+  AG -> H;
 }
 
 %%
@@ -72,21 +77,22 @@ AG -> H;
 \item \schrittE{1-2}
 
 Nur die Attribute betrachten, die rechts doppelt vorkommen:
+\begin{description}
 
-$E$:
+\item[$E$:] \strut
 
-$\ah{F - \m{F \rightarrow E}, \m{F}} = \m{F}$ \\
-$\ah{F - \m{A \rightarrow E}, \m{A}} = \m{A, B, D, F, \textbf{E}}$
+\ahr{F -> E}{}{F}{F} \\
+\ahr{A -> E, F}{A -> E}{A}{A, B, D, F, \textbf{E}}
 
-$D$:
+\item[$D$:] \strut
 
-$\ah{F - \m{A \rightarrow D}, \m{A}} = \m{A, B, \textbf{D}, F, E}$
+\ahr{A -> D}{}{A}{A, B, \textbf{D}, F, E}
 
-$A \rightarrow D$ kann wegen der Armstrongschen Dekompositionsregel
-weggelassen werden. Wenn gilt $A \rightarrow B, D$, dann gilt auch $A
-\rightarrow B$ und $A \rightarrow D$
+\end{description}
 
-\textbf{FDs}
+\fa{A -> D} kann wegen der Armstrongschen Dekompositionsregel
+weggelassen werden. Wenn gilt \fa{A -> B, D}, dann gilt auch \fa{A -> B}
+und \fa{A -> D}
 
 \FA{%
   F -> E;
@@ -113,29 +119,20 @@ weggelassen werden. Wenn gilt $A \rightarrow B, D$, dann gilt auch $A
   AG -> H;
 }
 
-Jetzt die weiteren Hauptschritte:
-
 \end{enumerate}
 
 \item \schrittE{2}
 
-\begin{compactitem}
-\item \liRelation[R1]{F, E}
-\item \liRelation[R2]{A, B, D, F}
-\item \liRelation[R3]{A, G, H}
-\end{compactitem}
+\r[R1]{\u{F}, E}\\
+\r[R2]{\u{A}, B, D, F}\\
+\r[R3]{\u{A, G}, H}
 
 \item \schrittE{3}
 
-Schlüsselkandidaten hinzufügen, falls nicht vorhanden:
-\liRelation[R4]{A, C, G}
-
-\begin{compactitem}
-\item \liRelation[R1]{F, E}
-\item \liRelation[R2]{A, B, D, F}
-\item \liRelation[R3]{A, G, H}
-\item \liRelation[R4]{A, C, G}
-\end{compactitem}
+\r[R1]{\u{F}, E}\\
+\r[R2]{\u{A}, B, D, F}\\
+\r[R3]{\u{A, G}, H}\\
+\r[R4]{\u{A, C, G}}
 
 \item \schrittE{4}
 
