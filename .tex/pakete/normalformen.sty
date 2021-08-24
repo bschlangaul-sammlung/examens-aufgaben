@@ -16,6 +16,7 @@ Attributhülle]
 %   FA = liFunktionaleAbhaengigkeiten,
 %   m = liAttributMenge,
 %   r = liRelation,
+%   u = underline,
 % }
 
 %    \begin{macrocode}
@@ -26,6 +27,7 @@ Attributhülle]
 
 % \begin{macro}{\liAttributHuelle}
 % \liLet{ah}{liAttributHuelle}
+% |\ah{F, \m{A, B}}| \liAttributHuelle{F, \liAttributMenge{A, B}}
 % Regulärer Ausdruck zum Konvertieren
 % |AttrHülle\((.*)\)|
 % |\\ah{$1}|
@@ -69,7 +71,8 @@ Attributhülle]
 %    \begin{macrocode}
 \def\liAttributHuelleLinksReduktion#1#2#3{
   \shoveleft{
-    \liAttributHuelleOhneMathe{FA, \liAttributMenge{\liAttributMenge{#1} - \liAttributMenge{#2}}} =
+    \liAttributHuelleOhneMathe{FA,
+    \liAttributMenge{\liAttributMenge{#1} - \liAttributMenge{#2}}} =
   } \\
   \shoveright{
     \liAttributMenge{#3}
@@ -120,9 +123,7 @@ Attributhülle]
 
 % \begin{macro}{\liRelation}
 % \liLet{r}{liRelation}
-% \begin{liBeispiel}
-% \liRelation[R3]{A, B, C}
-% \end{liBeispiel}
+% |\r[R3]{\u{A}, B, C}|: \liRelation[R3]{\underline{A}, B, C}
 % Regulärer Ausdruck zum Konvertieren:
 % |\$(R.*)\((.*)\)\$|
 % |\\liRelation[$1]{$2}|

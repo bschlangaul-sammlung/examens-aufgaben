@@ -1,9 +1,11 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{normalformen}
+\liLadePakete{normalformen,synthese-algorithmus}
 \begin{document}
 \let\FA=\liFunktionaleAbhaengigkeiten
 \let\fa=\liFunktionaleAbhaengigkeit
-\let\m=\liMenge
+\let\m=\liAttributMenge
+\let\ah=\liAttributHuelle
+\let\schrittE=\liSyntheseUeberErklaerung
 
 \liAufgabenTitel{Kanonische Überdeckung (Kemper)}
 
@@ -12,49 +14,46 @@
 \footcite[Seite 186]{kemper}
 }
 
-\FA{A -> B; B -> C; A, B -> C}
+\FA{%
+  A -> B;
+  B -> C;
+  A, B -> C;
+}
+
+\begin{liAntwort}
 
 \begin{enumerate}
-\item Kanonische Überdeckung
+\item \schrittE{1-1}
 
-\begin{enumerate}
-\item Linksreduktion
+$\ah{F, \m{A, B} - \m{B}} = \m{A, B, C}$
 
-$\liAttributHuelle{F, \m{A}} = \m{A, B, C}$
+$\ah{F, \m{A, B} - \m{A}} = \m{C}$
 
-\begin{compactitem}
-\item $A \rightarrow B$
-\item $B \rightarrow C$
-\item $A \rightarrow C$
-\end{compactitem}
+\FA{%
+  A -> B;
+  B -> C;
+  A -> C;
+}
 
-\item Rechtsreduktion
+\item \schrittE{1-2}
 
-\begin{compactitem}
-\item $A \rightarrow B$
-\item $B \rightarrow C$
-\item $A \rightarrow \emptyset$
-\end{compactitem}
+\FA{%
+  A -> B;
+  B -> C;
+  A -> NICHTS;
+}
 
-\item Leere Klauseln leeren
+\item \schrittE{1-3}
 
-\begin{compactitem}
-\item $A \rightarrow B$
-\item $B \rightarrow C$
-\end{compactitem}
+\FA{%
+  A -> B;
+  B -> C;
+}
 
-\item Vereinigung
-\end{enumerate}
-\item Neues Relationenschema
+\item \schrittE{1-4}
 
-\begin{compactitem}
-\item $R1(A, B)$
-\item $R2(B, C)$
-\end{compactitem}
-
-\item Hinzufügen einer Relation
-\item Entfernen überflüssiger Teilschemata
-
+Nichts zu tun
 \end{enumerate}
 
+\end{liAntwort}
 \end{document}
