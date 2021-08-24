@@ -4,6 +4,7 @@
 \let\FA=\liFunktionaleAbhaengigkeiten
 \let\schrittE=\liSyntheseUeberErklaerung
 \let\r=\liRelation
+\let\u=\underline
 
 \liAufgabenTitel{Drei-Schemata}
 
@@ -17,7 +18,7 @@ funktionaler Abhängigkeiten gegeben:
 \begin{description}
 \item \r[S_1]{P, Q, R} mit
 
-\FA[$F_1$]{
+\FA[$F_1$]{%
   P, Q -> R;
   P, R -> Q;
   Q, R -> P;
@@ -44,15 +45,15 @@ Normalform}, welche in 2NF\index{Zweite Normalform}? Begründe!
 
 \begin{liAntwort}
 \begin{description}
-\item[$S_1$] BCNF
+\item[$S_1$:] BCNF
 
-\item[$S_2$] 1NF aber nicht 2NF
+\item[$S_2$:] 1NF aber nicht 2NF
 
-\item[$S_3$] BCNF
+\item[$S_3$:] BCNF
 \end{description}
 
 ($S_1$, $F_1$) und ($S_3$, $F_3$) sind offenbar in BCNF und
-daher auch in 3NF und 2NF. ($S_2$ , $F_2$) ist offenbar nicht in
+daher auch in 3NF und 2NF. ($S_2$, $F_2$) ist offenbar nicht in
 2NF, da der Schlüsselkandidat PRS ist und T von einem Teil dieser
 Schlüsselkandidaten, nämlich PS, abhängig ist und daher auch nicht in
 3NF oder BCNF.
@@ -69,40 +70,26 @@ Abhängigkeiten, die über den erhaltenen Teilrelationen gelten. Ihr
 Lösungsweg muss nachvollziehbar sein.
 
 \begin{liAntwort}
-Achtung! Die Aufteilung in die einzelnen Schritte stimmt nicht.
-
 \begin{enumerate}
 \item \schrittE{1}
 
-PS -> T (ist schon kanonische Überdeckung)
+\FA[$F_2$]{P, S -> T} (ist schon in der kanonische Überdeckung)
 
 \item \schrittE{2}
 
-Enthält keines der so entstandenen Relationenschemata einen
-Schlüsselkandidaten von R, so wird ein weiteres Relationenschema
-erzeugt, das als Attribute die Attribute eines (beliebigen)
-Schlüsselkandidaten von R hat.
-
-R1 (P, S, T)
+\r[R_{21}]{P, S, T}
 
 \item \schrittE{3}
 
-Attribute von R, die in keinem der in Schritt 1 und 2 erzeugten
-Relationenschemata auftauchen, werden in einem zusätzlichen
-Relationenschema zusammengefasst
-
-\r[S_{21}]{P, S, T} mit \FA[$F_{21}$]{P S-> T}
+\r[R_{21}]{\u{P, S}, T} mit \FA[$F_{21}$]{P S-> T}
 
 \bigskip
 
-\r[S_{22}]{P, S, R} mit \FA[$F_{22}$]{}
+\r[R_{22}]{\u{P, S, R}} mit \FA[$F_{22}$]{}
 
 \item \schrittE{4}
 
-Von den in Schritt 1 bis 3 entstandenen Schemata werden die Schemata
-wieder verworfen, deren Attributmenge eine Teilmenge eines anderen in
-Schritt 1 bis 3 entstandenen Schemas ist und solche mit gleichem
-Schlüsselkandidaten zusammengefasst.
+\liNichtsZuTun
 
 \end{enumerate}
 \end{liAntwort}

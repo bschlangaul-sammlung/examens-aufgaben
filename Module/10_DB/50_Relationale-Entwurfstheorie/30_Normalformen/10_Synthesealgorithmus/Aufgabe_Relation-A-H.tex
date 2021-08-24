@@ -1,9 +1,10 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{normalformen,synthese-algorithmus}
 \begin{document}
+\let\ah=\liAttributHuelle
+\let\ahl=\liAttributHuelleLinksReduktionInline
 \let\fa=\liFunktionaleAbhaengigkeit
 \let\FA=\liFunktionaleAbhaengigkeiten
-\let\ah=\liAttributHuelle
 \let\m=\liAttributMenge
 \let\schrittE=\liSyntheseUeberErklaerung
 
@@ -11,7 +12,7 @@
 
 \section{Synthesealgorithmus
 \index{Synthese-Algorithmus}
-\footcite[Seite 1, Aufgabe 2: Synthesealgorithmus]{db:pu:4}
+\footcite[Seite 1: Synthesealgorithmus, Aufgabe 2]{db:pu:4}
 }
 
 Überführen Sie das Relationenschema mit Hilfe des Synthesealgorithmus in
@@ -22,11 +23,11 @@ die 3. Normalform!
 \end{center}
 
 \FA{
-F -> E;
-A -> B, D;
-A, E -> D;
-A -> E, F;
-A, G -> H;
+  F -> E;
+  A -> B, D;
+  A, E -> D;
+  A -> E, F;
+  A, G -> H;
 }
 
 \begin{liAntwort}
@@ -48,8 +49,8 @@ Wir betrachten nur die zusammengesetzten Attribute:
 \begin{itemize}
 \item \fa{A, E -> D}:
 
-$\ah{F, \m{A}} = \m{A, E, F, B, \textbf{D}}$ \\
-$\ah{F, \m{E}} = \m{E}$
+\ahl{A, E}{E}{A, E, F, B, \textbf{D}} \\
+\ahl{A, E}{A}{E}
 
 \item \fa{A, G -> H}:
 
