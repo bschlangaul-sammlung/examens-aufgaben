@@ -3,8 +3,10 @@
 ## DB
 
 db:pu:3
-db:pu:4
+db:pu:4 ok
 - Aufgabe 1 ok
+- Aufgabe 2 ok
+- Aufgabe 3 ok
 db:ab:5
 
 ## AUD

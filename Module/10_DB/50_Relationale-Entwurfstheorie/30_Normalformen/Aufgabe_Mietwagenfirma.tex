@@ -6,7 +6,7 @@
 \liAufgabenTitel{Mietwagenfirma}
 
 \section{Normalformen (Mietwagenfirma)
-\footcite[Seite 2, Aufgabe 3: Normalformen]{db:pu:4}
+\footcite[Seite 2 Normalformen, Aufgabe 3]{db:pu:4}
 }
 
 Gegeben sei die folgende relationale Datenbank der Mietwagenfirma
@@ -44,15 +44,17 @@ vorgegeben.
 \bigskip
 
 \liFunktionaleAbhaengigkeiten{
-KdNr -> Name, Wohnort;
-KdNr, Buchungsdatum -> Fahrzeug, Typ, Tarif, Tage, Rueckgabe-Station;
-Buchungsdatum -> Aktion;
-Fahrzeug -> Typ, Tarif;
-Typ -> Tarif;
-Rueckgabestation -> Stationsleiter;}
+  KdNr -> Name, Wohnort;
+  KdNr, Buchungsdatum -> Fahrzeug, Typ, Tarif, Tage, Rueckgabe-Station;
+  Buchungsdatum -> Aktion;
+  Fahrzeug -> Typ, Tarif;
+  Typ -> Tarif;
+  Rueckgabestation -> Stationsleiter;
+}
 
 \bigskip
 
+\noindent
 Der Primärschlüssel besteht aus den Attributen \emph{KdNr} und
 \emph{Buchungsdatum}.
 
@@ -77,9 +79,9 @@ die zweite Normalform verletzen können.
 \index{Zweite Normalform}
 
 \begin{liAntwort}
-Nur bei Tabellen mit zusammegesetzten Primärschlüssel kann es vorkommen,
-dass ein Nichtschlüssel-Attribute von einer echten Teilmenge des
-Primärschlüssel voll funktional abhängt.
+Nur bei Tabellen mit zusammengesetzten Primärschlüssel kann es
+vorkommen, dass ein Nichtschlüssel-Attribut von einer echten Teilmenge
+des Primärschlüssel voll funktional abhängt.
 \end{liAntwort}
 
 %%
@@ -92,13 +94,13 @@ Primärschlüssel voll funktional abhängt.
 \begin{description}
 \item[Delete-Anomalie]
 
-\zB Kunde 888 wird gelöscht, gleichzeitig gehen alle Informationen
-über das Fahrzeug A3 verloren
+\zB Kunde \emph{888} wird gelöscht, gleichzeitig gehen alle
+Informationen über das Fahrzeug \emph{A3} verloren.
 \index{Delete-Anomalie}
 
 \item[Update-Anomalie]
 
-\zB Chomsky zieht um, Wohnort wird nicht in allen Tupeln geändert
+\zB \emph{Chomsky} zieht um, Wohnort wird nicht in allen Tupeln geändert.
 \index{Update-Anomalie}
 
 \item[Insert-Anomalie]
@@ -119,10 +121,10 @@ will.
 \begin{liAntwort}
 Der \emph{Name} ist voll funktional abhängig von \emph{KdNr}, nicht aber
 von \emph{Buchungsdatum}. Deswegen verletzt die FD \fa{KdNr -> Name} die
-2. Normalform (und also auch die 3. Normalform). \emph{Stationsleiter} ist nur
-transitiv von \emph{KdNr}, \emph{Buchungsdatum} abhängig (über
+2. Normalform (und also auch die 3. Normalform). \emph{Stationsleiter}
+ist nur transitiv von \emph{KdNr}, \emph{Buchungsdatum} abhängig (über
 \emph{Rückgabestation}). Dies verletzt die 3. Normalform. Überführung in
-NF2: Entfernung der vom Primärschlüssel nicht voll funktional abhängigen
+2NF: Entfernung der vom Primärschlüssel nicht voll funktional abhängigen
 Attribute.
 
 MobilRent(\underline{KdNr, Buchungsdatum}, Fahrzeug, Typ, Tarif, Tage,
