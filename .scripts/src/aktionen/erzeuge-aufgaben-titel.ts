@@ -1,12 +1,13 @@
+import path from 'path'
 import { ExamensAufgabe } from '../aufgabe'
 import { aufgabenSammlung } from '../sammlung'
 
 interface Titel {
   Titel: string
   Thematik?: string
+  RelativerPfad: string
   Fussnote?: string
   FussnoteSeite?: string
-  RelativerPfad: string
   ExamenNummer?: number
   ExamenJahr?: number
   ExamenMonat?: string
@@ -18,9 +19,24 @@ interface Titel {
 function sammleDaten (dateiPfad: string): Titel {
   const aufgabe = aufgabenSammlung.gib(dateiPfad)
   const titel: Titel = {
-    Titel: aufgabe.titelFormatiert,
+    Titel: aufgabe.titel != null ? aufgabe.titel : 'Aufgabe',
     Thematik: aufgabe.titel,
     RelativerPfad: aufgabe.relativerPfad
+  }
+
+  if (aufgabe.inhalt != null) {
+    const section = aufgabe.inhalt.match(/\\section\{(.+?)[\\\}\{]/)
+    if (section != null) {
+      if (section[1] != null) titel.Titel = section[1]
+    }
+
+    const fussnoteZitat = aufgabe.inhalt.match(
+      /\\footcite(\[([^\]]+)\])?\{([^\}]+)\}/
+    )
+    if (fussnoteZitat != null) {
+      if (fussnoteZitat[2] != null) titel.FussnoteSeite = fussnoteZitat[2]
+      if (fussnoteZitat[3] != null) titel.Fussnote = fussnoteZitat[3]
+    }
   }
 
   if (aufgabe.istExamen) {
@@ -40,6 +56,9 @@ function sammleDaten (dateiPfad: string): Titel {
     titel.ExamenAufgabeNr = examensAufgabe.aufgabe
   }
 
+  titel.Titel = `{${titel.Titel}}`
+  titel.Thematik = `{${titel.Thematik}}`
+
   return titel
 }
 
@@ -58,8 +77,8 @@ function macheTex (titel: Titel): string {
  * \liSetzeAufgabenTitel{
  *   Titel = Aufgabe 2,
  *   Thematik = Petri-Netz,
- *   Fussnote = sosy:pu:4,
  *   RelativerPfad = Staatsexamen/46116/2016/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex,
+ *   Fussnote = sosy:pu:4,
  *   ExamenNummer = 46116,
  *   ExamenJahr = 2016,
  *   ExamenMonat = 03,
@@ -70,8 +89,7 @@ function macheTex (titel: Titel): string {
  * ```
  */
 export function erzeugeAufgabenTitel (dateiPfad: string): void {
-  console.log(dateiPfad)
-
+  dateiPfad = path.resolve(dateiPfad)
   const titel = sammleDaten(dateiPfad)
   const texMarkup = macheTex(titel)
 
