@@ -49,9 +49,9 @@ Kandidatenschlüssel sind, führt zu Abzügen.}
 
 \begin{liAntwort}
 \begin{itemize}
-\item D A
-\item D C
-\item D E
+\item \m{D, A}
+\item \m{D, C}
+\item \m{D, E}
 \end{itemize}
 \end{liAntwort}
 
@@ -84,24 +84,22 @@ funktionaler Abhängigkeiten nach der Linksreduktion an ($FD_L$).
 \begin{liAntwort}
 \schrittE{1-1}
 
-\begin{itemize}
-\item \fa{A, D -> E}
+\liPseudoUeberschrift{\fa{A, D -> E}}
 
 $A \notin$ \ahl{A, D, F}{A}{B, D, F}\\
 $D \notin$ \ahl{A, D, F}{D}{A, F} \\
 $F \in$ \ahl{A, D, F}{F}{A, B, D, \textbf{F}}
 
-\item \fa{B, C -> A, E}
+\liPseudoUeberschrift{\fa{B, C -> A, E}}
 
 $\m{A, E} \notin$ \ahl{B, C}{B}{C}\\
 $\m{A, E} \notin$ \ahl{B, C}{C}{B}
 
-\item \fa{D, E -> C, B}
+\liPseudoUeberschrift{\fa{D, E -> C, B}}
 
 $\m{C, B} \notin$ \ahl{D, E}{D}{E}\\
 $\m{C, B} \notin$ \ahl{D, E}{E}{B, D}
 
-\end{itemize}
 \FA{
   A, D -> E;
   B, C -> A, E;
@@ -122,9 +120,13 @@ Rechtsreduktion an ($FD_R$).
 \begin{liAntwort}
 \schrittE{1-2}
 
+\liPseudoUeberschrift{E}
+
 $E \notin$ \ahr{A, D -> E}{}{A, D}{A, B, D, F}
 
 $E \notin$ \ahr{B, C -> A, E}{B, C -> A}{B, C}{A, B, C, F}
+
+\liPseudoUeberschrift{B}
 
 $B \notin$ \ahr{D -> B}{}{D}{D}
 
