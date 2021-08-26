@@ -118,19 +118,19 @@ Attributhülle]
 
 % \begin{macro}{\liFunktionaleAbhaengigkeit}
 % \liLet{fa}{liFunktionaleAbhaengigkeit}
-% |\liFunktionaleAbhaengigkeit{A, B -> C, D}|
+% |\fa{A, B -> C, D}|: \liFunktionaleAbhaengigkeit{A, B -> C, D}
 % Regulärer Ausdruck zum Konvertieren: |\$(.*?) \\rightarrow (.*?)\$|
 % |\\fa{$1 -> $2}|
 %    \begin{macrocode}
 \def\liFunktionaleAbhaengigkeit#1{%
-  \directlua{normalformen.drucke_funk_abhaengigkeit('#1')}%
+  \directlua{normalformen.drucke_funk_abhaengigkeit('#1', false)}%
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\liFunktionaleAbhaengigkeiten}
 % \begin{verbatim}
-% \liFunktionaleAbhaengigkeiten[F]{
+% \FA[F]{
 %   M -> M;
 %   M -> N;
 %   V -> T, P, PN;
@@ -138,6 +138,14 @@ Attributhülle]
 % }
 % \end{verbatim}
 %
+% \begin{liBeispiel}
+% \liFunktionaleAbhaengigkeiten[F]{
+%   M -> M;
+%   M -> N;
+%   V -> T, P, PN;
+%   P -> PN;
+% }
+% \end{liBeispiel}
 % \liLet{FA}{liFunktionaleAbhaengigkeiten}
 % Regulärer Ausdruck zum Konvertieren:
 % |\\item \$(.*) \\rightarrow (.*)\$|
@@ -147,11 +155,13 @@ Attributhülle]
 \NewDocumentCommand {\liFunktionaleAbhaengigkeiten} { O{FA} m } {
   \par
   \noindent
-  #1 $= \{$
-  \par
+  #1 $= \Bigl\{$
+  \vspace{-0.5cm}
+  \begin{align*}
   \directlua{normalformen.drucke_funk_abhaengigkeiten('#2')}
-  \par
-  \noindent$\}$
+  \end{align*}
+  \vspace{-1.7cm}
+  \begin{flushright}$\Bigr\}$\end{flushright}
 }
 %    \end{macrocode}
 % \end{macro}

@@ -8,7 +8,7 @@ local function setze_menge (eingabe)
   eingabe = eingabe:gsub('nichts', '\\emptyset{}')
   eingabe = eingabe:gsub('NICHTS', '\\emptyset{}')
   local elemente = helfer.split(eingabe, '%s*,%s*')
-  return '\\{ \\textit{' .. table.concat(elemente, ', ') .. '} \\}'
+  return '\\{\\,\\textit{' .. table.concat(elemente, ', ') .. '}\\,\\,\\}'
 end
 
 local function setze_funk_abhaengigkeit(eingabe, fuer_mathe)
@@ -19,9 +19,9 @@ local function setze_funk_abhaengigkeit(eingabe, fuer_mathe)
   local linke_seite = seiten[1]
   local rechte_seite = seiten[2]
   if fuer_mathe then
-    return setze_menge(linke_seite) .. ' $\\rightarrow$ ' .. setze_menge(rechte_seite)
+    return setze_menge(linke_seite) .. ' &\\rightarrow ' .. setze_menge(rechte_seite)
   else
-    return '$' .. setze_menge(linke_seite) .. ' \\rightarrow ' .. setze_menge(rechte_seite) .. '$'
+    return setze_menge(linke_seite) .. ' \\rightarrow ' .. setze_menge(rechte_seite)
   end
 end
 
@@ -30,7 +30,7 @@ local function drucke_funk_abhaengigkeiten(eingabe)
   local abhaengigkeiten = helfer.split(eingabe, '%s*;%s*')
   local ausgabe = ''
   for index, abhaengigkeit in ipairs(abhaengigkeiten) do
-    ausgabe = ausgabe .. '\\hspace{0.6cm}' .. setze_funk_abhaengigkeit(abhaengigkeit) .. ',\\par'
+    ausgabe = ausgabe .. setze_funk_abhaengigkeit(abhaengigkeit) .. ',\\\\ '
   end
   print(ausgabe)
   tex.print(ausgabe)
