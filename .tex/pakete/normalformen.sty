@@ -2,7 +2,14 @@
 \ProvidesPackage{lehramt-informatik-normalformen}[2020/12/10
 Hilfsmakros zum Setzen von Normalformen, Funktionalen Abhänigkeiten,
 Attributhülle]
-\liLadePakete{mathe}
+%    \end{macrocode}
+
+% Mathe für textit tex etc, typographie für geschweifte Klammer
+%    \begin{macrocode}
+\liLadePakete{mathe,typographie}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \directlua{
   helfer = require('lehramt-informatik-helfer')
   normalformen = require('lehramt-informatik-normalformen')
@@ -153,15 +160,15 @@ Attributhülle]
 % |$1 -> $2;|
 %    \begin{macrocode}
 \NewDocumentCommand {\liFunktionaleAbhaengigkeiten} { O{FA} m } {
-  \par
-  \noindent
-  #1 $= \Bigl\{$
-  \vspace{-0.5cm}
-  \begin{align*}
-  \directlua{normalformen.drucke_funk_abhaengigkeiten('#2')}
-  \end{align*}
-  \vspace{-1.7cm}
-  \begin{flushright}$\Bigr\}$\end{flushright}
+  \liGeschweifteKlammern
+  {#1}
+  {
+    \begin{align*}
+    \directlua{normalformen.drucke_funk_abhaengigkeiten('#2')}
+    \end{align*}
+  }
+  {-0.5cm}
+  {-1.7cm}
 }
 %    \end{macrocode}
 % \end{macro}

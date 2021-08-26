@@ -1,13 +1,20 @@
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-formale-sprachen}[2021/02/21 Hilfsmakros
 zum Setzen von mathematischen Formeln bei dem Thema Formale Sprachen]
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \directlua{
   formale_sprachen = require('lehramt-informatik-formale-sprachen')
 }
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \RequirePackage{hyperref}
-\RequirePackage{lehramt-informatik-mathe}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\liLadePakete{mathe,typographie}
 %    \end{macrocode}
 
 % \begin{macro}{\liMenge}
@@ -146,14 +153,12 @@ $\liMengeOhneMathe{#1}$%
 \NewDocumentEnvironment { liProduktionsRegeln }
 { O{P} +b }
 {
-  \noindent
-  $#1 = \{$
-  \vspace{-0.2cm}
-  \begin{align*}
+  \liGeschweifteKlammern{#1}
+  {
+    \begin{align*}
     \directlua{formale_sprachen.produktions_regeln('#2')}
-  \end{align*}
-  \vspace{-1.5cm}
-  \begin{flushright}\}\end{flushright}
+    \end{align*}
+  }{-0.2cm}{-1.5cm}
 } {}
 %    \end{macrocode}
 % \end{environment}

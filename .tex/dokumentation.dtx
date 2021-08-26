@@ -2456,13 +2456,20 @@ ER-Diagrammen]
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-formale-sprachen}[2021/02/21 Hilfsmakros
 zum Setzen von mathematischen Formeln bei dem Thema Formale Sprachen]
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \directlua{
   formale_sprachen = require('lehramt-informatik-formale-sprachen')
 }
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \RequirePackage{hyperref}
-\RequirePackage{lehramt-informatik-mathe}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\liLadePakete{mathe,typographie}
 %    \end{macrocode}
 
 % \begin{macro}{\liMenge}
@@ -2601,14 +2608,12 @@ $\liMengeOhneMathe{#1}$%
 \NewDocumentEnvironment { liProduktionsRegeln }
 { O{P} +b }
 {
-  \noindent
-  $#1 = \{$
-  \vspace{-0.2cm}
-  \begin{align*}
+  \liGeschweifteKlammern{#1}
+  {
+    \begin{align*}
     \directlua{formale_sprachen.produktions_regeln('#2')}
-  \end{align*}
-  \vspace{-1.5cm}
-  \begin{flushright}\}\end{flushright}
+    \end{align*}
+  }{-0.2cm}{-1.5cm}
 } {}
 %    \end{macrocode}
 % \end{environment}
@@ -4266,7 +4271,14 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 \ProvidesPackage{lehramt-informatik-normalformen}[2020/12/10
 Hilfsmakros zum Setzen von Normalformen, Funktionalen Abhänigkeiten,
 Attributhülle]
-\liLadePakete{mathe}
+%    \end{macrocode}
+
+% Mathe für textit tex etc, typographie für geschweifte Klammer
+%    \begin{macrocode}
+\liLadePakete{mathe,typographie}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \directlua{
   helfer = require('lehramt-informatik-helfer')
   normalformen = require('lehramt-informatik-normalformen')
@@ -4417,15 +4429,15 @@ Attributhülle]
 % |$1 -> $2;|
 %    \begin{macrocode}
 \NewDocumentCommand {\liFunktionaleAbhaengigkeiten} { O{FA} m } {
-  \par
-  \noindent
-  #1 $= \Bigl\{$
-  \vspace{-0.5cm}
-  \begin{align*}
-  \directlua{normalformen.drucke_funk_abhaengigkeiten('#2')}
-  \end{align*}
-  \vspace{-1.7cm}
-  \begin{flushright}$\Bigr\}$\end{flushright}
+  \liGeschweifteKlammern
+  {#1}
+  {
+    \begin{align*}
+    \directlua{normalformen.drucke_funk_abhaengigkeiten('#2')}
+    \end{align*}
+  }
+  {-0.5cm}
+  {-1.7cm}
 }
 %    \end{macrocode}
 % \end{macro}
@@ -5745,6 +5757,25 @@ formatierung.sty definiert.]
   \leaders\vrule height 2pt depth -1.6pt \hfill \null
   \par
   \medskip
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liGeschweifteKlammern}
+% Große geschweifte Klammer mit Istgleich-Zeichen.
+%
+% \begin{liBeispiel}
+% \liGeschweifteKlammern{Variable}{\begin{center}Inhalt\end{center}}{0cm}{0cm}
+% \end{liBeispiel}
+%    \begin{macrocode}
+\def\liGeschweifteKlammern#1#2#3#4{
+  \par
+  \noindent
+  #1 \, $= \Bigl\{$
+  \vspace{#3}
+  #2
+  \vspace{#4}
+  \begin{flushright}$\Bigr\}$\end{flushright}
 }
 %    \end{macrocode}
 % \end{macro}

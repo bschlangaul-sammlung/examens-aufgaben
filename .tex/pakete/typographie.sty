@@ -46,6 +46,25 @@ formatierung.sty definiert.]
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\liGeschweifteKlammern}
+% Große geschweifte Klammer mit Istgleich-Zeichen.
+%
+% \begin{liBeispiel}
+% \liGeschweifteKlammern{Variable}{\begin{center}Inhalt\end{center}}{0cm}{0cm}
+% \end{liBeispiel}
+%    \begin{macrocode}
+\def\liGeschweifteKlammern#1#2#3#4{
+  \par
+  \noindent
+  #1 \, $= \Bigl\{$
+  \vspace{#3}
+  #2
+  \vspace{#4}
+  \begin{flushright}$\Bigr\}$\end{flushright}
+}
+%    \end{macrocode}
+% \end{macro}
+
 %    \begin{macrocode}
 \ExplSyntaxOff
 %    \end{macrocode}
