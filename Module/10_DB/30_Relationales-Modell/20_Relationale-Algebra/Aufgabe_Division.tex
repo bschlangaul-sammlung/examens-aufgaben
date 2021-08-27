@@ -1,6 +1,11 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{spalten}
 \begin{document}
+\def\r#1{\textcolor{red}{#1}}
+\def\g#1{\textcolor{green}{#1}}
+\def\o#1{\textcolor{orange}{#1}}
+\def\b#1{\textcolor{blue}{#1}}
+
 \liAufgabenTitel{Division}
 
 \section{Aufgabe 1: Division
@@ -10,13 +15,67 @@
 
 Gegeben sind zwei Relationen, repräsentiert als Tabellen. Bestimmen Sie
 die Ergebnisrelation $R_1 \div R_2$!
+\begin{multicols}{2}
+
+\liPseudoUeberschrift{$R_1$}
+
+\begin{tabular}{lllll}
+A & B & C & D & E \\
+a & r & 4 & 3 & t \\
+c & r & 2 & 3 & t \\%
+b & w & d & 4 & s \\
+a & b & r & 3 & t \\
+b & r & d & 3 & t \\
+a & b & w & 4 & s \\
+a & w & 4 & 4 & s \\%
+b & k & d & 2 & s \\
+c & w & 3 & 4 & s
+\end{tabular}
+
+\liPseudoUeberschrift{$R_2$}
+
+\begin{tabular}{lll}
+B & D & E \\
+r & 3 & t \\
+w & 4 & s
+\end{tabular}
+\end{multicols}
 
 \begin{liAntwort}
-\begin{tabular}{ll}
-\textbf{a} & \textbf{c} \\
-a & 4 \\
-b & d
+\begin{multicols}{2}
+\liPseudoUeberschrift{$R_1$}
+
+\begin{tabular}{lllll}
+A & B & C & D & E \\
+\r a & \b r & \r 4 & \b 3 & \b t \\
+c & \b r & 2! & \b 3 & \b t \\%
+\g b & \o w & \g d & \o 4 & \o s \\
+a & b & r & 3 & t \\
+\g b & \b r & \g d & \b 3 & \b t \\
+a & b & w & 4 & s \\
+\r a & \o w & \r 4 & \o 4 & \o s \\%
+b & k & d & 2 & s \\
+c & \o w & 3! & \o 4 & \o s
 \end{tabular}
+
+\liPseudoUeberschrift{$R_2$}
+
+\begin{tabular}{lll}
+B & D & E \\
+\b r & \b 3 & \b t \\
+\o w & \o 4 & \o s
+\end{tabular}
+\end{multicols}
+
+\liPseudoUeberschrift{$R_1 \div R_2$}
+
+\begin{center}
+\begin{tabular}{ll}
+\textbf{A} & \textbf{C} \\
+\r a & \r 4 \\
+\g b & \g d
+\end{tabular}
+\end{center}
 \end{liAntwort}
 
 \end{document}
