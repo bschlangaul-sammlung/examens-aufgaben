@@ -9,6 +9,11 @@ db:pu:4 ok
 - Aufgabe 3 ok
 db:ab:5
 
+## SOSY
+
+sosy:ab:1 ok
+sosy:ab:9
+
 ## AUD
 
 aud:ab:4 ok
