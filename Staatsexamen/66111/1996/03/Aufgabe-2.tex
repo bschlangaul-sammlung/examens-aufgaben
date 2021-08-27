@@ -8,37 +8,43 @@
 \footcite[Aufgabe 2]{examen:66111:1996:03}}
 
 Eine Universitätsdatenbank soll folgende Daten verwalten.
+\footcite[Seite 219-221]{bloechl}
 
 \begin{itemize}
 \item Studenten (Name, Matrikelnummer, Geburtsdatum, Adressen,
-Semesteranzahl, Studiengang, Fakultät, belegte Lehrveranstaltungenund
+Semesteranzahl, Studiengang, Fakultät, belegte Lehrveranstaltungen und
 deren Art)
 
 \item Lehrveranstaltungen (Anfangszeit, Semester, Art (Vorlesung,
 Seminar, Übung, Praktikum) Name, Anzahl der Hörer, Nummer im
-Vorlesungsverzeichnis,Anzahl Semesterwochenstunden, Dozent, Raum)
+Vorlesungsverzeichnis, Anzahl Semesterwochenstunden, Dozent, Raum)
 \end{itemize}
 
 \begin{enumerate}
-\item Entwerfen Sie ein ER-schema für diese Applikationl
+
+%%
+% a)
+%%
+
+\item Entwerfen Sie ein ER-schema für diese Applikation!
 Berücksichtigen Sie dabei, dass eine Vorlesung in 2
-Unterrichtseinheitenaufgeteiiot werden kann (r.8. Mo 10.00 und Do
-14.00). B"S*nden Sie Ihren Entwurf i
+Unterrichtseinheiten aufgeteilt werden kann (z. B. Mo 10.00 und Do
+14.00). Begründen Sie Ihren Entwurf!
 
-\item SpezifizierenSie für die Entity-TypenAttributg und zeichnen Sie
-die Schlüsselanribtrteausl
+%%
+% b)
+%%
 
-\item Geben Sie ein relationales Datenbankschema anl
-\end{enumerate}
+\item Spezifizieren Sie für die Entity-Typen Attribut und zeichnen Sie
+die Schlüsselattribute aus!
 
-Gegeben ist das folgende (sehr ausführliche) ER-Modell.
-\footcite[Aufgabe 2: Uni-ER-Modell]{db:ab:4}
+%%
+% c)
+%%
 
-\renewcommand{\labelenumi}{(\alph{enumi})}
-\begin{enumerate}
-\item Erarbeiten Sie zu diesem ER-Modell das (verfeinerte) relationale
-DB-Schema!\index{Verfeinertes Relationenmodell} Geben Sie geeignete
-Domänen an.
+\item Geben Sie ein relationales Datenbankschema an!\index{Verfeinertes
+Relationenmodell}
+\footcite[Uni-ER-Modell, Aufgabe 2]{db:ab:4}
 
 \begin{liAntwort}
 \ttfamily
@@ -136,7 +142,9 @@ ALTER TABLE Student ADD CHECK (Semesteranzahl < 15);
 oder
 
 \begin{minted}{sql}
-ALTER TABLE Student ADD CONSTRAINT begrenzung_Semester CHECK (Semesteranzahl < 15);
+ALTER TABLE Student
+ADD CONSTRAINT begrenzung_Semester
+CHECK (Semesteranzahl < 15);
 \end{minted}
 \end{liAntwort}
 
