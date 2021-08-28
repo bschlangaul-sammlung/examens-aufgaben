@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
+\liLadePakete{syntax,uml}
 \begin{document}
 \liAufgabenTitel{Flughafen}
 
@@ -17,21 +17,51 @@ dieser Software zu erstellen.
 Das folgende UML-Klassendiagramm gibt einen Überblick über den für Sie
 relevanten Teil der Software:
 
-Implementieren Sie die beiden Methoden addNewFlight(Flug) und
-addEmergency(Flug) der Klasse Warteschlange!
+\begin{center}
+\begin{tikzpicture}
+\umlclass{Warteschlange}{}{
+  + fügeNeuenFlugHinzu(Flug): void\\
+  + fügeNotfallHinzu(Flug): void\\
+}
+\umlclass[right=1.5cm of Warteschlange]{Ticket}{
+  + startetInNürnberg: boolean\\
+  + landetInNürnberg: boolean\\
+}{}
+\umlclass[below=1.5cm of Ticket]{Flug}{
+  - flugnummer: int\\
+  - startFlughafen: String\\
+  - zielFlughafen: String\\
+}{
+  + gibFlugnummer(): int\\
+  + gibStartFlughafen(): int\\
+  + gibZielFlughafen(): int\\
+}
+
+\umluniassoc[arg=~erstes,mult=0..1,pos=0.6]{Warteschlange}{Ticket}
+\umluniassoc[arg=+flug,mult=0..1,pos=0.8]{Ticket}{Flug}
+\umluniassoc[arg=+nächstes,mult=0..1,pos=0.8,loopsize=2cm,angle1=0,angle2=-30]{Ticket}{Ticket}
+
+\end{tikzpicture}
+\end{center}
+
+\noindent
+Implementieren Sie die beiden Methoden \liJavaCode{fügeNeuenFlugHinzu(Flug)}
+und \liJavaCode{fügeNotfallHinzu(Flug)} der Klasse
+\liJavaCode{Warteschlange}!
 
 \begin{itemize}
-\item In der Methode \liJavaCode{addNewFlight}
+\item In der Methode \liJavaCode{fügeNeuenFlugHinzu()}
 
 \begin{itemize}
-\item soll ein neu übergebener Flug der Warteschlange hinzugefügt werden.
+\item soll ein neu übergebener Flug der Warteschlange hinzugefügt
+werden.
 \end{itemize}
 
-\item In der Methode \liJavaCode{addEmergency}
+\item In der Methode \liJavaCode{fügeNotfallHinzu()}
 
 \begin{itemize}
 \item soll für den übergebenen Flug überprüft werden, ob der Flug
-bereits in der Warteschlange vorkommt oder ob es sich um einen komplet
+bereits in der Warteschlange vorkommt oder ob es sich um einen komplett
 neuen Flug handelt.
 
 \item soll der Notfall die erste Priorität in der Warteschlange
@@ -42,6 +72,7 @@ gegeben sein.
 \end{itemize}
 \end{itemize}
 
+\noindent
 Jeder Flug wird in der Warteschlange mit einem eigenen Ticket verwaltet.
 Die Funktionalitäten der Tickets und der Flüge entnehmen Sie dem
 Quelltext.
@@ -49,14 +80,14 @@ Quelltext.
 \begin{liAntwort}
 \liPseudoUeberschrift{Klasse „Flug“}
 
-\liJavaDatei[firstline=3]{aufgaben/aud/e_klausur/flughafen/Flug}
+\liJavaDatei[firstline=3]{aufgaben/aud/listen/flughafen/Flug}
 
 \liPseudoUeberschrift{Klasse „Ticket“}
 
-\liJavaDatei[firstline=3]{aufgaben/aud/e_klausur/flughafen/Ticket}
+\liJavaDatei[firstline=3]{aufgaben/aud/listen/flughafen/Ticket}
 
 \liPseudoUeberschrift{Klasse „Warteschlange“}
 
-\liJavaDatei[firstline=3]{aufgaben/aud/e_klausur/flughafen/Warteschlange}
+\liJavaDatei[firstline=3]{aufgaben/aud/listen/flughafen/Warteschlange}
 \end{liAntwort}
 \end{document}

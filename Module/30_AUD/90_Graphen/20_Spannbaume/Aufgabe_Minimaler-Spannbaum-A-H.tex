@@ -38,6 +38,7 @@ G -- F: 5
 G -- H: 4
 \end{liGraphenFormat}
 
+\begin{center}
 \begin{tikzpicture}[li graph]
 \node (A) at (0,5) {A};
 \node (B) at (8,5) {B};
@@ -66,11 +67,60 @@ G -- H: 4
 \path (G) edge node {5} (F);
 \path (G) edge node {4} (H);
 \end{tikzpicture}
+\end{center}
 
 \begin{enumerate}
 \item Welches Gewicht hat der Spannbaum insgesamt?
 
 \begin{liAntwort}
+Das Kantengewicht des minimalen Spannbaums beträgt $15$.
+
+Wir setzen den Algorithmus von Prim ein. Der Algorithmus läuft folgendermaßen ab:
+
+\begin{verbatim}
+Besuche Knoten „A“
+Füge Kante (A, B, 5) hinzu
+Füge Kante (A, C, 8) hinzu
+Füge Kante (A, D, 7) hinzu
+Füge Kante (A, G, 1) hinzu
+
+Besuche Knoten „G“
+Füge Kante (G, F, 5) hinzu
+Füge Kante (G, H, 4) hinzu
+
+Besuche Knoten „H“
+Aktualisiere Kante (H, B, 2)
+Füge Kante (H, E, 6) hinzu
+Aktualisiere Kante (H, F, 3)
+
+Besuche Knoten „B“
+Aktualisiere Kante (B, C, 2)
+
+Besuche Knoten „C“
+Aktualisiere Kante (C, D, 1)
+Aktualisiere Kante (C, E, 3)
+
+Besuche Knoten „D“
+Aktualisiere Kante (D, F, 2)
+
+Besuche Knoten „F“
+
+Besuche Knoten „E“
+\end{verbatim}
+
+\begin{tabular}{ll}
+\bf{schwarze} & \bf{graue} \\
+\hline
+(A, null, 0) & (B, A, 5); (C, A, 8); (D, A, 7); (G, A, 1);  \\
+(G, A, 1) & (B, A, 5); (C, A, 8); (D, A, 7); (F, G, 5); (H, G, 4);  \\
+(H, G, 4) & (B, H, 2); (C, A, 8); (D, A, 7); (E, H, 6); (F, H, 3);  \\
+(B, H, 2) & (C, B, 2); (D, A, 7); (E, H, 6); (F, H, 3);  \\
+(C, B, 2) & (D, C, 1); (E, C, 3); (F, H, 3);  \\
+(D, C, 1) & (E, C, 3); (F, D, 2);  \\
+(F, D, 2) & (E, C, 3);  \\
+(E, C, 3) &   \\
+\end{tabular}
+
 \begin{liGraphenFormat}
 A: 0 5
 B: 8 5
@@ -99,6 +149,7 @@ G -- F: 5
 G -- H*: 4
 \end{liGraphenFormat}
 
+\begin{center}
 \begin{tikzpicture}[li graph]
 \node (A) at (0,5) {A};
 \node (B) at (8,5) {B};
@@ -127,24 +178,15 @@ G -- H*: 4
 \path (G) edge node {5} (F);
 \path[li markierung] (G) edge node {4} (H);
 \end{tikzpicture}
-
-\begin{center}
-\begin{tabular}{|l|l|r|}
-\hline
-Kante & & Gewicht\\\hline\hline
-AG, CD     & $2 \times 1$ & $2$\\
-BD, BH, DF & $3 \times 2$ & $6$\\
-CE         & $1 \times 3$ & $3$\\
-GH         & $1 \times 4$ & $4$\\\hline
-           &              & $15$\\\hline
-\end{tabular}
 \end{center}
+
 \end{liAntwort}
 
 \item Welchen Algorithmus haben Sie zur Ermittlung eingesetzt?
-\index{Algorithmus von Kruskal}
+\index{Algorithmus von Prim}
 \begin{liAntwort}
-Kruskal
+Algorithmus von Prim. Dieser Algorithmus benötigt einen Startknoten.
+
 \end{liAntwort}
 \end{enumerate}
 \end{document}

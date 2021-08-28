@@ -1,7 +1,7 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{baum}
 \begin{document}
-\liAufgabenTitel{AVL-Baum-2-8-10-1-4-5-11}
+\liAufgabenTitel{AVL-Baum 2, 8, 10, 1, 4, 5, 11}
 
 \section{AVL-Baum
 \index{AVL-Baum}
@@ -10,32 +10,137 @@
 Fügen Sie die Zahlen 2, 8, 10, 1, 4, 5, 11 in der vorgegebenen
 Reihenfolge in einen AVL-Baum ein. Wie sieht der finale AVL-Baum aus?
 
-\begin{liAntwort}
-\begin{description}
-\item[2:] ist die Wurzel
-\item[8:] rechts an 2
-\item[10:] rechts an 8, dann Links-Rotation
-\item[1:] links an 2
-\item[4:] rechts an 2
-\item[5:] rechts an 4, dann Links-Rechts-Rotation.
-\item[11:] rechts an 10
-\end{description}
-
+\begin{liDiagramm}{Nach Einfügen von „2“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
-[.4
-  [.2
-    [.1 ]
+[.\node[label=0]{2}; ]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „8“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=+1]{2};
+  \edge[blank]; \node[blank]{};
+  [.\node[label=0]{8}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „10“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=+2]{2};
+  \edge[blank]; \node[blank]{};
+  [.\node[label=+1]{8};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=0]{10}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{8};
+  [.\node[label=0]{2}; ]
+  [.\node[label=0]{10}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „1“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{8};
+  [.\node[label=-1]{2};
+    [.\node[label=0]{1}; ]
     \edge[blank]; \node[blank]{};
   ]
-  [.8
-    [.5 ]
-    [.10
+  [.\node[label=0]{10}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „4“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{8};
+  [.\node[label=0]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=0]{4}; ]
+  ]
+  [.\node[label=0]{10}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „5“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-2]{8};
+  [.\node[label=+1]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=+1]{4};
       \edge[blank]; \node[blank]{};
-      [.11 ]
+      [.\node[label=0]{5}; ]
+    ]
+  ]
+  [.\node[label=0]{10}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-2]{8};
+  [.\node[label=-1]{4};
+    [.\node[label=-1]{2};
+      [.\node[label=0]{1}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+    [.\node[label=0]{5}; ]
+  ]
+  [.\node[label=0]{10}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Rechtsrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{4};
+  [.\node[label=-1]{2};
+    [.\node[label=0]{1}; ]
+    \edge[blank]; \node[blank]{};
+  ]
+  [.\node[label=0]{8};
+    [.\node[label=0]{5}; ]
+    [.\node[label=0]{10}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „11“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=+1]{4};
+  [.\node[label=-1]{2};
+    [.\node[label=0]{1}; ]
+    \edge[blank]; \node[blank]{};
+  ]
+  [.\node[label=+1]{8};
+    [.\node[label=0]{5}; ]
+    [.\node[label=+1]{10};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{11}; ]
     ]
   ]
 ]
 \end{tikzpicture}
-\end{liAntwort}
+\end{liDiagramm}
+
 \end{document}
