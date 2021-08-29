@@ -16,6 +16,10 @@ interface Titel {
   ExamenAufgabeNr?: number
 }
 
+function umgebeMitKlammern (text: string): string {
+  return `{${text}}`
+}
+
 function sammleDaten (dateiPfad: string): Titel {
   const aufgabe = aufgabenSammlung.gib(dateiPfad)
   const titel: Titel = {
@@ -34,7 +38,8 @@ function sammleDaten (dateiPfad: string): Titel {
       /\\footcite(\[([^\]]+)\])?\{([^\}]+)\}/
     )
     if (fussnoteZitat != null) {
-      if (fussnoteZitat[2] != null) titel.FussnoteSeite = fussnoteZitat[2]
+      if (fussnoteZitat[2] != null)
+        titel.FussnoteSeite = umgebeMitKlammern(fussnoteZitat[2])
       if (fussnoteZitat[3] != null) titel.Fussnote = fussnoteZitat[3]
     }
   }
@@ -56,8 +61,8 @@ function sammleDaten (dateiPfad: string): Titel {
     titel.ExamenAufgabeNr = examensAufgabe.aufgabe
   }
 
-  titel.Titel = `{${titel.Titel}}`
-  titel.Thematik = `{${titel.Thematik}}`
+  titel.Titel = umgebeMitKlammern(titel.Titel)
+  if (titel.Thematik) titel.Thematik = umgebeMitKlammern(titel.Thematik)
 
   return titel
 }

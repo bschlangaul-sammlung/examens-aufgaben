@@ -6,6 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.erzeugeAufgabenTitel = void 0;
 var path_1 = __importDefault(require("path"));
 var sammlung_1 = require("../sammlung");
+function umgebeMitKlammern(text) {
+    return "{" + text + "}";
+}
 function sammleDaten(dateiPfad) {
     var aufgabe = sammlung_1.aufgabenSammlung.gib(dateiPfad);
     var titel = {
@@ -22,7 +25,7 @@ function sammleDaten(dateiPfad) {
         var fussnoteZitat = aufgabe.inhalt.match(/\\footcite(\[([^\]]+)\])?\{([^\}]+)\}/);
         if (fussnoteZitat != null) {
             if (fussnoteZitat[2] != null)
-                titel.FussnoteSeite = fussnoteZitat[2];
+                titel.FussnoteSeite = umgebeMitKlammern(fussnoteZitat[2]);
             if (fussnoteZitat[3] != null)
                 titel.Fussnote = fussnoteZitat[3];
         }
@@ -40,8 +43,9 @@ function sammleDaten(dateiPfad) {
         }
         titel.ExamenAufgabeNr = examensAufgabe.aufgabe;
     }
-    titel.Titel = "{" + titel.Titel + "}";
-    titel.Thematik = "{" + titel.Thematik + "}";
+    titel.Titel = umgebeMitKlammern(titel.Titel);
+    if (titel.Thematik)
+        titel.Thematik = umgebeMitKlammern(titel.Thematik);
     return titel;
 }
 function macheTex(titel) {
