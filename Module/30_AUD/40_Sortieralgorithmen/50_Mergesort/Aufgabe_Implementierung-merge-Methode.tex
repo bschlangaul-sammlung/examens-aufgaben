@@ -1,19 +1,20 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{syntax,mathe}
 \begin{document}
-\liAufgabenTitel{Implementierung der merge-Methode}
-
-\section{Implementierung der \liJavaCode{merge}-Methode, Berechnung der
-Zeitkomplexität
-\index{Mergesort}
-\footcite[Seite 2, Aufgabe 3: Mergesort]{aud:ab:7}
+\liSetzeAufgabenTitel{
+  Titel = {Aufgabe zum Mergesort},
+  Thematik = {Implementierung der merge-Methode, Komplexität},
+  RelativerPfad = Module/30_AUD/40_Sortieralgorithmen/50_Mergesort/Aufgabe_Implementierung-merge-Methode.tex,
+  FussnoteSeite = {Seite 2, Aufgabe 3},
+  Fussnote = aud:ab:7,
 }
 
 Das Sortierverfahren \emph{Mergesort}, das nach der Strategie
 \emph{Divide-and-Conquer} arbeitet, sortiert eine Sequenz, indem die
 Sequenz in zwei Teile zerlegt wird, die dann einzeln sortiert und wieder
 zu einer sortierten Sequenz zusammengemischt werden (to merge =
-zusammenmischen, verschmelzen).
+zusammenmischen, verschmelzen).\index{Mergesort}
+\footcite[Seite 2, Aufgabe 3]{aud:ab:7}
 
 \begin{enumerate}
 
@@ -23,14 +24,14 @@ zusammenmischen, verschmelzen).
 
 \item Gegeben seien folgende Methoden:
 
-\liJavaDatei[firstline=13,lastline=31]{aufgaben/aud/ab_7/mergesort/Mergesort}
+\liJavaDatei[firstline=13,lastline=31]{aufgaben/aud/sortier/Mergesort}
 
 Schreiben Sie die Methode \liJavaCode{public int[] merge (int[] s, int[] r)},
 die die beiden aufsteigend sortierten Sequenzen \liJavaCode{s} und \liJavaCode{r} zu
 einer aufsteigend sortierten Sequenz zusammenmischt.
 
 \begin{liAntwort}
-\liJavaDatei[firstline=33,lastline=60]{aufgaben/aud/ab_7/mergesort/Mergesort}
+\liJavaDatei[firstline=33,lastline=60]{aufgaben/aud/sortier/Mergesort}
 \end{liAntwort}
 
 %%
@@ -41,13 +42,13 @@ einer aufsteigend sortierten Sequenz zusammenmischt.
 \index{Master-Theorem}
 
 \begin{liAntwort}
-$O(n \cdot \log n)$
+$\mathcal{O}(n \cdot \log n)$
 
 \liPseudoUeberschrift{Erklärung}
 
 Mergesort ist ein stabiles Sortierverfahren, vorausgesetzt der
 Merge-Schritt ist korrekt implementiert. Seine Komplexität beträgt im
-Worst-, Best- und Average-Case in Landau-Notation ausgedrückt stets $O(n
+Worst-, Best- und Average-Case in Landau-Notation ausgedrückt stets $\mathcal{O}(n
 \cdot \log n)$. Für die Laufzeit $T(n)$ von Mergesort bei $n$ zu
 sortierenden Elementen gilt die Rekursionsformel
 
@@ -72,7 +73,7 @@ bzw.
 2T\left(\left\lceil\frac{n}{2}\right\rceil\right) + n
 \end{displaymath}
 
-approximiert werden mit jeweils der Lösung $T(n) = O(n \cdot \log n)$.
+approximiert werden mit jeweils der Lösung $T(n) = \mathcal{O}(n \cdot \log n)$.
 \end{liAntwort}
 
 \end{enumerate}
