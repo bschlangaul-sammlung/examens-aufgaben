@@ -68,18 +68,18 @@ function leseAufgaben (relativerPfad: string): ExamensAufgabeBaum {
     if (
       pfad.match(
         /(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/
-      )
+      ) != null
     ) {
       const segmente = pfad.split(path.sep)
       let unterBaum: ExamensAufgabeBaum = baum
       for (const segment of segmente) {
         const segmentLesbar = macheSegmenteLesbar(segment)
-        if (!unterBaum[segmentLesbar] && segment.indexOf('.tex') === -1) {
+        if (!unterBaum[segmentLesbar] && !segment.includes('.tex')) {
           unterBaum[segmentLesbar] = {}
-        } else if (segment.indexOf('.tex') > -1) {
+        } else if (segment.includes('.tex')) {
           unterBaum[segmentLesbar] = pfad
         }
-        if (segment.indexOf('.tex') === -1) {
+        if (!segment.includes('.tex')) {
           unterBaum = <ExamensAufgabeBaum>unterBaum[segmentLesbar]
         }
       }
@@ -213,10 +213,10 @@ export function generiereExamenSammlungPdf () {
           const examen = examenSammlung.gib(nummer, jahr, monat)
           ausgabe.add(`\n\\liTrennSeite{${examen.jahreszeit} ${examen.jahr}}`)
 
-          let scanPfad = macheRelativenPfad(
+          const scanPfad = macheRelativenPfad(
             path.join(jahrPfad, monat, 'Scan.pdf')
           )
-          //scanPfad = scanPfad.replace(`Staatsexamen/${nummer}/`, '')
+          // scanPfad = scanPfad.replace(`Staatsexamen/${nummer}/`, '')
 
           const includePdf = `\\liBindePdfEin{${scanPfad}}`
           ausgabe.add(includePdf)

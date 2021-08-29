@@ -14,7 +14,7 @@ export function gibInhaltEinesTexMakros (
 ): string | undefined {
   const regExp = assembleMacroRegExp(makroName)
   const übereinstimmung = regExp.exec(markup)
-  if (übereinstimmung) return übereinstimmung[1]
+  if (übereinstimmung != null) return übereinstimmung[1]
 }
 
 /**
@@ -29,11 +29,11 @@ export function sammleStichwörter (inhalt: string) {
   const stichwörter = new Set<string>()
   do {
     übereinstimmung = re.exec(inhalt)
-    if (übereinstimmung) {
+    if (übereinstimmung != null) {
       const stichwort = säubereStichwort(übereinstimmung[1])
       stichwörter.add(stichwort)
     }
-  } while (übereinstimmung)
+  } while (übereinstimmung != null)
   return Array.from(stichwörter)
 }
 

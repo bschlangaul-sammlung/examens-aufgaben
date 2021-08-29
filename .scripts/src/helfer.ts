@@ -28,7 +28,7 @@ export function zeigeFehler (meldung: string): never {
 function leseKonfigurationsDatei (pfad: string): string {
   const inhalt = leseDatei(pfad)
   const treffer = inhalt.match(/\\LehramtInformatikRepository\{(.*)\}/)
-  if (!treffer) zeigeFehler(`Konfigurations-Datei nicht gefunden: ${pfad}`)
+  if (treffer == null) zeigeFehler(`Konfigurations-Datei nicht gefunden: ${pfad}`)
   return treffer[1]
 }
 
@@ -75,7 +75,7 @@ export function generiereLink (
   einstellung?: LinkEinstellung
 ): string {
   let linkePdf = true
-  if (einstellung) {
+  if (einstellung != null) {
     if (einstellung.linkePdf !== undefined) {
       linkePdf = einstellung.linkePdf
     }

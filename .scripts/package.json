@@ -2,11 +2,12 @@
   "name": "lehramt-informatik",
   "version": "0.1.0",
   "description": "Helfer-Skripte zum Verwalten der Materialsammlung",
-  "main": "main-script.js",
+  "main": "dist/main.js",
   "repository": {
     "url": "https://github.com/hbschlang/lehramt-informatik"
   },
   "dependencies": {
+    "biblatex-csl-converter": "^1.9.5",
     "chalk": "^4.1.0",
     "commander": "^6.2.0",
     "glob": "^7.1.6",
@@ -18,10 +19,12 @@
     "@types/js-yaml": "3.11.1",
     "@types/node": "^14.14.11",
     "@types/string-similarity": "^4.0.0",
-    "biblatex-csl-converter": "^1.9.5",
     "mocha": "^8.2.1"
   },
   "scripts": {
+    "lint:depcheck": "depcheck",
+    "lint:ts-standard": "ts-standard --fix 'src/**/*.ts'",
+    "lint": "npm run lint:ts-standard && npm run lint:depcheck",
     "test": "npm run build; mocha",
     "build": "tsc --target ES5 --outDir dist --esModuleInterop --downlevelIteration src/main.ts",
     "install": "sudo rm -f /usr/local/bin/lehramt-informatik.js; sudo chmod a+x dist/main.js; sudo ln -s $(pwd)/dist/main.js /usr/local/bin/lehramt-informatik.js; sudo rm -f /usr/local/bin/i; sudo ln -s $(pwd)/dist/main.js /usr/local/bin/i"

@@ -111,7 +111,7 @@ programm
     const dateien = glob.sync('**/*.tex', { cwd: staatsexamenPath })
     for (let pfad of dateien) {
       pfad = path.join(staatsexamenPath, pfad)
-      if (pfad.match(ExamensAufgabe.schwacherPfadRegExp)) {
+      if (pfad.match(ExamensAufgabe.schwacherPfadRegExp) != null) {
         console.log(pfad)
         const ergebnis = childProcess.spawnSync(
           '/usr/local/texlive/bin/x86_64-linux/latexmk',
@@ -286,17 +286,17 @@ programm
   .description('Den Examen-Code im Java-Repository verschieben')
   .action(function (cmdObj: object) {
     const dateien = glob.sync('**/')
-    for (let pfad of dateien) {
+    for (const pfad of dateien) {
       if (
-        pfad.match(/examen_\d{5}_\d{4}_\d{2}\/$/) &&
-        !pfad.match(/docs/) &&
-        !pfad.match(/target/)
+        (pfad.match(/examen_\d{5}_\d{4}_\d{2}\/$/) != null) &&
+        (pfad.match(/docs/) == null) &&
+        (pfad.match(/target/) == null)
       ) {
         console.log(pfad)
         const match = pfad.match(
           /examen_(?<nummer>\d{5})_(?<jahr>\d{4})_(?<monat>\d{2})\/$/
         )
-        if (match && match.groups) {
+        if ((match != null) && (match.groups != null)) {
           const monat = match?.groups.monat === '03' ? 'fruehjahr' : 'herbst'
           const neuerPfad = `src/main/java/org/bschlangaul/examen/examen_${match?.groups.nummer}/jahr_${match?.groups.jahr}/${monat}`
           console.log(neuerPfad)

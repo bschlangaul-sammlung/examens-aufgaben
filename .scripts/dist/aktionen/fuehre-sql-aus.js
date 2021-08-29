@@ -26,10 +26,10 @@ var TexDateiMitSql = /** @class */ (function () {
         return this.gibTemporärenPfad(this.gibAnfrageBezeichner(anfrageNummer));
     };
     TexDateiMitSql.prototype.gibTemporärenErzeugungsPfad = function () {
-        return this.gibTemporärenPfad("erzeugung");
+        return this.gibTemporärenPfad('erzeugung');
     };
     TexDateiMitSql.prototype.gibTemporärenLöschungsPfad = function () {
-        return this.gibTemporärenPfad("loeschung");
+        return this.gibTemporärenPfad('loeschung');
     };
     TexDateiMitSql.prototype.schreibeTemporäreSqlDatei = function (bezeichner, inhalt) {
         fs_1.default.writeFileSync(this.pfad + "_" + bezeichner + "_tmp.sql", inhalt);
@@ -56,7 +56,7 @@ var TexDateiMitSql = /** @class */ (function () {
         if (prozess.status !== 0) {
             console.log(chalk_1.default.red(prozess.stderr));
             console.log(chalk_1.default.red(prozess.stdout));
-            //zeigeFehler('Postgresql wurde mit einem Fehler beendet.')
+            // zeigeFehler('Postgresql wurde mit einem Fehler beendet.')
         }
         else {
             if (redselig)
@@ -84,7 +84,7 @@ var TexDateiMitSql = /** @class */ (function () {
     TexDateiMitSql.prototype.findeErzeugungsCode = function () {
         var regExp = /% ?Datenbankname: ?(\w+).*?\\begin\{minted\}\{sql\}(.*?)\\end\{minted\}/gs;
         var datenbank = regExp.exec(this.inhalt);
-        if (!datenbank) {
+        if (datenbank == null) {
             helfer_1.zeigeFehler('Keine Erzeugungs-Code gefunden: % Datenbankname: Name\\begin{minted}{sql}…\\end{minted}');
         }
         // postgresql \c funktioniert nur mit klein geschriebenen Datenbank-Namen
@@ -103,11 +103,11 @@ var TexDateiMitSql = /** @class */ (function () {
         var zähler = 0;
         do {
             übereinstimmung = re.exec(this.inhalt);
-            if (übereinstimmung) {
+            if (übereinstimmung != null) {
                 zähler++;
                 this.schreibeTemporäreSqlDatei(this.gibAnfrageBezeichner(zähler), "\\c " + this.datenbankName + " \n" + übereinstimmung[1]);
             }
-        } while (übereinstimmung);
+        } while (übereinstimmung != null);
         this.anzahlAnfragen = zähler;
     };
     TexDateiMitSql.prototype.aufräumen = function () {

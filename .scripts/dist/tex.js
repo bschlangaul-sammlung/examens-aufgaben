@@ -11,7 +11,7 @@ function säubereStichwort(stichwort) {
 function gibInhaltEinesTexMakros(makroName, markup) {
     var regExp = assembleMacroRegExp(makroName);
     var übereinstimmung = regExp.exec(markup);
-    if (übereinstimmung)
+    if (übereinstimmung != null)
         return übereinstimmung[1];
 }
 exports.gibInhaltEinesTexMakros = gibInhaltEinesTexMakros;
@@ -27,11 +27,11 @@ function sammleStichwörter(inhalt) {
     var stichwörter = new Set();
     do {
         übereinstimmung = re.exec(inhalt);
-        if (übereinstimmung) {
+        if (übereinstimmung != null) {
             var stichwort = säubereStichwort(übereinstimmung[1]);
             stichwörter.add(stichwort);
         }
-    } while (übereinstimmung);
+    } while (übereinstimmung != null);
     return Array.from(stichwörter);
 }
 exports.sammleStichwörter = sammleStichwörter;

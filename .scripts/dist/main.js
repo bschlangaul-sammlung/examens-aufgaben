@@ -101,7 +101,7 @@ programm
         for (var dateien_1 = __values(dateien), dateien_1_1 = dateien_1.next(); !dateien_1_1.done; dateien_1_1 = dateien_1.next()) {
             var pfad = dateien_1_1.value;
             pfad = path_1.default.join(staatsexamenPath, pfad);
-            if (pfad.match(aufgabe_1.ExamensAufgabe.schwacherPfadRegExp)) {
+            if (pfad.match(aufgabe_1.ExamensAufgabe.schwacherPfadRegExp) != null) {
                 console.log(pfad);
                 var ergebnis = child_process_1.default.spawnSync('/usr/local/texlive/bin/x86_64-linux/latexmk', ['-shell-escape', '-cd', '--lualatex', pfad], {
                     encoding: 'utf-8'
@@ -257,12 +257,12 @@ programm
     try {
         for (var dateien_3 = __values(dateien), dateien_3_1 = dateien_3.next(); !dateien_3_1.done; dateien_3_1 = dateien_3.next()) {
             var pfad = dateien_3_1.value;
-            if (pfad.match(/examen_\d{5}_\d{4}_\d{2}\/$/) &&
-                !pfad.match(/docs/) &&
-                !pfad.match(/target/)) {
+            if ((pfad.match(/examen_\d{5}_\d{4}_\d{2}\/$/) != null) &&
+                (pfad.match(/docs/) == null) &&
+                (pfad.match(/target/) == null)) {
                 console.log(pfad);
                 var match = pfad.match(/examen_(?<nummer>\d{5})_(?<jahr>\d{4})_(?<monat>\d{2})\/$/);
-                if (match && match.groups) {
+                if ((match != null) && (match.groups != null)) {
                     var monat = (match === null || match === void 0 ? void 0 : match.groups.monat) === '03' ? 'fruehjahr' : 'herbst';
                     var neuerPfad = "src/main/java/org/bschlangaul/examen/examen_" + (match === null || match === void 0 ? void 0 : match.groups.nummer) + "/jahr_" + (match === null || match === void 0 ? void 0 : match.groups.jahr) + "/" + monat;
                     console.log(neuerPfad);

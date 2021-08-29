@@ -108,7 +108,7 @@ function formatierteLänge (länge: number, spiegeln: boolean = false): string {
 function formatiereZustandsName (zustand: FlaciZustand): string {
   let name = zustand.Name
   const regExp = /^(z|q)(\d+)$/
-  if (name.match(regExp)) {
+  if (name.match(regExp) != null) {
     name = name.replace(regExp, '$1_$2')
     name = `$${name}$`
   }
@@ -119,7 +119,7 @@ function formatiereZustand (state: FlaciZustand): string {
   let additionsOptions = ''
   if (state.Start) additionsOptions = ',initial'
   if (state.Final) additionsOptions = additionsOptions + ',accepting'
-  let name = formatiereZustandsName(state)
+  const name = formatiereZustandsName(state)
   const koordinate = `at (${formatierteLänge(state.x)},${formatierteLänge(
     state.y,
     true
@@ -148,7 +148,7 @@ function bestimmeÜbergangsOptionen (
   trans: FlaciÜbergang | FlaciKellerÜbergang | FlaciTuringÜbergang,
   standardOption: string = 'auto'
 ): string[] {
-  let optionen = [standardOption]
+  const optionen = [standardOption]
   if (trans.Source === trans.Target) {
     // loop above ergibt eine kleiner Schleife, ähnlich wie loop left etc.
     // So sind alle Schleifen einheitlich groß.
@@ -311,7 +311,7 @@ function formatiereAutomat (def: FlaciDefinition): string {
 }
 
 export function konvertiereFlaciZuTikz (jsonDateiPfad: string) {
-  if (!jsonDateiPfad.match(/^\//)) {
+  if (jsonDateiPfad.match(/^\//) == null) {
     jsonDateiPfad = path.join(process.cwd(), jsonDateiPfad)
   }
   const definition = require(jsonDateiPfad) as FlaciDefinition

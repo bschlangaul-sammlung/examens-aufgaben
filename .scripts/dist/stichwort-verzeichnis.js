@@ -23,7 +23,7 @@ var StichwortBaum = /** @class */ (function () {
     function StichwortBaum() {
         this.flach = new Set();
         var roherBaum = js_yaml_1.default.safeLoad(helfer_1.leseRepoDatei('Stichwortverzeichnis.yml'));
-        if (!roherBaum)
+        if (roherBaum == null)
             helfer_1.zeigeFehler('Konnte die Konfigurationsdatei nicht lesen');
         this.baum = this.normalisiereBaum(roherBaum);
     }
@@ -49,7 +49,7 @@ var StichwortBaum = /** @class */ (function () {
      */
     StichwortBaum.prototype.normalisiereBaum = function (eingang, ausgang) {
         var e_1, _a;
-        if (!ausgang)
+        if (ausgang == null)
             ausgang = {};
         if (typeof eingang === 'string') {
             if (!this.fügeStichwortSicherHinzu(eingang)) {
@@ -84,7 +84,7 @@ var StichwortBaum = /** @class */ (function () {
         return ausgang;
     };
     StichwortBaum.prototype.gibUnterBaum = function (stichwort, baum) {
-        if (!baum)
+        if (baum == null)
             baum = this.baum;
         for (var s in baum) {
             if (s === stichwort) {
@@ -104,7 +104,7 @@ var StichwortBaum = /** @class */ (function () {
         return false;
     };
     StichwortBaum.prototype.verflacheBaum = function (baum, flacherBaum) {
-        if (!flacherBaum)
+        if (flacherBaum == null)
             flacherBaum = new Set();
         for (var s in baum) {
             if (baum[s] === true) {

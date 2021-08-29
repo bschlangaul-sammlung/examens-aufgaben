@@ -71,20 +71,20 @@ function leseAufgaben(relativerPfad) {
     try {
         for (var dateien_1 = __values(dateien), dateien_1_1 = dateien_1.next(); !dateien_1_1.done; dateien_1_1 = dateien_1.next()) {
             var pfad = dateien_1_1.value;
-            if (pfad.match(/(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/)) {
+            if (pfad.match(/(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/) != null) {
                 var segmente = pfad.split(path_1.default.sep);
                 var unterBaum = baum;
                 try {
                     for (var segmente_1 = (e_2 = void 0, __values(segmente)), segmente_1_1 = segmente_1.next(); !segmente_1_1.done; segmente_1_1 = segmente_1.next()) {
                         var segment = segmente_1_1.value;
                         var segmentLesbar = macheSegmenteLesbar(segment);
-                        if (!unterBaum[segmentLesbar] && segment.indexOf('.tex') === -1) {
+                        if (!unterBaum[segmentLesbar] && !segment.includes('.tex')) {
                             unterBaum[segmentLesbar] = {};
                         }
-                        else if (segment.indexOf('.tex') > -1) {
+                        else if (segment.includes('.tex')) {
                             unterBaum[segmentLesbar] = pfad;
                         }
-                        if (segment.indexOf('.tex') === -1) {
+                        if (!segment.includes('.tex')) {
                             unterBaum = unterBaum[segmentLesbar];
                         }
                     }
@@ -226,7 +226,7 @@ function generiereExamenSammlungPdf() {
                             var examen = sammlung_1.examenSammlung.gib(nummer, jahr, monat);
                             ausgabe.add("\n\\liTrennSeite{" + examen.jahreszeit + " " + examen.jahr + "}");
                             var scanPfad = helfer_1.macheRelativenPfad(path_1.default.join(jahrPfad, monat, 'Scan.pdf'));
-                            //scanPfad = scanPfad.replace(`Staatsexamen/${nummer}/`, '')
+                            // scanPfad = scanPfad.replace(`Staatsexamen/${nummer}/`, '')
                             var includePdf = "\\liBindePdfEin{" + scanPfad + "}";
                             ausgabe.add(includePdf);
                         }

@@ -30,11 +30,11 @@ class TexDateiMitSql {
   }
 
   private gibTemporärenErzeugungsPfad (): string {
-    return this.gibTemporärenPfad(`erzeugung`)
+    return this.gibTemporärenPfad('erzeugung')
   }
 
   private gibTemporärenLöschungsPfad (): string {
-    return this.gibTemporärenPfad(`loeschung`)
+    return this.gibTemporärenPfad('loeschung')
   }
 
   private schreibeTemporäreSqlDatei (bezeichner: string, inhalt: string): void {
@@ -69,7 +69,7 @@ class TexDateiMitSql {
     if (prozess.status !== 0) {
       console.log(chalk.red(prozess.stderr))
       console.log(chalk.red(prozess.stdout))
-      //zeigeFehler('Postgresql wurde mit einem Fehler beendet.')
+      // zeigeFehler('Postgresql wurde mit einem Fehler beendet.')
     } else {
       if (redselig) console.log(prozess.stdout)
     }
@@ -102,7 +102,7 @@ class TexDateiMitSql {
   findeErzeugungsCode (): string {
     const regExp = /% ?Datenbankname: ?(\w+).*?\\begin\{minted\}\{sql\}(.*?)\\end\{minted\}/gs
     const datenbank = regExp.exec(this.inhalt)
-    if (!datenbank) {
+    if (datenbank == null) {
       zeigeFehler(
         'Keine Erzeugungs-Code gefunden: % Datenbankname: Name\\begin{minted}{sql}…\\end{minted}'
       )
@@ -132,14 +132,14 @@ class TexDateiMitSql {
     let zähler = 0
     do {
       übereinstimmung = re.exec(this.inhalt)
-      if (übereinstimmung) {
+      if (übereinstimmung != null) {
         zähler++
         this.schreibeTemporäreSqlDatei(
           this.gibAnfrageBezeichner(zähler),
           `\\c ${this.datenbankName} \n` + übereinstimmung[1]
         )
       }
-    } while (übereinstimmung)
+    } while (übereinstimmung != null)
     this.anzahlAnfragen = zähler
   }
 

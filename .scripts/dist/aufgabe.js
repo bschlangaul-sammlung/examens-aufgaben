@@ -59,10 +59,44 @@ var Aufgabe = /** @class */ (function () {
         return path_1.default.join(helfer_1.repositoryPfad, pfad);
     };
     Aufgabe.istAufgabe = function (pfad) {
-        if (pfad.match(Aufgabe.pfadRegExp)) {
+        if (pfad.match(Aufgabe.pfadRegExp) != null) {
             return true;
         }
         return false;
+    };
+    Aufgabe.prototype.leseMetadataVonTex = function () {
+        var e_1, _a;
+        function reinige(text) {
+            text = text.trim();
+            text = text.replace(/\}?,$/, '');
+            text = text.replace(/^\{?/, '');
+            text = text.trim();
+            return text;
+        }
+        var ergebnis = {};
+        if (this.inhalt != null) {
+            var match = this.inhalt.match(new RegExp('\\liSetzeAufgabenTitel{(.*)\n}', 's'));
+            if (match != null) {
+                var zeilen = match[1];
+                try {
+                    for (var _b = __values(zeilen.split('\n')), _c = _b.next(); !_c.done; _c = _b.next()) {
+                        var zeile = _c.value;
+                        var schlüsselWert = zeile.split('=');
+                        if (schlüsselWert.length === 2) {
+                            ergebnis[reinige(schlüsselWert[0])] = reinige(schlüsselWert[1]);
+                        }
+                    }
+                }
+                catch (e_1_1) { e_1 = { error: e_1_1 }; }
+                finally {
+                    try {
+                        if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                    }
+                    finally { if (e_1) throw e_1.error; }
+                }
+                return ergebnis;
+            }
+        }
     };
     Object.defineProperty(Aufgabe.prototype, "titelFormatiert", {
         get: function () {
@@ -150,7 +184,7 @@ var ExamensAufgabe = /** @class */ (function (_super) {
         _this.istExamen = true;
         examen.aufgaben[pfad] = _this;
         var treffer = pfad.match(ExamensAufgabe.pfadRegExp);
-        if (!treffer || !treffer.groups) {
+        if (treffer == null || treffer.groups == null) {
             helfer_1.zeigeFehler("Konnten den Pfad der Examensaufgabe nicht lesen: " + pfad);
         }
         var gruppen = treffer.groups;
@@ -164,7 +198,7 @@ var ExamensAufgabe = /** @class */ (function (_super) {
         return _this;
     }
     ExamensAufgabe.istExamensAufgabe = function (pfad) {
-        if (pfad.match(ExamensAufgabe.pfadRegExp)) {
+        if (pfad.match(ExamensAufgabe.pfadRegExp) != null) {
             return true;
         }
         return false;
@@ -256,7 +290,7 @@ var ExamensAufgabe = /** @class */ (function (_super) {
 exports.ExamensAufgabe = ExamensAufgabe;
 var AufgabenSammlung = /** @class */ (function () {
     function AufgabenSammlung(examenSammlung) {
-        var e_1, _a;
+        var e_2, _a;
         this.examenSammlung = examenSammlung;
         this.aufgaben = {};
         var dateien = glob_1.default.sync('**/*.tex', { cwd: helfer_1.repositoryPfad });
@@ -265,17 +299,17 @@ var AufgabenSammlung = /** @class */ (function () {
             for (var dateien_1 = __values(dateien), dateien_1_1 = dateien_1.next(); !dateien_1_1.done; dateien_1_1 = dateien_1.next()) {
                 var pfad = dateien_1_1.value;
                 var aufgabe = this.erzeugeAufgabe(pfad);
-                if (aufgabe) {
+                if (aufgabe != null) {
                     this.aufgaben[helfer_1.macheRelativenPfad(pfad)] = aufgabe;
                 }
             }
         }
-        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
         finally {
             try {
                 if (dateien_1_1 && !dateien_1_1.done && (_a = dateien_1.return)) _a.call(dateien_1);
             }
-            finally { if (e_1) throw e_1.error; }
+            finally { if (e_2) throw e_2.error; }
         }
     }
     AufgabenSammlung.prototype.istAufgabenPfad = function (pfad) {

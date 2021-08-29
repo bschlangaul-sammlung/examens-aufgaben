@@ -85,7 +85,7 @@ var Examen = /** @class */ (function () {
     };
     Examen.erzeugeExamenVonPfad = function (pfad) {
         var treffer = pfad.match(Examen.regExp);
-        if (!treffer || !treffer.groups) {
+        if ((treffer == null) || (treffer.groups == null)) {
             helfer_1.zeigeFehler("Konnten den Examenspfad nicht lesen: " + pfad);
         }
         var gruppen = treffer.groups;
@@ -93,7 +93,7 @@ var Examen = /** @class */ (function () {
     };
     Examen.gibReferenzVonPfad = function (pfad) {
         var treffer = pfad.match(Examen.regExp);
-        if (!treffer || !treffer.groups) {
+        if ((treffer == null) || (treffer.groups == null)) {
             helfer_1.zeigeFehler("Konnten den Examenspfad nicht lesen: " + pfad);
         }
         var gruppen = treffer.groups;

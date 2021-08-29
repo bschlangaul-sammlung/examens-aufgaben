@@ -18,7 +18,7 @@ function öffneExamen(referenz) {
     }
 }
 function öffne(referenz) {
-    if (referenz.match(/\d{5}:\d{4}:\d{2}/)) {
+    if (referenz.match(/\d{5}:\d{4}:\d{2}/) != null) {
         öffneExamen(referenz);
     }
     else {

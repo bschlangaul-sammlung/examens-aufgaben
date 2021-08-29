@@ -12,6 +12,27 @@ import {
 import { sammleStichwörter, gibInhaltEinesTexMakros } from './tex'
 import { Examen, ExamenSammlung } from './examen'
 
+/**
+ * Die Attribute beginnen hier mit Großbuchstaben, damit sie nicht für
+ * die TeX-Ausgabe konvertiert werden müssen. Wir verwenden `PascalCase` als
+ * Schlüsselnamen ähnlich wie das TeX-Paket `fontspec`.
+ */
+export interface AufgabenTitel {
+  Titel: string
+  Thematik?: string
+  RelativerPfad: string
+  Fussnote?: string
+  FussnoteSeite?: string
+  ExamenNummer?: number
+  ExamenJahr?: number
+  ExamenMonat?: string
+  ExamenThemaNr?: number
+  ExamenTeilaufgabeNr?: number
+  ExamenAufgabeNr?: number
+  BearbeitungsStand?: 'OCR' | 'TeX'
+  Korrektheit?: 'unsicher' | 'absolut korrekt'
+}
+
 export class Aufgabe {
   /**
    * Der absolute Pfad zur Aufgabe
@@ -49,10 +70,36 @@ export class Aufgabe {
   }
 
   static istAufgabe (pfad: string): boolean {
-    if (pfad.match(Aufgabe.pfadRegExp)) {
+    if (pfad.match(Aufgabe.pfadRegExp) != null) {
       return true
     }
     return false
+  }
+
+  leseMetadataVonTex (): AufgabenTitel | undefined {
+    function reinige (text: string): string {
+      text = text.trim()
+      text = text.replace(/\}?,$/, '')
+      text = text.replace(/^\{?/, '')
+      text = text.trim()
+      return text
+    }
+    const ergebnis: any = {}
+    if (this.inhalt != null) {
+      const match = this.inhalt.match(
+        new RegExp('\\liSetzeAufgabenTitel{(.*)\n}', 's')
+      )
+      if (match != null) {
+        const zeilen = match[1]
+        for (const zeile of zeilen.split('\n')) {
+          const schlüsselWert = zeile.split('=')
+          if (schlüsselWert.length === 2) {
+            ergebnis[reinige(schlüsselWert[0])] = reinige(schlüsselWert[1])
+          }
+        }
+        return ergebnis as AufgabenTitel
+      }
+    }
   }
 
   get titelFormatiert (): string {
@@ -132,7 +179,7 @@ export class ExamensAufgabe extends Aufgabe {
     this.istExamen = true
     examen.aufgaben[pfad] = this
     const treffer = pfad.match(ExamensAufgabe.pfadRegExp)
-    if (!treffer || !treffer.groups) {
+    if (treffer == null || treffer.groups == null) {
       zeigeFehler(`Konnten den Pfad der Examensaufgabe nicht lesen: ${pfad}`)
     }
     const gruppen = treffer.groups
@@ -146,7 +193,7 @@ export class ExamensAufgabe extends Aufgabe {
   }
 
   static istExamensAufgabe (pfad: string): boolean {
-    if (pfad.match(ExamensAufgabe.pfadRegExp)) {
+    if (pfad.match(ExamensAufgabe.pfadRegExp) != null) {
       return true
     }
     return false
@@ -231,7 +278,7 @@ export class AufgabenSammlung {
     this.aufgaben = {}
     for (const pfad of dateien) {
       const aufgabe = this.erzeugeAufgabe(pfad)
-      if (aufgabe) {
+      if (aufgabe != null) {
         this.aufgaben[macheRelativenPfad(pfad)] = aufgabe
       }
     }

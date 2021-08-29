@@ -26,8 +26,9 @@ function sammleDaten(aufgabe) {
         }
         var fussnoteZitat = aufgabe.inhalt.match(/\\footcite(\[([^\]]+)\])?\{([^\}]+)\}/);
         if (fussnoteZitat != null) {
-            if (fussnoteZitat[2] != null)
+            if (fussnoteZitat[2] != null) {
                 titel.FussnoteSeite = umgebeMitKlammern(fussnoteZitat[2]);
+            }
             if (fussnoteZitat[3] != null)
                 titel.Fussnote = fussnoteZitat[3];
         }

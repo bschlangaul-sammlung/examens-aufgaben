@@ -27,7 +27,7 @@ function formatierteLänge(länge, spiegeln) {
 function formatiereZustandsName(zustand) {
     var name = zustand.Name;
     var regExp = /^(z|q)(\d+)$/;
-    if (name.match(regExp)) {
+    if (name.match(regExp) != null) {
         name = name.replace(regExp, '$1_$2');
         name = "$" + name + "$";
     }
@@ -240,7 +240,7 @@ function formatiereAutomat(def) {
     return formatiereTexEnv('liAntwort', liAntwort);
 }
 function konvertiereFlaciZuTikz(jsonDateiPfad) {
-    if (!jsonDateiPfad.match(/^\//)) {
+    if (jsonDateiPfad.match(/^\//) == null) {
         jsonDateiPfad = path_1.default.join(process.cwd(), jsonDateiPfad);
     }
     var definition = require(jsonDateiPfad);

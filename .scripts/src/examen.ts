@@ -75,7 +75,7 @@ export class Examen {
 
   static erzeugeExamenVonPfad (pfad: string) {
     const treffer = pfad.match(Examen.regExp)
-    if (!treffer || !treffer.groups) {
+    if ((treffer == null) || (treffer.groups == null)) {
       zeigeFehler(`Konnten den Examenspfad nicht lesen: ${pfad}`)
     }
     const gruppen = treffer.groups
@@ -88,7 +88,7 @@ export class Examen {
 
   static gibReferenzVonPfad (pfad: string) {
     const treffer = pfad.match(Examen.regExp)
-    if (!treffer || !treffer.groups) {
+    if ((treffer == null) || (treffer.groups == null)) {
       zeigeFehler(`Konnten den Examenspfad nicht lesen: ${pfad}`)
     }
     const gruppen = treffer.groups

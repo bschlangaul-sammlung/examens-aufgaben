@@ -21,7 +21,7 @@ export class StichwortBaum {
   constructor () {
     this.flach = new Set<string>()
     const roherBaum = yaml.safeLoad(leseRepoDatei('Stichwortverzeichnis.yml'))
-    if (!roherBaum) zeigeFehler('Konnte die Konfigurationsdatei nicht lesen')
+    if (roherBaum == null) zeigeFehler('Konnte die Konfigurationsdatei nicht lesen')
     this.baum = this.normalisiereBaum(roherBaum)
   }
 
@@ -47,7 +47,7 @@ export class StichwortBaum {
    * @param ausgang
    */
   normalisiereBaum (eingang: any, ausgang?: Baum): Baum {
-    if (!ausgang) ausgang = {}
+    if (ausgang == null) ausgang = {}
     if (typeof eingang === 'string') {
       if (!this.fügeStichwortSicherHinzu(eingang)) {
         ausgang[eingang] = true
@@ -69,7 +69,7 @@ export class StichwortBaum {
   }
 
   gibUnterBaum (stichwort: string, baum?: Baum): Baum | boolean {
-    if (!baum) baum = this.baum
+    if (baum == null) baum = this.baum
     for (const s in baum) {
       if (s === stichwort) {
         if (typeof baum[s] === 'boolean') {
@@ -86,7 +86,7 @@ export class StichwortBaum {
   }
 
   private verflacheBaum (baum: Baum, flacherBaum?: Set<string>): Set<string> {
-    if (!flacherBaum) flacherBaum = new Set<string>()
+    if (flacherBaum == null) flacherBaum = new Set<string>()
     for (const s in baum) {
       if (baum[s] === true) {
         flacherBaum.add(s)

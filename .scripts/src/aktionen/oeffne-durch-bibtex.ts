@@ -10,7 +10,7 @@ const basisPfadExterneDateien = path.join(
 )
 
 function analysierteBibDatei (dateiPfad: string) {
-  let parser = new BibLatexParser(leseRepoDatei(dateiPfad), {
+  const parser = new BibLatexParser(leseRepoDatei(dateiPfad), {
     processUnexpected: true,
     processUnknown: true
   })
@@ -47,7 +47,7 @@ class BibtexReferenzZuDateiKonverter {
         return dateiBasisName.trim().replace(/^, +/, '')
       })
       .filter(function (dateiBasisName: string): boolean {
-        return dateiBasisName ? true : false
+        return !!dateiBasisName
       })
     return ergebnis
   }
@@ -69,7 +69,7 @@ export function öffneDurchBibtex (referenz: string) {
 
   const dateiNamen = konverter.gibDateiNameDurchReferenz(referenz)
 
-  if (!dateiNamen) {
+  if (dateiNamen == null) {
     console.log('Keine Datei gefunden')
   } else {
     for (const dateiName of dateiNamen) {

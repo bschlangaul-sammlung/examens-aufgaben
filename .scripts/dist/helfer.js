@@ -47,7 +47,7 @@ exports.zeigeFehler = zeigeFehler;
 function leseKonfigurationsDatei(pfad) {
     var inhalt = leseDatei(pfad);
     var treffer = inhalt.match(/\\LehramtInformatikRepository\{(.*)\}/);
-    if (!treffer)
+    if (treffer == null)
         zeigeFehler("Konfigurations-Datei nicht gefunden: " + pfad);
     return treffer[1];
 }
@@ -92,7 +92,7 @@ exports.macheRepoPfad = macheRepoPfad;
  */
 function generiereLink(text, pfad, einstellung) {
     var linkePdf = true;
-    if (einstellung) {
+    if (einstellung != null) {
         if (einstellung.linkePdf !== undefined) {
             linkePdf = einstellung.linkePdf;
         }

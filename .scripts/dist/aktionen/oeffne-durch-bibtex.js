@@ -52,7 +52,7 @@ var BibtexReferenzZuDateiKonverter = /** @class */ (function () {
             return dateiBasisName.trim().replace(/^, +/, '');
         })
             .filter(function (dateiBasisName) {
-            return dateiBasisName ? true : false;
+            return !!dateiBasisName;
         });
         return ergebnis;
     };
@@ -82,7 +82,7 @@ function öffneDurchBibtex(referenz) {
         finally { if (e_1) throw e_1.error; }
     }
     var dateiNamen = konverter.gibDateiNameDurchReferenz(referenz);
-    if (!dateiNamen) {
+    if (dateiNamen == null) {
         console.log('Keine Datei gefunden');
     }
     else {
