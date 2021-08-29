@@ -1,35 +1,14 @@
 import path from 'path'
-import { ExamensAufgabe, Aufgabe } from '../aufgabe'
+import { ExamensAufgabe, Aufgabe, AufgabenTitel } from '../aufgabe'
 import { aufgabenSammlung } from '../sammlung'
 import { schreibeDatei } from '../helfer'
-
-/**
- * Die Attribute beginnen hier mit Großbuchstaben, damit sie nicht für
- * die TeX-Ausgabe konvertiert werden müssen. Wir verwenden `PascalCase` als
- * Schlüsselnamen ähnlich wie das TeX-Paket `fontspec`.
- */
-interface Titel {
-  Titel: string
-  Thematik?: string
-  RelativerPfad: string
-  Fussnote?: string
-  FussnoteSeite?: string
-  ExamenNummer?: number
-  ExamenJahr?: number
-  ExamenMonat?: string
-  ExamenThemaNr?: number
-  ExamenTeilaufgabeNr?: number
-  ExamenAufgabeNr?: number
-  BearbeitungsStand?: 'OCR' | 'TeX'
-  Korrektheit?: 'unsicher' | 'absolut korrekt'
-}
 
 function umgebeMitKlammern (text: string): string {
   return `{${text}}`
 }
 
-function sammleDaten (aufgabe: Aufgabe): Titel {
-  const titel: Titel = {
+function sammleDaten (aufgabe: Aufgabe): AufgabenTitel {
+  const titel: AufgabenTitel = {
     Titel:
       aufgabe.titel != null && aufgabe.titel !== '' ? aufgabe.titel : 'Aufgabe',
     Thematik:
@@ -49,7 +28,9 @@ function sammleDaten (aufgabe: Aufgabe): Titel {
       /\\footcite(\[([^\]]+)\])?\{([^\}]+)\}/
     )
     if (fussnoteZitat != null) {
-      if (fussnoteZitat[2] != null) { titel.FussnoteSeite = umgebeMitKlammern(fussnoteZitat[2]) }
+      if (fussnoteZitat[2] != null) {
+        titel.FussnoteSeite = umgebeMitKlammern(fussnoteZitat[2])
+      }
       if (fussnoteZitat[3] != null) titel.Fussnote = fussnoteZitat[3]
     }
   }
@@ -77,10 +58,10 @@ function sammleDaten (aufgabe: Aufgabe): Titel {
   return titel
 }
 
-function macheTex (titel: Titel): string {
+function macheTex (titel: AufgabenTitel): string {
   const schlüsselWertPaare: string[] = []
   Object.keys(titel).forEach(schlüssel => {
-    const wert = titel[schlüssel as keyof Titel]
+    const wert = titel[schlüssel as keyof AufgabenTitel]
     schlüsselWertPaare.push(`  ${schlüssel} = ${wert},`)
   })
   const schlüsselWerte: string = schlüsselWertPaare.join('\n')

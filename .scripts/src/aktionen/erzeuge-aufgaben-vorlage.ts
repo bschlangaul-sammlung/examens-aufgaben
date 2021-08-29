@@ -6,11 +6,15 @@ interface AufgabenVorlagenWerte {
    * Der Wert kommt in das Makro
    * `liAufgabenTitel{}`. Es soll ein kurzer, einprägsamer Titel sein, z. B.
    * `Freizeitpark`
+   *
+   * @TODO Umbenennen in thematik
    */
   titel?: string
 
   /**
    * z. B. `Aufgabe 3`
+   *
+   * @TODO Umbenennen in titel
    */
   aufgabenName?: string
 
@@ -22,13 +26,19 @@ interface AufgabenVorlagenWerte {
 
 function gibVorlage (werte: AufgabenVorlagenWerte = {}) {
   let titel = ''
-  if (werte.titel) titel = werte.titel
+  if (werte.titel) {
+    titel = werte.titel
+  }
 
   let aufgabenName = ''
-  if (werte.aufgabenName) aufgabenName = werte.aufgabenName
+  if (werte.aufgabenName) {
+    aufgabenName = werte.aufgabenName
+  }
 
   let zitatReferenz = ''
-  if (werte.zitatReferenz) zitatReferenz = werte.zitatReferenz
+  if (werte.zitatReferenz) {
+    zitatReferenz = werte.zitatReferenz
+  }
 
   return (
     '\\documentclass{lehramt-informatik-aufgabe}\n' +
@@ -41,7 +51,7 @@ function gibVorlage (werte: AufgabenVorlagenWerte = {}) {
     aufgabenName +
     '\n' +
     '\\index{}\n' +
-    '\\footcite{' +
+    '\\footcite{examen:' +
     zitatReferenz +
     '}}\n' +
     '\n' +

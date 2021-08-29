@@ -9,14 +9,17 @@ var fs_1 = __importDefault(require("fs"));
 function gibVorlage(werte) {
     if (werte === void 0) { werte = {}; }
     var titel = '';
-    if (werte.titel)
+    if (werte.titel) {
         titel = werte.titel;
+    }
     var aufgabenName = '';
-    if (werte.aufgabenName)
+    if (werte.aufgabenName) {
         aufgabenName = werte.aufgabenName;
+    }
     var zitatReferenz = '';
-    if (werte.zitatReferenz)
+    if (werte.zitatReferenz) {
         zitatReferenz = werte.zitatReferenz;
+    }
     return ('\\documentclass{lehramt-informatik-aufgabe}\n' +
         '\\liLadePakete{}\n' +
         '\\begin{document}\n' +
@@ -27,7 +30,7 @@ function gibVorlage(werte) {
         aufgabenName +
         '\n' +
         '\\index{}\n' +
-        '\\footcite{' +
+        '\\footcite{examen:' +
         zitatReferenz +
         '}}\n' +
         '\n' +
