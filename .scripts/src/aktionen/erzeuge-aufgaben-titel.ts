@@ -1,7 +1,13 @@
 import path from 'path'
-import { ExamensAufgabe } from '../aufgabe'
+import { ExamensAufgabe, Aufgabe } from '../aufgabe'
 import { aufgabenSammlung } from '../sammlung'
+import { schreibeDatei } from '../helfer'
 
+/**
+ * Die Attribute beginnen hier mit Großbuchstaben, damit sie nicht für
+ * die TeX-Ausgabe konvertiert werden müssen. Wir verwenden `PascalCase` als
+ * Schlüsselnamen ähnlich wie das TeX-Paket `fontspec`.
+ */
 interface Titel {
   Titel: string
   Thematik?: string
@@ -14,22 +20,27 @@ interface Titel {
   ExamenThemaNr?: number
   ExamenTeilaufgabeNr?: number
   ExamenAufgabeNr?: number
+  BearbeitungsStand?: 'OCR' | 'TeX'
+  Korrektheit?: 'unsicher' | 'absolut korrekt'
 }
 
 function umgebeMitKlammern (text: string): string {
   return `{${text}}`
 }
 
-function sammleDaten (dateiPfad: string): Titel {
-  const aufgabe = aufgabenSammlung.gib(dateiPfad)
+function sammleDaten (aufgabe: Aufgabe): Titel {
   const titel: Titel = {
-    Titel: aufgabe.titel != null ? aufgabe.titel : 'Aufgabe',
-    Thematik: aufgabe.titel,
+    Titel:
+      aufgabe.titel != null && aufgabe.titel !== '' ? aufgabe.titel : 'Aufgabe',
+    Thematik:
+      aufgabe.titel != null && aufgabe.titel !== ''
+        ? aufgabe.titel
+        : 'keine Thematik',
     RelativerPfad: aufgabe.relativerPfad
   }
 
   if (aufgabe.inhalt != null) {
-    const section = aufgabe.inhalt.match(/\\section\{(.+?)[\\\}\{]/)
+    const section = aufgabe.inhalt.match(/\\section\{(.+?)[\n\\\}\{]/)
     if (section != null) {
       if (section[1] != null) titel.Titel = section[1]
     }
@@ -77,6 +88,33 @@ function macheTex (titel: Titel): string {
   return `\\liSetzeAufgabenTitel{\n${schlüsselWerte}\n}`
 }
 
+export function schreibeTitel (
+  dateiPfad: string,
+  aufgabenInhalt: string,
+  titelTexMakro: string
+): boolean {
+  let aufgabenTitelErsetzt: string
+
+  titelTexMakro += '\n'
+
+  if (aufgabenInhalt.includes('\\liSetzeAufgabenTitel{')) {
+    // /s s (dotall) modifier, +? one or more (non-greedy)
+    const regexp = new RegExp(/\\liSetzeAufgabenTitel\{.+?,?\n\}\n/, 's')
+    aufgabenTitelErsetzt = aufgabenInhalt.replace(regexp, titelTexMakro)
+  } else {
+    aufgabenTitelErsetzt = aufgabenInhalt.replace(
+      /(\\begin\{document\})/,
+      '$1\n' + titelTexMakro
+    )
+  }
+
+  if (aufgabenInhalt !== aufgabenTitelErsetzt) {
+    schreibeDatei(dateiPfad, aufgabenTitelErsetzt)
+    return true
+  }
+  return false
+}
+
 /**
  * ```latex
  * \liSetzeAufgabenTitel{
@@ -95,8 +133,15 @@ function macheTex (titel: Titel): string {
  */
 export function erzeugeAufgabenTitel (dateiPfad: string): void {
   dateiPfad = path.resolve(dateiPfad)
-  const titel = sammleDaten(dateiPfad)
+  const aufgabe = aufgabenSammlung.gib(dateiPfad)
+
+  const titel = sammleDaten(aufgabe)
   const texMarkup = macheTex(titel)
+
+  if (aufgabe.inhalt !== null) {
+    const inhalt = aufgabe.inhalt as string
+    schreibeTitel(dateiPfad, inhalt, texMarkup)
+  }
 
   console.log(texMarkup)
 }

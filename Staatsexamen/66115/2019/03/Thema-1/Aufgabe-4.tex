@@ -3,6 +3,8 @@
 \begin{document}
 \let\l=\liTuringLeerzeichen
 \let\d=\liUeberfuehrungsFunktion
+\let\m=\liMenge
+\def\p{ $\vdash$ \\}
 
 \liAufgabenTitel{}
 \section{Aufgabe 4
@@ -10,13 +12,16 @@
 \footcite{66115:2019:03}}
 
 Wir betrachten die Turingmaschine \liTuringMaschine[M]{}. Hierbei ist
-die Zustandsmenge Q = {90, da; , 9, Qr} mit Startzustand go und
-akzeptierenden Zuständen F = {q;}. Das Eingabealphabet ist
-\liAlphabet{a, b, |} das Bandalphabet ist \liBandAlphabet{\l} mit
-Blank-Zeichen \l für leeres Feld. Die
-Übergangsfunktion \liTuringUeberfuehrung, wobei der Schreib-Lese-Kopf
-mit L nach links, mit N nicht und mit R nach rechts bewegt wird, ist
-durch folgende Tabelle gegeben (bspw. ist $\d{q0, a} = (q_a, \l, R)$):
+die Zustandsmenge $Q = \m{q_0, q_a, q_b, q_L, q_f}$ mit Startzustand
+$q_0$ und akzeptierenden Zuständen $F = \m{q_f}$. Das Eingabealphabet
+ist \liAlphabet{a, b, |}\footnote{In der Angabe ist das Trennzeichen ein
+„\$“. Wir verwenden stattdessen ein „|“, denn „\$“ ist eine
+Tex-Sonderzeichen und müsste deshalb ständig besonders behandelt
+werden.} das Bandalphabet ist \liBandAlphabet{\l} mit Blank-Zeichen \l{}
+für leeres Feld. Die Übergangsfunktion \liTuringUeberfuehrung, wobei der
+Schreib-Lese-Kopf mit L nach links, mit N nicht und mit R nach rechts
+bewegt wird, ist durch folgende Tabelle gegeben (bspw. ist $\d{q0, a} =
+(q_a, \l, R)$):
 
 % a b | O
 
@@ -96,7 +101,14 @@ Turingmaschine bei Eingabe $ab|$ bis zum Erreichen des Zustands $q_f$
 durchläuft. Sie können auch Ihre eigene Notation zur Darstellung von
 Konfigurationen verwenden.
 
-\def\p{ $\vdash$ \\}
+\setlength{\leftskip}{3cm}
+
+$(\l, q_0, a b | )$ \p
+$(\l, q_a, \l b | )$ \p
+$(\l, q_a, b | )$ \p
+$\dots$
+
+\setlength{\leftskip}{0pt}
 
 \begin{liAntwort}
 $(\l, q_0, a b | )$ \p % 0
@@ -131,10 +143,10 @@ kurze Begründung an.
 
 \begin{liAntwort}
 Die Turingmaschine terminiert bei alle möglichen Wörtern $w \in \{ a, b
-\}^*$, auch bei dem leeren Wort vor $|$. Die Maschine verschiebt alle
-Vorkommen von $a$’s und $b$’s vor dem Trennzeichen $|$ nach rechts. Ist
-das Trennzeichen $|$ schließlich das erste Zeichen von links gesehen,
-dann terminiert die Maschine.
+\}^*$, auch bei dem leeren Wort vor $|$. Die Turing-Maschine verschiebt
+alle $a$’s und $b$’s vor dem Trennzeichen $|$ nach rechts.
+Ist das Trennzeichen $|$ schließlich das erste Zeichen von links
+gesehen, dann terminiert die Maschine.
 \end{liAntwort}
 \end{enumerate}
 \end{document}
