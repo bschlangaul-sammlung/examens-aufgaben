@@ -1,0 +1,116 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,automaten,potenzmengen-konstruktion}
+\begin{document}
+
+\def\z#1{
+\liZustandsMengenSammlungNr{#1}{
+    {
+      {0} {0}
+      {1} {0,1}
+      {2} {0,1,2}
+      {3} {0,2}
+    }
+  }
+}
+\let\s=\liZustandsnameGross
+
+\liAufgabenTitel{}
+\section{Aufgabe 2
+\index{Reguläre Sprache}
+\footcite{66115:2019:03}}
+
+\begin{enumerate}
+%%
+% (a)
+%%
+
+\item Gegeben sei der nichtdeterministische endliche Automat $A$ über
+dem Alphabet \liAlphabet{a, b}
+wie folgt:
+
+\begin{center}
+\begin{tikzpicture}[li automat]
+  \node[state,initial] (z0) at (3.71cm,-2.43cm) {$z_0$};
+  \node[state] (z1) at (5.71cm,-2.43cm) {$z_1$};
+  \node[state,accepting] (z2) at (8.14cm,-2.43cm) {$z_2$};
+
+  \path (z0) edge[auto] node{$a$} (z1);
+  \path (z0) edge[auto,loop above] node{$a,b$} (z0);
+  \path (z1) edge[auto] node{$a,b$} (z2);
+\end{tikzpicture}
+\end{center}
+\liFlaci{Arozq4rm2}
+
+Konstruieren Sie einen deterministischen endlichen Automaten, der das
+Komplement \liAusdruck[L(A)]{w \in \Sigma^*}{w \notin L(A)} der von $A$
+akzeptierten Sprache $L(A)$ akzeptiert.
+
+\begin{liAntwort}
+Wir konvertieren zuerst den nichtdeterministischen endlichen Automaten in
+einen deterministischen endlichen Automaten mit Hilfe des
+Potenzmengenalgorithmus.
+
+\begin{tabular}{l|l|l}
+Zustandsmenge & Eingabe $a$ & Eingabe $b$ \\\hline
+\z0 & \z1 & \z0 \\
+\z1 & \z2 & \z3 \\
+\z2 & \z2 & \z3 \\
+\z3 & \z1 & \z0 \\
+\end{tabular}
+
+\begin{center}
+\begin{tikzpicture}[li automat]
+  \node[state,initial] (z0) at (2.14cm,-2.14cm) {\s0};
+  \node[state,accepting] (z012) at (5.29cm,-5.29cm) {\s1};
+  \node[state,accepting] (z02) at (2.14cm,-5.29cm) {\s3};
+  \node[state] (z01) at (5.29cm,-2.14cm) {\s2};
+
+  \path (z0) edge[auto] node{$a$} (z01);
+  \path (z0) edge[auto,loop above] node{$b$} (z0);
+  \path (z012) edge[auto,loop right] node{$a$} (z012);
+  \path (z012) edge[auto] node{$b$} (z02);
+  \path (z02) edge[auto,bend left] node{$a$} (z01);
+  \path (z02) edge[auto] node{$b$} (z0);
+  \path (z01) edge[auto] node{$a$} (z012);
+  \path (z01) edge[auto,bend left] node{$b$} (z02);
+\end{tikzpicture}
+\end{center}
+\liFlaci{Arxujcbdg}
+
+Wir vertauschen die End- und Nicht-End-Zustände, um das Komplement zu
+erhalten:
+
+\begin{center}
+\begin{tikzpicture}[li automat]
+  \node[state,initial,accepting] (z0) at (2.14cm,-2.14cm) {\s0};
+  \node[state] (z012) at (5.29cm,-5.29cm) {\s1};
+  \node[state] (z02) at (2.14cm,-5.29cm) {\s3};
+  \node[state,accepting] (z01) at (5.29cm,-2.14cm) {\s2};
+
+  \path (z0) edge[auto] node{$a$} (z01);
+  \path (z0) edge[auto,loop above] node{$b$} (z0);
+  \path (z012) edge[auto,loop right] node{$a$} (z012);
+  \path (z012) edge[auto] node{$b$} (z02);
+  \path (z02) edge[auto,bend left] node{$a$} (z01);
+  \path (z02) edge[auto] node{$b$} (z0);
+  \path (z01) edge[auto] node{$a$} (z012);
+  \path (z01) edge[auto,bend left] node{$b$} (z02);
+\end{tikzpicture}
+\end{center}
+\liFlaci{A5zqsonq2}
+
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item Gegeben sei zudem der nichtdeterministische Automat B über dem Alphabet D = {a,b}:
+
+Konstruieren Sie einen endlichen Automaten (möglicherweise mit e-Übergängen), der die
+
+Sprache (L(A)L(B))* C %* akzeptiert (A aus der vorigen Aufgabe). Erläutern Sie auch Ihre
+Konstruktionsidee.
+
+\end{enumerate}
+\end{document}

@@ -1,0 +1,95 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe,formale-sprachen}
+\begin{document}
+\let\m=\liMenge
+\liAufgabenTitel{}
+\section{Aufgabe 1
+\index{Formale Sprachen}
+\footcite{66115:2019:03}}
+
+Antworten Sie auf die folgenden Behauptungen mit Wahr/Falsch und geben Sie eine kurze Begründung an.
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Wenn $L_2$ regulär ist und $L_1 \subseteq L_2$ gilt, dann ist
+$L_1$ auch regulär.
+
+\begin{liAntwort}
+Falsch
+
+Nein. Wähle $L = \Sigma^*$. Wähle eine beliebige nicht-reguläre Sprache
+$L'$. $L'$ ist Teilmenge von $L$.
+\liFussnoteUrl{https://www.c-plusplus.net/forum/topic/287036/theoretische-informatik-teilmenge-einer-regulären-sprache}
+
+%%
+%
+%%
+
+$L_2 = \m{a^* b^*}$ ...Regulär
+
+$L_1 = \m{a^n
+b^n}$ ...nicht regulär,
+
+da man sich das $n$ merken muss, das bedeutet,
+dass man beispielsweise einen Automaten bräuchte, der unendlich viele
+Zustände besitzt. Das wiederum ist aber bei DEA’s nicht möglich. (Da sie
+nur endlich viele Zustände haben können.) Für beide Sprachen gilt somit:
+$L_1 \subseteq L_2$, aber nicht beide sind regulär.
+\liFussnoteUrl{https://vowi.fsinf.at/images/3/3a/TU_Wien-Theoretische_Informatik_und_Logik_VU_(Fermüller,_Freund)-Übungen_SS13_-_Uebungsblatt_1.pdf}
+\end{liAntwort}
+
+%%
+% (b)
+%%
+
+\item \liAusdruck{a^q}{\exists i \in \mathbb{N}. \, q = i^2} ist
+bekanntlich nicht regulär. Behauptung: $Q^*$ ist ebenfalls nicht
+regulär.
+
+\begin{liAntwort}
+Wahr.
+
+Siehe Abschlusseigenschaften der Formalen Sprachen unter dem Kleene-Stern.
+\end{liAntwort}
+
+%%
+% (c)
+%%
+
+\item Wenn $L \subseteq \Sigma^*$ entscheidbar ist, dann ist auch das
+Komplement $\bar L = \Sigma^* \setminus L$ entscheidbar.
+
+\begin{liAntwort}
+Wahr
+
+Zu jeder entscheidbaren Menge ist auch ihr Komplement
+entscheidbar.\footcite{wiki:entscheidbar}
+
+$L$ entscheidbar, dann auch $\overline{L}$ entscheidbar. Wir benutzen
+eine DTM $\tau'$, die die DTM $\tau$ simuliert. Diese vertauscht die
+beiden Ausgaben „JA“ und „NEIN“.
+\liFussnoteUrl{http://www.informatikseite.de/theorie/node14.php\#SECTION00044100000000000000}
+\end{liAntwort}
+
+%%
+% (d)
+%%
+
+\item Jedes $\mathcal{NP}$-vollständige Problem ist entscheidbar.
+
+\begin{liAntwort}
+Wahr
+
+Definition von $\mathcal{NP}$-Vollständigkeit:
+
+vollständig für die Klasse der Probleme, die sich nichtdeterministisch
+in Polynomialzeit lösen lassen, wenn es zu den schwierigsten Problemen
+in der Klasse NP gehört, also sowohl in NP liegt als auch NP-schwer
+ist.\footcite{wiki:np-vollstaendig}
+\end{liAntwort}
+\end{enumerate}
+
+\end{document}
