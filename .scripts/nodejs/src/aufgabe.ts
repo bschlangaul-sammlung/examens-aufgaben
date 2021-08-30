@@ -17,7 +17,7 @@ import { Examen, ExamenSammlung } from './examen'
  * die TeX-Ausgabe konvertiert werden müssen. Wir verwenden `PascalCase` als
  * Schlüsselnamen ähnlich wie das TeX-Paket `fontspec`.
  */
-export interface AufgabenTitel {
+export interface AufgabenMetadaten {
   Titel: string
   Thematik?: string
   RelativerPfad: string
@@ -38,6 +38,10 @@ export class Aufgabe {
    * Der absolute Pfad zur Aufgabe
    */
   pfad: string
+
+  /**
+   * Der Textinhalt der Aufgabe, d. h. das TeX-Markup als String.
+   */
   inhalt?: string
 
   stichwörter: string[] = []
@@ -76,7 +80,7 @@ export class Aufgabe {
     return false
   }
 
-  leseMetadataVonTex (): AufgabenTitel | undefined {
+  leseMetadataVonTex (): AufgabenMetadaten | undefined {
     function reinige (text: string): string {
       text = text.trim()
       text = text.replace(/\}?,$/, '')
@@ -97,7 +101,7 @@ export class Aufgabe {
             ergebnis[reinige(schlüsselWert[0])] = reinige(schlüsselWert[1])
           }
         }
-        return ergebnis as AufgabenTitel
+        return ergebnis as AufgabenMetadaten
       }
     }
   }
@@ -131,7 +135,6 @@ export class Aufgabe {
    * Formatierter Link zur PDF-Datei auf Github mit den Stichwörtern.
    */
   get link (): string {
-    const dateiName = path.basename(this.pfad)
     return (
       generiereLink(this.titelFormatiert, this.pfad) +
       this.stichwörterFormatiert +

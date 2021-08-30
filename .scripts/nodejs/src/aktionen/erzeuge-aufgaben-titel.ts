@@ -1,5 +1,5 @@
 import path from 'path'
-import { ExamensAufgabe, Aufgabe, AufgabenTitel } from '../aufgabe'
+import { ExamensAufgabe, Aufgabe, AufgabenMetadaten } from '../aufgabe'
 import { aufgabenSammlung } from '../sammlung'
 import { schreibeDatei } from '../helfer'
 
@@ -7,8 +7,8 @@ function umgebeMitKlammern (text: string): string {
   return `{${text}}`
 }
 
-function sammleDaten (aufgabe: Aufgabe): AufgabenTitel {
-  const titel: AufgabenTitel = {
+function sammleDaten (aufgabe: Aufgabe): AufgabenMetadaten {
+  const titel: AufgabenMetadaten = {
     Titel:
       aufgabe.titel != null && aufgabe.titel !== '' ? aufgabe.titel : 'Aufgabe',
     Thematik:
@@ -58,10 +58,10 @@ function sammleDaten (aufgabe: Aufgabe): AufgabenTitel {
   return titel
 }
 
-function macheTex (titel: AufgabenTitel): string {
+function macheTex (titel: AufgabenMetadaten): string {
   const schlüsselWertPaare: string[] = []
   Object.keys(titel).forEach(schlüssel => {
-    const wert = titel[schlüssel as keyof AufgabenTitel]
+    const wert = titel[schlüssel as keyof AufgabenMetadaten]
     schlüsselWertPaare.push(`  ${schlüssel} = ${wert},`)
   })
   const schlüsselWerte: string = schlüsselWertPaare.join('\n')

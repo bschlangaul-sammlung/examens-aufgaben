@@ -137,7 +137,6 @@ var Aufgabe = /** @class */ (function () {
          * Formatierter Link zur PDF-Datei auf Github mit den Stichwörtern.
          */
         get: function () {
-            var dateiName = path_1.default.basename(this.pfad);
             return (helfer_1.generiereLink(this.titelFormatiert, this.pfad) +
                 this.stichwörterFormatiert +
                 ' (' +

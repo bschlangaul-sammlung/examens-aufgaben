@@ -2,13 +2,11 @@ var assert = require('assert');
 
 const { stichwortBaum, stichwortVerzeichnis } = require('../dist/sammlung.js')
 
-const { ExamenSammlung } = require('../dist/examen.js')
-
-describe('stichwort-verzeichnis.js', function() {
+describe('stichwort-verzeichnis.ts', function() {
   describe('Klasse StichwortBaum()', function () {
     it('Methode gibUnterBaum()', function() {
       const baum = stichwortBaum.gibUnterBaum('DB')
-      assert.strictEqual(baum['Entity-Relation-Modell'], true)
+      assert.strictEqual(baum['Datenbankentwurf']['Entity-Relation-Modell']['IS-A'], true)
     })
 
     it('Methode gibFlacheListe()', function() {
@@ -27,20 +25,6 @@ describe('stichwort-verzeichnis.js', function() {
     it('Methode gibAufgabenMitStichwort()', function () {
       const aufgaben = stichwortVerzeichnis.gibAufgabenMitStichwort('DB')
       assert.ok(typeof aufgaben.size === 'number')
-    })
-  })
-})
-
-describe('examen.js', function() {
-  describe('Klasse ExamenSammlung()', function () {
-    it('Initialisierung', function() {
-      const sammlung = new ExamenSammlung()
-      const examen = sammlung.gibDurchReferenz('46111:1995:03')
-      assert.strictEqual(examen.nummer, 46111)
-      assert.strictEqual(examen.jahr, 1995)
-      assert.strictEqual(examen.monat, 3)
-      assert.strictEqual(examen.jahreszeit, 'Frühjahr')
-      assert.strictEqual(examen.referenz, '46111:1995:03')
     })
   })
 })
