@@ -13,14 +13,14 @@
 %%
 
 \item Sortieren Sie die unten angegebenen Funktionen der O-Klassen
-$\mathcal{O}(a(n))$, $\mathcal{O}(b(n))$, $\mathcal{O}(e(n))$,
+$\mathcal{O}(a(n))$, $\mathcal{O}(b(n))$, $\mathcal{O}(c(n))$,
 $\mathcal{O}(d(n))$ und $\mathcal{O}(e(n))$ bezüglich ihrer
 Teilmengenbeziehungen. Nutzen Sie ausschließlich die echte Teilmenge
 $\subset$ sowie die Gleichheit $=$ für die Beziehung zwischen den
 Mengen. Folgendes Beispiel illustriert diese Schreibweise für einige
 Funktionen $f_1$ bis $f_5$ (diese haben nichts mit den unten angegebenen
-Funktionen zu tun): siehe
-\url{http://www.s-inf.de/Skripte/DaStru.2012-SS-Katoen.(KK).Klausur1MitLoesung.pdf}
+Funktionen zu tun):
+\liFussnoteUrl{http://www.s-inf.de/Skripte/DaStru.2012-SS-Katoen.(KK).Klausur1MitLoesung.pdf}
 
 \begin{displaymath}
 \mathcal{O}(f_4 (n)) \subset \mathcal{O}(f_3(n)) = \mathcal{O}(f_5(n)) \subset \mathcal{O}(f_1(n)) = \mathcal{O}(f_2(n))
@@ -73,6 +73,16 @@ der O-Notation oder widerlegen Sie sie.
 
 \item $\mathcal{O}(n \cdot \log_2 n) \subseteq \mathcal{O}(n \cdot (\log_2 n)^2)$
 
+\begin{liAntwort}
+Die Aussage gilt.
+Für $n \geq 16$ haben wir
+\begin{displaymath}
+(\log_2 n)^2 \leq n \Leftrightarrow \log_2 n  \leq \sqrt n
+\end{displaymath}
+
+und dies ist eine wahre Aussage für $n \geq 16$. Also gilt die Aussage mit $n_0 = 16$ und $c = 1$.
+\end{liAntwort}
+
 %%
 % (ii)
 %%
@@ -84,8 +94,9 @@ der O-Notation oder widerlegen Sie sie.
 % (c)
 %%
 
-\item Bestimmen Sie eine asymptotische Lösung (in $\Theta$-Schreibweise) für
-die folgende Rekursionsgleichung:
+\item Bestimmen Sie eine asymptotische Lösung (in $\Theta$-Schreibweise)
+für die folgende Rekursionsgleichung:
+\index{Master-Theorem}
 
 \begin{enumerate}
 
