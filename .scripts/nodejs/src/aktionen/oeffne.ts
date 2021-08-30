@@ -4,10 +4,8 @@ import { gibExamenSammlung } from '../examen'
 import { öffneProgramm } from '../helfer'
 import { öffneDurchBibtex } from './oeffne-durch-bibtex'
 
-const examenSammlung = gibExamenSammlung()
-
 function öffneExamen (referenz: string): void {
-  const examen = examenSammlung.gibDurchReferenz(referenz)
+  const examen = gibExamenSammlung().gibDurchReferenz(referenz)
   if (fs.existsSync(examen.pfad)) {
     öffneProgramm('/usr/bin/xdg-open', examen.pfad)
   } else {

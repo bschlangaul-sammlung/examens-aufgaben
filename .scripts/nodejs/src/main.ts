@@ -1,9 +1,9 @@
 #! /usr/bin/env node
 
-import path from 'path'
-import fs from 'fs'
 import childProcess from 'child_process'
+import fs from 'fs'
 import glob from 'glob'
+import path from 'path'
 
 import { Command } from 'commander'
 

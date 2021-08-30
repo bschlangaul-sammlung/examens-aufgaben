@@ -2,15 +2,12 @@ import { gibStichwortVerzeichnis, gibStichwortBaum } from '../stichwort-verzeich
 
 import { öffneProgramm } from '../helfer'
 
-const stichwortVerzeichnis = gibStichwortVerzeichnis()
-const stichwortBaum = gibStichwortBaum()
-
 export function öffneDurchStichwort (stichwort: string): void {
-  const aufgaben = stichwortVerzeichnis.gibAufgabenMitStichwort(stichwort)
+  const aufgaben = gibStichwortVerzeichnis().gibAufgabenMitStichwort(stichwort)
 
   if (aufgaben.size === 0) {
     console.log(
-      `Das Stichwort ${stichwort} gibt es nicht. War ${stichwortBaum.findeÄhnliches(
+      `Das Stichwort ${stichwort} gibt es nicht. War ${gibStichwortBaum().findeÄhnliches(
         stichwort
       )} gemeint?`
     )

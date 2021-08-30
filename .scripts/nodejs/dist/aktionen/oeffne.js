@@ -8,9 +8,8 @@ const fs_1 = __importDefault(require("fs"));
 const examen_1 = require("../examen");
 const helfer_1 = require("../helfer");
 const oeffne_durch_bibtex_1 = require("./oeffne-durch-bibtex");
-const examenSammlung = examen_1.gibExamenSammlung();
 function öffneExamen(referenz) {
-    const examen = examenSammlung.gibDurchReferenz(referenz);
+    const examen = examen_1.gibExamenSammlung().gibDurchReferenz(referenz);
     if (fs_1.default.existsSync(examen.pfad)) {
         helfer_1.öffneProgramm('/usr/bin/xdg-open', examen.pfad);
     }

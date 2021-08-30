@@ -14,8 +14,6 @@ import {
 
 import glob from 'glob'
 
-const aufgabenSammlung = gibAufgabenSammlung()
-const examenSammlung = gibExamenSammlung()
 interface ExamensAufgabeBaum {
   [aufgabe: string]: ExamensAufgabeBaum | string
 }
@@ -119,7 +117,7 @@ function generiereAufgabenRekursiv (
   for (const titel in aufgabenBaum) {
     if (typeof aufgabenBaum[titel] === 'string') {
       const aufgabenPfad = path.join(pfad, aufgabenBaum[titel] as string)
-      const aufgabe = aufgabenSammlung.gib(aufgabenPfad) as ExamensAufgabe
+      const aufgabe = gibAufgabenSammlung().gib(aufgabenPfad) as ExamensAufgabe
       ausgabe.push(erzeugeEinrückung(ebene) + aufgabe.gibTitelNurAufgabe(true))
     } else {
       ausgabe.push(
@@ -175,7 +173,7 @@ export function generiereExamensÜbersicht (): string {
       if (fs.statSync(jahrPfad).isDirectory()) {
         const monatsVerzeichnisse = fs.readdirSync(jahrPfad)
         for (const monat of monatsVerzeichnisse) {
-          const examen = examenSammlung.gib(nummer, jahr, monat)
+          const examen = gibExamenSammlung().gib(nummer, jahr, monat)
           const monatsPfad = path.join(jahrPfad, monat)
           const scanLink = erzeugeDateiLink(monatsPfad, 'Scan.pdf')
           const ocrLink = erzeugeDateiLink(monatsPfad, 'OCR.txt', {
@@ -203,7 +201,7 @@ export function generiereExamenSammlungPdf (): void {
       if (fs.statSync(jahrPfad).isDirectory()) {
         const monatsVerzeichnisse = fs.readdirSync(jahrPfad)
         for (const monat of monatsVerzeichnisse) {
-          const examen = examenSammlung.gib(nummer, jahr, monat)
+          const examen = gibExamenSammlung().gib(nummer, jahr, monat)
           ausgabe.add(`\n\\liTrennSeite{${examen.jahreszeit} ${examen.jahr}}`)
 
           const scanPfad = macheRelativenPfad(

@@ -7,7 +7,6 @@ exports.erzeugeAufgabenMetadaten = exports.schreibeTitel = void 0;
 const path_1 = __importDefault(require("path"));
 const aufgabe_1 = require("../aufgabe");
 const helfer_1 = require("../helfer");
-const aufgabenSammlung = aufgabe_1.gibAufgabenSammlung();
 function umgebeMitKlammern(text) {
     return `{${text}}`;
 }
@@ -97,6 +96,7 @@ exports.schreibeTitel = schreibeTitel;
  */
 function erzeugeAufgabenMetadaten(dateiPfad) {
     dateiPfad = path_1.default.resolve(dateiPfad);
+    const aufgabenSammlung = aufgabe_1.gibAufgabenSammlung();
     const aufgabe = aufgabenSammlung.gib(dateiPfad);
     const titel = sammleDaten(aufgabe);
     const texMarkup = macheTex(titel);

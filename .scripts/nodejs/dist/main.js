@@ -4,10 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const path_1 = __importDefault(require("path"));
-const fs_1 = __importDefault(require("fs"));
 const child_process_1 = __importDefault(require("child_process"));
+const fs_1 = __importDefault(require("fs"));
 const glob_1 = __importDefault(require("glob"));
+const path_1 = __importDefault(require("path"));
 const commander_1 = require("commander");
 const aufgabe_1 = require("./aufgabe");
 const helfer_1 = require("./helfer");

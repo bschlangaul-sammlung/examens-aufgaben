@@ -8,8 +8,6 @@ import {
 } from '../aufgabe'
 import { schreibeDatei } from '../helfer'
 
-const aufgabenSammlung = gibAufgabenSammlung()
-
 function umgebeMitKlammern (text: string): string {
   return `{${text}}`
 }
@@ -120,6 +118,7 @@ export function schreibeTitel (
  */
 export function erzeugeAufgabenMetadaten (dateiPfad: string): void {
   dateiPfad = path.resolve(dateiPfad)
+  const aufgabenSammlung = gibAufgabenSammlung()
   const aufgabe = aufgabenSammlung.gib(dateiPfad)
 
   const titel = sammleDaten(aufgabe)

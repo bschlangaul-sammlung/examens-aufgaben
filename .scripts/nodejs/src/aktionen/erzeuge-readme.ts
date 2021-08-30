@@ -6,8 +6,6 @@ import { gibStichwortVerzeichnis } from '../stichwort-verzeichnis'
 import { repositoryPfad, leseRepoDatei } from '../helfer'
 import { generiereExamensÜbersicht } from './erzeuge-examens-uebersicht'
 
-const stichwortVerzeichnis = gibStichwortVerzeichnis()
-
 function generiereMarkdownAufgabenListe (aufgabenListe: Set<Aufgabe>): string {
   const aufgaben = Array.from(aufgabenListe)
   aufgaben.sort(Aufgabe.vergleichePfade)
@@ -24,7 +22,7 @@ function ersetzeStichwörterInReadme (inhalt: string): string {
     stichwort
   ) {
     return generiereMarkdownAufgabenListe(
-      stichwortVerzeichnis.gibAufgabenMitStichwortUnterBaum(stichwort)
+      gibStichwortVerzeichnis().gibAufgabenMitStichwortUnterBaum(stichwort)
     )
   })
 }
