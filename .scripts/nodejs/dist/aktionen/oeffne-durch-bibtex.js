@@ -12,7 +12,7 @@ const bibtex_1 = require("../bibtex");
 const basisPfadExterneDateien = path_1.default.join(os_1.homedir(), 'git-repositories/content/informatik-studium');
 function öffneDurchBibtex(referenz) {
     const externeDateien = glob_1.default.sync('**/*.pdf', { cwd: basisPfadExterneDateien });
-    const sammlung = bibtex_1.gibBigtexSammlung();
+    const sammlung = bibtex_1.gibBibtexSammlung();
     const dateiNamen = sammlung.gibDateiNameDurchReferenz(referenz);
     if (dateiNamen == null) {
         console.log('Keine Datei gefunden');

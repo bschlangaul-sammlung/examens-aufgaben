@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.gibBigtexSammlung = exports.leseBibDatei = void 0;
+exports.gibBibtexSammlung = exports.leseBibDatei = void 0;
 const glob_1 = __importDefault(require("glob"));
 const biblatex_csl_converter_1 = require("biblatex-csl-converter");
 const helfer_1 = require("./helfer");
@@ -55,10 +55,10 @@ class BibtexSammlung {
     }
 }
 let bibtexSammlung;
-function gibBigtexSammlung() {
+function gibBibtexSammlung() {
     if (bibtexSammlung == null) {
         bibtexSammlung = new BibtexSammlung();
     }
     return bibtexSammlung;
 }
-exports.gibBigtexSammlung = gibBigtexSammlung;
+exports.gibBibtexSammlung = gibBibtexSammlung;

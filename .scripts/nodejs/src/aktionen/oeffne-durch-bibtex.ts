@@ -4,7 +4,7 @@ import path from 'path'
 import glob from 'glob'
 
 import { öffneProgramm } from '../helfer'
-import { gibBigtexSammlung } from '../bibtex'
+import { gibBibtexSammlung } from '../bibtex'
 
 const basisPfadExterneDateien = path.join(
   homedir(),
@@ -13,7 +13,7 @@ const basisPfadExterneDateien = path.join(
 
 export function öffneDurchBibtex (referenz: string): void {
   const externeDateien = glob.sync('**/*.pdf', { cwd: basisPfadExterneDateien })
-  const sammlung = gibBigtexSammlung()
+  const sammlung = gibBibtexSammlung()
 
   const dateiNamen = sammlung.gibDateiNameDurchReferenz(referenz)
 

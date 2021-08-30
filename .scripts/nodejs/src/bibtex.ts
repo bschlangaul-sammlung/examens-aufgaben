@@ -61,7 +61,7 @@ class BibtexSammlung {
 
 let bibtexSammlung: BibtexSammlung
 
-export function gibBigtexSammlung(): BibtexSammlung {
+export function gibBibtexSammlung(): BibtexSammlung {
   if (bibtexSammlung == null) {
     bibtexSammlung = new BibtexSammlung()
   }

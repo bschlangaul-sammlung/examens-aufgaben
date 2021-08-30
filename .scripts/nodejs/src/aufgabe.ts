@@ -189,6 +189,10 @@ export class Aufgabe {
       }
     }
 
+    meta.Titel = umgebeMitKlammern(meta.Titel)
+
+    if (meta.Thematik != null) meta.Thematik = umgebeMitKlammern(meta.Thematik)
+
     return meta
   }
 
