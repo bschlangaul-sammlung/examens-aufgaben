@@ -1,8 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{baum}
 \begin{document}
-\liAufgabenTitel{}
-\section{Aufgabe 3: „AVL-Bäume“
+\liAufgabenTitel{Einfügen und dreimal einen Knoten löschen}
+\section{Aufgabe 3
 \index{AVL-Baum}
 \footcite{examen:66115:2014:03}}
 
@@ -24,6 +24,174 @@ baum avl (
   drucke;
 )
 \end{liProjektSprache}
+
+\begin{liDiagramm}{Nach Einfügen von „7“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{7}; ]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „6“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{7};
+  [.\node[label=0]{6}; ]
+  \edge[blank]; \node[blank]{};
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „2“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-2]{7};
+  [.\node[label=-1]{6};
+    [.\node[label=0]{2}; ]
+    \edge[blank]; \node[blank]{};
+  ]
+  \edge[blank]; \node[blank]{};
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Rechtsrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{6};
+  [.\node[label=0]{2}; ]
+  [.\node[label=0]{7}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „1“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{6};
+  [.\node[label=-1]{2};
+    [.\node[label=0]{1}; ]
+    \edge[blank]; \node[blank]{};
+  ]
+  [.\node[label=0]{7}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „5“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{6};
+  [.\node[label=0]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=0]{5}; ]
+  ]
+  [.\node[label=0]{7}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „3“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-2]{6};
+  [.\node[label=+1]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=-1]{5};
+      [.\node[label=0]{3}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+  ]
+  [.\node[label=0]{7}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-2]{6};
+  [.\node[label=-2]{5};
+    [.\node[label=0]{2};
+      [.\node[label=0]{1}; ]
+      [.\node[label=0]{3}; ]
+    ]
+    \edge[blank]; \node[blank]{};
+  ]
+  [.\node[label=0]{7}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Rechtsrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{5};
+  [.\node[label=0]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=0]{3}; ]
+  ]
+  [.\node[label=+1]{6};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=0]{7}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „8“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=+1]{5};
+  [.\node[label=0]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=0]{3}; ]
+  ]
+  [.\node[label=+2]{6};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=+1]{7};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{8}; ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{5};
+  [.\node[label=0]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=0]{3}; ]
+  ]
+  [.\node[label=0]{7};
+    [.\node[label=0]{6}; ]
+    [.\node[label=0]{8}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach Einfügen von „4“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{5};
+  [.\node[label=+1]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=+1]{3};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{4}; ]
+    ]
+  ]
+  [.\node[label=0]{7};
+    [.\node[label=0]{6}; ]
+    [.\node[label=0]{8}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
 
 %%
 % b)
@@ -48,6 +216,65 @@ baum avl (
 )
 \end{liProjektSprache}
 
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=+1]{5};
+  [.\node[label=+1]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=+1]{3};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0,very thick]{4}; ]
+    ]
+  ]
+  [.\node[label=0]{10};
+    [.\node[label=-1]{8};
+      [.\node[label=+1]{6};
+        \edge[blank]; \node[blank]{};
+        [.\node[label=0]{7}; ]
+      ]
+      [.\node[label=0]{9}; ]
+    ]
+    [.\node[label=+1]{12};
+      [.\node[label=0]{11}; ]
+      [.\node[label=+1]{13};
+        \edge[blank]; \node[blank]{};
+        [.\node[label=0]{14}; ]
+      ]
+    ]
+  ]
+]
+\end{tikzpicture}
+
+% liefert falsches Ergebnis: didaktik.java baum --avl 5 2 10 1 3 8 12 4 6 9 11 13 7 14 lösche 4 -v
+
+\begin{liDiagramm}{Nach Löschen von „4“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{10};
+  [.\node[label=+1]{5};
+    [.\node[label=0]{2};
+      [.\node[label=0]{1}; ]
+      [.\node[label=0]{3}; ]
+    ]
+    [.\node[label=-1]{8};
+      [.\node[label=+1]{6};
+        \edge[blank]; \node[blank]{};
+        [.\node[label=0]{7}; ]
+      ]
+      [.\node[label=0]{9}; ]
+    ]
+  ]
+  [.\node[label=+1]{12};
+    [.\node[label=0]{11}; ]
+    [.\node[label=+1]{13};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{14}; ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
 %%
 % ii)
 %%
@@ -60,6 +287,73 @@ baum avl (
   drucke;
 )
 \end{liProjektSprache}
+
+\begin{center}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{6};
+  [.\node[label=+1]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=0]{4};
+      [.\node[label=0]{3}; ]
+      [.\node[label=0]{5}; ]
+    ]
+  ]
+  [.\node[label=-1]{8};
+    [.\node[label=0,very thick]{7}; ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{center}
+
+\begin{liDiagramm}{Nach Löschen von „7“}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-2]{6};
+  [.\node[label=+1]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=0]{4};
+      [.\node[label=0]{3}; ]
+      [.\node[label=0]{5}; ]
+    ]
+  ]
+  [.\node[label=0]{8}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Linksrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-2]{6};
+  [.\node[label=-1]{4};
+    [.\node[label=0]{2};
+      [.\node[label=0]{1}; ]
+      [.\node[label=0]{3}; ]
+    ]
+    [.\node[label=0]{5}; ]
+  ]
+  [.\node[label=0]{8}; ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
+
+\begin{liDiagramm}{Nach der Rechtsrotation}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=0]{4};
+  [.\node[label=0]{2};
+    [.\node[label=0]{1}; ]
+    [.\node[label=0]{3}; ]
+  ]
+  [.\node[label=0]{6};
+    [.\node[label=0]{5}; ]
+    [.\node[label=0]{8}; ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
 
 %%
 % ii)
@@ -74,11 +368,10 @@ baum avl (
 )
 \end{liProjektSprache}
 
-\begin{liEinbettung}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=-1]{10};
-  [.\node[label=0]{5};
+  [.\node[label=0,very thick]{5};
     [.\node[label=+1]{2};
       [.\node[label=0]{1}; ]
       [.\node[label=-1]{4};
@@ -103,8 +396,34 @@ baum avl (
   ]
 ]
 \end{tikzpicture}
-\end{liEinbettung}
 
+\begin{liDiagramm}{Nach Löschen von „5“:}
+\begin{tikzpicture}[li binaer baum]
+\Tree
+[.\node[label=-1]{10};
+  [.\node[label=-1]{6};
+    [.\node[label=+1]{2};
+      [.\node[label=0]{1}; ]
+      [.\node[label=-1]{4};
+        [.\node[label=0]{3}; ]
+        \edge[blank]; \node[blank]{};
+      ]
+    ]
+    [.\node[label=0]{8};
+      [.\node[label=0]{7}; ]
+      [.\node[label=0]{9}; ]
+    ]
+  ]
+  [.\node[label=+1]{12};
+    [.\node[label=0]{11}; ]
+    [.\node[label=+1]{13};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{14}; ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{liDiagramm}
 \end{enumerate}
 \end{enumerate}
 \end{document}
