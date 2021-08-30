@@ -4,19 +4,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.erzeugeAufgabenVorlage = void 0;
-var path_1 = __importDefault(require("path"));
-var fs_1 = __importDefault(require("fs"));
-function gibVorlage(werte) {
-    if (werte === void 0) { werte = {}; }
-    var titel = '';
+const path_1 = __importDefault(require("path"));
+const fs_1 = __importDefault(require("fs"));
+function gibVorlage(werte = {}) {
+    let titel = '';
     if (werte.titel) {
         titel = werte.titel;
     }
-    var aufgabenName = '';
+    let aufgabenName = '';
     if (werte.aufgabenName) {
         aufgabenName = werte.aufgabenName;
     }
-    var zitatReferenz = '';
+    let zitatReferenz = '';
     if (werte.zitatReferenz) {
         zitatReferenz = werte.zitatReferenz;
     }

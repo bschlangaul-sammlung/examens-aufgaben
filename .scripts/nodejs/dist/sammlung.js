@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.stichwortVerzeichnis = exports.stichwortBaum = exports.aufgabenSammlung = exports.examenSammlung = void 0;
-var aufgabe_1 = require("./aufgabe");
-var examen_1 = require("./examen");
-var stichwort_verzeichnis_1 = require("./stichwort-verzeichnis");
+const aufgabe_1 = require("./aufgabe");
+const examen_1 = require("./examen");
+const stichwort_verzeichnis_1 = require("./stichwort-verzeichnis");
 exports.examenSammlung = new examen_1.ExamenSammlung();
 exports.aufgabenSammlung = new aufgabe_1.AufgabenSammlung(exports.examenSammlung);
 exports.stichwortBaum = new stichwort_verzeichnis_1.StichwortBaum();

@@ -4,14 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.erzeugeAufgabenTitel = exports.schreibeTitel = void 0;
-var path_1 = __importDefault(require("path"));
-var sammlung_1 = require("../sammlung");
-var helfer_1 = require("../helfer");
+const path_1 = __importDefault(require("path"));
+const sammlung_1 = require("../sammlung");
+const helfer_1 = require("../helfer");
 function umgebeMitKlammern(text) {
-    return "{" + text + "}";
+    return `{${text}}`;
 }
 function sammleDaten(aufgabe) {
-    var titel = {
+    const titel = {
         Titel: aufgabe.titel != null && aufgabe.titel !== '' ? aufgabe.titel : 'Aufgabe',
         Thematik: aufgabe.titel != null && aufgabe.titel !== ''
             ? aufgabe.titel
@@ -19,12 +19,12 @@ function sammleDaten(aufgabe) {
         RelativerPfad: aufgabe.relativerPfad
     };
     if (aufgabe.inhalt != null) {
-        var section = aufgabe.inhalt.match(/\\section\{(.+?)[\n\\\}\{]/);
+        const section = aufgabe.inhalt.match(/\\section\{(.+?)[\n\\\}\{]/);
         if (section != null) {
             if (section[1] != null)
                 titel.Titel = section[1];
         }
-        var fussnoteZitat = aufgabe.inhalt.match(/\\footcite(\[([^\]]+)\])?\{([^\}]+)\}/);
+        const fussnoteZitat = aufgabe.inhalt.match(/\\footcite(\[([^\]]+)\])?\{([^\}]+)\}/);
         if (fussnoteZitat != null) {
             if (fussnoteZitat[2] != null) {
                 titel.FussnoteSeite = umgebeMitKlammern(fussnoteZitat[2]);
@@ -34,7 +34,7 @@ function sammleDaten(aufgabe) {
         }
     }
     if (aufgabe.istExamen) {
-        var examensAufgabe = aufgabe;
+        const examensAufgabe = aufgabe;
         titel.ExamenNummer = examensAufgabe.examen.nummer;
         titel.ExamenJahr = examensAufgabe.examen.jahr;
         titel.ExamenMonat = examensAufgabe.examen.monatMitNullen;
@@ -52,20 +52,20 @@ function sammleDaten(aufgabe) {
     return titel;
 }
 function macheTex(titel) {
-    var schlüsselWertPaare = [];
-    Object.keys(titel).forEach(function (schlüssel) {
-        var wert = titel[schlüssel];
-        schlüsselWertPaare.push("  " + schlüssel + " = " + wert + ",");
+    const schlüsselWertPaare = [];
+    Object.keys(titel).forEach(schlüssel => {
+        const wert = titel[schlüssel];
+        schlüsselWertPaare.push(`  ${schlüssel} = ${wert},`);
     });
-    var schlüsselWerte = schlüsselWertPaare.join('\n');
-    return "\\liSetzeAufgabenTitel{\n" + schlüsselWerte + "\n}";
+    const schlüsselWerte = schlüsselWertPaare.join('\n');
+    return `\\liSetzeAufgabenTitel{\n${schlüsselWerte}\n}`;
 }
 function schreibeTitel(dateiPfad, aufgabenInhalt, titelTexMakro) {
-    var aufgabenTitelErsetzt;
+    let aufgabenTitelErsetzt;
     titelTexMakro += '\n';
     if (aufgabenInhalt.includes('\\liSetzeAufgabenTitel{')) {
         // /s s (dotall) modifier, +? one or more (non-greedy)
-        var regexp = new RegExp(/\\liSetzeAufgabenTitel\{.+?,?\n\}\n/, 's');
+        const regexp = new RegExp(/\\liSetzeAufgabenTitel\{.+?,?\n\}\n/, 's');
         aufgabenTitelErsetzt = aufgabenInhalt.replace(regexp, titelTexMakro);
     }
     else {
@@ -96,11 +96,11 @@ exports.schreibeTitel = schreibeTitel;
  */
 function erzeugeAufgabenTitel(dateiPfad) {
     dateiPfad = path_1.default.resolve(dateiPfad);
-    var aufgabe = sammlung_1.aufgabenSammlung.gib(dateiPfad);
-    var titel = sammleDaten(aufgabe);
-    var texMarkup = macheTex(titel);
+    const aufgabe = sammlung_1.aufgabenSammlung.gib(dateiPfad);
+    const titel = sammleDaten(aufgabe);
+    const texMarkup = macheTex(titel);
     if (aufgabe.inhalt !== null) {
-        var inhalt = aufgabe.inhalt;
+        const inhalt = aufgabe.inhalt;
         schreibeTitel(dateiPfad, inhalt, texMarkup);
     }
     console.log(texMarkup);

@@ -1,36 +1,15 @@
 "use strict";
-var __read = (this && this.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.öffneVSCode = exports.öffneProgramm = exports.führeAus = exports.generiereLink = exports.macheRepoPfad = exports.leseRepoDatei = exports.macheRelativenPfad = exports.repositoryPfad = exports.zeigeFehler = exports.schreibeDatei = exports.leseDatei = void 0;
-var fs_1 = __importDefault(require("fs"));
-var path_1 = __importDefault(require("path"));
-var child_process_1 = __importDefault(require("child_process"));
-var chalk_1 = __importDefault(require("chalk"));
-var konfigurationsDateiPfad = path_1.default.join(path_1.default.sep, 'etc', 'lehramt-informatik.config.tex');
-var githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main';
+const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
+const child_process_1 = __importDefault(require("child_process"));
+const chalk_1 = __importDefault(require("chalk"));
+const konfigurationsDateiPfad = path_1.default.join(path_1.default.sep, 'etc', 'lehramt-informatik.config.tex');
+const githubRawUrl = 'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main';
 function leseDatei(pfad) {
     return fs_1.default.readFileSync(pfad, { encoding: 'utf-8' });
 }
@@ -45,10 +24,10 @@ function zeigeFehler(meldung) {
 }
 exports.zeigeFehler = zeigeFehler;
 function leseKonfigurationsDatei(pfad) {
-    var inhalt = leseDatei(pfad);
-    var treffer = inhalt.match(/\\LehramtInformatikRepository\{(.*)\}/);
+    const inhalt = leseDatei(pfad);
+    const treffer = inhalt.match(/\\LehramtInformatikRepository\{(.*)\}/);
     if (treffer == null) {
-        zeigeFehler("Konfigurations-Datei nicht gefunden: " + pfad);
+        zeigeFehler(`Konfigurations-Datei nicht gefunden: ${pfad}`);
     }
     return treffer[1];
 }
@@ -58,26 +37,18 @@ function macheRelativenPfad(pfad) {
     return pfad.replace(/^\//, '');
 }
 exports.macheRelativenPfad = macheRelativenPfad;
-function leseRepoDatei() {
-    var args = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        args[_i] = arguments[_i];
-    }
+function leseRepoDatei(...args) {
     if (args[0].includes(exports.repositoryPfad)) {
-        return leseDatei(path_1.default.join.apply(path_1.default, __spreadArray([], __read(args))));
+        return leseDatei(path_1.default.join(...args));
     }
-    return leseDatei(path_1.default.join.apply(path_1.default, __spreadArray([exports.repositoryPfad], __read(args))));
+    return leseDatei(path_1.default.join(exports.repositoryPfad, ...args));
 }
 exports.leseRepoDatei = leseRepoDatei;
-function macheRepoPfad() {
-    var args = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        args[_i] = arguments[_i];
-    }
+function macheRepoPfad(...args) {
     if (args[0].includes(exports.repositoryPfad)) {
-        return path_1.default.join.apply(path_1.default, __spreadArray([], __read(args)));
+        return path_1.default.join(...args);
     }
-    return path_1.default.join.apply(path_1.default, __spreadArray([exports.repositoryPfad], __read(args)));
+    return path_1.default.join(exports.repositoryPfad, ...args);
 }
 exports.macheRepoPfad = macheRepoPfad;
 /**
@@ -94,7 +65,7 @@ exports.macheRepoPfad = macheRepoPfad;
  * HTML-Format.
  */
 function generiereLink(text, pfad, einstellung) {
-    var linkePdf = true;
+    let linkePdf = true;
     if (einstellung != null) {
         if (einstellung.linkePdf !== undefined) {
             linkePdf = einstellung.linkePdf;
@@ -105,11 +76,11 @@ function generiereLink(text, pfad, einstellung) {
     if (linkePdf) {
         pfad = pfad.replace(/\.[\w]+$/, '.pdf');
     }
-    return "[" + text + "](" + githubRawUrl + "/" + pfad + ")";
+    return `[${text}](${githubRawUrl}/${pfad})`;
 }
 exports.generiereLink = generiereLink;
 function führeAus(programm, cwd) {
-    var process = child_process_1.default.spawnSync(programm, {
+    const process = child_process_1.default.spawnSync(programm, {
         cwd: cwd,
         encoding: 'utf-8',
         shell: true
@@ -120,7 +91,7 @@ function führeAus(programm, cwd) {
 }
 exports.führeAus = führeAus;
 function öffneProgramm(programm, pfad) {
-    var subprocess = child_process_1.default.spawn(programm, [pfad], {
+    const subprocess = child_process_1.default.spawn(programm, [pfad], {
         detached: true,
         stdio: 'ignore'
     });

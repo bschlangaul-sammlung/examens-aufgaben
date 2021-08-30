@@ -4,42 +4,41 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.führeSqlAus = void 0;
-var child_process_1 = __importDefault(require("child_process"));
-var fs_1 = __importDefault(require("fs"));
-var chalk_1 = __importDefault(require("chalk"));
-var helfer_1 = require("../helfer");
-var TexDateiMitSql = /** @class */ (function () {
-    function TexDateiMitSql(pfad) {
+const child_process_1 = __importDefault(require("child_process"));
+const fs_1 = __importDefault(require("fs"));
+const chalk_1 = __importDefault(require("chalk"));
+const helfer_1 = require("../helfer");
+class TexDateiMitSql {
+    constructor(pfad) {
         this.anzahlAnfragen = 0;
         this.pfad = pfad;
         this.inhalt = helfer_1.leseDatei(pfad);
         this.datenbankName = this.findeErzeugungsCode();
     }
-    TexDateiMitSql.prototype.gibTemporärenPfad = function (bezeichner) {
-        return this.pfad + "_" + bezeichner + "_tmp.sql";
-    };
-    TexDateiMitSql.prototype.gibAnfrageBezeichner = function (anfrageNummer) {
-        var anfrageNummerFormatiert = anfrageNummer.toString().padStart(3, '0');
-        return "anfrage" + anfrageNummerFormatiert;
-    };
-    TexDateiMitSql.prototype.gibTemporärenAnfragenPfad = function (anfrageNummer) {
+    gibTemporärenPfad(bezeichner) {
+        return `${this.pfad}_${bezeichner}_tmp.sql`;
+    }
+    gibAnfrageBezeichner(anfrageNummer) {
+        const anfrageNummerFormatiert = anfrageNummer.toString().padStart(3, '0');
+        return `anfrage${anfrageNummerFormatiert}`;
+    }
+    gibTemporärenAnfragenPfad(anfrageNummer) {
         return this.gibTemporärenPfad(this.gibAnfrageBezeichner(anfrageNummer));
-    };
-    TexDateiMitSql.prototype.gibTemporärenErzeugungsPfad = function () {
+    }
+    gibTemporärenErzeugungsPfad() {
         return this.gibTemporärenPfad('erzeugung');
-    };
-    TexDateiMitSql.prototype.gibTemporärenLöschungsPfad = function () {
+    }
+    gibTemporärenLöschungsPfad() {
         return this.gibTemporärenPfad('loeschung');
-    };
-    TexDateiMitSql.prototype.schreibeTemporäreSqlDatei = function (bezeichner, inhalt) {
-        fs_1.default.writeFileSync(this.pfad + "_" + bezeichner + "_tmp.sql", inhalt);
-    };
-    TexDateiMitSql.prototype.führePostgresqlAus = function (datei, redselig) {
-        if (redselig === void 0) { redselig = true; }
-        var pygmentize = child_process_1.default.spawnSync('pygmentize', ['-l', 'sql', datei], { encoding: 'utf-8' });
+    }
+    schreibeTemporäreSqlDatei(bezeichner, inhalt) {
+        fs_1.default.writeFileSync(`${this.pfad}_${bezeichner}_tmp.sql`, inhalt);
+    }
+    führePostgresqlAus(datei, redselig = true) {
+        const pygmentize = child_process_1.default.spawnSync('pygmentize', ['-l', 'sql', datei], { encoding: 'utf-8' });
         if (redselig)
             console.log(pygmentize.stdout);
-        var prozess = child_process_1.default.spawnSync('sudo', [
+        const prozess = child_process_1.default.spawnSync('sudo', [
             '-u',
             'postgres',
             'psql',
@@ -62,67 +61,66 @@ var TexDateiMitSql = /** @class */ (function () {
             if (redselig)
                 console.log(prozess.stdout);
         }
-    };
-    TexDateiMitSql.prototype.erzeugeDatenbank = function () {
+    }
+    erzeugeDatenbank() {
         this.führePostgresqlAus(this.gibTemporärenErzeugungsPfad(), false);
-    };
-    TexDateiMitSql.prototype.führeAnfrageAus = function (anfragenNummer) {
+    }
+    führeAnfrageAus(anfragenNummer) {
         this.erzeugeDatenbank();
-        console.log(chalk_1.default.red("Anfrage Nummer " + anfragenNummer + ":\n"));
+        console.log(chalk_1.default.red(`Anfrage Nummer ${anfragenNummer}:\n`));
         this.führePostgresqlAus(this.gibTemporärenAnfragenPfad(anfragenNummer));
-    };
-    TexDateiMitSql.prototype.führeAlleAnfragenAus = function () {
-        for (var index = 1; index <= this.anzahlAnfragen; index++) {
+    }
+    führeAlleAnfragenAus() {
+        for (let index = 1; index <= this.anzahlAnfragen; index++) {
             this.führeAnfrageAus(index);
         }
-    };
-    TexDateiMitSql.prototype.erzeugeCodeDatenbankErstellung = function (datenbankName) {
-        return ("DROP DATABASE IF EXISTS " + datenbankName + ";\n" +
-            ("CREATE DATABASE " + datenbankName + ";\n") +
-            ("\\c " + datenbankName + "\n")); // mysql: USE name;
-    };
-    TexDateiMitSql.prototype.findeErzeugungsCode = function () {
-        var regExp = /% ?Datenbankname: ?(\w+).*?\\begin\{minted\}\{sql\}(.*?)\\end\{minted\}/gs;
-        var datenbank = regExp.exec(this.inhalt);
+    }
+    erzeugeCodeDatenbankErstellung(datenbankName) {
+        return (`DROP DATABASE IF EXISTS ${datenbankName};\n` +
+            `CREATE DATABASE ${datenbankName};\n` +
+            `\\c ${datenbankName}\n`); // mysql: USE name;
+    }
+    findeErzeugungsCode() {
+        const regExp = /% ?Datenbankname: ?(\w+).*?\\begin\{minted\}\{sql\}(.*?)\\end\{minted\}/gs;
+        const datenbank = regExp.exec(this.inhalt);
         if (datenbank == null) {
             helfer_1.zeigeFehler('Keine Erzeugungs-Code gefunden: % Datenbankname: Name\\begin{minted}{sql}…\\end{minted}');
         }
         // postgresql \c funktioniert nur mit klein geschriebenen Datenbank-Namen
-        var datenbankName = datenbank[1].toLowerCase();
-        var erzeugungsCode = datenbank[2];
+        const datenbankName = datenbank[1].toLowerCase();
+        const erzeugungsCode = datenbank[2];
         this.inhalt = this.inhalt.replace(regExp, '');
         this.schreibeTemporäreSqlDatei('erzeugung', this.erzeugeCodeDatenbankErstellung(datenbankName) + erzeugungsCode);
         return datenbankName;
-    };
-    TexDateiMitSql.prototype.erzeugeLöschungsCode = function () {
-        this.schreibeTemporäreSqlDatei('loeschung', "DROP DATABASE IF EXISTS " + this.datenbankName + ";\n");
-    };
-    TexDateiMitSql.prototype.findeAnfragen = function () {
-        var re = /\\begin\{minted\}\{sql\}(.*?)\\end\{minted\}/gs;
-        var übereinstimmung;
-        var zähler = 0;
+    }
+    erzeugeLöschungsCode() {
+        this.schreibeTemporäreSqlDatei('loeschung', `DROP DATABASE IF EXISTS ${this.datenbankName};\n`);
+    }
+    findeAnfragen() {
+        const re = /\\begin\{minted\}\{sql\}(.*?)\\end\{minted\}/gs;
+        let übereinstimmung;
+        let zähler = 0;
         do {
             übereinstimmung = re.exec(this.inhalt);
             if (übereinstimmung != null) {
                 zähler++;
-                this.schreibeTemporäreSqlDatei(this.gibAnfrageBezeichner(zähler), "\\c " + this.datenbankName + " \n" + übereinstimmung[1]);
+                this.schreibeTemporäreSqlDatei(this.gibAnfrageBezeichner(zähler), `\\c ${this.datenbankName} \n` + übereinstimmung[1]);
             }
         } while (übereinstimmung != null);
         this.anzahlAnfragen = zähler;
-    };
-    TexDateiMitSql.prototype.aufräumen = function () {
+    }
+    aufräumen() {
         this.erzeugeLöschungsCode();
         this.führePostgresqlAus(this.gibTemporärenLöschungsPfad());
         fs_1.default.unlinkSync(this.gibTemporärenErzeugungsPfad());
-        for (var index = 1; index <= this.anzahlAnfragen; index++) {
+        for (let index = 1; index <= this.anzahlAnfragen; index++) {
             fs_1.default.unlinkSync(this.gibTemporärenAnfragenPfad(index));
         }
         fs_1.default.unlinkSync(this.gibTemporärenLöschungsPfad());
-    };
-    return TexDateiMitSql;
-}());
+    }
+}
 function führeSqlAus(pfad, cmdObj) {
-    var datei = new TexDateiMitSql(pfad);
+    const datei = new TexDateiMitSql(pfad);
     datei.findeAnfragen();
     if (cmdObj.anfrage) {
         datei.führeAnfrageAus(parseInt(cmdObj.anfrage));

@@ -1,42 +1,16 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __values = (this && this.__values) || function(o) {
-    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-    if (m) return m.call(o);
-    if (o && typeof o.length === "number") return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AufgabenSammlung = exports.ExamensAufgabe = exports.Aufgabe = void 0;
-var path_1 = __importDefault(require("path"));
-var fs_1 = __importDefault(require("fs"));
-var glob_1 = __importDefault(require("glob"));
-var helfer_1 = require("./helfer");
-var tex_1 = require("./tex");
-var Aufgabe = /** @class */ (function () {
-    function Aufgabe(pfad) {
+const path_1 = __importDefault(require("path"));
+const fs_1 = __importDefault(require("fs"));
+const glob_1 = __importDefault(require("glob"));
+const helfer_1 = require("./helfer");
+const tex_1 = require("./tex");
+class Aufgabe {
+    constructor(pfad) {
         this.stichwörter = [];
         /**
          * Zeigt an, ob die Aufgabe eine normale Aufgabe ist oder eine Examensaufgabe.
@@ -52,20 +26,19 @@ var Aufgabe = /** @class */ (function () {
             }
         }
     }
-    Aufgabe.normalisierePfad = function (pfad) {
+    static normalisierePfad(pfad) {
         if (pfad.includes(helfer_1.repositoryPfad)) {
             return pfad;
         }
         return path_1.default.join(helfer_1.repositoryPfad, pfad);
-    };
-    Aufgabe.istAufgabe = function (pfad) {
+    }
+    static istAufgabe(pfad) {
         if (pfad.match(Aufgabe.pfadRegExp) != null) {
             return true;
         }
         return false;
-    };
-    Aufgabe.prototype.leseMetadataVonTex = function () {
-        var e_1, _a;
+    }
+    leseMetadataVonTex() {
         function reinige(text) {
             text = text.trim();
             text = text.replace(/\}?,$/, '');
@@ -73,80 +46,54 @@ var Aufgabe = /** @class */ (function () {
             text = text.trim();
             return text;
         }
-        var ergebnis = {};
+        const ergebnis = {};
         if (this.inhalt != null) {
-            var match = this.inhalt.match(new RegExp(/\\liSetzeAufgabenTitel{(.*)\n}/, 's'));
+            const match = this.inhalt.match(new RegExp(/\\liSetzeAufgabenTitel{(.*)\n}/, 's'));
             if (match != null) {
-                var zeilen = match[1];
-                try {
-                    for (var _b = __values(zeilen.split('\n')), _c = _b.next(); !_c.done; _c = _b.next()) {
-                        var zeile = _c.value;
-                        var schlüsselWert = zeile.split('=');
-                        if (schlüsselWert.length === 2) {
-                            ergebnis[reinige(schlüsselWert[0])] = reinige(schlüsselWert[1]);
-                        }
+                const zeilen = match[1];
+                for (const zeile of zeilen.split('\n')) {
+                    const schlüsselWert = zeile.split('=');
+                    if (schlüsselWert.length === 2) {
+                        ergebnis[reinige(schlüsselWert[0])] = reinige(schlüsselWert[1]);
                     }
-                }
-                catch (e_1_1) { e_1 = { error: e_1_1 }; }
-                finally {
-                    try {
-                        if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-                    }
-                    finally { if (e_1) throw e_1.error; }
                 }
                 return ergebnis;
             }
         }
-    };
-    Object.defineProperty(Aufgabe.prototype, "titelFormatiert", {
-        get: function () {
-            var titel;
-            if (this.titel != null) {
-                titel = "\u201E" + this.titel + "\u201C";
-            }
-            else {
-                titel = 'Aufgabe';
-            }
-            return titel;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(Aufgabe.prototype, "stichw\u00F6rterFormatiert", {
-        get: function () {
-            if (this.stichwörter != null && this.stichwörter.length > 0) {
-                return " (" + this.stichwörter.join(', ') + ")";
-            }
-            return '';
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(Aufgabe.prototype, "linkTex", {
-        /**
-         * Formatierter Link zur Tex-Datei.
-         */
-        get: function () {
-            return helfer_1.generiereLink('.tex', this.pfad, { linkePdf: false });
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(Aufgabe.prototype, "link", {
-        /**
-         * Formatierter Link zur PDF-Datei auf Github mit den Stichwörtern.
-         */
-        get: function () {
-            return (helfer_1.generiereLink(this.titelFormatiert, this.pfad) +
-                this.stichwörterFormatiert +
-                ' (' +
-                this.linkTex +
-                ') ');
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Aufgabe.vergleichePfade = function (a, b) {
+    }
+    get titelFormatiert() {
+        let titel;
+        if (this.titel != null) {
+            titel = `„${this.titel}“`;
+        }
+        else {
+            titel = 'Aufgabe';
+        }
+        return titel;
+    }
+    get stichwörterFormatiert() {
+        if (this.stichwörter != null && this.stichwörter.length > 0) {
+            return ` (${this.stichwörter.join(', ')})`;
+        }
+        return '';
+    }
+    /**
+     * Formatierter Link zur Tex-Datei.
+     */
+    get linkTex() {
+        return helfer_1.generiereLink('.tex', this.pfad, { linkePdf: false });
+    }
+    /**
+     * Formatierter Link zur PDF-Datei auf Github mit den Stichwörtern.
+     */
+    get link() {
+        return (helfer_1.generiereLink(this.titelFormatiert, this.pfad) +
+            this.stichwörterFormatiert +
+            ' (' +
+            this.linkTex +
+            ') ');
+    }
+    static vergleichePfade(a, b) {
         if (a.pfad < b.pfad) {
             return -1;
         }
@@ -154,178 +101,129 @@ var Aufgabe = /** @class */ (function () {
             return 1;
         }
         return 0;
-    };
-    Object.defineProperty(Aufgabe.prototype, "texEinbindenMakro", {
-        get: function () {
-            var relativerPfad = helfer_1.macheRelativenPfad(this.pfad);
-            relativerPfad = relativerPfad.replace('.tex', '');
-            return "\\liAufgabe{" + relativerPfad + "}";
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(Aufgabe.prototype, "relativerPfad", {
-        get: function () {
-            return helfer_1.macheRelativenPfad(this.pfad);
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Aufgabe.pfadRegExp = /.*Aufgabe_.*\.tex/;
-    return Aufgabe;
-}());
+    }
+    get texEinbindenMakro() {
+        let relativerPfad = helfer_1.macheRelativenPfad(this.pfad);
+        relativerPfad = relativerPfad.replace('.tex', '');
+        return `\\liAufgabe{${relativerPfad}}`;
+    }
+    get relativerPfad() {
+        return helfer_1.macheRelativenPfad(this.pfad);
+    }
+}
 exports.Aufgabe = Aufgabe;
-var ExamensAufgabe = /** @class */ (function (_super) {
-    __extends(ExamensAufgabe, _super);
-    function ExamensAufgabe(pfad, examen) {
-        var _this = _super.call(this, pfad) || this;
-        _this.examen = examen;
-        _this.istExamen = true;
-        examen.aufgaben[pfad] = _this;
-        var treffer = pfad.match(ExamensAufgabe.pfadRegExp);
+Aufgabe.pfadRegExp = /.*Aufgabe_.*\.tex/;
+class ExamensAufgabe extends Aufgabe {
+    constructor(pfad, examen) {
+        super(pfad);
+        this.examen = examen;
+        this.istExamen = true;
+        examen.aufgaben[pfad] = this;
+        const treffer = pfad.match(ExamensAufgabe.pfadRegExp);
         if (treffer == null || treffer.groups == null) {
-            helfer_1.zeigeFehler("Konnten den Pfad der Examensaufgabe nicht lesen: " + pfad);
+            helfer_1.zeigeFehler(`Konnten den Pfad der Examensaufgabe nicht lesen: ${pfad}`);
         }
-        var gruppen = treffer.groups;
-        _this.aufgabe = parseInt(gruppen.aufgabe);
+        const gruppen = treffer.groups;
+        this.aufgabe = parseInt(gruppen.aufgabe);
         if (gruppen.thema != null) {
-            _this.thema = parseInt(gruppen.thema);
+            this.thema = parseInt(gruppen.thema);
         }
         if (gruppen.teilaufgabe != null) {
-            _this.teilaufgabe = parseInt(gruppen.teilaufgabe);
+            this.teilaufgabe = parseInt(gruppen.teilaufgabe);
         }
-        return _this;
     }
-    ExamensAufgabe.istExamensAufgabe = function (pfad) {
+    static istExamensAufgabe(pfad) {
         if (pfad.match(ExamensAufgabe.pfadRegExp) != null) {
             return true;
         }
         return false;
-    };
-    Object.defineProperty(ExamensAufgabe.prototype, "examensReferenz", {
-        get: function () {
-            return this.examen.referenz;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(ExamensAufgabe.prototype, "aufgabenReferenz", {
-        get: function () {
-            var output = [];
-            if (this.thema != null) {
-                output.push("T" + this.thema);
-            }
-            if (this.teilaufgabe != null) {
-                output.push("TA" + this.teilaufgabe);
-            }
-            output.push("A" + this.aufgabe);
-            return output.join(' ');
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(ExamensAufgabe.prototype, "titelKurz", {
-        get: function () {
-            var ausgabe = this.examen.titelKurz + " " + this.aufgabenReferenz;
-            if (this.titel != null) {
-                return "\u201E" + this.titel + "\u201C " + ausgabe;
-            }
-            return ausgabe;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    ExamensAufgabe.prototype.gibTitelNurAufgabe = function (alsMarkdownLink) {
-        if (alsMarkdownLink === void 0) { alsMarkdownLink = false; }
-        var ausgabe = "Aufgabe " + this.aufgabe + this.stichwörterFormatiert;
+    }
+    get examensReferenz() {
+        return this.examen.referenz;
+    }
+    get aufgabenReferenz() {
+        const output = [];
+        if (this.thema != null) {
+            output.push(`T${this.thema}`);
+        }
+        if (this.teilaufgabe != null) {
+            output.push(`TA${this.teilaufgabe}`);
+        }
+        output.push(`A${this.aufgabe}`);
+        return output.join(' ');
+    }
+    get titelKurz() {
+        const ausgabe = `${this.examen.titelKurz} ${this.aufgabenReferenz}`;
+        if (this.titel != null) {
+            return `„${this.titel}“ ${ausgabe}`;
+        }
+        return ausgabe;
+    }
+    gibTitelNurAufgabe(alsMarkdownLink = false) {
+        const ausgabe = `Aufgabe ${this.aufgabe}${this.stichwörterFormatiert}`;
         if (alsMarkdownLink) {
             return helfer_1.generiereLink(ausgabe, this.pfad);
         }
         return ausgabe;
-    };
-    Object.defineProperty(ExamensAufgabe.prototype, "dateiName", {
-        get: function () {
-            var aufgabenReferenz = this.aufgabenReferenz.replace(/ /g, '-');
-            return this.examen.dateiName + "_" + aufgabenReferenz;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(ExamensAufgabe.prototype, "link", {
-        get: function () {
-            return (helfer_1.generiereLink(this.titelKurz, this.pfad) +
-                this.stichwörterFormatiert +
-                ' (' +
-                this.linkTex +
-                ') ');
-        },
-        enumerable: false,
-        configurable: true
-    });
-    ExamensAufgabe.erzeugePfad = function (arg1, arg2, arg3) {
+    }
+    get dateiName() {
+        const aufgabenReferenz = this.aufgabenReferenz.replace(/ /g, '-');
+        return `${this.examen.dateiName}_${aufgabenReferenz}`;
+    }
+    get link() {
+        return (helfer_1.generiereLink(this.titelKurz, this.pfad) +
+            this.stichwörterFormatiert +
+            ' (' +
+            this.linkTex +
+            ') ');
+    }
+    static erzeugePfad(arg1, arg2, arg3) {
         if (arg1 != null && arg2 != null && arg3 != null) {
-            return path_1.default.join("Thema-" + arg1, "Teilaufgabe-" + arg2, "Aufgabe-" + arg3 + ".tex");
+            return path_1.default.join(`Thema-${arg1}`, `Teilaufgabe-${arg2}`, `Aufgabe-${arg3}.tex`);
         }
         else if (arg1 != null && arg2 != null && arg3 == null) {
-            return path_1.default.join("Thema-" + arg1, "Aufgabe-" + arg2 + ".tex");
+            return path_1.default.join(`Thema-${arg1}`, `Aufgabe-${arg2}.tex`);
         }
         else {
-            return "Aufgabe-" + arg1 + ".tex";
-        }
-    };
-    Object.defineProperty(ExamensAufgabe.prototype, "texEinbindenMakro", {
-        get: function () {
-            var relativerPfad = helfer_1.macheRelativenPfad(this.pfad);
-            relativerPfad = relativerPfad.replace('Staatsexamen/', '');
-            relativerPfad = relativerPfad.replace('.tex', '');
-            return "\\liExamensAufgabe{" + relativerPfad + "}";
-        },
-        enumerable: false,
-        configurable: true
-    });
-    ExamensAufgabe.pfadRegExp = /(?<nummer>\d{5})\/(?<jahr>\d{4})\/(?<monat>\d{2})\/(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/;
-    ExamensAufgabe.schwacherPfadRegExp = /(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/;
-    return ExamensAufgabe;
-}(Aufgabe));
-exports.ExamensAufgabe = ExamensAufgabe;
-var AufgabenSammlung = /** @class */ (function () {
-    function AufgabenSammlung(examenSammlung) {
-        var e_2, _a;
-        this.examenSammlung = examenSammlung;
-        this.aufgaben = {};
-        var dateien = glob_1.default.sync('**/*.tex', { cwd: helfer_1.repositoryPfad });
-        this.aufgaben = {};
-        try {
-            for (var dateien_1 = __values(dateien), dateien_1_1 = dateien_1.next(); !dateien_1_1.done; dateien_1_1 = dateien_1.next()) {
-                var pfad = dateien_1_1.value;
-                var aufgabe = this.erzeugeAufgabe(pfad);
-                if (aufgabe != null) {
-                    this.aufgaben[helfer_1.macheRelativenPfad(pfad)] = aufgabe;
-                }
-            }
-        }
-        catch (e_2_1) { e_2 = { error: e_2_1 }; }
-        finally {
-            try {
-                if (dateien_1_1 && !dateien_1_1.done && (_a = dateien_1.return)) _a.call(dateien_1);
-            }
-            finally { if (e_2) throw e_2.error; }
+            return `Aufgabe-${arg1}.tex`;
         }
     }
-    AufgabenSammlung.prototype.istAufgabenPfad = function (pfad) {
+    get texEinbindenMakro() {
+        let relativerPfad = helfer_1.macheRelativenPfad(this.pfad);
+        relativerPfad = relativerPfad.replace('Staatsexamen/', '');
+        relativerPfad = relativerPfad.replace('.tex', '');
+        return `\\liExamensAufgabe{${relativerPfad}}`;
+    }
+}
+exports.ExamensAufgabe = ExamensAufgabe;
+ExamensAufgabe.pfadRegExp = /(?<nummer>\d{5})\/(?<jahr>\d{4})\/(?<monat>\d{2})\/(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/;
+ExamensAufgabe.schwacherPfadRegExp = /(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/;
+class AufgabenSammlung {
+    constructor(examenSammlung) {
+        this.examenSammlung = examenSammlung;
+        this.aufgaben = {};
+        const dateien = glob_1.default.sync('**/*.tex', { cwd: helfer_1.repositoryPfad });
+        this.aufgaben = {};
+        for (const pfad of dateien) {
+            const aufgabe = this.erzeugeAufgabe(pfad);
+            if (aufgabe != null) {
+                this.aufgaben[helfer_1.macheRelativenPfad(pfad)] = aufgabe;
+            }
+        }
+    }
+    istAufgabenPfad(pfad) {
         return ExamensAufgabe.istExamensAufgabe(pfad) || Aufgabe.istAufgabe(pfad);
-    };
-    AufgabenSammlung.prototype.erzeugeAufgabe = function (pfad) {
+    }
+    erzeugeAufgabe(pfad) {
         if (ExamensAufgabe.istExamensAufgabe(pfad)) {
             return new ExamensAufgabe(pfad, this.examenSammlung.gibDurchPfad(pfad));
         }
         else if (Aufgabe.istAufgabe(pfad)) {
             return new Aufgabe(pfad);
         }
-    };
-    AufgabenSammlung.prototype.gib = function (pfad) {
+    }
+    gib(pfad) {
         return this.aufgaben[helfer_1.macheRelativenPfad(pfad)];
-    };
-    return AufgabenSammlung;
-}());
+    }
+}
 exports.AufgabenSammlung = AufgabenSammlung;

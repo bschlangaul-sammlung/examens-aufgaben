@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sammleStichwörterEinerDatei = exports.sammleStichwörter = exports.gibInhaltEinesTexMakros = void 0;
-var helfer_1 = require("./helfer");
+const helfer_1 = require("./helfer");
 function assembleMacroRegExp(macroName) {
     return new RegExp('\\' + macroName + '{([^}]*)}', 'g');
 }
@@ -9,8 +9,8 @@ function säubereStichwort(stichwort) {
     return stichwort.replace(/\s+/g, ' ');
 }
 function gibInhaltEinesTexMakros(makroName, markup) {
-    var regExp = assembleMacroRegExp(makroName);
-    var übereinstimmung = regExp.exec(markup);
+    const regExp = assembleMacroRegExp(makroName);
+    const übereinstimmung = regExp.exec(markup);
     if (übereinstimmung != null)
         return übereinstimmung[1];
 }
@@ -22,13 +22,13 @@ exports.gibInhaltEinesTexMakros = gibInhaltEinesTexMakros;
  * @param inhalt - Der Textinhalt einer TeX-Datei.
  */
 function sammleStichwörter(inhalt) {
-    var re = assembleMacroRegExp('index');
-    var übereinstimmung;
-    var stichwörter = new Set();
+    const re = assembleMacroRegExp('index');
+    let übereinstimmung;
+    const stichwörter = new Set();
     do {
         übereinstimmung = re.exec(inhalt);
         if (übereinstimmung != null) {
-            var stichwort = säubereStichwort(übereinstimmung[1]);
+            const stichwort = säubereStichwort(übereinstimmung[1]);
             stichwörter.add(stichwort);
         }
     } while (übereinstimmung != null);
