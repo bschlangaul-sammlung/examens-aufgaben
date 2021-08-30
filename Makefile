@@ -7,28 +7,28 @@ git_submodule:
 	git submodule update --init
 
 install_config:
-	.scripts/install-config.sh
+	.scripts/shell/install-config.sh
 
 install_cli:
-	cd .scripts; npm install; npm run build
+	cd .scripts/nodejs; npm install; npm run build
 
 build: build_cli
 
 build_cli:
-	cd .scripts; npm run build
+	cd .scripts/nodejs; npm run build
 
 install_tex:
 	.tex/install.sh
 
 install_tex_dtx: install_tex
-	i dtx
+	.scripts/nodejs/dist/main.js dtx
 
 tex: install_tex_dtx
 
 readme:
-	.scripts/dist/main.js r
+	.scripts/nodejs/dist/main.js generiere-readme
 
 clean:
-	.scripts/clean.sh
+	.scripts/shell/clean.sh
 
 .PHONY: install_tex readme install_cli install_config clean
