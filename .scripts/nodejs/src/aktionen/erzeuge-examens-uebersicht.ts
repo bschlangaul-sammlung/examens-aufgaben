@@ -1,8 +1,8 @@
 import path from 'path'
 import fs from 'fs'
 
-import { examensTitel } from '../examen'
-import { ExamensAufgabe } from '../aufgabe'
+import { examensTitel, gibExamenSammlung } from '../examen'
+import { ExamensAufgabe, gibAufgabenSammlung } from '../aufgabe'
 import {
   repositoryPfad,
   generiereLink,
@@ -11,9 +11,11 @@ import {
   macheRepoPfad,
   schreibeDatei
 } from '../helfer'
-import { aufgabenSammlung, examenSammlung } from '../sammlung'
+
 import glob from 'glob'
 
+const aufgabenSammlung = gibAufgabenSammlung()
+const examenSammlung = gibExamenSammlung()
 interface ExamensAufgabeBaum {
   [aufgabe: string]: ExamensAufgabeBaum | string
 }

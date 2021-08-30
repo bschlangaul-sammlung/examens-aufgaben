@@ -7,9 +7,10 @@ exports.erzeugeReadme = void 0;
 const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
 const aufgabe_1 = require("../aufgabe");
-const sammlung_1 = require("../sammlung");
+const stichwort_verzeichnis_1 = require("../stichwort-verzeichnis");
 const helfer_1 = require("../helfer");
 const erzeuge_examens_uebersicht_1 = require("./erzeuge-examens-uebersicht");
+const stichwortVerzeichnis = stichwort_verzeichnis_1.gibStichwortVerzeichnis();
 function generiereMarkdownAufgabenListe(aufgabenListe) {
     const aufgaben = Array.from(aufgabenListe);
     aufgaben.sort(aufgabe_1.Aufgabe.vergleichePfade);
@@ -21,7 +22,7 @@ function generiereMarkdownAufgabenListe(aufgabenListe) {
 }
 function ersetzeStichwörterInReadme(inhalt) {
     return inhalt.replace(/\{\{ stichwort "([^"]*)" \}\}/g, function (treffer, stichwort) {
-        return generiereMarkdownAufgabenListe(sammlung_1.stichwortVerzeichnis.gibAufgabenMitStichwortUnterBaum(stichwort));
+        return generiereMarkdownAufgabenListe(stichwortVerzeichnis.gibAufgabenMitStichwortUnterBaum(stichwort));
     });
 }
 function erzeugeReadme() {

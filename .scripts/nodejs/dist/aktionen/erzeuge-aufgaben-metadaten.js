@@ -5,8 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.erzeugeAufgabenMetadaten = exports.schreibeTitel = void 0;
 const path_1 = __importDefault(require("path"));
-const sammlung_1 = require("../sammlung");
+const aufgabe_1 = require("../aufgabe");
 const helfer_1 = require("../helfer");
+const aufgabenSammlung = aufgabe_1.gibAufgabenSammlung();
 function umgebeMitKlammern(text) {
     return `{${text}}`;
 }
@@ -96,7 +97,7 @@ exports.schreibeTitel = schreibeTitel;
  */
 function erzeugeAufgabenMetadaten(dateiPfad) {
     dateiPfad = path_1.default.resolve(dateiPfad);
-    const aufgabe = sammlung_1.aufgabenSammlung.gib(dateiPfad);
+    const aufgabe = aufgabenSammlung.gib(dateiPfad);
     const titel = sammleDaten(aufgabe);
     const texMarkup = macheTex(titel);
     if (aufgabe.inhalt !== null) {

@@ -7,9 +7,11 @@ exports.generiereExamenSammlungPdf = exports.generiereExamensÜbersicht = void 0
 const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
 const examen_1 = require("../examen");
+const aufgabe_1 = require("../aufgabe");
 const helfer_1 = require("../helfer");
-const sammlung_1 = require("../sammlung");
 const glob_1 = __importDefault(require("glob"));
+const aufgabenSammlung = aufgabe_1.gibAufgabenSammlung();
+const examenSammlung = examen_1.gibExamenSammlung();
 /**
  * ```js
  * [
@@ -100,7 +102,7 @@ function generiereAufgabenRekursiv(aufgabenBaum, pfad, ebene = 1) {
     for (const titel in aufgabenBaum) {
         if (typeof aufgabenBaum[titel] === 'string') {
             const aufgabenPfad = path_1.default.join(pfad, aufgabenBaum[titel]);
-            const aufgabe = sammlung_1.aufgabenSammlung.gib(aufgabenPfad);
+            const aufgabe = aufgabenSammlung.gib(aufgabenPfad);
             ausgabe.push(erzeugeEinrückung(ebene) + aufgabe.gibTitelNurAufgabe(true));
         }
         else {
@@ -140,7 +142,7 @@ function generiereExamensÜbersicht() {
             if (fs_1.default.statSync(jahrPfad).isDirectory()) {
                 const monatsVerzeichnisse = fs_1.default.readdirSync(jahrPfad);
                 for (const monat of monatsVerzeichnisse) {
-                    const examen = sammlung_1.examenSammlung.gib(nummer, jahr, monat);
+                    const examen = examenSammlung.gib(nummer, jahr, monat);
                     const monatsPfad = path_1.default.join(jahrPfad, monat);
                     const scanLink = erzeugeDateiLink(monatsPfad, 'Scan.pdf');
                     const ocrLink = erzeugeDateiLink(monatsPfad, 'OCR.txt', {
@@ -164,7 +166,7 @@ function generiereExamenSammlungPdf() {
             if (fs_1.default.statSync(jahrPfad).isDirectory()) {
                 const monatsVerzeichnisse = fs_1.default.readdirSync(jahrPfad);
                 for (const monat of monatsVerzeichnisse) {
-                    const examen = sammlung_1.examenSammlung.gib(nummer, jahr, monat);
+                    const examen = examenSammlung.gib(nummer, jahr, monat);
                     ausgabe.add(`\n\\liTrennSeite{${examen.jahreszeit} ${examen.jahr}}`);
                     const scanPfad = helfer_1.macheRelativenPfad(path_1.default.join(jahrPfad, monat, 'Scan.pdf'));
                     // scanPfad = scanPfad.replace(`Staatsexamen/${nummer}/`, '')

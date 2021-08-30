@@ -1,7 +1,14 @@
 import path from 'path'
-import { ExamensAufgabe, Aufgabe, AufgabenMetadaten } from '../aufgabe'
-import { aufgabenSammlung } from '../sammlung'
+
+import {
+  ExamensAufgabe,
+  Aufgabe,
+  AufgabenMetadaten,
+  gibAufgabenSammlung
+} from '../aufgabe'
 import { schreibeDatei } from '../helfer'
+
+const aufgabenSammlung = gibAufgabenSammlung()
 
 function umgebeMitKlammern (text: string): string {
   return `{${text}}`

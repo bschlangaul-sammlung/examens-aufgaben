@@ -1,5 +1,9 @@
-import { stichwortVerzeichnis, stichwortBaum } from '../sammlung'
+import { gibStichwortVerzeichnis, gibStichwortBaum } from '../stichwort-verzeichnis'
+
 import { öffneProgramm } from '../helfer'
+
+const stichwortVerzeichnis = gibStichwortVerzeichnis()
+const stichwortBaum = gibStichwortBaum()
 
 export function öffneDurchStichwort (stichwort: string): void {
   const aufgaben = stichwortVerzeichnis.gibAufgabenMitStichwort(stichwort)

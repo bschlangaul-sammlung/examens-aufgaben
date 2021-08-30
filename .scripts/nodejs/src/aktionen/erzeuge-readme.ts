@@ -2,9 +2,11 @@ import path from 'path'
 import fs from 'fs'
 
 import { Aufgabe } from '../aufgabe'
-import { stichwortVerzeichnis } from '../sammlung'
+import { gibStichwortVerzeichnis } from '../stichwort-verzeichnis'
 import { repositoryPfad, leseRepoDatei } from '../helfer'
 import { generiereExamensÜbersicht } from './erzeuge-examens-uebersicht'
+
+const stichwortVerzeichnis = gibStichwortVerzeichnis()
 
 function generiereMarkdownAufgabenListe (aufgabenListe: Set<Aufgabe>): string {
   const aufgaben = Array.from(aufgabenListe)
