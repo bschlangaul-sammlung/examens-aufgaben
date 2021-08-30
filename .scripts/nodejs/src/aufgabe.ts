@@ -12,6 +12,10 @@ import {
 import { sammleStichwörter, gibInhaltEinesTexMakros } from './tex'
 import { Examen, ExamenSammlung } from './examen'
 
+function umgebeMitKlammern (text: string): string {
+  return `{${text}}`
+}
+
 /**
  * Die Attribute beginnen hier mit Großbuchstaben, damit sie nicht für
  * die TeX-Ausgabe konvertiert werden müssen. Wir verwenden `PascalCase` als
@@ -74,7 +78,7 @@ export class Aufgabe {
   stichwörter: string[] = []
   titel?: string
 
-  metaDaten: AufgabenMetadaten
+  metadaten_: AufgabenMetadaten
 
   /**
    * Zeigt an, ob die Aufgabe eine normale Aufgabe ist oder eine Examensaufgabe.
@@ -95,11 +99,11 @@ export class Aufgabe {
     this.stichwörter = sammleStichwörter(this.inhalt)
     this.titel = gibInhaltEinesTexMakros('liAufgabenTitel', this.inhalt)
 
-    const metaDaten = this.leseMetadataVonTex()
+    const metaDaten = this.leseMetadatenVonTex()
     if (metaDaten != null) {
-      this.metaDaten = metaDaten
+      this.metadaten_ = metaDaten
     } else {
-      this.metaDaten = {
+      this.metadaten_ = {
         Titel: '',
         RelativerPfad: this.relativerPfad
       }
@@ -136,7 +140,7 @@ export class Aufgabe {
    * }
    * ```
    */
-  leseMetadataVonTex (): AufgabenMetadaten | undefined {
+  leseMetadatenVonTex (): AufgabenMetadaten | undefined {
     function reinige (text: string): string {
       text = text.trim()
       text = text.replace(/\}?,$/, '')
@@ -158,6 +162,34 @@ export class Aufgabe {
       }
       return ergebnis as AufgabenMetadaten
     }
+  }
+
+  erzeugeMetadaten (): AufgabenMetadaten {
+    const meta: AufgabenMetadaten = {
+      Titel: this.titel != null && this.titel !== '' ? this.titel : 'Aufgabe',
+      Thematik:
+        this.titel != null && this.titel !== '' ? this.titel : 'keine Thematik',
+      RelativerPfad: this.relativerPfad
+    }
+
+    const section = this.inhalt.match(/\\section\{(.+?)[\n\\\}\{]/)
+    if (section != null && section[1] != null) {
+      meta.Titel = section[1]
+    }
+
+    const fussnoteZitat = this.inhalt.match(
+      /\\footcite(\[([^\]]+)\])?\{([^\}]+)\}/
+    )
+    if (fussnoteZitat != null) {
+      if (fussnoteZitat[2] != null) {
+        meta.FussnoteSeite = umgebeMitKlammern(fussnoteZitat[2])
+      }
+      if (fussnoteZitat[3] != null) {
+        meta.Fussnote = fussnoteZitat[3]
+      }
+    }
+
+    return meta
   }
 
   get titelFormatiert (): string {
@@ -254,6 +286,24 @@ export class ExamensAufgabe extends Aufgabe {
       return true
     }
     return false
+  }
+
+  erzeugeMetadaten (): AufgabenMetadaten {
+    const meta = super.erzeugeMetadaten()
+
+    meta.ExamenNummer = this.examen.nummer
+    meta.ExamenJahr = this.examen.jahr
+    meta.ExamenMonat = this.examen.monatMitNullen
+
+    if (this.thema != null) {
+      meta.ExamenThemaNr = this.thema
+    }
+    if (this.teilaufgabe != null) {
+      meta.ExamenTeilaufgabeNr = this.teilaufgabe
+    }
+
+    meta.ExamenAufgabeNr = this.aufgabe
+    return meta
   }
 
   get examensReferenz (): string {

@@ -1,8 +1,8 @@
 const assert = require('assert')
 const path = require('path')
-const { Aufgabe } = require('../dist/aufgabe.js')
+const { Aufgabe, ExamensAufgabe } = require('../dist/aufgabe.js')
 
-function gibTestPfad(dateiName) {
+function gibTestPfad (dateiName) {
   return path.resolve(__dirname, 'files', dateiName)
 }
 
@@ -15,12 +15,21 @@ describe('aufgabe.ts', function () {
 
     it('Methode leseMetadataVonTex()', function () {
       const aufgabe = new Aufgabe(gibTestPfad('Aufgabe.tex'))
-      const titel = aufgabe.leseMetadataVonTex()
+      const titel = aufgabe.leseMetadatenVonTex()
       assert.strictEqual(titel.Titel, 'Grammatik aus Automat')
       assert.strictEqual(titel.Thematik, 'Reguläre Sprache')
-      assert.strictEqual(titel.RelativerPfad, 'Aufgabe_Grammatik-aus-Automat.tex')
+      assert.strictEqual(
+        titel.RelativerPfad,
+        'Aufgabe_Grammatik-aus-Automat.tex'
+      )
       assert.strictEqual(titel.FussnoteSeite, 'Seite 4, Aufgabe 3')
       assert.strictEqual(titel.Fussnote, 'theo:ab:1')
+    })
+  })
+
+  describe('Klasse ExamensAufgabe()', function () {
+    it('Initialisierung', function () {
+      //new ExamensAufgabe()
     })
   })
 })

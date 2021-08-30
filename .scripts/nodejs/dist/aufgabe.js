@@ -9,6 +9,9 @@ const fs_1 = __importDefault(require("fs"));
 const glob_1 = __importDefault(require("glob"));
 const helfer_1 = require("./helfer");
 const tex_1 = require("./tex");
+function umgebeMitKlammern(text) {
+    return `{${text}}`;
+}
 class Aufgabe {
     constructor(pfad) {
         this.stichwörter = [];
@@ -24,12 +27,12 @@ class Aufgabe {
         this.inhalt = helfer_1.leseRepoDatei(this.pfad);
         this.stichwörter = tex_1.sammleStichwörter(this.inhalt);
         this.titel = tex_1.gibInhaltEinesTexMakros('liAufgabenTitel', this.inhalt);
-        const metaDaten = this.leseMetadataVonTex();
+        const metaDaten = this.leseMetadatenVonTex();
         if (metaDaten != null) {
-            this.metaDaten = metaDaten;
+            this.metadaten_ = metaDaten;
         }
         else {
-            this.metaDaten = {
+            this.metadaten_ = {
                 Titel: '',
                 RelativerPfad: this.relativerPfad
             };
@@ -63,7 +66,7 @@ class Aufgabe {
      * }
      * ```
      */
-    leseMetadataVonTex() {
+    leseMetadatenVonTex() {
         function reinige(text) {
             text = text.trim();
             text = text.replace(/\}?,$/, '');
@@ -83,6 +86,27 @@ class Aufgabe {
             }
             return ergebnis;
         }
+    }
+    erzeugeMetadaten() {
+        const meta = {
+            Titel: this.titel != null && this.titel !== '' ? this.titel : 'Aufgabe',
+            Thematik: this.titel != null && this.titel !== '' ? this.titel : 'keine Thematik',
+            RelativerPfad: this.relativerPfad
+        };
+        const section = this.inhalt.match(/\\section\{(.+?)[\n\\\}\{]/);
+        if (section != null && section[1] != null) {
+            meta.Titel = section[1];
+        }
+        const fussnoteZitat = this.inhalt.match(/\\footcite(\[([^\]]+)\])?\{([^\}]+)\}/);
+        if (fussnoteZitat != null) {
+            if (fussnoteZitat[2] != null) {
+                meta.FussnoteSeite = umgebeMitKlammern(fussnoteZitat[2]);
+            }
+            if (fussnoteZitat[3] != null) {
+                meta.Fussnote = fussnoteZitat[3];
+            }
+        }
+        return meta;
     }
     get titelFormatiert() {
         let titel;
@@ -160,6 +184,20 @@ class ExamensAufgabe extends Aufgabe {
             return true;
         }
         return false;
+    }
+    erzeugeMetadaten() {
+        const meta = super.erzeugeMetadaten();
+        meta.ExamenNummer = this.examen.nummer;
+        meta.ExamenJahr = this.examen.jahr;
+        meta.ExamenMonat = this.examen.monatMitNullen;
+        if (this.thema != null) {
+            meta.ExamenThemaNr = this.thema;
+        }
+        if (this.teilaufgabe != null) {
+            meta.ExamenTeilaufgabeNr = this.teilaufgabe;
+        }
+        meta.ExamenAufgabeNr = this.aufgabe;
+        return meta;
     }
     get examensReferenz() {
         return this.examen.referenz;
