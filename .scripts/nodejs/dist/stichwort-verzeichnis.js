@@ -3,10 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StichwortVerzeichnis = exports.StichwortBaum = void 0;
+exports.gibStichwortVerzeichnis = exports.gibStichwortBaum = exports.StichwortVerzeichnis = exports.StichwortBaum = void 0;
 const js_yaml_1 = __importDefault(require("js-yaml"));
 const glob_1 = __importDefault(require("glob"));
 const helfer_1 = require("./helfer");
+const aufgabe_1 = require("./aufgabe");
 const string_similarity_1 = require("string-similarity");
 class StichwortBaum {
     constructor() {
@@ -161,3 +162,19 @@ class StichwortVerzeichnis {
     }
 }
 exports.StichwortVerzeichnis = StichwortVerzeichnis;
+let stichwortBaum;
+function gibStichwortBaum() {
+    if (stichwortBaum == null) {
+        stichwortBaum = new StichwortBaum();
+    }
+    return stichwortBaum;
+}
+exports.gibStichwortBaum = gibStichwortBaum;
+let stichwortVerzeichnis;
+function gibStichwortVerzeichnis() {
+    if (stichwortVerzeichnis == null) {
+        stichwortVerzeichnis = new StichwortVerzeichnis(gibStichwortBaum(), aufgabe_1.gibAufgabenSammlung());
+    }
+    return stichwortVerzeichnis;
+}
+exports.gibStichwortVerzeichnis = gibStichwortVerzeichnis;

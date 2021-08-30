@@ -119,7 +119,7 @@ export function erzeugeAufgabenMetadaten (dateiPfad: string): void {
   const texMarkup = macheTex(titel)
 
   if (aufgabe.inhalt !== null) {
-    const inhalt = aufgabe.inhalt as string
+    const inhalt = aufgabe.inhalt
     schreibeTitel(dateiPfad, inhalt, texMarkup)
   }
 

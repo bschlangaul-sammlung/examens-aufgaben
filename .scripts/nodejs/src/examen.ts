@@ -178,3 +178,12 @@ export const examensTitel: { [key: number]: string } = {
   66116: 'Datenbanksysteme / Softwaretechnologie (vertieft)',
   66118: 'Fachdidaktik (Gymnasium)'
 }
+
+let examenSammlung: ExamenSammlung
+
+export function gibExamenSammlung (): ExamenSammlung {
+  if (examenSammlung == null) {
+    examenSammlung = new ExamenSammlung()
+  }
+  return examenSammlung
+}

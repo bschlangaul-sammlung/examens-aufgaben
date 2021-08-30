@@ -62,7 +62,7 @@ function leseAufgaben(relativerPfad) {
             let unterBaum = baum;
             for (const segment of segmente) {
                 const segmentLesbar = macheSegmenteLesbar(segment);
-                if (!unterBaum[segmentLesbar] && !segment.includes('.tex')) {
+                if (unterBaum[segmentLesbar] != null && !segment.includes('.tex')) {
                     unterBaum[segmentLesbar] = {};
                 }
                 else if (segment.includes('.tex')) {
@@ -143,7 +143,9 @@ function generiereExamensÜbersicht() {
                     const examen = sammlung_1.examenSammlung.gib(nummer, jahr, monat);
                     const monatsPfad = path_1.default.join(jahrPfad, monat);
                     const scanLink = erzeugeDateiLink(monatsPfad, 'Scan.pdf');
-                    const ocrLink = erzeugeDateiLink(monatsPfad, 'OCR.txt', { linkePdf: false });
+                    const ocrLink = erzeugeDateiLink(monatsPfad, 'OCR.txt', {
+                        linkePdf: false
+                    });
                     ausgabe.add(`- ${examen.jahrJahreszeit}: ${scanLink} ${ocrLink} ${generiereAufgabenBaum(monatsPfad)}`);
                 }
             }

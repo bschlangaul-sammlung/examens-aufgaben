@@ -10,7 +10,7 @@ import {
   zeigeFehler
 } from './helfer'
 import { sammleStichwörter, gibInhaltEinesTexMakros } from './tex'
-import { Examen, ExamenSammlung } from './examen'
+import { Examen, ExamenSammlung, gibExamenSammlung } from './examen'
 
 function umgebeMitKlammern (text: string): string {
   return `{${text}}`
@@ -172,13 +172,13 @@ export class Aufgabe {
       RelativerPfad: this.relativerPfad
     }
 
-    const section = this.inhalt.match(/\\section\{(.+?)[\n\\\}\{]/)
+    const section = this.inhalt.match(/\\section\{(.+?)[\n\\}{]/)
     if (section != null && section[1] != null) {
       meta.Titel = section[1]
     }
 
     const fussnoteZitat = this.inhalt.match(
-      /\\footcite(\[([^\]]+)\])?\{([^\}]+)\}/
+      /\\footcite(\[([^\]]+)\])?\{([^}]+)\}/
     )
     if (fussnoteZitat != null) {
       if (fussnoteZitat[2] != null) {
@@ -408,4 +408,13 @@ export class AufgabenSammlung {
   gib (pfad: string): Aufgabe {
     return this.aufgaben[macheRelativenPfad(pfad)]
   }
+}
+
+let aufgabenSammlung: AufgabenSammlung
+
+export function gibAufgabenSammlung (): AufgabenSammlung {
+  if (aufgabenSammlung == null) {
+    aufgabenSammlung = new AufgabenSammlung(gibExamenSammlung())
+  }
+  return aufgabenSammlung
 }

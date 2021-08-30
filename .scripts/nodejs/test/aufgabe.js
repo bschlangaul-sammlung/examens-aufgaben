@@ -1,6 +1,8 @@
 const assert = require('assert')
 const path = require('path')
-const { Aufgabe, ExamensAufgabe } = require('../dist/aufgabe.js')
+const { Aufgabe, gibAufgabenSammlung } = require('../dist/aufgabe.js')
+
+const aufgabenSammlung = gibAufgabenSammlung()
 
 function gibTestPfad (dateiName) {
   return path.resolve(__dirname, 'files', dateiName)
@@ -29,7 +31,23 @@ describe('aufgabe.ts', function () {
 
   describe('Klasse ExamensAufgabe()', function () {
     it('Initialisierung', function () {
-      //new ExamensAufgabe()
+      const aufgabe = aufgabenSammlung.gib(
+        'Staatsexamen/66116/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-1.tex'
+      )
+      assert.strictEqual(aufgabe.istExamen, true)
+    })
+
+    it('Methode „erzeugeMetadaten()“', function () {
+      const aufgabe = aufgabenSammlung.gib(
+        'Staatsexamen/66116/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-1.tex'
+      )
+      const metadaten = aufgabe.erzeugeMetadaten()
+      assert.strictEqual(metadaten.ExamenNummer, 66116)
+      assert.strictEqual(metadaten.ExamenJahr, 2020)
+      assert.strictEqual(metadaten.ExamenMonat, '09')
+      assert.strictEqual(metadaten.ExamenThemaNr, 1)
+      assert.strictEqual(metadaten.ExamenTeilaufgabeNr, 1)
+      assert.strictEqual(metadaten.ExamenAufgabeNr, 1)
     })
   })
 })

@@ -41,7 +41,7 @@ class TexDateiMitSql {
     fs.writeFileSync(`${this.pfad}_${bezeichner}_tmp.sql`, inhalt)
   }
 
-  private führePostgresqlAus (datei: string, redselig: boolean = true) {
+  private führePostgresqlAus (datei: string, redselig: boolean = true): void {
     const pygmentize = childProcess.spawnSync(
       'pygmentize',
       ['-l', 'sql', datei],
@@ -75,7 +75,7 @@ class TexDateiMitSql {
     }
   }
 
-  erzeugeDatenbank () {
+  erzeugeDatenbank (): void {
     this.führePostgresqlAus(this.gibTemporärenErzeugungsPfad(), false)
   }
 
@@ -85,7 +85,7 @@ class TexDateiMitSql {
     this.führePostgresqlAus(this.gibTemporärenAnfragenPfad(anfragenNummer))
   }
 
-  führeAlleAnfragenAus () {
+  führeAlleAnfragenAus (): void {
     for (let index = 1; index <= this.anzahlAnfragen; index++) {
       this.führeAnfrageAus(index)
     }
@@ -160,12 +160,12 @@ export function führeSqlAus (
 ): void {
   const datei = new TexDateiMitSql(pfad)
   datei.findeAnfragen()
-  if (cmdObj.anfrage) {
+  if (cmdObj.anfrage != null) {
     datei.führeAnfrageAus(parseInt(cmdObj.anfrage))
   } else {
     datei.führeAlleAnfragenAus()
   }
-  if (!cmdObj.nichtLoeschen) {
+  if (cmdObj.nichtLoeschen == null) {
     datei.aufräumen()
   }
 }

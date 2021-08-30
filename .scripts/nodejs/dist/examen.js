@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.examensTitel = exports.ExamenSammlung = exports.Examen = void 0;
+exports.gibExamenSammlung = exports.examensTitel = exports.ExamenSammlung = exports.Examen = void 0;
 const path_1 = __importDefault(require("path"));
 const glob_1 = __importDefault(require("glob"));
 const helfer_1 = require("./helfer");
@@ -125,3 +125,11 @@ exports.examensTitel = {
     66116: 'Datenbanksysteme / Softwaretechnologie (vertieft)',
     66118: 'Fachdidaktik (Gymnasium)'
 };
+let examenSammlung;
+function gibExamenSammlung() {
+    if (examenSammlung == null) {
+        examenSammlung = new ExamenSammlung();
+    }
+    return examenSammlung;
+}
+exports.gibExamenSammlung = gibExamenSammlung;

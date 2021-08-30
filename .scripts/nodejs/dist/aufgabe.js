@@ -3,12 +3,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AufgabenSammlung = exports.ExamensAufgabe = exports.Aufgabe = void 0;
+exports.gibAufgabenSammlung = exports.AufgabenSammlung = exports.ExamensAufgabe = exports.Aufgabe = void 0;
 const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
 const glob_1 = __importDefault(require("glob"));
 const helfer_1 = require("./helfer");
 const tex_1 = require("./tex");
+const examen_1 = require("./examen");
 function umgebeMitKlammern(text) {
     return `{${text}}`;
 }
@@ -93,11 +94,11 @@ class Aufgabe {
             Thematik: this.titel != null && this.titel !== '' ? this.titel : 'keine Thematik',
             RelativerPfad: this.relativerPfad
         };
-        const section = this.inhalt.match(/\\section\{(.+?)[\n\\\}\{]/);
+        const section = this.inhalt.match(/\\section\{(.+?)[\n\\}{]/);
         if (section != null && section[1] != null) {
             meta.Titel = section[1];
         }
-        const fussnoteZitat = this.inhalt.match(/\\footcite(\[([^\]]+)\])?\{([^\}]+)\}/);
+        const fussnoteZitat = this.inhalt.match(/\\footcite(\[([^\]]+)\])?\{([^}]+)\}/);
         if (fussnoteZitat != null) {
             if (fussnoteZitat[2] != null) {
                 meta.FussnoteSeite = umgebeMitKlammern(fussnoteZitat[2]);
@@ -288,3 +289,11 @@ class AufgabenSammlung {
     }
 }
 exports.AufgabenSammlung = AufgabenSammlung;
+let aufgabenSammlung;
+function gibAufgabenSammlung() {
+    if (aufgabenSammlung == null) {
+        aufgabenSammlung = new AufgabenSammlung(examen_1.gibExamenSammlung());
+    }
+    return aufgabenSammlung;
+}
+exports.gibAufgabenSammlung = gibAufgabenSammlung;

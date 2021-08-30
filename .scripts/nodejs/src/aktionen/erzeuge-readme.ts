@@ -27,7 +27,7 @@ function ersetzeStichwörterInReadme (inhalt: string): string {
   })
 }
 
-export function erzeugeReadme () {
+export function erzeugeReadme (): void {
   let inhalt = leseRepoDatei('README_template.md')
 
   inhalt = ersetzeStichwörterInReadme(inhalt)

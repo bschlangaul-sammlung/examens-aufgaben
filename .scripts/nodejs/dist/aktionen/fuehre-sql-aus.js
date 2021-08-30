@@ -122,13 +122,13 @@ class TexDateiMitSql {
 function führeSqlAus(pfad, cmdObj) {
     const datei = new TexDateiMitSql(pfad);
     datei.findeAnfragen();
-    if (cmdObj.anfrage) {
+    if (cmdObj.anfrage != null) {
         datei.führeAnfrageAus(parseInt(cmdObj.anfrage));
     }
     else {
         datei.führeAlleAnfragenAus();
     }
-    if (!cmdObj.nichtLoeschen) {
+    if (cmdObj.nichtLoeschen == null) {
         datei.aufräumen();
     }
 }

@@ -1,6 +1,9 @@
 var assert = require('assert');
 
-const { stichwortBaum, stichwortVerzeichnis } = require('../dist/sammlung.js')
+const { gibStichwortBaum, gibStichwortVerzeichnis } = require('../dist/stichwort-verzeichnis.js')
+
+const stichwortBaum = gibStichwortBaum()
+const stichwortVerzeichnis = gibStichwortVerzeichnis()
 
 describe('stichwort-verzeichnis.ts', function() {
   describe('Klasse StichwortBaum()', function () {

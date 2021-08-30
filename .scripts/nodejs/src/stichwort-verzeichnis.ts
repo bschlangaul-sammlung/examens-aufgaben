@@ -7,7 +7,7 @@ import {
   zeigeFehler,
   öffneVSCode
 } from './helfer'
-import { Aufgabe, AufgabenSammlung } from './aufgabe'
+import { Aufgabe, AufgabenSammlung, gibAufgabenSammlung } from './aufgabe'
 import { findBestMatch } from 'string-similarity'
 
 interface Baum {
@@ -174,4 +174,25 @@ export class StichwortVerzeichnis {
     }
     return aufgaben
   }
+}
+
+let stichwortBaum: StichwortBaum
+
+export function gibStichwortBaum (): StichwortBaum {
+  if (stichwortBaum == null) {
+    stichwortBaum = new StichwortBaum()
+  }
+  return stichwortBaum
+}
+
+let stichwortVerzeichnis: StichwortVerzeichnis
+
+export function gibStichwortVerzeichnis (): StichwortVerzeichnis {
+  if (stichwortVerzeichnis == null) {
+    stichwortVerzeichnis = new StichwortVerzeichnis(
+      gibStichwortBaum(),
+      gibAufgabenSammlung()
+    )
+  }
+  return stichwortVerzeichnis
 }
