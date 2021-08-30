@@ -41,6 +41,13 @@ export function macheRelativenPfad (pfad: string): string {
   return pfad.replace(/^\//, '')
 }
 
+/**
+ * Lese eine Text-Datei relativ zum Lehramt-Informatik-Repository.
+ *
+ * @param args - Pfad-Segmente
+ *
+ * @returns Der Inhalt der Text-Datei als String.
+ */
 export function leseRepoDatei (...args: string[]): string {
   if (args[0].includes(repositoryPfad)) {
     return leseDatei(path.join(...args))
