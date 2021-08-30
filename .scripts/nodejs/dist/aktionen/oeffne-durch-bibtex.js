@@ -36,13 +36,12 @@ var BibtexReferenzZuDateiKonverter = /** @class */ (function () {
         var entries = bibtexJson.entries;
         for (var key in entries) {
             var entry = entries[key];
-            if (entry.unexpected_fields && entry.unexpected_fields.file) {
+            if ((entry === null || entry === void 0 ? void 0 : entry.unexpected_fields.file) != null) {
                 this.index[entry.entry_key] = this.findeMehrerePdfDatien(entry.unexpected_fields.file);
             }
         }
     };
     /**
-     *
      * @param eingabe z. B. AB1_Grundlagen.pdf AB1_Grundlagen_Lsg.pdf
      */
     BibtexReferenzZuDateiKonverter.prototype.findeMehrerePdfDatien = function (eingabe) {
@@ -52,12 +51,13 @@ var BibtexReferenzZuDateiKonverter = /** @class */ (function () {
             return dateiBasisName.trim().replace(/^, +/, '');
         })
             .filter(function (dateiBasisName) {
+            // eslint-disable-next-line
             return !!dateiBasisName;
         });
         return ergebnis;
     };
     BibtexReferenzZuDateiKonverter.prototype.gibDateiNameDurchReferenz = function (referenz) {
-        if (this.index[referenz]) {
+        if (this.index[referenz] != null) {
             return this.index[referenz];
         }
     };

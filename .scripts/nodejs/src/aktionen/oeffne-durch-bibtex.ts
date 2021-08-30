@@ -9,7 +9,7 @@ const basisPfadExterneDateien = path.join(
   'git-repositories/content/informatik-studium'
 )
 
-function analysierteBibDatei (dateiPfad: string) {
+function analysierteBibDatei (dateiPfad: string): any {
   const parser = new BibLatexParser(leseRepoDatei(dateiPfad), {
     processUnexpected: true,
     processUnknown: true
@@ -24,11 +24,11 @@ class BibtexReferenzZuDateiKonverter {
     this.index = {}
   }
 
-  leseBibTexJsonEin (bibtexJson: any) {
+  leseBibTexJsonEin (bibtexJson: any): void {
     const entries = bibtexJson.entries
     for (const key in entries) {
       const entry = entries[key]
-      if (entry.unexpected_fields && entry.unexpected_fields.file) {
+      if (entry?.unexpected_fields.file != null) {
         this.index[entry.entry_key] = this.findeMehrerePdfDatien(
           entry.unexpected_fields.file
         )
@@ -37,7 +37,6 @@ class BibtexReferenzZuDateiKonverter {
   }
 
   /**
-   *
    * @param eingabe z. B. AB1_Grundlagen.pdf AB1_Grundlagen_Lsg.pdf
    */
   findeMehrerePdfDatien (eingabe: string): string[] {
@@ -47,19 +46,20 @@ class BibtexReferenzZuDateiKonverter {
         return dateiBasisName.trim().replace(/^, +/, '')
       })
       .filter(function (dateiBasisName: string): boolean {
+        // eslint-disable-next-line
         return !!dateiBasisName
       })
     return ergebnis
   }
 
   gibDateiNameDurchReferenz (referenz: string): string[] | undefined {
-    if (this.index[referenz]) {
+    if (this.index[referenz] != null) {
       return this.index[referenz]
     }
   }
 }
 
-export function öffneDurchBibtex (referenz: string) {
+export function öffneDurchBibtex (referenz: string): void {
   const bibDateien = glob.sync('**/*.bib', { cwd: repositoryPfad })
   const externeDateien = glob.sync('**/*.pdf', { cwd: basisPfadExterneDateien })
   const konverter = new BibtexReferenzZuDateiKonverter()

@@ -23,8 +23,9 @@ var StichwortBaum = /** @class */ (function () {
     function StichwortBaum() {
         this.flach = new Set();
         var roherBaum = js_yaml_1.default.safeLoad(helfer_1.leseRepoDatei('Stichwortverzeichnis.yml'));
-        if (roherBaum == null)
+        if (roherBaum == null) {
             helfer_1.zeigeFehler('Konnte die Konfigurationsdatei nicht lesen');
+        }
         this.baum = this.normalisiereBaum(roherBaum);
     }
     StichwortBaum.prototype.fügeStichwortSicherHinzu = function (stichwort) {
@@ -43,9 +44,6 @@ var StichwortBaum = /** @class */ (function () {
      * Da die YAML-Datei wegen der Anzeige in der README-Datei alle
      * Stichwörter mit einem vorangstellten `- ` auflistete, ist die
      * Ausgabe aus der YAML-Datei sehr verschachtelt
-     *
-     * @param eingang
-     * @param ausgang
      */
     StichwortBaum.prototype.normalisiereBaum = function (eingang, ausgang) {
         var e_1, _a;
@@ -79,7 +77,7 @@ var StichwortBaum = /** @class */ (function () {
             }
         }
         else {
-            helfer_1.zeigeFehler("Unbekannter Datentyp f\u00FCr den Stichwortbaum: " + ausgang);
+            helfer_1.zeigeFehler('Unbekannter Datentyp für den Stichwortbaum');
         }
         return ausgang;
     };
@@ -97,7 +95,7 @@ var StichwortBaum = /** @class */ (function () {
             }
             else if (typeof baum[s] === 'object') {
                 var ergebnis = this.gibUnterBaum(stichwort, baum[s]);
-                if (ergebnis)
+                if (ergebnis != null)
                     return ergebnis;
             }
         }
@@ -119,11 +117,10 @@ var StichwortBaum = /** @class */ (function () {
     };
     /**
      * Das übergebene Stichwort ist in der flachen Stichwortliste enthalten.
-     * @param stichwort
      */
     StichwortBaum.prototype.gibFlacheListe = function (stichwort) {
         var unterBaum = this.gibUnterBaum(stichwort);
-        if (!unterBaum) {
+        if (unterBaum === false) {
             return new Set();
         }
         else if (unterBaum === true) {
@@ -163,7 +160,7 @@ var StichwortVerzeichnis = /** @class */ (function () {
                                     this.stichwortBaum.findeÄhnliches(stichwort));
                                 helfer_1.zeigeFehler("Das Stichwort \u201E" + stichwort + "\u201C in der Datei \u201E" + pfad + "\u201C gibt es nicht.");
                             }
-                            if (this.verzeichnis[stichwort]) {
+                            if (this.verzeichnis[stichwort] != null) {
                                 this.verzeichnis[stichwort].add(aufgabe);
                             }
                             else {
@@ -191,7 +188,7 @@ var StichwortVerzeichnis = /** @class */ (function () {
         }
     }
     StichwortVerzeichnis.prototype.gibAufgabenMitStichwort = function (stichwort) {
-        if (this.verzeichnis[stichwort]) {
+        if (this.verzeichnis[stichwort] != null) {
             return this.verzeichnis[stichwort];
         }
         return new Set();

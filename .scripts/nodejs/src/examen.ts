@@ -1,5 +1,4 @@
 import path from 'path'
-
 import glob from 'glob'
 
 import { repositoryPfad, zeigeFehler } from './helfer'
@@ -69,13 +68,13 @@ export class Examen {
     nummer: string,
     jahr: string,
     monat: string
-  ) {
+  ): Examen {
     return new Examen(parseInt(nummer), parseInt(jahr), parseInt(monat))
   }
 
-  static erzeugeExamenVonPfad (pfad: string) {
+  static erzeugeExamenVonPfad (pfad: string): Examen {
     const treffer = pfad.match(Examen.regExp)
-    if ((treffer == null) || (treffer.groups == null)) {
+    if (treffer == null || treffer.groups == null) {
       zeigeFehler(`Konnten den Examenspfad nicht lesen: ${pfad}`)
     }
     const gruppen = treffer.groups
@@ -86,16 +85,16 @@ export class Examen {
     )
   }
 
-  static gibReferenzVonPfad (pfad: string) {
+  static gibReferenzVonPfad (pfad: string): string {
     const treffer = pfad.match(Examen.regExp)
-    if ((treffer == null) || (treffer.groups == null)) {
+    if (treffer == null || treffer.groups == null) {
       zeigeFehler(`Konnten den Examenspfad nicht lesen: ${pfad}`)
     }
     const gruppen = treffer.groups
     return `${gruppen.nummer}:${gruppen.jahr}:${gruppen.monat}`
   }
 
-  static erzeugeExamenVonReferenz (referenz: string) {
+  static erzeugeExamenVonReferenz (referenz: string): Examen {
     const ergebnis = referenz.split(':')
     if (ergebnis.length !== 3) {
       zeigeFehler(
@@ -113,7 +112,7 @@ export class Examen {
     nummer: string | number,
     jahr: string | number,
     monat: string | number
-  ) {
+  ): string {
     return path.join('Staatsexamen', `${nummer}`, `${jahr}`, `${monat}`)
   }
 

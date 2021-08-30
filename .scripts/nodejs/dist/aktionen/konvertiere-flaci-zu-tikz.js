@@ -243,6 +243,7 @@ function konvertiereFlaciZuTikz(jsonDateiPfad) {
     if (jsonDateiPfad.match(/^\//) == null) {
         jsonDateiPfad = path_1.default.join(process.cwd(), jsonDateiPfad);
     }
+    // eslint-disable-next-line
     var definition = require(jsonDateiPfad);
     console.log(formatiereAutomat(definition));
 }

@@ -47,7 +47,7 @@ programm
   .alias('a')
   .action(function (titel: string, cmdObj: object): void {
     let dateiName = 'Aufgabe_'
-    if (titel) {
+    if (titel != null) {
       const titelRein = titel.replace(/\s+/g, '-')
       dateiName = `${dateiName}${titelRein}`
     }
@@ -163,7 +163,7 @@ programm
     globMuster: string,
     cmdObj: { [schlüssel: string]: any }
   ): void {
-    function öffneMitAusgabe (pfad: string) {
+    function öffneMitAusgabe (pfad: string): void {
       console.log(pfad)
       öffneVSCode(pfad)
     }
@@ -174,11 +174,11 @@ programm
     const dateien = glob.sync(globMuster)
     for (let dateiPfad of dateien) {
       dateiPfad = path.resolve(dateiPfad)
-      if (cmdObj.keinIndex || cmdObj.keinTitel) {
+      if (cmdObj.keinIndex != null || cmdObj.keinTitel != null) {
         const aufgabe = new Aufgabe(dateiPfad)
         if (
-          (cmdObj.keinIndex && aufgabe.stichwörter.length == 0) ||
-          (cmdObj.keinTitel && !aufgabe.titel)
+          (cmdObj.keinIndex != null && aufgabe.stichwörter.length === 0) ||
+          (cmdObj.keinTitel != null && aufgabe.titel == null)
         ) {
           öffneMitAusgabe(dateiPfad)
         }
@@ -288,15 +288,15 @@ programm
     const dateien = glob.sync('**/')
     for (const pfad of dateien) {
       if (
-        (pfad.match(/examen_\d{5}_\d{4}_\d{2}\/$/) != null) &&
-        (pfad.match(/docs/) == null) &&
-        (pfad.match(/target/) == null)
+        pfad.match(/examen_\d{5}_\d{4}_\d{2}\/$/) != null &&
+        pfad.match(/docs/) == null &&
+        pfad.match(/target/) == null
       ) {
         console.log(pfad)
         const match = pfad.match(
           /examen_(?<nummer>\d{5})_(?<jahr>\d{4})_(?<monat>\d{2})\/$/
         )
-        if ((match != null) && (match.groups != null)) {
+        if (match?.groups != null) {
           const monat = match?.groups.monat === '03' ? 'fruehjahr' : 'herbst'
           const neuerPfad = `src/main/java/org/bschlangaul/examen/examen_${match?.groups.nummer}/jahr_${match?.groups.jahr}/${monat}`
           console.log(neuerPfad)

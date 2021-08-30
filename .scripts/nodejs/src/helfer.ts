@@ -12,12 +12,12 @@ const konfigurationsDateiPfad = path.join(
 const githubRawUrl =
   'https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main'
 
-export function leseDatei (pfad: string) {
+export function leseDatei (pfad: string): string {
   return fs.readFileSync(pfad, { encoding: 'utf-8' })
 }
 
-export function schreibeDatei (pfad: string, inhalt: string) {
-  return fs.writeFileSync(pfad, inhalt, { encoding: 'utf-8' })
+export function schreibeDatei (pfad: string, inhalt: string): void {
+  fs.writeFileSync(pfad, inhalt, { encoding: 'utf-8' })
 }
 
 export function zeigeFehler (meldung: string): never {
@@ -28,7 +28,9 @@ export function zeigeFehler (meldung: string): never {
 function leseKonfigurationsDatei (pfad: string): string {
   const inhalt = leseDatei(pfad)
   const treffer = inhalt.match(/\\LehramtInformatikRepository\{(.*)\}/)
-  if (treffer == null) zeigeFehler(`Konfigurations-Datei nicht gefunden: ${pfad}`)
+  if (treffer == null) {
+    zeigeFehler(`Konfigurations-Datei nicht gefunden: ${pfad}`)
+  }
   return treffer[1]
 }
 
@@ -39,13 +41,17 @@ export function macheRelativenPfad (pfad: string): string {
   return pfad.replace(/^\//, '')
 }
 
-export function leseRepoDatei (...args: string[]) {
-  if (args[0].includes(repositoryPfad)) return leseDatei(path.join(...args))
+export function leseRepoDatei (...args: string[]): string {
+  if (args[0].includes(repositoryPfad)) {
+    return leseDatei(path.join(...args))
+  }
   return leseDatei(path.join(repositoryPfad, ...args))
 }
 
-export function macheRepoPfad (...args: string[]) {
-  if (args[0].includes(repositoryPfad)) return path.join(...args)
+export function macheRepoPfad (...args: string[]): string {
+  if (args[0].includes(repositoryPfad)) {
+    return path.join(...args)
+  }
   return path.join(repositoryPfad, ...args)
 }
 
@@ -89,7 +95,7 @@ export function generiereLink (
   return `[${text}](${githubRawUrl}/${pfad})`
 }
 
-export function führeAus (programm: string, cwd: string) {
+export function führeAus (programm: string, cwd: string): void {
   const process = childProcess.spawnSync(programm, {
     cwd: cwd,
     encoding: 'utf-8',
@@ -107,6 +113,6 @@ export function öffneProgramm (programm: string, pfad: string): void {
   subprocess.unref()
 }
 
-export function öffneVSCode (pfad: string) {
+export function öffneVSCode (pfad: string): void {
   öffneProgramm('/usr/bin/code', macheRepoPfad(pfad))
 }

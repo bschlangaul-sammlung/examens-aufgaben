@@ -45,7 +45,7 @@ programm
     .alias('a')
     .action(function (titel, cmdObj) {
     var dateiName = 'Aufgabe_';
-    if (titel) {
+    if (titel != null) {
         var titelRein = titel.replace(/\s+/g, '-');
         dateiName = "" + dateiName + titelRein;
     }
@@ -150,10 +150,10 @@ programm
         for (var dateien_2 = __values(dateien), dateien_2_1 = dateien_2.next(); !dateien_2_1.done; dateien_2_1 = dateien_2.next()) {
             var dateiPfad = dateien_2_1.value;
             dateiPfad = path_1.default.resolve(dateiPfad);
-            if (cmdObj.keinIndex || cmdObj.keinTitel) {
+            if (cmdObj.keinIndex != null || cmdObj.keinTitel != null) {
                 var aufgabe = new aufgabe_1.Aufgabe(dateiPfad);
-                if ((cmdObj.keinIndex && aufgabe.stichwörter.length == 0) ||
-                    (cmdObj.keinTitel && !aufgabe.titel)) {
+                if ((cmdObj.keinIndex != null && aufgabe.stichwörter.length === 0) ||
+                    (cmdObj.keinTitel != null && aufgabe.titel == null)) {
                     öffneMitAusgabe(dateiPfad);
                 }
             }
@@ -257,12 +257,12 @@ programm
     try {
         for (var dateien_3 = __values(dateien), dateien_3_1 = dateien_3.next(); !dateien_3_1.done; dateien_3_1 = dateien_3.next()) {
             var pfad = dateien_3_1.value;
-            if ((pfad.match(/examen_\d{5}_\d{4}_\d{2}\/$/) != null) &&
-                (pfad.match(/docs/) == null) &&
-                (pfad.match(/target/) == null)) {
+            if (pfad.match(/examen_\d{5}_\d{4}_\d{2}\/$/) != null &&
+                pfad.match(/docs/) == null &&
+                pfad.match(/target/) == null) {
                 console.log(pfad);
                 var match = pfad.match(/examen_(?<nummer>\d{5})_(?<jahr>\d{4})_(?<monat>\d{2})\/$/);
-                if ((match != null) && (match.groups != null)) {
+                if ((match === null || match === void 0 ? void 0 : match.groups) != null) {
                     var monat = (match === null || match === void 0 ? void 0 : match.groups.monat) === '03' ? 'fruehjahr' : 'herbst';
                     var neuerPfad = "src/main/java/org/bschlangaul/examen/examen_" + (match === null || match === void 0 ? void 0 : match.groups.nummer) + "/jahr_" + (match === null || match === void 0 ? void 0 : match.groups.jahr) + "/" + monat;
                     console.log(neuerPfad);

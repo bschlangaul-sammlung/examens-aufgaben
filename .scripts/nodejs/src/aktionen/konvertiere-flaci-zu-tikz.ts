@@ -127,7 +127,7 @@ function formatiereZustand (state: FlaciZustand): string {
   return `  \\node[state${additionsOptions}] (${state.Name}) ${koordinate} {${name}};`
 }
 
-function formatiereÜbergang (trans: FlaciÜbergang, states: StateNames) {
+function formatiereÜbergang (trans: FlaciÜbergang, states: StateNames): string {
   const source = states[trans.Source]
   const target = states[trans.Target]
   const eingabeSymbole =
@@ -177,7 +177,7 @@ function formatiereKellerZeichen (zeichen: string): string {
 function formatiereKellerÜbergang (
   trans: FlaciKellerÜbergang,
   states: StateNames
-) {
+): string {
   const source = states[trans.Source]
   const target = states[trans.Target]
 
@@ -212,7 +212,7 @@ function formatiereTuringZeichen (zeichen: string): string {
 function formatiereTuringÜbergang (
   trans: FlaciTuringÜbergang,
   states: StateNames
-) {
+): string {
   const source = states[trans.Source]
   const target = states[trans.Target]
 
@@ -233,7 +233,7 @@ function formatiereTuringÜbergang (
   )}{${source}}{${target}}{\n${übergängeFormatiert}\n  }\n`
 }
 
-function formatiereFlaciLink (def: FlaciDefinition) {
+function formatiereFlaciLink (def: FlaciDefinition): string {
   return `\\liFlaci{A${def.GUID}}`
 }
 
@@ -279,12 +279,12 @@ function formatiereAutomat (def: FlaciDefinition): string {
       } else if (automatenTyp === 'keller') {
         const trans = transition as any
         transitionsRendered.push(
-          formatiereKellerÜbergang(<FlaciKellerÜbergang>trans, stateNames)
+          formatiereKellerÜbergang(trans as FlaciKellerÜbergang, stateNames)
         )
       } else {
         const trans = transition as any
         transitionsRendered.push(
-          formatiereTuringÜbergang(<FlaciTuringÜbergang>trans, stateNames)
+          formatiereTuringÜbergang(trans as FlaciTuringÜbergang, stateNames)
         )
       }
     }
@@ -310,10 +310,11 @@ function formatiereAutomat (def: FlaciDefinition): string {
   return formatiereTexEnv('liAntwort', liAntwort)
 }
 
-export function konvertiereFlaciZuTikz (jsonDateiPfad: string) {
+export function konvertiereFlaciZuTikz (jsonDateiPfad: string): void {
   if (jsonDateiPfad.match(/^\//) == null) {
     jsonDateiPfad = path.join(process.cwd(), jsonDateiPfad)
   }
+  // eslint-disable-next-line
   const definition = require(jsonDateiPfad) as FlaciDefinition
   console.log(formatiereAutomat(definition))
 }

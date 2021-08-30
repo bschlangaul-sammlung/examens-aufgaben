@@ -36,7 +36,7 @@ function leseDatei(pfad) {
 }
 exports.leseDatei = leseDatei;
 function schreibeDatei(pfad, inhalt) {
-    return fs_1.default.writeFileSync(pfad, inhalt, { encoding: 'utf-8' });
+    fs_1.default.writeFileSync(pfad, inhalt, { encoding: 'utf-8' });
 }
 exports.schreibeDatei = schreibeDatei;
 function zeigeFehler(meldung) {
@@ -47,8 +47,9 @@ exports.zeigeFehler = zeigeFehler;
 function leseKonfigurationsDatei(pfad) {
     var inhalt = leseDatei(pfad);
     var treffer = inhalt.match(/\\LehramtInformatikRepository\{(.*)\}/);
-    if (treffer == null)
+    if (treffer == null) {
         zeigeFehler("Konfigurations-Datei nicht gefunden: " + pfad);
+    }
     return treffer[1];
 }
 exports.repositoryPfad = leseKonfigurationsDatei(konfigurationsDateiPfad);
@@ -62,8 +63,9 @@ function leseRepoDatei() {
     for (var _i = 0; _i < arguments.length; _i++) {
         args[_i] = arguments[_i];
     }
-    if (args[0].includes(exports.repositoryPfad))
+    if (args[0].includes(exports.repositoryPfad)) {
         return leseDatei(path_1.default.join.apply(path_1.default, __spreadArray([], __read(args))));
+    }
     return leseDatei(path_1.default.join.apply(path_1.default, __spreadArray([exports.repositoryPfad], __read(args))));
 }
 exports.leseRepoDatei = leseRepoDatei;
@@ -72,8 +74,9 @@ function macheRepoPfad() {
     for (var _i = 0; _i < arguments.length; _i++) {
         args[_i] = arguments[_i];
     }
-    if (args[0].includes(exports.repositoryPfad))
+    if (args[0].includes(exports.repositoryPfad)) {
         return path_1.default.join.apply(path_1.default, __spreadArray([], __read(args)));
+    }
     return path_1.default.join.apply(path_1.default, __spreadArray([exports.repositoryPfad], __read(args)));
 }
 exports.macheRepoPfad = macheRepoPfad;

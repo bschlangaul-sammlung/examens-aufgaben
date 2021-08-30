@@ -19,7 +19,7 @@ exports.gibInhaltEinesTexMakros = gibInhaltEinesTexMakros;
  * Sammle alle Stichwörter eines TeX-Inhaltes (string). Doppelte Stichwörter
  * werden nur als eins aufgelistet.
  *
- * @param {string} inhalt - Der Textinhalt einer TeX-Datei.
+ * @param inhalt - Der Textinhalt einer TeX-Datei.
  */
 function sammleStichwörter(inhalt) {
     var re = assembleMacroRegExp('index');
@@ -36,8 +36,7 @@ function sammleStichwörter(inhalt) {
 }
 exports.sammleStichwörter = sammleStichwörter;
 /**
- * Collect the tags of a TeX file.
- * @param {string} pfad
+ * Sammle alle Stichwörter einer TeX-Datei.
  */
 function sammleStichwörterEinerDatei(pfad) {
     return sammleStichwörter(helfer_1.leseRepoDatei(pfad));

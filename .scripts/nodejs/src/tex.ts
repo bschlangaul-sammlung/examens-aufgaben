@@ -1,6 +1,6 @@
 import { leseRepoDatei } from './helfer'
 
-function assembleMacroRegExp (macroName: String): RegExp {
+function assembleMacroRegExp (macroName: string): RegExp {
   return new RegExp('\\' + macroName + '{([^}]*)}', 'g')
 }
 
@@ -21,9 +21,9 @@ export function gibInhaltEinesTexMakros (
  * Sammle alle Stichwörter eines TeX-Inhaltes (string). Doppelte Stichwörter
  * werden nur als eins aufgelistet.
  *
- * @param {string} inhalt - Der Textinhalt einer TeX-Datei.
+ * @param inhalt - Der Textinhalt einer TeX-Datei.
  */
-export function sammleStichwörter (inhalt: string) {
+export function sammleStichwörter (inhalt: string): string[] {
   const re = assembleMacroRegExp('index')
   let übereinstimmung
   const stichwörter = new Set<string>()
@@ -38,9 +38,8 @@ export function sammleStichwörter (inhalt: string) {
 }
 
 /**
- * Collect the tags of a TeX file.
- * @param {string} pfad
+ * Sammle alle Stichwörter einer TeX-Datei.
  */
-export function sammleStichwörterEinerDatei (pfad: string) {
+export function sammleStichwörterEinerDatei (pfad: string): string[] {
   return sammleStichwörter(leseRepoDatei(pfad))
 }

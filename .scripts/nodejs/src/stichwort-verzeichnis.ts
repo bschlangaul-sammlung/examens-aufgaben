@@ -21,7 +21,9 @@ export class StichwortBaum {
   constructor () {
     this.flach = new Set<string>()
     const roherBaum = yaml.safeLoad(leseRepoDatei('Stichwortverzeichnis.yml'))
-    if (roherBaum == null) zeigeFehler('Konnte die Konfigurationsdatei nicht lesen')
+    if (roherBaum == null) {
+      zeigeFehler('Konnte die Konfigurationsdatei nicht lesen')
+    }
     this.baum = this.normalisiereBaum(roherBaum)
   }
 
@@ -42,9 +44,6 @@ export class StichwortBaum {
    * Da die YAML-Datei wegen der Anzeige in der README-Datei alle
    * Stichwörter mit einem vorangstellten `- ` auflistete, ist die
    * Ausgabe aus der YAML-Datei sehr verschachtelt
-   *
-   * @param eingang
-   * @param ausgang
    */
   normalisiereBaum (eingang: any, ausgang?: Baum): Baum {
     if (ausgang == null) ausgang = {}
@@ -63,7 +62,7 @@ export class StichwortBaum {
         }
       }
     } else {
-      zeigeFehler(`Unbekannter Datentyp für den Stichwortbaum: ${ausgang}`)
+      zeigeFehler('Unbekannter Datentyp für den Stichwortbaum')
     }
     return ausgang
   }
@@ -75,11 +74,11 @@ export class StichwortBaum {
         if (typeof baum[s] === 'boolean') {
           return true
         } else {
-          return <Baum>baum[s]
+          return baum[s] as Baum
         }
       } else if (typeof baum[s] === 'object') {
-        const ergebnis = this.gibUnterBaum(stichwort, <Baum>baum[s])
-        if (ergebnis) return ergebnis
+        const ergebnis = this.gibUnterBaum(stichwort, baum[s] as Baum)
+        if (ergebnis != null) return ergebnis
       }
     }
     return false
@@ -92,7 +91,7 @@ export class StichwortBaum {
         flacherBaum.add(s)
       } else {
         flacherBaum.add(s)
-        this.verflacheBaum(<Baum>baum[s], flacherBaum)
+        this.verflacheBaum(baum[s] as Baum, flacherBaum)
       }
     }
     return flacherBaum
@@ -100,11 +99,10 @@ export class StichwortBaum {
 
   /**
    * Das übergebene Stichwort ist in der flachen Stichwortliste enthalten.
-   * @param stichwort
    */
   gibFlacheListe (stichwort: string): Set<string> {
     const unterBaum = this.gibUnterBaum(stichwort)
-    if (!unterBaum) {
+    if (unterBaum === false) {
       return new Set()
     } else if (unterBaum === true) {
       return new Set([stichwort])
@@ -148,7 +146,7 @@ export class StichwortVerzeichnis {
               `Das Stichwort „${stichwort}“ in der Datei „${pfad}“ gibt es nicht.`
             )
           }
-          if (this.verzeichnis[stichwort]) {
+          if (this.verzeichnis[stichwort] != null) {
             this.verzeichnis[stichwort].add(aufgabe)
           } else {
             this.verzeichnis[stichwort] = new Set<Aufgabe>()
@@ -160,7 +158,7 @@ export class StichwortVerzeichnis {
   }
 
   gibAufgabenMitStichwort (stichwort: string): Set<Aufgabe> {
-    if (this.verzeichnis[stichwort]) {
+    if (this.verzeichnis[stichwort] != null) {
       return this.verzeichnis[stichwort]
     }
     return new Set<Aufgabe>()

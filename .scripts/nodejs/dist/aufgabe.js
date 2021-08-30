@@ -46,7 +46,7 @@ var Aufgabe = /** @class */ (function () {
         this.pfad = Aufgabe.normalisierePfad(pfad);
         if (fs_1.default.existsSync(this.pfad)) {
             this.inhalt = helfer_1.leseRepoDatei(this.pfad);
-            if (this.inhalt) {
+            if (this.inhalt != null) {
                 this.stichwörter = tex_1.sammleStichwörter(this.inhalt);
                 this.titel = tex_1.gibInhaltEinesTexMakros('liAufgabenTitel', this.inhalt);
             }
@@ -75,7 +75,7 @@ var Aufgabe = /** @class */ (function () {
         }
         var ergebnis = {};
         if (this.inhalt != null) {
-            var match = this.inhalt.match(new RegExp('\\liSetzeAufgabenTitel{(.*)\n}', 's'));
+            var match = this.inhalt.match(new RegExp(/\\liSetzeAufgabenTitel{(.*)\n}/, 's'));
             if (match != null) {
                 var zeilen = match[1];
                 try {
@@ -101,7 +101,7 @@ var Aufgabe = /** @class */ (function () {
     Object.defineProperty(Aufgabe.prototype, "titelFormatiert", {
         get: function () {
             var titel;
-            if (this.titel) {
+            if (this.titel != null) {
                 titel = "\u201E" + this.titel + "\u201C";
             }
             else {
@@ -114,7 +114,7 @@ var Aufgabe = /** @class */ (function () {
     });
     Object.defineProperty(Aufgabe.prototype, "stichw\u00F6rterFormatiert", {
         get: function () {
-            if (this.stichwörter && this.stichwörter.length > 0) {
+            if (this.stichwörter != null && this.stichwörter.length > 0) {
                 return " (" + this.stichwörter.join(', ') + ")";
             }
             return '';
@@ -188,10 +188,10 @@ var ExamensAufgabe = /** @class */ (function (_super) {
         }
         var gruppen = treffer.groups;
         _this.aufgabe = parseInt(gruppen.aufgabe);
-        if (gruppen.thema) {
+        if (gruppen.thema != null) {
             _this.thema = parseInt(gruppen.thema);
         }
-        if (gruppen.teilaufgabe) {
+        if (gruppen.teilaufgabe != null) {
             _this.teilaufgabe = parseInt(gruppen.teilaufgabe);
         }
         return _this;
@@ -212,10 +212,10 @@ var ExamensAufgabe = /** @class */ (function (_super) {
     Object.defineProperty(ExamensAufgabe.prototype, "aufgabenReferenz", {
         get: function () {
             var output = [];
-            if (this.thema) {
+            if (this.thema != null) {
                 output.push("T" + this.thema);
             }
-            if (this.teilaufgabe) {
+            if (this.teilaufgabe != null) {
                 output.push("TA" + this.teilaufgabe);
             }
             output.push("A" + this.aufgabe);
@@ -227,8 +227,9 @@ var ExamensAufgabe = /** @class */ (function (_super) {
     Object.defineProperty(ExamensAufgabe.prototype, "titelKurz", {
         get: function () {
             var ausgabe = this.examen.titelKurz + " " + this.aufgabenReferenz;
-            if (this.titel)
+            if (this.titel != null) {
                 return "\u201E" + this.titel + "\u201C " + ausgabe;
+            }
             return ausgabe;
         },
         enumerable: false,
@@ -262,10 +263,10 @@ var ExamensAufgabe = /** @class */ (function (_super) {
         configurable: true
     });
     ExamensAufgabe.erzeugePfad = function (arg1, arg2, arg3) {
-        if (arg1 && arg2 && arg3) {
+        if (arg1 != null && arg2 != null && arg3 != null) {
             return path_1.default.join("Thema-" + arg1, "Teilaufgabe-" + arg2, "Aufgabe-" + arg3 + ".tex");
         }
-        else if (arg1 && arg2 && !arg3) {
+        else if (arg1 != null && arg2 != null && arg3 == null) {
             return path_1.default.join("Thema-" + arg1, "Aufgabe-" + arg2 + ".tex");
         }
         else {

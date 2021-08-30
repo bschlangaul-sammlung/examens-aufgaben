@@ -1,7 +1,7 @@
 import { stichwortVerzeichnis, stichwortBaum } from '../sammlung'
 import { öffneProgramm } from '../helfer'
 
-export function öffneDurchStichwort (stichwort: string) {
+export function öffneDurchStichwort (stichwort: string): void {
   const aufgaben = stichwortVerzeichnis.gibAufgabenMitStichwort(stichwort)
 
   if (aufgaben.size === 0) {

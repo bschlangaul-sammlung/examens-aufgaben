@@ -59,7 +59,7 @@ export class Aufgabe {
     this.pfad = Aufgabe.normalisierePfad(pfad)
     if (fs.existsSync(this.pfad)) {
       this.inhalt = leseRepoDatei(this.pfad)
-      if (this.inhalt) {
+      if (this.inhalt != null) {
         this.stichwörter = sammleStichwörter(this.inhalt)
         this.titel = gibInhaltEinesTexMakros('liAufgabenTitel', this.inhalt)
       }
@@ -91,7 +91,7 @@ export class Aufgabe {
     const ergebnis: any = {}
     if (this.inhalt != null) {
       const match = this.inhalt.match(
-        new RegExp('\\liSetzeAufgabenTitel{(.*)\n}', 's')
+        new RegExp(/\\liSetzeAufgabenTitel{(.*)\n}/, 's')
       )
       if (match != null) {
         const zeilen = match[1]
@@ -108,7 +108,7 @@ export class Aufgabe {
 
   get titelFormatiert (): string {
     let titel: string
-    if (this.titel) {
+    if (this.titel != null) {
       titel = `„${this.titel}“`
     } else {
       titel = 'Aufgabe'
@@ -118,7 +118,7 @@ export class Aufgabe {
   }
 
   get stichwörterFormatiert (): string {
-    if (this.stichwörter && this.stichwörter.length > 0) {
+    if (this.stichwörter != null && this.stichwörter.length > 0) {
       return ` (${this.stichwörter.join(', ')})`
     }
     return ''
@@ -187,10 +187,10 @@ export class ExamensAufgabe extends Aufgabe {
     }
     const gruppen = treffer.groups
     this.aufgabe = parseInt(gruppen.aufgabe)
-    if (gruppen.thema) {
+    if (gruppen.thema != null) {
       this.thema = parseInt(gruppen.thema)
     }
-    if (gruppen.teilaufgabe) {
+    if (gruppen.teilaufgabe != null) {
       this.teilaufgabe = parseInt(gruppen.teilaufgabe)
     }
   }
@@ -208,10 +208,10 @@ export class ExamensAufgabe extends Aufgabe {
 
   get aufgabenReferenz (): string {
     const output = []
-    if (this.thema) {
+    if (this.thema != null) {
       output.push(`T${this.thema}`)
     }
-    if (this.teilaufgabe) {
+    if (this.teilaufgabe != null) {
       output.push(`TA${this.teilaufgabe}`)
     }
     output.push(`A${this.aufgabe}`)
@@ -220,7 +220,9 @@ export class ExamensAufgabe extends Aufgabe {
 
   get titelKurz (): string {
     const ausgabe = `${this.examen.titelKurz} ${this.aufgabenReferenz}`
-    if (this.titel) return `„${this.titel}“ ${ausgabe}`
+    if (this.titel != null) {
+      return `„${this.titel}“ ${ausgabe}`
+    }
     return ausgabe
   }
 
@@ -232,7 +234,7 @@ export class ExamensAufgabe extends Aufgabe {
     return ausgabe
   }
 
-  get dateiName () {
+  get dateiName (): string {
     const aufgabenReferenz = this.aufgabenReferenz.replace(/ /g, '-')
     return `${this.examen.dateiName}_${aufgabenReferenz}`
   }
@@ -248,13 +250,13 @@ export class ExamensAufgabe extends Aufgabe {
   }
 
   static erzeugePfad (arg1: number, arg2?: number, arg3?: number): string {
-    if (arg1 && arg2 && arg3) {
+    if (arg1 != null && arg2 != null && arg3 != null) {
       return path.join(
         `Thema-${arg1}`,
         `Teilaufgabe-${arg2}`,
         `Aufgabe-${arg3}.tex`
       )
-    } else if (arg1 && arg2 && !arg3) {
+    } else if (arg1 != null && arg2 != null && arg3 == null) {
       return path.join(`Thema-${arg1}`, `Aufgabe-${arg2}.tex`)
     } else {
       return `Aufgabe-${arg1}.tex`
