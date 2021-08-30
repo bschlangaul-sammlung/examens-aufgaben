@@ -65,7 +65,7 @@ function macheTex (titel: AufgabenMetadaten): string {
     schlüsselWertPaare.push(`  ${schlüssel} = ${wert},`)
   })
   const schlüsselWerte: string = schlüsselWertPaare.join('\n')
-  return `\\liSetzeAufgabenTitel{\n${schlüsselWerte}\n}`
+  return `\\liAufgabenMetadaten{\n${schlüsselWerte}\n}`
 }
 
 export function schreibeTitel (
@@ -77,9 +77,9 @@ export function schreibeTitel (
 
   titelTexMakro += '\n'
 
-  if (aufgabenInhalt.includes('\\liSetzeAufgabenTitel{')) {
+  if (aufgabenInhalt.includes('\\liAufgabenMetadaten{')) {
     // /s s (dotall) modifier, +? one or more (non-greedy)
-    const regexp = new RegExp(/\\liSetzeAufgabenTitel\{.+?,?\n\}\n/, 's')
+    const regexp = new RegExp(/\\liAufgabenMetadaten\{.+?,?\n\}\n/, 's')
     aufgabenTitelErsetzt = aufgabenInhalt.replace(regexp, titelTexMakro)
   } else {
     aufgabenTitelErsetzt = aufgabenInhalt.replace(
@@ -97,7 +97,7 @@ export function schreibeTitel (
 
 /**
  * ```latex
- * \liSetzeAufgabenTitel{
+ * \liAufgabenMetadaten{
  *   Titel = Aufgabe 2,
  *   Thematik = Petri-Netz,
  *   RelativerPfad = Staatsexamen/46116/2016/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex,
@@ -111,7 +111,7 @@ export function schreibeTitel (
  * }
  * ```
  */
-export function erzeugeAufgabenTitel (dateiPfad: string): void {
+export function erzeugeAufgabenMetadaten (dateiPfad: string): void {
   dateiPfad = path.resolve(dateiPfad)
   const aufgabe = aufgabenSammlung.gib(dateiPfad)
 

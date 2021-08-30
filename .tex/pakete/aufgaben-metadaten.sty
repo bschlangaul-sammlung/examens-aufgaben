@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesPackage{lehramt-informatik-aufgaben-titel}[2020/07/07 Zum
-Setzen von Aufgaben-Titel.]
+\ProvidesPackage{lehramt-informatik-aufgaben-metadaten}[2020/07/07 Makros zum
+Setzen der Aufgaben-Metadaten.]
 %    \end{macrocode}
 
 %    \begin{macrocode}
@@ -15,18 +15,22 @@ Setzen von Aufgaben-Titel.]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liSetzeAufgabenTitel}
-% Setzen des Titels über eine plist bzw über key-values. Das Makro
-% sollte irgendwann einmal in |\liAufgabenTitel| umbenannt werden.
+% \begin{macro}{\liAufgabenMetadaten}
+% Setzen der Aufgaben-Metadaten über eine plist bzw. über key-values.
 %
-% Die Schlüssel-Werte-Paare sind in der Datei basis.sty definiert.
+% Die Schlüssel-Werte-Paare sind in der Datei basis.sty definiert. In der
+% Typescript-Datei |.scripts/nodejs/src/aufgaben.ts| gibt es ein entsprechendes
+% Interface |AufgabenMetadaten|.
 %
 % \begin{verbatim}
-% \liSetzeAufgabenTitel{
-%   Titel = Aufgabe 2,
-%   Thematik = Petri-Netz,
+% \liAufgabenMetadaten{
+%   Titel = {Aufgabe 2},
+%   Thematik = {Petri-Netz},
+%   Stichwoerter = {Feld (Array), Implementierung in Java}
 %   Fussnote = sosy:pu:4,
-%   FussnoteSeite = Seite 11,
+%   FussnoteSeite = {Seite 11},
+%   BearbeitungsStand = OCR,
+%   Korrektheit = absolut korrekt,
 %   RelativerPfad = Staatsexamen/46116/2016/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex,
 %   ExamenNummer = 46116,
 %   ExamenJahr = 2016,
@@ -37,13 +41,13 @@ Setzen von Aufgaben-Titel.]
 % }
 % \end{verbatim}
 %    \begin{macrocode}
-\def\liSetzeAufgabenTitel#1{
+\def\liAufgabenMetadaten#1{
 
   \_setze_variablen_zurueck:
 
   \tl_clear:N \g_auf_examen_teilaufgabe_nr_tl
 
-  \keys_set:nn { aufgabentitel } {
+  \keys_set:nn { aufgabenmetadaten } {
     #1
   }
 
@@ -51,7 +55,7 @@ Setzen von Aufgaben-Titel.]
 
   \tl_if_empty:NTF \g_auf_titel_tl
   {
-    \msg_fatal:nn { aufgabentitel } { kein-titel }
+    \msg_fatal:nn { aufgabenmetadaten } { kein-titel }
   }
   {
   }

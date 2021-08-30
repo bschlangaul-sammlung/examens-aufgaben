@@ -256,11 +256,11 @@
 %    \begin{macrocode}
 
 %    \end{macrocode}
-% \subsection{aufgaben-titel.sty}
+% \subsection{aufgaben-metadaten.sty}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesPackage{lehramt-informatik-aufgaben-titel}[2020/07/07 Zum
-Setzen von Aufgaben-Titel.]
+\ProvidesPackage{lehramt-informatik-aufgaben-metadaten}[2020/07/07 Makros zum
+Setzen der Aufgaben-Metadaten.]
 %    \end{macrocode}
 
 %    \begin{macrocode}
@@ -275,18 +275,22 @@ Setzen von Aufgaben-Titel.]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liSetzeAufgabenTitel}
-% Setzen des Titels über eine plist bzw über key-values. Das Makro
-% sollte irgendwann einmal in |\liAufgabenTitel| umbenannt werden.
+% \begin{macro}{\liAufgabenMetadaten}
+% Setzen der Aufgaben-Metadaten über eine plist bzw. über key-values.
 %
-% Die Schlüssel-Werte-Paare sind in der Datei basis.sty definiert.
+% Die Schlüssel-Werte-Paare sind in der Datei basis.sty definiert. In der
+% Typescript-Datei |.scripts/nodejs/src/aufgaben.ts| gibt es ein entsprechendes
+% Interface |AufgabenMetadaten|.
 %
 % \begin{verbatim}
-% \liSetzeAufgabenTitel{
-%   Titel = Aufgabe 2,
-%   Thematik = Petri-Netz,
+% \liAufgabenMetadaten{
+%   Titel = {Aufgabe 2},
+%   Thematik = {Petri-Netz},
+%   Stichwoerter = {Feld (Array), Implementierung in Java}
 %   Fussnote = sosy:pu:4,
-%   FussnoteSeite = Seite 11,
+%   FussnoteSeite = {Seite 11},
+%   BearbeitungsStand = OCR,
+%   Korrektheit = absolut korrekt,
 %   RelativerPfad = Staatsexamen/46116/2016/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex,
 %   ExamenNummer = 46116,
 %   ExamenJahr = 2016,
@@ -297,13 +301,13 @@ Setzen von Aufgaben-Titel.]
 % }
 % \end{verbatim}
 %    \begin{macrocode}
-\def\liSetzeAufgabenTitel#1{
+\def\liAufgabenMetadaten#1{
 
   \_setze_variablen_zurueck:
 
   \tl_clear:N \g_auf_examen_teilaufgabe_nr_tl
 
-  \keys_set:nn { aufgabentitel } {
+  \keys_set:nn { aufgabenmetadaten } {
     #1
   }
 
@@ -311,7 +315,7 @@ Setzen von Aufgaben-Titel.]
 
   \tl_if_empty:NTF \g_auf_titel_tl
   {
-    \msg_fatal:nn { aufgabentitel } { kein-titel }
+    \msg_fatal:nn { aufgabenmetadaten } { kein-titel }
   }
   {
   }
@@ -811,14 +815,22 @@ Setzen von Aufgaben-Titel.]
 
 % Definition einer Komma-getrennten-Liste mit deren Hilfe die
 % vielen globalen Token-List-Variablen definiert werden können.
+% Die einzelnen Schlüssel sind im Interface |AufgabenMetadaten| in der
+% Typescript-Datei |.scripts/nodejs/src/aufgaben.ts| erklärt.
 %    \begin{macrocode}
 \clist_new:N \g_auf_schluessel_clist
 \clist_set:Nn \g_auf_schluessel_clist {
   titel,
   thematik,
+  stichwoerter,
   fussnote,
   fussnote_seite,
+  %
+  bearbeitungs_stand,
+  korrektheit,
+  %
   relativer_pfad,
+  %
   examen_nummer,
   examen_jahr,
   examen_monat,
@@ -845,14 +857,22 @@ Setzen von Aufgaben-Titel.]
 }
 %    \end{macrocode}
 
+% Die einzelnen Schlüssel sind im Interface |AufgabenMetadaten| in der
+% Typescript-Datei |.scripts/nodejs/src/aufgaben.ts| erklärt.
 %    \begin{macrocode}
-\keys_define:nn { aufgabentitel }
+\keys_define:nn { aufgabenmetadaten }
 {
   Titel .tl_gset:N = \g_auf_titel_tl,
   Thematik .tl_gset:N = \g_auf_thematik_tl,
+  Stichwoerter .tl_gset:N = \g_auf_stichwoerter_tl,
   Fussnote .tl_gset:N = \g_auf_fussnote_tl,
   FussnoteSeite .tl_gset:N = \g_auf_fussnote_seite_tl,
+  %
+  BearbeitungsStand .tl_gset:N = \g_auf_bearbeitungs_stand_tl,
+  Korrektheit .tl_gset:N = \g_auf_korrektheit_tl,
+  %
   RelativerPfad .tl_gset:N = \g_auf_relativer_pfad_tl,
+  %
   ExamenNummer .tl_gset:N = \g_auf_examen_nummer_tl,
   ExamenJahr .tl_gset:N = \g_auf_examen_jahr_tl,
   ExamenMonat .tl_gset:N = \g_auf_examen_monat_tl,
@@ -960,7 +980,7 @@ Setzen von Aufgaben-Titel.]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\msg_new:nnn { aufgabentitel } { kein-titel }
+\msg_new:nnn { aufgabenmetadaten } { kein-titel }
   { Der~Schlüssel~ist~zwingend~notwendig }
 %    \end{macrocode}
 

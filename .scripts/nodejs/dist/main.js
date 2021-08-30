@@ -11,7 +11,7 @@ const glob_1 = __importDefault(require("glob"));
 const commander_1 = require("commander");
 const aufgabe_1 = require("./aufgabe");
 const helfer_1 = require("./helfer");
-const erzeuge_aufgaben_titel_1 = require("./aktionen/erzeuge-aufgaben-titel");
+const erzeuge_aufgaben_metadaten_1 = require("./aktionen/erzeuge-aufgaben-metadaten");
 const erzeuge_aufgaben_vorlage_1 = require("./aktionen/erzeuge-aufgaben-vorlage");
 const erzeuge_examens_aufgabe_vorlage_1 = require("./aktionen/erzeuge-examens-aufgabe-vorlage");
 const erzeuge_readme_1 = require("./aktionen/erzeuge-readme");
@@ -282,5 +282,5 @@ programm
     .command('aufgaben-titel <texDatei>')
     .alias('at')
     .description('Erzeuge den Titlel in einer TeX-Datei')
-    .action(erzeuge_aufgaben_titel_1.erzeugeAufgabenTitel);
+    .action(erzeuge_aufgaben_metadaten_1.erzeugeAufgabenMetadaten);
 programm.parse(process.argv);

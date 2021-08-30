@@ -68,14 +68,22 @@
 
 % Definition einer Komma-getrennten-Liste mit deren Hilfe die
 % vielen globalen Token-List-Variablen definiert werden können.
+% Die einzelnen Schlüssel sind im Interface |AufgabenMetadaten| in der
+% Typescript-Datei |.scripts/nodejs/src/aufgaben.ts| erklärt.
 %    \begin{macrocode}
 \clist_new:N \g_auf_schluessel_clist
 \clist_set:Nn \g_auf_schluessel_clist {
   titel,
   thematik,
+  stichwoerter,
   fussnote,
   fussnote_seite,
+  %
+  bearbeitungs_stand,
+  korrektheit,
+  %
   relativer_pfad,
+  %
   examen_nummer,
   examen_jahr,
   examen_monat,
@@ -102,14 +110,22 @@
 }
 %    \end{macrocode}
 
+% Die einzelnen Schlüssel sind im Interface |AufgabenMetadaten| in der
+% Typescript-Datei |.scripts/nodejs/src/aufgaben.ts| erklärt.
 %    \begin{macrocode}
-\keys_define:nn { aufgabentitel }
+\keys_define:nn { aufgabenmetadaten }
 {
   Titel .tl_gset:N = \g_auf_titel_tl,
   Thematik .tl_gset:N = \g_auf_thematik_tl,
+  Stichwoerter .tl_gset:N = \g_auf_stichwoerter_tl,
   Fussnote .tl_gset:N = \g_auf_fussnote_tl,
   FussnoteSeite .tl_gset:N = \g_auf_fussnote_seite_tl,
+  %
+  BearbeitungsStand .tl_gset:N = \g_auf_bearbeitungs_stand_tl,
+  Korrektheit .tl_gset:N = \g_auf_korrektheit_tl,
+  %
   RelativerPfad .tl_gset:N = \g_auf_relativer_pfad_tl,
+  %
   ExamenNummer .tl_gset:N = \g_auf_examen_nummer_tl,
   ExamenJahr .tl_gset:N = \g_auf_examen_jahr_tl,
   ExamenMonat .tl_gset:N = \g_auf_examen_monat_tl,
@@ -217,7 +233,7 @@
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\msg_new:nnn { aufgabentitel } { kein-titel }
+\msg_new:nnn { aufgabenmetadaten } { kein-titel }
   { Der~Schlüssel~ist~zwingend~notwendig }
 %    \end{macrocode}
 

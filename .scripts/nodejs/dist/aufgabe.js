@@ -18,12 +18,21 @@ class Aufgabe {
          */
         this.istExamen = false;
         this.pfad = Aufgabe.normalisierePfad(pfad);
-        if (fs_1.default.existsSync(this.pfad)) {
-            this.inhalt = helfer_1.leseRepoDatei(this.pfad);
-            if (this.inhalt != null) {
-                this.stichwörter = tex_1.sammleStichwörter(this.inhalt);
-                this.titel = tex_1.gibInhaltEinesTexMakros('liAufgabenTitel', this.inhalt);
-            }
+        if (!fs_1.default.existsSync(this.pfad)) {
+            throw new Error(`Die Aufgabe mit dem Dateipfad ${this.pfad} existiert nicht.`);
+        }
+        this.inhalt = helfer_1.leseRepoDatei(this.pfad);
+        this.stichwörter = tex_1.sammleStichwörter(this.inhalt);
+        this.titel = tex_1.gibInhaltEinesTexMakros('liAufgabenTitel', this.inhalt);
+        const metaDaten = this.leseMetadataVonTex();
+        if (metaDaten != null) {
+            this.metaDaten = metaDaten;
+        }
+        else {
+            this.metaDaten = {
+                Titel: '',
+                RelativerPfad: this.relativerPfad
+            };
         }
     }
     static normalisierePfad(pfad) {
@@ -38,6 +47,22 @@ class Aufgabe {
         }
         return false;
     }
+    /**
+     * ```tex
+     * \liAufgabenMetadaten{
+     *   Titel = {Aufgabe 5},
+     *   Thematik = {Regal mit DVDs, CDs und BDs},
+     *   RelativerPfad = Staatsexamen/66116/2014/09/Thema-2/Teilaufgabe-2/Aufgabe-5.tex,
+     *   Fussnote = examen:66116:2014:09,
+     *   ExamenNummer = 66116,
+     *   ExamenJahr = 2014,
+     *   ExamenMonat = 09,
+     *   ExamenThemaNr = 2,
+     *   ExamenTeilaufgabeNr = 2,
+     *   ExamenAufgabeNr = 5,
+     * }
+     * ```
+     */
     leseMetadataVonTex() {
         function reinige(text) {
             text = text.trim();
@@ -47,18 +72,16 @@ class Aufgabe {
             return text;
         }
         const ergebnis = {};
-        if (this.inhalt != null) {
-            const match = this.inhalt.match(new RegExp(/\\liSetzeAufgabenTitel{(.*)\n}/, 's'));
-            if (match != null) {
-                const zeilen = match[1];
-                for (const zeile of zeilen.split('\n')) {
-                    const schlüsselWert = zeile.split('=');
-                    if (schlüsselWert.length === 2) {
-                        ergebnis[reinige(schlüsselWert[0])] = reinige(schlüsselWert[1]);
-                    }
+        const match = this.inhalt.match(new RegExp(/\\liAufgabenMetadaten{(.*)\n}/, 's'));
+        if (match != null) {
+            const zeilen = match[1];
+            for (const zeile of zeilen.split('\n')) {
+                const schlüsselWert = zeile.split('=');
+                if (schlüsselWert.length === 2) {
+                    ergebnis[reinige(schlüsselWert[0])] = reinige(schlüsselWert[1]);
                 }
-                return ergebnis;
             }
+            return ergebnis;
         }
     }
     get titelFormatiert() {

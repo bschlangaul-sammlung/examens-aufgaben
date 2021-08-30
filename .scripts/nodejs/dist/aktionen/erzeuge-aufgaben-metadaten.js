@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.erzeugeAufgabenTitel = exports.schreibeTitel = void 0;
+exports.erzeugeAufgabenMetadaten = exports.schreibeTitel = void 0;
 const path_1 = __importDefault(require("path"));
 const sammlung_1 = require("../sammlung");
 const helfer_1 = require("../helfer");
@@ -94,7 +94,7 @@ exports.schreibeTitel = schreibeTitel;
  * }
  * ```
  */
-function erzeugeAufgabenTitel(dateiPfad) {
+function erzeugeAufgabenMetadaten(dateiPfad) {
     dateiPfad = path_1.default.resolve(dateiPfad);
     const aufgabe = sammlung_1.aufgabenSammlung.gib(dateiPfad);
     const titel = sammleDaten(aufgabe);
@@ -105,4 +105,4 @@ function erzeugeAufgabenTitel(dateiPfad) {
     }
     console.log(texMarkup);
 }
-exports.erzeugeAufgabenTitel = erzeugeAufgabenTitel;
+exports.erzeugeAufgabenMetadaten = erzeugeAufgabenMetadaten;

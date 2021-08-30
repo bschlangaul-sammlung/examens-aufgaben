@@ -1,11 +1,13 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{syntax,uml}
 \begin{document}
-\liAufgabenTitel{Flughafen}
-
-\section{Listen
-\index{Warteschlange (Queue)}
-\footcite[Aufgabe 3]{aud:e-klausur}}
+\liAufgabenMetadaten{
+  Titel = {Listen},
+  Thematik = {Flughafen},
+  RelativerPfad = Module/30_AUD/70_Listen/20_Warteschlange/Aufgabe_Flughafen.tex,
+  FussnoteSeite = {Aufgabe 3},
+  Fussnote = aud:e-klausur,
+}
 
 Am Nürnberger Flughafen starten und landen täglich viele Flugzeuge. Der
 Flughafen verfügt jedoch nur über eine einzige Start- bzw. Landebahn,
@@ -13,6 +15,8 @@ sodass Starts und Landungen gemeinsam koordiniert werden müssen. Für die
 interne Verwaltung, welcher Flieger als nächstes bearbeitet werden soll,
 wird eine neue Software entwickelt. Sie haben die Aufgabe einen Teil
 dieser Software zu erstellen.
+\index{Warteschlange (Queue)}
+\footcite[Aufgabe 3]{aud:e-klausur}
 
 Das folgende UML-Klassendiagramm gibt einen Überblick über den für Sie
 relevanten Teil der Software:
@@ -40,7 +44,6 @@ relevanten Teil der Software:
 \umluniassoc[arg=~erstes,mult=0..1,pos=0.6]{Warteschlange}{Ticket}
 \umluniassoc[arg=+flug,mult=0..1,pos=0.8]{Ticket}{Flug}
 \umluniassoc[arg=+nächstes,mult=0..1,pos=0.8,loopsize=2cm,angle1=0,angle2=-30]{Ticket}{Ticket}
-
 \end{tikzpicture}
 \end{center}
 

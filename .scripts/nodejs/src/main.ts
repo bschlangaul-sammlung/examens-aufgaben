@@ -18,7 +18,7 @@ import {
   öffneProgramm
 } from './helfer'
 
-import { erzeugeAufgabenTitel } from './aktionen/erzeuge-aufgaben-titel'
+import { erzeugeAufgabenMetadaten } from './aktionen/erzeuge-aufgaben-metadaten'
 import { erzeugeAufgabenVorlage } from './aktionen/erzeuge-aufgaben-vorlage'
 import { erzeugeExamensAufgabeVorlage } from './aktionen/erzeuge-examens-aufgabe-vorlage'
 import { erzeugeReadme } from './aktionen/erzeuge-readme'
@@ -372,6 +372,6 @@ programm
   .command('aufgaben-titel <texDatei>')
   .alias('at')
   .description('Erzeuge den Titlel in einer TeX-Datei')
-  .action(erzeugeAufgabenTitel)
+  .action(erzeugeAufgabenMetadaten)
 
 programm.parse(process.argv)

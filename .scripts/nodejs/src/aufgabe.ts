@@ -16,21 +16,48 @@ import { Examen, ExamenSammlung } from './examen'
  * Die Attribute beginnen hier mit Großbuchstaben, damit sie nicht für
  * die TeX-Ausgabe konvertiert werden müssen. Wir verwenden `PascalCase` als
  * Schlüsselnamen ähnlich wie das TeX-Paket `fontspec`.
+ *
+ * Siehe `.tex/pakete/aufgaben-metadaten.sty` und `.tex/pakete/basis.sty`
  */
 export interface AufgabenMetadaten {
   Titel: string
   Thematik?: string
-  RelativerPfad: string
+
+  /**
+   * Alle Stichwörter mit `, ` zu einem String zusammengefügt.
+   */
+  Stichwoerter?: string
+
+  /**
+   * Erstes Makro `\footcite`, der Inhalt in den geschweiften Klammern, z. B.
+   * `\footcite[Aufgabe 2]{aud:ab:7}`: `aud:ab:7`
+   *
+   * @TODO: Sollte Zitat heißen
+   */
   Fussnote?: string
+
+  /**
+   * Erstes Makro `\footcite`, der Inhalt in den eckigen Klammern, z. B.
+   * `\footcite[Aufgabe 2]{aud:ab:7}`: `Aufgabe 2`
+   *
+   * @TODO: Sollte ZitatBeschreibung heißen
+   */
   FussnoteSeite?: string
+
+  BearbeitungsStand?: 'OCR' | 'TeX'
+  Korrektheit?: 'unsicher' | 'absolut korrekt'
+
+  /**
+   * Der relative Datei-Pfad der Aufgabe, z. B. `Staatsexamen/46116/2016/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex`
+   */
+  RelativerPfad: string
+
   ExamenNummer?: number
   ExamenJahr?: number
   ExamenMonat?: string
   ExamenThemaNr?: number
   ExamenTeilaufgabeNr?: number
   ExamenAufgabeNr?: number
-  BearbeitungsStand?: 'OCR' | 'TeX'
-  Korrektheit?: 'unsicher' | 'absolut korrekt'
 }
 
 export class Aufgabe {
@@ -42,10 +69,12 @@ export class Aufgabe {
   /**
    * Der Textinhalt der Aufgabe, d. h. das TeX-Markup als String.
    */
-  inhalt?: string
+  inhalt: string
 
   stichwörter: string[] = []
   titel?: string
+
+  metaDaten: AufgabenMetadaten
 
   /**
    * Zeigt an, ob die Aufgabe eine normale Aufgabe ist oder eine Examensaufgabe.
@@ -57,11 +86,22 @@ export class Aufgabe {
 
   constructor (pfad: string) {
     this.pfad = Aufgabe.normalisierePfad(pfad)
-    if (fs.existsSync(this.pfad)) {
-      this.inhalt = leseRepoDatei(this.pfad)
-      if (this.inhalt != null) {
-        this.stichwörter = sammleStichwörter(this.inhalt)
-        this.titel = gibInhaltEinesTexMakros('liAufgabenTitel', this.inhalt)
+    if (!fs.existsSync(this.pfad)) {
+      throw new Error(
+        `Die Aufgabe mit dem Dateipfad ${this.pfad} existiert nicht.`
+      )
+    }
+    this.inhalt = leseRepoDatei(this.pfad)
+    this.stichwörter = sammleStichwörter(this.inhalt)
+    this.titel = gibInhaltEinesTexMakros('liAufgabenTitel', this.inhalt)
+
+    const metaDaten = this.leseMetadataVonTex()
+    if (metaDaten != null) {
+      this.metaDaten = metaDaten
+    } else {
+      this.metaDaten = {
+        Titel: '',
+        RelativerPfad: this.relativerPfad
       }
     }
   }
@@ -80,6 +120,22 @@ export class Aufgabe {
     return false
   }
 
+  /**
+   * ```tex
+   * \liAufgabenMetadaten{
+   *   Titel = {Aufgabe 5},
+   *   Thematik = {Regal mit DVDs, CDs und BDs},
+   *   RelativerPfad = Staatsexamen/66116/2014/09/Thema-2/Teilaufgabe-2/Aufgabe-5.tex,
+   *   Fussnote = examen:66116:2014:09,
+   *   ExamenNummer = 66116,
+   *   ExamenJahr = 2014,
+   *   ExamenMonat = 09,
+   *   ExamenThemaNr = 2,
+   *   ExamenTeilaufgabeNr = 2,
+   *   ExamenAufgabeNr = 5,
+   * }
+   * ```
+   */
   leseMetadataVonTex (): AufgabenMetadaten | undefined {
     function reinige (text: string): string {
       text = text.trim()
@@ -89,20 +145,18 @@ export class Aufgabe {
       return text
     }
     const ergebnis: any = {}
-    if (this.inhalt != null) {
-      const match = this.inhalt.match(
-        new RegExp(/\\liSetzeAufgabenTitel{(.*)\n}/, 's')
-      )
-      if (match != null) {
-        const zeilen = match[1]
-        for (const zeile of zeilen.split('\n')) {
-          const schlüsselWert = zeile.split('=')
-          if (schlüsselWert.length === 2) {
-            ergebnis[reinige(schlüsselWert[0])] = reinige(schlüsselWert[1])
-          }
+    const match = this.inhalt.match(
+      new RegExp(/\\liAufgabenMetadaten{(.*)\n}/, 's')
+    )
+    if (match != null) {
+      const zeilen = match[1]
+      for (const zeile of zeilen.split('\n')) {
+        const schlüsselWert = zeile.split('=')
+        if (schlüsselWert.length === 2) {
+          ergebnis[reinige(schlüsselWert[0])] = reinige(schlüsselWert[1])
         }
-        return ergebnis as AufgabenMetadaten
       }
+      return ergebnis as AufgabenMetadaten
     }
   }
 
