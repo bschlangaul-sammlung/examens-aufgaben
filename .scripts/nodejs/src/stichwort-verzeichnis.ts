@@ -46,7 +46,9 @@ export class StichwortBaum {
    * Ausgabe aus der YAML-Datei sehr verschachtelt
    */
   normalisiereBaum (eingang: any, ausgang?: Baum): Baum {
-    if (ausgang == null) ausgang = {}
+    if (ausgang == null) {
+      ausgang = {}
+    }
     if (typeof eingang === 'string') {
       if (!this.fügeStichwortSicherHinzu(eingang)) {
         ausgang[eingang] = true
@@ -67,25 +69,30 @@ export class StichwortBaum {
     return ausgang
   }
 
-  gibUnterBaum (stichwort: string, baum?: Baum): Baum | boolean {
-    if (baum == null) baum = this.baum
+  gibUnterBaum (stichwort: string, baum?: Baum): Baum | undefined {
+    if (baum == null) {
+      baum = this.baum
+    }
     for (const s in baum) {
       if (s === stichwort) {
         if (typeof baum[s] === 'boolean') {
-          return true
+          return { [stichwort]: true }
         } else {
           return baum[s] as Baum
         }
       } else if (typeof baum[s] === 'object') {
         const ergebnis = this.gibUnterBaum(stichwort, baum[s] as Baum)
-        if (ergebnis != null) return ergebnis
+        if (ergebnis != null) {
+          return ergebnis
+        }
       }
     }
-    return false
   }
 
   private verflacheBaum (baum: Baum, flacherBaum?: Set<string>): Set<string> {
-    if (flacherBaum == null) flacherBaum = new Set<string>()
+    if (flacherBaum == null) {
+      flacherBaum = new Set<string>()
+    }
     for (const s in baum) {
       if (baum[s] === true) {
         flacherBaum.add(s)
@@ -102,10 +109,8 @@ export class StichwortBaum {
    */
   gibFlacheListe (stichwort: string): Set<string> {
     const unterBaum = this.gibUnterBaum(stichwort)
-    if (unterBaum === false) {
+    if (unterBaum == null) {
       return new Set()
-    } else if (unterBaum === true) {
-      return new Set([stichwort])
     } else {
       const flacheListe = this.verflacheBaum(unterBaum)
       flacheListe.add(stichwort)

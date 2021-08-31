@@ -36,8 +36,9 @@ class StichwortBaum {
      * Ausgabe aus der YAML-Datei sehr verschachtelt
      */
     normalisiereBaum(eingang, ausgang) {
-        if (ausgang == null)
+        if (ausgang == null) {
             ausgang = {};
+        }
         if (typeof eingang === 'string') {
             if (!this.fügeStichwortSicherHinzu(eingang)) {
                 ausgang[eingang] = true;
@@ -61,12 +62,13 @@ class StichwortBaum {
         return ausgang;
     }
     gibUnterBaum(stichwort, baum) {
-        if (baum == null)
+        if (baum == null) {
             baum = this.baum;
+        }
         for (const s in baum) {
             if (s === stichwort) {
                 if (typeof baum[s] === 'boolean') {
-                    return true;
+                    return { [stichwort]: true };
                 }
                 else {
                     return baum[s];
@@ -74,15 +76,16 @@ class StichwortBaum {
             }
             else if (typeof baum[s] === 'object') {
                 const ergebnis = this.gibUnterBaum(stichwort, baum[s]);
-                if (ergebnis != null)
+                if (ergebnis != null) {
                     return ergebnis;
+                }
             }
         }
-        return false;
     }
     verflacheBaum(baum, flacherBaum) {
-        if (flacherBaum == null)
+        if (flacherBaum == null) {
             flacherBaum = new Set();
+        }
         for (const s in baum) {
             if (baum[s] === true) {
                 flacherBaum.add(s);
@@ -99,11 +102,8 @@ class StichwortBaum {
      */
     gibFlacheListe(stichwort) {
         const unterBaum = this.gibUnterBaum(stichwort);
-        if (unterBaum === false) {
+        if (unterBaum == null) {
             return new Set();
-        }
-        else if (unterBaum === true) {
-            return new Set([stichwort]);
         }
         else {
             const flacheListe = this.verflacheBaum(unterBaum);
