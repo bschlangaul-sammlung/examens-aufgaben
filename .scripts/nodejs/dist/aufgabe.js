@@ -107,6 +107,9 @@ class Aufgabe {
                 meta.Fussnote = fussnoteZitat[3];
             }
         }
+        meta.Titel = umgebeMitKlammern(meta.Titel);
+        if (meta.Thematik != null)
+            meta.Thematik = umgebeMitKlammern(meta.Thematik);
         return meta;
     }
     get titelFormatiert() {

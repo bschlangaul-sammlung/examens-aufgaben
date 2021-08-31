@@ -920,8 +920,10 @@ OCR des oben genannten Scans:
 - 2014 Frühjahr: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/OCR.txt) 
     - Thema 1 
         - [Aufgabe 1 (Rekursion, Vollständige Induktion, Implementierung in Java)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Thema-1/Aufgabe-1.pdf) 
+        - [Aufgabe 2 (Binärbaum)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Thema-1/Aufgabe-2.pdf) 
         - [Aufgabe 3 (AVL-Baum)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Thema-1/Aufgabe-3.pdf) 
-        - [Aufgabe 5 (Entscheidbarkeit)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Thema-1/Aufgabe-5.pdf)
+        - [Aufgabe 5 (Entscheidbarkeit)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Thema-1/Aufgabe-5.pdf) 
+        - [Aufgabe 7 (Komplexitätstheorie)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Thema-1/Aufgabe-7.pdf)
 - 2014 Herbst: [Scan.pdf](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/Scan.pdf) [OCR.txt](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/OCR.txt) 
     - Thema 2 
         - [Aufgabe 5 (Stapel (Stack), Algorithmische Komplexität (O-Notation))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/09/Thema-2/Aufgabe-5.pdf) 
@@ -1008,7 +1010,7 @@ OCR des oben genannten Scans:
     - Thema 1 
         - [Aufgabe 4 (Polynomialzeitreduktion)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-4.pdf) 
         - [Aufgabe 5 (Quicksort)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-5.pdf) 
-        - [Aufgabe 6 (Algorithmische Komplexität (O-Notation))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-6.pdf) 
+        - [Aufgabe 6 (Algorithmische Komplexität (O-Notation), Master-Theorem)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-6.pdf) 
         - [Aufgabe 7 (Bäume)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-7.pdf) 
     - Thema 2 
         - [Aufgabe 1 (Turing-Maschine)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-2/Aufgabe-1.pdf) 

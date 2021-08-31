@@ -42,8 +42,6 @@ const glob_1 = __importDefault(require("glob"));
  *   }
  * }
  * ```
- *
- * @param {string} relativerPfad
  */
 function leseAufgaben(relativerPfad) {
     /**
@@ -62,7 +60,7 @@ function leseAufgaben(relativerPfad) {
             let unterBaum = baum;
             for (const segment of segmente) {
                 const segmentLesbar = macheSegmenteLesbar(segment);
-                if (unterBaum[segmentLesbar] != null && !segment.includes('.tex')) {
+                if (unterBaum[segmentLesbar] == null && !segment.includes('.tex')) {
                     unterBaum[segmentLesbar] = {};
                 }
                 else if (segment.includes('.tex')) {
@@ -89,10 +87,6 @@ function erzeugeEinrückung(ebene) {
  *             - [Aufgabe 1](…46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf)
  *             - [Aufgabe 3](…46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
  *```
- *
- * @param {object} aufgabenBaum
- * @param {string} pfad
- * @param {integer} ebene
  */
 function generiereAufgabenRekursiv(aufgabenBaum, pfad, ebene = 1) {
     const ausgabe = [];

@@ -50,8 +50,6 @@ interface ExamensAufgabeBaum {
  *   }
  * }
  * ```
- *
- * @param {string} relativerPfad
  */
 function leseAufgaben (relativerPfad: string): ExamensAufgabeBaum {
   /**
@@ -74,7 +72,7 @@ function leseAufgaben (relativerPfad: string): ExamensAufgabeBaum {
       let unterBaum: ExamensAufgabeBaum = baum
       for (const segment of segmente) {
         const segmentLesbar = macheSegmenteLesbar(segment)
-        if (unterBaum[segmentLesbar] != null && !segment.includes('.tex')) {
+        if (unterBaum[segmentLesbar] == null && !segment.includes('.tex')) {
           unterBaum[segmentLesbar] = {}
         } else if (segment.includes('.tex')) {
           unterBaum[segmentLesbar] = pfad
@@ -102,10 +100,6 @@ function erzeugeEinrückung (ebene: number): string {
  *             - [Aufgabe 1](…46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf)
  *             - [Aufgabe 3](…46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
  *```
- *
- * @param {object} aufgabenBaum
- * @param {string} pfad
- * @param {integer} ebene
  */
 function generiereAufgabenRekursiv (
   aufgabenBaum: ExamensAufgabeBaum,
