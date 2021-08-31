@@ -1,0 +1,75 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{uml}
+\begin{document}
+\liAufgabenTitel{Critical Path Method}
+\section{Aufgabe 1
+\index{Klassendiagramm}
+\index{Objektdiagramm}
+\footcite{examen:66116:2019:09}}
+
+Ein CPM-Netzwerk („Critical Path Method“) ist ein benannter
+Projektplan, der aus Ereignissen und Aktivitäten besteht. Ein Ereignis
+wird durch eine ganze Zahl $> 0$ identifiziert. Jede Aktivität führt von
+einem Quellereignis zu einem Zielereignis. Eine reale Aktivität hat
+einen Namen und eine Dauer (eine ganze Zahl $> 0$). Eine Pseudoaktivität
+ist anonym. Ereignisse und Pseudoaktivitäten verbrauchen keine Zeit. Zu
+jedem Ereignis gibt es einen frühesten und einen spätesten Zeitpunkt
+(eine ganze Zahl $> 0$), deren Berechnung nicht Gegenstand der Aufgabe
+ist.
+
+\begin{enumerate}
+%%
+% a)
+%%
+
+\item Erstellen Sie ein UML-Klassendiagramm zur Modellierung von
+CPM-Netzwerken. Geben Sie für Attribute jeweils den Namen und den Typ
+an. Geben Sie für Assoziationen den Namen und für jedes Ende den
+Rollennamen und die Multiplizität an. Nutzen Sie ggf. abstrakte Klassen,
+Vererbung, Komposition oder Aggregation. Verzichten Sie auf Operationen
+und Sichtbarkeiten.
+
+\begin{liAntwort}
+\begin{tikzpicture}
+\umlclass{Projektplan}{
+  name: String\\
+}{}
+
+\umlclass[below left=1.5cm and 0cm of Projektplan]{Ereignis}{
+  id: int\\
+  frühestens: int\\
+  spätestens: int
+}{}
+
+\umlclass[below right=2cm and 0cm of Projektplan,type=abstract]{AbstrakteAktivität}{
+}{}
+
+\umlclass[below left=1cm and -1cm of AbstrakteAktivität]{Aktivität}{
+  name: String\\
+  dauer: int
+}{}
+
+\umlclass[below right=1.4cm and -1cm of AbstrakteAktivität]{PseudoAktivität}{
+}{}
+
+\umlVHVaggreg[arg2=ereignisse,pos2=2.5,swap,mult2=2..*,anchor1=-140]{Projektplan}{Ereignis}
+\umlVHVaggreg[arg2=aktivitäten,pos2=2.5,mult2=1..*,anchor1=-40]{Projektplan}{AbstrakteAktivität}
+\umlVHVreal{Aktivität}{AbstrakteAktivität}
+\umlVHVreal{PseudoAktivität}{AbstrakteAktivität}
+
+\umluniassoc[arg=quelle,mult=1,anchor1=160,anchor2=20]{AbstrakteAktivität}{Ereignis}
+\umluniassoc[arg=ziel,mult=1,anchor1=-160,anchor2=-20]{AbstrakteAktivität}{Ereignis}
+\end{tikzpicture}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Erstellen Sie für das Klassendiagramm aus a) und das Beispiel aus
+der Aufgabenstellung ein Objektdiagramm. Geben Sie Rollennamen nur an,
+wenn es notwendig ist, um die Enden eines Links (Instanz einer
+Assoziation) zu unterscheiden.
+
+\end{enumerate}
+\end{document}

@@ -1,0 +1,87 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Softwarearchitektur und Agilität}
+\section{Aufgabe 3
+\index{}
+\footcite{examen:66116:2019:09}}
+
+Die Komponentenarchitektur eines Softwaresystems beschreibt die
+unterschiedlichen Softwarebausteine, deren Schnittstellen und die
+Abhängigkeiten von Softwarekomponenten wie beispielsweise Klassen. Wir
+unterscheiden zwischen der Soll- und der Ist- Architektur eines Systems.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Nennen und definieren Sie drei Qualitätsattribute von
+Software, die durch die Architektur beeinflusst werden und
+charakterisieren Sie jeweils eine „schlechte“ Architektur, die diese
+Qualitätsattribute negativ beeinflusst.
+
+\begin{liAntwort}
+\begin{description}
+\item[Skalierbarkeit] Definition: Ob die Software auch für große
+Zugriffslasten konzipiert wurde. Charakterisierung einer schlechten
+Architektur: Eine Anwendung läuft nur auf einem Server.
+
+\item[Modifizierbarkeit] Definition: Ob die Software leicht verändert,
+erweitert werden kann. Charakterisierung einer schlechten Architektur:
+Monolithische Architektur, dass kein Laden von Modulen zulässt.
+\footcite[Seite 200]{schatten}
+\footcite{wiki:softwarearchitektur}
+
+\item[Verfügbarkeit] Definition: Ob die Software ausfallsicher ist, im
+Laufenden Betrieb gewartet werden kann.  Charakterisierung einer
+schlechten Architektur: Ein-Server-Architektur, die mehrmal neugestartet
+werden muss, um ein Update einzuspielen.
+
+\end{description}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Erläutern Sie, was Information Hiding ist. Wie hängt
+Information Hiding mit Softwarearchitektur zusammen”? Wie wird
+Information Hiding auf Klassenebene in Java implementiert? Gibt es
+Situationen, in denen Information Hiding auch negative Effekte haben
+kann?
+
+\begin{liAntwort}
+Das Prinzip der Trennung von Zuständigkeiten (engl. separation of
+concerns) sorgt dafür, dass jede Komponente einer Architektur nur für
+eine einzige Aufgabe zuständig ist. Das Innenleben von Komponenten
+wird durch Schnittstellen verkapselt, was auf das Prinzip des Verbergens
+von Informationen (engl. information hiding) zurückgeht.
+\footcite{wiki:softwarearchitektur}
+
+Java: Durch die Sichbarkeits-Schlüsselwörter: private, protected
+
+Zusätzlicher Overhead durch Schnittestellen API zwischen den Modulen.
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Erklären Sie, was Refactoring ist.
+
+\begin{liAntwort}
+Verbesserungen des Code durch bessere Lesbarkeit, Wartbarkeit,
+Performanz, Sicherheit. Keine neuen Funktionen werden programmiert.
+\end{liAntwort}
+
+%%
+% d)
+%%
+
+\item Skizzieren Sie die Kernideen von Scrum inkl. der wesentlichen
+Prozessschritte, Artefakte und Rollen. Beschreiben Sie dann die Rolle
+von Ist- und Soll-Architektur in agilen Entwicklungskontexten wie Scrum.
+\end{enumerate}
+\end{document}
