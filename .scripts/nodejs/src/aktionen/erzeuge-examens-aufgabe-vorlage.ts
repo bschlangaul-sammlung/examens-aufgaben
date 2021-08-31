@@ -10,7 +10,9 @@ function überprüfeNummer (nummer: string | number): number | undefined {
   if (typeof nummer === 'string') {
     nummer = parseInt(nummer)
   }
-  if (nummer) return nummer
+  if (nummer != null) {
+    return nummer
+  }
 }
 
 function erzeugeTeXMakro (
@@ -18,14 +20,14 @@ function erzeugeTeXMakro (
   arg1: string,
   arg2?: string,
   arg3?: string
-) {
+): string {
   let aufgabe = ''
   let suffix = ''
   const examen = `${referenz.nummer} / ${referenz.jahr} / ${referenz.monat} :`
-  if (arg1 && arg2 && arg3) {
+  if (arg1 != null && arg2 != null && arg3 != null) {
     aufgabe = `Thema ${arg1} Teilaufgabe ${arg2} Aufgabe ${arg3}`
     suffix = 'TTA'
-  } else if (arg1 && arg2 && !arg3) {
+  } else if (arg1 != null && arg2 != null && arg3 == null) {
     aufgabe = `Thema ${arg1} Aufgabe ${arg2}`
     suffix = 'TA'
   } else {
@@ -45,8 +47,8 @@ export function erzeugeExamensAufgabeVorlage (
   const num2 = überprüfeNummer(arg2)
   const num3 = überprüfeNummer(arg3)
 
-  if (!num1) {
-    zeigeFehler(`Undefined ${num1}`)
+  if (num1 == null) {
+    zeigeFehler('Undefined num1')
   }
 
   const examenReferenz = Examen.teileReferenz(referenz)

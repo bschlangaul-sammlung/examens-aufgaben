@@ -24,19 +24,19 @@ interface AufgabenVorlagenWerte {
   zitatReferenz?: string
 }
 
-function gibVorlage (werte: AufgabenVorlagenWerte = {}) {
+function gibVorlage (werte: AufgabenVorlagenWerte = {}): string {
   let titel = ''
-  if (werte.titel) {
+  if (werte.titel != null) {
     titel = werte.titel
   }
 
   let aufgabenName = ''
-  if (werte.aufgabenName) {
+  if (werte.aufgabenName != null) {
     aufgabenName = werte.aufgabenName
   }
 
   let zitatReferenz = ''
-  if (werte.zitatReferenz) {
+  if (werte.zitatReferenz != null) {
     zitatReferenz = werte.zitatReferenz
   }
 
@@ -62,7 +62,7 @@ function gibVorlage (werte: AufgabenVorlagenWerte = {}) {
 export function erzeugeAufgabenVorlage (
   pfad: string,
   werte: AufgabenVorlagenWerte
-) {
+): void {
   fs.mkdirSync(path.dirname(pfad), { recursive: true })
   if (!fs.existsSync(pfad)) {
     fs.writeFileSync(pfad, gibVorlage(werte), { encoding: 'utf-8' })
