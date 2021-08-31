@@ -13,7 +13,7 @@ verketteten Liste dar, welche Integer-Werte als Elemente enthalten kann.
 
 \begin{center}
 \begin{tikzpicture}
-\umlclass[x=0,y=0]{MyList}{}{getSum(): Integer}
+\umlclass[x=-1,y=0]{MyList}{}{getSum(): Integer}
 
 \umlclass[x=4,y=0,type=interface]{MyElement}{}{calculateSum() : Integer}
 
@@ -23,12 +23,16 @@ verketteten Liste dar, welche Integer-Werte als Elemente enthalten kann.
 \umlVHVreal{MyEndElement}{MyElement}
 \umlVHVreal{MyRegularElement}{MyElement}
 
-\umlHVHuniassoc[arm1=2cm,arg1=next,pos1=0.9,mult2=1,pos=2.8]{MyRegularElement}{MyElement}
+\umlHVHuniassoc[arm1=3cm,arg1=next,pos1=0.6,mult2=1,pos2=2.9]{MyRegularElement}{MyElement}
 
 \umluniassoc[arg1=head,mult2=1,pos1=0.3]{MyList}{MyElement}
-
 \end{tikzpicture}
 \end{center}
+
+\noindent
+Die Klassse \j{MyList} stellt die Methode \j{getSum()} zur Verfügung,
+welche die Summe über alle in einer Liste befindlichen Elemente
+berechnet. Ein Ausschnitt der Implementierung sieht folgendermaßen aus:
 
 \begin{minted}{java}
 public class MyList {
@@ -45,10 +49,7 @@ public class MyList {
 
 \end{minted}
 
-Die Klassse \j{MyList} stellt die Methode \j{getSum()} zur Verfügung,
-welche die Summe über alle in einer Liste befindlichen Elemente
-berechnet. Ein Ausschnitt der Implementierung sieht folgendermaßen aus:
-
+\noindent
 Gehen Sie im Folgenden davon aus, dass bereits Methoden existieren,
 welche Elemente in die Liste einfügen können.
 
@@ -61,9 +62,10 @@ welche Elemente in die Liste einfügen können.
 \item Implementieren Sie in einer objektorientierten Programmiersprache
 Ihrer Wahl, \zB Java, die Methode \j{calculateSum()} der Klassen
 \j{MyEndElement} und \j{MyRegularElement}, so dass rekursiv die Summe
-der Elemente der Liste berechnet wird. Als Abbruchbedingung darf hierbei
-nicht das Feld \j{MyRegluarElement.next} auf den Wert \j{null} überprüft
-werden.
+der Elemente der Liste berechnet wird.
+
+Als Abbruchbedingung darf hierbei nicht das Feld
+\j{MyRegluarElement.next} auf den Wert \j{null} überprüft werden.
 
 Hinweis: Gehen Sie davon aus, die Implementierung von \j{MyList}
 garantiert, dass \j{MyRegluarElement.next} niemals den Wert \j{null}
@@ -74,9 +76,8 @@ Instanz der Klasse \j{MyEndElement} in einer Liste.
 Hinweis: Achten Sie auf die Angabe einer korrekten Methodensignatur.
 
 \begin{liAntwort}
-\liJavaExamen{66116}{2021}{03}{my_list/MyElement}
-\liJavaExamen{66116}{2021}{03}{my_list/MyEndElement}
-\liJavaExamen{66116}{2021}{03}{my_list/MyList}
+\liJavaExamen[firstline=18,lastline=20]{66116}{2021}{03}{my_list/MyElement}
+\liJavaExamen[firstline=15,lastline=17]{66116}{2021}{03}{my_list/MyEndElement}
 \end{liAntwort}
 
 %%
@@ -94,5 +95,11 @@ identifizieren sollten.
 Kompositium (Strukturmuster)
 \end{liAntwort}
 \end{enumerate}
+
+\begin{liAdditum}
+\liJavaExamen{66116}{2021}{03}{my_list/MyElement}
+\liJavaExamen{66116}{2021}{03}{my_list/MyEndElement}
+\liJavaExamen{66116}{2021}{03}{my_list/MyList}
+\end{liAdditum}
 
 \end{document}
