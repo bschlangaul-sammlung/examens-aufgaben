@@ -19,7 +19,7 @@ Formulieren Sie die Anfrage im Tupelkalkül.
 \index{Tupelkalkül}
 
 \begin{liAntwort}
-$\{ s \in \text{Studierende} \land h \in \text{hören} | \neg \exists \text{s.MatrNr} = \text{h.MatrNr} \}$
+$\{ s \in \text{Studierende} \land h \in \text{hören} \, | \, \neg \exists \text{s.MatrNr} = \text{h.MatrNr} \}$
 \end{liAntwort}
 
 %%
@@ -33,13 +33,13 @@ und Vorlesungsnummer. Formulieren Sie die Anfrage in
 \textbf{relationaler Algebra}.
 
 \begin{liAntwort}
-$\rho_{\neg \text{hören}} \left(
-(
+$\rho_{\neg \text{hören}} \Bigl(
+\bigl(
   \pi_{\text{MatrNr}}(\text{Studierende})
   \times
   \pi_{\text{VorlNr}}(\text{Vorlesungen})
-) - \text{hören}
-\right)
+\bigr) - \text{hören}
+\Bigr)
 $
 \end{liAntwort}
 

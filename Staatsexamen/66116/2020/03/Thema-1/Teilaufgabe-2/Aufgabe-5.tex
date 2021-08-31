@@ -10,14 +10,15 @@ Gegeben sei die Relation \liRelation{A,B,C}
 
 \begin{enumerate}
 \item Schreiben Sie eine SQL-Anfrage, mit der sich zeigen lässt, ob das
-Paar A, B ein Superschlüssel der Relation R ist. Beschreiben Sie ggf.
-textuell - falls nicht eindeutig ersichtlich - wie das Ergebnis Ihrer
-Anfrage interpretiert werden muss, um zu erkennen ob A, B ein
+Paar $A$, $B$ ein Superschlüssel der Relation $R$ ist. Beschreiben Sie
+ggf. textuell - falls nicht eindeutig ersichtlich - wie das Ergebnis
+Ihrer Anfrage interpretiert werden muss, um zu erkennen ob $A$, $B$ ein
 Superschlüssel ist.
 
 \begin{liAntwort}
-Diese Anfrage darf keine Ergebnisse liefern, dann ist das Paar A, B ein
+Diese Anfrage darf keine Ergebnisse liefern, dann ist das Paar $A$, $B$ ein
 Superschlüssel.
+
 \begin{minted}{sql}
 SELECT *
 FROM R
@@ -27,7 +28,7 @@ HAVING COUNT(*) > 1;
 \end{liAntwort}
 
 \item Erläutern Sie den Unterschied zwischen einem Superschlüssel und
-einem Kandidatenschlüssel. Tipp: Was muss gelten, damit A,B ein
+einem Kandidatenschlüssel. Tipp: Was muss gelten, damit $A$, $B$ ein
 Kandidatenschlüssel ist und nicht nur ein Superschlüssel?
 
 \begin{liAntwort}
@@ -41,15 +42,18 @@ Teilmenge dieses Superschlüssels ist ebenfalls Superschlüssels.
 
 \end{liAntwort}
 
-\item Sei A,B der Kandidatenschlüssel für die Relation R. Geben Sie eine
-minimale Ausprägung der Relation R an, die diese Eigenschaft erfüllt.
+\item Sei $A$, $B$ der Kandidatenschlüssel für die Relation $R$. Geben
+Sie eine minimale Ausprägung der Relation $R$ an, die diese Eigenschaft
+erfüllt.
 
 \begin{liAntwort}
-\begin{tabular}{lll}
-A & B & C \\
-1 & 2 & 3 \\
-2 & 1 & 4 \\
-1 & 1 & 5 \\
+\begin{tabular}{|l|l|l|}
+\hline
+A & B & C \\\hline\hline
+1 & 2 & 3 \\\hline
+2 & 1 & 4 \\\hline
+1 & 1 & 5 \\\hline
+2 & 2 & 5 \\\hline
 \end{tabular}
 \end{liAntwort}
 

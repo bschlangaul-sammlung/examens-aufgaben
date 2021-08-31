@@ -6,11 +6,11 @@
 \index{Funktionale Abhängigkeiten}
 \footcite{examen:66116:2020:03}}
 
-\liPseudoUeberschrift{Sekretäre}
+\liPseudoUeberschrift{Relation „Sekretäre“}
 \begin{center}
 \begin{tabular}{|l|l|l|l|}
 \hline
-PersNr & Name    & Boss & Raum \\\hline
+\textbf{PersNr} & \textbf{Name} & \textbf{Boss} & \textbf{Raum} \\\hline\hline
 4000   & Freud   & 2125 & 225 \\\hline
 4000   &         &      & 225 \\\hline
 4020   & Röntgen & 2163 & 6 \\\hline
@@ -21,14 +21,14 @@ PersNr & Name    & Boss & Raum \\\hline
 \end{center}
 
 \noindent
-Gegeben sei oben stehenden (lückenhafte) Relationenausprägung Sekretäre
+Gegeben sei oben stehenden (lückenhafte) Relationenausprägung
+\textbf{Sekretäre}
 sowie die folgenden funktionalen Abhängigkeiten:
 
-\begin{center}
-\liFunktionaleAbhaengigkeit{PersNr -> Name}
-
-\liFunktionaleAbhaengigkeit{PersNr, Boss -> Raum}
-\end{center}
+\liFunktionaleAbhaengigkeiten{
+  PersNr -> Name;
+  PersNr, Boss -> Raum
+}
 
 \noindent
 Geben Sie für alle leeren Zellen Werte an, so dass keine funktionalen
@@ -39,14 +39,14 @@ Antworten.)
 \begin{center}
 \begin{tabular}{|l|l|l|l|}
 \hline
-PersNr & Name    & Boss & Raum \\\hline
+\textbf{PersNr} & \textbf{Name} & \textbf{Boss} & \textbf{Raum} \\\hline\hline
 4000   & Freud   & 2125 & 225 \\\hline
-4000   & \textit{Freud}   & \textit{2143}\footnote{Muss andere Boss-ID
+4000   & \textit{Freud}   & \textit{2143}\footnote{Muss eine andere Boss-ID
 sein, sonst gäbe es zwei identische Zeilen.} & 225 \\\hline
 4020   & Röntgen & 2163 & 6 \\\hline
 4020   & Röntgen & \textit{2163}\footnote{anderer Boss} & 26 \\\hline
 4030   & Galileo & 2127 & \textit{27}\footnote{anderer Raum} \\\hline
-\textit{4000}   & Freud   & 2137 & 80 \\\hline
+\textit{4000}    & Freud   & 2137 & 80 \\\hline
 \end{tabular}
 \end{center}
 \end{liAntwort}

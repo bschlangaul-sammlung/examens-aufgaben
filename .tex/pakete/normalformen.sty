@@ -95,10 +95,13 @@ Attributhülle]
 % |\ahl{ursprüngliche linke Attributmenge}{ohne dieses Attribut}{Ergebnis}|
 % |\ahl{A, E}{E}{A, E, F, B, \textbf{D}}|: \liLinksReduktionInline{A, E}{E}{A, E, F, B, \textbf{D}}
 %    \begin{macrocode}
-\def\liLinksReduktionInline#1#2#3{
-  $\liAttributHuelleOhneMathe{F,
-  \liAttributMenge{#1 \string\ #2}} =
-  \liAttributMenge{#3}$
+\def\liLinksReduktionInline#1#2#3{%
+  {%
+    \footnotesize%
+    $\liAttributHuelleOhneMathe{F,
+    \liAttributMenge{#1 \string\ #2}} =
+    \liAttributMenge{#3}$
+  }
 }
 %    \end{macrocode}
 % \end{macro}
@@ -107,18 +110,21 @@ Attributhülle]
 % \liLet{ahr}{liLinksReduktionInline}
 % |\ahr{gelöschte FA}{neue FA ohne rechts Attribut}{gegebene Attribute}{Ergebnis}|
 %    \begin{macrocode}
-\def\liRechtsReduktionInline#1#2#3#4{
-  $\liAttributHuelleOhneMathe{
-    F \setminus
-    \liFunktionaleAbhaengigkeit{#1}
-    \def\tmp{#2}\ifx\tmp\empty
-    \else
-      \cup \liFunktionaleAbhaengigkeit{#2}
-    \fi
-    ,
-    \liAttributMenge{#3}
-  } =
-  \liAttributMenge{#4}$
+\def\liRechtsReduktionInline#1#2#3#4{%
+  {%
+    \footnotesize%
+    $\liAttributHuelleOhneMathe{
+      F \setminus
+      \liFunktionaleAbhaengigkeit{#1}
+      \def\tmp{#2}\ifx\tmp\empty
+      \else
+        \cup \liFunktionaleAbhaengigkeit{#2}
+      \fi
+      ,
+      \liAttributMenge{#3}
+    } =
+    \liAttributMenge{#4}$
+  }
 }
 %    \end{macrocode}
 % \end{macro}
