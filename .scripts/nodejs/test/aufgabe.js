@@ -31,6 +31,16 @@ describe('aufgabe.ts', function () {
       it('getter Methode „zitat“', function () {
         assert.deepStrictEqual(aufgabe.zitat, ['examen:66116:2020:09'])
       })
+
+      it('getter Methode „zitat“: 2 Elemente', function () {
+        const a = aufgabenSammlung.gib(
+          'Staatsexamen/66116/2014/03/Thema-2/Teilaufgabe-2/Aufgabe-1.tex'
+        )
+        assert.deepStrictEqual(a.zitat, [
+          'examen:66116:2014:03',
+          'Thema 2 Teilaufgabe 2 Aufgabe 1 Seite 11'
+        ])
+      })
     })
 
     it('Methode leseMetadataVonTex()', function () {
@@ -43,7 +53,7 @@ describe('aufgabe.ts', function () {
         'Aufgabe_Grammatik-aus-Automat.tex'
       )
       assert.strictEqual(titel.ZitatBeschreibung, 'Seite 4, Aufgabe 3')
-      assert.strictEqual(titel.Fussnote, 'theo:ab:1')
+      assert.strictEqual(titel.ZitatSchluessel, 'theo:ab:1')
     })
   })
 

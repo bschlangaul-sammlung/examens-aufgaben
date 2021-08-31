@@ -73,11 +73,11 @@ class Aufgabe {
         const match = this.inhalt.match(/\\footcite(\[([^\]]+)\])?\{([^}]+)\}/);
         if (match != null) {
             const zitat = [];
-            if (match[2] != null) {
-                zitat.push(match[2]);
-            }
             if (match[3] != null) {
                 zitat.push(match[3]);
+            }
+            if (match[2] != null) {
+                zitat.push(match[2]);
             }
             return zitat;
         }

@@ -6,7 +6,14 @@ Setzen einer Aufgabe]
 \RequirePackage{lehramt-informatik-basis}
 
 % Formatierung muss vor literatur sein, sonst Option clash
-\liLadePakete{formatierung,literatur-dummy,makros,aufgaben-metadaten,kopf-fusszeilen}
+\liLadePakete{basis,formatierung,literatur-dummy,makros,aufgaben-metadaten,kopf-fusszeilen}
 
 % Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
 \RequirePackage[ngerman]{babel}
+
+% \AtEndDocument{
+% Geht nicht.
+%   \ExplSyntaxOn
+%   \_gib_github_url:
+%   \ExplSyntaxOff
+% }
