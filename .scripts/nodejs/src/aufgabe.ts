@@ -35,18 +35,14 @@ export interface AufgabenMetadaten {
   /**
    * Erstes Makro `\footcite`, der Inhalt in den geschweiften Klammern, z. B.
    * `\footcite[Aufgabe 2]{aud:ab:7}`: `aud:ab:7`
-   *
-   * @TODO: Sollte Zitat heißen
    */
-  Fussnote?: string
+  ZitatSchluessel?: string
 
   /**
    * Erstes Makro `\footcite`, der Inhalt in den eckigen Klammern, z. B.
    * `\footcite[Aufgabe 2]{aud:ab:7}`: `Aufgabe 2`
-   *
-   * @TODO: Sollte ZitatBeschreibung heißen
    */
-  FussnoteSeite?: string
+  ZitatBeschreibung?: string
 
   BearbeitungsStand?: 'OCR' | 'TeX'
   Korrektheit?: 'unsicher' | 'absolut korrekt'
@@ -76,9 +72,8 @@ export class Aufgabe {
   inhalt: string
 
   stichwörter: string[] = []
-  titel?: string
 
-  metadaten_: AufgabenMetadaten
+  metadaten_?: AufgabenMetadaten
 
   /**
    * Zeigt an, ob die Aufgabe eine normale Aufgabe ist oder eine Examensaufgabe.
@@ -97,16 +92,10 @@ export class Aufgabe {
     }
     this.inhalt = leseRepoDatei(this.pfad)
     this.stichwörter = sammleStichwörter(this.inhalt)
-    this.titel = gibInhaltEinesTexMakros('liAufgabenTitel', this.inhalt)
 
     const metaDaten = this.leseMetadatenVonTex()
     if (metaDaten != null) {
       this.metadaten_ = metaDaten
-    } else {
-      this.metadaten_ = {
-        Titel: '',
-        RelativerPfad: this.relativerPfad
-      }
     }
   }
 
@@ -124,13 +113,57 @@ export class Aufgabe {
     return false
   }
 
+  get titel (): string {
+    if (this.metadaten_ != null) {
+      return this.metadaten_.Titel
+    }
+
+    const section = this.inhalt.match(/\\section\{(.+?)[\n\\}{]/)
+    if (section != null && section[1] != null) {
+      return section[1]
+    }
+
+    return 'Aufgabe'
+  }
+
+  get thematik (): string {
+    if (this.metadaten_?.Thematik != null) {
+      return this.metadaten_.Thematik
+    }
+
+    const thematik = gibInhaltEinesTexMakros('liAufgabenTitel', this.inhalt)
+    if (thematik != null) {
+      return thematik
+    }
+
+    return 'keine Thematik'
+  }
+
+  /**
+   * Inhalt des ersten `\footcite[ZitatBeschreibung]{ZitatSchluessel}` Makros
+   * als Array `[ZitatSchluessel, ZitatBeschreibung]`.
+   */
+  get zitat (): string[] | undefined {
+    const match = this.inhalt.match(/\\footcite(\[([^\]]+)\])?\{([^}]+)\}/)
+    if (match != null) {
+      const zitat = []
+      if (match[2] != null) {
+        zitat.push(match[2])
+      }
+      if (match[3] != null) {
+        zitat.push(match[3])
+      }
+      return zitat
+    }
+  }
+
   /**
    * ```tex
    * \liAufgabenMetadaten{
    *   Titel = {Aufgabe 5},
    *   Thematik = {Regal mit DVDs, CDs und BDs},
    *   RelativerPfad = Staatsexamen/66116/2014/09/Thema-2/Teilaufgabe-2/Aufgabe-5.tex,
-   *   Fussnote = examen:66116:2014:09,
+   *   ZitatSchluessel = examen:66116:2014:09,
    *   ExamenNummer = 66116,
    *   ExamenJahr = 2014,
    *   ExamenMonat = 09,
@@ -166,32 +199,22 @@ export class Aufgabe {
 
   erzeugeMetadaten (): AufgabenMetadaten {
     const meta: AufgabenMetadaten = {
-      Titel: this.titel != null && this.titel !== '' ? this.titel : 'Aufgabe',
-      Thematik:
-        this.titel != null && this.titel !== '' ? this.titel : 'keine Thematik',
+      Titel: umgebeMitKlammern(this.titel),
+      Thematik: umgebeMitKlammern(this.thematik),
       RelativerPfad: this.relativerPfad
     }
 
-    const section = this.inhalt.match(/\\section\{(.+?)[\n\\}{]/)
-    if (section != null && section[1] != null) {
-      meta.Titel = section[1]
-    }
-
-    const fussnoteZitat = this.inhalt.match(
-      /\\footcite(\[([^\]]+)\])?\{([^}]+)\}/
-    )
-    if (fussnoteZitat != null) {
-      if (fussnoteZitat[2] != null) {
-        meta.FussnoteSeite = umgebeMitKlammern(fussnoteZitat[2])
-      }
-      if (fussnoteZitat[3] != null) {
-        meta.Fussnote = fussnoteZitat[3]
+    // Zitat
+    if (this.zitat != null) {
+      meta.ZitatSchluessel = this.zitat[0]
+      if (this.zitat.length > 1) {
+        meta.ZitatBeschreibung = umgebeMitKlammern(this.zitat[1])
       }
     }
 
-    meta.Titel = umgebeMitKlammern(meta.Titel)
-
-    if (meta.Thematik != null) meta.Thematik = umgebeMitKlammern(meta.Thematik)
+    if (this.stichwörter.length > 0) {
+      meta.Stichwoerter = umgebeMitKlammern(this.stichwörter.join(', '))
+    }
 
     return meta
   }

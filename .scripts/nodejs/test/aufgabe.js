@@ -15,6 +15,24 @@ describe('aufgabe.ts', function () {
       assert.strictEqual(aufgabe.istExamen, false)
     })
 
+    describe('getter Methoden', function () {
+      const aufgabe = aufgabenSammlung.gib(
+        'Staatsexamen/66116/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-1.tex'
+      )
+
+      it('getter Methode „titel“', function () {
+        assert.strictEqual(aufgabe.titel, 'Aufgabe 1')
+      })
+
+      it('getter Methode „thematik“', function () {
+        assert.strictEqual(aufgabe.thematik, 'Verifikation')
+      })
+
+      it('getter Methode „zitat“', function () {
+        assert.deepStrictEqual(aufgabe.zitat, ['examen:66116:2020:09'])
+      })
+    })
+
     it('Methode leseMetadataVonTex()', function () {
       const aufgabe = new Aufgabe(gibTestPfad('Aufgabe.tex'))
       const titel = aufgabe.leseMetadatenVonTex()
@@ -24,7 +42,7 @@ describe('aufgabe.ts', function () {
         titel.RelativerPfad,
         'Aufgabe_Grammatik-aus-Automat.tex'
       )
-      assert.strictEqual(titel.FussnoteSeite, 'Seite 4, Aufgabe 3')
+      assert.strictEqual(titel.ZitatBeschreibung, 'Seite 4, Aufgabe 3')
       assert.strictEqual(titel.Fussnote, 'theo:ab:1')
     })
   })
@@ -42,6 +60,14 @@ describe('aufgabe.ts', function () {
         'Staatsexamen/66116/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-1.tex'
       )
       const metadaten = aufgabe.erzeugeMetadaten()
+      assert.strictEqual(metadaten.Titel, '{Aufgabe 1}')
+      assert.strictEqual(metadaten.Thematik, '{Verifikation}')
+      assert.strictEqual(
+        metadaten.RelativerPfad,
+        'Staatsexamen/66116/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-1.tex'
+      )
+      assert.strictEqual(metadaten.ZitatSchluessel, 'examen:66116:2020:09')
+      assert.strictEqual(metadaten.Stichwoerter, '{Verifikation, wp-Kalkül}')
       assert.strictEqual(metadaten.ExamenNummer, 66116)
       assert.strictEqual(metadaten.ExamenJahr, 2020)
       assert.strictEqual(metadaten.ExamenMonat, '09')
