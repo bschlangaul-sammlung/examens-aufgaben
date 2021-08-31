@@ -20,7 +20,7 @@ export class StichwortBaum {
 
   constructor () {
     this.flach = new Set<string>()
-    const roherBaum = yaml.safeLoad(leseRepoDatei('Stichwortverzeichnis.yml'))
+    const roherBaum = yaml.load(leseRepoDatei('Stichwortverzeichnis.yml'))
     if (roherBaum == null) {
       zeigeFehler('Konnte die Konfigurationsdatei nicht lesen')
     }

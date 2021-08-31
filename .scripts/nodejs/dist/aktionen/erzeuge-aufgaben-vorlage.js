@@ -8,15 +8,15 @@ const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 function gibVorlage(werte = {}) {
     let titel = '';
-    if (werte.titel) {
+    if (werte.titel != null) {
         titel = werte.titel;
     }
     let aufgabenName = '';
-    if (werte.aufgabenName) {
+    if (werte.aufgabenName != null) {
         aufgabenName = werte.aufgabenName;
     }
     let zitatReferenz = '';
-    if (werte.zitatReferenz) {
+    if (werte.zitatReferenz != null) {
         zitatReferenz = werte.zitatReferenz;
     }
     return ('\\documentclass{lehramt-informatik-aufgabe}\n' +

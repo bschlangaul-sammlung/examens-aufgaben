@@ -12,7 +12,7 @@ const string_similarity_1 = require("string-similarity");
 class StichwortBaum {
     constructor() {
         this.flach = new Set();
-        const roherBaum = js_yaml_1.default.safeLoad(helfer_1.leseRepoDatei('Stichwortverzeichnis.yml'));
+        const roherBaum = js_yaml_1.default.load(helfer_1.leseRepoDatei('Stichwortverzeichnis.yml'));
         if (roherBaum == null) {
             helfer_1.zeigeFehler('Konnte die Konfigurationsdatei nicht lesen');
         }
