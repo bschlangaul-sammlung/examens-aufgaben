@@ -1,0 +1,61 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenTitel{Sportverein}
+\section{Aufgabe 1
+\index{Entity-Relation-Modell}
+\footcite{examen:66116:2019:09}}
+
+Erstellen Sie ein möglichst einfaches ER-Schema, das alle gegebenen
+Informationen enthält. Attribute von Entitäten und Beziehungen sind
+anzugeben, Schlüsselattribute durch Unterstreichen zu kennzeichnen.
+Verwenden Sie für die Angabe der Kardinalitäten von Beziehungen die
+Min-MaxNotation. Führen Sie Surrogatschlüssel nur dann ein, wenn es
+nötig ist und modellieren Sie nur die im Text vorkommenden Elemente.
+
+Ein örtlicher Sportverein möchte seine Vereinsangelegenheiten mittels
+einer Datenbank verwalten. Der Verein besteht aus verschiedenen
+Abteilungen, welche eine eindeutige Nummer und einen aussagekräftigen
+Namen besitzen. Für jede Abteilung soll zudem automatisch die Anzahl der
+Mitglieder gespeichert werden, wobei ein Mitglied zu mehreren
+Abteilungen gehören kann. Die Mitglieder des Vereins können keine, eine
+oder mehrere Rollen (auch Ämter genannt) einnehmen. So gibt es die
+Ämter: 1. Vorstand, 2. Vorstand, Kassier, Jugendleiter, Trainer sowie
+einen Abteilungsleiter für jede Abteilung. Es ist dabei auch möglich,
+dass ein Abteilungsleiter mehrere Abteilungen leitet oder ein Mitglied
+mehrere Aufgaben übernimmt, mit der Einschränkung, dass die
+Vorstandsposten und Kassier nicht von der gleichen Person ausgeübt
+werden dürfen. Zu jedem Trainer wird eine Liste von Lizenzen
+gespeichert. Jeder Trainer ist zudem in mindestens einer Abteilung eine
+bestimmte Anzahl von Stunden tätig. Zu allen Mitgliedern werden
+Mitgliedsnummer, Name (bestehend aus Vor- und Nachname), Geburtsdatum,
+E-Mail, Eintrittsdatum, Adresse (bestehend aus PLZ, Ort, Straße,
+Hausnummer), IBAN und die Vereinszugehörigkeit in Jahren gespeichert.
+
+Im Verein fallen Finanztransaktionen an. Zu jeder Transaktion wird ein
+Zeitstempel, der Betrag und eine eindeutige Transaktionsnummer
+gespeichert. Die Mitglieder leisten Zahlungen an den Verein. Umgekehrt
+erstattet der Verein auch bestimmte Kosten. Im Verein existieren drei
+verschiedene Mitgliedsbeiträge. So gibt es einen
+Kinder-und-Jugendlichen-Tarif, einen Erwachsenentarif und einen
+Familientarif.
+
+Mitgliedern entstehen des Öfteren Fahrtkosten. Für jede
+Fahrtkostenabrechnung werden das Datum, die gefahrenen Kilometer und
+Start und Ziel, der Zweck sowie das Mitglied gespeichert, welches den
+Antrag gestellt hat. Zu jeder Fahrtkostenabrechnung existiert genau eine
+Erstattung.
+
+Durch die Teilnahme an verschiedenen Wettbewerben besteht die
+Notwendigkeit die von einem Team (also mehreren Mitgliedern zusammen)
+oder Mitgliedern erzielten sportlichen Erfolge, d.h. Platzierungen, zu
+verwalten. Jeder Wettkampf besitzt eine eindeutige ID, ein Datum und
+eine Kurzbeschreibung.
+
+Das Vereinsleben besteht aus zahlreichen Terminen, die durch Datum und
+Uhrzeit innerhalb einer
+
+Abteilung eindeutig identifiziert werden können. Zu jedem Termin wird
+zusätzlich eine Kurzbeschreibung gespeichert.
+
+\end{document}
