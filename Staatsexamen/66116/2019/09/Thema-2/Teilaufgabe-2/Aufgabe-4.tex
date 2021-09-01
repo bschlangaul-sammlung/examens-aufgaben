@@ -1,30 +1,173 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{normalformen,synthese-algorithmus}
 \begin{document}
-\liAufgabenTitel{R (A, B, C, D, E, F)}
-\section{Aufgabe 4
-\index{Normalformen}
-\footcite{examen:66116:2019:09}}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 4},
+  Thematik = {R (A,B,C,D,E,F)},
+  RelativerPfad = Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-4.tex,
+  ZitatSchluessel = examen:66116:2019:09,
+  Stichwoerter = {Normalformen},
+  ExamenNummer = 66116,
+  ExamenJahr = 2019,
+  ExamenMonat = 09,
+  ExamenThemaNr = 2,
+  ExamenTeilaufgabeNr = 2,
+  ExamenAufgabeNr = 4,
+}
+
+\let\ah=\liAttributHuelle
+\let\ahl=\liLinksReduktionInline
+\let\ahr=\liRechtsReduktionInline
+\let\b=\textbf
+\let\fa=\liFunktionaleAbhaengigkeit
+\let\FA=\liFunktionaleAbhaengigkeiten
+\let\m=\liAttributMenge
+\let\r=\liRelation
+\let\schrittE=\liSyntheseUeberErklaerung
+\let\u=\underline
 
 Gegeben sei das Relationenschema R (A, B, C, D, E, F) sowie die Menge
-der zugehörigen funktionalen Abhängigkeiten FD:
+der zugehörigen funktionalen Abhängigkeiten F:
+\index{Normalformen}
+\footcite{examen:66116:2019:09}
 
-AB -> C
-A -> D
-F -> B
-DE -> B
-B -> A
+\FA[F]{
+  A, B -> C;
+  A -> D;
+  F -> B;
+  D, E -> B;
+  B -> A;
+}
 
-a) [5 Punkte] Bestimmen Sie sämtliche Schlüsselkandidaten der Relation R
-und begründen Sie, warum es keine weiteren Schlüsselkandidaten geben
-kann.
+% https://normalizer.db.in.tum.de/index.py
 
-b) [8 Punkte] Ist die gegebene Menge an funktionalen Abhängigkeiten
-minimal? Fall sie minimal ist begründen Sie diese Eigenschaft
-ausführlich, anderenfalls minimieren Sie FD schrittweise. Vergessen Sie
-nicht die einzelnen Schritte entsprechend zu begründen.
+% ABCDEF
 
-c) [9 Punkte] Überführen Sie falls nötig das Schema in dritte
-Normalform. Ist die dritte Normalform bereits erfüllt, begründen Sie
-dies ausführlich.
+% AB -> C
+% A -> D
+% F -> B
+% DE -> B
+% B -> A
+
+\begin{enumerate}
+%%
+% a)
+%%
+
+\item Bestimmen Sie sämtliche Schlüsselkandidaten der Relation R und
+begründen Sie, warum es keine weiteren Schlüsselkandidaten geben kann.
+
+\begin{liAntwort}
+Die Attribute E, F kommen auf keiner rechten Seite vor.
+
+$\ah{F, \m{E, F}} = \m{A, B, C, D, E, F} = R$
+
+Der Superschlüssel kann nicht weiter minimiert werden:
+
+$\ah{F, \m{E}} = \m{E} \neq R$\\
+$\ah{F, \m{F}} = \m{A, B, C, D, F} \neq R$
+
+Der Schlüsselkandidat ist \m{E, F}
+
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Ist die gegebene Menge an funktionalen Abhängigkeiten minimal?
+Fall sie minimal ist begründen Sie diese Eigenschaft ausführlich,
+anderenfalls minimieren Sie FD schrittweise. Vergessen Sie nicht die
+einzelnen Schritte entsprechend zu begründen.
+
+\begin{liAntwort}
+\begin{enumerate}
+\item \schrittE{1-1}
+
+\liPseudoUeberschrift{\fa{A, B -> C}}
+
+$C \in$ \ahl{A, B}{A}{A, B, \b{C}, D}
+
+\FA[F]{
+  B -> C;
+  A -> D;
+  F -> B;
+  D, E -> B;
+  B -> A;
+}
+
+\liPseudoUeberschrift{\fa{D, E -> B}}
+
+$B \notin$ \ahl{D, E}{D}{E}\\
+$B \notin$ \ahl{D, E}{E}{D}
+
+\item \schrittE{1-2}
+
+\liPseudoUeberschrift{B}
+
+$B \notin$ \ahr{F -> B}{}{F}{F}\\
+$B \notin$ \ahr{D, E -> B}{}{D, E}{D, E}
+
+\FA[F]{
+  B -> C;
+  A -> D;
+  F -> B;
+  D, E -> B;
+  B -> A;
+}
+
+\item \schrittE{1-3}
+
+\liNichtsZuTun
+
+\item \schrittE{1-4}
+
+\FA[F]{
+  A -> D;
+  F -> B;
+  D, E -> B;
+  B -> A, C;
+}
+\end{enumerate}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Überführen Sie falls nötig das Schema in dritte Normalform. Ist
+die dritte Normalform bereits erfüllt, begründen Sie dies ausführlich.
+
+\begin{liAntwort}
+\begin{enumerate}
+\item \schrittE{1}
+
+\FA[F]{
+  A -> D;
+  F -> B;
+  D, E -> B;
+  B -> A, C;
+}
+
+\item \schrittE{2}
+
+\r[R1]{\u{A}, D}\\
+\r[R2]{\u{F}, B}\\
+\r[R3]{\u{D, E}, B}\\
+\r[R3]{\u{B}, A, C}
+
+\item \schrittE{3}
+
+\r[R1]{\u{A}, D}\\
+\r[R2]{\u{F}, B}\\
+\r[R3]{\u{D, E}, B}\\
+\r[R4]{\u{B}, A, C}\\
+\r[R5]{\u{E, F}}
+\item \schrittE{4}
+
+\liNichtsZuTun
+
+\end{enumerate}
+\end{liAntwort}
+\end{enumerate}
 \end{document}

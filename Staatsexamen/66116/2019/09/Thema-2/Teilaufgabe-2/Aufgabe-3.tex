@@ -1,35 +1,100 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{spalten,relationale-algebra}
 \begin{document}
-\liAufgabenTitel{}
-\section{Aufgabe 3
-\index{Relationale Algebra}
-\footcite{examen:66116:2019:09}}
-
-: (Relationale Algebra) (6 Punkte)
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 3},
+  Thematik = {R1 und R1},
+  RelativerPfad = Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-3.tex,
+  ZitatSchluessel = examen:66116:2019:09,
+  Stichwoerter = {Relationale Algebra},
+  ExamenNummer = 66116,
+  ExamenJahr = 2019,
+  ExamenMonat = 09,
+  ExamenThemaNr = 2,
+  ExamenTeilaufgabeNr = 2,
+  ExamenAufgabeNr = 3,
+}
 
 Gegeben seien die folgenden beiden Relationen:
+\index{Relationale Algebra}
+\footcite{examen:66116:2019:09}
 
-Ri P
-10
-15
-25
+\begin{multicols}{2}
+\liPseudoUeberschrift{R1}
 
-A
+\begin{tabular}{lll}
+P  & Q & S\\\hline\hline
+10 & a & 5\\\hline
+15 & b & 8\\\hline
+25 & a & 6\\\hline
+\end{tabular}
 
-10
-25
-10
+\liPseudoUeberschrift{R2}
 
+\begin{tabular}{lll}
+A  & B & C\\\hline\hline
+10 & b & 6\\\hline
+25 & c & 3\\\hline
+10 & b & 5\\\hline
+\end{tabular}
+\end{multicols}
+
+\noindent
 Geben Sie die Ergebnisse der folgenden relationalen Ausdrücke an:
 
-a) [1,5 Punkte] Rı m rı.r-R2AR2 (Equi-Join)
+\begin{enumerate}
 
-b) [1,5 Punkte] Rı»< r1.9=R2.B Rz (Right-Outer-Join)
+%%
+% a)
+%%
 
-c) [3 Punkte] Es ist bekannt, dass die minimale Menge relationaler Operatoren Selektion, Projektion,
-Vereinigung, Differenz und kartesisches Produkt umfasst. Wie kann die Division zweier
-Relationen mit diesen Operatoren ausgedrückt werden? Begründen Sie kurz die einzelnen
-Bestandteile Ihres relationalen Ausdrucks.
+\item $R1 \bowtie_{R1.P=R2.A} R2$ (Equi-Join)
 
+\begin{liAntwort}
+\begin{tabular}{llllll}
+P  & Q & S & A & B  & C \\\hline\hline
+10 & a & 5 & 10 & b & 6 \\\hline
+10 & a & 5 & 10 & b & 5 \\\hline
+25 & a & 6 & 25 & c & 3 \\\hline
+\end{tabular}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item $R1 \rightouterjoin_{R1.Q=R2.B} R2$ (Right-Outer-Join)
+
+\begin{liAntwort}
+\begin{tabular}{llllll}
+P  & Q & S & A  & B & C \\\hline\hline
+15 & b & 8 & 10 & b & 6\\\hline
+15 & b & 8 & 10 & b & 5\\\hline
+   &   &   & 25 & c & 3\\\hline
+\end{tabular}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Es ist bekannt, dass die minimale Menge relationaler Operatoren
+Selektion, Projektion, Vereinigung, Differenz und kartesisches Produkt
+umfasst. Wie kann die Division zweier Relationen mit diesen Operatoren
+ausgedrückt werden? Begründen Sie kurz die einzelnen Bestandteile Ihres
+relationalen Ausdrucks.
+
+\begin{liAntwort}
+Seien $R$, $S$ Relationen und $\beta$ die zu $R$ sowie $\gamma$ die zu
+$S$ dazugehörigen Attributmengen. $R':=\beta \setminus \gamma$.
+Die Division ist dann definiert durch:\footcite[Division]{wiki:relationale-algebra}
+
+\begin{displaymath}
+R\div S :=
+\pi_{R'}(R) -
+\pi_{R'}((\pi_{R'}(R) \times S) - R)
+\end{displaymath}
+\end{liAntwort}
+
+\end{enumerate}
 \end{document}

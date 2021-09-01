@@ -322,8 +322,6 @@ Setzen der Aufgaben-Metadaten.]
 
   \_gib_examen_titel: {}
 
-  \_gib_github_url:
-
   \section{\_gib_aufgaben_titel:}
 
   \bigskip
@@ -2316,6 +2314,8 @@ ER-Diagrammen]
 \usetikzlibrary{positioning}
 %    \end{macrocode}
 
+% \subsubsection{Tex-Markup-Beispiel: Komplettes Diagramm}
+
 % \begin{verbatim}
 % \begin{tikzpicture}[er2,scale=0.7,transform shape]
 % % Person
@@ -2374,6 +2374,16 @@ ER-Diagrammen]
 % \node[attribute,below left=1cm of Produkt,text width=2cm] {Beschreibungstext} edge (Produkt);
 % \node[attribute,above left=1cm of Produkt] {Bewertung} edge (Produkt);
 % \end{tikzpicture}
+% \end{verbatim}
+
+% \subsubsection{Tex-Markup-Beispiel: EER Enhanced Entity-Relation-Modell nach Elmasri/Navante}
+
+% \begin{verbatim}
+% \node[below=1cm of Forscher,circle,draw] (union) {u}
+%   edge (Sekretär) edge (Forscher) edge (Techniker);
+
+% \node[below=1cm of union,entity] (AktiveMitarbeiter) {Aktive Mitarbeiter}
+%   edge node {$\bigcup$} (union);
 % \end{verbatim}
 
 %    \begin{macrocode}
@@ -3100,7 +3110,7 @@ Klasse Aufgabe konfigurieren, d. h. Laden von einigen Paketen, Registierung von 
 
 %    \begin{macrocode}
 \AddToHook{enddocument}{
-Github \_gib_github_url:
+\_gib_github_url:
 }
 %    \end{macrocode}
 
@@ -5659,7 +5669,7 @@ Relation in die 3. Normalform]
 % \begin{verbatim}
 % \let\ahr=\liRechtsReduktionInline
 % \let\fa=\liFunktionaleAbhaengigkeit
-
+%
 % \liPseudoUeberschrift{F}
 %
 % $F \in$ \ahr{E -> F, X}{E -> F}{E}{E, \b{F}}
@@ -5668,6 +5678,17 @@ Relation in die 3. Normalform]
 %
 % $A \notin$ \ahr{B -> A}{}{B}{B}\\
 % $A \in$ \ahr{C -> A}{}{C}{\b{A},B,C}
+% \end{verbatim}
+
+% \subsubsection{TeX-Markup Relationen formen}
+
+% \begin{verbatim}
+% \let\r=\liRelation
+% \let\u=\underline
+%
+% \r[R1]{\u{A, D}, E}\\
+% \r[R2]{\u{B, C}, A, E}\\
+% \r[R3]{\u{D}, B}
 % \end{verbatim}
 
 % \begin{liBeispiel}
