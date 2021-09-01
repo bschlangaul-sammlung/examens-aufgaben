@@ -1,44 +1,55 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{formale-sprachen}
 \begin{document}
-\liAufgabenTitel{}
-\section{Aufgabe 4
-\index{Entscheidbarkeit}
-\footcite{examen:66115:2020:09}}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 4},
+  Thematik = {Funktion klein sigma von w},
+  RelativerPfad = Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-4.tex,
+  ZitatSchluessel = examen:66115:2020:09,
+  Stichwoerter = {Entscheidbarkeit},
+  ExamenNummer = 66115,
+  ExamenJahr = 2020,
+  ExamenMonat = 09,
+  ExamenThemaNr = 1,
+  ExamenTeilaufgabeNr = 1,
+  ExamenAufgabeNr = 4,
+}
 
 Geben Sie für jede der folgenden Mengen an, ob sie entscheidbar ist oder
-nicht. Dabei ist p, die Funktion, die von der Turingmaschine berechnet
-wird, die durch das Wort w kodiert wird. Beweisen Sie Ihre Behauptungen.
+nicht. Dabei ist $\sigma_w$, die Funktion, die von der Turingmaschine
+berechnet wird, die durch das Wort $w$ kodiert wird. Beweisen Sie Ihre
+Behauptungen.\index{Entscheidbarkeit}
+\footcite{examen:66115:2020:09}
 
 \begin{enumerate}
 %%
 % a)
 %%
 
-\item \liAusdruck{we2*}{pu(0)=0}
+\item \liAusdruck[L_1]{w \in \Sigma^*}{\sigma_w(0) = 0}
 
 \begin{liAntwort}
-nicht entscheidbar. wegen Halteproblem
+Nicht entscheidbar wegen dem Halteproblem.
 \end{liAntwort}
 
 %%
 % b)
 %%
 
-\item \liAusdruck{we2*}{Yulw) = u}
+\item \liAusdruck[L_2]{w \in \Sigma^*}{\sigma_w(w) = w}
 
 \begin{liAntwort}
-nicht entscheidbar. wegen Halteproblem
+Nicht entscheidbar wegen dem Halteproblem.
 \end{liAntwort}
 
 %%
 % c)
 %%
 
-\item \liAusdruck{we I}{Y0(0) = w}
+\item \liAusdruck[L_3]{w \in \Sigma^*}{\sigma_0(0) = w}
 
 \begin{liAntwort}
-entscheidbar. wegen der Null
+Entscheidbar wegen $\sigma_0$.
 \end{liAntwort}
 
 \end{enumerate}

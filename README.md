@@ -731,6 +731,7 @@ Weitere Aufgaben zum Thema „SQL“:
 
 ### Softwarearchitektur
 - [„Aufgabe 2“ Examen 66116 Herbst 2016 T2 TA2 A1](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-2/Aufgabe-1.pdf) (Software Engineering, Agile Methoden, Spiralmodell, Nicht-funktionale Anforderungen, Entwurfsmuster, Schichtenarchitektur, Blackboard-Muster, Einbringen von Abhängigkeiten (Dependency Injection), Sequenzdiagramm, Zustandsdiagramm Wissen, Komponentendiagramm, Modell-Präsentation-Steuerung (Model-View-Controller), Einzelstück (Singleton), Kommando (Command), Validation, Verifikation) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2016/09/Thema-2/Teilaufgabe-2/Aufgabe-1.tex)) 
+- [„Aufgabe 3“ Examen 66116 Herbst 2019 T2 TA1 A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf) (Softwarearchitektur) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-1/Aufgabe-3.tex)) 
 - [„Aufgabe 10“ Examen 66116 Frühjahr 2021 T1 TA1 A10](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-1/Aufgabe-10.pdf) (Client-Server-Modell) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-1/Aufgabe-10.tex)) 
 - [„Aufgabe 11“ Examen 66116 Frühjahr 2021 T1 TA1 A11](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-1/Aufgabe-11.pdf) (Client-Server-Modell) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-1/Aufgabe-11.tex)) 
 - [„Aufgabe 12“ Examen 66116 Frühjahr 2021 T1 TA1 A12](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-1/Aufgabe-12.pdf) (Peer-to-Peer-Architektur) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Teilaufgabe-1/Aufgabe-12.tex)) 
@@ -960,6 +961,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - [„Aufgabe 4“ Examen 66115 Herbst 2018 T2 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/09/Thema-2/Aufgabe-4.pdf) (Polynomialzeitreduktion) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2018/09/Thema-2/Aufgabe-4.tex)) 
 - [„Aufgabe 5“ Examen 66115 Frühjahr 2019 T1 A5](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/03/Thema-1/Aufgabe-5.pdf) (Komplexitätstheorie, Polynomialzeitreduktion) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/03/Thema-1/Aufgabe-5.tex)) 
 - [„Aufgabe 4“ Examen 66115 Herbst 2019 T1 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-4.pdf) (Polynomialzeitreduktion) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2019/09/Thema-1/Aufgabe-4.tex)) 
+- [„Aufgabe 5“ Examen 66115 Herbst 2020 T1 TA1 A5](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf) (Komplexitätstheorie, Polynomialzeitreduktion) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-5.tex)) 
 - [„Aufgabe 2“ Examen 66115 Herbst 2020 T2 TA2 A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf) (Komplexitätstheorie) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-2/Teilaufgabe-2/Aufgabe-2.tex)) 
 - [„Aufgabe 4“ Examen 66115 Frühjahr 2021 T2 TA1 A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2021/03/Thema-2/Teilaufgabe-1/Aufgabe-4.pdf) (Polynomialzeitreduktion) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2021/03/Thema-2/Teilaufgabe-1/Aufgabe-4.tex)) 
 
@@ -1637,7 +1639,7 @@ OCR des oben genannten Scans:
             - [Aufgabe 2 (Reguläre Sprache)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) 
             - [Aufgabe 3 (Kontextfreie Sprache, Pumping-Lemma (Reguläre Sprache))](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) 
             - [Aufgabe 4 (Entscheidbarkeit)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) 
-            - [Aufgabe 5 (Theoretische Informatik)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf) 
+            - [Aufgabe 5 (Komplexitätstheorie, Polynomialzeitreduktion)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-5.pdf) 
         - Teilaufgabe 2 
             - [Aufgabe 1 (Algorithmen und Datenstrukturen)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-2/Aufgabe-1.pdf) 
             - [Aufgabe 2 (Binärbaum, AVL-Baum)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) 
@@ -1819,6 +1821,7 @@ OCR des oben genannten Scans:
         - Teilaufgabe 1 
             - [Aufgabe 1 (Klassendiagramm, Objektdiagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-1/Aufgabe-1.pdf) 
             - [Aufgabe 2 (UML-Diagramme, Anwendungsfalldiagramm, Aktivitätsdiagramm)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-1/Aufgabe-2.pdf) 
+            - [Aufgabe 3 (White-Box-Testing)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-1/Aufgabe-3.pdf) 
             - [Aufgabe 4 (Zustand (State), Zustandsdiagramm Wissen, Implementierung in Java)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) 
         - Teilaufgabe 2 
             - [Aufgabe 2 (Entity-Relation-Modell)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-2.pdf) 
@@ -1826,6 +1829,8 @@ OCR des oben genannten Scans:
     - Thema 2 
         - Teilaufgabe 1 
             - [Aufgabe 1 (Entwurfsmuster, Kompositum (Composite), Klassendiagramm, Implementierung in Java, Rekursion)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-1/Aufgabe-1.pdf) 
+            - [Aufgabe 2 (Formale Verifikation)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) 
+            - [Aufgabe 3 (Softwarearchitektur)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf) 
         - Teilaufgabe 2 
             - [Aufgabe 6 (Datenbank-Übersicht, Natural-Join, Equi-Join, Theta-Join, UNION, INTERSECT, EXCEPT)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-6.pdf) 
             - [Aufgabe 7 (SQL, SQL mit Übungsdatenbank, EXCEPT, Top-N-Query, ALTER TABLE, TRIGGER)](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-2/Aufgabe-7.pdf)

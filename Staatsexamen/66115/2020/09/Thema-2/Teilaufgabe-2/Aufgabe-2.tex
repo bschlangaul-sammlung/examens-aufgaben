@@ -1,12 +1,10 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{master-theorem}
+\liLadePakete{mathe}
 \begin{document}
 \liAufgabenTitel{}
 \section{Aufgabe 2
 \index{Komplexitätstheorie}
 \footcite{examen:66115:2020:09}}
-
- (O-Notation) [20 PUNKTE]
 
 Beweisen Sie die folgenden Aussagen:
 
@@ -40,14 +38,33 @@ z. B. $5 \cdot 4 \cdot 3 \cdot  2 \cdot  1$ $5^5$
 % d)
 %%
 
-\item Sei f:N— N definiert durch die folgende Rekursionsgleichung:
-\liMasterExkurs
+\item Sei $f \colon \mathbb{N} \leftarrow \mathbb{N}$ definiert durch
+die folgende Rekursionsgleichung:
 
-3, fürn=1
-/n) =
-(n—-1)+f(n-1), fürn>1
+\begin{equation*}
+f(n)=
+\begin{cases}
+3,& \text{für }n = 1\\
 
-Dann gilt f e O(n?).
+(n - 1)^2 + f(n - 1),
+& \text{für }n > 1
+\end{cases}
+\end{equation*}
+
+Dann gilt $f \in \mathcal{O}(n^3)$
+
+\begin{liAntwort}
+
+\begin{align*}
+f(n)
+&=(n - 1)^2 + f(n - 1) + \dots + f(1)\\
+&=(n - 1)^2 + (n - 1)^2 + f(n - 2) + \dots + f(1)\\
+&=\underbrace{(n - 1)^2 + \dots + (n - 1)^2 + 3}_{n}\\
+&=\underbrace{(n - 1)^2 + \dots + (n - 1)^2}_{n - 1} + 3\\
+&= (n - 1)^2 \cdot (n - 1) + 3 \\
+&= (n - 1)^3 + 3
+\end{align*}
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}
