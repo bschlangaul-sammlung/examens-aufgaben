@@ -382,10 +382,19 @@ export class ExamensAufgabe extends Aufgabe {
   }
 
   /**
+   * Wie this.aufgabenReferenz bloß ohne Leerzeichen
+   */
+  get aufgabenReferenzKurz (): string {
+    return this.aufgabenReferenz.replace(/ +/g, '')
+  }
+
+  /**
    * `„Greedy-Färben von Intervallen“ Examen 66115 Herbst 2017 T1 A8`
    */
   get titelKurz (): string {
-    const ausgabe = `${this.examen.titelKurz} ${this.aufgabenReferenz}`
+    // `„Greedy-Färben von Intervallen“ Examen 66115 Herbst 2017 T1 A8`
+    // const ausgabe = `${this.examen.titelKurz} ${this.aufgabenReferenz}`
+    const ausgabe = `${this.examensReferenz} ${this.aufgabenReferenzKurz}`
     if (this.thematik !== 'keine Thematik') {
       return `„${this.thematik}“ ${ausgabe}`
     }
