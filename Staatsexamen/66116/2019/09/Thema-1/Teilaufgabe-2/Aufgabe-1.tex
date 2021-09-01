@@ -49,6 +49,13 @@ Overhead durch zur Trennung der Ebenen benötigten Schnittstellen
 \item Wie ermöglicht es ein Datenbankensystem, verschiedene Sichten
 darzustellen?
 
+\begin{liAntwort}
+Die Sichten greifen auf die zwei darunterliegenden Abstraktionsebenen
+eines Datenbanksystems zu, nämlich auf die logische Ebene und die
+logische Ebene greift auf die physische Ebene zu.
+\footcite[Seite 23]{kemper}
+\end{liAntwort}
+
 %%
 % 3.
 %%
@@ -56,7 +63,19 @@ darzustellen?
 \item Was beschreibt das Konzept der Transitiven Hülle? Erklären Sie
 dies kurz und nennen Sie ein Beispiel für (1) die Transitive Hülle eines
 Attributes bei funktionalen Abhängigkeiten und (2) die Transitive Hülle
-einer SQL Anfrage.
+einer SQL-Anfrage.
+
+\begin{liAntwort}
+Die transitive Hülle einer Relation R mit zwei Attributen A und B
+gleichen Typs ist definitert als
+
+Sie enthält damit alle Tupel (a, b), für die ein Pfad beliebiger Länge k
+in R existiert.
+\footcite[Seite 135]{kemper}
+
+Berechnung rekursiver Anfragen (z. B. transitive Hülle) über rekursiv
+definierte Sichten (Tabellen)\liFussnoteUrl{https://dbs.uni-leipzig.de/file/dbs2-ss16-kap4.pdf}
+\end{liAntwort}
 
 %%
 % 4.
@@ -66,7 +85,14 @@ einer SQL Anfrage.
 Vorteil.
 
 \begin{liAntwort}
-https://de.wikipedia.org/wiki/Indexstruktur
+In Hauptspeicher-Datenbanksystemen werden oft Hashtabellen verwendet, um
+effizierte Punkt-Abfragen (exact Match) zu unterstützen.
+
+Wenn auch Bereichs-Abfragen (range queries) vorkommen, werden zumeister
+balancierte Suchbäume - AVL- oder rot/schwarz-Bäume - verwendet.
+\footcite[Seite 625]{kemper}
+
+\liFussnoteUrl{https://de.wikipedia.org/wiki/Indexstruktur}
 \end{liAntwort}
 
 \end{enumerate}

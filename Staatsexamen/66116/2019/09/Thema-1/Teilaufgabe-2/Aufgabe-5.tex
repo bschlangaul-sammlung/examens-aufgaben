@@ -1,14 +1,27 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{normalformen}
+\liLadePakete{normalformen,synthese-algorithmus}
 \begin{document}
-\liAufgabenTitel{}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 5},
+  Thematik = {Jedi-Ritter},
+  RelativerPfad = Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-5.tex,
+  ZitatSchluessel = examen:66116:2019:09,
+  Stichwoerter = {Normalformen},
+  ExamenNummer = 66116,
+  ExamenJahr = 2019,
+  ExamenMonat = 09,
+  ExamenThemaNr = 1,
+  ExamenTeilaufgabeNr = 2,
+  ExamenAufgabeNr = 5,
+}
 
+\let\schrittE=\liSyntheseUeberErklaerung
 \let\b=\textbf
-
-\section{Aufgabe 5
-\index{Normalformen}
-\footcite{examen:66116:2019:09}}
-
+\let\ahl=\liLinksReduktionInline
+\let\ahr=\liRechtsReduktionInline
+\let\FA=\liFunktionaleAbhaengigkeiten
+\let\fa=\liFunktionaleAbhaengigkeit
+\let\m=\liAttributMenge
 \begin{enumerate}
 
 %-----------------------------------------------------------------------
@@ -16,14 +29,134 @@
 %-----------------------------------------------------------------------
 
 \item Gegeben sind folgende funktionale Abhängigkeiten.
+\index{Normalformen}
+\footcite{examen:66116:2019:09}
 
-X— YZ
-Z— WX
-Q— XYZ
-V— ZW
-ZW — YQV
+\FA{
+  X -> Y, Z;
+  Z -> W, X;
+  Q -> X, Y, Z;
+  V -> Z, W;
+  Z, W -> Y, Q, V;
+}
+
+% https://normalizer.db.in.tum.de/index.py
+
+% QVWXYZ
+
+% X -> YZ
+% Z -> WX
+% Q -> XYZ
+% V -> ZW
+% ZW -> YQV
+
+% Q
+% V
+% W
+% X
+% Y
+% Z
+
+% Q V W X Y Z
 
 Berechnen Sie die kanonische Überdeckung.
+
+\begin{liAntwort}
+\begin{enumerate}
+\item \schrittE{1-1}
+
+\liPseudoUeberschrift{\fa{Z, W -> Y, Q, V}}
+
+$\m{Y, Q, V} \in$ \ahl{Z, W}{W}{\b{Q}, \b{V}, W, \b{Y}, Z}
+
+\FA{
+  X -> Y, Z;
+  Z -> W, X;
+  Q -> X, Y, Z;
+  V -> Z, W;
+  Z -> Y, Q, V;
+}
+
+\item \schrittE{1-2}
+
+Auf der rechten Seite kommen mehrfach vor: W, X, Y, Z
+
+\liPseudoUeberschrift{Y}
+
+$Y \in$ \ahr{X -> Y, Z}{X -> Z}{X}{Q, V, W, X, \b{Y}, Z}
+
+\FA{
+  X -> Z;
+  Z -> W, X;
+  Q -> X, Y, Z;
+  V -> Z, W;
+  Z -> Y, Q, V;
+}
+
+$Y \in$ \ahr{Q -> X, Y, Z}{Q -> X, Z}{Q}{Q, V, W, X, \b{Y}, Z}
+
+\FA{
+  X -> Z;
+  Z -> W, X;
+  Q -> X, Z;
+  V -> Z, W;
+  Z -> Y, Q, V;
+}
+
+\liPseudoUeberschrift{Z}
+
+$Z \notin$ \ahr{X -> Z}{}{X}{X}\\
+$Z \in$ \ahr{Q -> X, Z}{Q -> X}{Q}{Q, V, W, X, Y, \b{Z}}
+
+\FA{
+  X -> Z;
+  Z -> W, X;
+  Q -> X;
+  V -> Z, W;
+  Z -> Y, Q, V;
+}
+
+$Z \notin$ \ahr{V -> Z, W}{V -> W}{V}{V, W}
+
+\liPseudoUeberschrift{W}
+
+$W \in$ \ahr{Z -> W, X}{Z -> X}{Z}{Q, V, \b{W}, X, Y, Z}
+
+\FA{
+  X -> Z;
+  Z -> X;
+  Q -> X;
+  V -> Z, W;
+  Z -> Y, Q, V;
+}
+
+\liPseudoUeberschrift{X}
+
+% Q V W X Y Z
+$X \in$ \ahr{Z -> X}{}{Z}{Q, V, W, \b{X}, Y, Z}
+
+\FA{
+  X -> Z;
+  Z -> NICHTS;
+  Q -> X;
+  V -> Z, W;
+  Z -> Y, Q, V;
+}
+
+\item \schrittE{1-3}
+
+\FA{
+  X -> Z;
+  Q -> X;
+  V -> Z, W;
+  Z -> Y, Q, V;
+}
+
+\item \schrittE{1-4}
+
+\liNichtsZuTun
+\end{enumerate}
+\end{liAntwort}
 
 %-----------------------------------------------------------------------
 % 2.

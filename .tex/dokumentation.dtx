@@ -5615,6 +5615,8 @@ Relation in die 3. Normalform]
 %   schrittE = liSyntheseUeberErklaerung,
 % }
 
+% \subsubsection{TeX-Markup Grundgerüst}
+
 % \begin{verbatim}
 % \let\schrittE=\liSyntheseUeberErklaerung
 % \begin{enumerate}
@@ -5631,6 +5633,41 @@ Relation in die 3. Normalform]
 % \item \schrittE{3}
 % \item \schrittE{4}
 % \end{enumerate}
+% \end{verbatim}
+
+% \subsubsection{TeX-Markup Linksreduktion}
+
+% \begin{verbatim}
+% \let\ahl=\liLinksReduktionInline
+% \let\fa=\liFunktionaleAbhaengigkeit
+% \let\m=\liAttributMenge
+% \let\b=\textbf
+
+% \liPseudoUeberschrift{\fa{C, E -> D, X}}
+%
+% $\m{D, X} \in$ \ahl{C, E}{E}{A, C, B, \b{D, X}}\\
+% $\m{D, X} \notin$ \ahl{C, E}{C}{E, F}
+%
+% \liPseudoUeberschrift{\fa{C, E -> F}}
+%
+% $F \notin$ \ahl{C, E}{E}{A, C, B}\\
+% $F \in$ \ahl{C, E}{C}{E, \b{F}}
+% \end{verbatim}
+
+% \subsubsection{TeX-Markup Rechtreduktion}
+
+% \begin{verbatim}
+% \let\ahr=\liRechtsReduktionInline
+% \let\fa=\liFunktionaleAbhaengigkeit
+
+% \liPseudoUeberschrift{F}
+%
+% $F \in$ \ahr{E -> F, X}{E -> F}{E}{E, \b{F}}
+%
+% \liPseudoUeberschrift{A}
+%
+% $A \notin$ \ahr{B -> A}{}{B}{B}\\
+% $A \in$ \ahr{C -> A}{}{C}{\b{A},B,C}
 % \end{verbatim}
 
 % \begin{liBeispiel}
