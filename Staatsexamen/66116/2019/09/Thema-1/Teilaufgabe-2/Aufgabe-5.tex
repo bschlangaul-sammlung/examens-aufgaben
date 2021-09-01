@@ -1,12 +1,21 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{normalformen}
 \begin{document}
 \liAufgabenTitel{}
+
+\let\b=\textbf
+
 \section{Aufgabe 5
 \index{Normalformen}
 \footcite{examen:66116:2019:09}}
 
-Gegeben sind folgende funktionale Abhängigkeiten.
+\begin{enumerate}
+
+%-----------------------------------------------------------------------
+% 1.
+%-----------------------------------------------------------------------
+
+\item Gegeben sind folgende funktionale Abhängigkeiten.
 
 X— YZ
 Z— WX
@@ -14,63 +23,173 @@ Q— XYZ
 V— ZW
 ZW — YQV
 
+Berechnen Sie die kanonische Überdeckung.
+
+%-----------------------------------------------------------------------
+% 2.
+%-----------------------------------------------------------------------
+
+\item Gegeben ist folgende Tabelle.
+
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\underline{JedID} & Name             & Rasse        & Lichtschwert & Seite der Macht\\\hline\hline
+2     & Yoda             & Unbekannt & Grün         & Gute Seite\\\hline
+3     & Anakin Skywalker & Mensch    & Blau, Rot    & Gute Seite, Dunkle Seite\\\hline
+4     & Mace Windou      & Mensch    & Lila         & Gute Seite\\\hline
+5     & Count Dooku      & Mensch    & Rot          & Dunkle Seite\\\hline
+6     & Ahsoka Tano      & Togruta   & Grün         & Gute Seite\\\hline
+7     & Yoda             & Mensch    & Rot          & Dunkle Seite\\\hline
+\end{tabular}
+\end{center}
+
+Geben Sie zuerst die funktionalen Abhängigkeiten in der Tabelle an.
+
+\begin{liAntwort}
+\liFunktionaleAbhaengigkeiten{
+JedID -> Name, Rasse, Lichtschwert, Seite der Macht;
+Lichtschwert -> Seite der Macht;
+}
+
+JedID ist ein Surrogat-Schlüssel\liFussnoteUrl{https://de.wikipedia.org/wiki/Surrogatschlüssel}, \dh ein künstlich eingeführter
+Primärschlüssel, von dem alle Attribute abhängen.
+
+Ein rotes Lichtschwert zeigt an, dass der Jedi-Ritter zur dunklen Seite
+der Macht gehört. Grüne, blaue und lila Lichtschwerter zeigen an, dass
+der Jedi-Ritter zu guten Seite gehört. Wir können die Funktionale
+Abhängigkeit nicht umdrehen, weil wir nicht von der guten Seite der
+Macht auf die Farbe schließen können.
+\end{liAntwort}
+
+%-----------------------------------------------------------------------
+% 3.
+%-----------------------------------------------------------------------
+
+\item \strut
+
 \begin{enumerate}
 
-\item 1. [10 Punkte] Berechnen Sie die kanonische Überdeckung.
+%%
+%  a)
+%%
 
-Gegeben ist folgende Tabelle.
-JediD Name Rasse Lichtschwert Seite der Macht
-2 Yoda Unbekannt Grün Gute Seite
-3 Anakin Skywalker |Mensch Blau, Rot Gute Seite, dunkle Seite
-4 Mace Windou Mensch Lila Gute Seite
-5 Count Dooku Mensch Rot Dunkle Seite
-6 Ahsoka Tano Togruta Grün Gute Seite
-7 Yoda Mensch Rot Dunkle Seite
-2. [2 Punkte] Geben Sie zuerst die funktionalen Abhängigkeiten in der Tabelle an.
-3. a) [1 Punkt] Geben Sie die zentrale Eigenschaft der 1. NF an.
+\item Geben Sie die zentrale Eigenschaft der 1. NF an.
+
+\begin{liAntwort}
+Eine Relation befindet sich in erster Normalform (1NF), wenn sie
+ausschließlich atomare Attributwerte enthält.\footcite[Seite 448]{schneider}
+\end{liAntwort}
+
 %%
 % b)
 %%
 
-\item [3 Punkte] Nennen Sie alle Stellen, an denen das Schema die 1. NF verletzt.
+\item Nennen Sie alle Stellen, an denen das Schema die 1. NF verletzt.
+
+\begin{liAntwort}
+Im Tupel (JedID = 3) haben die Attribute \emph{Lichtschwert} und
+\emph{Seite der Macht} mehrwertige Attribute.
+\end{liAntwort}
 
 %%
 % c)
 %%
 
-\item [3 Punkte] Überführen Sie die Tabelle in die 1. NF.
-4. a) [1 Punkt] Geben Sie die Definition der 2. NF an.
+\item Überführen Sie die Tabelle in die 1. NF.
+
+\begin{liAntwort}
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\underline{JedID} & Name             & Rasse        & Lichtschwert & Seite der Macht\\\hline\hline
+2     & Yoda             & Unbekannt & Grün         & Gute Seite\\\hline
+3     & Anakin Skywalker & Mensch    & Blau         & Gute Seite\\\hline
+4     & Mace Windou      & Mensch    & Lila         & Gute Seite\\\hline
+5     & Count Dooku      & Mensch    & Rot          & Dunkle Seite\\\hline
+6     & Ahsoka Tano      & Togruta   & Grün         & Gute Seite\\\hline
+7     & Yoda             & Mensch    & Rot          & Dunkle Seite\\\hline
+\b{8}     & \b{Darth Vader}      & \b{Mensch}    & \b{Rot}          & \b{Dunkle Seite}\\\hline
+\end{tabular}
+\end{center}
+\end{liAntwort}
+
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+% 4.
+%-----------------------------------------------------------------------
+
+\item \strut
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Geben Sie die Definition der 2. NF an.
+
+\begin{liAntwort}
+Eine Relation in in zweiter Normalform (2NF), wenn sie in 1NF und jedes
+Nichtschlüsselattribut von jedem Schlüsselkandidaten voll funktional
+abhängig ist.\footcite[Seite 449]{schneider}
+\end{liAntwort}
 
 %%
 % b)
 %%
 
-\item [2 Punkte] Arbeiten Sie bitte mit folgender, nicht korrekten Zwischenlösung weiter.
+\item Arbeiten Sie bitte mit folgender, nicht korrekten Zwischenlösung weiter.
 Erläutern Sie, inwiefern dieses Schema die 2. NF verletzt.
 
-JediD Name Rasse Lichtschwert Seite der Macht
-2 Yoda Unbekannt Grün Gute Seite
-3 Skywalker Mensch Blau Gute Seite
-4 Windou Mensch Lila Gute Seite
-5 Dooku Mensch Rot Dunkle Seite
-6 Tano Togruta Grün Gute Seite
-2 Yoda Mensch Rot Dunkle Seite
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+JedID & Name      & Rasse     & Lichtschwert & Seite der Macht\\\hline\hline
+2     & Yoda      & Unbekannt & Grün         & Gute Seite\\\hline
+3     & Skywalker & Mensch    & Blau         & Gute Seite\\\hline
+4     & Windou    & Mensch    & Lila         & Gute Seite\\\hline
+5     & Dooku     & Mensch    & Rot          & Dunkle Seite\\\hline
+6     & Tano      & Togruta   & Grün         & Gute Seite\\\hline
+2     & Yoda      & Mensch    & Rot          & Dunkle Seite\\\hline
+\end{tabular}
+\end{center}
 
 %%
 % c)
 %%
 
-\item [3 Punkte] Überführen Sie die Tabelle in die 2. NF.
+\item Überführen Sie die Tabelle in die 2. NF.
+\end{enumerate}
 
-5. a) [1 Punkt] Geben Sie die Definition der 3. NF an.
+%-----------------------------------------------------------------------
+% 5.
+%-----------------------------------------------------------------------
+
+\item 5.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Geben Sie die Definition der 3. NF an.
+
+\begin{liAntwort}
+Eine Relation befindet sind in der dritten Normalform (3NF), wenn keine
+transitiven Abhängigkeiten der Nichtschlüsselattribute existieren.
+\footcite[Seite 449]{schneider}
+\end{liAntwort}
 
 %%
 % b)
 %%
 
-\item [1 Punkt] Erläutern Sie, ob und wenn ja, wie das von Ihnen in 3c) neu erstellte Schema die
+\item Erläutern Sie, ob und wenn ja, wie das von Ihnen in 3c) neu
+erstellte Schema die 3. NF verletzt.
 
-3. NF verletzt.
-
+\end{enumerate}
 \end{enumerate}
 \end{document}

@@ -1,21 +1,77 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{relationale-algebra}
 \begin{document}
-\liAufgabenTitel{Game of Thrones}
-\section{Aufgabe 4
-\index{Relationale Algebra}
-\footcite{examen:66116:2019:09}}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 4},
+  Thematik = {Game of Thrones},
+  RelativerPfad = Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-4.tex,
+  ZitatSchluessel = examen:66116:2019:09,
+  Stichwoerter = {Relationale Algebra},
+  ExamenNummer = 66116,
+  ExamenJahr = 2019,
+  ExamenMonat = 09,
+  ExamenThemaNr = 1,
+  ExamenTeilaufgabeNr = 2,
+  ExamenAufgabeNr = 4,
+}
+
+\let\t=\text
 
 Übertragen Sie die folgenden Ausdrücke in die relationale Algebra.
 Beschreiben Sie diese Ausdrücke umgangssprachlich, bevor Sie die
 Umformung durchführen. Das Schema der Datenbank entspricht dem Schema
-aus Aufgabe 3.
+aus Aufgabe 3.\index{Relationale Algebra}
+\footcite{examen:66116:2019:09}
 
-% 1. [6 Punkte] { f| fe Figur A -JIge gehört_zu( f. Id = g.Id)}
+\begin{enumerate}
 
-% 2. [8 Punkte] { f| /f e Figur A 3J elebt(l.Id = c.Id) A 3/ e Festung(/.Festung = f. Name) A}
+%%
+% 1.
+%%
 
-% Ib e besetzt( f. Name = b.Festung) A 3/2 e Familie(d.Familie = f2.Id) A f2.Name =
-% Stark) }
+\item $\{ f \, | \, f \in \t{Figur} \land \neg \exists g \in \t{gehört\_zu}(f.\t{Id} = g.\t{Id})\}$
+
+\begin{liAntwort}
+Gesucht sind alle Figuren, die keiner Familie angehören.
+
+\begin{displaymath}
+\t{Figur} - \pi_{\t{Id}, \t{Name}, \t{Schwertkunst}, \t{Lebendig}, \t{Titel}}(\t{Figur} \bowtie \t{gehört\_zu})
+\end{displaymath}
+\end{liAntwort}
+
+%%
+% 2.
+%%
+
+\item $\{ f \, | \,
+  f \in \t{Figur} \land
+  \exists l \in \t{lebt}(l.\t{Id} = f.\t{Id}) \land
+  \exists f_2 \in \t{Festung}(l.\t{Festung} = f.\t{Name}) \land
+  \exists b \in \t{besetzt}(f_2.\t{Name} = b.\t{Festung}) \land
+  \exists f_3 \in \t{Familie}(b.\t{Familie} = f_3.Id) \land
+  f_3.\t{Name} = \t{Stark})
+\}$
+
+\begin{liAntwort}
+In der Angabe steht $\t{lebt}(l.\t{Id} = c.\t{Id})$ wurde abgeändert in
+$\t{lebt}(l.\t{Id} = \textbf{f}.\t{Id})$ Außerdem kommt $f$ mehrmals
+vor. Wir wandeln $f_2$ in $f_3$ um und führen ein neues $f_2$ ein. Diese
+schließende Klammer muss weg: $\t{Familie}(b.\t{Familie} =
+f_3.Id\textbf{)}$ Übersichtlicher geschrieben
+
+\begin{align*}
+\{ f \, | \,
+  & f                 & \in & \, \t{Figur} \land \\
+  & \exists l   & \in & \, \t{lebt}(l.\t{Id} = f.\t{Id}) \land \\
+  & \exists f_2 & \in & \, \t{Festung}(l.\t{Festung} = f.\t{Name})\land \\
+  & \exists b   & \in & \, \t{besetzt}(f_2.\t{Name} = b.\t{Festung}) \land \\
+  & \exists f_3 & \in & \,\t{Familie}(b.\t{Familie} = f_3.Id \land f_3.\t{Name} = \t{Stark})\\
+\}
+\end{align*}
+
+Gesucht sind alle Figuren, die in einer von der Familie „Stark“
+besetzten Festung leben.
+\end{liAntwort}
+\end{enumerate}
 
 \end{document}
