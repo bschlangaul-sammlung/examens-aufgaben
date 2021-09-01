@@ -60,6 +60,9 @@ export interface AufgabenMetadaten {
   ExamenAufgabeNr?: number
 }
 
+/**
+ * Eine allgemeine Aufgabe, die keinem Examen zugeordnet werden kann.
+ */
 export class Aufgabe {
   /**
    * Der absolute Pfad zur Aufgabe
@@ -113,48 +116,14 @@ export class Aufgabe {
     return false
   }
 
-  get titel (): string {
-    if (this.metadaten_ != null) {
-      return this.metadaten_.Titel
+  static vergleichePfade (a: Aufgabe, b: Aufgabe): number {
+    if (a.pfad < b.pfad) {
+      return -1
     }
-
-    const section = this.inhalt.match(/\\section\{(.+?)[\n\\}{]/)
-    if (section != null && section[1] != null) {
-      return section[1]
+    if (a.pfad > b.pfad) {
+      return 1
     }
-
-    return 'Aufgabe'
-  }
-
-  get thematik (): string {
-    if (this.metadaten_?.Thematik != null) {
-      return this.metadaten_.Thematik
-    }
-
-    const thematik = gibInhaltEinesTexMakros('liAufgabenTitel', this.inhalt)
-    if (thematik != null) {
-      return thematik
-    }
-
-    return 'keine Thematik'
-  }
-
-  /**
-   * Inhalt des ersten `\footcite[ZitatBeschreibung]{ZitatSchluessel}` Makros
-   * als Array `[ZitatSchluessel, ZitatBeschreibung]`.
-   */
-  get zitat (): string[] | undefined {
-    const match = this.inhalt.match(/\\footcite(\[([^\]]+)\])?\{([^}]+)\}/)
-    if (match != null) {
-      const zitat = []
-      if (match[3] != null) {
-        zitat.push(match[3])
-      }
-      if (match[2] != null) {
-        zitat.push(match[2])
-      }
-      return zitat
-    }
+    return 0
   }
 
   /**
@@ -219,6 +188,63 @@ export class Aufgabe {
     return meta
   }
 
+  /**
+   * Der Titel einer Aufgabe. Er wird zuerst aus den TeX-Metadaten
+   * `\liAufgabenMetadaten` (`Titel`) gelesen, anschließend aus dem ersten
+   * `\section`-Makro. Wird kein Titel in der TeX-Datei gefunden, so lautet der
+   * Titel `Aufgabe`.
+   */
+  get titel (): string {
+    if (this.metadaten_ != null) {
+      return this.metadaten_.Titel
+    }
+
+    const section = this.inhalt.match(/\\section\{(.+?)[\n\\}{]/)
+    if (section != null && section[1] != null) {
+      return section[1]
+    }
+
+    return 'Aufgabe'
+  }
+
+  /**
+   * Die Thematik (wenige Wörter um sich an eine Aufgabe erinnern zu können)
+   * einer Aufgabe. Er wird zuerst aus den TeX-Metadaten `\liAufgabenMetadaten`
+   * (`Themaik`) gelesen, anschließend aus dem ersten `\liAufgabenTitel`-Makro.
+   * Wird kein Titel in der TeX-Datei gefunden, so lautet der Titel `keine
+   * Thematik`.
+   */
+  get thematik (): string {
+    if (this.metadaten_?.Thematik != null) {
+      return this.metadaten_.Thematik
+    }
+
+    const thematik = gibInhaltEinesTexMakros('liAufgabenTitel', this.inhalt)
+    if (thematik != null) {
+      return thematik
+    }
+
+    return 'keine Thematik'
+  }
+
+  /**
+   * Inhalt des ersten `\footcite[ZitatBeschreibung]{ZitatSchluessel}` Makros
+   * als Array `[ZitatSchluessel, ZitatBeschreibung]`.
+   */
+  get zitat (): string[] | undefined {
+    const match = this.inhalt.match(/\\footcite(\[([^\]]+)\])?\{([^}]+)\}/)
+    if (match != null) {
+      const zitat = []
+      if (match[3] != null) {
+        zitat.push(match[3])
+      }
+      if (match[2] != null) {
+        zitat.push(match[2])
+      }
+      return zitat
+    }
+  }
+
   get titelFormatiert (): string {
     let titel: string
     if (this.titel != null) {
@@ -228,6 +254,19 @@ export class Aufgabe {
     }
 
     return titel
+  }
+
+  /**
+   * `this.titel „this.thematik“`
+   *
+   * z. B. `Übung zum Master-Theorem` oder `Aufgabe 1 „Kleintierverein“`
+   */
+  get titelThematikFormatiert (): string {
+    let ausgabe: string = this.titel
+    if (this.thematik !== 'keine Thematik') {
+      ausgabe += ` „${this.thematik}“`
+    }
+    return ausgabe
   }
 
   get stichwörterFormatiert (): string {
@@ -249,22 +288,12 @@ export class Aufgabe {
    */
   get link (): string {
     return (
-      generiereLink(this.titelFormatiert, this.pfad) +
+      generiereLink(this.titelThematikFormatiert, this.pfad) +
       this.stichwörterFormatiert +
       ' (' +
       this.linkTex +
       ') '
     )
-  }
-
-  static vergleichePfade (a: Aufgabe, b: Aufgabe): number {
-    if (a.pfad < b.pfad) {
-      return -1
-    }
-    if (a.pfad > b.pfad) {
-      return 1
-    }
-    return 0
   }
 
   get texEinbindenMakro (): string {
@@ -278,6 +307,9 @@ export class Aufgabe {
   }
 }
 
+/**
+ * Eine Examensaufgabe
+ */
 export class ExamensAufgabe extends Aufgabe {
   thema?: number
   teilaufgabe?: number
@@ -349,10 +381,13 @@ export class ExamensAufgabe extends Aufgabe {
     return output.join(' ')
   }
 
+  /**
+   * `„Greedy-Färben von Intervallen“ Examen 66115 Herbst 2017 T1 A8`
+   */
   get titelKurz (): string {
     const ausgabe = `${this.examen.titelKurz} ${this.aufgabenReferenz}`
-    if (this.titel != null) {
-      return `„${this.titel}“ ${ausgabe}`
+    if (this.thematik !== 'keine Thematik') {
+      return `„${this.thematik}“ ${ausgabe}`
     }
     return ausgabe
   }

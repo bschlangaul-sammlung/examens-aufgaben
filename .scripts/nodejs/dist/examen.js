@@ -35,6 +35,9 @@ class Examen {
     get monatMitNullen() {
         return this.monat.toString().padStart(2, '0');
     }
+    /**
+     * z. B. `66116:2020:03`
+     */
     get referenz() {
         return `${this.nummer}:${this.jahr}:${this.monatMitNullen}`;
     }
