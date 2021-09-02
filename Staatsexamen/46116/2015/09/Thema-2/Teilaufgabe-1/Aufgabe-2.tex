@@ -2,8 +2,8 @@
 \liLadePakete{syntax,kontrollflussgraph}
 \begin{document}
 \let\c=\liKontrollCode
-\let\bWahr=\liBedingungWahr
-\let\bFalsch=\liBedingungFalsch
+\let\w=\liBedingungWahr
+\let\f=\liBedingungFalsch
 
 \liAufgabenTitel{Methode „isPalindrom()“}
 
@@ -33,14 +33,14 @@ Kontrollflussgraph:
 
 \path (I) -- (1);
 \path (1) -- (2);
-\path (2) -- (3) \bWahr{left};
-\path (3) -- (4) \bWahr{above left};
+\path (2) -- (3) \w{left};
+\path (3) -- (4) \w{above left};
 \path (4) -- (5);
 \path (5) -- (6);
-\path (6) -- (E) \bFalsch{left};
-\path (2) edge[bend right=50] (E) \bFalsch{right};
-\path (6) edge[bend right=90] (3) \bWahr{left};
-\path (3) edge[bend right] (5) \bFalsch{right};
+\path (6) -- (E) \f{left};
+\path (2) edge[bend right=50] (E) \f{right};
+\path (6) edge[bend right=90] (3) \w{left};
+\path (3) edge[bend right] (5) \f{right};
 \end{liKontrollflussgraph}
 \end{minipage}
 
@@ -94,14 +94,14 @@ Code möglich ist oder nicht!
 
 \path (I) -- (1);
 \path (1) -- (2);
-\path (2) -- (3) \bWahr{left};
-\path (3) -- (4) \bWahr{above left};
+\path (2) -- (3) \w{left};
+\path (3) -- (4) \w{above left};
 \path (4) -- (5);
 \path (5) -- (6);
-\path (6) -- (E) \bFalsch{left};
-\path (2) edge[bend right=50] (E) \bFalsch{right};
-\path (6) edge[bend right=90] (3) \bWahr{left};
-\path (3) edge[bend right] (5) \bFalsch{right};
+\path (6) -- (E) \f{left};
+\path (2) edge[bend right=50] (E) \f{right};
+\path (6) edge[bend right=90] (3) \w{left};
+\path (3) edge[bend right] (5) \f{right};
 \end{liKontrollflussgraph}
 \end{liAntwort}
 

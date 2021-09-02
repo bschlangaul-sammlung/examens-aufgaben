@@ -1,6 +1,14 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
+\liLadePakete{syntax,kontrollflussgraph}
 \begin{document}
+
+\let\b=\liBedingung
+\let\c=\liKontrollCode
+\let\f=\liBedingungFalsch
+\let\k=\liKontrollTextzeileKnoten
+\let\p=\liKontrollKnotenPfad
+\let\w=\liBedingungWahr
+
 \liAufgabenTitel{White-Box-Tests}
 \section{Aufgabe 3
 \index{White-Box-Testing}
@@ -8,14 +16,39 @@
 
 Eine Dezimalzahl hat ein optionales Vorzeichen, dem eine nichtleere
 Sequenz von Dezimalziffern folgt. Der anschließende gebrochene Anteil
-ist optional und besteht aus einem Dezimalpunkt, gefolgt
-
-von einer nichtleeren Sequenz von Dezimalziffern.
+ist optional und besteht aus einem Dezimalpunkt, gefolgt von einer
+nichtleeren Sequenz von Dezimalziffern.
 
 Die folgende Java-Methode erkennt, ob eine Zeichenfolge eine Dezimalzahl
 ist:
 
-\liJavaExamen{66116}{2019}{09}{Dezimalzahl}
+% \liJavaExamen{66116}{2019}{09}{Dezimalzahl}
+
+\begin{minted}{java}
+  public static boolean istDezimalzahl(char[] zeichen) { // 1
+    boolean resultat; int laenge = zeichen.length; // 2
+    if (laenge == 0) // 3
+      resultat = false; // 4
+    else { // 5
+      int i = 0; // 6
+      if (zeichen[i] == '+' || zeichen[i] == '-') // 7
+        i++; // 8
+      int j = i; // 9
+      while (i < laenge && '0' <= zeichen[i] && zeichen[i] <= '9') // 10
+        i++; // 11
+      if (i == j) // 12
+        resultat = false; // 13
+      else { // 14
+        if (i < laenge && zeichen[i] == '.') // 15
+          do // 16
+            i++; // 17
+          while (i < laenge && '0' <= zeichen[i] && zeichen[i] <= '9'); // 18
+        resultat = i == laenge && '0' <= zeichen[i - 1] && zeichen[i - 1] <= '9'; // 19
+      } // 20
+    } // 21
+    return resultat; // 22
+  }
+\end{minted}
 
 \begin{enumerate}
 
@@ -26,13 +59,69 @@ ist:
 \item Konstruieren Sie zu dieser Methode einen Kontrollflußgraphen.
 Markieren Sie dessen Knoten mit Zeilennummern des Quelltexts.
 
+\begin{liAntwort}
+\begin{liKontrollflussgraph}[xscale=1,yscale=-0.8]
+\node[knoten] at (0,2) (1) {1};
+\node[pin=\c{boolean resultat; int laenge = zeichen.length;}] at (0,3) (2) {2};
+\node[pin=\c{if (laenge == 0)}] at (0,4) (3) {3};
+    \node[pin=180:\c{resultat = false;}] at (-1,5) (4) {4};
+% \node[pin=\c{}] at (0,5) (5) {5};
+    \node[pin=\c{int i = 0;}] at (0,6) (6) {6};
+    \node[pin=\c{if (zeichen[i] == '+' || zeichen[i] == '-')}] at (0,7) (7) {7};
+        \node[pin=\c{i++; }] at (1,8) (8) {8};
+    \node[pin=\c{int j = i;}] at (0,8.8) (9) {9};
+    \node[pin=\c{while (i < laenge \&\& '0' <= zeichen[i] \&\& zeichen[i] <= '9')}] at (0,10) (10) {10};
+        \node[pin=\c{i++;}] at (1,11) (11) {11};
+    \node[pin=\c{if (i == j)}] at (0,12) (12) {12};
+        \node[pin=\c{resultat = false;}] at (2,13) (13) {13};
+    % \node[pin=\c{}] at (0,14) (14) {14};
+        \node[pin=\c{if (i < laenge \&\& zeichen[i] == '.')}]
+        at (0,14) (15) {15};
+
+        % \node[pin=\c{}] at (0,16) (16) {16};
+        \node[pin=\c{i++;}] at (1,15) (17) {17};
+        \node[pin=\c{while (i < laenge \&\& '0' <= zeichen[i] \&\& zeichen[i] <= '9');}]
+        at (1,17) (18) {18};
+
+        \node[pin=\c{resultat = i == laenge \&\& '0' <= zeichen[i - 1] \&\& zeichen[i - 1] <= '9';}]
+        at (0,18) (19) {19};
+    % 20
+    % 21
+\node[pin=180:\c{return resultat;}] at (0,20) (22) {22};
+
+\path (1) -- (2);
+\path (2) -- (3);
+\path (3) -- (4);
+\path (3) edge[falsch] (6);
+\path (4) -- (-1,19) -- (22);
+\path (7) -- (8);
+\path (7) edge[falsch] (9);
+\path (6) -- (7);
+\path (9) -- (10);
+\path (8) -- (9);
+\path (10) edge[bend left] (11);
+\path (11) edge[bend left] (10);
+\path (10) edge[falsch] (12);
+\path (12) -- (13);
+\path (13) -- (2,19) -- (22);
+\path (12) edge[falsch] (15);
+\path (15) -- (17);
+\path (15) edge[falsch] (19);
+\path (17) -- (18);
+\path (18) edge[bend left] (17);
+\path (18) edge[falsch] (19);
+\path (19) -- (22);
+\end{liKontrollflussgraph}
+\end{liAntwort}
+
 %%
 % b)
 %%
 
 \item Geben Sie eine minimale Testmenge an, die das Kriterium der
 Knotenüberdeckung erfüllt. Geben Sie für jeden Testfall den
-durchlaufenen Pfad in der Notation 1 -> 2 -> ... an.
+durchlaufenen Pfad in der Notation 1 $\rightarrow$ 2 $\rightarrow$
+$\dots$ an.
 
 %%
 % c)
