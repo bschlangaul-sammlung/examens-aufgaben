@@ -123,11 +123,36 @@ Knotenüberdeckung erfüllt. Geben Sie für jeden Testfall den
 durchlaufenen Pfad in der Notation 1 $\rightarrow$ 2 $\rightarrow$
 $\dots$ an.
 
+\begin{liAntwort}
+\begin{itemize}
+%  1-2-3-4-6-7-8-9-10-11-12-13-15-17-18-19-22
+\item „“: \\
+%  1-2-3-4-6-7-8-9-10-11-12-13-15-17-18-19-22
+\p{1-2-3-4-                                22}
+
+\item „1“:\\
+%  1-2-3-4-6-7-8-9-10-11-   12-13-15-17-18-19-22
+\p{1-2-3-  6-7-  9-10-11-10-12-   15-      19-22}
+
+\item „+1.0“:\\
+%  1-2-3-4-6-7-8-9-10-11-   12-13-15-17-18-19-22
+\p{1-2-3-  6-7-8-9-10-11-10-12-   15-17-18-19-22}
+
+\item „x“:\\
+%  1-2-3-4-6-7-8-9-10-11-12-13-15-17-18-19-22
+\p{1-2-3-  6-7-  9-10-   12-13-            22}
+\end{itemize}
+\end{liAntwort}
+
 %%
 % c)
 %%
 
 \item Verfahren Sie wie in b) für das Kriterium der Kantenüberdeckung.
+
+\begin{liAntwort}
+text
+\end{liAntwort}
 
 %%
 % d)
@@ -139,6 +164,17 @@ zueinander in Beziehung? Begründen Sie Ihre Anwort.
 Hinweis: Eine Testmenge ist minimal, wenn es keine andere Testmenge mit
 einer kleineren Zahl von Testfällen gibt. Die Minimalität braucht nicht
 bewiesen zu werden.
+
+\begin{liAntwort}
+Die Kantenüberdeckung fordert, dass jede \emph{Kante} des
+Kontrollflussgraphen von mindestens einem Testfall durchlaufen werden
+muss. Um das Kriterium zu erfüllen, müssen die Testfälle so gewählt
+werden, dass jede Verzweigungsbedingung mindestens \emph{einmal wahr}
+und mindestens \emph{einmal falsch} wird. Da hierdurch alle Knoten
+ebenfalls mindestens einmal besucht werden müssen, ist die
+\emph{Anweisungsüberdeckung} in der Zweigüberdeckung \emph{vollständig
+enthalten}.\footcite[Seite 209]{hoffmann:software}
+\end{liAntwort}
 
 \end{enumerate}
 \end{document}

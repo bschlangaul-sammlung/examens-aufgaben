@@ -7,6 +7,13 @@
 
 \begin{document}
 
+\let\b=\liBedingung
+\let\c=\liKontrollCode
+\let\f=\liBedingungFalsch
+\let\k=\liKontrollTextzeileKnoten
+\let\p=\liKontrollKnotenPfad
+\let\w=\liBedingungWahr
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Theorie-Teil
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -110,8 +117,8 @@ ohnehin einer der beiden Klassen zugeordnet werden kann.
 \item \cite[Seite 199-246]{hoffmann:software}
 \end{liQuellen}
 
-Quellcode ist bekannt und wird zum Testen benutzt\footcite[Seite
-32]{sosy:fs:5}
+Bei White-Box-Tests ist der Quellcode bekannt und wird zum Testen
+benutzt.\footcite[Seite 32]{sosy:fs:5}
 
 %%
 %
@@ -191,7 +198,7 @@ Schleifenkonstrukte\footcite[Seite 205]{hoffmann:software}}
 \liJavaDatei[firstline=4,lastline=16]{testen/Beispiel}
 \end{minipage}
 \begin{minipage}{4cm}
-\begin{liKontrollflussgraph}
+\begin{liKontrollflussgraph}[y=-1cm]
 \node at (-2,1) (S) {S};
 \node at (-1,1.5) (1) {1};
 \node at (0,2) (2) {2};
@@ -203,12 +210,12 @@ Schleifenkonstrukte\footcite[Seite 205]{hoffmann:software}}
 
 \path (S) -- (1);
 \path (1) -- (2);
-\path[wahr] (2) -- (3) \liBedingung{right,pos=0}{y > x};
-\path[falsch] (2) -- (5) \liBedingung{left}{y <= x};
+\path[wahr] (2) -- (3) \b{right,pos=0}{y > x};
+\path[falsch] (2) -- (5) \b{left}{y <= x};
 \path (3) -- (4);
 \path (4) -- (5);
-\path[wahr] (5) -- (6) \liBedingung{right,pos=0}{2 * max < 3 * min};
-\path[falsch] (5) -- (E) \liBedingung{left}{2 * max >= 3 * min};
+\path[wahr] (5) -- (6) \b{right,pos=0}{2 * max < 3 * min};
+\path[falsch] (5) -- (E) \b{left}{2 * max >= 3 * min};
 \path (6) -- (E);
 \end{liKontrollflussgraph}
 \end{minipage}
@@ -233,27 +240,23 @@ die niemals durchlaufen werden) im Programm existiert.
 
 \beispiel
 
-\begin{center}
-\texttt{(S, 1, 2, 3, 4, 5, 6, E)}
+\noindent
+\liJavaCode{max(4, 5);}: \p{S-1-2-3-4-5-6-E}
 
-bzw.
-
-\texttt{x=4, y=5}
-\end{center}
 %%
 %
 %%
 
 \subsubsection{$C_1$-Test: Zweigüberdeckung (Branch Coverage)\footcite[Seite 37]{sosy:fs:5}}
 
-Die Zweigüberdeckung fordert, dass jede \memph{Kante} des
-Kontrollflussgraphen von mindestens einem Testfall durchlaufen werden
-muss. Um das Kriterium zu erfüllen, müssen die Testfälle so gewählt
-werden, dass jede Verzweigungsbedingung mindestens \memph{einmal wahr}
-und mindestens \memph{einmal falsch} wird. Da hierdurch alle Knoten
-ebenfalls mindestens einmal besucht werden müssen, ist die
-\memph{Anweisungsüberdeckung} in der Zweigüberdeckung \memph{vollständig
-enthalten}.\footcite[Seite 209]{hoffmann:software}
+Die Zweigüberdeckung (auch Kantenüberdeckung) fordert, dass jede
+\memph{Kante} des Kontrollflussgraphen von mindestens einem Testfall
+durchlaufen werden muss. Um das Kriterium zu erfüllen, müssen die
+Testfälle so gewählt werden, dass jede Verzweigungsbedingung mindestens
+\memph{einmal wahr} und mindestens \memph{einmal falsch} wird. Da
+hierdurch alle Knoten ebenfalls mindestens einmal besucht werden müssen,
+ist die \memph{Anweisungsüberdeckung} in der Zweigüberdeckung
+\memph{vollständig enthalten}.\footcite[Seite 209]{hoffmann:software}
 
 Der Zweigüberdeckungstest wird auch
 \memph{Entscheidungsüberdeckungstest} genannt, da die Hilfsvariable
@@ -263,13 +266,9 @@ mindestens zweimal durchlaufen werden.\footcite{wiki:kontrollfluss-test}
 
 \beispiel
 
-\begin{center}
-\texttt{\{(S, 1, 2, 3, 4, 5, 6, E), (S, 1, 2, 5, E)\}}
-
-bzw.
-
-\texttt{\{x=4, y=5; x=3, y=2\}}
-\end{center}
+\noindent
+\liJavaCode{max(4, 5);}: \p{S-1-2-3-4-5-6-E}\\
+\liJavaCode{max(3, 2);}: \p{S-1-2-5-E}
 
 %%
 %
@@ -501,7 +500,7 @@ Quelle: Wikipedia\footcite{wiki:kontrollfluss-test}
 
 \begin{liQuellen}
 \item \cite[Kapitel 8.6.3 „Methoden zur Testfallermittlung“, Seite 250-251]{schneider}
-\item \cite[Kapitel 4.4.7 Def-Uses-Überdeckung, Seite 220-227]{hoffmannn}
+\item \cite[Kapitel 4.4.7 Def-Uses-Überdeckung, Seite 220-227]{hoffmann:software}
 
 \end{liQuellen}
 Im Gegensatz zu allen bisher betrachteten Überdeckungskriterien, die
@@ -539,7 +538,7 @@ Variablen in einer Berechnung verwenden} (\memph{computational use},
 kurz \texttt{c-use}). Zwischen einer Zuweisung und einer sich
 anschließenden berechnenden Nutzung besteht eine
 \texttt{dc}-Interaktion. \TmpBeispiel{x = x * 2;} (+ \texttt{def-use})
-\footcite[Seite 220]{hoffmannn}
+\footcite[Seite 220]{hoffmann:software}
 
 \item[Prädikative Nutzung (\texttt{p-use}):]
 
@@ -548,7 +547,7 @@ In diese Klasse fallen alle Zugriffe, die den Wert einer Variablen
 verwenden (\memph{predicative use}, kurz \texttt{p-use}). Zwischen einer
 Zuweisung und einer sich anschließenden prädikativen Nutzung besteht
 eine dp-Interaktion. \TmpBeispiel{if (x > 42)}
-\footcite[Seite 221]{hoffmannn}
+\footcite[Seite 221]{hoffmann:software}
 \end{description}
 \end{description}
 \footcite[Seite 42]{sosy:fs:5}
@@ -661,13 +660,13 @@ Ergebnisse.
 
 \section{Unit-Test}
 
-Mit dem Begriff Unit wird eine atomare Programmeinheit bezeichnet, die
-groß genug ist, um als solche eigenständig getestet zu werden. Der
-Unit-Test wird nicht selten auch als Modultest oder noch allgemeiner als
-Komponententest bezeichnet. Wird die Methodik des Unit-Tests auf größere
-Klassen- oder Modulverbünde angewendet, so geht der Testprozess fast
-nahtlos in den Integrationstest über.\footcite[Seite 159 Kapitel 4.2.1.1
-Unit Tests]{hoffmann:software}
+Mit dem Begriff Unit wird eine \memph{atomare Programmeinheit}
+bezeichnet, die groß genug ist, um als solche eigenständig getestet zu
+werden. Der Unit-Test wird nicht selten auch als \memph{Modultest} oder
+noch allgemeiner als \memph{Komponententest} bezeichnet. Wird die
+Methodik des Unit-Tests auf größere Klassen- oder Modulverbünde
+angewendet, so geht der Testprozess fast nahtlos in den Integrationstest
+über.\footcite[Seite 159 Kapitel 4.2.1.1 Unit Tests]{hoffmann:software}
 
 \literatur
 
