@@ -3333,6 +3333,19 @@ aufgestellt werden.
 % \end{liKontrollflussgraph}
 % \end{verbatim}
 
+% \subsubsection{TikZ: pin}
+
+% Die Knoten erhalten sogenannte Pins, in denen Code-Ausschnitte der
+% entsprechenden Anweisung zu sehen ist.
+
+% |pin={[options]angle:text}|
+
+% \begin{verbatim}
+% \node[pin=\c{resultat = true;}] at (1,11) {18};
+% \node[pin=180:\c{return resultat;}] at (-1,9) {22};
+% \node[pin={[pin distance=3cm]\c{resultat = ...}}]
+% \end{verbatim}
+
 %    \begin{macrocode}
 \RequirePackage{tikz}
 \usetikzlibrary{positioning}
@@ -5443,6 +5456,23 @@ realisiert werden kann.]
 \def\liSpaltenUmbruch{\vfill\strut\columnbreak}
 %    \end{macrocode}
 % \end{macro}
+
+%    \begin{macrocode}
+
+%    \end{macrocode}
+% \subsection{sql.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-tabelle}[2021/09/02 Zu Setzen von SQL]
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\RequirePackage{fancyvrb}
+\DefineVerbatimEnvironment%
+{liSqlErgebnis}{Verbatim}
+{gobble=2,numbers=left,numbersep=2mm,
+frame=lines,framerule=0.8mm}
+%    \end{macrocode}
 
 %    \begin{macrocode}
 

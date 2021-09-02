@@ -1,36 +1,50 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax,rmodell}
+\liLadePakete{syntax,rmodell,sql}
 \begin{document}
-\liAufgabenTitel{Game of Thrones}
-\section{Aufgabe 3
-\index{SQL}
-\footcite{examen:66116:2019:09}}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 3},
+  Thematik = {Game of Thrones},
+  RelativerPfad = Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-3.tex,
+  ZitatSchluessel = examen:66116:2019:09,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {SQL, SQL mit Übungsdatenbank, Korrelierte Anfrage, DELETE, DROP COLUMN, ALTER TABLE, BETWEEN, CHECK, REFERENCES, NOT NULL},
+  ExamenNummer = 66116,
+  ExamenJahr = 2019,
+  ExamenMonat = 09,
+  ExamenThemaNr = 1,
+  ExamenTeilaufgabeNr = 2,
+  ExamenAufgabeNr = 3,
+}
+
+\let\r=\liRelationMenge
 
 Formulieren Sie folgende Anfragen in SQL gegen die angegebene Datenbank
-aus einer imaginären Serie.
+aus einer imaginären Serie.\index{SQL}
+\footcite{examen:66116:2019:09}
 
 \begin{liRmodell}
-\liRelation{Figur}{\liPrimaer{Id}, Name, Schwertkunst, Lebendig, Titel}
+\r{Figur}{\liPrimaer{Id}, Name, Schwertkunst, Lebendig, Titel}
 
-\liRelation{gehört\_zu}{\liPrimaer{Id, Familie},
+\r{gehört\_zu}{\liPrimaer{Id, Familie},
 FK (Id) references Figur(Id),
 FK (Familie) references Familie(Id) }
 
-\liRelation{Familie}{\liPrimaer{Id}, Name, Reichtum, Anführer}
+\r{Familie}{\liPrimaer{Id}, Name, Reichtum, Anführer}
 
-\liRelation{Drache}{\liPrimaer{Name}, Lebendig}
+\r{Drache}{\liPrimaer{Name}, Lebendig}
 
-\liRelation{besitzt}{\liPrimaer{Id, Name},
+\r{besitzt}{\liPrimaer{Id, Name},
 FK (Id) references Figur(Id),
 FK (Name) references Drache(Name)}
 
-\liRelation{Festung}{\liPrimaer{Name}, Ort, Ruine}
+\r{Festung}{\liPrimaer{Name}, Ort, Ruine}
 
-\liRelation{besetzt}{\liPrimaer{Familie, Festung},
+\r{besetzt}{\liPrimaer{Familie, Festung},
 FK (Familie) references Familie(Id),
 FK (Festung) references Festung(Name)}
 
-\liRelation{lebt}{\liPrimaer{Id, Name},
+\r{lebt}{\liPrimaer{Id, Name},
 FK (Id) references Figur(Id),
 FK (Name) references Festung(Name)}
 \end{liRmodell}
@@ -141,6 +155,18 @@ SELECT
   (SELECT COUNT(*) FROM Figur g WHERE g.Titel = f.Titel) AS Anzahl_Titel
 FROM Figur f;
 \end{minted}
+
+\begin{liSqlErgebnis}
+       name       |          titel           | anzahl_titel
+------------------+--------------------------+--------------
+ Eddard Stark     | Lord von Winterfell      |            2
+ Rodd Stark       | Lord von Winterfell      |            2
+ Tywin Lennister  | Lord von Casterlystein   |            1
+ Cersei Lennister | Lady von Casterlystein   |            1
+ Brandon Stark    | König der Andalen        |            1
+ Jon Schnee       | König-jenseits-der-Mauer |            1
+(6 rows)
+\end{liSqlErgebnis}
 \end{liAntwort}
 
 %%
