@@ -17,6 +17,30 @@ function umgebeMitKlammern (text: string): string {
 }
 
 /**
+ * Wie ist der Bearbeitungsstand in Bezug auf den Satz im TeX-System.
+ *
+ * - unbekannt:  Werden die Metadaten automatisch erzeugt, ist der
+ *               Bearbeitungsstand zu erst unbekannt
+ * - OCR:        Das Ergebnis der Texterkennung (OCR = Optical Character
+ *               Recognition) wurde übernommen. Außer der TeX-Klasse ist noch
+ *               nichts geTeXt.
+ * - nur Angabe: Die Angabe, d.h. die Aufgabenstellung wurde geTeXt.
+ * - mit Lösung: Auch die Lösung wurde geTeXt.
+ */
+type BearbeitungsStand = 'unbekannt' | 'OCR' | 'nur Angabe' | 'mit Lösung'
+
+/**
+ * Information im Bezug auf die Korrektheit der Lösung.
+ *
+ * - unbekannt
+ * - unsicher: Die Korrektheit der Lösung ist unsicher
+ * - überprüft: Die Lösung wurde von einem Menschen überprüft
+ * - automatisch überprüft: Die Korrektheit der Lösung wurde von einem Computer überprüft
+ * - korrekt: ist Lösung ist korrekt.
+ */
+type Korrektheit = 'unbekannt' | 'unsicher' | 'überprüft' | 'automatisch überprüft' | 'korrekt'
+
+/**
  * Die Attribute beginnen hier mit Großbuchstaben, damit sie nicht für
  * die TeX-Ausgabe konvertiert werden müssen. Wir verwenden `PascalCase` als
  * Schlüsselnamen ähnlich wie das TeX-Paket `fontspec`.
@@ -44,8 +68,15 @@ export interface AufgabenMetadaten {
    */
   ZitatBeschreibung?: string
 
-  BearbeitungsStand?: 'OCR' | 'TeX'
-  Korrektheit?: 'unsicher' | 'absolut korrekt'
+  /**
+   * Siehe Dokumentation des Typs.
+   */
+  BearbeitungsStand: BearbeitungsStand
+
+  /**
+   * Siehe Dokumentation des Typs.
+   */
+  Korrektheit: Korrektheit
 
   /**
    * Der relative Datei-Pfad der Aufgabe, z. B. `Staatsexamen/46116/2016/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex`
@@ -166,12 +197,18 @@ export class Aufgabe {
     }
   }
 
+  /**
+   * Erzeuge eine Objekt, dass dem Interface AufgabenMetadaten entspricht.
+   * Die Reihenfolge der Attribute sollte eingehalten werden.
+   *
+   * @returns
+   */
   erzeugeMetadaten (): AufgabenMetadaten {
     const meta: AufgabenMetadaten = {
       Titel: umgebeMitKlammern(this.titel),
       Thematik: umgebeMitKlammern(this.thematik),
       RelativerPfad: this.relativerPfad
-    }
+    } as AufgabenMetadaten
 
     // Zitat
     if (this.zitat != null) {
@@ -180,6 +217,9 @@ export class Aufgabe {
         meta.ZitatBeschreibung = umgebeMitKlammern(this.zitat[1])
       }
     }
+
+    meta.BearbeitungsStand = this.bearbeitungsStand
+    meta.Korrektheit = this.korrektheit
 
     if (this.stichwörter.length > 0) {
       meta.Stichwoerter = umgebeMitKlammern(this.stichwörter.join(', '))
@@ -243,6 +283,26 @@ export class Aufgabe {
       }
       return zitat
     }
+  }
+
+  /**
+   * Siehe Dokumentation des Typs
+   */
+  get bearbeitungsStand (): BearbeitungsStand {
+    if (this.metadaten_?.BearbeitungsStand != null) {
+      return this.metadaten_.BearbeitungsStand
+    }
+    return 'unbekannt'
+  }
+
+  /**
+   * Siehe Dokumentation des Typs
+   */
+  get korrektheit (): Korrektheit {
+    if (this.metadaten_?.Korrektheit != null) {
+      return this.metadaten_.Korrektheit
+    }
+    return 'unbekannt'
   }
 
   get titelFormatiert (): string {

@@ -93,6 +93,12 @@ class Aufgabe {
             return ergebnis;
         }
     }
+    /**
+     * Erzeuge eine Objekt, dass dem Interface AufgabenMetadaten entspricht.
+     * Die Reihenfolge der Attribute sollte eingehalten werden.
+     *
+     * @returns
+     */
     erzeugeMetadaten() {
         const meta = {
             Titel: umgebeMitKlammern(this.titel),
@@ -106,6 +112,8 @@ class Aufgabe {
                 meta.ZitatBeschreibung = umgebeMitKlammern(this.zitat[1]);
             }
         }
+        meta.BearbeitungsStand = this.bearbeitungsStand;
+        meta.Korrektheit = this.korrektheit;
         if (this.stichwörter.length > 0) {
             meta.Stichwoerter = umgebeMitKlammern(this.stichwörter.join(', '));
         }
@@ -161,6 +169,26 @@ class Aufgabe {
             }
             return zitat;
         }
+    }
+    /**
+     * Siehe Dokumentation des Typs
+     */
+    get bearbeitungsStand() {
+        var _a;
+        if (((_a = this.metadaten_) === null || _a === void 0 ? void 0 : _a.BearbeitungsStand) != null) {
+            return this.metadaten_.BearbeitungsStand;
+        }
+        return 'unbekannt';
+    }
+    /**
+     * Siehe Dokumentation des Typs
+     */
+    get korrektheit() {
+        var _a;
+        if (((_a = this.metadaten_) === null || _a === void 0 ? void 0 : _a.Korrektheit) != null) {
+            return this.metadaten_.Korrektheit;
+        }
+        return 'unbekannt';
     }
     get titelFormatiert() {
         let titel;
