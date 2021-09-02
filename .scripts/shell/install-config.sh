@@ -21,6 +21,6 @@ _setze_definition LehramtInformatikGithubRawDomain "https://raw.githubuserconten
 _setze_definition LehramtInformatikGithubTexRepo "hbschlang/lehramt-informatik"
 _setze_definition LehramtInformatikGithubCodeRepo "hbschlang/Java-Didaktik-Beispiele"
 _setze_definition LehramtInformatikGitBranch "main"
-_setze_definition LehramtInformatikAutorName "Hermine Bschlangaul"
+_setze_definition LehramtInformatikAutorName "Hermine~Bschlangaul"
 _setze_definition LehramtInformatikAutorEmail "hermine.bschlangaul@gmx.net"
-_setze_definition LehramtInformatikTitel "Aufgaben- und Materialsammlung „Lehramt Informatik“"
+_setze_definition LehramtInformatikTitel "Aufgaben-~und~Materialsammlung~„Lehramt~Informatik“"

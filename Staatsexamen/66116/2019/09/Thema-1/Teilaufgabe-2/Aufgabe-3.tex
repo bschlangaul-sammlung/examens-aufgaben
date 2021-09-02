@@ -149,23 +149,20 @@ vorkommen.
 
 \begin{liAntwort}
 \begin{minted}{sql}
-SELECT
-  Name,
-  Titel,
-  (SELECT COUNT(*) FROM Figur g WHERE g.Titel = f.Titel) AS Anzahl_Titel
-FROM Figur f;
+SELECT count(*) AS Anzahl, f.Titel
+FROM Figur f
+GROUP BY f.Titel;
 \end{minted}
 
 \begin{liSqlErgebnis}
-       name       |          titel           | anzahl_titel
-------------------+--------------------------+--------------
- Eddard Stark     | Lord von Winterfell      |            2
- Rodd Stark       | Lord von Winterfell      |            2
- Tywin Lennister  | Lord von Casterlystein   |            1
- Cersei Lennister | Lady von Casterlystein   |            1
- Brandon Stark    | König der Andalen        |            1
- Jon Schnee       | König-jenseits-der-Mauer |            1
-(6 rows)
+ anzahl |          titel
+--------+--------------------------
+      1 | König der Andalen
+      2 | Lord von Winterfell
+      1 | Lord von Casterlystein
+      1 | König-jenseits-der-Mauer
+      1 | Lady von Casterlystein
+(5 rows)
 \end{liSqlErgebnis}
 \end{liAntwort}
 
