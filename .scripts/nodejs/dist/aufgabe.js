@@ -115,6 +115,7 @@ class Aufgabe {
      * @returns
      */
     erzeugeMetadaten() {
+        // eslint-disable-next-line
         const meta = {
             Titel: umgebeMitKlammern(this.titel),
             Thematik: umgebeMitKlammern(this.thematik),
@@ -152,7 +153,7 @@ class Aufgabe {
             return this.metadaten_.Titel;
         }
         const section = this.inhalt.match(/\\section\{(.+?)[\n\\}{]/);
-        if (section != null && section[1] != null) {
+        if ((section === null || section === void 0 ? void 0 : section[1]) != null) {
             return section[1];
         }
         return 'Aufgabe';

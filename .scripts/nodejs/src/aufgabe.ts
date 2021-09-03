@@ -223,6 +223,7 @@ export class Aufgabe {
    * @returns
    */
   erzeugeMetadaten (): AufgabenMetadaten {
+    // eslint-disable-next-line
     const meta: AufgabenMetadaten = {
       Titel: umgebeMitKlammern(this.titel),
       Thematik: umgebeMitKlammern(this.thematik),
@@ -250,7 +251,7 @@ export class Aufgabe {
   private validiere (
     gegebenerWert: string | undefined,
     gültigeWerte: readonly string[]
-  ) {
+  ): void {
     if (gegebenerWert != null && !gültigeWerte.includes(gegebenerWert)) {
       console.log('Der Wert ist nicht gültig: ' + gegebenerWert)
       console.log('Gültige Werte: ' + gültigeWerte.toString())
@@ -270,7 +271,7 @@ export class Aufgabe {
     }
 
     const section = this.inhalt.match(/\\section\{(.+?)[\n\\}{]/)
-    if (section != null && section[1] != null) {
+    if (section?.[1] != null) {
       return section[1]
     }
 

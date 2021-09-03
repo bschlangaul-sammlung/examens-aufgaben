@@ -154,7 +154,7 @@ class TexDateiMitSql {
   }
 }
 
-export function führeSqlAus (
+export default function (
   pfad: string,
   cmdObj: { [optionen: string]: any }
 ): void {
