@@ -1,0 +1,178 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{sql}
+\begin{document}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 2},
+  Thematik = {Restaurant},
+  RelativerPfad = Staatsexamen/66116/2020/09/Thema-2/Teilaufgabe-2/Aufgabe-2.tex,
+  ZitatSchluessel = examen:66116:2020:09,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {SQL},
+  ExamenNummer = 66116,
+  ExamenJahr = 2020,
+  ExamenMonat = 09,
+  ExamenThemaNr = 2,
+  ExamenTeilaufgabeNr = 2,
+  ExamenAufgabeNr = 2,
+}
+
+Gegeben ist der folgende Ausschnitt eines Schemas für die Verwaltung
+eines Restaurants.
+\index{SQL}
+\footcite{examen:66116:2020:09}
+
+Hinweis: Unterstrichene Attribute sind Primärschlüsselattribute, kursiv
+geschriebene Attribute
+
+sind Fremdschlässelattribute.
+
+Restaurant : {|
+RestaurantID : INTEGER,
+RestaurantName : VARCHAR (255),
+StadtName : VARCHAR(255),
+
+PLZ: INTEGER, 1}
+
+Küche: {|
+
+RestaurontID : INTEGER,
+Art : VARCHAR(255),
+KochPersonID : INTEGER
+
+Straße : VARCHAR (255),
+Hausnummer: INTEGER,
+Kategorie : VARCHAR (255)
+
+1}
+
+Stadt : {[ Person : {|
+
+StadtName : VARCHAR(255), PersonID : INTEGER,
+
+Land : VARCHAR(255) Name : VARCHAR(255),
+1} Vorname : VARCHAR (255),
+StadtName : VARCHAR(255),
+PLZ: INTEGER,
+Straße : VARCHAR(255),
+
+Hausnummer: INTEGER
+
+bevorzugt : {|
+PersonID : INTEGER,
+Art : VARCHAR(255)
+
+} I}
+
+Die Tabelle Restaurant beschreibt Restaurants eindeutig durch ihre ID.
+Zudem wird der Name, die Adresse des Restaurants und die
+(Sterne-)Kategorie gespeichert. Küche enthält u. a. Informationen zu der
+Art der Küche. Dabei kann ein Restaurant mehrere Arten anbieten, z. B.
+italienisch, deutsch, etc. In der Tabelle Stadt werden der Name der
+Stadt sowie das Land verwaltet, in dem die Stadt liegt. Wir gehen davon
+aus, dass eine Stadt eindeutig durch ihren Namen gekennzeichnet ist.
+Person beschreibt Personen mit Name, Vorname und Adresse. Personen
+werden eindeutig durch eine ID identifiziert. Die Tabelle bevorzugt gibt
+an, welche Person welche Art der Küche präferiert.
+
+Bearbeiten Sie die folgenden Teilaufgaben:
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Erläutern Sie kurz, warum das Attribut Art in Küche Teil des
+Primärschlüssels ist.
+
+\begin{liAntwort}
+Es kann mehr als eine Küche pro Restaurant geben.
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, welche alle Städte findet, in
+denen man “deutsch” (Art der Küche) essen kann.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT DISTINCT s.StadtName
+FROM Stadt s, Restaurant r, Küche k
+WHERE s.Stadtname = r.StadtName AND r.RestaurantID = k.RestaurantID AND Art = 'deutsch';
+\end{minted}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Schreiben Sie eine SQL-Abfrage, die alle Personen (Name und
+Vorname) liefert, die kein deutsches Essen bevorzugen. Verwenden Sie
+keinen Join.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT Name, Vorname
+FROM Person
+WHERE PersonID IN (SELECT DISTINCT PersonID
+FROM bevorzugt
+EXCEPT
+SELECT DISTINCT PersonID
+FROM bevorzugt
+WHERE Art = 'deutsch');
+\end{minted}
+\end{liAntwort}
+
+%%
+% d)
+%%
+
+\item Schreiben Sie eine SQL-Abfrage, die für jede Stadt (StadtName) und
+Person (PersonID) die Anzahl der Restaurants ermittelt, in denen diese
+Person bevorzugt essen gehen würde. Es sollen nur Städte ausgegeben
+werden, in denen es mindestens drei solche Restaurants gibt.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT r.StadtName, b.PersonID, count(DISTINCT r.RestaurantID) as Anzahl
+FROM Restaurant r, bevorzugt b, Kueche k
+WHERE r.RestaurantID = k.RestaurantID AND k.Art = b.Art
+GROUP BY r.StadtName, b.PersonID
+HAVING count(r.RestaurantID) >= 3;
+\end{minted}
+\end{liAntwort}
+
+%%
+% e)
+%%
+
+\item Schreiben Sie eine SQL-Abfrage, die die Namen aller Restaurants
+liefert, in denen sich die Personen mit den IDs 1 und 2 gemeinsam zum
+Essen verabreden können, und beide etwas zum Essen finden, das sie
+bevorzugen. Es sollen keine Duplikate ausgegeben werden.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+CREATE VIEW Person1 AS
+SELECT DISTINCT r.RestaurantID, r.RestaurantName
+FROM Person p, bevorzugt b, Restaurant r, Küche k
+WHERE r.StadtName = p.StadtName AND p.PersonID = b.PersonID
+AND r.RestaurantID = k.RestaurantID AND k.Art = b.Art
+AND p.PersonID = 1;
+CREATE VIEW Person2 AS
+SELECT DISTINCT r.RestaurantID, r.RestaurantName
+FROM Person p, bevorzugt b, Restaurant r, Küche k
+WHERE r.StadtName = p.StadtName AND p.PersonID = b.PersonID
+AND r.RestaurantID = k.RestaurantID AND k.Art = b.Art
+AND p.PersonID = 2;
+SELECT * FROM Person1
+INTERSECT
+SELECT * FROM Person2;
+\end{minted}
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}

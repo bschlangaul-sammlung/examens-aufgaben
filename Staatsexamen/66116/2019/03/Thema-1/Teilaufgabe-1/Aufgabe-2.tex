@@ -1,0 +1,195 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{sql}
+\begin{document}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 2},
+  Thematik = {Einnahme von Medikamenten},
+  RelativerPfad = Staatsexamen/66116/2019/03/Thema-1/Teilaufgabe-1/Aufgabe-2.tex,
+  ZitatSchluessel = examen:66116:2019:03,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {SQL},
+  ExamenNummer = 66116,
+  ExamenJahr = 2019,
+  ExamenMonat = 03,
+  ExamenThemaNr = 1,
+  ExamenTeilaufgabeNr = 1,
+  ExamenAufgabeNr = 2,
+}
+
+Gegeben sei der folgende Ausschnitt des Schemas für die Verwaltung der
+Einnahme von Medikamenten:\index{SQL}
+\footcite{examen:66116:2019:03}
+
+Person : {[ Hersteller : {[
+ID : INTEGER, ID : INTEGER,
+Name : VARCHAR(255), Name : VARCHAR(255),
+Wohnort : VARCHAR(255) Standort : VARCHAR(255),
+} AnzahlMitarbeiter : INTEGER
+}
+Medikament : {[ nimmt : {[
+ID : INTEGER, Person : INTEGER,
+Name : VARCHAR(255), Medikament : INTEGER,
+Kosten : INTEGER, von : DATE,
+Wirkstoff : VARCHAR(255), bis : DATE
+produziert \_von : INTEGER ]}
+}
+
+hat\_Unvertraglichkeit\_gegen : {[
+Person : INTEGER,
+Medikament : INTEGER
+
+}
+
+Die Tabelle Person beschreibt Personen über eine eindeutige ID, deren
+Namen und Wohnort. Die Tabelle Medikament enthalt Informationen über
+Medikamente, unter anderem deren Namen, Kosten, Wirkstoffe und einen
+Verweis auf den Hersteller dieses Medikaments. Die Tabelle Hersteller
+verwaltet verschiedene Hersteller von Medikamenten. Die Tabelle
+hat\_Unvertrdglichkeit\_gegen speichert die IDs von Personen zusammen mit
+den IDs von Medikamenten, gegen die diese Person eine Unverträglichkeit
+hat. Die Tabelle nimmt hingegen verwaltet die Einnahme der verschiedenen
+Medikamente und speichert zudem in welchem Zeitraum eine Person welches
+Medikament genommen hat bzw. nimmt.
+
+Beachten Sie bei der Formulierung der SQL-Anweisungen, dass die
+Ergebnisrelationen keine Duplikate enthalten dürfen. Sie dürfen
+geeignete Views definieren.
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Schreiben Sie SQL-Anweisungen, die für die bereits existierende
+Tabelle nimmt alle benötigten Fremdschlüsselconstraints anlegt.
+Erläutern Sie kurz, warum die Spalten von und bis Teil des
+Primärschlüssels sind.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+ALTER TABLE nimmt
+ADD FOREIGN KEY(Person) REFERENCES Person(ID),
+ADD FOREIGN KEY(Medikament) REFERENCES Medikament(ID);
+\end{minted}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, welche sowohl den Namen als auch
+die ID von Personen und Medikamenten ausgibt, bei denen die Person das
+jeweilige Medikament nimmt.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT p.Name, p.ID, m.Name, m.ID
+FROM Person p, Medikament m, nimmt n
+WHERE p.ID = n.Person AND n.Medikament = m.ID;
+\end{minted}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, welche die ID und den Namen der
+Medikamente mit den niedrigsten Kosten je Hersteller bestimmt.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT m.Name, m.ID, MIN(m.Kosten)
+FROM Medikament m
+GROUP BY produziert_von;
+\end{minted}
+\end{liAntwort}
+
+%%
+% d)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die Anzahl aller Personen
+ermittelt, die ein Medikament genommen haben, gegen welches sie eine
+Unverträglichkeit entwickelt haben.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT COUNT(DISTINCT n.Person)
+FROM nimmt n, hat_Unverträglichkeit_gegen h
+WHERE n.Person = h.Person;
+\end{minted}
+\end{liAntwort}
+
+%%
+% e)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, die die ID und den Namen derjenigen
+Personen ermittelt, die weder ein Medikament mit dem Wirkstoff
+Paracetamol noch ein Medikament mit dem Wirkstoff Ibuprofen genommen
+haben.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT p.ID, p.Name
+FROM Person p, nimmt n, Medikament m
+WHERE p.ID = n.Person AND n.Medikament = m.ID AND m.ID NOT IN(
+SELECT DISTINCT m.ID
+FROM Medikament m
+WHERE m.Wirkstoff = "Paracetamol" OR m.Wirkstoff = "Ibuprofen";
+\end{minted}
+\end{liAntwort}
+
+%%
+% f)
+%%
+
+\item Schreiben Sie eine SQL-Anweisung, welche die Herstellernamen und die
+Anzahl der bekannten Unverträglichkeiten gegen Medikamente dieses
+Herstellers ermittelt. Das Ergebnis soll aufsteigend nach der Anzahl der
+bekannten Unverträglichkeiten sortiert werden.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+CREATE VIEW MMU AS
+SELECT DISTINCT m.ID, m.produziert_von
+FROM Medikament m, hat_Unverträglichkeit h
+WHERE m.ID = h.Medikament
+SELECT h.ID, COUNT(m.ID)
+FROM Hersteller h, MMU m
+WHERE m.produziert_von = h.ID
+GROUP BY h.ID
+\end{minted}
+\end{liAntwort}
+
+%%
+% g)
+%%
+
+\item Formulieren Sie eine Anfrage in relationaler Algebra, welche die
+Wohnorte aller Personen bestimmt, welche ein Medikament mit demWirkstoff
+Paracetamol nehmen oder genommen haben. Die Lösung kann als Baum- oder
+als Term-Schreibweise angegeben werden.
+
+\begin{liAntwort}
+π Wohnort (Person ▷◁ p.ID=n.Person σ m.Wirksto f f = ′ Ibupro f en ′ (nimmt ▷◁ m.ID=n.Medikament Medikament))
+\end{liAntwort}
+
+%%
+% h)
+%%
+
+\item Formulieren Sie eine Anfrage in relationaler Algebra, welche die Namen
+aller Personen bestimmt, die von allen bekannten Herstellern, deren
+Standort München ist, Medikamente nehmen oder genommen haben. Die Lösung
+kann als Baum- oder als Term-Schreibweise angegeben werden.
+
+\begin{liAntwort}
+π p.Name (Person ▷◁ p.Name=n.Person (nimmt ▷◁ n.Medikament=m.ID (
+Medikament ▷◁ m.produziert v on=h.ID σ h.Standort= ′ Mnchen ′ (Hersteller)))
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}

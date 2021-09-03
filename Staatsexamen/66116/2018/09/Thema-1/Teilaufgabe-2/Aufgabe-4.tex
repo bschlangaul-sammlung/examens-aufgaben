@@ -99,6 +99,13 @@ CREATE TABLE IF NOT EXISTS Ergebnis (
   PRIMARY KEY (Athlet, Wettbewerb)
 );
 \end{minted}
+
+% CREATE TABLE Ergebnis(
+% Athlet INTEGER REFERENCES Athlet(ID),
+% Wettbewer VARCHAR(50) REFERENCES Wettbewerb(Name),
+% Schwimmzeit FLOAT NOT NULL,
+% Radzeit FLOAT,
+% Laufzeit FLOAT);
 \end{liAntwort}
 
 %%
@@ -186,7 +193,22 @@ zwei Athleten in einem Wettbewerb die gleiche Gesamtzeit erreichen, sind
 beide Sieger.
 
 \begin{liAntwort}
+vermutlich falsch
 \begin{minted}{sql}
+CREATE VIEW Gesamtzeiten AS
+SELECT e.Athlet AS NameAthlet, e.Radzeit + e.Schwimmzeit + e.Laufzeit
+AS Gesamtzeit, w.NameWettbewerb
+FROM Ergebnis e, Wettbewerb w
+WHERE e.Wettbewerb = w.Name
+CREATE VIEW Sieger AS
+SELECT g1.NameAthlet
+FROM Gesamtzeiten g1, Gesamtzeiten g2
+GROUP BY g1.NameWettbewerb
+HAVING g1.Gesamtzeit < g2.Gesamtzeit
+SELECT NameAthlet
+FROM Sieger
+GROUP BY NameAthlet
+HAVING count(*) > 10;
 \end{minted}
 \end{liAntwort}
 
@@ -204,6 +226,15 @@ limit.
 
 \begin{liAntwort}
 \begin{minted}{sql}
+CREATE VIEW AthletenParis AS
+SELECT a.Nachname, e.Schwimmzeit
+FROM Athlet a, Ergebnis e INNER JOIN Wettbewerb W ON e.Wettbewerb = w.Name
+WHERE w.Name = "Paris" AND a.ID = e.Athlet
+SELECT a.Nachname COUNT(*) + 1 AS Platzierung
+FROM AthletenParis a, AthletenParis b
+WHERE a.Schwimmzeit < b.Schwimmzeit
+GROUP BY a.Nachname
+HAVING Platzierung <= 10;
 \end{minted}
 \end{liAntwort}
 
@@ -217,6 +248,11 @@ negativ ist.
 
 \begin{liAntwort}
 \begin{minted}{sql}
+CREATE TRIGGER update_Ergebnis AFTER UPDATE ON Ergebnis AS
+IF(UPDATE Schwimmzeit AND Schwimmzeit < 0) BEGIN UPDATE Ergebnis
+SET Schwimmzeit = 0
+WHERE (Athlet, Wettbewerb) IN (SELECT DISTINCT (Athlet, Wettbewerb) FROM inserted)
+END;
 \end{minted}
 \end{liAntwort}
 

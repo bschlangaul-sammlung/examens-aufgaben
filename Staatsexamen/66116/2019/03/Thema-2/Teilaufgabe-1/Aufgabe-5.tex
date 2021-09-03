@@ -1,0 +1,142 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{sql}
+\begin{document}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 5},
+  Thematik = {App für konfizierte Schüler-Smartphones},
+  RelativerPfad = Staatsexamen/66116/2019/03/Thema-2/Teilaufgabe-1/Aufgabe-5.tex,
+  ZitatSchluessel = examen:66116:2019:03,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {SQL},
+  ExamenNummer = 66116,
+  ExamenJahr = 2019,
+  ExamenMonat = 03,
+  ExamenThemaNr = 2,
+  ExamenTeilaufgabeNr = 1,
+  ExamenAufgabeNr = 5,
+}
+
+Wir betrachten erneut das gegebene Schema aus Aufgabe 4. Primärschlüssel
+sind unterstrichen, Fremdschlüssel sind überstrichen und der Text in den
+darauf folgenden eckigen Klammern benennt die Relation, auf die
+verwiesen wird.
+\index{SQL}
+\footcite{examen:66116:2019:03}
+
+Der Notenschnitt, der Preis und die Bewertung werden als Kommazahl
+dargestellt, wobei die Bewertung die Anzahl der Sterne angibt, also
+maximal 5 und mindestens 0. Die Modellnummer kann sowohl aus Zahlen und
+Buchstaben bestehen, ist jedoch nie länger als 50 Zeichen. ID, RAM,
+Bildschirmdiagonale und Datum sind ganze Zahlen. Die restlichen
+Attribute sind Strings der Länge 15.
+
+Lehrer (Name, Fachl, Fach2, Fach3)
+
+Schüler (Vorname, Nachname, Notenschnitt)
+
+Smartphone (ID, Modellnr, RAM, Bildschirmdiagonale)
+
+App (Name, Bewertung, Preis)
+
+Eingesammelt (Vorname [Schüler], Nachname [Schüler], Name [Lehrer], ID [Smartphone], Datum)
+
+Installiert (ID [Smartphone], Name [App])
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Geben Sie die Anweisung in SOL-DDL an, die notwendig ist, um die
+Relation ’App’ zu erzeugen.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+CREATE TABLE App(
+Name VARCHAR(50) PRIMARY KEY,
+Bewertung VARCHAR(255),
+Preis INTEGER);
+\end{minted}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Geben Sie die Anweisung in SOL-DDL an, die notwendig ist, um die
+Relation ’Installiert’ zu erzeugen.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+CREATE TABLE Installiert(
+ID INTEGER REFERENCES Smartphone(ID),
+Name VARCHAR(50) App(Name),
+PRIMARY KEY(ID,Name));
+\end{minted}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Formulieren Sie die folgende Anfrage in SQL: Gesucht sind die
+Namen der Apps zusammen mit ihrer Bewertung, die auf den Smartphones
+installiert sind, die Lehrer Keating eingesammelt hat. Sortieren Sie das
+Ergebnis nach Bewertung absteigend. Hinweis: Achten Sie auf gleichnamige
+Attribute.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT DISTINCT a.Name, a.Bewertung
+FROM Eingesammelt e, Installiert i, App a
+WHERE e.ID =i.ID AND i.Name = a.Name AND e.Name = "Keating"
+ORDER BY a.Bewertung DESC;
+\end{minted}
+\end{liAntwort}
+
+%%
+% d)
+%%
+
+\item Formulieren Sie die folgende Anfrage in SQL:
+
+Gesucht ist der durchschnittliche Notenschnitt der Schüler, denen ein
+iPhone 65 abgenommen wurde. Ein iPhone 6s kann A1633 als Modellnummer
+haben oder A1688.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+SELECT DISTINCT AVG(s.Notenschnitt)
+FROM Schüler s, Eingesammelt e, Smartphone sm
+WHERE s.Vorname = e.Vorname AND s.Nachname = e.Nachname
+AND e.ID=sm.ID AND(sm.Modellnr = 'A1633' OR sm.Modellnr = 'A1688');
+\end{minted}
+\end{liAntwort}
+
+%%
+% e)
+%%
+
+\item Formulieren Sie die folgende Anfrage in SQL:
+
+Gesucht ist die Modellnummer der Smartphones, die durchschnittlich die
+meisten Apps installiert haben.
+
+Tipp: Die Verwendung von Views kann die Aufgabe vereinfachen.
+
+\begin{liAntwort}
+\begin{minted}{sql}
+CREATE VIEW NumberApps AS
+SELECT s.ID, s.Modellnr, COUNT(i.Name) AS number
+FROM Smartphone s, Installiert i
+WHERE s.ID = i.ID
+GROUP BY s.ID
+SELECT ModellNr, AVG(number)
+FROM NumberApps
+GROUP BY ModellNr
+\end{minted}
+\end{liAntwort}
+\end{enumerate}
+\end{document}
