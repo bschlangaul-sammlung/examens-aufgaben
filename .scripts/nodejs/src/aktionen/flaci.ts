@@ -310,7 +310,7 @@ function formatiereAutomat (def: FlaciDefinition): string {
   return formatiereTexEnv('liAntwort', liAntwort)
 }
 
-export function konvertiereFlaciZuTikz (jsonDateiPfad: string): void {
+export default function (jsonDateiPfad: string): void {
   if (jsonDateiPfad.match(/^\//) == null) {
     jsonDateiPfad = path.join(process.cwd(), jsonDateiPfad)
   }

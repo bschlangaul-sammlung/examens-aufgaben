@@ -27,15 +27,18 @@ function ersetzeStichwörterInReadme (inhalt: string): string {
   })
 }
 
-export function erzeugeReadme (): void {
+export default function (): void {
   let inhalt = leseRepoDatei('README_template.md')
+  console.log(inhalt)
 
   inhalt = ersetzeStichwörterInReadme(inhalt)
+  console.log(inhalt)
 
   const stichwörterInhalt = leseRepoDatei('Stichwortverzeichnis.yml')
   inhalt = inhalt.replace('{{ stichwortverzeichnis }}', stichwörterInhalt)
+  console.log(inhalt)
 
   inhalt = inhalt.replace('{{ staatsexamen }}', generiereExamensÜbersicht())
-  // console.log(readmeContent)
+  console.log(inhalt)
   fs.writeFileSync(path.join(repositoryPfad, 'README.md'), inhalt)
 }

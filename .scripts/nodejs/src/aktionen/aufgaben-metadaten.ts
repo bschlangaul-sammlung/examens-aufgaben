@@ -6,7 +6,8 @@ import { schreibeDatei } from '../helfer'
 function macheTex (meta: AufgabenMetadaten): string {
   const schlüsselWertPaare: string[] = []
   Object.keys(meta).forEach(schlüssel => {
-    const wert = meta[schlüssel as keyof AufgabenMetadaten]
+    let wert = meta[schlüssel as keyof AufgabenMetadaten]
+    if (wert == null) wert = ''
     schlüsselWertPaare.push(`  ${schlüssel} = ${wert},`)
   })
   const schlüsselWerte: string = schlüsselWertPaare.join('\n')
@@ -56,7 +57,7 @@ export function schreibe (
  * }
  * ```
  */
-export function erzeugeAufgabenMetadaten (dateiPfad: string): void {
+export default function (dateiPfad: string): void {
   dateiPfad = path.resolve(dateiPfad)
   const aufgabenSammlung = gibAufgabenSammlung()
   const aufgabe = aufgabenSammlung.gib(dateiPfad)
