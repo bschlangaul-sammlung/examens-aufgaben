@@ -27,6 +27,7 @@ import { generiereExamenSammlungPdf } from './aktionen/erzeuge-examens-uebersich
 import { konvertiereFlaciZuTikz } from './aktionen/konvertiere-flaci-zu-tikz'
 import { öffne } from './aktionen/oeffne'
 import { öffneDurchStichwort } from './aktionen/oeffne-durch-stichwort'
+import { validiere } from './aktionen/validiere'
 
 const programm = new Command()
 programm.description(`Repository-Pfad: ${repositoryPfad}`)
@@ -371,7 +372,17 @@ programm
 programm
   .command('aufgaben-titel <texDatei>')
   .alias('at')
-  .description('Erzeuge den Titlel in einer TeX-Datei')
+  .description('Erzeuge den Titel in einer TeX-Datei')
   .action(erzeugeAufgabenMetadaten)
+
+programm
+  .command('validiere')
+  .alias('v')
+  .description(
+    'Überprüfe / validiere ob es die Stichwörter in \\index{} gibt. ' +
+      'Ob es die Werte für die Metadaten-Schlüssel BearbeitungsStand und ' +
+      'Korrektheit in den Metadaten gibt'
+  )
+  .action(validiere)
 
 programm.parse(process.argv)

@@ -7,6 +7,7 @@ import {
   repositoryPfad,
   generiereLink,
   macheRelativenPfad,
+  öffneVSCode,
   zeigeFehler
 } from './helfer'
 import { sammleStichwörter, gibInhaltEinesTexMakros } from './tex'
@@ -15,6 +16,13 @@ import { Examen, ExamenSammlung, gibExamenSammlung } from './examen'
 function umgebeMitKlammern (text: string): string {
   return `{${text}}`
 }
+
+const bearbeitungsStand = [
+  'unbekannt',
+  'OCR',
+  'nur Angabe',
+  'mit Lösung'
+] as const
 
 /**
  * Wie ist der Bearbeitungsstand in Bezug auf den Satz im TeX-System.
@@ -27,7 +35,15 @@ function umgebeMitKlammern (text: string): string {
  * - nur Angabe: Die Angabe, d.h. die Aufgabenstellung wurde geTeXt.
  * - mit Lösung: Auch die Lösung wurde geTeXt.
  */
-type BearbeitungsStand = 'unbekannt' | 'OCR' | 'nur Angabe' | 'mit Lösung'
+type BearbeitungsStand = typeof bearbeitungsStand[number]
+
+const korrektheit = [
+  'unbekannt',
+  'unsicher',
+  'überprüft',
+  'automatisch überprüft',
+  'korrekt'
+] as const
 
 /**
  * Information im Bezug auf die Korrektheit der Lösung.
@@ -38,7 +54,7 @@ type BearbeitungsStand = 'unbekannt' | 'OCR' | 'nur Angabe' | 'mit Lösung'
  * - automatisch überprüft: Die Korrektheit der Lösung wurde von einem Computer überprüft
  * - korrekt: ist Lösung ist korrekt.
  */
-type Korrektheit = 'unbekannt' | 'unsicher' | 'überprüft' | 'automatisch überprüft' | 'korrekt'
+type Korrektheit = typeof korrektheit[number]
 
 /**
  * Die Attribute beginnen hier mit Großbuchstaben, damit sie nicht für
@@ -131,6 +147,9 @@ export class Aufgabe {
     if (metaDaten != null) {
       this.metadaten_ = metaDaten
     }
+
+    this.validiere(this.bearbeitungsStand, bearbeitungsStand)
+    this.validiere(this.korrektheit, korrektheit)
   }
 
   static normalisierePfad (pfad: string): string {
@@ -226,6 +245,17 @@ export class Aufgabe {
     }
 
     return meta
+  }
+
+  private validiere (
+    gegebenerWert: string | undefined,
+    gültigeWerte: readonly string[]
+  ) {
+    if (gegebenerWert != null && !gültigeWerte.includes(gegebenerWert)) {
+      console.log('Der Wert ist nicht gültig: ' + gegebenerWert)
+      console.log('Gültige Werte: ' + gültigeWerte.toString())
+      öffneVSCode(this.pfad)
+    }
   }
 
   /**

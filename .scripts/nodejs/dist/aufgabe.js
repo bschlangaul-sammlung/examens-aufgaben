@@ -13,6 +13,19 @@ const examen_1 = require("./examen");
 function umgebeMitKlammern(text) {
     return `{${text}}`;
 }
+const bearbeitungsStand = [
+    'unbekannt',
+    'OCR',
+    'nur Angabe',
+    'mit Lösung'
+];
+const korrektheit = [
+    'unbekannt',
+    'unsicher',
+    'überprüft',
+    'automatisch überprüft',
+    'korrekt'
+];
 /**
  * Eine allgemeine Aufgabe, die keinem Examen zugeordnet werden kann.
  */
@@ -34,6 +47,8 @@ class Aufgabe {
         if (metaDaten != null) {
             this.metadaten_ = metaDaten;
         }
+        this.validiere(this.bearbeitungsStand, bearbeitungsStand);
+        this.validiere(this.korrektheit, korrektheit);
     }
     static normalisierePfad(pfad) {
         if (pfad.includes(helfer_1.repositoryPfad)) {
@@ -118,6 +133,13 @@ class Aufgabe {
             meta.Stichwoerter = umgebeMitKlammern(this.stichwörter.join(', '));
         }
         return meta;
+    }
+    validiere(gegebenerWert, gültigeWerte) {
+        if (gegebenerWert != null && !gültigeWerte.includes(gegebenerWert)) {
+            console.log('Der Wert ist nicht gültig: ' + gegebenerWert);
+            console.log('Gültige Werte: ' + gültigeWerte.toString());
+            helfer_1.öffneVSCode(this.pfad);
+        }
     }
     /**
      * Der Titel einer Aufgabe. Er wird zuerst aus den TeX-Metadaten

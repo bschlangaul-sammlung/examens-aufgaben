@@ -20,6 +20,7 @@ const erzeuge_examens_uebersicht_1 = require("./aktionen/erzeuge-examens-uebersi
 const konvertiere_flaci_zu_tikz_1 = require("./aktionen/konvertiere-flaci-zu-tikz");
 const oeffne_1 = require("./aktionen/oeffne");
 const oeffne_durch_stichwort_1 = require("./aktionen/oeffne-durch-stichwort");
+const validiere_1 = require("./aktionen/validiere");
 const programm = new commander_1.Command();
 programm.description(`Repository-Pfad: ${helfer_1.repositoryPfad}`);
 programm.name('lehramt-informatik.js');
@@ -281,6 +282,13 @@ programm
 programm
     .command('aufgaben-titel <texDatei>')
     .alias('at')
-    .description('Erzeuge den Titlel in einer TeX-Datei')
+    .description('Erzeuge den Titel in einer TeX-Datei')
     .action(erzeuge_aufgaben_metadaten_1.erzeugeAufgabenMetadaten);
+programm
+    .command('validiere')
+    .alias('v')
+    .description('Überprüfe / validiere ob es die Stichwörter in \\index{} gibt. ' +
+    'Ob es die Werte für die Metadaten-Schlüssel BearbeitungsStand und ' +
+    'Korrektheit in den Metadaten gibt')
+    .action(validiere_1.validiere);
 programm.parse(process.argv);
