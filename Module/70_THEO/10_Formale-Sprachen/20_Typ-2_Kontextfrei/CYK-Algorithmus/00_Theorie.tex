@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-\liLadePakete{syntax,cyk-algorithmus}
+\liLadePakete{syntax,cyk-algorithmus,grafik}
 \begin{document}
 \def\t#1#2{$t_{#1,#2}$}
 \let\l=\liKurzeTabellenLinie
@@ -62,6 +62,27 @@ Tabellenzellen aus und zwar mit folgendem Muster:
 \item \t31 und \t24
 \item \t41 und \t15
 \end{enumerate}
+
+\def\n#1#2{\node at (#2, #1) {\t#1#2};}
+
+\begin{center}
+\begin{tikzpicture}[y=-1cm]
+
+\draw[->] (0,1) -- (0,4);
+
+\n11
+\n21
+\n31
+\n41
+
+\draw[->] (3,4) -- (6,1);
+
+\n42
+\n33
+\n24
+\n15
+\end{tikzpicture}
+\end{center}
 
 Sind die richtigen Tabellenzellen ausgewählt, dann kombinieren wir alle
 Nonterminale von der ersten ausgewählten Zelle mit der zweiten.
