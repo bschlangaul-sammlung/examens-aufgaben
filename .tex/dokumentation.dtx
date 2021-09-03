@@ -1511,6 +1511,12 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 zum Setzen des CYK-Algorithmus]
 %    \end{macrocode}
 
+% \liLets{
+%   l = liKurzeTabellenLinie,
+% }
+
+% \subsubsection{TeX-Markup-Beispiel}
+
 % \begin{verbatim}
 % \begin{tabular}{|c|c|c|c|c|c|}
 % a     & c     & b     & c     & a     & b \\\hline\hline
@@ -1522,6 +1528,7 @@ zum Setzen des CYK-Algorithmus]
 % -     & - \l2
 % S \l1
 % \end{tabular}
+% \liWortInSprache{acbcab}
 % \end{verbatim}
 
 % \begin{macro}{\liKurzeTabellenLinie}
@@ -1532,7 +1539,8 @@ zum Setzen des CYK-Algorithmus]
 % \end{macro}
 
 % \begin{macro}{\liWortInSprache}
-% \liWortInSprache{abc}[L(Y)]
+% |\liWortInSprache{abc}|: \liWortInSprache{abc} \\
+% |\liWortInSprache{abc}[L(Z)]|: \liWortInSprache{abc}[L(Z)]
 %    \begin{macrocode}
 \NewDocumentCommand{ \liWortInSprache } { m O{L(G)} } {
   \bigskip
@@ -1543,7 +1551,8 @@ zum Setzen des CYK-Algorithmus]
 % \end{macro}
 
 % \begin{macro}{\liWortNichtInSprache}
-% \liWortNichtInSprache{abc}
+% |\liWortNichtInSprache{abc}|: \liWortNichtInSprache{abc} \\
+% |\liWortNichtInSprache{abc}[L(Z)]|: \liWortNichtInSprache{abc}[L(Z)]
 %    \begin{macrocode}
 \NewDocumentCommand{ \liWortNichtInSprache } { m O{L(G)} } {
   \bigskip
