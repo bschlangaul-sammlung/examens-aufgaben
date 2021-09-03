@@ -1,16 +1,23 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{formale-sprachen,automaten}
 \begin{document}
+\liAufgabenMetadaten{
+  Titel = {Vorlesungsaufgabe Kellerautomaten},
+  Thematik = {Nonterminal: P, Terminale: 01},
+  RelativerPfad = Module/70_THEO/10_Formale-Sprachen/20_Typ-2_Kontextfrei/Kellerautomat/Aufgabe_Vorlesungsaufgabe-2.tex,
+  ZitatSchluessel = theo:fs:2,
+  ZitatBeschreibung = {Seite 27},
+  BearbeitungsStand = mit Lösung,
+  Korrektheit = korrekt,
+  Stichwoerter = {Kellerautomat},
+}
+
 \let\m=\liMenge
 \let\z=\liZustandsnameTiefgestellt
 
-\liAufgabenTitel{Nonterminal: P, Terminale: 01}
-
-\section{Vorlesungsaufgabe Kellerautomaten\footcite[Seite 27]{theo:fs:2}}
-
 Erstellen Sie einen Kellerautomaten zu der Grammatik
-\liGrammatik{variablen={P}, alphabet={0, 1}} mit den folgenden
-Produktionsregeln
+\liGrammatik{variablen={S}, alphabet={0, 1}} mit den folgenden
+Produktionsregeln\footcite[Seite 27]{theo:fs:2}
 \index{Kellerautomat}
 
 \begin{enumerate}
@@ -22,7 +29,7 @@ Produktionsregeln
 \item
 
 \begin{liProduktionsRegeln}
-S -> EPSILON | 0 | 1 | 0 P 0 | 1 P 1,
+S -> EPSILON | 0 | 1 | 0 S 0 | 1 S 1,
 \end{liProduktionsRegeln}
 
 \begin{liAntwort}
@@ -42,15 +49,6 @@ E = Eins
   \node[state,initial] (z0) at (3.57cm,-3.57cm) {$z_0$};
   \node[state,accepting] (z1) at (6.86cm,-3.57cm) {$z_1$};
 
-  \liKellerKante[above]{z0}{z1}{
-    EPSILON, KELLERBODEN, EPSILON;
-    EPSILON, N, N;
-    EPSILON, E, E;
-    1, E, E;
-    0, E, E;
-    0, N, N;
-  }
-
   \liKellerKante[above,loop]{z0}{z0}{
     0, KELLERBODEN, N KELLERBODEN;
     0, N, N N;
@@ -58,6 +56,16 @@ E = Eins
     1, KELLERBODEN, E KELLERBODEN;
     1, E, E E;
     1, N, N E;
+  }
+
+  \liKellerKante[above]{z0}{z1}{
+    EPSILON, KELLERBODEN, EPSILON;
+    EPSILON, N, N;
+    EPSILON, E, E;
+    1, N, N;
+    1, E, E;
+    0, E, E;
+    0, N, N;
   }
 
   \liKellerKante[above,loop]{z1}{z1}{
