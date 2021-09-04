@@ -12,17 +12,20 @@ Die folgende Grammatik erzeugt die Sprache \liAusdruck{a^{2^n}}{n \in
 \liGrammatik{variablen={S, L, R, D}, alphabet={a}}
 \begin{liProduktionsRegeln}
 S -> L a R,
-L -> L D | EPSILON
+L -> L D | EPSILON,
 D a -> a a D,
 D R -> R,
 R -> EPSILON,
 \end{liProduktionsRegeln}
 
+\noindent
 Leiten Sie das Wort $a^8$ ab.
 
 \begin{liAntwort}
 \liAbleitung{LaR
--> 3 LDDDaR
+-> LDaR
+-> LDDaR
+-> LDDDaR
 -> DDDaR
 -> DDaaDR
 -> DaaDaDR
