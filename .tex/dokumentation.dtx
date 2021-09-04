@@ -292,14 +292,6 @@ Setzen der Aufgaben-Metadaten.]
 \ExplSyntaxOn
 %    \end{macrocode}
 
-% \begin{macro}{\liAufgabenTitel}
-% Momentan eine dummy Makro das die Thematik enthält.
-%    \begin{macrocode}
-\def\liAufgabenTitel#1{
-}
-%    \end{macrocode}
-% \end{macro}
-
 % \begin{macro}{\liAufgabenMetadaten}
 % Setzen der Aufgaben-Metadaten über eine plist bzw. über key-values.
 %
@@ -357,6 +349,21 @@ Setzen der Aufgaben-Metadaten.]
 %    \begin{macrocode}
 \ExplSyntaxOff
 %    \end{macrocode}
+
+% \begin{macro}{\liAufgabenTitel}
+% Momentan eine dummy Makro das die Thematik enthält.
+%    \begin{macrocode}
+\def\liAufgabenTitel#1{}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liIdentischeAufgabe}
+% Relativer Pfad zu einer identischen Aufgabe.
+% \cmd{\liIdentischeAufgabe}\marg{relativer-pfad}
+%    \begin{macrocode}
+\def\liIdentischeAufgabe#1{}
+%    \end{macrocode}
+% \end{macro}
 
 %    \begin{macrocode}
 
@@ -855,6 +862,7 @@ Setzen der Aufgaben-Metadaten.]
   korrektheit,
   %
   relativer_pfad,
+  identische_aufgabe,
   %
   examen_nummer,
   examen_jahr,
@@ -897,6 +905,7 @@ Setzen der Aufgaben-Metadaten.]
   Korrektheit .tl_gset:N = \g_auf_korrektheit_tl,
   %
   RelativerPfad .tl_gset:N = \g_auf_relativer_pfad_tl,
+  IdentischeAufgabe .tl_gset:N = \g_auf_identische_aufgabe_tl,
   %
   ExamenNummer .tl_gset:N = \g_auf_examen_nummer_tl,
   ExamenJahr .tl_gset:N = \g_auf_examen_jahr_tl,

@@ -2,17 +2,53 @@
 \liLadePakete{mathe,syntax,pseudo,grafik}
 
 \begin{document}
-% identisch mit Staatsexamen/66115/2020/03/Thema-2/Aufgabe-8.tex
-\liAufgabenTitel{Nächstes rot-blaues Paar auf der x-Achse}
-\section{Aufgabe 6
-\index{Algorithmische Komplexität (O-Notation)}
-\footcite{examen:46115:2020:03}}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 6},
+  Thematik = {Nächstes rot-blaues Paar auf der x-Achse},
+  RelativerPfad = Staatsexamen/46115/2020/03/Thema-2/Aufgabe-6.tex,
+  IdentischeAufgabe = Staatsexamen/66115/2020/03/Thema-2/Aufgabe-8.tex,
+  ZitatSchluessel = examen:46115:2020:03,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {Algorithmische Komplexität (O-Notation)},
+  ExamenNummer = 46115,
+  ExamenJahr = 2020,
+  ExamenMonat = 03,
+  ExamenThemaNr = 2,
+  ExamenAufgabeNr = 6,
+}
+\def\blauesZeichen{\bullet}
+\def\rotesZeichen{x}
+\def\b#1{\node at (#1,0){\blauesZeichen};}
+\def\r#1{\node at (#1,0){\rotesZeichen};}
 
 Gegeben seien zwei nichtleere Mengen $R$ und $B$ von roten bzw. blauen
 Punkten auf der x-Achse. Gesucht ist der minimale euklidische Abstand
 $d(r, b)$ über alle Punktepaare $(r,b)$ mit $r \in R$ und $b \in B$.
-Hier ist eine Beispielinstanz:
+Hier ist eine Beispielinstanz:\index{Algorithmische Komplexität (O-Notation)}
+\footcite{examen:66115:2020:03}
 
+\begin{center}
+\begin{tikzpicture}
+\draw (0,0) -- (8,0);
+\node at (-1,0){x-Achse};
+\r{0.1}
+\r{0.5}
+\b{2}
+\node[label=r] at (3,0) (rot) {\rotesZeichen};
+\node[label=b] at (3.7,0) {\blauesZeichen} edge[bend left,swap] (rot);
+\r{8}
+\b{5}
+\b{5.2}
+\b{5.4}
+\b{6}
+
+\node[label=blau] at (9,0.5) {\blauesZeichen};
+\node[label=rot] at (9,-0.5) {\rotesZeichen};
+\end{tikzpicture}
+\end{center}
+
+\noindent
 Die Eingabe wird in einem Feld $A$ übergeben. Jeder Punkt $A[i]$ mit $1
 \leq i \leq n$ hat eine x-Koordinate $A[i].x$ und eine Farbe $A[i].color
 \in \{ \text{rot}, \text{blau} \}$. Das Feld $A$ ist nach x-Koordinate
@@ -97,6 +133,8 @@ eine Worst-case-Laufzeit von $\mathcal{O}(\log n)$.
 \end{liAntwort}
 \end{enumerate}
 
+\begin{liAdditum}[Komplette Java-Klasse]
 \liJavaExamen{66115}{2020}{03}{RedBluePairCollection}
+\end{liAdditum}
 
 \end{document}

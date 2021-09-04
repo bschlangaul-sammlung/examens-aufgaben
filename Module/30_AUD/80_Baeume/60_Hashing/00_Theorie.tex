@@ -54,17 +54,11 @@ der \emph{Organisationsform}.
 
 \section{Kollisionen}
 
-Da Hashfunktionen im Allgemeinen  \memph{nicht eindeutig (injektiv)}
+Da Hashfunktionen im Allgemeinen \memph{nicht eindeutig (injektiv)}
 sind, können zwei unterschiedliche Schlüssel zum selben Hash-Wert, also
 zum selben Feld in der Tabelle, führen. Dieses Ereignis wird als
 \memph{Kollision} bezeichnet. In diesem Fall muss die Hashtabelle
 mehrere Werte in demselben Bucket aufnehmen.
-
-Eine Kollision benötigt bei der Suche eine spezielle Behandlung durch
-das Verfahren: Zunächst wird aus einem Suchschlüssel wieder ein Hashwert
-berechnet, der den Bucket des gesuchten Datenobjektes bestimmt; dann
-muss noch durch direkten Vergleich des Suchschlüssels mit den Objekten
-im Bucket das gesuchte Ziel bestimmt werden.
 
 Zur Behandlung von Kollisionen werden kollidierte Daten nach einer
 \memph{Ausweichstrategie in alternativen Feldern} oder in einer
@@ -72,8 +66,6 @@ Zur Behandlung von Kollisionen werden kollidierte Daten nach einer
 \memph{Entartung der Hashtabelle} führen, wenn wenige Hashwerte sehr
 vielen Objekten zugewiesen wurden, während andere Hashwerte unbenutzt
 bleiben.\footcite{wiki:hashtabelle}
-
-\section{Kollisionsauflösungsstrategien}
 
 Um das Kollisions-Problem zu handhaben, gibt es diverse
 Kollisionsauflösungsstrategien.

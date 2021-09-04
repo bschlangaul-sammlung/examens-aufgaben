@@ -121,6 +121,9 @@ class Aufgabe {
             Thematik: umgebeMitKlammern(this.thematik),
             RelativerPfad: this.relativerPfad
         };
+        if (this.identischeAufgabe != null) {
+            meta.IdentischeAufgabe = this.identischeAufgabe;
+        }
         // Zitat
         if (this.zitat != null) {
             meta.ZitatSchluessel = this.zitat[0];
@@ -212,6 +215,15 @@ class Aufgabe {
             return this.metadaten_.Korrektheit;
         }
         return 'unbekannt';
+    }
+    /**
+     * Siehe Dokumentation des Typs
+     */
+    get identischeAufgabe() {
+        var _a;
+        if (((_a = this.metadaten_) === null || _a === void 0 ? void 0 : _a.IdentischeAufgabe) != null) {
+            return this.metadaten_.IdentischeAufgabe;
+        }
     }
     get titelFormatiert() {
         let titel;

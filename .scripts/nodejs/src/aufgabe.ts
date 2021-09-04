@@ -99,6 +99,11 @@ export interface AufgabenMetadaten {
    */
   RelativerPfad: string
 
+  /**
+   * Relativer Pfad zu einer identischen Aufgabe z. B. `Staatsexamen/46116/2016/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex`
+   */
+  IdentischeAufgabe?: string
+
   ExamenNummer?: number
   ExamenJahr?: number
   ExamenMonat?: string
@@ -192,7 +197,7 @@ export class Aufgabe {
    * }
    * ```
    */
-  leseMetadatenVonTex (): AufgabenMetadaten | undefined {
+  private leseMetadatenVonTex (): AufgabenMetadaten | undefined {
     function reinige (text: string): string {
       text = text.trim()
       text = text.replace(/\}?,$/, '')
@@ -222,13 +227,17 @@ export class Aufgabe {
    *
    * @returns
    */
-  erzeugeMetadaten (): AufgabenMetadaten {
+  public erzeugeMetadaten (): AufgabenMetadaten {
     // eslint-disable-next-line
     const meta: AufgabenMetadaten = {
       Titel: umgebeMitKlammern(this.titel),
       Thematik: umgebeMitKlammern(this.thematik),
       RelativerPfad: this.relativerPfad
     } as AufgabenMetadaten
+
+    if (this.identischeAufgabe != null) {
+      meta.IdentischeAufgabe = this.identischeAufgabe
+    }
 
     // Zitat
     if (this.zitat != null) {
@@ -334,6 +343,15 @@ export class Aufgabe {
       return this.metadaten_.Korrektheit
     }
     return 'unbekannt'
+  }
+
+  /**
+   * Siehe Dokumentation des Typs
+   */
+  get identischeAufgabe (): string | undefined {
+    if (this.metadaten_?.IdentischeAufgabe != null) {
+      return this.metadaten_.IdentischeAufgabe
+    }
   }
 
   get titelFormatiert (): string {

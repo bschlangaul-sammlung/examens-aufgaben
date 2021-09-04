@@ -1,0 +1,92 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 5},
+  Thematik = {Sondierfolgen für Hashing mit offener Adressierung},
+  RelativerPfad = Staatsexamen/46115/2021/03/Thema-2/Teilaufgabe-1/Aufgabe-4.tex,
+  ZitatSchluessel = examen:46115:2021:03,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {Streutabellen (Hashing)},
+  ExamenNummer = 46115,
+  ExamenJahr = 2021,
+  ExamenMonat = 03,
+  ExamenThemaNr = 2,
+  ExamenTeilaufgabeNr = 1,
+  ExamenAufgabeNr = 4,
+}
+
+Eine Sondierfolge s(k,i) liefert für einen Schlüssel k aus einem
+Universum U und Versuchsnum- merni = 0,1,...,m-leine Folge von Indizes
+für eine Hashtabelle $T[0\dots m-1]$. Mithilfe einer Son- dierfolge wird beim
+Hashing mit offener Adressierung z. B. beim Einfügen eines neuen
+Schlüssels k nach einem noch nicht benützten Tabelleneintrag gesucht.
+Seien h und h’ zwei verschiedene Hash- funktionen, die U auf
+{0,1,...,m—1} abbilden. Beantworten Sie die folgenden Fragen und geben
+Sie an, um welche Art von Sondieren es sich jeweils handelt.
+\index{Streutabellen (Hashing)}
+\footcite{examen:46115:2021:03}
+
+\begin{enumerate}
+%%
+% a)
+%%
+
+\item Was ist problematisch an der Sondierfolge $s(k,i) = (h(k) + 2i)
+\mod m$, wobei $m = 1023$ die Größe der Hashtabelle ist?
+
+\begin{liAntwort}
+\begin{description}
+\item[Art] Es handelt sich um lineares Sondieren.
+
+\item[Problematisch] Es wird für einen großen Bereich an Sondierfolgen
+(512 (0-511,512-1023)) nur in jeden zweiten Bucket (z. B. geradzahlig)
+sondiert, erst dann wird in den bisher ausgelassenen Buckets (z. b.
+ungeradzahlig) sondiert.
+\end{description}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item Was ist problematisch an der Sondierfolge $s(k,i) = (h(k) + i (i + 1))
+\mod m$, wobei $m = 1024$ die Größe der Hashtabelle ist?
+
+\begin{liAntwort}
+\begin{description}
+\item[Art] Es handelt sich um quadratisches Sondieren
+
+\item[Problematisch] $i(i + 1)$ gibt immer eine gerade Zahl. Eine gerade
+Zahl Modulo 1024 gibt auch immer eine grade Zahl. Es wird nie in den
+ungeraden Buckets sondiert.
+\end{description}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item Was ist vorteilhaft an der Sondierfolge $s(k,i) = (h(k) + i \cdot
+h'(k)) \mod m$, wobei $m$ die Größe der Hashtabelle ist?
+
+\begin{liAntwort}
+Auch die Sondierfolge ist abhängig von dem Schlüsselwert. Die Entstehung
+von Ballungen ist unwahrscheinlicher bei gut gewählten Hashfunktionen,
+eine gleichmäßige Verteilung wahrscheinlicher.
+\end{liAntwort}
+
+%%
+% d)
+%%
+
+\item Sei $h(k) = k \mod 6$ und $h’(k) = k^2 \mod 6$
+
+Fügen Sie die Schlüssel $14, 9, 8, 3, 2$ in eine Hashtabelle der Größe
+$7$ ein. Verwenden Sie die Sondierfolge $s(k,i) = (h(k) + i \cdot h’(k))
+\mod 7$ und offene Adressierung. Notieren Sie die Indizes der
+Tabellenfelder und vermerken Sie neben jedem Feld die erfolglosen
+Sondierungen.
+\end{enumerate}
+\end{document}
