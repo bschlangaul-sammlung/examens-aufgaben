@@ -81,9 +81,9 @@ $T(n) \in \mathcal{O}(g(n))$ bedeutet:
 \item $T(n)$ wächst höchstens so schnell wie die Funktion $g(n)$
 
 \item Es gibt eine Konstante $c$, sodass für große $n$ immer gilt: $T(n)
-\leq c \times g(n)$
+\leq c \cdot g(n)$
 
-\item $c \times g(n)$ ist damit eine obere Schranke für $T(n)$
+\item $c \cdot g(n)$ ist damit eine obere Schranke für $T(n)$
 \end{itemize}
 
 \section{Definition (O-Notation)}
@@ -96,7 +96,7 @@ $n_0$
 aus,
 $\mathbb{N}$
 sodass gilt:
-$0 \leq T(n) \leq c \times g(n)$
+$0 \leq T(n) \leq c \cdot g(n)$
 für alle
 $n \geq n_0\}$
 
@@ -104,7 +104,7 @@ $\mathcal{O}(g(n)) = \{T(n)|
 \exists
 c > 0,
 n_0 \in \mathbb{N}:
-\forall n \geq n_0 0 \leq T(n) \leq c \times g(n)
+\forall n \geq n_0 0 \leq T(n) \leq c \cdot g(n)
 \}$
 
 \begin{minted}{java}
@@ -221,20 +221,20 @@ for (int j = 1 ; j < n ; j ++) {
 \noindent
 Die innere Zuweisung benötigt einen konstanten Zeitbedarf $c_2$. Die
 innere Wiederholungsanweisung eine $j$-fache Ausführung, \dh den
-Zeitbedarf $j \times c_2$. Die äußere Wiederholungsanweisung eine
+Zeitbedarf $j \cdot c_2$. Die äußere Wiederholungsanweisung eine
 $n$-fache Ausführung. Bei jedem Durchlauf wird $j$ um 1 inkrementiert.
 Die Laufzeit für die verschachtelte for-Anweisung beträgt:
 
 \begin{displaymath}
-c_2 \times (1 + 2 + \ldots + n) =
-c_2 \times \frac{n \times (n + 1) }{2} =
-c_2 \times \frac{(n^2 + n)}{2} =
-c_2 / 2 \times (n^2 + n)
+c_2 \cdot (1 + 2 + \ldots + n) =
+c_2 \cdot \frac{n \cdot (n + 1) }{2} =
+c_2 \cdot \frac{(n^2 + n)}{2} =
+c_2 / 2 \cdot (n^2 + n)
 \end{displaymath}
 \footcite{wiki:gausssche-summenformel}
 
 \begin{displaymath}
-\mathcal{O}(c_2 / 2 \times (n_2 + n)) =
+\mathcal{O}(c_2 / 2 \cdot (n_2 + n)) =
 \mathcal{O}(n^2 + n) =
 \mathcal{O}(n^2)
 \end{displaymath}
@@ -274,7 +274,7 @@ T_\text{gesamt} &\\
 \noindent
 Insgesamt ist die Laufzeit für das gesamte Codefragment also
 quadratisch.
-\footcite[Seite 30 (PDF 22)]{aud:fs:2}
+\footcite[Seite 30]{aud:fs:2}
 
 %-----------------------------------------------------------------------
 %
