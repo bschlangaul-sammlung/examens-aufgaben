@@ -210,7 +210,7 @@ export function erzeugeExamenScansSammlung (): void {
     }
     const ergebnis = ausgabe.gibText()
 
-    const texMarkup = `\\documentclass{lehramt-informatik-examen-sammlung}
+    const texMarkup = `\\documentclass{lehramt-informatik-examen-scans}
 \\liPruefungsNummer{${nummer}}
 \\liPruefungsTitel{${examensTitel[nummer]}}
 

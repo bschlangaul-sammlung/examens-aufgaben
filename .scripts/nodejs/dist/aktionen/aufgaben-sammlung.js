@@ -168,7 +168,7 @@ function erzeugeExamenScansSammlung() {
             }
         }
         const ergebnis = ausgabe.gibText();
-        const texMarkup = `\\documentclass{lehramt-informatik-examen-sammlung}
+        const texMarkup = `\\documentclass{lehramt-informatik-examen-scans}
 \\liPruefungsNummer{${nummer}}
 \\liPruefungsTitel{${examen_1.examensTitel[nummer]}}
 
