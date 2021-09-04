@@ -96,7 +96,7 @@ function schreibeExamensAufgabeVorlage(referenz, arg1, arg2, arg3) {
     const examenReferenz = examen_1.Examen.teileReferenz(referenz);
     const pfad = path_1.default.join(helfer_1.repositoryPfad, examen_1.Examen.erzeugePfad(examenReferenz.nummer, examenReferenz.jahr, examenReferenz.monat), aufgabe_1.ExamensAufgabe.erzeugePfad(num1, num2, num3));
     schreibeAufgabenVorlage(pfad, {
-        zitatSchlüssel: referenz
+        zitatSchlüssel: 'examen:' + referenz
     });
     console.log(erzeugeTeXMakro(examenReferenz, arg1, arg2, arg3));
     return pfad;

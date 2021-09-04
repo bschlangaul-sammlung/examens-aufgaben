@@ -1,77 +1,112 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{automaten}
 \begin{document}
-\liAufgabenTitel{}
-\section{
-\index{Sortieralgorithmen}
-\footcite{examen:46115:2021:03}}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 1},
+  Thematik = {Alphabet abc},
+  RelativerPfad = Staatsexamen/46115/2021/03/Thema-2/Teilaufgabe-1/Aufgabe-1.tex,
+  ZitatSchluessel = 46115:2021:03,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {Reguläre Sprache},
+  ExamenNummer = 46115,
+  ExamenJahr = 2021,
+  ExamenMonat = 03,
+  ExamenThemaNr = 2,
+  ExamenTeilaufgabeNr = 1,
+  ExamenAufgabeNr = 1,
+}
+\index{Reguläre Sprache}
+\footcite{46115:2021:03}
 
-Aufgabe 1 (Sortieren) [26 PUNKTE]
+\begin{enumerate}
+%%
+% a)
+%%
 
-a) Geben Sie für folgende Sortierverfahren jeweils zwei Felder A und B an, so dass das jeweilige
-Sortierverfahren angewendet auf A seine Best-Case-Laufzeit und angewendet auf B seine
-Worst-Case-Laufzeit erreicht. (Wir messen die Laufzeit durch die Anzahl der Vergleiche
-zwischen Elementen der Eingabe.) Dabei soll das Feld A die Zahlen 1,2,...,7 genau einmal
-enthalten; das Feld B ebenso. Sie bestimmen also nur die Reihenfolge der Zahlen.
+\item Betrachten Sie die formale Sprache L © {a,b,c}*: aller Wörter, die entweder mit b beginnen
+oder mit a enden (aber nicht beides gleichzeitig) und das Teilwort cc enthalten.
+Entwerfen Sie einen (vollständigen) deterministischen endlichen Automaten, der die Sprache
+L akzeptiert. (Hinweis: Es werden weniger als 10 Zustände benötigt.)
 
-Wenden Sie als Beleg für Ihre Aussagen das jeweilige Sortierverfahren auf die Felder A und
-B an und geben Sie nach jedem größeren Schritt des Algorithmus den Inhalt der Felder an.
+\begin{liAntwort}
 
-Geben Sie außerdem für jedes Verfahren asymptotische Best- und Worst-Case-Laufzeit für
-ein Feld der Länge n an.
+NEA:
+\begin{center}
+\begin{tikzpicture}[li automat]
+  \node[state] (q0) at (3.29cm,-3.14cm) {$q_0$};
+  \node[state] (q1) at (5.43cm,-3.14cm) {$q_1$};
+  \node[state] (q2) at (7.71cm,-3.14cm) {$q_2$};
+  \node[state,accepting] (q3) at (9.86cm,-3.14cm) {$q_3$};
+  \node[state] (q4) at (3.29cm,-6cm) {$q_4$};
+  \node[state] (q5) at (6cm,-5.86cm) {$q_5$};
+  \node[state] (q6) at (8.57cm,-5.86cm) {$q_6$};
+  \node[state,accepting] (q7) at (11cm,-6cm) {$q_7$};
+  \node[state,initial] (q8) at (1.57cm,-5cm) {$q_8$};
 
-Für drei der Sortierverfahren ist der Pseudocode angegeben. Beachten Sie, dass die Feldindi-
-zes hier bei 1 beginnen. Die im Pseudocode verwendete Unterroutine Swap(A, :, j) vertauscht
-im Feld A die Elemente mit den Indizes i und j miteinander.
+  \path (q0) edge[auto] node{$b$} (q1);
+  \path (q1) edge[auto] node{$c$} (q2);
+  \path (q1) edge[auto,loop above] node{$a,b,c$} (q1);
+  \path (q2) edge[auto] node{$c$} (q3);
+  \path (q3) edge[auto,loop above] node{$a,b,c$} (q3);
+  \path (q4) edge[auto] node{$c$} (q5);
+  \path (q4) edge[auto,loop above] node{$a,b,c$} (q4);
+  \path (q5) edge[auto] node{$c$} (q6);
+  \path (q6) edge[auto] node{$a$} (q7);
+  \path (q6) edge[auto,loop above] node{$a,b,c$} (q6);
+  \path (q8) edge[auto] node{$\varepsilon$} (q4);
+  \path (q8) edge[auto] node{$\varepsilon$} (q0);
+\end{tikzpicture}
+\end{center}
+\liFlaci{Ar3pvv7ha}
 
-i) Insertionsort
-ii) Bubblesort
-iii) Quicksort
+konvertierter DEA:
 
-Insertionsort(int[] A)
-for 7 = 2 to A.length do
-key = Alj]
-i=j-1
-while i>0 and Ali] > key do
-Afi + 1] = Ali]
-t=t-1
-Ali + 1] = key
+\begin{center}
+\begin{tikzpicture}[li automat]
+  \node[state,initial] (q0) at (1.57cm,-3.86cm) {$q_0$};
+  \node[state] (q3) at (3.29cm,-2.14cm) {$q_3$};
+  \node[state] (q2) at (7.29cm,-2.14cm) {$q_2$};
+  \node[state] (q7+q10) at (7.29cm,-6.86cm) {q7+q10};
+  \node[state] (q4) at (4.29cm,-6.86cm) {$q_4$};
+  \node[state,accepting] (q5+q8+q9) at (10.14cm,-2.14cm) {q5+q8+q9};
+  \node[state] (q6) at (1.71cm,-6.86cm) {$q_6$};
+  \node[state,accepting] (q1) at (10.29cm,-6.71cm) {$q_1$};
 
-Bubblesort(int|] A)
-n := length(A)
-repeat
-swapped = false
-fori=lton—1do
-if Ali — 1] > Alc] then
-Swap(A,i — 1,7)
+  \path (q0) edge[auto] node{$a$} (q6);
+  \path (q0) edge[auto] node{$b$} (q3);
+  \path (q0) edge[auto] node{$c$} (q4);
+  \path (q3) edge[auto,bend left] node{$c$} (q2);
+  \path (q3) edge[auto,loop above] node{$a,b$} (q3);
+  \path (q2) edge[auto] node{$c$} (q5+q8+q9);
+  \path (q2) edge[auto,bend left] node{$a,b$} (q3);
+  \path (q7+q10) edge[auto,loop above] node{$b,c$} (q7+q10);
+  \path (q7+q10) edge[auto,bend left] node{$a$} (q1);
+  \path (q4) edge[auto] node{$c$} (q7+q10);
+  \path (q4) edge[auto,bend left] node{$a,b$} (q6);
+  \path (q5+q8+q9) edge[auto,loop above] node{$a,b,c$} (q5+q8+q9);
+  \path (q6) edge[auto,bend left] node{$c$} (q4);
+  \path (q6) edge[auto,loop above] node{$a,b$} (q6);
+  \path (q1) edge[auto,bend left] node{$b,c$} (q7+q10);
+  \path (q1) edge[auto,loop above] node{$a$} (q1);
+\end{tikzpicture}
+\end{center}
+\liFlaci{Ai89m0txw}
 
-swapped := true
+\end{liAntwort}
 
-until not swapped
+%%
+% b)
+%%
 
-Quicksort(int[] A, @ = 1, r = A.length)
-if 2<r then
-m = Partition(A, 2, r)
-| Quicksort(A, 2,m — 1)
-Quicksort(A,m + 1,r)
+\item Ist die folgende Aussage richtig? Begründen Sie Ihre Antwort.
 
-int Partition (int|] A, int 2, intr)
+„Jede Teilsprache einer regulären Sprache ist regulär, d. h. für ein Alphabet  und formale
+Sprachen L[’ C LC * ist L’ regular, falls L regulär ist.“
 
-pivot = Alr]
+\begin{liAntwort}
+Ja. Reguläre Sprachen sind abgeschlossen unter dem Komplement und der Vereinigung
+\end{liAntwort}
 
-i=
-
-for j =¢€tor—1do
-
-if A[j] < pivot then
-
-Swap(A, i, 5)
-w=i+l
-
-Swap(A,i,r)
-
-return i
-
-b) Geben Sie die asymptotische Best- und Worst-Case-Laufzeit von Mergesort an.
-
+\end{enumerate}
 \end{document}

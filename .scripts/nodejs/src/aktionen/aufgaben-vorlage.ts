@@ -76,9 +76,12 @@ function gibVorlage (werte: AufgabenVorlagenWerte = {}): string {
     '\\documentclass{lehramt-informatik-aufgabe}\n' +
     '\\liLadePakete{}\n' +
     '\\begin{document}\n' +
-    plist + '\n' +
+    plist +
+    '\n' +
     '\\index{}\n' +
-    '\\footcite{' +  meta.ZitatSchluessel + '}\n' +
+    '\\footcite{' +
+    meta.ZitatSchluessel +
+    '}\n' +
     '\n' +
     '\\end{document}\n'
   )
@@ -141,7 +144,7 @@ function schreibeExamensAufgabeVorlage (
   )
 
   schreibeAufgabenVorlage(pfad, {
-    zitatSchlüssel: referenz
+    zitatSchlüssel: 'examen:' + referenz
   })
   console.log(erzeugeTeXMakro(examenReferenz, arg1, arg2, arg3))
 
