@@ -203,6 +203,31 @@
 %
 %    \begin{macrocode}
 %    \end{macrocode}
+% \subsection{abmessung.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-baum}[2021/09/04 Einstellung der
+Seitenabmessung mit Hilfe des geometry-Pakets.]
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\RequirePackage{geometry}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\geometry{
+  a4paper,
+  margin=2cm,
+  includeheadfoot,
+  %showframe,
+  %showcrop,
+  %verbose=true,
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+
+%    \end{macrocode}
 % \subsection{aufgaben-einbinden.sty}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
@@ -3109,8 +3134,20 @@ von Hanoi-Grafiken]
 Klasse Aufgabe konfigurieren, d. h. Laden von einigen Paketen, Registierung von Hooks]
 %    \end{macrocode}
 
+% Formatierung muss vor literatur sein, sonst Option clash
 %    \begin{macrocode}
-\liLadePakete{mathe}
+\liLadePakete{
+  formatierung,
+  abmessung,
+  literatur-dummy,
+  makros,
+  aufgaben-metadaten,
+  kopf-fusszeilen,
+  mathe
+}
+
+% Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
+\RequirePackage[ngerman]{babel}
 %    \end{macrocode}
 
 %    \begin{macrocode}
@@ -3119,7 +3156,7 @@ Klasse Aufgabe konfigurieren, d. h. Laden von einigen Paketen, Registierung von 
 
 %    \begin{macrocode}
 \AddToHook{enddocument}{
-\_gib_github_url:
+  \_gib_github_url:
 }
 %    \end{macrocode}
 
@@ -3512,6 +3549,7 @@ und Fußzeilen mit Hilfe des Pakets fancyhdr.]
 \fancyfoot[CO,RE]{{\scriptsize\LehramtInformatikAutorEmail}}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
+\setlength{\headwidth}{\textwidth}
 %    \end{macrocode}
 
 %    \begin{macrocode}

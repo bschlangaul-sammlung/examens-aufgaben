@@ -3,8 +3,20 @@
 Klasse Aufgabe konfigurieren, d. h. Laden von einigen Paketen, Registierung von Hooks]
 %    \end{macrocode}
 
+% Formatierung muss vor literatur sein, sonst Option clash
 %    \begin{macrocode}
-\liLadePakete{mathe}
+\liLadePakete{
+  formatierung,
+  abmessung,
+  literatur-dummy,
+  makros,
+  aufgaben-metadaten,
+  kopf-fusszeilen,
+  mathe
+}
+
+% Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
+\RequirePackage[ngerman]{babel}
 %    \end{macrocode}
 
 %    \begin{macrocode}
@@ -13,7 +25,7 @@ Klasse Aufgabe konfigurieren, d. h. Laden von einigen Paketen, Registierung von 
 
 %    \begin{macrocode}
 \AddToHook{enddocument}{
-\_gib_github_url:
+  \_gib_github_url:
 }
 %    \end{macrocode}
 
