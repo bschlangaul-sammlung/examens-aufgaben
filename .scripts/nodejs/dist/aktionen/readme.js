@@ -8,7 +8,7 @@ const fs_1 = __importDefault(require("fs"));
 const aufgabe_1 = require("../aufgabe");
 const stichwort_verzeichnis_1 = require("../stichwort-verzeichnis");
 const helfer_1 = require("../helfer");
-const erzeuge_examens_uebersicht_1 = require("./erzeuge-examens-uebersicht");
+const aufgaben_sammlung_1 = require("./aufgaben-sammlung");
 function generiereMarkdownAufgabenListe(aufgabenListe) {
     const aufgaben = Array.from(aufgabenListe);
     aufgaben.sort(aufgabe_1.Aufgabe.vergleichePfade);
@@ -31,7 +31,7 @@ function default_1() {
     const stichwörterInhalt = helfer_1.leseRepoDatei('Stichwortverzeichnis.yml');
     inhalt = inhalt.replace('{{ stichwortverzeichnis }}', stichwörterInhalt);
     console.log(inhalt);
-    inhalt = inhalt.replace('{{ staatsexamen }}', erzeuge_examens_uebersicht_1.generiereExamensÜbersicht());
+    inhalt = inhalt.replace('{{ staatsexamen }}', aufgaben_sammlung_1.generiereExamensÜbersicht());
     console.log(inhalt);
     fs_1.default.writeFileSync(path_1.default.join(helfer_1.repositoryPfad, 'README.md'), inhalt);
 }

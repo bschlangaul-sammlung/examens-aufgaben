@@ -11,11 +11,6 @@ const path_1 = __importDefault(require("path"));
 const commander_1 = require("commander");
 const aufgabe_1 = require("./aufgabe");
 const helfer_1 = require("./helfer");
-const erzeuge_aufgaben_vorlage_1 = require("./aktionen/erzeuge-aufgaben-vorlage");
-const erzeuge_examens_aufgabe_vorlage_1 = require("./aktionen/erzeuge-examens-aufgabe-vorlage");
-const erzeuge_examens_uebersicht_1 = require("./aktionen/erzeuge-examens-uebersicht");
-const oeffne_1 = require("./aktionen/oeffne");
-const oeffne_durch_stichwort_1 = require("./aktionen/oeffne-durch-stichwort");
 const aktionen_1 = __importDefault(require("./aktionen"));
 const programm = new commander_1.Command();
 programm.description(`Repository-Pfad: ${helfer_1.repositoryPfad}`);
@@ -29,47 +24,22 @@ programm
     .command('erzeuge-aufgabe [titel]')
     .description('Erzeuge eine Aufgabe im aktuellen Arbeitsverzeichnis.')
     .alias('a')
-    .action(function (titel, cmdObj) {
-    let dateiName = 'Aufgabe_';
-    if (titel != null) {
-        const titelRein = titel.replace(/\s+/g, '-');
-        dateiName = `${dateiName}${titelRein}`;
-    }
-    const pfad = path_1.default.join(process.cwd(), `${dateiName}.tex`);
-    if (!fs_1.default.existsSync(pfad)) {
-        erzeuge_aufgaben_vorlage_1.erzeugeAufgabenVorlage(pfad, {
-            titel
-        });
-    }
-    helfer_1.öffneVSCode(pfad);
-});
+    .action(aktionen_1.default.erzeugeAufgabenVorlage);
 programm
     .command('erzeuge-examens-aufgabe <referenz> <thema> [teilaufgabe] [aufgabe]')
     .description('Erzeuge eine Examensaufgabe im Verzeichnis „Staatsexamen“.')
     .alias('e')
-    .action(function (ref, arg1, arg2, arg3) {
-    const pfad = erzeuge_examens_aufgabe_vorlage_1.erzeugeExamensAufgabeVorlage(ref, arg1, arg2, arg3);
-    helfer_1.öffneVSCode(pfad);
-});
+    .action(aktionen_1.default.erzeugeExamensAufgabeVorlage);
 programm
     .command('oeffne <referenz...>')
     .description('Öffne eine Staatsexamen oder andere Materialien durch die Referenz, z. B. 66116:2020:09.')
     .alias('o')
-    .action(function (referenz, cmdObj) {
-    if (referenz.length === 1) {
-        oeffne_1.öffne(referenz[0]);
-    }
-    else {
-        oeffne_1.öffne(referenz.join(':'));
-    }
-});
+    .action(aktionen_1.default.öffne);
 programm
     .command('oeffne-stichwort <stichwort>')
     .description('Öffne Aufgaben anhand des Stichworts')
     .alias('s')
-    .action(function (stichwort, cmdObj) {
-    oeffne_durch_stichwort_1.öffneDurchStichwort(stichwort);
-});
+    .action(aktionen_1.default.öffneDurchStichwort);
 programm
     .command('generiere-readme')
     .description('Erzeuge die README-Datei.')
@@ -190,9 +160,7 @@ programm
     .command('examen-sammlung')
     .alias('es')
     .description('PDFs in denen mehrere PDFs zusammengefügt sind.')
-    .action(function () {
-    erzeuge_examens_uebersicht_1.generiereExamenSammlungPdf();
-});
+    .action(aktionen_1.default.erzeugeExamenScansSammlung);
 programm
     .command('flaci-to-tikz <jsonDatei>')
     .alias('flaci')

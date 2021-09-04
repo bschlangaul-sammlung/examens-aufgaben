@@ -9,13 +9,6 @@ import { Command } from 'commander'
 
 import { Aufgabe } from './aufgabe'
 import { repositoryPfad, öffneVSCode, leseDatei, schreibeDatei } from './helfer'
-
-import { erzeugeAufgabenVorlage } from './aktionen/erzeuge-aufgaben-vorlage'
-import { erzeugeExamensAufgabeVorlage } from './aktionen/erzeuge-examens-aufgabe-vorlage'
-import { generiereExamenSammlungPdf } from './aktionen/erzeuge-examens-uebersicht'
-import { öffne } from './aktionen/oeffne'
-import { öffneDurchStichwort } from './aktionen/oeffne-durch-stichwort'
-
 import aktionen from './aktionen'
 
 const programm = new Command()
@@ -35,34 +28,13 @@ programm
   .command('erzeuge-aufgabe [titel]')
   .description('Erzeuge eine Aufgabe im aktuellen Arbeitsverzeichnis.')
   .alias('a')
-  .action(function (titel: string, cmdObj: object): void {
-    let dateiName = 'Aufgabe_'
-    if (titel != null) {
-      const titelRein = titel.replace(/\s+/g, '-')
-      dateiName = `${dateiName}${titelRein}`
-    }
-    const pfad = path.join(process.cwd(), `${dateiName}.tex`)
-    if (!fs.existsSync(pfad)) {
-      erzeugeAufgabenVorlage(pfad, {
-        titel
-      })
-    }
-    öffneVSCode(pfad)
-  })
+  .action(aktionen.erzeugeAufgabenVorlage)
 
 programm
   .command('erzeuge-examens-aufgabe <referenz> <thema> [teilaufgabe] [aufgabe]')
   .description('Erzeuge eine Examensaufgabe im Verzeichnis „Staatsexamen“.')
   .alias('e')
-  .action(function (
-    ref: string,
-    arg1: string,
-    arg2: string,
-    arg3: string
-  ): void {
-    const pfad = erzeugeExamensAufgabeVorlage(ref, arg1, arg2, arg3)
-    öffneVSCode(pfad)
-  })
+  .action(aktionen.erzeugeExamensAufgabeVorlage)
 
 programm
   .command('oeffne <referenz...>')
@@ -70,21 +42,13 @@ programm
     'Öffne eine Staatsexamen oder andere Materialien durch die Referenz, z. B. 66116:2020:09.'
   )
   .alias('o')
-  .action(function (referenz: string[], cmdObj: object): void {
-    if (referenz.length === 1) {
-      öffne(referenz[0])
-    } else {
-      öffne(referenz.join(':'))
-    }
-  })
+  .action(aktionen.öffne)
 
 programm
   .command('oeffne-stichwort <stichwort>')
   .description('Öffne Aufgaben anhand des Stichworts')
   .alias('s')
-  .action(function (stichwort: string, cmdObj: object): void {
-    öffneDurchStichwort(stichwort)
-  })
+  .action(aktionen.öffneDurchStichwort)
 
 programm
   .command('generiere-readme')
@@ -243,9 +207,7 @@ programm
   .command('examen-sammlung')
   .alias('es')
   .description('PDFs in denen mehrere PDFs zusammengefügt sind.')
-  .action(function (): void {
-    generiereExamenSammlungPdf()
-  })
+  .action(aktionen.erzeugeExamenScansSammlung)
 
 programm
   .command('flaci-to-tikz <jsonDatei>')

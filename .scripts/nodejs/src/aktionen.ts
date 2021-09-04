@@ -9,12 +9,24 @@ import konvertiereFlaciZuTikz from './aktionen/flaci'
 import validiere from './aktionen/validiere'
 import führeSqlAus from './aktionen/sql'
 import erzeugeAufgabenMetadaten from './aktionen/aufgaben-metadaten'
+import { öffne, öffneDurchStichwort } from './aktionen/oeffne'
+import {
+  erzeugeAufgabenVorlage,
+  erzeugeExamensAufgabeVorlage
+} from './aktionen/aufgaben-vorlage'
+import { erzeugeExamenScansSammlung } from './aktionen/aufgaben-sammlung'
+
 export default {
+  erzeugeAufgabenMetadaten,
+  erzeugeAufgabenVorlage,
+  erzeugeExamensAufgabeVorlage,
+  erzeugeExamenScansSammlung,
   erzeugeReadme,
   erzeugeTexDokumentation,
+  führeSqlAus,
   kompiliereTex,
   konvertiereFlaciZuTikz,
-  validiere,
-  führeSqlAus,
-  erzeugeAufgabenMetadaten
+  öffne,
+  öffneDurchStichwort,
+  validiere
 }

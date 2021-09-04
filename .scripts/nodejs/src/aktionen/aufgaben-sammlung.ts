@@ -185,7 +185,7 @@ export function generiereExamensÜbersicht (): string {
   return ausgabe.gibText()
 }
 
-export function generiereExamenSammlungPdf (): void {
+export function erzeugeExamenScansSammlung (): void {
   for (const nummer in examensTitel) {
     const ausgabe = new AusgabeSammler()
     const nummernPfad = path.join(repositoryPfad, 'Staatsexamen', nummer)

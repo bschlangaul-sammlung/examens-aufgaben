@@ -4,7 +4,7 @@ import fs from 'fs'
 import { Aufgabe } from '../aufgabe'
 import { gibStichwortVerzeichnis } from '../stichwort-verzeichnis'
 import { repositoryPfad, leseRepoDatei } from '../helfer'
-import { generiereExamensÜbersicht } from './erzeuge-examens-uebersicht'
+import { generiereExamensÜbersicht } from './aufgaben-sammlung'
 
 function generiereMarkdownAufgabenListe (aufgabenListe: Set<Aufgabe>): string {
   const aufgaben = Array.from(aufgabenListe)
