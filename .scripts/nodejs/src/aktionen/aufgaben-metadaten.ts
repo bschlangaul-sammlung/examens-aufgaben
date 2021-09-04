@@ -3,7 +3,46 @@ import path from 'path'
 import { AufgabenMetadaten, gibAufgabenSammlung } from '../aufgabe'
 import { schreibeDatei } from '../helfer'
 
-function macheTex (meta: AufgabenMetadaten): string {
+function umgebeMitKlammern (text: string): string {
+  text = text.trim()
+  if (text.charAt(0) !== '{' && text.charAt(text.length - 1) !== '}') {
+    text = `{${text}}`
+  }
+  return text
+}
+
+/**
+ * @returns
+ *
+ * ```latex
+ * \liAufgabenMetadaten{
+ *   Titel = Aufgabe 2,
+ *   Thematik = Petri-Netz,
+ *   RelativerPfad = Staatsexamen/46116/2016/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex,
+ *   ZitatSchluessel = sosy:pu:4,
+ *   ExamenNummer = 46116,
+ *   ExamenJahr = 2016,
+ *   ExamenMonat = 03,
+ *   ExamenThemaNr = 2,
+ *   ExamenTeilaufgabeNr = 1,
+ *   ExamenAufgabeNr = 2,
+ * }
+ * ```
+ */
+export function macheTexPlist (meta: AufgabenMetadaten): string {
+  const m: any = meta
+  for (const schlüssel of [
+    'Titel',
+    'Thematik',
+    'ZitatBeschreibung',
+    'Stichwoerter'
+  ]) {
+    if (m[schlüssel] != null) {
+      m[schlüssel] = umgebeMitKlammern(m[schlüssel])
+    }
+  }
+  meta = m as AufgabenMetadaten
+
   const schlüsselWertPaare: string[] = []
   Object.keys(meta).forEach(schlüssel => {
     let wert = meta[schlüssel as keyof AufgabenMetadaten]
@@ -61,12 +100,12 @@ export default function (dateiPfad: string): void {
   dateiPfad = path.resolve(dateiPfad)
   const aufgabenSammlung = gibAufgabenSammlung()
   const aufgabe = aufgabenSammlung.gib(dateiPfad)
-  const texMarkup = macheTex(aufgabe.erzeugeMetadaten())
+  const texPlist = macheTexPlist(aufgabe.erzeugeMetadaten())
 
   if (aufgabe.inhalt !== null) {
     const inhalt = aufgabe.inhalt
-    schreibe(dateiPfad, inhalt, texMarkup)
+    schreibe(dateiPfad, inhalt, texPlist)
   }
 
-  console.log(texMarkup)
+  console.log(texPlist)
 }

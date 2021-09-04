@@ -1,0 +1,58 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{}
+\begin{document}
+\liAufgabenMetadaten{
+  Titel = {Quadratisches Sondieren},
+  Thematik = {plus und minus i hoch 2},
+  RelativerPfad = Module/30_AUD/80_Baeume/60_Hashing/Aufgabe_Quadratisches-Sondieren.tex,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {Streutabellen (Hashing)},
+}
+\index{Streutabellen (Hashing)}
+
+\footnote{nach Foliensatz der TU BraunschweigSeite 25\url{https://www.ibr.cs.tu-bs.de/courses/ws0708/aud/skript/hash.np.pdf}}
+
+\liPseudoUeberschrift{Formel}
+
+$h(k, i) := h'(k) + (-1)^{i+1} \cdot \left\lfloor \frac{i+1}{2}\right\rfloor ^2 \mod m$
+
+$k$, $k+1^2$, $k-1^2$, $k+2^2$, $k-2^2$,
+$\ldots$
+$k+(\frac{m-1}{2})^2$, $k-(\frac{m-1}{2})^2 \bmod m$
+
+\liPseudoUeberschrift{Werte}
+
+$m=19$, d. h. das Feld (die Tabelle) hat die Index-Nummern 0 bis 18.
+$k = h(x) = 7$
+
+\liPseudoUeberschrift{Sondierungsfolgen}
+
+\def\tmp#1{{\tiny#1}}
+
+\begin{tabular}{|l|l|l|l|}
+i & Rechnung & Ergebnis & Index in der Tabelle\\\hline\hline
+0 & $7 + 0^2$ & 7 & 7\\
+1 & $7 + 1^2$ & 8 & 8\\
+1 & $7 - 1^2$ & 6 & 6\\
+2 & $7 + 2^2$ & 11 & 11\\
+2 & $7 - 2^2$ & 3 & 2 \\
+3 & $7 + 3^2 = 7 + 9$  & 16 & 16 \\
+
+3 & $7 - 3^2 = 7 - 9$  & -2 &
+17 \tmp{($19-2=10$) oder ($0 \rightarrow 0$, $-1 \rightarrow 18$, $-2 \rightarrow 17$)}
+\\
+
+4 & $7 + 4^2 = 7 + 16$  & 23 &
+4 \tmp{($23-19=4$) oder ($19 \rightarrow 0$, $20 \rightarrow 1$, $21 \rightarrow 2$, $22 \rightarrow 3$, $23 \rightarrow 4$)}
+\\
+
+4 & $7 - 4^2 = 7 - 16$  & -9 &
+10 \tmp{($19-9=10$) oder ($0 \rightarrow 0$, $-1 \rightarrow 18$, $-2 \rightarrow 17$, $\cdots$, $-9 \rightarrow 10$)}
+\\
+
+5 & $7 + 5^2 = 7 + 25$  & 32 & 13 \tmp{($32-19=13$)} \\
+5 & $7 - 5^2 = 7 - 25$  & -18 & 1 \tmp{($19-18=1$)}\\
+\end{tabular}
+
+\end{document}

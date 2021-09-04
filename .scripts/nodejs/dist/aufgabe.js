@@ -111,8 +111,6 @@ class Aufgabe {
     /**
      * Erzeuge eine Objekt, dass dem Interface AufgabenMetadaten entspricht.
      * Die Reihenfolge der Attribute sollte eingehalten werden.
-     *
-     * @returns
      */
     erzeugeMetadaten() {
         // eslint-disable-next-line
