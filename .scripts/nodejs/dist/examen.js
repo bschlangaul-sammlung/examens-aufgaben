@@ -14,8 +14,21 @@ class Examen {
         this.jahr = jahr;
         this.monat = monat;
     }
+    /**
+     * Der Pfad zum Scan
+     *
+     * z. B. `...github/hbschlang/lehramt-informatik/Staatsexamen/66116/2020/09/Scan.pdf`
+     */
     get pfad() {
         return path_1.default.join(helfer_1.repositoryPfad, Examen.erzeugePfad(this.nummer, this.jahr, this.monatMitNullen), 'Scan.pdf');
+    }
+    /**
+     * Der übergeordnete Ordner, in dem das Staatsexamen liegt.
+     *
+     * z. B. `...github/hbschlang/lehramt-informatik/Staatsexamen/66116/2020/09`
+     */
+    get übergeordneterOrdner() {
+        return path_1.default.dirname(this.pfad);
     }
     get jahreszeit() {
         if (this.monat === 3) {

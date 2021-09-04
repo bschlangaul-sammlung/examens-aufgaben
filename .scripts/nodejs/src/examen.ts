@@ -11,9 +11,9 @@ export interface ExamenReferenz {
 }
 
 export class Examen {
-  nummer: number
-  jahr: number
-  monat: number
+  public nummer: number
+  public jahr: number
+  public monat: number
 
   aufgaben: { [pfad: string]: Aufgabe } = {}
 
@@ -25,12 +25,26 @@ export class Examen {
     this.monat = monat
   }
 
+  /**
+   * Der Pfad zum Scan
+   *
+   * z. B. `...github/hbschlang/lehramt-informatik/Staatsexamen/66116/2020/09/Scan.pdf`
+   */
   get pfad (): string {
     return path.join(
       repositoryPfad,
       Examen.erzeugePfad(this.nummer, this.jahr, this.monatMitNullen),
       'Scan.pdf'
     )
+  }
+
+  /**
+   * Der übergeordnete Ordner, in dem das Staatsexamen liegt.
+   *
+   * z. B. `...github/hbschlang/lehramt-informatik/Staatsexamen/66116/2020/09`
+   */
+  get übergeordneterOrdner (): string {
+    return path.dirname(this.pfad)
   }
 
   get jahreszeit (): string {

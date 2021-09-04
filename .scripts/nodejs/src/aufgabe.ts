@@ -141,11 +141,11 @@ export class Aufgabe {
   constructor (pfad: string) {
     this.pfad = Aufgabe.normalisierePfad(pfad)
     if (!fs.existsSync(this.pfad)) {
-      throw new Error(
-        `Die Aufgabe mit dem Dateipfad ${this.pfad} existiert nicht.`
-      )
+      this.inhalt = ''
+    } else {
+      this.inhalt = leseRepoDatei(this.pfad)
     }
-    this.inhalt = leseRepoDatei(this.pfad)
+
     this.stichwörter = sammleStichwörter(this.inhalt)
 
     const metaDaten = this.leseMetadatenVonTex()
@@ -418,9 +418,9 @@ export class Aufgabe {
  * Eine Examensaufgabe
  */
 export class ExamensAufgabe extends Aufgabe {
-  thema?: number
-  teilaufgabe?: number
-  aufgabe: number
+  public thema?: number
+  public teilaufgabe?: number
+  public aufgabe: number
 
   examen: Examen
 
@@ -435,7 +435,7 @@ export class ExamensAufgabe extends Aufgabe {
     examen.aufgaben[pfad] = this
     const treffer = pfad.match(ExamensAufgabe.pfadRegExp)
     if (treffer == null || treffer.groups == null) {
-      zeigeFehler(`Konnten den Pfad der Examensaufgabe nicht lesen: ${pfad}`)
+      zeigeFehler(`Konnte den Pfad der Examensaufgabe nicht lesen: ${pfad}`)
     }
     const gruppen = treffer.groups
     this.aufgabe = parseInt(gruppen.aufgabe)
@@ -445,6 +445,42 @@ export class ExamensAufgabe extends Aufgabe {
     if (gruppen.teilaufgabe != null) {
       this.teilaufgabe = parseInt(gruppen.teilaufgabe)
     }
+  }
+
+  /**
+   * @param ref z. B. `66116:2021:03`
+   * @param arg1 Thema-Nummer, Teilaufgaben-Nummer oder Aufgaben-Nummer
+   * @param arg2 Teilaufgabe-Nummer oder Aufgabe-Nummer
+   * @param arg3 Aufgabe-Nummer
+   */
+  public static erzeugeExamensAufgabe (
+    referenz: string,
+    arg1: string | number,
+    arg2?: string | number,
+    arg3?: string | number
+  ): ExamensAufgabe {
+    function gibNummer (arg: string | number | undefined): number | undefined {
+      if (typeof arg === 'number') {
+        return arg
+      } else if (typeof arg === 'string') {
+        return parseInt(arg)
+      }
+    }
+
+    if (typeof arg1 === 'string') {
+      arg1 = parseInt(arg1)
+    }
+
+    const pfad = ExamensAufgabe.erzeugePfad(
+      arg1,
+      gibNummer(arg2),
+      gibNummer(arg3)
+    )
+    const examen = Examen.erzeugeExamenVonReferenz(referenz)
+    return new ExamensAufgabe(
+      path.join(examen.übergeordneterOrdner, pfad),
+      examen
+    )
   }
 
   static istExamensAufgabe (pfad: string): boolean {
@@ -476,6 +512,10 @@ export class ExamensAufgabe extends Aufgabe {
     return this.examen.referenz
   }
 
+  get aufgabeFormatiert (): string {
+    return 'Aufgabe ' + this.aufgabe
+  }
+
   get aufgabenReferenz (): string {
     const output = []
     if (this.thema != null) {
@@ -493,6 +533,31 @@ export class ExamensAufgabe extends Aufgabe {
    */
   get aufgabenReferenzKurz (): string {
     return this.aufgabenReferenz.replace(/ +/g, '')
+  }
+
+  get einbindenTexMakro (): string {
+    let aufgabe = ''
+    let suffix = ''
+    const examen = `${this.examen.nummer} / ${this.examen.jahr} / ${this.examen.monat} :`
+    if (
+      this.thema != null &&
+      this.teilaufgabe != null &&
+      this.aufgabe != null
+    ) {
+      aufgabe = `Thema ${this.thema} Teilaufgabe ${this.teilaufgabe} Aufgabe ${this.aufgabe}`
+      suffix = 'TTA'
+    } else if (
+      this.thema != null &&
+      this.aufgabe != null &&
+      this.teilaufgabe == null
+    ) {
+      aufgabe = `Thema ${this.thema} Aufgabe ${this.aufgabe}`
+      suffix = 'TA'
+    } else {
+      aufgabe = `Aufgabe ${this.aufgabe}`
+      suffix = 'A'
+    }
+    return `\n\\ExamensAufgabe${suffix} ${examen} ${aufgabe}`
   }
 
   /**

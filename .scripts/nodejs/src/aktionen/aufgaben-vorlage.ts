@@ -1,47 +1,9 @@
 import path from 'path'
 import fs from 'fs'
 
-import { repositoryPfad, zeigeFehler, öffneVSCode } from '../helfer'
+import { öffneVSCode } from '../helfer'
 import { AufgabenMetadaten, ExamensAufgabe } from '../aufgabe'
-import { Examen, ExamenReferenz } from '../examen'
 import { macheTexPlist } from './aufgaben-metadaten'
-
-function überprüfeNummer (nummer: string | number): number | undefined {
-  if (typeof nummer === 'string') {
-    nummer = parseInt(nummer)
-  }
-  if (nummer != null) {
-    return nummer
-  }
-}
-
-/**
- * @param ref z. B. `66116:2021:03`
- * @param arg1 Thema-Nummer, Teilaufgaben-Nummer oder Aufgaben-Nummer
- * @param arg2 Teilaufgabe-Nummer oder Aufgabe-Nummer
- * @param arg3 Aufgabe-Nummer
- */
-function erzeugeTeXMakro (
-  referenz: ExamenReferenz,
-  arg1: string,
-  arg2?: string,
-  arg3?: string
-): string {
-  let aufgabe = ''
-  let suffix = ''
-  const examen = `${referenz.nummer} / ${referenz.jahr} / ${referenz.monat} :`
-  if (arg1 != null && arg2 != null && arg3 != null) {
-    aufgabe = `Thema ${arg1} Teilaufgabe ${arg2} Aufgabe ${arg3}`
-    suffix = 'TTA'
-  } else if (arg1 != null && arg2 != null && arg3 == null) {
-    aufgabe = `Thema ${arg1} Aufgabe ${arg2}`
-    suffix = 'TA'
-  } else {
-    aufgabe = `Aufgabe ${arg1}`
-    suffix = 'A'
-  }
-  return `\n\\ExamensAufgabe${suffix} ${examen} ${aufgabe}`
-}
 
 interface AufgabenVorlagenWerte {
   /**
@@ -112,43 +74,14 @@ export function erzeugeAufgabenVorlage (titel: string): void {
   öffneVSCode(pfad)
 }
 
-/**
- * @param ref z. B. `66116:2021:03`
- * @param arg1 Thema-Nummer, Teilaufgaben-Nummer oder Aufgaben-Nummer
- * @param arg2 Teilaufgabe-Nummer oder Aufgabe-Nummer
- * @param arg3 Aufgabe-Nummer
- */
 function schreibeExamensAufgabeVorlage (
-  referenz: string,
-  arg1: string,
-  arg2: string,
-  arg3: string
+  examensAufgabe: ExamensAufgabe
 ): string {
-  const num1 = überprüfeNummer(arg1)
-  const num2 = überprüfeNummer(arg2)
-  const num3 = überprüfeNummer(arg3)
-
-  if (num1 == null) {
-    zeigeFehler('Undefined num1')
-  }
-
-  const examenReferenz = Examen.teileReferenz(referenz)
-  const pfad = path.join(
-    repositoryPfad,
-    Examen.erzeugePfad(
-      examenReferenz.nummer,
-      examenReferenz.jahr,
-      examenReferenz.monat
-    ),
-    ExamensAufgabe.erzeugePfad(num1, num2, num3)
-  )
-
-  schreibeAufgabenVorlage(pfad, {
-    zitatSchlüssel: 'examen:' + referenz
+  schreibeAufgabenVorlage(examensAufgabe.pfad, {
+    titel: examensAufgabe.aufgabeFormatiert,
+    zitatSchlüssel: 'examen:' + examensAufgabe.examen.referenz
   })
-  console.log(erzeugeTeXMakro(examenReferenz, arg1, arg2, arg3))
-
-  return pfad
+  return examensAufgabe.pfad
 }
 
 /**
@@ -163,6 +96,12 @@ export function erzeugeExamensAufgabeVorlage (
   arg2: string,
   arg3: string
 ): void {
-  const pfad = schreibeExamensAufgabeVorlage(ref, arg1, arg2, arg3)
+  const examensAufgabe = ExamensAufgabe.erzeugeExamensAufgabe(
+    ref,
+    arg1,
+    arg2,
+    arg3
+  )
+  const pfad = schreibeExamensAufgabeVorlage(examensAufgabe)
   öffneVSCode(pfad)
 }

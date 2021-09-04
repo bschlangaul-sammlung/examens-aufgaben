@@ -39,9 +39,11 @@ class Aufgabe {
         this.istExamen = false;
         this.pfad = Aufgabe.normalisierePfad(pfad);
         if (!fs_1.default.existsSync(this.pfad)) {
-            throw new Error(`Die Aufgabe mit dem Dateipfad ${this.pfad} existiert nicht.`);
+            this.inhalt = '';
         }
-        this.inhalt = helfer_1.leseRepoDatei(this.pfad);
+        else {
+            this.inhalt = helfer_1.leseRepoDatei(this.pfad);
+        }
         this.stichwörter = tex_1.sammleStichwörter(this.inhalt);
         const metaDaten = this.leseMetadatenVonTex();
         if (metaDaten != null) {
@@ -289,7 +291,7 @@ class ExamensAufgabe extends Aufgabe {
         examen.aufgaben[pfad] = this;
         const treffer = pfad.match(ExamensAufgabe.pfadRegExp);
         if (treffer == null || treffer.groups == null) {
-            helfer_1.zeigeFehler(`Konnten den Pfad der Examensaufgabe nicht lesen: ${pfad}`);
+            helfer_1.zeigeFehler(`Konnte den Pfad der Examensaufgabe nicht lesen: ${pfad}`);
         }
         const gruppen = treffer.groups;
         this.aufgabe = parseInt(gruppen.aufgabe);
@@ -299,6 +301,28 @@ class ExamensAufgabe extends Aufgabe {
         if (gruppen.teilaufgabe != null) {
             this.teilaufgabe = parseInt(gruppen.teilaufgabe);
         }
+    }
+    /**
+     * @param ref z. B. `66116:2021:03`
+     * @param arg1 Thema-Nummer, Teilaufgaben-Nummer oder Aufgaben-Nummer
+     * @param arg2 Teilaufgabe-Nummer oder Aufgabe-Nummer
+     * @param arg3 Aufgabe-Nummer
+     */
+    static erzeugeExamensAufgabe(referenz, arg1, arg2, arg3) {
+        function gibNummer(arg) {
+            if (typeof arg === 'number') {
+                return arg;
+            }
+            else if (typeof arg === 'string') {
+                return parseInt(arg);
+            }
+        }
+        if (typeof arg1 === 'string') {
+            arg1 = parseInt(arg1);
+        }
+        const pfad = ExamensAufgabe.erzeugePfad(arg1, gibNummer(arg2), gibNummer(arg3));
+        const examen = examen_1.Examen.erzeugeExamenVonReferenz(referenz);
+        return new ExamensAufgabe(path_1.default.join(examen.übergeordneterOrdner, pfad), examen);
     }
     static istExamensAufgabe(pfad) {
         if (pfad.match(ExamensAufgabe.pfadRegExp) != null) {
@@ -323,6 +347,9 @@ class ExamensAufgabe extends Aufgabe {
     get examensReferenz() {
         return this.examen.referenz;
     }
+    get aufgabeFormatiert() {
+        return 'Aufgabe ' + this.aufgabe;
+    }
     get aufgabenReferenz() {
         const output = [];
         if (this.thema != null) {
@@ -339,6 +366,28 @@ class ExamensAufgabe extends Aufgabe {
      */
     get aufgabenReferenzKurz() {
         return this.aufgabenReferenz.replace(/ +/g, '');
+    }
+    get einbindenTexMakro() {
+        let aufgabe = '';
+        let suffix = '';
+        const examen = `${this.examen.nummer} / ${this.examen.jahr} / ${this.examen.monat} :`;
+        if (this.thema != null &&
+            this.teilaufgabe != null &&
+            this.aufgabe != null) {
+            aufgabe = `Thema ${this.thema} Teilaufgabe ${this.teilaufgabe} Aufgabe ${this.aufgabe}`;
+            suffix = 'TTA';
+        }
+        else if (this.thema != null &&
+            this.aufgabe != null &&
+            this.teilaufgabe == null) {
+            aufgabe = `Thema ${this.thema} Aufgabe ${this.aufgabe}`;
+            suffix = 'TA';
+        }
+        else {
+            aufgabe = `Aufgabe ${this.aufgabe}`;
+            suffix = 'A';
+        }
+        return `\n\\ExamensAufgabe${suffix} ${examen} ${aufgabe}`;
     }
     /**
      * `„Greedy-Färben von Intervallen“ Examen 66115 Herbst 2017 T1 A8`

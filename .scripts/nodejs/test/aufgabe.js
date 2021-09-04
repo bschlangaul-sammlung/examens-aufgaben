@@ -1,6 +1,6 @@
 const assert = require('assert')
 const path = require('path')
-const { Aufgabe, gibAufgabenSammlung } = require('../dist/aufgabe.js')
+const { Aufgabe, gibAufgabenSammlung, ExamensAufgabe } = require('../dist/aufgabe.js')
 
 const aufgabenSammlung = gibAufgabenSammlung()
 
@@ -63,6 +63,29 @@ describe('aufgabe.ts', function () {
         'Staatsexamen/66116/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-1.tex'
       )
       assert.strictEqual(aufgabe.istExamen, true)
+    })
+
+    describe('Statische Methode „ExamensAufgabe.erzeugeExamensAufgabe()“', function () {
+      it('66116:2020:09 1 2 3', function () {
+        const aufgabe = ExamensAufgabe.erzeugeExamensAufgabe('66116:2020:09', 1, 2, 3)
+        assert.strictEqual(aufgabe.thema, 1)
+        assert.strictEqual(aufgabe.teilaufgabe, 2)
+        assert.strictEqual(aufgabe.aufgabe, 3)
+      })
+
+      it('66116:2020:09 1 2', function () {
+        const aufgabe = ExamensAufgabe.erzeugeExamensAufgabe('66116:2020:09', 1, 2)
+        assert.strictEqual(aufgabe.thema, 1)
+        assert.strictEqual(aufgabe.teilaufgabe, undefined)
+        assert.strictEqual(aufgabe.aufgabe, 2)
+      })
+
+      it('66116:2020:09 1', function () {
+        const aufgabe = ExamensAufgabe.erzeugeExamensAufgabe('66116:2020:09', 1)
+        assert.strictEqual(aufgabe.thema, undefined)
+        assert.strictEqual(aufgabe.teilaufgabe, undefined)
+        assert.strictEqual(aufgabe.aufgabe, 1)
+      })
     })
 
     it('Methode „erzeugeMetadaten()“', function () {
