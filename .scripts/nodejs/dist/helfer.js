@@ -32,6 +32,13 @@ function leseKonfigurationsDatei(pfad) {
     return treffer[1];
 }
 exports.repositoryPfad = leseKonfigurationsDatei(konfigurationsDateiPfad);
+/**
+ * Erzeuge einen zum Git-Repository relativen Pfad.
+ *
+ * @param pfad Ein möglicherweise absoluter Pfad.
+ *
+ * @returns z. B. `Staatsexamen/66116.../`
+ */
 function macheRelativenPfad(pfad) {
     pfad = pfad.replace(exports.repositoryPfad, '');
     return pfad.replace(/^\//, '');

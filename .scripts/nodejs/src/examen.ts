@@ -1,7 +1,7 @@
 import path from 'path'
 import glob from 'glob'
 
-import { repositoryPfad, zeigeFehler } from './helfer'
+import { repositoryPfad, zeigeFehler, macheRelativenPfad } from './helfer'
 import { Aufgabe } from './aufgabe'
 
 export interface ExamenReferenz {
@@ -10,11 +10,22 @@ export interface ExamenReferenz {
   monat: string
 }
 
+interface ExamensAufgabeBaum {
+  [aufgabe: string]: ExamensAufgabeBaum | Aufgabe
+}
+
 export class Examen {
   public nummer: number
   public jahr: number
   public monat: number
 
+  /**
+   * ```js
+   * {
+   *    'Staatsexamen/66116/2021/03/Thema-2/Teilaufgabe-2/Aufgabe-5.tex': aufgabe
+   * }
+   * ```
+   */
   aufgaben: { [pfad: string]: Aufgabe } = {}
 
   static regExp: RegExp = /^.*(?<nummer>\d{5})\/(?<jahr>\d{4})\/(?<monat>\d{2})\/.*$/
@@ -43,10 +54,22 @@ export class Examen {
    *
    * z. B. `...github/hbschlang/lehramt-informatik/Staatsexamen/66116/2020/09`
    */
-  get übergeordneterOrdner (): string {
+  get verzeichnis (): string {
     return path.dirname(this.pfad)
   }
 
+  /**
+   * Der übergeordnete Ordner, in dem das Staatsexamen liegt, als relativen Pfad.
+   *
+   * z. B. `Staatsexamen/66116/2020/09`
+   */
+  get verzeichnisRelativ (): string {
+    return macheRelativenPfad(this.verzeichnis)
+  }
+
+  /**
+   * `Frühjahr` oder `Herbst`
+   */
   get jahreszeit (): string {
     if (this.monat === 3) {
       return 'Frühjahr'
@@ -66,6 +89,9 @@ export class Examen {
     return `${this.jahr} ${this.jahreszeit}`
   }
 
+  /**
+   * z. B. `03`
+   */
   get monatMitNullen (): string {
     return this.monat.toString().padStart(2, '0')
   }
@@ -77,6 +103,9 @@ export class Examen {
     return `${this.nummer}:${this.jahr}:${this.monatMitNullen}`
   }
 
+  /**
+   * z. B. `Examen 66116 Frühjahr 2020`
+   */
   get titelKurz (): string {
     return `Examen ${this.nummer} ${this.jahreszeit} ${this.jahr}`
   }
@@ -147,6 +176,78 @@ export class Examen {
       monat: tmp[2]
     }
   }
+
+  /**
+   * ```js
+   * {
+   *   'Thema 1': {
+   *     'Teilaufgabe 1': {
+   *       'Aufgabe 3': aufgabe,
+   *       'Aufgabe 4': aufgabe
+   *     },
+   *     'Teilaufgabe 2': {
+   *       'Aufgabe 2': aufgabe,
+   *       'Aufgabe 4': aufgabe
+   *     }
+   *   },
+   *   'Thema 2': {
+   *     'Teilaufgabe 2': {
+   *       'Aufgabe 2': aufgabe,
+   *       'Aufgabe 5': aufgabe
+   *     }
+   *   }
+   * }
+   * ```
+   */
+  get aufgabenBaum (): ExamensAufgabeBaum {
+    /**
+     * Thema-1: Thema 1
+     * Teilaufgabe-2: Teilaufgabe 2
+     * Aufgabe-3.tex: Aufgabe 3
+     */
+    function macheSegmenteLesbar (segment: string): string {
+      return segment.replace('-', ' ').replace('.tex', '')
+    }
+
+    const aufgabenPfade = Object.keys(this.aufgaben)
+
+    var collator = new Intl.Collator(undefined, {
+      numeric: true,
+      sensitivity: 'base'
+    })
+
+    aufgabenPfade.sort(collator.compare)
+
+    const baum: ExamensAufgabeBaum = {}
+    for (const pfad of aufgabenPfade) {
+      const aufgabenPfad = pfad.replace(this.verzeichnisRelativ + path.sep, '')
+      if (
+        aufgabenPfad.match(
+          /(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/
+        ) != null
+      ) {
+        const aufgabe = this.aufgaben[pfad]
+        const segmente = aufgabenPfad.split(path.sep)
+        let unterBaum: ExamensAufgabeBaum = baum
+        for (const segment of segmente) {
+          const segmentLesbar = macheSegmenteLesbar(segment)
+          if (unterBaum[segmentLesbar] == null && !segment.includes('.tex')) {
+            unterBaum[segmentLesbar] = {}
+          } else if (segment.includes('.tex')) {
+            unterBaum[segmentLesbar] = aufgabe
+          }
+          if (!segment.includes('.tex')) {
+            unterBaum = unterBaum[segmentLesbar] as ExamensAufgabeBaum
+          }
+        }
+      }
+    }
+    return baum
+  }
+}
+
+interface ExamensBaum {
+  [referenz: string]: ExamensBaum | Examen
 }
 
 export class ExamenSammlung {
@@ -172,6 +273,39 @@ export class ExamenSammlung {
 
   gibDurchReferenz (referenz: string): Examen {
     return this.speicher[referenz]
+  }
+
+  /**
+   * @returns
+   *
+   * ```js
+   * {
+   *    '66116' : { '2021': { '03': Examen } }
+   * }
+   * ```
+   */
+  get examenBaum (): ExamensBaum {
+    const referenzen = Object.keys(this.speicher)
+    referenzen.sort()
+
+    const baum: ExamensBaum = {}
+    for (const referenz of referenzen) {
+      const examen = this.speicher[referenz]
+      const segmente = referenz.split(':')
+      let unterBaum: ExamensBaum = baum
+      for (const segment of segmente) {
+        if (unterBaum[segment] == null) {
+          unterBaum[segment] = {}
+        }
+
+        if (segment === '03' || segment === '09') {
+          unterBaum[segment] = examen
+        } else {
+          unterBaum = unterBaum[segment] as ExamensBaum
+        }
+      }
+    }
+    return baum
   }
 }
 

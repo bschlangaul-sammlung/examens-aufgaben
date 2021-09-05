@@ -9,6 +9,13 @@ const glob_1 = __importDefault(require("glob"));
 const helfer_1 = require("./helfer");
 class Examen {
     constructor(nummer, jahr, monat) {
+        /**
+         * ```js
+         * {
+         *    'Staatsexamen/66116/2021/03/Thema-2/Teilaufgabe-2/Aufgabe-5.tex': aufgabe
+         * }
+         * ```
+         */
         this.aufgaben = {};
         this.nummer = nummer;
         this.jahr = jahr;
@@ -27,9 +34,20 @@ class Examen {
      *
      * z. B. `...github/hbschlang/lehramt-informatik/Staatsexamen/66116/2020/09`
      */
-    get übergeordneterOrdner() {
+    get verzeichnis() {
         return path_1.default.dirname(this.pfad);
     }
+    /**
+     * Der übergeordnete Ordner, in dem das Staatsexamen liegt, als relativen Pfad.
+     *
+     * z. B. `Staatsexamen/66116/2020/09`
+     */
+    get verzeichnisRelativ() {
+        return helfer_1.macheRelativenPfad(this.verzeichnis);
+    }
+    /**
+     * `Frühjahr` oder `Herbst`
+     */
     get jahreszeit() {
         if (this.monat === 3) {
             return 'Frühjahr';
@@ -45,6 +63,9 @@ class Examen {
     get jahrJahreszeit() {
         return `${this.jahr} ${this.jahreszeit}`;
     }
+    /**
+     * z. B. `03`
+     */
     get monatMitNullen() {
         return this.monat.toString().padStart(2, '0');
     }
@@ -54,6 +75,9 @@ class Examen {
     get referenz() {
         return `${this.nummer}:${this.jahr}:${this.monatMitNullen}`;
     }
+    /**
+     * z. B. `Examen 66116 Frühjahr 2020`
+     */
     get titelKurz() {
         return `Examen ${this.nummer} ${this.jahreszeit} ${this.jahr}`;
     }
@@ -98,6 +122,66 @@ class Examen {
             monat: tmp[2]
         };
     }
+    /**
+     * ```js
+     * {
+     *   'Thema 1': {
+     *     'Teilaufgabe 1': {
+     *       'Aufgabe 3': aufgabe,
+     *       'Aufgabe 4': aufgabe
+     *     },
+     *     'Teilaufgabe 2': {
+     *       'Aufgabe 2': aufgabe,
+     *       'Aufgabe 4': aufgabe
+     *     }
+     *   },
+     *   'Thema 2': {
+     *     'Teilaufgabe 2': {
+     *       'Aufgabe 2': aufgabe,
+     *       'Aufgabe 5': aufgabe
+     *     }
+     *   }
+     * }
+     * ```
+     */
+    get aufgabenBaum() {
+        /**
+         * Thema-1: Thema 1
+         * Teilaufgabe-2: Teilaufgabe 2
+         * Aufgabe-3.tex: Aufgabe 3
+         */
+        function macheSegmenteLesbar(segment) {
+            return segment.replace('-', ' ').replace('.tex', '');
+        }
+        const aufgabenPfade = Object.keys(this.aufgaben);
+        var collator = new Intl.Collator(undefined, {
+            numeric: true,
+            sensitivity: 'base'
+        });
+        aufgabenPfade.sort(collator.compare);
+        const baum = {};
+        for (const pfad of aufgabenPfade) {
+            const aufgabenPfad = pfad.replace(this.verzeichnisRelativ + path_1.default.sep, '');
+            if (aufgabenPfad.match(/(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/) != null) {
+                const aufgabe = this.aufgaben[pfad];
+                const segmente = aufgabenPfad.split(path_1.default.sep);
+                let unterBaum = baum;
+                for (const segment of segmente) {
+                    const segmentLesbar = macheSegmenteLesbar(segment);
+                    if (unterBaum[segmentLesbar] == null && !segment.includes('.tex')) {
+                        unterBaum[segmentLesbar] = {};
+                    }
+                    else if (segment.includes('.tex')) {
+                        unterBaum[segmentLesbar] = aufgabe;
+                    }
+                    if (!segment.includes('.tex')) {
+                        unterBaum = unterBaum[segmentLesbar];
+                    }
+                }
+            }
+        }
+        return baum;
+    }
 }
 exports.Examen = Examen;
 Examen.regExp = /^.*(?<nummer>\d{5})\/(?<jahr>\d{4})\/(?<monat>\d{2})\/.*$/;
@@ -118,6 +202,37 @@ class ExamenSammlung {
     }
     gibDurchReferenz(referenz) {
         return this.speicher[referenz];
+    }
+    /**
+     * @returns
+     *
+     * ```js
+     * {
+     *    '66116' : { '2021': { '03': Examen } }
+     * }
+     * ```
+     */
+    get examenBaum() {
+        const referenzen = Object.keys(this.speicher);
+        referenzen.sort();
+        const baum = {};
+        for (const referenz of referenzen) {
+            const examen = this.speicher[referenz];
+            const segmente = referenz.split(':');
+            let unterBaum = baum;
+            for (const segment of segmente) {
+                if (unterBaum[segment] == null) {
+                    unterBaum[segment] = {};
+                }
+                if (segment === '03' || segment === '09') {
+                    unterBaum[segment] = examen;
+                }
+                else {
+                    unterBaum = unterBaum[segment];
+                }
+            }
+        }
+        return baum;
     }
 }
 exports.ExamenSammlung = ExamenSammlung;

@@ -322,7 +322,7 @@ class ExamensAufgabe extends Aufgabe {
         }
         const pfad = ExamensAufgabe.erzeugePfad(arg1, gibNummer(arg2), gibNummer(arg3));
         const examen = examen_1.Examen.erzeugeExamenVonReferenz(referenz);
-        return new ExamensAufgabe(path_1.default.join(examen.übergeordneterOrdner, pfad), examen);
+        return new ExamensAufgabe(path_1.default.join(examen.verzeichnis, pfad), examen);
     }
     static istExamensAufgabe(pfad) {
         if (pfad.match(ExamensAufgabe.pfadRegExp) != null) {

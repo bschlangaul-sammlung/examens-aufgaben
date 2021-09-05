@@ -1,4 +1,7 @@
 "use strict";
+/**
+ * TeX-Datei
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sammleStichwörterEinerDatei = exports.sammleStichwörter = exports.gibInhaltEinesTexMakros = void 0;
 const helfer_1 = require("./helfer");

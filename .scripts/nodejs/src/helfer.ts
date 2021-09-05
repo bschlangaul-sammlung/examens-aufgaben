@@ -36,6 +36,13 @@ function leseKonfigurationsDatei (pfad: string): string {
 
 export const repositoryPfad = leseKonfigurationsDatei(konfigurationsDateiPfad)
 
+/**
+ * Erzeuge einen zum Git-Repository relativen Pfad.
+ *
+ * @param pfad Ein möglicherweise absoluter Pfad.
+ *
+ * @returns z. B. `Staatsexamen/66116.../`
+ */
 export function macheRelativenPfad (pfad: string): string {
   pfad = pfad.replace(repositoryPfad, '')
   return pfad.replace(/^\//, '')

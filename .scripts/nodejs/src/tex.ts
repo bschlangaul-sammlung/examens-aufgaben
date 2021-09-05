@@ -1,3 +1,7 @@
+/**
+ * TeX-Datei
+ */
+
 import { leseRepoDatei } from './helfer'
 
 function assembleMacroRegExp (macroName: string): RegExp {

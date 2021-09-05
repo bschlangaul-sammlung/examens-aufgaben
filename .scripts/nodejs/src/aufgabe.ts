@@ -478,7 +478,7 @@ export class ExamensAufgabe extends Aufgabe {
     )
     const examen = Examen.erzeugeExamenVonReferenz(referenz)
     return new ExamensAufgabe(
-      path.join(examen.übergeordneterOrdner, pfad),
+      path.join(examen.verzeichnis, pfad),
       examen
     )
   }
