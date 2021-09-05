@@ -1,0 +1,117 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+\begin{document}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 2},
+  Thematik = {Java-Klasse Stack},
+  RelativerPfad = Staatsexamen/46115/2021/03/Thema-2/Teilaufgabe-2/Aufgabe-2.tex,
+  ZitatSchluessel = examen:46115:2021:03,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {Stapel (Stack), Implementierung in Java},
+  ExamenNummer = 46115,
+  ExamenJahr = 2021,
+  ExamenMonat = 03,
+  ExamenThemaNr = 2,
+  ExamenTeilaufgabeNr = 2,
+  ExamenAufgabeNr = 2,
+}
+
+Gegeben sei die folgende Java-Implementierung eines Stacks.
+\index{Stapel (Stack)}
+\index{Implementierung in Java}
+\footcite{examen:46115:2021:03}
+
+\begin{minted}{java}
+class Stack {
+  private Item head;
+
+  public Stack() {
+    head = null;
+  }
+
+  public void push(int val) {
+    if (head == null) {
+      head = new Item(val, null);
+    } else {
+      head = new Item(val, head);
+    }
+  }
+
+  public int pop() {
+    // ...
+  }
+
+  public int size() {
+    // ...
+  }
+
+  public int min() {
+    // ...
+  }
+
+  class Item {
+    private int val;
+    private Item next;
+
+    public Item(int val, Item next) {
+      this.val = val;
+      this.next = next;
+    }
+  }
+}
+\end{minted}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Implementieren Sie die Methode pop in einer objektorientierten
+Programmiersprache Ihrer Wahl, die das erste Item des Stacks entfernt
+und seinen Wert zurückgibt. Ist kein Wert im Stack enthalten, so soll
+dies mit einer IndexOutOfBoundsException oder Ähnlichem gemeldet werden.
+
+Beschreiben Sie nun jeweils die notwendigen Änderungen an den bisherigen
+Implementierungen, die für die Realisierung der folgenden Methoden
+notwendig sind.
+
+\begin{liAntwort}
+\liJavaExamen[firstline=25,lastline=34]{46115}{2021}{03}{Stack}
+\end{liAntwort}
+
+%%
+% b)
+%%
+
+\item size gibt in Laufzeit O(1) die Anzahl der enthaltenen Items zurück.
+
+\begin{liAntwort}
+\liJavaExamen[firstline=13,lastline=38]{46115}{2021}{03}{Stack}
+\end{liAntwort}
+
+%%
+% c)
+%%
+
+\item min gibt (zu jedem Zeitpunkt) in Laufzeit O(1) den Wert des
+kleinsten Elements im Stack zurück.
+
+\begin{liAntwort}
+\liJavaExamen[firstline=13,lastline=23]{46115}{2021}{03}{Stack}
+\liJavaExamen[firstline=40,lastline=43]{46115}{2021}{03}{Stack}
+\end{liAntwort}
+
+Sie dürfen jeweils alle anderen angegebenen Methoden der Klasse
+verwenden, auch wenn Sie diese nicht implementiert haben. Sie können
+anstelle von objektorientiertem Quellcode auch eine informelle
+Beschreibung Ihrer Änderungen angeben.
+
+\end{enumerate}
+
+\begin{liAdditum}[Kompletter Java-Code]
+\liJavaExamen{46115}{2021}{03}{Stack}
+\liJavaTestDatei{examen/examen_46115/jahr_2021/fruehjahr/StackTest}
+\end{liAdditum}
+\end{document}

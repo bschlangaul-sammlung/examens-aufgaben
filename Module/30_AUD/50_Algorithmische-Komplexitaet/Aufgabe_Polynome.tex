@@ -1,0 +1,61 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{mathe}
+\begin{document}
+\liAufgabenMetadaten{
+  Titel = {Polynome},
+  Thematik = {Polynome f(n) in g(n)},
+  RelativerPfad = Module/30_AUD/50_Algorithmische-Komplexitaet/Aufgabe_Polynome.tex,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {Algorithmische Komplexität (O-Notation)},
+}
+
+Gegeben sind die zwei Funktionen. Gilt $f(n) \in \Theta(g(n))$?
+\index{Algorithmische Komplexität (O-Notation)}
+\liFussnoteUrl{https://www.informatik.hu-berlin.de/de/forschung/gebiete/wbi/teaching/archive/SS17/ue_algodat/schaefer01.pdf}
+
+\begin{align*}
+f(n) &= 3n^5 + 4n^3 + 15\\
+g(n) &= n^5\\
+\end{align*}
+\begin{liAntwort}
+\begin{enumerate}
+
+\item Zu zeigen: $f(n) \in \mathcal{O}(g(n)) \Leftrightarrow
+(
+  \exists c,n_0 > 0
+  \forall n_0 \geq n_0:
+  3n^5 + 4n^3 + 15 \leq c \cdot n^5
+)$
+
+Wähle \zB $c = 3 + 4 + 15 = 22$,
+
+dann gilt $\forall n \geq 1:
+3n^5 + 4n^3 + 15 \leq
+3n^5 + 4n^5 + 15n^5 =
+\leq 22n^5$
+
+$\Rightarrow f(n) \in \mathcal{O}(n^5)$
+
+\bigskip
+
+\item Zu zeigen: $f(n) \in \Omega(g(n)) \Leftrightarrow
+(
+  \exists c', n_0 > 0
+  \forall n_0 \geq n_0:
+  3n^5 + 4n^3 + 15 \leq c' \cdot n^5
+)$
+
+Wähle \zB $c' = 3$,
+
+dann gilt $\forall n \geq 1: 3n^5 = + 4n^3 + 15 \leq 3n^5$
+
+$\Rightarrow f(n) \in \Omega(n^5)$
+
+\end{enumerate}
+
+\bigskip
+
+$\Rightarrow f(n) \in \Theta(g(n))$
+\end{liAntwort}
+\end{document}

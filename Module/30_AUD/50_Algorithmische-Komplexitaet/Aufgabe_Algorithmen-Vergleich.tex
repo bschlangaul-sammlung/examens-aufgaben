@@ -1,18 +1,28 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{mathe}
 \begin{document}
-\liAufgabenTitel{Algorithmen-Vergleich}
-
-\section{Vergleich zweier Algorithmen
-\index{Algorithmische Komplexität (O-Notation)}
-\footcite[Seite 1, Aufgabe 1: Komplexität]{aud:ab:7}
+\liAufgabenMetadaten{
+  Titel = {Vergleich zweier Algorithmen},
+  Thematik = {Algorithmen-Vergleich},
+  RelativerPfad = Module/30_AUD/50_Algorithmische-Komplexitaet/Aufgabe_Algorithmen-Vergleich.tex,
+  ZitatSchluessel = aud:ab:7,
+  ZitatBeschreibung = {Seite 1, Aufgabe 1: Komplexität},
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {Algorithmische Komplexität (O-Notation)},
 }
 
 Seien \textbf{A} und \textbf{B} zwei Algorithmen, die dasselbe Problem
 lösen. Zur Lösung von Problemen der Eingabegröße $n$ benötigt
-Algorithmus \textbf{A} $500 \times n^2 - 16 \times n$ Elementoperationen
-und \textbf{B} $\frac{1}{2} \times n^3 + \frac{11}{2} \times  n + 7$
-Elementoperationen.
+Algorithmus \textbf{A} $500 \cdot n^2 - 16 \cdot n$ Elementoperationen
+und \textbf{B} $\frac{1}{2} \cdot n^3 + \frac{11}{2} \cdot n + 7$
+Elementoperationen.\index{Algorithmische Komplexität (O-Notation)}
+\footcite[Seite 1, Aufgabe 1: Komplexität]{aud:ab:7}
+
+\begin{align*}
+A(n) & = 500 \cdot n^2 - 16 \cdot n \\
+B(n) & = \frac{1}{2} \cdot n^3 + \frac{11}{2} \cdot n + 7\\
+\end{align*}
 
 \begin{enumerate}
 
@@ -20,16 +30,78 @@ Elementoperationen.
 % (a)
 %%
 
-\item Wenn Sie ein Problem für die Eingabegröße 256 lösen wollen,
+\item Wenn Sie ein Problem für die Eingabegröße $256$ lösen wollen,
 welchen Algorithmus würden Sie dann wählen?
+
+\begin{liAntwort}
+Wir können die Aufgabe durch Einsetzen lösen, \dh wir berechnen explizit
+die Anzahl benötigter Elementoperationen und vergleichen. Algorithmus
+$A$ benötigt $500 \cdot n 2 -16 \cdot n$ Operationen bei einer Eingabe
+der Größe $n$, also bei $n = 256$ genau
+
+\begin{align*}
+A(256)
+&= 500 \cdot 256^2 - 16 \cdot 256 \\
+&= 32763904
+\end{align*}
+
+In der gleichen Art können wir den Aufwand von Algorithmus B berechnen:
+
+\begin{align*}
+B(256)
+&= \frac{1}{2} \cdot 256^3 + \frac{11}{2} \cdot 256 + 7 \\
+&= 8390023
+\end{align*}
+In diesem Fall benötigt Algorithmus B also deutlich weniger Elementoperationen.
+\end{liAntwort}
 
 %%
 % (b)
 %%
 
 \item Wenn Sie ein Problem lösen wollen, deren Eingabegröße immer
-mindestens 1024 ist, welchen Algorithmus würden Sie wählen? Begründen
+mindestens $1024$ ist, welchen Algorithmus würden Sie wählen? Begründen
 Sie Ihre Antwort.
+
+\begin{liAntwort}
+Da in der Aufgabenstellung von Eingaben der Größe mindestens 1024 die
+Rede ist, stellen wir uns die Frage, für welche $n$ Algorithmus $A$
+schneller als $B$ ist, also für welche $n$
+
+\begin{displaymath}
+500 \cdot n^2 - 16 \cdot n < \frac{1}{2} \cdot n^3 + \frac{11}{2} \cdot n + 7
+\end{displaymath}
+
+gilt. Dies lässt sich äquivalent umformen zu
+
+\begin{displaymath}
+\frac{1}{2} \cdot n^3 - 500 \cdot n^2 + \frac{43}{2} \cdot n + 7 > 0
+\end{displaymath}
+
+Diese Ungleichung ist erfüllt, wenn allein $\frac{1}{2} \cdot n^3 - 500
+\cdot n^2 > 0$ gilt, denn es gilt $\frac{43}{2} \cdot n + 7 > 0$. Das
+Problem reduziert sich also zu
+
+\begin{displaymath}
+\frac{1}{2} \cdot n^3 - 500 \cdot n^2 > 0 \Leftrightarrow n > 1000
+\end{displaymath}
+
+Auf jeden Fall ist A schneller als B für $n > 1000$ (man erinnere sich,
+dass das bei n = 256 noch andersherum war). Wie ist dieses Verhalten zu
+erklären?
+
+Obwohl der Aufwand von $A$ im O-Kalkül $\mathcal{O}(n^2)$ und der von
+$B$ $\mathcal{O}(n^3)$ ist, man also geneigt sein könnte zu sagen, $A$
+ist immer schneller als $B$, stimmt das nicht immer. Im Einzelfall
+können es durchaus große Konstanten (wie in diesem Fall die 500) sein,
+die dafür sorgen, dass $n$ erst einmal sehr groß werden muss, damit sich
+die Laufzeiten tatsächlich so verhalten, wie erwartet. Wenn nur kleine
+Eingaben verarbeitet werden sollen, kann es manchmal also durchaus
+lohnenswert sein, einen $\mathcal{O}(n^3)$-Algorithmus anstatt eines
+$\mathcal{O}(n^3)$-Algorithmus zu verwenden, wenn die im O-Kalkül
+unterschlagenen Konstanten zuungunsten des eigentlich langsameren
+Algorithmus sprechen.
+\end{liAntwort}
 
 \end{enumerate}
 
