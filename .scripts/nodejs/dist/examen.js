@@ -241,32 +241,32 @@ class Examen {
             }
             throw new Error('Konte keine Zahl finden');
         }
-        const rufeBesucherFunktionAuf = (titel) => {
+        const rufeBesucherFunktionAuf = (titel, aufgabe) => {
             const nr = extrahiereNummer(titel);
             if (titel.indexOf('Thema ') === 0) {
                 if (besucher.thema != null) {
-                    ausgabe.sammle(besucher.thema(nr, this));
+                    ausgabe.sammle(besucher.thema(nr, this, aufgabe));
                 }
             }
             else if (titel.indexOf('Teilaufgabe ') === 0) {
                 if (besucher.teilaufgabe != null) {
-                    ausgabe.sammle(besucher.teilaufgabe(nr, this));
+                    ausgabe.sammle(besucher.teilaufgabe(nr, this, aufgabe));
                 }
             }
             else if (titel.indexOf('Aufgabe ') === 0) {
                 if (besucher.aufgabe != null) {
-                    ausgabe.sammle(besucher.aufgabe(nr, this));
+                    ausgabe.sammle(besucher.aufgabe(nr, this, aufgabe));
                 }
             }
         };
         for (const thema in baum) {
-            rufeBesucherFunktionAuf(thema);
+            rufeBesucherFunktionAuf(thema, baum[thema]);
             if (!(baum[thema] instanceof aufgabe_1.ExamensAufgabe)) {
                 for (const teilaufgabe in baum[thema]) {
-                    rufeBesucherFunktionAuf(teilaufgabe);
+                    rufeBesucherFunktionAuf(teilaufgabe, baum[thema][teilaufgabe]);
                     if (!(baum[thema][teilaufgabe] instanceof aufgabe_1.ExamensAufgabe)) {
                         for (const aufgabe in baum[thema][teilaufgabe]) {
-                            rufeBesucherFunktionAuf(aufgabe);
+                            rufeBesucherFunktionAuf(aufgabe, baum[thema][teilaufgabe][aufgabe]);
                         }
                     }
                 }

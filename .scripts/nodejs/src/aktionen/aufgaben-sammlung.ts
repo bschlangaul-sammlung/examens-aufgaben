@@ -3,89 +3,17 @@
  */
 
 import path from 'path'
+import { ExamensAufgabe } from '../aufgabe'
 
 import { gibExamenSammlung, Examen } from '../examen'
-import { ExamensAufgabe, gibAufgabenSammlung } from '../aufgabe'
-import { repositoryPfad, macheRelativenPfad, macheRepoPfad, löscheDatei } from '../helfer'
+import {
+  repositoryPfad,
+  macheRelativenPfad,
+  macheRepoPfad,
+  löscheDatei,
+  AusgabeSammler
+} from '../helfer'
 import { schreibeTexDatei } from '../tex'
-
-import glob from 'glob'
-
-interface ExamensAufgabeBaum {
-  [aufgabe: string]: ExamensAufgabeBaum | string
-}
-
-/**
- * ```js
- * [
- *   'Thema-1/Teilaufgabe-1/Aufgabe-3.tex',
- *   'Thema-1/Teilaufgabe-1/Aufgabe-4.tex',
- *   'Thema-1/Teilaufgabe-2/Aufgabe-2.tex',
- *   'Thema-1/Teilaufgabe-2/Aufgabe-4.tex',
- *   'Thema-2/Teilaufgabe-2/Aufgabe-2.tex',
- *   'Thema-2/Teilaufgabe-2/Aufgabe-5.tex'
- * ]
- * ```
- *
- * ```js
- * {
- *   'Thema 1': {
- *     'Teilaufgabe 1': {
- *       'Aufgabe 3': 'Thema-1/Teilaufgabe-1/Aufgabe-3.tex',
- *       'Aufgabe 4': 'Thema-1/Teilaufgabe-1/Aufgabe-4.tex'
- *     },
- *     'Teilaufgabe 2': {
- *       'Aufgabe 2': 'Thema-1/Teilaufgabe-2/Aufgabe-2.tex',
- *       'Aufgabe 4': 'Thema-1/Teilaufgabe-2/Aufgabe-4.tex'
- *     }
- *   },
- *   'Thema 2': {
- *     'Teilaufgabe 2': {
- *       'Aufgabe 2': 'Thema-2/Teilaufgabe-2/Aufgabe-2.tex',
- *       'Aufgabe 5': 'Thema-2/Teilaufgabe-2/Aufgabe-5.tex'
- *     }
- *   }
- * }
- * ```
- */
-function leseAufgaben (relativerPfad: string): ExamensAufgabeBaum {
-  /**
-   * Thema-1: Thema 1
-   * Teilaufgabe-2: Teilaufgabe 2
-   * Aufgabe-3.tex: Aufgabe 3
-   */
-  function macheSegmenteLesbar (segment: string): string {
-    return segment.replace('-', ' ').replace('.tex', '')
-  }
-  const dateien = glob.sync('**/*.tex', { cwd: relativerPfad })
-  const baum: ExamensAufgabeBaum = {}
-  for (const pfad of dateien) {
-    if (
-      pfad.match(
-        /(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/
-      ) != null
-    ) {
-      const segmente = pfad.split(path.sep)
-      let unterBaum: ExamensAufgabeBaum = baum
-      for (const segment of segmente) {
-        const segmentLesbar = macheSegmenteLesbar(segment)
-        if (unterBaum[segmentLesbar] == null && !segment.includes('.tex')) {
-          unterBaum[segmentLesbar] = {}
-        } else if (segment.includes('.tex')) {
-          unterBaum[segmentLesbar] = pfad
-        }
-        if (!segment.includes('.tex')) {
-          unterBaum = unterBaum[segmentLesbar] as ExamensAufgabeBaum
-        }
-      }
-    }
-  }
-  return baum
-}
-
-function erzeugeEinrückung (ebene: number): string {
-  return '\n' + ' '.repeat(4 * ebene) + '- '
-}
 
 /**
  * ```md
@@ -98,55 +26,42 @@ function erzeugeEinrückung (ebene: number): string {
  *             - [Aufgabe 3](…46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
  *```
  */
-function generiereAufgabenRekursiv (
-  aufgabenBaum: ExamensAufgabeBaum,
-  pfad: string,
-  ebene: number = 1
-): string {
-  const ausgabe = []
-  // title: Thema 1, Teilaufgabe 2, Aufgabe 3
-  for (const titel in aufgabenBaum) {
-    if (typeof aufgabenBaum[titel] === 'string') {
-      const aufgabenPfad = path.join(pfad, aufgabenBaum[titel] as string)
-      const aufgabe = gibAufgabenSammlung().gib(aufgabenPfad) as ExamensAufgabe
-      ausgabe.push(erzeugeEinrückung(ebene) + aufgabe.gibTitelNurAufgabe(true))
-    } else {
-      ausgabe.push(
-        `${erzeugeEinrückung(ebene)}${titel} ${generiereAufgabenRekursiv(
-          aufgabenBaum[titel] as ExamensAufgabeBaum,
-          pfad,
-          ebene + 1
-        )}`
-      )
+function erzeugeAufgabenBaumMarkdown (examen: Examen): string {
+  function rückeEin (): string {
+    return ' '.repeat(4 * ebene) + '- '
+  }
+
+  let ebene = 1
+  const ausgabe = examen.besucheAufgabenBaum({
+    thema (nummer: number): string {
+      ebene = 1
+      const ausgabe = rückeEin() + `Thema ${nummer}`
+      ebene++
+      return ausgabe
+    },
+    teilaufgabe (nummer: number): string {
+      ebene = 2
+      const ausgabe = rückeEin() + `Teilaufgabe ${nummer}`
+      ebene++
+      return ausgabe
+    },
+    aufgabe (
+      nummer: number,
+      examen?: Examen,
+      aufgabe?: ExamensAufgabe
+    ): string {
+      let titel: string
+      if (aufgabe != null) {
+        titel = aufgabe.gibTitelNurAufgabe(true)
+      } else {
+        titel = `Aufgabe ${nummer}`
+      }
+      return rückeEin() + titel
     }
-  }
-  return ausgabe.join(' ')
-}
+  })
 
-function generiereAufgabenBaum (pfad: string): string {
-  return generiereAufgabenRekursiv(leseAufgaben(pfad), pfad)
-}
-
-class AusgabeSammler {
-  speicher: string[]
-  redselig: boolean
-  constructor (redselig = false) {
-    this.speicher = []
-    this.redselig = redselig
-  }
-
-  sammle (ausgabe: string | undefined): void {
-    if (this.redselig) {
-      console.log(ausgabe)
-    }
-    if (ausgabe != null) {
-      this.speicher.push(ausgabe)
-    }
-  }
-
-  gibText (): string {
-    return this.speicher.join('\n')
-  }
+  if (ausgabe == null) return ''
+  return '\n' + ausgabe
 }
 
 function erzeugeDateiLink (examen: Examen, dateiName: string): string {
@@ -170,9 +85,7 @@ export function generiereExamensÜbersicht (): string {
         ausgabe.sammle(
           `- ${
             examen.jahrJahreszeit
-          }: ${scanLink} ${ocrLink} ${generiereAufgabenBaum(
-            examen.verzeichnis
-          )}`
+          }: ${scanLink} ${ocrLink} ${erzeugeAufgabenBaumMarkdown(examen)}`
         )
       }
     }

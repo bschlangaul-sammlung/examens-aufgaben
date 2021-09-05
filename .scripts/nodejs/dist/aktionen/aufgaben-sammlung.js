@@ -9,77 +9,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.erzeugeExamensLösungen = exports.erzeugeExamenScansSammlung = exports.generiereExamensÜbersicht = void 0;
 const path_1 = __importDefault(require("path"));
 const examen_1 = require("../examen");
-const aufgabe_1 = require("../aufgabe");
 const helfer_1 = require("../helfer");
 const tex_1 = require("../tex");
-const glob_1 = __importDefault(require("glob"));
-/**
- * ```js
- * [
- *   'Thema-1/Teilaufgabe-1/Aufgabe-3.tex',
- *   'Thema-1/Teilaufgabe-1/Aufgabe-4.tex',
- *   'Thema-1/Teilaufgabe-2/Aufgabe-2.tex',
- *   'Thema-1/Teilaufgabe-2/Aufgabe-4.tex',
- *   'Thema-2/Teilaufgabe-2/Aufgabe-2.tex',
- *   'Thema-2/Teilaufgabe-2/Aufgabe-5.tex'
- * ]
- * ```
- *
- * ```js
- * {
- *   'Thema 1': {
- *     'Teilaufgabe 1': {
- *       'Aufgabe 3': 'Thema-1/Teilaufgabe-1/Aufgabe-3.tex',
- *       'Aufgabe 4': 'Thema-1/Teilaufgabe-1/Aufgabe-4.tex'
- *     },
- *     'Teilaufgabe 2': {
- *       'Aufgabe 2': 'Thema-1/Teilaufgabe-2/Aufgabe-2.tex',
- *       'Aufgabe 4': 'Thema-1/Teilaufgabe-2/Aufgabe-4.tex'
- *     }
- *   },
- *   'Thema 2': {
- *     'Teilaufgabe 2': {
- *       'Aufgabe 2': 'Thema-2/Teilaufgabe-2/Aufgabe-2.tex',
- *       'Aufgabe 5': 'Thema-2/Teilaufgabe-2/Aufgabe-5.tex'
- *     }
- *   }
- * }
- * ```
- */
-function leseAufgaben(relativerPfad) {
-    /**
-     * Thema-1: Thema 1
-     * Teilaufgabe-2: Teilaufgabe 2
-     * Aufgabe-3.tex: Aufgabe 3
-     */
-    function macheSegmenteLesbar(segment) {
-        return segment.replace('-', ' ').replace('.tex', '');
-    }
-    const dateien = glob_1.default.sync('**/*.tex', { cwd: relativerPfad });
-    const baum = {};
-    for (const pfad of dateien) {
-        if (pfad.match(/(Thema-(?<thema>\d)\/)?(Teilaufgabe-(?<teilaufgabe>\d)\/)?Aufgabe-(?<aufgabe>\d+)\.tex$/) != null) {
-            const segmente = pfad.split(path_1.default.sep);
-            let unterBaum = baum;
-            for (const segment of segmente) {
-                const segmentLesbar = macheSegmenteLesbar(segment);
-                if (unterBaum[segmentLesbar] == null && !segment.includes('.tex')) {
-                    unterBaum[segmentLesbar] = {};
-                }
-                else if (segment.includes('.tex')) {
-                    unterBaum[segmentLesbar] = pfad;
-                }
-                if (!segment.includes('.tex')) {
-                    unterBaum = unterBaum[segmentLesbar];
-                }
-            }
-        }
-    }
-    return baum;
-}
-function erzeugeEinrückung(ebene) {
-    return '\n' + ' '.repeat(4 * ebene) + '- ';
-}
 /**
  * ```md
  * - 2015 Frühjahr: [Scan.pdf](...46116/2015/03/Scan.pdf) [OCR.txt](…46116/2015/03/OCR.txt)
@@ -91,40 +22,38 @@ function erzeugeEinrückung(ebene) {
  *             - [Aufgabe 3](…46116/2015/03/Thema-1/Teilaufgabe-2/Aufgabe-3.pdf)
  *```
  */
-function generiereAufgabenRekursiv(aufgabenBaum, pfad, ebene = 1) {
-    const ausgabe = [];
-    // title: Thema 1, Teilaufgabe 2, Aufgabe 3
-    for (const titel in aufgabenBaum) {
-        if (typeof aufgabenBaum[titel] === 'string') {
-            const aufgabenPfad = path_1.default.join(pfad, aufgabenBaum[titel]);
-            const aufgabe = aufgabe_1.gibAufgabenSammlung().gib(aufgabenPfad);
-            ausgabe.push(erzeugeEinrückung(ebene) + aufgabe.gibTitelNurAufgabe(true));
-        }
-        else {
-            ausgabe.push(`${erzeugeEinrückung(ebene)}${titel} ${generiereAufgabenRekursiv(aufgabenBaum[titel], pfad, ebene + 1)}`);
-        }
+function erzeugeAufgabenBaumMarkdown(examen) {
+    function rückeEin() {
+        return ' '.repeat(4 * ebene) + '- ';
     }
-    return ausgabe.join(' ');
-}
-function generiereAufgabenBaum(pfad) {
-    return generiereAufgabenRekursiv(leseAufgaben(pfad), pfad);
-}
-class AusgabeSammler {
-    constructor(redselig = false) {
-        this.speicher = [];
-        this.redselig = redselig;
-    }
-    sammle(ausgabe) {
-        if (this.redselig) {
-            console.log(ausgabe);
+    let ebene = 1;
+    const ausgabe = examen.besucheAufgabenBaum({
+        thema(nummer) {
+            ebene = 1;
+            const ausgabe = rückeEin() + `Thema ${nummer}`;
+            ebene++;
+            return ausgabe;
+        },
+        teilaufgabe(nummer) {
+            ebene = 2;
+            const ausgabe = rückeEin() + `Teilaufgabe ${nummer}`;
+            ebene++;
+            return ausgabe;
+        },
+        aufgabe(nummer, examen, aufgabe) {
+            let titel;
+            if (aufgabe != null) {
+                titel = aufgabe.gibTitelNurAufgabe(true);
+            }
+            else {
+                titel = `Aufgabe ${nummer}`;
+            }
+            return rückeEin() + titel;
         }
-        if (ausgabe != null) {
-            this.speicher.push(ausgabe);
-        }
-    }
-    gibText() {
-        return this.speicher.join('\n');
-    }
+    });
+    if (ausgabe == null)
+        return '';
+    return '\n' + ausgabe;
 }
 function erzeugeDateiLink(examen, dateiName) {
     return examen.macheMarkdownLink(dateiName, dateiName);
@@ -135,7 +64,7 @@ function erzeugeDateiLink(examen, dateiName) {
 function generiereExamensÜbersicht() {
     const examenSammlung = examen_1.gibExamenSammlung();
     const examenBaum = examenSammlung.examenBaum;
-    const ausgabe = new AusgabeSammler();
+    const ausgabe = new helfer_1.AusgabeSammler();
     for (const nummer in examenBaum) {
         ausgabe.sammle(`\n### ${nummer}: ${examen_1.Examen.fachDurchNummer(nummer)}\n`);
         for (const jahr in examenBaum[nummer]) {
@@ -143,7 +72,7 @@ function generiereExamensÜbersicht() {
                 const examen = examenBaum[nummer][jahr][monat];
                 const scanLink = erzeugeDateiLink(examen, 'Scan.pdf');
                 const ocrLink = erzeugeDateiLink(examen, 'OCR.txt');
-                ausgabe.sammle(`- ${examen.jahrJahreszeit}: ${scanLink} ${ocrLink} ${generiereAufgabenBaum(examen.verzeichnis)}`);
+                ausgabe.sammle(`- ${examen.jahrJahreszeit}: ${scanLink} ${ocrLink} ${erzeugeAufgabenBaumMarkdown(examen)}`);
             }
         }
     }
@@ -158,7 +87,7 @@ function erzeugeExamenScansSammlung() {
     const examenSammlung = examen_1.gibExamenSammlung();
     const examenBaum = examenSammlung.examenBaum;
     for (const nummer in examenBaum) {
-        const ausgabe = new AusgabeSammler();
+        const ausgabe = new helfer_1.AusgabeSammler();
         const nummernPfad = path_1.default.join(helfer_1.repositoryPfad, 'Staatsexamen', nummer);
         for (const jahr in examenBaum[nummer]) {
             const jahrPfad = path_1.default.join(nummernPfad, jahr);
