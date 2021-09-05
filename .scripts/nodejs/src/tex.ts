@@ -2,7 +2,7 @@
  * TeX-Datei
  */
 
-import { leseRepoDatei } from './helfer'
+import { leseRepoDatei, schreibeDatei } from './helfer'
 
 function assembleMacroRegExp (macroName: string): RegExp {
   return new RegExp('\\' + macroName + '{([^}]*)}', 'g')
@@ -46,4 +46,23 @@ export function sammleStichwörter (inhalt: string): string[] {
  */
 export function sammleStichwörterEinerDatei (pfad: string): string[] {
   return sammleStichwörter(leseRepoDatei(pfad))
+}
+
+/**
+ * @param dateiPfad - Ein Dateipfad.
+ * @param klassenName - Ein Klassenname (ohne Präfix `lehramt-informatik-`)
+ * @param kopf - Das TeX-Markup, das vor `\begin{document}` erscheint.
+ * @param textKörper - Der Text der innerhalb der document-Umgebung erscheint.
+ */
+export function schreibeTexDatei (
+  dateiPfad: string,
+  klassenName: string,
+  kopf: string,
+  textKörper: string
+): void {
+  schreibeDatei(
+    dateiPfad,
+    `\\documentclass{lehramt-informatik-${klassenName}}\n${kopf}\n` +
+      `\\begin{document}\n${textKörper}\n\\end{document}\n`
+  )
 }

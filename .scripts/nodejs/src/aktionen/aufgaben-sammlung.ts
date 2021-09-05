@@ -1,18 +1,16 @@
-import path from 'path'
-import fs from 'fs'
+/**
+ * Aktionen, die über eine Sammlung an Aufgaben eine Ausgabe erzeugen.
+ */
 
-import { examensTitel, gibExamenSammlung, Examen } from '../examen'
+import path from 'path'
+
+import { gibExamenSammlung, Examen } from '../examen'
 import { ExamensAufgabe, gibAufgabenSammlung } from '../aufgabe'
-import {
-  repositoryPfad,
-  generiereLink,
-  LinkEinstellung,
-  macheRelativenPfad,
-  macheRepoPfad,
-  schreibeDatei
-} from '../helfer'
+import { repositoryPfad, macheRelativenPfad, macheRepoPfad, löscheDatei } from '../helfer'
+import { schreibeTexDatei } from '../tex'
 
 import glob from 'glob'
+import { title } from 'process'
 
 interface ExamensAufgabeBaum {
   [aufgabe: string]: ExamensAufgabeBaum | string
@@ -138,9 +136,13 @@ class AusgabeSammler {
     this.redselig = redselig
   }
 
-  add (ausgabe: string): void {
-    if (this.redselig) console.log(ausgabe)
-    this.speicher.push(ausgabe)
+  sammle (ausgabe: string | undefined): void {
+    if (this.redselig) {
+      console.log(ausgabe)
+    }
+    if (ausgabe != null) {
+      this.speicher.push(ausgabe)
+    }
   }
 
   gibText (): string {
@@ -148,31 +150,30 @@ class AusgabeSammler {
   }
 }
 
-function erzeugeDateiLink (
-  pfad: string,
-  dateiName: string,
-  einstellungen?: LinkEinstellung
-): string {
-  return generiereLink(dateiName, path.join(pfad, dateiName), einstellungen)
+function erzeugeDateiLink (examen: Examen, dateiName: string): string {
+  return examen.macheMarkdownLink(dateiName, dateiName)
 }
 
+/**
+ * Erzeugen den Markdown-Code für die README-Datei.
+ */
 export function generiereExamensÜbersicht (): string {
   const examenSammlung = gibExamenSammlung()
   const examenBaum = examenSammlung.examenBaum as any
   const ausgabe = new AusgabeSammler()
   for (const nummer in examenBaum) {
-    ausgabe.add(`\n### ${nummer}: ${Examen.fachDurchNummer(nummer)}\n`)
+    ausgabe.sammle(`\n### ${nummer}: ${Examen.fachDurchNummer(nummer)}\n`)
     for (const jahr in examenBaum[nummer]) {
       for (const monat in examenBaum[nummer][jahr]) {
         const examen = examenBaum[nummer][jahr][monat] as Examen
-        const scanLink = erzeugeDateiLink(examen.verzeichnis, 'Scan.pdf')
-        const ocrLink = erzeugeDateiLink(examen.verzeichnis, 'OCR.txt', {
-          linkePdf: false
-        })
-        ausgabe.add(
-            `- ${
-              examen.jahrJahreszeit
-            }: ${scanLink} ${ocrLink} ${generiereAufgabenBaum(examen.verzeichnis)}`
+        const scanLink = erzeugeDateiLink(examen, 'Scan.pdf')
+        const ocrLink = erzeugeDateiLink(examen, 'OCR.txt')
+        ausgabe.sammle(
+          `- ${
+            examen.jahrJahreszeit
+          }: ${scanLink} ${ocrLink} ${generiereAufgabenBaum(
+            examen.verzeichnis
+          )}`
         )
       }
     }
@@ -180,41 +181,157 @@ export function generiereExamensÜbersicht (): string {
   return ausgabe.gibText()
 }
 
+/**
+ * Erzeugt eine TeX-Datei, die alle Examens-Scanns eines bestimmten Fachs (z. B.
+ * 65116) als eine PDF-Datei zusammenfasst.
+ */
 export function erzeugeExamenScansSammlung (): void {
-  for (const nummer in examensTitel) {
+  const examenSammlung = gibExamenSammlung()
+  const examenBaum = examenSammlung.examenBaum as any
+  for (const nummer in examenBaum) {
     const ausgabe = new AusgabeSammler()
     const nummernPfad = path.join(repositoryPfad, 'Staatsexamen', nummer)
-    const jahrVerzeichnisse = fs.readdirSync(nummernPfad)
-    for (const jahr of jahrVerzeichnisse) {
+    for (const jahr in examenBaum[nummer]) {
       const jahrPfad = path.join(nummernPfad, jahr)
-      if (fs.statSync(jahrPfad).isDirectory()) {
-        const monatsVerzeichnisse = fs.readdirSync(jahrPfad)
-        for (const monat of monatsVerzeichnisse) {
-          const examen = gibExamenSammlung().gib(nummer, jahr, monat)
-          ausgabe.add(`\n\\liTrennSeite{${examen.jahreszeit} ${examen.jahr}}`)
+      for (const monat in examenBaum[nummer][jahr]) {
+        const examen = gibExamenSammlung().gib(nummer, jahr, monat)
+        ausgabe.sammle(`\n\\liTrennSeite{${examen.jahreszeit} ${examen.jahr}}`)
+        const scanPfad = macheRelativenPfad(
+          path.join(jahrPfad, monat, 'Scan.pdf')
+        )
+        const includePdf = `\\liBindePdfEin{${scanPfad}}`
+        ausgabe.sammle(includePdf)
+      }
+    }
+    const textKörper = ausgabe.gibText()
+    const kopf =
+      `\\liPruefungsNummer{${nummer}}\n` +
+      `\\liPruefungsTitel{${Examen.fachDurchNummer(nummer)}}\n`
 
-          const scanPfad = macheRelativenPfad(
-            path.join(jahrPfad, monat, 'Scan.pdf')
-          )
-          // scanPfad = scanPfad.replace(`Staatsexamen/${nummer}/`, '')
+    schreibeTexDatei(
+      macheRepoPfad('Staatsexamen', nummer, 'Examensammlung.tex'),
+      'examen-scans',
+      kopf,
+      textKörper
+    )
+  }
+}
 
-          const includePdf = `\\liBindePdfEin{${scanPfad}}`
-          ausgabe.add(includePdf)
+type BesucherFunktion = (nummer: number, examen?: Examen) => string | undefined
+
+interface BesucherFunktionsSammlung {
+  thema?: BesucherFunktion
+  teilaufgabe?: BesucherFunktion
+  aufgabe?: BesucherFunktion
+}
+
+function besucheAufgabenBaum (
+  examen: Examen,
+  besucher: BesucherFunktionsSammlung
+): string | undefined {
+  const baum = examen.aufgabenBaum as any
+
+  if (baum == null) {
+    return
+  }
+
+  const ausgabe = new AusgabeSammler()
+
+  function extrahiereNummer (titel: string): number {
+    const match = titel.match(/\d+/)
+    if (match != null) {
+      return parseInt(match[0])
+    }
+    throw new Error('Konte keine Zahl finden')
+  }
+
+  function rufeBesucherFunktionAuf (titel: string): void {
+    const nr = extrahiereNummer(titel)
+    if (titel.indexOf('Thema ') === 0) {
+      if (besucher.thema != null) {
+        ausgabe.sammle(besucher.thema(nr, examen))
+      }
+    } else if (titel.indexOf('Teilaufgabe ') === 0) {
+      if (besucher.teilaufgabe != null) {
+        ausgabe.sammle(besucher.teilaufgabe(nr, examen))
+      }
+    } else if (titel.indexOf('Aufgabe ') === 0) {
+      if (besucher.aufgabe != null) {
+        ausgabe.sammle(besucher.aufgabe(nr, examen))
+      }
+    }
+  }
+
+  for (const thema in baum) {
+    rufeBesucherFunktionAuf(thema)
+
+    if (!(baum[thema] instanceof ExamensAufgabe)) {
+      for (const teilaufgabe in baum[thema]) {
+        rufeBesucherFunktionAuf(teilaufgabe)
+
+        if (!(baum[thema][teilaufgabe] instanceof ExamensAufgabe)) {
+          for (const aufgabe in baum[thema][teilaufgabe]) {
+            rufeBesucherFunktionAuf(aufgabe)
+          }
         }
       }
     }
-    const ergebnis = ausgabe.gibText()
+  }
+  return ausgabe.gibText()
+}
 
-    const texMarkup = `\\documentclass{lehramt-informatik-examen-scans}
-\\liPruefungsNummer{${nummer}}
-\\liPruefungsTitel{${examensTitel[nummer]}}
+/**
+ * Erzeugt pro Examen eine TeX-Datei, die alle zum diesem Examen gehörenden
+ * Aufgaben samt Lösungen einbindet.
+ *
+ * ```latex
+ * \liSetzeExamen{66116}{2021}{03}
+ *
+ * \liSetzeExamenThemaNr{1}
+ *
+ * \liSetzeExamenTeilaufgabeNr{1}
+ *
+ * \liBindeAufgabeEin{1}
+ * \liBindeAufgabeEin{2}
+ * \liBindeAufgabeEin{3}
+ * ```
+ */
+function erzeugeExamensLösung (examen: Examen): void {
+  const textKörper = besucheAufgabenBaum(examen, {
+    thema (nummer: number): string {
+      return `\n\n\\liSetzeExamenThemaNr{${nummer}}`
+    },
+    teilaufgabe (nummer: number): string {
+      return `\n\\liSetzeExamenTeilaufgabeNr{${nummer}}`
+    },
+    aufgabe (nummer: number): string {
+      return `\\liBindeAufgabeEin{${nummer}}`
+    }
+  })
 
-\\begin{document}
-${ergebnis}
-\\end{document}`
-    schreibeDatei(
-      macheRepoPfad('Staatsexamen', nummer, 'Examensammlung.tex'),
-      texMarkup
-    )
+  const kopf = `\\liSetzeExamen{${examen.nummer}}{${examen.jahr}}{${examen.monatMitNullen}}`
+
+  const pfad = examen.machePfad('Examen.tex')
+  if (textKörper != null) {
+    schreibeTexDatei(pfad, 'examen', kopf, textKörper)
+  } else {
+    löscheDatei(pfad)
+  }
+}
+
+/**
+ * Erzeugt pro Examen eine TeX-Datei, die alle zum diesem Examen gehörenden
+ * Aufgaben samt Lösungen einbindet.
+ */
+export function erzeugeExamensLösungen (): void {
+  const examenSammlung = gibExamenSammlung()
+  const examenBaum = examenSammlung.examenBaum as any
+  for (const nummer in examenBaum) {
+    for (const jahr in examenBaum[nummer]) {
+      for (const monat in examenBaum[nummer][jahr]) {
+        const examen = examenBaum[nummer][jahr][monat] as Examen
+        erzeugeExamensLösung(examen)
+      }
+    }
   }
 }

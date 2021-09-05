@@ -16,6 +16,13 @@ export function leseDatei (pfad: string): string {
   return fs.readFileSync(pfad, { encoding: 'utf-8' })
 }
 
+export function löscheDatei (pfad: string): void {
+  if (!fs.existsSync(pfad)) {
+    return
+  }
+  fs.unlinkSync(pfad)
+}
+
 export function schreibeDatei (pfad: string, inhalt: string): void {
   fs.writeFileSync(pfad, inhalt, { encoding: 'utf-8' })
 }
@@ -77,14 +84,10 @@ export interface LinkEinstellung {
 }
 
 /**
- * Generiere eine Markdown- oder HTML-Link.
+ * Generiere einen Markdown- oder HTML-Link.
  *
  * @param text Der Text, der als Link gesetzt werden soll.
  * @param pfad Der Datei-Pfad, zu dem gelinkt werden soll.
- * @param downloadDateiName Der Dateiname, den die Datei haben soll, wenn sie
- * heruntergeladen wird. Dieser Parameter wird nur berücksichtig, wenn die Link
- * als HTML ausgegeben wird.
- * @param einstellung
  *
  * @returns Ein Link zu einer Datei auf Github, entweder im Markdown- oder im
  * HTML-Format.

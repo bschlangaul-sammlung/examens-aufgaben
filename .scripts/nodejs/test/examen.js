@@ -50,7 +50,27 @@ describe('examen.js', function () {
 
     it('Getter Methode „fach“', function () {
       const examen = sammlung.gibDurchReferenz('66116:2021:03')
-      assert.strictEqual(examen.fach, 'Datenbanksysteme / Softwaretechnologie (vertieft)')
+      assert.strictEqual(
+        examen.fach,
+        'Datenbanksysteme / Softwaretechnologie (vertieft)'
+      )
+    })
+
+    it('Methode „gibDurchReferenz()“', function () {
+      const examen = sammlung.gibDurchReferenz('66116:2021:03')
+      assert.ok(
+        examen
+          .machePfad('test1', 'test2', 'test.tex')
+          .includes('66116/2021/03/test1/test2/test.tex')
+      )
+    })
+
+    it('Getter Methode „macheMarkdownLink()“', function () {
+      const examen = sammlung.gibDurchReferenz('66116:2021:03')
+      assert.strictEqual(
+        examen.macheMarkdownLink('text', 'Thema-1', 'Aufgabe-2.tex'),
+        '[text](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66116/2021/03/Thema-1/Aufgabe-2.pdf)'
+      )
     })
   })
 })

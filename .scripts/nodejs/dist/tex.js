@@ -3,7 +3,7 @@
  * TeX-Datei
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sammleStichwörterEinerDatei = exports.sammleStichwörter = exports.gibInhaltEinesTexMakros = void 0;
+exports.schreibeTexDatei = exports.sammleStichwörterEinerDatei = exports.sammleStichwörter = exports.gibInhaltEinesTexMakros = void 0;
 const helfer_1 = require("./helfer");
 function assembleMacroRegExp(macroName) {
     return new RegExp('\\' + macroName + '{([^}]*)}', 'g');
@@ -45,3 +45,14 @@ function sammleStichwörterEinerDatei(pfad) {
     return sammleStichwörter(helfer_1.leseRepoDatei(pfad));
 }
 exports.sammleStichwörterEinerDatei = sammleStichwörterEinerDatei;
+/**
+ * @param dateiPfad - Ein Dateipfad.
+ * @param klassenName - Ein Klassenname (ohne Präfix `lehramt-informatik-`)
+ * @param kopf - Das TeX-Markup, das vor `\begin{document}` erscheint.
+ * @param textKörper - Der Text der innerhalb der document-Umgebung erscheint.
+ */
+function schreibeTexDatei(dateiPfad, klassenName, kopf, textKörper) {
+    helfer_1.schreibeDatei(dateiPfad, `\\documentclass{lehramt-informatik-${klassenName}}\n${kopf}\n` +
+        `\\begin{document}\n${textKörper}\n\\end{document}\n`);
+}
+exports.schreibeTexDatei = schreibeTexDatei;

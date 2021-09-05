@@ -7,7 +7,15 @@ exports.gibExamenSammlung = exports.examensTitel = exports.ExamenSammlung = expo
 const path_1 = __importDefault(require("path"));
 const glob_1 = __importDefault(require("glob"));
 const helfer_1 = require("./helfer");
+/**
+ * Die Klasse Examen repräsentiert eine Staatsexamensprüfung.
+ */
 class Examen {
+    /**
+     * @param nummer Die Examens-Nummer, z. B. 65116
+     * @param jahr Das Jahr in dem das Staatsexamen statt fand, z. b. 2021
+     * @param monat Das Monat, in dem das Staatsexamen statt fand. Mögliche Werte 3 für Frühjahr und 9 für Herbst.
+     */
     constructor(nummer, jahr, monat) {
         /**
          * ```js
@@ -44,6 +52,20 @@ class Examen {
      */
     get verzeichnisRelativ() {
         return helfer_1.macheRelativenPfad(this.verzeichnis);
+    }
+    /**
+     * Generiere eine absoluten Dateipfad, der im Verzeichnis des Examens liegt.
+     *
+     * @param pfadSegmente - z. B. `'Thema-1', 'Teilaufgabe-1', 'Aufgabe-1.tex'`
+     */
+    machePfad(...pfadSegmente) {
+        return path_1.default.join(this.verzeichnis, ...pfadSegmente);
+    }
+    /**
+     * @param pfadSegmente - z. B. `'Thema-1', 'Teilaufgabe-1', 'Aufgabe-1.tex'`
+     */
+    macheMarkdownLink(text, ...pfadSegmente) {
+        return helfer_1.generiereLink(text, this.machePfad(...pfadSegmente));
     }
     /**
      * @returns `Frühjahr` oder `Herbst`
@@ -165,6 +187,10 @@ class Examen {
      * ```
      */
     get aufgabenBaum() {
+        const aufgabenPfade = Object.keys(this.aufgaben);
+        if (aufgabenPfade.length === 0) {
+            return;
+        }
         /**
          * Thema-1: Thema 1
          * Teilaufgabe-2: Teilaufgabe 2
@@ -173,7 +199,6 @@ class Examen {
         function macheSegmenteLesbar(segment) {
             return segment.replace('-', ' ').replace('.tex', '');
         }
-        const aufgabenPfade = Object.keys(this.aufgaben);
         var collator = new Intl.Collator(undefined, {
             numeric: true,
             sensitivity: 'base'

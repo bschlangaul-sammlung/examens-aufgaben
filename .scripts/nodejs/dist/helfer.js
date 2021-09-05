@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.öffneVSCode = exports.öffneProgramm = exports.führeAus = exports.generiereLink = exports.macheRepoPfad = exports.leseRepoDatei = exports.macheRelativenPfad = exports.repositoryPfad = exports.zeigeFehler = exports.schreibeDatei = exports.leseDatei = void 0;
+exports.öffneVSCode = exports.öffneProgramm = exports.führeAus = exports.generiereLink = exports.macheRepoPfad = exports.leseRepoDatei = exports.macheRelativenPfad = exports.repositoryPfad = exports.zeigeFehler = exports.schreibeDatei = exports.löscheDatei = exports.leseDatei = void 0;
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const child_process_1 = __importDefault(require("child_process"));
@@ -14,6 +14,13 @@ function leseDatei(pfad) {
     return fs_1.default.readFileSync(pfad, { encoding: 'utf-8' });
 }
 exports.leseDatei = leseDatei;
+function löscheDatei(pfad) {
+    if (!fs_1.default.existsSync(pfad)) {
+        return;
+    }
+    fs_1.default.unlinkSync(pfad);
+}
+exports.löscheDatei = löscheDatei;
 function schreibeDatei(pfad, inhalt) {
     fs_1.default.writeFileSync(pfad, inhalt, { encoding: 'utf-8' });
 }
@@ -66,14 +73,10 @@ function macheRepoPfad(...args) {
 }
 exports.macheRepoPfad = macheRepoPfad;
 /**
- * Generiere eine Markdown- oder HTML-Link.
+ * Generiere einen Markdown- oder HTML-Link.
  *
  * @param text Der Text, der als Link gesetzt werden soll.
  * @param pfad Der Datei-Pfad, zu dem gelinkt werden soll.
- * @param downloadDateiName Der Dateiname, den die Datei haben soll, wenn sie
- * heruntergeladen wird. Dieser Parameter wird nur berücksichtig, wenn die Link
- * als HTML ausgegeben wird.
- * @param einstellung
  *
  * @returns Ein Link zu einer Datei auf Github, entweder im Markdown- oder im
  * HTML-Format.

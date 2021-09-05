@@ -1,7 +1,12 @@
 import path from 'path'
 import glob from 'glob'
 
-import { repositoryPfad, zeigeFehler, macheRelativenPfad } from './helfer'
+import {
+  repositoryPfad,
+  zeigeFehler,
+  macheRelativenPfad,
+  generiereLink
+} from './helfer'
 import { Aufgabe } from './aufgabe'
 
 export interface ExamenReferenz {
@@ -14,6 +19,9 @@ interface ExamensAufgabeBaum {
   [aufgabe: string]: ExamensAufgabeBaum | Aufgabe
 }
 
+/**
+ * Die Klasse Examen repräsentiert eine Staatsexamensprüfung.
+ */
 export class Examen {
   public nummer: number
   public jahr: number
@@ -30,6 +38,11 @@ export class Examen {
 
   static regExp: RegExp = /^.*(?<nummer>\d{5})\/(?<jahr>\d{4})\/(?<monat>\d{2})\/.*$/
 
+  /**
+   * @param nummer Die Examens-Nummer, z. B. 65116
+   * @param jahr Das Jahr in dem das Staatsexamen statt fand, z. b. 2021
+   * @param monat Das Monat, in dem das Staatsexamen statt fand. Mögliche Werte 3 für Frühjahr und 9 für Herbst.
+   */
   constructor (nummer: number, jahr: number, monat: number) {
     this.nummer = nummer
     this.jahr = jahr
@@ -65,6 +78,22 @@ export class Examen {
    */
   get verzeichnisRelativ (): string {
     return macheRelativenPfad(this.verzeichnis)
+  }
+
+  /**
+   * Generiere eine absoluten Dateipfad, der im Verzeichnis des Examens liegt.
+   *
+   * @param pfadSegmente - z. B. `'Thema-1', 'Teilaufgabe-1', 'Aufgabe-1.tex'`
+   */
+  public machePfad (...pfadSegmente: string[]): string {
+    return path.join(this.verzeichnis, ...pfadSegmente)
+  }
+
+  /**
+   * @param pfadSegmente - z. B. `'Thema-1', 'Teilaufgabe-1', 'Aufgabe-1.tex'`
+   */
+  public macheMarkdownLink (text: string, ...pfadSegmente: string[]): string {
+    return generiereLink(text, this.machePfad(...pfadSegmente))
   }
 
   /**
@@ -221,7 +250,13 @@ export class Examen {
    * }
    * ```
    */
-  get aufgabenBaum (): ExamensAufgabeBaum {
+  get aufgabenBaum (): ExamensAufgabeBaum | undefined {
+    const aufgabenPfade = Object.keys(this.aufgaben)
+
+    if (aufgabenPfade.length === 0) {
+      return
+    }
+
     /**
      * Thema-1: Thema 1
      * Teilaufgabe-2: Teilaufgabe 2
@@ -230,8 +265,6 @@ export class Examen {
     function macheSegmenteLesbar (segment: string): string {
       return segment.replace('-', ' ').replace('.tex', '')
     }
-
-    const aufgabenPfade = Object.keys(this.aufgaben)
 
     var collator = new Intl.Collator(undefined, {
       numeric: true,

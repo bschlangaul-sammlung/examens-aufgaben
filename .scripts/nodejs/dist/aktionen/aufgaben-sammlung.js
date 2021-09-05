@@ -1,14 +1,17 @@
 "use strict";
+/**
+ * Aktionen, die über eine Sammlung an Aufgaben eine Ausgabe erzeugen.
+ */
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.erzeugeExamenScansSammlung = exports.generiereExamensÜbersicht = void 0;
+exports.erzeugeExamensLösungen = exports.erzeugeExamenScansSammlung = exports.generiereExamensÜbersicht = void 0;
 const path_1 = __importDefault(require("path"));
-const fs_1 = __importDefault(require("fs"));
 const examen_1 = require("../examen");
 const aufgabe_1 = require("../aufgabe");
 const helfer_1 = require("../helfer");
+const tex_1 = require("../tex");
 const glob_1 = __importDefault(require("glob"));
 /**
  * ```js
@@ -111,66 +114,166 @@ class AusgabeSammler {
         this.speicher = [];
         this.redselig = redselig;
     }
-    add(ausgabe) {
-        if (this.redselig)
+    sammle(ausgabe) {
+        if (this.redselig) {
             console.log(ausgabe);
-        this.speicher.push(ausgabe);
+        }
+        if (ausgabe != null) {
+            this.speicher.push(ausgabe);
+        }
     }
     gibText() {
         return this.speicher.join('\n');
     }
 }
-function erzeugeDateiLink(pfad, dateiName, einstellungen) {
-    return helfer_1.generiereLink(dateiName, path_1.default.join(pfad, dateiName), einstellungen);
+function erzeugeDateiLink(examen, dateiName) {
+    return examen.macheMarkdownLink(dateiName, dateiName);
 }
+/**
+ * Erzeugen den Markdown-Code für die README-Datei.
+ */
 function generiereExamensÜbersicht() {
     const examenSammlung = examen_1.gibExamenSammlung();
     const examenBaum = examenSammlung.examenBaum;
     const ausgabe = new AusgabeSammler();
     for (const nummer in examenBaum) {
-        ausgabe.add(`\n### ${nummer}: ${examen_1.Examen.fachDurchNummer(nummer)}\n`);
+        ausgabe.sammle(`\n### ${nummer}: ${examen_1.Examen.fachDurchNummer(nummer)}\n`);
         for (const jahr in examenBaum[nummer]) {
             for (const monat in examenBaum[nummer][jahr]) {
                 const examen = examenBaum[nummer][jahr][monat];
-                const scanLink = erzeugeDateiLink(examen.verzeichnis, 'Scan.pdf');
-                const ocrLink = erzeugeDateiLink(examen.verzeichnis, 'OCR.txt', {
-                    linkePdf: false
-                });
-                ausgabe.add(`- ${examen.jahrJahreszeit}: ${scanLink} ${ocrLink} ${generiereAufgabenBaum(examen.verzeichnis)}`);
+                const scanLink = erzeugeDateiLink(examen, 'Scan.pdf');
+                const ocrLink = erzeugeDateiLink(examen, 'OCR.txt');
+                ausgabe.sammle(`- ${examen.jahrJahreszeit}: ${scanLink} ${ocrLink} ${generiereAufgabenBaum(examen.verzeichnis)}`);
             }
         }
     }
     return ausgabe.gibText();
 }
 exports.generiereExamensÜbersicht = generiereExamensÜbersicht;
+/**
+ * Erzeugt eine TeX-Datei, die alle Examens-Scanns eines bestimmten Fachs (z. B.
+ * 65116) als eine PDF-Datei zusammenfasst.
+ */
 function erzeugeExamenScansSammlung() {
-    for (const nummer in examen_1.examensTitel) {
+    const examenSammlung = examen_1.gibExamenSammlung();
+    const examenBaum = examenSammlung.examenBaum;
+    for (const nummer in examenBaum) {
         const ausgabe = new AusgabeSammler();
         const nummernPfad = path_1.default.join(helfer_1.repositoryPfad, 'Staatsexamen', nummer);
-        const jahrVerzeichnisse = fs_1.default.readdirSync(nummernPfad);
-        for (const jahr of jahrVerzeichnisse) {
+        for (const jahr in examenBaum[nummer]) {
             const jahrPfad = path_1.default.join(nummernPfad, jahr);
-            if (fs_1.default.statSync(jahrPfad).isDirectory()) {
-                const monatsVerzeichnisse = fs_1.default.readdirSync(jahrPfad);
-                for (const monat of monatsVerzeichnisse) {
-                    const examen = examen_1.gibExamenSammlung().gib(nummer, jahr, monat);
-                    ausgabe.add(`\n\\liTrennSeite{${examen.jahreszeit} ${examen.jahr}}`);
-                    const scanPfad = helfer_1.macheRelativenPfad(path_1.default.join(jahrPfad, monat, 'Scan.pdf'));
-                    // scanPfad = scanPfad.replace(`Staatsexamen/${nummer}/`, '')
-                    const includePdf = `\\liBindePdfEin{${scanPfad}}`;
-                    ausgabe.add(includePdf);
-                }
+            for (const monat in examenBaum[nummer][jahr]) {
+                const examen = examen_1.gibExamenSammlung().gib(nummer, jahr, monat);
+                ausgabe.sammle(`\n\\liTrennSeite{${examen.jahreszeit} ${examen.jahr}}`);
+                const scanPfad = helfer_1.macheRelativenPfad(path_1.default.join(jahrPfad, monat, 'Scan.pdf'));
+                const includePdf = `\\liBindePdfEin{${scanPfad}}`;
+                ausgabe.sammle(includePdf);
             }
         }
-        const ergebnis = ausgabe.gibText();
-        const texMarkup = `\\documentclass{lehramt-informatik-examen-scans}
-\\liPruefungsNummer{${nummer}}
-\\liPruefungsTitel{${examen_1.examensTitel[nummer]}}
-
-\\begin{document}
-${ergebnis}
-\\end{document}`;
-        helfer_1.schreibeDatei(helfer_1.macheRepoPfad('Staatsexamen', nummer, 'Examensammlung.tex'), texMarkup);
+        const textKörper = ausgabe.gibText();
+        const kopf = `\\liPruefungsNummer{${nummer}}\n` +
+            `\\liPruefungsTitel{${examen_1.Examen.fachDurchNummer(nummer)}}\n`;
+        tex_1.schreibeTexDatei(helfer_1.macheRepoPfad('Staatsexamen', nummer, 'Examensammlung.tex'), 'examen-scans', kopf, textKörper);
     }
 }
 exports.erzeugeExamenScansSammlung = erzeugeExamenScansSammlung;
+function besucheAufgabenBaum(examen, besucher) {
+    const baum = examen.aufgabenBaum;
+    if (baum == null) {
+        return;
+    }
+    const ausgabe = new AusgabeSammler();
+    function extrahiereNummer(titel) {
+        const match = titel.match(/\d+/);
+        if (match != null) {
+            return parseInt(match[0]);
+        }
+        throw new Error('Konte keine Zahl finden');
+    }
+    function rufeBesucherFunktionAuf(titel) {
+        const nr = extrahiereNummer(titel);
+        if (titel.indexOf('Thema ') === 0) {
+            if (besucher.thema != null) {
+                ausgabe.sammle(besucher.thema(nr, examen));
+            }
+        }
+        else if (titel.indexOf('Teilaufgabe ') === 0) {
+            if (besucher.teilaufgabe != null) {
+                ausgabe.sammle(besucher.teilaufgabe(nr, examen));
+            }
+        }
+        else if (titel.indexOf('Aufgabe ') === 0) {
+            if (besucher.aufgabe != null) {
+                ausgabe.sammle(besucher.aufgabe(nr, examen));
+            }
+        }
+    }
+    for (const thema in baum) {
+        rufeBesucherFunktionAuf(thema);
+        if (!(baum[thema] instanceof aufgabe_1.ExamensAufgabe)) {
+            for (const teilaufgabe in baum[thema]) {
+                rufeBesucherFunktionAuf(teilaufgabe);
+                if (!(baum[thema][teilaufgabe] instanceof aufgabe_1.ExamensAufgabe)) {
+                    for (const aufgabe in baum[thema][teilaufgabe]) {
+                        rufeBesucherFunktionAuf(aufgabe);
+                    }
+                }
+            }
+        }
+    }
+    return ausgabe.gibText();
+}
+/**
+ * Erzeugt pro Examen eine TeX-Datei, die alle zum diesem Examen gehörenden
+ * Aufgaben samt Lösungen einbindet.
+ *
+ * ```latex
+ * \liSetzeExamen{66116}{2021}{03}
+ *
+ * \liSetzeExamenThemaNr{1}
+ *
+ * \liSetzeExamenTeilaufgabeNr{1}
+ *
+ * \liBindeAufgabeEin{1}
+ * \liBindeAufgabeEin{2}
+ * \liBindeAufgabeEin{3}
+ * ```
+ */
+function erzeugeExamensLösung(examen) {
+    const textKörper = besucheAufgabenBaum(examen, {
+        thema(nummer) {
+            return `\n\n\\liSetzeExamenThemaNr{${nummer}}`;
+        },
+        teilaufgabe(nummer) {
+            return `\n\\liSetzeExamenTeilaufgabeNr{${nummer}}`;
+        },
+        aufgabe(nummer) {
+            return `\\liBindeAufgabeEin{${nummer}}`;
+        }
+    });
+    const kopf = `\\liSetzeExamen{${examen.nummer}}{${examen.jahr}}{${examen.monatMitNullen}}`;
+    const pfad = examen.machePfad('Examen.tex');
+    if (textKörper != null) {
+        tex_1.schreibeTexDatei(pfad, 'examen', kopf, textKörper);
+    }
+    else {
+        helfer_1.löscheDatei(pfad);
+    }
+}
+/**
+ * Erzeugt pro Examen eine TeX-Datei, die alle zum diesem Examen gehörenden
+ * Aufgaben samt Lösungen einbindet.
+ */
+function erzeugeExamensLösungen() {
+    const examenSammlung = examen_1.gibExamenSammlung();
+    const examenBaum = examenSammlung.examenBaum;
+    for (const nummer in examenBaum) {
+        for (const jahr in examenBaum[nummer]) {
+            for (const monat in examenBaum[nummer][jahr]) {
+                const examen = examenBaum[nummer][jahr][monat];
+                erzeugeExamensLösung(examen);
+            }
+        }
+    }
+}
+exports.erzeugeExamensLösungen = erzeugeExamensLösungen;
