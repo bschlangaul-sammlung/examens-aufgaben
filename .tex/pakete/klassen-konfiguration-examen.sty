@@ -10,8 +10,17 @@ Klasse liSetzeExamen konfigurieren, d. h. Laden von einigen Paketen, Registierun
   literatur-dummy,
   makros,
   aufgaben-metadaten,
-  abmessung
+  abmessung,
+  typographie
 }
+%    \end{macrocode}
+
+% Formatierung für die Überschriften setzen.
+%    \begin{macrocode}
+\RequirePackage{titlesec}
+\titleformat{\section}{\sffamily\huge\filcenter\bfseries}{\thesection}{1em}{}
+\newcommand{\sectionbreak}{\clearpage}
+\setcounter{secnumdepth}{0}
 %    \end{macrocode}
 
 %    \begin{macrocode}
@@ -80,6 +89,43 @@ Klasse liSetzeExamen konfigurieren, d. h. Laden von einigen Paketen, Registierun
 }
 %    \end{macrocode}
 % \end{macro}
+
+% \begin{macro}{\liAufgabenMetadaten}
+% Das Metadaten-Makro überschreiben
+%    \begin{macrocode}
+\def\liAufgabenMetadaten#1{
+  \liMetaSetze{#1}
+  \subsubsection{\_gib_aufgaben_titel:}
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\setcounter{tocdepth}{4}
+\AddToHook{begindocument}{
+  \begin{center}
+  \liTypoUeberGross{Erste~Staatsprüfung~für~ein~Lehramt~an~öffentlichen~Schulen}
+  \end{center}
+
+  \vfill
+
+  \begin{center}
+  \liTypoUeberGROSS{\g_auf_examen_nummer_tl}
+  \end{center}
+
+  \begin{center}
+  \liTypoUeberGROSS{\g_auf_examen_jahr_tl}
+  \end{center}
+
+  \begin{center}
+  \liTypoUeberGROSS{\g_auf_examen_monat_tl}
+  \end{center}
+
+    \vfill
+  \tableofcontents
+  \clearpage
+}
+%    \end{macrocode}
 
 %    \begin{macrocode}
 \ExplSyntaxOff

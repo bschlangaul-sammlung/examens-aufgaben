@@ -292,6 +292,27 @@ Setzen der Aufgaben-Metadaten.]
 \ExplSyntaxOn
 %    \end{macrocode}
 
+% \begin{macro}{\liMetaSetze}
+% Setze die Metadaten einer Aufgabe.
+%    \begin{macrocode}
+\def\liMetaSetze#1{
+  \_setze_variablen_zurueck:
+
+  \tl_clear:N \g_auf_examen_teilaufgabe_nr_tl
+
+  \keys_set:nn { aufgabenmetadaten } {
+    #1
+  }
+
+  \_setze_relativen_pfad:
+
+  \tl_if_empty:NTF \g_auf_titel_tl {
+    \msg_fatal:nn { aufgabenmetadaten } { kein-titel }
+  } { }
+}
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\liAufgabenMetadaten}
 % Setzen der Aufgaben-Metadaten über eine plist bzw. über key-values.
 %
@@ -319,29 +340,11 @@ Setzen der Aufgaben-Metadaten.]
 % \end{verbatim}
 %    \begin{macrocode}
 \def\liAufgabenMetadaten#1{
-
-  \_setze_variablen_zurueck:
-
-  \tl_clear:N \g_auf_examen_teilaufgabe_nr_tl
-
-  \keys_set:nn { aufgabenmetadaten } {
-    #1
-  }
-
-  \_setze_relativen_pfad:
-
-  \tl_if_empty:NTF \g_auf_titel_tl
-  {
-    \msg_fatal:nn { aufgabenmetadaten } { kein-titel }
-  }
-  {
-  }
+  \liMetaSetze{#1}
 
   \_gib_examen_titel: {}
 
   \section{\_gib_aufgaben_titel:}
-
-  \bigskip
 }
 %    \end{macrocode}
 % \end{macro}
@@ -3263,6 +3266,16 @@ Klasse liSetzeExamen konfigurieren, d. h. Laden von einigen Paketen, Registierun
 }
 %    \end{macrocode}
 
+% Formatierung für die Überschriften setzen.
+%    \begin{macrocode}
+\RequirePackage{titlesec}
+%\titleformat*{\section}{center}
+\titleformat{\section}
+{\normalfont\Large\filcenter\bfseries}{\thesection}{1em}{}
+\newcommand{\sectionbreak}{\clearpage}
+\setcounter{secnumdepth}{0}
+%    \end{macrocode}
+
 %    \begin{macrocode}
 \liLadeAllePakete
 %    \end{macrocode}
@@ -3330,6 +3343,15 @@ Klasse liSetzeExamen konfigurieren, d. h. Laden von einigen Paketen, Registierun
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\liAufgabenMetadaten}
+% Das Metadaten-Makro überschreiben
+%    \begin{macrocode}
+\def\liAufgabenMetadaten#1{
+  \liMetaSetze{#1}
+  \subsubsection{\_gib_aufgaben_titel:}
+}
+%    \end{macrocode}
+% \end{macro}
 %    \begin{macrocode}
 \ExplSyntaxOff
 %    \end{macrocode}
