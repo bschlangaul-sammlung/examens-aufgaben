@@ -216,69 +216,6 @@ export function erzeugeExamenScansSammlung (): void {
   }
 }
 
-type BesucherFunktion = (nummer: number, examen?: Examen) => string | undefined
-
-interface BesucherFunktionsSammlung {
-  thema?: BesucherFunktion
-  teilaufgabe?: BesucherFunktion
-  aufgabe?: BesucherFunktion
-}
-
-function besucheAufgabenBaum (
-  examen: Examen,
-  besucher: BesucherFunktionsSammlung
-): string | undefined {
-  const baum = examen.aufgabenBaum as any
-
-  if (baum == null) {
-    return
-  }
-
-  const ausgabe = new AusgabeSammler()
-
-  function extrahiereNummer (titel: string): number {
-    const match = titel.match(/\d+/)
-    if (match != null) {
-      return parseInt(match[0])
-    }
-    throw new Error('Konte keine Zahl finden')
-  }
-
-  function rufeBesucherFunktionAuf (titel: string): void {
-    const nr = extrahiereNummer(titel)
-    if (titel.indexOf('Thema ') === 0) {
-      if (besucher.thema != null) {
-        ausgabe.sammle(besucher.thema(nr, examen))
-      }
-    } else if (titel.indexOf('Teilaufgabe ') === 0) {
-      if (besucher.teilaufgabe != null) {
-        ausgabe.sammle(besucher.teilaufgabe(nr, examen))
-      }
-    } else if (titel.indexOf('Aufgabe ') === 0) {
-      if (besucher.aufgabe != null) {
-        ausgabe.sammle(besucher.aufgabe(nr, examen))
-      }
-    }
-  }
-
-  for (const thema in baum) {
-    rufeBesucherFunktionAuf(thema)
-
-    if (!(baum[thema] instanceof ExamensAufgabe)) {
-      for (const teilaufgabe in baum[thema]) {
-        rufeBesucherFunktionAuf(teilaufgabe)
-
-        if (!(baum[thema][teilaufgabe] instanceof ExamensAufgabe)) {
-          for (const aufgabe in baum[thema][teilaufgabe]) {
-            rufeBesucherFunktionAuf(aufgabe)
-          }
-        }
-      }
-    }
-  }
-  return ausgabe.gibText()
-}
-
 /**
  * Erzeugt pro Examen eine TeX-Datei, die alle zum diesem Examen gehörenden
  * Aufgaben samt Lösungen einbindet.
@@ -296,12 +233,12 @@ function besucheAufgabenBaum (
  * ```
  */
 function erzeugeExamensLösung (examen: Examen): void {
-  const textKörper = besucheAufgabenBaum(examen, {
+  const textKörper = examen.besucheAufgabenBaum({
     thema (nummer: number): string {
       return `\n\n\\liSetzeExamenThemaNr{${nummer}}`
     },
     teilaufgabe (nummer: number): string {
-      return `\n\\liSetzeExamenTeilaufgabeNr{${nummer}}`
+      return `\n\\liSetzeExamenTeilaufgabeNr{${nummer}}\n`
     },
     aufgabe (nummer: number): string {
       return `\\liBindeAufgabeEin{${nummer}}`

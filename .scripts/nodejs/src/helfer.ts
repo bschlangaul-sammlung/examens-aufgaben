@@ -133,3 +133,29 @@ export function öffneProgramm (programm: string, pfad: string): void {
 export function öffneVSCode (pfad: string): void {
   öffneProgramm('/usr/bin/code', macheRepoPfad(pfad))
 }
+
+/**
+ * Kleine Helfer-Klasse um Strings zu sammeln in einem Array zu speichern
+ * und dann per Join über Zeileumbrüche zusammenzufügen.
+ */
+export class AusgabeSammler {
+  speicher: string[]
+  redselig: boolean
+  constructor (redselig = false) {
+    this.speicher = []
+    this.redselig = redselig
+  }
+
+  sammle (ausgabe: string | undefined): void {
+    if (this.redselig) {
+      console.log(ausgabe)
+    }
+    if (ausgabe != null) {
+      this.speicher.push(ausgabe)
+    }
+  }
+
+  gibText (): string {
+    return this.speicher.join('\n')
+  }
+}

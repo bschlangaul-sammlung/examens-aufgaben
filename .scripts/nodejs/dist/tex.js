@@ -49,10 +49,11 @@ exports.sammleStichwörterEinerDatei = sammleStichwörterEinerDatei;
  * @param dateiPfad - Ein Dateipfad.
  * @param klassenName - Ein Klassenname (ohne Präfix `lehramt-informatik-`)
  * @param kopf - Das TeX-Markup, das vor `\begin{document}` erscheint.
- * @param textKörper - Der Text der innerhalb der document-Umgebung erscheint.
+ * @param textkörper - Der Text der innerhalb der document-Umgebung erscheint.
  */
-function schreibeTexDatei(dateiPfad, klassenName, kopf, textKörper) {
+function schreibeTexDatei(dateiPfad, klassenName, kopf, textkörper) {
+    textkörper = textkörper.trim();
     helfer_1.schreibeDatei(dateiPfad, `\\documentclass{lehramt-informatik-${klassenName}}\n${kopf}\n` +
-        `\\begin{document}\n${textKörper}\n\\end{document}\n`);
+        `\\begin{document}\n${textkörper}\n\\end{document}\n`);
 }
 exports.schreibeTexDatei = schreibeTexDatei;

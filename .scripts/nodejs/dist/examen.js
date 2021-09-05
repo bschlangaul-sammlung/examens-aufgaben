@@ -7,6 +7,7 @@ exports.gibExamenSammlung = exports.examensTitel = exports.ExamenSammlung = expo
 const path_1 = __importDefault(require("path"));
 const glob_1 = __importDefault(require("glob"));
 const helfer_1 = require("./helfer");
+const aufgabe_1 = require("./aufgabe");
 /**
  * Die Klasse Examen repräsentiert eine Staatsexamensprüfung.
  */
@@ -226,6 +227,52 @@ class Examen {
             }
         }
         return baum;
+    }
+    besucheAufgabenBaum(besucher) {
+        const baum = this.aufgabenBaum;
+        if (baum == null) {
+            return;
+        }
+        const ausgabe = new helfer_1.AusgabeSammler();
+        function extrahiereNummer(titel) {
+            const match = titel.match(/\d+/);
+            if (match != null) {
+                return parseInt(match[0]);
+            }
+            throw new Error('Konte keine Zahl finden');
+        }
+        const rufeBesucherFunktionAuf = (titel) => {
+            const nr = extrahiereNummer(titel);
+            if (titel.indexOf('Thema ') === 0) {
+                if (besucher.thema != null) {
+                    ausgabe.sammle(besucher.thema(nr, this));
+                }
+            }
+            else if (titel.indexOf('Teilaufgabe ') === 0) {
+                if (besucher.teilaufgabe != null) {
+                    ausgabe.sammle(besucher.teilaufgabe(nr, this));
+                }
+            }
+            else if (titel.indexOf('Aufgabe ') === 0) {
+                if (besucher.aufgabe != null) {
+                    ausgabe.sammle(besucher.aufgabe(nr, this));
+                }
+            }
+        };
+        for (const thema in baum) {
+            rufeBesucherFunktionAuf(thema);
+            if (!(baum[thema] instanceof aufgabe_1.ExamensAufgabe)) {
+                for (const teilaufgabe in baum[thema]) {
+                    rufeBesucherFunktionAuf(teilaufgabe);
+                    if (!(baum[thema][teilaufgabe] instanceof aufgabe_1.ExamensAufgabe)) {
+                        for (const aufgabe in baum[thema][teilaufgabe]) {
+                            rufeBesucherFunktionAuf(aufgabe);
+                        }
+                    }
+                }
+            }
+        }
+        return ausgabe.gibText();
     }
 }
 exports.Examen = Examen;

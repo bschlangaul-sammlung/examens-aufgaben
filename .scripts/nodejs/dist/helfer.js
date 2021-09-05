@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.öffneVSCode = exports.öffneProgramm = exports.führeAus = exports.generiereLink = exports.macheRepoPfad = exports.leseRepoDatei = exports.macheRelativenPfad = exports.repositoryPfad = exports.zeigeFehler = exports.schreibeDatei = exports.löscheDatei = exports.leseDatei = void 0;
+exports.AusgabeSammler = exports.öffneVSCode = exports.öffneProgramm = exports.führeAus = exports.generiereLink = exports.macheRepoPfad = exports.leseRepoDatei = exports.macheRelativenPfad = exports.repositoryPfad = exports.zeigeFehler = exports.schreibeDatei = exports.löscheDatei = exports.leseDatei = void 0;
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const child_process_1 = __importDefault(require("child_process"));
@@ -119,3 +119,25 @@ function öffneVSCode(pfad) {
     öffneProgramm('/usr/bin/code', macheRepoPfad(pfad));
 }
 exports.öffneVSCode = öffneVSCode;
+/**
+ * Kleine Helfer-Klasse um Strings zu sammeln in einem Array zu speichern
+ * und dann per Join über Zeileumbrüche zusammenzufügen.
+ */
+class AusgabeSammler {
+    constructor(redselig = false) {
+        this.speicher = [];
+        this.redselig = redselig;
+    }
+    sammle(ausgabe) {
+        if (this.redselig) {
+            console.log(ausgabe);
+        }
+        if (ausgabe != null) {
+            this.speicher.push(ausgabe);
+        }
+    }
+    gibText() {
+        return this.speicher.join('\n');
+    }
+}
+exports.AusgabeSammler = AusgabeSammler;
