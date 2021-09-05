@@ -1250,11 +1250,88 @@ Multiple-Choice-Fragen. Simulation von Kästchen zum ankreuzen]
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-chomsky-normalform}[2021/03/26
 Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \ExplSyntaxOn
+%    \end{macrocode}
 
+%    \begin{macrocode}
 \liLadePakete{typographie}
 %    \end{macrocode}
+
+% \liLets{
+%   erklaerung = liChomskyErklaerung,
+%   schritt = liChomskyUeberschrift,
+%   schrittE= liChomskyUeberErklaerung,
+% }
+
+% \subsubsection{TeX-Markup-Grundgerüst}
+
+% \begin{verbatim}
+% \let\schrittE=\liChomskyUeberErklaerung
+% \begin{enumerate}
+% \item \schrittE{1}
+% \item \schrittE{2}
+% \item \schrittE{3}
+% \item \schrittE{4}
+% \end{enumerate}
+% \end{verbatim}
+
+% \subsubsection{Konkretes TeX-Markup-Beispiel}
+
+% \begin{verbatim}
+% \begin{enumerate}
+% \item \schrittE{1}
+%
+% \liNichtsZuTun
+%
+% \item \schrittE{2}
+%
+% \begin{liProduktionsRegeln}
+% S -> d S e | a | U c T | S b U,
+% T -> d S e | a,
+% U -> d S e | a | U c T,
+% \end{liProduktionsRegeln}
+%
+% \item \schrittE{3}
+%
+% \begin{liProduktionsRegeln}
+% S -> D S E | a | U C T | S B U,
+% T -> D S E | a,
+% U -> D S E | a | U C T,
+% B -> b,
+% C -> c,
+% D -> d,
+% E -> e,
+% \end{liProduktionsRegeln}
+%
+% \item \schrittE{4}
+% % S   -> S S.1 | T2 S.2 | a | U S.3
+% % T   -> T2 S.2 | a
+% % U   -> T2 S.2 | a | U S.3
+% % T1  -> b
+% % T2  -> d
+% % T3  -> e
+% % T4  -> c
+% % S.1 -> T1 U
+% % S.2 -> S T3
+% % S.3 -> T4 T
+%
+% \begin{liProduktionsRegeln}
+% S -> D S_E | a | U C_T | S B_U, % S   -> S S.1 | T2 S.2 | a | U S.3
+% T -> D S_E | a, % T   -> T2 S.2 | a
+% U -> D S_E | a | U C_T, % U   -> T2 S.2 | a | U S.3
+% B -> b, % T1  -> b
+% C -> c, % T4  -> c
+% D -> d, % T2  -> d
+% E -> e, % T3  -> e
+% S_E -> S E, % S.2 -> S T3
+% C_T -> C T, % S.3 -> T4 T
+% B_U -> B U, % S.1 -> T1 U
+% \end{liProduktionsRegeln}
+% \end{enumerate}
+% \end{verbatim}
 
 % \begin{macro}{\liChomskyUeberschrift}
 % \liLet{schritt}{liChomskyUeberschrift}
@@ -4199,11 +4276,13 @@ anderen Paket passen]
 
   \begin{itemize}
   \item[$a =$]
-  Anzahl der Unterprobleme in der Rekursion $a \geq 1$
+  Anzahl der rekursiven Aufrufe, Anzahl der Unterprobleme in der
+  Rekursion
+  ($a \geq 1$).
 
   \item[$\textstyle{\frac{1}{b}} =$]
   Teil des Originalproblems, welches wiederum durch alle Unterprobleme
-  repräsentiert wird $b > 1$
+  repräsentiert wird, Anteil an der Verkleinerung des Problems ($b > 1$).
 
   \item[$f(n) =$]
   Kosten (Aufwand, Nebenkosten), die durch die Division des Problems und

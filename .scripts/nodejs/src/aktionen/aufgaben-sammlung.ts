@@ -10,7 +10,6 @@ import { repositoryPfad, macheRelativenPfad, macheRepoPfad, löscheDatei } from 
 import { schreibeTexDatei } from '../tex'
 
 import glob from 'glob'
-import { title } from 'process'
 
 interface ExamensAufgabeBaum {
   [aufgabe: string]: ExamensAufgabeBaum | string

@@ -1,0 +1,120 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{formale-sprachen,chomsky-normalform}
+\begin{document}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 2},
+  Thematik = {},
+  RelativerPfad = Staatsexamen/46115/2019/09/Thema-1/Aufgabe-2.tex,
+  ZitatSchluessel = examen:46115:2019:09,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {Kontextfreie Sprache},
+  ExamenNummer = 46115,
+  ExamenJahr = 2019,
+  ExamenMonat = 09,
+  ExamenThemaNr = 1,
+  ExamenAufgabeNr = 2,
+}
+
+\let\schrittE=\liChomskyUeberErklaerung
+
+\begin{enumerate}
+
+%%
+% (a)
+%%
+
+\item Betrachten Sie die folgenden Sprachen:
+\index{Kontextfreie Sprache}
+\footcite{examen:46115:2019:09}
+
+L, = {ar rer d” |n,meN}
+
+IL; = {art "d" |neN}
+Zeigen Sie für Zı und La, ob sie kontextfrei sind oder nicht. Für den Beweis von Kontext-
+Freiheit in dieser Frage reicht die Angabe eines Automaten oder einer Grammatik. (Beschrei-
+
+ben Sie dann die Konstruktionsidee des Automaten oder der Grammatik.) Für den Beweis
+von Nicht-Kontext-Freiheit verwenden Sie eine der üblichen Methoden.
+
+%%
+% (b)
+%%
+
+\item Eine kontextfreie Grammatik ist in Chomsky-Normalform, falls die folgenden
+Bedingungen erfüllt sind:
+
+\begin{itemize}
+\item alle Regeln sind von der Form X — YZ oder X — o mit
+Nichtterminalzeichen X,Y, Z und Terminalzeichen o,
+
+\item alle Nichtterminalzeichen sind erreichbar vom Startsymbol und
+
+\item alle Nichtterminalzeichen sind erzeugend, d. h. für jedes
+Nichtterminalzeichen X gibt es ein Wort w über dem Terminalalphabet, so
+dass X =>* w.
+\end{itemize}
+
+Bringen Sie die folgende Grammatik in Chomsky-Normalform.
+
+\begin{liProduktionsRegeln}
+S -> A A B | C D | a b c,
+A -> A A A A | a,
+B -> B B | S,
+C -> C C C | C C,
+D -> d,
+\end{liProduktionsRegeln}
+\liFlaci{Gf7f9tp7z}
+
+Das Startsymbol der Grammatik ist S, das Terminalalphabet ist {a,b,c,d} und die Menge
+der Nichtterminalzeichen ist {S,A,B,C,D}.
+
+\begin{liAntwort}
+
+\begin{enumerate}
+\item \schrittE{1}
+
+\liNichtsZuTun
+
+\item \schrittE{2}
+
+Eine rechte Seite in der C vorkommt, lässt sich wegen \liProduktionen{C
+-> C C C | C C} nicht ableiten, weil es zu einer Endlosschleife kommt.
+Wir entfernen die entsprechenden Regeln.
+
+\begin{liProduktionsRegeln}
+S -> A A B | a b c,
+A -> A A A A | a,
+B -> B B | A A B | a b c,
+\end{liProduktionsRegeln}
+
+\item \schrittE{3}
+
+\begin{liProduktionsRegeln}
+S -> A A B | T_a T_b T_c,
+A -> A A A A | a,
+B -> B B | A A B | T_a T_b T_c,
+T_a  -> a,
+T_b  -> b,
+T_c  -> c,
+\end{liProduktionsRegeln}
+
+\item \schrittE{4}
+\end{enumerate}
+
+\begin{liProduktionsRegeln}
+S   -> A S_1 | T_a S_2,
+A   -> A A_1 | a,
+B   -> B B | A S_1 | T_a S_2,
+T_a  -> a,
+T_b  -> b,
+T_c  -> c,
+S_1 -> A B,
+S_2 -> T_b T_c,
+A_1 -> A A_2,
+A_2 -> A A,
+\end{liProduktionsRegeln}
+\end{liAntwort}
+
+\end{enumerate}
+\end{document}
