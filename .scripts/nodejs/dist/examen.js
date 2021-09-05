@@ -32,7 +32,7 @@ class Examen {
     /**
      * Der übergeordnete Ordner, in dem das Staatsexamen liegt.
      *
-     * z. B. `...github/hbschlang/lehramt-informatik/Staatsexamen/66116/2020/09`
+     * @returns z. B. `...github/hbschlang/lehramt-informatik/Staatsexamen/66116/2020/09`
      */
     get verzeichnis() {
         return path_1.default.dirname(this.pfad);
@@ -40,13 +40,13 @@ class Examen {
     /**
      * Der übergeordnete Ordner, in dem das Staatsexamen liegt, als relativen Pfad.
      *
-     * z. B. `Staatsexamen/66116/2020/09`
+     * @returns z. B. `Staatsexamen/66116/2020/09`
      */
     get verzeichnisRelativ() {
         return helfer_1.macheRelativenPfad(this.verzeichnis);
     }
     /**
-     * `Frühjahr` oder `Herbst`
+     * @returns `Frühjahr` oder `Herbst`
      */
     get jahreszeit() {
         if (this.monat === 3) {
@@ -57,6 +57,9 @@ class Examen {
         }
         helfer_1.zeigeFehler('Die Monatsangabe in der Klasse Staatsexamen darf nur 3 oder 9 lauten.');
     }
+    /**
+     * @returns Ein lesbarer Dateiname, der das Examen identifiziert.
+     */
     get dateiName() {
         return `Staatsexamen-Informatik_${this.nummer}-${this.jahr}-${this.jahreszeit}`;
     }
@@ -64,22 +67,39 @@ class Examen {
         return `${this.jahr} ${this.jahreszeit}`;
     }
     /**
-     * z. B. `03`
+     * @returns z. B. `03`
      */
     get monatMitNullen() {
         return this.monat.toString().padStart(2, '0');
     }
     /**
-     * z. B. `66116:2020:03`
+     * @returns z. B. `66116:2020:03`
      */
     get referenz() {
         return `${this.nummer}:${this.jahr}:${this.monatMitNullen}`;
     }
     /**
-     * z. B. `Examen 66116 Frühjahr 2020`
+     * @returns z. B. `Examen 66116 Frühjahr 2020`
      */
     get titelKurz() {
         return `Examen ${this.nummer} ${this.jahreszeit} ${this.jahr}`;
+    }
+    /**
+     * @returns 'Datenbanksysteme / Softwaretechnologie (vertieft)'
+     */
+    get fach() {
+        return exports.examensTitel[this.nummer];
+    }
+    /**
+     * @param nummer z. B. `66116`
+     *
+     * @returns 'Datenbanksysteme / Softwaretechnologie (vertieft)'
+     */
+    static fachDurchNummer(nummer) {
+        if (typeof nummer === 'string') {
+            nummer = parseInt(nummer);
+        }
+        return exports.examensTitel[nummer];
     }
     static erzeugeExamenDurchTextArgumente(nummer, jahr, monat) {
         return new Examen(parseInt(nummer), parseInt(jahr), parseInt(monat));
@@ -214,7 +234,7 @@ class ExamenSammlung {
      */
     get examenBaum() {
         const referenzen = Object.keys(this.speicher);
-        referenzen.sort();
+        referenzen.sort(undefined);
         const baum = {};
         for (const referenz of referenzen) {
             const examen = this.speicher[referenz];

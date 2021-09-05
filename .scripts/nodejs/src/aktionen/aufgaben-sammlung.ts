@@ -1,7 +1,7 @@
 import path from 'path'
 import fs from 'fs'
 
-import { examensTitel, gibExamenSammlung } from '../examen'
+import { examensTitel, gibExamenSammlung, Examen } from '../examen'
 import { ExamensAufgabe, gibAufgabenSammlung } from '../aufgabe'
 import {
   repositoryPfad,
@@ -157,28 +157,23 @@ function erzeugeDateiLink (
 }
 
 export function generiereExamensÜbersicht (): string {
+  const examenSammlung = gibExamenSammlung()
+  const examenBaum = examenSammlung.examenBaum as any
   const ausgabe = new AusgabeSammler()
-  for (const nummer in examensTitel) {
-    ausgabe.add(`\n### ${nummer}: ${examensTitel[nummer]}\n`)
-    const nummernPfad = path.join(repositoryPfad, 'Staatsexamen', nummer)
-    const jahrVerzeichnisse = fs.readdirSync(nummernPfad)
-    for (const jahr of jahrVerzeichnisse) {
-      const jahrPfad = path.join(nummernPfad, jahr)
-      if (fs.statSync(jahrPfad).isDirectory()) {
-        const monatsVerzeichnisse = fs.readdirSync(jahrPfad)
-        for (const monat of monatsVerzeichnisse) {
-          const examen = gibExamenSammlung().gib(nummer, jahr, monat)
-          const monatsPfad = path.join(jahrPfad, monat)
-          const scanLink = erzeugeDateiLink(monatsPfad, 'Scan.pdf')
-          const ocrLink = erzeugeDateiLink(monatsPfad, 'OCR.txt', {
-            linkePdf: false
-          })
-          ausgabe.add(
+  for (const nummer in examenBaum) {
+    ausgabe.add(`\n### ${nummer}: ${Examen.fachDurchNummer(nummer)}\n`)
+    for (const jahr in examenBaum[nummer]) {
+      for (const monat in examenBaum[nummer][jahr]) {
+        const examen = examenBaum[nummer][jahr][monat] as Examen
+        const scanLink = erzeugeDateiLink(examen.verzeichnis, 'Scan.pdf')
+        const ocrLink = erzeugeDateiLink(examen.verzeichnis, 'OCR.txt', {
+          linkePdf: false
+        })
+        ausgabe.add(
             `- ${
               examen.jahrJahreszeit
-            }: ${scanLink} ${ocrLink} ${generiereAufgabenBaum(monatsPfad)}`
-          )
-        }
+            }: ${scanLink} ${ocrLink} ${generiereAufgabenBaum(examen.verzeichnis)}`
+        )
       }
     }
   }

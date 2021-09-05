@@ -52,7 +52,7 @@ export class Examen {
   /**
    * Der übergeordnete Ordner, in dem das Staatsexamen liegt.
    *
-   * z. B. `...github/hbschlang/lehramt-informatik/Staatsexamen/66116/2020/09`
+   * @returns z. B. `...github/hbschlang/lehramt-informatik/Staatsexamen/66116/2020/09`
    */
   get verzeichnis (): string {
     return path.dirname(this.pfad)
@@ -61,14 +61,14 @@ export class Examen {
   /**
    * Der übergeordnete Ordner, in dem das Staatsexamen liegt, als relativen Pfad.
    *
-   * z. B. `Staatsexamen/66116/2020/09`
+   * @returns z. B. `Staatsexamen/66116/2020/09`
    */
   get verzeichnisRelativ (): string {
     return macheRelativenPfad(this.verzeichnis)
   }
 
   /**
-   * `Frühjahr` oder `Herbst`
+   * @returns `Frühjahr` oder `Herbst`
    */
   get jahreszeit (): string {
     if (this.monat === 3) {
@@ -81,6 +81,9 @@ export class Examen {
     )
   }
 
+  /**
+   * @returns Ein lesbarer Dateiname, der das Examen identifiziert.
+   */
   get dateiName (): string {
     return `Staatsexamen-Informatik_${this.nummer}-${this.jahr}-${this.jahreszeit}`
   }
@@ -90,24 +93,43 @@ export class Examen {
   }
 
   /**
-   * z. B. `03`
+   * @returns z. B. `03`
    */
   get monatMitNullen (): string {
     return this.monat.toString().padStart(2, '0')
   }
 
   /**
-   * z. B. `66116:2020:03`
+   * @returns z. B. `66116:2020:03`
    */
   get referenz (): string {
     return `${this.nummer}:${this.jahr}:${this.monatMitNullen}`
   }
 
   /**
-   * z. B. `Examen 66116 Frühjahr 2020`
+   * @returns z. B. `Examen 66116 Frühjahr 2020`
    */
   get titelKurz (): string {
     return `Examen ${this.nummer} ${this.jahreszeit} ${this.jahr}`
+  }
+
+  /**
+   * @returns 'Datenbanksysteme / Softwaretechnologie (vertieft)'
+   */
+  get fach (): string {
+    return examensTitel[this.nummer]
+  }
+
+  /**
+   * @param nummer z. B. `66116`
+   *
+   * @returns 'Datenbanksysteme / Softwaretechnologie (vertieft)'
+   */
+  static fachDurchNummer (nummer: string | number): string {
+    if (typeof nummer === 'string') {
+      nummer = parseInt(nummer)
+    }
+    return examensTitel[nummer]
   }
 
   static erzeugeExamenDurchTextArgumente (
@@ -286,7 +308,7 @@ export class ExamenSammlung {
    */
   get examenBaum (): ExamensBaum {
     const referenzen = Object.keys(this.speicher)
-    referenzen.sort()
+    referenzen.sort(undefined)
 
     const baum: ExamensBaum = {}
     for (const referenz of referenzen) {

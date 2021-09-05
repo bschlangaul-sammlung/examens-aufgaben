@@ -124,24 +124,19 @@ function erzeugeDateiLink(pfad, dateiName, einstellungen) {
     return helfer_1.generiereLink(dateiName, path_1.default.join(pfad, dateiName), einstellungen);
 }
 function generiereExamensÜbersicht() {
+    const examenSammlung = examen_1.gibExamenSammlung();
+    const examenBaum = examenSammlung.examenBaum;
     const ausgabe = new AusgabeSammler();
-    for (const nummer in examen_1.examensTitel) {
-        ausgabe.add(`\n### ${nummer}: ${examen_1.examensTitel[nummer]}\n`);
-        const nummernPfad = path_1.default.join(helfer_1.repositoryPfad, 'Staatsexamen', nummer);
-        const jahrVerzeichnisse = fs_1.default.readdirSync(nummernPfad);
-        for (const jahr of jahrVerzeichnisse) {
-            const jahrPfad = path_1.default.join(nummernPfad, jahr);
-            if (fs_1.default.statSync(jahrPfad).isDirectory()) {
-                const monatsVerzeichnisse = fs_1.default.readdirSync(jahrPfad);
-                for (const monat of monatsVerzeichnisse) {
-                    const examen = examen_1.gibExamenSammlung().gib(nummer, jahr, monat);
-                    const monatsPfad = path_1.default.join(jahrPfad, monat);
-                    const scanLink = erzeugeDateiLink(monatsPfad, 'Scan.pdf');
-                    const ocrLink = erzeugeDateiLink(monatsPfad, 'OCR.txt', {
-                        linkePdf: false
-                    });
-                    ausgabe.add(`- ${examen.jahrJahreszeit}: ${scanLink} ${ocrLink} ${generiereAufgabenBaum(monatsPfad)}`);
-                }
+    for (const nummer in examenBaum) {
+        ausgabe.add(`\n### ${nummer}: ${examen_1.Examen.fachDurchNummer(nummer)}\n`);
+        for (const jahr in examenBaum[nummer]) {
+            for (const monat in examenBaum[nummer][jahr]) {
+                const examen = examenBaum[nummer][jahr][monat];
+                const scanLink = erzeugeDateiLink(examen.verzeichnis, 'Scan.pdf');
+                const ocrLink = erzeugeDateiLink(examen.verzeichnis, 'OCR.txt', {
+                    linkePdf: false
+                });
+                ausgabe.add(`- ${examen.jahrJahreszeit}: ${scanLink} ${ocrLink} ${generiereAufgabenBaum(examen.verzeichnis)}`);
             }
         }
     }

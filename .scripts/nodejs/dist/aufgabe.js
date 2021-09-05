@@ -348,7 +348,7 @@ class ExamensAufgabe extends Aufgabe {
         return this.examen.referenz;
     }
     get aufgabeFormatiert() {
-        return 'Aufgabe ' + this.aufgabe;
+        return `Aufgabe ${this.aufgabe}`;
     }
     get aufgabenReferenz() {
         const output = [];

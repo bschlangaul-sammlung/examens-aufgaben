@@ -22,7 +22,7 @@ describe('examen.js', function () {
       assert.strictEqual(examen.referenz, '46111:1995:03')
     })
 
-    it('Attribut aufgaben', function () {
+    it('Attribut „aufgaben“', function () {
       const examen = sammlung.gibDurchReferenz('66116:2021:03')
       const aufgabe =
         examen.aufgaben[
@@ -31,7 +31,7 @@ describe('examen.js', function () {
       assert.strictEqual(aufgabe.aufgabe, 3)
     })
 
-    it('Attribut aufgabenBaum', function () {
+    it('Attribut „aufgabenBaum“', function () {
       const examen = sammlung.gibDurchReferenz('66116:2021:03')
       const aufgabe =
         examen.aufgabenBaum['Thema 1']['Teilaufgabe 1']['Aufgabe 1']
@@ -40,12 +40,17 @@ describe('examen.js', function () {
       assert.strictEqual(aufgabe.aufgabe, 1)
     })
 
-    it('Getter Methode verzeichnisRelativ', function () {
+    it('Getter Methode „verzeichnisRelativ“', function () {
       const examen = sammlung.gibDurchReferenz('66116:2021:03')
       assert.strictEqual(
         examen.verzeichnisRelativ,
         'Staatsexamen/66116/2021/03'
       )
+    })
+
+    it('Getter Methode „fach“', function () {
+      const examen = sammlung.gibDurchReferenz('66116:2021:03')
+      assert.strictEqual(examen.fach, 'Datenbanksysteme / Softwaretechnologie (vertieft)')
     })
   })
 })

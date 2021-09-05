@@ -513,7 +513,7 @@ export class ExamensAufgabe extends Aufgabe {
   }
 
   get aufgabeFormatiert (): string {
-    return 'Aufgabe ' + this.aufgabe
+    return `Aufgabe ${this.aufgabe}`
   }
 
   get aufgabenReferenz (): string {
