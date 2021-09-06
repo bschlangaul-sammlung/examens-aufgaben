@@ -400,3 +400,14 @@ Die Java-Dateien sind als Git Submodule eingebunden:
 ```
 git submodule update --init
 ```
+
+Bschlagengaul auch Bschlagngaul, Bschlangaul, Bschlangengaul
+
+Benennung nach Beruf zu mittelhochdeutsch beslahen , beslagen ‘auf etwas
+schlagen, schlagend etwas befestigen, beschlagen’, mittelhochdeutsch den
+‘den’ (Definitartikel; maskulin Akkusativ Singular) und
+mittelhochdeutsch gūl ‘Gaul, Pferd’. Es handelt sich um einen indirekten
+Berufsnamen für einen Hufschmied in Form eines Satznamens (< [ich]
+beschlage den Gaul).
+
+https://www.namenforschung.net

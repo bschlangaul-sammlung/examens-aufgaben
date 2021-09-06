@@ -534,7 +534,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - [„Dijkstra“ 46114:2008:09 T1A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46114/2008/09/Thema-1/Aufgabe-2.pdf) (Algorithmus von Dijkstra) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46114/2008/09/Thema-1/Aufgabe-2.tex)) 
 - [„“ 46115:2012:03 T1A6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2012/03/Thema-1/Aufgabe-6.pdf) (Algorithmus von Dijkstra, Adjazenzliste, Adjazenzmatrix, Halde (Heap)) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2012/03/Thema-1/Aufgabe-6.tex)) 
 - [46115:2013:03 T2A5](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Thema-2/Aufgabe-5.pdf) (Algorithmus von Dijkstra) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2013/03/Thema-2/Aufgabe-5.tex)) 
-- [„“ 46115:2021:03 T2TA2A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2021/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf) (Algorithmus von Dijkstra) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2021/03/Thema-2/Teilaufgabe-2/Aufgabe-4.tex)) 
+- [„Graph a-i“ 46115:2021:03 T2TA2A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2021/03/Thema-2/Teilaufgabe-2/Aufgabe-4.pdf) (Algorithmus von Dijkstra) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/46115/2021/03/Thema-2/Teilaufgabe-2/Aufgabe-4.tex)) 
 - [„Städte“ 66112:2004:03 T1A5](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2004/03/Thema-1/Aufgabe-5.pdf) (Algorithmus von Dijkstra, Adjazenzmatrix) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66112/2004/03/Thema-1/Aufgabe-5.tex)) 
 - [„“ 66115:2013:09 T2A9](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/Thema-2/Aufgabe-9.pdf) (Algorithmus von Dijkstra) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2013/09/Thema-2/Aufgabe-9.tex)) 
 - [„“ 66115:2015:03 T2A7](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-2/Aufgabe-7.pdf) (Algorithmus von Dijkstra) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2015/03/Thema-2/Aufgabe-7.tex)) 
@@ -921,7 +921,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - [Pumping-Lemma „„w w“ und „a^k b^l c^m““](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/70_THEO/10_Formale-Sprachen/20_Typ-2_Kontextfrei/Pumpling-Lemma/Aufgabe_Pumping-Lemma.pdf) (Pumping-Lemma (Kontextfreie Sprache)) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/70_THEO/10_Formale-Sprachen/20_Typ-2_Kontextfrei/Pumpling-Lemma/Aufgabe_Pumping-Lemma.tex)) 
 - [Pumping-Lemma „„a^n b^n“ „c^2n“ und „a^n b^n^2““](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/70_THEO/10_Formale-Sprachen/20_Typ-2_Kontextfrei/Pumpling-Lemma/Aufgabe_Vorlesungsaufgaben.pdf) (Pumping-Lemma (Kontextfreie Sprache)) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/70_THEO/10_Formale-Sprachen/20_Typ-2_Kontextfrei/Pumpling-Lemma/Aufgabe_Vorlesungsaufgaben.tex)) 
 - [„Nonterminale: STU, Terminale: abcde“ 66115:2017:03 T2A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Thema-2/Aufgabe-2.pdf) (Kontextfreie Sprache, Chomsky-Normalform, Pumping-Lemma (Kontextfreie Sprache)) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Thema-2/Aufgabe-2.tex)) 
-- [„w w_1 w w_2“ 66115:2021:03 T2TA1A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2021/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) (Kontextfreie Sprache, Pumping-Lemma (Kontextfreie Sprache)) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2021/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex)) 
+- [„w w1 w w2“ 66115:2021:03 T2TA1A2](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2021/03/Thema-2/Teilaufgabe-1/Aufgabe-2.pdf) (Kontextfreie Sprache, Pumping-Lemma (Kontextfreie Sprache)) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2021/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex)) 
 
 
 ### Kontextsensitive Sprache
@@ -970,7 +970,7 @@ Weitere Aufgaben zum Thema „SQL“:
 - [„“ 66115:2014:03 T1A5](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Thema-1/Aufgabe-5.pdf) (Entscheidbarkeit) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2014/03/Thema-1/Aufgabe-5.tex)) 
 - [„Turing“ 66115:2017:03 T1A6](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Thema-1/Aufgabe-6.pdf) (Entscheidbarkeit) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2017/03/Thema-1/Aufgabe-6.tex)) 
 - [„Funktion klein sigma von w“ 66115:2020:09 T1TA1A4](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-4.pdf) (Entscheidbarkeit) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-4.tex)) 
-- [„“ 66115:2021:03 T2TA1A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2021/03/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf) (Entscheidbarkeit) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2021/03/Thema-2/Teilaufgabe-1/Aufgabe-3.tex)) 
+- [„Turingmaschine M von w“ 66115:2021:03 T2TA1A3](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2021/03/Thema-2/Teilaufgabe-1/Aufgabe-3.pdf) (Entscheidbarkeit) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Staatsexamen/66115/2021/03/Thema-2/Teilaufgabe-1/Aufgabe-3.tex)) 
 
 ### Komplexitätstheorie
 - [Reduktion-Turingmaschine „Reduktion-Turingmaschine“](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/70_THEO/40_Komplexitaet/Aufgabe_Reduktion-Turingmaschine.pdf) (Polynomialzeitreduktion) ([.tex](https://raw.githubusercontent.com/hbschlang/lehramt-informatik/main/Module/70_THEO/40_Komplexitaet/Aufgabe_Reduktion-Turingmaschine.tex)) 
@@ -2339,3 +2339,14 @@ Die Java-Dateien sind als Git Submodule eingebunden:
 ```
 git submodule update --init
 ```
+
+Bschlagengaul auch Bschlagngaul, Bschlangaul, Bschlangengaul
+
+Benennung nach Beruf zu mittelhochdeutsch beslahen , beslagen ‘auf etwas
+schlagen, schlagend etwas befestigen, beschlagen’, mittelhochdeutsch den
+‘den’ (Definitartikel; maskulin Akkusativ Singular) und
+mittelhochdeutsch gūl ‘Gaul, Pferd’. Es handelt sich um einen indirekten
+Berufsnamen für einen Hufschmied in Form eines Satznamens (< [ich]
+beschlage den Gaul).
+
+https://www.namenforschung.net
