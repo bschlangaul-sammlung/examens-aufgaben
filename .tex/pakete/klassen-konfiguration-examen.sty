@@ -92,26 +92,50 @@ Klasse liSetzeExamen konfigurieren, d. h. Laden von einigen Paketen, Registierun
 
 %    \begin{macrocode}
 \setcounter{tocdepth}{4}
+\RequirePackage[titles]{tocloft}
 \AddToHook{begindocument}{
+  \pagestyle{empty}
   \begin{center}
-  \liTypoUeberGross{Erste~Staatsprüfung~für~ein~Lehramt~an~öffentlichen~Schulen}
-  \end{center}
+  \large
+  Erste~Staatsprüfung~für~ein~Lehramt~an~öffentlichen~Schulen \par
+
+  \vspace{0.5cm}
+
+  Fach~Informatik \par
 
   \vfill
 
-  \begin{center}
-  \liTypoUeberGROSS{\g_auf_examen_nummer_tl}
+  {
+    \sffamily\bfseries\Huge
+
+    \g_auf_examen_jahreszeit_tl \par
+
+    \g_auf_examen_jahr_tl \par
+  }
+
+  \vspace{2cm}
+
+  {\LARGE \g_auf_examen_nummer_tl \par}
+
+  \vspace{0.5cm}
+
+  \g_auf_examen_fach_tl \par
+
+  \vspace{3cm}
+
+  Aufgabenstellungen~mit~Lösungsvorschlägen \par
+
   \end{center}
 
-  \begin{center}
-  \liTypoUeberGROSS{\g_auf_examen_jahr_tl}
-  \end{center}
-
-  \begin{center}
-  \liTypoUeberGROSS{\g_auf_examen_monat_tl}
-  \end{center}
+  % für den Abstand vor den section im Inhaltsverzeichnis
+  % https://tex.stackexchange.com/questions/241445/how-to-control-spacing-in-toc-for-different-sections
+  \setlength{\cftbeforesecskip}{1.5cm}
+  \setlength{\cftbeforesubsecskip}{0.5cm}
+  \renewcommand{\cftsubsecafterpnum}{\vspace{\cftbeforesubsecskip}}
+  \setlength{\cftbeforesubsubsecskip}{0.1cm}
 
   \vfill
+  \renewcommand{\contentsname}{Aufgabenübersicht}
   \tableofcontents
   \clearpage
 }
