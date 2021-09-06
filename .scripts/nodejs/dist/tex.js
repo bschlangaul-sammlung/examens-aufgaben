@@ -3,7 +3,7 @@
  * TeX-Datei
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.schreibeTexDatei = exports.sammleStichwörterEinerDatei = exports.sammleStichwörter = exports.gibInhaltEinesTexMakros = void 0;
+exports.machePlist = exports.schreibeTexDatei = exports.sammleStichwörterEinerDatei = exports.sammleStichwörter = exports.gibInhaltEinesTexMakros = void 0;
 const helfer_1 = require("./helfer");
 function assembleMacroRegExp(macroName) {
     return new RegExp('\\' + macroName + '{([^}]*)}', 'g');
@@ -57,3 +57,48 @@ function schreibeTexDatei(dateiPfad, klassenName, kopf, textkörper) {
         `\\begin{document}\n${textkörper}\n\\end{document}\n`);
 }
 exports.schreibeTexDatei = schreibeTexDatei;
+function umgebeMitKlammern(text) {
+    text = text.trim();
+    if (text.charAt(0) !== '{' && text.charAt(text.length - 1) !== '}') {
+        text = `{${text}}`;
+    }
+    return text;
+}
+/**
+ * @returns
+ *
+ * ```latex
+ * \makroName{
+ *   Titel = Aufgabe 2,
+ *   Thematik = Petri-Netz,
+ *   RelativerPfad = Staatsexamen/46116/2016/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex,
+ *   ZitatSchluessel = sosy:pu:4,
+ *   ExamenNummer = 46116,
+ *   ExamenJahr = 2016,
+ *   ExamenMonat = 03,
+ *   ExamenThemaNr = 2,
+ *   ExamenTeilaufgabeNr = 1,
+ *   ExamenAufgabeNr = 2,
+ * }
+ * ```
+ */
+function machePlist(makroName, daten, schlüsselMitKlammern) {
+    if (schlüsselMitKlammern != null) {
+        for (const schlüssel of schlüsselMitKlammern) {
+            if (daten[schlüssel] != null) {
+                daten[schlüssel] = umgebeMitKlammern(daten[schlüssel]);
+            }
+        }
+    }
+    const schlüsselWertPaare = [];
+    Object.keys(daten).forEach(schlüssel => {
+        let wert = daten[schlüssel];
+        if (wert == null) {
+            wert = '';
+        }
+        schlüsselWertPaare.push(`  ${schlüssel} = ${String(wert)},`);
+    });
+    const schlüsselWerte = schlüsselWertPaare.join('\n');
+    return `\\${makroName}{\n${schlüsselWerte}\n}`;
+}
+exports.machePlist = machePlist;

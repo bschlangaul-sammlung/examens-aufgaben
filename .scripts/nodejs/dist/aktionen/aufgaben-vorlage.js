@@ -8,15 +8,19 @@ const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
 const helfer_1 = require("../helfer");
 const aufgabe_1 = require("../aufgabe");
-const aufgaben_metadaten_1 = require("./aufgaben-metadaten");
+const tex_1 = require("../tex");
 function gibVorlage(werte = {}) {
     const meta = {};
     meta.Titel = werte.titel != null ? werte.titel : '';
     meta.Thematik = werte.thematik != null ? werte.thematik : '';
     meta.ZitatSchluessel =
         werte.zitatSchlüssel != null ? werte.zitatSchlüssel : '';
-    const m = meta;
-    const plist = aufgaben_metadaten_1.macheTexPlist(m);
+    const plist = tex_1.machePlist('liAufgabenMetadaten', meta, [
+        'Titel',
+        'Thematik',
+        'ZitatBeschreibung',
+        'Stichwoerter'
+    ]);
     return ('\\documentclass{lehramt-informatik-aufgabe}\n' +
         '\\liLadePakete{}\n' +
         '\\begin{document}\n' +

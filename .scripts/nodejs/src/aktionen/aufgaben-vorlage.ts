@@ -2,8 +2,8 @@ import path from 'path'
 import fs from 'fs'
 
 import { öffneVSCode } from '../helfer'
-import { AufgabenMetadaten, ExamensAufgabe } from '../aufgabe'
-import { macheTexPlist } from './aufgaben-metadaten'
+import { ExamensAufgabe } from '../aufgabe'
+import { machePlist } from '../tex'
 
 interface AufgabenVorlagenWerte {
   /**
@@ -31,8 +31,12 @@ function gibVorlage (werte: AufgabenVorlagenWerte = {}): string {
   meta.ZitatSchluessel =
     werte.zitatSchlüssel != null ? werte.zitatSchlüssel : ''
 
-  const m = meta as unknown
-  const plist = macheTexPlist(m as AufgabenMetadaten)
+  const plist = machePlist('liAufgabenMetadaten', meta, [
+    'Titel',
+    'Thematik',
+    'ZitatBeschreibung',
+    'Stichwoerter'
+  ])
 
   return (
     '\\documentclass{lehramt-informatik-aufgabe}\n' +

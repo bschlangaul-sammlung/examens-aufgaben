@@ -24,8 +24,22 @@ interface ExamensAufgabeBaum {
  * Die Klasse Examen repräsentiert eine Staatsexamensprüfung.
  */
 export class Examen {
+  /**
+   * Die sogenannte Einzelprüfungsnummer, z. B. `66115`.
+   */
   public nummer: number
+
+  /**
+   * Das Jahr, in dem das Examen stattfindet.
+   *
+   * z. B. `2021`
+   */
   public jahr: number
+
+  /**
+   * Der Monat, in dem das Examen stattfindet. Für Frühjahr `3` und für Herbst
+   * `9`.
+   */
   public monat: number
 
   /**
@@ -98,6 +112,9 @@ export class Examen {
   }
 
   /**
+   * In welcher Jahreszeit das Examen stattfindet. Der Monat 3 gibt
+   * `Frühjahr` und der Monat 9 `Herbst`.
+   *
    * @returns `Frühjahr` oder `Herbst`
    */
   get jahreszeit (): string {
@@ -144,7 +161,7 @@ export class Examen {
   }
 
   /**
-   * @returns 'Datenbanksysteme / Softwaretechnologie (vertieft)'
+   * @returns z. B. `Datenbanksysteme / Softwaretechnologie (vertieft)`
    */
   get fach (): string {
     return examensTitel[this.nummer]

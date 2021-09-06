@@ -134,7 +134,13 @@ function erzeugeExamensLösung(examen) {
             return `\\liBindeAufgabeEin{${nummer}}`;
         }
     });
-    const kopf = `\\liSetzeExamen{${examen.nummer}}{${examen.jahr}}{${examen.monatMitNullen}}`;
+    const kopf = tex_1.machePlist('liMetaSetze', {
+        ExamenNummer: examen.nummer,
+        ExamenFach: examen.fach,
+        ExamenJahr: examen.jahr,
+        ExamenMonat: examen.monatMitNullen,
+        ExamenJahreszeit: examen.jahreszeit
+    });
     const pfad = examen.machePfad('Examen.tex');
     if (textKörper != null) {
         tex_1.schreibeTexDatei(pfad, 'examen', kopf, textKörper);

@@ -104,9 +104,34 @@ export interface AufgabenMetadaten {
    */
   IdentischeAufgabe?: string
 
+  /**
+   * Die sogenannte Einzelprüfungsnummer, z. B. `66115`.
+   */
   ExamenNummer?: number
+
+  /**
+   * z. B. `Datenbanksysteme / Softwaretechnologie (vertieft)`
+   */
+  ExamenFach?: string
+
+  /**
+   * Das Jahr, in dem das Examen stattfindet.
+   *
+   * z. B. `2021`
+   */
   ExamenJahr?: number
+
+  /**
+   * Der Monat mit Nullen, in dem das Examen stattfindet. Für Frühjahr `03` und
+   * für Herbst `09`.
+   */
   ExamenMonat?: string
+
+  /**
+   * In welcher Jahreszeit das Examen stattfindet. Der Monat 3 gibt
+   * `Frühjahr` und der Monat 9 `Herbst`.
+   */
+  ExamenJahreszeit?: string
   ExamenThemaNr?: number
   ExamenTeilaufgabeNr?: number
   ExamenAufgabeNr?: number

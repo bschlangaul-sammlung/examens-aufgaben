@@ -69,6 +69,9 @@ class Examen {
         return helfer_1.generiereLink(text, this.machePfad(...pfadSegmente));
     }
     /**
+     * In welcher Jahreszeit das Examen stattfindet. Der Monat 3 gibt
+     * `Frühjahr` und der Monat 9 `Herbst`.
+     *
      * @returns `Frühjahr` oder `Herbst`
      */
     get jahreszeit() {
@@ -108,7 +111,7 @@ class Examen {
         return `Examen ${this.nummer} ${this.jahreszeit} ${this.jahr}`;
     }
     /**
-     * @returns 'Datenbanksysteme / Softwaretechnologie (vertieft)'
+     * @returns z. B. `Datenbanksysteme / Softwaretechnologie (vertieft)`
      */
     get fach() {
         return exports.examensTitel[this.nummer];

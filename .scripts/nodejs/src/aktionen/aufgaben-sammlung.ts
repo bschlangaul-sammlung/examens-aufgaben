@@ -13,7 +13,7 @@ import {
   löscheDatei,
   AusgabeSammler
 } from '../helfer'
-import { schreibeTexDatei } from '../tex'
+import { schreibeTexDatei, machePlist } from '../tex'
 
 /**
  * ```md
@@ -158,7 +158,13 @@ function erzeugeExamensLösung (examen: Examen): void {
     }
   })
 
-  const kopf = `\\liSetzeExamen{${examen.nummer}}{${examen.jahr}}{${examen.monatMitNullen}}`
+  const kopf = machePlist('liMetaSetze', {
+    ExamenNummer: examen.nummer,
+    ExamenFach: examen.fach,
+    ExamenJahr: examen.jahr,
+    ExamenMonat: examen.monatMitNullen,
+    ExamenJahreszeit: examen.jahreszeit
+  })
 
   const pfad = examen.machePfad('Examen.tex')
   if (textKörper != null) {

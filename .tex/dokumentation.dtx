@@ -305,10 +305,6 @@ Setzen der Aufgaben-Metadaten.]
   }
 
   \_setze_relativen_pfad:
-
-  \tl_if_empty:NTF \g_auf_titel_tl {
-    \msg_fatal:nn { aufgabenmetadaten } { kein-titel }
-  } { }
 }
 %    \end{macrocode}
 % \end{macro}
@@ -862,8 +858,10 @@ Setzen der Aufgaben-Metadaten.]
   identische_aufgabe,
   %
   examen_nummer,
+  examen_fach,
   examen_jahr,
   examen_monat,
+  examen_jahreszeit,
   examen_thema_nr,
   examen_teilaufgabe_nr,
   examen_aufgabe_nr,
@@ -905,8 +903,10 @@ Setzen der Aufgaben-Metadaten.]
   IdentischeAufgabe .tl_gset:N = \g_auf_identische_aufgabe_tl,
   %
   ExamenNummer .tl_gset:N = \g_auf_examen_nummer_tl,
+  ExamenFach .tl_gset:N = \g_auf_examen_fach_tl,
   ExamenJahr .tl_gset:N = \g_auf_examen_jahr_tl,
   ExamenMonat .tl_gset:N = \g_auf_examen_monat_tl,
+  ExamenJahreszeit .tl_gset:N = \g_auf_examen_jahreszeit_tl,
   ExamenThemaNr .tl_gset:N = \g_auf_examen_thema_nr_tl,
   ExamenTeilaufgabeNr .tl_gset:N = \g_auf_examen_teilaufgabe_nr_tl,
   ExamenAufgabeNr .tl_gset:N = \g_auf_examen_aufgabe_nr_tl,
@@ -3294,16 +3294,6 @@ Klasse liSetzeExamen konfigurieren, d. h. Laden von einigen Paketen, Registierun
 \ExplSyntaxOn
 %    \end{macrocode}
 
-% \begin{macro}{\liSetzeExamen}
-%    \begin{macrocode}
-\def\liSetzeExamen#1#2#3{
-  \tl_gset:Nn \g_auf_examen_nummer_tl { #1 }
-  \tl_gset:Nn \g_auf_examen_jahr_tl { #2 }
-  \tl_gset:Nn \g_auf_examen_monat_tl { #3 }
-}
-%    \end{macrocode}
-% \end{macro}
-
 % \begin{macro}{\liSetzeExamenThemaNr}
 %    \begin{macrocode}
 \def\liSetzeExamenThemaNr#1{
@@ -3375,7 +3365,7 @@ Klasse liSetzeExamen konfigurieren, d. h. Laden von einigen Paketen, Registierun
   \liTypoUeberGROSS{\g_auf_examen_monat_tl}
   \end{center}
 
-    \vfill
+  \vfill
   \tableofcontents
   \clearpage
 }
