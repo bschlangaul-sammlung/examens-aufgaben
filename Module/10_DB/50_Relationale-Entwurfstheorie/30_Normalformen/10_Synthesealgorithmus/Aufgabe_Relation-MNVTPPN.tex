@@ -11,12 +11,15 @@
   Stichwoerter = {Synthese-Algorithmus},
 }
 
+\let\ahr=\liRechtsReduktionInline
 \let\a=\liAttributHuelleOhneMathe
 \let\m=\liAttributMenge
 \let\r=\liRelation
 \let\fa=\liFunktionaleAbhaengigkeit
 \let\FA=\liFunktionaleAbhaengigkeiten
 \let\schrittE=\liSyntheseUeberErklaerung
+\let\b=\textbf
+\let\u=\underline
 
 Betrachten Sie ein abstraktes Relationenschema \r{M, N, V, T, P, PN} mit
 den Funktionalen Abhängigkeiten
@@ -39,15 +42,15 @@ den Funktionalen Abhängigkeiten
 \footcite{db:pdf:tum:uebung-08}
 
 \begin{liAntwort}
-V kommt auf keiner rechten Seite der Funktionalen Abhängigkeiten vor.
+$V$ kommt auf keiner rechten Seite der Funktionalen Abhängigkeiten vor.
 
-$\a{R, \m{V}} = \m{V, T, P, PN} \neq  R$
+$\a{R, \m{V}} = \m{V, T, P, PN} \neq R$
 
 $\a{R, \m{V, M}} = \m{V, M, N, T, P, PN} = R$
 
 $\a{R, \m{V, P}} = \m{V, P, T, PN} \neq R$
 
-$V, M$ ist Schlüsselkandidat
+\m{V, M} ist Schlüsselkandidat
 \end{liAntwort}
 
 %%
@@ -57,8 +60,9 @@ $V, M$ ist Schlüsselkandidat
 \item In welcher Normalform befindet sich die Relation?
 
 \begin{liAntwort}
-1NF weil nichtprimäre Attribute von einer echten Teilmenge des
-Schlüsselkandidaten abhängen (\zB \fa{M -> N}).
+Die Relation befindet sich in der 1. Normalform weil, nichtprimäre
+Attribute von einer echten Teilmenge des Schlüsselkandidaten abhängen
+(\zB \fa{M -> N}).
 \end{liAntwort}
 
 %%
@@ -67,6 +71,7 @@ Schlüsselkandidaten abhängen (\zB \fa{M -> N}).
 
 \item Bestimmen Sie zu den gebenen Funktionalen Abhängigkeiten die
 kanonische Überdeckung.
+\index{Kanonische Überdeckung}
 
 \begin{liAntwort}
 
@@ -77,12 +82,23 @@ kanonische Überdeckung.
 
 \item \schrittE{1-2}
 
-PN ist doppelt
+\liPseudoUeberschrift{M}
 
-$\a{(R - \fa{V -> T, P, PN}) \cup \fa{V -> T, P}, \m{V}} = \m{V, T, P, PN}$
+$M \in$ \ahr{M -> M}{}{M}{\b{M}, N}
 
-\FA{%
-  M -> M;
+\FA{
+  M -> NICHTS;
+  M -> N;
+  V -> T, P, PN;
+  P -> PN;
+}
+
+\liPseudoUeberschrift{PN}
+
+$PN \in$ \ahr{V -> T, P, PN}{V -> T, P}{V}{V, T, P, \b{PN}}
+
+\FA{
+  M -> NICHTS;
   M -> N;
   V -> T, P;
   P -> PN;
@@ -114,16 +130,16 @@ abhängigkeitsbewahrend in die dritte Normalform.
 \begin{enumerate}
 \item \schrittE{2}
 
-\r[R1]{M, N} \\
-\r[R2]{V, T, P} \\
-\r[R3]{P, PN}
+\r[R1]{\u{M}, N} \\
+\r[R2]{\u{V}, T, P} \\
+\r[R3]{\u{P}, PN}
 
 \item \schrittE{3}
 
-\r[R1]{\underline{M}, N} \\
-\r[R2]{V, T, P} \\
-\r[R3]{P, PN} \\
-\r[R4]{V, M}
+\r[R1]{\u{M}, N} \\
+\r[R2]{\u{V}, T, P} \\
+\r[R3]{\u{P}, PN}\\
+\r[R4]{\u{V, M}}
 
 \item \schrittE{4}
 
