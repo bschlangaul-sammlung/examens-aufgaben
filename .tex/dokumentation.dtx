@@ -799,7 +799,6 @@ Setzen der Aufgaben-Metadaten.]
   \liLadePakete{
     aufgaben-einbinden,
     automaten,
-    baum,
     checkbox,
     chomsky-normalform,
     cpm,
@@ -812,6 +811,7 @@ Setzen der Aufgaben-Metadaten.]
     graph,
     hanoi,
     kontrollflussgraph,
+    komplexitaetstheorie,
     makros,
     master-theorem,
     mathe,
@@ -819,6 +819,7 @@ Setzen der Aufgaben-Metadaten.]
     normalformen,
     petri,
     potenzmengen-konstruktion,
+    pumping-lemma,
     pseudo,
     quicksort,
     relationale-algebra,
@@ -835,6 +836,7 @@ Setzen der Aufgaben-Metadaten.]
     vollstaendige-induktion,
     wasserfall,
     wpkalkuel,
+    baum, % am Schluss sonst Fehler: undefined command \edge
   }
 }
 %    \end{macrocode}
@@ -3262,16 +3264,15 @@ Klasse liSetzeExamen konfigurieren, d. h. Laden von einigen Paketen, Registierun
   literatur-dummy,
   makros,
   aufgaben-metadaten,
-  abmessung
+  abmessung,
+  typographie
 }
 %    \end{macrocode}
 
 % Formatierung für die Überschriften setzen.
 %    \begin{macrocode}
 \RequirePackage{titlesec}
-%\titleformat*{\section}{center}
-\titleformat{\section}
-{\normalfont\Large\filcenter\bfseries}{\thesection}{1em}{}
+\titleformat{\section}{\sffamily\huge\filcenter\bfseries}{\thesection}{1em}{}
 \newcommand{\sectionbreak}{\clearpage}
 \setcounter{secnumdepth}{0}
 %    \end{macrocode}
@@ -3352,6 +3353,34 @@ Klasse liSetzeExamen konfigurieren, d. h. Laden von einigen Paketen, Registierun
 }
 %    \end{macrocode}
 % \end{macro}
+
+%    \begin{macrocode}
+\setcounter{tocdepth}{4}
+\AddToHook{begindocument}{
+  \begin{center}
+  \liTypoUeberGross{Erste~Staatsprüfung~für~ein~Lehramt~an~öffentlichen~Schulen}
+  \end{center}
+
+  \vfill
+
+  \begin{center}
+  \liTypoUeberGROSS{\g_auf_examen_nummer_tl}
+  \end{center}
+
+  \begin{center}
+  \liTypoUeberGROSS{\g_auf_examen_jahr_tl}
+  \end{center}
+
+  \begin{center}
+  \liTypoUeberGROSS{\g_auf_examen_monat_tl}
+  \end{center}
+
+    \vfill
+  \tableofcontents
+  \clearpage
+}
+%    \end{macrocode}
+
 %    \begin{macrocode}
 \ExplSyntaxOff
 %    \end{macrocode}
@@ -6216,6 +6245,39 @@ formatierung.sty definiert.]
   \vspace{#4}
   \begin{flushright}$\Bigr\}$\end{flushright}
   \par
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liTypoUeberschrift}
+%    \begin{macrocode}
+\def\liTypoUeberschrift#1{
+  {
+    \bfseries\sffamily
+    #1
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liTypoUeberGross}
+%    \begin{macrocode}
+\def\liTypoUeberGross#1{
+  {
+    \huge
+    \liTypoUeberschrift{#1}
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liTypoUeberGross}
+%    \begin{macrocode}
+\def\liTypoUeberGROSS#1{
+  {
+    \Huge
+    \liTypoUeberschrift{#1}
+  }
 }
 %    \end{macrocode}
 % \end{macro}
