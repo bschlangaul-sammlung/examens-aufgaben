@@ -1689,12 +1689,14 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 % \subsubsection{Reihenfolge}
 %
 % \begin{enumerate}
+% \item |Beschreibung|
+% Kurze Beschreibung des Entwurfsmusters, z. B |\liEntwurfsEinzelstueckBeschreibung|
 % \item |Uml|:
-% Uml-Klassendiagramm |\liEntwurfsEinzelstueckUml|
+% Uml-Klassendiagramm, z. B |\liEntwurfsEinzelstueckUml|
 % \item |Akteure|:
-% Akteure, beteiligte Klassen |\liEntwurfsEinzelstueckAkteure|
+% Akteure, beteiligte Klassen, z. B |\liEntwurfsEinzelstueckAkteure|
 % \item |Code|:
-% Allgemeines Code-Beispiel |\liEntwurfsEinzelstueckCode|
+% Allgemeines Code-Beispiel, z. B |\liEntwurfsEinzelstueckCode|
 % \item |ohne|:
 % Ohne Suffix, Bündelung der einzelnen Makros eines Entwurfsmusters
 % |\liEntwurfsEinzelstueckAkteure|
@@ -1715,6 +1717,16 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 % \end{macro}
 
 % \subsubsection{Abstrakte Fabrik (Abstract Factory)}
+
+% \begin{macro}{\liEntwurfsAbstrakteFabrikBeschreibung}
+%    \begin{macrocode}
+\def\liEntwurfsAbstrakteFabrikBeschreibung{
+  Es wird eine Schnittstelle bereitgestellt, um \emph{Familien
+  verbundener oder abhängiger Objekte} zu erstellen, ohne die konkreten
+  Klassen zu spezifizieren.\footcite[Seite 25]{eilebrecht}
+}
+%    \end{macrocode}
+% \end{macro}
 
 % \begin{macro}{\liEntwurfsAbstrakteFabrikUml}
 % \begin{liBeispiel}
@@ -1779,7 +1791,10 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 % \begin{macro}{\liEntwurfsAbstrakteFabrik}
 %    \begin{macrocode}
 \def\liEntwurfsAbstrakteFabrik{
+  \liEntwurfsAbstrakteFabrikBeschreibung
+
   \liEntwurfsAbstrakteFabrikUml
+
   \liEntwurfsAbstrakteFabrikCode
 }
 %    \end{macrocode}
@@ -2076,6 +2091,15 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 
 % \subsubsection{Einzelstück (Singleton)}
 
+% \begin{macro}{\liEntwurfsEinzelstueckBeschreibung}
+%    \begin{macrocode}
+\def\liEntwurfsEinzelstueckBeschreibung{
+  Stellt sicher, dass nur \emph{genau eine Instanz einer Klasse} erzeugt
+  wird.\footcite[Seite 38]{eilebrecht}
+}
+  %    \end{macrocode}
+  % \end{macro}
+
 % \begin{macro}{\liEntwurfsEinzelstueckUml}
 % Quelle nach der deutschen Wikipedia
 % \begin{liBeispiel}
@@ -2123,8 +2147,12 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 % \begin{macro}{\liEntwurfsEinzelstueck}
 %    \begin{macrocode}
 \def\liEntwurfsEinzelstueck{
+  \liEntwurfsEinzelstueckBeschreibung
+
   \liEntwurfsEinzelstueckUml
+
   \liEntwurfsEinzelstueckAkteure
+
   \liEntwurfsEinzelstueckCode
 }
 %    \end{macrocode}
@@ -2354,6 +2382,47 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
+% \subsubsection{Stellvertreter (Proxy)}
+
+% \begin{macro}{\liEntwurfsStellvertreterUml}
+%    \begin{macrocode}
+\def\liEntwurfsStellvertreterUml{
+  \begin{tikzpicture}
+    \umlsimpleclass[x=-1,y=2]{Klient}
+
+    \umlclass[x=2,y=2]{Subjekt}{}{+ agiere()}
+    \umlclass[x=0,y=-1]{KonkretesSubjekt}{}{+ agiere()}
+    \umlclass[x=4,y=-1]{Stellvertreter}{}{+ agiere()}
+
+    \umlVHVinherit{KonkretesSubjekt}{Subjekt}
+    \umlVHVinherit{Stellvertreter}{Subjekt}
+    \umluniassoc{Stellvertreter}{KonkretesSubjekt}
+    \umluniassoc{Klient}{Subjekt}
+  \end{tikzpicture}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liEntwurfsStellvertreterCode}
+%    \begin{macrocode}
+\def\liEntwurfsStellvertreterCode{
+  \li@EntwurfsCode{stellvertreter}{Subjekt}
+  \li@EntwurfsCode{stellvertreter}{KonkretesSubjekt}
+  \li@EntwurfsCode{stellvertreter}{Stellvertreter}
+  \li@EntwurfsCode{stellvertreter}{Klient}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liEntwurfsStellvertreter}
+%    \begin{macrocode}
+\def\liEntwurfsStellvertreter{
+  \liEntwurfsStellvertreterUml
+  \liEntwurfsStellvertreterCode
+}
+%    \end{macrocode}
+% \end{macro}
+
 % \subsubsection{Zustand (State)}
 
 % \begin{macro}{\liEntwurfsZustandUml}
@@ -2407,11 +2476,21 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\liEntwurfsZustandCode}
+%    \begin{macrocode}
+\def\liEntwurfsZustandCode{
+  \li@EntwurfsCode{zustand}{Kontext}
+  \li@EntwurfsCode{zustand}{Zustand}
+}
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\liEntwurfsZustand}
 %    \begin{macrocode}
 \def\liEntwurfsZustand{
   \liEntwurfsZustandUml
   \liEntwurfsZustandAkteure
+  \liEntwurfsZustandCode
 }
 %    \end{macrocode}
 % \end{macro}

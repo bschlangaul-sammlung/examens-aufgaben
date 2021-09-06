@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-\liLadePakete{syntax,uml}
+\liLadePakete{entwurfsmuster}
 
 \begin{document}
 
@@ -28,37 +28,7 @@ Ein Proxy stellt einen \memph{Platzhalter} für eine andere Komponente
 (Objekt) dar und \memph{kontrolliert den Zugang zum echten Objekt}.
 \footcite[Seite 89]{eilebrecht}
 
-%-----------------------------------------------------------------------
-%
-%-----------------------------------------------------------------------
-
-\section{Klassendiagramm}
-
-\begin{tikzpicture}
-\umlsimpleclass[x=-1,y=2]{Klient}
-
-\umlclass[x=2,y=2]{Subjekt}{}{+ agiere()}
-\umlclass[x=0,y=0]{KonkretesSubjekt}{}{+ agiere()}
-\umlclass[x=4,y=0]{Stellvertreter}{}{+ agiere()}
-
-\umlinherit{KonkretesSubjekt}{Subjekt}
-\umlinherit{Stellvertreter}{Subjekt}
-\umluniassoc{Stellvertreter}{KonkretesSubjekt}
-\umluniassoc{Klient}{Subjekt}
-
-\end{tikzpicture}
-%-----------------------------------------------------------------------
-%
-%-----------------------------------------------------------------------
-
-\section{Allgemeines Code-Beispiel}
-
-\def\TmpCode#1{\liJavaDatei[firstline=3]{entwurfsmuster/stellvertreter/allgemein/#1}}
-
-\TmpCode{Subjekt}
-\TmpCode{KonkretesSubjekt}
-\TmpCode{Stellvertreter}
-\TmpCode{Klient}
+\liEntwurfsStellvertreter
 
 \literatur
 
