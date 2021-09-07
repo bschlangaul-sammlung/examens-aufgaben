@@ -67,6 +67,25 @@ an der Relation teilnehmen (enthalten sein).
 \liFussnoteUrl{https://usehardware.de/datenbanksysteme-iv-entity-relationship-modell-er-modell-datenbankdarstellungen-i/}
 \end{description}
 \end{description}
+
+Die Kardinalität definiert, wie viele Entities eines Typs mit wie vielen
+Entities eines anderen Typs in Beziehung stehen können (siehe Schneider
+et al., S. 446)\footcite[446]{schneider}
+
+Partizipität – ein anderer Begriff dafür ist Totalität – beschreibt den
+Grad der Teilnahmeverpflichtung zweier Entitäten an einer Beziehung. Sie
+kann partiell, total oder einseitig total sein.
+
+a. Totale P.: Jede Entity A und Entity B besteht nur dann, wenn sie an
+dieser Beziehung teilnehmen.
+
+b. Einseitige totale P.: Eine Entity A besteht nur dann, wenn sie an der
+Beziehung zu Entity B teilnimmt. Entitäten von B dagegen können, müssen
+aber nicht teilnehmen.
+
+c. Partielle P.: Die Existenz der Entitäten ist unabhängig von der
+Teilnahme an dieser Beziehung. Die Teilnahme ist nicht verpflichtend.
+
 \end{liAntwort}
 
 %%
@@ -96,11 +115,11 @@ langen Sperre.
 \begin{description}
 \item[lange Sperren:]
 
-werden bis EOT gehalten (=> striktes 2PL)
+LOCKs werden erst nach dem commit zurückgegeben ($\rightarrow$ striktes 2PL)
 
 \item[kurze Sperren:]
 
-werden nicht bis EOT gehalten
+LOCKs werden direkt nach dem schreiben/lesen zurückzugeben
 \end{description}
 \liFussnoteUrl{https://www.dbs.ifi.lmu.de/Lehre/DBSII/SS2015/vorlesung/DBS2-03-Synchronisation.pdf}
 \end{liAntwort}
@@ -114,10 +133,13 @@ ACID-Prinzips mit den richtigen Werten dar. S stehe dabei für eine Lese-
 und X für eine Schreibsperre.
 
 \begin{liAntwort}
-\begin{tabular}{lll}
-  & S & X \\
-S & + & - \\
-X & - & - \\
+Kompatibilitätsmatrix zur Umsetzung des ACID-Prinzips (Atomicity,
+Consistency, Isolation, Durability)
+
+\begin{tabular}{llll}
+                  & NL (no lock) & S (Lesesperre) & X (Schreibsperre) \\
+S (Lesesperre)    & ja           & ja             & nein \\
+X (Schreibsperre) & ja           & nein           & nein \\
 \end{tabular}
 \footcite[SX-Kompatibilitätsmatrix]{wiki:sperrverfahren}
 \end{liAntwort}
