@@ -1,20 +1,33 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{petri}
 \begin{document}
-\liAufgabenTitel{Automatisierungsanlage mit zwei Robotern}
-\section{Aufgabe 3
-\index{Petri-Netz}
-\footcite{examen:66116:2015:03}}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 3},
+  Thematik = {Automatisierungsanlage mit zwei Robotern},
+  RelativerPfad = Staatsexamen/66116/2015/03/Thema-2/Teilaufgabe-2/Aufgabe-3.tex,
+  ZitatSchluessel = examen:66116:2015:03,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {Petri-Netz},
+  ExamenNummer = 66116,
+  ExamenJahr = 2015,
+  ExamenMonat = 03,
+  ExamenThemaNr = 2,
+  ExamenTeilaufgabeNr = 2,
+  ExamenAufgabeNr = 3,
+}
 
 Das folgende Grundgerüst stammt aus dem Petri-Netz-Modell einer
 Automatisierungsanlage mit zwei Robotern, das Sie auf Ihr Blatt
 übernehmen und geeignet um weitere Plätze (Stellen), Transitionen,
 Kapazitäten, Gewichte und Markierungen so ergänzen sollen, dass die
 darunter angegebenen Anforderungen eingehalten werden:
+\index{Petri-Netz}
+\footcite{examen:66116:2015:03}
 
 In der Anlage arbeiten zwei Roboter A und B, die über einen Schalter
-„Einschalten“ aktiviert und \emph{jederzeit} über einen
-„Notaus“-Schalter deaktiviert werden können müssen. Aufgabe der Roboter ist es,
+„Einschalten“ aktiviert und \emph{jederzeit} über einen „Notaus
+“-Schalter deaktiviert werden können müssen. Aufgabe der Roboter ist es,
 jeweils abwechselnd an Bauteilen zu arbeiten, die einzeln über ein
 Förderband „ZufuhrBauteil“ ins System eingefahren und nach der
 Fertigstellung mittels „Abtransport“ aus dem System abgeführt werden.
@@ -32,6 +45,7 @@ den Platz ‚fertig‘ legt“). Aus Platzgründen darf höchstens ein Bauteil
 auf dem Ausgangsplatz „fertig“ abgestellt werden, ehe es abtransportiert
 wird.
 
+\begin{center}
 \begin{tikzpicture}[li petri,x=2cm,y=2cm,scale=0.7,transform shape]
   \node[place,label=west:RoboterAus,tokens=1] at (0,-1) (RoboterAus) {};
 
@@ -64,8 +78,10 @@ wird.
   \node[transition,label=east:Abtransport] at (0,-4.5) {}
     edge[pre] (fertig);
 \end{tikzpicture}
+\end{center}
 
 \begin{liAntwort}
+\begin{center}
 \begin{tikzpicture}[li petri,x=2cm,y=2cm,scale=0.7,transform shape]
   \node[place,label=west:RoboterAus,tokens=1] at (0,-1) (RoboterAus) {};
 
@@ -97,7 +113,10 @@ wird.
     edge[post] node[auto]{3} (A)
     edge[inhibitor,bend right] (A);
   \node[transition,label=ZufuhrBauteil] at (0,-3) {}
-    edge[post] (Bauteil) edge[inhibitor,bend right] (Bauteil) edge[inhibitor,bend right] (AAngebaut) edge[inhibitor,bend left] (BAngebaut);
+    edge[post] (Bauteil)
+    edge[inhibitor,bend right] (Bauteil)
+    edge[inhibitor,bend right] (AAngebaut)
+    edge[inhibitor,bend left] (BAngebaut);
   \node[transition,label=ZufuhrB] at (1.5,-3) {}
     edge[pre,bend right=10] (RobotBereitB)
     edge[post,bend left=10] (RobotBereitB)
@@ -118,6 +137,7 @@ wird.
   \node[transition,label=Abtransport] at (0,-6) {}
     edge[pre] (fertig);
 \end{tikzpicture}
+\end{center}
 \end{liAntwort}
 
 \end{document}

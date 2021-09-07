@@ -1,9 +1,16 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{mathe,tabelle,syntax}
 \begin{document}
-\liAufgabenTitel{Grundwissen}
-
-\section{Aufgabe 1: Grundwissen\footcite[Seite 1]{sosy:ab:8}}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe zum Grundwissen},
+  Thematik = {Grundwissen},
+  RelativerPfad = Module/40_SOSY/05_Testen/10_Formale-Verifikation/Aufgabe_Grundwissen.tex,
+  ZitatSchluessel = sosy:ab:8,
+  ZitatBeschreibung = {Seite 1},
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {Formale Verifikation, wp-Kalkül, Hoare-Kalkül, Partielle Korrektheit, Totale Korrektheit, Invariante, Terminierungsfunktion},
+}
 
 \begin{enumerate}
 
@@ -13,17 +20,21 @@
 
 \item Geben Sie zwei verschiedene Möglichkeiten der formalen
 Verifikation\index{Formale Verifikation} an.
+\footcite[Seite 1]{sosy:ab:8}
 
 \begin{liAntwort}
-\begin{itemize}
-\item 1. Möglichkeit: formale Verifikation mittels \emph{vollständiger
-Induktion} (eignet sich bei \emph{rekursiven} Programmen).
+\begin{description}
+\item[1. Möglichkeit:]
 
-\item 2. Möglichkeit: formale Verifikation mittels
-\emph{wp-Kalkül}\index{wp-Kalkül} oder
+formale Verifikation mittels \emph{vollständiger Induktion} (eignet sich
+bei \emph{rekursiven} Programmen).
+
+\item[2. Möglichkeit:]
+
+formale Verifikation mittels \emph{wp-Kalkül}\index{wp-Kalkül} oder
 \emph{Hoare-Kalkül}\index{Hoare-Kalkül} (eignet sich bei
 \emph{iterativen} Programmen).
-\end{itemize}
+\end{description}
 \end{liAntwort}
 
 %%
@@ -34,17 +45,17 @@ Induktion} (eignet sich bei \emph{rekursiven} Programmen).
 Korrektheit} und totaler Korrektheit\index{Totale Korrektheit}.
 
 \begin{liAntwort}
-\begin{itemize}
-\item partielle Korrektheit:
+\begin{description}
+\item[partielle Korrektheit:]
 
 Das Programm verhält sich spezifikationsgemäß, \emph{falls} es
 terminiert.
 
-\item totale Korrektheit:
+\item[totale Korrektheit:]
 
 Das Programm verhält sich spezifikationsgemäß und es \emph{terminiert
 immer}.
-\end{itemize}
+\end{description}
 \end{liAntwort}
 
 %%
@@ -56,7 +67,7 @@ und $Q$ die Nachbedingung dieser Sequenz. Erläutern Sie, wie man die
 (partielle) Korrektheit dieses Programmes nachweisen kann.
 
 \begin{liAntwort}
-\begin{tabular}{|>{\raggedright\arraybackslash}p{4.8cm}|l|l|}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{6cm}|l|l|}
 Vorgehen & Horare-Kalkül & \text{wp}-Kalkül \\\hline
 
 Wenn die Vorbedingung $P$ zutrifft, gilt nach der Ausführung der
