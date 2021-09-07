@@ -1,10 +1,26 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{rmodell,syntax}
 \begin{document}
-\liAufgabenTitel{Triathlon}
-\section{Aufgabe 4: SQL
-\index{SQL}
-\footcite{examen:66116:2018:09}}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 4: SQL},
+  Thematik = {Triathlon},
+  RelativerPfad = Staatsexamen/66116/2018/09/Thema-1/Teilaufgabe-2/Aufgabe-4.tex,
+  ZitatSchluessel = examen:66116:2018:09,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {SQL, SQL mit Übungsdatenbank, UPDATE, DESC, AVG, GROUP BY, HAVING, EXCEPT},
+  ExamenNummer = 66116,
+  ExamenJahr = 2018,
+  ExamenMonat = 09,
+  ExamenThemaNr = 1,
+  ExamenTeilaufgabeNr = 2,
+  ExamenAufgabeNr = 4,
+}
+
+\let\a=\liAttribut
+\let\f=\liFremd
+\let\p=\liPrimaer
+\let\r=\liRelationMenge
 
 Gegeben sind folgende Relationen aus einer Datenbank zur Verwaltung von
 Triathlon-Wettbewerben.
@@ -23,9 +39,9 @@ Wettbewerb (Name*, Jahr)
 \end{liProjektSprache}
 
 \begin{liRmodell}
-\liRelation{Athlet}{\liPrimaer{ID}, Vorname, Nachname}
-\liRelation{Ergebnis}{\liFremd{Athlet[Athlet]}, \liFremd{Wettbewerb[Wettbewerb]}, Schwimmzeit, Radzeit, Laufzeit}
-\liRelation{Wettbewerb}{\liPrimaer{Name}, Jahr}
+\r{Athlet}{\p{ID}, Vorname, Nachname}
+\r{Ergebnis}{\p{Athlet[Athlet]}, \f{Wettbewerb[Wettbewerb]}, Schwimmzeit, Radzeit, Laufzeit}
+\r{Wettbewerb}{\p{Name}, Jahr}
 \end{liRmodell}
 
 % Datenbankname: db
@@ -77,6 +93,8 @@ INSERT INTO Ergebnis VALUES
 Verwenden Sie im Folgenden nur Standard-SQL und keine
 produktspezifischen Erweiterungen. Sie dürfen bei Bedarf Views anlegen.
 Geben Sie einen Datensatz, also eine Entity, nicht mehrfach aus.
+\index{SQL}
+\footcite{examen:66116:2018:09}
 
 \begin{enumerate}
 
