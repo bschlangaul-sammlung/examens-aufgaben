@@ -1,7 +1,5 @@
 \documentclass{lehramt-informatik-haupt}
-\usepackage{tikz}
-\usepackage{tikz-uml}
-\usepackage{tikz-uml-activity}
+\liLadePakete{uml}
 
 \begin{document}
 
@@ -16,6 +14,7 @@
 \item \cite{wiki:aktivitaetsdiagramm}
 \end{liQuellen}
 
+\noindent
 Aktivitätsdiagramme (activity diagrams) zeigen eine bestimmte Sicht auf
 die Dynamik des Systems (Abläufe). Sie beschreiben das konkrete
 Verhalten eines Systems. Aktivitätsdiagramme sind meist sehr
@@ -45,9 +44,9 @@ des durch die Aktivität beschriebenen Verhaltens beiträgt.
 \end{description}
 
 \begin{center}
-\tikz \node[action]{Aktionsname};
+\tikz[uml activity] \node[action]{Aktionsname};
 %
-\tikz \node[action,text width=2.5cm,align=center]{Schulaufgabe \\erstellen};
+\tikz[uml activity] \node[action,text width=2.5cm,align=center]{Schulaufgabe \\erstellen};
 \end{center}
 
 %%
@@ -89,7 +88,7 @@ transportieren.
 \end{description}
 
 \begin{center}
-\tikz \node[object]{Objektknoten};
+\tikz[uml activity] \node[object]{Objektknoten};
 \end{center}
 
 %%
@@ -110,9 +109,9 @@ besseren Verständnis mit einem Namen versehen werden.
 \end{description}
 
 \begin{center}
-\tikz \draw[arrow] (0,0) -- (1.5,0);
+\tikz[uml activity] \draw[arrow] (0,0) -- (1.5,0);
 \hspace{0.5cm}
-\tikz \draw[arrow] (0,0) -- (1.5,0) node[auto,pos=0.5]{Name};
+\tikz[uml activity] \draw[arrow] (0,0) -- (1.5,0) node[auto,pos=0.5]{Name};
 \end{center}
 
 %%
@@ -135,7 +134,7 @@ nur Kontrollkanten weg.
 \end{description}
 
 \begin{center}
-\tikz{
+\tikz[uml activity]{
   \node[initial] at (1,0) (node) {};
   \draw[arrow] (0,0) -- (node);
 }
@@ -143,21 +142,21 @@ nur Kontrollkanten weg.
 
 \item[Endknoten für Aktivitäten (flow final node)]
 
-\tikz{
+\tikz[uml activity]{
   \node[flow final] at (1,0) (node) {};
   \draw[arrow] (0,0) -- (node);
 }
 
 \item[Endknoten für Kontrollflüsse (activity final node)]
 
-\tikz{
+\tikz[uml activity]{
   \node[activity final] at (1,0) (node) {};
   \draw[arrow] (0,0) -- (node);
 }
 
 \item[Verzweigungsknoten]
 
-\tikz{
+\tikz[uml activity]{
   \node[decision,scale=1.5] at (1,0) (node) {};
   \draw[arrow] (0,0) -- (node);
   \draw[arrow] (node) -- (2,0.5);
@@ -167,7 +166,7 @@ nur Kontrollkanten weg.
 
 \item[Verbindungsknoten]
 
-\tikz{
+\tikz[uml activity]{
   \node[decision,scale=1.5] at (1,0) (node) {};
   \draw[arrow] (0,0.5) -- (node);
   \draw[arrow] (0,0) -- (node);

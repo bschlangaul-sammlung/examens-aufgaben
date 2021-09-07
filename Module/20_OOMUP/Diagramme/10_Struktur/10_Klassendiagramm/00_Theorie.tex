@@ -47,6 +47,7 @@
 \item \cite{wiki:klassendiagramm}
 \end{liQuellen}
 
+\noindent
 Klassendiagramme (class diagrams) beschreiben die Entitäten eines
 Systems und welche Beziehungen sie untereinander eingehen können
 (Struktur der Daten). Neben Paketdiagrammen werden Klassendiagramme bzw.
@@ -162,17 +163,16 @@ darge­stellt, das nach dem Assoziationsnamen platziert wird und dessen
 Spitze in die gewünschte Leserichtung weist.
 \footcite[Seite 144]{rupp}
 \liLatexCode{
-  \umlassoc[name=fach-lehrer]{Fach}{Lehrer}
-  \node[below=0cm of fach-lehrer-middle] {unterrichtet \liLeserichtungRechts};
+  \umlassoc[name=unterrichtet]{Fach}{Lehrer}
+  \liUmlLeserichtung[pos=below,dir=right,distance=0cm]{unterrichtet}
 }
 
 \begin{center}
 \begin{tikzpicture}
 \umlsimpleclass{Fach}
 \umlsimpleclass[x=5]{Lehrer}
-\umlassoc[name=fach-lehrer]{Fach}{Lehrer}
-
-\node[below=0cm of fach-lehrer-middle] {unterrichtet \liLeserichtungRechts};
+\umlassoc[name=unterrichtet]{Fach}{Lehrer}
+\liUmlLeserichtung[pos=below,dir=right,distance=0cm]{unterrichtet}
 \end{tikzpicture}
 \end{center}
 
@@ -239,7 +239,7 @@ ausgefüllten Dreieck als Pfeilspitze. \liLatexCode{\umlreal{A}{B}}
 \item[Aggregation (Aggregation)]
 
 Teil-Ganzes-Beziehung, nicht-ausgefüllte Raute am „Ganzen“-Objekt,
-in Java keine entsprechung
+in Java keine Entsprechung
 \liLatexCode{\umlaggreg{A}{B}}
 
 \begin{center}

@@ -1,14 +1,15 @@
-\documentclass{lehramt-informatik-haupt}
+\documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{syntax,uml}
 \begin{document}
-
-\chapter{Aufgabenblatt 5: Vererbung}
-
-%-----------------------------------------------------------------------
-%
-%-----------------------------------------------------------------------
-
-\section{Aufgabe 1\footcite{oomup:ab:5}}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe Klassendiagramm und Vererbung},
+  Thematik = {Kleintierpraxis},
+  RelativerPfad = Module/20_OOMUP/Diagramme/10_Struktur/10_Klassendiagramm/Aufgabe_Kleintierpraxis.tex,
+  ZitatSchluessel = oomup:ab:5,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {Klassendiagramm, Vererbung},
+}
 
 In der Kleintierpraxis Dr. Huf werden \emph{Hunde}, \emph{Katzen} und
 \emph{Heimtiere}\footnote{Unter Heimtiere versteht man hier Kleintiere
@@ -23,8 +24,7 @@ mindestens 2 Dezimalen) erfasst. Bei einem \emph{Hund} wird zusätzlich
 aufgenommen, ob er \emph{reinrassig} ist, bei einer \emph{Katze}, ob sie
 ausschließlich \emph{in der Wohnung gehalten} wird, und beim
 \emph{Heimtier}, ob es zur \emph{Lebensmittellieferung} dient.
-
-\renewcommand{\labelenumi}{(\alph{enumi})}
+\footcite{oomup:ab:5}
 \begin{enumerate}
 
 %%
@@ -33,7 +33,9 @@ ausschließlich \emph{in der Wohnung gehalten} wird, und beim
 
 \item Erstellen Sie ein entsprechendes Klassendiagramm (zunächst ohne
 Methoden), das den oben beschriebenen Sachverhalt geeignet erfasst.
+\index{Klassendiagramm}
 
+\begin{liAntwort}
 \begin{tikzpicture}
 \umlclass[type=abstrakt,x=3.5,y=3.5]{Kleintier}{
   \# name : String \\
@@ -48,6 +50,7 @@ Methoden), das den oben beschriebenen Sachverhalt geeignet erfasst.
 \umlVHVinherit[arm1=1.5cm]{Katze}{Kleintier}
 \umlVHVinherit[arm1=1.5cm]{Heimtier}{Kleintier}
 \end{tikzpicture}
+\end{liAntwort}
 
 %%
 % (b)
@@ -56,19 +59,22 @@ Methoden), das den oben beschriebenen Sachverhalt geeignet erfasst.
 \item Implementieren Sie die Klassen gemäß des Modells aus Teilaufgabe a
 in der Programmierumgebung BlueJ. Beachten Sie dabei die abstrakte
 Oberklasse!
+\index{Vererbung}
 
+\begin{liAntwort}
 \liPseudoUeberschrift{Klasse \emph{Kleintier}}
-\liJavaDatei[firstline=3,lastline=6]{aufgaben/oomup/ab_5/Kleintier}
-\liJavaDatei[firstline=10,lastline=13]{aufgaben/oomup/ab_5/Kleintier}
+\liJavaDatei[firstline=3,lastline=6]{aufgaben/oomup/klassendiagramm/kleintierpraxis/Kleintier}
+\liJavaDatei[firstline=10,lastline=13]{aufgaben/oomup/klassendiagramm/kleintierpraxis/Kleintier}
 
 \liPseudoUeberschrift{Klasse \emph{Hund}}
-\liJavaDatei[firstline=3,lastline=8]{aufgaben/oomup/ab_5/Hund}
+\liJavaDatei[firstline=3,lastline=8]{aufgaben/oomup/klassendiagramm/kleintierpraxis/Hund}
 
 \liPseudoUeberschrift{Klasse \emph{Katze}}
-\liJavaDatei[firstline=3,lastline=9]{aufgaben/oomup/ab_5/Katze}
+\liJavaDatei[firstline=3,lastline=9]{aufgaben/oomup/klassendiagramm/kleintierpraxis/Katze}
 
 \liPseudoUeberschrift{Klasse \emph{Heimtier}}
-\liJavaDatei[firstline=3,lastline=9]{aufgaben/oomup/ab_5/Heimtier}
+\liJavaDatei[firstline=3,lastline=9]{aufgaben/oomup/klassendiagramm/kleintierpraxis/Heimtier}
+\end{liAntwort}
 
 %%
 % (c)
@@ -124,7 +130,7 @@ Bildschirm ausgibt, und implementieren Sie sie.
 \begin{liAntwort}
 Einfügen in der abstrakten Klasse \emph{Heimtier}.
 
-\liJavaDatei[firstline=3]{aufgaben/oomup/ab_5/Hund}
+\liJavaDatei[firstline=3]{aufgaben/oomup/klassendiagramm/kleintierpraxis/Hund}
 
 Einfügen in den Konstruktor der Klasse \emph{Hund}:
 \begin{minted}{java}
@@ -155,7 +161,7 @@ reinrassig ist oder nicht.
 \begin{liAntwort}
 Einfügen in der Klasse \emph{Hund}:
 
-\liJavaDatei[firstline=12,lastline=20]{aufgaben/oomup/ab_5/Hund}
+\liJavaDatei[firstline=12,lastline=20]{aufgaben/oomup/klassendiagramm/kleintierpraxis/Hund}
 \end{liAntwort}
 \end{enumerate}
 
