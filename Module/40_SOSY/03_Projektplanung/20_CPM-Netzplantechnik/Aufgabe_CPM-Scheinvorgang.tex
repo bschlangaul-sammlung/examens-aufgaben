@@ -1,21 +1,28 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{cpm,mathe}
 \begin{document}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 1: CPM-Netzplantechnik},
+  Thematik = {CPM mit Scheinvorgang},
+  RelativerPfad = Module/40_SOSY/03_Projektplanung/20_CPM-Netzplantechnik/Aufgabe_CPM-Scheinvorgang.tex,
+  ZitatSchluessel = sosy:ab:5,
+  ZitatBeschreibung = {Seite 1},
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {CPM-Netzplantechnik},
+}
+
 \let\f=\footnotesize
-\let\FZ=\liCpmFruehesterI
-\let\SZ=\liCpmSpaetesterI
+\let\FZ=\liCpmFruehI
+\let\SZ=\liCpmSpaetI
 \let\v=\liCpmVon
 \let\vz=\liCpmVonZu
 \let\z=\liCpmZu
 
-\liAufgabenTitel{CPM mit Scheinvorgang}
-\section{Aufgabe 1: CPM-Netzplantechnik
-\index{CPM-Netzplantechnik}
-\footcite[Seite 1]{sosy:ab:5}
-}
-
 Gegeben ist das nachfolgende CPM-Netz. Gestrichelte Linien zwischen
 Ereignissen stellen Scheinvorgänge mit einer Dauer von $0$ dar.
+\index{CPM-Netzplantechnik}
+\footcite[Seite 1]{sosy:ab:5}
 
 \begin{center}
 \begin{tikzpicture}
@@ -92,11 +99,11 @@ $i$ & Nebenrechnung & \FZ \\\hline\hline
 \hline
 $i$ & Nebenrechnung & \SZ \\\hline\hline
 1 &                                         & $0$ \\\hline
-2 & \f$\max(\v{8}(5) - 4$                   & $4$ \\\hline
-3 & \f$\max(\v{8}(6) - 3,\v{7}(4) - 4)$     & $3$ \\\hline
-4 & \f$\max(\v{8}(5) - 1,\v{8}(6) - 0)$     & $7$ \\\hline
-5 & \f$\max(\v{16}(8) - 2,\v{11}(7) - 3)$   & $8$ \\\hline
-6 & \f$\max(\v{11}(7) - 3,\v{13}(9) - 0)$   & $8$ \\\hline
+2 & \f$\min(\v{8}(5) - 4$                   & $4$ \\\hline
+3 & \f$\min(\v{8}(6) - 3,\v{7}(4) - 4)$     & $3$ \\\hline
+4 & \f$\min(\v{8}(5) - 1,\v{8}(6) - 0)$     & $7$ \\\hline
+5 & \f$\min(\v{16}(8) - 2,\v{11}(7) - 3)$   & $8$ \\\hline
+6 & \f$\min(\v{11}(7) - 3,\v{13}(9) - 0)$   & $8$ \\\hline
 7 & \f$\min(\v{16}(10) - 1, \v{13}(9) - 2)$ & $11$ \\\hline
 8 & \f$\v{16}(10) - 0$                      & $16$ \\\hline
 9 & \f$\v{16}(10) - 3$                      & $13$ \\\hline

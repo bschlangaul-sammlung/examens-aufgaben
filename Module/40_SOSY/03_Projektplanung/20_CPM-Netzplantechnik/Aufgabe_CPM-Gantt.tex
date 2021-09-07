@@ -2,8 +2,8 @@
 \liLadePakete{cpm,gantt,mathe}
 \begin{document}
 \let\f=\footnotesize
-\let\FZ=\liCpmFruehesterI
-\let\SZ=\liCpmSpaetesterI
+\let\FZ=\liCpmFruehI
+\let\SZ=\liCpmSpaetI
 \let\v=\liCpmVon
 \let\vz=\liCpmVonZu
 \let\z=\liCpmZu
@@ -78,18 +78,16 @@ Tabelle die Zeiten der Vorgänge berechnen.
 
 \liPseudoUeberschrift{Frühester Termin/Zeitpunkt}
 
-\begin{tabular}{|l|r|r|}
+\liCpmFruehErklaerung
+
+\begin{tabular}{|l|l|r|}
 \hline
-$i$ & Nebenrechnung & \FZ \\\hline\hline
-1             &                                                & 0 \\\hline
-2             & \f$0 + \vz{1}(1-2) = 1$                         & 1 \\\hline
-3             & \f$\vz{1}(1-2) + \vz{1}(2-3) = 2$                & 2 \\\hline
-4             & \f$\vz{1}(1-2) + \vz{3}(2-4) = 4$                & \\
-              & \f$\vz{1}(1-2) + \vz{1}(2-3) + \vz{0}(3-4) = 2$   & \\
-              & \f$\max(4,2)$                                  & 4 \\\hline
-5             & \f$\f\vz{1}(1-2) + \vz{1}(2-3) + \vz{6}(3-5) = 8$ & \\
-              & \f$\vz{1}(1-2) + \vz{3}(2-4) + \vz{3}(4-5) = 7$   & \\
-              & \f$\max(8,7)$                                  & 8 \\\hline
+$i$ & Nebenrechnung    & \FZ \\\hline
+1   &                  & 0   \\
+2   &                  & 1   \\
+3   &                  & 2   \\
+4   & $\max(4_2, 2_3)$ & 4   \\
+5   & $\max(8_3, 7_4)$ & 8   \\\hline
 \end{tabular}
 
 %%
@@ -98,21 +96,16 @@ $i$ & Nebenrechnung & \FZ \\\hline\hline
 
 \liPseudoUeberschrift{Spätester Termin/Zeitpunkt}
 
-\begin{tabular}{|l|r|r|}
+\liCpmSpaetErklaerung
+
+\begin{tabular}{|l|l|r|}
 \hline
-$i$ & Nebenrechnung & \SZ \\\hline\hline
-1             & \f$8 - \vz{6}(3-5) - \vz{1}(2-3) - \vz{1}(1-2) = 0$ & \\
-              & \f$8 - \vz{3}(4-5) - \vz{3}(2-4) - \vz{1}(1-2) = 1$ & \\
-              & \f$\min(0,1)$ & 0 \\\hline
-
-2             & \f$8 - \vz{6}(3-5) - \vz{1}(2-3) = 1$ & \\
-              & \f$8 - \vz{3}(4-5) - \vz{3}(2-4) = 2$ & \\
-              & \f$\min(1,2)$ & 1 \\\hline
-
-3             & \f$8 - \vz{6}(3-5) = 2$ & 2  \\\hline
-
-4             & \f$8 - \vz{3}(4-5) = 5$      & 3 \\\hline
-5             & \f{}siehe $\text{FZ}_5$  & 8 \\\hline
+$i$ & Nebenrechnung    & \SZ \\\hline
+5   & siehe \FZ[5]     & 8   \\
+4   &                  & 5   \\
+3   & $\min(2_5, 5_4)$ & 2   \\
+2   & $\min(1_3,2_4)$  & 1   \\
+1   &                  & 0   \\\hline
 \end{tabular}
 \end{liAntwort}
 

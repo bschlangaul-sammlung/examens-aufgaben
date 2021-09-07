@@ -18,8 +18,8 @@
 }
 
 \let\f=\footnotesize
-\let\FZ=\liCpmFruehesterI
-\let\SZ=\liCpmSpaetesterI
+\let\FZ=\liCpmFruehI
+\let\SZ=\liCpmSpaetI
 
 Gegeben seien folgende Tätigkeiten mit ihren Abhängigkeiten und Dauern:
 \index{CPM-Netzplantechnik}
@@ -237,33 +237,40 @@ in Ihrem Diagramm.
 \begin{liAntwort}
 \liPseudoUeberschrift{Knoten sind Anfang der Tasks}
 
-\begin{tabular}{|l|r|r|}
-$i$ & Nebenrechnung            & \FZ \\\hline\hline
-T1  &                          & 0 \\
-T2  &                          & 0 \\
-T3  &                          & 3 \\
-T4  &                          & 6 \\
-T5  &                          & 3 \\
-T6  & $\max(8_{T4}, 8_{T5})$   & 8 \\
-T7  &                          & 5 \\
-T8  &                          & 8 \\
-T9  & $\max(11_{T6}, 15_{T4})$ & 15 \\
-T10 & $\max(19_{T9}, 11_{T7})$ & 19 \\
-E   &                          & 20 \\
+\liCpmFruehErklaerung
+
+\begin{tabular}{|l|l|r|}
+\hline
+$i$ & Nebenrechnung            & \FZ \\\hline
+T1  &                          & 0   \\
+T2  &                          & 0   \\
+T3  &                          & 3   \\
+T4  &                          & 6   \\
+T5  &                          & 3   \\
+T6  & $\max(8_{T4}, 8_{T5})$   & 8   \\
+T7  &                          & 5   \\
+T8  &                          & 8   \\
+T9  & $\max(11_{T6}, 15_{T4})$ & 15  \\
+T10 & $\max(19_{T9}, 11_{T7})$ & 19  \\
+E   &                          & 20  \\\hline
 \end{tabular}
-\begin{tabular}{|l|r|r|}
-$i$ & Nebenrechnung & \SZ \\\hline\hline
-T1  & $\min(8_{T3}, 4_{T5})$   & 4 \\
-T2  &                          & 0 \\
-T3  &                          & 11 \\
-T4  & $\min(12_{T6}, 6_{T8})$  & 6 \\
-T5  &                          & 7 \\
-T6  &                          & 12 \\
-T7  &                          & 13 \\
-T8  &                          & 8 \\
-T9  &                          & 15 \\
-T10 &                          & 19 \\
-E   &                          & 20 \\
+
+\liCpmSpaetErklaerung
+
+\begin{tabular}{|l|l|r|}
+\hline
+$i$ & Nebenrechnung            & \SZ \\\hline
+E   &                          & 20  \\
+T10 &                          & 19  \\
+T9  &                          & 15  \\
+T8  &                          & 8   \\
+T7  &                          & 13  \\
+T6  &                          & 12  \\
+T5  &                          & 7   \\
+T4  & $\min(12_{T6}, 6_{T8})$  & 6   \\
+T3  &                          & 11  \\
+T2  &                          & 0   \\
+T1  & $\min(8_{T3}, 4_{T5})$   & 4   \\\hline
 \end{tabular}
 
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|}
@@ -276,33 +283,40 @@ GP  & 4  & 0  & 8   & 0  & 4  & 4  & 8  & 0  & 0  & 0   & 0  \\\hline
 
 \liPseudoUeberschrift{Knoten sind Ende der Tasks}
 
-\begin{tabular}{|l|r|r|}
-$i$ & Nebenrechnung            & \FZ \\\hline\hline
-T1  &                          & 3 \\
-T2  &                          & 6 \\
-T3  &                          & 5 \\
-T4  &                          & 8 \\
-T5  &                          & 8 \\
-T6  & $\max(11_{T4}, 11_{T5})$ & 11 \\
-T7  &                          & 11 \\
-T8  &                          & 15 \\
-T9  & $\max(15_{T6}, 19_{T8})$ & 19 \\
-T10 & $\max(20_{T9}, 12_{T7})$ & 20 \\
-E   &                          & 20 \\
+\liCpmFruehErklaerung
+
+\begin{tabular}{|l|l|r|}
+\hline
+$i$ & Nebenrechnung            & \FZ \\\hline
+T1  &                          & 3   \\
+T2  &                          & 6   \\
+T3  &                          & 5   \\
+T4  &                          & 8   \\
+T5  &                          & 8   \\
+T6  & $\max(11_{T4}, 11_{T5})$ & 11  \\
+T7  &                          & 11  \\
+T8  &                          & 15  \\
+T9  & $\max(15_{T6}, 19_{T8})$ & 19  \\
+T10 & $\max(20_{T9}, 12_{T7})$ & 20  \\
+E   &                          & 20  \\\hline
 \end{tabular}
-\begin{tabular}{|l|r|r|}
-$i$ & Nebenrechnung & \SZ \\\hline\hline
-T1  & $\min(11_{T3}, 7_{T5})$  & 7 \\
-T2  &                          & 6 \\
-T3  &                          & 13 \\
-T4  & $\min(12_{T6}, 8_{T8})$  & 8 \\
-T5  &                          & 12 \\
-T6  &                          & 15 \\
-T7  &                          & 19 \\
-T8  &                          & 15 \\
-T9  &                          & 19 \\
-T10 &                          & 20 \\
-E   &                          & 20 \\
+
+\liCpmSpaetErklaerung
+
+\begin{tabular}{|l|l|r|}
+\hline
+$i$ & Nebenrechnung            & \SZ \\\hline
+E   &                          & 20  \\
+T10 &                          & 20  \\
+T9  &                          & 19  \\
+T8  &                          & 15  \\
+T7  &                          & 19  \\
+T6  &                          & 15  \\
+T5  &                          & 12  \\
+T4  & $\min(12_{T6}, 8_{T8})$  & 8   \\
+T3  &                          & 13  \\
+T2  &                          & 6   \\
+T1  & $\min(11_{T3}, 7_{T5})$  & 7   \\\hline
 \end{tabular}
 
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|}

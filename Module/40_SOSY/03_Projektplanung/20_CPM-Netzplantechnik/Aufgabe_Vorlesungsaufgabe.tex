@@ -1,0 +1,130 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{cpm}
+\begin{document}
+\liAufgabenMetadaten{
+  Titel = {Vorlesungsaufgabe},
+  Thematik = {Ereignisse 1-8},
+  RelativerPfad = Module/40_SOSY/03_Projektplanung/20_CPM-Netzplantechnik/Aufgabe_Vorlesungsaufgabe.tex,
+  ZitatSchluessel = sosy:fs:3,
+  ZitatBeschreibung = {Seite 16 - 21},
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+}
+
+\let\SZ=\liCpmSpaetI
+\let\FZ=\liCpmFruehI
+\let\f=\footnotesize
+\let\vz=\liCpmVonZu
+
+Die untenstehende Abbildung stellt ein CPM-Netzwerk dar. Die Ereignisse
+sind fortlaufend nummeriert (Nummer im Inneren der Kreise) und tragen
+keine Namen.
+
+\begin{center}
+\begin{tikzpicture}
+\liCpmEreignis{1}{0}{2}
+\liCpmEreignis{2}{1}{3.5}
+\liCpmEreignis{3}{3}{2}
+\liCpmEreignis{4}{2}{0.5}
+\liCpmEreignis{5}{4}{3.5}
+\liCpmEreignis{6}{5}{2}
+\liCpmEreignis{7}{5}{0.5}
+\liCpmEreignis{8}{7.5}{2}
+
+\liCpmVorgang{1}{2}{5}
+\liCpmVorgang{1}{3}{18}
+\liCpmVorgang{1}{4}{7}
+\liCpmVorgang{4}{7}{15}
+\liCpmVorgang{7}{8}{6}
+\liCpmVorgang{3}{6}{8}
+\liCpmVorgang{3}{7}{1}
+\liCpmVorgang{2}{5}{14}
+\liCpmVorgang{5}{8}{11}
+\liCpmVorgang{6}{8}{4}
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Berechnen Sie die früheste Zeit für jedes Ereignis, wobei
+angenommen wird, dass das Projekt zum Zeitpunkt 0 startet!
+
+\begin{liAntwort}
+\liCpmFruehErklaerung
+
+\begin{tabular}{|l|l|r|}
+\hline
+i & Nebenrechnung            & \FZ \\\hline
+1 &                          & 0   \\
+2 &                          & 5   \\
+3 &                          & 18  \\
+4 &                          & 7   \\
+5 &                          & 19  \\
+6 &                          & 26  \\
+7 & $\max(19_3, 22_4)$       & 22  \\
+8 & $\max(30_5, 30_6, 28_7)$ & 30  \\\hline
+\end{tabular}
+\end{liAntwort}
+
+%%
+%
+%%
+
+\item Setzen Sie anschließend beim letzten Ereignis die späteste Zeit
+gleich der frühesten Zeit und berechnen Sie die spätesten Zeiten!
+
+\begin{liAntwort}
+\liCpmSpaetErklaerung
+
+\begin{tabular}{|l|l|r|}
+\hline
+$i$ & Nebenrechnung         & \SZ \\\hline
+8 & siehe \FZ[8]            & 30  \\
+7 &                         & 24  \\
+6 &                         & 26  \\
+5 &                         & 19  \\
+4 &                         & 9   \\
+3 & $\min(18_6, 23_7)$      & 18  \\
+2 &                         & 5   \\
+1 & $\min(0_2, 0_3, 2_4)$   & 0   \\\hline
+\end{tabular}
+\end{liAntwort}
+
+%%
+%
+%%
+
+\item Berechnen Sie nun für jedes Ereignis die Pufferzeiten!
+
+\begin{liAntwort}
+GP: gesamter Pufferzeit ($\text{GP} = \text{SZ} - \text{FZ}$)
+\end{liAntwort}
+
+%%
+%
+%%
+
+\item Bestimmen Sie den kritischen Pfad!
+
+\begin{liAntwort}
+Kritische Pfade: Pfad(e) mit minimaler Pufferzeit, meist $0$
+
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+\hline
+$i$           & 1 & 2 & 3  & 4 & 5  & 6  & 7  & 8  \\\hline\hline
+\FZ & 0 & 5 & 18 & 7 & 19 & 26 & 22 & 30 \\\hline
+\SZ & 0 & 5 & 18 & 9 & 19 & 26 & 24 & 30 \\\hline
+GP            & 0 & 0 & 0  & 2 & 0  & 0  & 2  & 0  \\\hline
+\end{tabular}
+
+\bigskip
+
+\bigskip
+
+\end{liAntwort}
+\end{enumerate}
+\end{document}

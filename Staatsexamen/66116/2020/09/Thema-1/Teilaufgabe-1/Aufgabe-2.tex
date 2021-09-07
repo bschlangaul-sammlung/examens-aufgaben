@@ -18,8 +18,8 @@
 }
 
 \let\f=\footnotesize
-\let\FZ=\liCpmFruehesterI
-\let\SZ=\liCpmSpaetesterI
+\let\FZ=\liCpmFruehI
+\let\SZ=\liCpmSpaetI
 \let\v=\liCpmVon
 \let\vz=\liCpmVonZu
 \let\z=\liCpmZu
@@ -174,15 +174,17 @@ Gegeben sei nun das folgende CPM-Netzwerk:
 \item Geben Sie für jedes Ereignis die früheste Zeit an.
 
 \begin{liAntwort}
-\begin{tabular}{|l|r|r|}
-$i$ & Nebenrechnung & \FZ \\\hline\hline
-a &                        & 0 \\
-b &                        & 2 \\
-c &                        & 5 \\
-d & $\max(2_b, 6_c)$       & 6 \\
-e & $\max(6_d, 10_e, 7_f)$ & 10 \\
-f & $\max(3_f, 2_b)$       & 3 \\
-g &                        & 12 \\
+\liCpmFruehErklaerung
+\begin{tabular}{|l|l|r|}
+\hline
+$i$ & Nebenrechnung          & \FZ \\\hline
+a   &                        & 0   \\
+b   &                        & 2   \\
+c   &                        & 5   \\
+d   & $\max(2_b, 6_c)$       & 6   \\
+e   & $\max(6_d, 10_e, 7_f)$ & 10  \\
+f   & $\max(3_f, 2_b)$       & 3   \\
+g   &                        & 12  \\\hline
 \end{tabular}
 \end{liAntwort}
 
@@ -193,15 +195,17 @@ g &                        & 12 \\
 \item Geben Sie für jedes Ereignis die späteste Zeit an.
 
 \begin{liAntwort}
-\begin{tabular}{|l|r|r|}
-$i$ & Nebenrechnung & \SZ \\\hline\hline
-a &                        & 0 \\
-b & $\min(2_c, 10_d, 6_f)$ & 2 \\
-c & $\min(9_d, 5_e)$       & 5 \\
-d &                        & 10 \\
-e &                        & 10 \\
-f &                        & 6 \\
-g &                        & 12 \\
+\liCpmSpaetErklaerung
+\begin{tabular}{|l|l|r|}
+\hline
+$i$ & Nebenrechnung        & \SZ \\\hline
+g &                        & 12  \\
+f &                        & 6   \\
+e &                        & 10  \\
+d &                        & 10  \\
+c & $\min(9_d, 5_e)$       & 5   \\
+b & $\min(2_c, 10_d, 6_f)$ & 2   \\
+a &                        & 0   \\\hline
 \end{tabular}
 \end{liAntwort}
 

@@ -823,6 +823,7 @@ Setzen der Aufgaben-Metadaten.]
     sortieren,
     spalten,
     struktogramm,
+    sql,
     syntax,
     syntaxbaum,
     synthese-algorithmus,
@@ -832,6 +833,7 @@ Setzen der Aufgaben-Metadaten.]
     vollstaendige-induktion,
     wasserfall,
     wpkalkuel,
+    %
     baum, % am Schluss sonst Fehler: undefined command \edge
   }
 }
@@ -1424,17 +1426,19 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\liLadePakete{mathe}
+\liLadePakete{mathe,typographie}
 %    \end{macrocode}
 
 % \liLets{
 %   f = footnotesize,
-%   FZ = liCpmFruehesterI,
-%   SZ = liCpmSpaetesterI,
+%   FZ = liCpmFruehI,
+%   SZ = liCpmSpaetI,
 %   v = liCpmVon,
 %   vz = liCpmVonZu,
 %   z = liCpmZu,
 % }
+
+% \subsubsection{TeX-Markup-Beispiel: Graph}
 
 % \begin{tikzpicture}[scale=0.8,transform shape]
 % \liCpmEreignis{1}{0}{2}
@@ -1482,6 +1486,8 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \end{tikzpicture}
 % \end{verbatim}
 
+% \subsubsection{TeX-Markup-Beispiel: Ergebnistabelle}
+
 % \begin{verbatim}
 % \begin{tabular}{|l|l|l|l|l|l|l|l|}
 % \hline
@@ -1489,6 +1495,42 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \FZ & 0 & 2 & 5  & 6  & 10 & 3  & 12 \\\hline
 % \SZ & 0 & 2 & 5  & 10 & 10 & 6  & 12 \\\hline
 % GP  & 0 & 0 & 0  & 3  & 0  & 3  & 0  \\\hline
+% \end{tabular}
+% \end{verbatim}
+
+% \subsubsection{TeX-Markup-Beispiel: Nebenrechnungstabelle „Frühester Zeitpunkt“}
+
+% \begin{verbatim}
+% \liCpmFruehErklaerung
+% \begin{tabular}{|l|l|r|}
+% \hline
+% i & Nebenrechnung            & \FZ \\\hline
+% 1 &                          & 0   \\
+% 2 &                          & 5   \\
+% 3 &                          & 18  \\
+% 4 &                          & 7   \\
+% 5 &                          & 19  \\
+% 6 &                          & 26  \\
+% 7 & $\max(19_3, 22_4)$       & 22  \\
+% 8 & $\max(30_5, 30_6, 28_7)$ & 30  \\\hline
+% \end{tabular}
+% \end{verbatim}
+
+% \subsubsection{TeX-Markup-Beispiel: Nebenrechnungstabelle „Spätester Zeitpunkt“}
+
+% \begin{verbatim}
+% \liCpmSpaetErklaerung
+% \begin{tabular}{|l|l|r|}
+% \hline
+% $i$ & Nebenrechnung         & \SZ \\\hline
+% 8 & siehe \FZ[8]            & 30  \\
+% 7 &                         & 24  \\
+% 6 &                         & 26  \\
+% 5 &                         & 19  \\
+% 4 &                         & 9   \\
+% 3 & $\min(18_6, 23_7)$      & 18  \\
+% 2 &                         & 5   \\
+% 1 & $\min(0_2, 0_3, 2_4)$   & 0   \\\hline
 % \end{tabular}
 % \end{verbatim}
 
@@ -1593,21 +1635,93 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liCpmSpaetesterI}
-% Spätester Zeitpunkt, zu dem Ereignis $i$ eintreten kann
-% \liLet{SZ}{liCpmSpaetesterI}
 %    \begin{macrocode}
-\def\liCpmSpaetesterI{$SZ_i$}
+\ExplSyntaxOn
+%    \end{macrocode}
+
+% \begin{macro}{\liCpmSpaetI}
+% Spätester Zeitpunkt, zu dem Ereignis $i$ eintreten kann
+% \liLet{SZ}{liCpmSpaetI}
+%    \begin{macrocode}
+\NewDocumentCommand{ \liCpmSpaetI } { O{i} } {
+  \ifmmode
+    SZ\sb{#1}
+  \else
+    $SZ\sb{#1}$
+  \fi
+}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liCpmFruehesterI}
+% \begin{macro}{\liCpmFruehI}
 % Frühester Zeitpunkt, zu dem Ereignis $i$ eintreten kann.
-% \liLet{FZ}{liCpmFruehesterI}
+% \liLet{FZ}{liCpmFruehI}
 %    \begin{macrocode}
-\def\liCpmFruehesterI{$FZ_i$}
+\NewDocumentCommand{ \liCpmFruehI } { O{i} } {
+  \ifmmode
+    FZ\sb{#1}
+  \else
+    $FZ\sb{#1}$
+  \fi
+}
 %    \end{macrocode}
 % \end{macro}
+
+% \begin{macro}{\liCpmFruehErklaerung}
+% \begin{liBeispiel}
+% \liCpmFruehErklaerung
+% \end{liBeispiel}
+%    \begin{macrocode}
+\def\liCpmFruehErklaerung{
+  \liParagraphMitLinien{
+    Wir~führen~eine~Vorwärtsterminierung~durch~
+    und~addieren~die~Dauern.~
+
+    Kann~ein~Ereignis~über~mehrere~Vorgänge~erreicht~
+    werden,~wählen~wir~das~Maximum~aus.~
+
+    \textbf{Erläuterungen:}~
+
+    $i$:~
+    Ereignis~$i$;~\,
+
+    \liCpmFruehI{}:~
+    Frühester~Zeitpunkt,~zu~dem~Ereignis~$i$~eintreten~kann
+    .
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liCpmSpaetErklaerung}
+% \begin{liBeispiel}
+% \liCpmSpaetErklaerung
+% \end{liBeispiel}
+%    \begin{macrocode}
+\def\liCpmSpaetErklaerung{
+  \liParagraphMitLinien{
+    Wir~führen~eine~Rückwärtsterminierung~durch~
+    und~subtrahieren~die~Dauern~vom~letzten~Ereignis~aus.~
+
+    Kann~ein~Ereignis~über~mehrere~Vorgänge~erreicht~
+    werden,~wählen~wir~das~Minimum~aus.~
+
+    \textbf{Erläuterungen:}~
+
+    $i$:~
+    Ereignis~$i$;~\,
+
+    \liCpmSpaetI{}:~
+    Spätester~Zeitpunkt,~zu~dem~Ereignis~$i$~eintreten~kann
+    .
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
 
 %    \begin{macrocode}
 
@@ -3425,26 +3539,50 @@ Klasse liSetzeExamen konfigurieren, d. h. Laden von einigen Paketen, Registierun
 
 %    \begin{macrocode}
 \setcounter{tocdepth}{4}
+\RequirePackage[titles]{tocloft}
 \AddToHook{begindocument}{
+  \pagestyle{empty}
   \begin{center}
-  \liTypoUeberGross{Erste~Staatsprüfung~für~ein~Lehramt~an~öffentlichen~Schulen}
-  \end{center}
+  \large
+  Erste~Staatsprüfung~für~ein~Lehramt~an~öffentlichen~Schulen \par
+
+  \vspace{0.5cm}
+
+  Fach~Informatik \par
 
   \vfill
 
-  \begin{center}
-  \liTypoUeberGROSS{\g_auf_examen_nummer_tl}
+  {
+    \sffamily\bfseries\Huge
+
+    \g_auf_examen_jahreszeit_tl \par
+
+    \g_auf_examen_jahr_tl \par
+  }
+
+  \vspace{2cm}
+
+  {\LARGE \g_auf_examen_nummer_tl \par}
+
+  \vspace{0.5cm}
+
+  \g_auf_examen_fach_tl \par
+
+  \vspace{3cm}
+
+  Aufgabenstellungen~mit~Lösungsvorschlägen \par
+
   \end{center}
 
-  \begin{center}
-  \liTypoUeberGROSS{\g_auf_examen_jahr_tl}
-  \end{center}
-
-  \begin{center}
-  \liTypoUeberGROSS{\g_auf_examen_monat_tl}
-  \end{center}
+  % für den Abstand vor den section im Inhaltsverzeichnis
+  % https://tex.stackexchange.com/questions/241445/how-to-control-spacing-in-toc-for-different-sections
+  \setlength{\cftbeforesecskip}{1.5cm}
+  \setlength{\cftbeforesubsecskip}{0.5cm}
+  \renewcommand{\cftsubsecafterpnum}{\vspace{\cftbeforesubsecskip}}
+  \setlength{\cftbeforesubsubsecskip}{0.1cm}
 
   \vfill
+  \renewcommand{\contentsname}{Aufgabenübersicht}
   \tableofcontents
   \clearpage
 }
