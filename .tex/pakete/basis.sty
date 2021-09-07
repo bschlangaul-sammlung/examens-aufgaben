@@ -173,6 +173,83 @@
 %    \end{macrocode}
 
 %    \begin{macrocode}
+\cs_set:Nn \_trenner: {
+  \, / \,
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\cs_gset:Npn \_gib_jahreszeit_durch_monat: #1 {
+  % \str_case funktioniert nicht mit den Tokenlist variablen.
+  \tl_case:Nn { #1 }
+  {
+    { 3 } { Frühjahr }
+    { 03 } { Frühjahr }
+    { 9 } { Herbst }
+    { 09 } { Herbst }
+  }
+}
+%    \end{macrocode}
+
+% Definiert auch in .scripts/nodejs/src/examen.ts funktioniert nicht
+%    \begin{macrocode}
+\cs_gset:Npn \_gib_examen_fach_durch_nummer: #1 {
+  \tl_case:Nn { #1 }
+  {
+    { 46110 } { Grundlagen der Informatik (nicht vertieft) }
+    { 46111 } { Programmentwicklung / Systemprogrammierung / Datenbanksysteme (nicht vertieft) }
+    { 46112 } { Grundlagen der Informatik (nicht vertieft) }
+    { 46113 } { Theoretische Informatik (nicht vertieft) }
+    { 46114 } { Algorithmen / Datenstrukturen / Programmiermethoden (nicht vertieft) }
+    { 46115 } { Theoretische Informatik / Algorithmen / Datenstrukturen (nicht vertieft) }
+    { 46116 } { Softwaretechnologie / Datenbanksysteme (nicht vertieft) }
+    { 46118 } { Fachdidaktik (Mittelschulen) }
+    { 46119 } { Fachdidaktik (Realschulen) }
+    { 46121 } { Fachdidaktik (berufliche Schulen) }
+    { 66110 } { Automatentheorie, Algorithmische Sprache (vertieft) }
+    { 66111 } { Betriebssysteme / Datenbanksysteme / Rechnerarchitektur (vertieft) }
+    { 66112 } { Automatentheorie / Komplexität / Algorithmen (vertieft) }
+    { 66113 } { Rechnerarchitektur / Datenbanken / Betriebssysteme (vertieft) }
+    { 66114 } { Datenbank- und Betriebssysteme (vertieft) }
+    { 66115 } { Theoretische Informatik / Algorithmen (vertieft) }
+    { 66116 } { Datenbanksysteme / Softwaretechnologie (vertieft) }
+    { 66118 } { Fachdidaktik (Gymnasium) }
+  }
+}
+%    \end{macrocode}
+
+% Einzelprüfungsnummer / Jahr / Jahreszeit mit Trennzeichen
+%    \begin{macrocode}
+\cs_gset:Npn \_gib_einzelpruefung_trenner: {
+  Staatsexamen ~
+  \g_auf_examen_nummer_tl
+
+  \_trenner:
+
+  \g_auf_examen_jahr_tl
+
+  \_trenner:
+
+  \_gib_jahreszeit_durch_monat: \g_auf_examen_monat_tl
+}
+%    \end{macrocode}
+
+% Thema Nr.1  / Teilaufgabe Nr. 2 / Aufgabe 3
+%    \begin{macrocode}
+\cs_gset:Npn \_gib_aufgaben_pfad_trenner: {
+  \tl_if_empty:NTF \g_auf_examen_thema_nr_tl {} {
+    Thema ~ \g_auf_examen_thema_nr_tl \_trenner:
+  }
+  \tl_if_empty:NTF \g_auf_examen_teilaufgabe_nr_tl {} {
+    Teilaufgabe ~ \g_auf_examen_teilaufgabe_nr_tl \_trenner:
+  }
+  \tl_if_empty:NTF \g_auf_examen_aufgabe_nr_tl {} {
+    Aufgabe ~ \g_auf_examen_aufgabe_nr_tl
+  }
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \cs_gset:Npn \_gib_examen_titel: {
   \cs_set:Nn \_trenner: { \, / \, }
   \bool_if:nTF
@@ -215,15 +292,18 @@
 
 %    \begin{macrocode}
 \cs_new:Npn \_gib_github_url: {
+  \LehramtInformatikGithubDomain /
+  \LehramtInformatikGithubTexRepo /
+  blob /
+  \LehramtInformatikGitBranch /
+  \g_auf_relativer_pfad_tl
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\cs_new:Npn \_gib_github_url_href: {
   \tl_if_empty:NTF \g_auf_relativer_pfad_tl {} {
-    Github :~\href{
-      \LehramtInformatikGithubRawDomain /
-      \LehramtInformatikGithubTexRepo /
-      \LehramtInformatikGitBranch /
-      \g_auf_relativer_pfad_tl
-    }{
-      \nolinkurl{\g_auf_relativer_pfad_tl}
-    }
+    \url{ \_gib_github_url: }
   }
 }
 %    \end{macrocode}

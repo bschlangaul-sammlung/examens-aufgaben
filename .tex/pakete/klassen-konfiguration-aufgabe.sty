@@ -23,9 +23,40 @@ Klasse Aufgabe konfigurieren, d. h. Laden von einigen Paketen, Registierung von 
 \ExplSyntaxOn
 %    \end{macrocode}
 
+% \begin{macro}{\liAufgabenMetadaten}
+% \end{verbatim}
+%    \begin{macrocode}
+\def\liAufgabenMetadaten#1{
+  \liMetaSetze{#1}
+
+  \noindent
+  {\large \_gib_einzelpruefung_trenner: \par}
+
+  \medskip
+
+  \noindent
+  {\bfseries\Large\_gib_aufgaben_pfad_trenner:}
+}
+%    \end{macrocode}
+% \end{macro}
+
 %    \begin{macrocode}
 \AddToHook{enddocument}{
-  \_gib_github_url:
+  \vfill
+  {
+    \tiny
+    \noindent
+    Hilf~mit!~
+    Das~ist~ein~Community-Projekt.~
+    Verbesserungsvorschläge,~Fehlerkorrekturen,~weitere~Lösungen~sind~
+    sehr~willkommen~-~egal~wie~-~per~Pull-Request~oder~per~E-Mail~an~
+    \href{mailto:hermine.bschlangaul@gmx.net}{hermine.bschlangaul@gmx.net}~
+
+    \par\noindent
+    Der~\TeX-Quelltext~dieses~PDFs~kann~unter~folgender~URL~aufgerufen~werden:~
+
+    \par\noindent\hfill
+    \_gib_github_url_href:}
 }
 %    \end{macrocode}
 

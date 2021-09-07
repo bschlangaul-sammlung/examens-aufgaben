@@ -454,6 +454,7 @@ export class ExamenSammlung {
   }
 }
 
+// auch in .tex/pakete/basis.sty
 export const examensTitel: { [key: number]: string } = {
   46110: 'Grundlagen der Informatik (nicht vertieft)',
   46111: 'Programmentwicklung / Systemprogrammierung / Datenbanksysteme (nicht vertieft)',
