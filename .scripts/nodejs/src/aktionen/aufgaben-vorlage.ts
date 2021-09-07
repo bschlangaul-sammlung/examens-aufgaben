@@ -3,7 +3,8 @@ import fs from 'fs'
 
 import { öffneVSCode } from '../helfer'
 import { ExamensAufgabe } from '../aufgabe'
-import { machePlist } from '../tex'
+import { schreibeTexDatei } from '../tex'
+import { macheAufgabenMetadatenPlist } from './aufgaben-metadaten'
 
 interface AufgabenVorlagenWerte {
   /**
@@ -24,43 +25,22 @@ interface AufgabenVorlagenWerte {
   zitatSchlüssel?: string
 }
 
-function gibVorlage (werte: AufgabenVorlagenWerte = {}): string {
+function schreibeVorlage (
+  pfad: string,
+  werte: AufgabenVorlagenWerte = {}
+): void {
   const meta: { [schlüssel: string]: string } = {}
   meta.Titel = werte.titel != null ? werte.titel : ''
   meta.Thematik = werte.thematik != null ? werte.thematik : ''
   meta.ZitatSchluessel =
     werte.zitatSchlüssel != null ? werte.zitatSchlüssel : ''
 
-  const plist = machePlist('liAufgabenMetadaten', meta, [
-    'Titel',
-    'Thematik',
-    'ZitatBeschreibung',
-    'Stichwoerter'
-  ])
+  const plist = macheAufgabenMetadatenPlist(meta)
 
-  return (
-    '\\documentclass{lehramt-informatik-aufgabe}\n' +
-    '\\liLadePakete{}\n' +
-    '\\begin{document}\n' +
-    plist +
-    '\n' +
-    '\\index{}\n' +
-    '\\footcite{' +
-    meta.ZitatSchluessel +
-    '}\n' +
-    '\n' +
-    '\\end{document}\n'
-  )
-}
+  const textkörper =
+    plist + '\n' + '\\index{}\n' + '\\footcite{' + meta.ZitatSchluessel + '}\n'
 
-function schreibeAufgabenVorlage (
-  pfad: string,
-  werte: AufgabenVorlagenWerte
-): void {
-  fs.mkdirSync(path.dirname(pfad), { recursive: true })
-  if (!fs.existsSync(pfad)) {
-    fs.writeFileSync(pfad, gibVorlage(werte), { encoding: 'utf-8' })
-  }
+  schreibeTexDatei(pfad, 'aufgabe', '\\liLadePakete{}', textkörper)
 }
 
 export function erzeugeAufgabenVorlage (titel: string): void {
@@ -71,7 +51,7 @@ export function erzeugeAufgabenVorlage (titel: string): void {
   }
   const pfad = path.join(process.cwd(), `${dateiName}.tex`)
   if (!fs.existsSync(pfad)) {
-    schreibeAufgabenVorlage(pfad, {
+    schreibeVorlage(pfad, {
       titel
     })
   }
@@ -81,7 +61,7 @@ export function erzeugeAufgabenVorlage (titel: string): void {
 function schreibeExamensAufgabeVorlage (
   examensAufgabe: ExamensAufgabe
 ): string {
-  schreibeAufgabenVorlage(examensAufgabe.pfad, {
+  schreibeVorlage(examensAufgabe.pfad, {
     titel: examensAufgabe.aufgabeFormatiert,
     zitatSchlüssel: 'examen:' + examensAufgabe.examen.referenz
   })

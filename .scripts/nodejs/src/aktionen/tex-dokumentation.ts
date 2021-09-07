@@ -11,7 +11,6 @@ import {
 
 const texPfad = path.join(repositoryPfad, '.tex')
 const styPfad = path.join(texPfad, 'pakete')
-
 const dtxPfad = path.join(texPfad, 'dokumentation.dtx')
 
 function leseStyDatei (dateiName: string, dtxInhalte: string[]): void {

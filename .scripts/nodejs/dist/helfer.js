@@ -21,7 +21,12 @@ function löscheDatei(pfad) {
     fs_1.default.unlinkSync(pfad);
 }
 exports.löscheDatei = löscheDatei;
+/**
+ * @param pfad - Der Dateipfad, an dem die Text-Datei erzeugt werden soll.
+ * @param inhalt - Der Text-Inhalt, der in die Datei geschrieben werden soll.
+ */
 function schreibeDatei(pfad, inhalt) {
+    fs_1.default.mkdirSync(path_1.default.dirname(pfad), { recursive: true });
     fs_1.default.writeFileSync(pfad, inhalt, { encoding: 'utf-8' });
 }
 exports.schreibeDatei = schreibeDatei;

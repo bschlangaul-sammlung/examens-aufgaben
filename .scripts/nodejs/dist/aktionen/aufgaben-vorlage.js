@@ -9,35 +9,16 @@ const fs_1 = __importDefault(require("fs"));
 const helfer_1 = require("../helfer");
 const aufgabe_1 = require("../aufgabe");
 const tex_1 = require("../tex");
-function gibVorlage(werte = {}) {
+const aufgaben_metadaten_1 = require("./aufgaben-metadaten");
+function schreibeVorlage(pfad, werte = {}) {
     const meta = {};
     meta.Titel = werte.titel != null ? werte.titel : '';
     meta.Thematik = werte.thematik != null ? werte.thematik : '';
     meta.ZitatSchluessel =
         werte.zitatSchlüssel != null ? werte.zitatSchlüssel : '';
-    const plist = tex_1.machePlist('liAufgabenMetadaten', meta, [
-        'Titel',
-        'Thematik',
-        'ZitatBeschreibung',
-        'Stichwoerter'
-    ]);
-    return ('\\documentclass{lehramt-informatik-aufgabe}\n' +
-        '\\liLadePakete{}\n' +
-        '\\begin{document}\n' +
-        plist +
-        '\n' +
-        '\\index{}\n' +
-        '\\footcite{' +
-        meta.ZitatSchluessel +
-        '}\n' +
-        '\n' +
-        '\\end{document}\n');
-}
-function schreibeAufgabenVorlage(pfad, werte) {
-    fs_1.default.mkdirSync(path_1.default.dirname(pfad), { recursive: true });
-    if (!fs_1.default.existsSync(pfad)) {
-        fs_1.default.writeFileSync(pfad, gibVorlage(werte), { encoding: 'utf-8' });
-    }
+    const plist = aufgaben_metadaten_1.macheAufgabenMetadatenPlist(meta);
+    const textkörper = plist + '\n' + '\\index{}\n' + '\\footcite{' + meta.ZitatSchluessel + '}\n';
+    tex_1.schreibeTexDatei(pfad, 'aufgabe', '\\liLadePakete{}', textkörper);
 }
 function erzeugeAufgabenVorlage(titel) {
     let dateiName = 'Aufgabe_';
@@ -47,7 +28,7 @@ function erzeugeAufgabenVorlage(titel) {
     }
     const pfad = path_1.default.join(process.cwd(), `${dateiName}.tex`);
     if (!fs_1.default.existsSync(pfad)) {
-        schreibeAufgabenVorlage(pfad, {
+        schreibeVorlage(pfad, {
             titel
         });
     }
@@ -55,7 +36,7 @@ function erzeugeAufgabenVorlage(titel) {
 }
 exports.erzeugeAufgabenVorlage = erzeugeAufgabenVorlage;
 function schreibeExamensAufgabeVorlage(examensAufgabe) {
-    schreibeAufgabenVorlage(examensAufgabe.pfad, {
+    schreibeVorlage(examensAufgabe.pfad, {
         titel: examensAufgabe.aufgabeFormatiert,
         zitatSchlüssel: 'examen:' + examensAufgabe.examen.referenz
     });

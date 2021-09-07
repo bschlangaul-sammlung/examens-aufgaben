@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.schreibe = void 0;
+exports.macheAufgabenMetadatenPlist = exports.schreibe = void 0;
 const path_1 = __importDefault(require("path"));
 const aufgabe_1 = require("../aufgabe");
 const helfer_1 = require("../helfer");
@@ -26,6 +26,15 @@ function schreibe(dateiPfad, aufgabenInhalt, titelTexMakro) {
     return false;
 }
 exports.schreibe = schreibe;
+function macheAufgabenMetadatenPlist(meta) {
+    return tex_1.machePlist('liAufgabenMetadaten', meta, [
+        'Titel',
+        'Thematik',
+        'ZitatBeschreibung',
+        'Stichwoerter'
+    ]);
+}
+exports.macheAufgabenMetadatenPlist = macheAufgabenMetadatenPlist;
 /**
  * ```latex
  * \liAufgabenMetadaten{

@@ -31,6 +31,17 @@ export function schreibe (
   return false
 }
 
+export function macheAufgabenMetadatenPlist (meta: {
+  [schlüssel: string]: any
+}): string {
+  return machePlist('liAufgabenMetadaten', meta, [
+    'Titel',
+    'Thematik',
+    'ZitatBeschreibung',
+    'Stichwoerter'
+  ])
+}
+
 /**
  * ```latex
  * \liAufgabenMetadaten{

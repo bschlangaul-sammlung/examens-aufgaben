@@ -23,7 +23,12 @@ export function löscheDatei (pfad: string): void {
   fs.unlinkSync(pfad)
 }
 
+/**
+ * @param pfad - Der Dateipfad, an dem die Text-Datei erzeugt werden soll.
+ * @param inhalt - Der Text-Inhalt, der in die Datei geschrieben werden soll.
+ */
 export function schreibeDatei (pfad: string, inhalt: string): void {
+  fs.mkdirSync(path.dirname(pfad), { recursive: true })
   fs.writeFileSync(pfad, inhalt, { encoding: 'utf-8' })
 }
 
