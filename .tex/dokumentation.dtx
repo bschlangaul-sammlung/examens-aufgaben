@@ -3512,6 +3512,35 @@ Klasse Aufgabe konfigurieren, d. h. Laden von einigen Paketen, Registierung von 
 \ExplSyntaxOn
 %    \end{macrocode}
 
+%    \begin{macrocode}
+\cs_gset:Npn \stichwoerter_formatiert: {
+  \tl_if_empty:NTF \g_auf_stichwoerter_tl {} {
+    \textbf{Stichwörter:} ~
+    \g_auf_stichwoerter_tl
+    \par
+  }
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\cs_gset:Npn \horizontale_linie: {
+  \par
+  \noindent
+  \rule{\textwidth}{0.8pt}
+  \par
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\cs_gset:Npn \thematik_formatiert: {
+  \tl_if_empty:NTF \g_auf_thematik_tl {} {
+    \textit{
+      ( \g_auf_thematik_tl )
+    }
+  }
+}
+%    \end{macrocode}
+
 % \begin{macro}{\liAufgabenMetadaten}
 %    \begin{macrocode}
 \def\liAufgabenMetadaten#1{
@@ -3524,10 +3553,20 @@ Klasse Aufgabe konfigurieren, d. h. Laden von einigen Paketen, Registierung von 
 
   \noindent
   {\bfseries\Large\_gib_aufgaben_pfad_trenner:}
+  \hfill \thematik_formatiert:
+  \par
 
   \medskip
 
+  \noindent
+  {\footnotesize\stichwoerter_formatiert:}
+
+  \horizontale_linie:
+
+  \bigskip
+
   \par
+  % Keine Einrückung
   \@afterindentfalse
   \@afterheading
 }
@@ -4184,6 +4223,10 @@ anderen Paket passen]
 \RequirePackage{paralist}
 %    \end{macrocode}
 
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+
 % \begin{macro}{\inhaltsverzeichnis}
 %    \begin{macrocode}
 \def\inhaltsverzeichnis {
@@ -4214,10 +4257,18 @@ anderen Paket passen]
 % Text, der sich wie eine Überschrift verhält.
 %    \begin{macrocode}
 \newcommand{\liPseudoUeberschrift}[1]{
-\bigskip
-\noindent
-\textsf{\textbf{#1}}
-\noindent
+  \bigskip
+
+  \par
+  \noindent
+  \textsf{\textbf{#1}}
+
+  \medskip
+
+  \par
+  % Keine Einrückung
+  \@afterindentfalse
+  \@afterheading
 }
 %    \end{macrocode}
 % \end{macro}
@@ -4264,8 +4315,6 @@ anderen Paket passen]
 % Zum Setzen von Antworten. Sie werden mit einem Kasten umgeben. Könnten
 % eventuell ausgeblendet werden, wenn man nur die Lösung sehen will.
 % \begin{macrocode}
-\RequirePackage{xparse}
-\ExplSyntaxOn
 \NewDocumentEnvironment{ liAntwort } { O{standard} }
 {
   \str_case:nn {#1} {
@@ -4386,9 +4435,9 @@ anderen Paket passen]
   \end{compactitem}
   \end{mdframed}
   %
-  \makeatletter
-  \par\@afterindentfalse\@afterheading
-  \makeatother
+  \par
+  \@afterindentfalse
+  \@afterheading
 } {}
 %    \end{macrocode}
 % \end{environment}
@@ -4424,7 +4473,6 @@ anderen Paket passen]
   \end{center}
   \end{mdframed}
 } {}
-\ExplSyntaxOff
 %    \end{macrocode}
 % \end{environment}
 
@@ -4467,6 +4515,10 @@ anderen Paket passen]
 \def\dh{d.\,h. }
 %    \end{macrocode}
 % \end{macro}
+
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
 
 %    \begin{macrocode}
 

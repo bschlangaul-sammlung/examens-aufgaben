@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{lehramt-informatik-aufgabe}[2019/10/27 Minimale Klasse zu
 Setzen einer Aufgabe]
-\LoadClass[oneside]{book}
+\LoadClass[oneside,12pt]{book}
 
 \RequirePackage{lehramt-informatik-basis}
 

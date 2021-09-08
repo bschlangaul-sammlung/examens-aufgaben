@@ -17,6 +17,10 @@ anderen Paket passen]
 \RequirePackage{paralist}
 %    \end{macrocode}
 
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+
 % \begin{macro}{\inhaltsverzeichnis}
 %    \begin{macrocode}
 \def\inhaltsverzeichnis {
@@ -47,10 +51,18 @@ anderen Paket passen]
 % Text, der sich wie eine Überschrift verhält.
 %    \begin{macrocode}
 \newcommand{\liPseudoUeberschrift}[1]{
-\bigskip
-\noindent
-\textsf{\textbf{#1}}
-\noindent
+  \bigskip
+
+  \par
+  \noindent
+  \textsf{\textbf{#1}}
+
+  \medskip
+
+  \par
+  % Keine Einrückung
+  \@afterindentfalse
+  \@afterheading
 }
 %    \end{macrocode}
 % \end{macro}
@@ -97,8 +109,6 @@ anderen Paket passen]
 % Zum Setzen von Antworten. Sie werden mit einem Kasten umgeben. Könnten
 % eventuell ausgeblendet werden, wenn man nur die Lösung sehen will.
 % \begin{macrocode}
-\RequirePackage{xparse}
-\ExplSyntaxOn
 \NewDocumentEnvironment{ liAntwort } { O{standard} }
 {
   \str_case:nn {#1} {
@@ -219,9 +229,9 @@ anderen Paket passen]
   \end{compactitem}
   \end{mdframed}
   %
-  \makeatletter
-  \par\@afterindentfalse\@afterheading
-  \makeatother
+  \par
+  \@afterindentfalse
+  \@afterheading
 } {}
 %    \end{macrocode}
 % \end{environment}
@@ -257,7 +267,6 @@ anderen Paket passen]
   \end{center}
   \end{mdframed}
 } {}
-\ExplSyntaxOff
 %    \end{macrocode}
 % \end{environment}
 
@@ -300,5 +309,9 @@ anderen Paket passen]
 \def\dh{d.\,h. }
 %    \end{macrocode}
 % \end{macro}
+
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
 
 %    \begin{macrocode}
