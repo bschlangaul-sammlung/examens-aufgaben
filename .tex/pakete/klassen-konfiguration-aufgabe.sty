@@ -22,6 +22,36 @@ Klasse Aufgabe konfigurieren, d. h. Laden von einigen Paketen, Registierung von 
 %    \begin{macrocode}
 \ExplSyntaxOn
 %    \end{macrocode}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\cs_gset:Npn \stichwoerter_formatiert: {
+  \tl_if_empty:NTF \g_auf_stichwoerter_tl {} {
+    \textbf{Stichwörter:} ~
+    \g_auf_stichwoerter_tl
+    \par
+  }
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\cs_gset:Npn \horizontale_linie: {
+  \par
+  \noindent
+  \rule{\textwidth}{0.8pt}
+  \par
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\cs_gset:Npn \thematik_formatiert: {
+  \tl_if_empty:NTF \g_auf_thematik_tl {} {
+    \textit{
+      ( \g_auf_thematik_tl )
+    }
+  }
+}
+%    \end{macrocode}
 
 % \begin{macro}{\liAufgabenMetadaten}
 %    \begin{macrocode}
@@ -35,6 +65,22 @@ Klasse Aufgabe konfigurieren, d. h. Laden von einigen Paketen, Registierung von 
 
   \noindent
   {\bfseries\Large\_gib_aufgaben_pfad_trenner:}
+  \hfill \thematik_formatiert:
+  \par
+
+  \medskip
+
+  \noindent
+  {\footnotesize\stichwoerter_formatiert:}
+
+  \horizontale_linie:
+
+  \bigskip
+
+  \par
+  % Keine Einrückung
+  \@afterindentfalse
+  \@afterheading
 }
 %    \end{macrocode}
 % \end{macro}

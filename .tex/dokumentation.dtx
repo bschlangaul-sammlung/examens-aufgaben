@@ -3524,6 +3524,12 @@ Klasse Aufgabe konfigurieren, d. h. Laden von einigen Paketen, Registierung von 
 
   \noindent
   {\bfseries\Large\_gib_aufgaben_pfad_trenner:}
+
+  \medskip
+
+  \par
+  \@afterindentfalse
+  \@afterheading
 }
 %    \end{macrocode}
 % \end{macro}
@@ -5190,6 +5196,28 @@ Attributhülle]
 %   O = liONotationO,
 % }
 
+% \subsubsection{TeX-Markup-Beispiel: Funktionsgraphen mit pgfplots}
+
+% \begin{verbatim}
+% \begin{tikzpicture}
+%   \begin{axis}[
+%     xlabel=$n$,
+%     legend entries={\f a, \f b, \f c, \f d, \f e},
+%     ymax=500,
+%     xmin=0,
+%     xmax=7,
+%     legend pos=north west,
+%     domain=0:7
+%   ]
+%   \addplot{sqrt(x^5) + (4 * x) - 5};
+%   \addplot{log2(log2(x))};
+%   \addplot{2^x};
+%   \addplot{x^2 * log10(x) + (2 * x)};
+%   \addplot{4^x / (log2(x))};
+% \end{axis}
+% \end{tikzpicture}
+% \end{verbatim}
+
 %    \begin{macrocode}
 \ExplSyntaxOn
 %    \end{macrocode}
@@ -5198,7 +5226,11 @@ Attributhülle]
 \RequirePackage{amssymb}
 %    \end{macrocode}
 
-% Für echte Teilmenge |$\subsetneq$| $\subsetneq$
+%    \begin{macrocode}
+\RequirePackage{pgfplots}
+%    \end{macrocode}
+
+% Für echte Teilmenge |\subsetneq|: $\subsetneq$
 %    \begin{macrocode}
 \RequirePackage{amssymb}
 %    \end{macrocode}
