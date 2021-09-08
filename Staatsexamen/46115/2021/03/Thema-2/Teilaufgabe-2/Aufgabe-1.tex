@@ -1,5 +1,8 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{o-notation}
+
+\usepackage{pgfplots}
+
 \begin{document}
 \liAufgabenMetadaten{
   Titel = {Aufgabe 1},
@@ -17,26 +20,55 @@
   ExamenAufgabeNr = 1,
 }
 
-Sortieren Sie die unten angegebenen Funktionen der O-Klassen O(a), O(b),
-O(c), O(d) und O(e) bezüglich ihrer Teilmengenbeziehungen. Nutzen Sie
-ausschließlich die echte Teilmenge € sowie die Gleichheit = für die
-Beziehung zwischen den Mengen. Folgendes Beispiel illustriert diese
-Schreib- weise für einige Funktionen fı bis fs. (Diese haben nichts mit
-den unten angegebenen Funktionen zu tun.)\index{Algorithmische Komplexität (O-Notation)}
+\let\O=\liONotationO
+\def\of#1{\O{f_#1}}
+\def\f#1{$#1(n)$}
+
+\noindent
+Sortieren Sie die unten angegebenen Funktionen der O-Klassen \O a, \O b,
+\O c, \O d und \O e bezüglich ihrer Teilmengenbeziehungen. Nutzen Sie
+ausschließlich die echte Teilmenge $\subsetneq$ sowie die Gleichheit $=$
+für die Beziehung zwischen den Mengen. Folgendes Beispiel illustriert
+diese Schreibweise für einige Funktionen $f_1$ bis $f_5$. (Diese haben
+nichts mit den unten angegebenen Funktionen zu
+tun.)\index{Algorithmische Komplexität (O-Notation)}
 \footcite{examen:46115:2021:03}
 
- O(fa) \& O(fs) = O(fs)  O(f:) = O(a)
-Die angegebenen Beziehungen miissen weder bewiesen noch begründet werden.
+\begin{displaymath}
+\of 4 \subsetneq \of 3 = \of 5 \subsetneq \of 1 = \of 2
+\end{displaymath}
+
+\noindent
+Die angegebenen Beziehungen müssen weder bewiesen noch begründet werden.
 
 \begin{itemize}
 \item $a(n) = \sqrt{n^5} + 4n - 5$
 
-\item $b(n) = log (log,(n))$
+\item $b(n) = \log_2 (\log_2(n))$
+
 \item $c(n) = 2^n$
 
-\item $d(n) = n? log(n) + 2n$
+\item $d(n) = n^2 \log(n) + 2n$
 
 \item $e(n) = \frac{4^n}{\log_2n}$
 \end{itemize}
 
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    xlabel=$n$,
+    legend entries={\f a, \f b, \f c, \f d, \f e},
+    ymax=500,
+    xmin=0,
+    legend pos=north west,
+    domain=0:15
+  ]
+  \addplot{sqrt(x^5) + (4 * x) - 5};
+  \addplot{log2(log2(x))};
+  \addplot{2^x};
+  \addplot{x^2 * log10(x) + (2 * x)};
+  \addplot[domain=0:7]{4^x / (log2(x))};
+\end{axis}
+\end{tikzpicture}
+\end{center}
 \end{document}

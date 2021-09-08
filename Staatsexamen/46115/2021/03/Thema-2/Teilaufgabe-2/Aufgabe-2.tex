@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax}
+\liLadePakete{syntax,o-notation}
 \begin{document}
 \liAufgabenMetadaten{
   Titel = {Aufgabe 2},
@@ -16,6 +16,9 @@
   ExamenTeilaufgabeNr = 2,
   ExamenAufgabeNr = 2,
 }
+
+\let\j=\liJavaCode
+\let\O=\liONotationO
 
 Gegeben sei die folgende Java-Implementierung eines Stacks.
 \index{Stapel (Stack)}
@@ -68,10 +71,11 @@ class Stack {
 % a)
 %%
 
-\item Implementieren Sie die Methode pop in einer objektorientierten
+\item Implementieren Sie die Methode \j{pop} in einer objektorientierten
 Programmiersprache Ihrer Wahl, die das erste Item des Stacks entfernt
 und seinen Wert zurückgibt. Ist kein Wert im Stack enthalten, so soll
-dies mit einer IndexOutOfBoundsException oder Ähnlichem gemeldet werden.
+dies mit einer \j{IndexOutOfBoundsException} oder Ähnlichem gemeldet
+werden.
 
 Beschreiben Sie nun jeweils die notwendigen Änderungen an den bisherigen
 Implementierungen, die für die Realisierung der folgenden Methoden
@@ -85,7 +89,8 @@ notwendig sind.
 % b)
 %%
 
-\item size gibt in Laufzeit O(1) die Anzahl der enthaltenen Items zurück.
+\item \j{size} gibt in Laufzeit \O1 die Anzahl der enthaltenen Items
+zurück.
 
 \begin{liAntwort}
 \liJavaExamen[firstline=13,lastline=38]{46115}{2021}{03}{Stack}
@@ -95,7 +100,7 @@ notwendig sind.
 % c)
 %%
 
-\item min gibt (zu jedem Zeitpunkt) in Laufzeit O(1) den Wert des
+\item \j{min} gibt (zu jedem Zeitpunkt) in Laufzeit \O1 den Wert des
 kleinsten Elements im Stack zurück.
 
 \begin{liAntwort}

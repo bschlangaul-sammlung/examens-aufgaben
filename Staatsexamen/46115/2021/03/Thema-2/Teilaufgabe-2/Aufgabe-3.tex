@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{pseudo}
 \begin{document}
 \liAufgabenMetadaten{
   Titel = {Aufgabe 3},
@@ -19,23 +19,30 @@
 \index{Binäre Suche}
 \footcite{examen:46115:2021:03}
 
-Gegeben ist ein aufsteigend sortiertes Array A von n ganzen Zahlen und eine ganze Zahl r.
-Es wird der Algorithmus BinarySearch betrachtet, der A effizient nach dem Wert x absucht.
-Ergebnis ist der Index i mit x = Ali] oder NIL, falls © \& A.
+\noindent
+Gegeben ist ein aufsteigend sortiertes Array $A$ von $n$ ganzen Zahlen
+und eine ganze Zahl $x$. Es wird der Algorithmus \texttt{BinarySearch}
+betrachtet, der $A$ effizient nach dem Wert $x$ absucht. Ergebnis ist
+der Index $i$ mit $x = A[i]$ oder NIL, falls $x \notin A$.
 
-ı int BinarySearch(int[] A, int r)
-2 f=1
-3 r= A.length
-4 while r > é do
-5 m = | 45]
-6 if 2 < Alm] then
-7 r=om—l
-8 else if 2 = Alm] then
-9 | return m
-10 else
-11 | €=m+l1
-12 return NIL
-\begin{liAntwort}
+\begin{function}
+\caption{BinarySearch(int A, int r)}
+$l=1$\;
+$r= A.length$\;
+\While{$r\geq l$}{
+  \uIf{x < A[m]}{
+    r = m - 1\;
+  }
+  \uElseIf{x=A[m]}{
+    \Return m\;
+  }
+  \Else{
+    l = m + 1\;
+  }
+  \Return NIL \;
+}
+\end{function}
+\begin{enumerate}
 
 %%
 % a)
@@ -51,6 +58,7 @@ Index
 i]s] «| «| 2] 4] off
 
 wen [ilsfol7] io] w]u]al ale!
+\begin{enumerate}
 %%
 % (i)
 %%
@@ -66,6 +74,7 @@ wen [ilsfol7] io] w]u]al ale!
 %%
 
 \item 22
+\end{enumerate}
 
 %%
 % b)
@@ -81,10 +90,10 @@ nicht-enthaltenen Werten.
 %%
 
 \item Wie ändert sich das Ergebnis der binären Suche, wenn im sortierten
-Eingabefeld zwei auf-
-einanderfolgende, unterschiedliche Werte vertauscht wurden? Betrachten Sie hierbei die be-
-troffenen Werte, die anderen Feldelemente und nicht enthaltene Werte in Abhängigkeit vom
-Ort der Vertauschung.
+Eingabefeld zwei aufeinanderfolgende, unterschiedliche Werte
+vertauscht wurden? Betrachten Sie hierbei die betroffenen Werte, die
+anderen Feldelemente und nicht enthaltene Werte in Abhängigkeit vom Ort
+der Vertauschung.
 
 %%
 % d)
@@ -110,6 +119,6 @@ zurückgibt, für den gilt: Alk] =1 und Ak—1]=0.
 
 Der initiale Aufruf der rekursiven Variante lautet:
 RekBinarySearch (A, z, 1, A.length)
-\end{liAntwort}
+\end{enumerate}
 
 \end{document}

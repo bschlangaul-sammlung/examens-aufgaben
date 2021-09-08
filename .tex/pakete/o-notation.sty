@@ -1,0 +1,72 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-o-notation}[2021/09/08]
+%    \end{macrocode}
+
+% \liLets{
+%   O = liONotationO,
+% }
+
+% \subsubsection{TeX-Markup-Beispiel: Funktionsgraphen mit pgfplots}
+
+% \begin{verbatim}
+% \begin{tikzpicture}
+%   \begin{axis}[
+%     xlabel=$n$,
+%     legend entries={\f a, \f b, \f c, \f d, \f e},
+%     ymax=500,
+%     xmin=0,
+%     xmax=7,
+%     legend pos=north west,
+%     domain=0:7
+%   ]
+%   \addplot{sqrt(x^5) + (4 * x) - 5};
+%   \addplot{log2(log2(x))};
+%   \addplot{2^x};
+%   \addplot{x^2 * log10(x) + (2 * x)};
+%   \addplot{4^x / (log2(x))};
+% \end{axis}
+% \end{tikzpicture}
+% \end{verbatim}
+
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\RequirePackage{amssymb}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\RequirePackage{pgfplots}
+%    \end{macrocode}
+
+% Für echte Teilmenge |\subsetneq|: $\subsetneq$
+%    \begin{macrocode}
+\RequirePackage{amssymb}
+%    \end{macrocode}
+
+% \begin{macro}{\liRundeKlammer}
+%    \begin{macrocode}
+\def\liRundeKlammer#1{
+  \negthinspace \left( #1 \right)
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liONotationO}
+% |\O{n^2}|: \liONotationO{n^2}
+%    \begin{macrocode}
+\cs_new:Npn \o_notation_O:n #1 {
+  \mathcal{O} \liRundeKlammer{#1}
+}
+\def\liONotationO#1{
+  \ifmmode
+    \o_notation_O:n { #1 }
+  \else
+    $ \o_notation_O:n { #1 } $
+  \fi
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
