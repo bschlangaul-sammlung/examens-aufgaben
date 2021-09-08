@@ -1,5 +1,5 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{}
+\liLadePakete{graph}
 \begin{document}
 \liAufgabenMetadaten{
   Titel = {Aufgabe 4},
@@ -22,15 +22,79 @@
 % a)
 %%
 
-\item Berechnen Sie im gegebenen gerichteten und gewichteten Graph G =
-(V,E,w) mit Kantenlängen w : E — R mittels des Dijkstra-Algorithmus die
-kürzesten (gerichteten) Pfade ausgehend vom Startknoten a.
+\item Berechnen Sie im gegebenen gerichteten und gewichteten Graph $G =
+(V,E,w)$ mit Kantenlängen $w : E \rightarrow \mathbb{R}_0^+$ mittels des
+Dijkstra-Algorithmus die kürzesten (gerichteten) Pfade ausgehend vom
+Startknoten $a$.
 
-Knoten, deren Entfernung von a bereits f+eststeht, seien als schwarz
-bezeichnet und Knoten, bei denen lediglich eine obere Schranke \# oo für
-ihre Entfernung von a bekannt ist, seien als grau
+\begin{liGraphenFormat}
+a: 0 0
+b: -2 0
+c: 2 0
+d: 2 1
+e: -2 1
+f: -1 1
+g: 0 1
+h: 1 1
+i: 1 0
+a -> c: 6
+a -> f: 1
+a -> g: 5
+a -> h: 2
+b -> a: 0
+c -> b: 9
+c -> d: 6
+d -> h: 0
+e -> b: 4
+f -> b: 6
+f -> e: 2
+f -> g: 3
+g -> d: 8
+g -> h: 6
+h -> c: 3
+i -> a: 1
+i -> c: 0
+\end{liGraphenFormat}
+
+\begin{center}
+\begin{tikzpicture}[li graph,x=2cm,y=2cm]
+\node (a) at (0,0) {a};
+\node (b) at (-2,0) {b};
+\node (c) at (2,0) {c};
+\node (d) at (2,1) {d};
+\node (e) at (-2,1) {e};
+\node (f) at (-1,1) {f};
+\node (g) at (0,1) {g};
+\node (h) at (1,1) {h};
+\node (i) at (1,0) {i};
+
+\path[->] (a) edge node {1} (f);
+\path[->] (a) edge node {2} (h);
+\path[->] (a) edge node {5} (g);
+\path[->] (a) edge[bend right=60] node {6} (c);
+\path[->] (b) edge node {0} (a);
+\path[->] (c) edge node {6} (d);
+\path[->] (c) edge[bend left=60] node {9} (b);
+\path[->] (d) edge node {0} (h);
+\path[->] (e) edge node {4} (b);
+\path[->] (f) edge node {2} (e);
+\path[->] (f) edge node {3} (g);
+\path[->] (f) edge node {6} (b);
+\path[->] (g) edge node {6} (h);
+\path[->] (g) edge[bend left=60] node {8} (d);
+\path[->] (h) edge node {3} (c);
+\path[->] (i) edge node {0} (c);
+\path[->] (i) edge node {1} (a);
+\end{tikzpicture}
+\end{center}
+
+Knoten, deren Entfernung von $a$ bereits feststeht, seien als schwarz
+bezeichnet und Knoten, bei denen lediglich eine obere Schranke $\neq
+\infty$ für ihre Entfernung von $a$ bekannt ist, seien als \emph{grau}
 bezeichnet.\index{Algorithmus von Dijkstra}
 \footcite{examen:46115:2021:03}
+
+\begin{enumerate}
 
 %%
 % i)
@@ -41,11 +105,41 @@ der Algorithmus einen Knoten schwarz färbt, eine Zeile zu der Tabelle
 hinzu. Die Tabelle soll dabei zwei Spalten beinhalten: die linke Spalte
 zur Angabe des aktuell schwarz gewordenen Knotens und die rechte Spalte
 mit der bereits aktualisierten Menge grauer Knoten. Jeder
-Tabelleneintrag soll anstelle des nackten Knotennamens v ein Tripel (v,
-v.d, v.r) sein. Dabei steht v.d für die aktuell bekannte kürzeste
-Distanz zwischen a und v.
+Tabelleneintrag soll anstelle des nackten Knotennamens $v$ ein Tripel
+$(v, v.d, v.\pi)$ sein. Dabei steht $v.d$ für die aktuell bekannte
+kürzeste Distanz zwischen $a$ und $v$. $v.\pi$ ist der direkte Vorgänger
+von $v$ auf dem zugehörigen kürzesten Weg von $a$.
 
-v.r ist der direkte Vorgänger von v auf dem zugehörigen kürzesten Weg von a.
+\begin{liAntwort}
+\begin{tabular}{lllllllllll}
+\bf{Nr.} & \bf{besucht} & \bf{a} & \bf{b} & \bf{c} & \bf{d} & \bf{e} & \bf{f} & \bf{g} & \bf{h} & \bf{i} \\
+\hline
+0 &   & 0 & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ \\
+1 & a & \bf{0} & $\infty$ & 6 & $\infty$ & $\infty$ & 1 & 5 & 2 & $\infty$ \\
+2 & f & | & 7 & 6 & $\infty$ & 3 & \bf{1} & 4 & 2 & $\infty$ \\
+3 & h & | & 7 & 5 & $\infty$ & 3 & | & 4 & \bf{2} & $\infty$ \\
+4 & e & | & 7 & 5 & $\infty$ & \bf{3} & | & 4 & | & $\infty$ \\
+5 & g & | & 7 & 5 & 12 & | & | & \bf{4} & | & $\infty$ \\
+6 & c & | & 7 & \bf{5} & 11 & | & | & | & | & $\infty$ \\
+7 & b & | & \bf{7} & | & 11 & | & | & | & | & $\infty$ \\
+8 & d & | & | & | & \bf{11} & | & | & | & | & $\infty$ \\
+9 & i & | & | & | & | & | & | & | & | & $\infty$ \\
+\end{tabular}
+
+\begin{tabular}{llll}
+\bf{nach} & \bf{Entfernung} & \bf{Reihenfolge} & \bf{Pfad} \\
+\hline
+a  $\rightarrow$  a & 0 & 1 &   \\
+a  $\rightarrow$  b & 7 & 7 & a $\rightarrow$ f $\rightarrow$ b \\
+a  $\rightarrow$  c & 5 & 6 & a $\rightarrow$ h $\rightarrow$ c \\
+a  $\rightarrow$  d & 11 & 8 & a $\rightarrow$ h $\rightarrow$ c $\rightarrow$ d \\
+a  $\rightarrow$  e & 3 & 4 & a $\rightarrow$ f $\rightarrow$ e \\
+a  $\rightarrow$  f & 1 & 2 & a $\rightarrow$ f \\
+a  $\rightarrow$  g & 4 & 5 & a $\rightarrow$ f $\rightarrow$ g \\
+a  $\rightarrow$  h & 2 & 3 & a $\rightarrow$ h \\
+a  $\rightarrow$  i & 2.147483647E9 & 9 & a $\rightarrow$ i \\
+\end{tabular}
+\end{liAntwort}
 
 %%
 % ii)
@@ -53,22 +147,24 @@ v.r ist der direkte Vorgänger von v auf dem zugehörigen kürzesten Weg von a.
 
 \item Zeichnen Sie zudem den entstandenen Kürzeste-Pfade-Baum.
 
+\end{enumerate}
+
 %%
 % b)
 %%
 
 \item Warum berechnet der Dijkstra-Algorithmus auf einem gerichteten
-Eingabegraphen mit po- tentiell auch negativen Kantengewichten w : \# —
-R nicht immer einen korrekten Kürzesten- Wege-Baum von einem gewählten
-Startknoten aus? Geben Sie ein Beispiel an, für das der Algorithmus die
-falsche Antwort liefert.
+Eingabegraphen mit potentiell auch negativen Kantengewichten $w : E
+\rightarrow \mathbb{R}$ nicht immer einen korrekten Kürzesten-Wege-Baum
+von einem gewählten Startknoten aus? Geben Sie ein Beispiel an, für das
+der Algorithmus die falsche Antwort liefert.
 
 %%
 % c)
 %%
 
 \item Begründen Sie, warum das Problem nicht gelöst werden kann, indem
-der Betrag des niedrigs- ten (also des betragsmäßig größten negativen)
+der Betrag des niedrigsten (also des betragsmäßig größten negativen)
 Kantengewichts im Graphen zu allen Kanten addiert wird.
 
 \end{enumerate}

@@ -3,7 +3,7 @@
 \begin{document}
 \liAufgabenMetadaten{
   Titel = {Aufgabe 3},
-  Thematik = {L1, L2, L3 reguläre oder kontextfrei},
+  Thematik = {L1, L2, L3 regulär oder kontextfrei},
   RelativerPfad = Staatsexamen/46115/2021/03/Thema-2/Teilaufgabe-1/Aufgabe-3.tex,
   ZitatSchluessel = examen:46115:2021:03,
   BearbeitungsStand = unbekannt,
@@ -17,8 +17,11 @@
   ExamenAufgabeNr = 3,
 }
 
-Sei No = {0,1,2,...} die Menge aller natürlichen Zahlen mit 0.
-Betrachten Sie die folgenden Sprachen.
+\let\m=\liMenge
+\def\l#1{$L_#1$}
+
+Sei $\mathbb{N}_0 = \m{0,1,2,\dots}$ die Menge aller natürlichen Zahlen
+mit $0$. Betrachten Sie die folgenden Sprachen.
 \index{Reguläre Sprache}
 \index{Kontextfreie Sprache}
 \footcite{examen:46115:2021:03}
@@ -28,23 +31,23 @@ Betrachten Sie die folgenden Sprachen.
 % a)
 %%
 
-\item Ly = {a"brar Ine No}
+\item \liAusdruck[L_1]{a^{3n} b^{2n} a^n}{n \in \mathbb{N}_0}
 
 \begin{liAntwort}
-\begin{liProduktionsRegeln}
-S -> aaa B a | EPSILON,
-B ->
-\end{liProduktionsRegeln}
+nicht kontextfrei
 \end{liAntwort}
 
 %%
 % b)
 %%
 
-\item Le = {a"a"d" |ne No}
+\item \liAusdruck[L_2]{a^{3n} a^{2n} b^n}{n \in \mathbb{N}_0}
 
 \begin{liAntwort}
-$a^{5n} b^{n}$
+kontextfrei.
+
+Der Ausdruck lässt umformen in: \liAusdruck[L_2]{a^{5n} b^{n}}{n \in
+\mathbb{N}_0}
 
 \begin{liProduktionsRegeln}
 S -> aaaaa S b | EPSILON
@@ -55,21 +58,25 @@ S -> aaaaa S b | EPSILON
 % c)
 %%
 
-\item L3 = {(ab)"a(ba)"b(ab)” | n € No}
+\item \liAusdruck[L_3]{(ab)^{n} a (ba)^n b (ab)^n}{n \in \mathbb{N}_0}
+
+\begin{liAntwort}
+nicht kontextfrei
+\end{liAntwort}
 
 \end{enumerate}
 
-Geben Sie jeweils an, ob L,, L2 und L3 kontextfrei und ob Ly, Lz und Ls
-regulär sind. Beweisen Sie Ihre Behauptung und ordnen Sie jede Sprache
-in die kleinstmögliche Klasse (regulär, kontext-
-
-frei, nicht kontextfrei) ein. Für eine Einordnung in konterxtfrei zeigen
-Sie also, dass die Sprache kontextfrei und nicht regulär ist.
+\noindent
+Geben Sie jeweils an, ob \l1, \l2 und \l3 kontextfrei und ob \l1, \l2
+und \l3 regulär sind. Beweisen Sie Ihre Behauptung und ordnen Sie jede
+Sprache in die kleinstmögliche Klasse (regulär, kontextfrei, nicht
+kontextfrei) ein. Für eine Einordnung in kontextfrei zeigen Sie also,
+dass die Sprache kontextfrei und nicht regulär ist.
 
 Erfolgt ein Beweis durch Angabe eines Automaten, so ist eine klare
-Beschreibung der Funkti- onsweise des Automaten und der Bedeutung der
+Beschreibung der Funktionsweise des Automaten und der Bedeutung der
 Zustände erforderlich. Erfolgt der Beweis durch Angabe eines regulären
 Ausdruckes, so ist eine intuitive Beschreibung erforderlich. Wird der
-Be- weis durch die Angabe einer Grammatik geführt, so ist die Bedeutung
+Beweis durch die Angabe einer Grammatik geführt, so ist die Bedeutung
 der Variablen zu erläutern.
 \end{document}
