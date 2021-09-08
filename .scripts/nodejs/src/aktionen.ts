@@ -14,13 +14,14 @@ import {
   erzeugeAufgabenVorlage,
   erzeugeExamensAufgabeVorlage
 } from './aktionen/aufgaben-vorlage'
-import { erzeugeExamenScansSammlung } from './aktionen/aufgaben-sammlung'
+import { erzeugeExamenScansSammlung, erzeugeExamensLösungen } from './aktionen/aufgaben-sammlung'
 
 export default {
   erzeugeAufgabenMetadaten,
   erzeugeAufgabenVorlage,
   erzeugeExamensAufgabeVorlage,
   erzeugeExamenScansSammlung,
+  erzeugeExamensLösungen,
   erzeugeReadme,
   erzeugeTexDokumentation,
   führeSqlAus,

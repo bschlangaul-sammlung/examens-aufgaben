@@ -162,6 +162,12 @@ programm
     .description('PDFs in denen mehrere PDFs zusammengefügt sind.')
     .action(aktionen_1.default.erzeugeExamenScansSammlung);
 programm
+    .command('tex-examen')
+    .alias('te')
+    .description('Erzeuge pro Examen eine TeX-Datei.' +
+    'Das Examen muss mindestens eine gelöste Aufgabe haben')
+    .action(aktionen_1.default.erzeugeExamensLösungen);
+programm
     .command('flaci-to-tikz <jsonDatei>')
     .alias('flaci')
     .description('Konvertieren flaci.com Automaten to TikZ-Automaten')

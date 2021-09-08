@@ -1,14 +1,14 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{sql}
+\liLadePakete{rmodell,syntax,relationale-algebra}
 \begin{document}
 \liAufgabenMetadaten{
   Titel = {Aufgabe 2},
-  Thematik = {Einnahme von Medikamenten},
+  Thematik = {Medikamente},
   RelativerPfad = Staatsexamen/66116/2019/03/Thema-1/Teilaufgabe-1/Aufgabe-2.tex,
   ZitatSchluessel = examen:66116:2019:03,
   BearbeitungsStand = unbekannt,
   Korrektheit = unbekannt,
-  Stichwoerter = {SQL},
+  Stichwoerter = {SQL, SQL mit Übungsdatenbank, Relationale Algebra},
   ExamenNummer = 66116,
   ExamenJahr = 2019,
   ExamenMonat = 03,
@@ -17,45 +17,128 @@
   ExamenAufgabeNr = 2,
 }
 
+\let\a=\liAttribut
+\let\f=\liFremd
+\let\p=\liPrimaer
+\let\r=\liRelationMenge
+
 Gegeben sei der folgende Ausschnitt des Schemas für die Verwaltung der
-Einnahme von Medikamenten:\index{SQL}
+Einnahme von Medikamenten:
+\index{SQL}
 \footcite{examen:66116:2019:03}
 
-Person : {[ Hersteller : {[
-ID : INTEGER, ID : INTEGER,
-Name : VARCHAR(255), Name : VARCHAR(255),
-Wohnort : VARCHAR(255) Standort : VARCHAR(255),
-} AnzahlMitarbeiter : INTEGER
-}
-Medikament : {[ nimmt : {[
-ID : INTEGER, Person : INTEGER,
-Name : VARCHAR(255), Medikament : INTEGER,
-Kosten : INTEGER, von : DATE,
-Wirkstoff : VARCHAR(255), bis : DATE
-produziert \_von : INTEGER ]}
+\begin{liRmodell}
+\r{Person}{
+  ID : INTEGER,
+  Name : VARCHAR(255),
+  Wohnort : VARCHAR(255)
 }
 
-hat\_Unvertraglichkeit\_gegen : {[
-Person : INTEGER,
-Medikament : INTEGER
-
+\r{Hersteller}{
+  ID : INTEGER,
+  Name : VARCHAR(255),
+  Standort : VARCHAR(255),
+  AnzahlMitarbeiter : INTEGER
 }
 
-Die Tabelle Person beschreibt Personen über eine eindeutige ID, deren
-Namen und Wohnort. Die Tabelle Medikament enthalt Informationen über
-Medikamente, unter anderem deren Namen, Kosten, Wirkstoffe und einen
-Verweis auf den Hersteller dieses Medikaments. Die Tabelle Hersteller
-verwaltet verschiedene Hersteller von Medikamenten. Die Tabelle
-hat\_Unvertrdglichkeit\_gegen speichert die IDs von Personen zusammen mit
-den IDs von Medikamenten, gegen die diese Person eine Unverträglichkeit
-hat. Die Tabelle nimmt hingegen verwaltet die Einnahme der verschiedenen
-Medikamente und speichert zudem in welchem Zeitraum eine Person welches
-Medikament genommen hat bzw. nimmt.
+\r{Medikament}{
+  ID : INTEGER
+  Name : VARCHAR(255),
+  Kosten : INTEGER,
+  Wirkstoff : VARCHAR(255),
+  produziert\_von : INTEGER
+}
+
+\r{nimmt}{
+  Person : INTEGER,
+  Medikament : INTEGER,
+  von : DATE,
+  bis : DATE
+}
+
+\r{hat\_Unverträglichkeit\_gegen}{
+  Person : INTEGER,
+  Medikament : INTEGER
+}
+\end{liRmodell}
+
+% Datenbankname: medikamente
+\begin{minted}{sql}
+CREATE TABLE Person (
+  ID INTEGER PRIMARY KEY,
+  Name VARCHAR(255),
+  Wohnort VARCHAR(255)
+);
+
+CREATE TABLE Hersteller (
+  ID INTEGER PRIMARY KEY,
+  Name VARCHAR(255),
+  Standort VARCHAR(255),
+  AnzahlMitarbeiter INTEGER
+);
+
+CREATE TABLE Medikament (
+  ID INTEGER PRIMARY KEY,
+  Name VARCHAR(255),
+  Kosten INTEGER,
+  Wirkstoff VARCHAR(255),
+  produziert_von INTEGER REFERENCES Hersteller(ID)
+);
+
+CREATE TABLE nimmt (
+  Person INTEGER,
+  Medikament INTEGER,
+  von DATE,
+  bis DATE,
+  PRIMARY KEY (Person, Medikament, von, bis)
+);
+
+CREATE TABLE hat_Unverträglichkeit_gegen (
+  Person INTEGER REFERENCES Person(ID),
+  Medikament INTEGER REFERENCES Medikament(ID)
+);
+
+INSERT INTO Person VALUES
+  (1, 'Walter Müller', 'Holzapfelkreuth'),
+  (2, 'Dilara Yildiz', 'Fürth');
+
+INSERT INTO Hersteller VALUES
+  (1, 'Hexal', 'Holzkirchen', 3700),
+  (2, 'Ratiopharm', 'Ulm', 563);
+
+INSERT INTO Medikament VALUES
+  (1, 'IbuHexal', 3, 'Ibuprofen', 1),
+  (2, 'Ratio-Paracetamol', 2, 'Paracetamol', 2),
+  (3, 'BudeHexal', 4, 'Budesonid', 1),
+  (4, 'Ratio-Budesonid', 5, 'Budesonid', 2);
+
+INSERT INTO nimmt VALUES
+  (1, 1, '2021-07-12', '2021-07-23'),
+  (1, 3, '2021-07-12', '2021-07-23'),
+  (2, 4, '2021-02-13', '2021-03-24');
+
+INSERT INTO hat_Unverträglichkeit_gegen VALUES
+  (1, 1),
+  (1, 3),
+  (2, 2);
+\end{minted}
+\index{SQL mit Übungsdatenbank}
+
+Die Tabelle \a{Person} beschreibt Personen über eine eindeutige ID,
+deren Namen und Wohnort. Die Tabelle \a{Medikament} enthält
+Informationen über Medikamente, unter anderem deren Namen, Kosten,
+Wirkstoffe und einen Verweis auf den Hersteller dieses Medikaments. Die
+Tabelle \a{Hersteller} verwaltet verschiedene Hersteller von
+Medikamenten. Die Tabelle \a{hat\_Unverträglichkeit\_gegen} speichert
+die IDs von Personen zusammen mit den IDs von Medikamenten, gegen die
+diese Person eine Unverträglichkeit hat. Die Tabelle \a{nimmt} hingegen
+verwaltet die Einnahme der verschiedenen Medikamente und speichert zudem
+in welchem Zeitraum eine Person welches Medikament genommen hat bzw.
+nimmt.
 
 Beachten Sie bei der Formulierung der SQL-Anweisungen, dass die
 Ergebnisrelationen keine Duplikate enthalten dürfen. Sie dürfen
 geeignete Views definieren.
-
 \begin{enumerate}
 
 %%
@@ -63,15 +146,17 @@ geeignete Views definieren.
 %%
 
 \item Schreiben Sie SQL-Anweisungen, die für die bereits existierende
-Tabelle nimmt alle benötigten Fremdschlüsselconstraints anlegt.
-Erläutern Sie kurz, warum die Spalten von und bis Teil des
+Tabelle \a{nimmt} alle benötigten Fremdschlüsselconstraints anlegt.
+Erläutern Sie kurz, warum die Spalten \a{von} und \a{bis} Teil des
 Primärschlüssels sind.
 
 \begin{liAntwort}
 \begin{minted}{sql}
 ALTER TABLE nimmt
-ADD FOREIGN KEY(Person) REFERENCES Person(ID),
-ADD FOREIGN KEY(Medikament) REFERENCES Medikament(ID);
+ADD CONSTRAINT FK_Person
+  FOREIGN KEY (Person) REFERENCES Person(ID),
+ADD CONSTRAINT FK_Medikament
+  FOREIGN KEY (Medikament) REFERENCES Medikament(ID);
 \end{minted}
 \end{liAntwort}
 
@@ -79,15 +164,21 @@ ADD FOREIGN KEY(Medikament) REFERENCES Medikament(ID);
 % b)
 %%
 
-\item Schreiben Sie eine SQL-Anweisung, welche sowohl den Namen als auch
-die ID von Personen und Medikamenten ausgibt, bei denen die Person das
-jeweilige Medikament nimmt.
+\item Schreiben Sie eine SQL-Anweisung, welche sowohl den \a{Namen} als
+auch die \a{ID} von \a{Personen} und \a{Medikamenten} ausgibt, bei denen
+die Person das jeweilige Medikament nimmt.
 
 \begin{liAntwort}
 \begin{minted}{sql}
-SELECT p.Name, p.ID, m.Name, m.ID
+SELECT DISTINCT
+  p.ID as Personen_ID,
+  p.Name as Personen_Name,
+  m.ID as Medikamenten_ID,
+  m.Name as Medikamenten_Name
 FROM Person p, Medikament m, nimmt n
-WHERE p.ID = n.Person AND n.Medikament = m.ID;
+WHERE
+  n.Person = p.ID AND
+  n.Medikament = m.ID;
 \end{minted}
 \end{liAntwort}
 
@@ -100,9 +191,13 @@ Medikamente mit den niedrigsten Kosten je Hersteller bestimmt.
 
 \begin{liAntwort}
 \begin{minted}{sql}
-SELECT m.Name, m.ID, MIN(m.Kosten)
-FROM Medikament m
-GROUP BY produziert_von;
+SELECT m.ID, m.Name
+FROM Medikament m, Medikament n
+WHERE
+  m.produziert_von = n.produziert_von AND
+  m.Kosten >= n.Kosten
+GROUP BY m.ID, m.Name
+HAVING COUNT(*) <= 1;
 \end{minted}
 \end{liAntwort}
 
@@ -116,79 +211,114 @@ Unverträglichkeit entwickelt haben.
 
 \begin{liAntwort}
 \begin{minted}{sql}
-SELECT COUNT(DISTINCT n.Person)
-FROM nimmt n, hat_Unverträglichkeit_gegen h
-WHERE n.Person = h.Person;
+SELECT COUNT(DISTINCT p.ID)
+FROM
+  Person p,
+  nimmt n,
+  hat_Unverträglichkeit_gegen u
+WHERE
+  p.ID = n.Person AND
+  u.Medikament = n.Medikament;
 \end{minted}
 \end{liAntwort}
 
 %%
-% e)
+%
 %%
 
-\item Schreiben Sie eine SQL-Anweisung, die die ID und den Namen derjenigen
-Personen ermittelt, die weder ein Medikament mit dem Wirkstoff
-Paracetamol noch ein Medikament mit dem Wirkstoff Ibuprofen genommen
-haben.
+\item Schreiben Sie eine SQL-Anweisung, die die ID und den Namen
+derjenigen Personen ermittelt, die weder ein Medikament mit dem
+Wirkstoff Paracetamol noch ein Medikament mit dem Wirkstoff Ibuprofen
+genommen haben.
 
 \begin{liAntwort}
 \begin{minted}{sql}
+SELECT ID, Name FROM Person
+EXCEPT
 SELECT p.ID, p.Name
 FROM Person p, nimmt n, Medikament m
-WHERE p.ID = n.Person AND n.Medikament = m.ID AND m.ID NOT IN(
-SELECT DISTINCT m.ID
-FROM Medikament m
-WHERE m.Wirkstoff = "Paracetamol" OR m.Wirkstoff = "Ibuprofen";
+WHERE
+  p.ID = n.Person AND
+  n.Medikament = m.ID AND
+  m.Wirkstoff IN ('Ibuprofen', 'Paracetamol');
 \end{minted}
 \end{liAntwort}
 
 %%
-% f)
+%
 %%
 
-\item Schreiben Sie eine SQL-Anweisung, welche die Herstellernamen und die
-Anzahl der bekannten Unverträglichkeiten gegen Medikamente dieses
+\item Schreiben Sie eine SQL-Anweisung, welche die Herstellernamen und
+die Anzahl der bekannten Unverträglichkeiten gegen Medikamente dieses
 Herstellers ermittelt. Das Ergebnis soll aufsteigend nach der Anzahl der
 bekannten Unverträglichkeiten sortiert werden.
 
 \begin{liAntwort}
 \begin{minted}{sql}
-CREATE VIEW MMU AS
-SELECT DISTINCT m.ID, m.produziert_von
-FROM Medikament m, hat_Unverträglichkeit h
-WHERE m.ID = h.Medikament
-SELECT h.ID, COUNT(m.ID)
-FROM Hersteller h, MMU m
-WHERE m.produziert_von = h.ID
-GROUP BY h.ID
+SELECT p.Name, (
+SELECT COUNT(h.ID)
+  FROM Hersteller h, Medikament m, hat_Unverträglichkeit_gegen u
+  WHERE
+    m.produziert_von = h.ID AND
+    u.Medikament = m.ID AND
+    h.ID = p.ID
+) AS Unverträglichkeiten
+FROM Hersteller p
+ORDER BY Unverträglichkeiten ASC;
 \end{minted}
 \end{liAntwort}
 
 %%
-% g)
+%
 %%
 
 \item Formulieren Sie eine Anfrage in relationaler Algebra, welche die
-Wohnorte aller Personen bestimmt, welche ein Medikament mit demWirkstoff
-Paracetamol nehmen oder genommen haben. Die Lösung kann als Baum- oder
-als Term-Schreibweise angegeben werden.
+Wohnorte aller Personen bestimmt, welche ein Medikament mit dem
+Wirkstoff Paracetamol nehmen oder genommen haben. Die Lösung kann als
+Baum- oder als Term-Schreibweise angegeben werden.
+\index{Relationale Algebra}
 
 \begin{liAntwort}
-π Wohnort (Person ▷◁ p.ID=n.Person σ m.Wirksto f f = ′ Ibupro f en ′ (nimmt ▷◁ m.ID=n.Medikament Medikament))
+$\pi_{\text{Person.Wohnort}} \left(
+  \sigma_{\text{Medikament.Wirkstoff }= '\text{Paracetamol}'}
+  (
+    \text{Person}
+    \bowtie_{\text{Person.ID} = \text{nimmt.Person}}
+    \text{nimmt}
+    \bowtie_{\text{nimmt.Medikament} = \text{Medikament.ID}}
+    \text{Medikament}
+  )
+\right)$
 \end{liAntwort}
 
 %%
-% h)
+%
 %%
 
-\item Formulieren Sie eine Anfrage in relationaler Algebra, welche die Namen
-aller Personen bestimmt, die von allen bekannten Herstellern, deren
-Standort München ist, Medikamente nehmen oder genommen haben. Die Lösung
-kann als Baum- oder als Term-Schreibweise angegeben werden.
+\item Formulieren Sie eine Anfrage in relationaler Algebra, welche die
+Namen aller Personen bestimmt, die von allen bekannten Herstellern,
+deren Standort München ist, Medikamente nehmen oder genommen haben. Die
+Lösung kann als Baum- oder als Term-Schreibweise angegeben werden.
 
 \begin{liAntwort}
-π p.Name (Person ▷◁ p.Name=n.Person (nimmt ▷◁ n.Medikament=m.ID (
-Medikament ▷◁ m.produziert v on=h.ID σ h.Standort= ′ Mnchen ′ (Hersteller)))
+\begin{liAntwort}
+$\pi_{\text{Person.Name}} \left(
+  \sigma_{\text{Hersteller.Standort }= '\text{München}'}
+  (
+    (
+      \text{Person}
+      \bowtie_{\text{Person.ID} = \text{nimmt.Person}}
+      \text{nimmt}
+    )
+    \bowtie_{\text{nimmt.Medikament} = \text{Medikament.ID}}
+    (
+      \text{Medikament}
+      \bowtie_{\text{Medikament.produziert\_von} = \text{Hersteller.ID}}
+      \text{Hersteller}
+    )
+  )
+\right)$
+\end{liAntwort}
 \end{liAntwort}
 
 \end{enumerate}

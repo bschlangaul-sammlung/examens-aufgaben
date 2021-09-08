@@ -331,6 +331,7 @@ class ExamenSammlung {
     }
 }
 exports.ExamenSammlung = ExamenSammlung;
+// auch in .tex/pakete/basis.sty
 exports.examensTitel = {
     46110: 'Grundlagen der Informatik (nicht vertieft)',
     46111: 'Programmentwicklung / Systemprogrammierung / Datenbanksysteme (nicht vertieft)',

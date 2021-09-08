@@ -210,6 +210,15 @@ programm
   .action(aktionen.erzeugeExamenScansSammlung)
 
 programm
+  .command('tex-examen')
+  .alias('te')
+  .description(
+    'Erzeuge pro Examen eine TeX-Datei.' +
+    'Das Examen muss mindestens eine gelöste Aufgabe haben'
+  )
+  .action(aktionen.erzeugeExamensLösungen)
+
+programm
   .command('flaci-to-tikz <jsonDatei>')
   .alias('flaci')
   .description('Konvertieren flaci.com Automaten to TikZ-Automaten')
