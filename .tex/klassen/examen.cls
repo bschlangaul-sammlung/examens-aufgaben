@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{lehramt-informatik-examen}[2021/06/10 Zum Einbinden von
 mehreren Aufgaben zu einem Examen.]
-\LoadClass[a4paper,oneside]{book}
+\LoadClass[a4paper,oneside,12pt]{book}
 %    \end{macrocode}
 
 %    \begin{macrocode}

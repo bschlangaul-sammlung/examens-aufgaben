@@ -3,13 +3,22 @@
 %    \end{macrocode}
 
 % \subsubsection{Schriftarten / Typographie}
+
+% The package mathpazo Loading this package changes the default roman
+% font family to Adobe Palatino, and the virtual ‘mathpazo’ fonts will
+% be used for math. These virtual fonts are made up basically from
+% Palatino Italic, with the missing math symbols coming from the CM and
+% Pazo math fonts.
 %    \begin{macrocode}
 \RequirePackage{mathpazo}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \RequirePackage[no-math]{fontspec}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \setmainfont{texgyrepagella}
-\setsansfont{QTAncientOlive}
-\RequirePackage{sectsty}
-\allsectionsfont{\fontspec{QTAncientOlive}}
 %    \end{macrocode}
 
 % \subsubsection{Farben}
@@ -21,9 +30,9 @@
 % \subsubsection{Überschriften}
 %    \begin{macrocode}
 \RequirePackage{titlesec}
-\titleformat{\chapter}[display]{\sffamily\bfseries}{}{0pt}{\LARGE}
+\titleformat{\chapter}[display]{\bfseries}{}{0pt}{\LARGE}
 \titlespacing{\chapter}{0pt}{0pt}{*1}
-\titleformat{\paragraph}[hang]{\sffamily\normalsize\bfseries}{\theparagraph}{1em}{}
+\titleformat{\paragraph}[hang]{\normalsize\bfseries}{\theparagraph}{1em}{}
 \setcounter{secnumdepth}{0}
 %    \end{macrocode}
 

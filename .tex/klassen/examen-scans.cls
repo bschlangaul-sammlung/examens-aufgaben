@@ -52,7 +52,7 @@ Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.]
   {
     #1
     \bfseries
-    \sffamily
+    \rmfamily
     #2
   }
 }

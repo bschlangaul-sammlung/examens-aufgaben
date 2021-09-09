@@ -1427,7 +1427,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 \def\liChomskyUeberschrift#1{
   {
     \bfseries
-    \sffamily
+    \rmfamily
     \str_case:nn {#1} {
       {1} {Elimination~der~$\varepsilon$-Regeln}
       {2} {Elimination~von~Kettenregeln}
@@ -3157,13 +3157,22 @@ $\liMengeOhneMathe{#1}$%
 %    \end{macrocode}
 
 % \subsubsection{Schriftarten / Typographie}
+
+% The package mathpazo Loading this package changes the default roman
+% font family to Adobe Palatino, and the virtual ‘mathpazo’ fonts will
+% be used for math. These virtual fonts are made up basically from
+% Palatino Italic, with the missing math symbols coming from the CM and
+% Pazo math fonts.
 %    \begin{macrocode}
 \RequirePackage{mathpazo}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \RequirePackage[no-math]{fontspec}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \setmainfont{texgyrepagella}
-\setsansfont{QTAncientOlive}
-\RequirePackage{sectsty}
-\allsectionsfont{\fontspec{QTAncientOlive}}
 %    \end{macrocode}
 
 % \subsubsection{Farben}
@@ -3175,9 +3184,9 @@ $\liMengeOhneMathe{#1}$%
 % \subsubsection{Überschriften}
 %    \begin{macrocode}
 \RequirePackage{titlesec}
-\titleformat{\chapter}[display]{\sffamily\bfseries}{}{0pt}{\LARGE}
+\titleformat{\chapter}[display]{\bfseries}{}{0pt}{\LARGE}
 \titlespacing{\chapter}{0pt}{0pt}{*1}
-\titleformat{\paragraph}[hang]{\sffamily\normalsize\bfseries}{\theparagraph}{1em}{}
+\titleformat{\paragraph}[hang]{\normalsize\bfseries}{\theparagraph}{1em}{}
 \setcounter{secnumdepth}{0}
 %    \end{macrocode}
 
@@ -3291,8 +3300,44 @@ $\liMengeOhneMathe{#1}$%
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-grafik}[2020/12/27 Lädt das Paket
-TikZ, um Grafiken zeichnen zu können.]
+TikZ, um Grafiken zeichnen zu können und graphicx um Bilder laden zu können.]
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \RequirePackage{tikz}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\RequirePackage{graphicx}
+%    \end{macrocode}
+
+% \begin{macro}{\liGrafikLogo}
+%    \begin{macrocode}
+\def\liGrafikLogoPfad{
+  \LehramtInformatikRepository / .tex / Logo / Logo_nur-Pfade.eps
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liGrafikLogo}
+%    \begin{macrocode}
+\NewDocumentCommand{ \liGrafikLogo } { O{} } {
+  \includegraphics[#1]{
+    \liGrafikLogoPfad
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{graph.sty}
@@ -3474,7 +3519,7 @@ von Hanoi-Grafiken]
     \draw (.5,-.5) -- +(3,0);
     % draw discs
     \foreach[count=\k] \i/\j in \li@sequence{
-      \draw[draw={\li@mget col[\i]}] (\j,\li@mget pos[\j]) +(-.4*\i/\li@numdiscs,0) -- +(.4*\i/\li@numdiscs,0) node[pos=.5,white,font=\sffamily] {\i};
+      \draw[draw={\li@mget col[\i]}] (\j,\li@mget pos[\j]) +(-.4*\i/\li@numdiscs,0) -- +(.4*\i/\li@numdiscs,0) node[pos=.5,white,font=\rmfamily] {\i};
       \li@minc pos[\j]+={.5}
     }
   \end{tikzpicture}
@@ -3615,14 +3660,15 @@ Klasse liSetzeExamen konfigurieren, d. h. Laden von einigen Paketen, Registierun
   makros,
   aufgaben-metadaten,
   abmessung,
-  typographie
+  typographie,
+  grafik
 }
 %    \end{macrocode}
 
 % Formatierung für die Überschriften setzen.
 %    \begin{macrocode}
 \RequirePackage{titlesec}
-\titleformat{\section}{\sffamily\huge\filcenter\bfseries}{\thesection}{1em}{}
+\titleformat{\section}{\huge\filcenter\bfseries}{\thesection}{1em}{}
 \newcommand{\sectionbreak}{\clearpage}
 \setcounter{secnumdepth}{0}
 %    \end{macrocode}
@@ -3707,10 +3753,12 @@ Klasse liSetzeExamen konfigurieren, d. h. Laden von einigen Paketen, Registierun
 
   Fach~Informatik \par
 
+  \liGrafikLogo[width=8cm]
+
   \vfill
 
   {
-    \sffamily\bfseries\Huge
+    \bfseries\Huge
 
     \g_auf_examen_jahreszeit_tl \par
 
@@ -6546,7 +6594,7 @@ Relation in die 3. Normalform]
 \def\liSyntheseUeberschrift#1{
   {
     \bfseries
-    \sffamily
+    \rmfamily
     \str_case:nn {#1} {
       {1} {Kanonische~Überdeckung}
       {1-1} {Linksreduktion}
@@ -6727,7 +6775,7 @@ formatierung.sty definiert.]
 %    \begin{macrocode}
 \def\liTypoUeberschrift#1{
   {
-    \bfseries\sffamily
+    \bfseries\rmfamily
     #1
   }
 }

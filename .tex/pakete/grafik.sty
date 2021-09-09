@@ -1,4 +1,40 @@
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-grafik}[2020/12/27 Lädt das Paket
-TikZ, um Grafiken zeichnen zu können.]
+TikZ, um Grafiken zeichnen zu können und graphicx um Bilder laden zu können.]
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \RequirePackage{tikz}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\RequirePackage{graphicx}
+%    \end{macrocode}
+
+% \begin{macro}{\liGrafikLogo}
+%    \begin{macrocode}
+\def\liGrafikLogoPfad{
+  \LehramtInformatikRepository / .tex / Logo / Logo_nur-Pfade.eps
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liGrafikLogo}
+%    \begin{macrocode}
+\NewDocumentCommand{ \liGrafikLogo } { O{} } {
+  \includegraphics[#1]{
+    \liGrafikLogoPfad
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
+
+%    \begin{macrocode}
