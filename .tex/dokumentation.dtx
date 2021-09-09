@@ -3315,10 +3315,20 @@ TikZ, um Grafiken zeichnen zu können und graphicx um Bilder laden zu können.]
 \RequirePackage{graphicx}
 %    \end{macrocode}
 
-% \begin{macro}{\liGrafikLogo}
+% \begin{macro}{\liGrafikLogoPfad}
 %    \begin{macrocode}
-\def\liGrafikLogoPfad{
-  \LehramtInformatikRepository / .tex / Logo / Logo_nur-Pfade.eps
+\def\liGrafikLogoPfad#1{
+  \LehramtInformatikRepository / .tex / Logo / Logo_nur-Pfade.eps #1
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liGrafikCCLizenz}
+%    \begin{macrocode}
+\NewDocumentCommand{ \liGrafikCCLizenz } { O{} } {
+  \includegraphics[#1]{
+    \liGrafikLogoPfad{CC-by-nc-sa.eps}
+  }
 }
 %    \end{macrocode}
 % \end{macro}
@@ -3327,7 +3337,7 @@ TikZ, um Grafiken zeichnen zu können und graphicx um Bilder laden zu können.]
 %    \begin{macrocode}
 \NewDocumentCommand{ \liGrafikLogo } { O{} } {
   \includegraphics[#1]{
-    \liGrafikLogoPfad
+    \liGrafikLogoPfad{Logo_nur-Pfade.eps}
   }
 }
 %    \end{macrocode}
@@ -3546,7 +3556,8 @@ Klasse Aufgabe konfigurieren, d. h. Laden von einigen Paketen, Registierung von 
   makros,
   aufgaben-metadaten,
   kopf-fusszeilen,
-  mathe
+  mathe,
+  grafik
 }
 
 % Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
@@ -3622,6 +3633,8 @@ Klasse Aufgabe konfigurieren, d. h. Laden von einigen Paketen, Registierung von 
 \AddToHook{enddocument}{
   \vfill
   {
+    \liGrafikLogo
+    \liGrafikCCLizenz
     \tiny
     \noindent
     Hilf~mit!~
@@ -3753,7 +3766,12 @@ Klasse liSetzeExamen konfigurieren, d. h. Laden von einigen Paketen, Registierun
 
   Fach~Informatik \par
 
-  \liGrafikLogo[width=8cm]
+  \vfill
+
+  \liGrafikLogo[width=8cm]\par
+  \bigskip
+  Die~Bschlangaul-Sammlung \par
+  {\footnotesize zusammengestellt~von~Hermine~Bschlangaul~und~Freunden} \par
 
   \vfill
 

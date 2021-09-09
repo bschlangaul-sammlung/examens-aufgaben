@@ -15,10 +15,20 @@ TikZ, um Grafiken zeichnen zu können und graphicx um Bilder laden zu können.]
 \RequirePackage{graphicx}
 %    \end{macrocode}
 
-% \begin{macro}{\liGrafikLogo}
+% \begin{macro}{\liGrafikLogoPfad}
 %    \begin{macrocode}
-\def\liGrafikLogoPfad{
-  \LehramtInformatikRepository / .tex / Logo / Logo_nur-Pfade.eps
+\def\liGrafikLogoPfad#1{
+  \LehramtInformatikRepository / .tex / Logo / #1
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liGrafikCCLizenz}
+%    \begin{macrocode}
+\NewDocumentCommand{ \liGrafikCCLizenz } { O{} } {
+  \includegraphics[#1]{
+    \liGrafikLogoPfad{CC-by-nc-sa.eps}
+  }
 }
 %    \end{macrocode}
 % \end{macro}
@@ -27,7 +37,7 @@ TikZ, um Grafiken zeichnen zu können und graphicx um Bilder laden zu können.]
 %    \begin{macrocode}
 \NewDocumentCommand{ \liGrafikLogo } { O{} } {
   \includegraphics[#1]{
-    \liGrafikLogoPfad
+    \liGrafikLogoPfad{Logo_nur-Pfade.eps}
   }
 }
 %    \end{macrocode}
