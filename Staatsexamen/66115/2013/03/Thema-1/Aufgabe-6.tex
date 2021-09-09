@@ -1,17 +1,28 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{syntax,grafik}
 \begin{document}
-\liAufgabenTitel{IP und ULR mit Hashes}
-\section{Aufgabe 6 Streutabellen (Hash-Tables)
-\index{Streutabellen (Hashing)}
-\footcite{examen:66115:2013:03}}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 6},
+  Thematik = {IP und ULR mit Hashes},
+  RelativerPfad = Staatsexamen/66115/2013/03/Thema-1/Aufgabe-6.tex,
+  ZitatSchluessel = examen:66115:2013:03,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {Streutabellen (Hashing)},
+  ExamenNummer = 66115,
+  ExamenJahr = 2013,
+  ExamenMonat = 03,
+  ExamenThemaNr = 1,
+  ExamenAufgabeNr = 6,
+}
 
 Um die URL (zum Beispiel google.de) und die zugehörige IP des Servers
 (hier 173.194.69.9) zu verwalten, werden Streutabellen verwendet, die
 eine bestimmte Zone von Adressen abbilden. Die Streutabellen werden als
 zwei dynamische Arrays (in Java: ArrayLists) realisiert. Kollisionen
 innerhalb einer Zone werden ebenfalls in dynamischen Arrays verwaltet.
-
+\index{Streutabellen (Hashing)}
+\footcite{examen:66115:2013:03}
 \usetikzlibrary {shapes.multipart,positioning}
 
 \def\TmpTabelle#1#2#3{
@@ -106,15 +117,15 @@ Voraussetzungen und Bedingungen daran geknüpft sind.
 einer objektorientierten Sprache Ihrer Wahl. Verwenden Sie dabei die
 folgende Klasse (die Vorgaben sind in der Sprache Java gehalten):
 
-\begin{minted}{java}
+\begin{liJavaAngabe}
 class Zone {
-private ArrayList<ArrayList<String>> urlList =
-  new ArrayList<ArrayList<String>>();
-private ArrayList<ArrayList<String>> ipList =
-  new ArrayList<ArrayList<String>>();
-public int hash(String url) {/* calculates hash-value h, >=0 */}
+  private ArrayList<ArrayList<String>> urlList =
+    new ArrayList<ArrayList<String>>();
+  private ArrayList<ArrayList<String>> ipList =
+    new ArrayList<ArrayList<String>>();
+  public int hash(String url) {/* calculates hash-value h, >=0 */}
 }
-\end{minted}
+\end{liJavaAngabe}
 
 \begin{enumerate}
 %%
@@ -122,12 +133,12 @@ public int hash(String url) {/* calculates hash-value h, >=0 */}
 %%
 
 \item Prüfen Sie in einer Methode \liJavaCode{boolean exists(int h)} der
-Klasse \liJavaCode{zone}, ob bereits mindestens ein Eintrag für einen
+Klasse \liJavaCode{Zone}, ob bereits mindestens ein Eintrag für einen
 gegebenen Streuwert vorhanden ist. Falls \liJavaCode{h} größer ist als die
 derzeitige Größe der Streutabelle, existiert der Eintrag nicht.
 
 \begin{liAntwort}
-\liJavaExamen[firstline=56,lastline=76]{66115}{2013}{03}{Zone}
+\liJavaExamen[firstline=70,lastline=80]{66115}{2013}{03}{Zone}
 \end{liAntwort}
 
 %%
@@ -140,7 +151,7 @@ die URL in der Kollisionsliste nicht vorhanden, soll \liJavaCode{-1}
 zurückgeliefert werden.
 
 \begin{liAntwort}
-\liJavaExamen[firstline=68,lastline=88]{66115}{2013}{03}{Zone}
+\liJavaExamen[firstline=92,lastline=98]{66115}{2013}{03}{Zone}
 \end{liAntwort}
 
 %%
@@ -153,21 +164,19 @@ zurückgibt. Wird eine nicht vorhandene Adresse abgerufen, wird eine
 Fehlermeldung zurückgegeben.
 
 \begin{liAntwort}
-\liJavaExamen[firstline=90,lastline=104]{66115}{2013}{03}{Zone}
+\liJavaExamen[firstline=108,lastline=114]{66115}{2013}{03}{Zone}
 \end{liAntwort}
 
 \end{enumerate}
 \end{enumerate}
 
 \begin{liAdditum}
-\liPseudoUeberschrift{Additum}
-
 \liPseudoUeberschrift{Komplette Java-Datei}
 
 \liJavaExamen{66115}{2013}{03}{Zone}
 
 \liPseudoUeberschrift{Test-Datei}
 
-\liJavaTestDatei[firstline=3]{examen/examen_66115_2013_03/ZoneTest}
+\liJavaTestDatei[firstline=3]{examen/examen_66115/jahr_2013/fruehjahr/ZoneTest}
 \end{liAdditum}
 \end{document}

@@ -30,7 +30,7 @@ Overflows auftreten.
 Gegeben sei die folgende Methode mit Vorbedingung $P := x \geq 0 \land y
 \geq 0$ und Nachbedingung $Q := x \cdot y = z$.
 
-\begin{minted}{java}
+\begin{liJavaAngabe}
 int mul (int x , int y) {
   /* P */
   int z = 0, i = 0;
@@ -39,7 +39,7 @@ int mul (int x , int y) {
   /* Q */
   return z;
 }
-\end{minted}
+\end{liJavaAngabe}
 
 Betrachten Sie dazu die folgenden drei Prädikate\index{Invariante}:
 
@@ -95,7 +95,7 @@ Schleifenrumpfs in \liJavaCode{mul} sind oder welche nicht.
 \begin{liAntwort}
 Für den Nachweis muss der Code etwas umformuliert werden:
 
-\begin{minted}{java}
+\begin{liJavaAngabe}
 int mul (int x , int y) {
   /* P */
   int z = 0, i = 0;
@@ -106,7 +106,7 @@ int mul (int x , int y) {
   /* Q */
   return z;
 }
-\end{minted}
+\end{liJavaAngabe}
 
 \begin{align*}
 \wp{Code Schleife}{I_1 \land i \neq x}
