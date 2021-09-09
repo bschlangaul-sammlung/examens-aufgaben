@@ -1,3 +1,5 @@
+[![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
+
 # Aufgaben- und Materialsammlung „Lehramt Informatik“
 
 Aufgaben- und Materialsammlung mit Lösungen für das Studium „Lehramt
@@ -8,9 +10,8 @@ __Intention:__ insgemein Hoffnung auf Kontributionen
 Pull-Request oder per-Mail an hermine.bschlangaul@gmx.net. Lösungen ohne
 Gewähr ...
 
-__Lizenz:__ Public Domain, siehe Datei „LICENSE“ im Repository, d. h.
-Weiterverwendung ohne Namensnennung sowohl der kompilieren PDF-Dateien
-als auch der TeX-Datei ist möglich.
+__Lizenz:__ Die Materialsammlung unterliegt den Bestimmungen einer
+[Creative Commons Namensnennung-Nicht kommerziell-Share Alike 4.0 International-Lizenz][cc-by-nc-sa].
 
 __TeX:__ Alle Aufgaben und Materialen sind „geTeX’t“, d. h. mit Hilfe
 des Textsatzsystems [TeX](https://www.ctan.org/) bzw. mit der
