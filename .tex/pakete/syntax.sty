@@ -47,11 +47,32 @@
 }
 %    \end{macrocode}
 
+% \begin{environment}{liJavaAngabe}
+% Eine Umgebung für Java-Code, ohne Zeilennummer und etwas eingerückt
+% um den Java-Code in Angaben / Aufgabestellungen zu setzen.
+%    \begin{macrocode}
+\newminted[liJavaAngabe]{java}{
+  xleftmargin=1cm,
+  linenos=false
+}
+%    \end{macrocode}
+% \end{environment}
+
 % \begin{macro}{\liJavaCode}
-% Im Zeilenfluss einen kurzen Java-Code-Ausschnitt setzen.
+% Im Zeilenfluss einen kurzen Java-Code-Ausschnitt setzen. Es werden automatische
+% Zeilenumbrüche gemacht.
 % \liLet{j}{liJavaCode}
 %    \begin{macrocode}
-\def\liJavaCode#1{\,\mintinline{java}|#1|\,}
+\def\liJavaCode#1{
+  \,
+  \textcolor{blue}{
+    \mintinline[
+      fontsize=\normalsize,
+      breakanywhere % https://github.com/gpoore/minted/issues/31#issuecomment-458640242
+    ]{java}|#1|
+  }
+  \,
+}
 %    \end{macrocode}
 % \end{macro}
 

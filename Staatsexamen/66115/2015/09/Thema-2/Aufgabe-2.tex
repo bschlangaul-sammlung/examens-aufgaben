@@ -1,0 +1,142 @@
+\documentclass{lehramt-informatik-aufgabe}
+\liLadePakete{syntax}
+
+\begin{document}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 2},
+  Thematik = {Haldensortierung},
+  RelativerPfad = Staatsexamen/66115/2015/09/Thema-2/Aufgabe-2.tex,
+  ZitatSchluessel = examen:66115:2015:09,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {Heapsort},
+  ExamenNummer = 66115,
+  ExamenJahr = 2015,
+  ExamenMonat = 09,
+  ExamenThemaNr = 2,
+  ExamenAufgabeNr = 2,
+}
+
+%- Faulenzer / Kürzel --------------------------------------------------
+
+\let\j=\liJavaCode
+
+Gegeben sei folgende Klasse:
+\index{Heapsort}
+\footcite{examen:66115:2015:09}
+
+\begin{liJavaAngabe}
+class W {
+  int t;
+  String f;
+  // ...
+\end{liJavaAngabe}
+
+\noindent
+Dazu gibt es verschiedene Comparatoren, zum Beispiel:
+
+\begin{liJavaAngabe}
+// ascending order for field W.t
+class ComparatorAscByFieldT implements Comparator<W> {
+  // Returns a negative integer, zero, or a positive integer as the
+  // first argument is less than, equal to, or greater than the second.
+  @Override
+  public int compare(W o1, W o2) { // ...
+\end{liJavaAngabe}
+
+\noindent
+Außerdem steht Ihnen die vorgegebene Methode swap zur Verfügung:
+
+\begin{liJavaAngabe}
+void swap(W[] w, int a, int b) { // ...
+\end{liJavaAngabe}
+
+\begin{enumerate}
+
+%%
+% a)
+%%
+
+\item Phase 1: Die Haldensortierung beginnt mit der Herstellung der
+Max-Heap-Eigenschaft von rechts nach links. Diese ist für alle
+Feldelemente im dunklen Bereich bereits erfüllt. Geben Sie die
+Positionen (IDs) derjenigen Elemente des Feldes an, die das Verfahren im
+,Versickerschritt* far das nächste Element mit Hilfe des
+\j{ComparatorAscByFieldT} miteinander vergleicht:
+
+IDsangeben> 0 1 2 3 4 5 6 <iDs angeben
+
+Nach dem Vergleichen werden gegebenenfalls Werte mit swap vertauscht.
+Geben Sie das Resultat (in obiger Array-Darstellung) nach diesem Schritt
+an.
+
+%%
+% b)
+%%
+
+\item Phase 2: Das folgende Feld enthält den bereits vollständig
+aufgebauten MaxHeap:
+
+Qo 1 2 3 4 5 6
+
+71/6)/5;,3 7) 14,04 2
+
+Die Haldensortierung verschiebt das maximale Element in den sortierten
+(dunklen) Bereich:
+
+Q 1 2 3 4
+
+2|6|/5/3/ı/o
+
+Geben Sie das Ergebnis des nachfolgenden „Versickerns“ (erneut in
+derselben Array-Darstellung) an, bei dem die Heap-Eigenschaft
+wiederhergestellt wird.
+
+%%
+% c)
+%%
+
+\item Ergänzen Sie die rekursive Methode \j{reheap}, die die
+Max-Heap-Eigenschaft im Feld \j{w} zwischen den Indizes \j{i} und \j{k}
+(jeweils einschließlich) in O(log(k-i)) gemäß \j{Comparator<W> c}
+wiederherstellt, indem sie das Element \j{w[i]} „versickert“. \j{k}
+bezeichnet das Ende des unsortierten Bereichs.
+
+\begin{liJavaAngabe}
+// restores the max-heap property in w[i to k] using c
+void reheap(W[] w, Comparator<W> c, int i, int k) {
+  int leftId = 2 * i + 1;
+  int rightId = leftId + 1;
+  int kidId;
+  // ToDo: Code hier ergaenzen
+}
+\end{liJavaAngabe}
+
+%%
+% d)
+%%
+
+\item Implementieren Sie nun die eigentliche Haldensortierung. Sie
+dürfen hier die Methode \j{reheap} verwenden.
+
+\begin{liJavaAngabe}
+// sorts w in-situ according to the order imposed by c
+void heapSort(W[] w, Comparator<W> c) {
+  int n = w.length;
+
+  // Phase 1: Max-Heap-Eigenschaft herstellen
+  // (siehe Teilaufgabe a)
+  // ToDo: Code hier ergaenzen
+
+  // Phase 2: jeweils Maximum entnehmen und sortierte Liste am Ende aufbauen
+  // (siehe Teilaufgabe b)
+  // ToDo: Code hier ergaenzen
+}
+\end{liJavaAngabe}
+
+\begin{liAdditum}[Die komplette Java-Klasse]
+\liJavaExamen{66115}{2015}{09}{Heapsort}
+\end{liAdditum}
+
+\end{enumerate}
+\end{document}
