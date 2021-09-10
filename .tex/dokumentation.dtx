@@ -3610,13 +3610,25 @@ Klasse Aufgabe konfigurieren, d. h. Laden von einigen Paketen, Registierung von 
 \def\liAufgabenMetadaten#1{
   \liMetaSetze{#1}
 
-  \noindent
-  {\large \_gib_einzelpruefung_trenner: \par}
+  \tl_if_empty:NTF \g_auf_examen_nummer_tl {} {
+    {
+      \noindent
+      \large
+      \_gib_einzelpruefung_trenner:
+      \par\medskip
+    }
+  }
 
-  \medskip
-
-  \noindent
-  {\bfseries\Large\_gib_aufgaben_pfad_trenner:}
+  {
+    \noindent
+    \bfseries
+    \Large
+    \tl_if_empty:NTF \g_auf_examen_nummer_tl {
+      \g_auf_titel_tl
+    } {
+      \_gib_aufgaben_pfad_trenner:
+    }
+  }
   \hfill \thematik_formatiert:
   \par
 
