@@ -3231,6 +3231,13 @@ $\liMengeOhneMathe{#1}$%
 \renewcommand{\footrulewidth}{0pt}
 %    \end{macrocode}
 
+% \subsubsection{Zeilenabstände}
+% Werden kleinere Schriften verwendet, passt sich der Zeilenabstand
+% nicht entsprechend an. Mit der Umgebung |spacing| funktioniert es dann.
+%    \begin{macrocode}
+\RequirePackage{setspace}
+%    \end{macrocode}
+
 %    \begin{macrocode}
 
 %    \end{macrocode}
@@ -3318,7 +3325,7 @@ TikZ, um Grafiken zeichnen zu können und graphicx um Bilder laden zu können.]
 % \begin{macro}{\liGrafikLogoPfad}
 %    \begin{macrocode}
 \def\liGrafikLogoPfad#1{
-  \LehramtInformatikRepository / .tex / Logo / Logo_nur-Pfade.eps #1
+  \LehramtInformatikRepository / .tex / Logo / #1
 }
 %    \end{macrocode}
 % \end{macro}
@@ -3557,7 +3564,8 @@ Klasse Aufgabe konfigurieren, d. h. Laden von einigen Paketen, Registierung von 
   aufgaben-metadaten,
   kopf-fusszeilen,
   mathe,
-  grafik
+  grafik,
+  meta
 }
 
 % Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
@@ -3633,21 +3641,50 @@ Klasse Aufgabe konfigurieren, d. h. Laden von einigen Paketen, Registierung von 
 \AddToHook{enddocument}{
   \vfill
   {
-    \liGrafikLogo
-    \liGrafikCCLizenz
-    \tiny
-    \noindent
-    Hilf~mit!~
-    Das~ist~ein~Community-Projekt.~
-    Verbesserungsvorschläge,~Fehlerkorrekturen,~weitere~Lösungen~sind~
-    sehr~willkommen~-~egal~wie~-~per~Pull-Request~oder~per~E-Mail~an~
-    \href{mailto:hermine.bschlangaul@gmx.net}{hermine.bschlangaul@gmx.net}~
 
-    \par\noindent
-    Der~\TeX-Quelltext~dieses~PDFs~kann~unter~folgender~URL~aufgerufen~werden:~
+    \begin{minipage}{5.5cm}
+      \liGrafikLogo[width=5cm]
+    \end{minipage}
+    \begin{minipage}{10cm}
+      {
+        \bfseries
+        \liMetaBschlangaulSammlung
+      }\par
 
-    \par\noindent\hfill
-    \_gib_github_url_href:}
+      \liMetaHermineBschlangaulAndFriends\par
+      \medskip\par
+
+      \begin{spacing}{1}
+        \footnotesize
+        \liMetaUeberDasProjekt
+      \end{spacing}
+    \end{minipage}
+
+    \par
+
+    \bigskip
+
+    \begin{minipage}{5.5cm}
+      \centerline{\liGrafikCCLizenz[width=3cm]}
+    \end{minipage}
+    \begin{minipage}{10cm}
+      \begin{spacing}{1}
+        \scriptsize
+        \liMetaCCLink
+      \end{spacing}
+    \end{minipage}
+
+    \bigskip
+
+    \begin{spacing}{1}
+      \tiny
+      \noindent
+      \liMetaHilfMit
+
+      \liMetaQuelltext
+      \_gib_github_url_href:
+     \end{spacing}
+  }
 }
 %    \end{macrocode}
 
@@ -4327,7 +4364,7 @@ anderen Paket passen]
 
   \par
   \noindent
-  \textsf{\textbf{#1}}
+  \textbf{#1}
 
   \medskip
 
@@ -4907,6 +4944,103 @@ anderen Paket passen]
 %%
 \DeclareMathSymbol{\mlq}{\mathord}{operators}{``}
 \DeclareMathSymbol{\mrq}{\mathord}{operators}{`'}
+
+%    \end{macrocode}
+% \subsection{meta.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lehramt-informatik-klassen-meta}[2021/09/10 Sammlung
+von Textschnipseln, die das Projekt beschreiben]
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+
+% \begin{macro}{\liMetaBschlangaulSammlung}
+%    \begin{macrocode}
+\def\liMetaBschlangaulSammlung{
+  Die~Bschlangaul-Sammlung
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liMetaHermineBschlangaulAndFriends}
+%    \begin{macrocode}
+\def\liMetaHermineBschlangaulAndFriends{
+  Hermine~Bschlangaul~and~Friends
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liMetaUeberDasProjekt}
+%    \begin{macrocode}
+\def\liMetaUeberDasProjekt{
+  Eine~freie~Aufgabensammlung~mit~Lösungen~
+  von~Studierenden~für~Studierende~
+  zur~Vorbereitung~auf~die~1.~Staatsexamensprüfungen~
+  des~Lehramts~Informatik~in~Bayern.
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liMetaCCLink}
+%    \begin{macrocode}
+\def\liMetaCCLink{
+  Diese~Materialsammlung~unterliegt~den~Bestimmungen~der~
+  \href{
+    https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de
+  }
+  {
+    Creative~Commons~Namensnennung-Nicht~kommerziell-Share~Alike~4.0~
+    International-Lizenz
+  }.
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liMetaEmailLink}
+%    \begin{macrocode}
+\def\liMetaEmailLink{
+  \href{
+    mailto:hermine.bschlangaul@gmx.net
+  }{
+    hermine.bschlangaul@gmx.net
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liMetaHilfMit}
+%    \begin{macrocode}
+\def\liMetaHilfMit{
+  Hilf~mit!~
+
+  Die~Hermine~schafft~das~nicht~alleine!~
+
+  Das~ist~ein~Community-Projekt.~
+
+  Verbesserungsvorschläge,~Fehlerkorrekturen,~weitere~Lösungen~sind~
+  herzlich~willkommen~-~egal~wie~-~per~Pull-Request~oder~per~E-Mail~an~
+  \liMetaEmailLink.
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liMetaHilfMit}
+%    \begin{macrocode}
+\def\liMetaQuelltext{
+  Der~\TeX-Quelltext~dieses~Dokuments~kann~unter~folgender~
+  URL~aufgerufen~werden:~
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{minimierung.sty}
