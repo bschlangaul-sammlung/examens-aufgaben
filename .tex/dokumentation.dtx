@@ -781,6 +781,46 @@ Setzen der Aufgaben-Metadaten.]
 \ExplSyntaxOn
 %    \end{macrocode}
 
+% \subsubsection{IFs}
+
+% Wir weichen von dem üblichen Namensschema ab und beginnen das |if|
+% mit einem Großbuchstaben und schreiben das letzte Worte komplett in
+% Großbuchstaben, damit die |if|-Befehle schöner lesbar sind, z. B.
+% |\ifLiADDITUM|, |\LiADDITUMtrue| und |\LiADDITUMfalse|.
+
+% \begin{macro}{\ifLiADDITUM}
+% \begin{macro}{\LiADDITUMtrue}
+% \begin{macro}{\LiADDITUMfalse}
+% \begin{macrocode}
+\newif\ifLiADDITUM
+\LiADDITUMfalse
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+
+% \begin{macro}{\ifLiEXKURS}
+% \begin{macro}{\LiEXKURStrue}
+% \begin{macro}{\LiEXKURSfalse}
+%    \begin{macrocode}
+\newif\ifLiEXKURS
+\LiEXKURStrue
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+
+% \begin{macro}{\ifLiANTWORT}
+% \begin{macro}{\LiANTWORTtrue}
+% \begin{macro}{\LiANTWORTfalse}
+%    \begin{macrocode}
+\newif\ifLiANTWORT
+\LiANTWORTtrue
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+
 % \begin{macro}{\liLadePakete}
 %    \begin{macrocode}
 \NewDocumentCommand{\liLadePakete}{ m }
@@ -3567,9 +3607,16 @@ Klasse Aufgabe konfigurieren, d. h. Laden von einigen Paketen, Registierung von 
   grafik,
   meta
 }
-
+%    \end{macrocode}
 % Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
+
+%    \begin{macrocode}
 \RequirePackage[ngerman]{babel}
+%    \end{macrocode}
+
+% In Aufgaben wollen wir das Additum sehen.
+%    \begin{macrocode}
+\LiADDITUMtrue
 %    \end{macrocode}
 
 %    \begin{macrocode}
@@ -3723,7 +3770,8 @@ Klasse liSetzeExamen konfigurieren, d. h. Laden von einigen Paketen, Registierun
   aufgaben-metadaten,
   abmessung,
   typographie,
-  grafik
+  grafik,
+  meta
 }
 %    \end{macrocode}
 
@@ -3820,7 +3868,7 @@ Klasse liSetzeExamen konfigurieren, d. h. Laden von einigen Paketen, Registierun
   \liGrafikLogo[width=8cm]\par
   \bigskip
   Die~Bschlangaul-Sammlung \par
-  {\footnotesize zusammengestellt~von~Hermine~Bschlangaul~und~Freunden} \par
+  {\footnotesize \liMetaHermineBschlangaulAndFriends} \par
 
   \vfill
 
@@ -4432,31 +4480,39 @@ anderen Paket passen]
 % \begin{macrocode}
 \NewDocumentEnvironment{ liAntwort } { O{standard} }
 {
-  \str_case:nn {#1} {
-    {standard} {
-      \def\beschriftung{}
-      \mdfsetup{backgroundcolor=gray!1,linecolor=gray}
+  \ifLiANTWORT
+    \str_case:nn {#1} {
+      {standard} {
+        \def\beschriftung{}
+        \mdfsetup{backgroundcolor=gray!1,linecolor=gray}
+      }
+      {richtig} {
+        \def\beschriftung{richtig}
+        \mdfsetup{backgroundcolor=green!5,linecolor=green}
+      }
+      {falsch} {
+        \def\beschriftung{falsch}
+        \mdfsetup{backgroundcolor=red!3,linecolor=red}
+      }
+      {muster} {
+        \def\beschriftung{Musterlösung}
+        \mdfsetup{backgroundcolor=green!12,linecolor=green}
+      }
     }
-    {richtig} {
-      \def\beschriftung{richtig}
-      \mdfsetup{backgroundcolor=green!5,linecolor=green}
-    }
-    {falsch} {
-      \def\beschriftung{falsch}
-      \mdfsetup{backgroundcolor=red!3,linecolor=red}
-    }
-    {muster} {
-      \def\beschriftung{Musterlösung}
-      \mdfsetup{backgroundcolor=green!12,linecolor=green}
-    }
-  }
-  \ifx\beschriftung\empty\else
-  \noindent
-  \textbf{\beschriftung{}:}
+    \ifx\beschriftung\empty\else
+      \noindent
+      \textbf{\beschriftung{}:}
+    \fi
+    \begin{mdframed}
+  \else
   \fi
-  \begin{mdframed}
 }
-{\end{mdframed}}
+{
+  \ifLiANTWORT
+    \end{mdframed}
+  \else
+  \fi
+}
 %    \end{macrocode}
 % \end{environment}
 
@@ -4465,14 +4521,21 @@ anderen Paket passen]
 % zum Lösen der Aufgaben nicht unbedingt nötig ist, z. b.
 % Hintergrundinformation, Test-Dateien, komplette Code-Dateien.
 % \begin{macrocode}
-\NewDocumentEnvironment{ liAdditum } { o }
+\NewDocumentEnvironment{ liAdditum } { o +b}
 {
-  \begin{mdframed}[backgroundcolor=yellow!5]
-  \IfNoValueTF {#1}
-  { \liPseudoUeberschrift{Additum} }
-  { \liPseudoUeberschrift{Additum:~#1} }
-}
-{\end{mdframed}}
+  \ifLiADDITUM
+    \begin{mdframed}[backgroundcolor=yellow!5]
+    \IfNoValueTF {#1}
+    {
+      \liPseudoUeberschrift{Additum}
+    }
+    {
+      \liPseudoUeberschrift{Additum:~#1}
+    }
+    \end{mdframed}
+  \else
+  \fi
+} { }
 %    \end{macrocode}
 % \end{environment}
 
@@ -4494,25 +4557,28 @@ anderen Paket passen]
 
 %    \begin{macrocode}
 \NewDocumentEnvironment{ liExkurs }{o +b}{
-  \vspace{0.2cm}%
-  \begin{mdframed}[
-    backgroundcolor=white,
-    bottomline=false,
-    innermargin=1cm,
-    leftline=true,
-    linecolor=black,
-    linewidth=0.1cm,
-    outermargin=1cm,
-    rightline=false,
-    topline=false,
-  ]
-  \footnotesize
-  \noindent%
-  \textbf{Exkurs:~#1}\par%
-  \noindent%
-  #2
-  \end{mdframed}
-  \vspace{0.2cm}
+  \ifLiEXKURS
+    \vspace{0.2cm}%
+    \begin{mdframed}[
+      backgroundcolor=white,
+      bottomline=false,
+      innermargin=1cm,
+      leftline=true,
+      linecolor=black,
+      linewidth=0.1cm,
+      outermargin=1cm,
+      rightline=false,
+      topline=false,
+    ]
+    \footnotesize
+    \noindent%
+    \textbf{Exkurs:~#1}\par%
+    \noindent%
+    #2
+    \end{mdframed}
+    \vspace{0.2cm}
+  \else
+  \fi
 }{}
 %    \end{macrocode}
 % \end{environment}
@@ -6469,7 +6535,7 @@ Paket struktex zum Setzen von Struktogrammen]
 %\setminted{breaklines=true,linenos}
 \setminted{
   breaklines=true,
-  linenos,
+  linenos=false,
   fontsize=\footnotesize,
 }
 %    \end{macrocode}
@@ -6479,8 +6545,7 @@ Paket struktex zum Setzen von Struktogrammen]
 % um den Java-Code in Angaben / Aufgabestellungen zu setzen.
 %    \begin{macrocode}
 \newminted[liJavaAngabe]{java}{
-  xleftmargin=1cm,
-  linenos=false
+  xleftmargin=1cm
 }
 %    \end{macrocode}
 % \end{environment}
