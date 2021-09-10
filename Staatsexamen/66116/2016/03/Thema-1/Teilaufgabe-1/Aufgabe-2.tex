@@ -1,14 +1,26 @@
 \documentclass{lehramt-informatik-aufgabe}
-\liLadePakete{syntax,mathe,rmodell}
+\liLadePakete{sql,mathe,rmodell}
 \begin{document}
-\liAufgabenTitel{Polizei}
-
-\section{Aufgabe 2
-\index{Entity-Relation-Modell}
-\footcite[Thema 1 Teilaufgabe 1 Aufgabe 2]{examen:66116:2016:03}}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 2},
+  Thematik = {Polizei},
+  RelativerPfad = Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.tex,
+  ZitatSchluessel = examen:66116:2016:03,
+  ZitatBeschreibung = {Thema 1 Teilaufgabe 1 Aufgabe 2},
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {Entity-Relation-Modell, SQL mit Übungsdatenbank, Relationale Algebra, SQL, VIEW, WITH, UNION},
+  ExamenNummer = 66116,
+  ExamenJahr = 2016,
+  ExamenMonat = 03,
+  ExamenThemaNr = 1,
+  ExamenTeilaufgabeNr = 1,
+  ExamenAufgabeNr = 2,
+}
 
 \noindent
-Gehen Sie dabei von dem dazugehörigen relationalen Schema aus:
+Gehen\index{Entity-Relation-Modell}
+\footcite{examen:66116:2016:03} Sie dabei von dem dazugehörigen relationalen Schema aus:
 \footcite[Aufgabe 4]{db:pu:3}
 
 \begin{liRmodell}
@@ -19,6 +31,7 @@ Gehen Sie dabei von dem dazugehörigen relationalen Schema aus:
 \liRelationMenge{Vorgesetzte}{\liPrimaer{PersNr}, PersNr, Vorgesetzter}
 \end{liRmodell}
 
+\begin{liAdditum}[Übungsdatenbank]
 % Datenbankname: polizei
 \begin{minted}{sql}
 CREATE TABLE Fall (
@@ -91,6 +104,7 @@ VALUES
   (2, 4);
 \end{minted}
 \index{SQL mit Übungsdatenbank}
+\end{liAdditum}
 
 \noindent
 Gegeben sei folgendes ER-Modell, welches Polizisten, deren Dienststelle
