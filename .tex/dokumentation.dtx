@@ -3701,38 +3701,10 @@ Klasse Aufgabe konfigurieren, d. h. Laden von einigen Paketen, Registierung von 
   \vfill
   {
 
-    \begin{minipage}{5.5cm}
-      \liGrafikLogo[width=5cm]
-    \end{minipage}
-    \begin{minipage}{10cm}
-      {
-        \bfseries
-        \liMetaBschlangaulSammlung
-      }\par
-
-      \liMetaHermineBschlangaulAndFriends\par
-      \medskip\par
-
-      \begin{spacing}{1}
-        \footnotesize
-        \liMetaUeberDasProjekt
-      \end{spacing}
-    \end{minipage}
-
-    \par
-
+    \liLogoTextProjekt
     \bigskip
 
-    \begin{minipage}{5.5cm}
-      \centerline{\liGrafikCCLizenz[width=3cm]}
-    \end{minipage}
-    \begin{minipage}{10cm}
-      \begin{spacing}{1}
-        \scriptsize
-        \liMetaCCLink
-      \end{spacing}
-    \end{minipage}
-
+    \liLogoTextCCLizenz
     \bigskip
 
     \begin{spacing}{1}
@@ -3851,59 +3823,83 @@ Klasse liSetzeExamen konfigurieren, d. h. Laden von einigen Paketen, Registierun
 % \end{macro}
 
 %    \begin{macrocode}
-\setcounter{tocdepth}{4}
-\RequirePackage[titles]{tocloft}
-\AddToHook{begindocument}{
+\cs_new:Npn \titel_seite:
+{
   \pagestyle{empty}
   \begin{center}
-  \large
-  Erste~Staatsprüfung~für~ein~Lehramt~an~öffentlichen~Schulen \par
+    \large
+    Erste~Staatsprüfung~für~ein~Lehramt~an~öffentlichen~Schulen \par
 
-  \vspace{0.5cm}
+    \vspace{0.5cm}
 
-  Fach~Informatik \par
+    Fach~Informatik \par
 
-  \vfill
+    \vfill
 
-  \liGrafikLogo[width=8cm]\par
-  \bigskip
-  Die~Bschlangaul-Sammlung \par
-  {\footnotesize \liMetaHermineBschlangaulAndFriends} \par
+    \liGrafikLogo[width=8cm]\par
+    \bigskip
+    Die~Bschlangaul-Sammlung \par
+    {\footnotesize \liMetaHermineBschlangaulAndFriends} \par
 
-  \vfill
+    \vfill
 
-  {
-    \bfseries\Huge
+    {
+      \bfseries\Huge
 
-    \g_auf_examen_jahreszeit_tl \par
+      \g_auf_examen_jahreszeit_tl \par
 
-    \g_auf_examen_jahr_tl \par
-  }
+      \g_auf_examen_jahr_tl \par
+    }
 
-  \vspace{2cm}
+    \vspace{2cm}
 
-  {\LARGE \g_auf_examen_nummer_tl \par}
+    {\LARGE \g_auf_examen_nummer_tl \par}
 
-  \vspace{0.5cm}
+    \vspace{0.5cm}
 
-  \g_auf_examen_fach_tl \par
+    \g_auf_examen_fach_tl \par
 
-  \vspace{3cm}
+    \vspace{3cm}
 
-  Aufgabenstellungen~mit~Lösungsvorschlägen \par
+    Aufgabenstellungen~mit~Lösungsvorschlägen \par
 
   \end{center}
 
+  \vfill
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\cs_new:Npn \inhalts_verzeichnis: {
   % für den Abstand vor den section im Inhaltsverzeichnis
   % https://tex.stackexchange.com/questions/241445/how-to-control-spacing-in-toc-for-different-sections
   \setlength{\cftbeforesecskip}{1.5cm}
   \setlength{\cftbeforesubsecskip}{0.5cm}
   \renewcommand{\cftsubsecafterpnum}{\vspace{\cftbeforesubsecskip}}
   \setlength{\cftbeforesubsubsecskip}{0.1cm}
-
-  \vfill
   \renewcommand{\contentsname}{Aufgabenübersicht}
   \tableofcontents
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\setcounter{tocdepth}{4}
+\RequirePackage[titles]{tocloft}
+\AddToHook{begindocument}{
+  \titel_seite:
+
+  \clearpage
+
+  \inhalts_verzeichnis:
+
+  \vfill
+
+  \liLogoTextProjekt
+  \bigskip
+
+  \liLogoTextCCLizenz
+  \bigskip
+
   \clearpage
 }
 %    \end{macrocode}
@@ -4386,6 +4382,12 @@ anderen Paket passen]
 \RequirePackage{paralist}
 %    \end{macrocode}
 
+% Damit wir Umgebungen ausblenden können. Liefert |\comment| und
+% |\endcomment| https://tex.stackexchange.com/a/37945
+%    \begin{macrocode}
+\RequirePackage{verbatim}
+%    \end{macrocode}
+
 %    \begin{macrocode}
 \ExplSyntaxOn
 %    \end{macrocode}
@@ -4521,10 +4523,13 @@ anderen Paket passen]
 % zum Lösen der Aufgaben nicht unbedingt nötig ist, z. b.
 % Hintergrundinformation, Test-Dateien, komplette Code-Dateien.
 % \begin{macrocode}
-\NewDocumentEnvironment{ liAdditum } { o +b}
+\NewDocumentEnvironment{ liAdditum } { o }
 {
-  \ifLiADDITUM
-    \begin{mdframed}[backgroundcolor=yellow!5]
+  \ifLiADDITUM\else
+    % das Verwenden von +b hat nicht funktioniert.
+    \expandafter\comment % https://tex.stackexchange.com/a/37945
+  \fi
+  \begin{mdframed}[backgroundcolor=yellow!5]
     \IfNoValueTF {#1}
     {
       \liPseudoUeberschrift{Additum}
@@ -4532,10 +4537,12 @@ anderen Paket passen]
     {
       \liPseudoUeberschrift{Additum:~#1}
     }
-    \end{mdframed}
-  \else
+} {
+  \end{mdframed}
+  \ifLiADDITUM\else
+    \expandafter\endcomment % https://tex.stackexchange.com/a/37945
   \fi
-} { }
+}
 %    \end{macrocode}
 % \end{environment}
 
@@ -5035,6 +5042,12 @@ von Textschnipseln, die das Projekt beschreiben]
 \ExplSyntaxOn
 %    \end{macrocode}
 
+%    \begin{macrocode}
+\liLadePakete{grafik}
+%    \end{macrocode}
+
+% \subsubsection{Einfache Makros (Low level)}
+
 % \begin{macro}{\liMetaBschlangaulSammlung}
 %    \begin{macrocode}
 \def\liMetaBschlangaulSammlung{
@@ -5110,6 +5123,71 @@ von Textschnipseln, die das Projekt beschreiben]
 \def\liMetaQuelltext{
   Der~\TeX-Quelltext~dieses~Dokuments~kann~unter~folgender~
   URL~aufgerufen~werden:~
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \subsubsection{Zusammengesetzte Makros (High level)}
+
+% Plaziert zwei Minipages nebeneinander. Die erste Umgebung ist
+% für eine Logo gedacht, die zweite für einen Text
+%    \begin{macrocode}
+\cs_new:Npn \logo_dann_text:nn #1 #2 {
+  \begin{center}
+    \begin{minipage}[c]{5.5cm}
+      #1
+    \end{minipage}
+
+    \begin{minipage}[c]{10cm}
+      #2
+    \end{minipage}
+  \end{center}
+}
+%    \end{macrocode}
+
+% \begin{macro}{\liLogoTextProjekt}
+%    \begin{macrocode}
+\def\liLogoTextProjekt
+{
+  \logo_dann_text:nn
+  {
+    \liGrafikLogo[width=5cm]
+  }
+  {
+    {
+      \bfseries
+      \liMetaBschlangaulSammlung
+    }
+    \par
+
+    \liMetaHermineBschlangaulAndFriends
+    \par
+
+    \medskip
+
+    \begin{spacing}{1}
+      \footnotesize
+      \liMetaUeberDasProjekt
+    \end{spacing}
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liLogoTextCCLizenz}
+%    \begin{macrocode}
+\def\liLogoTextCCLizenz
+{
+  \logo_dann_text:nn
+  {
+    \centerline{\liGrafikCCLizenz[width=3cm]}
+  }
+  {
+    \begin{spacing}{1}
+      \scriptsize
+      \liMetaCCLink
+    \end{spacing}
+  }
 }
 %    \end{macrocode}
 % \end{macro}
@@ -6467,6 +6545,40 @@ realisiert werden kann.]
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lehramt-informatik-tabelle}[2021/09/02 Zu Setzen von SQL]
 %    \end{macrocode}
+
+% \subsubsection{Latex-Markup-Beispiel}
+
+% \begin{verbatim}
+% \begin{liAdditum}[Übungsdatenbank]
+% % Datenbankname: Personalverwaltung
+% \begin{minted}{sql}
+% CREATE TABLE Abteilung(
+%   AbteilungsID INTEGER PRIMARY KEY,
+%   Bezeichnung VARCHAR(30)
+% );
+%
+% CREATE TABLE Mitarbeiter(
+%   MitarbeiterID INTEGER PRIMARY KEY,
+%   Vorname VARCHAR(30),
+%   Nachname VARCHAR(30),
+%   Vorgesetzter INTEGER REFERENCES Mitarbeiter(MitarbeiterID),
+%   AbteilungsID INTEGER REFERENCES Abteilung(AbteilungsID),
+%   Telefonnummer VARCHAR(50),
+%   Gehalt DOUBLE PRECISION
+% );
+%
+% INSERT INTO Abteilung VALUES
+%   (1,  'Buchhaltung');
+%
+% INSERT INTO Mitarbeiter
+%   (MitarbeiterID, Vorname, Nachname, Vorgesetzter, AbteilungsID, Telefonnummer, Gehalt)
+% VALUES
+%   (1,  'Hans',   'Meier',    11,   4, '023/13432', 2335),
+%   (2,  'Fred',   'Wolitz',   11,   2, '0233/413432', 1233);
+% \end{minted}
+% \index{SQL mit Übungsdatenbank}
+% \end{liAdditum}
+% \end{verbatim}
 
 %    \begin{macrocode}
 \liLadePakete{syntax}

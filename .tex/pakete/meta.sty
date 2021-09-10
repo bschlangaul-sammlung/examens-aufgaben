@@ -7,6 +7,12 @@ von Textschnipseln, die das Projekt beschreiben]
 \ExplSyntaxOn
 %    \end{macrocode}
 
+%    \begin{macrocode}
+\liLadePakete{grafik}
+%    \end{macrocode}
+
+% \subsubsection{Einfache Makros (Low level)}
+
 % \begin{macro}{\liMetaBschlangaulSammlung}
 %    \begin{macrocode}
 \def\liMetaBschlangaulSammlung{
@@ -82,6 +88,71 @@ von Textschnipseln, die das Projekt beschreiben]
 \def\liMetaQuelltext{
   Der~\TeX-Quelltext~dieses~Dokuments~kann~unter~folgender~
   URL~aufgerufen~werden:~
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \subsubsection{Zusammengesetzte Makros (High level)}
+
+% Plaziert zwei Minipages nebeneinander. Die erste Umgebung ist
+% für eine Logo gedacht, die zweite für einen Text
+%    \begin{macrocode}
+\cs_new:Npn \logo_dann_text:nn #1 #2 {
+  \begin{center}
+    \begin{minipage}[c]{5.5cm}
+      #1
+    \end{minipage}
+
+    \begin{minipage}[c]{10cm}
+      #2
+    \end{minipage}
+  \end{center}
+}
+%    \end{macrocode}
+
+% \begin{macro}{\liLogoTextProjekt}
+%    \begin{macrocode}
+\def\liLogoTextProjekt
+{
+  \logo_dann_text:nn
+  {
+    \liGrafikLogo[width=5cm]
+  }
+  {
+    {
+      \bfseries
+      \liMetaBschlangaulSammlung
+    }
+    \par
+
+    \liMetaHermineBschlangaulAndFriends
+    \par
+
+    \medskip
+
+    \begin{spacing}{1}
+      \footnotesize
+      \liMetaUeberDasProjekt
+    \end{spacing}
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liLogoTextCCLizenz}
+%    \begin{macrocode}
+\def\liLogoTextCCLizenz
+{
+  \logo_dann_text:nn
+  {
+    \centerline{\liGrafikCCLizenz[width=3cm]}
+  }
+  {
+    \begin{spacing}{1}
+      \scriptsize
+      \liMetaCCLink
+    \end{spacing}
+  }
 }
 %    \end{macrocode}
 % \end{macro}

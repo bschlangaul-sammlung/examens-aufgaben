@@ -2,6 +2,38 @@
 \ProvidesPackage{lehramt-informatik-tabelle}[2021/09/02 Zu Setzen von SQL]
 %    \end{macrocode}
 
+% \subsubsection{Latex-Markup-Beispiel}
+
+% \begin{verbatim}
+% \begin{liAdditum}[Übungsdatenbank]
+% % Datenbankname: Personalverwaltung
+% \begin{minted}{sql}
+% CREATE TABLE Abteilung(
+%   AbteilungsID INTEGER PRIMARY KEY,
+%   Bezeichnung VARCHAR(30)
+% );
+%
+% CREATE TABLE Mitarbeiter(
+%   MitarbeiterID INTEGER PRIMARY KEY,
+%   Vorname VARCHAR(30),
+%   Vorgesetzter INTEGER REFERENCES Mitarbeiter(MitarbeiterID),
+%   Telefonnummer VARCHAR(50),
+%   Gehalt DOUBLE PRECISION
+% );
+%
+% INSERT INTO Abteilung VALUES
+%   (1,  'Buchhaltung');
+%
+% INSERT INTO Mitarbeiter
+%   (MitarbeiterID, Vorname, Nachname, Vorgesetzter, AbteilungsID, Telefonnummer, Gehalt)
+% VALUES
+%   (1,  'Hans',   'Meier',    11,   4, '023/13432', 2335),
+%   (2,  'Fred',   'Wolitz',   11,   2, '0233/413432', 1233);
+% \end{minted}
+% \index{SQL mit Übungsdatenbank}
+% \end{liAdditum}
+% \end{verbatim}
+
 %    \begin{macrocode}
 \liLadePakete{syntax}
 %    \end{macrocode}

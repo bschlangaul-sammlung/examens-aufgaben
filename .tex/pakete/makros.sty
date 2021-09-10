@@ -17,6 +17,12 @@ anderen Paket passen]
 \RequirePackage{paralist}
 %    \end{macrocode}
 
+% Damit wir Umgebungen ausblenden können. Liefert |\comment| und
+% |\endcomment| https://tex.stackexchange.com/a/37945
+%    \begin{macrocode}
+\RequirePackage{verbatim}
+%    \end{macrocode}
+
 %    \begin{macrocode}
 \ExplSyntaxOn
 %    \end{macrocode}
@@ -152,10 +158,13 @@ anderen Paket passen]
 % zum Lösen der Aufgaben nicht unbedingt nötig ist, z. b.
 % Hintergrundinformation, Test-Dateien, komplette Code-Dateien.
 % \begin{macrocode}
-\NewDocumentEnvironment{ liAdditum } { o +b}
+\NewDocumentEnvironment{ liAdditum } { o }
 {
-  \ifLiADDITUM
-    \begin{mdframed}[backgroundcolor=yellow!5]
+  \ifLiADDITUM\else
+    % das Verwenden von +b hat nicht funktioniert.
+    \expandafter\comment % https://tex.stackexchange.com/a/37945
+  \fi
+  \begin{mdframed}[backgroundcolor=yellow!5]
     \IfNoValueTF {#1}
     {
       \liPseudoUeberschrift{Additum}
@@ -163,10 +172,12 @@ anderen Paket passen]
     {
       \liPseudoUeberschrift{Additum:~#1}
     }
-    \end{mdframed}
-  \else
+} {
+  \end{mdframed}
+  \ifLiADDITUM\else
+    \expandafter\endcomment % https://tex.stackexchange.com/a/37945
   \fi
-} { }
+}
 %    \end{macrocode}
 % \end{environment}
 
