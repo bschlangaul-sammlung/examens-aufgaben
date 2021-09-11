@@ -111,6 +111,38 @@ anderen Paket passen]
 %    \end{macrocode}
 % \end{environment}
 
+% \subsubsection{Umgebungen, die Inhalte aus- und einblenden können}
+
+% Die einfachste Möglichkeit, um den kompletten Inhalt einer Umgebung
+% auszublenden ist die Verwendung |+b| in einer |xparse| erzeugten
+% Umgebung. Manchmal funktioniert diese Methode nicht. In der
+% Dokumentation von |xparse| steht, dass dieses Feature etwas
+% experimentell ist.
+
+% Eine andere Methode verwendet das exam-Package. Die Inhalt wird in
+% eine Box verschoben, die dann einfach ignoriert wird.
+
+% \begin{verbatim}
+% \NewDocumentEnvironment{ liAdditum } { o }
+% {
+%   \ifLiADDITUM
+%   \else
+%     % Alles in eine Box verschieben und die dann ignorieren.
+%     \setbox 0 \vbox
+%     \bgroup
+%   \fi
+
+%   \begin{frame}
+% } {
+%   \end{frame}
+
+%   \ifLiADDITUM
+%   \else
+%     \egroup
+%   \fi
+% }
+% \end{verbatim}
+
 % \begin{environment}{liAntwort}
 % Zum Setzen von Antworten. Sie werden mit einem Kasten umgeben. Könnten
 % eventuell ausgeblendet werden, wenn man nur die Lösung sehen will.
@@ -118,36 +150,40 @@ anderen Paket passen]
 \NewDocumentEnvironment{ liAntwort } { O{standard} }
 {
   \ifLiANTWORT
-    \str_case:nn {#1} {
-      {standard} {
-        \def\beschriftung{}
-        \mdfsetup{backgroundcolor=gray!1,linecolor=gray}
-      }
-      {richtig} {
-        \def\beschriftung{richtig}
-        \mdfsetup{backgroundcolor=green!5,linecolor=green}
-      }
-      {falsch} {
-        \def\beschriftung{falsch}
-        \mdfsetup{backgroundcolor=red!3,linecolor=red}
-      }
-      {muster} {
-        \def\beschriftung{Musterlösung}
-        \mdfsetup{backgroundcolor=green!12,linecolor=green}
-      }
-    }
-    \ifx\beschriftung\empty\else
-      \noindent
-      \textbf{\beschriftung{}:}
-    \fi
-    \begin{mdframed}
   \else
+    \setbox 0 \vbox
+    \bgroup
   \fi
+
+  \str_case:nn {#1} {
+    {standard} {
+      \def\beschriftung{}
+      \mdfsetup{backgroundcolor=gray!1,linecolor=gray}
+    }
+    {richtig} {
+      \def\beschriftung{richtig}
+      \mdfsetup{backgroundcolor=green!5,linecolor=green}
+    }
+    {falsch} {
+      \def\beschriftung{falsch}
+      \mdfsetup{backgroundcolor=red!3,linecolor=red}
+    }
+    {muster} {
+      \def\beschriftung{Musterlösung}
+      \mdfsetup{backgroundcolor=green!12,linecolor=green}
+    }
+  }
+  \ifx\beschriftung\empty\else
+    \noindent
+    \textbf{\beschriftung{}:}
+  \fi
+  \begin{mdframed}
 }
 {
+  \end{mdframed}
   \ifLiANTWORT
-    \end{mdframed}
   \else
+    \egroup
   \fi
 }
 %    \end{macrocode}
@@ -160,10 +196,12 @@ anderen Paket passen]
 % \begin{macrocode}
 \NewDocumentEnvironment{ liAdditum } { o }
 {
-  \ifLiADDITUM\else
-    % das Verwenden von +b hat nicht funktioniert.
-    \expandafter\comment % https://tex.stackexchange.com/a/37945
+  \ifLiADDITUM
+  \else
+    \setbox 0 \vbox
+    \bgroup
   \fi
+
   \begin{mdframed}[backgroundcolor=yellow!5]
     \IfNoValueTF {#1}
     {
@@ -172,10 +210,13 @@ anderen Paket passen]
     {
       \liPseudoUeberschrift{Additum:~#1}
     }
-} {
+}
+{
   \end{mdframed}
-  \ifLiADDITUM\else
-    \expandafter\endcomment % https://tex.stackexchange.com/a/37945
+
+  \ifLiADDITUM
+  \else
+    \egroup
   \fi
 }
 %    \end{macrocode}
