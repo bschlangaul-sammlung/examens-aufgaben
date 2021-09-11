@@ -1,18 +1,31 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{syntax,rmodell}
 \begin{document}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 3},
+  Thematik = {Vater und Mutter},
+  RelativerPfad = Staatsexamen/66116/2015/09/Thema-1/Teilaufgabe-1/Aufgabe-3.tex,
+  ZitatSchluessel = examen:66116:2015:09,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {SQL, SQL mit Übungsdatenbank},
+  ExamenNummer = 66116,
+  ExamenJahr = 2015,
+  ExamenMonat = 09,
+  ExamenThemaNr = 1,
+  ExamenTeilaufgabeNr = 1,
+  ExamenAufgabeNr = 3,
+}
+
 \let\a=\liAttribut
 \let\f=\liFremd
 \let\p=\liPrimaer
 \let\r=\liRelationMenge
 
-\liAufgabenTitel{Vater und Mutter}
-\section{3.SQL
-\index{SQL}
-\footcite{examen:66116:2015:09}}
-
 \noindent
 Gegeben seien folgende Relationen:
+\index{SQL}
+\footcite{examen:66116:2015:09}
 
 \begin{liRelationenSchemaFormat}
 Mensch(ID*, MutterID, VaterID)
@@ -26,6 +39,7 @@ Frau(ID*)
 \r{Frau}{\p{ID}}
 \end{liRmodell}
 
+\begin{liAdditum}[Übungsdatenbank]
 % Datenbankname: vater_mutter
 \begin{minted}{sql}
 CREATE TABLE Mensch (
@@ -67,6 +81,7 @@ WHERE
   Mensch.VaterID IS NOT NULL;
 \end{minted}
 \index{SQL mit Übungsdatenbank}
+\end{liAdditum}
 
 \noindent
 Das zugehörige ER-Modell für dieses relationale Datenbankschema sieht

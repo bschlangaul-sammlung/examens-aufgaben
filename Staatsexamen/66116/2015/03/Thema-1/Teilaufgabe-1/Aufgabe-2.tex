@@ -1,14 +1,26 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{syntax}
 \begin{document}
-\liAufgabenTitel{Musik-CDs}
-\section{DB.2 (Datenbankanfragen und -änderungen in SQL)
-\index{SQL}
-\footcite{examen:66116:2015:03}}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 2},
+  Thematik = {Musik-CDs},
+  RelativerPfad = Staatsexamen/66116/2015/03/Thema-1/Teilaufgabe-1/Aufgabe-2.tex,
+  ZitatSchluessel = examen:66116:2015:03,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {SQL, SQL mit Übungsdatenbank, GROUP BY, MAX, OR, INSERT, UPDATE},
+  ExamenNummer = 66116,
+  ExamenJahr = 2015,
+  ExamenMonat = 03,
+  ExamenThemaNr = 1,
+  ExamenTeilaufgabeNr = 1,
+  ExamenAufgabeNr = 2,
+}
 
 Formulieren Sie in SQL die folgenden Anfragen, Views bzw.
 Datenmanipulations-Statements an Teile der Musik-Datenbank aus
-Teilaufgabe DB.1:
+Teilaufgabe DB.1:\index{SQL}
+\footcite{examen:66116:2015:03}
 
 Interpret (Interpreten\_ID, Name, Bühnenstart, Geschäftsadresse),
 CD (CD\_ID, Name, Interpreten\_ID, Erscheinungsdatum),
@@ -17,6 +29,7 @@ Auszeichnung\_CD (CD\_ID, Typ),
 
 Auszeichnung\_Stück (CD\_ID, Position, Typ).
 
+\begin{liAdditum}[Übungsdatenbank]
 % Datenbankname: musikcds
 \begin{minted}{sql}
 CREATE TABLE Interpret (
@@ -74,7 +87,7 @@ INSERT INTO Auszeichnung_Stück VALUES
 \end{minted}
 \index{SQL mit Übungsdatenbank}
 
-\begin{enumerate}
+\end{liAdditum}\begin{enumerate}
 
 %%
 % a)
