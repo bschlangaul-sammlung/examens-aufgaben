@@ -4,8 +4,8 @@ OLD_PWD="$(pwd)"
 
 _config() {
   cd "$OLD_PWD/$1"
-  git pull
-  git checkout origin main
+  git pull origin main
+  git checkout main
 }
 
 _config ".scripts/nodejs"
