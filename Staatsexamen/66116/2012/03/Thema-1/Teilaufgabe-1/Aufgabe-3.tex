@@ -1,16 +1,26 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{rmodell,syntax}
 \begin{document}
+\liAufgabenMetadaten{
+  Titel = {SQL},
+  Thematik = {Gebrauchtwagen},
+  RelativerPfad = Staatsexamen/66116/2012/03/Thema-1/Teilaufgabe-1/Aufgabe-3.tex,
+  ZitatSchluessel = examen:66116:2012:03,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {SQL, SQL mit Übungsdatenbank},
+  ExamenNummer = 66116,
+  ExamenJahr = 2012,
+  ExamenMonat = 03,
+  ExamenThemaNr = 1,
+  ExamenTeilaufgabeNr = 1,
+  ExamenAufgabeNr = 3,
+}
+
 \let\a=\liAttribut
 \let\f=\liFremd
 \let\p=\liPrimaer
 \let\r=\liRelationMenge
-
-\liAufgabenTitel{Gebrauchtwagen}
-\section{SQL
-\index{SQL}
-\footcite{examen:66116:2012:03}
-}
 
 \begin{liRelationenSchemaFormat}
 Fahrzeug (
@@ -36,7 +46,8 @@ Hersteller (
 \end{liRelationenSchemaFormat}
 
 \noindent
-Gegeben sei das folgende Relationenschema:
+Gegeben sei das folgende Relationenschema:\index{SQL}
+\footcite{examen:66116:2012:03}
 
 \begin{liRmodell}
 \r{Fahrzeug}{\f{MNR[Modell]}, \p{FZGNR}, Baujahr, KMStand, Preis}
@@ -44,6 +55,7 @@ Gegeben sei das folgende Relationenschema:
 \r{Hersteller}{\p{HNR}, Name}
 \end{liRmodell}
 
+\begin{liAdditum}[Übungsdatenbank]
 % Datenbankname: gebrauchtwagen
 \begin{minted}{sql}
 CREATE TABLE Hersteller (
@@ -83,6 +95,7 @@ INSERT INTO Fahrzeug VALUES
   (3, 3, 2002, 119278, 9278);
 \end{minted}
 \index{SQL mit Übungsdatenbank}
+\end{liAdditum}
 
 Dabei sind die Schlüsselattribute jeweils unterstrichen und zusätzlich
 für alle Attribute die Typen angegeben. Formulieren Sie die folgenden

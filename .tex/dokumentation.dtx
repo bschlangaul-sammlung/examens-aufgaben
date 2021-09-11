@@ -1625,15 +1625,15 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \liCpmFruehErklaerung
 % \begin{tabular}{|l|l|r|}
 % \hline
-% i & Nebenrechnung            & \FZ \\\hline
-% 1 &                          & 0   \\
-% 2 &                          & 5   \\
-% 3 &                          & 18  \\
-% 4 &                          & 7   \\
-% 5 &                          & 19  \\
-% 6 &                          & 26  \\
-% 7 & $\max(19_3, 22_4)$       & 22  \\
-% 8 & $\max(30_5, 30_6, 28_7)$ & 30  \\\hline
+% $i$ & Nebenrechnung            & \FZ \\\hline
+% 1   &                          & 0   \\
+% 2   &                          & 5   \\
+% 3   &                          & 18  \\
+% 4   &                          & 7   \\
+% 5   &                          & 19  \\
+% 6   &                          & 26  \\
+% 7   & $\max(19_3, 22_4)$       & 22  \\
+% 8   & $\max(30_5, 30_6, 28_7)$ & 30  \\\hline
 % \end{tabular}
 % \end{verbatim}
 
@@ -1645,14 +1645,14 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \begin{tabular}{|l|l|r|}
 % \hline
 % $i$ & Nebenrechnung         & \SZ \\\hline
-% 8 & siehe \FZ[8]            & 30  \\
-% 7 &                         & 24  \\
-% 6 &                         & 26  \\
-% 5 &                         & 19  \\
-% 4 &                         & 9   \\
-% 3 & $\min(18_6, 23_7)$      & 18  \\
-% 2 &                         & 5   \\
-% 1 & $\min(0_2, 0_3, 2_4)$   & 0   \\\hline
+% 8   & siehe \FZ[8]          & 30  \\
+% 7   &                       & 24  \\
+% 6   &                       & 26  \\
+% 5   &                       & 19  \\
+% 4   &                       & 9   \\
+% 3   & $\min(18_6, 23_7)$    & 18  \\
+% 2   &                       & 5   \\
+% 1   & $\min(0_2, 0_3, 2_4)$ & 0   \\\hline
 % \end{tabular}
 % \end{verbatim}
 
@@ -1689,7 +1689,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 
   \keys_define:nn { cpmVorgang } {
     schein .code:n = {\tl_set:Nn \l_schein_tl {dashed}},
-    kritisch .code:n = {\tl_set:Nn \l_kritisch_tl {thick}},
+    kritisch .code:n = {\tl_set:Nn \l_kritisch_tl {very~thick}},
   }
 
   \keys_set:nn { cpmVorgang } { #1 }
@@ -4517,7 +4517,7 @@ anderen Paket passen]
   \str_case:nn {#1} {
     {standard} {
       \def\beschriftung{}
-      \mdfsetup{backgroundcolor=gray!1,linecolor=gray}
+      \mdfsetup{backgroundcolor=gray!1}
     }
     {richtig} {
       \def\beschriftung{richtig}
@@ -4536,7 +4536,12 @@ anderen Paket passen]
     \noindent
     \textbf{\beschriftung{}:}
   \fi
-  \begin{mdframed}
+  \begin{mdframed}[
+    frametitle={\scriptsize\mdseries Lösungshinweise},
+    innertopmargin=6pt,
+    frametitleaboveskip=-12pt,
+    frametitlealignment=\raggedright
+  ]
 }
 {
   \end{mdframed}

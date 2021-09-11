@@ -1,22 +1,33 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{mathe,syntax,kontrollflussgraph}
 \begin{document}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 2: Kontrollflussorientiertes Testen},
+  Thematik = {Methode „specialSums()“},
+  RelativerPfad = Staatsexamen/66116/2014/09/Thema-2/Teilaufgabe-2/Aufgabe-3.tex,
+  ZitatSchluessel = examen:66116:2014:09,
+  ZitatBeschreibung = {Thema 2 Teilaufgabe 2 Aufgabe 3},
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {Kontrollflussorientieres Testen, Kontrollflussgraph, C0-Test Anweisungsüberdeckung (Statement Coverage), C1-Test Zweigüberdeckung (Branch Coverage)},
+  ExamenNummer = 66116,
+  ExamenJahr = 2014,
+  ExamenMonat = 09,
+  ExamenThemaNr = 2,
+  ExamenTeilaufgabeNr = 2,
+  ExamenAufgabeNr = 3,
+}
+
 \let\c=\liKontrollCode
 \let\b=\liBedingung
 
-\liAufgabenTitel{Methode „specialSums()“}
-
-\section{Aufgabe 2: Kontrollflussorientiertes Testen
-\index{Kontrollflussorientieres Testen}
-\footcite[Thema 2 Teilaufgabe 2 Aufgabe 3]{examen:66116:2014:09}
-}
-
-Im Folgenden ist ein Algorithmus angegeben, der für eine positive Zahl
-\liJavaCode{until} die Summe aller Zahlen bildet, die kleiner als
-\liJavaCode{until} und Vielfache von $4$ oder $6$ sind. Für nicht
-positive Zahlen soll $0$ zurückgegeben werden. Der Algorithmus soll also
-folgender Spezifikation genügen:
-\footcite[Aufgabe 2: Kontrollflussorientiertes Testen]{sosy:ab:7}
+Im\index{Kontrollflussorientieres Testen}
+\footcite{examen:66116:2014:09} Folgenden ist ein Algorithmus angegeben,
+der für eine positive Zahl \liJavaCode{until} die Summe aller Zahlen
+bildet, die kleiner als \liJavaCode{until} und Vielfache von $4$ oder
+$6$ sind. Für nicht positive Zahlen soll $0$ zurückgegeben werden. Der
+Algorithmus soll also folgender Spezifikation genügen:
+\footcite[Kontrollflussorientiertes Testen, Aufgabe 2]{sosy:ab:7}
 
 \bigskip
 
@@ -164,18 +175,21 @@ werden, wobei jedes Paar $(I, O)$ die Eingabe $I$ und die zu dieser
 erwartete Ausgabe $O$ darstellt.
 
 \begin{liAntwort}
-Ein gültiger Pfad im Kontrollflussgraphen wäre \liKontrollTextzeileKnoten{0} -
-\liKontrollTextzeileKnoten{1} - \liKontrollTextzeileKnoten{2} - \liKontrollTextzeileKnoten{3} -
-\liKontrollTextzeileKnoten{4} - \liKontrollTextzeileKnoten{5} - \liKontrollTextzeileKnoten{2} -
-\liKontrollTextzeileKnoten{6}. Der Übergang von \liKontrollTextzeileKnoten{3} auf
-\liKontrollTextzeileKnoten{4} ist hier aber nicht möglich, da beim ersten
-Durchlaufen der for-Schleife (\liKontrollTextzeileKnoten{2}) $i$ immer $1$ ist
-und $1$ weder durch $4$ noch durch $6$ teilbar ist. Somit kann die
-Bedingung des inneren ifs (\liKontrollTextzeileKnoten{3}) beim ersten Durchlauf
-nie \emph{wahr} sein, womit immer der Übergang \liKontrollTextzeileKnoten{3} -
-\liKontrollTextzeileKnoten{5} zu Beginn genommen werden muss. Alle Pfade, die zu
-Beginn \liKontrollTextzeileKnoten{3} - \liKontrollTextzeileKnoten{4} enthalten, sind somit
-nicht überdeckbar.
+Ein gültiger Pfad im Kontrollflussgraphen wäre
+\liKontrollTextzeileKnoten{0} - \liKontrollTextzeileKnoten{1} -
+\liKontrollTextzeileKnoten{2} - \liKontrollTextzeileKnoten{3} -
+\liKontrollTextzeileKnoten{4} - \liKontrollTextzeileKnoten{5} -
+\liKontrollTextzeileKnoten{2} - \liKontrollTextzeileKnoten{6}. Der
+Übergang von \liKontrollTextzeileKnoten{3} auf
+\liKontrollTextzeileKnoten{4} ist hier aber nicht möglich, da beim
+ersten Durchlaufen der for-Schleife (\liKontrollTextzeileKnoten{2}) $i$
+immer $1$ ist und $1$ weder durch $4$ noch durch $6$ teilbar ist. Somit
+kann die Bedingung des inneren ifs (\liKontrollTextzeileKnoten{3}) beim
+ersten Durchlauf nie \emph{wahr} sein, womit immer der Übergang
+\liKontrollTextzeileKnoten{3} - \liKontrollTextzeileKnoten{5} zu Beginn
+genommen werden muss. Alle Pfade, die zu Beginn
+\liKontrollTextzeileKnoten{3} - \liKontrollTextzeileKnoten{4} enthalten,
+sind somit nicht überdeckbar.
 \end{liAntwort}
 
 \end{enumerate}

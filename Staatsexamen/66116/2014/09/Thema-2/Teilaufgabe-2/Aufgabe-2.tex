@@ -1,19 +1,31 @@
 \documentclass{lehramt-informatik-aufgabe}
 
 \begin{document}
-\liAufgabenTitel{Wahlsystem}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 4},
+  Thematik = {Wahlsystem},
+  RelativerPfad = Staatsexamen/66116/2014/09/Thema-2/Teilaufgabe-2/Aufgabe-2.tex,
+  ZitatSchluessel = examen:66116:2014:09,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {Modell-Präsentation-Steuerung (Model-View-Controller)},
+  ExamenNummer = 66116,
+  ExamenJahr = 2014,
+  ExamenMonat = 09,
+  ExamenThemaNr = 2,
+  ExamenTeilaufgabeNr = 2,
+  ExamenAufgabeNr = 2,
+}
 
-\section{Aufgabe 4
-\footcite[Thema 2 Teilaufgabe 2 Aufgabe 2]{examen:66116:2014:09}}
-
-Sie sollen das Design für ein einfaches Wahlsystem entwerfen. Das System
-soll dabei die Verteilung der Stimmen auf die einzelnen Parteien
-ermöglichen. Zusätzlich soll es verschiedene Darstellungen dieser Daten
-erlauben: Eine Tabelle, in der die Daten gelesen und auch eingegeben
-werden können, und ein Diagramm als alternative Darstellung der
-Informationen. Das System soll mit dem Model-View-Controller Muster
-modelliert werden.
-\footcite{sosy:ab:6}
+Sie sollen das Design für ein einfaches Wahlsystem
+entwerfen.\footcite{examen:66116:2014:09} Das System soll dabei die
+Verteilung der Stimmen auf die einzelnen Parteien ermöglichen.
+Zusätzlich soll es verschiedene Darstellungen dieser Daten erlauben:
+Eine Tabelle, in der die Daten gelesen und auch eingegeben werden
+können, und ein Diagramm als alternative Darstellung der Informationen.
+Das System soll mit dem \emph{Model-View-Controller} Muster modelliert
+werden.
+\footcite[StEx H14, T2, TA2, A2 (geänderte Aufgabenstellung), Aufgabe 4]{sosy:ab:6}
 
 \begin{enumerate}
 
@@ -21,7 +33,8 @@ modelliert werden.
 % 1.
 %%
 
-\item Beschreiben Sie das Model-View-Controller Muster:
+\item Beschreiben Sie das \emph{Model-View-Controller} Muster:
+\index{Modell-Präsentation-Steuerung (Model-View-Controller)}
 
 \begin{enumerate}
 
@@ -31,23 +44,50 @@ modelliert werden.
 
 \item Beschreiben Sie das Problem, welches das Muster adressiert.
 
+\begin{liAntwort}
+Das MVC-Muster wird verwendet, um spätere Änderungen bzw. Erweiterungen
+zu vereinfachen. Dies unterstützt somit auch die Wiederverwendbarkeit.
+\end{liAntwort}
+
 %%
 % (b)
 %%
 
-\item Das MVC-Muster ist aus drei anderen Entwurfsmustern
-zusammengesetzt.
-\end{enumerate}
+\item Beschreiben Sie die Aufgaben der Komponenten, die im Muster
+verwendet werden.
 
-\item Geben Sie diese an und beschreiben Sie die Aufgaben der einzelnen
-Komponenten, die im MVC-Muster verwendet werden.
+\begin{liAntwort}
+Im Modell werden die Daten verwaltet, die View ist für die Darstellung
+der daten sowie die Benutzerinteraktion zuständig und der Controller
+übernimmt die Steue- rung zwischen View und Modell.
+
+Das MVC-Muster ist aus den drei Entwurfsmustern Beobachter, Kompositum
+und Strategie zusammengesetzt.
+\end{liAntwort}
+
+\end{enumerate}
 
 %%
 % 2.
 %%
 
-\item Modellieren Sie das System unter Anwendung des Musters. Entwerfen
-Sie hierfür ein UML-Klassendiagramm.
+\item Modellieren Sie das System unter Anwendung des Musters:
+
+\begin{enumerate}
+
+%%
+% a.
+%%
+
+\item Entwerfen Sie ein UML Klassendiagramm.
+
+%%
+% b.
+%%
+
+\item Implementieren Sie eine setup-Methode, die das Objektmodell
+erstellt.\index{Implementierung in Java}
+\end{enumerate}
 
 \end{enumerate}
 \end{document}

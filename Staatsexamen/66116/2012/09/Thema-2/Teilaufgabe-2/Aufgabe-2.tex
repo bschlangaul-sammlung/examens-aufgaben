@@ -1,6 +1,23 @@
 \documentclass{lehramt-informatik-aufgabe}
 \liLadePakete{cpm,mathe,gantt}
 \begin{document}
+\liAufgabenMetadaten{
+  Titel = {Aufgabe 2},
+  Thematik = {Gantt und CPM},
+  RelativerPfad = Staatsexamen/66116/2012/09/Thema-2/Teilaufgabe-2/Aufgabe-2.tex,
+  ZitatSchluessel = examen:66116:2012:09,
+  ZitatBeschreibung = {Thema 2 Teilaufgabe 2 Aufgabe 2},
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {CPM-Netzplantechnik, Gantt-Diagramm},
+  ExamenNummer = 66116,
+  ExamenJahr = 2012,
+  ExamenMonat = 09,
+  ExamenThemaNr = 2,
+  ExamenTeilaufgabeNr = 2,
+  ExamenAufgabeNr = 2,
+}
+
 \let\f=\footnotesize
 \let\FZ=\liCpmFruehI
 \let\SZ=\liCpmSpaetI
@@ -8,17 +25,11 @@
 \let\vz=\liCpmVonZu
 \let\z=\liCpmZu
 
-\liAufgabenTitel{Gantt und CPM}
-
-\section{2 Projektmanagement
-\index{CPM-Netzplantechnik}
-\footcite[Thema 2 Teilaufgabe 2 Aufgabe 2]{examen:66116:2012:09}
-}
-
-Abbildung 2 stellt ein CPM-Netzwerk dar. Die Ereignisse sind fortlaufend
-nummeriert (Nummer im Inneren der Kreise) und tragen keine Namen.
-Gestrichelte Linien stellen Pseudo-Aktivitäten mit einer Dauer von 0
-dar.
+Die unten stehende Abbildung stellt ein CPM-Netzwerk dar. Die Ereignisse
+sind fortlaufend nummeriert (Nummer im Inneren der Kreise) und tragen
+keine Namen. Gestrichelte Linien stellen Pseudo-Aktivitäten mit einer
+Dauer von 0 dar.\index{CPM-Netzplantechnik}
+\footcite{examen:66116:2012:09}
 
 \begin{center}
 \begin{tikzpicture}
@@ -63,19 +74,20 @@ dar.
 angenommen wird, dass das Projekt zum Zeitpunkt 0 startet!
 
 \begin{liAntwort}
-\begin{tabular}{|l|r|r|}
+\liCpmFruehErklaerung
+\begin{tabular}{|l|l|r|}
 \hline
-$i$ & Nebenrechnung & \FZ \\\hline\hline
-1 &                                                                           & $0$ \\\hline
-2 &                                                                           & $10$ \\\hline
-3 &                                                                           & $22$ \\\hline
-4 & \f$\vz{10}(1-2) + \vz{8}(2-4) $                                           & $18$ \\\hline
-5 & \f$\max(\v{10}(2) + 5,\v{6}(1),\v{18}(4) + 1) = \max(15,6,19)$            & $19$ \\\hline
-6 & \f$\max(\v{5}(1),\v{22}(3) + 8, \v{19}(5) + 0) = \max(5, 30, 19)$         & $30$ \\\hline
-7 & \f$\v{18}(4) + 12$                                                        & $30$ \\\hline
-8 & \f$\max(\v{30}(7) + 3, \v{19}(5) + 0) = \max(33,19)$                      & $33$ \\\hline
-9 & \f$\v{30}(6) + 11$                                                        & $41$ \\\hline
-10 & \f$\max(\v{30}(7) + 6, \v{33}(8) + 7, \v{41}(9) + 9) = \max(36, 40, 50)$ & $50$ \\\hline
+$i$ & Nebenrechnung             & \FZ  \\\hline
+1   &                           & $0$  \\
+2   &                           & $10$ \\
+3   &                           & $22$ \\
+4   &                           & $18$ \\
+5   & $\max(15_2,6_1,19_4)$     & $19$ \\
+6   & $\max(5_1, 30_6, 19_5)$   & $30$ \\
+7   &                           & $30$ \\
+8   & $\max(33_7, 19_5)$        & $33$ \\
+9   &                           & $41$ \\
+10  & $\max(36_7, 40_8, 50_9)$  & $50$ \\\hline
 \end{tabular}
 \end{liAntwort}
 
@@ -87,19 +99,21 @@ $i$ & Nebenrechnung & \FZ \\\hline\hline
 gleich der frühesten Zeit und berechnen Sie die spätesten Zeiten!
 
 \begin{liAntwort}
-\begin{tabular}{|l|r|r|}
+\liCpmSpaetErklaerung
+\begin{tabular}{|l|l|r|}
 \hline
-$i$ & Nebenrechnung & \SZ \\\hline\hline
-1 & & $0$ \\\hline
-2 & \f$\min(\v{28}(v) - 8, \v{30}(5) - 5)$               & $20$ \\\hline
-3 & \f$\v{30}(6) - 8$                                    & $22$ \\\hline
-4 & \f$\min(\v{30}(6) - 0, \v{40}(7) - 12)$              & $28$ \\\hline
-5 & \f$\min(\v{30}(5) - 1, \v{43}(8) - 0)$               & $30$ \\\hline
-6 & \f$\v{41}(9) - 11$                                   & $30$ \\\hline
-7 & \f$\min(\v{50}(10) - 6, \v{43}(8) - 3) \min(44, 40)$ & $40$ \\\hline
-8 & \f$\v{50}(10) - 7$                                   & $43$ \\\hline
-9 & \f$\v{50}(10) - 9$                                   & $41$ \\\hline
-10 & \f{}siehe $\text{FZ}_10$                            & $50$ \\\hline
+$i$ & Nebenrechnung                 & \SZ \\\hline
+10  & siehe \FZ[10]                 & $50$ \\
+9   &                               & $41$ \\
+8   &                               & $43$ \\
+7   & $\min(44_{10}, 40_8)$         & $40$ \\
+6   &                               & $30$ \\
+5   & $\min(30_6, 43_8)$            & $30$ \\
+4   & $\min(29_5, 28_7)$            & $28$ \\
+3   &                               & $22$ \\
+2   & $\min(20_4, 25_5)$            & $20$ \\
+1   & $\min(10_2, 24_5, 0_3, 25_6)$ & $0$ \\\hline
+
 \end{tabular}
 \end{liAntwort}
 
@@ -142,17 +156,17 @@ $1 \rightarrow 3 \rightarrow 6 \rightarrow 9 \rightarrow 10$
 \liCpmEreignis{10}{7}{2}
 
 \liCpmVorgang{1}{2}{10}
-\liCpmVorgang{1}{3}{22}
+\liCpmVorgang[kritisch]{1}{3}{22}
 \liCpmVorgang{1}{5}{6}
 \liCpmVorgang{1}{6}{5}
-\liCpmVorgang{3}{6}{8}
+\liCpmVorgang[kritisch]{3}{6}{8}
 \liCpmVorgang{2}{5}{5}
 \liCpmVorgang{2}{4}{8}
 \liCpmVorgang{4}{7}{12}
 \liCpmVorgang{7}{8}{3}
 \liCpmVorgang{7}{10}{6}
-\liCpmVorgang{9}{10}{9}
-\liCpmVorgang{6}{9}{11}
+\liCpmVorgang[kritisch]{9}{10}{9}
+\liCpmVorgang[kritisch]{6}{9}{11}
 \liCpmVorgang{8}{10}{7}
 \liCpmVorgang{4}{5}{1}
 
@@ -167,7 +181,7 @@ $1 \rightarrow 3 \rightarrow 6 \rightarrow 9 \rightarrow 10$
 %%
 
 \item Konvertieren Sie das Gantt-Diagramm\index{Gantt-Diagramm} aus
-Abbildung 3 in ein CPM-Netzwerk! (10 Punkte)
+Abbildung 3 in ein CPM-Netzwerk!
 
 \begin{center}
 \begin{ganttchart}[x unit=0.75cm, y unit chart=0.8cm]{0}{11}

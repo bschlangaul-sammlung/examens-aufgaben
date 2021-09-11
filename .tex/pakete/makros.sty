@@ -152,7 +152,7 @@ anderen Paket passen]
   \str_case:nn {#1} {
     {standard} {
       \def\beschriftung{}
-      \mdfsetup{backgroundcolor=gray!1,linecolor=gray}
+      \mdfsetup{backgroundcolor=gray!1}
     }
     {richtig} {
       \def\beschriftung{richtig}
@@ -171,7 +171,12 @@ anderen Paket passen]
     \noindent
     \textbf{\beschriftung{}:}
   \fi
-  \begin{mdframed}
+  \begin{mdframed}[
+    frametitle={\scriptsize\mdseries Lösungshinweise},
+    innertopmargin=6pt,
+    frametitleaboveskip=-12pt,
+    frametitlealignment=\raggedright
+  ]
 }
 {
   \end{mdframed}
