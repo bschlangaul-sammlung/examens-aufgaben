@@ -97,7 +97,7 @@
 % \DoNotIndex{\newcommand,\newenvironment,\def,\endinput}
 %
 %\title{\liMetaBschlangaulSammlung}
-%\author{\liMetaHermineBschlangaulAndFriends \thanks{E-mail: \liMetaEmail}}
+%\author{\liMetaHermineFriends \thanks{E-mail: \liMetaEmail}}
 %
 %\maketitle
 %\tableofcontents
@@ -120,11 +120,7 @@ Setzen einer Aufgabe]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\LoadClass[oneside,12pt]{book}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\RequirePackage{bschlangaul-basis}
+\LoadClass{bschlangaul-basis}
 %    \end{macrocode}
 
 % Formatierung muss vor literatur sein, sonst Option clash
@@ -187,10 +183,12 @@ Setzen einer Aufgabe]
 
 % \begin{macro}{\liAufgabenMetadaten}
 %    \begin{macrocode}
-\def\liAufgabenMetadaten#1{
+\def\liAufgabenMetadaten #1
+{
   \liMetaSetze{#1}
 
-  \tl_if_empty:NTF \g_auf_examen_nummer_tl {} {
+  \tl_if_empty:NTF \g_auf_examen_nummer_tl {}
+  {
     {
       \noindent
       \large
@@ -203,9 +201,11 @@ Setzen einer Aufgabe]
     \noindent
     \bfseries
     \Large
-    \tl_if_empty:NTF \g_auf_examen_nummer_tl {
+    \tl_if_empty:NTF \g_auf_examen_nummer_tl
+    {
       \g_auf_titel_tl
-    } {
+    }
+    {
       \_gib_aufgaben_pfad_trenner:
     }
   }
@@ -219,6 +219,8 @@ Setzen einer Aufgabe]
 
   \horizontale_linie:
 
+  \setze_kopfzeile_oben_rechts:n { \gib_aufgaben_pfad_lang_sicher: }
+
   \bigskip
 
   \par
@@ -230,10 +232,21 @@ Setzen einer Aufgabe]
 % \end{macro}
 
 %    \begin{macrocode}
-\AddToHook{enddocument}{
+\setze_kopf_fusszeilen:nn {} {}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\AddToHook { begindocument }
+{
+  \repariere_kopfzeile_breite:
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\AddToHook { enddocument }
+{
   \vfill
   {
-
     \liLogoTextProjekt
     \bigskip
 
@@ -247,13 +260,31 @@ Setzen einer Aufgabe]
 
       \liMetaQuelltext
       \_gib_github_url_href:
-      \end{spacing}
+    \end{spacing}
   }
 }
 %    \end{macrocode}
 
 %    \begin{macrocode}
 \ExplSyntaxOff
+%    \end{macrocode}
+
+%    \begin{macrocode}
+
+%    \end{macrocode}
+% \subsection{basis.cls}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{bschlangaul-basis}[2021/09/12 Basis-Klasse, die nur als
+Unterklasse benutzt werden soll.]
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\LoadClass[a4paper,oneside,12pt]{book}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\RequirePackage{bschlangaul-basis}
 %    \end{macrocode}
 
 %    \begin{macrocode}
@@ -268,16 +299,11 @@ Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\RequirePackage{bschlangaul-basis}
+\LoadClass{bschlangaul-basis}
 %    \end{macrocode}
 
 %    \begin{macrocode}
 \RequirePackage{pdfpages}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\author{Hermine Bschlangaul}
-\date{}
 %    \end{macrocode}
 
 % Formatierung muss vor literatur sein, sonst Option clash
@@ -397,11 +423,7 @@ mehreren Aufgaben zu einem Examen.]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\LoadClass[a4paper,oneside,12pt]{book}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\RequirePackage{bschlangaul-basis}
+\LoadClass{bschlangaul-basis}
 %    \end{macrocode}
 
 % Lade die wichtigsten Pakete. Formatierung muss vor literatur sein, sonst Option clash
@@ -510,7 +532,7 @@ mehreren Aufgaben zu einem Examen.]
     \liGrafikLogo[width=8cm]\par
     \bigskip
     Die~Bschlangaul-Sammlung \par
-    {\footnotesize \liMetaHermineBschlangaulAndFriends} \par
+    {\footnotesize \liMetaHermineFriends} \par
 
     \vfill
 
@@ -588,16 +610,49 @@ mehreren Aufgaben zu einem Examen.]
 \ProvidesClass{bschlangaul-haupt}[2019/10/27 Klasse zum
 Setzen der Haupt-Datei, Bschlangaul-Sammlung.tex d.h. des wichtigsten
 Dokuments, das alles zusammenfasst.]
-\LoadClass[a4paper]{book}
+%    \end{macrocode}
 
-\RequirePackage{bschlangaul-basis}
+%    \begin{macrocode}
+\LoadClass{bschlangaul-basis}
+%    \end{macrocode}
 
 % Paket „formatierung“ muss vor „literatur“ sein, sonst Option clash
-\liLadePakete{formatierung,literatur,makros,aufgaben-metadaten,kopf-fusszeilen}
-\RequirePackage{standalone}
+%    \begin{macrocode}
+\liLadePakete{
+  formatierung,
+  abmessung,
+  literatur-dummy,
+  makros,
+  aufgaben-metadaten,
+  kopf-fusszeilen
+}
+%    \end{macrocode}
 
 % Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
+%    \begin{macrocode}
 \RequirePackage[ngerman]{babel}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\setze_kopf_fusszeilen:nn {} {}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\AddToHook { begindocument }
+{
+  \repariere_kopfzeile_breite:
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{theorie.cls}
@@ -605,16 +660,33 @@ Dokuments, das alles zusammenfasst.]
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{bschlangaul-theorie}[2021/09/12 Klasse zum
 Setzen von Theorie-Zusammenfassungen]
-\LoadClass[a4paper]{book}
+%    \end{macrocode}
 
-\RequirePackage{bschlangaul-basis}
+%    \begin{macrocode}
+\LoadClass{bschlangaul-basis}
+%    \end{macrocode}
 
 % Paket „formatierung“ muss vor „literatur“ sein, sonst Option clash
-\liLadePakete{formatierung,literatur,makros,aufgaben-metadaten,kopf-fusszeilen}
+%    \begin{macrocode}
+\liLadePakete{
+  formatierung,
+  literatur,
+  makros,
+  aufgaben-metadaten,
+  kopf-fusszeilen
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \RequirePackage{standalone}
+%    \end{macrocode}
 
 % Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
+%    \begin{macrocode}
 \RequirePackage[ngerman]{babel}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 %
@@ -622,511 +694,6 @@ Setzen von Theorie-Zusammenfassungen]
 % \section{Pakete}
 %
 %    \begin{macrocode}
-%    \end{macrocode}
-% \subsection{aufgabe.cls}
-%    \begin{macrocode}
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bschlangaul-aufgabe}[2019/10/27 Minimale Klasse zu
-Setzen einer Aufgabe]
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\LoadClass[oneside,12pt]{book}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\RequirePackage{bschlangaul-basis}
-%    \end{macrocode}
-
-% Formatierung muss vor literatur sein, sonst Option clash
-%    \begin{macrocode}
-\liLadePakete{
-  formatierung,
-  abmessung,
-  literatur-dummy,
-  makros,
-  aufgaben-metadaten,
-  kopf-fusszeilen,
-  mathe,
-  grafik,
-  meta
-}
-%    \end{macrocode}
-% Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
-
-%    \begin{macrocode}
-\RequirePackage[ngerman]{babel}
-%    \end{macrocode}
-
-% In Aufgaben wollen wir das Additum sehen.
-%    \begin{macrocode}
-\LiADDITUMtrue
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\ExplSyntaxOn
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\cs_gset:Npn \stichwoerter_formatiert: {
-  \tl_if_empty:NTF \g_auf_stichwoerter_tl {} {
-    \textbf{Stichwörter:} ~
-    \g_auf_stichwoerter_tl
-    \par
-  }
-}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\cs_gset:Npn \horizontale_linie: {
-  \par
-  \noindent
-  \rule{\textwidth}{0.8pt}
-  \par
-}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\cs_gset:Npn \thematik_formatiert: {
-  \tl_if_empty:NTF \g_auf_thematik_tl {} {
-    \textit{
-      ( \g_auf_thematik_tl )
-    }
-  }
-}
-%    \end{macrocode}
-
-% \begin{macro}{\liAufgabenMetadaten}
-%    \begin{macrocode}
-\def\liAufgabenMetadaten#1{
-  \liMetaSetze{#1}
-
-  \tl_if_empty:NTF \g_auf_examen_nummer_tl {} {
-    {
-      \noindent
-      \large
-      \_gib_einzelpruefung_trenner:
-      \par\medskip
-    }
-  }
-
-  {
-    \noindent
-    \bfseries
-    \Large
-    \tl_if_empty:NTF \g_auf_examen_nummer_tl {
-      \g_auf_titel_tl
-    } {
-      \_gib_aufgaben_pfad_trenner:
-    }
-  }
-  \hfill \thematik_formatiert:
-  \par
-
-  \medskip
-
-  \noindent
-  {\footnotesize\stichwoerter_formatiert:}
-
-  \horizontale_linie:
-
-  \bigskip
-
-  \par
-  % Keine Einrückung
-  \@afterindentfalse
-  \@afterheading
-}
-%    \end{macrocode}
-% \end{macro}
-
-%    \begin{macrocode}
-\AddToHook{enddocument}{
-  \vfill
-  {
-
-    \liLogoTextProjekt
-    \bigskip
-
-    \liLogoTextCCLizenz
-    \bigskip
-
-    \begin{spacing}{1}
-      \tiny
-      \noindent
-      \liMetaHilfMit
-
-      \liMetaQuelltext
-      \_gib_github_url_href:
-      \end{spacing}
-  }
-}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\ExplSyntaxOff
-%    \end{macrocode}
-
-%    \begin{macrocode}
-
-%    \end{macrocode}
-% \subsection{examen-scans.cls}
-%    \begin{macrocode}
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bschlangaul-examen-scans}[2021/01/08 Zum
-Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.]
-\LoadClass[a4paper,oneside]{book}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\RequirePackage{bschlangaul-basis}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\RequirePackage{pdfpages}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\author{Hermine Bschlangaul}
-\date{}
-%    \end{macrocode}
-
-% Formatierung muss vor literatur sein, sonst Option clash
-%    \begin{macrocode}
-\liLadePakete{formatierung}
-%    \end{macrocode}
-
-% Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
-%    \begin{macrocode}
-\RequirePackage[ngerman]{babel}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\ExplSyntaxOn
-%    \end{macrocode}
-
-% \begin{macro}{\liPruefungsNummer}
-%    \begin{macrocode}
-\def\liPruefungsNummer#1{
-  \str_set:Nn \g_pruefungs_nummer {#1}
-}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\liPruefungsTitel}
-%    \begin{macrocode}
-\def\liPruefungsTitel#1{
-  \str_set:Nn \g_pruefungs_titel {#1}
-}
-%    \end{macrocode}
-% \end{macro}
-
-%    \begin{macrocode}
-\def\li@SansFett#1#2{
-  {
-    #1
-    \bfseries
-    \rmfamily
-    #2
-  }
-}
-%    \end{macrocode}
-
-% \begin{macro}{\liTrennSeite}
-%    \begin{macrocode}
-\def\liTrennSeite#1{
-  \clearpage
-  \strut
-  \vfill
-  \begin{center}
-  {
-    \li@SansFett{\LARGE}{\str_use:N \g_pruefungs_nummer} \\
-    \vspace{2cm}
-    \li@SansFett{\large}{\str_use:N \g_pruefungs_titel} \\
-    \vspace{5cm}
-    \li@SansFett{\Huge}{#1}
-  }
-  \end{center}
-  \vfill
-  \strut
-  \clearpage
-}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\liTitelSeite}
-%    \begin{macrocode}
-\def\liTitelSeite#1{
-  \clearpage
-  \strut
-  \vfill
-  \begin{center}
-  #1
-  \end{center}
-  \vfill
-  \strut
-  \clearpage
-}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\liBindePdfEin}
-%    \begin{macrocode}
-\def\liBindePdfEin#1{\includepdf[pages={1-}]{\LehramtInformatikRepository/#1}}
-%    \end{macrocode}
-% \end{macro}
-
-%    \begin{macrocode}
-\AtBeginDocument{
-  \thispagestyle{empty}
-  \liTitelSeite{
-    \li@SansFett{\Large}{Sammlung~aller~Staatsexamensaufgaben~der~Prüfungsnummer} \\
-
-    \vspace{4cm}
-
-    \li@SansFett{\Huge}{\str_use:N \g_pruefungs_nummer} \\
-
-    \vspace{4cm}
-
-    \li@SansFett{\LARGE}{\str_use:N \g_pruefungs_titel} \\
-  }
-}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\ExplSyntaxOff
-%    \end{macrocode}
-
-%    \begin{macrocode}
-
-%    \end{macrocode}
-% \subsection{examen.cls}
-%    \begin{macrocode}
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bschlangaul-examen}[2021/06/10 Zum Einbinden von
-mehreren Aufgaben zu einem Examen.]
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\LoadClass[a4paper,oneside,12pt]{book}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\RequirePackage{bschlangaul-basis}
-%    \end{macrocode}
-
-% Lade die wichtigsten Pakete. Formatierung muss vor literatur sein, sonst Option clash
-%    \begin{macrocode}
-\liLadePakete{
-  formatierung,
-  literatur-dummy,
-  makros,
-  aufgaben-metadaten,
-  abmessung,
-  typographie,
-  grafik,
-  meta
-}
-%    \end{macrocode}
-
-% Formatierung für die Überschriften setzen.
-%    \begin{macrocode}
-\RequirePackage{titlesec}
-\titleformat{\section}{\huge\filcenter\bfseries}{\thesection}{1em}{}
-\newcommand{\sectionbreak}{\clearpage}
-\setcounter{secnumdepth}{0}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\liLadeAllePakete
-%    \end{macrocode}
-
-% Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
-%    \begin{macrocode}
-\RequirePackage[ngerman]{babel}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\RequirePackage{standalone}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\ExplSyntaxOn
-%    \end{macrocode}
-
-% \begin{macro}{\liSetzeExamenThemaNr}
-%    \begin{macrocode}
-\def\liSetzeExamenThemaNr#1{
-  \tl_gset:Nn \g_auf_examen_thema_nr_tl { #1 }
-  \section{Thema~Nr.~#1}
-}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\liSetzeExamenTeilaufgabeNr}
-%    \begin{macrocode}
-\def\liSetzeExamenTeilaufgabeNr#1{
-  \tl_gset:Nn \g_auf_examen_teilaufgabe_nr_tl { #1 }
-  \subsection{Teilaufgabe~Nr.~#1}
-}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\liBindeAufgabeEin}
-%    \begin{macrocode}
-\def\liBindeAufgabeEin#1{
-  \tl_gset:Nn \g_auf_examen_aufgabe_nr_tl { #1 }
-  \input{
-    \LehramtInformatikRepository /
-    Staatsexamen /
-    \g_auf_examen_nummer_tl /
-    \g_auf_examen_jahr_tl /
-    \g_auf_examen_monat_tl /
-    \tl_if_empty:NTF \g_auf_examen_thema_nr_tl {} {
-      Thema - \g_auf_examen_thema_nr_tl /
-    }
-    \tl_if_empty:NTF \g_auf_examen_teilaufgabe_nr_tl {} {
-      Teilaufgabe - \g_auf_examen_teilaufgabe_nr_tl /
-    }
-    Aufgabe - \g_auf_examen_aufgabe_nr_tl .tex
-  }
-}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\liAufgabenMetadaten}
-% Das Metadaten-Makro überschreiben
-%    \begin{macrocode}
-\def\liAufgabenMetadaten#1{
-  \liMetaSetze{#1}
-  \subsubsection{\_gib_aufgaben_titel:}
-}
-%    \end{macrocode}
-% \end{macro}
-
-%    \begin{macrocode}
-\cs_new:Npn \titel_seite:
-{
-  \pagestyle{empty}
-  \begin{center}
-    \large
-    Erste~Staatsprüfung~für~ein~Lehramt~an~öffentlichen~Schulen \par
-
-    \vspace{0.5cm}
-
-    Fach~Informatik \par
-
-    \vfill
-
-    \liGrafikLogo[width=8cm]\par
-    \bigskip
-    Die~Bschlangaul-Sammlung \par
-    {\footnotesize \liMetaHermineBschlangaulAndFriends} \par
-
-    \vfill
-
-    {
-      \bfseries\Huge
-
-      \g_auf_examen_jahreszeit_tl \par
-
-      \g_auf_examen_jahr_tl \par
-    }
-
-    \vspace{2cm}
-
-    {\LARGE \g_auf_examen_nummer_tl \par}
-
-    \vspace{0.5cm}
-
-    \g_auf_examen_fach_tl \par
-
-    \vspace{3cm}
-
-    Aufgabenstellungen~mit~Lösungsvorschlägen \par
-
-  \end{center}
-
-  \vfill
-}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\cs_new:Npn \inhalts_verzeichnis: {
-  % für den Abstand vor den section im Inhaltsverzeichnis
-  % https://tex.stackexchange.com/questions/241445/how-to-control-spacing-in-toc-for-different-sections
-  \setlength{\cftbeforesecskip}{1.5cm}
-  \setlength{\cftbeforesubsecskip}{0.5cm}
-  \renewcommand{\cftsubsecafterpnum}{\vspace{\cftbeforesubsecskip}}
-  \setlength{\cftbeforesubsubsecskip}{0.1cm}
-  \renewcommand{\contentsname}{Aufgabenübersicht}
-  \tableofcontents
-}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\setcounter{tocdepth}{4}
-\RequirePackage[titles]{tocloft}
-\AddToHook{begindocument}{
-  \titel_seite:
-
-  \clearpage
-
-  \inhalts_verzeichnis:
-
-  \vfill
-
-  \liLogoTextProjekt
-  \bigskip
-
-  \liLogoTextCCLizenz
-  \bigskip
-
-  \clearpage
-}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\ExplSyntaxOff
-%    \end{macrocode}
-
-%    \begin{macrocode}
-
-%    \end{macrocode}
-% \subsection{haupt.cls}
-%    \begin{macrocode}
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bschlangaul-haupt}[2019/10/27 Klasse zum
-Setzen der Haupt-Datei, Bschlangaul-Sammlung.tex d.h. des wichtigsten
-Dokuments, das alles zusammenfasst.]
-\LoadClass[a4paper]{book}
-
-\RequirePackage{bschlangaul-basis}
-
-% Paket „formatierung“ muss vor „literatur“ sein, sonst Option clash
-\liLadePakete{formatierung,literatur,makros,aufgaben-metadaten,kopf-fusszeilen}
-\RequirePackage{standalone}
-
-% Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
-\RequirePackage[ngerman]{babel}
-
-%    \end{macrocode}
-% \subsection{theorie.cls}
-%    \begin{macrocode}
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bschlangaul-theorie}[2021/09/12 Klasse zum
-Setzen von Theorie-Zusammenfassungen]
-\LoadClass[a4paper]{book}
-
-\RequirePackage{bschlangaul-basis}
-
-% Paket „formatierung“ muss vor „literatur“ sein, sonst Option clash
-\liLadePakete{formatierung,literatur,makros,aufgaben-metadaten,kopf-fusszeilen}
-\RequirePackage{standalone}
-
-% Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
-\RequirePackage[ngerman]{babel}
-
 %    \end{macrocode}
 % \subsection{abmessung.sty}
 %    \begin{macrocode}
@@ -1144,9 +711,9 @@ Seitenabmessung mit Hilfe des geometry-Pakets.]
   a4paper,
   margin=2cm,
   includeheadfoot,
-  %showframe,
-  %showcrop,
-  %verbose=true,
+  % showframe,
+  % showcrop,
+  % verbose=true,
 }
 %    \end{macrocode}
 
@@ -1953,10 +1520,9 @@ Setzen der Aufgaben-Metadaten.]
 }
 %    \end{macrocode}
 
-% Einzelprüfungsnummer / Jahr / Jahreszeit mit Trennzeichen
+% „Einzelprüfungsnummer / Jahr / Jahreszeit“ mit Trennzeichen
 %    \begin{macrocode}
 \cs_gset:Npn \_gib_einzelpruefung_trenner: {
-  Staatsexamen ~
   \g_auf_examen_nummer_tl
 
   \_trenner:
@@ -1969,7 +1535,7 @@ Setzen der Aufgaben-Metadaten.]
 }
 %    \end{macrocode}
 
-% Thema Nr.1  / Teilaufgabe Nr. 2 / Aufgabe 3
+% Thema 1 / Teilaufgabe 2 / Aufgabe 3
 %    \begin{macrocode}
 \cs_gset:Npn \_gib_aufgaben_pfad_trenner: {
   \tl_if_empty:NTF \g_auf_examen_thema_nr_tl {} {
@@ -1984,8 +1550,26 @@ Setzen der Aufgaben-Metadaten.]
 }
 %    \end{macrocode}
 
+% Gib den langen Titelpfad einer Aufgabe. Ist die Aufgabe keine
+% Examensaufgabe, wird auch eine Titel zurückgegeben. Für die
+% Kopfzeile gedacht.
 %    \begin{macrocode}
-\cs_gset:Npn \_gib_examen_titel: {
+\cs_new:Npn \gib_aufgaben_pfad_lang_sicher: {
+  \tl_if_empty:NTF \g_auf_examen_nummer_tl
+  {
+    \g_auf_titel_tl
+  }
+  {
+    \_gib_einzelpruefung_trenner:
+    \_trenner:
+    \_gib_aufgaben_pfad_trenner:
+  }
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\cs_gset:Npn \_gib_examen_titel:
+{
   \cs_set:Nn \_trenner: { \, / \, }
   \bool_if:nTF
   {
@@ -4883,16 +4467,53 @@ und Fußzeilen mit Hilfe des Pakets fancyhdr.]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\fancyhead{}
-\fancyhead[RO,LE]{{\scriptsize\LehramtInformatikTitel}}
-\fancyhead[LO,RE]{{\scriptsize\today}}
-\fancyfoot{}
-\fancyfoot[LE,RO]{\thepage}
-\fancyfoot[LO,CE]{{\scriptsize\LehramtInformatikAutorName}}
-\fancyfoot[CO,RE]{{\scriptsize\LehramtInformatikAutorEmail}}
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0.4pt}
-\setlength{\headwidth}{\textwidth}
+\RequirePackage{bschlangaul-meta}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\cs_new:Npn \kopfzeile_schrift:n #1
+{
+  {
+    \scriptsize
+    #1
+  }
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\cs_new:Npn \setze_kopf_fusszeilen:nn #1 #2
+{
+  \fancyhead{}
+  \fancyhead[L]{\kopfzeile_schrift:n{\liMetaBschlangaulSammlung}}
+  \fancyhead[C]{\kopfzeile_schrift:n{#1}}
+  \fancyhead[R]{\kopfzeile_schrift:n{#2}}
+
+  \fancyfoot{}
+  \fancyfoot[L]{\kopfzeile_schrift:n{\liMetaHermineFriends}}
+  \fancyfoot[C]{\kopfzeile_schrift:n{\liMetaEmail}}
+  \fancyfoot[R]{\kopfzeile_schrift:n{\thepage}}
+
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\cs_new:Npn \setze_kopfzeile_oben_rechts:n #1
+{
+  \fancyhead[R] {
+    \kopfzeile_schrift:n { #1 }
+  }
+}
+%    \end{macrocode}
+
+% Das Makro darf nicht in der Präambel aufgerufen werden, da es die
+% Textbreite braucht.
+%    \begin{macrocode}
+\cs_new:Npn \repariere_kopfzeile_breite:
+{
+  \setlength{\headwidth}{\textwidth}
+}
 %    \end{macrocode}
 
 %    \begin{macrocode}
@@ -5695,9 +5316,9 @@ von Textschnipseln, die das Projekt beschreiben]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMetaHermineBschlangaulAndFriends}
+% \begin{macro}{\liMetaHermineFriends}
 %    \begin{macrocode}
-\def\liMetaHermineBschlangaulAndFriends{
+\def\liMetaHermineFriends{
   Hermine~Bschlangaul~and~Friends
 }
 %    \end{macrocode}
@@ -5807,7 +5428,7 @@ von Textschnipseln, die das Projekt beschreiben]
     }
     \par
 
-    \liMetaHermineBschlangaulAndFriends
+    \liMetaHermineFriends
     \par
 
     \medskip

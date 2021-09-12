@@ -258,10 +258,9 @@
 }
 %    \end{macrocode}
 
-% Einzelprüfungsnummer / Jahr / Jahreszeit mit Trennzeichen
+% „Einzelprüfungsnummer / Jahr / Jahreszeit“ mit Trennzeichen
 %    \begin{macrocode}
 \cs_gset:Npn \_gib_einzelpruefung_trenner: {
-  Staatsexamen ~
   \g_auf_examen_nummer_tl
 
   \_trenner:
@@ -274,7 +273,7 @@
 }
 %    \end{macrocode}
 
-% Thema Nr.1  / Teilaufgabe Nr. 2 / Aufgabe 3
+% Thema 1 / Teilaufgabe 2 / Aufgabe 3
 %    \begin{macrocode}
 \cs_gset:Npn \_gib_aufgaben_pfad_trenner: {
   \tl_if_empty:NTF \g_auf_examen_thema_nr_tl {} {
@@ -289,8 +288,26 @@
 }
 %    \end{macrocode}
 
+% Gib den langen Titelpfad einer Aufgabe. Ist die Aufgabe keine
+% Examensaufgabe, wird auch eine Titel zurückgegeben. Für die
+% Kopfzeile gedacht.
 %    \begin{macrocode}
-\cs_gset:Npn \_gib_examen_titel: {
+\cs_new:Npn \gib_aufgaben_pfad_lang_sicher: {
+  \tl_if_empty:NTF \g_auf_examen_nummer_tl
+  {
+    \g_auf_titel_tl
+  }
+  {
+    \_gib_einzelpruefung_trenner:
+    \_trenner:
+    \_gib_aufgaben_pfad_trenner:
+  }
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\cs_gset:Npn \_gib_examen_titel:
+{
   \cs_set:Nn \_trenner: { \, / \, }
   \bool_if:nTF
   {

@@ -8,16 +8,53 @@ und Fußzeilen mit Hilfe des Pakets fancyhdr.]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\fancyhead{}
-\fancyhead[RO,LE]{{\scriptsize\LehramtInformatikTitel}}
-\fancyhead[LO,RE]{{\scriptsize\today}}
-\fancyfoot{}
-\fancyfoot[LE,RO]{\thepage}
-\fancyfoot[LO,CE]{{\scriptsize\LehramtInformatikAutorName}}
-\fancyfoot[CO,RE]{{\scriptsize\LehramtInformatikAutorEmail}}
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0.4pt}
-\setlength{\headwidth}{\textwidth}
+\RequirePackage{bschlangaul-meta}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\cs_new:Npn \kopfzeile_schrift:n #1
+{
+  {
+    \scriptsize
+    #1
+  }
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\cs_new:Npn \setze_kopf_fusszeilen:nn #1 #2
+{
+  \fancyhead{}
+  \fancyhead[L]{\kopfzeile_schrift:n{\liMetaBschlangaulSammlung}}
+  \fancyhead[C]{\kopfzeile_schrift:n{#1}}
+  \fancyhead[R]{\kopfzeile_schrift:n{#2}}
+
+  \fancyfoot{}
+  \fancyfoot[L]{\kopfzeile_schrift:n{\liMetaHermineFriends}}
+  \fancyfoot[C]{\kopfzeile_schrift:n{\liMetaEmail}}
+  \fancyfoot[R]{\kopfzeile_schrift:n{\thepage}}
+
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\cs_new:Npn \setze_kopfzeile_oben_rechts:n #1
+{
+  \fancyhead[R] {
+    \kopfzeile_schrift:n { #1 }
+  }
+}
+%    \end{macrocode}
+
+% Das Makro darf nicht in der Präambel aufgerufen werden, da es die
+% Textbreite braucht.
+%    \begin{macrocode}
+\cs_new:Npn \repariere_kopfzeile_breite:
+{
+  \setlength{\headwidth}{\textwidth}
+}
 %    \end{macrocode}
 
 %    \begin{macrocode}

@@ -2,13 +2,46 @@
 \ProvidesClass{bschlangaul-haupt}[2019/10/27 Klasse zum
 Setzen der Haupt-Datei, Bschlangaul-Sammlung.tex d.h. des wichtigsten
 Dokuments, das alles zusammenfasst.]
-\LoadClass[a4paper]{book}
+%    \end{macrocode}
 
-\RequirePackage{bschlangaul-basis}
+%    \begin{macrocode}
+\LoadClass{bschlangaul-basis}
+%    \end{macrocode}
 
 % Paket „formatierung“ muss vor „literatur“ sein, sonst Option clash
-\liLadePakete{formatierung,literatur,makros,aufgaben-metadaten,kopf-fusszeilen}
-\RequirePackage{standalone}
+%    \begin{macrocode}
+\liLadePakete{
+  formatierung,
+  abmessung,
+  literatur-dummy,
+  makros,
+  aufgaben-metadaten,
+  kopf-fusszeilen
+}
+%    \end{macrocode}
 
 % Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
+%    \begin{macrocode}
 \RequirePackage[ngerman]{babel}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\setze_kopf_fusszeilen:nn {} {}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\AddToHook { begindocument }
+{
+  \repariere_kopfzeile_breite:
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
+
+%    \begin{macrocode}

@@ -5,16 +5,11 @@ Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\RequirePackage{bschlangaul-basis}
+\LoadClass{bschlangaul-basis}
 %    \end{macrocode}
 
 %    \begin{macrocode}
 \RequirePackage{pdfpages}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\author{Hermine Bschlangaul}
-\date{}
 %    \end{macrocode}
 
 % Formatierung muss vor literatur sein, sonst Option clash

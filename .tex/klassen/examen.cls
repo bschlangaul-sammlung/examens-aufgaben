@@ -4,11 +4,7 @@ mehreren Aufgaben zu einem Examen.]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\LoadClass[a4paper,oneside,12pt]{book}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\RequirePackage{bschlangaul-basis}
+\LoadClass{bschlangaul-basis}
 %    \end{macrocode}
 
 % Lade die wichtigsten Pakete. Formatierung muss vor literatur sein, sonst Option clash
@@ -117,7 +113,7 @@ mehreren Aufgaben zu einem Examen.]
     \liGrafikLogo[width=8cm]\par
     \bigskip
     Die~Bschlangaul-Sammlung \par
-    {\footnotesize \liMetaHermineBschlangaulAndFriends} \par
+    {\footnotesize \liMetaHermineFriends} \par
 
     \vfill
 

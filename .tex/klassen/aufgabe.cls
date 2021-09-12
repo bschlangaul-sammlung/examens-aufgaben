@@ -4,11 +4,7 @@ Setzen einer Aufgabe]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\LoadClass[oneside,12pt]{book}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\RequirePackage{bschlangaul-basis}
+\LoadClass{bschlangaul-basis}
 %    \end{macrocode}
 
 % Formatierung muss vor literatur sein, sonst Option clash
@@ -71,10 +67,12 @@ Setzen einer Aufgabe]
 
 % \begin{macro}{\liAufgabenMetadaten}
 %    \begin{macrocode}
-\def\liAufgabenMetadaten#1{
+\def\liAufgabenMetadaten #1
+{
   \liMetaSetze{#1}
 
-  \tl_if_empty:NTF \g_auf_examen_nummer_tl {} {
+  \tl_if_empty:NTF \g_auf_examen_nummer_tl {}
+  {
     {
       \noindent
       \large
@@ -87,9 +85,11 @@ Setzen einer Aufgabe]
     \noindent
     \bfseries
     \Large
-    \tl_if_empty:NTF \g_auf_examen_nummer_tl {
+    \tl_if_empty:NTF \g_auf_examen_nummer_tl
+    {
       \g_auf_titel_tl
-    } {
+    }
+    {
       \_gib_aufgaben_pfad_trenner:
     }
   }
@@ -103,6 +103,8 @@ Setzen einer Aufgabe]
 
   \horizontale_linie:
 
+  \setze_kopfzeile_oben_rechts:n { \gib_aufgaben_pfad_lang_sicher: }
+
   \bigskip
 
   \par
@@ -114,10 +116,21 @@ Setzen einer Aufgabe]
 % \end{macro}
 
 %    \begin{macrocode}
-\AddToHook{enddocument}{
+\setze_kopf_fusszeilen:nn {} {}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\AddToHook { begindocument }
+{
+  \repariere_kopfzeile_breite:
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\AddToHook { enddocument }
+{
   \vfill
   {
-
     \liLogoTextProjekt
     \bigskip
 
@@ -131,7 +144,7 @@ Setzen einer Aufgabe]
 
       \liMetaQuelltext
       \_gib_github_url_href:
-      \end{spacing}
+    \end{spacing}
   }
 }
 %    \end{macrocode}
