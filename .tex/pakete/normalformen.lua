@@ -1,5 +1,5 @@
 --local helfer = require('helfer')
-local helfer = require('lehramt-informatik-helfer')
+local helfer = require('bschlangaul-helfer')
 
 -- param eingang: A, B
 -- return: { A, B }

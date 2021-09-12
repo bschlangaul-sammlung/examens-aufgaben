@@ -1,11 +1,11 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{lehramt-informatik-examen}[2021/06/10 Zum Einbinden von
+\ProvidesClass{bschlangaul-examen}[2021/06/10 Zum Einbinden von
 mehreren Aufgaben zu einem Examen.]
 \LoadClass[a4paper,oneside,12pt]{book}
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\RequirePackage{lehramt-informatik-basis}
+\RequirePackage{bschlangaul-basis}
 %    \end{macrocode}
 
 %    \begin{macrocode}

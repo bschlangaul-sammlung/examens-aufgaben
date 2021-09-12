@@ -1,4 +1,4 @@
-local helfer = require('lehramt-informatik-helfer')
+local helfer = require('bschlangaul-helfer')
 
 return {
   erzeuge_tiefgestellt = function (eingang)

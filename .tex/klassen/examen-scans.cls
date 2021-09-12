@@ -1,11 +1,11 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{lehramt-informatik-examen-scans}[2021/01/08 Zum
+\ProvidesClass{bschlangaul-examen-scans}[2021/01/08 Zum
 Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.]
 \LoadClass[a4paper,oneside]{book}
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\RequirePackage{lehramt-informatik-basis}
+\RequirePackage{bschlangaul-basis}
 %    \end{macrocode}
 
 %    \begin{macrocode}

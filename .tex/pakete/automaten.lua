@@ -1,4 +1,4 @@
-local helfer = require('lehramt-informatik-helfer')
+local helfer = require('bschlangaul-helfer')
 
 --- Gib einen Kellerübergang aus
 --
