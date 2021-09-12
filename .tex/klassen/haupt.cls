@@ -4,20 +4,23 @@ Setzen der Haupt-Datei, Bschlangaul-Sammlung.tex d.h. des wichtigsten
 Dokuments, das alles zusammenfasst.]
 %    \end{macrocode}
 
+% Lade die wichtigsten Pakete. Formatierung muss vor literatur sein, sonst Option clash
 %    \begin{macrocode}
-\LoadClass{bschlangaul-basis}
-%    \end{macrocode}
-
-% Paket „formatierung“ muss vor „literatur“ sein, sonst Option clash
-%    \begin{macrocode}
-\bLadePakete{
+\LoadClass[pakete={
   formatierung,
-  abmessung,
   literatur-dummy,
   makros,
+  aufgaben-einbinden,
   aufgaben-metadaten,
-  kopf-fusszeilen
-}
+  abmessung,
+  typographie,
+  grafik,
+  meta
+}]{bschlangaul-basis}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\bLadeAllePakete
 %    \end{macrocode}
 
 % Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
@@ -37,6 +40,17 @@ Dokuments, das alles zusammenfasst.]
 \AddToHook { begindocument }
 {
   \repariere_kopfzeile_breite:
+  \titel_seite:nn
+  {
+    {
+      \Huge
+      Die~komplette~Sammlung
+    }
+
+  }
+  {
+    Alle~Aufgaben
+  }
 }
 %    \end{macrocode}
 

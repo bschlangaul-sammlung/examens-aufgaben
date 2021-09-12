@@ -3,48 +3,43 @@
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\RequirePackage{xparse}
-%    \end{macrocode}
-
-%    \begin{macrocode}
 \ExplSyntaxOn
 %    \end{macrocode}
 
 % \subsubsection{IFs}
 
-% Wir weichen von dem üblichen Namensschema ab und beginnen das |if|
-% mit einem Großbuchstaben und schreiben das letzte Worte komplett in
-% Großbuchstaben, damit die |if|-Befehle schöner lesbar sind, z. B.
-% |\ifLiADDITUM|, |\LiADDITUMtrue| und |\LiADDITUMfalse|.
+% Wir weichen von dem üblichen Namensschema ab und schreiben das Wort
+% komplett in Großbuchstaben, damit die |if|-Befehle schöner lesbar
+% sind, z. B. |\ifADDITUM|, |\ADDITUMtrue| und |\ADDITUMfalse|.
 
-% \begin{macro}{\ifLiADDITUM}
-% \begin{macro}{\LiADDITUMtrue}
-% \begin{macro}{\LiADDITUMfalse}
+% \begin{macro}{\ifADDITUM}
+% \begin{macro}{\ADDITUMtrue}
+% \begin{macro}{\ADDITUMfalse}
 % \begin{macrocode}
-\newif\ifLiADDITUM
-\LiADDITUMfalse
+\newif\ifADDITUM
+\ADDITUMfalse
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
 % \end{macro}
 
-% \begin{macro}{\ifLiEXKURS}
-% \begin{macro}{\LiEXKURStrue}
-% \begin{macro}{\LiEXKURSfalse}
+% \begin{macro}{\ifEXKURS}
+% \begin{macro}{\EXKURStrue}
+% \begin{macro}{\EXKURSfalse}
 %    \begin{macrocode}
-\newif\ifLiEXKURS
-\LiEXKURStrue
+\newif\ifEXKURS
+\EXKURStrue
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
 % \end{macro}
 
-% \begin{macro}{\ifLiANTWORT}
-% \begin{macro}{\LiANTWORTtrue}
-% \begin{macro}{\LiANTWORTfalse}
+% \begin{macro}{\ifANTWORT}
+% \begin{macro}{\ANTWORTtrue}
+% \begin{macro}{\ANTWORTfalse}
 %    \begin{macrocode}
-\newif\ifLiANTWORT
-\LiANTWORTtrue
+\newif\ifANTWORT
+\ANTWORTtrue
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -376,6 +371,61 @@
     \g_thematik_tl
    ]
   }
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\cs_new:Npn \titel_seite:nn #1 #2
+{
+  \pagestyle{empty}
+
+  \strut
+  \vspace{1cm}
+
+  \begin{center}
+    \bfseries
+    \Large
+    #1
+    \par
+  \end{center}
+
+  \vfill
+
+  \begin{center}
+    \large
+    #2
+    \par
+  \end{center}
+
+  \vfill
+
+  \begin{center}
+    \bGrafikLogo[width=8cm]
+    \par
+
+    \vspace{4cm}
+
+    {
+      \bfseries
+      \Large
+      \bMetaBschlangaulSammlung
+    }
+    \par
+
+    \medskip
+
+    {
+      \large
+      \bMetaHermineFriends
+    }
+    \par
+  \end{center}
+
+  \vspace{2cm}
+
+  \strut
+
+  \clearpage
 }
 %    \end{macrocode}
 

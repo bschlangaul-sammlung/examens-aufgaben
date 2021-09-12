@@ -3,22 +3,19 @@
 mehreren Aufgaben zu einem Examen.]
 %    \end{macrocode}
 
-%    \begin{macrocode}
-\LoadClass{bschlangaul-basis}
-%    \end{macrocode}
-
 % Lade die wichtigsten Pakete. Formatierung muss vor literatur sein, sonst Option clash
 %    \begin{macrocode}
-\bLadePakete{
+\LoadClass[pakete={
   formatierung,
   literatur-dummy,
   makros,
+  aufgaben-einbinden,
   aufgaben-metadaten,
   abmessung,
   typographie,
   grafik,
   meta
-}
+}]{bschlangaul-basis}
 %    \end{macrocode}
 
 % Formatierung für die Überschriften setzen.
@@ -36,10 +33,6 @@ mehreren Aufgaben zu einem Examen.]
 % Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
 %    \begin{macrocode}
 \RequirePackage[ngerman]{babel}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\RequirePackage{standalone}
 %    \end{macrocode}
 
 %    \begin{macrocode}
@@ -99,47 +92,31 @@ mehreren Aufgaben zu einem Examen.]
 %    \begin{macrocode}
 \cs_new:Npn \titel_seite:
 {
-  \pagestyle{empty}
-  \begin{center}
-    \large
-    Erste~Staatsprüfung~für~ein~Lehramt~an~öffentlichen~Schulen \par
-
-    \vspace{0.5cm}
-
-    Fach~Informatik \par
-
-    \vfill
-
-    \bGrafikLogo[width=8cm]\par
-    \bigskip
-    Die~Bschlangaul-Sammlung \par
-    {\footnotesize \bMetaHermineFriends} \par
-
-    \vfill
-
+  \titel_seite:nn
+  {
     {
       \bfseries\Huge
 
-      \g_jahreszeit_tl \par
+      \g_einzelpruefungs_nr_tl
+      \par
 
-      \g_jahr_tl \par
+      \g_jahreszeit_tl
+      \par
+
+      \g_jahr_tl
+      \par
     }
-
-    \vspace{2cm}
-
-    {\LARGE \g_einzelpruefungs_nr_tl \par}
+  }
+  {
+    \g_examen_fach_tl
+    \par
 
     \vspace{0.5cm}
 
-    \g_examen_fach_tl \par
+    Aufgabenstellungen~mit~Lösungsvorschlägen
+    \par
+  }
 
-    \vspace{3cm}
-
-    Aufgabenstellungen~mit~Lösungsvorschlägen \par
-
-  \end{center}
-
-  \vfill
 }
 %    \end{macrocode}
 
@@ -159,7 +136,8 @@ mehreren Aufgaben zu einem Examen.]
 %    \begin{macrocode}
 \setcounter{tocdepth}{4}
 \RequirePackage[titles]{tocloft}
-\AddToHook{begindocument}{
+\AddToHook { begindocument }
+{
   \titel_seite:
 
   \clearpage

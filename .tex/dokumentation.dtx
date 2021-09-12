@@ -131,7 +131,6 @@ Setzen einer Aufgabe]
   literatur-dummy,
   makros,
   aufgaben-metadaten,
-  kopf-fusszeilen,
   mathe,
   grafik,
   meta
@@ -145,7 +144,7 @@ Setzen einer Aufgabe]
 
 % In Aufgaben wollen wir das Additum sehen.
 %    \begin{macrocode}
-\LiADDITUMtrue
+\ADDITUMtrue
 %    \end{macrocode}
 
 %    \begin{macrocode}
@@ -283,8 +282,42 @@ Unterklasse benutzt werden soll.]
 \LoadClass[a4paper,oneside,12pt]{book}
 %    \end{macrocode}
 
+% Damit wir Klassen-Optionen mit \LaTeX-3 verwalten könnten.
+%    \begin{macrocode}
+\RequirePackage{l3keys2e}
+%    \end{macrocode}
+
 %    \begin{macrocode}
 \RequirePackage{bschlangaul-basis}
+%    \end{macrocode}
+
+% Lade Pakete die von allen Unterklassen benötigt werden.
+%    \begin{macrocode}
+\bLadePakete{
+  kopfzeile
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\keys_define:nn { klassen-setup }
+{
+  pakete .code:n = {
+    \bLadePakete{#1}
+  }
+}
+%    \end{macrocode}
+
+% https://tex.stackexchange.com/questions/544374/passing-options-to-a-class-and-evaluate-using-latex3-interfaces
+%    \begin{macrocode}
+\ProcessKeysOptions { klassen-setup }
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\ExplSyntaxOff
 %    \end{macrocode}
 
 %    \begin{macrocode}
@@ -422,22 +455,19 @@ Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.]
 mehreren Aufgaben zu einem Examen.]
 %    \end{macrocode}
 
-%    \begin{macrocode}
-\LoadClass{bschlangaul-basis}
-%    \end{macrocode}
-
 % Lade die wichtigsten Pakete. Formatierung muss vor literatur sein, sonst Option clash
 %    \begin{macrocode}
-\bLadePakete{
+\LoadClass[pakete={
   formatierung,
   literatur-dummy,
   makros,
+  aufgaben-einbinden,
   aufgaben-metadaten,
   abmessung,
   typographie,
   grafik,
   meta
-}
+}]{bschlangaul-basis}
 %    \end{macrocode}
 
 % Formatierung für die Überschriften setzen.
@@ -455,10 +485,6 @@ mehreren Aufgaben zu einem Examen.]
 % Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
 %    \begin{macrocode}
 \RequirePackage[ngerman]{babel}
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\RequirePackage{standalone}
 %    \end{macrocode}
 
 %    \begin{macrocode}
@@ -518,47 +544,31 @@ mehreren Aufgaben zu einem Examen.]
 %    \begin{macrocode}
 \cs_new:Npn \titel_seite:
 {
-  \pagestyle{empty}
-  \begin{center}
-    \large
-    Erste~Staatsprüfung~für~ein~Lehramt~an~öffentlichen~Schulen \par
-
-    \vspace{0.5cm}
-
-    Fach~Informatik \par
-
-    \vfill
-
-    \bGrafikLogo[width=8cm]\par
-    \bigskip
-    Die~Bschlangaul-Sammlung \par
-    {\footnotesize \bMetaHermineFriends} \par
-
-    \vfill
-
+  \titel_seite:nn
+  {
     {
       \bfseries\Huge
 
-      \g_jahreszeit_tl \par
+      \g_einzelpruefungs_nr_tl
+      \par
 
-      \g_jahr_tl \par
+      \g_jahreszeit_tl
+      \par
+
+      \g_jahr_tl
+      \par
     }
-
-    \vspace{2cm}
-
-    {\LARGE \g_einzelpruefungs_nr_tl \par}
+  }
+  {
+    \g_examen_fach_tl
+    \par
 
     \vspace{0.5cm}
 
-    \g_examen_fach_tl \par
+    Aufgabenstellungen~mit~Lösungsvorschlägen
+    \par
+  }
 
-    \vspace{3cm}
-
-    Aufgabenstellungen~mit~Lösungsvorschlägen \par
-
-  \end{center}
-
-  \vfill
 }
 %    \end{macrocode}
 
@@ -578,7 +588,8 @@ mehreren Aufgaben zu einem Examen.]
 %    \begin{macrocode}
 \setcounter{tocdepth}{4}
 \RequirePackage[titles]{tocloft}
-\AddToHook{begindocument}{
+\AddToHook { begindocument }
+{
   \titel_seite:
 
   \clearpage
@@ -612,20 +623,23 @@ Setzen der Haupt-Datei, Bschlangaul-Sammlung.tex d.h. des wichtigsten
 Dokuments, das alles zusammenfasst.]
 %    \end{macrocode}
 
+% Lade die wichtigsten Pakete. Formatierung muss vor literatur sein, sonst Option clash
 %    \begin{macrocode}
-\LoadClass{bschlangaul-basis}
-%    \end{macrocode}
-
-% Paket „formatierung“ muss vor „literatur“ sein, sonst Option clash
-%    \begin{macrocode}
-\bLadePakete{
+\LoadClass[pakete={
   formatierung,
-  abmessung,
   literatur-dummy,
   makros,
+  aufgaben-einbinden,
   aufgaben-metadaten,
-  kopf-fusszeilen
-}
+  abmessung,
+  typographie,
+  grafik,
+  meta
+}]{bschlangaul-basis}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\bLadeAllePakete
 %    \end{macrocode}
 
 % Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
@@ -645,6 +659,17 @@ Dokuments, das alles zusammenfasst.]
 \AddToHook { begindocument }
 {
   \repariere_kopfzeile_breite:
+  \titel_seite:nn
+  {
+    {
+      \Huge
+      Die~komplette~Sammlung
+    }
+
+  }
+  {
+    Alle~Aufgaben
+  }
 }
 %    \end{macrocode}
 
@@ -672,8 +697,7 @@ Setzen von Theorie-Zusammenfassungen]
   formatierung,
   literatur,
   makros,
-  aufgaben-metadaten,
-  kopf-fusszeilen
+  aufgaben-metadaten
 }
 %    \end{macrocode}
 
@@ -723,7 +747,15 @@ Seitenabmessung mit Hilfe des geometry-Pakets.]
 % \subsection{aufgaben-einbinden.sty}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesPackage{bschlangaul-aufgaben-einbinden}[2020/06/13]
+\ProvidesPackage{bschlangaul-aufgaben-einbinden}[2020/06/13
+Binde Aufgaben in ein größeres Dokument ein.]
+%    \end{macrocode}
+
+% Mit Hilfe des |standalone|-Pakets können eigenständige Dokumente
+% eingebunden werden, die auch uneingebunden kompiliert werden können,
+% wie zum Beispiel Aufgaben
+%    \begin{macrocode}
+\RequirePackage{standalone}
 %    \end{macrocode}
 
 % \begin{macro}{\bAufgabe}
@@ -1265,48 +1297,43 @@ Setzen der Aufgaben-Metadaten.]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\RequirePackage{xparse}
-%    \end{macrocode}
-
-%    \begin{macrocode}
 \ExplSyntaxOn
 %    \end{macrocode}
 
 % \subsubsection{IFs}
 
-% Wir weichen von dem üblichen Namensschema ab und beginnen das |if|
-% mit einem Großbuchstaben und schreiben das letzte Worte komplett in
-% Großbuchstaben, damit die |if|-Befehle schöner lesbar sind, z. B.
-% |\ifLiADDITUM|, |\LiADDITUMtrue| und |\LiADDITUMfalse|.
+% Wir weichen von dem üblichen Namensschema ab und schreiben das Wort
+% komplett in Großbuchstaben, damit die |if|-Befehle schöner lesbar
+% sind, z. B. |\ifADDITUM|, |\ADDITUMtrue| und |\ADDITUMfalse|.
 
-% \begin{macro}{\ifLiADDITUM}
-% \begin{macro}{\LiADDITUMtrue}
-% \begin{macro}{\LiADDITUMfalse}
+% \begin{macro}{\ifADDITUM}
+% \begin{macro}{\ADDITUMtrue}
+% \begin{macro}{\ADDITUMfalse}
 % \begin{macrocode}
-\newif\ifLiADDITUM
-\LiADDITUMfalse
+\newif\ifADDITUM
+\ADDITUMfalse
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
 % \end{macro}
 
-% \begin{macro}{\ifLiEXKURS}
-% \begin{macro}{\LiEXKURStrue}
-% \begin{macro}{\LiEXKURSfalse}
+% \begin{macro}{\ifEXKURS}
+% \begin{macro}{\EXKURStrue}
+% \begin{macro}{\EXKURSfalse}
 %    \begin{macrocode}
-\newif\ifLiEXKURS
-\LiEXKURStrue
+\newif\ifEXKURS
+\EXKURStrue
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
 % \end{macro}
 
-% \begin{macro}{\ifLiANTWORT}
-% \begin{macro}{\LiANTWORTtrue}
-% \begin{macro}{\LiANTWORTfalse}
+% \begin{macro}{\ifANTWORT}
+% \begin{macro}{\ANTWORTtrue}
+% \begin{macro}{\ANTWORTfalse}
 %    \begin{macrocode}
-\newif\ifLiANTWORT
-\LiANTWORTtrue
+\newif\ifANTWORT
+\ANTWORTtrue
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -1638,6 +1665,61 @@ Setzen der Aufgaben-Metadaten.]
     \g_thematik_tl
    ]
   }
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\cs_new:Npn \titel_seite:nn #1 #2
+{
+  \pagestyle{empty}
+
+  \strut
+  \vspace{1cm}
+
+  \begin{center}
+    \bfseries
+    \Large
+    #1
+    \par
+  \end{center}
+
+  \vfill
+
+  \begin{center}
+    \large
+    #2
+    \par
+  \end{center}
+
+  \vfill
+
+  \begin{center}
+    \bGrafikLogo[width=8cm]
+    \par
+
+    \vspace{4cm}
+
+    {
+      \bfseries
+      \Large
+      \bMetaBschlangaulSammlung
+    }
+    \par
+
+    \medskip
+
+    {
+      \large
+      \bMetaHermineFriends
+    }
+    \par
+  \end{center}
+
+  \vspace{2cm}
+
+  \strut
+
+  \clearpage
 }
 %    \end{macrocode}
 
@@ -4455,10 +4537,10 @@ aufgestellt werden.
 %    \begin{macrocode}
 
 %    \end{macrocode}
-% \subsection{kopf-fusszeilen.sty}
+% \subsection{kopfzeile.sty}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesPackage{bschlangaul-kopf-fusszeilen}[2021/08/20 Kopf-
+\ProvidesPackage{bschlangaul-kopfzeile}[2021/08/20 Kopf-
 und Fußzeilen mit Hilfe des Pakets fancyhdr.]
 %    \end{macrocode}
 
@@ -4704,7 +4786,7 @@ anderen Paket passen]
 % \begin{verbatim}
 % \NewDocumentEnvironment{ liAdditum } { o }
 % {
-%   \ifLiADDITUM
+%   \ifADDITUM
 %   \else
 %     % Alles in eine Box verschieben und die dann ignorieren.
 %     \setbox 0 \vbox
@@ -4715,7 +4797,7 @@ anderen Paket passen]
 % } {
 %   \end{frame}
 
-%   \ifLiADDITUM
+%   \ifADDITUM
 %   \else
 %     \egroup
 %   \fi
@@ -4728,7 +4810,7 @@ anderen Paket passen]
 % \begin{macrocode}
 \NewDocumentEnvironment{ liAntwort } { O{standard} }
 {
-  \ifLiANTWORT
+  \ifANTWORT
   \else
     \setbox 0 \vbox
     \bgroup
@@ -4765,7 +4847,7 @@ anderen Paket passen]
 }
 {
   \end{mdframed}
-  \ifLiANTWORT
+  \ifANTWORT
   \else
     \egroup
   \fi
@@ -4780,7 +4862,7 @@ anderen Paket passen]
 % \begin{macrocode}
 \NewDocumentEnvironment{ liAdditum } { o }
 {
-  \ifLiADDITUM
+  \ifADDITUM
   \else
     \setbox 0 \vbox
     \bgroup
@@ -4798,7 +4880,7 @@ anderen Paket passen]
 {
   \end{mdframed}
 
-  \ifLiADDITUM
+  \ifADDITUM
   \else
     \egroup
   \fi
@@ -4824,7 +4906,7 @@ anderen Paket passen]
 
 %    \begin{macrocode}
 \NewDocumentEnvironment{ liExkurs }{o +b}{
-  \ifLiEXKURS
+  \ifEXKURS
     \vspace{0.2cm}%
     \begin{mdframed}[
       backgroundcolor=white,

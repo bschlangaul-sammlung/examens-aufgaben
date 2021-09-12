@@ -15,7 +15,6 @@ Setzen einer Aufgabe]
   literatur-dummy,
   makros,
   aufgaben-metadaten,
-  kopf-fusszeilen,
   mathe,
   grafik,
   meta
@@ -29,7 +28,7 @@ Setzen einer Aufgabe]
 
 % In Aufgaben wollen wir das Additum sehen.
 %    \begin{macrocode}
-\LiADDITUMtrue
+\ADDITUMtrue
 %    \end{macrocode}
 
 %    \begin{macrocode}

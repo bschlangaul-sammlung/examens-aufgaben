@@ -13,13 +13,8 @@ Setzen von Theorie-Zusammenfassungen]
   formatierung,
   literatur,
   makros,
-  aufgaben-metadaten,
-  kopf-fusszeilen
+  aufgaben-metadaten
 }
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\RequirePackage{standalone}
 %    \end{macrocode}
 
 % Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
