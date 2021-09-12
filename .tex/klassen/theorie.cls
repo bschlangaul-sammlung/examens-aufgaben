@@ -1,7 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bschlangaul-haupt}[2019/10/27 Klasse zum
-Setzen der Haupt-Datei, Bschlangaul-Sammlung.tex d.h. des wichtigsten
-Dokuments, das alles zusammenfasst.]
+\ProvidesClass{bschlangaul-theorie}[2021/09/12 Klasse zum
+Setzen von Theorie-Zusammenfassungen]
 \LoadClass[a4paper]{book}
 
 \RequirePackage{bschlangaul-basis}

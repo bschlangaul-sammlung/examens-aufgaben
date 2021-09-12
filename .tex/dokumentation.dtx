@@ -95,6 +95,7 @@
 \usepackage{bschlangaul-basis}
 
 \liLadePakete{
+  meta,
   automaten,
   baum,
   cpm,
@@ -130,8 +131,8 @@
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment,\def,\endinput}
 %
-%\title{\textsf{lehramt-informatik}}
-%\author{Hermine Bschlangaul \thanks{E-mail: hermine.bschlangaul@gmx.net}}
+%\title{\liMetaBschlangaulSammlung}
+%\author{\liMetaHermineBschlangaulAndFriends \thanks{E-mail: \liMetaEmail}}
 %
 %\maketitle
 %\tableofcontents
@@ -147,7 +148,7 @@
 % \subsection{Vorlage Theorie-Teil}
 %
 % \begin{verbatim}
-% \documentclass{bschlangaul-haupt}
+% \documentclass{bschlangaul-theorie}
 %
 % \begin{document}
 %
@@ -165,7 +166,7 @@
 % \subsection{Vorlage Aufgabensammlung}
 %
 % \begin{verbatim}
-% \documentclass{bschlangaul-haupt}
+% \documentclass{bschlangaul-theorie}
 % \liLadeAllePakete
 %
 % \begin{document}
@@ -5130,13 +5131,21 @@ von Textschnipseln, die das Projekt beschreiben]
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\liMetaEmail}
+%    \begin{macrocode}
+\def\liMetaEmail{
+  hermine.bschlangaul@gmx.net
+}
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\liMetaEmailLink}
 %    \begin{macrocode}
 \def\liMetaEmailLink{
   \href{
-    mailto:hermine.bschlangaul@gmx.net
+    mailto:\liMetaEmail
   }{
-    hermine.bschlangaul@gmx.net
+    \liMetaEmail
   }
 }
 %    \end{macrocode}
