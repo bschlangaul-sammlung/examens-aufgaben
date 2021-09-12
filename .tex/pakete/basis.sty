@@ -115,8 +115,8 @@
 % Die einzelnen Schlüssel sind im Interface |AufgabenMetadaten| in der
 % Typescript-Datei |.scripts/nodejs/src/aufgaben.ts| erklärt.
 %    \begin{macrocode}
-\clist_new:N \g_auf_schluessel_clist
-\clist_set:Nn \g_auf_schluessel_clist {
+\clist_new:N \g_schluessel_clist
+\clist_set:Nn \g_schluessel_clist {
   titel,
   thematik,
   stichwoerter,
@@ -129,21 +129,21 @@
   relativer_pfad,
   identische_aufgabe,
   %
-  examen_nummer,
+  einzelpruefungs_nr,
   examen_fach,
-  examen_jahr,
-  examen_monat,
-  examen_jahreszeit,
-  examen_thema_nr,
-  examen_teilaufgabe_nr,
-  examen_aufgabe_nr,
+  jahr,
+  monat,
+  jahreszeit,
+  thema_nr,
+  teilaufgabe_nr,
+  aufgabe_nr,
 }
 %    \end{macrocode}
 
-% Initialisierung der globalen Token-List-Variablen |\g_auf_***_tl|.
+% Initialisierung der globalen Token-List-Variablen |\g_***_tl|.
 % |auf| steht für Aufgabe.
 %    \begin{macrocode}
-\clist_map_inline:Nn \g_auf_schluessel_clist {
+\clist_map_inline:Nn \g_schluessel_clist {
   \tl_new:c {g_auf_#1_tl}
 }
 %    \end{macrocode}
@@ -151,7 +151,7 @@
 % Funktion über alle globalen Token-List-Variablen zurückzusetzten.
 %    \begin{macrocode}
 \cs_new:Npn \_setze_variablen_zurueck: {
-  \clist_map_inline:Nn \g_auf_schluessel_clist {
+  \clist_map_inline:Nn \g_schluessel_clist {
     \tl_clear:c {g_auf_##1_tl}
   }
 }
@@ -162,48 +162,48 @@
 %    \begin{macrocode}
 \keys_define:nn { aufgabenmetadaten }
 {
-  Titel .tl_gset:N = \g_auf_titel_tl,
-  Thematik .tl_gset:N = \g_auf_thematik_tl,
-  Stichwoerter .tl_gset:N = \g_auf_stichwoerter_tl,
-  ZitatSchluessel .tl_gset:N = \g_auf_zitat_beschreibung_tl,
-  ZitatBeschreibung .tl_gset:N = \g_auf_zitat_schluessel_tl,
+  Titel               .tl_gset:N = \g_titel_tl,
+  Thematik            .tl_gset:N = \g_thematik_tl,
+  Stichwoerter        .tl_gset:N = \g_stichwoerter_tl,
+  ZitatSchluessel     .tl_gset:N = \g_zitat_beschreibung_tl,
+  ZitatBeschreibung   .tl_gset:N = \g_zitat_schluessel_tl,
   %
-  BearbeitungsStand .tl_gset:N = \g_auf_bearbeitungs_stand_tl,
-  Korrektheit .tl_gset:N = \g_auf_korrektheit_tl,
+  BearbeitungsStand   .tl_gset:N = \g_bearbeitungs_stand_tl,
+  Korrektheit         .tl_gset:N = \g_korrektheit_tl,
   %
-  RelativerPfad .tl_gset:N = \g_auf_relativer_pfad_tl,
-  IdentischeAufgabe .tl_gset:N = \g_auf_identische_aufgabe_tl,
+  RelativerPfad       .tl_gset:N = \g_relativer_pfad_tl,
+  IdentischeAufgabe   .tl_gset:N = \g_identische_aufgabe_tl,
   %
-  ExamenNummer .tl_gset:N = \g_auf_examen_nummer_tl,
-  ExamenFach .tl_gset:N = \g_auf_examen_fach_tl,
-  ExamenJahr .tl_gset:N = \g_auf_examen_jahr_tl,
-  ExamenMonat .tl_gset:N = \g_auf_examen_monat_tl,
-  ExamenJahreszeit .tl_gset:N = \g_auf_examen_jahreszeit_tl,
-  ExamenThemaNr .tl_gset:N = \g_auf_examen_thema_nr_tl,
-  ExamenTeilaufgabeNr .tl_gset:N = \g_auf_examen_teilaufgabe_nr_tl,
-  ExamenAufgabeNr .tl_gset:N = \g_auf_examen_aufgabe_nr_tl,
+  ExamenNummer        .tl_gset:N = \g_einzelpruefungs_nr_tl,
+  ExamenFach          .tl_gset:N = \g_examen_fach_tl,
+  ExamenJahr          .tl_gset:N = \g_jahr_tl,
+  ExamenMonat         .tl_gset:N = \g_monat_tl,
+  ExamenJahreszeit    .tl_gset:N = \g_jahreszeit_tl,
+  ExamenThemaNr       .tl_gset:N = \g_thema_nr_tl,
+  ExamenTeilaufgabeNr .tl_gset:N = \g_teilaufgabe_nr_tl,
+  ExamenAufgabeNr     .tl_gset:N = \g_aufgabe_nr_tl,
 }
 %    \end{macrocode}
 
 %    \begin{macrocode}
 \cs_gset:Npn \_setze_relativen_pfad: {
-  \tl_if_empty:NTF \g_auf_relativer_pfad_tl
+  \tl_if_empty:NTF \g_relativer_pfad_tl
   {
     \bool_if:nTF
     {
-      ! \tl_if_empty_p:N \g_auf_examen_nummer_tl &&
-      ! \tl_if_empty_p:N \g_auf_examen_jahr_tl &&
-      ! \tl_if_empty_p:N \g_auf_examen_monat_tl
+      ! \tl_if_empty_p:N \g_einzelpruefungs_nr_tl &&
+      ! \tl_if_empty_p:N \g_jahr_tl &&
+      ! \tl_if_empty_p:N \g_monat_tl
     }
     {
-      \tl_gset:Nn \g_auf_relativer_pfad_tl {
+      \tl_gset:Nn \g_relativer_pfad_tl {
         Staatsexamen /
-        \g_auf_examen_nummer_tl /
-        \g_auf_examen_jahr_tl /
-        \g_auf_examen_monat_tl /
-        \tl_if_empty:NTF \g_auf_examen_thema_nr_tl {} { Thema - \g_auf_examen_thema_nr_tl / }
-        \tl_if_empty:NTF \g_auf_examen_teilaufgabe_nr_tl {} { Teilaufgabe - \g_auf_examen_teilaufgabe_nr_tl / }
-        \tl_if_empty:NTF \g_auf_examen_aufgabe_nr_tl {} { Aufgabe - \g_auf_examen_aufgabe_nr_tl .tex }
+        \g_einzelpruefungs_nr_tl /
+        \g_jahr_tl /
+        \g_monat_tl /
+        \tl_if_empty:NTF \g_thema_nr_tl {} { Thema - \g_thema_nr_tl / }
+        \tl_if_empty:NTF \g_teilaufgabe_nr_tl {} { Teilaufgabe - \g_teilaufgabe_nr_tl / }
+        \tl_if_empty:NTF \g_aufgabe_nr_tl {} { Aufgabe - \g_aufgabe_nr_tl .tex }
       }
     }
     {}
@@ -261,29 +261,29 @@
 % „Einzelprüfungsnummer / Jahr / Jahreszeit“ mit Trennzeichen
 %    \begin{macrocode}
 \cs_gset:Npn \_gib_einzelpruefung_trenner: {
-  \g_auf_examen_nummer_tl
+  \g_einzelpruefungs_nr_tl
 
   \_trenner:
 
-  \g_auf_examen_jahr_tl
+  \g_jahr_tl
 
   \_trenner:
 
-  \_gib_jahreszeit_durch_monat: \g_auf_examen_monat_tl
+  \_gib_jahreszeit_durch_monat: \g_monat_tl
 }
 %    \end{macrocode}
 
 % Thema 1 / Teilaufgabe 2 / Aufgabe 3
 %    \begin{macrocode}
 \cs_gset:Npn \_gib_aufgaben_pfad_trenner: {
-  \tl_if_empty:NTF \g_auf_examen_thema_nr_tl {} {
-    Thema ~ \g_auf_examen_thema_nr_tl \_trenner:
+  \tl_if_empty:NTF \g_thema_nr_tl {} {
+    Thema ~ \g_thema_nr_tl \_trenner:
   }
-  \tl_if_empty:NTF \g_auf_examen_teilaufgabe_nr_tl {} {
-    Teilaufgabe ~ \g_auf_examen_teilaufgabe_nr_tl \_trenner:
+  \tl_if_empty:NTF \g_teilaufgabe_nr_tl {} {
+    Teilaufgabe ~ \g_teilaufgabe_nr_tl \_trenner:
   }
-  \tl_if_empty:NTF \g_auf_examen_aufgabe_nr_tl {} {
-    Aufgabe ~ \g_auf_examen_aufgabe_nr_tl
+  \tl_if_empty:NTF \g_aufgabe_nr_tl {} {
+    Aufgabe ~ \g_aufgabe_nr_tl
   }
 }
 %    \end{macrocode}
@@ -293,9 +293,9 @@
 % Kopfzeile gedacht.
 %    \begin{macrocode}
 \cs_new:Npn \gib_aufgaben_pfad_lang_sicher: {
-  \tl_if_empty:NTF \g_auf_examen_nummer_tl
+  \tl_if_empty:NTF \g_einzelpruefungs_nr_tl
   {
-    \g_auf_titel_tl
+    \g_titel_tl
   }
   {
     \_gib_einzelpruefung_trenner:
@@ -311,10 +311,10 @@
   \cs_set:Nn \_trenner: { \, / \, }
   \bool_if:nTF
   {
-    ! \tl_if_empty_p:N \g_auf_examen_nummer_tl &&
-    ! \tl_if_empty_p:N \g_auf_examen_jahr_tl &&
-    ! \tl_if_empty_p:N \g_auf_examen_monat_tl &&
-    ! \tl_if_empty_p:N \g_auf_examen_aufgabe_nr_tl
+    ! \tl_if_empty_p:N \g_einzelpruefungs_nr_tl &&
+    ! \tl_if_empty_p:N \g_jahr_tl &&
+    ! \tl_if_empty_p:N \g_monat_tl &&
+    ! \tl_if_empty_p:N \g_aufgabe_nr_tl
   }
   {
     {
@@ -322,23 +322,23 @@
       \par
       \noindent
       Staatsexamen ~
-      \g_auf_examen_nummer_tl \_trenner:
-      \g_auf_examen_jahr_tl \_trenner:
+      \g_einzelpruefungs_nr_tl \_trenner:
+      \g_jahr_tl \_trenner:
 
-      \tl_case:Nn \g_auf_examen_monat_tl
+      \tl_case:Nn \g_monat_tl
       {
         { 03 } { Frühjahr }
         { 09 } { Herbst }
       } \_trenner:
 
-      \tl_if_empty:NTF \g_auf_examen_thema_nr_tl {} {
-        Thema ~ Nr. ~ \g_auf_examen_thema_nr_tl \_trenner:
+      \tl_if_empty:NTF \g_thema_nr_tl {} {
+        Thema ~ Nr. ~ \g_thema_nr_tl \_trenner:
       }
-      \tl_if_empty:NTF \g_auf_examen_teilaufgabe_nr_tl {} {
-        Teilaufgabe ~ Nr. ~ \g_auf_examen_teilaufgabe_nr_tl \_trenner:
+      \tl_if_empty:NTF \g_teilaufgabe_nr_tl {} {
+        Teilaufgabe ~ Nr. ~ \g_teilaufgabe_nr_tl \_trenner:
       }
-      \tl_if_empty:NTF \g_auf_examen_aufgabe_nr_tl {} {
-        Aufgabe ~ Nr. ~ \g_auf_examen_aufgabe_nr_tl
+      \tl_if_empty:NTF \g_aufgabe_nr_tl {} {
+        Aufgabe ~ Nr. ~ \g_aufgabe_nr_tl
       }
       \par
       \bigskip
@@ -353,13 +353,13 @@
   \LehramtInformatikGithubTexRepo /
   blob /
   \LehramtInformatikGitBranch /
-  \g_auf_relativer_pfad_tl
+  \g_relativer_pfad_tl
 }
 %    \end{macrocode}
 
 %    \begin{macrocode}
 \cs_new:Npn \_gib_github_url_href: {
-  \tl_if_empty:NTF \g_auf_relativer_pfad_tl {} {
+  \tl_if_empty:NTF \g_relativer_pfad_tl {} {
     \url{ \_gib_github_url: }
   }
 }
@@ -367,13 +367,13 @@
 
 %    \begin{macrocode}
 \cs_new:Npn \_gib_aufgaben_titel: {
-  \g_auf_titel_tl
+  \g_titel_tl
 
-  \tl_if_empty:NTF \g_auf_thematik_tl
+  \tl_if_empty:NTF \g_thematik_tl
   {}
   {
    \, ~ [
-    \g_auf_thematik_tl
+    \g_thematik_tl
    ]
   }
 }

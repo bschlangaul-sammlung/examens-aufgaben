@@ -38,9 +38,9 @@ Setzen einer Aufgabe]
 
 %    \begin{macrocode}
 \cs_gset:Npn \stichwoerter_formatiert: {
-  \tl_if_empty:NTF \g_auf_stichwoerter_tl {} {
+  \tl_if_empty:NTF \g_stichwoerter_tl {} {
     \textbf{Stichwörter:} ~
-    \g_auf_stichwoerter_tl
+    \g_stichwoerter_tl
     \par
   }
 }
@@ -57,9 +57,9 @@ Setzen einer Aufgabe]
 
 %    \begin{macrocode}
 \cs_gset:Npn \thematik_formatiert: {
-  \tl_if_empty:NTF \g_auf_thematik_tl {} {
+  \tl_if_empty:NTF \g_thematik_tl {} {
     \textit{
-      ( \g_auf_thematik_tl )
+      ( \g_thematik_tl )
     }
   }
 }
@@ -71,7 +71,7 @@ Setzen einer Aufgabe]
 {
   \liMetaSetze{#1}
 
-  \tl_if_empty:NTF \g_auf_examen_nummer_tl {}
+  \tl_if_empty:NTF \g_einzelpruefungs_nr_tl {}
   {
     {
       \noindent
@@ -85,9 +85,9 @@ Setzen einer Aufgabe]
     \noindent
     \bfseries
     \Large
-    \tl_if_empty:NTF \g_auf_examen_nummer_tl
+    \tl_if_empty:NTF \g_einzelpruefungs_nr_tl
     {
-      \g_auf_titel_tl
+      \g_titel_tl
     }
     {
       \_gib_aufgaben_pfad_trenner:

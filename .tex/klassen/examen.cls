@@ -49,7 +49,7 @@ mehreren Aufgaben zu einem Examen.]
 % \begin{macro}{\liSetzeExamenThemaNr}
 %    \begin{macrocode}
 \def\liSetzeExamenThemaNr#1{
-  \tl_gset:Nn \g_auf_examen_thema_nr_tl { #1 }
+  \tl_gset:Nn \g_thema_nr_tl { #1 }
   \section{Thema~Nr.~#1}
 }
 %    \end{macrocode}
@@ -58,7 +58,7 @@ mehreren Aufgaben zu einem Examen.]
 % \begin{macro}{\liSetzeExamenTeilaufgabeNr}
 %    \begin{macrocode}
 \def\liSetzeExamenTeilaufgabeNr#1{
-  \tl_gset:Nn \g_auf_examen_teilaufgabe_nr_tl { #1 }
+  \tl_gset:Nn \g_teilaufgabe_nr_tl { #1 }
   \subsection{Teilaufgabe~Nr.~#1}
 }
 %    \end{macrocode}
@@ -67,20 +67,20 @@ mehreren Aufgaben zu einem Examen.]
 % \begin{macro}{\liBindeAufgabeEin}
 %    \begin{macrocode}
 \def\liBindeAufgabeEin#1{
-  \tl_gset:Nn \g_auf_examen_aufgabe_nr_tl { #1 }
+  \tl_gset:Nn \g_aufgabe_nr_tl { #1 }
   \input{
     \LehramtInformatikRepository /
     Staatsexamen /
-    \g_auf_examen_nummer_tl /
-    \g_auf_examen_jahr_tl /
-    \g_auf_examen_monat_tl /
-    \tl_if_empty:NTF \g_auf_examen_thema_nr_tl {} {
-      Thema - \g_auf_examen_thema_nr_tl /
+    \g_einzelpruefungs_nr_tl /
+    \g_jahr_tl /
+    \g_monat_tl /
+    \tl_if_empty:NTF \g_thema_nr_tl {} {
+      Thema - \g_thema_nr_tl /
     }
-    \tl_if_empty:NTF \g_auf_examen_teilaufgabe_nr_tl {} {
-      Teilaufgabe - \g_auf_examen_teilaufgabe_nr_tl /
+    \tl_if_empty:NTF \g_teilaufgabe_nr_tl {} {
+      Teilaufgabe - \g_teilaufgabe_nr_tl /
     }
-    Aufgabe - \g_auf_examen_aufgabe_nr_tl .tex
+    Aufgabe - \g_aufgabe_nr_tl .tex
   }
 }
 %    \end{macrocode}
@@ -120,18 +120,18 @@ mehreren Aufgaben zu einem Examen.]
     {
       \bfseries\Huge
 
-      \g_auf_examen_jahreszeit_tl \par
+      \g_jahreszeit_tl \par
 
-      \g_auf_examen_jahr_tl \par
+      \g_jahr_tl \par
     }
 
     \vspace{2cm}
 
-    {\LARGE \g_auf_examen_nummer_tl \par}
+    {\LARGE \g_einzelpruefungs_nr_tl \par}
 
     \vspace{0.5cm}
 
-    \g_auf_examen_fach_tl \par
+    \g_examen_fach_tl \par
 
     \vspace{3cm}
 
