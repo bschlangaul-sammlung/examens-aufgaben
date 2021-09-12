@@ -52,9 +52,9 @@ DELETE FROM R1;
 \end{minted}
 \index{DELETE}
 
-\begin{liAntwort}
+\begin{bAntwort}
 korrekt
-\end{liAntwort}
+\end{bAntwort}
 
 \item
 
@@ -66,9 +66,9 @@ INSERT INTO R1 VALUES (3,1);
 \end{minted}
 \index{INSERT}
 
-\begin{liAntwort}
+\begin{bAntwort}
 korrekt
-\end{liAntwort}
+\end{bAntwort}
 
 \item \strut
 
@@ -79,7 +79,7 @@ INSERT INTO R1 VALUES (1,1);
 DELETE FROM R2 WHERE b=a;
 \end{minted}
 
-\begin{liAntwort}
+\begin{bAntwort}
 falsch: Fehlermeldung \texttt{column "a" does not exist}
 
 \begin{minted}{sql}
@@ -90,7 +90,7 @@ INSERT INTO R1 VALUES (1,1);
 -- b kann nur mit Integer verglichen werden.
 DELETE FROM R1 WHERE b=1;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 \item \strut
 
@@ -98,9 +98,9 @@ DELETE FROM R1 WHERE b=1;
 INSERT INTO R1 SELECT * FROM R1;
 \end{minted}
 
-\begin{liAntwort}
+\begin{bAntwort}
 korrekt
-\end{liAntwort}
+\end{bAntwort}
 
 \item \strut
 
@@ -109,7 +109,7 @@ DROP TABLE R2 FROM DATABASE;
 \end{minted}
 \index{DROP TABLE}
 
-\begin{liAntwort}
+\begin{bAntwort}
 falsch: Fehlermeldung \texttt{ERROR:  syntax error at or near "FROM"}
 
 Müsste so lauten:
@@ -119,6 +119,6 @@ Müsste so lauten:
 DROP TABLE R1;
 DROP TABLE R2;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 \end{enumerate}
 \end{document}

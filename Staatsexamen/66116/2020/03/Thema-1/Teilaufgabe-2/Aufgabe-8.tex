@@ -176,7 +176,7 @@ VALUES
 \item Welche Vorlesungen liest der Boss des Assistenten \emph{Platon}
 (nur Vorlesungsnummer und Titel ausgeben)?
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT v.VorlNr, v.Titel
 FROM Vorlesungen v, Assistenten a
@@ -191,7 +191,7 @@ WHERE a.Boss = v.gelesenVon AND a.Name = 'Platon';
    5049 | Mäeutik
 (3 rows)
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -200,7 +200,7 @@ WHERE a.Boss = v.gelesenVon AND a.Name = 'Platon';
 \item Welche Studierende haben sich schon in mindestens einer direkten
 Voraussetzung von \emph{Wissenschaftstheorie} prüfen lassen?
 
-\begin{liAntwort}
+\begin{bAntwort}
 
 Wissenschaftstheorie (5052) $\rightarrow$
 Erkenntnistheorie (5043) Ethik (5041) $\rightarrow$
@@ -222,7 +222,7 @@ WHERE
  Jonas
 (1 row)
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -230,7 +230,7 @@ WHERE
 
 \item Wie viele Studierende hören \emph{Ethik}?
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT COUNT(*)
 FROM Vorlesungen v, hören h
@@ -245,7 +245,7 @@ WHERE
      2
 (1 row)
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -260,7 +260,7 @@ wenn das Paar \emph{StudentA}, \emph{StudentB} im Ergebnis enthalten
 ist, soll nicht auch noch das Paar \emph{StudentB}, \emph{StudentA}
 ausgegeben werden.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT s1.Name, s2.Name
 FROM Studierende s1, Studierende s2
@@ -275,7 +275,7 @@ WHERE
  Theophrastos | Feuerbach
 (1 row)
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -284,7 +284,7 @@ WHERE
 \item In welchen Fächern ist die Durchschnittsnote schlechter als 2?
 Geben Sie die Vorlesungsnummer und den Titel aus.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT v.VorlNr, v.Titel
 FROM prüfen p, Vorlesungen v
@@ -299,7 +299,7 @@ HAVING AVG(p.Note) >  2;
    4630 | Die 3 Kritiken
 (1 row)
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -308,7 +308,7 @@ HAVING AVG(p.Note) >  2;
 \item Finden Sie alle Paare von Studierenden (\emph{MatrNr} duplikatfrei
 ausgeben), die mindestens zwei Vorlesungen gemeinsam hören.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT h1.MatrNr, h2.MatrNr
 FROM hören h1, hören h2
@@ -326,7 +326,7 @@ HAVING COUNT(*) > 1;
   28106 |  29555
 (2 rows)
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 \end{enumerate}
 \end{document}

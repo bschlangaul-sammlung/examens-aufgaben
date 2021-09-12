@@ -144,13 +144,13 @@ INSERT INTO Verbindungen VALUES
 \item Ermitteln Sie die Städte, in denen es mehr als einen Flughafen
 gibt.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT Stadt FROM Flughaefen
 GROUP BY Stadt
 HAVING count(Stadt) > 1;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % 2.
@@ -159,7 +159,7 @@ HAVING count(Stadt) > 1;
 \item Ermitteln Sie die Städte, in denen man mit der Linie „LH“ an
 mindestens zwei verschiedenen Flughäfen landen kann.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT Stadt FROM Flughaefen
 WHERE Stadt IN (
@@ -172,7 +172,7 @@ WHERE Stadt IN (
 GROUP BY Stadt
 HAVING COUNT(Stadt) > 1;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % 3.
@@ -181,7 +181,7 @@ HAVING COUNT(Stadt) > 1;
 \item Ermitteln Sie die Flugzeit des kürzesten Direktflugs von München
 nach London.\index{Top-N-Query}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 CREATE VIEW Flugdauer AS
   SELECT ID, Ankunft - Abflug AS Dauer FROM Flughaefen v, Flughaefen n, Verbindungen
@@ -196,7 +196,7 @@ WHERE a.Dauer >= b.Dauer
 GROUP BY a.Dauer
 HAVING COUNT(*) <= 1;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % 4.

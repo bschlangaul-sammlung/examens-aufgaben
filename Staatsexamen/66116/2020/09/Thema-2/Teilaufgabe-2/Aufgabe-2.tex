@@ -86,9 +86,9 @@ Bearbeiten Sie die folgenden Teilaufgaben:
 \item Erläutern Sie kurz, warum das Attribut Art in Küche Teil des
 Primärschlüssels ist.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Es kann mehr als eine Küche pro Restaurant geben.
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % b)
@@ -97,13 +97,13 @@ Es kann mehr als eine Küche pro Restaurant geben.
 \item Schreiben Sie eine SQL-Anweisung, welche alle Städte findet, in
 denen man “deutsch” (Art der Küche) essen kann.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT DISTINCT s.StadtName
 FROM Stadt s, Restaurant r, Küche k
 WHERE s.Stadtname = r.StadtName AND r.RestaurantID = k.RestaurantID AND Art = 'deutsch';
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % c)
@@ -113,7 +113,7 @@ WHERE s.Stadtname = r.StadtName AND r.RestaurantID = k.RestaurantID AND Art = 'd
 Vorname) liefert, die kein deutsches Essen bevorzugen. Verwenden Sie
 keinen Join.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT Name, Vorname
 FROM Person
@@ -124,7 +124,7 @@ SELECT DISTINCT PersonID
 FROM bevorzugt
 WHERE Art = 'deutsch');
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % d)
@@ -135,7 +135,7 @@ Person (PersonID) die Anzahl der Restaurants ermittelt, in denen diese
 Person bevorzugt essen gehen würde. Es sollen nur Städte ausgegeben
 werden, in denen es mindestens drei solche Restaurants gibt.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT r.StadtName, b.PersonID, count(DISTINCT r.RestaurantID) as Anzahl
 FROM Restaurant r, bevorzugt b, Kueche k
@@ -143,7 +143,7 @@ WHERE r.RestaurantID = k.RestaurantID AND k.Art = b.Art
 GROUP BY r.StadtName, b.PersonID
 HAVING count(r.RestaurantID) >= 3;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % e)
@@ -154,7 +154,7 @@ liefert, in denen sich die Personen mit den IDs 1 und 2 gemeinsam zum
 Essen verabreden können, und beide etwas zum Essen finden, das sie
 bevorzugen. Es sollen keine Duplikate ausgegeben werden.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 CREATE VIEW Person1 AS
 SELECT DISTINCT r.RestaurantID, r.RestaurantName
@@ -172,7 +172,7 @@ SELECT * FROM Person1
 INTERSECT
 SELECT * FROM Person2;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 \end{enumerate}
 \end{document}

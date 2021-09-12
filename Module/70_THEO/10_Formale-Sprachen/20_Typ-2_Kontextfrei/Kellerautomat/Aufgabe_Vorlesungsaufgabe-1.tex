@@ -25,7 +25,7 @@
 
 \bAusdruck{a^n c^i b^n}{n, i \in \mathbb{N}_0}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \bKellerAutomat{zustaende={z_0, z_1, z_2}, alphabet={a, b, c}, kelleralphabet={\#, A}, ende=z_2}
 
 \begin{center}
@@ -102,12 +102,12 @@ Aktueller Zustand &  Eingabe   & Keller & Folgezustand & Keller \\\hline\hline
 \z2 & \e & \# & \z2 & \e  \\
 \z2 & b  & A  & \z2 & \e  \\\hline
 \end{tabular}
-\end{liAntwort}
+\end{bAntwort}
 
 \item Geben Sie eine Grammatik für diese Sprache an.
 \index{Kontextfreie Grammatik}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{liProduktionsRegeln}
 S -> a S b | EPSILON | c | c C,
 C -> c C | EPSILON
@@ -119,7 +119,7 @@ alternativ:
 S -> a S b | EPSILON | C,
 C -> c C | EPSILON
 \end{liProduktionsRegeln}
-\end{liAntwort}
+\end{bAntwort}
 
 \item Geben Sie Konfigurationsfolgen für die Erzeugung des Wortes an
 \index{Konfigurationsfolge}
@@ -127,7 +127,7 @@ C -> c C | EPSILON
 \begin{itemize}
 \item aacbb
 
-\begin{liAntwort}
+\begin{bAntwort}
 (\z0, aacbb, \#)   \p
 (\z0, acbb,  A\#)  \p
 (\z0, cbb,   AA\#) \p
@@ -135,18 +135,18 @@ C -> c C | EPSILON
 (\z2, b,     A\#)  \p
 (\z2, \e,    \#)   \p
 (\z2, \e,   \e)
-\end{liAntwort}
+\end{bAntwort}
 
 \item accb
 
-\begin{liAntwort}
+\begin{bAntwort}
 (\z0, accb, \#)  \p
 (\z0, ccb,  A\#) \p
 (\z1, cb,   A\#) \p
 (\z2, b,    A\#) \p
 (\z2, \e,   \#)  \p
 (\z2, \e,   \e)
-\end{liAntwort}
+\end{bAntwort}
 \end{itemize}
 \end{enumerate}
 \end{document}

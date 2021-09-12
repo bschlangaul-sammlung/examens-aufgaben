@@ -27,7 +27,7 @@
 \index{Streutabellen (Hashing)}
 \footcite{examen:66115:2021:03}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{description}
 \item[surjektiv]
 
@@ -45,7 +45,7 @@ Zudem sollte die Verteilung mittels Hashfunktion möglichst effizient
 gewählt werden.
 \footcite{wiki:hashfunktion}
 \end{description}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % b)
@@ -55,7 +55,7 @@ gewählt werden.
 können bei offener Adressierung in einer Hashtabelle mit $m$ Zeilen
 gespeichert werden?
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{description}
 \item[Verkettung]
 
@@ -69,7 +69,7 @@ speicherbaren Elemente höchstens $m$. Können in einem Bucket $k$
 Elemente gespeichert werden, dann beträgt die Anzahl der speicherbaren
 Elemente $k \cdot m$.
 \end{description}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % c)
@@ -85,11 +85,11 @@ dürfen annehmen, dass jeder Wert mit gleicher Wahrscheinlichkeit und
 unabhängig von anderen Werten auf jeden der $m$ Plätze abgebildet wird
 (einfaches gleichmäßiges Hashing).
 
-\begin{liAntwort}
+\begin{bAntwort}
 $\frac{n}{m}$
 Beispiel: 10 Buckets, 30 Elemente: $\frac{30}{10} = 3$ Elemente im
 Bucket, die man durchsuchen muss.
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % d)
@@ -120,12 +120,12 @@ Reihenfolge an.
 
 \item Insert 7
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{tabular}{|r||c|c|c|c|c|c|c|c|c|c|c|}
 Index & 0  & 1  & 2  & 3 & 4  & 5  & 6  & 7  & 8  & 9  & 10 \\\hline
 Wert  & 11 & \l & \l & 3 & \l & 16 & 28 & 18 & $7_2$ & \l & 32 \\
 \end{tabular}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % ii)
@@ -133,12 +133,12 @@ Wert  & 11 & \l & \l & 3 & \l & 16 & 28 & 18 & $7_2$ & \l & 32 \\
 
 \item Insert 20
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{tabular}{|r||c|c|c|c|c|c|c|c|c|c|c|}
 Index & 0  & 1  & 2  & 3 & 4  & 5  & 6  & 7  & 8     & 9      & 10 \\\hline
 Wert  & 11 & \l & \l & 3 & \l & 16 & 28 & 18 & $7_2$ & $20_1$ & 32 \\
 \end{tabular}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % iii)
@@ -146,7 +146,7 @@ Wert  & 11 & \l & \l & 3 & \l & 16 & 28 & 18 & $7_2$ & $20_1$ & 32 \\
 
 \item Delete 18
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{tabular}{|r||c|c|c|c|c|c|c|c|c|c|c|}
 Index & 0  & 1  & 2  & 3 & 4  & 5  & 6  & 7  & 8     & 9      & 10 \\\hline
 Wert  & 11 & \l & \l & 3 & \l & 16 & 28 & del & $7_2$ & $20_1$ & 32 \\
@@ -154,7 +154,7 @@ Wert  & 11 & \l & \l & 3 & \l & 16 & 28 & del & $7_2$ & $20_1$ & 32 \\
 
 del ist eine Marke, die anzeigt, dass gelöscht wurde und der Bucket
 nicht leer ist.
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % iv)
@@ -162,7 +162,7 @@ nicht leer ist.
 
 \item Search 7
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{tabular}{|r||c|c|c|c|c|c|c|c|c|c|c|}
 Index & 0  & 1  & 2  & 3 & 4  & 5  & 6  & 7  & 8     & 9      & 10 \\\hline
 Wert  & 11 & \l & \l & 3 & \l & 16 & 28 & del & $7_2$ & $20_1$ & 32 \\
@@ -173,7 +173,7 @@ $h(7) = 7 \mod 11 = 7$
 7 (Index) $\rightarrow$
 del lineares sondieren $\rightarrow$
 8 (Index) $\rightarrow$ gefunden
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % v)
@@ -181,12 +181,12 @@ del lineares sondieren $\rightarrow$
 
 \item Insert 5
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{tabular}{|r||c|c|c|c|c|c|c|c|c|c|c|}
 Index & 0  & 1  & 2  & 3 & 4  & 5  & 6  & 7     & 8     & 9      & 10 \\\hline
 Wert  & 11 & \l & \l & 3 & \l & 16 & 28 & $5_3$ & $7_2$ & $20_1$ & 32 \\
 \end{tabular}
-\end{liAntwort}
+\end{bAntwort}
 \end{enumerate}
 
 \end{enumerate}

@@ -106,7 +106,7 @@ Geben Sie einen Datensatz, also eine Entity, nicht mehrfach aus.
 anlegt. Gehen Sie davon aus, dass die Tabellen „Athlet“ und
 „Wettbewerb“ bereits existieren. Verwenden Sie sinnvolle Datentypen.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 CREATE TABLE IF NOT EXISTS Ergebnis (
   Athlet INTEGER REFERENCES Athlet(ID),
@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS Ergebnis (
 % Schwimmzeit FLOAT NOT NULL,
 % Radzeit FLOAT,
 % Laufzeit FLOAT);
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % b)
@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS Ergebnis (
 mit der ID 12 beim Wettbewerb „Zürichsee“ um eins erhöht.
 \index{UPDATE}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 -- Nur für Test-Zwecke
 SELECT * FROM Ergebnis WHERE Athlet = 12 AND Wettbewerb = 'Zürichsee';
@@ -146,7 +146,7 @@ WHERE Athlet = 12 AND Wettbewerb = 'Zürichsee';
 -- Nur für Test-Zwecke
 SELECT * FROM Ergebnis WHERE Athlet = 12 AND Wettbewerb = 'Zürichsee';
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % c)
@@ -156,14 +156,14 @@ SELECT * FROM Ergebnis WHERE Athlet = 12 AND Wettbewerb = 'Zürichsee';
 des Jahres 2018 ausgibt, absteigend sortiert nach Name.
 \index{DESC}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT Name
 FROM Wettbewerb
 WHERE Jahr = 2018
 ORDER BY Name DESC;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % d)
@@ -173,14 +173,14 @@ ORDER BY Name DESC;
 ausgibt, in der die durchschnittliche Schwimmzeit größer als 10 ist.
 \index{AVG}\index{GROUP BY}\index{HAVING}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT Wettbewerb, AVG(Schwimmzeit)
 FROM Ergebnis
 GROUP BY Wettbewerb
 HAVING AVG(Schwimmzeit) > 10;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % e)
@@ -190,14 +190,14 @@ HAVING AVG(Schwimmzeit) > 10;
 ausgibt, die im Jahr 2017 an keinem Wettbewerb teilgenommen haben.
 \index{EXCEPT}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 (SELECT DISTINCT Athlet FROM Ergebnis)
 EXCEPT
 (SELECT DISTINCT Athlet FROM Ergebnis e, Wettbewerb w
 WHERE e.Wettbewerb = w.name AND w.Jahr = 2017);
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % f)
@@ -210,7 +210,7 @@ Gesamtzeit ist die Summe aus Schwimmzeit, Radzeit und Laufzeit. Falls
 zwei Athleten in einem Wettbewerb die gleiche Gesamtzeit erreichen, sind
 beide Sieger.
 
-\begin{liAntwort}
+\begin{bAntwort}
 vermutlich falsch
 \begin{minted}{sql}
 CREATE VIEW Gesamtzeiten AS
@@ -228,7 +228,7 @@ FROM Sieger
 GROUP BY NameAthlet
 HAVING count(*) > 10;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % g)
@@ -242,7 +242,7 @@ zwei Athleten die gleiche Schwimmzeit haben und verwenden Sie keine
 produktspezifischen Anweisungen wie beispielsweise rownum, top oder
 limit.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 CREATE VIEW AthletenParis AS
 SELECT a.Nachname, e.Schwimmzeit
@@ -254,7 +254,7 @@ WHERE a.Schwimmzeit < b.Schwimmzeit
 GROUP BY a.Nachname
 HAVING Platzierung <= 10;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % h)
@@ -264,7 +264,7 @@ HAVING Platzierung <= 10;
 Tabelle „Ergebnis“ die Schwimmzeit auf den Wert 0 setzt, falls diese
 negativ ist.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 CREATE TRIGGER update_Ergebnis AFTER UPDATE ON Ergebnis AS
 IF(UPDATE Schwimmzeit AND Schwimmzeit < 0) BEGIN UPDATE Ergebnis
@@ -272,7 +272,7 @@ SET Schwimmzeit = 0
 WHERE (Athlet, Wettbewerb) IN (SELECT DISTINCT (Athlet, Wettbewerb) FROM inserted)
 END;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 \end{enumerate}
 

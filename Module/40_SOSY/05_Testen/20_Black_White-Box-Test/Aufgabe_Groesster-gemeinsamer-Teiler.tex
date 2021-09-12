@@ -13,7 +13,7 @@ Gegeben sei folgende Methode:
 \item Erstellen Sie den zur Methode gehörenden datenflussannotierten
 Kontrollflussgraphen.\index{Datenfluss-annotierter Kontrollflussgraph}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{tikzpicture}[li kontrollfluss,xscale=1,yscale=-1.2]
 \node[knoten] at (0,0) (nS) {S}; % public int ggT(int a, int b) {
 \node[knoten] at (0,1) (n1) {1}; % int result = 1;
@@ -47,7 +47,7 @@ Kontrollflussgraphen.\index{Datenfluss-annotierter Kontrollflussgraph}
 \node[usebox] at (3,6) {def(i), c-use(i)} edge[dashed] (n6);
 \node[usebox] at (-1,8) {c-use(result)} edge[dashed] (nE);
 \end{tikzpicture}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -57,7 +57,7 @@ Kontrollflussgraphen.\index{Datenfluss-annotierter Kontrollflussgraph}
 Methode \bJavaCode{ggT} an. (Nur das Ergebnis!)
 \index{Zyklomatische Komplexität nach Mc-Cabe}
 
-\begin{liAntwort}
+\begin{bAntwort}
 Berechnung durch Anzahl Binärverzweigungen $b$ ($p$ Anzahl der
 Zusammenhangskomponenten des Kontrollflussgraphen)
 
@@ -75,7 +75,7 @@ M = e - n + 2p
 \end{displaymath}
 
 $\rightarrow M = 9 - 8 + 2 \cdot 1 = 3$
-\end{liAntwort}
+\end{bAntwort}
 
 \item Geben Sie je einen Repräsentanten aller Pfadklassen im
 Kontrollflussgraphen an, die zum Erzielen einer vollständigen
@@ -83,7 +83,7 @@ Schleifen-Inneres-Überdeckung (Boundary-Interior-Coverage) genügen
 würden.
 \index{C2b Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage)}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \bPseudoUeberschrift{Äußere Pfade}
 
 \begin{itemize}
@@ -105,7 +105,7 @@ würden.
 \item S 1 2 3 4 5 6 3 4 6 3 E
 \item S 1 2 3 4 6 3 4 5 6 3 E
 \end{itemize}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -114,7 +114,7 @@ würden.
 \item Geben Sie an, welche der Pfade aus der vorherigen Aufgabe nicht
 überdeckbar ("feasible") sind und begründen Sie dies.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \bPseudoUeberschrift{Äußere Pfade}
 
 \begin{description}
@@ -151,7 +151,7 @@ nicht feasible, da geteilt durch eins immer Modulo 0 ergibt, egal welche
 Zahl a oder b hat. Bei der ersten Schleifenwiederholung wird immer die
 innere If-Verzweigung genommen.
 \end{description}
-\end{liAntwort}
+\end{bAntwort}
 
 \end{enumerate}
 

@@ -16,17 +16,17 @@
 Raumnummer = \m{101, 102, 202}\}. Bestimmen Sie das kartesische Produkt
 Klassenstufe x Raumnummer.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \m{(5, 101), (5, 102), (5, 202), (11, 101), (11, 102), (11,202)}
-\end{liAntwort}
+\end{bAntwort}
 
 \item Es gilt: Klasse $\subseteq$ Klassenstufe $\times$ Raumnummer.
 Bestimmen Sie diese Relation bezüglich der dem Material
 zugrundeliegenden Schulverwaltungsdaten.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Klasse = {(5, 101), (11, 202)}
-\end{liAntwort}
+\end{bAntwort}
 
 \end{enumerate}
 
@@ -56,9 +56,9 @@ Lösung: \m{(2017, 1, Max Mustermann, rk), (2018, 2, Sabine Kracker, ev)}
 Klassenzimmer beschreiben. Geben Sie ein mögliches Relationenschema
 Klasse an.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Klasse \m{[Name: STRING, Klassenzimmer: STRING]}
-\end{liAntwort}
+\end{bAntwort}
 
 \end{enumerate}
 
@@ -367,9 +367,9 @@ DELETE FROM Lehrkraft WHERE Geburstjahr <= 1941;
 adäquat? Was gibt es für Alternativen? (Angabe Seite 138, Lösung Seite
 163)
 
-\begin{liAntwort}
+\begin{bAntwort}
 Man könnte eine neue Spalte einfügen, \zB bei Lehrer pensioniert.
-\end{liAntwort}
+\end{bAntwort}
 
 \end{enumerate}
 
@@ -525,13 +525,13 @@ WHERE Konfession = 'bk';
 
 \item Welche Ergebnisse liefern folgende Anfragen?
 
-\begin{liAntwort}
+\begin{bAntwort}
 Alle männliches Lehrkräfte oder LehrerInnen die in Passau wohnen und
 nach 1944 geboren sind.
 
 Alle Lehrkräft nach 1944 geboren, die entweder männlich sind oder in
 Passau wohnen.
-\end{liAntwort}
+\end{bAntwort}
 
 \end{enumerate}
 
@@ -729,10 +729,10 @@ GROUP BY Konfession
 HAVING COUNT (*) = 0 ;
 \end{minted}
 
-\begin{liAntwort}
+\begin{bAntwort}
 Ist nicht vernünftig, da Konfession gecheckt wird auf ev rk etc und
 also Konfession immer einen Wert hat.  (Lösung Seite 166)
-\end{liAntwort}
+\end{bAntwort}
 
 %-----------------------------------------------------------------------
 %
@@ -1024,7 +1024,7 @@ Relation wird durch folgende Tabelle repräsentiert:
 
 Geben Sie Beispiele für mögliche Anomalien an!
 
-\begin{liAntwort}
+\begin{bAntwort}
 Lösung Seite 203
 \begin{description}
 \item[Update-Anomalie:] Die Firma Meier verlegt ihren Firmensitz nach
@@ -1042,7 +1042,7 @@ noch Forelle liefern. Die entsprechenden Einträge müssen gelöscht
 werden. Damit geht aber auch die Information über die Adresse des
 Lieferanten verloren.
 \end{description}
-\end{liAntwort}
+\end{bAntwort}
 
 %-----------------------------------------------------------------------
 %
@@ -1060,7 +1060,7 @@ gelten? Begründen Sie Ihre Entscheidung!
 
 Lösung 204
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{itemize}
 \item $Lieferant \rightarrow Adresse$
 
@@ -1071,9 +1071,9 @@ Lösung 204
 Über den Lieferantennamen und den Artikelnamen kommt man zur Preis. Es
 gibt zwei verschiedene Arten von Forellen
 \end{itemize}
-\end{liAntwort}
+\end{bAntwort}
 
-\begin{liAntwort}
+\begin{bAntwort}
 Alle trivialen FDs gelten.
 \begin{itemize}
 \item $Lieferant \rightarrow Adresse$ gilt, da es keine zwei Lieferanten
@@ -1101,7 +1101,7 @@ Angabe von Lieferant und Artikelname der
 Preis eindeutig bestimmt werden kann.
 \end{itemize}
 
-\end{liAntwort}
+\end{bAntwort}
 
 %-----------------------------------------------------------------------
 %
@@ -1126,7 +1126,7 @@ und die Menge
 $X = \m{Lieferant, Artikelname}$.
 Bestimmen Sie $\ah{F, X}$.
 
-\begin{liAntwort}
+\begin{bAntwort}
 $F^+ = \m{Lieferant, Artikelname}$
 
 1. Durchlauf
@@ -1139,7 +1139,7 @@ $Lieferant Artikelname$ ja $F^+$ $F^+ = \m{Lieferant, Artikelname, Adresse, Prei
 keine Veränderungen mehr
 
 $F^+ = \m{Lieferant, Artikelname, Adresse, Preis}$
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -1153,7 +1153,7 @@ $F := \{
 \}$. Bestimmen Sie $\ah{F, \m{A, B}}$.
 \end{enumerate}
 
-\begin{liAntwort}
+\begin{bAntwort}
 $F^+ = A, B$
 
 1. Durchlauf
@@ -1165,7 +1165,7 @@ E nichts
 2. Durchlauf
 
 A D ja $F^+ \cup A B D C$
-\end{liAntwort}
+\end{bAntwort}
 
 %-----------------------------------------------------------------------
 %
@@ -1188,7 +1188,7 @@ und
 \}}.
 Ist F bereits minimal?
 
-\begin{liAntwort}
+\begin{bAntwort}
 
 \begin{enumerate}
 \item Überprüfung der FDs auf Einfachheit: F enthält nur einfache FDs.
@@ -1239,7 +1239,7 @@ aber
 
 \end{enumerate}
 F ist bereits minimal.
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -1252,7 +1252,7 @@ F ist bereits minimal.
 \}}.
 Bestimmen Sie die minimale Überdeckung von \texttt{F}!
 
-\begin{liAntwort}
+\begin{bAntwort}
 \texttt{F = \{%
   PersNr $\rightarrow$ Name,
   PersNr $\rightarrow$ Wohnort,
@@ -1275,7 +1275,7 @@ Bestimmen Sie die minimale Überdeckung von \texttt{F}!
 \}}
 \end{itemize}
 
-\end{liAntwort}
+\end{bAntwort}
 
 \end{enumerate}
 
@@ -1290,7 +1290,7 @@ Gegeben sei das Relationenschema \texttt{Professor\m{PersNr, Dienststelle, Zimme
 \begin{itemize}
 \item Bestimmen Sie eine sinnvolle Menge \texttt{F} von FDs!
 
-\begin{liAntwort}
+\begin{bAntwort}
 Es ist sicher sinnvoll anzunehmen, dass ein Professor in jeder
 Dienststelle höchstens ein Zimmer hat. Ferner hat ein Professorenzimmer
 höchstens einen Telefonanschluss. Damit kann beispielsweise folgende
@@ -1300,11 +1300,11 @@ Menge von funktionalen Abhängigkeiten festgelegt werden:
 \item \texttt{PersNr Dienststelle $\rightarrow$ Zimmer}
 \item \texttt{Zimmer $\rightarrow$ Telefon}
 \end{itemize}
-\end{liAntwort}
+\end{bAntwort}
 
 \item Prüfen Sie, ob {PersNr, Dienststelle} ein Superschlüssel ist.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \footnotesize
 \begin{tabular}{ll}
 Ergebnismenge \texttt{Erg} &
@@ -1320,7 +1320,7 @@ wegen FD \texttt{PersNr Dienststelle $\rightarrow$ Zimmer}\\
 wegen FD \texttt{Zimmer $\rightarrow$ Telefon}\\
 \end{tabular}
 
-\end{liAntwort}
+\end{bAntwort}
 
 \end{itemize}
 

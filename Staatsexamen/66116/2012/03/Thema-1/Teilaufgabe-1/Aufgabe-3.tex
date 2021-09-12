@@ -111,7 +111,7 @@ Anfragen bzw. Anweisungen in SQL.
 die Relationen „Fahrzeug“, „Modell“ und „Hersteller“ zu erzeugen. Achten
 Sie dabei darauf, die Primärschlüssel der Relationen zu kennzeichnen.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 CREATE TABLE IF NOT EXISTS Hersteller (
   HNR INTEGER PRIMARY KEY,
@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS Fahrzeug (
   Preis INTEGER
 );
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % b)
@@ -143,14 +143,14 @@ CREATE TABLE IF NOT EXISTS Fahrzeug (
 \item Bestimmen Sie die Typen aller Modelle des Herstellers mit Namen
 BMW.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT m.Typ
 FROM Modell m, Hersteller h
 WHERE h.HNR = m.HNR AND h.Name = 'BMW'
 GROUP BY m.Typ;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % c)
@@ -159,7 +159,7 @@ GROUP BY m.Typ;
 \item Bestimmen Sie den Mindestpreis, bezogen auf das Attribut „Preis“,
 der Fahrzeuge eines jeden Herstellers.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT h1.Name AS Hersteller, (
   SELECT MIN(f.Preis)
@@ -171,7 +171,7 @@ SELECT h1.Name AS Hersteller, (
 ) AS Mindestpreis
 FROM Hersteller h1;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % d)
@@ -180,7 +180,7 @@ FROM Hersteller h1;
 \item Bestimmen Sie die Namen der Hersteller, für die von jedem ihrer
 Modelle mindestens ein Fahrzeug in der Datenbank gespeichert ist.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT h.Name AS Hersteller
 FROM Fahrzeug f, Modell m, Hersteller h
@@ -189,7 +189,7 @@ WHERE
   m.HNR = h.HNR
 GROUP BY h.Name;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % e)

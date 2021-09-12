@@ -111,7 +111,7 @@ Schleifeninvariante?
 \item $(\text{df} + x)!! = n!! \land x \geq 0$
 \end{enumerate}
 
-\begin{liAntwort}
+\begin{bAntwort}
 Zunächst wird der Code in einen äquivalenten Code mit while-Schleife
 umgewandelt:
 
@@ -149,7 +149,7 @@ offenbar $(1 + n)!! \not = n!!$.
 $\Rightarrow$ Die Schleifeninvariante lautet:
 $\text{df} \cdot x!! = n!! \land x \geq 0$
 
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (b)
@@ -158,7 +158,7 @@ $\text{df} \cdot x!! = n!! \land x \geq 0$
 Bedingung unmittelbar vor Beginn der Schleife gilt, wenn zu Beginn der
 Methode die Anfangsbedingung $P$ gilt.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Zu zeigen $P \Rightarrow \wp{Code vor der Schleife}{I}$
 
 \begin{align*}
@@ -172,7 +172,7 @@ Zu zeigen $P \Rightarrow \wp{Code vor der Schleife}{I}$
 \end{align*}
 
 Insbesondere folgt damit die Behauptung.
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (c)
@@ -181,7 +181,7 @@ Insbesondere folgt damit die Behauptung.
 \item Zeigen Sie formal mittels wp-Kalkül, dass die von Ihnen gewählte
 Bedingung tatsächlich eine Invariante der Schleife ist.
 
-\begin{liAntwort}
+\begin{bAntwort}
 zu zeigen: $I \land \text{Schleifenbedingung} \Rightarrow \wp{Code in der Schleife}{I}$
 
 Bevor wir dies beweisen, zeigen wir erst $x \cdot (x - 2)!! = x!!$.
@@ -228,7 +228,7 @@ Dies benutzen wir nun, um den eigentlichen Beweis zu führen:
 & \equiv I \land x > 1 \\
 & \equiv I \land \text{Schleifenbedingung} \\
 \end{align*}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (d)
@@ -237,7 +237,7 @@ Dies benutzen wir nun, um den eigentlichen Beweis zu führen:
 \item Zeigen Sie formal mittels wp-Kalkül, dass am Ende der Methode die
 Nachbedingung $Q$ erfüllt wird.
 
-\begin{liAntwort}
+\begin{bAntwort}
 z.z. $I \land \neg \text{Schleifenbedingung} \Rightarrow \wp{Code nach der Schleife}{Q}$
 
 Wir vereinfachen den Ausdruck $I \land \neg \text{Schleifenbedingung}$:
@@ -255,7 +255,7 @@ $\wp{Code nach der Schleife}{Q}
 \equiv \wp{}{df = n!!}
 \equiv df = n!!
 \equiv I \land \neg \text{Schleifenbedingung}$
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (e)
@@ -265,13 +265,13 @@ $\wp{Code nach der Schleife}{Q}
 eine Terminierungsfunktion\index{Terminierungsfunktion} an und begründen
 Sie kurz ihre Wahl.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Sei $T (x) := x$. $T$ ist offenbar ganzzahlig. Da $x$ in jedem
 Schleifendurchlauf um $2$ verringert wird, ist $T$ streng monoton
 fallend. Aus der Schleifeninvariante folgt $x \geq 0$ und daher ist $x$
 auch nach unten beschränkt. Damit folgt $I \Rightarrow T \geq 0$ und $T$
 ist eine gültige Terminierungsfunktion.
-\end{liAntwort}
+\end{bAntwort}
 
 \end{enumerate}
 \end{document}

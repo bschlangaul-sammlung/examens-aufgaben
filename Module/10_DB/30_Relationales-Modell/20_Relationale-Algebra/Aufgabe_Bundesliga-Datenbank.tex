@@ -32,7 +32,7 @@ SQL:
 \item Welche Spieler haben beim Spiel TSV 1860 München – FC Bayern
 München mitgewirkt?
 
-\begin{liAntwort}
+\begin{bAntwort}
 $\pi_{\text{NAME,VORNAME}}(
   \text{Spieler}
   \bowtie
@@ -48,7 +48,7 @@ WHERE
   HEIM = 'TSV 1860 München' AND GAST = 'FC Bayern München' AND
   Einsatz.SPNR = Spieler.SPNR;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -56,14 +56,14 @@ WHERE
 
 \item Welche Spiele sind 2 : 0 ausgegangen?
 
-\begin{liAntwort}
+\begin{bAntwort}
 $\pi_{\text{HEIM},\text{GAST},\text{SPIELTAG}}(\sigma_{\text{RESULTAT} = \mlq 2 : 0 \mrq}(\text{SPIELE}))$
 
 \begin{minted}{sql}
 SELECT HEIM, GAST, SPIELTAG FROM SPIELE
 WHERE RESULTAT = '2 : 0';
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -71,7 +71,7 @@ WHERE RESULTAT = '2 : 0';
 
 \item Welche Spieler spielen in einem Verein ihres Geburtsortes?
 
-\begin{liAntwort}
+\begin{bAntwort}
 $\pi_{\text{NAME},\text{VORNAME}}(
   \text{VEREIN}
   \bowtie_{\text{VEREIN.ORT} = \text{SPIELER.GEB-ORT} \land \text{SPIELER.VEREIN} = \text{VEREIN.VNAME}}
@@ -83,7 +83,7 @@ SELECT NAME, VORNAME
 FROM SPIELER, VEREIN
 WHERE VEREIN.ORT = SPIELER.GEB-ORT AND SPIELER.VEREIN = VEREIN.VNAME;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -91,7 +91,7 @@ WHERE VEREIN.ORT = SPIELER.GEB-ORT AND SPIELER.VEREIN = VEREIN.VNAME;
 
 \item Welche Spieler vom 1. FC Köln haben alle Spiele mitgemacht?
 
-\begin{liAntwort}
+\begin{bAntwort}
 \def\tmpkoeln{\mlq \text{1. FC Köln} \mrq}
 
 \begin{multline*}
@@ -121,7 +121,7 @@ WHERE VEREIN = '1. FC Koeln' AND SPNR IN (
   )
 );
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -131,7 +131,7 @@ WHERE VEREIN = '1. FC Koeln' AND SPNR IN (
 beschäftigen, der jünger ist als der älteste Spieler, der beim Verein
 beschäftigt ist?
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{multline*}
 \pi_{\text{PRÄSIDENT}}(\\
   \text{VEREIN}\\
@@ -155,7 +155,7 @@ WHERE
   VEREIN.VNAME = VEREIN.TRAINER AND
   TRAINER.ALTER < SPIELER.ALTER;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -163,7 +163,7 @@ WHERE
 
 \item Welche Spieler haben bisher noch nie gespielt?
 
-\begin{liAntwort}
+\begin{bAntwort}
 $\pi_{\text{SPNR}}(\text{SPIELER}) - \pi_{\text{SPNR}}(\text{EINSATZ})$
 
 \begin{minted}{sql}
@@ -171,7 +171,7 @@ SELECT SPNR FROM SPIELER
 EXCEPT
 SELECT SPNR FROM EINSATZ;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -179,7 +179,7 @@ SELECT SPNR FROM EINSATZ;
 
 \item Welche Spieler haben bisher noch kein Tor geschossen?
 
-\begin{liAntwort}
+\begin{bAntwort}
 $\pi_{\text{SPNR}}(\text{SPIELER}) -
 \pi_{\text{SPNR}}(\sigma_{\text{TORE} > 0}(\text{EINSATZ}))$
 
@@ -188,7 +188,7 @@ SELECT SPNR FROM SPIELER
 EXCEPT
 SELECT SPNR FROM EINSATZ WHERE TORE > 0;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -201,7 +201,7 @@ Vereine haben schon mehrere Trainer gehabt?
 %
 %%
 
-\begin{liAntwort}
+\begin{bAntwort}
 Vereine:
 
 \begin{minted}{sql}
@@ -227,7 +227,7 @@ UNION
 SELECT H-TRAINER FROM SPIELE l, SPIELE r
 WHERE l.H-TRAINER = r.G-TRAINER AND NOT (l.H-TRAINER = r.G-TRAINER)
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %-----------------------------------------------------------------------
 %
@@ -235,7 +235,7 @@ WHERE l.H-TRAINER = r.G-TRAINER AND NOT (l.H-TRAINER = r.G-TRAINER)
 
 \item Welche Spiele am 10. Spieltag hatten mehr als 30.000 Zuschauer?
 
-\begin{liAntwort}
+\begin{bAntwort}
 $\pi_{\text{HEIM,GAST}}(
   \sigma_{\text{ZUSCHAUER} > 30000 \land \text{SPIELTAG} = 10}(\text{SPIELE})
 )$
@@ -245,7 +245,7 @@ SELECT HEIM, GAST
   FROM SPIELE
   WHERE ZUSCHAUER > 30000 AND SPIELTAG = 10;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 \end{itemize}
 \end{enumerate}
 \end{document}

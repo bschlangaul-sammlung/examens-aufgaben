@@ -68,12 +68,12 @@ Die quasiparallele Abarbeitung erfolgt in folgenden Schritten:
 \item Ist die (quasiparallele) Bearbeitung der Transaktionen korrekt?
 Begründung!\index{Lost-Update}
 
-\begin{liAntwort}
+\begin{bAntwort}
 Nein, es liegt ein Lost-Update-Fehlerfall vor. In Schritt 3 bzw. 4 lesen
 $T_1$ bzw. $T_2$ denselben Wert aus der Tabelle TAB. Der von $T_1$ in
 Schritt 7 in die Tabelle zurückgeschriebene Wert wird in Schritt 9 von
 $T_2$ überschrieben.
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -83,7 +83,7 @@ $T_2$ überschrieben.
 Dirty-Read-Fehlerfall.
 \index{Dirty-Read}
 
-\begin{liAntwort}
+\begin{bAntwort}
 
 \begin{center}
 \begin{tabular}{|r|l|l|}
@@ -113,6 +113,6 @@ nicht in der Datenbank ankommen.
 Sobald $T_1$ committed hat, kann es dazu nicht mehr kommen, da dann die
 Änderungen von $T_1$ permanent in der Datenbank festgeschrieben sind und
 $T_2$ auf sichere, garantierte Werte zugreift.
-\end{liAntwort}
+\end{bAntwort}
 \end{enumerate}
 \end{document}

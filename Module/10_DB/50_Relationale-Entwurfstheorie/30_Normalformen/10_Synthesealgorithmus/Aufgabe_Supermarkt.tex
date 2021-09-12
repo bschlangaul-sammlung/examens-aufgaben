@@ -64,7 +64,7 @@ Es existieren folgende funktionale Abhängigkeiten:
 Schlüsselkandidaten die 2. Normalform\index{Zweite Normalform} verletzen
 können!
 
-\begin{liAntwort}
+\begin{bAntwort}
 Eine Relation ist genau dann in der zweiten Normalform, wenn kein
 Nichtprimärattribut funktional von einer echten Teilmenge eines
 Schlüsselkandidaten abhängt.
@@ -77,7 +77,7 @@ Bei nicht zusammengesetzten Schlüsselkandidaten, d. h.
 Schlüsselkandidaten mit nur einem Attribut, können Nichtprimärattribute
 nur von diesem einen Schlüsselkandidaten abhängen,
 sonst wäre es ja kein Schlüsselkandidat / Primär\-schlüssel.
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (b)
@@ -86,7 +86,7 @@ sonst wäre es ja kein Schlüsselkandidat / Primär\-schlüssel.
 \item Finden Sie den einzigen
 Schlüsselkandidaten\index{Schlüsselkandidat} von ARTBEST.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Ich wähle \m{ArtNr, Lieferant, BestDat} aus, da diese Attribute auf
 keiner rechten Seite einer FD vorkommen. Außerdem wähle ich \m{EP}
 aus, da \m{EP} in keiner FD vorkommt.
@@ -177,7 +177,7 @@ mehr weiter verkleinert werden. Er ist bereits minimal. \m{ArtNr,
 Lieferant, BestDat, EP} ist der einzige Schlüsselkandidat und damit
 der Primärschlüssel.
 
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (c)
@@ -187,7 +187,7 @@ der Primärschlüssel.
 Zeigen Sie anhand obiger Relation \texttt{ARTBEST} zwei mögliche
 Anomalien auf, die bei fehlender Normalisierung auftreten können.
 
-\begin{liAntwort}
+\begin{bAntwort}
 In der dritten Normalform darf kein Nichtschlüsselattribut von einem
 Schlüsselkandidaten transitiv abhängen. In der Relation \texttt{ARTBEST}
 hängt \m{HerstTel} funkional von \m{Hersteller} und
@@ -211,7 +211,7 @@ Datensätzen die Telefonnummer geändert werden.
 Wird die Datenbank aufgeräumt, d. h. alte Bestellungen gelöscht,
 so verschwindet auch die Hersteller-Telefonnumer von manchen
 Herstelllern.
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (d)
@@ -221,7 +221,7 @@ Herstelllern.
 Normalform! Erläutern Sie die dazu durchzuführenden Schritte jeweils
 kurz!\index{Synthese-Algorithmus}
 
-\begin{liAntwort}
+\begin{bAntwort}
 
 \begin{enumerate}
 \item \schrittE{1}
@@ -343,7 +343,7 @@ Ergebnis:
 \bRelation[R4]{ArtNr, Lieferant, BestDat, Anzahl}\\
 \bRelation[R5]{ArtNr, Lieferant, BestDat, EP}
 
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (e)
@@ -353,7 +353,7 @@ Ergebnis:
 nachteilig auf die Geschwindigkeit der Anfragebearbeitung auswirken kann
 und wie darauf reagiert werden kann!
 
-\begin{liAntwort}
+\begin{bAntwort}
 Eine vollständige Normalisierung hat den Effekt, dass die Daten auf mehr
 Relation bzw. Tabellen aufgeteilt werden. In der Regel geht damit
 einher, dass bei Abfragen mehr Joins durchgeführt werden müssen, was
@@ -362,6 +362,6 @@ einhergeht.
 
 Man könnte auf eine Normalisierung verzichten, oder nur teilweise
 normalisieren und somit zwischen Performance und Redundanz abwägen.
-\end{liAntwort}
+\end{bAntwort}
 \end{enumerate}
 \end{document}

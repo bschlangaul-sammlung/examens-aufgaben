@@ -52,14 +52,14 @@ Installiert (ID [Smartphone], Name [App])
 \item Geben Sie die Anweisung in SOL-DDL an, die notwendig ist, um die
 Relation ’App’ zu erzeugen.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 CREATE TABLE App(
 Name VARCHAR(50) PRIMARY KEY,
 Bewertung VARCHAR(255),
 Preis INTEGER);
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % b)
@@ -68,14 +68,14 @@ Preis INTEGER);
 \item Geben Sie die Anweisung in SOL-DDL an, die notwendig ist, um die
 Relation ’Installiert’ zu erzeugen.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 CREATE TABLE Installiert(
 ID INTEGER REFERENCES Smartphone(ID),
 Name VARCHAR(50) App(Name),
 PRIMARY KEY(ID,Name));
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % c)
@@ -87,14 +87,14 @@ installiert sind, die Lehrer Keating eingesammelt hat. Sortieren Sie das
 Ergebnis nach Bewertung absteigend. Hinweis: Achten Sie auf gleichnamige
 Attribute.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT DISTINCT a.Name, a.Bewertung
 FROM Eingesammelt e, Installiert i, App a
 WHERE e.ID =i.ID AND i.Name = a.Name AND e.Name = "Keating"
 ORDER BY a.Bewertung DESC;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % d)
@@ -106,14 +106,14 @@ Gesucht ist der durchschnittliche Notenschnitt der Schüler, denen ein
 iPhone 65 abgenommen wurde. Ein iPhone 6s kann A1633 als Modellnummer
 haben oder A1688.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT DISTINCT AVG(s.Notenschnitt)
 FROM Schüler s, Eingesammelt e, Smartphone sm
 WHERE s.Vorname = e.Vorname AND s.Nachname = e.Nachname
 AND e.ID=sm.ID AND(sm.Modellnr = 'A1633' OR sm.Modellnr = 'A1688');
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % e)
@@ -126,7 +126,7 @@ meisten Apps installiert haben.
 
 Tipp: Die Verwendung von Views kann die Aufgabe vereinfachen.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 CREATE VIEW NumberApps AS
 SELECT s.ID, s.Modellnr, COUNT(i.Name) AS number
@@ -137,6 +137,6 @@ SELECT ModellNr, AVG(number)
 FROM NumberApps
 GROUP BY ModellNr
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 \end{enumerate}
 \end{document}

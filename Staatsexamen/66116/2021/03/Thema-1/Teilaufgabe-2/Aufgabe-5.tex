@@ -71,14 +71,14 @@ W(B)      & \\\hline
 Schedules an, wenn mit $A = 100$, $B = 200$, $C = \text{true}$ und $D =
 150$ begonnen wird.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{description}
 \item[A] 90 (A := A - 10 := 100 - 10) T2 schreibt 120 in A, was aber von T1 wiederüberschrieben wird.
 \item[B] 210 (B wird nur in T1 gelesen, verändert und geschrieben)
 \item[C] true (C wird nur in T1 gelesen)
 \item[D] 130 (D wird nur in T2 gelesen, verändert und geschrieben)
 \end{description}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % b)
@@ -86,7 +86,7 @@ Schedules an, wenn mit $A = 100$, $B = 200$, $C = \text{true}$ und $D =
 
 \item Geben Sie den Dependency-Graphen des Schedules an.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{tikzpicture}
 \node (T1) {$T_1$};
 
@@ -95,7 +95,7 @@ Schedules an, wenn mit $A = 100$, $B = 200$, $C = \text{true}$ und $D =
 \draw[->] (T1.north) -- (T2.west);
 \draw[->] (T2.south) -- (T1.east);
 \end{tikzpicture}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % c)
@@ -103,13 +103,13 @@ Schedules an, wenn mit $A = 100$, $B = 200$, $C = \text{true}$ und $D =
 
 \item Geben Sie alle auftretenden Konflikte an.
 
-\begin{liAntwort}
+\begin{bAntwort}
 $R_1(A) < W_2(A)$ resultierende Kante $T_1 \rightarrow T_2$,
 
 $R_2(A) < W_1(A)$ resultierende Kante $T_2 \rightarrow T_1$,
 
 $W_2(A) < W_1(A)$ resultierende Kante $T_2 \rightarrow T_1$ (bereits vorhanden)
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % d)
@@ -117,10 +117,10 @@ $W_2(A) < W_1(A)$ resultierende Kante $T_2 \rightarrow T_1$ (bereits vorhanden)
 
 \item Begründen Sie, ob der Schedule serialisierbar ist.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Nicht ohne den Einsatz der Lese- und Schreibsperren, denn der Dependency
 Graph enthält einen Zyklus, womit er nicht konfliktserialisierbar ist.
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % e)
@@ -131,7 +131,7 @@ erweitert werden können, so dass nur noch serialisierbare Schedules
 ausgeführt werden können. Die Angabe eines konkreten Schedules ist nicht
 zwingend notwendig.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Hier führt die Verwendung des Zwei-Phasen-Sperrpotokolls zur gewünschten
 Serialisierbarkeit. (Es muss dabei weder die konservative, noch die
 strenge Variante verwendet werden, damit es funktioniert). T1 würde zu
@@ -181,7 +181,7 @@ commit         &                    \\
 \hline
 \end{tabular}
 
-\end{liAntwort}
+\end{bAntwort}
 
 \end{enumerate}
 \end{document}

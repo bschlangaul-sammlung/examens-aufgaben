@@ -39,7 +39,7 @@ Sie alle Werte, die die Variable \emph{smallest} jeweils beim Durchlauf
 der inneren Schleife annimmt. Geben Sie die Belegung des Feldes nach
 jedem Durchlauf der äußeren Schleife in einer neuen Zeile an.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \def\u#1{\bPseudoUeberschrift{nach #1. Durchlauf ( $j = #1$ )}}
 \let\v=\bVertauschen
 
@@ -149,7 +149,7 @@ smallest: (9) 10
 
 \v{3 6 8 14 17 27 29 32 42 44}
 
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -160,10 +160,10 @@ der äußeren Schleife mindestens ein Mal neu gesetzt. Wie muss das Feld
 $A$ beschaffen sein, damit der Variablen \emph{smallest} ansonsten
 niemals ein Wert zugewiesen wird? Begründen Sie Ihre Antwort.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Wenn das Feld bereits aufsteigend sortiert ist, dann nimmt die Variable
 \emph{smallest} in der innneren Schleife niemals einen neuen Wert an.
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -174,11 +174,11 @@ die Variable \emph{smallest} hat es, wenn der Vergleich in Zeile 9 des
 Algorithmus statt $A[i] < A[\text{smallest}]$ lautet $A[i] \leq
 A[\text{smallest}]$? Begründen Sie Ihre Antwort.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Der Algorithmus sortiert dann nicht mehr \emph{stabil}, \dh die
 Eingabereihenfolge von Elementen mit \emph{gleichem Wert} wird beim
 Sortieren nicht mehr \emph{bewahrt}.
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -193,9 +193,9 @@ if A[i] > A[smallest] then
 
 Welches Ergebnis berechnet der Algorithmus nun?
 
-\begin{liAntwort}
+\begin{bAntwort}
 Der Algorithmus sortiert jetzt absteigend.
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -232,24 +232,24 @@ Algorithmus für
 \begin{itemize}
 \item die Abbruchbedingung in Zeile 4 und
 
-\begin{liAntwort}
+\begin{bAntwort}
 \texttt{n = index} bzw \texttt{n == index}
 
 Begründung: Wenn der aktuelle Index so groß ist wie die Anzahl der
 Elemente im Feld, dann muss / darf abgebrochen werden, denn dann ist das
 Feld soriert.
-\end{liAntwort}
+\end{bAntwort}
 
 \item den rekursiven Aufruf in Zeile 11.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \mintinline{componentpascal}{rek_selection_sort(A, n, index + 1)}
 
 Am Ende der Methode wurde an die Index-Position \emph{index} das
 kleinste Element gesetzt, jetzt muss an die nächste Index-Position
 (\emph{index + 1}) der kleinste Wert, der noch nicht sortieren Zahlen,
 gesetzt werden.
-\end{liAntwort}
+\end{bAntwort}
 \end{itemize}
 
 Begründen Sie Ihre Antworten.

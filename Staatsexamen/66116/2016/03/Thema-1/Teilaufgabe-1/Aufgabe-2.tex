@@ -121,7 +121,7 @@ Algebra\index{Relationale Algebra}, welche den \emph{Vornamen} und
 \emph{Nachnamen} von Polizisten zurückgibt, deren Dienstgrad
 \emph{„Polizeikommissar“} ist und die mehr als 1500 Euro verdienen.
 
-\begin{liAntwort}
+\begin{bAntwort}
 $\pi_{\text{Vorname,Nachname}}(
   \sigma_{
     \text{Dienstgrad} = \mlq \text{Polizeikommissar} \mrq
@@ -129,7 +129,7 @@ $\pi_{\text{Vorname,Nachname}}(
     \text{Gehalt} > 1500
   }(\text{Polizist})
 )$
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (b)
@@ -139,7 +139,7 @@ $\pi_{\text{Vorname,Nachname}}(
 \emph{Titel} der \emph{Fälle} ausgibt, die von \emph{Polizisten} mit dem
 \emph{Nachnamen} \emph{„Mayer“} bearbeitet wurden.
 
-\begin{liAntwort}
+\begin{bAntwort}
 $
 \pi_{\text{Titel}}(
   \sigma_{\text{Nachname} = \mlq \text{Mayer} \mrq}(\text{Polizist})
@@ -149,7 +149,7 @@ $
   \text{Fall}
 )
 $
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (c)
@@ -159,7 +159,7 @@ $
 Polizisten ausgibt, die in der Stadt \emph{„München“} arbeiten und mit
 Nachnamen \emph{„Schmidt“} heißen.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT COUNT(*) AS Anzahl_Polizisten
 FROM Polizist p, Dienststelle d
@@ -175,7 +175,7 @@ WHERE
                  1
 (1 row)
 \end{verbatim}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (d)
@@ -187,7 +187,7 @@ dem \emph{XZ1508} beteiligt waren. Ordnen Sie die Ergebnismenge
 alphabetisch (aufsteigend) und achten Sie darauf, dass keine Duplikate
 enthalten sind.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT DISTINCT d.Name
 FROM Dienststelle d, Polizist p, Arbeitet_An a
@@ -206,7 +206,7 @@ ORDER BY d.Name ASC;
  Dienststelle Nürnberg (Mitte)
 (1 row)
 \end{verbatim}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (e)
@@ -217,7 +217,7 @@ welche Dienstgrade enthalten soll, die in \emph{München} mit
 durchschnittlich mehr als \emph{2500} Euro besoldet werden.
 \index{VIEW}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 CREATE VIEW ErstrebenswerteDienstgrade AS (
   SELECT DISTINCT p.Dienstgrad
@@ -239,7 +239,7 @@ SELECT * FROM ErstrebenswerteDienstgrade;
  Polizeimeister
 (2 rows)
 \end{verbatim}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (f)
@@ -259,7 +259,7 @@ Polizisten.\index{WITH}\index{UNION}
 
 Hinweis: Sie dürfen Views verwenden, um Teilergebnisse auszudrücken.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Vorarbeiten:
 \begin{minted}{sql}
   SELECT p.Vorname, p.Nachname
@@ -385,7 +385,7 @@ FROM Fussball_Vorgesetzte;
 (4 rows)
 \end{verbatim}
 
-\end{liAntwort}
+\end{bAntwort}
 \end{enumerate}
 
 \end{document}

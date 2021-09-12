@@ -46,7 +46,7 @@ die Schlüsselattribute aus!
 Relationenmodell}
 \footcite[Uni-ER-Modell, Aufgabe 2]{db:ab:4}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \ttfamily
 \footnotesize
 Dozent(\bPrimaer{PersNr:INT}, Name:VARCHAR(20),
@@ -68,7 +68,7 @@ belegt(\bFremd{Nr:INT[Lehrveranstaltung], MatrNr:INT[Adresse]})\\
 besitzt(\bFremd{Adresse:VARCHAR(100)[Adresse], MatrNr:INT[Student]})\\
 
 Durchführung(\bPrimaer{Zeit:DATE, RaumNr:INT}, \bFremd{Nr:INT[Student]})\\
-\end{liAntwort}
+\end{bAntwort}
 
 \item Welche Fremdschlüssel gibt es in diesem Schema?
 \end{enumerate}
@@ -84,7 +84,7 @@ SQL-Befehle an.
 \item Die Tabellenschemata von \texttt{Student} und \texttt{besitzt}
 sollen erzeugt werden.
 
-\begin{liAntwort}
+\begin{bAntwort}
 % Datenbankname: universitaetsdatenbank
 \begin{minted}{sql}
 CREATE TABLE Fakultaet (
@@ -116,7 +116,7 @@ CREATE TABLE besitzt (
 INSERT INTO Adresse VALUES ('Kaulbacherstraße 3');
 
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 \item Am Tabellenschema von \texttt{Student} werden zwei Änderungen
 vorgenommen:
@@ -124,17 +124,17 @@ vorgenommen:
 \begin{itemize}
 \item Es soll ein weiteres Attribut Vorname hinzugefügt werden.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 ALTER TABLE Student ADD COLUMN Vorname VARCHAR(20);
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 \item Als Integritätsbedingung wird festgelegt, dass die Semesterzahl
 kleiner als 15 sein muss.
 \end{itemize}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 ALTER TABLE Student ADD CHECK (Semesteranzahl < 15);
 \end{minted}
@@ -146,7 +146,7 @@ ALTER TABLE Student
 ADD CONSTRAINT begrenzung_Semester
 CHECK (Semesteranzahl < 15);
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 \end{enumerate}
 \end{document}

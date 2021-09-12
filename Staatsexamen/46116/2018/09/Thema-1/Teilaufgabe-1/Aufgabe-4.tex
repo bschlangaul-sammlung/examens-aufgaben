@@ -104,7 +104,7 @@ Geben Sie einen Datensatz, also eine Entity, nicht mehrfach aus.
 anlegt. Gehen Sie davon aus, dass die Tabellen \emph{„Kunde“} und
 \emph{„Produkt“} bereits existieren.\index{CREATE TABLE}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 CREATE TABLE IF NOT EXISTS Kauf (
   ID INTEGER REFERENCES Kunde(ID),
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS Kauf (
   PRIMARY KEY (ID, GTIN, Datum)
 );
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (b)
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS Kauf (
 \emph{20251} ausgibt, absteigend sortiert nach \emph{Nachname} und bei
 gleichen \emph{Nachnamen}, absteigend nach \emph{Vorname}.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT Vorname, Nachname
 FROM Kunde
@@ -141,7 +141,7 @@ ORDER BY Nachname DESC, Vorname DESC;
  Bert    | Sommer
 (3 rows)
 \end{verbatim}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (c)
@@ -153,7 +153,7 @@ als 10 unterschiedlichen Produkten den \emph{Nachnamen} des
 Einkauf ist definiert als Menge aller Produkte, die ein bestimmter Kunde
 an einem bestimmten Datum kauft.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT Nachname, SUM(Bruttopreis * Menge)
 FROM Kunde k, Produkt p, Kauf x
@@ -168,7 +168,7 @@ HAVING COUNT (*) > 10;
  Mustermann | 713.86
 (1 row)
 \end{verbatim}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (d)
@@ -183,7 +183,7 @@ sobald es von mindestens einem Kunden aus diesem PLZ-Bereich gekauft
 wurde. Produkte, die bisher noch gar nicht verkauft worden sind, müssen
 nicht berücksichtigt werden.\index{HAVING}\index{EXCEPT}
 
-\begin{liAntwort}
+\begin{bAntwort}
 Die beiden Lösungswege liefern leider unterschiedliche Ergebnisse.
 \begin{minted}{sql}
 WITH tmp AS (
@@ -259,7 +259,7 @@ ORDER BY GTIN;
   889
 (13 rows)
 \end{verbatim}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (e)
@@ -272,7 +272,7 @@ zwei Produkte mit gleicher Verkaufszahl gibt und verwenden Sie keine
 produktspezifischen Anweisungen wie beispielsweise \verb|ROWNUM|,
 \verb|TOP| oder \verb|LIMIT|.\index{Top-N-Query}\index{WITH}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 WITH Gesamtverkauf AS (
   SELECT k.GTIN, Bezeichnung, SUM(Menge) AS Gesamtmenge
@@ -302,7 +302,7 @@ ORDER BY Rang;
  Heft         |    8
 (8 rows)
 \end{verbatim}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (f)
@@ -311,7 +311,7 @@ ORDER BY Rang;
 \item Schreiben Sie eine SQL-Anweisung, die alle Produkte löscht, die
 noch nie gekauft wurden.\index{DELETE}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{verbatim}
  count
 -------
@@ -338,7 +338,7 @@ SELECT COUNT(*) FROM Produkt;
     12
 (1 row)
 \end{verbatim}
-\end{liAntwort}
+\end{bAntwort}
 \end{enumerate}
 
 \end{document}

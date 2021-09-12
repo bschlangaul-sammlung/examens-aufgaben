@@ -150,7 +150,7 @@ Tabelle \a{nimmt} alle benötigten Fremdschlüsselconstraints anlegt.
 Erläutern Sie kurz, warum die Spalten \a{von} und \a{bis} Teil des
 Primärschlüssels sind.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 ALTER TABLE nimmt
 ADD CONSTRAINT FK_Person
@@ -158,7 +158,7 @@ ADD CONSTRAINT FK_Person
 ADD CONSTRAINT FK_Medikament
   FOREIGN KEY (Medikament) REFERENCES Medikament(ID);
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % b)
@@ -168,7 +168,7 @@ ADD CONSTRAINT FK_Medikament
 auch die \a{ID} von \a{Personen} und \a{Medikamenten} ausgibt, bei denen
 die Person das jeweilige Medikament nimmt.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT DISTINCT
   p.ID as Personen_ID,
@@ -180,7 +180,7 @@ WHERE
   n.Person = p.ID AND
   n.Medikament = m.ID;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % c)
@@ -189,7 +189,7 @@ WHERE
 \item Schreiben Sie eine SQL-Anweisung, welche die ID und den Namen der
 Medikamente mit den niedrigsten Kosten je Hersteller bestimmt.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT m.ID, m.Name
 FROM Medikament m, Medikament n
@@ -199,7 +199,7 @@ WHERE
 GROUP BY m.ID, m.Name
 HAVING COUNT(*) <= 1;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % d)
@@ -209,7 +209,7 @@ HAVING COUNT(*) <= 1;
 ermittelt, die ein Medikament genommen haben, gegen welches sie eine
 Unverträglichkeit entwickelt haben.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT COUNT(DISTINCT p.ID)
 FROM
@@ -220,7 +220,7 @@ WHERE
   p.ID = n.Person AND
   u.Medikament = n.Medikament;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -231,7 +231,7 @@ derjenigen Personen ermittelt, die weder ein Medikament mit dem
 Wirkstoff Paracetamol noch ein Medikament mit dem Wirkstoff Ibuprofen
 genommen haben.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT ID, Name FROM Person
 EXCEPT
@@ -242,7 +242,7 @@ WHERE
   n.Medikament = m.ID AND
   m.Wirkstoff IN ('Ibuprofen', 'Paracetamol');
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -253,7 +253,7 @@ die Anzahl der bekannten Unverträglichkeiten gegen Medikamente dieses
 Herstellers ermittelt. Das Ergebnis soll aufsteigend nach der Anzahl der
 bekannten Unverträglichkeiten sortiert werden.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT p.Name, (
 SELECT COUNT(h.ID)
@@ -266,7 +266,7 @@ SELECT COUNT(h.ID)
 FROM Hersteller p
 ORDER BY Unverträglichkeiten ASC;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -278,7 +278,7 @@ Wirkstoff Paracetamol nehmen oder genommen haben. Die Lösung kann als
 Baum- oder als Term-Schreibweise angegeben werden.
 \index{Relationale Algebra}
 
-\begin{liAntwort}
+\begin{bAntwort}
 $\pi_{\text{Person.Wohnort}} \left(
   \sigma_{\text{Medikament.Wirkstoff }= '\text{Paracetamol}'}
   (
@@ -289,7 +289,7 @@ $\pi_{\text{Person.Wohnort}} \left(
     \text{Medikament}
   )
 \right)$
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -300,8 +300,8 @@ Namen aller Personen bestimmt, die von allen bekannten Herstellern,
 deren Standort München ist, Medikamente nehmen oder genommen haben. Die
 Lösung kann als Baum- oder als Term-Schreibweise angegeben werden.
 
-\begin{liAntwort}
-\begin{liAntwort}
+\begin{bAntwort}
+\begin{bAntwort}
 $\pi_{\text{Person.Name}} \left(
   \sigma_{\text{Hersteller.Standort }= '\text{München}'}
   (
@@ -318,8 +318,8 @@ $\pi_{\text{Person.Name}} \left(
     )
   )
 \right)$
-\end{liAntwort}
-\end{liAntwort}
+\end{bAntwort}
+\end{bAntwort}
 
 \end{enumerate}
 \end{document}

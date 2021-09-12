@@ -70,13 +70,13 @@ INSERT INTO Zehnkampf VALUES
 \item Bestimmen Sie alle funktionale Abhängigkeiten, die
 \textbf{sinnvollerweise} in der Relation Zehnkampf gelten.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \FA{
   Disziplin -> Einheit;
   Disziplin, Leistung -> Punkte;
   Name, Disziplin -> Leistung;
 }
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % b)
@@ -86,13 +86,13 @@ INSERT INTO Zehnkampf VALUES
 Ihnen identifzierten funktionalen Abhängigkeiten. Unterstreichen Sie
 alle Schlüssel des resultierenden Schemas.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \bRelationMenge{$R_1$}{\bPrimaer{Disziplin}, Einheit}
 
 \bRelationMenge{$R_2$}{\bPrimaer{Disziplin}, \bPrimaer{Leistung}, Punkte}
 
 \bRelationMenge{$R_3$}{\bPrimaer{Name}, \bPrimaer{Disziplin}, Leistung}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % c)
@@ -104,7 +104,7 @@ erzielt hat. Benutzen Sie dazu die noch nicht normalisierte
 Ausgangsrelation \emph{Zehnkampf}.
 \index{Top-N-Query}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 CREATE VIEW GesamtPunkte AS
   SELECT Name, SUM(Punkte) As Punkte
@@ -124,6 +124,6 @@ HAVING COUNT(*) = 1;
  Hans |   1755 |    1
 (1 row)
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 \end{enumerate}
 \end{document}

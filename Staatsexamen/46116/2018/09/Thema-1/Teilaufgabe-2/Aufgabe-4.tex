@@ -31,14 +31,14 @@ gleichen Nachnamen absteigend nach \emph{Vorname}.
 ASC (ascending) = aufsteigend
 DESC (descending) = absteigend
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT Vorname, Nachname
 FROM Kunde
 WHERE PLZ = 20251
 ORDER BY Nachname, Vorname DESC;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (b)
@@ -47,13 +47,13 @@ ORDER BY Nachname, Vorname DESC;
 \item Schreiben Sie eine SQL-Anweisung, die die Bezeichnung aller
 Produkte ausgibt, deren Bruttopreis größer ist als 10 €.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT Bezeichnung
 FROM Produkt
 WHERE Bruttopreis > 10;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (c)
@@ -63,7 +63,7 @@ WHERE Bruttopreis > 10;
 Gehen Sie davon aus, dass die Tabellen „Kunde“ und „Produkt“ bereits
 existieren.\index{CREATE TABLE}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 CREATE TABLE Kauf (
   ID INTEGER REFERENCES Kunde(ID),
@@ -73,6 +73,6 @@ CREATE TABLE Kauf (
   PRIMARY KEY (ID, GTIN, Datum)
 );
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 \end{enumerate}
 \end{document}

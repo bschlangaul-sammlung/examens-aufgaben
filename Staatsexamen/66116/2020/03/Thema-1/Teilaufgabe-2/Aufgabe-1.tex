@@ -61,7 +61,7 @@ Sie die Funktionalitätsangaben im Diagramm.
 \end{tikzpicture}
 \end{center}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{center}
 \begin{tikzpicture}[er2,scale=0.7,transform shape]
 % Menschen
@@ -92,7 +92,7 @@ Sie die Funktionalitätsangaben im Diagramm.
 \node[attribute,above left=1cm of Orte] {\key{Name}} edge (Orte);
 \end{tikzpicture}
 \end{center}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % b)
@@ -101,7 +101,7 @@ Sie die Funktionalitätsangaben im Diagramm.
 \item Übersetzen Sie das ER-Diagramm in ein relationales Schema. -
 Datentypen müssen nicht angegeben werden.
 
-\begin{liAntwort}
+\begin{bAntwort}
 
 \begin{liRmodell}
 Menschen(\bPrimaer{Steuernummer}, Name, Vorname)
@@ -115,7 +115,7 @@ befreundet\_mit(\bFremd{Mensch[Menschen]}, \bFremd{Freund[Menschen]})
 geboren(Datum, \bFremd{Steuernummer}, \bFremd{Geburtsort[Orte]}, \bFremd{Geburtsbundesland[Orte]})
 
 \end{liRmodell}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % c)
@@ -124,7 +124,7 @@ geboren(Datum, \bFremd{Steuernummer}, \bFremd{Geburtsort[Orte]}, \bFremd{Geburts
 \item Verfeinern Sie das Schema aus Teilaufgabe b) indem Sie die
 Relationen zusammenfassen.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{liRmodell}
 Menschen(%
   \bPrimaer{Steuernummer},
@@ -140,7 +140,7 @@ Orte(\bPrimaer{Name}, \bPrimaer{Bundesland}, Einwohneranzahl)
 
 befreundet\_mit(\bFremd{Mensch[Menschen]}, \bFremd{Freund[Menschen]})
 \end{liRmodell}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % d)
@@ -148,7 +148,7 @@ befreundet\_mit(\bFremd{Mensch[Menschen]}, \bFremd{Freund[Menschen]})
 
 \item Geben Sie sinnvolle SQL Datentypen für Ihr verfeinertes Schema an.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 CREATE TABLE Menschen (
   Steuernummer BIGINT PRIMARY KEY,
@@ -173,7 +173,7 @@ CREATE TABLE befreundet_mit (
   PRIMARY KEY (Mensch, Freund)
 );
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 \end{enumerate}
 \end{document}

@@ -135,7 +135,7 @@ VALUES
 Sie jeweils Name und Vorname des Spielers mit aus. Die Ausgabe soll nach
 der Anzahl der Platzverweise absteigend erfolgen.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT COUNT(*) AS Anzahl, s.Name, s.Vorname
 FROM Platzverweise p, Spieler s
@@ -155,7 +155,7 @@ ORDER BY Anzahl DESC;
       1 | Häßler     | Thomas
 (6 rows)
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % b)
@@ -166,7 +166,7 @@ insgesamt im Turnier erzielt hat? (Sie dürfen der Einfachheit halber
 annehmen, dass jede Mannschaft jeweils mindestens einmal als Team1 und
 Team2 angetreten ist.)
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT MAX(tmp2.Summe) FROM (
   SELECT Team, SUM(Summe) as Summe FROM (
@@ -188,7 +188,7 @@ SELECT MAX(tmp2.Summe) FROM (
    9
 (1 row)
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % c)
@@ -196,12 +196,12 @@ SELECT MAX(tmp2.Summe) FROM (
 
 \item Wie viele Tore sind im Turnier insgesamt gefallen?
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT SUM(ToreTeam1 + ToreTeam2) AS GesamtanzahlTore
 FROM Spiel;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % d)
@@ -212,7 +212,7 @@ kürzesten Spielzeit einen Platzverweis erhielten. Die Ausgabe soll
 nummeriert erfolgen (beginnend bei 1 für die kürzeste Spielzeit).
 \index{Top-N-Query}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT s.Name, s.Land, COUNT(*) AS Rang
 FROM Spieler s, Platzverweise p1, Platzverweise p2
@@ -230,7 +230,7 @@ Alle anderen Einträge, bei denen die \texttt{p2.Spieler\_ID}, der
 Spieler mit der „geringsten Minute“ ist, werden ja eliminiert, da ja nur
 die Einträge behalten werden, die der Bedingung \texttt{p1.Spielminute
 <= p2.Spielminute} entsprechen.
-\end{liAntwort}
+\end{bAntwort}
 
 \end{enumerate}
 \end{document}

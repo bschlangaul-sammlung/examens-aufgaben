@@ -1,14 +1,29 @@
 \documentclass{bschlangaul-aufgabe}
 \bLadePakete{baum}
 \begin{document}
-\bAufgabenTitel{Gegener Baum erweitern und Knoten entfernen}
-\section{Aufgabe 7 (AVL-Bäume)
-\index{AVL-Baum}
-\footcite{examen:66115:2019:09}}
+\bAufgabenMetadaten{
+  Titel = {Aufgabe 7},
+  Thematik = {AVL-Baum 10,5,25,14 erweitern und Knoten entfernen},
+  RelativerPfad = Staatsexamen/66115/2019/09/Thema-2/Aufgabe-7.tex,
+  ZitatSchluessel = examen:66115:2019:09,
+  BearbeitungsStand = mit Lösung,
+  Korrektheit = korrekt und überprüft,
+  Ueberprueft = {https://visualgo.net/en/bst},
+  Stichwoerter = {AVL-Baum},
+  ExamenNummer = 66115,
+  ExamenJahr = 2019,
+  ExamenMonat = 09,
+  ExamenThemaNr = 2,
+  ExamenAufgabeNr = 7,
+}
 
-Fügen Sie (manuell) nacheinander die Zahlen 20, 31, 2, 17, 7 in
+%  didaktik.java baum --avl 10 5 25 14 20 31 2 17 7 lösche 14 25
+
+% 10, 5, 25, 14, 20, 31, 2, 17, 7
+Fügen Sie (manuell) nacheinander die Zahlen $20, 31, 2, 17, 7$ in
 folgenden AVL-Baum ein. Löschen Sie anschließend aus dem entstandenen
-Baum nacheinander 14 und 25.
+Baum nacheinander $14$ und $25$.\index{AVL-Baum}
+\footcite{examen:66115:2019:09}
 
 \begin{center}
 \begin{tikzpicture}[li binaer baum]
@@ -30,7 +45,8 @@ entstehenden Baum. Insbesondere sind evtl. anfallende Doppelrotationen
 in zwei Schritten darzustellen. Geben Sie zudem an jedem Knoten die
 Balancewerte an.
 
-\begin{liDiagramm}{Nach Einfügen von „20“}
+\begin{bAntwort}
+\begin{bBaum}{Nach dem Einfügen von „20“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=+2]{10};
@@ -44,9 +60,9 @@ Balancewerte an.
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Nach der Linksrotation}
+\begin{bBaum}{Nach der Linksrotation}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=+2]{10};
@@ -60,9 +76,9 @@ Balancewerte an.
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Nach der Rechtsrotation}
+\begin{bBaum}{Nach der Rechtsrotation}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=+1]{10};
@@ -73,9 +89,9 @@ Balancewerte an.
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Nach Einfügen von „31“}
+\begin{bBaum}{Nach dem Einfügen von „31“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=+2]{10};
@@ -89,9 +105,9 @@ Balancewerte an.
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Nach der Linksrotation}
+\begin{bBaum}{Nach der Linksrotation}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=0]{20};
@@ -105,9 +121,9 @@ Balancewerte an.
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Nach Einfügen von „2“}
+\begin{bBaum}{Nach dem Einfügen von „2“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=-1]{20};
@@ -124,9 +140,9 @@ Balancewerte an.
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Nach Einfügen von „17“}
+\begin{bBaum}{Nach dem Einfügen von „17“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=-1]{20};
@@ -146,9 +162,9 @@ Balancewerte an.
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Nach Einfügen von „7“}
+\begin{bBaum}{Nach dem Einfügen von „7“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=-1]{20};
@@ -168,11 +184,11 @@ Balancewerte an.
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
 \bPseudoUeberschrift{Löschen}
 
-\begin{liDiagramm}{Nach Löschen von „14“}
+\begin{bBaum}{Nach dem Löschen von „14“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=-1]{20};
@@ -189,9 +205,9 @@ Balancewerte an.
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Nach Löschen von „25“}
+\begin{bBaum}{Nach dem Löschen von „25“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=-2]{20};
@@ -205,9 +221,9 @@ Balancewerte an.
   [.\node[label=0]{31}; ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Nach der Rechtsrotation}
+\begin{bBaum}{Nach der Rechtsrotation}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=0]{10};
@@ -221,6 +237,7 @@ Balancewerte an.
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
+\end{bAntwort}
 
 \end{document}

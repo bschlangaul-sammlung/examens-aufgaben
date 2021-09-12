@@ -78,7 +78,7 @@ VALUES
 Bezeichnung \emph{„Buchhaltung“} ausgibt, absteigend sortiert nach
 \emph{Mitarbeiter-ID}.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT Vorname, Nachname
 FROM Mitarbeiter m, Abteilung a
@@ -95,7 +95,7 @@ ORDER BY m.MitarbeiterID DESC;
  Hans    | Meier
 (2 rows)
 \end{verbatim}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (b)
@@ -107,7 +107,7 @@ ausgibt. Mitarbeiter ohne Vorgesetzten sollen in der Ausgabe ebenfalls
 enthalten sein. In diesem Fall soll der Nachname des Vorgesetzten NULL
 sein.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT m.Nachname AS Mitarbeiter, v.Nachname AS Vorgesetzter
 FROM Mitarbeiter m LEFT OUTER JOIN Mitarbeiter v
@@ -126,7 +126,7 @@ ON m.Vorgesetzter = v.MitarbeiterID;
  Schmidt     | Navratil
 (7 rows)
 \end{verbatim}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (c)
@@ -142,7 +142,7 @@ Abteilungen mit gleichem Durchschnittsgehalt gibt. Sie können der
 Verwenden Sie jedoch keine datenbanksystemspezifischen Erweiterungen wie
 \verb|limit| oder \verb|rownum|.\index{VIEW}\index{WITH}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 CREATE VIEW Durchschnittsgehälter AS
 SELECT Abteilung.AbteilungsID, Bezeichnung,
@@ -168,7 +168,7 @@ ORDER BY Rang ASC;
  Produktion  |                 654 |    4
 (4 rows)
 \end{verbatim}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (d)
@@ -177,7 +177,7 @@ ORDER BY Rang ASC;
 \item Schreiben Sie eine SQL-Anfrage, die das Gehalt aller Mitarbeiter
 aus der Abteilung mit der AbteilungsID 42 um 5\% erhöht.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{verbatim}
  vorname | nachname | gehalt
 ---------+----------+--------
@@ -209,7 +209,7 @@ ORDER BY Gehalt;
  Gerd    | Navratil | 7511.700000000001
 (2 rows)
 \end{verbatim}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (e)
@@ -221,7 +221,7 @@ ORDER BY Gehalt;
 werden. \verb|ON DELETE CASCADE| ist für keine der Tabellen gesetzt.
 Schreiben Sie die zum Löschen notwendigen SQL-Anfragen.\index{DELETE}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{verbatim}
  vorname | nachname
 ---------+----------
@@ -280,7 +280,7 @@ SELECT * FROM Abteilung;
             5 | Produktion
 (4 rows)
 \end{verbatim}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (f)
@@ -293,7 +293,7 @@ eine Möglichkeit, wie dies in einem Datenbanksystem realisiert werden
 kann, ohne die gegebenen Relationen, die Tabellen als abgelegt sind, zu
 verändern. Sie brauchen hierzu keinen SQL-Code schreiben.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Wir könnten eine VIEW erstellen, die zwar Namen und ID der anderen
 Mitarbeiter, sowie ihre Telefonnummern enthält (evtl. auch
 Abteilungsbezeichnung und ID), aber eben nicht das Gehalt: Mitarbeiter
@@ -310,7 +310,7 @@ möglich)
 GRANT SELECT (Vorname, Nachname, Telefonnummer)
 ON Mitarbeiter TO postgres;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 \end{enumerate}
 
 \end{document}

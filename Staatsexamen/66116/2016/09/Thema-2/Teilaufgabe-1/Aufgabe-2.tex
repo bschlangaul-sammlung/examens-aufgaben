@@ -127,7 +127,7 @@ zu den Klassen.
 \emph{Unterricht} mit allen ihren Constraints (einschließlich
 Fremdschlüsselconstraints) anlegt\index{CREATE TABLE}.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 CREATE TABLE IF NOT EXISTS Person(
   ID INTEGER PRIMARY KEY,
@@ -152,7 +152,7 @@ CREATE TABLE IF NOT EXISTS Unterricht (
     PRIMARY KEY (Klassenbezeichnung, Schuljahr, Lehrer, Fach)
 );
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % b)
@@ -163,7 +163,7 @@ nur zulässige Werte im Attribut Typ der (bereits angelegten) Tabelle
 \emph{Person} eingefügt werden können.\index{CONSTRAINT}\index{ALTER
 TABLE}
 
-\begin{liAntwort}
+\begin{bAntwort}
 Ich habe \verb|REFERENCES| bei Unterricht Schuljahr vergessen, die
 referenzierten Tabellen \verb|Person| und \verb|Klasse| wurden in der
 Musterlösung auch nicht angelegt.
@@ -173,7 +173,7 @@ ALTER TABLE Person
   ADD CONSTRAINT TypLS
     CHECK(Typ IN ('S', 'L'));
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % c)
@@ -182,7 +182,7 @@ ALTER TABLE Person
 \item Schreiben Sie eine SQL-Anweisung, die die Bezeichnung der Klassen
 bestimmt, die im Schuljahr 2015 die meisten Schüler haben.\index{GROUP BY}
 
-\begin{liAntwort}
+\begin{bAntwort}
 Falsch: \verb|ORDER BY Anzahl;|. \verb|DESC| vergessen.
 
 \begin{minted}{sql}
@@ -194,7 +194,7 @@ WHERE
 GROUP BY k.Klassenbezeichnung
 ORDER BY COUNT(*) DESC;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % d)
@@ -203,7 +203,7 @@ ORDER BY COUNT(*) DESC;
 \item Schreiben Sie eine SQL-Anweisung, die die Namen aller Lehrer
 bestimmt, die nur Schüler aus ihrem Wohnort unterrichtet haben.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT DISTINCT l.Name
 FROM Person l
@@ -217,7 +217,7 @@ WHERE NOT EXISTS(
     l.Wohnort != s.Wohnort
 );
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % e)
@@ -226,7 +226,7 @@ WHERE NOT EXISTS(
 \item Schreiben Sie eine SQL-Anweisung, die die Namen aller Schüler
 bestimmt, die immer den gleichen Klassenlehrer hatten.\index{HAVING}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT s.Name
 FROM Person s, Klasse k, Klassenverband v
@@ -237,7 +237,7 @@ WHERE
 GROUP BY s.ID, s.Name
 HAVING COUNT(*) = 1
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % f)
@@ -247,7 +247,7 @@ HAVING COUNT(*) = 1
 bestimmt, die mindestens einmal in der gleichen Klasse waren. Es genügt
 dabei, wenn Sie die ID der Schüler bestimmen.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT DISTINCT s1.ID, s2.ID
 FROM Klassenverband s1, Klassenverband s2
@@ -256,7 +256,7 @@ WHERE
   s1.Schueler <> s2.Schueler AND
   s1.Klassenbezeichung = s2.Klassenbezeichnung;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % g)
@@ -266,7 +266,7 @@ WHERE
 ID aller Schüler bestimmt, die mindestens einmal von „Ludwig Lehrer“
 unterrichtet wurden.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{multline*}
 \pi_{\text{Schüler}} (\\
   \sigma_{\text{Name} = \mlq \text{Ludwig Lehrer} \mrq} (\text{Person})\\
@@ -276,7 +276,7 @@ unterrichtet wurden.
   \text{Klassenverband}\\
 )
 \end{multline*}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % h)
@@ -286,7 +286,7 @@ unterrichtet wurden.
 Namen und ID der Schüler bestimmt, die von allen Lehrern unterrichtet
 wurden.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{multline*}
 \pi_{\text{Name,ID}}(\\
   (\\
@@ -304,7 +304,7 @@ wurden.
   \text{Person}\\
 )
 \end{multline*}
-\end{liAntwort}
+\end{bAntwort}
 
 \end{enumerate}
 

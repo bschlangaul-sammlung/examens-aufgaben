@@ -137,11 +137,11 @@ anderen Paket passen]
 % }
 % \end{verbatim}
 
-% \begin{environment}{liAntwort}
+% \begin{environment}{bAntwort}
 % Zum Setzen von Antworten. Sie werden mit einem Kasten umgeben. Könnten
 % eventuell ausgeblendet werden, wenn man nur die Lösung sehen will.
 % \begin{macrocode}
-\NewDocumentEnvironment{ liAntwort } { O{standard} }
+\NewDocumentEnvironment{ bAntwort } { O{standard} }
 {
   \ifANTWORT
   \else
@@ -172,10 +172,10 @@ anderen Paket passen]
     \textbf{\beschriftung{}:}
   \fi
   \begin{mdframed}[
-    frametitle={\scriptsize\mdseries Lösungshinweise},
+    frametitle={\scriptsize\mdseries Lösungsvorschlag},
     innertopmargin=6pt,
-    frametitleaboveskip=-12pt,
-    frametitlealignment=\raggedright
+    frametitleaboveskip=-10pt,
+    frametitlealignment=\raggedleft
   ]
 }
 {
@@ -315,25 +315,6 @@ anderen Paket passen]
   \textbf{Lernkarteikarte:~#1}\par%
   \noindent%
   #2
-  \end{mdframed}
-} {}
-%    \end{macrocode}
-% \end{environment}
-
-% \begin{environment}{liDiagramm}
-% |\begin{liDiagramm}{beschriftung}\end{liDiagramm}|: Zu
-% setzen einer Graphik bzw eines Diagramms.
-%    \begin{macrocode}
-\NewDocumentEnvironment { liDiagramm }{ m +b }
-{
-  \begin{mdframed}[backgroundcolor=white!0]
-  \small
-  \noindent%
-  \textit{#1}:
-  \begin{center}
-  #2
-  \medskip
-  \end{center}
   \end{mdframed}
 } {}
 %    \end{macrocode}

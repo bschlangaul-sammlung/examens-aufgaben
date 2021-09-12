@@ -56,7 +56,7 @@ Abteilung (\bPrimaer{AbteilungsID}, Bezeichnung UNIQUE NOT NULL)
 \item Formulieren Sie eine Anfrage, welche die Vornamen und Nachnamen
 der Mitarbeiter ausgibt, die in der Buchhaltung arbeiten.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{multline*}
 \pi_{\text{Vorname, Nachname}}(\\
   \sigma_{\text{Bezeichnung = 'Buchhaltung'}}(\\
@@ -66,7 +66,7 @@ der Mitarbeiter ausgibt, die in der Buchhaltung arbeiten.
   )\\
 )
 \end{multline*}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % b)
@@ -77,12 +77,12 @@ der Mitarbeiter ausgibt, die in keiner Abteilung arbeiten.
 
 % σ AbteilungsID = NULL (Mitarbeiter)
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{multline*}
 \pi_{\text{Vorname, Nachname}}(\text{Mitarbeiter})
 -\\
 \pi_{\text{Vorname, Nachname}}(\text{Mitarbeiter} \bowtie \text{Abteilung})
 \end{multline*}
-\end{liAntwort}
+\end{bAntwort}
 \end{enumerate}
 \end{document}

@@ -670,8 +670,21 @@ Dokuments, das alles zusammenfasst.]
   {
     Alle~Aufgaben
   }
+
+  \tableofcontents
+  \clearpage
 }
 %    \end{macrocode}
+
+% \begin{macro}{\bAufgabenMetadaten}
+% Das Metadaten-Makro überschreiben
+%    \begin{macrocode}
+\def\bAufgabenMetadaten#1{
+  \bMetaSetze{#1}
+  \subsection{\gib_aufgaben_pfad_lang_sicher:}
+}
+%    \end{macrocode}
+% \end{macro}
 
 %    \begin{macrocode}
 \ExplSyntaxOff
@@ -699,10 +712,6 @@ Setzen von Theorie-Zusammenfassungen]
   makros,
   aufgaben-metadaten
 }
-%    \end{macrocode}
-
-%    \begin{macrocode}
-\RequirePackage{standalone}
 %    \end{macrocode}
 
 % Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
@@ -1459,6 +1468,7 @@ Setzen der Aufgaben-Metadaten.]
   %
   BearbeitungsStand   .tl_gset:N = \g_bearbeitungs_stand_tl,
   Korrektheit         .tl_gset:N = \g_korrektheit_tl,
+  Ueberprueft         .tl_gset:N = \g_ueberprueft_tl,
   %
   RelativerPfad       .tl_gset:N = \g_relativer_pfad_tl,
   IdentischeAufgabe   .tl_gset:N = \g_identische_aufgabe_tl,
@@ -1934,6 +1944,25 @@ Binär- und AVL-Bäumen. Hüll-Paket um TikZ and tikz-qtree.]
   }
 }
 %    \end{macrocode}
+
+% \begin{environment}{bBaum}
+% |\begin{bBaum}{beschriftung}\end{bBaum}|: Zum
+% Einbetten eines Baums.
+%    \begin{macrocode}
+\NewDocumentEnvironment { bBaum }{ m +b }
+{
+  {
+    \small
+    \noindent
+    \textit{#1}:
+  }
+  \begin{center}
+  #2
+  \medskip
+  \end{center}
+} {}
+%    \end{macrocode}
+% \end{environment}
 
 %    \begin{macrocode}
 
@@ -4804,11 +4833,11 @@ anderen Paket passen]
 % }
 % \end{verbatim}
 
-% \begin{environment}{liAntwort}
+% \begin{environment}{bAntwort}
 % Zum Setzen von Antworten. Sie werden mit einem Kasten umgeben. Könnten
 % eventuell ausgeblendet werden, wenn man nur die Lösung sehen will.
 % \begin{macrocode}
-\NewDocumentEnvironment{ liAntwort } { O{standard} }
+\NewDocumentEnvironment{ bAntwort } { O{standard} }
 {
   \ifANTWORT
   \else
@@ -4839,10 +4868,10 @@ anderen Paket passen]
     \textbf{\beschriftung{}:}
   \fi
   \begin{mdframed}[
-    frametitle={\scriptsize\mdseries Lösungshinweise},
+    frametitle={\scriptsize\mdseries Lösungsvorschlag},
     innertopmargin=6pt,
-    frametitleaboveskip=-12pt,
-    frametitlealignment=\raggedright
+    frametitleaboveskip=-10pt,
+    frametitlealignment=\raggedleft
   ]
 }
 {
@@ -4982,25 +5011,6 @@ anderen Paket passen]
   \textbf{Lernkarteikarte:~#1}\par%
   \noindent%
   #2
-  \end{mdframed}
-} {}
-%    \end{macrocode}
-% \end{environment}
-
-% \begin{environment}{liDiagramm}
-% |\begin{liDiagramm}{beschriftung}\end{liDiagramm}|: Zu
-% setzen einer Graphik bzw eines Diagramms.
-%    \begin{macrocode}
-\NewDocumentEnvironment { liDiagramm }{ m +b }
-{
-  \begin{mdframed}[backgroundcolor=white!0]
-  \small
-  \noindent%
-  \textit{#1}:
-  \begin{center}
-  #2
-  \medskip
-  \end{center}
   \end{mdframed}
 } {}
 %    \end{macrocode}

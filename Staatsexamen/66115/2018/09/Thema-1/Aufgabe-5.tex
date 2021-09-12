@@ -1,6 +1,21 @@
 \documentclass{bschlangaul-aufgabe}
 \bLadePakete{baum,spalten,mathe}
 \begin{document}
+\bAufgabenMetadaten{
+  Titel = {Aufgabe 5},
+  Thematik = {AVL-Baum},
+  RelativerPfad = Staatsexamen/66115/2018/09/Thema-1/Aufgabe-5.tex,
+  ZitatSchluessel = examen:66115:2018:09,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {AVL-Baum},
+  ExamenNummer = 66115,
+  ExamenJahr = 2018,
+  ExamenMonat = 09,
+  ExamenThemaNr = 1,
+  ExamenAufgabeNr = 5,
+}
+
 \bAufgabenTitel{AVL-Baum}
 \section{Aufgabe 5 (AVL Bäume)
 \index{AVL-Baum}
@@ -15,10 +30,10 @@ speichern keinerlei Informationen.
 \item Welche Eigenschaften muss ein binärer Suchbaum haben, damit er ein
 AVL-Baum ist?
 
-\begin{liAntwort}
+\begin{bAntwort}
 Er muss die zusätzliche Eigenschaft haben, dass sich an jedem Knoten die
 Höhe der beiden Teilbäume um höchstens eins unterscheidet
-\end{liAntwort}
+\end{bAntwort}
 
 \item Mit $n(h)$ bezeichnen wir die minimale Anzahl innerer Knoten eines
 AVL-Baums der Höhe $h$.
@@ -29,6 +44,7 @@ AVL-Baums der Höhe $h$.
 %%
 
 \item Begründen Sie, dass $n(1) = 1$ und $n(2) = 2$.
+
 %%
 % (b)
 %%
@@ -49,16 +65,16 @@ angegebenen Reihenfolge in einen anfangs leeren binären Suchbaum ein
 (ohne Rebalancierungen). Zeichnen Sie den resultierenden Suchbaum nach
 jeder Einfügeoperation.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{multicols}{2}
-\begin{liDiagramm}{Einfügen von „45“}
+\begin{bBaum}{Einfügen von „45“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.45 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Einfügen von „16“}
+\begin{bBaum}{Einfügen von „16“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.45
@@ -66,9 +82,9 @@ jeder Einfügeoperation.
   \edge[blank]; \node[blank]{};
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Einfügen von „79“}
+\begin{bBaum}{Einfügen von „79“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.45
@@ -76,9 +92,9 @@ jeder Einfügeoperation.
   [.79 ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Einfügen von „31“}
+\begin{bBaum}{Einfügen von „31“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.45
@@ -89,9 +105,9 @@ jeder Einfügeoperation.
   [.79 ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Einfügen von „51“}
+\begin{bBaum}{Einfügen von „51“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.45
@@ -105,9 +121,9 @@ jeder Einfügeoperation.
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Einfügen von „87“}
+\begin{bBaum}{Einfügen von „87“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.45
@@ -121,9 +137,9 @@ jeder Einfügeoperation.
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Einfügen von „49“}
+\begin{bBaum}{Einfügen von „49“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.45
@@ -140,9 +156,9 @@ jeder Einfügeoperation.
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Einfügen von „61“}
+\begin{bBaum}{Einfügen von „61“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.45
@@ -159,15 +175,15 @@ jeder Einfügeoperation.
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 \end{multicols}
 
-\end{liAntwort}
+\end{bAntwort}
 
 \item Ist der resultierende Suchbaum aus Teilaufgabe 5.4 ein AVL-Baum?
 Begründen Sie Ihre Antwort.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Ja, wie in der untenstehenden Grafik zu sehen ist, unterscheiden sich
 die Höhe der Teilbäume von allen Knoten nur um höchstens eins.
 
@@ -188,7 +204,7 @@ die Höhe der Teilbäume von allen Knoten nur um höchstens eins.
 ]
 \end{tikzpicture}
 
-\end{liAntwort}
+\end{bAntwort}
 
 \item Das Einfügen in einen AVL-Baum funktioniert (zunächst) wie beim binären
 Suchbaum durch Erweitern eines äußeren Knotens w:

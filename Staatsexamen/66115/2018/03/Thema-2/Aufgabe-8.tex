@@ -1,6 +1,21 @@
 \documentclass{bschlangaul-aufgabe}
 \bLadePakete{baum,spalten}
 \begin{document}
+\bAufgabenMetadaten{
+  Titel = {Aufgabe 8},
+  Thematik = {keine Thematik},
+  RelativerPfad = Staatsexamen/66115/2018/03/Thema-2/Aufgabe-8.tex,
+  ZitatSchluessel = examen:66115:2018:03,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {AVL-Baum},
+  ExamenNummer = 66115,
+  ExamenJahr = 2018,
+  ExamenMonat = 03,
+  ExamenThemaNr = 2,
+  ExamenAufgabeNr = 8,
+}
+
 \bAufgabenTitel{Einfügen und Löschen}
 \section{Aufgabe 8
 \index{AVL-Baum}
@@ -24,14 +39,14 @@ immer mit aktuellen Balancewerten versehen sein.
 13 in einen anfangs leeren AVL-Baum ein.
 
 \begin{multicols}{2}
-\begin{liDiagramm}{Einfügen von „5“}
+\begin{bBaum}{Einfügen von „5“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=0]{5}; ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Einfügen von „14“}
+\begin{bBaum}{Einfügen von „14“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=+1]{5};
@@ -39,9 +54,9 @@ immer mit aktuellen Balancewerten versehen sein.
   [.\node[label=0]{14}; ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Einfügen von „28“}
+\begin{bBaum}{Einfügen von „28“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=+2]{5};
@@ -52,9 +67,9 @@ immer mit aktuellen Balancewerten versehen sein.
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Linksrotation}
+\begin{bBaum}{Linksrotation}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=0]{14};
@@ -62,9 +77,9 @@ immer mit aktuellen Balancewerten versehen sein.
   [.\node[label=0]{28}; ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Einfügen von „10“}
+\begin{bBaum}{Einfügen von „10“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=-1]{14};
@@ -75,9 +90,9 @@ immer mit aktuellen Balancewerten versehen sein.
   [.\node[label=0]{28}; ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Einfügen von „3“}
+\begin{bBaum}{Einfügen von „3“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=-1]{14};
@@ -88,9 +103,9 @@ immer mit aktuellen Balancewerten versehen sein.
   [.\node[label=0]{28}; ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Einfügen von „12“}
+\begin{bBaum}{Einfügen von „12“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=-2]{14};
@@ -104,9 +119,9 @@ immer mit aktuellen Balancewerten versehen sein.
   [.\node[label=0]{28}; ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Linksrotation}
+\begin{bBaum}{Linksrotation}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=-2]{14};
@@ -120,9 +135,9 @@ immer mit aktuellen Balancewerten versehen sein.
   [.\node[label=0]{28}; ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Rechtsrotation}
+\begin{bBaum}{Rechtsrotation}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=0]{10};
@@ -136,9 +151,9 @@ immer mit aktuellen Balancewerten versehen sein.
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Einfügen von „13“}
+\begin{bBaum}{Einfügen von „13“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=+1]{10};
@@ -155,7 +170,7 @@ immer mit aktuellen Balancewerten versehen sein.
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 \end{multicols}
 
 %%
@@ -201,7 +216,7 @@ baum avl (
 \end{tikzpicture}
 \end{center}
 
-\begin{liDiagramm}{Löschen von „1“}
+\begin{bBaum}{Löschen von „1“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=+1]{7};
@@ -227,9 +242,9 @@ baum avl (
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Linksrotation}
+\begin{bBaum}{Linksrotation}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=+2]{7};
@@ -252,9 +267,9 @@ baum avl (
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Linksrotation}
+\begin{bBaum}{Linksrotation}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=0]{23};
@@ -277,9 +292,9 @@ baum avl (
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Löschen von „23“}
+\begin{bBaum}{Löschen von „23“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=0]{24};
@@ -302,9 +317,9 @@ baum avl (
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Linksrotation}
+\begin{bBaum}{Linksrotation}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=-1]{24};
@@ -324,7 +339,7 @@ baum avl (
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
 \end{enumerate}
 \end{document}

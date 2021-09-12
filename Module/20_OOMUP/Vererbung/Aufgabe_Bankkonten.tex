@@ -37,7 +37,7 @@ Spezialisierungen\index{Spezialisierung} anderer Konten sind. Warum ist
 es sinnvoll, eine Klasse Konto als oberste Klasse
 Generalisierungshierarchie einzuführen?
 
-\begin{liAntwort}
+\begin{bAntwort}
 Da alle Konten die Methoden \bJavaCode{einzahlen()}, \bJavaCode{abheben()} und
 \bJavaCode{kontostandGeben()} sowie die Attribute \bJavaCode{kontostand} und
 \bJavaCode{kontonummer} besitzen, bietet sich deren Verwaltung in einer
@@ -45,7 +45,7 @@ einzigen Klasse an. Da jede Kontoart aber auch individuelle
 Eigenschaften bzw. Methoden hat, muss es für jede auch eine eigene
 Klasse geben. Daher bietet es sich an, die Gemeinsamkeiten in eine
 Oberklasse \bJavaCode{Konto} auszulagern (Generalisierung).
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % b
@@ -55,7 +55,7 @@ Oberklasse \bJavaCode{Konto} auszulagern (Generalisierung).
 \bJavaCode{Konto}, \bJavaCode{Girokonto}, \bJavaCode{Sparkonto},
 \bJavaCode{Geschaeftskonto}.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Da das Geschäftskonto genauso wie das Girokonto einen Dispokredit
 besitzt, dieser nur anders festgelegt wird, wurde bei der Modellierung
 die Klasse \bJavaCode{Geschaeftskonto} als Unterklasse der Klasse
@@ -100,7 +100,7 @@ Verfügung stehenden Methoden dafür verwenden.
 \umlinherit{Geschaeftskonto}{Girokonto}
 \end{tikzpicture}
 \end{center}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % c
@@ -109,12 +109,12 @@ Verfügung stehenden Methoden dafür verwenden.
 \item Implementiere\index{Implementierung in Java} die Klassen in einem
 eigenen Projekt und teste die vorhandenen Methoden.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \bJavaDatei[firstline=3]{aufgaben/oomup/pu_3/bankverwaltung/Konto}
 \bJavaDatei[firstline=3]{aufgaben/oomup/pu_3/bankverwaltung/Sparkonto}
 \bJavaDatei[firstline=3]{aufgaben/oomup/pu_3/bankverwaltung/Girokonto}
 \bJavaDatei[firstline=3]{aufgaben/oomup/pu_3/bankverwaltung/Geschaeftskonto}
-\end{liAntwort}
+\end{bAntwort}
 
 \end{enumerate}
 \end{document}

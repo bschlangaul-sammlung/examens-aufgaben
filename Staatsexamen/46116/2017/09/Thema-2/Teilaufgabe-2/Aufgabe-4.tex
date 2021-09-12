@@ -80,14 +80,14 @@ Springer ist in Zentimeter angegeben.
 \item Welche Springer sind größer als 1,80 m? Schreiben Sie eine
 SQL-Anweisung, welche in der Ausgabe mit dem größten Springer beginnt.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT Vorname, Nachname, Körpergröße
 FROM Springer
 WHERE Körpergröße > 180
 ORDER BY Körpergröße DESC;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (b)
@@ -97,7 +97,7 @@ ORDER BY Körpergröße DESC;
 Schwierigkeit von unter 6 gezeigt? Schreiben Sie eine SQL-Anweisung,
 welche Startnummer und Nachname dieser Springer ausgibt.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT Springer.Startnummer, Springer.Nachname
 FROM Springer, Sprung, springt
@@ -107,7 +107,7 @@ WHERE
   springt.Durchgang = 1 AND
   Sprung.Schwierigkeit < 6;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (c)
@@ -123,11 +123,11 @@ WHERE springt.Startnummer = s.Startnummer
 GROUP BY springt.Startnummer, s.Nachname, s.Vorname
 \end{minted}
 
-\begin{liAntwort}
+\begin{bAntwort}
 Die Abfrage gibt die Startnummer, den Nachnamen, den Vornamen und
 die Anzahl der Sprünge, d. h. die Anzahl der Durchgänge der
 einzelnen Springer an.
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 %
@@ -138,7 +138,7 @@ Springer, die vor dem 01.01.2000 geboren wurden. Formulieren Sie eine
 SQL-Anweisung, wobei die Spalte mit der durchschnittlichen Körpergröße
 genau diesen Namen \emph{„durchschnittliche Körpergröße“} haben soll.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Umlaute und Leerzeichen sind bei Spaltenbeschriftungen nicht erlaubt.
 
 \begin{minted}{sql}
@@ -146,17 +146,17 @@ SELECT AVG(Körpergröße) AS durchschnittliche_Koerpergroesse
 FROM SPRINGER
 WHERE Geburtsdatum < DATE('2000-01-01');
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 oder
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT AVG(Körpergröße) AS durchschnittliche_Koerpergroesse
 FROM SPRINGER
 WHERE Geburtsdatum < '01.01.2000';
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 \end{enumerate}
 \end{document}

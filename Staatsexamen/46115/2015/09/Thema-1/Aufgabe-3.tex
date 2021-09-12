@@ -33,12 +33,12 @@ konstanter Zeit ($\mathcal{O}(1)$) getätigt werden. Hinweise: binäre
 Suche, divide-and-conquer.
 \index{Binäre Suche}
 
-\begin{liAntwort}
+\begin{bAntwort}
 Wir wählen einen Wert in der Mitte der Folge aus. Ist der direkte linke
 und der direkte rechte Nachbar dieses Wertes kleiner, dann ist das
 Maximum gefunden. Ist nur linke Nachbar größer, setzen wir die Suche wie
 oben beschrieben in der linken Hälfte, sonst in der rechten Hälfte fort.
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % 2.
@@ -47,7 +47,7 @@ oben beschrieben in der linken Hälfte, sonst in der rechten Hälfte fort.
 \item Begründen Sie, dass Ihr Algorithmus tatsächlich in Zeit
 $\mathcal{O}(\log n)$ läuft.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Da der beschriebene Algorithmus nach jedem Bearbeitungsschritt nur auf
 der Hälfte der Feld-Element zu arbeiten hat, muss im schlechtesten Fall
 nicht die gesamte Folge durchsucht werden. Nach dem ersten Teilen der
@@ -59,7 +59,7 @@ benötigt.\footcite[Seite 122]{saake} Somit hat der Algorithmus zum
 Finden des Maximums in einer unimodalen Folge in der Landau-Notation
 ausgedrückt die Zeitkomplexität $\mathcal{O}(\log
 n)$.\footcite{wiki:binaere-suche}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % 3.
@@ -70,7 +70,7 @@ Programmiersprache Ihrer Wahl, \zB Java, auf. Sie dürfen voraussetzen,
 dass die Eingabe in Form eines Arrays der Größe $n$ vorliegt.
 \index{Implementierung in Java}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \bPseudoUeberschrift{Rekursiver Ansatz}
 
 \bJavaExamen[firstline=23,lastline=39]{46115}{2015}{09}{UnimodalFinder}
@@ -78,7 +78,7 @@ dass die Eingabe in Form eines Arrays der Größe $n$ vorliegt.
 \bPseudoUeberschrift{Iterativer Ansatz}
 
 \bJavaExamen[firstline=53,lastline=69]{46115}{2015}{09}{UnimodalFinder}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % 4.
@@ -88,9 +88,9 @@ dass die Eingabe in Form eines Arrays der Größe $n$ vorliegt.
 $\mathcal{O}(n)$ feststellt, ob eine vorgelegte Folge unimodal ist oder
 nicht.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \bJavaExamen[firstline=71,lastline=92]{46115}{2015}{09}{UnimodalFinder}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % 5.
@@ -99,19 +99,19 @@ nicht.
 \item Begründen Sie, dass es kein solches Verfahren (Test auf
 Unimodalität) geben kann, welches in Zeit $\mathcal{O}(\log n)$ läuft.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Da die Unimodalität nur durch einen Werte an einer beliebigen Stelle der
 Folge verletzt werden kann, müssen alle Elemente durchsucht und
 überprüft werden.
-\end{liAntwort}
+\end{bAntwort}
 \end{enumerate}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \bPseudoUeberschrift{Komplette Klasse}
 \bJavaExamen[firstline=23,lastline=39]{46115}{2015}{09}{UnimodalFinder}
 
 \bPseudoUeberschrift{Test}
 
 \bJavaTestDatei{examen/examen_46115/jahr_2015/herbst/UnimodalFinderTest}
-\end{liAntwort}
+\end{bAntwort}
 \end{document}

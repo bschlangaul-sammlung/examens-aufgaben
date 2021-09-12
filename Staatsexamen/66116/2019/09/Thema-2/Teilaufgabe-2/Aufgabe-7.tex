@@ -135,19 +135,19 @@ Vermeiden Sie nach Möglichkeit übermäßige Nutzung von Joins und Views.
 Disqualifikationen in den Jahren 2005 bis 2017 aus. Ordnen Sie die
 Ausgabe absteigend nach der Anzahl der Disqualifikationen.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT Fahrer_ID, COUNT(disqualifiziert) as anzahl_disqualifikationen FROM Rennteilnahme
 WHERE disqualifiziert = TRUE
 GROUP BY Fahrer_ID, disqualifiziert
 ORDER BY anzahl_disqualifikationen DESC;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 \item Gesucht sind alle Länder, aus denen noch nie ein Fahrer
 disqualifiziert wurde.\index{EXCEPT}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT Nation FROM Fahrer GROUP BY Nation
 EXCEPT
@@ -155,14 +155,14 @@ SELECT f.Nation FROM Fahrer f, Rennteilnahme t
 WHERE f.Fahrer_ID = t.Fahrer_ID AND t.disqualifiziert = TRUE
 GROUP BY f.Nation;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 \item Gesucht sind die ersten fünf Plätze des Rennens von 2011 in „Abu
 Dhabi“ (Streckenname). Die Ausgabe soll nach der Platzierung absteigend
 erfolgen. Geben Sie Fahrer\_ID, Fahrername, Nation und Rennstall mit
 aus.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Mit LIMIT
 \begin{minted}{sql}
 SELECT f.Fahrer_ID, f.Fahrername, f.Nation, f.Rennstall
@@ -196,7 +196,7 @@ GROUP BY a.Fahrer_ID, a.Fahrername, a.Nation, a.Rennstall, a.Gesamtzeit
 HAVING COUNT(*) <= 5
 ORDER BY a.Gesamtzeit;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 \item Führen Sie eine neue Spalte \texttt{Gehalt} in die Tabelle
 \texttt{Fahrer} ein. Da sich die Prämien für die Fahrer nach einem
@@ -205,7 +205,7 @@ das Gehalt des betreffenden Fahrers um 10\% angehoben wird.
 \index{ALTER TABLE}
 \index{TRIGGER}
 
-\begin{liAntwort}
+\begin{bAntwort}
 Lösung für PostgreSQL:
 
 \begin{minted}{sql}
@@ -243,7 +243,7 @@ SELECT * FROM FAHRER WHERE Fahrer_ID = 1;
 UPDATE Fahrer SET Rennstall = 'Red Bull' WHERE Fahrer_ID = 1;
 SELECT * FROM FAHRER WHERE Fahrer_ID = 1;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 \end{enumerate}
 
 \end{document}

@@ -31,9 +31,9 @@ Gegeben sei ein Universitätsschema.
 Formulieren Sie die Anfrage im Tupelkalkül.
 \index{Tupelkalkül}
 
-\begin{liAntwort}
+\begin{bAntwort}
 $\{ s \in \text{Studierende} \land h \in \text{hören} \, | \, \neg \exists \text{s.MatrNr} = \text{h.MatrNr} \}$
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % b)
@@ -45,7 +45,7 @@ der Studierende \textbf{nicht} hört, einen Eintrag mit Matrikelnummer
 und Vorlesungsnummer. Formulieren Sie die Anfrage in
 \textbf{relationaler Algebra}.
 
-\begin{liAntwort}
+\begin{bAntwort}
 $\rho_{\neg \text{hören}} \Bigl(
 \bigl(
   \pi_{\text{MatrNr}}(\text{Studierende})
@@ -54,7 +54,7 @@ $\rho_{\neg \text{hören}} \Bigl(
 \bigr) - \text{hören}
 \Bigr)
 $
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % c)
@@ -63,8 +63,8 @@ $
 \item Finden Sie alle Studierenden, die \textbf{keine} Vorlesung hören.
 Formulieren Sie die Anfrage in \textbf{relationaler Algebra}.
 
-\begin{liAntwort}
+\begin{bAntwort}
 $\pi_{\text{MatrNr}}(\text{Studierende}) - \pi_{\text{MatrNr}}(\text{hören})$
-\end{liAntwort}
+\end{bAntwort}
 \end{enumerate}
 \end{document}

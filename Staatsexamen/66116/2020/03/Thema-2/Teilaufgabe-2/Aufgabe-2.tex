@@ -138,7 +138,7 @@ VALUES
 Fremdschlüsselconstraints anlegt. Erläutern Sie kurz, warum die Spalte
 \texttt{Datum} Teil des Primärschlüssels ist.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 CREATE TABLE IF NOT EXISTS hat_getragen (
   PromiName VARCHAR(255) REFERENCES Promi(Name),
@@ -151,7 +151,7 @@ CREATE TABLE IF NOT EXISTS hat_getragen (
 Das Datenbanksystem achtet selbst darauf, dass Felder des
 Primärschlüssels nicht NULL sind. Deshalb muss man NOT NULL bei keinem
 der drei Felder angeben.
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % 2.
@@ -160,7 +160,7 @@ der drei Felder angeben.
 \item Schreiben Sie eine SQL-Anweisung, welche die Namen der Promis
 ausgibt, die eine Sommer-Kollektion promoten (Saison ist „Sommer“).
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT p.PromiName
 FROM promotet p, Kollektion k
@@ -176,7 +176,7 @@ WHERE
  Lena Meyer-Landrut
 (2 rows)
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % 3.
@@ -186,7 +186,7 @@ WHERE
 der Kollektionen bestimmt, welche der Promi zwar promotet, aber daraus
 noch kein Kleidungsstück getragen hat.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Lösung mit NOT IN:
 
 \begin{minted}{sql}
@@ -214,7 +214,7 @@ EXCEPT
   WHERE t.PromiName = p.PromiName
 );
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % 4.
@@ -243,14 +243,14 @@ GROUP BY k.Name
 HAVING COUNT(kl.Hauptbestandteil) > 10;
 \end{minted}
 
-\begin{liAntwort}
+\begin{bAntwort}
 -- Kollektion -- beschreibt die Anzahl der Tupel in der Tabelle
 Kollektion. Die minimale Anzahl an Tupeln im Ergebnis ist 0, da es sein
 kann, dass keine Kollektion den Anforderungen \bSqlCode{k.Jahr = 2018}
 oder \bSqlCode{HAVING COUNT(...)} genügt. Die maximale Anzahl an Tupeln
 im Ergebnis ist -- Kollektion --, da nur Namen aus Kollektion ausgewählt
 werden.
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % b)
@@ -268,7 +268,7 @@ WHERE k.Name IN (
 );
 \end{minted}
 
-\begin{liAntwort}
+\begin{bAntwort}
 Die minimale Anzahl an Tupeln im Ergebnis ist 0, da es sein kann, dass
 keine Kollektion promotet wird. Die maximale Anzahl ist das Minimum von
 -- Kollektion -- und 30, da die Promis, die Kollektionen beworben haben,
@@ -277,7 +277,7 @@ die älter als 30 Jahre sind, selbst mindestens 30 Jahre alt sein müssen.
 Zugrundeliegende Annahmen: Kollektionen werden nur im Erscheinungsjahr
 von Promis beworben; Neugeborene, die Kollektionen bewerben, werden ggf.
 Promis.
-\end{liAntwort}
+\end{bAntwort}
 
 \end{enumerate}
 
@@ -304,10 +304,10 @@ HAVING COUNT (*) IN (
 );
 \end{minted}
 
-\begin{liAntwort}
+\begin{bAntwort}
 Die Abfrage gibt die Namen aller Kollektionen aus, bei denen die Anzahl
 der bewerbenden Promis am größten ist.
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % 6.
@@ -335,7 +335,7 @@ WHERE
 \item Konvertieren Sie zunächst die gegebene SQL-Anfrage in die
 zugehörige Anfrage in relationaler Algebra nach Standard-Algorithmus.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{multline*}
 \pi_{\text{Promi.Wohnort}} (\\
   \sigma_{
@@ -345,7 +345,7 @@ zugehörige Anfrage in relationaler Algebra nach Standard-Algorithmus.
   } \\(\text{Promi} \times \text{promotet} \times \text{Kollektion})
 )
 \end{multline*}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % b)
@@ -354,7 +354,7 @@ zugehörige Anfrage in relationaler Algebra nach Standard-Algorithmus.
 \item Führen Sie anschließend eine relationale Optimierung durch.
 Beschreiben und begründen Sie dabei kurz jeden durchgeführten Schritt.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{enumerate}
 \item[1. Schritt:]
 
@@ -409,7 +409,7 @@ spart Rechenzeit und Speicher.
 2018 (Kollektion)))
 \end{multline*}
 \end{enumerate}
-\end{liAntwort}
+\end{bAntwort}
 
 \end{enumerate}
 \end{enumerate}

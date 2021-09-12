@@ -100,7 +100,7 @@ Bearbeiten Sie folgende Teilaufgaben:
 
 \item Finden Sie die Töchter der Frau mit ID 42.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT Mensch.ID
 FROM Mensch, Frau
@@ -108,7 +108,7 @@ WHERE
   Mensch.MutterID = Frau.id AND
   Frau.ID = 42;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % b)
@@ -117,7 +117,7 @@ WHERE
 \item Gibt es Männer, die ihre eigenen Großväter sind? Formulieren Sie
 eine geeignete SQL-Anfrage.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT Mensch.ID
 FROM Mann, Mensch
@@ -128,7 +128,7 @@ WHERE
     Mensch.MutterID IN (SELECT v.ID FROM Mensch v WHERE v.VaterID = Mensch.ID)
   );
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % c)
@@ -138,7 +138,7 @@ WHERE
 Vätern (VaterID) ihre Kinder (KinderID) zuordnet. Diese View darf keine
 NULL-Werte enthalten.
 
-\begin{liAntwort}
+\begin{bAntwort}
 
 \begin{minted}{sql}
 -- Wir erzeuge bereits beim Erstellen der Datenbank diese View, damit
@@ -151,7 +151,7 @@ WHERE
   Mensch.VaterID IS NOT NULL;
 SELECT * FROM VaterKind;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % d)
@@ -160,14 +160,14 @@ SELECT * FROM VaterKind;
 \item Verwenden Sie die View aus c), um alle Väter zurückzugeben,
 absteigend geordnet nach der Anzahl ihrer Kinder.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT VaterID, COUNT(VaterID) as Anzahl
 FROM VaterKind
 GROUP BY VaterID
 ORDER BY Anzahl DESC;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % e)
@@ -191,11 +191,11 @@ HAVING COUNT(KindID) = 0
 
 \item Was ist das Ergebnis von Hugos Anfrage und warum?
 
-\begin{liAntwort}
+\begin{bAntwort}
 Die Anfrage liefert kein Ergebnis. Da die View laut Angabe keine
 Null-Werte enthalten darf, sind in der View nur Männer verzeichnet, die
 wirklich Väter sind.
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % ii.
@@ -204,7 +204,7 @@ wirklich Väter sind.
 \item Formulieren Sie eine Anfrage, die tatsächlich alle kinderlosen
 Männer zurückliefert.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT * FROM Mann
 EXCEPT
@@ -212,7 +212,7 @@ SELECT VaterID
 FROM VaterKind
 GROUP BY VaterID;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 \end{enumerate}
 \end{enumerate}

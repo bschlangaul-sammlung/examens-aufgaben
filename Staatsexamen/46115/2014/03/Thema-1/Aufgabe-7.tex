@@ -1,12 +1,24 @@
 \documentclass{bschlangaul-aufgabe}
 \bLadePakete{baum}
 \begin{document}
-\bAufgabenTitel{Heap und binärer Suchbaum und AVL Baum}
-\section{Aufgabe 7 Heap und binärer Suchbaum und AVL Baum
-\index{Halde (Heap)}\index{Binärbaum}\index{AVL-Baum}
-\footcite{examen:46115:2014:03}}
+\bAufgabenMetadaten{
+  Titel = {Aufgabe 7},
+  Thematik = {Heap und binärer Suchbaum und AVL Baum},
+  RelativerPfad = Staatsexamen/46115/2014/03/Thema-1/Aufgabe-7.tex,
+  ZitatSchluessel = examen:46115:2014:03,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {Halde (Heap), Binärbaum, AVL-Baum},
+  ExamenNummer = 46115,
+  ExamenJahr = 2014,
+  ExamenMonat = 03,
+  ExamenThemaNr = 1,
+  ExamenAufgabeNr = 7,
+}
 
 Fügen Sie nacheinander die Zahlen 11, 1, 2, 13, 9, 10, 7, 5
+\index{Halde (Heap)}\index{Binärbaum}\index{AVL-Baum}
+\footcite{examen:46115:2014:03}
 
 \begin{liProjektSprache}{Baum}
 baum binär (
@@ -24,7 +36,7 @@ baum binär (
 \item in einen leeren binären Suchbaum und zeichnen Sie den Suchbaum
 jeweils nach dem Einfügen von „9“ und „5“
 
-\begin{liDiagramm}{Nach Einfügen von „9“}
+\begin{bBaum}{Nach dem Einfügen von „9“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.11
@@ -38,9 +50,9 @@ jeweils nach dem Einfügen von „9“ und „5“
   [.13 ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Nach Einfügen von „5“}
+\begin{bBaum}{Nach dem Einfügen von „5“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.11
@@ -60,7 +72,7 @@ jeweils nach dem Einfügen von „9“ und „5“
   [.13 ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
 %%
 % (ii)
@@ -69,7 +81,7 @@ jeweils nach dem Einfügen von „9“ und „5“
 \item in einen leeren Min-Heap ein, der bzgl. „$\leq$“ angeordnet ist und
 geben Sie den Heap nach „9“ und nach „5“ an
 
-\begin{liDiagramm}{Nach dem Einfügen von „9“}
+\begin{bBaum}{Nach dem Einfügen von „9“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.1
@@ -80,9 +92,9 @@ geben Sie den Heap nach „9“ und nach „5“ an
   [.2 ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Nach dem Einfügen von „5“}
+\begin{bBaum}{Nach dem Einfügen von „5“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.1
@@ -99,7 +111,7 @@ geben Sie den Heap nach „9“ und nach „5“ an
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
 %%
 % (ii)
@@ -109,7 +121,7 @@ geben Sie den Heap nach „9“ und nach „5“ an
 „5“ an und beschreiben Sie die ggf. notwendigen Rotationen beim Einfügen
 dieser beiden Elemente!
 
-\begin{liDiagramm}{Nach Einfügen von „2“}
+\begin{bBaum}{Nach dem Einfügen von „2“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=-2]{11};
@@ -120,9 +132,9 @@ dieser beiden Elemente!
   \edge[blank]; \node[blank]{};
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Nach der Linksrotation}
+\begin{bBaum}{Nach der Linksrotation}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=-2]{11};
@@ -133,9 +145,9 @@ dieser beiden Elemente!
   \edge[blank]; \node[blank]{};
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Nach der Rechtsrotation}
+\begin{bBaum}{Nach der Rechtsrotation}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=0]{2};
@@ -143,9 +155,9 @@ dieser beiden Elemente!
   [.\node[label=0]{11}; ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Nach Einfügen von „10“}
+\begin{bBaum}{Nach dem Einfügen von „10“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=+2]{2};
@@ -159,9 +171,9 @@ dieser beiden Elemente!
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Nach der Rechtsrotation}
+\begin{bBaum}{Nach der Rechtsrotation}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=+2]{2};
@@ -175,9 +187,9 @@ dieser beiden Elemente!
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Nach der Linksrotation}
+\begin{bBaum}{Nach der Linksrotation}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=0]{9};
@@ -191,9 +203,9 @@ dieser beiden Elemente!
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
-\begin{liDiagramm}{Nach Einfügen von „5“}
+\begin{bBaum}{Nach dem Einfügen von „5“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=-1]{9};
@@ -210,7 +222,7 @@ dieser beiden Elemente!
   ]
 ]
 \end{tikzpicture}
-\end{liDiagramm}
+\end{bBaum}
 
 \end{enumerate}
 

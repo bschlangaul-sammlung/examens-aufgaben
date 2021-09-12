@@ -64,7 +64,7 @@ sortiert, \dh es gilt $A[1].x < A[2].x < \dots < A[n].x$, wobei $n = |R|
 \item Geben Sie in Worten einen Algorithmus an, der den gesuchten
 Abstand in $\mathcal{O}(n)$ Zeit berechnet.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \bPseudoUeberschrift{Pseudo-Code}
 
 \begin{algorithm}[H]
@@ -86,7 +86,7 @@ Index $P[n-1]$}){$i$ in $0 \dots$ vorletzter Index}{
 \bPseudoUeberschrift{Java}
 
 \bJavaExamen[firstline=30,lastline=41]{66115}{2020}{03}{RedBluePairCollection}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (b)
@@ -94,10 +94,10 @@ Index $P[n-1]$}){$i$ in $0 \dots$ vorletzter Index}{
 
 \item Begründen Sie kurz die Laufzeit Ihres Algorithmus.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Da das Array der Länge $n$ nur einmal durchlaufen wird, ist die Laufzeit
 $\mathcal{O}(n)$ sichergestellt.
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (c)
@@ -105,10 +105,10 @@ $\mathcal{O}(n)$ sichergestellt.
 
 \item Begründen Sie die Korrektheit Ihres Algorithmus.
 
-\begin{liAntwort}
+\begin{bAntwort}
 In $d_{min}$ steht am Ende der gesuchte Wert (sofern nicht $d_{min} =
 Integer.MAX\_VALUE$ geblieben ist)
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (d)
@@ -120,7 +120,7 @@ dieser Situation den gesuchten Abstand in $o(n)$ Zeit berechnen kann.
 (Ihr Algorithmus darf also insbesondere nicht Laufzeit $\Theta(n)$
 haben.)
 
-\begin{liAntwort}
+\begin{bAntwort}
 Zuerst müssen wir den letzten blauen Punkt finden. Das ist mit einer
 binären Suche möglich. Wir beginnen mit dem ganzen Feld als Suchbereich
 und betrachten den mittleren Punkt. Wenn er blau ist, wiederholen wir
@@ -130,7 +130,7 @@ bis wir einen blauen Punkt gefolgt von einem roten Punkt gefunden haben.
 Der gesuchte minimale Abstand ist dann der Abstand zwischen dem
 gefundenen blauen und dem nachfolgenden roten Punkt. Die Binärsuche hat
 eine Worst-case-Laufzeit von $\mathcal{O}(\log n)$.
-\end{liAntwort}
+\end{bAntwort}
 \end{enumerate}
 
 \begin{liAdditum}[Komplette Java-Klasse]

@@ -74,9 +74,9 @@ INSERT INTO Mitarbeiter VALUES
 anlegt. Gehen Sie davon aus, dass die Tabelle Abteilung bereits
 existiert.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Siehe oben
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % b)
@@ -86,7 +86,7 @@ Siehe oben
 Mitarbeiter der Abteilung mit der Bezeichnung Vertrieb ausgibt,
 absteigend sortiert nach MitarbeiterID.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT m.Vorname, m.Nachname
 FROM Mitarbeiter m, Abteilung a
@@ -95,7 +95,7 @@ WHERE
   a.Bezeichnung = 'Vertrieb'
 ORDER BY m.MitarbeiterID DESC;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % c)
@@ -105,7 +105,7 @@ ORDER BY m.MitarbeiterID DESC;
 Gehalt von Mitarbeitern ausgibt, die mehr verdienen als ihr Chef.
 Sortieren Sie die Ausgabe absteigend nach dem Gehalt.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT m.Vorname, m.Nachname, m.Gehalt
 FROM Mitarbeiter m, Mitarbeiter n
@@ -114,7 +114,7 @@ WHERE
   m.Gehalt > n.Gehalt
 ORDER BY m.Gehalt DESC;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % d)
@@ -123,14 +123,14 @@ ORDER BY m.Gehalt DESC;
 \item Schreiben Sie eine SQL-Anweisung, die das Gehalt von allen
 Mitarbeitern aus der Abteilung mit der ID 42 um 10\% erhöht.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 UPDATE Mitarbeiter
 SET Gehalt = Gehalt * 1.1
 WHERE AbteilungsID = 42;
 SELECT * FROM Mitarbeiter;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % e)
@@ -142,7 +142,7 @@ Buchhaltung ausgibt. Standardkonforme Sprachkonstrukte, die eine
 Beschränkung der Ausgabe bewirken, sind erlaubt.
 \index{Top-N-Query}
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT m.Vorname, m.Nachname, m.Gehalt
 FROM Mitarbeiter m, Mitarbeiter n, Abteilung a
@@ -155,7 +155,7 @@ GROUP BY m.Vorname, m.Nachname, m.Gehalt
 HAVING COUNT(*) <= 7
 ORDER BY m.Gehalt DESC;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % f)
@@ -166,7 +166,7 @@ Mitarbeiter ermittelt, die am wenigsten verdienen. Dabei sollen Vorname,
 Nachname und die Abteilungsbezeichnung der Mitarbeiter ausgegeben
 werden.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT m.Vorname, m.Nachname, m.Gehalt, a.Bezeichnung
 FROM Mitarbeiter m, Mitarbeiter n, Abteilung a
@@ -178,7 +178,7 @@ GROUP BY m.Vorname, m.Nachname, m.Gehalt, m.AbteilungsID, a.Bezeichnung
 HAVING COUNT(*) <= 1
 ORDER BY m.Gehalt DESC;
 \end{minted}
-\end{liAntwort}
+\end{bAntwort}
 \end{enumerate}
 
 \end{document}

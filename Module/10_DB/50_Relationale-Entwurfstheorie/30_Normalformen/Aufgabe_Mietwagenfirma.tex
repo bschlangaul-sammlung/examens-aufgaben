@@ -66,9 +66,9 @@ Der Primärschlüssel besteht aus den Attributen \emph{KdNr} und
 
 \item Begründe, dass diese Tabelle in 1. Normalform vorliegt.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Es gibt nur atomare Werte. Alle Attributewerte sind atomar.
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (b)
@@ -78,11 +78,11 @@ Es gibt nur atomare Werte. Alle Attributewerte sind atomar.
 die zweite Normalform verletzen können.
 \index{Zweite Normalform}
 
-\begin{liAntwort}
+\begin{bAntwort}
 Nur bei Tabellen mit zusammengesetzten Primärschlüssel kann es
 vorkommen, dass ein Nichtschlüssel-Attribut von einer echten Teilmenge
 des Primärschlüssel voll funktional abhängt.
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (c)
@@ -90,7 +90,7 @@ des Primärschlüssel voll funktional abhängt.
 
 \item Zeige mögliche Anomalien auf, die hier auftreten können.
 
-\begin{liAntwort}
+\begin{bAntwort}
 \begin{description}
 \item[Delete-Anomalie]
 
@@ -110,7 +110,7 @@ Kunde ein bereits gebuchtes Auto auch an dieser Station zurückgeben
 will.
 \index{Insert-Anomalie}
 \end{description}
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (d)
@@ -118,7 +118,7 @@ will.
 
 \item Überführe das Schema in die 2. Normalform.
 
-\begin{liAntwort}
+\begin{bAntwort}
 Der \emph{Name} ist voll funktional abhängig von \emph{KdNr}, nicht aber
 von \emph{Buchungsdatum}. Deswegen verletzt die FD \fa{KdNr -> Name} die
 2. Normalform (und also auch die 3. Normalform). \emph{Stationsleiter}
@@ -133,7 +133,7 @@ Rückgabestation, Stationsleiter)
 Kunden(\underline{Kdnr}, Name, Wohnort)
 
 Aktion(\underline{Buchungsdatum}, Aktion)
-\end{liAntwort}
+\end{bAntwort}
 
 %%
 % (3)
@@ -142,7 +142,7 @@ Aktion(\underline{Buchungsdatum}, Aktion)
 \item Überführe das Schema in die 3. Normalform.
 \index{Dritte Normalform}
 
-\begin{liAntwort}
+\begin{bAntwort}
 Für die 3. NF: Entfernung der transitiven Abhängigkeiten. Die Tabellen
 \emph{„Kunde“} und \emph{„Sonderaktionen“} bleiben erhalten.
 
@@ -157,6 +157,6 @@ Tarife(\underline{Typ}, Tarif)
 Stationsleiter(\underline{Rückgabestation}, Stationsleiter)
 
 MobilRent(\underline{KdNr, Buchungsdatum}, Fahrzeug, Tage, Rückgabestation)
-\end{liAntwort}
+\end{bAntwort}
 \end{enumerate}
 \end{document}
