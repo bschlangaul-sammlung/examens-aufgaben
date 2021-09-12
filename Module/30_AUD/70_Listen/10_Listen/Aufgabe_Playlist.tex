@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{syntax,uml}
+\bLadePakete{syntax,uml}
 \begin{document}
-\liAufgabenTitel{Playlist}
+\bAufgabenTitel{Playlist}
 
 \section{Musikliste
 \footcite[Seite 1-2, Aufgaben 1-3]{aud:ab:4}}
@@ -44,7 +44,7 @@
   pos2=0.95,
   name=nächster,
 ]{Knoten}{Knoten}
-\liUmlLeserichtung[pos=above right,dir=right,distance=3cm]{nächster}
+\bUmlLeserichtung[pos=above right,dir=right,distance=3cm]{nächster}
 
 \umlclass[x=11]
 {MusikStueck}
@@ -56,10 +56,10 @@
 }
 
 \umlassoc[pos1=0.4,name=erster]{MusikListe}{Knoten}
-\liUmlLeserichtung[pos=below,dir=right,distance=0.2cm]{erster}
+\bUmlLeserichtung[pos=below,dir=right,distance=0.2cm]{erster}
 
 \umlaggreg[mult1=1,mult2=1,name=verwaltet]{Knoten}{MusikStueck}
-\liUmlLeserichtung[pos=below right,dir=right,distance=0.2cm and -0.3cm]{verwaltet}
+\bUmlLeserichtung[pos=below right,dir=right,distance=0.2cm and -0.3cm]{verwaltet}
 
 \end{tikzpicture}
 \end{center}
@@ -70,21 +70,21 @@ Das Klassendiagramm zeigt den Aufbau einer Playlist.
 \item Implementieren Sie das Klassendiagramm.
 
 \begin{liAntwort}
-\liPseudoUeberschrift{Klasse „MusikListe“}
-\liJavaDatei[firstline=3,lastline=66]{aufgaben/aud/listen/musikliste/MusikListe}
+\bPseudoUeberschrift{Klasse „MusikListe“}
+\bJavaDatei[firstline=3,lastline=66]{aufgaben/aud/listen/musikliste/MusikListe}
 
-\liPseudoUeberschrift{Klasse „Knoten“}
-\liJavaDatei[firstline=3,lastline=24]{aufgaben/aud/listen/musikliste/Knoten}
+\bPseudoUeberschrift{Klasse „Knoten“}
+\bJavaDatei[firstline=3,lastline=24]{aufgaben/aud/listen/musikliste/Knoten}
 
-\liPseudoUeberschrift{Klasse „MusikStueck“}
-\liJavaDatei{aufgaben/aud/listen/musikliste/MusikStueck}
+\bPseudoUeberschrift{Klasse „MusikStueck“}
+\bJavaDatei{aufgaben/aud/listen/musikliste/MusikStueck}
 \end{liAntwort}
 
 \item Schreiben Sie eine Testklasse, in der Sie eine Playlist mit
 mindestens vier Liedern erstellen.
 
 \begin{liAntwort}
-\liJavaTestDatei[firstline=8,lastline=30]{aufgaben/aud/listen/musikliste/MusikListeTest}
+\bJavaTestDatei[firstline=8,lastline=30]{aufgaben/aud/listen/musikliste/MusikListeTest}
 \end{liAntwort}
 \end{enumerate}
 
@@ -102,46 +102,46 @@ Ihren Code entsprechend!
 
 \item Bisher wurde das erste Element der Musikliste in einer öffentlich
 sichtbaren Variable gespeichert, dies ist jedoch nicht sinnvoll.
-Erstellen Sie eine Methode \liJavaCode{setzeErsten()}, mit der anstatt dessen
+Erstellen Sie eine Methode \bJavaCode{setzeErsten()}, mit der anstatt dessen
 die Liste der erstellten Musikstücke angesprochen werden kann.
 \index{Implementierung in Java}
 
 \begin{liAntwort}
-\liJavaDatei[firstline=12,lastline=15]{aufgaben/aud/listen/musikliste/MusikListe}
+\bJavaDatei[firstline=12,lastline=15]{aufgaben/aud/listen/musikliste/MusikListe}
 \end{liAntwort}
 
 %%
 %
 %%
 
-\item Außerdem wird ein Attribut \liJavaCode{anzahl} benötigt, dass mit Hilfe
-der Methode \liJavaCode{aktualisiereAnzahl()} auf dem aktuellen Stand
+\item Außerdem wird ein Attribut \bJavaCode{anzahl} benötigt, dass mit Hilfe
+der Methode \bJavaCode{aktualisiereAnzahl()} auf dem aktuellen Stand
 gehalten werden kann.
 
 \begin{liAntwort}
-\liJavaDatei[firstline=5,lastline=6]{aufgaben/aud/listen/musikliste/MusikListe}
+\bJavaDatei[firstline=5,lastline=6]{aufgaben/aud/listen/musikliste/MusikListe}
 \end{liAntwort}
 
 %%
 %
 %%
 
-\item Eine weitere Methode \liJavaCode{gibMusikstückListe()} soll die Titel
-aller Lieder in der Liste als \liJavaCode{String} zurückgeben.
+\item Eine weitere Methode \bJavaCode{gibMusikstückListe()} soll die Titel
+aller Lieder in der Liste als \bJavaCode{String} zurückgeben.
 
 \begin{liAntwort}
-\liJavaDatei[firstline=32,lastline=43]{aufgaben/aud/listen/musikliste/MusikListe}
+\bJavaDatei[firstline=32,lastline=43]{aufgaben/aud/listen/musikliste/MusikListe}
 \end{liAntwort}
 
 %%
 %
 %%
 
-\item Mit \liJavaCode{entnimmOben()} soll der erste Titel aus der Liste
+\item Mit \bJavaCode{entnimmOben()} soll der erste Titel aus der Liste
 entnommen werden können.
 
 \begin{liAntwort}
-\liJavaDatei[firstline=45,lastline=53]{aufgaben/aud/listen/musikliste/MusikListe}
+\bJavaDatei[firstline=45,lastline=53]{aufgaben/aud/listen/musikliste/MusikListe}
 \end{liAntwort}
 
 %%
@@ -150,10 +150,10 @@ entnommen werden können.
 
 \item Es soll der Titel des Musikstücks ermittelt werden, das an einer
 bestimmten Position in der Musikliste abgespeichert ist. Implementieren
-Sie dazu die Methode \liJavaCode{gibKnoten()}.
+Sie dazu die Methode \bJavaCode{gibKnoten()}.
 
 \begin{liAntwort}
-\liJavaDatei[firstline=55,lastline=66]{aufgaben/aud/listen/musikliste/MusikListe}
+\bJavaDatei[firstline=55,lastline=66]{aufgaben/aud/listen/musikliste/MusikListe}
 \end{liAntwort}
 
 %%
@@ -166,8 +166,8 @@ hinzu.
 \index{Doppelt-verkettete Liste}
 
 \begin{liAntwort}
-\liJavaDatei[firstline=5,lastline=5]{aufgaben/aud/listen/musikliste/Knoten}
-\liJavaDatei[firstline=22,lastline=28]{aufgaben/aud/listen/musikliste/Knoten}
+\bJavaDatei[firstline=5,lastline=5]{aufgaben/aud/listen/musikliste/Knoten}
+\bJavaDatei[firstline=22,lastline=28]{aufgaben/aud/listen/musikliste/Knoten}
 \end{liAntwort}
 
 %%
@@ -178,7 +178,7 @@ hinzu.
 Testklasse.
 
 \begin{liAntwort}
-\liJavaTestDatei{aufgaben/aud/listen/musikliste/MusikListeTest}
+\bJavaTestDatei{aufgaben/aud/listen/musikliste/MusikListeTest}
 \end{liAntwort}
 
 \end{enumerate}
@@ -187,8 +187,8 @@ Testklasse.
 
 Die Anzahl der Titel in der Musikliste aus Aufgabe 1 kann auch unter
 Verwendung einer rekursiven Methode ermittelt werden. Implementieren Sie
-eine Methode \liJavaCode{zaehleEintraege()}, die analog zu
-\liJavaCode{aktualisiereAnzahl()} angibt, wie viele Titel in der Musikliste
+eine Methode \bJavaCode{zaehleEintraege()}, die analog zu
+\bJavaCode{aktualisiereAnzahl()} angibt, wie viele Titel in der Musikliste
 gespeichert sind, dies aber rekursiv ermittelt! Testen Sie diese Methode
 in der Testklasse. Hinweis: Um für die gesamte Musikliste aufgerufen
 werden zu können, muss diese Methode in der Musikliste selbst und auch
@@ -196,13 +196,13 @@ in der Klasse Knoten existieren!
 \index{Rekursion}
 
 \begin{liAntwort}
-\liPseudoUeberschrift{Klasse „MusikListe“}
-\liJavaDatei[firstline=67,lastline=74]{aufgaben/aud/listen/musikliste/MusikListe}
+\bPseudoUeberschrift{Klasse „MusikListe“}
+\bJavaDatei[firstline=67,lastline=74]{aufgaben/aud/listen/musikliste/MusikListe}
 
-\liPseudoUeberschrift{Klasse „Knoten“}
-\liJavaDatei[firstline=34,lastline=40]{aufgaben/aud/listen/musikliste/Knoten}
+\bPseudoUeberschrift{Klasse „Knoten“}
+\bJavaDatei[firstline=34,lastline=40]{aufgaben/aud/listen/musikliste/Knoten}
 
-\liPseudoUeberschrift{Klasse „TestKlasse“}
-\liJavaTestDatei[firstline=45,lastline=50]{aufgaben/aud/listen/musikliste/MusikListeTest}
+\bPseudoUeberschrift{Klasse „TestKlasse“}
+\bJavaTestDatei[firstline=45,lastline=50]{aufgaben/aud/listen/musikliste/MusikListeTest}
 \end{liAntwort}
 \end{document}

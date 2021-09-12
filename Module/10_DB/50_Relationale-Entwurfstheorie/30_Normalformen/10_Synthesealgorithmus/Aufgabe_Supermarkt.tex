@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{normalformen,synthese-algorithmus}
+\bLadePakete{normalformen,synthese-algorithmus}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Synthese-Algorithmus},
   Thematik = {Supermarkt},
   RelativerPfad = Module/10_DB/50_Relationale-Entwurfstheorie/30_Normalformen/10_Synthesealgorithmus/Aufgabe_Supermarkt.tex,
@@ -12,18 +12,18 @@
   Stichwoerter = {Zweite Normalform, Schlüsselkandidat, Update-Anomalie, Delete-Anomalie, Synthese-Algorithmus},
 }
 
-\let\FA=\liFunktionaleAbhaengigkeiten
-\let\fa=\liFunktionaleAbhaengigkeit
-\let\m=\liAttributMenge
-\let\schrittE=\liSyntheseUeberErklaerung
-\let\ah=\liAttributHuelle
+\let\FA=\bFunktionaleAbhaengigkeiten
+\let\fa=\bFunktionaleAbhaengigkeit
+\let\m=\bAttributMenge
+\let\schrittE=\bSyntheseUeberErklaerung
+\let\ah=\bAttributHuelle
 
 Ein Supermarkt speichert seine Bestellungen in nachfolgender Tabelle:
 \footcite[Aufgabe 5]{db:ab:6}
 \bigskip
 
 \noindent
-\liRelation[ARTBEST]{
+\bRelation[ARTBEST]{
   ArtNr,
   ArtName,
   ArtArt,
@@ -295,11 +295,11 @@ ist \m{HerstTel}
 
 \item \schrittE{1-3}
 
-\liNichtsZuTun
+\bNichtsZuTun
 
 \item \schrittE{1-4}
 
-\liNichtsZuTun
+\bNichtsZuTun
 \end{enumerate}
 
 Kanonische Überdeckung:
@@ -313,21 +313,21 @@ ArtNr, Lieferant, BestDat -> Anzahl;
 
 \item \schrittE{2}
 
-\liRelation[R1]{ArtNr, ArtName, ArtArt, Hersteller}\\
-\liRelation[R2]{Hersteller, HerstTel}\\
-\liRelation[R3]{Lieferant, LiefTel}\\
-\liRelation[R4]{ArtNr, Lieferant, BestDat, Anzahl}
+\bRelation[R1]{ArtNr, ArtName, ArtArt, Hersteller}\\
+\bRelation[R2]{Hersteller, HerstTel}\\
+\bRelation[R3]{Lieferant, LiefTel}\\
+\bRelation[R4]{ArtNr, Lieferant, BestDat, Anzahl}
 
 \item \schrittE{3}
 
 Es muss noch eine Relation hinzugefügt werden, nämlich kommt das
 Attribut \m{EP} bisher in keiner Relation vor.
 
-\liRelation[R1]{ArtNr, ArtName, ArtArt, Hersteller}\\
-\liRelation[R2]{Hersteller, HerstTel}\\
-\liRelation[R3]{Lieferant, LiefTel}\\
-\liRelation[R4]{ArtNr, Lieferant, BestDat, Anzahl}\\
-\liRelation[R5]{ArtNr, Lieferant, BestDat, EP}
+\bRelation[R1]{ArtNr, ArtName, ArtArt, Hersteller}\\
+\bRelation[R2]{Hersteller, HerstTel}\\
+\bRelation[R3]{Lieferant, LiefTel}\\
+\bRelation[R4]{ArtNr, Lieferant, BestDat, Anzahl}\\
+\bRelation[R5]{ArtNr, Lieferant, BestDat, EP}
 
 \item \schrittE{4}
 
@@ -337,11 +337,11 @@ Nicht zu tun.
 
 Ergebnis:
 
-\liRelation[R1]{ArtNr, ArtName, ArtArt, Hersteller}\\
-\liRelation[R2]{Hersteller, HerstTel}\\
-\liRelation[R3]{Lieferant, LiefTel}\\
-\liRelation[R4]{ArtNr, Lieferant, BestDat, Anzahl}\\
-\liRelation[R5]{ArtNr, Lieferant, BestDat, EP}
+\bRelation[R1]{ArtNr, ArtName, ArtArt, Hersteller}\\
+\bRelation[R2]{Hersteller, HerstTel}\\
+\bRelation[R3]{Lieferant, LiefTel}\\
+\bRelation[R4]{ArtNr, Lieferant, BestDat, Anzahl}\\
+\bRelation[R5]{ArtNr, Lieferant, BestDat, EP}
 
 \end{liAntwort}
 

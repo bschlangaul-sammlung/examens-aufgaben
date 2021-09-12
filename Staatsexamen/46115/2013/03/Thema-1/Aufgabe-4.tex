@@ -1,16 +1,16 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{formale-sprachen,automaten}
+\bLadePakete{formale-sprachen,automaten}
 \begin{document}
-\liAufgabenTitel{Turingmaschinen}
+\bAufgabenTitel{Turingmaschinen}
 \section{Aufgabe 4
 \index{Turing-Maschine}
 \footcite{examen:46115:2013:03}}
 
 Sei
-\liAusdruck{u v}
+\bAusdruck{u v}
 {
-  u \in \liMenge{a,b}^*,
-  v \in \liMenge{c,d}^*,
+  u \in \bMenge{a,b}^*,
+  v \in \bMenge{c,d}^*,
   \#_a(u) = \#_c(v)
   \text{ und }
   \#_b(u) = \#_d(v))
@@ -37,15 +37,15 @@ noch nicht fertig ... akzeptiert auch abcd!d
   \node[state] (q3) at (7.29cm,-5.86cm) {$q_3$};
   \node[state,accepting] (q5) at (7.57cm,-4.29cm) {$q_5$};
 
-  \liTuringKante[above]{q0}{q1}{
+  \bTuringKante[above]{q0}{q1}{
     a, A, R;
   }
 
-  \liTuringKante[above]{q0}{q2}{
+  \bTuringKante[above]{q0}{q2}{
     b, B, R;
   }
 
-  \liTuringKante[above,loop above]{q1}{q1}{
+  \bTuringKante[above,loop above]{q1}{q1}{
     a, a, R;
     b, b, R;
     d, d, R;
@@ -53,15 +53,15 @@ noch nicht fertig ... akzeptiert auch abcd!d
     D, D, R;
   }
 
-  \liTuringKante[above]{q1}{q4}{
+  \bTuringKante[above]{q1}{q4}{
     c, C, R;
   }
 
-  \liTuringKante[above]{q2}{q4}{
+  \bTuringKante[above]{q2}{q4}{
     d, D, R;
   }
 
-  \liTuringKante[above,loop above]{q2}{q2}{
+  \bTuringKante[above,loop above]{q2}{q2}{
     a, a, R;
     c, c, R;
     b, b, R;
@@ -69,16 +69,16 @@ noch nicht fertig ... akzeptiert auch abcd!d
     D, D, R;
   }
 
-  \liTuringKante[above,loop above]{q4}{q4}{
+  \bTuringKante[above,loop above]{q4}{q4}{
     c, c, R;
     d, d, R;
   }
 
-  \liTuringKante[above]{q4}{q3}{
+  \bTuringKante[above]{q4}{q3}{
     LEER, LEER, L;
   }
 
-  \liTuringKante[above,loop above]{q3}{q3}{
+  \bTuringKante[above,loop above]{q3}{q3}{
     d, d, L;
     c, c, L;
     C, C, L;
@@ -87,17 +87,17 @@ noch nicht fertig ... akzeptiert auch abcd!d
     B, B, L;
   }
 
-  \liTuringKante[above]{q3}{q0}{
+  \bTuringKante[above]{q3}{q0}{
     a, a, N;
     b, b, N;
   }
 
-  \liTuringKante[above]{q3}{q5}{
+  \bTuringKante[above]{q3}{q5}{
     LEER, LEER, N;
   }
 \end{tikzpicture}
 \end{center}
-\liFlaci{Ajhi5w0ha}
+\bFlaci{Ajhi5w0ha}
 \end{liAntwort}
 
 %%

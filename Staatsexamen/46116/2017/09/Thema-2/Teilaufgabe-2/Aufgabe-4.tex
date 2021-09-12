@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{syntax,rmodell}
+\bLadePakete{syntax,rmodell}
 \begin{document}
-\liAufgabenTitel{Turmspringen}
+\bAufgabenTitel{Turmspringen}
 
 \section{Aufgabe 4
 \index{SQL}
@@ -19,11 +19,11 @@ springt(SID[Sprung], Startnummer[Springer], Durchgang)
 \end{liRelationenSchemaFormat}
 
 \begin{liRmodell}
-\liRelationMenge{Springer}{\liPrimaer{Startnummer}, Nachname, Vorname, Geburtsdatum, Körpergröße}
+\bRelationMenge{Springer}{\bPrimaer{Startnummer}, Nachname, Vorname, Geburtsdatum, Körpergröße}
 
-\liRelationMenge{Sprung}{\liPrimaer{SID}, Beschreibung, Schwierigkeit}
+\bRelationMenge{Sprung}{\bPrimaer{SID}, Beschreibung, Schwierigkeit}
 
-\liRelationMenge{springt}{\liPrimaer{SID, Startnummer, Durchgang}}
+\bRelationMenge{springt}{\bPrimaer{SID, Startnummer, Durchgang}}
 
 FK (SID) referenziert Sprung (SID)\\
 FK (Startnummer) referenziert Springer (Startnummer)

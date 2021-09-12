@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{rmodell,normalformen,synthese-algorithmus}
+\bLadePakete{rmodell,normalformen,synthese-algorithmus}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Aufgabe 3},
   Thematik = {Relation A-F},
   RelativerPfad = Staatsexamen/66116/2019/03/Thema-1/Teilaufgabe-1/Aufgabe-3.tex,
@@ -17,13 +17,13 @@
   ExamenAufgabeNr = 3,
 }
 
-\let\ahl=\liLinksReduktionInline
-\let\ahr=\liRechtsReduktionInline
-\let\fa=\liFunktionaleAbhaengigkeit
-\let\FA=\liFunktionaleAbhaengigkeiten
-\let\m=\liAttributMenge
-\let\schrittE=\liSyntheseUeberErklaerung
-\let\r=\liRelation
+\let\ahl=\bLinksReduktionInline
+\let\ahr=\bRechtsReduktionInline
+\let\fa=\bFunktionaleAbhaengigkeit
+\let\FA=\bFunktionaleAbhaengigkeiten
+\let\m=\bAttributMenge
+\let\schrittE=\bSyntheseUeberErklaerung
+\let\r=\bRelation
 \let\u=\underline
 
 Gegeben sei folgendes relationales Schema R in erster Normalform:
@@ -31,7 +31,7 @@ Gegeben sei folgendes relationales Schema R in erster Normalform:
 \footcite{examen:66116:2019:03}
 
 \begin{center}
-\liRelationMenge{R}{A, B, C, D, E, F}
+\bRelationMenge{R}{A, B, C, D, E, F}
 \end{center}
 
 \noindent
@@ -96,18 +96,18 @@ funktionaler Abhängigkeiten nach der Linksreduktion an ($FD_L$).
 \begin{liAntwort}
 \schrittE{1-1}
 
-\liPseudoUeberschrift{\fa{A, D, F -> E}}
+\bPseudoUeberschrift{\fa{A, D, F -> E}}
 
 $E \notin$ \ahl{A, D, F}{A}{D, F, B}\\
 $E \notin$ \ahl{A, D, F}{D}{A, F} \\
 $E \in$ \ahl{A, D, F}{F}{A, B, D, \textbf{F}}
 
-\liPseudoUeberschrift{\fa{B, C -> A, E}}
+\bPseudoUeberschrift{\fa{B, C -> A, E}}
 
 $\m{A, E} \notin$ \ahl{B, C}{B}{C}\\
 $\m{A, E} \notin$ \ahl{B, C}{C}{B}
 
-\liPseudoUeberschrift{\fa{D, E -> C, B}}
+\bPseudoUeberschrift{\fa{D, E -> C, B}}
 
 $\m{C, B} \notin$ \ahl{D, E}{D}{E}\\
 $\m{C, B} \notin$ \ahl{D, E}{E}{B, D}
@@ -132,13 +132,13 @@ Rechtsreduktion an ($FD_R$).
 \begin{liAntwort}
 \schrittE{1-2}
 
-\liPseudoUeberschrift{E}
+\bPseudoUeberschrift{E}
 
 $E \notin$ \ahr{A, D -> E}{}{A, D}{A, B, D, F}
 
 $E \notin$ \ahr{B, C -> A, E}{B, C -> A}{B, C}{A, B, C, F}
 
-\liPseudoUeberschrift{B}
+\bPseudoUeberschrift{B}
 
 $B \notin$ \ahr{D -> B}{}{D}{D}
 
@@ -165,11 +165,11 @@ des Ergebnisses der Rechtsreduktion ($FD_R$).
 \begin{itemize}
 \item \schrittE{1-3}
 
-\liNichtsZuTun
+\bNichtsZuTun
 
 \item \schrittE{1-4}
 
-\liNichtsZuTun
+\bNichtsZuTun
 \end{itemize}
 \end{liAntwort}
 \end{enumerate}
@@ -195,10 +195,10 @@ Relationenschemata an.
 
 \item \schrittE{3}
 
-\liNichtsZuTun
+\bNichtsZuTun
 
 \item \schrittE{4}
-\liNichtsZuTun
+\bNichtsZuTun
 
 \end{itemize}
 \end{liAntwort}

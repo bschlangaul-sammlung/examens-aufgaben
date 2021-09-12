@@ -1,16 +1,16 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{vollstaendige-induktion}
+\bLadePakete{vollstaendige-induktion}
 \begin{document}
-\let\m=\liInduktionMarkierung
-\let\e=\liInduktionErklaerung
+\let\m=\bInduktionMarkierung
+\let\e=\bInduktionErklaerung
 
-\liAufgabenTitel{Catalan-Zahl}
+\bAufgabenTitel{Catalan-Zahl}
 \section{Aufgabe 4:
 \index{Vollständige Induktion}
 \footcite{examen:46116:2016:09}}
 
 Gegeben sei folgende rekursive Methodendeklaration in der Sprache Java.
-Es wird als Vorbedingung vorausgesetzt, dass die Methode \liJavaCode{cn}
+Es wird als Vorbedingung vorausgesetzt, dass die Methode \bJavaCode{cn}
 nur für Werte $n \geq 0$ aufgerufen wird.
 
 \begin{minted}{java}
@@ -24,7 +24,7 @@ int cn(int n) {
 
 \noindent
 Sie können im Folgenden vereinfachend annehmen, dass es keinen Überlauf
-in der Berechnung gibt, \dh dass der Datentyp \liJavaCode{int} für die
+in der Berechnung gibt, \dh dass der Datentyp \bJavaCode{int} für die
 Berechnung des Ergebnisses stets ausreicht.
 
 \begin{enumerate}
@@ -34,7 +34,7 @@ Berechnung des Ergebnisses stets ausreicht.
 %%
 
 \item Beweisen Sie mittels vollständiger Induktion, dass der
-Methodenaufruf \liJavaCode{cn(n)} für jedes $n \geq 0$ die $n$-te
+Methodenaufruf \bJavaCode{cn(n)} für jedes $n \geq 0$ die $n$-te
 Catalan-Zahl $C_n$ berechnet, wobei
 
 \begin{displaymath}
@@ -70,7 +70,7 @@ n \cdot (n - 1)!, & n > 0
 
 Fakultäten für negative oder nicht ganze Zahlen sind nicht definiert. Es
 gibt aber eine Erweiterung der Fakultät auf solche Argumente
-\liFussnoteUrl{https://de.wikipedia.org/wiki/Fakultät_(Mathematik)}
+\bFussnoteUrl{https://de.wikipedia.org/wiki/Fakultät_(Mathematik)}
 \end{liExkurs}
 
 \begin{liExkurs}[Catalan-Zahl]
@@ -80,7 +80,7 @@ Mathematiker Eugène Charles Catalan benannt.
 
 Die Folge der Catalan-Zahlen $C_{0},C_{1},C_{2},C_{3},\dotsc$ beginnt
 mit $1, 1, 2, 5, 14, 42, 132,\dotsc$
-\liFussnoteUrl{https://de.wikipedia.org/wiki/Catalan-Zahl}
+\bFussnoteUrl{https://de.wikipedia.org/wiki/Catalan-Zahl}
 \end{liExkurs}
 
 Beim Induktionsschritt können Sie die beiden folgenden Gleichungen
@@ -98,7 +98,7 @@ verwenden:
 %
 %%
 
-\liInduktionAnfang
+\bInduktionAnfang
 
 \begin{align*}
 C_0
@@ -113,7 +113,7 @@ C_0
 %
 %%
 
-\liInduktionVoraussetzung
+\bInduktionVoraussetzung
 
 \begin{align*}
 C_n
@@ -126,9 +126,9 @@ C_n
 %
 %%
 
-\liInduktionSchritt
+\bInduktionSchritt
 
-\liPseudoUeberschrift{Vom Code ausgehend}
+\bPseudoUeberschrift{Vom Code ausgehend}
 
 \begin{align*}
 C_{n+1}
@@ -168,7 +168,7 @@ C_{n+1}
 & \e{$(n + 1)$ verdeutlicht}\\
 \end{align*}
 
-\liPseudoUeberschrift{Mathematische Herangehensweise}
+\bPseudoUeberschrift{Mathematische Herangehensweise}
 
 \begin{align*}
 C_{n+1}
@@ -212,13 +212,13 @@ C_{n+1}
 \newpage
 
 \item Geben Sie eine geeignete Terminierungsfunktion an und begründen
-Sie, warum der Methodenaufruf \liJavaCode{cn(n)} für jedes $n \geq 0$
+Sie, warum der Methodenaufruf \bJavaCode{cn(n)} für jedes $n \geq 0$
 terminiert.
 
 \begin{liAntwort}
 $T(n) = n$. Diese Funktion verringert sich bei jedem Rekursionsschritt
 um eins. Sie ist monoton fallend und für $T(0) = 0$ definiert. Damit
-ist sie eine Terminierungsfunktion für \liJavaCode{cn(n)}.
+ist sie eine Terminierungsfunktion für \bJavaCode{cn(n)}.
 \end{liAntwort}
 
 \end{enumerate}

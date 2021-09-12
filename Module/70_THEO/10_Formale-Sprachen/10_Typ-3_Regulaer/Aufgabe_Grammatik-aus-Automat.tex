@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{automaten,formale-sprachen}
+\bLadePakete{automaten,formale-sprachen}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Grammatik aus Automat},
   Thematik = {Grammatik aus Automat},
   RelativerPfad = Module/70_THEO/10_Formale-Sprachen/10_Typ-3_Regulaer/Aufgabe_Grammatik-aus-Automat.tex,
@@ -10,12 +10,12 @@
 }
 
 
-\liAufgabenTitel{Grammatik aus Automat}
+\bAufgabenTitel{Grammatik aus Automat}
 \section{Grammatik aus Automat
 \index{Reguläre Sprache}
 \footcite[Seite 4, Aufgabe 3]{theo:ab:1}}
 
-Sei \liAutomat{zustaende={z_0, z_1, z_2}, alphabet={a, b}, ende={z_2}} ein
+Sei \bAutomat{zustaende={z_0, z_1, z_2}, alphabet={a, b}, ende={z_2}} ein
 endlicher Automat. Die Übergangsfunktion sei wie in dem unten
 abgebildeten Diagramm definiert.
 \index{Deterministisch endlicher Automat (DEA)}
@@ -34,7 +34,7 @@ abgebildeten Diagramm definiert.
   \path (z2) edge[auto,bend left] node{a} (z1);
 \end{tikzpicture}
 \end{center}
-\liFlaci{Apk0iyqyg}
+\bFlaci{Apk0iyqyg}
 
 \begin{enumerate}
 
@@ -46,7 +46,7 @@ abgebildeten Diagramm definiert.
 \index{Reguläre Grammatik}
 
 \begin{liAntwort}
-\liGrammatik{variablen={Z_0, Z_1, Z_2}, alphabet={a, b}, start=Z_0} mit
+\bGrammatik{variablen={Z_0, Z_1, Z_2}, alphabet={a, b}, start=Z_0} mit
 folgender Produktionsmenge
 
 \begin{liProduktionsRegeln}
@@ -68,14 +68,14 @@ umzuwandeln.
 Analog zu obigem Beispiel folgender Algorithmus benutzt werden:
 
 \begin{itemize}
-\item Setze $V = \liMenge{Z_0, Z_1, \dots Z_n}$ und $S$ auf den
+\item Setze $V = \bMenge{Z_0, Z_1, \dots Z_n}$ und $S$ auf den
 Startzustand des Automaten.
 
 \item Für jeden Übergang $\delta(Z_i, a) = Z_j$ füge die Produktion
-\liProduktionen{Z_i -> a Z_j} zu $P$ hinzu.
+\bProduktionen{Z_i -> a Z_j} zu $P$ hinzu.
 
 \item Für jeden Zustand $Z_i \in Z$ füge die Produktion
-\liProduktionen{Z_i -> EPSILON} zu $P$ dazu.
+\bProduktionen{Z_i -> EPSILON} zu $P$ dazu.
 \end{itemize}
 \end{liAntwort}
 \end{enumerate}

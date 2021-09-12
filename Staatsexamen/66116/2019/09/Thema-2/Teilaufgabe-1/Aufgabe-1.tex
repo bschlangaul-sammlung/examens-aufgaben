@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{syntax,uml}
+\bLadePakete{syntax,uml}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Aufgabe 1},
   Thematik = {Dateisystem: Implementierung durch Kompositum},
   RelativerPfad = Staatsexamen/66116/2019/09/Thema-2/Teilaufgabe-1/Aufgabe-1.tex,
@@ -80,32 +80,32 @@ Spezialisierungsbeziehung enthalten.\index{Klassendiagramm}
 
 \item Implementieren Sie das Klassendiagramm als Java- oder
 C++-Programm. Jedes Element des Dateisystems soll mindestens über ein
-Attribut \liJavaCode{name} verfügen. Übergeben Sie den Elternordner
+Attribut \bJavaCode{name} verfügen. Übergeben Sie den Elternordner
 jedes Elements als Parameter an den Konstruktor; der Elternordner des
-Root-Ordners kann dabei als \liJavaCode{null} implementiert werden.
+Root-Ordners kann dabei als \bJavaCode{null} implementiert werden.
 Dokumentieren Sie Ihren Code.
 \index{Implementierung in Java}
 
 \begin{liAntwort}
 
-\liFussnoteLink{TU Darmstadt: Dr. Michael Eichberg - Case Study Using
+\bFussnoteLink{TU Darmstadt: Dr. Michael Eichberg - Case Study Using
 the Composite and Proxy Design
 Patterns}{https://www.stg.tu-darmstadt.de/media/st/teaching/courses/ws2009/material_eise/20100120c_casestudydesigningtheapiforaccessingafilesystemcompositeandproxypattern.pdf}
 
-\liJavaExamen{66116}{2019}{09}{file_system/Element}
-\liJavaExamen{66116}{2019}{09}{file_system/Directory}
-\liJavaExamen{66116}{2019}{09}{file_system/File}
-\liJavaExamen{66116}{2019}{09}{file_system/Link}
+\bJavaExamen{66116}{2019}{09}{file_system/Element}
+\bJavaExamen{66116}{2019}{09}{file_system/Directory}
+\bJavaExamen{66116}{2019}{09}{file_system/File}
+\bJavaExamen{66116}{2019}{09}{file_system/Link}
 \end{liAntwort}
 
 %%
 % c)
 %%
 
-\item Ordnen Sie eine Methode \liJavaCode{delete}, die Dateien, Ordner
+\item Ordnen Sie eine Methode \bJavaCode{delete}, die Dateien, Ordner
 und Verweise rekursiv löscht, einer oder mehreren geeigneten Klassen zu
 und implementieren Sie sie. Zeigen Sie die Löschung jedes Elements durch
-eine Textausgabe von \liJavaCode{name} an. \liJavaCode{toString()}
+eine Textausgabe von \bJavaCode{name} an. \bJavaCode{toString()}
 müssen Sie dabei nicht implementieren. Gehen Sie davon aus, dass
 Verweis- und Ordnerstrukturen azyklisch sind und dass jedes Element des
 Dateisystems höchstens einmal existiert. Wenn ein Verweis gelöscht wird,
@@ -124,7 +124,7 @@ Siehe Antwort zu Aufgabe b)
 % d)
 %%
 
-\item Was kann im Fall von \liJavaCode{delete} passieren,
+\item Was kann im Fall von \bJavaCode{delete} passieren,
 wenn die Linkstruktur zyklisch ist oder die Ordnerstruktur zyklisch ist?
 Kann es zu diesen Problemen auch dann führen, wenn weder die
 Linkstruktur zyklisch ist, noch die Ordnerstruktur zyklisch ist? Wie
@@ -138,9 +138,9 @@ azyklischen Strukturen nicht auf, weil der rekursive Löschvorgang beim
 letzten Element abgebrochen wird (Abbruchbedingung).
 
 Das Problem kann zum Beispiel durch ein neues Attribut
-\liJavaCode{gelöscht} in der Klasse \liJavaCode{Link} oder
-\liJavaCode{Directory} gelöst werden. Dieses Attribut wird auf
-\liJavaCode{true} gesetzt, bevor es in die Rekursion einsteigt. Rufen
+\bJavaCode{gelöscht} in der Klasse \bJavaCode{Link} oder
+\bJavaCode{Directory} gelöst werden. Dieses Attribut wird auf
+\bJavaCode{true} gesetzt, bevor es in die Rekursion einsteigt. Rufen
 sich die Klassen wegen der Zyklizität selbst wieder auf, kommt es durch
 entsprechende IF-Bedingungen zum Abbruch.
 
@@ -161,7 +161,7 @@ Beispiel des Dateisystems vorliegen?
 Design Pattern sind wiederkehrende, geprüfte, bewährte Lösungsschablonen
 für typische Probleme.
 
-\liPseudoUeberschrift{Drei Beispiele}
+\bPseudoUeberschrift{Drei Beispiele}
 
 \begin{description}
 \item[Einzelstück (Singleton)]
@@ -190,7 +190,7 @@ ist.
 \end{enumerate}
 
 \begin{liAdditum}
-% \liJavaTestDatei[firstline=3]{examen/examen_66116_2019_09/file_system/FileSystemTest}
+% \bJavaTestDatei[firstline=3]{examen/examen_66116_2019_09/file_system/FileSystemTest}
 
 \end{liAdditum}
 

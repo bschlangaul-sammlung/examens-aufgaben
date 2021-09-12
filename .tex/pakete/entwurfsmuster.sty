@@ -5,7 +5,7 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %
 % \subsubsection{Namensschema der Entwurfsmuster-Makros:}
 %
-% Präfix: |\liEntwurfs| +
+% Präfix: |\bEntwurfs| +
 % Name des Entwurfsmuster |DeutscherName| +
 % Suffix: (|Uml|, |Akteure|, |Code|, |ohne|)
 %
@@ -13,16 +13,16 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %
 % \begin{enumerate}
 % \item |Beschreibung|
-% Kurze Beschreibung des Entwurfsmusters, z. B |\liEntwurfsEinzelstueckBeschreibung|
+% Kurze Beschreibung des Entwurfsmusters, z. B |\bEntwurfsEinzelstueckBeschreibung|
 % \item |Uml|:
-% Uml-Klassendiagramm, z. B |\liEntwurfsEinzelstueckUml|
+% Uml-Klassendiagramm, z. B |\bEntwurfsEinzelstueckUml|
 % \item |Akteure|:
-% Akteure, beteiligte Klassen, z. B |\liEntwurfsEinzelstueckAkteure|
+% Akteure, beteiligte Klassen, z. B |\bEntwurfsEinzelstueckAkteure|
 % \item |Code|:
-% Allgemeines Code-Beispiel, z. B |\liEntwurfsEinzelstueckCode|
+% Allgemeines Code-Beispiel, z. B |\bEntwurfsEinzelstueckCode|
 % \item |ohne|:
 % Ohne Suffix, Bündelung der einzelnen Makros eines Entwurfsmusters
-% |\liEntwurfsEinzelstueckAkteure|
+% |\bEntwurfsEinzelstueckAkteure|
 % \end{enumerate}
 
 %    \begin{macrocode}
@@ -34,16 +34,16 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \begin{macrocode}
 \RequirePackage{bschlangaul-syntax}
 \def\li@EntwurfsCode#1#2{
-  \liJavaDatei{entwurfsmuster/#1/allgemein/#2}
+  \bJavaDatei{entwurfsmuster/#1/allgemein/#2}
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Abstrakte Fabrik (Abstract Factory)}
 
-% \begin{macro}{\liEntwurfsAbstrakteFabrikBeschreibung}
+% \begin{macro}{\bEntwurfsAbstrakteFabrikBeschreibung}
 %    \begin{macrocode}
-\def\liEntwurfsAbstrakteFabrikBeschreibung{
+\def\bEntwurfsAbstrakteFabrikBeschreibung{
   Es wird eine Schnittstelle bereitgestellt, um \emph{Familien
   verbundener oder abhängiger Objekte} zu erstellen, ohne die konkreten
   Klassen zu spezifizieren.\footcite[Seite 25]{eilebrecht}
@@ -51,12 +51,12 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsAbstrakteFabrikUml}
+% \begin{macro}{\bEntwurfsAbstrakteFabrikUml}
 % \begin{liBeispiel}
-% \liEntwurfsAbstrakteFabrikUml
+% \bEntwurfsAbstrakteFabrikUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsAbstrakteFabrikUml{
+\def\bEntwurfsAbstrakteFabrikUml{
   \begin{tikzpicture}
     \umlclass[type=abstract]{AbstrakteFabrik}{}{
       erzeugeProduktA()\\
@@ -101,9 +101,9 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsAbstrakteFabrikCode}
+% \begin{macro}{\bEntwurfsAbstrakteFabrikCode}
 %    \begin{macrocode}
-\def\liEntwurfsAbstrakteFabrikCode{
+\def\bEntwurfsAbstrakteFabrikCode{
   \li@EntwurfsCode{abstrakte_fabrik}{Produkte}
   \li@EntwurfsCode{abstrakte_fabrik}{AbstrakteFabrik}
   \li@EntwurfsCode{abstrakte_fabrik}{Klient}
@@ -111,26 +111,26 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsAbstrakteFabrik}
+% \begin{macro}{\bEntwurfsAbstrakteFabrik}
 %    \begin{macrocode}
-\def\liEntwurfsAbstrakteFabrik{
-  \liEntwurfsAbstrakteFabrikBeschreibung
+\def\bEntwurfsAbstrakteFabrik{
+  \bEntwurfsAbstrakteFabrikBeschreibung
 
-  \liEntwurfsAbstrakteFabrikUml
+  \bEntwurfsAbstrakteFabrikUml
 
-  \liEntwurfsAbstrakteFabrikCode
+  \bEntwurfsAbstrakteFabrikCode
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Adapter}
 
-% \begin{macro}{\liEntwurfsAdapterUml}
+% \begin{macro}{\bEntwurfsAdapterUml}
 % \begin{liBeispiel}
-% \liEntwurfsAdapterUml
+% \bEntwurfsAdapterUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsAdapterUml{
+\def\bEntwurfsAdapterUml{
   \begin{tikzpicture}
     \umlsimpleclass[x=1,y=3]{Klient}{}{}
     \umlclass[x=4,y=3,type=interface]{Ziel}{}{agiere()}
@@ -148,12 +148,12 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsAdapterAkteure}
+% \begin{macro}{\bEntwurfsAdapterAkteure}
 % \begin{liBeispiel}
-% \liEntwurfsAdapterAkteure
+% \bEntwurfsAdapterAkteure
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsAdapterAkteure{
+\def\bEntwurfsAdapterAkteure{
   \begin{description}
 
     \item[Ziel (Target)]
@@ -180,9 +180,9 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsAdapterCode}
+% \begin{macro}{\bEntwurfsAdapterCode}
 %    \begin{macrocode}
-\def\liEntwurfsAdapterCode{
+\def\bEntwurfsAdapterCode{
   \li@EntwurfsCode{adapter}{Dienst}
   \li@EntwurfsCode{adapter}{Ziel}
   \li@EntwurfsCode{adapter}{Adapter}
@@ -191,24 +191,24 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsAdapter}
+% \begin{macro}{\bEntwurfsAdapter}
 %    \begin{macrocode}
-\def\liEntwurfsAdapter{
-  \liEntwurfsAdapterUml
-  \liEntwurfsAdapterAkteure
-  \liEntwurfsAdapterCode
+\def\bEntwurfsAdapter{
+  \bEntwurfsAdapterUml
+  \bEntwurfsAdapterAkteure
+  \bEntwurfsAdapterCode
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Beobachter (Observer)}
 
-% \begin{macro}{\liEntwurfsBeobachterUml}
+% \begin{macro}{\bEntwurfsBeobachterUml}
 % \begin{liBeispiel}
-% \liEntwurfsBeobachterUml
+% \bEntwurfsBeobachterUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsBeobachterUml{
+\def\bEntwurfsBeobachterUml{
   \begin{tikzpicture}
     \umlclass[x=0,y=0,type=abstract]{Gegenstand}{}{
       + registriere(beobachter: Beobachter): void\\
@@ -235,12 +235,12 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsBeobachterAkteure}
+% \begin{macro}{\bEntwurfsBeobachterAkteure}
 % \begin{liBeispiel}
-% \liEntwurfsBeobachterAkteure
+% \bEntwurfsBeobachterAkteure
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsBeobachterAkteure{
+\def\bEntwurfsBeobachterAkteure{
   \begin{description}
     \item[Gegenstand / Subjekt (Subject / Observable)]
 
@@ -277,9 +277,9 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsBeobachterCode}
+% \begin{macro}{\bEntwurfsBeobachterCode}
 %    \begin{macrocode}
-\def\liEntwurfsBeobachterCode{
+\def\bEntwurfsBeobachterCode{
   \li@EntwurfsCode{beobachter}{Gegenstand}
   \li@EntwurfsCode{beobachter}{KonkreterGegenstand}
   \li@EntwurfsCode{beobachter}{Beobachter}
@@ -290,24 +290,24 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsBeobachter}
+% \begin{macro}{\bEntwurfsBeobachter}
 %    \begin{macrocode}
-\def\liEntwurfsBeobachter{
-  \liEntwurfsBeobachterUml
-  \liEntwurfsBeobachterAkteure
-  \liEntwurfsBeobachterCode
+\def\bEntwurfsBeobachter{
+  \bEntwurfsBeobachterUml
+  \bEntwurfsBeobachterAkteure
+  \bEntwurfsBeobachterCode
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Dekorierer (Decorator)}
 
-% \begin{macro}{\liEntwurfsDekoriererUml}
+% \begin{macro}{\bEntwurfsDekoriererUml}
 % \begin{liBeispiel}
-% \liEntwurfsDekoriererUml
+% \bEntwurfsDekoriererUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsDekoriererUml{
+\def\bEntwurfsDekoriererUml{
   \begin{tikzpicture}
     \umlclass[type=abstract]{Komponente}{}{agiere()}
     \umlclass[below left=1.5cm and 0cm of Komponente]{KonkreteKomponente}{}{agiere()}
@@ -329,9 +329,9 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsDekoriererCode}
+% \begin{macro}{\bEntwurfsDekoriererCode}
 %    \begin{macrocode}
-\def\liEntwurfsDekoriererCode{
+\def\bEntwurfsDekoriererCode{
   \li@EntwurfsCode{dekorierer}{Komponente}
   \li@EntwurfsCode{dekorierer}{KonkreteKomponente}
   \li@EntwurfsCode{dekorierer}{Dekorierer}
@@ -342,25 +342,25 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsDekorierer}
+% \begin{macro}{\bEntwurfsDekorierer}
 %    \begin{macrocode}
-\def\liEntwurfsDekorierer{
-  \liEntwurfsDekoriererUml
-  \liEntwurfsDekoriererAkteure
-  \liEntwurfsDekoriererCode
+\def\bEntwurfsDekorierer{
+  \bEntwurfsDekoriererUml
+  \bEntwurfsDekoriererAkteure
+  \bEntwurfsDekoriererCode
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Einfache Fabrik (Simple Factory)}
 
-% \begin{macro}{\liEntwurfsEinfacheFabrikUml}
+% \begin{macro}{\bEntwurfsEinfacheFabrikUml}
 % Quelle: \url{https://refactoring.guru/design-patterns/factory-comparison}
 % \begin{liBeispiel}
-% \liEntwurfsEinfacheFabrikUml
+% \bEntwurfsEinfacheFabrikUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsEinfacheFabrikUml{
+\def\bEntwurfsEinfacheFabrikUml{
   \begin{tikzpicture}
     \umlsimpleclass[type=abstract]{Produkt}
     \umlsimpleclass[below left=1cm and -0.65cm of Produkt]{ProduktA}
@@ -378,13 +378,13 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsEinfacheFabrikAkteure}
+% \begin{macro}{\bEntwurfsEinfacheFabrikAkteure}
 % Quelle: frei überstetzt aus GoF
 % \begin{liBeispiel}
-% \liEntwurfsEinfacheFabrikAkteure
+% \bEntwurfsEinfacheFabrikAkteure
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsEinfacheFabrikAkteure{
+\def\bEntwurfsEinfacheFabrikAkteure{
   \begin{description}
     \item[EinfacheFabrik]
 
@@ -403,33 +403,33 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsEinfacheFabrik}
+% \begin{macro}{\bEntwurfsEinfacheFabrik}
 %    \begin{macrocode}
-\def\liEntwurfsEinfacheFabrik{
-  \liEntwurfsEinfacheFabrikUml
-  \liEntwurfsEinfacheFabrikAkteure
+\def\bEntwurfsEinfacheFabrik{
+  \bEntwurfsEinfacheFabrikUml
+  \bEntwurfsEinfacheFabrikAkteure
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Einzelstück (Singleton)}
 
-% \begin{macro}{\liEntwurfsEinzelstueckBeschreibung}
+% \begin{macro}{\bEntwurfsEinzelstueckBeschreibung}
 %    \begin{macrocode}
-\def\liEntwurfsEinzelstueckBeschreibung{
+\def\bEntwurfsEinzelstueckBeschreibung{
   Stellt sicher, dass nur \emph{genau eine Instanz einer Klasse} erzeugt
   wird.\footcite[Seite 38]{eilebrecht}
 }
   %    \end{macrocode}
   % \end{macro}
 
-% \begin{macro}{\liEntwurfsEinzelstueckUml}
+% \begin{macro}{\bEntwurfsEinzelstueckUml}
 % Quelle nach der deutschen Wikipedia
 % \begin{liBeispiel}
-% \liEntwurfsEinzelstueckUml
+% \bEntwurfsEinzelstueckUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsEinzelstueckUml{
+\def\bEntwurfsEinzelstueckUml{
   \begin{tikzpicture}
     \umlclass{Einzelstück}{
     \umlstatic{- instanz: Einzelstück}\\
@@ -442,13 +442,13 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsEinzelstueckAkteure}
+% \begin{macro}{\bEntwurfsEinzelstueckAkteure}
 % Quelle: frei überstetzt aus GoF
 % \begin{liBeispiel}
-% \liEntwurfsEinzelstueckAkteure
+% \bEntwurfsEinzelstueckAkteure
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsEinzelstueckAkteure{
+\def\bEntwurfsEinzelstueckAkteure{
   \begin{description}
     \item[Einzelstück (Singleton)]
 
@@ -459,37 +459,37 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsEinzelstueckCode}
+% \begin{macro}{\bEntwurfsEinzelstueckCode}
 %    \begin{macrocode}
-\def\liEntwurfsEinzelstueckCode{
+\def\bEntwurfsEinzelstueckCode{
   \li@EntwurfsCode{einzelstueck}{Einzelstueck}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsEinzelstueck}
+% \begin{macro}{\bEntwurfsEinzelstueck}
 %    \begin{macrocode}
-\def\liEntwurfsEinzelstueck{
-  \liEntwurfsEinzelstueckBeschreibung
+\def\bEntwurfsEinzelstueck{
+  \bEntwurfsEinzelstueckBeschreibung
 
-  \liEntwurfsEinzelstueckUml
+  \bEntwurfsEinzelstueckUml
 
-  \liEntwurfsEinzelstueckAkteure
+  \bEntwurfsEinzelstueckAkteure
 
-  \liEntwurfsEinzelstueckCode
+  \bEntwurfsEinzelstueckCode
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Erbauer (Builder)}
 
-% \begin{macro}{\liEntwurfsErbauerUml}
+% \begin{macro}{\bEntwurfsErbauerUml}
 % Quelle nach der deutschen Wikipedia
 % \begin{liBeispiel}
-% \liEntwurfsErbauerUml
+% \bEntwurfsErbauerUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsErbauerUml{
+\def\bEntwurfsErbauerUml{
   \begin{tikzpicture}
     \umlsimpleclass[x=7,y=0]{Produkt}{}{}
     \umlclass[x=4,y=3,type=interface]{Erbauer}{}{+ baueTeil()}
@@ -512,13 +512,13 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsErbauerAkteure}
+% \begin{macro}{\bEntwurfsErbauerAkteure}
 % Quelle: deutsche Wikipedia
 % \begin{liBeispiel}
-% \liEntwurfsErbauerAkteure
+% \bEntwurfsErbauerAkteure
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsErbauerAkteure{
+\def\bEntwurfsErbauerAkteure{
   \begin{description}
     \item[Erbauer]
 
@@ -549,24 +549,24 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsErbauer}
+% \begin{macro}{\bEntwurfsErbauer}
 %    \begin{macrocode}
-\def\liEntwurfsErbauer{
-  \liEntwurfsErbauerUml
-  \liEntwurfsErbauerAkteure
+\def\bEntwurfsErbauer{
+  \bEntwurfsErbauerUml
+  \bEntwurfsErbauerAkteure
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Fabrikmethode (Factory Method)}
 
-% \begin{macro}{\liEntwurfsFabrikmethodeUml}
+% \begin{macro}{\bEntwurfsFabrikmethodeUml}
 % Quelle nach der deutschen Wikipedia
 % \begin{liBeispiel}
-% \liEntwurfsFabrikmethodeUml
+% \bEntwurfsFabrikmethodeUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsFabrikmethodeUml{
+\def\bEntwurfsFabrikmethodeUml{
   \begin{tikzpicture}
     \umlsimpleclass[type=abstract]{Produkt}
     \umlsimpleclass[below=2cm of Produkt]{KonkretesProdukt}
@@ -586,13 +586,13 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsFabrikmethodeAkteure}
+% \begin{macro}{\bEntwurfsFabrikmethodeAkteure}
 % Quelle: deutsche Wikipedia
 % \begin{liBeispiel}
-% \liEntwurfsFabrikmethodeAkteure
+% \bEntwurfsFabrikmethodeAkteure
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsFabrikmethodeAkteure{
+\def\bEntwurfsFabrikmethodeAkteure{
   \begin{description}
     \item[Produkt]
 
@@ -620,23 +620,23 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsFabrikmethode}
+% \begin{macro}{\bEntwurfsFabrikmethode}
 %    \begin{macrocode}
-\def\liEntwurfsFabrikmethode{
-  \liEntwurfsFabrikmethodeUml
-  \liEntwurfsFabrikmethodeAkteure
+\def\bEntwurfsFabrikmethode{
+  \bEntwurfsFabrikmethodeUml
+  \bEntwurfsFabrikmethodeAkteure
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Kompositum (Composite)}
 
-% \begin{macro}{\liEntwurfsKompositumUml}
+% \begin{macro}{\bEntwurfsKompositumUml}
 % \begin{liBeispiel}
-% \liEntwurfsKompositumUml
+% \bEntwurfsKompositumUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsKompositumUml{
+\def\bEntwurfsKompositumUml{
   \begin{tikzpicture}
     \umlclass[x=2.5,y=3,type=abstract]{Komponente}{}{
       \textit{+agiere()}\\
@@ -660,23 +660,23 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsFabrikmethode}
+% \begin{macro}{\bEntwurfsFabrikmethode}
 %    \begin{macrocode}
-\def\liEntwurfsKompositum{
-  \liEntwurfsKompositumUml
-  \liEntwurfsKompositumAkteure
+\def\bEntwurfsKompositum{
+  \bEntwurfsKompositumUml
+  \bEntwurfsKompositumAkteure
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Modell-Präsentation-Steuerung (Model-View-Controller)}
 
-% \begin{macro}{\liEntwurfsModellPraesentationSteuerungUml}
+% \begin{macro}{\bEntwurfsModellPraesentationSteuerungUml}
 % \begin{liBeispiel}
-% \liEntwurfsModellPraesentationSteuerungUml
+% \bEntwurfsModellPraesentationSteuerungUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsModellPraesentationSteuerungUml{
+\def\bEntwurfsModellPraesentationSteuerungUml{
   \begin{tikzpicture}
     \umlclass[x=-4cm,type=role]{Präsentation}{}{+aktualisiere()}
     \umlclass[x=4cm,type=role]{Steuerung}{}{+führeAus()}
@@ -691,25 +691,25 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
     \umluniassoc[arg2=-modell,mult2=1,mult1=*]{Steuerung}{Modell}
     \umlassoc[arg1=präsentation,mult1=1..*,arg2=steuerung,mult2=1..*]{Präsentation}{Steuerung}
   \end{tikzpicture}
-  \liFussnoteUrl{http://www.cs.sjsu.edu/~pearce/modules/lectures/ood2/mvc/index.htm}
+  \bFussnoteUrl{http://www.cs.sjsu.edu/~pearce/modules/lectures/ood2/mvc/index.htm}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsModellPraesentationSteuerung}
+% \begin{macro}{\bEntwurfsModellPraesentationSteuerung}
 %    \begin{macrocode}
-\def\liEntwurfs{
-  \liEntwurfsModellPraesentationSteuerungUml
-  \liEntwurfsModellPraesentationSteuerungAkteure
+\def\bEntwurfs{
+  \bEntwurfsModellPraesentationSteuerungUml
+  \bEntwurfsModellPraesentationSteuerungAkteure
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Stellvertreter (Proxy)}
 
-% \begin{macro}{\liEntwurfsStellvertreterUml}
+% \begin{macro}{\bEntwurfsStellvertreterUml}
 %    \begin{macrocode}
-\def\liEntwurfsStellvertreterUml{
+\def\bEntwurfsStellvertreterUml{
   \begin{tikzpicture}
     \umlsimpleclass[x=-1,y=2]{Klient}
 
@@ -726,9 +726,9 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsStellvertreterCode}
+% \begin{macro}{\bEntwurfsStellvertreterCode}
 %    \begin{macrocode}
-\def\liEntwurfsStellvertreterCode{
+\def\bEntwurfsStellvertreterCode{
   \li@EntwurfsCode{stellvertreter}{Subjekt}
   \li@EntwurfsCode{stellvertreter}{KonkretesSubjekt}
   \li@EntwurfsCode{stellvertreter}{Stellvertreter}
@@ -737,24 +737,24 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsStellvertreter}
+% \begin{macro}{\bEntwurfsStellvertreter}
 %    \begin{macrocode}
-\def\liEntwurfsStellvertreter{
-  \liEntwurfsStellvertreterUml
-  \liEntwurfsStellvertreterCode
+\def\bEntwurfsStellvertreter{
+  \bEntwurfsStellvertreterUml
+  \bEntwurfsStellvertreterCode
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Zustand (State)}
 
-% \begin{macro}{\liEntwurfsZustandUml}
+% \begin{macro}{\bEntwurfsZustandUml}
 % Quelle: Englische Wikipedia, so ähnlich wie in GoF
 % \begin{liBeispiel}
-% \liEntwurfsZustandUml
+% \bEntwurfsZustandUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsZustandUml{
+\def\bEntwurfsZustandUml{
   \begin{tikzpicture}
     \umlclass[x=-1,y=3]{Kontext}{}{+beantrage()}
     \umlclass[x=3,y=3,type=interface]{Zustand}{}{+agiere()}
@@ -772,13 +772,13 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsZustandAkteure}
+% \begin{macro}{\bEntwurfsZustandAkteure}
 % Quelle: Deutsche Wikipedia
 % \begin{liBeispiel}
-% \liEntwurfsZustandAkteure
+% \bEntwurfsZustandAkteure
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsZustandAkteure{
+\def\bEntwurfsZustandAkteure{
   \begin{description}
     \item[Kontext (Context)]
 
@@ -799,21 +799,21 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsZustandCode}
+% \begin{macro}{\bEntwurfsZustandCode}
 %    \begin{macrocode}
-\def\liEntwurfsZustandCode{
+\def\bEntwurfsZustandCode{
   \li@EntwurfsCode{zustand}{Kontext}
   \li@EntwurfsCode{zustand}{Zustand}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsZustand}
+% \begin{macro}{\bEntwurfsZustand}
 %    \begin{macrocode}
-\def\liEntwurfsZustand{
-  \liEntwurfsZustandUml
-  \liEntwurfsZustandAkteure
-  \liEntwurfsZustandCode
+\def\bEntwurfsZustand{
+  \bEntwurfsZustandUml
+  \bEntwurfsZustandAkteure
+  \bEntwurfsZustandCode
 }
 %    \end{macrocode}
 % \end{macro}

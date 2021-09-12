@@ -1,13 +1,13 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{syntax,kontrollflussgraph}
+\bLadePakete{syntax,kontrollflussgraph}
 \begin{document}
-\liAufgabenTitel{Größter gemeinsamer Teiler}
+\bAufgabenTitel{Größter gemeinsamer Teiler}
 
 \section{White-Box-Test\footcite{sosy:e-klausur}}
 
 Gegeben sei folgende Methode:
 
-\liJavaDatei[firstline=4,lastline=12]{aufgaben/sosy/white_box/WhiteBox}
+\bJavaDatei[firstline=4,lastline=12]{aufgaben/sosy/white_box/WhiteBox}
 
 \begin{enumerate}
 \item Erstellen Sie den zur Methode gehörenden datenflussannotierten
@@ -54,7 +54,7 @@ Kontrollflussgraphen.\index{Datenfluss-annotierter Kontrollflussgraph}
 %%
 
 \item Geben Sie die zyklomatische Komplexität $M$ nach McCabe der
-Methode \liJavaCode{ggT} an. (Nur das Ergebnis!)
+Methode \bJavaCode{ggT} an. (Nur das Ergebnis!)
 \index{Zyklomatische Komplexität nach Mc-Cabe}
 
 \begin{liAntwort}
@@ -84,20 +84,20 @@ würden.
 \index{C2b Schleife-Inneres-Pfadüberdeckung (Boundary-Interior Path Coverage)}
 
 \begin{liAntwort}
-\liPseudoUeberschrift{Äußere Pfade}
+\bPseudoUeberschrift{Äußere Pfade}
 
 \begin{itemize}
 \item S 1 2 3 E
 \end{itemize}
 
-\liPseudoUeberschrift{Grenzpfade}
+\bPseudoUeberschrift{Grenzpfade}
 
 \begin{itemize}
 \item S 1 2 3 4 5 6 3 E
 \item S 1 2 3 4 6 3 E
 \end{itemize}
 
-\liPseudoUeberschrift{Innere Pfade}
+\bPseudoUeberschrift{Innere Pfade}
 
 \begin{itemize}
 \item S 1 2 3 4 5 6 3 4 5 6 3 E
@@ -115,28 +115,28 @@ würden.
 überdeckbar ("feasible") sind und begründen Sie dies.
 
 \begin{liAntwort}
-\liPseudoUeberschrift{Äußere Pfade}
+\bPseudoUeberschrift{Äußere Pfade}
 
 \begin{description}
 \item[S 1 2 3 E]
-ja, \zB \liJavaCode{ggT(-1, -2)}.
+ja, \zB \bJavaCode{ggT(-1, -2)}.
 \end{description}
 
-\liPseudoUeberschrift{Grenzpfade}
+\bPseudoUeberschrift{Grenzpfade}
 
 \begin{description}
 \item[S 1 2 3 4 5 6 3 E]
-ja, \zB \liJavaCode{ggT(10, 20)}.
+ja, \zB \bJavaCode{ggT(10, 20)}.
 
 \item[S 1 2 3 4 6 3 E]
-ja, \zB \liJavaCode{ggT(1, 2)}.
+ja, \zB \bJavaCode{ggT(1, 2)}.
 \end{description}
 
-\liPseudoUeberschrift{Innere Pfade}
+\bPseudoUeberschrift{Innere Pfade}
 
 \begin{description}
 \item[S 1 2 3 4 5 6 3 4 5 6 3 E]
-ja, \zB \liJavaCode{ggT(2, 2)}.
+ja, \zB \bJavaCode{ggT(2, 2)}.
 
 \item[S 1 2 3 4 6 3 4 6 3 E]
 nicht feasible, da geteilt durch eins immer Modulo 0 ergibt, egal welche
@@ -144,7 +144,7 @@ Zahl a oder b hat. Bei der ersten Schleifenwiederholung wird immer die
 innere If-Verzweigung genommen.
 
 \item[S 1 2 3 4 5 6 3 4 6 3 E]
-ja, \zB \liJavaCode{ggT(2, 3)}.
+ja, \zB \bJavaCode{ggT(2, 3)}.
 
 \item[S 1 2 3 4 6 3 4 5 6 3 E]
 nicht feasible, da geteilt durch eins immer Modulo 0 ergibt, egal welche

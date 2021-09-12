@@ -1,11 +1,11 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{vollstaendige-induktion}
+\bLadePakete{vollstaendige-induktion}
 
 \begin{document}
-\let\m=\liInduktionMarkierung
-\let\e=\liInduktionErklaerung
+\let\m=\bInduktionMarkierung
+\let\e=\bInduktionErklaerung
 
-\liAufgabenTitel{Methode „sumOfSquares()“}
+\bAufgabenTitel{Methode „sumOfSquares()“}
 
 \section{Aufgabe 4: Vollständige Induktion
 \index{Vollständige Induktion}
@@ -50,7 +50,7 @@ Sei $f(n): \frac{n(n + 1)(2n + 1)}{6}$
 %
 %%
 
-\liInduktionAnfang
+\bInduktionAnfang
 
 Für $n = 0$ gilt:
 
@@ -60,7 +60,7 @@ $\texttt{sumOfSquares(0)} \overset{\texttt{if}}{=} 0 = f(0)$
 %
 %%
 
-\liInduktionVoraussetzung
+\bInduktionVoraussetzung
 
 Für ein festes $n \in \mathbb{N}$ gelte:
 
@@ -70,7 +70,7 @@ $\texttt{sumOfSquares(n)} = f(n)$
 %
 %%
 
-\liInduktionSchritt
+\bInduktionSchritt
 
 $n \rightarrow n + 1$
 
@@ -119,20 +119,20 @@ f(n + 1)
 & = \frac{\m{(n + 1)}(\m{(n + 1)} + 1) (2\m{(n + 1)} + 1))}{6}
 & \e{$(n + 1)$ verdeutlicht}\\
 \end{align*}
-\liFussnoteUrl{https://mathcs.org/analysis/reals/infinity/answers/sm_sq_cb.html}
+\bFussnoteUrl{https://mathcs.org/analysis/reals/infinity/answers/sm_sq_cb.html}
 \end{liAntwort}
 
 %%
 % (b)
 %%
 
-\item Beweisen Sie die Terminierung von \liJavaCode{sumOfSquares(n)} für alle
+\item Beweisen Sie die Terminierung von \bJavaCode{sumOfSquares(n)} für alle
 $n \geq 0$.
 <
 \begin{liAntwort}
 Sei $T (n) = n$. Die Funktion $T (n)$ ist offenbar ganzzahlig. In jedem
 Rekursionsschritt wird $n$ um eins verringert, somit ist $T (n)$ streng
-monoton fallend. Durch die Abbruchbedingung \liJavaCode{n==0} ist $T (n)$
+monoton fallend. Durch die Abbruchbedingung \bJavaCode{n==0} ist $T (n)$
 insbesondere nach unten beschränkt. Somit ist $T$ eine gültige
 Terminierungsfunktion.
 \end{liAntwort}

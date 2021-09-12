@@ -1,14 +1,14 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{formale-sprachen,automaten}
+\bLadePakete{formale-sprachen,automaten}
 \begin{document}
-\let\t=\liTuringUebergangZelle
+\let\t=\bTuringUebergangZelle
 
-\liAufgabenTitel{Binärzahl dekrementieren}
+\bAufgabenTitel{Binärzahl dekrementieren}
 \section{Binärzahl dekrementieren
 \index{Turing-Maschine}
 \footcite[Aufgabe 3]{theo:ab:3}}
 
-Sei \liAlphabet{0, 1} und $\Gamma = \{ 0, 1, \liTuringLeerzeichen \}$.
+Sei \bAlphabet{0, 1} und $\Gamma = \{ 0, 1, \bTuringLeerzeichen \}$.
 Konstruiere eine Turingmaschine $M$, die eine in Binärform gegebene,
 natürliche Zahl $(\neq 0)$ um $1$ dekrementiert (und wieder in Binärform
 ausgibt). Der Schreib-/Lesekopf steht zu Beginn der Berechnung auf dem
@@ -52,7 +52,7 @@ Zahl $0$ und diese wird wieder aufs Band geschrieben. Insgesamt ergibt
 sich
 
 \begin{center}
-\liTuringMaschine{zustaende={z_0, z_1, z_2, z_3, z_4, z_5}, start={z_0}, ende={z_5}}
+\bTuringMaschine{zustaende={z_0, z_1, z_2, z_3, z_4, z_5}, start={z_0}, ende={z_5}}
 \end{center}
 
 mit unten angegebener Übergangsfunktion:
@@ -110,49 +110,49 @@ Endzustand\\\hline
   \node[state] (z4) at (6.14cm,-6.29cm) {$z_4$};
   \node[state,accepting] (z5) at (9.57cm,-6.29cm) {$z_5$};
 
-  \liTuringKante[above]{z0}{z1}{
+  \bTuringKante[above]{z0}{z1}{
     1, 1, R;
     0, 0, R;
     LEER, LEER, R;
   }
 
-  \liTuringKante[above]{z1}{z2}{
+  \bTuringKante[above]{z1}{z2}{
     LEER, LEER, L;
   }
 
-  \liTuringKante[above,loop above]{z1}{z1}{
+  \bTuringKante[above,loop above]{z1}{z1}{
     1, 1, R;
     0, 0, R;
   }
 
-  \liTuringKante[above,loop above]{z2}{z2}{
+  \bTuringKante[above,loop above]{z2}{z2}{
     0, 1, L;
   }
 
-  \liTuringKante[above]{z2}{z3}{
+  \bTuringKante[above]{z2}{z3}{
     1, 0, L;
   }
 
-  \liTuringKante[above,loop above]{z3}{z3}{
+  \bTuringKante[above,loop above]{z3}{z3}{
     1, 1, L;
     0, 0, R;
   }
 
-  \liTuringKante[above]{z3}{z4}{
+  \bTuringKante[above]{z3}{z4}{
     LEER, LEER, R;
   }
 
-  \liTuringKante[above,loop above]{z4}{z4}{
+  \bTuringKante[above,loop above]{z4}{z4}{
     0, LEER, R;
   }
 
-  \liTuringKante[above]{z4}{z5}{
+  \bTuringKante[above]{z4}{z5}{
     1, 1, L;
     LEER, 0, R;
   }
 \end{tikzpicture}
 \end{center}
-\liFlaci{Ahifz611c}
+\bFlaci{Ahifz611c}
 \end{liAntwort}
 
 \end{document}

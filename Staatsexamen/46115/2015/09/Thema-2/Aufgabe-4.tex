@@ -1,17 +1,17 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{mathe,syntax,vollstaendige-induktion}
+\bLadePakete{mathe,syntax,vollstaendige-induktion}
 \begin{document}
-\let\m=\liInduktionMarkierung
-\let\e=\liInduktionErklaerung
+\let\m=\bInduktionMarkierung
+\let\e=\bInduktionErklaerung
 
-\liAufgabenTitel{Methode function: Formale Verifikation - Induktionsbeweis}
+\bAufgabenTitel{Methode function: Formale Verifikation - Induktionsbeweis}
 \section{Aufgabe 4
 \index{Vollständige Induktion}
 \footcite{examen:46115:2015:09}}
 
-Gegeben sei die folgende Methode \liJavaCode{function}:
+Gegeben sei die folgende Methode \bJavaCode{function}:
 
-\liJavaExamen[firstline=4,lastline=9]{46115}{2015}{09}{Induktion}
+\bJavaExamen[firstline=4,lastline=9]{46115}{2015}{09}{Induktion}
 
 \noindent
 Beweisen Sie folgenden Zusammenhang mittels vollständiger Induktion:
@@ -28,21 +28,21 @@ berücksichtigt werden - Sie dürfen also annehmen, Fließkommazahlen
 würden mathematische Genauigkeit aufweisen.
 
 \begin{liAntwort}
-\liInduktionAnfang
+\bInduktionAnfang
 
 $f(1) := 1 - \frac{1}{1 + 1} = 1 - \frac{1}{2} = \frac{1}{2}$
 
-\liInduktionVoraussetzung
+\bInduktionVoraussetzung
 
 $f(n) := 1 - \frac{1}{n + 1}$
 
-\liInduktionSchritt
+\bInduktionSchritt
 
-\liPseudoUeberschrift{zu zeigen:}
+\bPseudoUeberschrift{zu zeigen:}
 
 $f(n + 1) := 1 - \frac{1}{(n + 1) + 1} = f(n)$
 
-\liPseudoUeberschrift{Vorarbeiten (Java in Mathe umwandeln):}
+\bPseudoUeberschrift{Vorarbeiten (Java in Mathe umwandeln):}
 
 $\text{function}(n) = \frac{1}{n \cdot (n + 1)} + f(n - 1)$
 

@@ -6,7 +6,7 @@ Attributhülle]
 
 % Mathe für textit tex etc, typographie für geschweifte Klammer
 %    \begin{macrocode}
-\liLadePakete{mathe,typographie}
+\bLadePakete{mathe,typographie}
 %    \end{macrocode}
 
 %    \begin{macrocode}
@@ -29,33 +29,33 @@ Attributhülle]
 % }
 
 %    \begin{macrocode}
-\def\liTeilen#1{
+\def\bTeilen#1{
   \directlua{tex.print(normalformen.teilen('#1'))}
 }
 %    \end{macrocode}
 
-% \begin{macro}{\liAttributHuelle}
+% \begin{macro}{\bAttributHuelle}
 % \bMakroFaulenzer{ah}{liAttributHuelle}
-% |\ah{F, \m{A, B}}| \liAttributHuelle{F, \liAttributMenge{A, B}}
+% |\ah{F, \m{A, B}}| \bAttributHuelle{F, \bAttributMenge{A, B}}
 % Regulärer Ausdruck zum Konvertieren
 % |AttrHülle\((.*)\)|
 % |\\ah{$1}|
 %    \begin{macrocode}
-\def\liAttributHuelleOhneMathe#1{\text{AttrHülle}(#1)}
-\def\liAttributHuelle#1{
+\def\bAttributHuelleOhneMathe#1{\text{AttrHülle}(#1)}
+\def\bAttributHuelle#1{
 \ifmmode
-  \liAttributHuelleOhneMathe{#1}
+  \bAttributHuelleOhneMathe{#1}
 \else
-  $\liAttributHuelleOhneMathe{#1}$
+  $\bAttributHuelleOhneMathe{#1}$
 \fi
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liAttributMenge}
+% \begin{macro}{\bAttributMenge}
 % \bMakroFaulenzer{m}{liAttributMenge}
 %    \begin{macrocode}
-\def\liAttributMenge#1{\{ \textit{#1} \}}
+\def\bAttributMenge#1{\{ \textit{#1} \}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -72,76 +72,76 @@ Attributhülle]
 %    \end{macrocode}
 % \end{environment}
 
-% \begin{macro}{\liLinksReduktion}
+% \begin{macro}{\bLinksReduktion}
 % Nur innerhalb von |liAHuelle| zu verwenden
 % bzw. |multline|
 % \bMakroFaulenzer{ahL}{liLinksReduktion}
 % |\ahL{ursprüngliche linke Attributmenge}{ohne dieses Attribut}{Ergebnis}|
 %    \begin{macrocode}
-\def\liLinksReduktion#1#2#3{
+\def\bLinksReduktion#1#2#3{
   \shoveleft{
-    \liAttributHuelleOhneMathe{FA,
-    \liAttributMenge{#1 \string\ #2}} =
+    \bAttributHuelleOhneMathe{FA,
+    \bAttributMenge{#1 \string\ #2}} =
     } \\
   \shoveright{
-    \liAttributMenge{#3}
+    \bAttributMenge{#3}
   } \\
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liLinksReduktionInline}
+% \begin{macro}{\bLinksReduktionInline}
 % \bMakroFaulenzer{ahL}{liLinksReduktionInline}
 % |\ahl{ursprüngliche linke Attributmenge}{ohne dieses Attribut}{Ergebnis}|
-% |\ahl{A, E}{E}{A, E, F, B, \textbf{D}}|: \liLinksReduktionInline{A, E}{E}{A, E, F, B, \textbf{D}}
+% |\ahl{A, E}{E}{A, E, F, B, \textbf{D}}|: \bLinksReduktionInline{A, E}{E}{A, E, F, B, \textbf{D}}
 %    \begin{macrocode}
-\def\liLinksReduktionInline#1#2#3{%
+\def\bLinksReduktionInline#1#2#3{%
   {%
     \footnotesize%
-    $\liAttributHuelleOhneMathe{F,
-    \liAttributMenge{#1 \string\ #2}} =
-    \liAttributMenge{#3}$
+    $\bAttributHuelleOhneMathe{F,
+    \bAttributMenge{#1 \string\ #2}} =
+    \bAttributMenge{#3}$
   }
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liLinksReduktionInline}
+% \begin{macro}{\bLinksReduktionInline}
 % \bMakroFaulenzer{ahr}{liLinksReduktionInline}
 % |\ahr{gelöschte FA}{neue FA ohne rechts Attribut}{gegebene Attribute}{Ergebnis}|
 %    \begin{macrocode}
-\def\liRechtsReduktionInline#1#2#3#4{%
+\def\bRechtsReduktionInline#1#2#3#4{%
   {%
     \footnotesize%
-    $\liAttributHuelleOhneMathe{
+    $\bAttributHuelleOhneMathe{
       F \setminus
-      \liFunktionaleAbhaengigkeit{#1}
+      \bFunktionaleAbhaengigkeit{#1}
       \def\tmp{#2}\ifx\tmp\empty
       \else
-        \cup \liFunktionaleAbhaengigkeit{#2}
+        \cup \bFunktionaleAbhaengigkeit{#2}
       \fi
       ,
-      \liAttributMenge{#3}
+      \bAttributMenge{#3}
     } =
-    \liAttributMenge{#4}$
+    \bAttributMenge{#4}$
   }
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liFunktionaleAbhaengigkeit}
+% \begin{macro}{\bFunktionaleAbhaengigkeit}
 % \bMakroFaulenzer{fa}{liFunktionaleAbhaengigkeit}
-% |\fa{A, B -> C, D}|: \liFunktionaleAbhaengigkeit{A, B -> C, D}
+% |\fa{A, B -> C, D}|: \bFunktionaleAbhaengigkeit{A, B -> C, D}
 % Regulärer Ausdruck zum Konvertieren: |\$(.*?) \\rightarrow (.*?)\$|
 % |\\fa{$1 -> $2}|
 %    \begin{macrocode}
-\def\liFunktionaleAbhaengigkeit#1{%
+\def\bFunktionaleAbhaengigkeit#1{%
   \directlua{normalformen.drucke_funk_abhaengigkeit('#1', false)}%
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liFunktionaleAbhaengigkeiten}
+% \begin{macro}{\bFunktionaleAbhaengigkeiten}
 % \begin{verbatim}
 % \FA[F]{
 %   M -> M;
@@ -152,7 +152,7 @@ Attributhülle]
 % \end{verbatim}
 %
 % \begin{liBeispiel}
-% \liFunktionaleAbhaengigkeiten[F]{
+% \bFunktionaleAbhaengigkeiten[F]{
 %   M -> M;
 %   M -> N;
 %   V -> T, P, PN;
@@ -165,8 +165,8 @@ Attributhülle]
 % |\$(.*) \\rightarrow (.*)\$|
 % |$1 -> $2;|
 %    \begin{macrocode}
-\NewDocumentCommand {\liFunktionaleAbhaengigkeiten} { O{FA} m } {
-  \liGeschweifteKlammern
+\NewDocumentCommand {\bFunktionaleAbhaengigkeiten} { O{FA} m } {
+  \bGeschweifteKlammern
   {#1}
   {
     \begin{align*}
@@ -179,14 +179,14 @@ Attributhülle]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liRelation}
+% \begin{macro}{\bRelation}
 % \bMakroFaulenzer{r}{liRelation}
-% |\r[R3]{\u{A}, B, C}|: \liRelation[R3]{\underline{A}, B, C}
+% |\r[R3]{\u{A}, B, C}|: \bRelation[R3]{\underline{A}, B, C}
 % Regulärer Ausdruck zum Konvertieren:
 % |\$(R.*)\((.*)\)\$|
-% |\\liRelation[$1]{$2}|
+% |\\bRelation[$1]{$2}|
 %    \begin{macrocode}
-\NewDocumentCommand {\liRelation} { O{R} m } {
+\NewDocumentCommand {\bRelation} { O{R} m } {
   $\directlua{
     local name = helfer.konvertiere_tiefgestellt('#1')
     tex.print(name)

@@ -1,5 +1,5 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{
+\bLadePakete{
   mathe,
   automaten,
   formale-sprachen,
@@ -9,21 +9,21 @@
 
 \begin{document}
 \def\z#1{$z_#1$}
-\let\f=\liFussnote
-\let\k=\liAutomatenKante
-\let\l=\liLeereZelle
-\let\Z=\liZustandsPaar
+\let\f=\bFussnote
+\let\k=\bAutomatenKante
+\let\l=\bLeereZelle
+\let\Z=\bZustandsPaar
 
-\liAufgabenTitel{NEA und Minimalisierung}
+\bAufgabenTitel{NEA und Minimalisierung}
 \section{Aufgabe 1
 \index{Potenzmengenalgorithmus}
 \footcite[Aufgabe 6]{theo:ab:1}}
 
-Wir fixieren das Alphabet \liAlphabet{a, b} und definieren $L
+Wir fixieren das Alphabet \bAlphabet{a, b} und definieren $L
 \subseteq \Sigma^*$ durch
 
 \begin{center}
-\liAusdruck{w}{\text{in } w \text{ kommt das Teilwort \texttt{bab} vor}}
+\bAusdruck{w}{\text{in } w \text{ kommt das Teilwort \texttt{bab} vor}}
 \end{center}
 
 \noindent
@@ -46,7 +46,7 @@ Automat $A$ erkennt $L$:\footcite{examen:66115:2012:09}
 
 \path (3) edge[loop,above] node{a,b} (3);
 \end{tikzpicture}
-\liFlaci{Af75jwj3r}
+\bFlaci{Af75jwj3r}
 \end{center}
 
 \begin{enumerate}
@@ -57,7 +57,7 @@ erreichbare Zustände sollen nicht dargestellt werden.
 \begin{liAntwort}
 
 \def\z#1{
-  \liZustandsMengenSammlungNr{#1}{
+  \bZustandsMengenSammlungNr{#1}{
     {
       {0} {0}
       {1} {0,1}
@@ -68,7 +68,7 @@ erreichbare Zustände sollen nicht dargestellt werden.
     }
   }
 }
-\let\s=\liZustandsnameGross
+\let\s=\bZustandsnameGross
 
 \begin{tabular}{l|l|l}
 Zustandsmenge & Eingabe a & Eingabe b \\\hline
@@ -103,7 +103,7 @@ Zustandsmenge & Eingabe a & Eingabe b \\\hline
 \k 5 5 a {above,loop left}
 \k 5 3 b {above}
 \end{tikzpicture}
-\liFlaci{Aro483e89}
+\bFlaci{Aro483e89}
 \end{center}
 
 \end{liAntwort}
@@ -127,7 +127,7 @@ des verwendeten Algorithmus in nachvollziehbarer Weise.
 \end{tabular}
 \end{center}
 
-\liFussnoten
+\bFussnoten
 
 \begin{liUebergangsTabelle}{a}{b}
 \Z01 & \Z02\f3 & \Z11 \\
@@ -153,7 +153,7 @@ des verwendeten Algorithmus in nachvollziehbarer Weise.
 \k 2 {345} b {above}
 \k {345} {345} {a,b} {above,loop below}
 \end{tikzpicture}
-\liFlaci{Ar3joif5z}
+\bFlaci{Ar3joif5z}
 \end{liAntwort}
 \end{enumerate}
 

@@ -1,5 +1,5 @@
 \documentclass{bschlangaul-theorie}
-\liLadePakete{mathe,syntaxbaum,automaten,formale-sprachen}
+\bLadePakete{mathe,syntaxbaum,automaten,formale-sprachen}
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric,calc}
 
@@ -71,7 +71,7 @@ L \subseteq \Sigma^*
 
 \section{Grammatik}
 
-Eine Grammatik ist ein 4-Tupel mit \liGrammatik{} und besteht aus:
+Eine Grammatik ist ein 4-Tupel mit \bGrammatik{} und besteht aus:
 
 \begin{itemize}
 \item Einer endlichen Menge $V$ von \memph{Variablen} (Nonterminale)
@@ -92,12 +92,12 @@ Eine Grammatik ist ein 4-Tupel mit \liGrammatik{} und besteht aus:
 \begin{liKasten}
 \subsection{Beispiel}
 
-\liGrammatik{} mit
+\bGrammatik{} mit
 
 \begin{itemize}
 \item $V = \{Z, A\}$
 
-\item \liAlphabet{0, 1}
+\item \bAlphabet{0, 1}
 
 \item \begin{liProduktionsRegeln}
 Z -> 1 A | 1,
@@ -111,16 +111,16 @@ oder
 
 \bigskip
 \noindent
-\liGrammatik{variablen={Z, A}, alphabet={0, 1}, produktionen={Z -> 1 A | 1,
+\bGrammatik{variablen={Z, A}, alphabet={0, 1}, produktionen={Z -> 1 A | 1,
 A -> 1 A | 0 A | 1}}
 \end{liKasten}
 
 Eine reguläre Sprache wird durch eine reguläre Grammatik erzeugt, \dh
 eine Grammatik mit Produktionsregeln der Form:
 
-\liProduktionen{A -> EPSILON} oder
-\liProduktionen{A -> 1} oder
-\liProduktionen{A -> 0 A}
+\bProduktionen{A -> EPSILON} oder
+\bProduktionen{A -> 1} oder
+\bProduktionen{A -> 0 A}
 
 \begin{description}
 \item[linke Seite:]
@@ -142,7 +142,7 @@ linkslineare Grammatiken)\footcite[Seite 18]{theo:fs:1}
 
 \subsection{Syntax-Baum}
 
-Gegebene Grammatik: \liGrammatik{variablen={Z, A}, alphabet={0, 1}, produktionen={Z -> 1 A | 1,
+Gegebene Grammatik: \bGrammatik{variablen={Z, A}, alphabet={0, 1}, produktionen={Z -> 1 A | 1,
 A -> 1 A | 0 A | 1}}
 
 \noindent
@@ -184,17 +184,17 @@ einen Pfeil) von dem Zustand $A$ nach $q_{F}$ mit der Inschrift $a$.
 Wenn es eine Regel $A\rightarrow aB$ gibt, dann erzeugen wir eine
 Übergangsfunktion (zeichnen einen Pfeil) von dem Zustand $A$ in den
 Zustand $B$ mit der Inschrift $a$.
-\liFussnoteUrl{http://www.informatikseite.de/theorie/node50.php}
+\bFussnoteUrl{http://www.informatikseite.de/theorie/node50.php}
 
 \subsection{Eindeutige Grammatik}
 
 Eine Grammatik $G$ ist dann eindeutig, wenn für jedes Wort aus $L(G)$
 genau eine mögliche Ableitung aus dem Startsymbol existiert.
-\liFussnoteUrl{http://u-helmich.de/inf/kursQ21/27/folge-27-2.html}
+\bFussnoteUrl{http://u-helmich.de/inf/kursQ21/27/folge-27-2.html}
 
 Eine Sprache $L$ heißt eindeutig, wenn es für $L$ eine eindeutige
 Grammatik gibt. Ansonsten heißt $L$ mehrdeutig.
-\liFussnoteUrl{http://wwwmayr.in.tum.de/lehre/2008WS/ads-ei/2008-11-24.pdf}
+\bFussnoteUrl{http://wwwmayr.in.tum.de/lehre/2008WS/ads-ei/2008-11-24.pdf}
 
 %-----------------------------------------------------------------------
 %
@@ -292,7 +292,7 @@ einen Endzustand und für jedes Wort $\omega$ nicht Element L einen
 Nicht-Endzustand. Indem in $A$ alle Endzustände zu Nicht-Endzuständen
 gemacht werden und umgekehrt, entsteht ein deterministischer endlicher
 Automat $A$, der $L$ erkennt. Also ist $L$ regulär.
-\liFussnoteUrl{https://www.inf.hs-flensburg.de/lang/theor/regulaer-abgeschlossen.htm}
+\bFussnoteUrl{https://www.inf.hs-flensburg.de/lang/theor/regulaer-abgeschlossen.htm}
 
 \section{Komplement}
 
@@ -312,7 +312,7 @@ in Bezug auf das Komplement abgeschlossen ist.\footcite[Seite
 
 \item[Produkt:]
 
-Das Produkt \liAusdruck[]{uv}{u \in L_1 \lor v \in L_2} zweier regulärer
+Das Produkt \bAusdruck[]{uv}{u \in L_1 \lor v \in L_2} zweier regulärer
 Sprachen $L_1$ und $L_2$ ist regulär.
 
 \item[Kleene-Stern:]

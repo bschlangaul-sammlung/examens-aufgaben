@@ -9,7 +9,7 @@ Setzen einer Aufgabe]
 
 % Formatierung muss vor literatur sein, sonst Option clash
 %    \begin{macrocode}
-\liLadePakete{
+\bLadePakete{
   formatierung,
   abmessung,
   literatur-dummy,
@@ -65,11 +65,11 @@ Setzen einer Aufgabe]
 }
 %    \end{macrocode}
 
-% \begin{macro}{\liAufgabenMetadaten}
+% \begin{macro}{\bAufgabenMetadaten}
 %    \begin{macrocode}
-\def\liAufgabenMetadaten #1
+\def\bAufgabenMetadaten #1
 {
-  \liMetaSetze{#1}
+  \bMetaSetze{#1}
 
   \tl_if_empty:NTF \g_einzelpruefungs_nr_tl {}
   {
@@ -131,18 +131,18 @@ Setzen einer Aufgabe]
 {
   \vfill
   {
-    \liLogoTextProjekt
+    \bLogoTextProjekt
     \bigskip
 
-    \liLogoTextCCLizenz
+    \bLogoTextCCLizenz
     \bigskip
 
     \begin{spacing}{1}
       \tiny
       \noindent
-      \liMetaHilfMit
+      \bMetaHilfMit
 
-      \liMetaQuelltext
+      \bMetaQuelltext
       \_gib_github_url_href:
     \end{spacing}
   }

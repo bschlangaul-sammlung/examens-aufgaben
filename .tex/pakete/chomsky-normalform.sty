@@ -8,7 +8,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\liLadePakete{typographie}
+\bLadePakete{typographie}
 %    \end{macrocode}
 
 % \bFaulenzer{
@@ -20,7 +20,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \subsubsection{TeX-Markup-Grundgerüst}
 
 % \begin{verbatim}
-% \let\schrittE=\liChomskyUeberErklaerung
+% \let\schrittE=\bChomskyUeberErklaerung
 % \begin{enumerate}
 % \item \schrittE{1}
 % \item \schrittE{2}
@@ -35,7 +35,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \begin{enumerate}
 % \item \schrittE{1}
 %
-% \liNichtsZuTun
+% \bNichtsZuTun
 %
 % \item \schrittE{2}
 %
@@ -84,10 +84,10 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \end{enumerate}
 % \end{verbatim}
 
-% \begin{macro}{\liChomskyUeberschrift}
+% \begin{macro}{\bChomskyUeberschrift}
 % \bMakroFaulenzer{schritt}{liChomskyUeberschrift}
 %    \begin{macrocode}
-\def\liChomskyUeberschrift#1{
+\def\bChomskyUeberschrift#1{
   {
     \bfseries
     \rmfamily
@@ -102,7 +102,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liChomskyErklaerung}
+% \begin{macro}{\bChomskyErklaerung}
 % \bMakroFaulenzer{erklaerung}{liChomskyErklaerung}
 %  Hoffmann Seite 180
 %    \begin{macrocode}
@@ -138,22 +138,22 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
     }
   }
 }
-\def\liChomskyErklaerung#1{
+\def\bChomskyErklaerung#1{
   {
     \itshape
     \footnotesize
-    \liParagraphMitLinien{\li@chomsky@erklaerung@texte{#1}}
+    \bParagraphMitLinien{\li@chomsky@erklaerung@texte{#1}}
   }
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liChomskyUeberErklaerung}
+% \begin{macro}{\bChomskyUeberErklaerung}
 % \bMakroFaulenzer{schrittE}{liChomskyUeberErklaerung}
 %    \begin{macrocode}
-\def\liChomskyUeberErklaerung#1{
-  \liChomskyUeberschrift{#1}\par
-  \liChomskyErklaerung{#1}
+\def\bChomskyUeberErklaerung#1{
+  \bChomskyUeberschrift{#1}\par
+  \bChomskyErklaerung{#1}
 }
 %    \end{macrocode}
 % \end{macro}

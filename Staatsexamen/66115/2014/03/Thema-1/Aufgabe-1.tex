@@ -1,15 +1,15 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{vollstaendige-induktion}
+\bLadePakete{vollstaendige-induktion}
 
 \begin{document}
-\let\m=\liInduktionMarkierung
-\let\e=\liInduktionErklaerung
+\let\m=\bInduktionMarkierung
+\let\e=\bInduktionErklaerung
 % lf = lfLong
 \def\lf#1{\text{lfLong}(#1)}
 % sk = summe k
 \def\sk#1{\sum^{#1}_{k=0}k!}
 
-\liAufgabenTitel{Klasse „LeftFactorial“ und Methode „lfBig()“}
+\bAufgabenTitel{Klasse „LeftFactorial“ und Methode „lfBig()“}
 
 \section{Aufgabe 1: „Rekursion und Induktion“
 \index{Rekursion}
@@ -22,7 +22,7 @@
 % a)
 %%
 
-\item Gegeben sei die Methode \liJavaCode{BigInteger lfBig(int n)} zur
+\item Gegeben sei die Methode \bJavaCode{BigInteger lfBig(int n)} zur
 Berechnung der eingeschränkten Linksfakultät:\footcite[Seite
 25]{aud:fs:1}
 
@@ -40,43 +40,43 @@ n !(n - 1) - (n - 1) !(n - 2) &
 \end{cases}
 \end{equation*}
 
-\liJavaExamen[firstline=3,lastline=30]{66115}{2014}{03}{LeftFactorial}
+\bJavaExamen[firstline=3,lastline=30]{66115}{2014}{03}{LeftFactorial}
 
 Implementieren Sie unter Verwendung des Konzeptes der \emph{dynamischen
-Programmierung} die Methode \liJavaCode{BigInteger dp(int n)}, die
+Programmierung} die Methode \bJavaCode{BigInteger dp(int n)}, die
 jede $!n$ auch bei mehrfachem Aufrufen mit dem gleichen Parameter
 höchstens einmal rekursiv berechnet. Sie dürfen der Klasse
-\liJavaCode{LeftFactorial} genau ein Attribut beliebigen Datentyps
-hinzufügen und die in \liJavaCode{lfBig(int)} verwendeten Methoden und
+\bJavaCode{LeftFactorial} genau ein Attribut beliebigen Datentyps
+hinzufügen und die in \bJavaCode{lfBig(int)} verwendeten Methoden und
 Konstanten ebenfalls nutzen.\footcite[Aufgabe 5]{aud:pu:1}
 \index{Implementierung in Java}
 
 \begin{liAntwort}
-Wir führen ein Attribut mit dem Namen \liJavaCode{store} ein und
-erzeugen ein Feld vom Typ \liJavaCode{BigInteger} mit der Länge $n + 1$.
+Wir führen ein Attribut mit dem Namen \bJavaCode{store} ein und
+erzeugen ein Feld vom Typ \bJavaCode{BigInteger} mit der Länge $n + 1$.
 Die Länge des Feld $n + 1$ hat den Vorteil, dass nicht ständig $n - 1$
 verwendet werden muss, um den gewünschten Wert zu erhalten.
 
 In der untenstehenden Implementation gibt es zwei Methoden mit dem Namen
-\liJavaCode{dp}. Die untenstehende Methode ist nur eine Hüllmethode, mit
+\bJavaCode{dp}. Die untenstehende Methode ist nur eine Hüllmethode, mit
 der nach außen hin die Berechnung gestartet und das
-\liJavaCode{store}-Feld neu gesetzt wird. So ist es möglich
-\liJavaCode{dp()} mehrmals hintereinander mit verschiedenen Werten
-aufzurufen (siehe \liJavaCode{main()}-Methode).
+\bJavaCode{store}-Feld neu gesetzt wird. So ist es möglich
+\bJavaCode{dp()} mehrmals hintereinander mit verschiedenen Werten
+aufzurufen (siehe \bJavaCode{main()}-Methode).
 
-\liJavaExamen[firstline=32,lastline=52]{66115}{2014}{03}{LeftFactorial}
+\bJavaExamen[firstline=32,lastline=52]{66115}{2014}{03}{LeftFactorial}
 \end{liAntwort}
 
 %%
 % b)
 %%
 
-\item Betrachten Sie nun die Methode \liJavaCode{lfLong(int)} zur
+\item Betrachten Sie nun die Methode \bJavaCode{lfLong(int)} zur
 Berechnung der vorangehend definierten Linksfakultät ohne obere
 Schranke. Nehmen Sie im Folgenden an, dass der Datentyp
-\liJavaCode{long} unbeschränkt ist und daher kein Überlauf auftritt.
+\bJavaCode{long} unbeschränkt ist und daher kein Überlauf auftritt.
 
-\liJavaExamen[firstline=54,lastline=62]{66115}{2014}{03}{LeftFactorial}
+\bJavaExamen[firstline=54,lastline=62]{66115}{2014}{03}{LeftFactorial}
 
 Beweisen Sie \emph{formal} mittels \emph{vollständiger Induktion}:
 
@@ -90,7 +90,7 @@ Beweisen Sie \emph{formal} mittels \emph{vollständiger Induktion}:
 %
 %%
 
-\liInduktionAnfang
+\bInduktionAnfang
 
 \begin{displaymath}
 n=1 \Rightarrow
@@ -118,7 +118,7 @@ n=2 \Rightarrow & \lf{2}\\
 %
 %%
 
-\liInduktionVoraussetzung
+\bInduktionVoraussetzung
 
 \begin{displaymath}
 \texttt{\lf{n}} = \sk{n - 1}
@@ -128,7 +128,7 @@ n=2 \Rightarrow & \lf{2}\\
 %
 %%
 
-\liInduktionSchritt
+\bInduktionSchritt
 
 \begin{align*}
 A(n + 1) \\
@@ -167,9 +167,9 @@ A(n + 1) \\
 \end{liAntwort}
 
 \begin{liAdditum}
-\liPseudoUeberschrift{Komplette Klasse LeftFactorial}
+\bPseudoUeberschrift{Komplette Klasse LeftFactorial}
 
-\liJavaExamen{66115}{2014}{03}{LeftFactorial}
+\bJavaExamen{66115}{2014}{03}{LeftFactorial}
 \end{liAdditum}
 
 \end{enumerate}

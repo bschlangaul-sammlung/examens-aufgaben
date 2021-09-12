@@ -1,10 +1,10 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{er,syntax,rmodell}
+\bLadePakete{er,syntax,rmodell}
 \begin{document}
-\let\r=\liRelationMenge
+\let\r=\bRelationMenge
 
 
-\liAufgabenTitel{Mitarbeiter-Projekte einer Abteilung}
+\bAufgabenTitel{Mitarbeiter-Projekte einer Abteilung}
 
 \section{Aufgabe zum Relationenmodell und zum verfeinertem
 Relationenmodell
@@ -55,13 +55,13 @@ relationales Schema! Geben Sie in geeigneter Weise Schlüssel an.
 
 \begin{liAntwort}
 \begin{liRmodell}
-\r{Abteilung}{\liPrimaer{AbtID}, AName}
-\r{Mitarbeiter}{\liPrimaer{PersID}, MName}
-\r{Projekt}{\liPrimaer{ProjID}, PName}
-\r{gehörtZu}{\liPrimaer{PersID, AbtID}}
-\r{arbeitetMit}{\liPrimaer{PersID}, ProjID}
-\r{istChefvon}{\liPrimaer{PersID}, VorID}
-\r{verantfür}{PersID, \liPrimaer{ProjID}}
+\r{Abteilung}{\bPrimaer{AbtID}, AName}
+\r{Mitarbeiter}{\bPrimaer{PersID}, MName}
+\r{Projekt}{\bPrimaer{ProjID}, PName}
+\r{gehörtZu}{\bPrimaer{PersID, AbtID}}
+\r{arbeitetMit}{\bPrimaer{PersID}, ProjID}
+\r{istChefvon}{\bPrimaer{PersID}, VorID}
+\r{verantfür}{PersID, \bPrimaer{ProjID}}
 \end{liRmodell}
 \end{liAntwort}
 
@@ -78,7 +78,7 @@ relationales Schema! Geben Sie in geeigneter Weise Schlüssel an.
 \r{Mitarbeiter}{PersID, MName, AbtID, VerantwortlicherID}
 \end{liRmodell}
 
-$\rightarrow$ \liAttribut{gehörtZu} und \liAttribut{istChefVon} wurden
+$\rightarrow$ \bAttribut{gehörtZu} und \bAttribut{istChefVon} wurden
 berücksichtigt
 
 \begin{liRmodell}
@@ -86,7 +86,7 @@ berücksichtigt
 \end{liRmodell}
 
 $\rightarrow$ zur Vermeidung von NULL-Werten wurde hier
-\liAttribut{verantFür} berücksichtigt
+\bAttribut{verantFür} berücksichtigt
 
 \begin{liRmodell}
 \r{arbeitetMit}{PersID, ProjID}

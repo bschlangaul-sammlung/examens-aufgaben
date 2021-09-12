@@ -1,10 +1,10 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{formale-sprachen,automaten,minimierung,syntax,potenzmengen-konstruktion,pumping-lemma}
+\bLadePakete{formale-sprachen,automaten,minimierung,syntax,potenzmengen-konstruktion,pumping-lemma}
 \begin{document}
-\let\l=\liLeereZelle
-\let\f=\liFussnote
+\let\l=\bLeereZelle
+\let\f=\bFussnote
 \def\z#1{
-  \liZustandsMengenSammlungNr{#1}{
+  \bZustandsMengenSammlungNr{#1}{
     {
       {0} {0}
       {1} {0,1}
@@ -13,17 +13,17 @@
     }
   }
 }
-\let\s=\liZustandsnameGross
-\let\Z=\liZustandsPaar
+\let\s=\bZustandsnameGross
+\let\Z=\bZustandsPaar
 
 % verbessert 30.3.2021
 
-\liAufgabenTitel{Alphabet „01“ Anzahl Unterschied höchstes 3}
+\bAufgabenTitel{Alphabet „01“ Anzahl Unterschied höchstes 3}
 \section{Aufgabe 1
 \index{Reguläre Sprache}
 \footcite{examen:66115:2015:03}}
 
-Die Sprache $L$ über den Alphabet \liAlphabet{0, 1} enthält alle Wörter,
+Die Sprache $L$ über den Alphabet \bAlphabet{0, 1} enthält alle Wörter,
 bei denen beim Lesen von links nach rechts der Unterschied in der Zahl
 der $0$en und $1$en stets höchstens $3$ ist. Also ist $w \in L$ genau
 dann, wenn für alle $u$, $v$ mit $w = uv$ gilt $||u|_0 - |u|_1| \leq 3$.
@@ -110,7 +110,7 @@ Wörter darstellen zu können, ist mindestens ein weiterer Zustand nötig.
 \path (t) edge[loop right] node{0,1} (t);
 
 \end{tikzpicture}
-\liFlaci{Ait6va31c}
+\bFlaci{Ait6va31c}
 \end{center}
 \end{liAntwort}
 
@@ -127,7 +127,7 @@ genau dar, an welcher Stelle dieser „Beweis” fehlerhaft ist.
 \index{Pumping-Lemma (Reguläre Sprache)}
 
 \begin{liExkurs}[Pumping-Lemma für Reguläre Sprachen]
-\liPumpingRegulaer
+\bPumpingRegulaer
 \end{liExkurs}
 
 \begin{liAntwort}
@@ -166,7 +166,7 @@ Automaten mit nur drei Zuständen an, $L_2$ erkennt.
 \path (0) edge[above] node{$1$} (1);
 \path (1) edge[above] node{$0$,$1$} (2);
 \end{tikzpicture}
-\liFlaci{Apwzjufbg}
+\bFlaci{Apwzjufbg}
 \end{center}
 \end{liAntwort}
 
@@ -185,7 +185,7 @@ muss ein deterministischer Automat für $L_2$ also mindestens haben?
 %
 %%
 
-\liPseudoUeberschrift{Potenzmengenkonstruktion}
+\bPseudoUeberschrift{Potenzmengenkonstruktion}
 
 \begin{tabular}{l|l|l|l}
 Name & Zustandsmenge & Eingabe $0$ & Eingabe $1$ \\\hline\hline
@@ -218,14 +218,14 @@ Name & Zustandsmenge & Eingabe $0$ & Eingabe $1$ \\\hline\hline
 \path (3) edge[right] node{$0$} (2);
 \path (3) edge[above,loop below] node{$1$} (3);
 \end{tikzpicture}
-\liFlaci{Ajfcofpb9}
+\bFlaci{Ajfcofpb9}
 \end{center}
 
 %%
 %
 %%
 
-\liPseudoUeberschrift{Minimierungsalgorithmus}
+\bPseudoUeberschrift{Minimierungsalgorithmus}
 
 \begin{center}
 \begin{tabular}{|c||c|c|c|c|}
@@ -238,9 +238,9 @@ Name & Zustandsmenge & Eingabe $0$ & Eingabe $1$ \\\hline\hline
 \end{tabular}
 \end{center}
 
-\liFussnoten
+\bFussnoten
 
-\def\liZustandsPaarVariablenName{Z}
+\def\bZustandsPaarVariablenName{Z}
 
 \begin{liUebergangsTabelle}{0}{1}
 \Z01 & \Z02 \f2 & \Z13 \f2 \\

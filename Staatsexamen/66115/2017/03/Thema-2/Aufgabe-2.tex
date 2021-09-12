@@ -1,16 +1,16 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{formale-sprachen,chomsky-normalform,pumping-lemma}
+\bLadePakete{formale-sprachen,chomsky-normalform,pumping-lemma}
 \begin{document}
-\let\schrittE=\liChomskyUeberErklaerung
+\let\schrittE=\bChomskyUeberErklaerung
 
-\liAufgabenTitel{Nonterminale: STU, Terminale: abcde}
+\bAufgabenTitel{Nonterminale: STU, Terminale: abcde}
 \section{Aufgabe 2
 \index{Kontextfreie Sprache}
 \footcite{examen:66115:2017:03}}
 
 \begin{enumerate}
-\item Gegeben sei die kontextfreie Grammatik \liGrammatik{} mit Sprache
-L(G), wobei $V = {S, T, U}$ und \liAlphabet{a, b, c, d, e}. $P$ bestehe
+\item Gegeben sei die kontextfreie Grammatik \bGrammatik{} mit Sprache
+L(G), wobei $V = {S, T, U}$ und \bAlphabet{a, b, c, d, e}. $P$ bestehe
 aus den folgenden Produktionen:
 \index{Chomsky-Normalform}
 
@@ -19,7 +19,7 @@ S -> U | S b U,
 T -> d S e | a,
 U -> T | U c T
 \end{liProduktionsRegeln}
-\liFlaci{Gib25c5oc}
+\bFlaci{Gib25c5oc}
 
 \begin{enumerate}
 %%
@@ -29,7 +29,7 @@ U -> T | U c T
 \item Zeigen Sie $a c d a e \in L(G)$.
 
 \begin{liAntwort}
-\liAbleitung{
+\bAbleitung{
 S ->
 U ->
 U c T ->
@@ -50,7 +50,7 @@ a c d a e}
 \begin{enumerate}
 \item \schrittE{1}
 
-\liNichtsZuTun
+\bNichtsZuTun
 
 \item \schrittE{2}
 
@@ -105,7 +105,7 @@ B_U -> B U, % S.1 -> T1 U
 %%
 
 \item Geben Sie eine kontextfreie Grammatik für
-\liAusdruck{a^i b^k c^i | i, k \in \mathbb{N}} an.
+\bAusdruck{a^i b^k c^i | i, k \in \mathbb{N}} an.
 
 \begin{liAntwort}
 Wir interpretieren $\mathbb{N}$ als $\mathbb{N}_0$.
@@ -114,20 +114,20 @@ Wir interpretieren $\mathbb{N}$ als $\mathbb{N}_0$.
 S -> a S c | a B c | B | EPSILON
 B -> b | B b
 \end{liProduktionsRegeln}
-\liFlaci{Ghp3bfdtg}
+\bFlaci{Ghp3bfdtg}
 \end{liAntwort}
 
 %%
 %
 %%
 
-\item Zeigen Sie, dass \liAusdruck{a^i b^k c^i | i, k \in \mathbb{N}
+\item Zeigen Sie, dass \bAusdruck{a^i b^k c^i | i, k \in \mathbb{N}
 \land i < k} nicht kontextfrei ist, indem Sie das Pumping-Lemma für
 kontextfreie Sprachen anwenden.
 \index{Pumping-Lemma (Kontextfreie Sprache)}
 
 \begin{liExkurs}[Pumping-Lemma für Reguläre Sprachen]
-\liPumpingKontextfrei
+\bPumpingKontextfrei
 \end{liExkurs}
 
 \begin{liAntwort}

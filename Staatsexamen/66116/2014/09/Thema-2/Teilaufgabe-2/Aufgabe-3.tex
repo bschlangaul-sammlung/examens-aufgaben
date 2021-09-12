@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{mathe,syntax,kontrollflussgraph}
+\bLadePakete{mathe,syntax,kontrollflussgraph}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Aufgabe 2: Kontrollflussorientiertes Testen},
   Thematik = {Methode „specialSums()“},
   RelativerPfad = Staatsexamen/66116/2014/09/Thema-2/Teilaufgabe-2/Aufgabe-3.tex,
@@ -18,13 +18,13 @@
   ExamenAufgabeNr = 3,
 }
 
-\let\c=\liKontrollCode
-\let\b=\liBedingung
+\let\c=\bKontrollCode
+\let\b=\bBedingung
 
 Im\index{Kontrollflussorientieres Testen}
 \footcite{examen:66116:2014:09} Folgenden ist ein Algorithmus angegeben,
-der für eine positive Zahl \liJavaCode{until} die Summe aller Zahlen
-bildet, die kleiner als \liJavaCode{until} und Vielfache von $4$ oder
+der für eine positive Zahl \bJavaCode{until} die Summe aller Zahlen
+bildet, die kleiner als \bJavaCode{until} und Vielfache von $4$ oder
 $6$ sind. Für nicht positive Zahlen soll $0$ zurückgegeben werden. Der
 Algorithmus soll also folgender Spezifikation genügen:
 \footcite[Kontrollflussorientiertes Testen, Aufgabe 2]{sosy:ab:7}
@@ -43,7 +43,7 @@ $\texttt{until} \leq 0 \Rightarrow \texttt{specialSums(until)} = 0$
 \bigskip\noindent
 wobei $\%$ den Modulo-Operator bezeichnet.
 
-\liJavaExamen[firstline=4,lastline=14]{66116}{2014}{09}{SpecialSum}
+\bJavaExamen[firstline=4,lastline=14]{66116}{2014}{09}{SpecialSum}
 
 \noindent
 Beachten Sie, dass der Algorithmus nicht der Spezifikation genügt. Der
@@ -128,16 +128,16 @@ Betrachte den Testfall $\{(0, 0), (5, 4)\}$.
 \begin{description}
 \item[erste if-Bedingung]
 Das erste Tupel mit $\text{until} = 0$ stellt sicher, dass
-die erste \liJavaCode{if}-Bedingung \liJavaCode{false} wird.
+die erste \bJavaCode{if}-Bedingung \bJavaCode{false} wird.
 
 \item[Bedingung der for-Schleife]
 Für die zweite Eingabe $\text{until} = 5$ werden für $i$ die Werte $1, 2,
 3, 4, 5, 6$ angenommen. Wobei für $i = 6$ die Bedingung der for-Schleife
-\liJavaCode{false} ist.
+\bJavaCode{false} ist.
 
 \item[Innere if-Bedingung]
-Für $i = 1, 2, 3, 5$ wird die innere if-Bedingung jeweils \liJavaCode{false},
-für $i = 4$ wird sie \liJavaCode{true}.
+Für $i = 1, 2, 3, 5$ wird die innere if-Bedingung jeweils \bJavaCode{false},
+für $i = 4$ wird sie \bJavaCode{true}.
 \end{description}
 
 \end{liAntwort}
@@ -176,19 +176,19 @@ erwartete Ausgabe $O$ darstellt.
 
 \begin{liAntwort}
 Ein gültiger Pfad im Kontrollflussgraphen wäre
-\liKontrollTextzeileKnoten{0} - \liKontrollTextzeileKnoten{1} -
-\liKontrollTextzeileKnoten{2} - \liKontrollTextzeileKnoten{3} -
-\liKontrollTextzeileKnoten{4} - \liKontrollTextzeileKnoten{5} -
-\liKontrollTextzeileKnoten{2} - \liKontrollTextzeileKnoten{6}. Der
-Übergang von \liKontrollTextzeileKnoten{3} auf
-\liKontrollTextzeileKnoten{4} ist hier aber nicht möglich, da beim
-ersten Durchlaufen der for-Schleife (\liKontrollTextzeileKnoten{2}) $i$
+\bKontrollTextzeileKnoten{0} - \bKontrollTextzeileKnoten{1} -
+\bKontrollTextzeileKnoten{2} - \bKontrollTextzeileKnoten{3} -
+\bKontrollTextzeileKnoten{4} - \bKontrollTextzeileKnoten{5} -
+\bKontrollTextzeileKnoten{2} - \bKontrollTextzeileKnoten{6}. Der
+Übergang von \bKontrollTextzeileKnoten{3} auf
+\bKontrollTextzeileKnoten{4} ist hier aber nicht möglich, da beim
+ersten Durchlaufen der for-Schleife (\bKontrollTextzeileKnoten{2}) $i$
 immer $1$ ist und $1$ weder durch $4$ noch durch $6$ teilbar ist. Somit
-kann die Bedingung des inneren ifs (\liKontrollTextzeileKnoten{3}) beim
+kann die Bedingung des inneren ifs (\bKontrollTextzeileKnoten{3}) beim
 ersten Durchlauf nie \emph{wahr} sein, womit immer der Übergang
-\liKontrollTextzeileKnoten{3} - \liKontrollTextzeileKnoten{5} zu Beginn
+\bKontrollTextzeileKnoten{3} - \bKontrollTextzeileKnoten{5} zu Beginn
 genommen werden muss. Alle Pfade, die zu Beginn
-\liKontrollTextzeileKnoten{3} - \liKontrollTextzeileKnoten{4} enthalten,
+\bKontrollTextzeileKnoten{3} - \bKontrollTextzeileKnoten{4} enthalten,
 sind somit nicht überdeckbar.
 \end{liAntwort}
 

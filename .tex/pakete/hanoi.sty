@@ -10,9 +10,9 @@ von Hanoi-Grafiken]
 \RequirePackage{xcolor}
 %    \end{macrocode}
 
-% \begin{macro}{\liHanoi}
-% |\liHanoi{anzahl-scheiben}{gewicht-scheibe/turm-nr,gewicht-scheibe/turm-nr}|,
-% \zB: |\liHanoi{4}{4/1,3/1,2/3,1/2}|
+% \begin{macro}{\bHanoi}
+% |\bHanoi{anzahl-scheiben}{gewicht-scheibe/turm-nr,gewicht-scheibe/turm-nr}|,
+% \zB: |\bHanoi{4}{4/1,3/1,2/3,1/2}|
 %    \begin{macrocode}
 \def\li@mset #1[#2]=#3{%
 	\expandafter\xdef\csname #1#2\endcsname{#3}
@@ -25,7 +25,7 @@ von Hanoi-Grafiken]
 	\li@mset #1[#2]=\pgfmathresult
 }
 
-\def\liHanoi#1#2{
+\def\bHanoi#1#2{
   \edef\li@numdiscs{#1}
   \def\li@sequence{#2}
   \begin{tikzpicture}[line width=4mm,brown!40,line cap=round,xscale=3]

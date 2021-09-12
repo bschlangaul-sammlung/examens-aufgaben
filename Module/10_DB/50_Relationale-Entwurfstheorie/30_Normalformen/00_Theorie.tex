@@ -1,13 +1,13 @@
 \documentclass{bschlangaul-theorie}
-\liLadePakete{mathe,normalformen}
+\bLadePakete{mathe,normalformen}
 \usepackage{tabularx}
 \usepackage{paralist}
 
 \begin{document}
-\let\ah=\liAttributHuelle
-\let\m=\liAttributMenge
-\let\FA=\liFunktionaleAbhaengigkeiten
-\let\fa=\liFunktionaleAbhaengigkeit
+\let\ah=\bAttributHuelle
+\let\m=\bAttributMenge
+\let\FA=\bFunktionaleAbhaengigkeiten
+\let\fa=\bFunktionaleAbhaengigkeit
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Theorie-Teil
@@ -169,11 +169,11 @@ Betrachtungen erübrigen sich hiermit.
 Ein Relationenschema R ist in \textbf{erster Normalform (1NF)}, wenn
 alle Attribute \memph{atomar} sind.
 
-\liPseudoUeberschrift{1NF verletzt}
+\bPseudoUeberschrift{1NF verletzt}
 
 \FA{CDID -> Album, Gründungsjahr, Erscheinungsjahr, Titelliste;}
 
-\liPseudoUeberschrift{in 1NF}
+\bPseudoUeberschrift{in 1NF}
 
 \FA{CDID, Track -> Album, Gründungsjahr, Erscheinungsjahr, Titel;}
 \footcite{wiki:normalisierung}
@@ -195,7 +195,7 @@ nicht nur von einem Teil eines Schlüssels. Wichtig ist hierbei, dass die
 Nichtschlüsselattribute wirklich von allen Schlüsseln vollständig
 abhängen.\footcite[Zweite Normalform (2NF)]{wiki:normalisierung}
 
-\liPseudoUeberschrift{2NF verletzt}
+\bPseudoUeberschrift{2NF verletzt}
 
 \FA[R]{
   CDID, Track -> Album, Gründungsjahr, Erscheinungsjahr, Titel;
@@ -205,7 +205,7 @@ abhängen.\footcite[Zweite Normalform (2NF)]{wiki:normalisierung}
 Felder Albumtitel, Interpret und Erscheinungsjahr sind vom Feld CDID
 abhängig, aber nicht vom Feld Track.
 
-\liPseudoUeberschrift{in 2NF}
+\bPseudoUeberschrift{in 2NF}
 
 \FA[$R_{CD}$]{CDID -> Albumtitel, Interpret, Gründungsjahr, Erscheinungsjahr;}
 
@@ -227,7 +227,7 @@ Relationenschema in der 2NF befindet, und kein Nichtschlüsselattribut
 von einem Schlüsselkandidaten \memph{transitiv abhängt.}\footcite[Dritte
 Normalform (3NF)]{wiki:normalisierung}
 
-\liPseudoUeberschrift{3NF verletzt}
+\bPseudoUeberschrift{3NF verletzt}
 
 \FA[$R_{CD}$]{
   CDID -> Albumtitel, Interpret, Gründungsjahr, Erscheinungsjahr;
@@ -236,7 +236,7 @@ Normalform (3NF)]{wiki:normalisierung}
 
 \FA[$R_{Lied}$]{CDID, Track -> Titel;}
 
-\liPseudoUeberschrift{in 3NF}
+\bPseudoUeberschrift{in 3NF}
 
 \FA[$R_{CD}$]{
   CDID -> Albumtitel, Interpret, Erscheinungsjahr;
@@ -276,7 +276,7 @@ neuen Normalform, die diese verschärft: Eine Relation ist automatisch
 frei von transitiven Abhängigkeiten, wenn alle Determinanten
 Schlüsselkandidaten sind.
 
-\liPseudoUeberschrift{BCNF verletzt}
+\bPseudoUeberschrift{BCNF verletzt}
 
 \FA[$R_{\text{Sportler}}$]{
   Name, Verein -> Sportart;
@@ -284,7 +284,7 @@ Schlüsselkandidaten sind.
   Verein -> Sportart;
 }
 
-\liPseudoUeberschrift{in BCNF}
+\bPseudoUeberschrift{in BCNF}
 
 \FA[$R_{\text{Sportler}}$]{Name -> Verein;}
 \FA[$R_{\text{Verein}}$]{Verein -> Sportart;}

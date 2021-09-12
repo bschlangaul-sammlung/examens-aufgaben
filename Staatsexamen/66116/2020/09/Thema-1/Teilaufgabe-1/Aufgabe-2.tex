@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{gantt,cpm}
+\bLadePakete{gantt,cpm}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Aufgabe 2},
   Thematik = {Projektplanung},
   RelativerPfad = Staatsexamen/66116/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-2.tex,
@@ -18,11 +18,11 @@
 }
 
 \let\f=\footnotesize
-\let\FZ=\liCpmFruehI
-\let\SZ=\liCpmSpaetI
-\let\v=\liCpmVon
-\let\vz=\liCpmVonZu
-\let\z=\liCpmZu
+\let\FZ=\bCpmFruehI
+\let\SZ=\bCpmSpaetI
+\let\v=\bCpmVon
+\let\vz=\bCpmVonZu
+\let\z=\bCpmZu
 
 Die Planung eines Softwareprojekts kann \zB in Form von
 Gantt-Diagrammen oder CPM-Netzwerken (kritischer Pfad Methode)
@@ -79,23 +79,23 @@ Projekts ist durch das Ende aller Aktivitäten bedingt.
 
 \begin{center}
 \begin{tikzpicture}[x=1.5cm,y=1.5cm]
-\liCpmEreignis[name=A]{$A$}{1}{1}
-\liCpmEreignis[name=DA]{$D_A$}{1}{2}
-\liCpmEreignis[name=DE]{$D_E$}{3}{2}
-\liCpmEreignis[name=RA]{$R_A$}{2}{1}
-\liCpmEreignis[name=RE]{$R_E$}{4}{1}
-\liCpmEreignis[name=TA]{$T_A$}{3}{0}
-\liCpmEreignis[name=TE]{$T_E$}{5}{0}
-\liCpmEreignis[name=E]{$E$}{5}{1}
+\bCpmEreignis[name=A]{$A$}{1}{1}
+\bCpmEreignis[name=DA]{$D_A$}{1}{2}
+\bCpmEreignis[name=DE]{$D_E$}{3}{2}
+\bCpmEreignis[name=RA]{$R_A$}{2}{1}
+\bCpmEreignis[name=RE]{$R_E$}{4}{1}
+\bCpmEreignis[name=TA]{$T_A$}{3}{0}
+\bCpmEreignis[name=TE]{$T_E$}{5}{0}
+\bCpmEreignis[name=E]{$E$}{5}{1}
 
-\liCpmVorgang[schein]{A}{DA}{}
-\liCpmVorgang{DA}{DE}{2}
-\liCpmVorgang{RA}{RE}{3}
-\liCpmVorgang{TA}{TE}{3}
-\liCpmVorgang{RA}{TA}{1}
-\liCpmVorgang[schein]{DE}{RA}{}
-\liCpmVorgang[schein]{TE}{E}{}
-\liCpmVorgang[schein]{RE}{E}{}
+\bCpmVorgang[schein]{A}{DA}{}
+\bCpmVorgang{DA}{DE}{2}
+\bCpmVorgang{RA}{RE}{3}
+\bCpmVorgang{TA}{TE}{3}
+\bCpmVorgang{RA}{TA}{1}
+\bCpmVorgang[schein]{DE}{RA}{}
+\bCpmVorgang[schein]{TE}{E}{}
+\bCpmVorgang[schein]{RE}{E}{}
 \end{tikzpicture}
 \end{center}
 \end{liAntwort}
@@ -146,24 +146,24 @@ Gegeben sei nun das folgende CPM-Netzwerk:
 
 \begin{center}
 \begin{tikzpicture}[x=1.5cm,y=1.5cm]
-\liCpmEreignis{a}{0}{1}
-\liCpmEreignis{b}{1}{2}
-\liCpmEreignis{c}{2}{2}
-\liCpmEreignis{d}{2}{1}
-\liCpmEreignis{e}{3}{1}
-\liCpmEreignis{f}{2}{0}
-\liCpmEreignis{g}{4}{1}
+\bCpmEreignis{a}{0}{1}
+\bCpmEreignis{b}{1}{2}
+\bCpmEreignis{c}{2}{2}
+\bCpmEreignis{d}{2}{1}
+\bCpmEreignis{e}{3}{1}
+\bCpmEreignis{f}{2}{0}
+\bCpmEreignis{g}{4}{1}
 
-\liCpmVorgang[schein]{b}{d}{}
-\liCpmVorgang[schein]{b}{f}{}
-\liCpmVorgang[schein]{d}{e}{}
-\liCpmVorgang{a}{b}{2}
-\liCpmVorgang{a}{f}{3}
-\liCpmVorgang{b}{c}{3}
-\liCpmVorgang{c}{d}{1}
-\liCpmVorgang{c}{e}{5}
-\liCpmVorgang{e}{g}{2}
-\liCpmVorgang{f}{e}{4}
+\bCpmVorgang[schein]{b}{d}{}
+\bCpmVorgang[schein]{b}{f}{}
+\bCpmVorgang[schein]{d}{e}{}
+\bCpmVorgang{a}{b}{2}
+\bCpmVorgang{a}{f}{3}
+\bCpmVorgang{b}{c}{3}
+\bCpmVorgang{c}{d}{1}
+\bCpmVorgang{c}{e}{5}
+\bCpmVorgang{e}{g}{2}
+\bCpmVorgang{f}{e}{4}
 \end{tikzpicture}
 \end{center}
 
@@ -174,7 +174,7 @@ Gegeben sei nun das folgende CPM-Netzwerk:
 \item Geben Sie für jedes Ereignis die früheste Zeit an.
 
 \begin{liAntwort}
-\liCpmFruehErklaerung
+\bCpmFruehErklaerung
 \begin{tabular}{|l|l|r|}
 \hline
 $i$ & Nebenrechnung          & \FZ \\\hline
@@ -195,7 +195,7 @@ g   &                        & 12  \\\hline
 \item Geben Sie für jedes Ereignis die späteste Zeit an.
 
 \begin{liAntwort}
-\liCpmSpaetErklaerung
+\bCpmSpaetErklaerung
 \begin{tabular}{|l|l|r|}
 \hline
 $i$ & Nebenrechnung        & \SZ \\\hline
@@ -228,24 +228,24 @@ GP  & 0 & 0 & 0  & 3  & 0  & 3  & 0  \\\hline
 
 \begin{center}
 \begin{tikzpicture}[x=1.5cm,y=1.5cm]
-\liCpmEreignis{a}{0}{1}
-\liCpmEreignis{b}{1}{2}
-\liCpmEreignis{c}{2}{2}
-\liCpmEreignis{d}{2}{1}
-\liCpmEreignis{e}{3}{1}
-\liCpmEreignis{f}{2}{0}
-\liCpmEreignis{g}{4}{1}
+\bCpmEreignis{a}{0}{1}
+\bCpmEreignis{b}{1}{2}
+\bCpmEreignis{c}{2}{2}
+\bCpmEreignis{d}{2}{1}
+\bCpmEreignis{e}{3}{1}
+\bCpmEreignis{f}{2}{0}
+\bCpmEreignis{g}{4}{1}
 
-\liCpmVorgang[schein]{b}{d}{}
-\liCpmVorgang[schein]{b}{f}{}
-\liCpmVorgang[schein]{d}{e}{}
-\liCpmVorgang[kritisch]{a}{b}{2}
-\liCpmVorgang{a}{f}{3}
-\liCpmVorgang[kritisch]{b}{c}{3}
-\liCpmVorgang{c}{d}{1}
-\liCpmVorgang[kritisch]{c}{e}{5}
-\liCpmVorgang[kritisch]{e}{g}{2}
-\liCpmVorgang{f}{e}{4}
+\bCpmVorgang[schein]{b}{d}{}
+\bCpmVorgang[schein]{b}{f}{}
+\bCpmVorgang[schein]{d}{e}{}
+\bCpmVorgang[kritisch]{a}{b}{2}
+\bCpmVorgang{a}{f}{3}
+\bCpmVorgang[kritisch]{b}{c}{3}
+\bCpmVorgang{c}{d}{1}
+\bCpmVorgang[kritisch]{c}{e}{5}
+\bCpmVorgang[kritisch]{e}{g}{2}
+\bCpmVorgang{f}{e}{4}
 \end{tikzpicture}
 \end{center}
 

@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{uml}
+\bLadePakete{uml}
 \begin{document}
-\liAufgabenTitel{Hotel-Verwaltung}
+\bAufgabenTitel{Hotel-Verwaltung}
 
 \section{Hotel-Verwaltung
 \index{Klassendiagramm}
@@ -72,15 +72,15 @@ Adresse und ist seinem Zimmer zugeordnet.
 \umlclass[x=7]{Gast}{- name : String\\- adresse : String}{ + unterhalten() }
 
 \umlassoc[mult1=1..*,pos1=0.1,mult2=1,pos2=0.9,arg2=,name=angestellter]{Angestellter}{Hotel}
-\node [above left=0.1cm and -0.7cm of angestellter-1] {ist angestellt \liLeserichtungRechts};
+\node [above left=0.1cm and -0.7cm of angestellter-1] {ist angestellt \bLeserichtungRechts};
 
 \umlHVassoc[mult1=1..*,mult2=1,pos2=1.9]{Gast}{Gästezimmer}
 
-\umlVHassoc[anchor1=-140,mult1=1..*,mult2=1..*,pos2=1.9, arg=betreut\liLeserichtungRechts]
+\umlVHassoc[anchor1=-140,mult1=1..*,mult2=1..*,pos2=1.9, arg=betreut\bLeserichtungRechts]
 {Servicekraft}{Gast}
-\umlVHVassoc[arm1=5cm,anchor1=-140,mult1=1..*,mult2=1..*,pos2=1.9, arg=reinigt\liLeserichtungRechts]
+\umlVHVassoc[arm1=5cm,anchor1=-140,mult1=1..*,mult2=1..*,pos2=1.9, arg=reinigt\bLeserichtungRechts]
 {Servicekraft}{Gästezimmer}
 
-\umlVHVassoc[anchor1=40,anchor2=125,arm1=0.5cm,arg=arbeitet in\liLeserichtungRechts,pos=1.5]{Küchenmitarbeiter}{Küche}
+\umlVHVassoc[anchor1=40,anchor2=125,arm1=0.5cm,arg=arbeitet in\bLeserichtungRechts,pos=1.5]{Küchenmitarbeiter}{Küche}
 \end{tikzpicture}
 \end{document}

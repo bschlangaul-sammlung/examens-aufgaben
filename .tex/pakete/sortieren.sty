@@ -8,10 +8,10 @@ für händisches Sortieren bzw. einen Schreibtischlauf setzen]
 %   rectangle split parts=5,
 % ]{
 %   \node[li sortierung zahlenreihe] (reihe) {\nodepart{one} 2 \nodepart{two} 1 \nodepart{three} 3};
-%   \liSortierPfeil{one}{two}
-%   \liSortierPfeil{two}{three}
-%   \liSortierMarkierung{two split south}{three split north}
-%   \liSortierPfeilUnten{three}{one}
+%   \bSortierPfeil{one}{two}
+%   \bSortierPfeil{two}{three}
+%   \bSortierMarkierung{two split south}{three split north}
+%   \bSortierPfeilUnten{three}{one}
 % }
 % \end{verbatim}
 
@@ -20,10 +20,10 @@ für händisches Sortieren bzw. einen Schreibtischlauf setzen]
 %   rectangle split parts=5,
 % ]{
 %   \node[li sortierung zahlenreihe] (reihe) {\nodepart{one} 2 \nodepart{two} 1 \nodepart{three} 3};
-%   \liSortierPfeil{one}{two}
-%   \liSortierPfeil{two}{three}
-%   \liSortierMarkierung{two split south}{three split north}
-%   \liSortierPfeilUnten{three}{one}
+%   \bSortierPfeil{one}{two}
+%   \bSortierPfeil{two}{three}
+%   \bSortierMarkierung{two split south}{three split north}
+%   \bSortierPfeilUnten{three}{one}
 % }
 % \end{liBeispiel}
 
@@ -32,12 +32,12 @@ für händisches Sortieren bzw. einen Schreibtischlauf setzen]
 \usetikzlibrary{shapes.multipart,positioning}
 %    \end{macrocode}
 
-% \begin{macro}{\liVertauschen}
-% |\liVertauschen{1 2 >4 <3 5}|: Setze ein Schaubild mit Hilfe
+% \begin{macro}{\bVertauschen}
+% |\bVertauschen{1 2 >4 <3 5}|: Setze ein Schaubild mit Hilfe
 % von TikZ. |<| und |>| werden dazu verwendet, um den Vertauschprozess
 % zu visualisieren.
 %    \begin{macrocode}
-\def\liVertauschen#1{
+\def\bVertauschen#1{
   \directlua{
     local sortieren = require('bschlangaul-sortieren')
     sortieren('#1')
@@ -46,25 +46,25 @@ für händisches Sortieren bzw. einen Schreibtischlauf setzen]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liSortierPfeil}
+% \begin{macro}{\bSortierPfeil}
 %    \begin{macrocode}
-\def\liSortierPfeil#1#2{
+\def\bSortierPfeil#1#2{
   \draw[-latex] ([xshift=1mm]reihe.#1 north) -- ++(0,0.25) -| ([xshift=-1mm]reihe.#2 north);
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liSortierPfeilUnten}
+% \begin{macro}{\bSortierPfeilUnten}
 %    \begin{macrocode}
-\def\liSortierPfeilUnten#1#2{
+\def\bSortierPfeilUnten#1#2{
   \draw[-latex] ([xshift=1mm]reihe.#1 south) -- ++(0,-0.25) -| ([xshift=-1mm]reihe.#2 south);
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liSortierMarkierung}
+% \begin{macro}{\bSortierMarkierung}
 %    \begin{macrocode}
-\def\liSortierMarkierung#1#2{\node[
+\def\bSortierMarkierung#1#2{\node[
   draw,
   very thick,
   fit=(reihe.#1) (reihe.#2),

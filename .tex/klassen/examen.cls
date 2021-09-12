@@ -9,7 +9,7 @@ mehreren Aufgaben zu einem Examen.]
 
 % Lade die wichtigsten Pakete. Formatierung muss vor literatur sein, sonst Option clash
 %    \begin{macrocode}
-\liLadePakete{
+\bLadePakete{
   formatierung,
   literatur-dummy,
   makros,
@@ -30,7 +30,7 @@ mehreren Aufgaben zu einem Examen.]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\liLadeAllePakete
+\bLadeAllePakete
 %    \end{macrocode}
 
 % Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
@@ -46,27 +46,27 @@ mehreren Aufgaben zu einem Examen.]
 \ExplSyntaxOn
 %    \end{macrocode}
 
-% \begin{macro}{\liSetzeExamenThemaNr}
+% \begin{macro}{\bSetzeExamenThemaNr}
 %    \begin{macrocode}
-\def\liSetzeExamenThemaNr#1{
+\def\bSetzeExamenThemaNr#1{
   \tl_gset:Nn \g_thema_nr_tl { #1 }
   \section{Thema~Nr.~#1}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liSetzeExamenTeilaufgabeNr}
+% \begin{macro}{\bSetzeExamenTeilaufgabeNr}
 %    \begin{macrocode}
-\def\liSetzeExamenTeilaufgabeNr#1{
+\def\bSetzeExamenTeilaufgabeNr#1{
   \tl_gset:Nn \g_teilaufgabe_nr_tl { #1 }
   \subsection{Teilaufgabe~Nr.~#1}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liBindeAufgabeEin}
+% \begin{macro}{\bBindeAufgabeEin}
 %    \begin{macrocode}
-\def\liBindeAufgabeEin#1{
+\def\bBindeAufgabeEin#1{
   \tl_gset:Nn \g_aufgabe_nr_tl { #1 }
   \input{
     \LehramtInformatikRepository /
@@ -86,11 +86,11 @@ mehreren Aufgaben zu einem Examen.]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liAufgabenMetadaten}
+% \begin{macro}{\bAufgabenMetadaten}
 % Das Metadaten-Makro überschreiben
 %    \begin{macrocode}
-\def\liAufgabenMetadaten#1{
-  \liMetaSetze{#1}
+\def\bAufgabenMetadaten#1{
+  \bMetaSetze{#1}
   \subsubsection{\_gib_aufgaben_titel:}
 }
 %    \end{macrocode}
@@ -110,10 +110,10 @@ mehreren Aufgaben zu einem Examen.]
 
     \vfill
 
-    \liGrafikLogo[width=8cm]\par
+    \bGrafikLogo[width=8cm]\par
     \bigskip
     Die~Bschlangaul-Sammlung \par
-    {\footnotesize \liMetaHermineFriends} \par
+    {\footnotesize \bMetaHermineFriends} \par
 
     \vfill
 
@@ -168,10 +168,10 @@ mehreren Aufgaben zu einem Examen.]
 
   \vfill
 
-  \liLogoTextProjekt
+  \bLogoTextProjekt
   \bigskip
 
-  \liLogoTextCCLizenz
+  \bLogoTextCCLizenz
   \bigskip
 
   \clearpage

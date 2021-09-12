@@ -1,15 +1,15 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{formale-sprachen,automaten}
+\bLadePakete{formale-sprachen,automaten}
 \begin{document}
-\let\m=\liMengeOhneMathe
-\let\z=\liZustandsnameTiefgestellt
+\let\m=\bMengeOhneMathe
+\let\z=\bZustandsnameTiefgestellt
 
-\liAufgabenTitel{(a^n b^n)^m}
+\bAufgabenTitel{(a^n b^n)^m}
 \section{Kontextfreie Sprache
 \index{Kontextfreie Sprache}
 \footcite{theo:ab:2}}
 
-Gegeben ist die Grammatik \liGrammatik{variablen={S, A, B}, alphabet={a,
+Gegeben ist die Grammatik \bGrammatik{variablen={S, A, B}, alphabet={a,
 b}} und den Produktionen
 
 \bigskip
@@ -34,7 +34,7 @@ beschreibt.
 
 $L = \m{(a^n b^n)^m \, | \, m \in \mathbb{N}_0 \text{ und } n \in \text{ gerade Zahlen}}$
 
-\let\u=\liPseudoUeberschrift
+\let\u=\bPseudoUeberschrift
 
 Einige Testableitungen um die Grammatik in Erfahrung zu bringen:
 
@@ -42,25 +42,25 @@ Einige Testableitungen um die Grammatik in Erfahrung zu bringen:
 
 \u{Mit 4 Buchstaben}
 
-\liAbleitung{S -> SAB -> SABAB -> ABAB -> AABB -> aabb}
+\bAbleitung{S -> SAB -> SABAB -> ABAB -> AABB -> aabb}
 
 \u{Mit 6 Buchstaben}
 
-\liAbleitung{S -> ... -> ABAB.AB -> AABB.AB -> AABA.BB -> AAAB.BB -> nichts}
+\bAbleitung{S -> ... -> ABAB.AB -> AABB.AB -> AABA.BB -> AAAB.BB -> nichts}
 
 \u{Mit 8 Buchstaben}
 
-\liAbleitung{S -> ... -> ABAB.ABAB -> ... -> aabb.aabb}
+\bAbleitung{S -> ... -> ABAB.ABAB -> ... -> aabb.aabb}
 
-\liAbleitung{S -> ... -> ABAB.ABAB -> ... -> AABB.AABB -> AABA.BABB -> AABA.ABBB -> AAAB.ABBB -> AAAA.BBBB -> aaaa.bbbb}
+\bAbleitung{S -> ... -> ABAB.ABAB -> ... -> AABB.AABB -> AABA.BABB -> AABA.ABBB -> AAAB.ABBB -> AAAA.BBBB -> aaaa.bbbb}
 
 \u{Mit 12 Buchstaben}
 
-\liAbleitung{S -> ... -> ABAB.ABAB.ABAB -> ... -> aabb.aabb.aabb}
+\bAbleitung{S -> ... -> ABAB.ABAB.ABAB -> ... -> aabb.aabb.aabb}
 
-\liAbleitung{S -> ... -> ABAB.ABAB.ABAB -> AAAA.BBBB.AABB  -> aaaa.bbbb.aabb}
+\bAbleitung{S -> ... -> ABAB.ABAB.ABAB -> AAAA.BBBB.AABB  -> aaaa.bbbb.aabb}
 
-\liAbleitung{S -> ... -> ABAB.ABAB.ABAB -> AABB.ABAB.ABAB -> AABA.BBAB.ABAB -> AAAB.BBAB.ABAB ... -> aaaa.aabb.bbbb}
+\bAbleitung{S -> ... -> ABAB.ABAB.ABAB -> AABB.ABAB.ABAB -> AABA.BBAB.ABAB -> AAAB.BBAB.ABAB ... -> aaaa.aabb.bbbb}
 \end{liAntwort}
 
 %%
@@ -76,7 +76,7 @@ $L(G') = L(G)$
 S -> a a S b b | S S | epsilon,
 \end{liProduktionsRegeln}
 
-\liFlaci{Grn19rt8w}
+\bFlaci{Grn19rt8w}
 \end{liAntwort}
 
 %%
@@ -89,9 +89,9 @@ S -> a a S b b | S S | epsilon,
 \index{Kellerautomat}
 
 \begin{liAntwort}
-\liPseudoUeberschrift{1. Kellerautomat (aus der Grammtik abgeleitet)}
+\bPseudoUeberschrift{1. Kellerautomat (aus der Grammtik abgeleitet)}
 
-\liKellerAutomat{
+\bKellerAutomat{
   zustaende={\z0},
   alphabet={a, b},
   kelleralphabet={\#, S, A, B},
@@ -102,7 +102,7 @@ S -> a a S b b | S S | epsilon,
 \begin{tikzpicture}[li kellerautomat]
   \node[state,initial,accepting] (z0) at (4.29cm,-4.57cm) {$z_0$};
 
-  \liKellerKante[above,loop]{z0}{z0}{
+  \bKellerKante[above,loop]{z0}{z0}{
     a, A, EPSILON;
     b, B, EPSILON;
     EPSILON, S, A A S B B;
@@ -113,11 +113,11 @@ S -> a a S b b | S S | epsilon,
 \end{tikzpicture}
 \end{center}
 
-\liFlaci{Araj960s2}
+\bFlaci{Araj960s2}
 
-\liPseudoUeberschrift{2. Kellerautomat}
+\bPseudoUeberschrift{2. Kellerautomat}
 
-\liKellerAutomat{
+\bKellerAutomat{
   zustaende={\z0, \z1},
   alphabet={a, b},
   kelleralphabet={\#, 1, 2},
@@ -132,29 +132,29 @@ Keller.
   \node[state,initial,accepting] (z0) at (2.43cm,-5.86cm) {$z_0$};
   \node[state] (z1) at (8.29cm,-5.86cm) {$z_1$};
 
-  \liKellerKante[above,bend left]{z0}{z1}{
+  \bKellerKante[above,bend left]{z0}{z1}{
     EPSILON, 2, 2;
   }
 
-  \liKellerKante[above,loop]{z0}{z0}{
+  \bKellerKante[above,loop]{z0}{z0}{
     a, KELLERBODEN, 1 KELLERBODEN;
     a, 1, 2 1;
     a, 2, 1 2;
     EPSILON, KELLERBODEN, EPSILON;
   }
 
-  \liKellerKante[above,loop]{z1}{z1}{
+  \bKellerKante[above,loop]{z1}{z1}{
     b, 2, EPSILON;
     b, 1, EPSILON;
   }
 
-  \liKellerKante[above,bend left]{z1}{z0}{
+  \bKellerKante[above,bend left]{z1}{z0}{
     EPSILON, KELLERBODEN, KELLERBODEN;
   }
 \end{tikzpicture}
 \end{center}
 
-\liFlaci{Ahfqseouz}
+\bFlaci{Ahfqseouz}
 
 \end{liAntwort}
 \end{enumerate}

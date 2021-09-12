@@ -5,7 +5,7 @@ Relation in die 3. Normalform]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\liLadePakete{normalformen,mathe,typographie}
+\bLadePakete{normalformen,mathe,typographie}
 \ExplSyntaxOn
 %    \end{macrocode}
 
@@ -16,7 +16,7 @@ Relation in die 3. Normalform]
 % \subsubsection{TeX-Markup Grundgerüst}
 
 % \begin{verbatim}
-% \let\schrittE=\liSyntheseUeberErklaerung
+% \let\schrittE=\bSyntheseUeberErklaerung
 % \begin{enumerate}
 % \item \schrittE{1}
 %
@@ -36,17 +36,17 @@ Relation in die 3. Normalform]
 % \subsubsection{TeX-Markup Linksreduktion}
 
 % \begin{verbatim}
-% \let\ahl=\liLinksReduktionInline
-% \let\fa=\liFunktionaleAbhaengigkeit
-% \let\m=\liAttributMenge
+% \let\ahl=\bLinksReduktionInline
+% \let\fa=\bFunktionaleAbhaengigkeit
+% \let\m=\bAttributMenge
 % \let\b=\textbf
 
-% \liPseudoUeberschrift{\fa{C, E -> D, X}}
+% \bPseudoUeberschrift{\fa{C, E -> D, X}}
 %
 % $\m{D, X} \in$ \ahl{C, E}{E}{A, C, B, \b{D, X}}\\
 % $\m{D, X} \notin$ \ahl{C, E}{C}{E, F}
 %
-% \liPseudoUeberschrift{\fa{C, E -> F}}
+% \bPseudoUeberschrift{\fa{C, E -> F}}
 %
 % $F \notin$ \ahl{C, E}{E}{A, C, B}\\
 % $F \in$ \ahl{C, E}{C}{E, \b{F}}
@@ -55,14 +55,14 @@ Relation in die 3. Normalform]
 % \subsubsection{TeX-Markup Rechtreduktion}
 
 % \begin{verbatim}
-% \let\ahr=\liRechtsReduktionInline
-% \let\fa=\liFunktionaleAbhaengigkeit
+% \let\ahr=\bRechtsReduktionInline
+% \let\fa=\bFunktionaleAbhaengigkeit
 %
-% \liPseudoUeberschrift{F}
+% \bPseudoUeberschrift{F}
 %
 % $F \in$ \ahr{E -> F, X}{E -> F}{E}{E, \b{F}}
 %
-% \liPseudoUeberschrift{A}
+% \bPseudoUeberschrift{A}
 %
 % $A \notin$ \ahr{B -> A}{}{B}{B}\\
 % $A \in$ \ahr{C -> A}{}{C}{\b{A},B,C}
@@ -71,7 +71,7 @@ Relation in die 3. Normalform]
 % \subsubsection{TeX-Markup Relationen formen}
 
 % \begin{verbatim}
-% \let\r=\liRelation
+% \let\r=\bRelation
 % \let\u=\underline
 %
 % \r[R1]{\u{A, D}, E}\\
@@ -80,7 +80,7 @@ Relation in die 3. Normalform]
 % \end{verbatim}
 
 % \begin{liBeispiel}
-% \let\schrittE=\liSyntheseUeberErklaerung
+% \let\schrittE=\bSyntheseUeberErklaerung
 % \begin{enumerate}
 % \item \schrittE{1}
 %
@@ -97,10 +97,10 @@ Relation in die 3. Normalform]
 % \end{enumerate}
 % \end{liBeispiel}
 
-% \begin{macro}{\liSyntheseUeberschrift}
+% \begin{macro}{\bSyntheseUeberschrift}
 % \bMakroFaulenzer{schritt}{liSyntheseUeberschrift}
 %    \begin{macrocode}
-\def\liSyntheseUeberschrift#1{
+\def\bSyntheseUeberschrift#1{
   {
     \bfseries
     \rmfamily
@@ -119,7 +119,7 @@ Relation in die 3. Normalform]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liSyntheseErklaerung}
+% \begin{macro}{\bSyntheseErklaerung}
 % \bMakroFaulenzer{erklaerung}{liSyntheseErklaerung}
 %    \begin{macrocode}
 \def\li@synthese@erklaerung@texte#1{
@@ -134,12 +134,12 @@ Relation in die 3. Normalform]
       $\alpha~\rightarrow~\beta~\in~F$~die~Linksreduktion~durch,~
       überprüfe~also~für~alle~
       $A~\in~\alpha$,~ob~$A$~überflüssig~ist,~d.~h.~ob~
-      $\beta~\subseteq~\liAttributHuelle{F,~\alpha~-~A}.$
+      $\beta~\subseteq~\bAttributHuelle{F,~\alpha~-~A}.$
     }
     {1-2} {
       Führe~für~jede~(verbliebene)~funktionale~Abhängigkeit~$\alpha~
       \rightarrow~\beta$~die~Rechtsreduktion~durch,~überprüfe~also~für~
-      alle~$B~\in~\beta$,~ob~$B~\in~\liAttributHuelle{F~-~(\alpha~
+      alle~$B~\in~\beta$,~ob~$B~\in~\bAttributHuelle{F~-~(\alpha~
       \rightarrow~\beta)~\cup~(\alpha~\rightarrow~(\beta~-~B)),~
       \alpha}$~gilt.~In~diesem~Fall~ist~B~auf~der~rechten~Seite~
       überflüssig~und~kann~eleminiert~werden,~\dh~$\alpha~
@@ -178,22 +178,22 @@ Relation in die 3. Normalform]
     }
   }
 }
-\def\liSyntheseErklaerung#1{
+\def\bSyntheseErklaerung#1{
   {
     \itshape
     \footnotesize
-    \liParagraphMitLinien{\li@synthese@erklaerung@texte{#1}}
+    \bParagraphMitLinien{\li@synthese@erklaerung@texte{#1}}
   }
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liSyntheseUeberErklaerung}
+% \begin{macro}{\bSyntheseUeberErklaerung}
 % \bMakroFaulenzer{schrittE}{liSyntheseUeberErklaerung}
 %    \begin{macrocode}
-\def\liSyntheseUeberErklaerung#1{
-  \liSyntheseUeberschrift{#1}\par
-  \liSyntheseErklaerung{#1}
+\def\bSyntheseUeberErklaerung#1{
+  \bSyntheseUeberschrift{#1}\par
+  \bSyntheseErklaerung{#1}
 }
 %    \end{macrocode}
 % \end{macro}

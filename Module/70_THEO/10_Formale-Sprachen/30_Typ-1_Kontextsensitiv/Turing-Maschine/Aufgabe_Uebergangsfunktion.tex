@@ -1,10 +1,10 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{automaten,formale-sprachen}
+\bLadePakete{automaten,formale-sprachen}
 \begin{document}
-\def\l{\,\liTuringLeerzeichen\,}
-\let\t=\liTuringUebergangZelle
+\def\l{\,\bTuringLeerzeichen\,}
+\let\t=\bTuringUebergangZelle
 \def\z#1{\ifmmode \,z_#1\,\else$z_#1$\fi}
-\liAufgabenTitel{Übergangsfunktion}
+\bAufgabenTitel{Übergangsfunktion}
 \section{Turingmaschine mit folgender Übergangsfunktion
 \index{Turing-Maschine}
 \footcite[Aufgabe 2]{theo:ab:3}}
@@ -47,53 +47,53 @@ X &
   \node[state] (z5) at (7cm,-1.43cm) {$z_5$};
   \node[state,accepting] (zf) at (4.43cm,-5.71cm) {$z_f$};
 
-  \liTuringKante[above]{z1}{z2}{
+  \bTuringKante[above]{z1}{z2}{
     0, X, R;
   }
 
-  \liTuringKante[above]{z2}{z3}{
+  \bTuringKante[above]{z2}{z3}{
     0, X, R;
   }
 
-  \liTuringKante[above,loop above]{z2}{z2}{
+  \bTuringKante[above,loop above]{z2}{z2}{
     X, X, R;
   }
 
-  \liTuringKante[right]{z2}{zf}{
+  \bTuringKante[right]{z2}{zf}{
     LEER, LEER, R;
   }
 
-  \liTuringKante[right,bend left]{z3}{z4}{
+  \bTuringKante[right,bend left]{z3}{z4}{
     0, 0, R;
   }
 
-  \liTuringKante[above,loop right]{z3}{z3}{
+  \bTuringKante[above,loop right]{z3}{z3}{
     X, X, R;
   }
 
-  \liTuringKante[right,bend right]{z3}{z5}{
+  \bTuringKante[right,bend right]{z3}{z5}{
     LEER, LEER, R;
   }
 
-  \liTuringKante[left,bend left]{z4}{z3}{
+  \bTuringKante[left,bend left]{z4}{z3}{
     0, X, R;
   }
 
-  \liTuringKante[above,loop below]{z4}{z4}{
+  \bTuringKante[above,loop below]{z4}{z4}{
     X, X, R;
   }
 
-  \liTuringKante[above,loop above]{z5}{z5}{
+  \bTuringKante[above,loop above]{z5}{z5}{
     0, 0, L;
     X, X, L;
   }
 
-  \liTuringKante[above left,pos=0.3]{z5}{z2}{
+  \bTuringKante[above left,pos=0.3]{z5}{z2}{
     LEER, LEER, R;
   }
 \end{tikzpicture}
 \end{center}
-\liFlaci{Apew8cea2}
+\bFlaci{Apew8cea2}
 
 \noindent
 Erreicht die TM den Zustand $z_f$ (final), so hält sie an und bearbeitet

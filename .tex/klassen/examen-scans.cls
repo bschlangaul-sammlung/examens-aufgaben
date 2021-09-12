@@ -14,7 +14,7 @@ Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.]
 
 % Formatierung muss vor literatur sein, sonst Option clash
 %    \begin{macrocode}
-\liLadePakete{formatierung}
+\bLadePakete{formatierung}
 %    \end{macrocode}
 
 % Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
@@ -26,17 +26,17 @@ Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.]
 \ExplSyntaxOn
 %    \end{macrocode}
 
-% \begin{macro}{\liPruefungsNummer}
+% \begin{macro}{\bPruefungsNummer}
 %    \begin{macrocode}
-\def\liPruefungsNummer#1{
+\def\bPruefungsNummer#1{
   \str_set:Nn \g_pruefungs_nummer {#1}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liPruefungsTitel}
+% \begin{macro}{\bPruefungsTitel}
 %    \begin{macrocode}
-\def\liPruefungsTitel#1{
+\def\bPruefungsTitel#1{
   \str_set:Nn \g_pruefungs_titel {#1}
 }
 %    \end{macrocode}
@@ -53,9 +53,9 @@ Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.]
 }
 %    \end{macrocode}
 
-% \begin{macro}{\liTrennSeite}
+% \begin{macro}{\bTrennSeite}
 %    \begin{macrocode}
-\def\liTrennSeite#1{
+\def\bTrennSeite#1{
   \clearpage
   \strut
   \vfill
@@ -75,9 +75,9 @@ Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liTitelSeite}
+% \begin{macro}{\bTitelSeite}
 %    \begin{macrocode}
-\def\liTitelSeite#1{
+\def\bTitelSeite#1{
   \clearpage
   \strut
   \vfill
@@ -91,16 +91,16 @@ Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liBindePdfEin}
+% \begin{macro}{\bBindePdfEin}
 %    \begin{macrocode}
-\def\liBindePdfEin#1{\includepdf[pages={1-}]{\LehramtInformatikRepository/#1}}
+\def\bBindePdfEin#1{\includepdf[pages={1-}]{\LehramtInformatikRepository/#1}}
 %    \end{macrocode}
 % \end{macro}
 
 %    \begin{macrocode}
 \AtBeginDocument{
   \thispagestyle{empty}
-  \liTitelSeite{
+  \bTitelSeite{
     \li@SansFett{\Large}{Sammlung~aller~Staatsexamensaufgaben~der~Prüfungsnummer} \\
 
     \vspace{4cm}

@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{formale-sprachen,automaten}
+\bLadePakete{formale-sprachen,automaten}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Aufgabe 3},
   Thematik = {Kontextfreie Sprachen},
   RelativerPfad = Staatsexamen/66115/2020/03/Thema-2/Aufgabe-3.tex,
@@ -22,8 +22,8 @@
 % (a)
 %%
 
-\item Ist die folgende Sprache \liAusdruck[L_1]{a^{n+2}b^{2n+1}}{n \geq 2}
-über dem Alphabet \liAlphabet{a,b} kontextfrei?
+\item Ist die folgende Sprache \bAusdruck[L_1]{a^{n+2}b^{2n+1}}{n \geq 2}
+über dem Alphabet \bAlphabet{a,b} kontextfrei?
 \index{Kontextfreie Grammatik}
 \index{Kontextfreie Sprache}
 \footcite{examen:66115:2020:03}
@@ -35,14 +35,14 @@ gefordert).
 \begin{liAntwort}
 $L_1$ ist kontextfrei
 
-\liGrammatik{variablen={S,A,B}, alphabet={a,b}}
+\bGrammatik{variablen={S,A,B}, alphabet={a,b}}
 
 \begin{liProduktionsRegeln}
 S -> a A b b,
 A -> a A b b | a B bb,
 B -> a a b,
 \end{liProduktionsRegeln}
-\liFlaci{Grxk1oczg}
+\bFlaci{Grxk1oczg}
 
 \begin{description}
 \item[$n = 2$] 4a 5b: aaaabbbbb
@@ -57,13 +57,13 @@ B -> a a b,
 
 \item Geben Sie einen Kellerautomaten (PDA) formal an, der die Sprache
 
-\liAusdruck[L_1]
+\bAusdruck[L_1]
 {w_1 w_2 w_3}
 {w_1, w_2, w_3 \in \Sigma^* \string\ \{ \lambda \}
 \text{ und }
 w_1 = w_3^{\text{rev}}
 } $\in CFL$
-über dem Alphabet \liAlphabet{0,1}
+über dem Alphabet \bAlphabet{0,1}
 akzeptiert.
 
 Dabei bezeichnet $\lambda$ das leere Wort und $w_3^{\text{rev}}$
@@ -72,7 +72,7 @@ soll sich der PDA in einem Endzustand befinden und der Keller geleert
 sein.
 
 \begin{liAntwort}
-\liFlaci{Gpkctmk3g}
+\bFlaci{Gpkctmk3g}
 
 \begin{liProduktionsRegeln}
 S -> 0 S 0 | 1 S 1 | 0 A 0 | 1 A 1,
@@ -85,15 +85,15 @@ A -> 0 A | 1 A | 0 | 1
   \node[state,accepting] (z2) at (7.5cm,-4.71cm) {$z_2$};
   \node[state] (z1) at (5cm,-4.71cm) {$z_1$};
 
-  \liKellerKante{z0}{z1}{
+  \bKellerKante{z0}{z1}{
     epsilon raute Sraute
   }
 
-  \liKellerKante{z1}{z2}{
+  \bKellerKante{z1}{z2}{
     epsilon raute epsilon
   }
 
-  \liKellerKante[above,loop]{z1}{z1}{
+  \bKellerKante[above,loop]{z1}{z1}{
     0 0 epsilon,
     1 1 epsilon,
     epsilon S 0S0,
@@ -109,7 +109,7 @@ A -> 0 A | 1 A | 0 | 1
 \end{tikzpicture}
 \end{center}
 
-\liFlaci{A5z2zfkdw}
+\bFlaci{A5z2zfkdw}
 \end{liAntwort}
 
 %%

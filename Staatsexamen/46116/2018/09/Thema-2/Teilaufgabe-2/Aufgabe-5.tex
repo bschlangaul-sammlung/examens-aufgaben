@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{er,rmodell}
+\bLadePakete{er,rmodell}
 \begin{document}
-\liAufgabenTitel{Schulverwaltung}
+\bAufgabenTitel{Schulverwaltung}
 
 \section{Aufgabe 1: ER-Modell
 \footcite[DB/ST - Herbst 2018 (nicht vertieft - 46116), Thema 2 Teilaufgabe 2 Aufgabe 5]{examen:46116:2018:09}
@@ -28,37 +28,37 @@ Fremdschlüsselattribut angegeben.
   \ttfamily
   \footnotesize
   Schüler (%
-    \liPrimaer{SchülerID},
+    \bPrimaer{SchülerID},
     SVorname,
     SNachname,
-    \liFremd{KlassenID}[Klassen],
+    \bFremd{KlassenID}[Klassen],
     Geburtsdatum%
   )\\\\
   Lehrer (%
-    \liPrimaer{LehrerID},
+    \bPrimaer{LehrerID},
     LVorname,
     LNachname%
   )\\\\
   Klassen (%
-    \liPrimaer{KlassenID},
+    \bPrimaer{KlassenID},
     Klassenstufe,
     Buchstabe%
   )\\\\
   Unterrichtsfächer (%
-    \liPrimaer{FachID},
+    \bPrimaer{FachID},
     Name%
   )\\\\
   Noten (%
-    \liPrimaer{NotenID},
-    \liFremd{SchülerID}[Schüler],
-    \liFremd{FachID}[Unterrichtsfächer],
+    \bPrimaer{NotenID},
+    \bFremd{SchülerID}[Schüler],
+    \bFremd{FachID}[Unterrichtsfächer],
     Note,
     Gewicht%
   )\\\\
   LehrerUnterrichtet (%
-    \liFremd{LehrerID}[Lehrer],
-    \liPrimaer{KlassenID}[Klassen],
-    \liPrimaer{FachID}[Unterrichtsfächer]%
+    \bFremd{LehrerID}[Lehrer],
+    \bPrimaer{KlassenID}[Klassen],
+    \bPrimaer{FachID}[Unterrichtsfächer]%
   )\\\\
 }
 
@@ -88,7 +88,7 @@ Fremdschlüsselattribut angegeben.
 \begin{center}
 \begin{tikzpicture}[er2,scale=0.5,transform shape]
 \node[entity] (Schüler) {Schüler};
-\node[attribute,below left of=Schüler,near]{\liPrimaer{SchülerID}} edge (Schüler);
+\node[attribute,below left of=Schüler,near]{\bPrimaer{SchülerID}} edge (Schüler);
 \node[attribute,left of=Schüler]{SVorname} edge (Schüler);
 \node[attribute,above left of=Schüler,near]{SNachname} edge (Schüler);
 \node[attribute,above right of=Schüler]{Geburstdatum} edge (Schüler);
@@ -103,7 +103,7 @@ Fremdschlüsselattribut angegeben.
 \node[attribute,below right of=Lehrer,node distance=5em] {LehrerID} edge (Lehrer);
 
 \node[entity,right of=Lehrer,farer] (Klassen) {Klassen};
-\node[attribute,right of=Klassen]{\liPrimaer{KlassenID}} edge (Klassen);
+\node[attribute,right of=Klassen]{\bPrimaer{KlassenID}} edge (Klassen);
 \node[attribute,below right of=Klassen,near]{Klassenstufe} edge (Klassen);
 \node[attribute,above right of=Klassen,near]{Buchstabe} edge (Klassen);
 
@@ -127,7 +127,7 @@ Fremdschlüsselattribut angegeben.
 \end{tikzpicture}
 \end{center}
 
-\liPseudoUeberschrift{Funktionalitäten}
+\bPseudoUeberschrift{Funktionalitäten}
 
 \begin{description}
 \item[gehtIn] n:1 Eine Klasse hat n Schüler, einE SchülerIn geht in eine

@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{syntax,er,mathe,rmodell}
+\bLadePakete{syntax,er,mathe,rmodell}
 \begin{document}
-\liAufgabenTitel{Flughafen}
+\bAufgabenTitel{Flughafen}
 
 \section{Flughafen ER-Modell und Relationenmodell
 \index{Entity-Relation-Modell}
@@ -141,23 +141,23 @@ Relationenschema! Markieren Sie Schlüssel und Fremdschlüssel.
 
 {
 \footnotesize\ttfamily
-Fluggesellschaft(\liPrimaer{FGName}, Hauptsitz)
+Fluggesellschaft(\bPrimaer{FGName}, Hauptsitz)
 
-Flug(\liPrimaer{Flug-Nr}, Abflugzeit, Zielflughafen,
-\liFremd{FGName[Fluggesellschaft]},
-\liFremd{FZ-Nr[Flugzeug]})
+Flug(\bPrimaer{Flug-Nr}, Abflugzeit, Zielflughafen,
+\bFremd{FGName[Fluggesellschaft]},
+\bFremd{FZ-Nr[Flugzeug]})
 
-Flugzeug(\liPrimaer{FZ-Nr},
-\liFremd{FGName[Fluggesellschaft]},
+Flugzeug(\bPrimaer{FZ-Nr},
+\bFremd{FGName[Fluggesellschaft]},
 DatumErsterEinsatz,
-\liFremd{Typ-Nr[Flugzeugtyp]})
+\bFremd{Typ-Nr[Flugzeugtyp]})
 
-Flugzeugtyp(\liPrimaer{Typ-Nr}, SitzplatzAnzahl, GroesseBesatzung)
+Flugzeugtyp(\bPrimaer{Typ-Nr}, SitzplatzAnzahl, GroesseBesatzung)
 
-Passagier(\liPrimaer{Pass-Nr}, Name, Gebdat)
+Passagier(\bPrimaer{Pass-Nr}, Name, Gebdat)
 
-buchen(\liFremd{Pass-Nr[Passagier]},
-\liFremd{Flug-Nr[Flug]}, Sitzplatz-Nr)
+buchen(\bFremd{Pass-Nr[Passagier]},
+\bFremd{Flug-Nr[Flug]}, Sitzplatz-Nr)
 }
 \end{liAntwort}
 

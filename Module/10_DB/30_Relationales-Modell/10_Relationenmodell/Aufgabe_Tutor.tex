@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{er,rmodell}
+\bLadePakete{er,rmodell}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Aufgabe},
   Thematik = {Tutor},
   RelativerPfad = Module/10_DB/30_Relationales-Modell/10_Relationenmodell/Aufgabe_Tutor.tex,
@@ -12,7 +12,7 @@
   Stichwoerter = {Relationenmodell},
 }
 
-\let\r=\liRelationMenge
+\let\r=\bRelationMenge
 
 \begin{center}
 \begin{tikzpicture}[er2]
@@ -52,17 +52,17 @@ fest.
 
 \begin{liAntwort}
 \begin{liRmodell}
-\r{Kurs}{\liPrimaer{KursNr}, Kursname}
+\r{Kurs}{\bPrimaer{KursNr}, Kursname}
 
-\r{Tutor}{\liPrimaer{PersNr}, Name, Buero}
+\r{Tutor}{\bPrimaer{PersNr}, Name, Buero}
 \end{liRmodell}
 
 bzw.
 
 \begin{liRmodell}
-\r{Kurs}{KursNr, \liPrimaer{Kursname}}
+\r{Kurs}{KursNr, \bPrimaer{Kursname}}
 
-\r{Tutor}{PersNr, \liPrimaer{Name, Buero}}
+\r{Tutor}{PersNr, \bPrimaer{Name, Buero}}
 \end{liRmodell}
 \end{liAntwort}
 
@@ -82,8 +82,8 @@ Relationen Kurs und Tutor. Aufgrund der Aufgabenstellung besitzen beide
 Relationen zwei Schlüsselkandidaten
 
 \begin{itemize}
-\item Kurs: \liPrimaer{KursNr} und \liPrimaer{Kursname}
-\item Tutor: \liPrimaer{PersNr} und \liPrimaer{Name, Büro}
+\item Kurs: \bPrimaer{KursNr} und \bPrimaer{Kursname}
+\item Tutor: \bPrimaer{PersNr} und \bPrimaer{Name, Büro}
 \end{itemize}
 
 Da es sich um eine 1:1-Beziehung handelt, sind die ausgewählten
@@ -92,14 +92,14 @@ der beiden wird als Primärschlüssel ausgewählt. Es gibt folglich acht
 mögliche Relationen:
 
 \begin{liRmodell}
-\r{betreut}{\liPrimaer{PersNr}, KursNr, Sprechstunde}
-\r{betreut}{PersNr, \liPrimaer{KursNr}, Sprechstunde}
-\r{betreut}{\liPrimaer{PersNr}, Kursname, Sprechstunde}
-\r{betreut}{PersNr, \liPrimaer{Kursname}, Sprechstunde}
-\r{betreut}{\liPrimaer{Name, Büro}, KursNr, Sprechstunde}
-\r{betreut}{Name, Büro, \liPrimaer{KursNr}, Sprechstunde}
-\r{betreut}{\liPrimaer{Name, Büro}, Kursname, Sprechstunde}
-\r{betreut}{Name, Büro, \liPrimaer{Kursname}, Sprechstunde}
+\r{betreut}{\bPrimaer{PersNr}, KursNr, Sprechstunde}
+\r{betreut}{PersNr, \bPrimaer{KursNr}, Sprechstunde}
+\r{betreut}{\bPrimaer{PersNr}, Kursname, Sprechstunde}
+\r{betreut}{PersNr, \bPrimaer{Kursname}, Sprechstunde}
+\r{betreut}{\bPrimaer{Name, Büro}, KursNr, Sprechstunde}
+\r{betreut}{Name, Büro, \bPrimaer{KursNr}, Sprechstunde}
+\r{betreut}{\bPrimaer{Name, Büro}, Kursname, Sprechstunde}
+\r{betreut}{Name, Büro, \bPrimaer{Kursname}, Sprechstunde}
 \end{liRmodell}
 \end{liAntwort}
 \end{enumerate}

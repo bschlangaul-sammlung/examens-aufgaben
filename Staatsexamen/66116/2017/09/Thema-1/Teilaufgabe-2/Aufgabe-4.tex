@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{syntax,tabelle}
+\bLadePakete{syntax,tabelle}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Aufgabe 3},
   Thematik = {Code-Inspection bei Binärer Suche},
   RelativerPfad = Staatsexamen/66116/2017/09/Thema-1/Teilaufgabe-2/Aufgabe-4.tex,
@@ -87,7 +87,7 @@ Klassennamen werden groß geschrieben, Variablennamen klein.
 % Datei kann nicht in das Java-Repository eingebundne werden, weil
 % javadoc dann sehr viele Dokumentationsfehler meldet
 
-% \liJavaExamen{66116}{2017}{09}{BinarySearch}
+% \bJavaExamen{66116}{2017}{09}{BinarySearch}
 
 \begin{liJavaAngabe}
 /**
@@ -177,16 +177,16 @@ Fehlen der Invariante in der Design-by-Contract-Spezifikation \\\hline
 48 & RM6 &
 
 Um einen binären (zweistellige) Operator handelt es sich im
-Code-Beispiel um den Subtraktionsoperator: \liJavaCode{mid-1}. Hier
+Code-Beispiel um den Subtraktionsoperator: \bJavaCode{mid-1}. Hier
 fehlen die geforderten Leerzeichen. \\\hline
 
 32 & RM7 &
 
-Die Variable \liJavaCode{End} wird in Zeile 32 deklariert, aber erst in
-Zeile initialisiert \liJavaCode{End = a.length;} \\\hline
+Die Variable \bJavaCode{End} wird in Zeile 32 deklariert, aber erst in
+Zeile initialisiert \bJavaCode{End = a.length;} \\\hline
 
 32 & RM8 &
-Die Variable \liJavaCode{End} muss klein geschrieben werden. \\\hline
+Die Variable \bJavaCode{End} muss klein geschrieben werden. \\\hline
 \end{tabularx}
 
 \end{liAntwort}
@@ -195,15 +195,15 @@ Die Variable \liJavaCode{End} muss klein geschrieben werden. \\\hline
 %
 %%
 
-\item Entspricht die Methode \liJavaCode{binarySearch} ihrer Spezifikation,
+\item Entspricht die Methode \bJavaCode{binarySearch} ihrer Spezifikation,
 die durch Vor-und Nachbedingungen angeben ist? Geben Sie gegebenenfalls
 Korrekturen der Methode an.
 
 \begin{liAntwort}
-\liPseudoUeberschrift{Korrektur der Vorbedingung}
+\bPseudoUeberschrift{Korrektur der Vorbedingung}
 
 Die Vorbedingung ist nicht erfüllt, da weder die Länge des Feldes
-\liJavaCode{a} noch die Reihenfolge der Feldeinträge geprüft wurden.
+\bJavaCode{a} noch die Reihenfolge der Feldeinträge geprüft wurden.
 
 \begin{liJavaAngabe}
 if (a.length <= 0) {
@@ -217,10 +217,10 @@ for (int i = 0; i < a.length; i ++) {
 }
 \end{liJavaAngabe}
 
-\liPseudoUeberschrift{Korrektur der Nachbedingung}
+\bPseudoUeberschrift{Korrektur der Nachbedingung}
 
-\liJavaCode{int start} muss mit \liJavaCode{0} initialisiert werden, da sonst
-\liJavaCode{a[0]} vernachlässigt wird.
+\bJavaCode{int start} muss mit \bJavaCode{0} initialisiert werden, da sonst
+\bJavaCode{a[0]} vernachlässigt wird.
 \end{liAntwort}
 
 %%
@@ -236,22 +236,22 @@ Kommentar mit Zeilennummer an.
 Zeile & Kommentar im Code & Korrektur \\
 
 34-35 &
-\liJavaCode{// Die Schleife wird verlassen, wenn keine der beiden Haelften das
+\bJavaCode{// Die Schleife wird verlassen, wenn keine der beiden Haelften das
 Element enthaelt.} &
-\liJavaCode{// Die Schleife wird verlassen, wenn keine der beiden Haelften das
+\bJavaCode{// Die Schleife wird verlassen, wenn keine der beiden Haelften das
 Element enthaelt oder das Element gefunden wurde.} \\
 
 44 &
-\liJavaCode{// Ausschluss der oberen Haelfte} &
-\liJavaCode{// Ausschluss der unteren Haelfte} \\
+\bJavaCode{// Ausschluss der oberen Haelfte} &
+\bJavaCode{// Ausschluss der unteren Haelfte} \\
 
 47 &
-\liJavaCode{// Ausschluss der unteren Haelfte} &
-\liJavaCode{// Ausschluss der oberen Haelfte} \\
+\bJavaCode{// Ausschluss der unteren Haelfte} &
+\bJavaCode{// Ausschluss der oberen Haelfte} \\
 
 50 &
-\liJavaCode{// Das gesuchte Element wird zurueckgegeben} &
-\liJavaCode{// Der Index des gesuchten Elements wird zurueckgegeben} \\
+\bJavaCode{// Das gesuchte Element wird zurueckgegeben} &
+\bJavaCode{// Der Index des gesuchten Elements wird zurueckgegeben} \\
 
 \end{tabularx}
 \end{liAntwort}
@@ -261,24 +261,24 @@ Element enthaelt oder das Element gefunden wurde.} \\
 %%
 
 \item Geben Sie den Kontrollflussgraphen\index{Kontrollflussgraph} für
-die Methode \liJavaCode{binarySearch} an.
+die Methode \bJavaCode{binarySearch} an.
 
 %%
 %
 %%
 
 \item Geben Sie maximal drei Testfälle für die Methode
-\liJavaCode{binarySearch} an, die insgesamt eine vollständige
+\bJavaCode{binarySearch} an, die insgesamt eine vollständige
 Anweisungsüberdeckung\index{Vollständige Anweisungsüberdeckung} leisten.
 
 \begin{liAntwort}
-Die gegebene Methode: \liJavaCode{binarySearch(a[], item)}
+Die gegebene Methode: \bJavaCode{binarySearch(a[], item)}
 
-\liPseudoUeberschrift{Testfall}
+\bPseudoUeberschrift{Testfall}
 
 \begin{enumerate}
-\item Testfall: \liJavaCode{a[] = {1, 2, 3}, item = 4}
-\item Testfall: \liJavaCode{a[] = {1, 2, 3}, item = 2}
+\item Testfall: \bJavaCode{a[] = {1, 2, 3}, item = 4}
+\item Testfall: \bJavaCode{a[] = {1, 2, 3}, item = 2}
 \end{enumerate}
 \end{liAntwort}
 \end{enumerate}

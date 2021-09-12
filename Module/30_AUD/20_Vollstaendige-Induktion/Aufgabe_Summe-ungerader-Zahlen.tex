@@ -1,10 +1,10 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{vollstaendige-induktion}
+\bLadePakete{vollstaendige-induktion}
 \begin{document}
-\let\m=\liInduktionMarkierung
-\let\e=\liInduktionErklaerung
+\let\m=\bInduktionMarkierung
+\let\e=\bInduktionErklaerung
 
-\liAufgabenTitel{Summe ungerader Zahlen (Maurolicus 1575)}
+\bAufgabenTitel{Summe ungerader Zahlen (Maurolicus 1575)}
 \section{Summe ungerader Zahlen (Maurolicus 1575)}
 
 Die schrittweise Berechnung der Summe der ersten $n$ ungeraden Zahlen
@@ -27,13 +27,13 @@ $1 + 3 + 5 + 7 = 16 = 4^2$
 \noindent
 Folgende Java-Methode berechnet die Summer aller ungeraden Zahlen:
 
-\liJavaDatei[firstline=8,lastline=13]{aufgaben/aud/induktion/Maurolicus}
+\bJavaDatei[firstline=8,lastline=13]{aufgaben/aud/induktion/Maurolicus}
 
 \bigskip
 
 \noindent
 Beweisen Sie mittels vollständiger Induktion, dass der
-Methodenaufruf \liJavaCode{oddSum(n)} die Summe aller ungeraden Zahlen von
+Methodenaufruf \bJavaCode{oddSum(n)} die Summe aller ungeraden Zahlen von
 $1$ bis nur $n$-ten ungeraden Zahl berechnet, wobei gilt:
 
 \begin{displaymath}
@@ -42,7 +42,7 @@ $1$ bis nur $n$-ten ungeraden Zahl berechnet, wobei gilt:
 
 \begin{liAntwort}
 
-\liInduktionAnfang
+\bInduktionAnfang
 
 \begin{displaymath}
 \sum\limits^1_{i=1} (2i-1) = 2 \cdot 1 - 1 = 1 = 1^2
@@ -52,7 +52,7 @@ $1$ bis nur $n$-ten ungeraden Zahl berechnet, wobei gilt:
 \texttt{oddSum(1)} = 1 = 1^2
 \end{displaymath}
 
-\liInduktionVoraussetzung
+\bInduktionVoraussetzung
 
 \begin{displaymath}
 \sum\limits^n_{i=1} (2i-1) = n^2
@@ -62,7 +62,7 @@ $1$ bis nur $n$-ten ungeraden Zahl berechnet, wobei gilt:
 \texttt{oddSum(n)} = 2n - 1 + (n - 1)^2
 \end{displaymath}
 
-\liInduktionSchritt
+\bInduktionSchritt
 
 \begin{align*}
 \texttt{oddSum(n)}
@@ -86,6 +86,6 @@ $1$ bis nur $n$-ten ungeraden Zahl berechnet, wobei gilt:
 \end{align*}
 \end{liAntwort}
 
-\liJavaTestDatei{aufgaben/aud/induktion/MaurolicusTest}
+\bJavaTestDatei{aufgaben/aud/induktion/MaurolicusTest}
 
 \end{document}

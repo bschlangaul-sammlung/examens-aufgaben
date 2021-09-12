@@ -1,6 +1,6 @@
 \documentclass{bschlangaul-theorie}
 \usepackage{multicol}
-\liLadePakete{syntax,mathe,kontrollflussgraph}
+\bLadePakete{syntax,mathe,kontrollflussgraph}
 
 \usepackage{array}
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
@@ -13,7 +13,7 @@ Gegeben Sei folgende Methode und ihr Kontrollflussgraph:
 \index{Kontrollflussgraph}
 
 \begin{minipage}{6cm}
-\liJavaDatei[firstline=4,lastline=21]{aufgaben/sosy/ab_7/Aufgabe5}
+\bJavaDatei[firstline=4,lastline=21]{aufgaben/sosy/ab_7/Aufgabe5}
 %
 \end{minipage}
 %
@@ -31,17 +31,17 @@ Gegeben Sei folgende Methode und ihr Kontrollflussgraph:
 \node[knoten] at (-2,6) (nE) {nE};
 
 \draw[->] (nS) -- (n1);
-\draw[->,dashed] (n1) -- (n2) \liBedingungFalsch{right};
+\draw[->,dashed] (n1) -- (n2) \bBedingungFalsch{right};
 \draw[->] (n2) -- (n3);
-\draw[->,dashed] (n3) -- (n4) \liBedingungFalsch{below};
-\draw[->] (n3) -- (n5) \liBedingungWahr{right};
-\draw[->,dashed] (n5) -- (n6) \liBedingungFalsch{right};
-\draw[->] (n5) -- (n7) \liBedingungWahr{right};
-\draw[->] (n6) -- (n8) \liBedingungWahr{right};
+\draw[->,dashed] (n3) -- (n4) \bBedingungFalsch{below};
+\draw[->] (n3) -- (n5) \bBedingungWahr{right};
+\draw[->,dashed] (n5) -- (n6) \bBedingungFalsch{right};
+\draw[->] (n5) -- (n7) \bBedingungWahr{right};
+\draw[->] (n6) -- (n8) \bBedingungWahr{right};
 \draw[->] (n7) -- (n8);
-\draw[->,dashed] (n6) -- (nE) \liBedingungFalsch{right};
+\draw[->,dashed] (n6) -- (nE) \bBedingungFalsch{right};
 \draw[->] (n4) -- (nE);
-\draw[->] (n1) -- (-2,1) -- (nE) \liBedingungWahr{left};
+\draw[->] (n1) -- (-2,1) -- (nE) \bBedingungWahr{left};
 \draw[->] (n8) -- (2,6) -- (2,3) -- (n3);
 \end{tikzpicture}
 \end{minipage}
@@ -64,52 +64,52 @@ Fleißaufgabe:
 \node[knoten] at (0,0) (nS) {nS};
 
 \node[knoten,pin={
-  \liJavaCode{if (bin.isEmpty())}
+  \bJavaCode{if (bin.isEmpty())}
 }] at (0,1) (n1) {n1};
 
 \node[knoten,pin={
-  \liJavaCode{int place; int length}
+  \bJavaCode{int place; int length}
 }] at (0,2) (n2) {n2};
 
 \node[knoten,pin={
   [pin distance=2cm]
-  for-Bedingung \liJavaCode{i >= 0}}
+  for-Bedingung \bJavaCode{i >= 0}}
 ] at (0,3) (n3) {n3};
 
 \node[knoten,pin={
-  180:\liJavaCode{return value;}
+  180:\bJavaCode{return value;}
 }] at (-1.5,3) (n4) {n4};
 
 \node[knoten,pin={
-  \liJavaCode{if (ch = '1')}
+  \bJavaCode{if (ch = '1')}
 }] at (0,4) (n5) {n5};
 
 \node[knoten,pin={
-  180:\liJavaCode{else if (ch = '0')}
+  180:\bJavaCode{else if (ch = '0')}
 }] at (-1,5) (n6) {n6};
 
 \node[knoten,pin={
-  \liJavaCode{value += place;}
+  \bJavaCode{value += place;}
 }] at (1,5) (n7) {n7};
 
 \node[knoten,pin={
-  270:\liJavaCode{place *= 2; i--;}}
+  270:\bJavaCode{place *= 2; i--;}}
 ] at (0,6) (n8) {n8};
 
 \node[knoten] at (-2,6) (nE) {nE};
 
 \draw[->] (nS) -- (n1);
-\draw[->,dashed] (n1) -- (n2) \liBedingungFalsch{right};
+\draw[->,dashed] (n1) -- (n2) \bBedingungFalsch{right};
 \draw[->] (n2) -- (n3);
-\draw[->,dashed] (n3) -- (n4) \liBedingungFalsch{below};
-\draw[->] (n3) -- (n5) \liBedingungWahr{right};
-\draw[->,dashed] (n5) -- (n6) \liBedingungFalsch{right};
-\draw[->] (n5) -- (n7) \liBedingungWahr{right};
-\draw[->] (n6) -- (n8) \liBedingungWahr{right};
+\draw[->,dashed] (n3) -- (n4) \bBedingungFalsch{below};
+\draw[->] (n3) -- (n5) \bBedingungWahr{right};
+\draw[->,dashed] (n5) -- (n6) \bBedingungFalsch{right};
+\draw[->] (n5) -- (n7) \bBedingungWahr{right};
+\draw[->] (n6) -- (n8) \bBedingungWahr{right};
 \draw[->] (n7) -- (n8);
-\draw[->,dashed] (n6) -- (nE) \liBedingungFalsch{right};
+\draw[->,dashed] (n6) -- (nE) \bBedingungFalsch{right};
 \draw[->] (n4) -- (nE);
-\draw[->] (n1) -- (-2,1) -- (nE) \liBedingungWahr{left};
+\draw[->] (n1) -- (-2,1) -- (nE) \bBedingungWahr{left};
 \draw[->] (n8) -- (2,6) -- (2,3) -- (n3);
 \end{tikzpicture}
 \end{liAntwort}
@@ -193,13 +193,13 @@ weshalb der Pfad nicht überdeckbar ist.
 Alle mit Ausnahme von p2.
 
 \textbf{p2} ist nicht überdeckbar. Passiert ein Wert der Variable
-\liJavaCode{bin} die erste if-Verzweigung, dann hat der Wert eine Länge größer
+\bJavaCode{bin} die erste if-Verzweigung, dann hat der Wert eine Länge größer
 0 und betritt deshalb die Wiederholung mit fester Anzahl.
 
 \begin{tabular}{lll}
 p1 &
 S 1 E &
-\liJavaCode{binToInt("");} \\
+\bJavaCode{binToInt("");} \\
 
 p2 &
 S 1 2 3 4 E &
@@ -207,43 +207,43 @@ infeasible \\
 
 p3 &
 S 1 2 3 5 \r{7} 8 3 5 \g{6} 8 3 5 \g{6} E &
-\liJavaCode{binToInt("x01");} \\
+\bJavaCode{binToInt("x01");} \\
 
 p4 &
 S 1 2 3 5 \g{6} E  &
-\liJavaCode{binToInt("x");} \\
+\bJavaCode{binToInt("x");} \\
 
 p5 &
 S 1 2 3 5 \r{7} 8 3 5 \r{7} 8 3 4 E &
-\liJavaCode{binToInt("11");} \\
+\bJavaCode{binToInt("11");} \\
 
 p6 &
 S 1 2 3 5 \r{7} 8 3 5 \g{6} 8 3 4 E &
-\liJavaCode{binToInt("01");} \\
+\bJavaCode{binToInt("01");} \\
 
 p7 &
 S 1 2 3 5 \g{6} 8 3 5 \g{6} 8 3 4 E &
-\liJavaCode{binToInt("00");} \\
+\bJavaCode{binToInt("00");} \\
 
 p8 &
 S 1 2 3 5 \g{6} 8 3 5 \r{7} 8 3 4 E &
-\liJavaCode{binToInt("10");} \\
+\bJavaCode{binToInt("10");} \\
 
 p9 &
 S 1 2 3 5 \r{7} 8 3 5 \r{7} 8 3 5 \g{6} E &
-\liJavaCode{binToInt("x11");} \\
+\bJavaCode{binToInt("x11");} \\
 
 p10 = p3 &
 S 1 2 3 5 \r{7} 8 3 5 \g{6} 8 3 5 \g{6} E &
-\liJavaCode{binToInt("x01");} \\
+\bJavaCode{binToInt("x01");} \\
 
 p11 &
 S 1 2 3 5 \g{6} 8 3 5 \g{6} 8 3 5 \g{6} E &
-\liJavaCode{binToInt("x00");} \\
+\bJavaCode{binToInt("x00");} \\
 
 p12 &
 S 1 2 3 5 \g{6} 8 3 5 \r{7} 8 3 5 \g{6} E &
-\liJavaCode{binToInt("x10");} \\
+\bJavaCode{binToInt("x10");} \\
 \end{tabular}
 \end{liAntwort}
 
@@ -350,6 +350,6 @@ zeitlichen Reihenfolge ihres Auftretens zur Laufzeit an.
 
 Erweitere Methode, die die Knotennamen ausgibt:
 
-\liJavaDatei[firstline=23]{aufgaben/sosy/ab_7/Aufgabe5}
+\bJavaDatei[firstline=23]{aufgaben/sosy/ab_7/Aufgabe5}
 
 \end{document}

@@ -45,21 +45,21 @@
 \RequirePackage{amssymb}
 %    \end{macrocode}
 
-% \begin{macro}{\liRundeKlammer}
+% \begin{macro}{\bRundeKlammer}
 %    \begin{macrocode}
-\def\liRundeKlammer#1{
+\def\bRundeKlammer#1{
   \negthinspace \left( #1 \right)
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liONotationO}
-% |\O{n^2}|: \liONotationO{n^2}
+% \begin{macro}{\bONotationO}
+% |\O{n^2}|: \bONotationO{n^2}
 %    \begin{macrocode}
 \cs_new:Npn \o_notation_O:n #1 {
-  \mathcal{O} \liRundeKlammer{#1}
+  \mathcal{O} \bRundeKlammer{#1}
 }
-\def\liONotationO#1{
+\def\bONotationO#1{
   \ifmmode
     \o_notation_O:n { #1 }
   \else

@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{normalformen,synthese-algorithmus}
+\bLadePakete{normalformen,synthese-algorithmus}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Synthesealgorithmus},
   Thematik = {Relation A-H},
   RelativerPfad = Module/10_DB/50_Relationale-Entwurfstheorie/30_Normalformen/10_Synthesealgorithmus/Aufgabe_Relation-A-H.tex,
@@ -12,14 +12,14 @@
   Stichwoerter = {Synthese-Algorithmus},
 }
 
-\let\ah=\liAttributHuelle
-\let\ahl=\liLinksReduktionInline
-\let\ahr=\liRechtsReduktionInline
-\let\fa=\liFunktionaleAbhaengigkeit
-\let\FA=\liFunktionaleAbhaengigkeiten
-\let\m=\liAttributMenge
-\let\r=\liRelation
-\let\schrittE=\liSyntheseUeberErklaerung
+\let\ah=\bAttributHuelle
+\let\ahl=\bLinksReduktionInline
+\let\ahr=\bRechtsReduktionInline
+\let\fa=\bFunktionaleAbhaengigkeit
+\let\FA=\bFunktionaleAbhaengigkeiten
+\let\m=\bAttributMenge
+\let\r=\bRelation
+\let\schrittE=\bSyntheseUeberErklaerung
 \let\u=\underline
 
 Überführen Sie das Relationenschema mit Hilfe des Synthesealgorithmus in
@@ -55,12 +55,12 @@ die 3. Normalform!
 
 Wir betrachten nur die zusammengesetzten Attribute:
 
-\liPseudoUeberschrift{\fa{A, E -> D}}
+\bPseudoUeberschrift{\fa{A, E -> D}}
 
 $D \in$ \ahl{A, E}{E}{A, E, F, B, \textbf{D}} \\
 $D \notin$ \ahl{A, E}{A}{E}
 
-\liPseudoUeberschrift{\fa{A, G -> H}}
+\bPseudoUeberschrift{\fa{A, G -> H}}
 
 $H \notin$ \ahl{A, G}{G}{A, E, F, B, D} \\
 $H \notin$ \ahl{A, G}{A}{G}
@@ -81,12 +81,12 @@ $H \notin$ \ahl{A, G}{A}{G}
 
 Nur die Attribute betrachten, die rechts doppelt vorkommen:
 
-\liPseudoUeberschrift{E}
+\bPseudoUeberschrift{E}
 
 \ahr{F -> E}{}{F}{F} \\
 \ahr{A -> E, F}{A -> E}{A}{A, B, D, F, \textbf{E}}
 
-\liPseudoUeberschrift{D}
+\bPseudoUeberschrift{D}
 
 \ahr{A -> D}{}{A}{A, B, \textbf{D}, F, E}
 
@@ -136,7 +136,7 @@ und \fa{A -> D}
 
 \item \schrittE{4}
 
-\liNichtsZuTun
+\bNichtsZuTun
 
 \end{enumerate}
 \end{liAntwort}

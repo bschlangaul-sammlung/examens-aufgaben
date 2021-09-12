@@ -4,13 +4,13 @@ einzusetzen bei der Potenzmengen-Konstruktion (Potenzmengen-Algorithmus)]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\liLadePakete{formale-sprachen}
+\bLadePakete{formale-sprachen}
 \ExplSyntaxOn
 %    \end{macrocode}
 
 % \begin{verbatim}
 % \def\z#1{
-%   \liZustandsMengenSammlungNr{#1}{
+%   \bZustandsMengenSammlungNr{#1}{
 %     {
 %       {0} {0}
 %       {1} {0,1}
@@ -21,7 +21,7 @@ einzusetzen bei der Potenzmengen-Konstruktion (Potenzmengen-Algorithmus)]
 %     }
 %   }
 % }
-% \let\s=\liZustandsnameGross
+% \let\s=\bZustandsnameGross
 
 % \begin{tabular}{l|l|l}
 % Zustandsmenge & Eingabe $a$ & Eingabe $b$ \\\hline
@@ -34,12 +34,12 @@ einzusetzen bei der Potenzmengen-Konstruktion (Potenzmengen-Algorithmus)]
 % \end{tabular}
 % \end{verbatim}
 
-% \begin{macro}{\liZustandsMengenSammlung}
-% |\liZustandsMengenSammlung{nummer}{latex3 str_case:nn}|
+% \begin{macro}{\bZustandsMengenSammlung}
+% |\bZustandsMengenSammlung{nummer}{latex3 str_case:nn}|
 %
 % \begin{verbatim}
 %   \def\z#1{
-%     \liZustandsMengenSammlung{#1}{
+%     \bZustandsMengenSammlung{#1}{
 %       {
 %         {0} {z0}
 %         {1} {z0, z1}
@@ -54,11 +54,11 @@ einzusetzen bei der Potenzmengen-Konstruktion (Potenzmengen-Algorithmus)]
 %   }
 % \end{verbatim}
 %    \begin{macrocode}
-\def\liZustandsMengenSammlung#1#2{
-  \liZustandsnameGross{#1}
+\def\bZustandsMengenSammlung#1#2{
+  \bZustandsnameGross{#1}
   {
     \footnotesize
-    \liPotenzmenge{
+    \bPotenzmenge{
       \str_case:nn {#1} #2
     }
   }
@@ -66,13 +66,13 @@ einzusetzen bei der Potenzmengen-Konstruktion (Potenzmengen-Algorithmus)]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsMengenSammlungNr}
+% \begin{macro}{\bZustandsMengenSammlungNr}
 %    \begin{macrocode}
-\def\liZustandsMengenSammlungNr#1#2{
-  \liZustandsnameGross{#1}
+\def\bZustandsMengenSammlungNr#1#2{
+  \bZustandsnameGross{#1}
   {
     \footnotesize
-    \liZustandsmengeNr{
+    \bZustandsmengeNr{
       \str_case:nn {#1} #2
     }
   }

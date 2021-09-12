@@ -1,12 +1,12 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{master-theorem}
+\bLadePakete{master-theorem}
 \begin{document}
-\let\O=\liO
-\let\o=\liOmega
-\let\T=\liT
-\let\t=\liTheta
+\let\O=\bO
+\let\o=\bOmega
+\let\T=\bT
+\let\t=\bTheta
 
-\liAufgabenTitel{Mastertheorem}
+\bAufgabenTitel{Mastertheorem}
 \section{Aufgabe 6
 \index{Master-Theorem}
 \footcite{examen:66115:2019:09}}
@@ -14,7 +14,7 @@
 Der Hauptsatz der Laufzeitfunktionen ist bekanntlich folgendermaßen
 definiert:
 
-\liMasterFaelle
+\bMasterFaelle
 
 \noindent
 Bestimmen und begründen Sie formal mit Hilfe dieses Satzes welche
@@ -30,12 +30,12 @@ Komplexität folgende Laufzeitfunktionen haben.
 \item $T(n) = \T{8}{2} + 5n^2$
 
 \begin{liAntwort}
-\liMasterVariablenDeklaration
+\bMasterVariablenDeklaration
 {8} % a
 {2} % b
 {5n^2} % f(n)
 
-\liMasterFallRechnung
+\bMasterFallRechnung
 % 1. Fall
 {für $\varepsilon = 4$: \\
 $f(n) = 5n^2 \in \O{n^{\log_2 {8 - 4}}} = \O{n^{\log_2 4}} = \O{n^2}$}
@@ -44,7 +44,7 @@ $f(n) = 5n^2 \in \O{n^{\log_2 {8 - 4}}} = \O{n^{\log_2 4}} = \O{n^2}$}
 % 3. Fall
 {$f(n) = 5n^2 \notin \O{n^{\log_2 {8 + \varepsilon}}}$}
 
-\liMasterWolframLink{T[n]=8T[n/3]\%2B5n^2}
+\bMasterWolframLink{T[n]=8T[n/3]\%2B5n^2}
 \end{liAntwort}
 
 %%
@@ -54,12 +54,12 @@ $f(n) = 5n^2 \in \O{n^{\log_2 {8 - 4}}} = \O{n^{\log_2 4}} = \O{n^2}$}
 \item $T(n) = \T{9}{3} + 5n^2$
 
 \begin{liAntwort}
-\liMasterVariablenDeklaration
+\bMasterVariablenDeklaration
 {9} % a
 {3} % b
 {5n^2} % f(n)
 
-\liMasterFallRechnung
+\bMasterFallRechnung
 % 1. Fall
 {$f(n) = 5n^2 \notin \O{n^{\log_3 {9 - \varepsilon}}}$ für $\varepsilon > 0$}
 % 2. Fall
@@ -69,7 +69,7 @@ $f(n) = 5n^2 \in \O{n^{\log_2 {8 - 4}}} = \O{n^{\log_2 4}} = \O{n^2}$}
 
 $\Rightarrow T(n) \in \t{n^2 \cdot \log n}$
 
-\liMasterWolframLink{T[n]=9T[n/3]\%2B5n^2}
+\bMasterWolframLink{T[n]=9T[n/3]\%2B5n^2}
 \end{liAntwort}
 
 \end{enumerate}

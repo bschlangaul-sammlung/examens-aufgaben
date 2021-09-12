@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{formale-sprachen,mathe,automaten,syntax}
+\bLadePakete{formale-sprachen,mathe,automaten,syntax}
 \begin{document}
-\liAufgabenTitel{Vorlesungsaufgaben Komplement der Binärzahl}
+\bAufgabenTitel{Vorlesungsaufgaben Komplement der Binärzahl}
 \section{Komplement der Binärzahl
 \index{Kontextsensitive Sprache}
 \footcite[Seite 22]{theo:fs:3}}
@@ -22,13 +22,13 @@ kann als Tabelle oder als Graph angegeben werden.
 \begin{tikzpicture}[li turingmaschine]
   \node[state,initial,accepting] (z0) at (4.43cm,-5.71cm) {$z_0$};
 
-  \liTuringKante[above,loop above]{z0}{z0}{
+  \bTuringKante[above,loop above]{z0}{z0}{
     0, 1, R;
     1, 0, R;
   }
 \end{tikzpicture}
 \end{center}
-\liFlaci{Ap9qtjgg7}
+\bFlaci{Ap9qtjgg7}
 
 \begin{minted}{md}
 name: Komplement Binärzahl
@@ -41,7 +41,7 @@ z0,1,>
 z0,1
 z0,0,>
 \end{minted}
-\liFussnoteUrl{http://turingmachinesimulator.com/shared/lqpsawxdeh}
+\bFussnoteUrl{http://turingmachinesimulator.com/shared/lqpsawxdeh}
 \end{liAntwort}
 
 \item Erweiteren Sie Ihre Maschine aus Aufgabe a) so, dass der
@@ -54,26 +54,26 @@ Schreib-/Lesekopf auf dem ersten Zeichen der Eingabe terminiert.
   \node[state] (z1) at (6.86cm,-6.14cm) {$z_1$};
   \node[state,accepting] (z2) at (9.43cm,-6.14cm) {$z_2$};
 
-  \liTuringKante[above,loop above]{z0}{z0}{
+  \bTuringKante[above,loop above]{z0}{z0}{
     0, 1, R;
     1, 0, R;
   }
 
-  \liTuringKante[above]{z0}{z1}{
+  \bTuringKante[above]{z0}{z1}{
     LEER, LEER, L;
   }
 
-  \liTuringKante[above]{z1}{z2}{
+  \bTuringKante[above]{z1}{z2}{
     LEER, LEER, R;
   }
 
-  \liTuringKante[above,loop above]{z1}{z1}{
+  \bTuringKante[above,loop above]{z1}{z1}{
     1, 1, L;
     0, 0, L;
   }
 \end{tikzpicture}
 \end{center}
-\liFlaci{A5o7tug5r}
+\bFlaci{A5o7tug5r}
 \end{liAntwort}
 \end{enumerate}
 \end{document}

@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{syntax,rmodell,sql}
+\bLadePakete{syntax,rmodell,sql}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Aufgabe 3},
   Thematik = {Game of Thrones},
   RelativerPfad = Staatsexamen/66116/2019/09/Thema-1/Teilaufgabe-2/Aufgabe-3.tex,
@@ -17,34 +17,34 @@
   ExamenAufgabeNr = 3,
 }
 
-\let\r=\liRelationMenge
+\let\r=\bRelationMenge
 
 Formulieren Sie folgende Anfragen in SQL gegen die angegebene Datenbank
 aus einer imaginären Serie.\index{SQL}
 \footcite{examen:66116:2019:09}
 
 \begin{liRmodell}
-\r{Figur}{\liPrimaer{Id}, Name, Schwertkunst, Lebendig, Titel}
+\r{Figur}{\bPrimaer{Id}, Name, Schwertkunst, Lebendig, Titel}
 
-\r{gehört\_zu}{\liPrimaer{Id, Familie},
+\r{gehört\_zu}{\bPrimaer{Id, Familie},
 FK (Id) references Figur(Id),
 FK (Familie) references Familie(Id) }
 
-\r{Familie}{\liPrimaer{Id}, Name, Reichtum, Anführer}
+\r{Familie}{\bPrimaer{Id}, Name, Reichtum, Anführer}
 
-\r{Drache}{\liPrimaer{Name}, Lebendig}
+\r{Drache}{\bPrimaer{Name}, Lebendig}
 
-\r{besitzt}{\liPrimaer{Id, Name},
+\r{besitzt}{\bPrimaer{Id, Name},
 FK (Id) references Figur(Id),
 FK (Name) references Drache(Name)}
 
-\r{Festung}{\liPrimaer{Name}, Ort, Ruine}
+\r{Festung}{\bPrimaer{Name}, Ort, Ruine}
 
-\r{besetzt}{\liPrimaer{Familie, Festung},
+\r{besetzt}{\bPrimaer{Familie, Festung},
 FK (Familie) references Familie(Id),
 FK (Festung) references Festung(Name)}
 
-\r{lebt}{\liPrimaer{Id, Name},
+\r{lebt}{\bPrimaer{Id, Name},
 FK (Id) references Figur(Id),
 FK (Name) references Festung(Name)}
 \end{liRmodell}

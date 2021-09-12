@@ -5,7 +5,7 @@
 % \subsubsection{Endlicher Automat}
 
 %    \begin{macrocode}
-\liLadePakete{formale-sprachen}
+\bLadePakete{formale-sprachen}
 %    \end{macrocode}
 
 % \begin{verbatim}
@@ -33,30 +33,30 @@
 %    \begin{macrocode}
 \RequirePackage{tikz}
 \usetikzlibrary{arrows,automata,positioning}
-\liLadePakete{mathe}
+\bLadePakete{mathe}
 \directlua{
   automaten = require('bschlangaul-automaten')
 }
 %    \end{macrocode}
 
-% \begin{macro}{\liAutomat}
-% \cmd{\liAutomat}\oarg{automaten-name}\marg{zustaende=Z,alphabet=$\Sigma$,delta=$\delta$,ende=E,start=$z_0$}
+% \begin{macro}{\bAutomat}
+% \cmd{\bAutomat}\oarg{automaten-name}\marg{zustaende=Z,alphabet=$\Sigma$,delta=$\delta$,ende=E,start=$z_0$}
 %
 % \begin{itemize}
-% \item |\liAutomat{}|: \liAutomat{}
-% \item |\liAutomat[A_1]{}|: \liAutomat[A_1]{}
-% \item |\liAutomat{zustaende={z_0, z_1, z_2}}|: \liAutomat{zustaende={z_0, z_1, z_2}}
-% \item |\liAutomat{alphabet={a,b}}|: \liAutomat{alphabet={a,b}}
-% \item |\liAutomat{delta=d}|: \liAutomat{delta=d}
-% \item |\liAutomat{ende={z_0, z_1, z_2}}|: \liAutomat{ende={z_0, z_1, z_2}}
-% \item |\liAutomat{start=z_1}|: \liAutomat{start=z_1}
-% \item |\liAutomat{dea}|: \liAutomat{dea}
-% \item |\liAutomat{nea}|: \liAutomat{nea}
+% \item |\bAutomat{}|: \bAutomat{}
+% \item |\bAutomat[A_1]{}|: \bAutomat[A_1]{}
+% \item |\bAutomat{zustaende={z_0, z_1, z_2}}|: \bAutomat{zustaende={z_0, z_1, z_2}}
+% \item |\bAutomat{alphabet={a,b}}|: \bAutomat{alphabet={a,b}}
+% \item |\bAutomat{delta=d}|: \bAutomat{delta=d}
+% \item |\bAutomat{ende={z_0, z_1, z_2}}|: \bAutomat{ende={z_0, z_1, z_2}}
+% \item |\bAutomat{start=z_1}|: \bAutomat{start=z_1}
+% \item |\bAutomat{dea}|: \bAutomat{dea}
+% \item |\bAutomat{nea}|: \bAutomat{nea}
 % \end{itemize}
 %
 %    \begin{macrocode}
 \ExplSyntaxOn
-\NewDocumentCommand {\liAutomat} { O{A} m } {
+\NewDocumentCommand {\bAutomat} { O{A} m } {
   \tl_set:Nn \l_zustaende_tl {Z}
   \tl_set:Nn \l_alphabet_tl {\Sigma}
   \tl_set:Nn \l_delta_tl {\delta}
@@ -65,10 +65,10 @@
   \tl_set:Nn \l_typ_tl {}
 
   \keys_define:nn { automat } {
-    zustaende .code:n = {\tl_set:Nn \l_zustaende_tl {\liMenge{##1}}},
-    alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\liMenge{##1}}},
+    zustaende .code:n = {\tl_set:Nn \l_zustaende_tl {\bMenge{##1}}},
+    alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\bMenge{##1}}},
     delta .code:n = {\tl_set:Nn \l_delta_tl {##1}},
-    ende .code:n = {\tl_set:Nn \l_ende_tl {\liMenge{##1}}},
+    ende .code:n = {\tl_set:Nn \l_ende_tl {\bMenge{##1}}},
     start .code:n = {\tl_set:Nn \l_start_tl {##1}},
     dea .value_forbidden:n = true,
     dea .code:n = {\tl_set:Nn \l_typ_tl {\sb{\text{DEA}}}},
@@ -90,10 +90,10 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liAutomatenKante}
+% \begin{macro}{\bAutomatenKante}
 % \bMakroFaulenzer{k}{liAutomatenKante}
 %    \begin{macrocode}
-\def\liAutomatenKante#1#2#3#4{
+\def\bAutomatenKante#1#2#3#4{
   \path (#1) edge[#4] node{#3} (#2);
 }
 %    \end{macrocode}
@@ -115,18 +115,18 @@
 % \node[state,initial] (0) {$z_0$};
 % \node[state,right of=0,accepting] (1) {$z_1$};
 %
-% \liKellerKante[above,loop]{0}{0}{
+% \bKellerKante[above,loop]{0}{0}{
 %   1, KELLERBODEN, E KELLERBODEN;
 %   0, KELLERBODEN, KELLERBODEN;
 % }
 %
-% \liKellerKante[above]{0}{1}{
+% \bKellerKante[above]{0}{1}{
 %   EPSILON, E, EPSILON;
 %   1, E, EPSILON;
 %   0, E, EPSILON;
 % }
 %
-% \liKellerKante[above,loop]{1}{2}{
+% \bKellerKante[above,loop]{1}{2}{
 %   EPSILON, KELLERBODEN, EPSILON;
 %   1, KELLERBODEN, KELLERBODEN;
 %   0, KELLERBODEN, KELLERBODEN;
@@ -139,18 +139,18 @@
 % \node[state,initial] (0) {$z_0$};
 % \node[state,right of=0,accepting] (1) {$z_1$};
 %
-% \liKellerKante[above,loop]{0}{0}{
+% \bKellerKante[above,loop]{0}{0}{
 %   1, KELLERBODEN, E KELLERBODEN;
 %   0, KELLERBODEN, KELLERBODEN;
 % }
 %
-% \liKellerKante[above]{0}{1}{
+% \bKellerKante[above]{0}{1}{
 %   EPSILON, E, EPSILON;
 %   1, E, EPSILON;
 %   0, E, EPSILON;
 % }
 %
-% \liKellerKante[above,loop]{1}{2}{
+% \bKellerKante[above,loop]{1}{2}{
 %   EPSILON, KELLERBODEN, EPSILON;
 %   1, KELLERBODEN, KELLERBODEN;
 %   0, KELLERBODEN, KELLERBODEN;
@@ -158,12 +158,12 @@
 % \end{tikzpicture}
 % \end{liBeispiel}
 
-% \begin{macro}{\liKellerAutomat}
-% \cmd{\liKellerAutomat}\oarg{automaten-name}
+% \begin{macro}{\bKellerAutomat}
+% \cmd{\bKellerAutomat}\oarg{automaten-name}
 % \\\marg{zustaende=Z,alphabet=$\Sigma$,kelleralphabet=$\Gamma$,delta=$\delta$,start=$z_0$,kellerboden=\#,ende=E}
 %
 % \begin{verbatim}
-% \liKellerAutomat{
+% \bKellerAutomat{
 %   zustaende={z_0, z_1, z_2},
 %   alphabet={a, b, c},
 %   kelleralphabet={\#, A},
@@ -172,7 +172,7 @@
 % \end{verbatim}
 %
 % \begin{liBeispiel}
-% \liKellerAutomat{
+% \bKellerAutomat{
 %   zustaende={z_0, z_1, z_2},
 %   alphabet={a, b, c},
 %   kelleralphabet={\#, A},
@@ -182,7 +182,7 @@
 %
 %    \begin{macrocode}
 \ExplSyntaxOn
-\NewDocumentCommand {\liKellerAutomat} { O{K} m } {
+\NewDocumentCommand {\bKellerAutomat} { O{K} m } {
   \tl_set:Nn \l_zustaende_tl {Z}
   \tl_set:Nn \l_alphabet_tl {\Sigma}
   \tl_set:Nn \l_kelleralphabet_tl {\Gamma}
@@ -192,13 +192,13 @@
   \tl_set:Nn \l_ende_tl {E}
 
   \keys_define:nn { kellerautomat } {
-    zustaende .code:n = {\tl_set:Nn \l_zustaende_tl {\liMenge{##1}}},
-    alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\liMenge{##1}}},
-    kelleralphabet .code:n = {\tl_set:Nn \l_kelleralphabet_tl {\liMenge{##1}}},
+    zustaende .code:n = {\tl_set:Nn \l_zustaende_tl {\bMenge{##1}}},
+    alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\bMenge{##1}}},
+    kelleralphabet .code:n = {\tl_set:Nn \l_kelleralphabet_tl {\bMenge{##1}}},
     delta .code:n = {\tl_set:Nn \l_delta_tl {##1}},
     start .code:n = {\tl_set:Nn \l_start_tl {##1}},
     kellerboden .code:n = {\tl_set:Nn \l_kellerboden_tl {##1}},
-    ende .code:n = {\tl_set:Nn \l_ende_tl {\liMenge{##1}}},
+    ende .code:n = {\tl_set:Nn \l_ende_tl {\bMenge{##1}}},
   }
 
   \keys_set:nn { kellerautomat } { #2 }
@@ -217,13 +217,13 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liKellerUebergang}
+% \begin{macro}{\bKellerUebergang}
 % \bMakroFaulenzer{u}{liKellerUebergang}
 %
-% |\liKellerUebergang{a, KELLERBODEN, A; b KELLERBODEN, EPSILON}|
+% |\bKellerUebergang{a, KELLERBODEN, A; b KELLERBODEN, EPSILON}|
 %
 % \begin{liBeispiel}
-%   \liKellerUebergang{a, KELLERBODEN, A; b, KELLERBODEN, EPSILON}
+%   \bKellerUebergang{a, KELLERBODEN, A; b, KELLERBODEN, EPSILON}
 % \end{liBeispiel}
 %
 % Regulärer Ausdruck zum Konvertieren:
@@ -231,19 +231,19 @@
 % |\\u{$1 $2 $3}|
 %    \begin{macrocode}
 \ExplSyntaxOn
-\def\liKellerUebergang#1{
+\def\bKellerUebergang#1{
   \directlua{automaten.drucke_keller_uebergaenge('#1')}
 }
 \ExplSyntaxOff
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liKellerKante}
-% \cmd{\liKellerKante}\oarg{tikz-optionen}\marg{von}\marg{zu}\marg{übergange}
+% \begin{macro}{\bKellerKante}
+% \cmd{\bKellerKante}\oarg{tikz-optionen}\marg{von}\marg{zu}\marg{übergange}
 % \bMakroFaulenzer{k}{liKellerKante}
 %    \begin{macrocode}
-\NewDocumentCommand{\liKellerKante} { O{above} m m m  } {
-  \path (#2) edge[#1] node{\liKellerUebergang{#4}} (#3);
+\NewDocumentCommand{\bKellerKante} { O{above} m m m  } {
+  \path (#2) edge[#1] node{\bKellerUebergang{#4}} (#3);
 }
 %    \end{macrocode}
 % \end{macro}
@@ -272,56 +272,56 @@
 \RequirePackage{amssymb}
 %    \end{macrocode}
 
-% \begin{macro}{\liTuringLeerzeichen}
+% \begin{macro}{\bTuringLeerzeichen}
 % \begin{liBeispiel}
-% \liTuringLeerzeichen
+% \bTuringLeerzeichen
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liTuringLeerzeichen{\Box}
+\def\bTuringLeerzeichen{\Box}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liTuringMaschine}
-% \cmd{\liTuringMaschine}\oarg{automaten-name}
-% \\\marg{zustaende=Z,alphabet=$\Sigma$,bandalphabet=$\Gamma$,delta=$\delta$,start=$z_0$,leerzeichen=\liTuringLeerzeichen,ende=E}
+% \begin{macro}{\bTuringMaschine}
+% \cmd{\bTuringMaschine}\oarg{automaten-name}
+% \\\marg{zustaende=Z,alphabet=$\Sigma$,bandalphabet=$\Gamma$,delta=$\delta$,start=$z_0$,leerzeichen=\bTuringLeerzeichen,ende=E}
 %
 % \begin{verbatim}
-% \liTuringMaschine{
+% \bTuringMaschine{
 %   zustaende={z_0, z_1, z_2},
 %   alphabet={a, b, c},
-%   bandalphabet={\liTuringLeerzeichen, A},
+%   bandalphabet={\bTuringLeerzeichen, A},
 %   ende={z_2},
 % }
 % \end{verbatim}
 %
 % \begin{liBeispiel}
-% \liTuringMaschine{
+% \bTuringMaschine{
 %   zustaende={z_0, z_1, z_2},
 %   alphabet={a, b, c},
-%   bandalphabet={\liTuringLeerzeichen, A},
+%   bandalphabet={\bTuringLeerzeichen, A},
 %   ende={z_2},
 % }
 % \end{liBeispiel}
 %
 %    \begin{macrocode}
 \ExplSyntaxOn
-\NewDocumentCommand {\liTuringMaschine} { O{TM} m } {
+\NewDocumentCommand {\bTuringMaschine} { O{TM} m } {
   \tl_set:Nn \l_zustaende_tl {Z}
   \tl_set:Nn \l_alphabet_tl {\Sigma}
   \tl_set:Nn \l_bandalphabet_tl {\Gamma}
   \tl_set:Nn \l_delta_tl {\delta}
   \tl_set:Nn \l_start_tl {z\sb{0}}
-  \tl_set:Nn \l_leerzeichen_tl {\liTuringLeerzeichen}
+  \tl_set:Nn \l_leerzeichen_tl {\bTuringLeerzeichen}
   \tl_set:Nn \l_ende_tl {E}
 
   \keys_define:nn { kellerautomat } {
-    zustaende .code:n = {\tl_set:Nn \l_zustaende_tl {\liMenge{##1}}},
-    alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\liMenge{##1}}},
-    bandalphabet .code:n = {\tl_set:Nn \l_bandalphabet_tl {\liMenge{##1}}},
+    zustaende .code:n = {\tl_set:Nn \l_zustaende_tl {\bMenge{##1}}},
+    alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\bMenge{##1}}},
+    bandalphabet .code:n = {\tl_set:Nn \l_bandalphabet_tl {\bMenge{##1}}},
     delta .code:n = {\tl_set:Nn \l_delta_tl {##1}},
     start .code:n = {\tl_set:Nn \l_start_tl {##1}},
     leerzeichen .code:n = {\tl_set:Nn \l_leerzeichen_tl {##1}},
-    ende .code:n = {\tl_set:Nn \l_ende_tl {\liMenge{##1}}},
+    ende .code:n = {\tl_set:Nn \l_ende_tl {\bMenge{##1}}},
   }
 
   \keys_set:nn { kellerautomat } { #2 }
@@ -340,48 +340,48 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liTuringUebergangZelle}
+% \begin{macro}{\bTuringUebergangZelle}
 % Formatiert einen Zustandsübergang für eine Übergangstabelle.
 % \bMakroFaulenzer{t}{liTuringUebergangZelle}
-% |\liTuringUebergangZelle{z_1, LEER, R}|: \liTuringUebergangZelle{z_1, LEER, R}
-% |\liTuringUebergangZelle{z1, leer, l}|: \liTuringUebergangZelle{z_1, LEER, l}
+% |\bTuringUebergangZelle{z_1, LEER, R}|: \bTuringUebergangZelle{z_1, LEER, R}
+% |\bTuringUebergangZelle{z1, leer, l}|: \bTuringUebergangZelle{z_1, LEER, l}
 %    \begin{macrocode}
 \ExplSyntaxOn
-\def\liTuringUebergangZelle#1{
+\def\bTuringUebergangZelle#1{
   \directlua{tex.print(automaten.gib_einen_turing_uebergang('#1'))}
 }
 \ExplSyntaxOff
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liTuringUebergaenge}
+% \begin{macro}{\bTuringUebergaenge}
 % Nur in den TikZ-Grafiken zu verwenden. Setzt Zeilenumbrüche ans Ende.
 % Nicht für die Tabelle geeignet.
 % \bMakroFaulenzer{t}{liTuringUebergaenge}
 % \noindent
-% \liTuringUebergaenge{z_1, LEER, l; LEER, LEER, r}
+% \bTuringUebergaenge{z_1, LEER, l; LEER, LEER, r}
 %    \begin{macrocode}
 \ExplSyntaxOn
-\def\liTuringUebergaenge#1{
+\def\bTuringUebergaenge#1{
   \directlua{automaten.drucke_turing_uebergaenge('#1')}
 }
 \ExplSyntaxOff
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liTuringKante}
-% \cmd{\liTuringKante}\oarg{tikz-optionen}\marg{zustand-oder-lese}\marg{schreibe}\marg{richtung}
+% \begin{macro}{\bTuringKante}
+% \cmd{\bTuringKante}\oarg{tikz-optionen}\marg{zustand-oder-lese}\marg{schreibe}\marg{richtung}
 % \bMakroFaulenzer{t}{liTuringKante}
 %    \begin{macrocode}
-\NewDocumentCommand{\liTuringKante} { O{above} m m m  } {
-  \path (#2) edge[#1] node{\liTuringUebergaenge{#4}} (#3);
+\NewDocumentCommand{\bTuringKante} { O{above} m m m  } {
+  \path (#2) edge[#1] node{\bTuringUebergaenge{#4}} (#3);
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liTuringUeberfuehrung}
+% \begin{macro}{\bTuringUeberfuehrung}
 %    \begin{macrocode}
-\def\liTuringUeberfuehrung{
+\def\bTuringUeberfuehrung{
   $\delta : Z \times \Gamma \rightarrow Z \times \Gamma \times \{ L, R, N \}$
 }
 %    \end{macrocode}

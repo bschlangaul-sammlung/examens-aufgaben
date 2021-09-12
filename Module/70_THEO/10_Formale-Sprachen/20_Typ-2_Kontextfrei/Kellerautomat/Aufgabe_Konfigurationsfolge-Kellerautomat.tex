@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{mathe,automaten,formale-sprachen,mathe}
+\bLadePakete{mathe,automaten,formale-sprachen,mathe}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Konfigurationsfolge von Kellerautomaten},
   Thematik = {Konfigurationsfolge doppelt so viele b’s wie a’s},
   RelativerPfad = Module/70_THEO/10_Formale-Sprachen/20_Typ-2_Kontextfrei/Kellerautomat/Aufgabe_Konfigurationsfolge-Kellerautomat.tex,
@@ -11,15 +11,15 @@
   Stichwoerter = {Kellerautomat},
 }
 
-\let\m=\liMengeOhneMathe
-\let\z=\liZustandsnameTiefgestellt
+\let\m=\bMengeOhneMathe
+\let\z=\bZustandsnameTiefgestellt
 
 Gegeben ist der folgende nichtdeterministische Kellerautomat mit
 \index{Kellerautomat}
 \footcite{theo:ab:2}
 
 \begin{center}
-\liKellerAutomat{
+\bKellerAutomat{
   zustaende={z_0, z_1, z_2, z_3, z_4},
   alphabet={a, b},
   kelleralphabet={\#, A, B},
@@ -35,49 +35,49 @@ Gegeben ist der folgende nichtdeterministische Kellerautomat mit
   \node[state] (z3) at (9.71cm,-5.71cm) {$z_3$};
   \node[state,accepting] (z4) at (4.29cm,-8.14cm) {$z_4$};
 
-  \liKellerKante[left,bend left]{z0}{z1}{
+  \bKellerKante[left,bend left]{z0}{z1}{
     a, KELLERBODEN, A A KELLERBODEN;
   }
 
-  \liKellerKante[left]{z0}{z4}{
+  \bKellerKante[left]{z0}{z4}{
     EPSILON, KELLERBODEN, EPSILON;
   }
 
-  \liKellerKante[below,bend left]{z0}{z3}{
+  \bKellerKante[below,bend left]{z0}{z3}{
     b, KELLERBODEN, B KELLERBODEN;
   }
 
-  \liKellerKante[above right,bend left]{z1}{z0}{
+  \bKellerKante[above right,bend left]{z1}{z0}{
     EPSILON, KELLERBODEN, KELLERBODEN;
   }
 
-  \liKellerKante[above,loop]{z1}{z1}{
+  \bKellerKante[above,loop]{z1}{z1}{
     a, A, A A A;
     b, A, EPSILON;
   }
 
-  \liKellerKante[right,bend left]{z2}{z3}{
+  \bKellerKante[right,bend left]{z2}{z3}{
     EPSILON, B, EPSILON;
   }
 
-  \liKellerKante[above]{z2}{z1}{
+  \bKellerKante[above]{z2}{z1}{
     EPSILON, KELLERBODEN, A KELLERBODEN;
   }
 
-  \liKellerKante[below,bend left]{z3}{z0}{
+  \bKellerKante[below,bend left]{z3}{z0}{
     EPSILON, KELLERBODEN, KELLERBODEN;
   }
 
-  \liKellerKante[above,loop below]{z3}{z3}{
+  \bKellerKante[above,loop below]{z3}{z3}{
     b, B, B B;
   }
 
-  \liKellerKante[left,bend left]{z3}{z2}{
+  \bKellerKante[left,bend left]{z3}{z2}{
     a, B, EPSILON;
   }
 \end{tikzpicture}
 \end{center}
-\liFlaci{Apk0ic3s9}
+\bFlaci{Apk0ic3s9}
 
 \begin{enumerate}
 
@@ -143,7 +143,7 @@ $(\z0, abababbbb, \#) \vdash
 \item Charakterisiere die Wörter der Sprache in eigenen Worten.
 
 \begin{liAntwort}
-\liAusdruck{w}
+\bAusdruck{w}
 {
   w
   \text{ enthält genau doppelt so viele }

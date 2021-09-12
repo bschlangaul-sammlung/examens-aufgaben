@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{formale-sprachen,automaten}
+\bLadePakete{formale-sprachen,automaten}
 \begin{document}
-\liAufgabenTitel{Berechen- und Entscheidbarkeit}
+\bAufgabenTitel{Berechen- und Entscheidbarkeit}
 \section{Aufgabe 3
 \index{Berechenbarkeit}
 \footcite{examen:66115:2017:03}}
@@ -46,8 +46,8 @@ Funktion if als primitiv rekursiv voraussetzen.)
 % 2.
 %%
 
-\item Sei \liAlphabet{a, b, c} und $L \subseteq \Sigma^*$ mit
-\liAusdruck{a^i b^i c^i}{i \in N}.
+\item Sei \bAlphabet{a, b, c} und $L \subseteq \Sigma^*$ mit
+\bAusdruck{a^i b^i c^i}{i \in N}.
 \begin{enumerate}
 
 %%
@@ -69,55 +69,55 @@ ausreichend.
   \node[state] (q4) at (2.14cm,-4.71cm) {$q_4$};
   \node[state,accepting] (q5) at (5cm,-4.71cm) {$q_5$};
 
-  \liTuringKante[above]{q0}{q1}{
+  \bTuringKante[above]{q0}{q1}{
     a, X, R;
   }
 
-  \liTuringKante[above]{q0}{q4}{
+  \bTuringKante[above]{q0}{q4}{
     Y, Y, R;
   }
 
-  \liTuringKante[above]{q1}{q2}{
+  \bTuringKante[above]{q1}{q2}{
     b, Y, R;
   }
 
-  \liTuringKante[above,loop above]{q1}{q1}{
+  \bTuringKante[above,loop above]{q1}{q1}{
     a, a, R;
     Y, Y, R;
   }
 
-  \liTuringKante[above]{q2}{q3}{
+  \bTuringKante[above]{q2}{q3}{
     c, Z, L;
   }
 
-  \liTuringKante[above,loop above]{q2}{q2}{
+  \bTuringKante[above,loop above]{q2}{q2}{
     b, b, R;
     Z, Z, R;
   }
 
-  \liTuringKante[above,loop above]{q3}{q3}{
+  \bTuringKante[above,loop above]{q3}{q3}{
     a, a, L;
     Y, Y, L;
     b, b, L;
     Z, Z, L;
   }
 
-  \liTuringKante[above,bend left]{q3}{q0}{
+  \bTuringKante[above,bend left]{q3}{q0}{
     X, X, R;
   }
 
-  \liTuringKante[above]{q4}{q5}{
+  \bTuringKante[above]{q4}{q5}{
     LEER, LEER, L;
   }
 
-  \liTuringKante[above,loop below]{q4}{q4}{
+  \bTuringKante[above,loop below]{q4}{q4}{
     Y, Y, R;
     Z, Z, R;
   }
 \end{tikzpicture}
 \end{center}
-\liFlaci{Apew1n7g9}
-\liFussnoteUrl{https://scanftree.com/automata/turing-machine-for-a-to-power-n-b-to-power-n-c-to-power-n}
+\bFlaci{Apew1n7g9}
+\bFussnoteUrl{https://scanftree.com/automata/turing-machine-for-a-to-power-n-b-to-power-n-c-to-power-n}
 \end{liAntwort}
 
 %%
@@ -154,7 +154,7 @@ transition on state 6 (y,y,R),(z,z,R)= (n/3)
 transition (d,d,R) from state 6 to 7 =1
 total =(4n/3)+2
 over alti time complexity (n+2)(n/3)-1+ (4n/3)+2
-\liFussnoteUrl{https://www.youtube.com/watch?v=vwnz9e_Lrfo}
+\bFussnoteUrl{https://www.youtube.com/watch?v=vwnz9e_Lrfo}
 \end{description}
 \end{liAntwort}
 \end{enumerate}
@@ -163,7 +163,7 @@ over alti time complexity (n+2)(n/3)-1+ (4n/3)+2
 % 3.
 %%
 
-\item Sei \liAlphabet{0, 1}. Jedes $w \in \Sigma^*$ kodiert eine
+\item Sei \bAlphabet{0, 1}. Jedes $w \in \Sigma^*$ kodiert eine
 Turingmaschine $M_w$. Die von  $M_w$ berechnete Funktion bezeichnen wir
 mit $\varphi_w(x)$.
 
@@ -174,7 +174,7 @@ mit $\varphi_w(x)$.
 %%
 
 \item Warum ist
-\liAusdruck
+\bAusdruck
 {w \in \Sigma^*}
 {\exists x \colon \varphi_w(x) = xx} nicht entscheidbar?
 
@@ -182,7 +182,7 @@ mit $\varphi_w(x)$.
 % b)
 %%
 
-\item Warum ist \liAusdruck
+\item Warum ist \bAusdruck
 {w \in \Sigma^*}
 {\exists x \colon w = xx} entscheidbar?
 

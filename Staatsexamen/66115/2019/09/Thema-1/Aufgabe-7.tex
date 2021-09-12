@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{syntax}
+\bLadePakete{syntax}
 \begin{document}
-\liAufgabenTitel{}
+\bAufgabenTitel{}
 \section{Aufgabe 7 (Bäume)
 \index{Bäume}
 \footcite{examen:66115:2019:09}}
@@ -9,7 +9,7 @@
 Gegeben sei die folgende Realisierung von binären Bäumen (in einer an
 Java angelehnten Notation):
 
-\liJavaExamen[firstline=3,lastline=5]{66115}{2019}{09}{Node}
+\bJavaExamen[firstline=3,lastline=5]{66115}{2019}{09}{Node}
 
 \begin{enumerate}
 %%
@@ -17,14 +17,14 @@ Java angelehnten Notation):
 %%
 
 \item Beschreiben Sie in möglichst wenigen Worten, was die folgende
-Methode \liJavaCode{foo} auf einem nicht-leeren binären Baum berechnet.
+Methode \bJavaCode{foo} auf einem nicht-leeren binären Baum berechnet.
 
-\liJavaExamen[firstline=11,lastline=23]{66115}{2019}{09}{Node}
+\bJavaExamen[firstline=11,lastline=23]{66115}{2019}{09}{Node}
 
 \begin{liAntwort}
-Die Methode \liJavaCode{foo(Node node)} berechnet die Summe aller Knoten
-des Unterbaums des als Parameter übergebenen Knotens \liJavaCode{node}.
-Der Schüsselwert des Knotens \liJavaCode{node} selbst wird in die
+Die Methode \bJavaCode{foo(Node node)} berechnet die Summe aller Knoten
+des Unterbaums des als Parameter übergebenen Knotens \bJavaCode{node}.
+Der Schüsselwert des Knotens \bJavaCode{node} selbst wird in die
 Summenberechnung mit einbezogen.
 \end{liAntwort}
 
@@ -32,13 +32,13 @@ Summenberechnung mit einbezogen.
 % (b)
 %%
 
-\item Die Laufzeit der Methode \liJavaCode{foo(tree)} ist linear in $n$,
-der Anzahl von Knoten im übergebenen Baum \liJavaCode{tree}. Begründen
-Sie kurz, warum  \liJavaCode{foo(tree)} eine lineare Laufzeit hat.
+\item Die Laufzeit der Methode \bJavaCode{foo(tree)} ist linear in $n$,
+der Anzahl von Knoten im übergebenen Baum \bJavaCode{tree}. Begründen
+Sie kurz, warum  \bJavaCode{foo(tree)} eine lineare Laufzeit hat.
 
 \begin{liAntwort}
-Die Methode \liJavaCode{foo(Node node)} wird pro Knoten des Baums
-\liJavaCode{tree} genau einmal aufgerufen. Es handelt sich um eine
+Die Methode \bJavaCode{foo(Node node)} wird pro Knoten des Baums
+\bJavaCode{tree} genau einmal aufgerufen. Es handelt sich um eine
 rekursive Methode, die auf den linken und rechten Kindknoten aufgerufen
 wird. Hat ein Knoten keine Kinder mehr, dann wir die Methode nicht
 aufgerufen.
@@ -50,27 +50,27 @@ aufgerufen.
 
 \item Betrachten Sie den folgenden Algorithmus für nicht-leere, binäre
 Bäume. Beschreiben Sie in möglichst wenigen Worten die Wirkung der
-Methode \liJavaCode{magic(tree)}. Welche Rolle spielt dabei die Methode
-\liJavaCode{max}?
+Methode \bJavaCode{magic(tree)}. Welche Rolle spielt dabei die Methode
+\bJavaCode{max}?
 
-\liJavaExamen[firstline=25,lastline=52]{66115}{2019}{09}{Node}
+\bJavaExamen[firstline=25,lastline=52]{66115}{2019}{09}{Node}
 
 \begin{liAntwort}
-Methode \liJavaCode{magic(tree)} vertauscht für jeden Knoten des
-Unterbaums den Wert mit dem Maximal-Knoten. Die Methode \liJavaCode{max}
+Methode \bJavaCode{magic(tree)} vertauscht für jeden Knoten des
+Unterbaums den Wert mit dem Maximal-Knoten. Die Methode \bJavaCode{max}
 liefert dabei den Knoten mit der größten Schlüsselwert im Unterbaum des
 übergebenen Knoten (sich selbst eingeschlossen).
 \end{liAntwort}
 
 \item Geben Sie in Abhängigkeit von $n$, der Anzahl von Knoten im
-übergebenen Baum \liJavaCode{tree}, jeweils eine Rekursionsgleichung für
+übergebenen Baum \bJavaCode{tree}, jeweils eine Rekursionsgleichung für
 die asymptotische Best-Case-Laufzeit $(B(n))$ und Worst-Case-Laufzeit
-$(W(n))$ des Aufrufs \liJavaCode{magic(tree)} sowie die entsprechende
+$(W(n))$ des Aufrufs \bJavaCode{magic(tree)} sowie die entsprechende
 Komplexitätsklasse ($\Theta$) an. Begründen Sie Ihre Antwort.
 
 Hinweis: Überlegen Sie, ob die Struktur des übergebenen Baumes Einfluss
-auf die Laufzeit hat. Die lineare Laufzeit von \liJavaCode{max(t)} in
-der Anzahl der Knoten des Baumes \liJavaCode{t} darf vorausgesetzt
+auf die Laufzeit hat. Die lineare Laufzeit von \bJavaCode{max(t)} in
+der Anzahl der Knoten des Baumes \bJavaCode{t} darf vorausgesetzt
 werden.
 \end{enumerate}
 
@@ -79,7 +79,7 @@ werden.
 %-----------------------------------------------------------------------
 
 \begin{liAdditum}[Kompletter Code]
-\liJavaExamen{66115}{2019}{09}{Node}
+\bJavaExamen{66115}{2019}{09}{Node}
 \end{liAdditum}
 
 \end{document}

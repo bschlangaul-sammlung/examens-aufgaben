@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{syntax,mathe}
+\bLadePakete{syntax,mathe}
 \begin{document}
-\liAufgabenTitel{Gebrauchtwagen}
+\bAufgabenTitel{Gebrauchtwagen}
 
 \section{Aufgabe 3: Staatsexamen Herbst 1996, Aufgabe 4\footcite{db:ab:7}}
 
@@ -38,10 +38,10 @@ Algebra\index{Relationale Algebra} und SQL\index{SQL}!
 \item Bestimmen Sie alle Modelle mit mehr als 60 PS
 
 \begin{liAntwort}
-\liPseudoUeberschrift{Relationale Algebra}
+\bPseudoUeberschrift{Relationale Algebra}
 $\pi_{mnr}(\sigma_{ps > 60}(Modelle))$
 
-\liPseudoUeberschrift{SQL}
+\bPseudoUeberschrift{SQL}
 \begin{minted}{sql}
 SELECT mnr FROM Modelle WHERE ps > 60;
 \end{minted}
@@ -54,7 +54,7 @@ SELECT mnr FROM Modelle WHERE ps > 60;
 \item Bestimmen Sie die Typen aller Modelle des Herstellers VW.
 
 \begin{liAntwort}
-\liPseudoUeberschrift{Relationale Algebra}
+\bPseudoUeberschrift{Relationale Algebra}
 
 $\pi_{typ}(Modelle \bowtie \sigma_{hersteller = \mlq vw \mrq}
 (Hersteller))$
@@ -64,7 +64,7 @@ oder
 $\pi_{typ}(\sigma_{hersteller = \mlq vw \mrq}(Modelle \bowtie
 Hersteller))$
 
-\liPseudoUeberschrift{SQL}
+\bPseudoUeberschrift{SQL}
 \begin{minted}{sql}
 SELECT m.typ
 FROM Modelle m, Hersteller h
@@ -81,7 +81,7 @@ h.hersteller = 'VV';
 denen tatsächlich Fahrzeuge auf Lager sind
 
 \begin{liAntwort}
-\liPseudoUeberschrift{Relationale Algebra}
+\bPseudoUeberschrift{Relationale Algebra}
 
 $\pi_{mnr}(
   Fahrzeuge \bowtie (
@@ -89,7 +89,7 @@ $\pi_{mnr}(
   )
 )$
 
-\liPseudoUeberschrift{SQL}
+\bPseudoUeberschrift{SQL}
 \begin{minted}{sql}
 SELECT DISTINCT m.mnr
 FROM Modelle m, Hersteller h, Fahrzeuge f

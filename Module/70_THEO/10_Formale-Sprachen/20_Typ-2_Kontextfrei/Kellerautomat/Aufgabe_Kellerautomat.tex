@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{formale-sprachen,automaten}
+\bLadePakete{formale-sprachen,automaten}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Grammatik in Kellerautomat umwandeln},
   Thematik = {zu drei Grammatiken},
   RelativerPfad = Module/70_THEO/10_Formale-Sprachen/20_Typ-2_Kontextfrei/Kellerautomat/Aufgabe_Kellerautomat.tex,
@@ -12,7 +12,7 @@
   Stichwoerter = {Kellerautomat},
 }
 
-\liAufgabenTitel{zu drei Grammatiken}
+\bAufgabenTitel{zu drei Grammatiken}
 \section{Grammatik in Kellerautomat umwandeln
 \index{Kellerautomat}
 \footcite[Aufgabe 5: Grammatik in Kellerautomat umwandeln]{theo:ab:2}}
@@ -35,7 +35,7 @@ P -> 1 P 0 | S | EPSILON
 \end{liProduktionsRegeln}
 
 \begin{liAntwort}
-\liKellerAutomat{
+\bKellerAutomat{
   zustaende={z_0, z_1},
   alphabet={0, 1},
   kelleralphabet={\#, S, P, 0, 1},
@@ -47,11 +47,11 @@ P -> 1 P 0 | S | EPSILON
   \node[state,initial] (z0) at (3.14cm,-4.71cm) {$z_0$};
   \node[state,accepting] (z1) at (5.71cm,-4.71cm) {$z_1$};
 
-  \liKellerKante[above]{z0}{z1}{
+  \bKellerKante[above]{z0}{z1}{
     EPSILON, KELLERBODEN, EPSILON;
   }
 
-  \liKellerKante[above,loop]{z0}{z0}{
+  \bKellerKante[above,loop]{z0}{z0}{
     EPSILON, KELLERBODEN, S KELLERBODEN;
     EPSILON, S, 0 S 1;
     EPSILON, S, P;
@@ -64,7 +64,7 @@ P -> 1 P 0 | S | EPSILON
 \end{tikzpicture}
 \end{center}
 
-\liFlaci{Ah5ceyrrz}
+\bFlaci{Ah5ceyrrz}
 \end{liAntwort}
 
 %%
@@ -79,7 +79,7 @@ T -> x S | y S | x
 \end{liProduktionsRegeln}
 
 \begin{liAntwort}
-\liKellerAutomat{
+\bKellerAutomat{
   zustaende={z_0, z_1},
   alphabet={x, y},
   kelleralphabet={\#, T, S, x, y},
@@ -91,11 +91,11 @@ T -> x S | y S | x
   \node[state,initial] (z0) at (3.86cm,-3.86cm) {$z_0$};
   \node[state,accepting] (z1) at (7.14cm,-3.86cm) {$z_1$};
 
-  \liKellerKante[above]{z0}{z1}{
+  \bKellerKante[above]{z0}{z1}{
     EPSILON, KELLERBODEN, EPSILON;
   }
 
-  \liKellerKante[above,loop]{z0}{z0}{
+  \bKellerKante[above,loop]{z0}{z0}{
     x, x, EPSILON;
     y, y, EPSILON;
     EPSILON, S, x T T;
@@ -107,7 +107,7 @@ T -> x S | y S | x
 \end{tikzpicture}
 \end{center}
 
-\liFlaci{Aiq4r0162}
+\bFlaci{Aiq4r0162}
 \end{liAntwort}
 
 %%
@@ -123,7 +123,7 @@ B -> c S | b B | b
 \end{liProduktionsRegeln}
 
 \begin{liAntwort}
-\liKellerAutomat{
+\bKellerAutomat{
   zustaende={z_0, z_1},
   alphabet={a, b},
   kelleralphabet={\#, A, B, a, b},
@@ -135,11 +135,11 @@ B -> c S | b B | b
   \node[state,initial] (z0) at (5.29cm,-5cm) {$z_0$};
   \node[state,accepting] (z1) at (8.14cm,-5cm) {$z_1$};
 
-  \liKellerKante[above]{z0}{z1}{
+  \bKellerKante[above]{z0}{z1}{
     EPSILON, KELLERBODEN, EPSILON;
   }
 
-  \liKellerKante[above,loop]{z0}{z0}{
+  \bKellerKante[above,loop]{z0}{z0}{
     a, a, EPSILON;
     b, b, EPSILON;
     c, c, EPSILON;
@@ -156,7 +156,7 @@ B -> c S | b B | b
 \end{tikzpicture}
 \end{center}
 
-\liFlaci{Ajh5y0s5r}
+\bFlaci{Ajh5y0s5r}
 \end{liAntwort}
 \end{enumerate}
 

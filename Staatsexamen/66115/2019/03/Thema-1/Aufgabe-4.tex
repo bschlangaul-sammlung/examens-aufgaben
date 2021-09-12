@@ -1,24 +1,24 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{automaten,formale-sprachen}
+\bLadePakete{automaten,formale-sprachen}
 \begin{document}
-\let\l=\liTuringLeerzeichen
-\let\d=\liUeberfuehrungsFunktion
-\let\m=\liMenge
+\let\l=\bTuringLeerzeichen
+\let\d=\bUeberfuehrungsFunktion
+\let\m=\bMenge
 \def\p{ $\vdash$ \\}
 
-\liAufgabenTitel{}
+\bAufgabenTitel{}
 \section{Aufgabe 4
 \index{Turing-Maschine}
 \footcite{examen:66115:2019:03}}
 
-Wir betrachten die Turingmaschine \liTuringMaschine[M]{}. Hierbei ist
+Wir betrachten die Turingmaschine \bTuringMaschine[M]{}. Hierbei ist
 die Zustandsmenge $Q = \m{q_0, q_a, q_b, q_L, q_f}$ mit Startzustand
 $q_0$ und akzeptierenden Zuständen $F = \m{q_f}$. Das Eingabealphabet
-ist \liAlphabet{a, b, |}\footnote{In der Angabe ist das Trennzeichen ein
+ist \bAlphabet{a, b, |}\footnote{In der Angabe ist das Trennzeichen ein
 „\$“. Wir verwenden stattdessen ein „|“, denn „\$“ ist eine
 Tex-Sonderzeichen und müsste deshalb ständig besonders behandelt
-werden.} das Bandalphabet ist \liBandAlphabet{\l} mit Blank-Zeichen \l{}
-für leeres Feld. Die Übergangsfunktion \liTuringUeberfuehrung, wobei der
+werden.} das Bandalphabet ist \bBandAlphabet{\l} mit Blank-Zeichen \l{}
+für leeres Feld. Die Übergangsfunktion \bTuringUeberfuehrung, wobei der
 Schreib-Lese-Kopf mit L nach links, mit N nicht und mit R nach rechts
 bewegt wird, ist durch folgende Tabelle gegeben (bspw. ist $\d{q0, a} =
 (q_a, \l, R)$):
@@ -39,51 +39,51 @@ bewegt wird, ist durch folgende Tabelle gegeben (bspw. ist $\d{q0, a} =
   \node[state] (qL) at (8.86cm,-4.71cm) {$q_L$};
   \node[state,accepting] (qf) at (2.71cm,-7cm) {$q_f$};
 
-  \liTuringKante[above left]{q0}{qa}{
+  \bTuringKante[above left]{q0}{qa}{
     a, LEER, R;
   }
 
-  \liTuringKante[left,pos=0.8]{q0}{qb}{
+  \bTuringKante[left,pos=0.8]{q0}{qb}{
     b, LEER, R;
   }
 
-  \liTuringKante[left]{q0}{qf}{
+  \bTuringKante[left]{q0}{qf}{
     |, |, N;
     LEER, LEER, N;
   }
 
-  \liTuringKante[above,loop above]{qa}{qa}{
+  \bTuringKante[above,loop above]{qa}{qa}{
     a, a, R;
     b, b, R;
     |, |, R;
   }
 
-  \liTuringKante[right,pos=0.1]{qa}{qL}{
+  \bTuringKante[right,pos=0.1]{qa}{qL}{
     LEER, a, L;
   }
 
-  \liTuringKante[above,loop below]{qb}{qb}{
+  \bTuringKante[above,loop below]{qb}{qb}{
     a, a, R;
     b, b, R;
     |, |, R;
   }
 
-  \liTuringKante[below right]{qb}{qL}{
+  \bTuringKante[below right]{qb}{qL}{
     LEER, b, L;
   }
 
-  \liTuringKante[above,loop above]{qL}{qL}{
+  \bTuringKante[above,loop above]{qL}{qL}{
     a, a, L;
     b, b, L;
     |, |, L;
   }
 
-  \liTuringKante[above]{qL}{q0}{
+  \bTuringKante[above]{qL}{q0}{
     LEER, LEER, R;
   }
 \end{tikzpicture}
 \end{center}
-\liFlaci{Aj54q4rd9}
+\bFlaci{Aj54q4rd9}
 
 \begin{enumerate}
 

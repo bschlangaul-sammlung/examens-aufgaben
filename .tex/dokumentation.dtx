@@ -57,7 +57,7 @@
 
 \usepackage{bschlangaul-basis}
 
-\liLadePakete{
+\bLadePakete{
   formatierung,
   meta,
   automaten,
@@ -96,8 +96,8 @@
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment,\def,\endinput}
 %
-%\title{\liMetaBschlangaulSammlung}
-%\author{\liMetaHermineFriends \thanks{E-mail: \liMetaEmail}}
+%\title{\bMetaBschlangaulSammlung}
+%\author{\bMetaHermineFriends \thanks{E-mail: \bMetaEmail}}
 %
 %\maketitle
 %\tableofcontents
@@ -125,7 +125,7 @@ Setzen einer Aufgabe]
 
 % Formatierung muss vor literatur sein, sonst Option clash
 %    \begin{macrocode}
-\liLadePakete{
+\bLadePakete{
   formatierung,
   abmessung,
   literatur-dummy,
@@ -181,11 +181,11 @@ Setzen einer Aufgabe]
 }
 %    \end{macrocode}
 
-% \begin{macro}{\liAufgabenMetadaten}
+% \begin{macro}{\bAufgabenMetadaten}
 %    \begin{macrocode}
-\def\liAufgabenMetadaten #1
+\def\bAufgabenMetadaten #1
 {
-  \liMetaSetze{#1}
+  \bMetaSetze{#1}
 
   \tl_if_empty:NTF \g_einzelpruefungs_nr_tl {}
   {
@@ -247,18 +247,18 @@ Setzen einer Aufgabe]
 {
   \vfill
   {
-    \liLogoTextProjekt
+    \bLogoTextProjekt
     \bigskip
 
-    \liLogoTextCCLizenz
+    \bLogoTextCCLizenz
     \bigskip
 
     \begin{spacing}{1}
       \tiny
       \noindent
-      \liMetaHilfMit
+      \bMetaHilfMit
 
-      \liMetaQuelltext
+      \bMetaQuelltext
       \_gib_github_url_href:
     \end{spacing}
   }
@@ -308,7 +308,7 @@ Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.]
 
 % Formatierung muss vor literatur sein, sonst Option clash
 %    \begin{macrocode}
-\liLadePakete{formatierung}
+\bLadePakete{formatierung}
 %    \end{macrocode}
 
 % Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
@@ -320,17 +320,17 @@ Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.]
 \ExplSyntaxOn
 %    \end{macrocode}
 
-% \begin{macro}{\liPruefungsNummer}
+% \begin{macro}{\bPruefungsNummer}
 %    \begin{macrocode}
-\def\liPruefungsNummer#1{
+\def\bPruefungsNummer#1{
   \str_set:Nn \g_pruefungs_nummer {#1}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liPruefungsTitel}
+% \begin{macro}{\bPruefungsTitel}
 %    \begin{macrocode}
-\def\liPruefungsTitel#1{
+\def\bPruefungsTitel#1{
   \str_set:Nn \g_pruefungs_titel {#1}
 }
 %    \end{macrocode}
@@ -347,9 +347,9 @@ Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.]
 }
 %    \end{macrocode}
 
-% \begin{macro}{\liTrennSeite}
+% \begin{macro}{\bTrennSeite}
 %    \begin{macrocode}
-\def\liTrennSeite#1{
+\def\bTrennSeite#1{
   \clearpage
   \strut
   \vfill
@@ -369,9 +369,9 @@ Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liTitelSeite}
+% \begin{macro}{\bTitelSeite}
 %    \begin{macrocode}
-\def\liTitelSeite#1{
+\def\bTitelSeite#1{
   \clearpage
   \strut
   \vfill
@@ -385,16 +385,16 @@ Zusammenfügen mehrerer Staatsexamen-Scans zu einer PDF-Datei.]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liBindePdfEin}
+% \begin{macro}{\bBindePdfEin}
 %    \begin{macrocode}
-\def\liBindePdfEin#1{\includepdf[pages={1-}]{\LehramtInformatikRepository/#1}}
+\def\bBindePdfEin#1{\includepdf[pages={1-}]{\LehramtInformatikRepository/#1}}
 %    \end{macrocode}
 % \end{macro}
 
 %    \begin{macrocode}
 \AtBeginDocument{
   \thispagestyle{empty}
-  \liTitelSeite{
+  \bTitelSeite{
     \li@SansFett{\Large}{Sammlung~aller~Staatsexamensaufgaben~der~Prüfungsnummer} \\
 
     \vspace{4cm}
@@ -428,7 +428,7 @@ mehreren Aufgaben zu einem Examen.]
 
 % Lade die wichtigsten Pakete. Formatierung muss vor literatur sein, sonst Option clash
 %    \begin{macrocode}
-\liLadePakete{
+\bLadePakete{
   formatierung,
   literatur-dummy,
   makros,
@@ -449,7 +449,7 @@ mehreren Aufgaben zu einem Examen.]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\liLadeAllePakete
+\bLadeAllePakete
 %    \end{macrocode}
 
 % Komischer Option-Clash deshalb ganz am Ende, für die Silbentrennung
@@ -465,27 +465,27 @@ mehreren Aufgaben zu einem Examen.]
 \ExplSyntaxOn
 %    \end{macrocode}
 
-% \begin{macro}{\liSetzeExamenThemaNr}
+% \begin{macro}{\bSetzeExamenThemaNr}
 %    \begin{macrocode}
-\def\liSetzeExamenThemaNr#1{
+\def\bSetzeExamenThemaNr#1{
   \tl_gset:Nn \g_thema_nr_tl { #1 }
   \section{Thema~Nr.~#1}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liSetzeExamenTeilaufgabeNr}
+% \begin{macro}{\bSetzeExamenTeilaufgabeNr}
 %    \begin{macrocode}
-\def\liSetzeExamenTeilaufgabeNr#1{
+\def\bSetzeExamenTeilaufgabeNr#1{
   \tl_gset:Nn \g_teilaufgabe_nr_tl { #1 }
   \subsection{Teilaufgabe~Nr.~#1}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liBindeAufgabeEin}
+% \begin{macro}{\bBindeAufgabeEin}
 %    \begin{macrocode}
-\def\liBindeAufgabeEin#1{
+\def\bBindeAufgabeEin#1{
   \tl_gset:Nn \g_aufgabe_nr_tl { #1 }
   \input{
     \LehramtInformatikRepository /
@@ -505,11 +505,11 @@ mehreren Aufgaben zu einem Examen.]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liAufgabenMetadaten}
+% \begin{macro}{\bAufgabenMetadaten}
 % Das Metadaten-Makro überschreiben
 %    \begin{macrocode}
-\def\liAufgabenMetadaten#1{
-  \liMetaSetze{#1}
+\def\bAufgabenMetadaten#1{
+  \bMetaSetze{#1}
   \subsubsection{\_gib_aufgaben_titel:}
 }
 %    \end{macrocode}
@@ -529,10 +529,10 @@ mehreren Aufgaben zu einem Examen.]
 
     \vfill
 
-    \liGrafikLogo[width=8cm]\par
+    \bGrafikLogo[width=8cm]\par
     \bigskip
     Die~Bschlangaul-Sammlung \par
-    {\footnotesize \liMetaHermineFriends} \par
+    {\footnotesize \bMetaHermineFriends} \par
 
     \vfill
 
@@ -587,10 +587,10 @@ mehreren Aufgaben zu einem Examen.]
 
   \vfill
 
-  \liLogoTextProjekt
+  \bLogoTextProjekt
   \bigskip
 
-  \liLogoTextCCLizenz
+  \bLogoTextCCLizenz
   \bigskip
 
   \clearpage
@@ -618,7 +618,7 @@ Dokuments, das alles zusammenfasst.]
 
 % Paket „formatierung“ muss vor „literatur“ sein, sonst Option clash
 %    \begin{macrocode}
-\liLadePakete{
+\bLadePakete{
   formatierung,
   abmessung,
   literatur-dummy,
@@ -668,7 +668,7 @@ Setzen von Theorie-Zusammenfassungen]
 
 % Paket „formatierung“ muss vor „literatur“ sein, sonst Option clash
 %    \begin{macrocode}
-\liLadePakete{
+\bLadePakete{
   formatierung,
   literatur,
   makros,
@@ -726,45 +726,45 @@ Seitenabmessung mit Hilfe des geometry-Pakets.]
 \ProvidesPackage{bschlangaul-aufgaben-einbinden}[2020/06/13]
 %    \end{macrocode}
 
-% \begin{macro}{\liAufgabe}
+% \begin{macro}{\bAufgabe}
 % Eine Aufgaben mit den Pfad relativ zu Wurzelverzeichnis dieses
 % Repository einbinden.
 %    \begin{macrocode}
-\def\liAufgabe#1{
+\def\bAufgabe#1{
   \input{\LehramtInformatikRepository/#1.tex}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liExamensAufgabe}
+% \begin{macro}{\bExamensAufgabe}
 % Eine Examensaufgaben mit den Pfad relativ zu Staatsexamen einbinden,
-% z. B. |\liExamensAufgabe{46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-3}|
+% z. B. |\bExamensAufgabe{46116/2015/09/Thema-2/Teilaufgabe-1/Aufgabe-3}|
 %    \begin{macrocode}
-\def\liExamensAufgabe#1{
+\def\bExamensAufgabe#1{
   \input{\LehramtInformatikRepository/Staatsexamen/#1.tex}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liExamensAufgabeTTA}
+% \begin{macro}{\bExamensAufgabeTTA}
 %    \begin{macrocode}
-\def\liExamensAufgabeTTA #1 / #2 / #3 : Thema #4 Teilaufgabe #5 Aufgabe #6 {
+\def\bExamensAufgabeTTA #1 / #2 / #3 : Thema #4 Teilaufgabe #5 Aufgabe #6 {
   \input{\LehramtInformatikRepository/Staatsexamen/#1/#2/#3/Thema-#4/Teilaufgabe-#5/Aufgabe-#6.tex}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liExamensAufgabeTA}
+% \begin{macro}{\bExamensAufgabeTA}
 %    \begin{macrocode}
-\def\liExamensAufgabeTA #1 / #2 / #3 : Thema #4 Aufgabe #5 {
+\def\bExamensAufgabeTA #1 / #2 / #3 : Thema #4 Aufgabe #5 {
   \input{\LehramtInformatikRepository/Staatsexamen/#1/#2/#3/Thema-#4/Aufgabe-#5.tex}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liExamensAufgabeA}
+% \begin{macro}{\bExamensAufgabeA}
 %    \begin{macrocode}
-\def\liExamensAufgabeA #1 / #2 / #3 : Aufgabe #4 {
+\def\bExamensAufgabeA #1 / #2 / #3 : Aufgabe #4 {
   \input{\LehramtInformatikRepository/Staatsexamen/#1/#2/#3/Aufgabe-#4.tex}
 }
 %    \end{macrocode}
@@ -784,10 +784,10 @@ Setzen der Aufgaben-Metadaten.]
 \ExplSyntaxOn
 %    \end{macrocode}
 
-% \begin{macro}{\liMetaSetze}
+% \begin{macro}{\bMetaSetze}
 % Setze die Metadaten einer Aufgabe.
 %    \begin{macrocode}
-\def\liMetaSetze#1{
+\def\bMetaSetze#1{
   \_setze_variablen_zurueck:
 
   \tl_clear:N \g_teilaufgabe_nr_tl
@@ -801,7 +801,7 @@ Setzen der Aufgaben-Metadaten.]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liAufgabenMetadaten}
+% \begin{macro}{\bAufgabenMetadaten}
 % Setzen der Aufgaben-Metadaten über eine plist bzw. über key-values.
 %
 % Die Schlüssel-Werte-Paare sind in der Datei basis.sty definiert. In der
@@ -809,7 +809,7 @@ Setzen der Aufgaben-Metadaten.]
 % Interface |AufgabenMetadaten|.
 %
 % \begin{verbatim}
-% \liAufgabenMetadaten{
+% \bAufgabenMetadaten{
 %   Titel = {Aufgabe 2},
 %   Thematik = {Petri-Netz},
 %   Stichwoerter = {Feld (Array), Implementierung in Java}
@@ -827,8 +827,8 @@ Setzen der Aufgaben-Metadaten.]
 % }
 % \end{verbatim}
 %    \begin{macrocode}
-\def\liAufgabenMetadaten#1{
-  \liMetaSetze{#1}
+\def\bAufgabenMetadaten#1{
+  \bMetaSetze{#1}
 
   \_gib_examen_titel: {}
 
@@ -841,10 +841,10 @@ Setzen der Aufgaben-Metadaten.]
 \ExplSyntaxOff
 %    \end{macrocode}
 
-% \begin{macro}{\liAufgabenTitel}
+% \begin{macro}{\bAufgabenTitel}
 % Momentan eine dummy Makro das die Thematik enthält.
 %    \begin{macrocode}
-\def\liAufgabenTitel#1{}
+\def\bAufgabenTitel#1{}
 %    \end{macrocode}
 % \end{macro}
 
@@ -860,7 +860,7 @@ Setzen der Aufgaben-Metadaten.]
 % \subsubsection{Endlicher Automat}
 
 %    \begin{macrocode}
-\liLadePakete{formale-sprachen}
+\bLadePakete{formale-sprachen}
 %    \end{macrocode}
 
 % \begin{verbatim}
@@ -888,30 +888,30 @@ Setzen der Aufgaben-Metadaten.]
 %    \begin{macrocode}
 \RequirePackage{tikz}
 \usetikzlibrary{arrows,automata,positioning}
-\liLadePakete{mathe}
+\bLadePakete{mathe}
 \directlua{
   automaten = require('bschlangaul-automaten')
 }
 %    \end{macrocode}
 
-% \begin{macro}{\liAutomat}
-% \cmd{\liAutomat}\oarg{automaten-name}\marg{zustaende=Z,alphabet=$\Sigma$,delta=$\delta$,ende=E,start=$z_0$}
+% \begin{macro}{\bAutomat}
+% \cmd{\bAutomat}\oarg{automaten-name}\marg{zustaende=Z,alphabet=$\Sigma$,delta=$\delta$,ende=E,start=$z_0$}
 %
 % \begin{itemize}
-% \item |\liAutomat{}|: \liAutomat{}
-% \item |\liAutomat[A_1]{}|: \liAutomat[A_1]{}
-% \item |\liAutomat{zustaende={z_0, z_1, z_2}}|: \liAutomat{zustaende={z_0, z_1, z_2}}
-% \item |\liAutomat{alphabet={a,b}}|: \liAutomat{alphabet={a,b}}
-% \item |\liAutomat{delta=d}|: \liAutomat{delta=d}
-% \item |\liAutomat{ende={z_0, z_1, z_2}}|: \liAutomat{ende={z_0, z_1, z_2}}
-% \item |\liAutomat{start=z_1}|: \liAutomat{start=z_1}
-% \item |\liAutomat{dea}|: \liAutomat{dea}
-% \item |\liAutomat{nea}|: \liAutomat{nea}
+% \item |\bAutomat{}|: \bAutomat{}
+% \item |\bAutomat[A_1]{}|: \bAutomat[A_1]{}
+% \item |\bAutomat{zustaende={z_0, z_1, z_2}}|: \bAutomat{zustaende={z_0, z_1, z_2}}
+% \item |\bAutomat{alphabet={a,b}}|: \bAutomat{alphabet={a,b}}
+% \item |\bAutomat{delta=d}|: \bAutomat{delta=d}
+% \item |\bAutomat{ende={z_0, z_1, z_2}}|: \bAutomat{ende={z_0, z_1, z_2}}
+% \item |\bAutomat{start=z_1}|: \bAutomat{start=z_1}
+% \item |\bAutomat{dea}|: \bAutomat{dea}
+% \item |\bAutomat{nea}|: \bAutomat{nea}
 % \end{itemize}
 %
 %    \begin{macrocode}
 \ExplSyntaxOn
-\NewDocumentCommand {\liAutomat} { O{A} m } {
+\NewDocumentCommand {\bAutomat} { O{A} m } {
   \tl_set:Nn \l_zustaende_tl {Z}
   \tl_set:Nn \l_alphabet_tl {\Sigma}
   \tl_set:Nn \l_delta_tl {\delta}
@@ -920,10 +920,10 @@ Setzen der Aufgaben-Metadaten.]
   \tl_set:Nn \l_typ_tl {}
 
   \keys_define:nn { automat } {
-    zustaende .code:n = {\tl_set:Nn \l_zustaende_tl {\liMenge{##1}}},
-    alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\liMenge{##1}}},
+    zustaende .code:n = {\tl_set:Nn \l_zustaende_tl {\bMenge{##1}}},
+    alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\bMenge{##1}}},
     delta .code:n = {\tl_set:Nn \l_delta_tl {##1}},
-    ende .code:n = {\tl_set:Nn \l_ende_tl {\liMenge{##1}}},
+    ende .code:n = {\tl_set:Nn \l_ende_tl {\bMenge{##1}}},
     start .code:n = {\tl_set:Nn \l_start_tl {##1}},
     dea .value_forbidden:n = true,
     dea .code:n = {\tl_set:Nn \l_typ_tl {\sb{\text{DEA}}}},
@@ -945,10 +945,10 @@ Setzen der Aufgaben-Metadaten.]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liAutomatenKante}
+% \begin{macro}{\bAutomatenKante}
 % \bMakroFaulenzer{k}{liAutomatenKante}
 %    \begin{macrocode}
-\def\liAutomatenKante#1#2#3#4{
+\def\bAutomatenKante#1#2#3#4{
   \path (#1) edge[#4] node{#3} (#2);
 }
 %    \end{macrocode}
@@ -970,18 +970,18 @@ Setzen der Aufgaben-Metadaten.]
 % \node[state,initial] (0) {$z_0$};
 % \node[state,right of=0,accepting] (1) {$z_1$};
 %
-% \liKellerKante[above,loop]{0}{0}{
+% \bKellerKante[above,loop]{0}{0}{
 %   1, KELLERBODEN, E KELLERBODEN;
 %   0, KELLERBODEN, KELLERBODEN;
 % }
 %
-% \liKellerKante[above]{0}{1}{
+% \bKellerKante[above]{0}{1}{
 %   EPSILON, E, EPSILON;
 %   1, E, EPSILON;
 %   0, E, EPSILON;
 % }
 %
-% \liKellerKante[above,loop]{1}{2}{
+% \bKellerKante[above,loop]{1}{2}{
 %   EPSILON, KELLERBODEN, EPSILON;
 %   1, KELLERBODEN, KELLERBODEN;
 %   0, KELLERBODEN, KELLERBODEN;
@@ -994,18 +994,18 @@ Setzen der Aufgaben-Metadaten.]
 % \node[state,initial] (0) {$z_0$};
 % \node[state,right of=0,accepting] (1) {$z_1$};
 %
-% \liKellerKante[above,loop]{0}{0}{
+% \bKellerKante[above,loop]{0}{0}{
 %   1, KELLERBODEN, E KELLERBODEN;
 %   0, KELLERBODEN, KELLERBODEN;
 % }
 %
-% \liKellerKante[above]{0}{1}{
+% \bKellerKante[above]{0}{1}{
 %   EPSILON, E, EPSILON;
 %   1, E, EPSILON;
 %   0, E, EPSILON;
 % }
 %
-% \liKellerKante[above,loop]{1}{2}{
+% \bKellerKante[above,loop]{1}{2}{
 %   EPSILON, KELLERBODEN, EPSILON;
 %   1, KELLERBODEN, KELLERBODEN;
 %   0, KELLERBODEN, KELLERBODEN;
@@ -1013,12 +1013,12 @@ Setzen der Aufgaben-Metadaten.]
 % \end{tikzpicture}
 % \end{liBeispiel}
 
-% \begin{macro}{\liKellerAutomat}
-% \cmd{\liKellerAutomat}\oarg{automaten-name}
+% \begin{macro}{\bKellerAutomat}
+% \cmd{\bKellerAutomat}\oarg{automaten-name}
 % \\\marg{zustaende=Z,alphabet=$\Sigma$,kelleralphabet=$\Gamma$,delta=$\delta$,start=$z_0$,kellerboden=\#,ende=E}
 %
 % \begin{verbatim}
-% \liKellerAutomat{
+% \bKellerAutomat{
 %   zustaende={z_0, z_1, z_2},
 %   alphabet={a, b, c},
 %   kelleralphabet={\#, A},
@@ -1027,7 +1027,7 @@ Setzen der Aufgaben-Metadaten.]
 % \end{verbatim}
 %
 % \begin{liBeispiel}
-% \liKellerAutomat{
+% \bKellerAutomat{
 %   zustaende={z_0, z_1, z_2},
 %   alphabet={a, b, c},
 %   kelleralphabet={\#, A},
@@ -1037,7 +1037,7 @@ Setzen der Aufgaben-Metadaten.]
 %
 %    \begin{macrocode}
 \ExplSyntaxOn
-\NewDocumentCommand {\liKellerAutomat} { O{K} m } {
+\NewDocumentCommand {\bKellerAutomat} { O{K} m } {
   \tl_set:Nn \l_zustaende_tl {Z}
   \tl_set:Nn \l_alphabet_tl {\Sigma}
   \tl_set:Nn \l_kelleralphabet_tl {\Gamma}
@@ -1047,13 +1047,13 @@ Setzen der Aufgaben-Metadaten.]
   \tl_set:Nn \l_ende_tl {E}
 
   \keys_define:nn { kellerautomat } {
-    zustaende .code:n = {\tl_set:Nn \l_zustaende_tl {\liMenge{##1}}},
-    alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\liMenge{##1}}},
-    kelleralphabet .code:n = {\tl_set:Nn \l_kelleralphabet_tl {\liMenge{##1}}},
+    zustaende .code:n = {\tl_set:Nn \l_zustaende_tl {\bMenge{##1}}},
+    alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\bMenge{##1}}},
+    kelleralphabet .code:n = {\tl_set:Nn \l_kelleralphabet_tl {\bMenge{##1}}},
     delta .code:n = {\tl_set:Nn \l_delta_tl {##1}},
     start .code:n = {\tl_set:Nn \l_start_tl {##1}},
     kellerboden .code:n = {\tl_set:Nn \l_kellerboden_tl {##1}},
-    ende .code:n = {\tl_set:Nn \l_ende_tl {\liMenge{##1}}},
+    ende .code:n = {\tl_set:Nn \l_ende_tl {\bMenge{##1}}},
   }
 
   \keys_set:nn { kellerautomat } { #2 }
@@ -1072,13 +1072,13 @@ Setzen der Aufgaben-Metadaten.]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liKellerUebergang}
+% \begin{macro}{\bKellerUebergang}
 % \bMakroFaulenzer{u}{liKellerUebergang}
 %
-% |\liKellerUebergang{a, KELLERBODEN, A; b KELLERBODEN, EPSILON}|
+% |\bKellerUebergang{a, KELLERBODEN, A; b KELLERBODEN, EPSILON}|
 %
 % \begin{liBeispiel}
-%   \liKellerUebergang{a, KELLERBODEN, A; b, KELLERBODEN, EPSILON}
+%   \bKellerUebergang{a, KELLERBODEN, A; b, KELLERBODEN, EPSILON}
 % \end{liBeispiel}
 %
 % Regulärer Ausdruck zum Konvertieren:
@@ -1086,19 +1086,19 @@ Setzen der Aufgaben-Metadaten.]
 % |\\u{$1 $2 $3}|
 %    \begin{macrocode}
 \ExplSyntaxOn
-\def\liKellerUebergang#1{
+\def\bKellerUebergang#1{
   \directlua{automaten.drucke_keller_uebergaenge('#1')}
 }
 \ExplSyntaxOff
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liKellerKante}
-% \cmd{\liKellerKante}\oarg{tikz-optionen}\marg{von}\marg{zu}\marg{übergange}
+% \begin{macro}{\bKellerKante}
+% \cmd{\bKellerKante}\oarg{tikz-optionen}\marg{von}\marg{zu}\marg{übergange}
 % \bMakroFaulenzer{k}{liKellerKante}
 %    \begin{macrocode}
-\NewDocumentCommand{\liKellerKante} { O{above} m m m  } {
-  \path (#2) edge[#1] node{\liKellerUebergang{#4}} (#3);
+\NewDocumentCommand{\bKellerKante} { O{above} m m m  } {
+  \path (#2) edge[#1] node{\bKellerUebergang{#4}} (#3);
 }
 %    \end{macrocode}
 % \end{macro}
@@ -1127,56 +1127,56 @@ Setzen der Aufgaben-Metadaten.]
 \RequirePackage{amssymb}
 %    \end{macrocode}
 
-% \begin{macro}{\liTuringLeerzeichen}
+% \begin{macro}{\bTuringLeerzeichen}
 % \begin{liBeispiel}
-% \liTuringLeerzeichen
+% \bTuringLeerzeichen
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liTuringLeerzeichen{\Box}
+\def\bTuringLeerzeichen{\Box}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liTuringMaschine}
-% \cmd{\liTuringMaschine}\oarg{automaten-name}
-% \\\marg{zustaende=Z,alphabet=$\Sigma$,bandalphabet=$\Gamma$,delta=$\delta$,start=$z_0$,leerzeichen=\liTuringLeerzeichen,ende=E}
+% \begin{macro}{\bTuringMaschine}
+% \cmd{\bTuringMaschine}\oarg{automaten-name}
+% \\\marg{zustaende=Z,alphabet=$\Sigma$,bandalphabet=$\Gamma$,delta=$\delta$,start=$z_0$,leerzeichen=\bTuringLeerzeichen,ende=E}
 %
 % \begin{verbatim}
-% \liTuringMaschine{
+% \bTuringMaschine{
 %   zustaende={z_0, z_1, z_2},
 %   alphabet={a, b, c},
-%   bandalphabet={\liTuringLeerzeichen, A},
+%   bandalphabet={\bTuringLeerzeichen, A},
 %   ende={z_2},
 % }
 % \end{verbatim}
 %
 % \begin{liBeispiel}
-% \liTuringMaschine{
+% \bTuringMaschine{
 %   zustaende={z_0, z_1, z_2},
 %   alphabet={a, b, c},
-%   bandalphabet={\liTuringLeerzeichen, A},
+%   bandalphabet={\bTuringLeerzeichen, A},
 %   ende={z_2},
 % }
 % \end{liBeispiel}
 %
 %    \begin{macrocode}
 \ExplSyntaxOn
-\NewDocumentCommand {\liTuringMaschine} { O{TM} m } {
+\NewDocumentCommand {\bTuringMaschine} { O{TM} m } {
   \tl_set:Nn \l_zustaende_tl {Z}
   \tl_set:Nn \l_alphabet_tl {\Sigma}
   \tl_set:Nn \l_bandalphabet_tl {\Gamma}
   \tl_set:Nn \l_delta_tl {\delta}
   \tl_set:Nn \l_start_tl {z\sb{0}}
-  \tl_set:Nn \l_leerzeichen_tl {\liTuringLeerzeichen}
+  \tl_set:Nn \l_leerzeichen_tl {\bTuringLeerzeichen}
   \tl_set:Nn \l_ende_tl {E}
 
   \keys_define:nn { kellerautomat } {
-    zustaende .code:n = {\tl_set:Nn \l_zustaende_tl {\liMenge{##1}}},
-    alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\liMenge{##1}}},
-    bandalphabet .code:n = {\tl_set:Nn \l_bandalphabet_tl {\liMenge{##1}}},
+    zustaende .code:n = {\tl_set:Nn \l_zustaende_tl {\bMenge{##1}}},
+    alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\bMenge{##1}}},
+    bandalphabet .code:n = {\tl_set:Nn \l_bandalphabet_tl {\bMenge{##1}}},
     delta .code:n = {\tl_set:Nn \l_delta_tl {##1}},
     start .code:n = {\tl_set:Nn \l_start_tl {##1}},
     leerzeichen .code:n = {\tl_set:Nn \l_leerzeichen_tl {##1}},
-    ende .code:n = {\tl_set:Nn \l_ende_tl {\liMenge{##1}}},
+    ende .code:n = {\tl_set:Nn \l_ende_tl {\bMenge{##1}}},
   }
 
   \keys_set:nn { kellerautomat } { #2 }
@@ -1195,48 +1195,48 @@ Setzen der Aufgaben-Metadaten.]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liTuringUebergangZelle}
+% \begin{macro}{\bTuringUebergangZelle}
 % Formatiert einen Zustandsübergang für eine Übergangstabelle.
 % \bMakroFaulenzer{t}{liTuringUebergangZelle}
-% |\liTuringUebergangZelle{z_1, LEER, R}|: \liTuringUebergangZelle{z_1, LEER, R}
-% |\liTuringUebergangZelle{z1, leer, l}|: \liTuringUebergangZelle{z_1, LEER, l}
+% |\bTuringUebergangZelle{z_1, LEER, R}|: \bTuringUebergangZelle{z_1, LEER, R}
+% |\bTuringUebergangZelle{z1, leer, l}|: \bTuringUebergangZelle{z_1, LEER, l}
 %    \begin{macrocode}
 \ExplSyntaxOn
-\def\liTuringUebergangZelle#1{
+\def\bTuringUebergangZelle#1{
   \directlua{tex.print(automaten.gib_einen_turing_uebergang('#1'))}
 }
 \ExplSyntaxOff
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liTuringUebergaenge}
+% \begin{macro}{\bTuringUebergaenge}
 % Nur in den TikZ-Grafiken zu verwenden. Setzt Zeilenumbrüche ans Ende.
 % Nicht für die Tabelle geeignet.
 % \bMakroFaulenzer{t}{liTuringUebergaenge}
 % \noindent
-% \liTuringUebergaenge{z_1, LEER, l; LEER, LEER, r}
+% \bTuringUebergaenge{z_1, LEER, l; LEER, LEER, r}
 %    \begin{macrocode}
 \ExplSyntaxOn
-\def\liTuringUebergaenge#1{
+\def\bTuringUebergaenge#1{
   \directlua{automaten.drucke_turing_uebergaenge('#1')}
 }
 \ExplSyntaxOff
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liTuringKante}
-% \cmd{\liTuringKante}\oarg{tikz-optionen}\marg{zustand-oder-lese}\marg{schreibe}\marg{richtung}
+% \begin{macro}{\bTuringKante}
+% \cmd{\bTuringKante}\oarg{tikz-optionen}\marg{zustand-oder-lese}\marg{schreibe}\marg{richtung}
 % \bMakroFaulenzer{t}{liTuringKante}
 %    \begin{macrocode}
-\NewDocumentCommand{\liTuringKante} { O{above} m m m  } {
-  \path (#2) edge[#1] node{\liTuringUebergaenge{#4}} (#3);
+\NewDocumentCommand{\bTuringKante} { O{above} m m m  } {
+  \path (#2) edge[#1] node{\bTuringUebergaenge{#4}} (#3);
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liTuringUeberfuehrung}
+% \begin{macro}{\bTuringUeberfuehrung}
 %    \begin{macrocode}
-\def\liTuringUeberfuehrung{
+\def\bTuringUeberfuehrung{
   $\delta : Z \times \Gamma \rightarrow Z \times \Gamma \times \{ L, R, N \}$
 }
 %    \end{macrocode}
@@ -1312,19 +1312,19 @@ Setzen der Aufgaben-Metadaten.]
 % \end{macro}
 % \end{macro}
 
-% \begin{macro}{\liLadePakete}
+% \begin{macro}{\bLadePakete}
 %    \begin{macrocode}
-\NewDocumentCommand{\liLadePakete}{ m }
+\NewDocumentCommand{\bLadePakete}{ m }
 {
   \clist_map_inline:nn { #1 } { \RequirePackage{bschlangaul-##1} }
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liLadeAllePakete}
+% \begin{macro}{\bLadeAllePakete}
 %    \begin{macrocode}
-\def\liLadeAllePakete{
-  \liLadePakete{
+\def\bLadeAllePakete{
+  \bLadePakete{
     aufgaben-einbinden,
     automaten,
     checkbox,
@@ -1864,17 +1864,17 @@ Multiple-Choice-Fragen. Simulation von Kästchen zum ankreuzen]
 \RequirePackage{amssymb}
 %    \end{macrocode}
 
-% \begin{macro}{\liRichtig}
+% \begin{macro}{\bRichtig}
 % Angekreuztes Kästchen (nur innerhalb der |itemize|-Umgebung zu verwenden.
 %    \begin{macrocode}
-\def\liRichtig{\item[$\boxtimes$]}
+\def\bRichtig{\item[$\boxtimes$]}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liFalsch}
+% \begin{macro}{\bFalsch}
 % Nicht angekreuztes Kästchen (nur innerhalb der |itemize|-Umgebung zu verwenden.
 %    \begin{macrocode}
-\def\liFalsch{\item[$\square$]}
+\def\bFalsch{\item[$\square$]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1893,7 +1893,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\liLadePakete{typographie}
+\bLadePakete{typographie}
 %    \end{macrocode}
 
 % \bFaulenzer{
@@ -1905,7 +1905,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \subsubsection{TeX-Markup-Grundgerüst}
 
 % \begin{verbatim}
-% \let\schrittE=\liChomskyUeberErklaerung
+% \let\schrittE=\bChomskyUeberErklaerung
 % \begin{enumerate}
 % \item \schrittE{1}
 % \item \schrittE{2}
@@ -1920,7 +1920,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \begin{enumerate}
 % \item \schrittE{1}
 %
-% \liNichtsZuTun
+% \bNichtsZuTun
 %
 % \item \schrittE{2}
 %
@@ -1969,10 +1969,10 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \end{enumerate}
 % \end{verbatim}
 
-% \begin{macro}{\liChomskyUeberschrift}
+% \begin{macro}{\bChomskyUeberschrift}
 % \bMakroFaulenzer{schritt}{liChomskyUeberschrift}
 %    \begin{macrocode}
-\def\liChomskyUeberschrift#1{
+\def\bChomskyUeberschrift#1{
   {
     \bfseries
     \rmfamily
@@ -1987,7 +1987,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liChomskyErklaerung}
+% \begin{macro}{\bChomskyErklaerung}
 % \bMakroFaulenzer{erklaerung}{liChomskyErklaerung}
 %  Hoffmann Seite 180
 %    \begin{macrocode}
@@ -2023,22 +2023,22 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
     }
   }
 }
-\def\liChomskyErklaerung#1{
+\def\bChomskyErklaerung#1{
   {
     \itshape
     \footnotesize
-    \liParagraphMitLinien{\li@chomsky@erklaerung@texte{#1}}
+    \bParagraphMitLinien{\li@chomsky@erklaerung@texte{#1}}
   }
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liChomskyUeberErklaerung}
+% \begin{macro}{\bChomskyUeberErklaerung}
 % \bMakroFaulenzer{schrittE}{liChomskyUeberErklaerung}
 %    \begin{macrocode}
-\def\liChomskyUeberErklaerung#1{
-  \liChomskyUeberschrift{#1}\par
-  \liChomskyErklaerung{#1}
+\def\bChomskyUeberErklaerung#1{
+  \bChomskyUeberschrift{#1}\par
+  \bChomskyErklaerung{#1}
 }
 %    \end{macrocode}
 % \end{macro}
@@ -2055,7 +2055,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\liLadePakete{mathe,typographie}
+\bLadePakete{mathe,typographie}
 %    \end{macrocode}
 
 % \bFaulenzer{
@@ -2070,48 +2070,48 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \subsubsection{TeX-Markup-Beispiel: Graph}
 
 % \begin{tikzpicture}[scale=0.8,transform shape]
-% \liCpmEreignis{1}{0}{2}
-% \liCpmEreignis{2}{1}{4}
-% \liCpmEreignis{3}{1}{0}
-% \liCpmEreignis{4}{3}{4}
-% \liCpmEreignis{5}{3}{2}
-% \liCpmEreignis{6}{3}{0}
-% \liCpmEreignis{7}{5}{4}
-% \liCpmEreignis{8}{5}{2}
-% \liCpmEreignis{9}{5}{0}
-% \liCpmEreignis{10}{7}{2}
+% \bCpmEreignis{1}{0}{2}
+% \bCpmEreignis{2}{1}{4}
+% \bCpmEreignis{3}{1}{0}
+% \bCpmEreignis{4}{3}{4}
+% \bCpmEreignis{5}{3}{2}
+% \bCpmEreignis{6}{3}{0}
+% \bCpmEreignis{7}{5}{4}
+% \bCpmEreignis{8}{5}{2}
+% \bCpmEreignis{9}{5}{0}
+% \bCpmEreignis{10}{7}{2}
 
-% \liCpmVorgang{1}{2}{10}
-% \liCpmVorgang{1}{3}{22}
-% \liCpmVorgang{1}{5}{6}
-% \liCpmVorgang{1}{6}{5}
-% \liCpmVorgang{3}{6}{8}
-% \liCpmVorgang{2}{5}{5}
-% \liCpmVorgang{2}{4}{8}
-% \liCpmVorgang{4}{7}{12}
-% \liCpmVorgang{7}{8}{3}
-% \liCpmVorgang{7}{10}{6}
-% \liCpmVorgang{9}{10}{9}
-% \liCpmVorgang{6}{9}{11}
-% \liCpmVorgang{8}{10}{7}
-% \liCpmVorgang{4}{5}{1}
+% \bCpmVorgang{1}{2}{10}
+% \bCpmVorgang{1}{3}{22}
+% \bCpmVorgang{1}{5}{6}
+% \bCpmVorgang{1}{6}{5}
+% \bCpmVorgang{3}{6}{8}
+% \bCpmVorgang{2}{5}{5}
+% \bCpmVorgang{2}{4}{8}
+% \bCpmVorgang{4}{7}{12}
+% \bCpmVorgang{7}{8}{3}
+% \bCpmVorgang{7}{10}{6}
+% \bCpmVorgang{9}{10}{9}
+% \bCpmVorgang{6}{9}{11}
+% \bCpmVorgang{8}{10}{7}
+% \bCpmVorgang{4}{5}{1}
 
-% \liCpmVorgang[schein]{5}{6}{}
-% \liCpmVorgang[schein]{5}{8}{}
+% \bCpmVorgang[schein]{5}{6}{}
+% \bCpmVorgang[schein]{5}{8}{}
 % \end{tikzpicture}
 
 % \begin{verbatim}
 % \begin{tikzpicture}[scale=0.8,transform shape]
-% \liCpmEreignis{1}{0}{2}
-% \liCpmEreignis{2}{1}{4}
-% \liCpmEreignis{3}{1}{0}
+% \bCpmEreignis{1}{0}{2}
+% \bCpmEreignis{2}{1}{4}
+% \bCpmEreignis{3}{1}{0}
 %
-% \liCpmVorgang{1}{2}{10}
-% \liCpmVorgang{1}{3}{22}
-% \liCpmVorgang{1}{5}{6}
+% \bCpmVorgang{1}{2}{10}
+% \bCpmVorgang{1}{3}{22}
+% \bCpmVorgang{1}{5}{6}
 %
-% \liCpmVorgang[schein]{5}{6}{}
-% \liCpmVorgang[schein]{5}{8}{}
+% \bCpmVorgang[schein]{5}{6}{}
+% \bCpmVorgang[schein]{5}{8}{}
 % \end{tikzpicture}
 % \end{verbatim}
 
@@ -2130,7 +2130,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \subsubsection{TeX-Markup-Beispiel: Nebenrechnungstabelle „Frühester Zeitpunkt“}
 
 % \begin{verbatim}
-% \liCpmFruehErklaerung
+% \bCpmFruehErklaerung
 % \begin{tabular}{|l|l|r|}
 % \hline
 % $i$ & Nebenrechnung            & \FZ \\\hline
@@ -2148,7 +2148,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \subsubsection{TeX-Markup-Beispiel: Nebenrechnungstabelle „Spätester Zeitpunkt“}
 
 % \begin{verbatim}
-% \liCpmSpaetErklaerung
+% \bCpmSpaetErklaerung
 % % Absteigend nach i sortieren
 % \begin{tabular}{|l|l|r|}
 % \hline
@@ -2164,11 +2164,11 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \end{tabular}
 % \end{verbatim}
 
-% \begin{macro}{\liCpmEreignis}
+% \begin{macro}{\bCpmEreignis}
 % |liCpmEreignis\{(.*)\}\((.*),(.*)\)| -> |liCpmEreignis{$1}{$2}{$3}|
 %    \begin{macrocode}
 \ExplSyntaxOn
-\NewDocumentCommand { \liCpmEreignis } { O{} m m m  } {
+\NewDocumentCommand { \bCpmEreignis } { O{} m m m  } {
   \tl_set:Nn \l_name_tl {}
 
   \keys_define:nn { cpmEreignis } {
@@ -2187,11 +2187,11 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liCpmVorgang}
+% \begin{macro}{\bCpmVorgang}
 % |liCpmVORGANG\((.*)>(.*)\)\{(.*)\}|
 %    \begin{macrocode}
 \ExplSyntaxOn
-\NewDocumentCommand { \liCpmVorgang } { O{} m m m  } {
+\NewDocumentCommand { \bCpmVorgang } { O{} m m m  } {
   \tl_set:Nn \l_schein_tl {}
   \tl_set:Nn \l_kritisch_tl {}
 
@@ -2220,46 +2220,46 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \end{tabular}
 % \end{verbatim}
 
-% \begin{macro}{\liCpmVonZu}
+% \begin{macro}{\bCpmVonZu}
 % \bMakroFaulenzer{vz}{liCpmVonZu}
-% |\liCpmVonZu{1}(2-3)|: \liCpmVonZu{1}(2-3)
+% |\bCpmVonZu{1}(2-3)|: \bCpmVonZu{1}(2-3)
 %    \begin{macrocode}
-\def\liCpmVonZuOhneMathe#1(#2-#3){#1_{\scriptscriptstyle(#2\rightarrow#3)}}
-\def\liCpmVonZu#1(#2-#3){%
+\def\bCpmVonZuOhneMathe#1(#2-#3){#1_{\scriptscriptstyle(#2\rightarrow#3)}}
+\def\bCpmVonZu#1(#2-#3){%
   \ifmmode%
-    \liCpmVonZuOhneMathe{#1}(#2-#3)%
+    \bCpmVonZuOhneMathe{#1}(#2-#3)%
   \else%
-    $\liCpmVonZuOhneMathe{#1}(#2-#3)$%
+    $\bCpmVonZuOhneMathe{#1}(#2-#3)$%
   \fi%
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liCpmVon}
+% \begin{macro}{\bCpmVon}
 % \bMakroFaulenzer{v}{liCpmVon}
-% |\liCpmVon{1}(2)|: \liCpmVon{1}(2)
+% |\bCpmVon{1}(2)|: \bCpmVon{1}(2)
 %    \begin{macrocode}
-\def\liCpmVonOhneMathe#1(#2){#1_{\scriptscriptstyle(\rightarrow#2)}}
-\def\liCpmVon#1(#2){%
+\def\bCpmVonOhneMathe#1(#2){#1_{\scriptscriptstyle(\rightarrow#2)}}
+\def\bCpmVon#1(#2){%
   \ifmmode%
-    \liCpmVonOhneMathe{#1}(#2)%
+    \bCpmVonOhneMathe{#1}(#2)%
   \else%
-    $\liCpmVonOhneMathe{#1}(#2)$%
+    $\bCpmVonOhneMathe{#1}(#2)$%
   \fi%
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liCpmZu}
+% \begin{macro}{\bCpmZu}
 % \bMakroFaulenzer{z}{liCpmZu}
-% |\liCpmZu{1}(2)|: \liCpmZu{1}(2)
+% |\bCpmZu{1}(2)|: \bCpmZu{1}(2)
 %    \begin{macrocode}
-\def\liCpmZuOhneMathe#1(#2){#1_{\scriptscriptstyle(\leftarrow#2)}}
-\def\liCpmZu#1(#2){%
+\def\bCpmZuOhneMathe#1(#2){#1_{\scriptscriptstyle(\leftarrow#2)}}
+\def\bCpmZu#1(#2){%
   \ifmmode%
-    \liCpmZuOhneMathe{#1}(#2)%
+    \bCpmZuOhneMathe{#1}(#2)%
   \else%
-    $\liCpmZuOhneMathe{#1}(#2)$%
+    $\bCpmZuOhneMathe{#1}(#2)$%
   \fi%
 }
 %    \end{macrocode}
@@ -2269,11 +2269,11 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 \ExplSyntaxOn
 %    \end{macrocode}
 
-% \begin{macro}{\liCpmSpaetI}
+% \begin{macro}{\bCpmSpaetI}
 % Spätester Zeitpunkt, zu dem Ereignis $i$ eintreten kann
 % \bMakroFaulenzer{SZ}{liCpmSpaetI}
 %    \begin{macrocode}
-\NewDocumentCommand{ \liCpmSpaetI } { O{i} } {
+\NewDocumentCommand{ \bCpmSpaetI } { O{i} } {
   \ifmmode
     SZ\sb{#1}
   \else
@@ -2283,11 +2283,11 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liCpmFruehI}
+% \begin{macro}{\bCpmFruehI}
 % Frühester Zeitpunkt, zu dem Ereignis $i$ eintreten kann.
 % \bMakroFaulenzer{FZ}{liCpmFruehI}
 %    \begin{macrocode}
-\NewDocumentCommand{ \liCpmFruehI } { O{i} } {
+\NewDocumentCommand{ \bCpmFruehI } { O{i} } {
   \ifmmode
     FZ\sb{#1}
   \else
@@ -2297,13 +2297,13 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liCpmFruehErklaerung}
+% \begin{macro}{\bCpmFruehErklaerung}
 % \begin{liBeispiel}
-% \liCpmFruehErklaerung
+% \bCpmFruehErklaerung
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liCpmFruehErklaerung{
-  \liParagraphMitLinien{
+\def\bCpmFruehErklaerung{
+  \bParagraphMitLinien{
     Wir~führen~eine~Vorwärtsterminierung~durch~
     und~addieren~die~Dauern.~
 
@@ -2315,7 +2315,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
     $i$:~
     Ereignis~$i$;~\,
 
-    \liCpmFruehI{}:~
+    \bCpmFruehI{}:~
     Frühester~Zeitpunkt,~zu~dem~Ereignis~$i$~eintreten~kann
     .
   }
@@ -2323,13 +2323,13 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liCpmSpaetErklaerung}
+% \begin{macro}{\bCpmSpaetErklaerung}
 % \begin{liBeispiel}
-% \liCpmSpaetErklaerung
+% \bCpmSpaetErklaerung
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liCpmSpaetErklaerung{
-  \liParagraphMitLinien{
+\def\bCpmSpaetErklaerung{
+  \bParagraphMitLinien{
     Wir~führen~eine~Rückwärtsterminierung~durch~
     und~subtrahieren~die~Dauern~vom~letzten~Ereignis~aus.~
 
@@ -2341,7 +2341,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
     $i$:~
     Ereignis~$i$;~\,
 
-    \liCpmSpaetI{}:~
+    \bCpmSpaetI{}:~
     Spätester~Zeitpunkt,~zu~dem~Ereignis~$i$~eintreten~kann
     .
   }
@@ -2380,21 +2380,21 @@ zum Setzen des CYK-Algorithmus]
 % -     & - \l2
 % S \l1
 % \end{tabular}
-% \liWortInSprache{acbcab}
+% \bWortInSprache{acbcab}
 % \end{verbatim}
 
-% \begin{macro}{\liKurzeTabellenLinie}
+% \begin{macro}{\bKurzeTabellenLinie}
 % \bMakroFaulenzer{l}{liKurzeTabellenLinie}
 %    \begin{macrocode}
-\def\liKurzeTabellenLinie#1{\\\cline{1-#1}}
+\def\bKurzeTabellenLinie#1{\\\cline{1-#1}}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liWortInSprache}
-% |\liWortInSprache{abc}|: \liWortInSprache{abc} \\
-% |\liWortInSprache{abc}[L(Z)]|: \liWortInSprache{abc}[L(Z)]
+% \begin{macro}{\bWortInSprache}
+% |\bWortInSprache{abc}|: \bWortInSprache{abc} \\
+% |\bWortInSprache{abc}[L(Z)]|: \bWortInSprache{abc}[L(Z)]
 %    \begin{macrocode}
-\NewDocumentCommand{ \liWortInSprache } { m O{L(G)} } {
+\NewDocumentCommand{ \bWortInSprache } { m O{L(G)} } {
   \bigskip
   \noindent
   $\Rightarrow #1 \in #2$
@@ -2402,11 +2402,11 @@ zum Setzen des CYK-Algorithmus]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liWortNichtInSprache}
-% |\liWortNichtInSprache{abc}|: \liWortNichtInSprache{abc} \\
-% |\liWortNichtInSprache{abc}[L(Z)]|: \liWortNichtInSprache{abc}[L(Z)]
+% \begin{macro}{\bWortNichtInSprache}
+% |\bWortNichtInSprache{abc}|: \bWortNichtInSprache{abc} \\
+% |\bWortNichtInSprache{abc}[L(Z)]|: \bWortNichtInSprache{abc}[L(Z)]
 %    \begin{macrocode}
-\NewDocumentCommand{ \liWortNichtInSprache } { m O{L(G)} } {
+\NewDocumentCommand{ \bWortNichtInSprache } { m O{L(G)} } {
   \bigskip
   \noindent
   $\Rightarrow #1 \notin #2$
@@ -2426,7 +2426,7 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %
 % \subsubsection{Namensschema der Entwurfsmuster-Makros:}
 %
-% Präfix: |\liEntwurfs| +
+% Präfix: |\bEntwurfs| +
 % Name des Entwurfsmuster |DeutscherName| +
 % Suffix: (|Uml|, |Akteure|, |Code|, |ohne|)
 %
@@ -2434,16 +2434,16 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %
 % \begin{enumerate}
 % \item |Beschreibung|
-% Kurze Beschreibung des Entwurfsmusters, z. B |\liEntwurfsEinzelstueckBeschreibung|
+% Kurze Beschreibung des Entwurfsmusters, z. B |\bEntwurfsEinzelstueckBeschreibung|
 % \item |Uml|:
-% Uml-Klassendiagramm, z. B |\liEntwurfsEinzelstueckUml|
+% Uml-Klassendiagramm, z. B |\bEntwurfsEinzelstueckUml|
 % \item |Akteure|:
-% Akteure, beteiligte Klassen, z. B |\liEntwurfsEinzelstueckAkteure|
+% Akteure, beteiligte Klassen, z. B |\bEntwurfsEinzelstueckAkteure|
 % \item |Code|:
-% Allgemeines Code-Beispiel, z. B |\liEntwurfsEinzelstueckCode|
+% Allgemeines Code-Beispiel, z. B |\bEntwurfsEinzelstueckCode|
 % \item |ohne|:
 % Ohne Suffix, Bündelung der einzelnen Makros eines Entwurfsmusters
-% |\liEntwurfsEinzelstueckAkteure|
+% |\bEntwurfsEinzelstueckAkteure|
 % \end{enumerate}
 
 %    \begin{macrocode}
@@ -2455,16 +2455,16 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \begin{macrocode}
 \RequirePackage{bschlangaul-syntax}
 \def\li@EntwurfsCode#1#2{
-  \liJavaDatei{entwurfsmuster/#1/allgemein/#2}
+  \bJavaDatei{entwurfsmuster/#1/allgemein/#2}
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Abstrakte Fabrik (Abstract Factory)}
 
-% \begin{macro}{\liEntwurfsAbstrakteFabrikBeschreibung}
+% \begin{macro}{\bEntwurfsAbstrakteFabrikBeschreibung}
 %    \begin{macrocode}
-\def\liEntwurfsAbstrakteFabrikBeschreibung{
+\def\bEntwurfsAbstrakteFabrikBeschreibung{
   Es wird eine Schnittstelle bereitgestellt, um \emph{Familien
   verbundener oder abhängiger Objekte} zu erstellen, ohne die konkreten
   Klassen zu spezifizieren.\footcite[Seite 25]{eilebrecht}
@@ -2472,12 +2472,12 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsAbstrakteFabrikUml}
+% \begin{macro}{\bEntwurfsAbstrakteFabrikUml}
 % \begin{liBeispiel}
-% \liEntwurfsAbstrakteFabrikUml
+% \bEntwurfsAbstrakteFabrikUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsAbstrakteFabrikUml{
+\def\bEntwurfsAbstrakteFabrikUml{
   \begin{tikzpicture}
     \umlclass[type=abstract]{AbstrakteFabrik}{}{
       erzeugeProduktA()\\
@@ -2522,9 +2522,9 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsAbstrakteFabrikCode}
+% \begin{macro}{\bEntwurfsAbstrakteFabrikCode}
 %    \begin{macrocode}
-\def\liEntwurfsAbstrakteFabrikCode{
+\def\bEntwurfsAbstrakteFabrikCode{
   \li@EntwurfsCode{abstrakte_fabrik}{Produkte}
   \li@EntwurfsCode{abstrakte_fabrik}{AbstrakteFabrik}
   \li@EntwurfsCode{abstrakte_fabrik}{Klient}
@@ -2532,26 +2532,26 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsAbstrakteFabrik}
+% \begin{macro}{\bEntwurfsAbstrakteFabrik}
 %    \begin{macrocode}
-\def\liEntwurfsAbstrakteFabrik{
-  \liEntwurfsAbstrakteFabrikBeschreibung
+\def\bEntwurfsAbstrakteFabrik{
+  \bEntwurfsAbstrakteFabrikBeschreibung
 
-  \liEntwurfsAbstrakteFabrikUml
+  \bEntwurfsAbstrakteFabrikUml
 
-  \liEntwurfsAbstrakteFabrikCode
+  \bEntwurfsAbstrakteFabrikCode
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Adapter}
 
-% \begin{macro}{\liEntwurfsAdapterUml}
+% \begin{macro}{\bEntwurfsAdapterUml}
 % \begin{liBeispiel}
-% \liEntwurfsAdapterUml
+% \bEntwurfsAdapterUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsAdapterUml{
+\def\bEntwurfsAdapterUml{
   \begin{tikzpicture}
     \umlsimpleclass[x=1,y=3]{Klient}{}{}
     \umlclass[x=4,y=3,type=interface]{Ziel}{}{agiere()}
@@ -2569,12 +2569,12 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsAdapterAkteure}
+% \begin{macro}{\bEntwurfsAdapterAkteure}
 % \begin{liBeispiel}
-% \liEntwurfsAdapterAkteure
+% \bEntwurfsAdapterAkteure
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsAdapterAkteure{
+\def\bEntwurfsAdapterAkteure{
   \begin{description}
 
     \item[Ziel (Target)]
@@ -2601,9 +2601,9 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsAdapterCode}
+% \begin{macro}{\bEntwurfsAdapterCode}
 %    \begin{macrocode}
-\def\liEntwurfsAdapterCode{
+\def\bEntwurfsAdapterCode{
   \li@EntwurfsCode{adapter}{Dienst}
   \li@EntwurfsCode{adapter}{Ziel}
   \li@EntwurfsCode{adapter}{Adapter}
@@ -2612,24 +2612,24 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsAdapter}
+% \begin{macro}{\bEntwurfsAdapter}
 %    \begin{macrocode}
-\def\liEntwurfsAdapter{
-  \liEntwurfsAdapterUml
-  \liEntwurfsAdapterAkteure
-  \liEntwurfsAdapterCode
+\def\bEntwurfsAdapter{
+  \bEntwurfsAdapterUml
+  \bEntwurfsAdapterAkteure
+  \bEntwurfsAdapterCode
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Beobachter (Observer)}
 
-% \begin{macro}{\liEntwurfsBeobachterUml}
+% \begin{macro}{\bEntwurfsBeobachterUml}
 % \begin{liBeispiel}
-% \liEntwurfsBeobachterUml
+% \bEntwurfsBeobachterUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsBeobachterUml{
+\def\bEntwurfsBeobachterUml{
   \begin{tikzpicture}
     \umlclass[x=0,y=0,type=abstract]{Gegenstand}{}{
       + registriere(beobachter: Beobachter): void\\
@@ -2656,12 +2656,12 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsBeobachterAkteure}
+% \begin{macro}{\bEntwurfsBeobachterAkteure}
 % \begin{liBeispiel}
-% \liEntwurfsBeobachterAkteure
+% \bEntwurfsBeobachterAkteure
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsBeobachterAkteure{
+\def\bEntwurfsBeobachterAkteure{
   \begin{description}
     \item[Gegenstand / Subjekt (Subject / Observable)]
 
@@ -2698,9 +2698,9 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsBeobachterCode}
+% \begin{macro}{\bEntwurfsBeobachterCode}
 %    \begin{macrocode}
-\def\liEntwurfsBeobachterCode{
+\def\bEntwurfsBeobachterCode{
   \li@EntwurfsCode{beobachter}{Gegenstand}
   \li@EntwurfsCode{beobachter}{KonkreterGegenstand}
   \li@EntwurfsCode{beobachter}{Beobachter}
@@ -2711,24 +2711,24 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsBeobachter}
+% \begin{macro}{\bEntwurfsBeobachter}
 %    \begin{macrocode}
-\def\liEntwurfsBeobachter{
-  \liEntwurfsBeobachterUml
-  \liEntwurfsBeobachterAkteure
-  \liEntwurfsBeobachterCode
+\def\bEntwurfsBeobachter{
+  \bEntwurfsBeobachterUml
+  \bEntwurfsBeobachterAkteure
+  \bEntwurfsBeobachterCode
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Dekorierer (Decorator)}
 
-% \begin{macro}{\liEntwurfsDekoriererUml}
+% \begin{macro}{\bEntwurfsDekoriererUml}
 % \begin{liBeispiel}
-% \liEntwurfsDekoriererUml
+% \bEntwurfsDekoriererUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsDekoriererUml{
+\def\bEntwurfsDekoriererUml{
   \begin{tikzpicture}
     \umlclass[type=abstract]{Komponente}{}{agiere()}
     \umlclass[below left=1.5cm and 0cm of Komponente]{KonkreteKomponente}{}{agiere()}
@@ -2750,9 +2750,9 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsDekoriererCode}
+% \begin{macro}{\bEntwurfsDekoriererCode}
 %    \begin{macrocode}
-\def\liEntwurfsDekoriererCode{
+\def\bEntwurfsDekoriererCode{
   \li@EntwurfsCode{dekorierer}{Komponente}
   \li@EntwurfsCode{dekorierer}{KonkreteKomponente}
   \li@EntwurfsCode{dekorierer}{Dekorierer}
@@ -2763,25 +2763,25 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsDekorierer}
+% \begin{macro}{\bEntwurfsDekorierer}
 %    \begin{macrocode}
-\def\liEntwurfsDekorierer{
-  \liEntwurfsDekoriererUml
-  \liEntwurfsDekoriererAkteure
-  \liEntwurfsDekoriererCode
+\def\bEntwurfsDekorierer{
+  \bEntwurfsDekoriererUml
+  \bEntwurfsDekoriererAkteure
+  \bEntwurfsDekoriererCode
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Einfache Fabrik (Simple Factory)}
 
-% \begin{macro}{\liEntwurfsEinfacheFabrikUml}
+% \begin{macro}{\bEntwurfsEinfacheFabrikUml}
 % Quelle: \url{https://refactoring.guru/design-patterns/factory-comparison}
 % \begin{liBeispiel}
-% \liEntwurfsEinfacheFabrikUml
+% \bEntwurfsEinfacheFabrikUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsEinfacheFabrikUml{
+\def\bEntwurfsEinfacheFabrikUml{
   \begin{tikzpicture}
     \umlsimpleclass[type=abstract]{Produkt}
     \umlsimpleclass[below left=1cm and -0.65cm of Produkt]{ProduktA}
@@ -2799,13 +2799,13 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsEinfacheFabrikAkteure}
+% \begin{macro}{\bEntwurfsEinfacheFabrikAkteure}
 % Quelle: frei überstetzt aus GoF
 % \begin{liBeispiel}
-% \liEntwurfsEinfacheFabrikAkteure
+% \bEntwurfsEinfacheFabrikAkteure
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsEinfacheFabrikAkteure{
+\def\bEntwurfsEinfacheFabrikAkteure{
   \begin{description}
     \item[EinfacheFabrik]
 
@@ -2824,33 +2824,33 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsEinfacheFabrik}
+% \begin{macro}{\bEntwurfsEinfacheFabrik}
 %    \begin{macrocode}
-\def\liEntwurfsEinfacheFabrik{
-  \liEntwurfsEinfacheFabrikUml
-  \liEntwurfsEinfacheFabrikAkteure
+\def\bEntwurfsEinfacheFabrik{
+  \bEntwurfsEinfacheFabrikUml
+  \bEntwurfsEinfacheFabrikAkteure
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Einzelstück (Singleton)}
 
-% \begin{macro}{\liEntwurfsEinzelstueckBeschreibung}
+% \begin{macro}{\bEntwurfsEinzelstueckBeschreibung}
 %    \begin{macrocode}
-\def\liEntwurfsEinzelstueckBeschreibung{
+\def\bEntwurfsEinzelstueckBeschreibung{
   Stellt sicher, dass nur \emph{genau eine Instanz einer Klasse} erzeugt
   wird.\footcite[Seite 38]{eilebrecht}
 }
   %    \end{macrocode}
   % \end{macro}
 
-% \begin{macro}{\liEntwurfsEinzelstueckUml}
+% \begin{macro}{\bEntwurfsEinzelstueckUml}
 % Quelle nach der deutschen Wikipedia
 % \begin{liBeispiel}
-% \liEntwurfsEinzelstueckUml
+% \bEntwurfsEinzelstueckUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsEinzelstueckUml{
+\def\bEntwurfsEinzelstueckUml{
   \begin{tikzpicture}
     \umlclass{Einzelstück}{
     \umlstatic{- instanz: Einzelstück}\\
@@ -2863,13 +2863,13 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsEinzelstueckAkteure}
+% \begin{macro}{\bEntwurfsEinzelstueckAkteure}
 % Quelle: frei überstetzt aus GoF
 % \begin{liBeispiel}
-% \liEntwurfsEinzelstueckAkteure
+% \bEntwurfsEinzelstueckAkteure
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsEinzelstueckAkteure{
+\def\bEntwurfsEinzelstueckAkteure{
   \begin{description}
     \item[Einzelstück (Singleton)]
 
@@ -2880,37 +2880,37 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsEinzelstueckCode}
+% \begin{macro}{\bEntwurfsEinzelstueckCode}
 %    \begin{macrocode}
-\def\liEntwurfsEinzelstueckCode{
+\def\bEntwurfsEinzelstueckCode{
   \li@EntwurfsCode{einzelstueck}{Einzelstueck}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsEinzelstueck}
+% \begin{macro}{\bEntwurfsEinzelstueck}
 %    \begin{macrocode}
-\def\liEntwurfsEinzelstueck{
-  \liEntwurfsEinzelstueckBeschreibung
+\def\bEntwurfsEinzelstueck{
+  \bEntwurfsEinzelstueckBeschreibung
 
-  \liEntwurfsEinzelstueckUml
+  \bEntwurfsEinzelstueckUml
 
-  \liEntwurfsEinzelstueckAkteure
+  \bEntwurfsEinzelstueckAkteure
 
-  \liEntwurfsEinzelstueckCode
+  \bEntwurfsEinzelstueckCode
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Erbauer (Builder)}
 
-% \begin{macro}{\liEntwurfsErbauerUml}
+% \begin{macro}{\bEntwurfsErbauerUml}
 % Quelle nach der deutschen Wikipedia
 % \begin{liBeispiel}
-% \liEntwurfsErbauerUml
+% \bEntwurfsErbauerUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsErbauerUml{
+\def\bEntwurfsErbauerUml{
   \begin{tikzpicture}
     \umlsimpleclass[x=7,y=0]{Produkt}{}{}
     \umlclass[x=4,y=3,type=interface]{Erbauer}{}{+ baueTeil()}
@@ -2933,13 +2933,13 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsErbauerAkteure}
+% \begin{macro}{\bEntwurfsErbauerAkteure}
 % Quelle: deutsche Wikipedia
 % \begin{liBeispiel}
-% \liEntwurfsErbauerAkteure
+% \bEntwurfsErbauerAkteure
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsErbauerAkteure{
+\def\bEntwurfsErbauerAkteure{
   \begin{description}
     \item[Erbauer]
 
@@ -2970,24 +2970,24 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsErbauer}
+% \begin{macro}{\bEntwurfsErbauer}
 %    \begin{macrocode}
-\def\liEntwurfsErbauer{
-  \liEntwurfsErbauerUml
-  \liEntwurfsErbauerAkteure
+\def\bEntwurfsErbauer{
+  \bEntwurfsErbauerUml
+  \bEntwurfsErbauerAkteure
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Fabrikmethode (Factory Method)}
 
-% \begin{macro}{\liEntwurfsFabrikmethodeUml}
+% \begin{macro}{\bEntwurfsFabrikmethodeUml}
 % Quelle nach der deutschen Wikipedia
 % \begin{liBeispiel}
-% \liEntwurfsFabrikmethodeUml
+% \bEntwurfsFabrikmethodeUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsFabrikmethodeUml{
+\def\bEntwurfsFabrikmethodeUml{
   \begin{tikzpicture}
     \umlsimpleclass[type=abstract]{Produkt}
     \umlsimpleclass[below=2cm of Produkt]{KonkretesProdukt}
@@ -3007,13 +3007,13 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsFabrikmethodeAkteure}
+% \begin{macro}{\bEntwurfsFabrikmethodeAkteure}
 % Quelle: deutsche Wikipedia
 % \begin{liBeispiel}
-% \liEntwurfsFabrikmethodeAkteure
+% \bEntwurfsFabrikmethodeAkteure
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsFabrikmethodeAkteure{
+\def\bEntwurfsFabrikmethodeAkteure{
   \begin{description}
     \item[Produkt]
 
@@ -3041,23 +3041,23 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsFabrikmethode}
+% \begin{macro}{\bEntwurfsFabrikmethode}
 %    \begin{macrocode}
-\def\liEntwurfsFabrikmethode{
-  \liEntwurfsFabrikmethodeUml
-  \liEntwurfsFabrikmethodeAkteure
+\def\bEntwurfsFabrikmethode{
+  \bEntwurfsFabrikmethodeUml
+  \bEntwurfsFabrikmethodeAkteure
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Kompositum (Composite)}
 
-% \begin{macro}{\liEntwurfsKompositumUml}
+% \begin{macro}{\bEntwurfsKompositumUml}
 % \begin{liBeispiel}
-% \liEntwurfsKompositumUml
+% \bEntwurfsKompositumUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsKompositumUml{
+\def\bEntwurfsKompositumUml{
   \begin{tikzpicture}
     \umlclass[x=2.5,y=3,type=abstract]{Komponente}{}{
       \textit{+agiere()}\\
@@ -3081,23 +3081,23 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsFabrikmethode}
+% \begin{macro}{\bEntwurfsFabrikmethode}
 %    \begin{macrocode}
-\def\liEntwurfsKompositum{
-  \liEntwurfsKompositumUml
-  \liEntwurfsKompositumAkteure
+\def\bEntwurfsKompositum{
+  \bEntwurfsKompositumUml
+  \bEntwurfsKompositumAkteure
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Modell-Präsentation-Steuerung (Model-View-Controller)}
 
-% \begin{macro}{\liEntwurfsModellPraesentationSteuerungUml}
+% \begin{macro}{\bEntwurfsModellPraesentationSteuerungUml}
 % \begin{liBeispiel}
-% \liEntwurfsModellPraesentationSteuerungUml
+% \bEntwurfsModellPraesentationSteuerungUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsModellPraesentationSteuerungUml{
+\def\bEntwurfsModellPraesentationSteuerungUml{
   \begin{tikzpicture}
     \umlclass[x=-4cm,type=role]{Präsentation}{}{+aktualisiere()}
     \umlclass[x=4cm,type=role]{Steuerung}{}{+führeAus()}
@@ -3112,25 +3112,25 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
     \umluniassoc[arg2=-modell,mult2=1,mult1=*]{Steuerung}{Modell}
     \umlassoc[arg1=präsentation,mult1=1..*,arg2=steuerung,mult2=1..*]{Präsentation}{Steuerung}
   \end{tikzpicture}
-  \liFussnoteUrl{http://www.cs.sjsu.edu/~pearce/modules/lectures/ood2/mvc/index.htm}
+  \bFussnoteUrl{http://www.cs.sjsu.edu/~pearce/modules/lectures/ood2/mvc/index.htm}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsModellPraesentationSteuerung}
+% \begin{macro}{\bEntwurfsModellPraesentationSteuerung}
 %    \begin{macrocode}
-\def\liEntwurfs{
-  \liEntwurfsModellPraesentationSteuerungUml
-  \liEntwurfsModellPraesentationSteuerungAkteure
+\def\bEntwurfs{
+  \bEntwurfsModellPraesentationSteuerungUml
+  \bEntwurfsModellPraesentationSteuerungAkteure
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Stellvertreter (Proxy)}
 
-% \begin{macro}{\liEntwurfsStellvertreterUml}
+% \begin{macro}{\bEntwurfsStellvertreterUml}
 %    \begin{macrocode}
-\def\liEntwurfsStellvertreterUml{
+\def\bEntwurfsStellvertreterUml{
   \begin{tikzpicture}
     \umlsimpleclass[x=-1,y=2]{Klient}
 
@@ -3147,9 +3147,9 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsStellvertreterCode}
+% \begin{macro}{\bEntwurfsStellvertreterCode}
 %    \begin{macrocode}
-\def\liEntwurfsStellvertreterCode{
+\def\bEntwurfsStellvertreterCode{
   \li@EntwurfsCode{stellvertreter}{Subjekt}
   \li@EntwurfsCode{stellvertreter}{KonkretesSubjekt}
   \li@EntwurfsCode{stellvertreter}{Stellvertreter}
@@ -3158,24 +3158,24 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsStellvertreter}
+% \begin{macro}{\bEntwurfsStellvertreter}
 %    \begin{macrocode}
-\def\liEntwurfsStellvertreter{
-  \liEntwurfsStellvertreterUml
-  \liEntwurfsStellvertreterCode
+\def\bEntwurfsStellvertreter{
+  \bEntwurfsStellvertreterUml
+  \bEntwurfsStellvertreterCode
 }
 %    \end{macrocode}
 % \end{macro}
 
 % \subsubsection{Zustand (State)}
 
-% \begin{macro}{\liEntwurfsZustandUml}
+% \begin{macro}{\bEntwurfsZustandUml}
 % Quelle: Englische Wikipedia, so ähnlich wie in GoF
 % \begin{liBeispiel}
-% \liEntwurfsZustandUml
+% \bEntwurfsZustandUml
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsZustandUml{
+\def\bEntwurfsZustandUml{
   \begin{tikzpicture}
     \umlclass[x=-1,y=3]{Kontext}{}{+beantrage()}
     \umlclass[x=3,y=3,type=interface]{Zustand}{}{+agiere()}
@@ -3193,13 +3193,13 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsZustandAkteure}
+% \begin{macro}{\bEntwurfsZustandAkteure}
 % Quelle: Deutsche Wikipedia
 % \begin{liBeispiel}
-% \liEntwurfsZustandAkteure
+% \bEntwurfsZustandAkteure
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liEntwurfsZustandAkteure{
+\def\bEntwurfsZustandAkteure{
   \begin{description}
     \item[Kontext (Context)]
 
@@ -3220,21 +3220,21 @@ Hilfsmakros zum Setzen von Entwurfsmustern / Design Patterns]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsZustandCode}
+% \begin{macro}{\bEntwurfsZustandCode}
 %    \begin{macrocode}
-\def\liEntwurfsZustandCode{
+\def\bEntwurfsZustandCode{
   \li@EntwurfsCode{zustand}{Kontext}
   \li@EntwurfsCode{zustand}{Zustand}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEntwurfsZustand}
+% \begin{macro}{\bEntwurfsZustand}
 %    \begin{macrocode}
-\def\liEntwurfsZustand{
-  \liEntwurfsZustandUml
-  \liEntwurfsZustandAkteure
-  \liEntwurfsZustandCode
+\def\bEntwurfsZustand{
+  \bEntwurfsZustandUml
+  \bEntwurfsZustandAkteure
+  \bEntwurfsZustandCode
 }
 %    \end{macrocode}
 % \end{macro}
@@ -3345,66 +3345,66 @@ ER-Diagrammen]
 \ExplSyntaxOn
 %    \end{macrocode}
 
-% \begin{macro}{\liErEntity}
+% \begin{macro}{\bErEntity}
 %    \begin{macrocode}
-\def\liErEntity#1{\textbf{#1}}
+\def\bErEntity#1{\textbf{#1}}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liErRelationship}
+% \begin{macro}{\bErRelationship}
 %    \begin{macrocode}
-\def\liErRelationship#1{\ul{#1}}
+\def\bErRelationship#1{\ul{#1}}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liErAttribute}
+% \begin{macro}{\bErAttribute}
 %    \begin{macrocode}
-\def\liErAttribute#1{\emph{#1}}
+\def\bErAttribute#1{\emph{#1}}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liErMpEntity}
+% \begin{macro}{\bErMpEntity}
 % mp = marginpar
 % \bMakroFaulenzer{e}{liErMpEntity}
 %    \begin{macrocode}
-\def\liErMpEntity#1{
-  \liErEntity{#1}
+\def\bErMpEntity#1{
+  \bErEntity{#1}
   \marginpar{
-    \liErEntity{\tiny\faSquareO{}~E:~#1}
+    \bErEntity{\tiny\faSquareO{}~E:~#1}
   }
 }
 %    \end{macrocode}\Box
 % \end{macro}
 
-% \begin{macro}{\liErMpRelationship}
+% \begin{macro}{\bErMpRelationship}
 % \bMakroFaulenzer{r}{liErMpRelationship}
 %    \begin{macrocode}
-\def\liErMpRelationship#1{
-  \liErRelationship{#1}
+\def\bErMpRelationship#1{
+  \bErRelationship{#1}
   \marginpar{
-    \liErRelationship{\tiny\faGg{}~R:~#1}
+    \bErRelationship{\tiny\faGg{}~R:~#1}
   }
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liErMpAttribute}
+% \begin{macro}{\bErMpAttribute}
 % \bMakroFaulenzer{a}{liErMpAttribute}
 %    \begin{macrocode}
-\def\liErMpAttribute#1{
-  \liErAttribute{#1}
+\def\bErMpAttribute#1{
+  \bErAttribute{#1}
   \marginpar{
-    \liErAttribute{\tiny\faCircleThin{}~A:~#1}
+    \bErAttribute{\tiny\faCircleThin{}~A:~#1}
   }
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liErDatenbankName}
+% \begin{macro}{\bErDatenbankName}
 % \bMakroFaulenzer{d}{liErDatenbankName}
 % datenbank name
 %    \begin{macrocode}
-\def\liErDatenbankName#1{
+\def\bErDatenbankName#1{
   {
     \footnotesize\texttt{(#1)}
   }
@@ -3437,92 +3437,92 @@ zum Setzen von mathematischen Formeln bei dem Thema Formale Sprachen]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\liLadePakete{mathe,typographie}
+\bLadePakete{mathe,typographie}
 %    \end{macrocode}
 
-% \begin{macro}{\liMenge}
-% |$\liMenge{a, b, c}$|: $\liMenge{a, b, c}$
+% \begin{macro}{\bMenge}
+% |$\bMenge{a, b, c}$|: $\bMenge{a, b, c}$
 % \bMakroFaulenzer{m}{liMenge}
 %    \begin{macrocode}
-\def\liMengeOhneMathe#1{\{ #1 \}}
-\def\liMenge#1{%
+\def\bMengeOhneMathe#1{\{ #1 \}}
+\def\bMenge#1{%
 \ifmmode%
-\liMengeOhneMathe{#1}%
+\bMengeOhneMathe{#1}%
 \else%
-$\liMengeOhneMathe{#1}$%
+$\bMengeOhneMathe{#1}$%
 \fi%
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEpsilon}
-% |\liEpsilon|: \liEpsilon
+% \begin{macro}{\bEpsilon}
+% |\bEpsilon|: \bEpsilon
 %
 % \bMakroFaulenzer{e}{liEpsilon}
 %    \begin{macrocode}
-\def\liEpsilon{$\varepsilon$}
+\def\bEpsilon{$\varepsilon$}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liPotenzmenge}
+% \begin{macro}{\bPotenzmenge}
 % Umgeben mit geschweiften Klammern in einer Mathematik-Umgebung
 %    \begin{macrocode}
 \def\erzeuge@tiefgestellt#1{\directlua{formale_sprachen.erzeuge_tiefgestellt('#1')}}
-\def\liPotenzmengeOhneMathe#1{\{ \erzeuge@tiefgestellt{#1} \}}
-\def\liPotenzmenge#1{$\liPotenzmengeOhneMathe{#1}$}
+\def\bPotenzmengeOhneMathe#1{\{ \erzeuge@tiefgestellt{#1} \}}
+\def\bPotenzmenge#1{$\bPotenzmengeOhneMathe{#1}$}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsmenge}
-% |\liZustandsmenge{z1, z2}|: |$\{ z_1, z_2 \}$|
+% \begin{macro}{\bZustandsmenge}
+% |\bZustandsmenge{z1, z2}|: |$\{ z_1, z_2 \}$|
 %    \begin{macrocode}
-\let\liZustandsmengeOhneMathe=\liPotenzmengeOhneMathe
-\let\liZustandsmenge=\liPotenzmenge
+\let\bZustandsmengeOhneMathe=\bPotenzmengeOhneMathe
+\let\bZustandsmenge=\bPotenzmenge
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liUeberfuehrungsFunktion}
-% |\liUeberfuehrungsFunktion{z0, a}|: |$\delta(z_0, a)$|
+% \begin{macro}{\bUeberfuehrungsFunktion}
+% |\bUeberfuehrungsFunktion{z0, a}|: |$\delta(z_0, a)$|
 % \bMakroFaulenzer{d}{liUeberfuehrungsFunktion}
 %    \begin{macrocode}
-\def\liUeberfuehrungsFunktionOhneMathe#1{\delta(\erzeuge@tiefgestellt{#1})}
-\def\liUeberfuehrungsFunktion#1{
+\def\bUeberfuehrungsFunktionOhneMathe#1{\delta(\erzeuge@tiefgestellt{#1})}
+\def\bUeberfuehrungsFunktion#1{
 \ifmmode
-  \liUeberfuehrungsFunktionOhneMathe{#1}
+  \bUeberfuehrungsFunktionOhneMathe{#1}
 \else
-  $\liUeberfuehrungsFunktionOhneMathe{#1}$
+  $\bUeberfuehrungsFunktionOhneMathe{#1}$
 \fi
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liAlphabet}
-% |\liAlphabet{a, b}| (|$\Sigma = \{ a, b \}$|): \liAlphabet{a, b}
+% \begin{macro}{\bAlphabet}
+% |\bAlphabet{a, b}| (|$\Sigma = \{ a, b \}$|): \bAlphabet{a, b}
 %    \begin{macrocode}
-\def\liAlphabet#1{$\Sigma = \{ #1 \}$}
+\def\bAlphabet#1{$\Sigma = \{ #1 \}$}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liBandAlphabet}
-% |\liBandAlphabet{\liTuringLeerzeichen}|: \liBandAlphabet{\liTuringLeerzeichen}
+% \begin{macro}{\bBandAlphabet}
+% |\bBandAlphabet{\bTuringLeerzeichen}|: \bBandAlphabet{\bTuringLeerzeichen}
 %    \begin{macrocode}
-\def\liBandAlphabet#1{$\Gamma = \Sigma \cup \{ #1 \}$}
+\def\bBandAlphabet#1{$\Gamma = \Sigma \cup \{ #1 \}$}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsBuchstabe}
+% \begin{macro}{\bZustandsBuchstabe}
 %    \begin{macrocode}
-\def\liZustandsBuchstabe{z}
+\def\bZustandsBuchstabe{z}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsBuchstabeGross}
+% \begin{macro}{\bZustandsBuchstabeGross}
 %    \begin{macrocode}
-\def\liZustandsBuchstabeGross{Z}
+\def\bZustandsBuchstabeGross{Z}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsmengeNr}
+% \begin{macro}{\bZustandsmengeNr}
 %    \begin{macrocode}
 \def\zustandsnamens@liste#1#2{
   $
@@ -3531,34 +3531,34 @@ $\liMengeOhneMathe{#1}$%
     \}
   $
 }
-\def\liZustandsmengeNr#1{\zustandsnamens@liste{\liZustandsBuchstabe}{#1}}
+\def\bZustandsmengeNr#1{\zustandsnamens@liste{\bZustandsBuchstabe}{#1}}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsmengeNrGross}
+% \begin{macro}{\bZustandsmengeNrGross}
 %    \begin{macrocode}
-\def\liZustandsmengeNrGross#1{\zustandsnamens@liste{\liZustandsBuchstabeGross}{#1}}
+\def\bZustandsmengeNrGross#1{\zustandsnamens@liste{\bZustandsBuchstabeGross}{#1}}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsname}
-% |\liZustandsname{1}|: |$z_1$|
+% \begin{macro}{\bZustandsname}
+% |\bZustandsname{1}|: |$z_1$|
 %    \begin{macrocode}
-\def\liZustandsname#1{$\liZustandsBuchstabe_#1$}
+\def\bZustandsname#1{$\bZustandsBuchstabe_#1$}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsnameGross}
-% |\liZustandsnameGross{1}|: |$Z_1$|
+% \begin{macro}{\bZustandsnameGross}
+% |\bZustandsnameGross{1}|: |$Z_1$|
 %    \begin{macrocode}
-\def\liZustandsnameGross#1{$\liZustandsBuchstabeGross_#1$}
+\def\bZustandsnameGross#1{$\bZustandsBuchstabeGross_#1$}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liAbleitung}
-% |\liAbleitung{S -> aB -> ab}|: \liAbleitung{S -> aB -> ab}
+% \begin{macro}{\bAbleitung}
+% |\bAbleitung{S -> aB -> ab}|: \bAbleitung{S -> aB -> ab}
 %    \begin{macrocode}
-\def\liAbleitung#1{$\directlua{formale_sprachen.formatiere_ableitung('#1')}$}
+\def\bAbleitung#1{$\directlua{formale_sprachen.formatiere_ableitung('#1')}$}
 %    \end{macrocode}
 % \end{macro}
 
@@ -3576,7 +3576,7 @@ $\liMengeOhneMathe{#1}$%
 \NewDocumentEnvironment { liProduktionsRegeln }
 { O{P} +b }
 {
-  \liGeschweifteKlammern{#1}
+  \bGeschweifteKlammern{#1}
   {
     \begin{align*}
     \directlua{formale_sprachen.produktions_regeln('#2')}
@@ -3586,24 +3586,24 @@ $\liMengeOhneMathe{#1}$%
 %    \end{macrocode}
 % \end{environment}
 
-% \begin{macro}{\liProduktionen}
-% |\liProduktionen{S -> A, A -> a}|: \liProduktionen{S -> A, A -> a}
+% \begin{macro}{\bProduktionen}
+% |\bProduktionen{S -> A, A -> a}|: \bProduktionen{S -> A, A -> a}
 %    \begin{macrocode}
-\def\liProduktionen#1{
-  \liMenge{\directlua{formale_sprachen.produktions_regeln('#1', true)}}
+\def\bProduktionen#1{
+  \bMenge{\directlua{formale_sprachen.produktions_regeln('#1', true)}}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsnameTiefgestellt}
+% \begin{macro}{\bZustandsnameTiefgestellt}
 % Automatisch tiefgestellte Nummerierung |\z1|
 % \bMakroFaulenzer{z}{liZustandsnameTiefgestellt}
 %    \begin{macrocode}
-\def\liZustandsnameTiefgestellt#1{
+\def\bZustandsnameTiefgestellt#1{
   \ifmmode
-    \liZustandsBuchstabe\sb{#1}
+    \bZustandsBuchstabe\sb{#1}
   \else
-    $\liZustandsBuchstabe\sb{#1}$
+    $\bZustandsBuchstabe\sb{#1}$
   \fi
 }
 %    \end{macrocode}
@@ -3613,18 +3613,18 @@ $\liMengeOhneMathe{#1}$%
 \ExplSyntaxOn
 %    \end{macrocode}
 
-% \begin{macro}{\liAusdruck}
-% |\liAusdruck[L_2]{a_1,a_2,\dots,a_n}{n \in N}|: \liAusdruck[L_2]{a_1,a_2,\dots,a_n}{n \in N}
+% \begin{macro}{\bAusdruck}
+% |\bAusdruck[L_2]{a_1,a_2,\dots,a_n}{n \in N}|: \bAusdruck[L_2]{a_1,a_2,\dots,a_n}{n \in N}
 %
-% Ohne „=“: |\liAusdruck[]{x}{y}|: \liAusdruck[]{x}{y}
+% Ohne „=“: |\bAusdruck[]{x}{y}|: \bAusdruck[]{x}{y}
 %
 % Regulärer Ausdruck zum Konvertieren:
 % \begin{verbatim}
 % \$(.*) += +\\\{ *(.*?)( *\\, *)?\|( *\\, *)?(.*?) *\\\}\$
-% \\liAusdruck[$1]{$2}{$5}
+% \\bAusdruck[$1]{$2}{$5}
 % \end{verbatim}
 %    \begin{macrocode}
-\NewDocumentCommand{ \liAusdruck } { O{L} m m } {
+\NewDocumentCommand{ \bAusdruck } { O{L} m m } {
   $
    \tl_if_empty:nTF {#1} {} {#1 =}
    \{
@@ -3637,10 +3637,10 @@ $\liMengeOhneMathe{#1}$%
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liFlaci}
-% Link zur flaci.com Website: |\liFlaci{Grxk1oczg}|: \liFlaci{Grxk1oczg}
+% \begin{macro}{\bFlaci}
+% Link zur flaci.com Website: |\bFlaci{Grxk1oczg}|: \bFlaci{Grxk1oczg}
 %    \begin{macrocode}
-\def\liFlaci#1{%
+\def\bFlaci#1{%
   \par
   {%
     \scriptsize
@@ -3654,31 +3654,31 @@ $\liMengeOhneMathe{#1}$%
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liGrammatik}
-% \cmd{\liGrammatik}\oarg{grammtik-name}\marg{variablen=V,alphabet=$\Sigma$,produktionen=P,start=S}
+% \begin{macro}{\bGrammatik}
+% \cmd{\bGrammatik}\oarg{grammtik-name}\marg{variablen=V,alphabet=$\Sigma$,produktionen=P,start=S}
 %
-% |\liGrammatik{variablen={}, alphabet={}}|
+% |\bGrammatik{variablen={}, alphabet={}}|
 %
 % \begin{itemize}
-% \item |\liGrammatik{}|: \liGrammatik{}
-% \item |\liGrammatik[G_1]{}|: \liGrammatik[G_1]{}
-% \item |\liGrammatik{variablen={S,A,B}}|: \liGrammatik{variablen={S,A,B}}
-% \item |\liGrammatik{alphabet={a,b}}|: \liGrammatik{alphabet={a,b}}
-% \item |\liGrammatik{start=X}|: \liGrammatik{start=X}
+% \item |\bGrammatik{}|: \bGrammatik{}
+% \item |\bGrammatik[G_1]{}|: \bGrammatik[G_1]{}
+% \item |\bGrammatik{variablen={S,A,B}}|: \bGrammatik{variablen={S,A,B}}
+% \item |\bGrammatik{alphabet={a,b}}|: \bGrammatik{alphabet={a,b}}
+% \item |\bGrammatik{start=X}|: \bGrammatik{start=X}
 % \end{itemize}
 %
 %    \begin{macrocode}
 \ExplSyntaxOn
-\NewDocumentCommand {\liGrammatik} { O{G} m } {
+\NewDocumentCommand {\bGrammatik} { O{G} m } {
   \tl_set:Nn \l_variablen_tl {V}
   \tl_set:Nn \l_alphabet_tl {\Sigma}
   \tl_set:Nn \l_produktionen_tl {P}
   \tl_set:Nn \l_start_tl {S}
 
   \keys_define:nn { grammatik } {
-    variablen .code:n = {\tl_set:Nn \l_variablen_tl {\liMenge{##1}}},
-    alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\liMenge{##1}}},
-    produktionen .code:n = {\tl_set:Nn \l_produktionen_tl {\liProduktionen{##1}}},
+    variablen .code:n = {\tl_set:Nn \l_variablen_tl {\bMenge{##1}}},
+    alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\bMenge{##1}}},
+    produktionen .code:n = {\tl_set:Nn \l_produktionen_tl {\bProduktionen{##1}}},
     start .code:n = {\tl_set:Nn \l_start_tl {##1}},
   }
 
@@ -3869,29 +3869,29 @@ TikZ, um Grafiken zeichnen zu können und graphicx um Bilder laden zu können.]
 \RequirePackage{graphicx}
 %    \end{macrocode}
 
-% \begin{macro}{\liGrafikLogoPfad}
+% \begin{macro}{\bGrafikLogoPfad}
 %    \begin{macrocode}
-\def\liGrafikLogoPfad#1{
+\def\bGrafikLogoPfad#1{
   \LehramtInformatikRepository / .tex / Logo / #1
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liGrafikCCLizenz}
+% \begin{macro}{\bGrafikCCLizenz}
 %    \begin{macrocode}
-\NewDocumentCommand{ \liGrafikCCLizenz } { O{} } {
+\NewDocumentCommand{ \bGrafikCCLizenz } { O{} } {
   \includegraphics[#1]{
-    \liGrafikLogoPfad{CC-by-nc-sa.eps}
+    \bGrafikLogoPfad{CC-by-nc-sa.eps}
   }
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liGrafikLogo}
+% \begin{macro}{\bGrafikLogo}
 %    \begin{macrocode}
-\NewDocumentCommand{ \liGrafikLogo } { O{} } {
+\NewDocumentCommand{ \bGrafikLogo } { O{} } {
   \includegraphics[#1]{
-    \liGrafikLogoPfad{Logo_nur-Pfade.eps}
+    \bGrafikLogoPfad{Logo_nur-Pfade.eps}
   }
 }
 %    \end{macrocode}
@@ -4052,9 +4052,9 @@ von Hanoi-Grafiken]
 \RequirePackage{xcolor}
 %    \end{macrocode}
 
-% \begin{macro}{\liHanoi}
-% |\liHanoi{anzahl-scheiben}{gewicht-scheibe/turm-nr,gewicht-scheibe/turm-nr}|,
-% \zB: |\liHanoi{4}{4/1,3/1,2/3,1/2}|
+% \begin{macro}{\bHanoi}
+% |\bHanoi{anzahl-scheiben}{gewicht-scheibe/turm-nr,gewicht-scheibe/turm-nr}|,
+% \zB: |\bHanoi{4}{4/1,3/1,2/3,1/2}|
 %    \begin{macrocode}
 \def\li@mset #1[#2]=#3{%
 	\expandafter\xdef\csname #1#2\endcsname{#3}
@@ -4067,7 +4067,7 @@ von Hanoi-Grafiken]
 	\li@mset #1[#2]=\pgfmathresult
 }
 
-\def\liHanoi#1#2{
+\def\bHanoi#1#2{
   \edef\li@numdiscs{#1}
   \def\li@sequence{#2}
   \begin{tikzpicture}[line width=4mm,brown!40,line cap=round,xscale=3]
@@ -4109,42 +4109,42 @@ Polynomialzeitreduktion.]
 % }
 
 %    \begin{macrocode}
-\liLadePakete{mathe}
+\bLadePakete{mathe}
 %    \end{macrocode}
 
-% Für das Makro |\liProblemBeschreibung{}{}{}| benötigt.
+% Für das Makro |\bProblemBeschreibung{}{}{}| benötigt.
 %    \begin{macrocode}
 \RequirePackage{mdframed}
 %    \end{macrocode}
 
-% \begin{macro}{\liStrich}
-% |$L, \liStrich{L}$|: $L, \liStrich{L}$
+% \begin{macro}{\bStrich}
+% |$L, \bStrich{L}$|: $L, \bStrich{L}$
 %    \begin{macrocode}
-\def\liStrich#1{#1^\prime}
+\def\bStrich#1{#1^\prime}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liProblemName}
+% \begin{macro}{\bProblemName}
 % Zu Setzen von Problemnamen wie zum Beispiel SAT, COL, VERTEX COVER
 % \bMakroFaulenzer{n}{liProblemName}
-% |\liProblemName|: \liProblemName{Sat} \liProblemName{Vertex Cover}
+% |\bProblemName|: \bProblemName{Sat} \bProblemName{Vertex Cover}
 %    \begin{macrocode}
-\def\liProblemName#1{\texttt{\textsc{#1}}}
+\def\bProblemName#1{\texttt{\textsc{#1}}}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liProblemBeschreibung}
+% \begin{macro}{\bProblemBeschreibung}
 % Zu setzen von Problem-Beschreibungen:
 %
 % \begin{verbatim}
-% \liProblemBeschreibung
+% \bProblemBeschreibung
 % {}
 % {}
 % {}
 % \end{verbatim}
 %
 % \begin{liBeispiel}
-% \liProblemBeschreibung
+% \bProblemBeschreibung
 % {Clique}
 % {Ein ungerichteter Graph $G = (V, E)$, eine Zahl $k \in \mathcal{N}$}
 % {Gibt es eine Menge $S \subseteq V$ mit $|S| = k$, sodass für alle
@@ -4153,13 +4153,13 @@ Polynomialzeitreduktion.]
 % \end{liBeispiel}
 % \bMakroFaulenzer{b}{liProblemBeschreibung}
 %    \begin{macrocode}
-\def\liProblemBeschreibung#1#2#3{
+\def\bProblemBeschreibung#1#2#3{
   \begin{mdframed}[
     userdefinedwidth=9cm,
     align=center,
     backgroundcolor=white!0,
   ]
-    \centerline{\large\liProblemName{#1}}
+    \centerline{\large\bProblemName{#1}}
 
     \medskip
 
@@ -4172,22 +4172,22 @@ Polynomialzeitreduktion.]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liPolynomiellReduzierbar}
+% \begin{macro}{\bPolynomiellReduzierbar}
 % \bMakroFaulenzer{r}{liPolynomiellReduzierbar}
 %    \begin{macrocode}
-\NewDocumentCommand{ \liPolynomiellReduzierbar } { m O{p}  m } {
+\NewDocumentCommand{ \bPolynomiellReduzierbar } { m O{p}  m } {
 \begin{displaymath}
-  \liProblemName{#1}
+  \bProblemName{#1}
   \preceq_{#2}
-  \liProblemName{#3}
+  \bProblemName{#3}
 \end{displaymath}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liProblemVertexCover}
+% \begin{macro}{\bProblemVertexCover}
 %    \begin{macrocode}
-\def\liProblemClique{%
+\def\bProblemClique{%
 Das \textbf{Cliquenproblem} fragt nach der Existenz einer Clique der
 Mindestgröße $n$ in einem gegebenen Graphen.
 \footcite[Seite 76]{theo:fs:4}
@@ -4198,11 +4198,11 @@ Graphen, bei der \emph{jedes Knotenpaar durch eine Kante} verbunden ist.
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liProblemVertexCover}
+% \begin{macro}{\bProblemVertexCover}
 %    \begin{macrocode}
-\def\liProblemVertexCover{%
+\def\bProblemVertexCover{%
 %
-Das \textbf{Knotenüberdeckungsproblem} (\liProblemName{Vertex Cover})
+Das \textbf{Knotenüberdeckungsproblem} (\bProblemName{Vertex Cover})
 fragt, ob zu einem gegebenen einfachen Graphen und einer natürlichen
 Zahl $k$ eine Knotenüberdeckung der Größe von höchstens $k$ existiert.
 \footcite{wiki:knotenueberdeckung}
@@ -4215,12 +4215,12 @@ mindestens einem Knoten aus $U$ verbunden ist.
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liProblemSubsetSum}
+% \begin{macro}{\bProblemSubsetSum}
 % Kein Karp-21-Problem
 %    \begin{macrocode}
-\def\liProblemSubsetSum{%
-Das \textbf{Teilsummenproblem} (\liProblemName{Subset Sum} oder
-\liProblemName{SSP}) ist ein spezielles Rucksackproblem.
+\def\bProblemSubsetSum{%
+Das \textbf{Teilsummenproblem} (\bProblemName{Subset Sum} oder
+\bProblemName{SSP}) ist ein spezielles Rucksackproblem.
 \footcite{wiki:teilsummenproblem}
 Gegeben sei eine Menge von ganzen Zahlen $I = \{w_1, w_2, \dots, w_n
 \}$. Gesucht ist eine Untermenge, deren Elementsumme maximal, aber nicht
@@ -4230,12 +4230,12 @@ größer als eine gegebene obere Schranke $c$ ist.
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liProblemSubsetSum}
+% \begin{macro}{\bProblemSubsetSum}
 % Kein Karp-21-Problem
 %    \begin{macrocode}
-\def\liProblemSat{%
-Das \textbf{Erfüllbarkeitsproblem der Aussagenlogik} \liProblemName{Sat}
-und \liProblemName{k-SAT} mit $k \geq 3$, $k \in \mathbb{N}$ (Satz von
+\def\bProblemSat{%
+Das \textbf{Erfüllbarkeitsproblem der Aussagenlogik} \bProblemName{Sat}
+und \bProblemName{k-SAT} mit $k \geq 3$, $k \in \mathbb{N}$ (Satz von
 Cook) fragt, ob eine aussagenlogische Formel erfüllbar
 ist.\footcite{wiki:sat} Das Erfüllbarkeitsproblem der
 \emph{Aussagenlogik} ist in exponentieller Zeit in Abhängigkeit der
@@ -4397,55 +4397,55 @@ aufgestellt werden.
 
 % \subsubsection{Makros}
 
-% \begin{macro}{\liAnweisung}
+% \begin{macro}{\bAnweisung}
 %    \begin{macrocode}
-\def\liAnweisung#1(#2,#3){\node[knoten] at (#2,#3) (#1) {#1};}
+\def\bAnweisung#1(#2,#3){\node[knoten] at (#2,#3) (#1) {#1};}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liBedingung}
+% \begin{macro}{\bBedingung}
 % \bMakroFaulenzer{b}{liBedingung}
 %    \begin{macrocode}
-\def\liBedingung#1#2{node[bedingung,#1]{[\texttt{#2}]}}
+\def\bBedingung#1#2{node[bedingung,#1]{[\texttt{#2}]}}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liBedingungWahr}
+% \begin{macro}{\bBedingungWahr}
 % \bMakroFaulenzer{w}{liBedingungWahr}
 %    \begin{macrocode}
-\def\liBedingungWahr#1{node[bedingung,#1]{\texttt{[true]}}}
+\def\bBedingungWahr#1{node[bedingung,#1]{\texttt{[true]}}}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liBedingungFalsch}
+% \begin{macro}{\bBedingungFalsch}
 % \bMakroFaulenzer{f}{liBedingungFalsch}
 %    \begin{macrocode}
-\def\liBedingungFalsch#1{node[bedingung,#1]{\texttt{[false]}}}
+\def\bBedingungFalsch#1{node[bedingung,#1]{\texttt{[false]}}}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liKontrollCode}
+% \begin{macro}{\bKontrollCode}
 % \bMakroFaulenzer{c}{liKontrollCode}
 %    \begin{macrocode}
-\def\liKontrollCode#1{{\tiny\texttt{\textcolor{gray}{#1}}}}
+\def\bKontrollCode#1{{\tiny\texttt{\textcolor{gray}{#1}}}}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liKontrollTextzeileKnoten}
+% \begin{macro}{\bKontrollTextzeileKnoten}
 % \bMakroFaulenzer{k}{liKontrollTextzeileKnoten}
 %    \begin{macrocode}
-\def\liKontrollTextzeileKnoten#1{\raisebox{-2pt}{\tikz[scale=0.5,transform shape] \node[draw,circle]{#1};}}
+\def\bKontrollTextzeileKnoten#1{\raisebox{-2pt}{\tikz[scale=0.5,transform shape] \node[draw,circle]{#1};}}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liKontrollKnotenPfad}
+% \begin{macro}{\bKontrollKnotenPfad}
 % \bMakroFaulenzer{p}{liKontrollKnotenPfad}
 %    \begin{macrocode}
 \ExplSyntaxOn
-\NewDocumentCommand { \liKontrollKnotenPfad }{ m }
+\NewDocumentCommand { \bKontrollKnotenPfad }{ m }
 {
   \seq_set_split:Nnn \l_tmpa_seq { - } { #1 }
-  \seq_set_map:NNn \l_tmpa_seq \l_tmpa_seq {\liKontrollTextzeileKnoten{##1}}
+  \seq_set_map:NNn \l_tmpa_seq \l_tmpa_seq {\bKontrollTextzeileKnoten{##1}}
   \seq_use:Nn \l_tmpa_seq { ~-~~ }
 }
 \ExplSyntaxOff
@@ -4484,13 +4484,13 @@ und Fußzeilen mit Hilfe des Pakets fancyhdr.]
 \cs_new:Npn \setze_kopf_fusszeilen:nn #1 #2
 {
   \fancyhead{}
-  \fancyhead[L]{\kopfzeile_schrift:n{\liMetaBschlangaulSammlung}}
+  \fancyhead[L]{\kopfzeile_schrift:n{\bMetaBschlangaulSammlung}}
   \fancyhead[C]{\kopfzeile_schrift:n{#1}}
   \fancyhead[R]{\kopfzeile_schrift:n{#2}}
 
   \fancyfoot{}
-  \fancyfoot[L]{\kopfzeile_schrift:n{\liMetaHermineFriends}}
-  \fancyfoot[C]{\kopfzeile_schrift:n{\liMetaEmail}}
+  \fancyfoot[L]{\kopfzeile_schrift:n{\bMetaHermineFriends}}
+  \fancyfoot[C]{\kopfzeile_schrift:n{\bMetaEmail}}
   \fancyfoot[R]{\kopfzeile_schrift:n{\thepage}}
 
   \renewcommand{\headrulewidth}{0.4pt}
@@ -4632,10 +4632,10 @@ anderen Paket passen]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liPseudoUeberschrift}
+% \begin{macro}{\bPseudoUeberschrift}
 % Text, der sich wie eine Überschrift verhält.
 %    \begin{macrocode}
-\newcommand{\liPseudoUeberschrift}[1]{
+\newcommand{\bPseudoUeberschrift}[1]{
   \bigskip
 
   \par
@@ -4652,11 +4652,11 @@ anderen Paket passen]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liBeschriftung}
-% Ähnlich dem Makro |\liPseudoUeberschrift{}|. Am Ende des Textes wird
+% \begin{macro}{\bBeschriftung}
+% Ähnlich dem Makro |\bPseudoUeberschrift{}|. Am Ende des Textes wird
 % ein Doppelpunktzeichen angehängt.
 %    \begin{macrocode}
-\newcommand{\liBeschriftung}[1]{
+\newcommand{\bBeschriftung}[1]{
 \par
 \noindent
 \medskip
@@ -4789,10 +4789,10 @@ anderen Paket passen]
   \begin{mdframed}[backgroundcolor=yellow!5]
     \IfNoValueTF {#1}
     {
-      \liPseudoUeberschrift{Additum}
+      \bPseudoUeberschrift{Additum}
     }
     {
-      \liPseudoUeberschrift{Additum:~#1}
+      \bPseudoUeberschrift{Additum:~#1}
     }
 }
 {
@@ -4924,23 +4924,23 @@ anderen Paket passen]
 %    \end{macrocode}
 % \end{environment}
 
-% \begin{macro}{\liFussnoteUrl}
-% \cmd{\liFussnoteUrl}\oarg{zusätzlicher-text}\marg{url}
-% |\liFussnoteUrl[zusätzlicher Text]{url}|: Eine HTTP-URL als Fußnote setzen.
+% \begin{macro}{\bFussnoteUrl}
+% \cmd{\bFussnoteUrl}\oarg{zusätzlicher-text}\marg{url}
+% |\bFussnoteUrl[zusätzlicher Text]{url}|: Eine HTTP-URL als Fußnote setzen.
 %    \begin{macrocode}
-\NewDocumentCommand{\liFussnoteUrl} { o m } {
+\NewDocumentCommand{\bFussnoteUrl} { o m } {
   \footnote{\url{#2}\IfNoValueTF{#1}{}{ (#1)}}
 }
 
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liFussnoteLink}
-% \cmd{\liFussnoteLink}\oarg{zusätzlicher-text}\marg{link-text}\marg{url}
-% |\liFussnoteLink[zusätzlicher Text]{text}{url}|: Einen Link, d. h. einen Link-Text
+% \begin{macro}{\bFussnoteLink}
+% \cmd{\bFussnoteLink}\oarg{zusätzlicher-text}\marg{link-text}\marg{url}
+% |\bFussnoteLink[zusätzlicher Text]{text}{url}|: Einen Link, d. h. einen Link-Text
 % und eine URL als Fußnote setzen.
 %    \begin{macrocode}
-\NewDocumentCommand{\liFussnoteLink} { o m m } {
+\NewDocumentCommand{\bFussnoteLink} { o m m } {
   \footnote{\href{#3}{#2}\IfNoValueTF{#1}{}{ (#1)}}
 }
 %    \end{macrocode}
@@ -4985,12 +4985,12 @@ anderen Paket passen]
 % }
 
 % \begin{verbatim}
-% \liMasterVariablenDeklaration
+% \bMasterVariablenDeklaration
 % {3} % a
 % {3} % b
 % {\mathcal{O}(1)} % f(n)
 %
-% \liMasterFallRechnung
+% \bMasterFallRechnung
 % % 1. Fall
 % {für $\varepsilon = 4$: \\
 % $f(n) = 5n^2 \in \O{n^{\log_2 {8 - 4}}} = \O{n^{\log_2 4}} = \O{n^2}$}
@@ -4999,16 +4999,16 @@ anderen Paket passen]
 % % 3. Fall
 % {$f(n) = 5n^2 \notin \o{n^{\log_2 {8 + \varepsilon}}}$}
 %
-% \liMasterWolframLink{T[n]=9T[n/3]\%2B5n^2}
+% \bMasterWolframLink{T[n]=9T[n/3]\%2B5n^2}
 % \end{verbatim}
 
 % \begin{verbatim}
-% \liMasterVariablenDeklaration
+% \bMasterVariablenDeklaration
 % {} % a
 % {} % b
 % {} % f(n) ohne $mathe$
 %
-% \liMasterFallRechnung
+% \bMasterFallRechnung
 % % 1. Fall
 % {}
 % % 2. Fall
@@ -5017,7 +5017,7 @@ anderen Paket passen]
 % {}
 %
 % $\Rightarrow T(n) \in \t{n^2 \cdot \log n}$
-% \liMasterWolframLink{T[n]=9T[n/3]\%2B5n^2}
+% \bMasterWolframLink{T[n]=9T[n/3]\%2B5n^2}
 % \end{verbatim}
 
 %    \begin{macrocode}
@@ -5025,116 +5025,116 @@ anderen Paket passen]
 \RequirePackage{amsmath}
 %    \end{macrocode}
 
-% \begin{macro}{\liRundeKlammer}
+% \begin{macro}{\bRundeKlammer}
 %    \begin{macrocode}
-\def\liRundeKlammer#1{
+\def\bRundeKlammer#1{
   \negthinspace \left( #1 \right)
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liTheta}
-% |\liTheta{n^2}|: \liTheta{n^2}
+% \begin{macro}{\bTheta}
+% |\bTheta{n^2}|: \bTheta{n^2}
 %    \begin{macrocode}
-\def\liThetaOhneMathe#1{
-  \Theta \liRundeKlammer{#1}
+\def\bThetaOhneMathe#1{
+  \Theta \bRundeKlammer{#1}
 }
-\def\liTheta#1{
+\def\bTheta#1{
   \ifmmode
-    \liThetaOhneMathe{#1}
+    \bThetaOhneMathe{#1}
   \else
-    $\liThetaOhneMathe{#1}$
+    $\bThetaOhneMathe{#1}$
   \fi
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liOmega}
-% |\liOmega{n^2}|: \liOmega{n^2}
+% \begin{macro}{\bOmega}
+% |\bOmega{n^2}|: \bOmega{n^2}
 %    \begin{macrocode}
-\def\liOmegaOhneMathe#1{
-  \Omega \liRundeKlammer{#1}
+\def\bOmegaOhneMathe#1{
+  \Omega \bRundeKlammer{#1}
 }
-\def\liOmega#1{
+\def\bOmega#1{
   \ifmmode
-    \liOmegaOhneMathe{#1}
+    \bOmegaOhneMathe{#1}
   \else
-    $\liOmegaOhneMathe{#1}$
+    $\bOmegaOhneMathe{#1}$
   \fi
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liO}
-% |\liO{n^2}|: \liO{n^2}
+% \begin{macro}{\bO}
+% |\bO{n^2}|: \bO{n^2}
 %    \begin{macrocode}
-\def\liOOhneMathe#1{
-  \mathcal{O} \liRundeKlammer{#1}
+\def\bOOhneMathe#1{
+  \mathcal{O} \bRundeKlammer{#1}
 }
-\def\liO#1{
+\def\bO#1{
   \ifmmode
-    \liOOhneMathe{#1}
+    \bOOhneMathe{#1}
   \else
-    $\liOOhneMathe{#1}$
+    $\bOOhneMathe{#1}$
   \fi
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liT}
+% \begin{macro}{\bT}
 % \bMakroFaulenzer{T}{liT}
-% |\liT{16}{2}|: \liT{16}{2}
-% |\liT{}{2}|: \liT{}{2}
+% |\bT{16}{2}|: \bT{16}{2}
+% |\bT{}{2}|: \bT{}{2}
 %    \begin{macrocode}
-\def\liTOhneMathe#1#2{
+\def\bTOhneMathe#1#2{
   \tl_if_blank:nTF {#1}
   {}
   {#1 \cdot }
   T
-  \liRundeKlammer{\frac{n}{#2}}
+  \bRundeKlammer{\frac{n}{#2}}
 }
-\def\liT#1#2{
+\def\bT#1#2{
   \ifmmode
-    \liTOhneMathe{#1}{#2}
+    \bTOhneMathe{#1}{#2}
   \else
-    $\liTOhneMathe{#1}{#2}$
+    $\bTOhneMathe{#1}{#2}$
   \fi
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liRekursionsGleichung}
-% |\liRekursionsGleichung|: \liRekursionsGleichung
+% \begin{macro}{\bRekursionsGleichung}
+% |\bRekursionsGleichung|: \bRekursionsGleichung
 %    \begin{macrocode}
-\def\liRekursionsGleichung{
-  $T(n) = \liT{a}{b} + f(n)$
+\def\bRekursionsGleichung{
+  $T(n) = \bT{a}{b} + f(n)$
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liBedingungEins}
-% |\liBedingungEins|: \liBedingungEins
+% \begin{macro}{\bBedingungEins}
+% |\bBedingungEins|: \bBedingungEins
 %    \begin{macrocode}
-\def\liBedingungEins{
-  $f(n) \in \liO{n^{\log\sb{b}a - \varepsilon}}$
+\def\bBedingungEins{
+  $f(n) \in \bO{n^{\log\sb{b}a - \varepsilon}}$
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liBedingungZwei}
-% |\liBedingungZwei|: \liBedingungZwei
+% \begin{macro}{\bBedingungZwei}
+% |\bBedingungZwei|: \bBedingungZwei
 %    \begin{macrocode}
-\def\liBedingungZwei{
-  $f(n) \in \liTheta{n^{\log\sb{b}a}}$
+\def\bBedingungZwei{
+  $f(n) \in \bTheta{n^{\log\sb{b}a}}$
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liBedingungDrei}
-% |\liBedingungDrei|: \liBedingungDrei
+% \begin{macro}{\bBedingungDrei}
+% |\bBedingungDrei|: \bBedingungDrei
 %    \begin{macrocode}
-\def\liBedingungDrei{
-  $f(n) \in \liOmega{n^{\log\sb{b}a + \varepsilon}}$
+\def\bBedingungDrei{
+  $f(n) \in \bOmega{n^{\log\sb{b}a + \varepsilon}}$
 }
 %    \end{macrocode}
 % \end{macro}
@@ -5143,11 +5143,11 @@ anderen Paket passen]
 \ExplSyntaxOff
 %    \end{macrocode}
 
-% \begin{macro}{\liMasterVariablen}
+% \begin{macro}{\bMasterVariablen}
 %    \begin{macrocode}
-\def\liMasterVariablen{
+\def\bMasterVariablen{
   \begin{displaymath}
-  T(n) = \liT{a}{b} + f(n)
+  T(n) = \bT{a}{b} + f(n)
   \end{displaymath}
 
   \begin{itemize}
@@ -5171,25 +5171,25 @@ anderen Paket passen]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMasterFaelle}
+% \begin{macro}{\bMasterFaelle}
 %    \begin{macrocode}
-\def\liMasterFaelle{
+\def\bMasterFaelle{
   \begin{description}
   \item[1. Fall:]
-  $T(n) \in \liTheta{n^{\log\sb{b}a}}$
+  $T(n) \in \bTheta{n^{\log\sb{b}a}}$
 
-  \hfill falls \liBedingungEins
+  \hfill falls \bBedingungEins
   für $\varepsilon > 0$
 
   \item[2. Fall:]
-  $T(n) \in \liTheta{n^{\log\sb{b}a} \cdot \log n}$
+  $T(n) \in \bTheta{n^{\log\sb{b}a} \cdot \log n}$
 
-  \hfill falls \liBedingungZwei
+  \hfill falls \bBedingungZwei
 
   \item[3. Fall:]
-  $T(n) \in \liTheta{f(n)}$
+  $T(n) \in \bTheta{f(n)}$
 
-  \hfill falls \liBedingungDrei
+  \hfill falls \bBedingungDrei
   für $\varepsilon > 0$
   und ebenfalls für ein $c$ mit $0 < c < 1$ und alle hinreichend großen $n$
   gilt:
@@ -5199,13 +5199,13 @@ anderen Paket passen]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMasterVariablenDeklaration}
+% \begin{macro}{\bMasterVariablenDeklaration}
 %    \begin{macrocode}
-\def\liMasterVariablenDeklaration#1#2#3{
+\def\bMasterVariablenDeklaration#1#2#3{
   \begin{description}
     \item[Allgemeine Rekursionsgleichung:] \strut
 
-    \liRekursionsGleichung
+    \bRekursionsGleichung
 
     \item[Anzahl der rekursiven Aufrufe ($a$):] \strut
 
@@ -5221,25 +5221,25 @@ anderen Paket passen]
 
     \item[Ergibt folgende Rekursionsgleichung:] \strut
 
-    $T(n) = \liT{#1}{#2} + #3$
+    $T(n) = \bT{#1}{#2} + #3$
   \end{description}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMasterFallRechnung}
+% \begin{macro}{\bMasterFallRechnung}
 %    \begin{macrocode}
-\def\liMasterFallRechnung#1#2#3{
+\def\bMasterFallRechnung#1#2#3{
   \begin{description}
-  \item[1. Fall:] \liBedingungEins:
+  \item[1. Fall:] \bBedingungEins:
 
   #1
 
-  \item[2. Fall:] \liBedingungZwei:
+  \item[2. Fall:] \bBedingungZwei:
 
   #2
 
-  \item[3. Fall:] \liBedingungDrei:
+  \item[3. Fall:] \bBedingungDrei:
 
   #3
   \end{description}
@@ -5247,25 +5247,25 @@ anderen Paket passen]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMasterExkurs}
+% \begin{macro}{\bMasterExkurs}
 %    \begin{macrocode}
-\def\liMasterExkurs{
+\def\bMasterExkurs{
   \begin{liExkurs}[Master-Theorem]
-  \liMasterVariablen
+  \bMasterVariablen
 
   \noindent
   Dann gilt:
 
-  \liMasterFaelle
+  \bMasterFaelle
   \end{liExkurs}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMasterWolframLink}
+% \begin{macro}{\bMasterWolframLink}
 % Link zu Wolframalpha (+ durch Prozent 2B ersetzen)
 %    \begin{macrocode}
-\def\liMasterWolframLink#1{
+\def\bMasterWolframLink#1{
   Berechne die Rekursionsgleichung auf WolframAlpha:
   \href{https://www.wolframalpha.com/input/?i=#1}{WolframAlpha}
 }
@@ -5303,30 +5303,30 @@ von Textschnipseln, die das Projekt beschreiben]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\liLadePakete{grafik}
+\bLadePakete{grafik}
 %    \end{macrocode}
 
 % \subsubsection{Einfache Makros (Low level)}
 
-% \begin{macro}{\liMetaBschlangaulSammlung}
+% \begin{macro}{\bMetaBschlangaulSammlung}
 %    \begin{macrocode}
-\def\liMetaBschlangaulSammlung{
+\def\bMetaBschlangaulSammlung{
   Die~Bschlangaul-Sammlung
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMetaHermineFriends}
+% \begin{macro}{\bMetaHermineFriends}
 %    \begin{macrocode}
-\def\liMetaHermineFriends{
+\def\bMetaHermineFriends{
   Hermine~Bschlangaul~and~Friends
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMetaUeberDasProjekt}
+% \begin{macro}{\bMetaUeberDasProjekt}
 %    \begin{macrocode}
-\def\liMetaUeberDasProjekt{
+\def\bMetaUeberDasProjekt{
   Eine~freie~Aufgabensammlung~mit~Lösungen~
   von~Studierenden~für~Studierende~
   zur~Vorbereitung~auf~die~1.~Staatsexamensprüfungen~
@@ -5335,9 +5335,9 @@ von Textschnipseln, die das Projekt beschreiben]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMetaCCLink}
+% \begin{macro}{\bMetaCCLink}
 %    \begin{macrocode}
-\def\liMetaCCLink{
+\def\bMetaCCLink{
   Diese~Materialsammlung~unterliegt~den~Bestimmungen~der~
   \href{
     https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de
@@ -5350,29 +5350,29 @@ von Textschnipseln, die das Projekt beschreiben]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMetaEmail}
+% \begin{macro}{\bMetaEmail}
 %    \begin{macrocode}
-\def\liMetaEmail{
+\def\bMetaEmail{
   hermine.bschlangaul@gmx.net
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMetaEmailLink}
+% \begin{macro}{\bMetaEmailLink}
 %    \begin{macrocode}
-\def\liMetaEmailLink{
+\def\bMetaEmailLink{
   \href{
-    mailto:\liMetaEmail
+    mailto:\bMetaEmail
   }{
-    \liMetaEmail
+    \bMetaEmail
   }
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMetaHilfMit}
+% \begin{macro}{\bMetaHilfMit}
 %    \begin{macrocode}
-\def\liMetaHilfMit{
+\def\bMetaHilfMit{
   Hilf~mit!~
 
   Die~Hermine~schafft~das~nicht~alleine!~
@@ -5381,14 +5381,14 @@ von Textschnipseln, die das Projekt beschreiben]
 
   Verbesserungsvorschläge,~Fehlerkorrekturen,~weitere~Lösungen~sind~
   herzlich~willkommen~-~egal~wie~-~per~Pull-Request~oder~per~E-Mail~an~
-  \liMetaEmailLink.
+  \bMetaEmailLink.
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMetaHilfMit}
+% \begin{macro}{\bMetaHilfMit}
 %    \begin{macrocode}
-\def\liMetaQuelltext{
+\def\bMetaQuelltext{
   Der~\TeX-Quelltext~dieses~Dokuments~kann~unter~folgender~
   URL~aufgerufen~werden:~
 }
@@ -5413,47 +5413,47 @@ von Textschnipseln, die das Projekt beschreiben]
 }
 %    \end{macrocode}
 
-% \begin{macro}{\liLogoTextProjekt}
+% \begin{macro}{\bLogoTextProjekt}
 %    \begin{macrocode}
-\def\liLogoTextProjekt
+\def\bLogoTextProjekt
 {
   \logo_dann_text:nn
   {
-    \liGrafikLogo[width=5cm]
+    \bGrafikLogo[width=5cm]
   }
   {
     {
       \bfseries
-      \liMetaBschlangaulSammlung
+      \bMetaBschlangaulSammlung
     }
     \par
 
-    \liMetaHermineFriends
+    \bMetaHermineFriends
     \par
 
     \medskip
 
     \begin{spacing}{1}
       \footnotesize
-      \liMetaUeberDasProjekt
+      \bMetaUeberDasProjekt
     \end{spacing}
   }
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liLogoTextCCLizenz}
+% \begin{macro}{\bLogoTextCCLizenz}
 %    \begin{macrocode}
-\def\liLogoTextCCLizenz
+\def\bLogoTextCCLizenz
 {
   \logo_dann_text:nn
   {
-    \centerline{\liGrafikCCLizenz[width=3cm]}
+    \centerline{\bGrafikCCLizenz[width=3cm]}
   }
   {
     \begin{spacing}{1}
       \scriptsize
-      \liMetaCCLink
+      \bMetaCCLink
     \end{spacing}
   }
 }
@@ -5475,15 +5475,15 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\liLadePakete{typographie}
+\bLadePakete{typographie}
 %    \end{macrocode}
 
 % \begin{verbatim}
-% \let\z=\liZustandsnameTiefgestellt
-% \let\f=\liFussnote
-% \let\l=\liLeereZelle
-% \let\Z=\liZustandsPaar
-% \let\erklaerung=\liMinimierungErklaerung
+% \let\z=\bZustandsnameTiefgestellt
+% \let\f=\bFussnote
+% \let\l=\bLeereZelle
+% \let\Z=\bZustandsPaar
+% \let\erklaerung=\bMinimierungErklaerung
 %
 % \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|}
 % \hline
@@ -5499,7 +5499,7 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 %     & \z0 & \z1 & \z2 & \z3 & \z4 & \z5 & \z6 & \z7 & \z8 \\ \hline
 % \end{tabular}
 %
-% \liFussnoten
+% \bFussnoten
 %
 % \begin{liUebergangsTabelle}{0}{1}
 % \Z01 & \Z10 & \Z23     \\
@@ -5512,99 +5512,99 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 %
 % \end{verbatim}
 
-% \begin{macro}{\liFussnote}
+% \begin{macro}{\bFussnote}
 %    \begin{macrocode}
-\def\liFussnote#1{$x_{#1}$}
+\def\bFussnote#1{$x_{#1}$}
 %    \end{macrocode}
 % \end{macro}
 
 %    \begin{macrocode}
 \def\li@fussnote@text#1#2{
-  \liFussnote{#1}
+  \bFussnote{#1}
   \quad
   {\footnotesize #2}
 }
 %    \end{macrocode}
 
-% \begin{macro}{\liFussnoteEinsText}
+% \begin{macro}{\bFussnoteEinsText}
 %    \begin{macrocode}
-\def\liFussnoteEinsText{
+\def\bFussnoteEinsText{
   \li@fussnote@text{1}
   {Paar aus End-/ Nicht-Endzustand kann nicht äquivalent sein.}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liFussnoteZweiText}
+% \begin{macro}{\bFussnoteZweiText}
 %    \begin{macrocode}
-\def\liFussnoteZweiText{
+\def\bFussnoteZweiText{
   \li@fussnote@text{2}
   {Test, ob man mit der Eingabe zu einem bereits markiertem Paar kommt.}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liFussnoteDreiText}
+% \begin{macro}{\bFussnoteDreiText}
 %    \begin{macrocode}
-\def\liFussnoteDreiText{
+\def\bFussnoteDreiText{
   \li@fussnote@text{3}
   {In weiteren Iterationen markierte Zustände.}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liFussnoteVierText}
+% \begin{macro}{\bFussnoteVierText}
 %    \begin{macrocode}
-\def\liFussnoteVierText{
+\def\bFussnoteVierText{
   \li@fussnote@text{4}
   {…}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liFussnoten}
+% \begin{macro}{\bFussnoten}
 % \begin{liBeispiel}
-%   \liFussnoten
+%   \bFussnoten
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liFussnoten{
+\def\bFussnoten{
   \bigskip
 
   \noindent
-  \liFussnoteEinsText
+  \bFussnoteEinsText
 
   \noindent
-  \liFussnoteZweiText
+  \bFussnoteZweiText
 
   \noindent
-  \liFussnoteDreiText
+  \bFussnoteDreiText
 
   \noindent
-  \liFussnoteVierText
+  \bFussnoteVierText
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liLeereZelle}
-% |\liLeereZelle|: \liLeereZelle
+% \begin{macro}{\bLeereZelle}
+% |\bLeereZelle|: \bLeereZelle
 % \bMakroFaulenzer{l}{liLeereZelle}
 %    \begin{macrocode}
-\def\liLeereZelle{$\emptyset$}
+\def\bLeereZelle{$\emptyset$}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsPaarVariablenName}
+% \begin{macro}{\bZustandsPaarVariablenName}
 %    \begin{macrocode}
-\def\liZustandsPaarVariablenName{z}
+\def\bZustandsPaarVariablenName{z}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsPaar}
+% \begin{macro}{\bZustandsPaar}
 %    \begin{macrocode}
-\def\liZustandsPaar#1#2{
+\def\bZustandsPaar#1#2{
   $(
-    \liZustandsPaarVariablenName_#1,
-    \liZustandsPaarVariablenName_#2
+    \bZustandsPaarVariablenName_#1,
+    \bZustandsPaarVariablenName_#2
   )$
 }
 %    \end{macrocode}
@@ -5614,7 +5614,7 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 %    \begin{macrocode}
 \renewcommand{\arraystretch}{1.4}
 \NewDocumentEnvironment{ liUebergangsTabelle } { m m } {
-  \liPseudoUeberschrift{Übergangstabelle}
+  \bPseudoUeberschrift{Übergangstabelle}
   \begin{center}
   \begin{tabular}{r||l|l}
   \textbf{Zustandspaar} & \textbf{#1} & \textbf{#2} \\\hline
@@ -5625,23 +5625,23 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 %    \end{macrocode}
 % \end{environment}
 
-% \begin{macro}{\liUeberschriftDreiecksTabelle}
-% |\liUeberschriftDreiecksTabelle|: \liUeberschriftDreiecksTabelle
+% \begin{macro}{\bUeberschriftDreiecksTabelle}
+% |\bUeberschriftDreiecksTabelle|: \bUeberschriftDreiecksTabelle
 %    \begin{macrocode}
 \ExplSyntaxOn
-\def\liUeberschriftDreiecksTabelle{
-  \liPseudoUeberschrift{Minimierungstabelle~(Table~filling)}
+\def\bUeberschriftDreiecksTabelle{
+  \bPseudoUeberschrift{Minimierungstabelle~(Table~filling)}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMinimierungErklaerung}
+% \begin{macro}{\bMinimierungErklaerung}
 % \bMakroFaulenzer{erklaerung}{liMinimierungErklaerung}
-% \liMinimierungErklaerung
+% \bMinimierungErklaerung
 %    \begin{macrocode}
-\def\liMinimierungErklaerung{
+\def\bMinimierungErklaerung{
   %\footcite[Seite~19]{koenig}
-  \liParagraphMitLinien{
+  \bParagraphMitLinien{
     Der~Minimierungs-Algorithmus~(auch~Table-Filling-Algorithmus~genannt)~
     trägt~in~seinem~Verlauf~eine~Markierung~in~alle~
     diejenigen~Zellen~der~Tabelle~ein,~die~zueinander~nicht~äquivalente~
@@ -5670,7 +5670,7 @@ Attributhülle]
 
 % Mathe für textit tex etc, typographie für geschweifte Klammer
 %    \begin{macrocode}
-\liLadePakete{mathe,typographie}
+\bLadePakete{mathe,typographie}
 %    \end{macrocode}
 
 %    \begin{macrocode}
@@ -5693,33 +5693,33 @@ Attributhülle]
 % }
 
 %    \begin{macrocode}
-\def\liTeilen#1{
+\def\bTeilen#1{
   \directlua{tex.print(normalformen.teilen('#1'))}
 }
 %    \end{macrocode}
 
-% \begin{macro}{\liAttributHuelle}
+% \begin{macro}{\bAttributHuelle}
 % \bMakroFaulenzer{ah}{liAttributHuelle}
-% |\ah{F, \m{A, B}}| \liAttributHuelle{F, \liAttributMenge{A, B}}
+% |\ah{F, \m{A, B}}| \bAttributHuelle{F, \bAttributMenge{A, B}}
 % Regulärer Ausdruck zum Konvertieren
 % |AttrHülle\((.*)\)|
 % |\\ah{$1}|
 %    \begin{macrocode}
-\def\liAttributHuelleOhneMathe#1{\text{AttrHülle}(#1)}
-\def\liAttributHuelle#1{
+\def\bAttributHuelleOhneMathe#1{\text{AttrHülle}(#1)}
+\def\bAttributHuelle#1{
 \ifmmode
-  \liAttributHuelleOhneMathe{#1}
+  \bAttributHuelleOhneMathe{#1}
 \else
-  $\liAttributHuelleOhneMathe{#1}$
+  $\bAttributHuelleOhneMathe{#1}$
 \fi
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liAttributMenge}
+% \begin{macro}{\bAttributMenge}
 % \bMakroFaulenzer{m}{liAttributMenge}
 %    \begin{macrocode}
-\def\liAttributMenge#1{\{ \textit{#1} \}}
+\def\bAttributMenge#1{\{ \textit{#1} \}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5736,76 +5736,76 @@ Attributhülle]
 %    \end{macrocode}
 % \end{environment}
 
-% \begin{macro}{\liLinksReduktion}
+% \begin{macro}{\bLinksReduktion}
 % Nur innerhalb von |liAHuelle| zu verwenden
 % bzw. |multline|
 % \bMakroFaulenzer{ahL}{liLinksReduktion}
 % |\ahL{ursprüngliche linke Attributmenge}{ohne dieses Attribut}{Ergebnis}|
 %    \begin{macrocode}
-\def\liLinksReduktion#1#2#3{
+\def\bLinksReduktion#1#2#3{
   \shoveleft{
-    \liAttributHuelleOhneMathe{FA,
-    \liAttributMenge{#1 \string\ #2}} =
+    \bAttributHuelleOhneMathe{FA,
+    \bAttributMenge{#1 \string\ #2}} =
     } \\
   \shoveright{
-    \liAttributMenge{#3}
+    \bAttributMenge{#3}
   } \\
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liLinksReduktionInline}
+% \begin{macro}{\bLinksReduktionInline}
 % \bMakroFaulenzer{ahL}{liLinksReduktionInline}
 % |\ahl{ursprüngliche linke Attributmenge}{ohne dieses Attribut}{Ergebnis}|
-% |\ahl{A, E}{E}{A, E, F, B, \textbf{D}}|: \liLinksReduktionInline{A, E}{E}{A, E, F, B, \textbf{D}}
+% |\ahl{A, E}{E}{A, E, F, B, \textbf{D}}|: \bLinksReduktionInline{A, E}{E}{A, E, F, B, \textbf{D}}
 %    \begin{macrocode}
-\def\liLinksReduktionInline#1#2#3{%
+\def\bLinksReduktionInline#1#2#3{%
   {%
     \footnotesize%
-    $\liAttributHuelleOhneMathe{F,
-    \liAttributMenge{#1 \string\ #2}} =
-    \liAttributMenge{#3}$
+    $\bAttributHuelleOhneMathe{F,
+    \bAttributMenge{#1 \string\ #2}} =
+    \bAttributMenge{#3}$
   }
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liLinksReduktionInline}
+% \begin{macro}{\bLinksReduktionInline}
 % \bMakroFaulenzer{ahr}{liLinksReduktionInline}
 % |\ahr{gelöschte FA}{neue FA ohne rechts Attribut}{gegebene Attribute}{Ergebnis}|
 %    \begin{macrocode}
-\def\liRechtsReduktionInline#1#2#3#4{%
+\def\bRechtsReduktionInline#1#2#3#4{%
   {%
     \footnotesize%
-    $\liAttributHuelleOhneMathe{
+    $\bAttributHuelleOhneMathe{
       F \setminus
-      \liFunktionaleAbhaengigkeit{#1}
+      \bFunktionaleAbhaengigkeit{#1}
       \def\tmp{#2}\ifx\tmp\empty
       \else
-        \cup \liFunktionaleAbhaengigkeit{#2}
+        \cup \bFunktionaleAbhaengigkeit{#2}
       \fi
       ,
-      \liAttributMenge{#3}
+      \bAttributMenge{#3}
     } =
-    \liAttributMenge{#4}$
+    \bAttributMenge{#4}$
   }
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liFunktionaleAbhaengigkeit}
+% \begin{macro}{\bFunktionaleAbhaengigkeit}
 % \bMakroFaulenzer{fa}{liFunktionaleAbhaengigkeit}
-% |\fa{A, B -> C, D}|: \liFunktionaleAbhaengigkeit{A, B -> C, D}
+% |\fa{A, B -> C, D}|: \bFunktionaleAbhaengigkeit{A, B -> C, D}
 % Regulärer Ausdruck zum Konvertieren: |\$(.*?) \\rightarrow (.*?)\$|
 % |\\fa{$1 -> $2}|
 %    \begin{macrocode}
-\def\liFunktionaleAbhaengigkeit#1{%
+\def\bFunktionaleAbhaengigkeit#1{%
   \directlua{normalformen.drucke_funk_abhaengigkeit('#1', false)}%
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liFunktionaleAbhaengigkeiten}
+% \begin{macro}{\bFunktionaleAbhaengigkeiten}
 % \begin{verbatim}
 % \FA[F]{
 %   M -> M;
@@ -5816,7 +5816,7 @@ Attributhülle]
 % \end{verbatim}
 %
 % \begin{liBeispiel}
-% \liFunktionaleAbhaengigkeiten[F]{
+% \bFunktionaleAbhaengigkeiten[F]{
 %   M -> M;
 %   M -> N;
 %   V -> T, P, PN;
@@ -5829,8 +5829,8 @@ Attributhülle]
 % |\$(.*) \\rightarrow (.*)\$|
 % |$1 -> $2;|
 %    \begin{macrocode}
-\NewDocumentCommand {\liFunktionaleAbhaengigkeiten} { O{FA} m } {
-  \liGeschweifteKlammern
+\NewDocumentCommand {\bFunktionaleAbhaengigkeiten} { O{FA} m } {
+  \bGeschweifteKlammern
   {#1}
   {
     \begin{align*}
@@ -5843,14 +5843,14 @@ Attributhülle]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liRelation}
+% \begin{macro}{\bRelation}
 % \bMakroFaulenzer{r}{liRelation}
-% |\r[R3]{\u{A}, B, C}|: \liRelation[R3]{\underline{A}, B, C}
+% |\r[R3]{\u{A}, B, C}|: \bRelation[R3]{\underline{A}, B, C}
 % Regulärer Ausdruck zum Konvertieren:
 % |\$(R.*)\((.*)\)\$|
-% |\\liRelation[$1]{$2}|
+% |\\bRelation[$1]{$2}|
 %    \begin{macrocode}
-\NewDocumentCommand {\liRelation} { O{R} m } {
+\NewDocumentCommand {\bRelation} { O{R} m } {
   $\directlua{
     local name = helfer.konvertiere_tiefgestellt('#1')
     tex.print(name)
@@ -5911,21 +5911,21 @@ Attributhülle]
 \RequirePackage{amssymb}
 %    \end{macrocode}
 
-% \begin{macro}{\liRundeKlammer}
+% \begin{macro}{\bRundeKlammer}
 %    \begin{macrocode}
-\def\liRundeKlammer#1{
+\def\bRundeKlammer#1{
   \negthinspace \left( #1 \right)
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liONotationO}
-% |\O{n^2}|: \liONotationO{n^2}
+% \begin{macro}{\bONotationO}
+% |\O{n^2}|: \bONotationO{n^2}
 %    \begin{macrocode}
 \cs_new:Npn \o_notation_O:n #1 {
-  \mathcal{O} \liRundeKlammer{#1}
+  \mathcal{O} \bRundeKlammer{#1}
 }
-\def\liONotationO#1{
+\def\bONotationO#1{
   \ifmmode
     \o_notation_O:n { #1 }
   \else
@@ -5962,7 +5962,7 @@ Attributhülle]
 
 % \begin{verbatim}
 % \def\TmpA#1{
-%   \liPetriSetzeSchluessel%
+%   \bPetriSetzeSchluessel%
 %   \pgfkeys{/petri/.cd,#1}%
 %   \begin{tikzpicture}[li petri]
 %   \node at (-0.25,-0.25) {};
@@ -5991,9 +5991,9 @@ Attributhülle]
 % }
 % \end{verbatim}
 
-% \begin{macro}{\liPetriSetzeSchluessel}
+% \begin{macro}{\bPetriSetzeSchluessel}
 %    \begin{macrocode}
-\def\liPetriSetzeSchluessel{%
+\def\bPetriSetzeSchluessel{%
   \def\TmpTransitionOne{}%
   \def\TmpTransitionTwo{}%
   \def\TmpTransitionThree{}%
@@ -6046,41 +6046,41 @@ Attributhülle]
 }
 %    \end{macrocode}
 
-% \begin{macro}{\liPetriTransitionsName}
+% \begin{macro}{\bPetriTransitionsName}
 % \bMakroFaulenzer{t}{liPetriTransitionsName}
 % |\$t_(\d+)\$| |\t$1|
 %    \begin{macrocode}
-\def\liPetriTransitionsNameOhneMathe#1{t\sb{#1}}
-\def\liPetriTransitionsName#1{
+\def\bPetriTransitionsNameOhneMathe#1{t\sb{#1}}
+\def\bPetriTransitionsName#1{
   \ifmmode
-    \liPetriTransitionsNameOhneMathe{#1}
+    \bPetriTransitionsNameOhneMathe{#1}
   \else
-    $\liPetriTransitionsNameOhneMathe{#1}$
+    $\bPetriTransitionsNameOhneMathe{#1}$
   \fi
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liPetriErreichTransition}
+% \begin{macro}{\bPetriErreichTransition}
 % \bMakroFaulenzer{t}{liPetriErreichTransition}
 %    \begin{macrocode}
-\NewDocumentCommand{ \liPetriErreichTransition } { m m m O{} O{} } {
+\NewDocumentCommand{ \bPetriErreichTransition } { m m m O{} O{} } {
   \draw[->] (#1) edge[#4] node[pos=0.5,auto,sloped,#5]{$t\sb{#3}$} (#2);
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liPetriErreichKnotenDrei}
+% \begin{macro}{\bPetriErreichKnotenDrei}
 % \bMakroFaulenzer{k}{liPetriErreichKnotenDrei}
 %    \begin{macrocode}
-\def\liPetriErreichKnotenDrei#1#2#3{(#1,#2,#3)}
+\def\bPetriErreichKnotenDrei#1#2#3{(#1,#2,#3)}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liPetriTransPfeile}
+% \begin{macro}{\bPetriTransPfeile}
 % \bMakroFaulenzer{tp}{liPetriTransPfeile}
 %    \begin{macrocode}
-\def\liPetriTransPfeile#1{$\rightarrow \hspace{0.4cm} \liPetriTransitionsName{#1} \hspace{0.35cm} \rightarrow$}
+\def\bPetriTransPfeile#1{$\rightarrow \hspace{0.4cm} \bPetriTransitionsName{#1} \hspace{0.35cm} \rightarrow$}
 %    \end{macrocode}
 % \end{macro}
 
@@ -6095,13 +6095,13 @@ einzusetzen bei der Potenzmengen-Konstruktion (Potenzmengen-Algorithmus)]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\liLadePakete{formale-sprachen}
+\bLadePakete{formale-sprachen}
 \ExplSyntaxOn
 %    \end{macrocode}
 
 % \begin{verbatim}
 % \def\z#1{
-%   \liZustandsMengenSammlungNr{#1}{
+%   \bZustandsMengenSammlungNr{#1}{
 %     {
 %       {0} {0}
 %       {1} {0,1}
@@ -6112,7 +6112,7 @@ einzusetzen bei der Potenzmengen-Konstruktion (Potenzmengen-Algorithmus)]
 %     }
 %   }
 % }
-% \let\s=\liZustandsnameGross
+% \let\s=\bZustandsnameGross
 
 % \begin{tabular}{l|l|l}
 % Zustandsmenge & Eingabe $a$ & Eingabe $b$ \\\hline
@@ -6125,12 +6125,12 @@ einzusetzen bei der Potenzmengen-Konstruktion (Potenzmengen-Algorithmus)]
 % \end{tabular}
 % \end{verbatim}
 
-% \begin{macro}{\liZustandsMengenSammlung}
-% |\liZustandsMengenSammlung{nummer}{latex3 str_case:nn}|
+% \begin{macro}{\bZustandsMengenSammlung}
+% |\bZustandsMengenSammlung{nummer}{latex3 str_case:nn}|
 %
 % \begin{verbatim}
 %   \def\z#1{
-%     \liZustandsMengenSammlung{#1}{
+%     \bZustandsMengenSammlung{#1}{
 %       {
 %         {0} {z0}
 %         {1} {z0, z1}
@@ -6145,11 +6145,11 @@ einzusetzen bei der Potenzmengen-Konstruktion (Potenzmengen-Algorithmus)]
 %   }
 % \end{verbatim}
 %    \begin{macrocode}
-\def\liZustandsMengenSammlung#1#2{
-  \liZustandsnameGross{#1}
+\def\bZustandsMengenSammlung#1#2{
+  \bZustandsnameGross{#1}
   {
     \footnotesize
-    \liPotenzmenge{
+    \bPotenzmenge{
       \str_case:nn {#1} #2
     }
   }
@@ -6157,13 +6157,13 @@ einzusetzen bei der Potenzmengen-Konstruktion (Potenzmengen-Algorithmus)]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsMengenSammlungNr}
+% \begin{macro}{\bZustandsMengenSammlungNr}
 %    \begin{macrocode}
-\def\liZustandsMengenSammlungNr#1#2{
-  \liZustandsnameGross{#1}
+\def\bZustandsMengenSammlungNr#1#2{
+  \bZustandsnameGross{#1}
   {
     \footnotesize
-    \liZustandsmengeNr{
+    \bZustandsmengeNr{
       \str_case:nn {#1} #2
     }
   }
@@ -6236,9 +6236,9 @@ Definitionen für das Pumping-Lemma in der Regulären Sprache und
 in der Kontextfreien Sprache]
 %    \end{macrocode}
 
-% \begin{macro}{\liPumpingRegulaer}
+% \begin{macro}{\bPumpingRegulaer}
 %    \begin{macrocode}
-\def\liPumpingRegulaer{%
+\def\bPumpingRegulaer{%
   Es sei $L$ eine reguläre Sprache. Dann gibt es eine Zahl $j$, sodass für
   alle Wörter $\omega \in L$ mit $|\omega| \geq j$ (jedes Wort $\omega$ in
   $L$ mit Mindestlänge $j$) jeweils eine Zerlegung $\omega = uvw$
@@ -6262,9 +6262,9 @@ in der Kontextfreien Sprache]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liPumpingKontextfrei}
+% \begin{macro}{\bPumpingKontextfrei}
 %    \begin{macrocode}
-\def\liPumpingKontextfrei{%
+\def\bPumpingKontextfrei{%
   Es sei $L$ eine kontextfreie Sprache. Dann gibt es eine Zahl $j$, sodass
   sich alle Wörter $\omega \in L$ mit $|\omega| \geq j$ zerlegen lassen in
   $\omega = uvwxy$, sodass die folgenden Eigenschaften erfüllt sind:
@@ -6570,17 +6570,17 @@ Datenbanken.]
 %   r = liRelationMenge,
 % }
 
-% \begin{macro}{\liPrimaer}
-% |\liPrimaer{text}|: Unterstreichung für den Primärschlüssel
+% \begin{macro}{\bPrimaer}
+% |\bPrimaer{text}|: Unterstreichung für den Primärschlüssel
 %    \begin{macrocode}
-\def\liPrimaer#1{\ul{#1}}
+\def\bPrimaer#1{\ul{#1}}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liFremd}
-% |\liFremd{text}|: Überstreichung für den Fremdschlüssel
+% \begin{macro}{\bFremd}
+% |\bFremd{text}|: Überstreichung für den Fremdschlüssel
 %    \begin{macrocode}
-\def\liFremd#1{{\setul{-0.9em}{}\ul{#1}}}
+\def\bFremd#1{{\setul{-0.9em}{}\ul{#1}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -6605,12 +6605,12 @@ Datenbanken.]
 %    \end{macrocode}
 % \end{environment}
 
-% \begin{macro}{\liRelationMenge}
+% \begin{macro}{\bRelationMenge}
 % \bMakroFaulenzer{r}{liRelationMenge}
-% |\liRelationMenge{name}{attribut, attribut}|: Umhüllen der Attribute
+% |\bRelationMenge{name}{attribut, attribut}|: Umhüllen der Attribute
 % mit geschweiften und dann eckigen Klammern.
 %    \begin{macrocode}
-\def\liRelationMenge#1#2{
+\def\bRelationMenge#1#2{
 \noindent
 #1 : \{[ #2 ]\}
 \par
@@ -6618,11 +6618,11 @@ Datenbanken.]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liAttribut}
+% \begin{macro}{\bAttribut}
 % \bMakroFaulenzer{a}{liAttribut}
-% |\liAttribut{text}|: Gleiche Schrift wie Umgebung |liRmodell|
+% |\bAttribut{text}|: Gleiche Schrift wie Umgebung |liRmodell|
 %    \begin{macrocode}
-\def\liAttribut#1{{\li@Rmodell@Schrift#1}}
+\def\bAttribut#1{{\li@Rmodell@Schrift#1}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -6657,10 +6657,10 @@ für händisches Sortieren bzw. einen Schreibtischlauf setzen]
 %   rectangle split parts=5,
 % ]{
 %   \node[li sortierung zahlenreihe] (reihe) {\nodepart{one} 2 \nodepart{two} 1 \nodepart{three} 3};
-%   \liSortierPfeil{one}{two}
-%   \liSortierPfeil{two}{three}
-%   \liSortierMarkierung{two split south}{three split north}
-%   \liSortierPfeilUnten{three}{one}
+%   \bSortierPfeil{one}{two}
+%   \bSortierPfeil{two}{three}
+%   \bSortierMarkierung{two split south}{three split north}
+%   \bSortierPfeilUnten{three}{one}
 % }
 % \end{verbatim}
 
@@ -6669,10 +6669,10 @@ für händisches Sortieren bzw. einen Schreibtischlauf setzen]
 %   rectangle split parts=5,
 % ]{
 %   \node[li sortierung zahlenreihe] (reihe) {\nodepart{one} 2 \nodepart{two} 1 \nodepart{three} 3};
-%   \liSortierPfeil{one}{two}
-%   \liSortierPfeil{two}{three}
-%   \liSortierMarkierung{two split south}{three split north}
-%   \liSortierPfeilUnten{three}{one}
+%   \bSortierPfeil{one}{two}
+%   \bSortierPfeil{two}{three}
+%   \bSortierMarkierung{two split south}{three split north}
+%   \bSortierPfeilUnten{three}{one}
 % }
 % \end{liBeispiel}
 
@@ -6681,12 +6681,12 @@ für händisches Sortieren bzw. einen Schreibtischlauf setzen]
 \usetikzlibrary{shapes.multipart,positioning}
 %    \end{macrocode}
 
-% \begin{macro}{\liVertauschen}
-% |\liVertauschen{1 2 >4 <3 5}|: Setze ein Schaubild mit Hilfe
+% \begin{macro}{\bVertauschen}
+% |\bVertauschen{1 2 >4 <3 5}|: Setze ein Schaubild mit Hilfe
 % von TikZ. |<| und |>| werden dazu verwendet, um den Vertauschprozess
 % zu visualisieren.
 %    \begin{macrocode}
-\def\liVertauschen#1{
+\def\bVertauschen#1{
   \directlua{
     local sortieren = require('bschlangaul-sortieren')
     sortieren('#1')
@@ -6695,25 +6695,25 @@ für händisches Sortieren bzw. einen Schreibtischlauf setzen]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liSortierPfeil}
+% \begin{macro}{\bSortierPfeil}
 %    \begin{macrocode}
-\def\liSortierPfeil#1#2{
+\def\bSortierPfeil#1#2{
   \draw[-latex] ([xshift=1mm]reihe.#1 north) -- ++(0,0.25) -| ([xshift=-1mm]reihe.#2 north);
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liSortierPfeilUnten}
+% \begin{macro}{\bSortierPfeilUnten}
 %    \begin{macrocode}
-\def\liSortierPfeilUnten#1#2{
+\def\bSortierPfeilUnten#1#2{
   \draw[-latex] ([xshift=1mm]reihe.#1 south) -- ++(0,-0.25) -| ([xshift=-1mm]reihe.#2 south);
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liSortierMarkierung}
+% \begin{macro}{\bSortierMarkierung}
 %    \begin{macrocode}
-\def\liSortierMarkierung#1#2{\node[
+\def\bSortierMarkierung#1#2{\node[
   draw,
   very thick,
   fit=(reihe.#1) (reihe.#2),
@@ -6797,11 +6797,11 @@ realisiert werden kann.]
 \RequirePackage{multicol}
 %    \end{macrocode}
 
-% \begin{macro}{\liSpaltenUmbruch}
-% |\liSpaltenUmbruch|: Spezieller Spaltenumbruch, der den Inhalt
+% \begin{macro}{\bSpaltenUmbruch}
+% |\bSpaltenUmbruch|: Spezieller Spaltenumbruch, der den Inhalt
 % mit Hilfe von |\vfill\strut| nach oben schiebt.
 %    \begin{macrocode}
-\def\liSpaltenUmbruch{\vfill\strut\columnbreak}
+\def\bSpaltenUmbruch{\vfill\strut\columnbreak}
 %    \end{macrocode}
 % \end{macro}
 
@@ -6847,7 +6847,7 @@ realisiert werden kann.]
 % \end{verbatim}
 
 %    \begin{macrocode}
-\liLadePakete{syntax}
+\bLadePakete{syntax}
 %    \end{macrocode}
 
 %    \begin{macrocode}
@@ -6928,12 +6928,12 @@ Paket struktex zum Setzen von Struktogrammen]
 %    \end{macrocode}
 % \end{environment}
 
-% \begin{macro}{\liJavaCode}
+% \begin{macro}{\bJavaCode}
 % Im Zeilenfluss einen kurzen Java-Code-Ausschnitt setzen. Es werden automatische
 % Zeilenumbrüche gemacht.
 % \bMakroFaulenzer{j}{liJavaCode}
 %    \begin{macrocode}
-\def\liJavaCode#1{
+\def\bJavaCode#1{
   \,
   \textcolor{blue}{
     \mintinline[
@@ -6946,10 +6946,10 @@ Paket struktex zum Setzen von Struktogrammen]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liLatexCode}
+% \begin{macro}{\bLatexCode}
 % Im Zeilenfluss einen kurzen \LaTeX-Code-Ausschnitt setzen.
 %    \begin{macrocode}
-\def\liLatexCode#1{\mintinline{latex}|#1|}
+\def\bLatexCode#1{\mintinline{latex}|#1|}
 %    \end{macrocode}
 % \end{macro}
 
@@ -6963,11 +6963,11 @@ Paket struktex zum Setzen von Struktogrammen]
 }
 %    \end{macrocode}
 
-% \begin{macro}{\liJavaDatei}
+% \begin{macro}{\bJavaDatei}
 % Eine komplette Java-Datei einbinden, die
 % Verzeichnis |./Code/src/main/java/org/bschlangaul| liegt.
 %    \begin{macrocode}
-\NewDocumentCommand{\liJavaDatei}{ O{firstline=3} m }{
+\NewDocumentCommand{\bJavaDatei}{ O{firstline=3} m }{
   \inputminted[#1]{java}{
     \directlua{
       syntax.drucke_absoluten_pfad('#2', false)
@@ -6980,11 +6980,11 @@ Paket struktex zum Setzen von Struktogrammen]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liJavaTestDatei}
+% \begin{macro}{\bJavaTestDatei}
 % Eine komplette Java-Test-Datei einbinden,
 % die Verzeichnis |./Code/src/test/java/org/bschlangaul| liegt.
 %    \begin{macrocode}
-\NewDocumentCommand{\liJavaTestDatei}{ O{firstline=3} m }{
+\NewDocumentCommand{\bJavaTestDatei}{ O{firstline=3} m }{
   \inputminted[#1]{java}{
     \directlua{
       syntax.drucke_absoluten_pfad('#2', true)
@@ -6997,13 +6997,13 @@ Paket struktex zum Setzen von Struktogrammen]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liJavaExamen}
-% |\liJavaExamen{66116}{2015}{03}{Kunde}|
+% \begin{macro}{\bJavaExamen}
+% |\bJavaExamen{66116}{2015}{03}{Kunde}|
 % Regulärer Ausdruck zum Konvertieren:
-% |\\liJavaDatei(\[.*\])?\{.*examen_(\d{5})_(\d{4})_(\d{2})/(.*)\}|
-% |\\liJavaExamen$1{$2}{$3}{$4}{$5}|
+% |\\bJavaDatei(\[.*\])?\{.*examen_(\d{5})_(\d{4})_(\d{2})/(.*)\}|
+% |\\bJavaExamen$1{$2}{$3}{$4}{$5}|
 %    \begin{macrocode}
-\NewDocumentCommand{\liJavaExamen}{ O{firstline=3} m m m m }{
+\NewDocumentCommand{\bJavaExamen}{ O{firstline=3} m m m m }{
   \inputminted[#1]{java}{
     \directlua{
       syntax.drucke_absoluten_examens_pfad('#2', '#3', '#4', '#5')
@@ -7017,45 +7017,45 @@ Paket struktex zum Setzen von Struktogrammen]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liAssemblerCode}
+% \begin{macro}{\bAssemblerCode}
 %    \begin{macrocode}
-\def\liAssemblerCode#1{\mintinline{asm}|#1|}
+\def\bAssemblerCode#1{\mintinline{asm}|#1|}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liAssemblerDatei}
-% |\liAssemblerDatei{relativer-pfad}|: Relativer Pfad zu einer
+% \begin{macro}{\bAssemblerDatei}
+% |\bAssemblerDatei{relativer-pfad}|: Relativer Pfad zu einer
 % Assembler-Datei.
 %    \begin{macrocode}
-\NewDocumentCommand{\liAssemblerDatei}{ m }{
+\NewDocumentCommand{\bAssemblerDatei}{ m }{
   \inputminted{asm}{#1}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMinispracheDatei}
-% |\liMinispracheDatei{relativer-pfad}|: Relativer Pfad zu einer
+% \begin{macro}{\bMinispracheDatei}
+% |\bMinispracheDatei{relativer-pfad}|: Relativer Pfad zu einer
 % Minisprachen-Datei (Hochsprache für die Minimaschine von Albert
 % Wiedemann).
 %    \begin{macrocode}
-\NewDocumentCommand{\liMinispracheDatei}{ m }{
+\NewDocumentCommand{\bMinispracheDatei}{ m }{
   \inputminted{componentpascal}{#1}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liHaskellCode}
-% |\liHaskellCode{haskell}|: Zum Setzen von Haskell-Code.
+% \begin{macro}{\bHaskellCode}
+% |\bHaskellCode{haskell}|: Zum Setzen von Haskell-Code.
 %    \begin{macrocode}
-\def\liHaskellCode#1{\mintinline{haskell}|#1|}
+\def\bHaskellCode#1{\mintinline{haskell}|#1|}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liHaskellDatei}
-% |\liHaskellDatei{relativer-pfad}|: Relativer Pfad zu einer
+% \begin{macro}{\bHaskellDatei}
+% |\bHaskellDatei{relativer-pfad}|: Relativer Pfad zu einer
 % Haskell-Datei.
 %    \begin{macrocode}
-\NewDocumentCommand{\liHaskellDatei}{ m }{
+\NewDocumentCommand{\bHaskellDatei}{ m }{
   \inputminted{haskell}{#1}
 }
 %    \end{macrocode}
@@ -7065,11 +7065,11 @@ Paket struktex zum Setzen von Struktogrammen]
 \ExplSyntaxOff
 %    \end{macrocode}
 
-% \begin{macro}{\liSqlCode}
-% |\liHaskellCode{sql}|: Zum Setzen von SQL-Code.
+% \begin{macro}{\bSqlCode}
+% |\bHaskellCode{sql}|: Zum Setzen von SQL-Code.
 % \bMakroFaulenzer{s}{liSqlCode}
 %    \begin{macrocode}
-\def\liSqlCode#1{\mintinline{sql}|#1|}
+\def\bSqlCode#1{\mintinline{sql}|#1|}
 %    \end{macrocode}
 % \end{macro}
 
@@ -7103,7 +7103,7 @@ Relation in die 3. Normalform]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\liLadePakete{normalformen,mathe,typographie}
+\bLadePakete{normalformen,mathe,typographie}
 \ExplSyntaxOn
 %    \end{macrocode}
 
@@ -7114,7 +7114,7 @@ Relation in die 3. Normalform]
 % \subsubsection{TeX-Markup Grundgerüst}
 
 % \begin{verbatim}
-% \let\schrittE=\liSyntheseUeberErklaerung
+% \let\schrittE=\bSyntheseUeberErklaerung
 % \begin{enumerate}
 % \item \schrittE{1}
 %
@@ -7134,17 +7134,17 @@ Relation in die 3. Normalform]
 % \subsubsection{TeX-Markup Linksreduktion}
 
 % \begin{verbatim}
-% \let\ahl=\liLinksReduktionInline
-% \let\fa=\liFunktionaleAbhaengigkeit
-% \let\m=\liAttributMenge
+% \let\ahl=\bLinksReduktionInline
+% \let\fa=\bFunktionaleAbhaengigkeit
+% \let\m=\bAttributMenge
 % \let\b=\textbf
 
-% \liPseudoUeberschrift{\fa{C, E -> D, X}}
+% \bPseudoUeberschrift{\fa{C, E -> D, X}}
 %
 % $\m{D, X} \in$ \ahl{C, E}{E}{A, C, B, \b{D, X}}\\
 % $\m{D, X} \notin$ \ahl{C, E}{C}{E, F}
 %
-% \liPseudoUeberschrift{\fa{C, E -> F}}
+% \bPseudoUeberschrift{\fa{C, E -> F}}
 %
 % $F \notin$ \ahl{C, E}{E}{A, C, B}\\
 % $F \in$ \ahl{C, E}{C}{E, \b{F}}
@@ -7153,14 +7153,14 @@ Relation in die 3. Normalform]
 % \subsubsection{TeX-Markup Rechtreduktion}
 
 % \begin{verbatim}
-% \let\ahr=\liRechtsReduktionInline
-% \let\fa=\liFunktionaleAbhaengigkeit
+% \let\ahr=\bRechtsReduktionInline
+% \let\fa=\bFunktionaleAbhaengigkeit
 %
-% \liPseudoUeberschrift{F}
+% \bPseudoUeberschrift{F}
 %
 % $F \in$ \ahr{E -> F, X}{E -> F}{E}{E, \b{F}}
 %
-% \liPseudoUeberschrift{A}
+% \bPseudoUeberschrift{A}
 %
 % $A \notin$ \ahr{B -> A}{}{B}{B}\\
 % $A \in$ \ahr{C -> A}{}{C}{\b{A},B,C}
@@ -7169,7 +7169,7 @@ Relation in die 3. Normalform]
 % \subsubsection{TeX-Markup Relationen formen}
 
 % \begin{verbatim}
-% \let\r=\liRelation
+% \let\r=\bRelation
 % \let\u=\underline
 %
 % \r[R1]{\u{A, D}, E}\\
@@ -7178,7 +7178,7 @@ Relation in die 3. Normalform]
 % \end{verbatim}
 
 % \begin{liBeispiel}
-% \let\schrittE=\liSyntheseUeberErklaerung
+% \let\schrittE=\bSyntheseUeberErklaerung
 % \begin{enumerate}
 % \item \schrittE{1}
 %
@@ -7195,10 +7195,10 @@ Relation in die 3. Normalform]
 % \end{enumerate}
 % \end{liBeispiel}
 
-% \begin{macro}{\liSyntheseUeberschrift}
+% \begin{macro}{\bSyntheseUeberschrift}
 % \bMakroFaulenzer{schritt}{liSyntheseUeberschrift}
 %    \begin{macrocode}
-\def\liSyntheseUeberschrift#1{
+\def\bSyntheseUeberschrift#1{
   {
     \bfseries
     \rmfamily
@@ -7217,7 +7217,7 @@ Relation in die 3. Normalform]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liSyntheseErklaerung}
+% \begin{macro}{\bSyntheseErklaerung}
 % \bMakroFaulenzer{erklaerung}{liSyntheseErklaerung}
 %    \begin{macrocode}
 \def\li@synthese@erklaerung@texte#1{
@@ -7232,12 +7232,12 @@ Relation in die 3. Normalform]
       $\alpha~\rightarrow~\beta~\in~F$~die~Linksreduktion~durch,~
       überprüfe~also~für~alle~
       $A~\in~\alpha$,~ob~$A$~überflüssig~ist,~d.~h.~ob~
-      $\beta~\subseteq~\liAttributHuelle{F,~\alpha~-~A}.$
+      $\beta~\subseteq~\bAttributHuelle{F,~\alpha~-~A}.$
     }
     {1-2} {
       Führe~für~jede~(verbliebene)~funktionale~Abhängigkeit~$\alpha~
       \rightarrow~\beta$~die~Rechtsreduktion~durch,~überprüfe~also~für~
-      alle~$B~\in~\beta$,~ob~$B~\in~\liAttributHuelle{F~-~(\alpha~
+      alle~$B~\in~\beta$,~ob~$B~\in~\bAttributHuelle{F~-~(\alpha~
       \rightarrow~\beta)~\cup~(\alpha~\rightarrow~(\beta~-~B)),~
       \alpha}$~gilt.~In~diesem~Fall~ist~B~auf~der~rechten~Seite~
       überflüssig~und~kann~eleminiert~werden,~\dh~$\alpha~
@@ -7276,22 +7276,22 @@ Relation in die 3. Normalform]
     }
   }
 }
-\def\liSyntheseErklaerung#1{
+\def\bSyntheseErklaerung#1{
   {
     \itshape
     \footnotesize
-    \liParagraphMitLinien{\li@synthese@erklaerung@texte{#1}}
+    \bParagraphMitLinien{\li@synthese@erklaerung@texte{#1}}
   }
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liSyntheseUeberErklaerung}
+% \begin{macro}{\bSyntheseUeberErklaerung}
 % \bMakroFaulenzer{schrittE}{liSyntheseUeberErklaerung}
 %    \begin{macrocode}
-\def\liSyntheseUeberErklaerung#1{
-  \liSyntheseUeberschrift{#1}\par
-  \liSyntheseErklaerung{#1}
+\def\bSyntheseUeberErklaerung#1{
+  \bSyntheseUeberschrift{#1}\par
+  \bSyntheseErklaerung{#1}
 }
 %    \end{macrocode}
 % \end{macro}
@@ -7402,27 +7402,27 @@ formatierung.sty definiert.]
 \RequirePackage{fontawesome}
 %    \end{macrocode}
 
-% \begin{macro}{\liErledigt}
-% |\liErledigt|: \liErledigt
+% \begin{macro}{\bErledigt}
+% |\bErledigt|: \bErledigt
 %    \begin{macrocode}
-\let\liErledigt=\faCheckSquareO
+\let\bErledigt=\faCheckSquareO
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liNichtsZuTun}
-% |\liNichtsZuTun|: \liNichtsZuTun
+% \begin{macro}{\bNichtsZuTun}
+% |\bNichtsZuTun|: \bNichtsZuTun
 %    \begin{macrocode}
-\def\liNichtsZuTun{$\emptyset$~Nichts~zu~tun}
+\def\bNichtsZuTun{$\emptyset$~Nichts~zu~tun}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liParagraphMitLinien}
-% |\liParagraphMitLinien{Lorem ipsum...}|:
+% \begin{macro}{\bParagraphMitLinien}
+% |\bParagraphMitLinien{Lorem ipsum...}|:
 %
-% \liParagraphMitLinien{Lorem ipsum dolor sit, ipsum dolor sit, ipsum
+% \bParagraphMitLinien{Lorem ipsum dolor sit, ipsum dolor sit, ipsum
 % dolor sit, ipsum dolor sit, ipsum dolor sit, ipsum dolor sit}
 %    \begin{macrocode}
-\def\liParagraphMitLinien#1{
+\def\bParagraphMitLinien#1{
   \noindent
   \vrule height 2pt depth -1.6pt width 0.4cm
   \enspace
@@ -7435,14 +7435,14 @@ formatierung.sty definiert.]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liGeschweifteKlammern}
+% \begin{macro}{\bGeschweifteKlammern}
 % Große geschweifte Klammer mit Istgleich-Zeichen.
 %
 % \begin{liBeispiel}
-% \liGeschweifteKlammern{Variable}{\begin{center}Inhalt\end{center}}{0cm}{0cm}
+% \bGeschweifteKlammern{Variable}{\begin{center}Inhalt\end{center}}{0cm}{0cm}
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liGeschweifteKlammern#1#2#3#4{
+\def\bGeschweifteKlammern#1#2#3#4{
   \par
   \medskip
   \noindent
@@ -7456,9 +7456,9 @@ formatierung.sty definiert.]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liTypoUeberschrift}
+% \begin{macro}{\bTypoUeberschrift}
 %    \begin{macrocode}
-\def\liTypoUeberschrift#1{
+\def\bTypoUeberschrift#1{
   {
     \bfseries\rmfamily
     #1
@@ -7467,23 +7467,23 @@ formatierung.sty definiert.]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liTypoUeberGross}
+% \begin{macro}{\bTypoUeberGross}
 %    \begin{macrocode}
-\def\liTypoUeberGross#1{
+\def\bTypoUeberGross#1{
   {
     \huge
-    \liTypoUeberschrift{#1}
+    \bTypoUeberschrift{#1}
   }
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liTypoUeberGross}
+% \begin{macro}{\bTypoUeberGross}
 %    \begin{macrocode}
-\def\liTypoUeberGROSS#1{
+\def\bTypoUeberGROSS#1{
   {
     \Huge
-    \liTypoUeberschrift{#1}
+    \bTypoUeberschrift{#1}
   }
 }
 %    \end{macrocode}
@@ -7569,17 +7569,17 @@ Erweiterung bereitstellt]
 % \umlVHVdep[arm1=-1.5cm,stereo=use,anchor1=-150, pos stereo=1.5]{TicketDruckerei}{KinderTicket}
 
 % \umluniassoc[arg1=,mult2=1,arg2=- druckerei,name=benutzt]{TicketHandel}{TicketDruckerei}
-% \liUmlLeserichtung[pos=below left,dir=down,distance=0cm]{benutzt}
+% \bUmlLeserichtung[pos=below left,dir=down,distance=0cm]{benutzt}
 % \end{tikzpicture}
 % \end{liBeispiel}
 
-% \begin{macro}{\liUmlLeserichtung}
+% \begin{macro}{\bUmlLeserichtung}
 % \begin{verbatim}
 % \umluniassoc[arg1=,mult2=1,arg2=- druckerei,name=benutzt]{TicketHandel}{TicketDruckerei}
-% \liUmlLeserichtung[pos=below left,dir=down,distance=0cm]{benutzt}
+% \bUmlLeserichtung[pos=below left,dir=down,distance=0cm]{benutzt}
 % \end{verbatim}
 %    \begin{macrocode}
-\NewDocumentCommand{ \liUmlLeserichtung } { O{dir=right} m } {
+\NewDocumentCommand{ \bUmlLeserichtung } { O{dir=right} m } {
   \def\@liDirLeft{}
   \def\@liDirRight{ \RIGHTarrow}
   \pgfkeys{/lese/dir/.is choice}
@@ -7670,56 +7670,56 @@ Hilfsmakros zum Setzen der Vollständigen Induktion, vor allem die
 \ExplSyntaxOn
 %    \end{macrocode}
 
-% \begin{macro}{\liInduktionMarkierung}
+% \begin{macro}{\bInduktionMarkierung}
 % Hilfsmakro um Teile von mathematischen Formeln markieren zu können.
 % \bMakroFaulenzer{m}{liInduktionMarkierung}
 %    \begin{macrocode}
-\def\liInduktionMarkierung#1{\textcolor{violet}{#1}}
+\def\bInduktionMarkierung#1{\textcolor{violet}{#1}}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liInduktionErklaerung}
+% \begin{macro}{\bInduktionErklaerung}
 % Gedacht für die rechte Spalte in der align-Umgebung. Das text-Makro
 % ist dann nicht mehr nötig.
 % \bMakroFaulenzer{e}{liInduktionErklaerung}
 %    \begin{macrocode}
-\def\liInduktionErklaerung#1{\scriptsize\text{#1}}
+\def\bInduktionErklaerung#1{\scriptsize\text{#1}}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liInduktionAnfang}
+% \begin{macro}{\bInduktionAnfang}
 %    \begin{macrocode}
-\def\liInduktionAnfang{
-  \liPseudoUeberschrift{Induktionsanfang}
+\def\bInduktionAnfang{
+  \bPseudoUeberschrift{Induktionsanfang}
 
   % https://de.wikibooks.org/wiki/Mathe_für_Nicht-Freaks:_Vollständige_Induktion
-  \liParagraphMitLinien{
+  \bParagraphMitLinien{
     Beweise,~dass~$A(1)$~eine~wahre~Aussage~ist.
   }
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liInduktionVoraussetzung}
+% \begin{macro}{\bInduktionVoraussetzung}
 %    \begin{macrocode}
-\def\liInduktionVoraussetzung{
-  \liPseudoUeberschrift{Induktionsvoraussetzung}
+\def\bInduktionVoraussetzung{
+  \bPseudoUeberschrift{Induktionsvoraussetzung}
 
   % https://de.wikibooks.org/wiki/Mathe_für_Nicht-Freaks:_Vollständige_Induktion
-  \liParagraphMitLinien{
+  \bParagraphMitLinien{
     Die~Aussage~$A(k)$~ist~wahr~für~ein~beliebiges~$k \in \mathbb{N}$.
   }
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liInduktionSchritt}
+% \begin{macro}{\bInduktionSchritt}
 %    \begin{macrocode}
-\def\liInduktionSchritt{
-  \liPseudoUeberschrift{Induktionsschritt}
+\def\bInduktionSchritt{
+  \bPseudoUeberschrift{Induktionsschritt}
 
   % https://de.wikibooks.org/wiki/Mathe_für_Nicht-Freaks:_Vollständige_Induktion
-  \liParagraphMitLinien{
+  \bParagraphMitLinien{
     Beweise,~dass~wenn~$A(n=k)$~wahr~ist,~
     auch~$A(n=k+1)$~wahr~sein~muss.
   }
@@ -7777,17 +7777,17 @@ Hilfsmakros zum Setzen der Vollständigen Induktion, vor allem die
 \ExplSyntaxOn
 %    \end{macrocode}
 
-% \begin{macro}{\liWpKalkuel}
+% \begin{macro}{\bWpKalkuel}
 % \bMakroFaulenzer{wp}{liWpKalkuel}
 %    \begin{macrocode}
-\def\liWpKalkuelOhneMathe#1#2{
+\def\bWpKalkuelOhneMathe#1#2{
   \text{wp}(\texttt{\scriptsize"#1"},\thinspace #2)
 }
-\def\liWpKalkuel#1#2{
+\def\bWpKalkuel#1#2{
   \ifmmode
-    \liWpKalkuelOhneMathe{#1}{#2}
+    \bWpKalkuelOhneMathe{#1}{#2}
   \else
-    $\liWpKalkuelOhneMathe{#1}{#2}$
+    $\bWpKalkuelOhneMathe{#1}{#2}$
   \fi
 }
 %    \end{macrocode}
@@ -7813,20 +7813,20 @@ Hilfsmakros zum Setzen der Vollständigen Induktion, vor allem die
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liWpEquivalent}
+% \begin{macro}{\bWpEquivalent}
 % \bMakroFaulenzer{equivalent}{liWpEquivalent}
 %    \begin{macrocode}
-\def\liWpEquivalent#1{
+\def\bWpEquivalent#1{
   \MatheEnv{$\equiv$\hspace{1em}$#1$}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liWpErklaerung}
+% \begin{macro}{\bWpErklaerung}
 % \bMakroFaulenzer{erklaerung}{liWpErklaerung}
 %    \begin{macrocode}
 \newlength{\@Skip@Erklaerung@Reset}
-\def\liWpErklaerung#1{
+\def\bWpErklaerung#1{
   \setlength{\@Skip@Erklaerung@Reset}{\leftskip}
   \setlength{\leftskip}{0.5cm}
 
@@ -7843,14 +7843,14 @@ Hilfsmakros zum Setzen der Vollständigen Induktion, vor allem die
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liWpErklaerungVerzweigung}
+% \begin{macro}{\bWpErklaerungVerzweigung}
 %    \begin{macrocode}
-\def\liWpErklaerungVerzweigung{
-  $\liWpKalkuelOhneMathe{if~\{~b~\}~then~\{~a1~\}~else~\{~a2~\}}{Q}
+\def\bWpErklaerungVerzweigung{
+  $\bWpKalkuelOhneMathe{if~\{~b~\}~then~\{~a1~\}~else~\{~a2~\}}{Q}
   \equiv
-  (b \land \liWpKalkuelOhneMathe{a1}{Q})
+  (b \land \bWpKalkuelOhneMathe{a1}{Q})
   \lor
-  (\neg b \land \liWpKalkuelOhneMathe{a2}{Q})$
+  (\neg b \land \bWpKalkuelOhneMathe{a2}{Q})$
 }
 %    \end{macrocode}
 % \end{macro}

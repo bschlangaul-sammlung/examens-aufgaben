@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{er,rmodell}
+\bLadePakete{er,rmodell}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Forstverwaltung},
   Thematik = {Forstverwaltung},
   RelativerPfad = Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-1.tex,
@@ -17,10 +17,10 @@
   ExamenAufgabeNr = 1,
 }
 
-\let\a=\liErMpAttribute
-\let\d=\liErDatenbankName
-\let\e=\liErMpEntity
-\let\r=\liErMpRelationship
+\let\a=\bErMpAttribute
+\let\d=\bErDatenbankName
+\let\e=\bErMpEntity
+\let\r=\bErMpRelationship
 
 Für die bayerische Forstverwaltung wird eine Datenbank zur Erschließung
 einer Jagd-Statistik benötigt. Gehen Sie dabei von folgendem Szenario
@@ -174,23 +174,23 @@ Relationenschemata keine redundanten Attribute enthalten.
 
 \begin{liAntwort}
 \begin{liRmodell}
-Landkreis(\liPrimaer{KFZKennzeichen}, LName, Einwohnerzahl)
+Landkreis(\bPrimaer{KFZKennzeichen}, LName, Einwohnerzahl)
 
-Jagdgebiet(\liPrimaer{JName}, \liFremd{KFZKennzeichen}[Landkreis], Gesamtfläche)
+Jagdgebiet(\bPrimaer{JName}, \bFremd{KFZKennzeichen}[Landkreis], Gesamtfläche)
 
-Jagdschein(\liPrimaer{JSNR}, \liFremd{KFZKennzeichen}[Landkreis], gültigVon, gültigBis)
+Jagdschein(\bPrimaer{JSNR}, \bFremd{KFZKennzeichen}[Landkreis], gültigVon, gültigBis)
 
-Jäger(\liPrimaer{JNR}, \liFremd{JSNR}, Name, Stadt, Straße, Hausnummer)
+Jäger(\bPrimaer{JNR}, \bFremd{JSNR}, Name, Stadt, Straße, Hausnummer)
 
-Wild(\liPrimaer{WNR}, Art, Größe, Gewicht)
+Wild(\bPrimaer{WNR}, Art, Größe, Gewicht)
 
-Haarwild(\liPrimaer{WNR}, GehörnTyp)
+Haarwild(\bPrimaer{WNR}, GehörnTyp)
 
-Federwild(\liPrimaer{WNR}, Flügelspannweite)
+Federwild(\bPrimaer{WNR}, Flügelspannweite)
 
-erlegen(\liFremd{JNR}[Jäger], \liFremd{WNR}[Wild], \liFremd{JName}[Jagdgebiet], \liFremd{KFZKennzeichen}[Landkreis])
+erlegen(\bFremd{JNR}[Jäger], \bFremd{WNR}[Wild], \bFremd{JName}[Jagdgebiet], \bFremd{KFZKennzeichen}[Landkreis])
 
-beschränken(\liFremd{JSNR}[Jagdschein], \liFremd{JName}[Jagdgebiet], \liFremd{KFZKennzeichen}[Landkreis])
+beschränken(\bFremd{JSNR}[Jagdschein], \bFremd{JName}[Jagdgebiet], \bFremd{KFZKennzeichen}[Landkreis])
 \end{liRmodell}
 \end{liAntwort}
 \end{enumerate}

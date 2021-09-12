@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{sql,mathe,rmodell}
+\bLadePakete{sql,mathe,rmodell}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Aufgabe 2},
   Thematik = {Polizei},
   RelativerPfad = Staatsexamen/66116/2016/03/Thema-1/Teilaufgabe-1/Aufgabe-2.tex,
@@ -24,11 +24,11 @@ Gehen\index{Entity-Relation-Modell}
 \footcite[Aufgabe 4]{db:pu:3}
 
 \begin{liRmodell}
-\liRelationMenge{Polizist}{\liPrimaer{PersNr}, DSID, Vorname, Nachname, Dienstgrad, Gehalt}
-\liRelationMenge{Dienststelle}{\liPrimaer{DSID}, Name, Strasse, HausNr, Stadt}
-\liRelationMenge{Fall}{\liPrimaer{AkZ}, Titel, Beschreibung, Status}
-\liRelationMenge{Arbeitet\_An}{\liPrimaer{PersNr}, AkZ, Von, Bis}
-\liRelationMenge{Vorgesetzte}{\liPrimaer{PersNr}, PersNr, Vorgesetzter}
+\bRelationMenge{Polizist}{\bPrimaer{PersNr}, DSID, Vorname, Nachname, Dienstgrad, Gehalt}
+\bRelationMenge{Dienststelle}{\bPrimaer{DSID}, Name, Strasse, HausNr, Stadt}
+\bRelationMenge{Fall}{\bPrimaer{AkZ}, Titel, Beschreibung, Status}
+\bRelationMenge{Arbeitet\_An}{\bPrimaer{PersNr}, AkZ, Von, Bis}
+\bRelationMenge{Vorgesetzte}{\bPrimaer{PersNr}, PersNr, Vorgesetzter}
 \end{liRmodell}
 
 \begin{liAdditum}[Übungsdatenbank]
@@ -278,7 +278,7 @@ Vorarbeiten:
 (2 rows)
 \end{verbatim}
 
-\liPseudoUeberschrift{Lösungsansatz 1}
+\bPseudoUeberschrift{Lösungsansatz 1}
 
 \begin{minted}{sql}
 WITH RECURSIVE Fussball_Vorgesetzte (PersNr, VN, NN, DG, PN_VG, VN_VG, NN_VG, DG_VG) AS
@@ -331,7 +331,7 @@ ORDER BY NN DESC;
 (4 rows)
 \end{verbatim}
 
-\liPseudoUeberschrift{Lösungsansatz 2}
+\bPseudoUeberschrift{Lösungsansatz 2}
 
 \begin{minted}{sql}
 CREATE VIEW naechste_Vorgesetzte AS

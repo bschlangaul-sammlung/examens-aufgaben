@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{syntax,mathe,komplexitaetstheorie,pseudo}
+\bLadePakete{syntax,mathe,komplexitaetstheorie,pseudo}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Aufgabe 4},
   Thematik = {Gutschein},
   RelativerPfad = Staatsexamen/66115/2020/09/Thema-2/Teilaufgabe-2/Aufgabe-4.tex,
@@ -29,7 +29,7 @@ ausnutzt. Formal ist dies die Frage, ob es eine Menge von Indizes $I$
 mit $I \subseteq \{1, \dots, n \}$ gibt, sodass $\sum_{i \in I} w_i = G$
 
 \begin{liExkurs}[Teilsummenproblem]
-\liProblemSubsetSum
+\bProblemSubsetSum
 \end{liExkurs}
 
 \begin{enumerate}
@@ -136,22 +136,22 @@ table = boolean array $n + 1 \times (G +  1)$
 \caption{Gutschein-Problem}
 \end{algorithm}
 
-\liJavaExamen{66115}{2020}{09}{Gutschein}
+\bJavaExamen{66115}{2020}{09}{Gutschein}
 
 Die äußere for-Schleife läuft $n$ mal und die innere for-Schleife $G$ mal.
 
 Der letzte Eintrag in der Tabelle, also der Wert in der Zelle
-\liJavaCode{table[W.length][G]}, löst das Gutscheinproblem. Steht hier
-\liJavaCode{true}, dann gibt es eine Teilfolge der Waren, die den
+\bJavaCode{table[W.length][G]}, löst das Gutscheinproblem. Steht hier
+\bJavaCode{true}, dann gibt es eine Teilfolge der Waren, die den
 Gutscheinbetrag genau ausnutzt.
 
 \end{liAntwort}
 \begin{liAdditum}[Test-Klasse]
 
-\liJavaTestDatei{examen/examen_66115/jahr_2020/herbst/GutscheinTest}
+\bJavaTestDatei{examen/examen_66115/jahr_2020/herbst/GutscheinTest}
 
 \begin{itemize}
-\item \liJavaCode{gutscheinDP(3, new int[] { 1, 2, 3 }));}: wahr (w)
+\item \bJavaCode{gutscheinDP(3, new int[] { 1, 2, 3 }));}: wahr (w)
 
 \begin{minted}{md}
 [
@@ -162,7 +162,7 @@ Gutscheinbetrag genau ausnutzt.
 ]
 \end{minted}
 
-\item \liJavaCode{gutscheinDP(7, new int[] { 1, 2, 3 });}: falsch (f)
+\item \bJavaCode{gutscheinDP(7, new int[] { 1, 2, 3 });}: falsch (f)
 
 \begin{minted}{md}
 [   0  1  2  3  4  5  6  7 G
@@ -174,7 +174,7 @@ Gutscheinbetrag genau ausnutzt.
 ]
 \end{minted}
 
-\item \liJavaCode{gutscheinDP(10, new int[] { 10, 30, 40, 20, 15 });}: wahr (w)
+\item \bJavaCode{gutscheinDP(10, new int[] { 10, 30, 40, 20, 15 });}: wahr (w)
 
 \begin{minted}{md}
 [    0  1  2  3  4  5  6  7  8  9  10 G

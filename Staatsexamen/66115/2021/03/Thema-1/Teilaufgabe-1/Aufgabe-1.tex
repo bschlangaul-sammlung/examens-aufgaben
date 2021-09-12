@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{formale-sprachen,automaten,potenzmengen-konstruktion}
+\bLadePakete{formale-sprachen,automaten,potenzmengen-konstruktion}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Aufgabe 1},
   Thematik = {Reguläre Sprachen Automaten zuordnen},
   RelativerPfad = Staatsexamen/66115/2021/03/Thema-1/Teilaufgabe-1/Aufgabe-1.tex,
@@ -18,7 +18,7 @@
 }
 
 \def\z#1{
-  \liZustandsMengenSammlungNr{#1}{
+  \bZustandsMengenSammlungNr{#1}{
     {
       {0} {0}
       {1} {1}
@@ -35,7 +35,7 @@ das leere Wort (\dh insbesondere $a^i = \varepsilon$).
 \index{Reguläre Sprache}
 \footcite{examen:66115:2021:03}
 
-Die Menge $\mathbb{N}_0 = \liMenge{0,1,2,\dots}$ ist die Menge aller
+Die Menge $\mathbb{N}_0 = \bMenge{0,1,2,\dots}$ ist die Menge aller
 nicht-negativer Ganzzahlen.
 
 Die Sprachen $L_1, \dots , L_{12}$ seien definiert als:
@@ -47,8 +47,8 @@ Die Sprachen $L_1, \dots , L_{12}$ seien definiert als:
 
 \item Ordnen Sie jedem der folgenden nichtdeterministischen endlichen
 Automaten $N_j, j = 1,\dots,6$, (die alle über dem Alphabet
-\liAlphabet{a} arbeiten) \textbf{jeweils eine} der Sprachen $L_i \in
-\liMenge{L_1, \dots , L_{12}}$ zu, sodass $L_i$, genau die von $N_i$,
+\bAlphabet{a} arbeiten) \textbf{jeweils eine} der Sprachen $L_i \in
+\bMenge{L_1, \dots , L_{12}}$ zu, sodass $L_i$, genau die von $N_i$,
 \textbf{akzeptierte Sprache} ist.
 
 \begin{liAntwort}
@@ -75,14 +75,14 @@ Automaten $N_j, j = 1,\dots,6$, (die alle über dem Alphabet
 \textbf{nicht regulär} ist.
 
 \begin{liAntwort}
-\liAusdruck[L_10]{a^n}{n \in \mathbb{N}_0, n\text{ ist Primzahl}}
+\bAusdruck[L_10]{a^n}{n \in \mathbb{N}_0, n\text{ ist Primzahl}}
 
 ist nicht regulär, da sich sonst jede Primzahl $p$ einer bestimmten
 Mindestgröße $j$ als Summe von natürlichen Zahlen $u + v + w$ darstellen
 ließe, so dass $v \geq 1$ und für alle $i \geq 0$ auch $u + iv + w = p +
 (i − 1)v$ prim ist. Dies ist jedoch für $i = p + 1$ wegen $p + (p + 1 −
 1)v = p(1 + v)$ nicht der
-Fall.\liFussnoteUrl{https://www.informatik.hu-berlin.de/de/forschung/gebiete/algorithmenII/Lehre/ws13/einftheo/einftheo-skript.pdf}
+Fall.\bFussnoteUrl{https://www.informatik.hu-berlin.de/de/forschung/gebiete/algorithmenII/Lehre/ws13/einftheo/einftheo-skript.pdf}
 \end{liAntwort}
 
 %%
@@ -90,7 +90,7 @@ Fall.\liFussnoteUrl{https://www.informatik.hu-berlin.de/de/forschung/gebiete/alg
 %%
 
 \item Konstruieren Sie für den folgenden nichtdeterministischen
-endlichen Automaten (der Worte über dem Alphabet \liAlphabet{a,b}
+endlichen Automaten (der Worte über dem Alphabet \bAlphabet{a,b}
 verarbeitet) einen äquivalenten deterministischen endlichen Automaten
 mithilfe der Potenzmengenkonstruktion. Zeichnen Sie dabei nur die vom
 Startzustand erreichbaren Zustände. Erläutern Sie Ihr Vorgehen.
@@ -117,7 +117,7 @@ Startzustand erreichbaren Zustände. Erläutern Sie Ihr Vorgehen.
   \path (z5) edge[auto,loop above] node{$b$} (z5);
 \end{tikzpicture}
 \end{center}
-\liFlaci{Af7iooyca}
+\bFlaci{Af7iooyca}
 
 \begin{liAntwort}
 \begin{tabular}{l|l|l}
@@ -156,7 +156,7 @@ Zustandsmenge & Eingabe $a$ & Eingabe $b$ \\\hline
   \path (Z3) edge[auto] node{$b$} (ZT);
 \end{tikzpicture}
 \end{center}
-\liFlaci{Apkyuo4ja}
+\bFlaci{Apkyuo4ja}
 \end{liAntwort}
 
 \end{liAntwort}

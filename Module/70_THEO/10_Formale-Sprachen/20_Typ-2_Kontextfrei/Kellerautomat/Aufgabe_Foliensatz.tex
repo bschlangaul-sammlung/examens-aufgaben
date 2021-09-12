@@ -1,11 +1,11 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{formale-sprachen,automaten,mathe}
+\bLadePakete{formale-sprachen,automaten,mathe}
 \begin{document}
-\let\m=\liMengeOhneMathe
+\let\m=\bMengeOhneMathe
 \def\z#1{z_#1}
 \def\Z#1{$z_#1$}
 
-\liAufgabenTitel{a^n b^n}
+\bAufgabenTitel{a^n b^n}
 \section{Kellerautomat
 \index{Kellerautomat}
 \footcite[Seite 23]{theo:fs:2}}
@@ -13,14 +13,14 @@
 Erstellen Sie einen Kellerautomaten, der folgende Sprache
 
 \begin{center}
-\liAusdruck{a^n b^n}{n \in \mathbb{N}}
+\bAusdruck{a^n b^n}{n \in \mathbb{N}}
 \end{center}
 
 \noindent
 mit folgender Grammatik
 
 \begin{center}
-\liGrammatik{
+\bGrammatik{
   variablen=S,
   alphabet={a,b},
   produktionen={S -> aSb | ab}
@@ -32,7 +32,7 @@ erkennt.
 
 \begin{liAntwort}
 \begin{center}
-\liKellerAutomat{
+\bKellerAutomat{
   zustaende={\z1, \z2},
   alphabet={a, b},
   kelleralphabet={\#, A},
@@ -46,17 +46,17 @@ erkennt.
   \node[state,initial] (z1) at (2cm,-2.14cm) {$z_1$};
   \node[state,accepting] (z2) at (5.57cm,-2.14cm) {$z_2$};
 
-  \liKellerKante[above]{z1}{z2}{
+  \bKellerKante[above]{z1}{z2}{
     b, A, EPSILON;
     EPSILON, KELLERBODEN, EPSILON
   }
 
-  \liKellerKante[above,loop]{z1}{z1}{
+  \bKellerKante[above,loop]{z1}{z1}{
     a, A, AA;
     a, KELLERBODEN, AKELLERBODEN
   }
 
-  \liKellerKante[above,loop]{z2}{z2}{
+  \bKellerKante[above,loop]{z2}{z2}{
     b, A, EPSILON;
     EPSILON, KELLERBODEN, EPSILON
   }
@@ -64,7 +64,7 @@ erkennt.
 \end{tikzpicture}
 \end{center}
 
-\liFlaci{Ah5v17t52}
+\bFlaci{Ah5v17t52}
 
 \bigskip
 

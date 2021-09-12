@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{formale-sprachen,syntaxbaum,automaten}
+\bLadePakete{formale-sprachen,syntaxbaum,automaten}
 \begin{document}
-\liAufgabenTitel{Vorlesungsaufgabe}
+\bAufgabenTitel{Vorlesungsaufgabe}
 \section{Kontextfreie Grammatik
 \index{Kontextfreie Sprache}
 \footcite{theo:fs:2}}
@@ -11,7 +11,7 @@
 vorgegeben Grammatik\footcite[Seite 10]{theo:fs:2}
 \index{Ableitung (Kontextfreie Sprache)}
 
-\liGrammatik{alphabet={0, 1}, variablen={S, A, B }}
+\bGrammatik{alphabet={0, 1}, variablen={S, A, B }}
 
 \begin{liProduktionsRegeln}
 S -> A 1 B,
@@ -19,13 +19,13 @@ A -> 0 A | EPSILON,
 B -> 0 B | 1 B | EPSILON,
 \end{liProduktionsRegeln}
 
-\liFlaci{Gi1rgpemg}
+\bFlaci{Gi1rgpemg}
 
 \begin{itemize}
 \item 00101
 
 \begin{liAntwort}
-\liAbleitung{
+\bAbleitung{
 S ->
 A1B ->
 0A1B ->
@@ -40,7 +40,7 @@ A1B ->
 \item 1001
 
 \begin{liAntwort}
-\liAbleitung{
+\bAbleitung{
 S ->
 A1B ->
 1B ->
@@ -60,7 +60,7 @@ gleich vielen $1$‘s, gefolgt von gleich vielen $0$‘s enthält.
 \begin{liProduktionsRegeln}
 S -> 1S0 | epsilon
 \end{liProduktionsRegeln}
-\liFlaci{Grxmyw2ia}
+\bFlaci{Grxmyw2ia}
 \end{liAntwort}
 
 \item Erstellen Sie eine kontextfreie Grammatik, die alle regulären
@@ -70,12 +70,12 @@ Ausdrücke über den Zeichen $0,1$ darstellt. (Beispiel:
 \footcite[Aufgabe 2a)]{theo:ab:5}
 
 \begin{liAntwort}
-\liGrammatik{alphabet={1; 0; (; ); +; *}, variablen={S}}
+\bGrammatik{alphabet={1; 0; (; ); +; *}, variablen={S}}
 
 \begin{liProduktionsRegeln}
 S -> EPSILON | 0 | 1 | S * | ( S ) | S S | S + S
 \end{liProduktionsRegeln}
-\liFlaci{Ghfgrv027}
+\bFlaci{Ghfgrv027}
 \end{liAntwort}
 
 \end{enumerate}

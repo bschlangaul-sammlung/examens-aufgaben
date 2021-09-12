@@ -1,5 +1,5 @@
 \documentclass{bschlangaul-theorie}
-\liLadePakete{uml,syntax}
+\bLadePakete{uml,syntax}
 
 \begin{document}
 
@@ -67,7 +67,7 @@ Methoden spezifiziert haben.
 Dabei werden diese drei Rubriken (engl. compartment) – Klassenname,
 Attribute, Methoden – jeweils durch eine horizontale
 Linie getrennt.
-\liLatexCode{\umlclass{Name}{Attribute}{Methoden}}
+\bLatexCode{\umlclass{Name}{Attribute}{Methoden}}
 \footcite{wiki:klassendiagramm}
 \footcite[Seite 49-50 (PDF 65-66)]{uml}
 
@@ -89,9 +89,9 @@ Linie getrennt.
 
 \item[Abstrakte Klassen]
 Kursiv oder mit Untertitle \{abstract\} oder mit <<>>
-\liLatexCode{\umlsimpleclass[type=abstract]{Name}}
-\liLatexCode{\umlsimpleclass[tags=abstract]{Name}}
-\liLatexCode{\umlsimpleclass[type=abstrakt]{Name}}
+\bLatexCode{\umlsimpleclass[type=abstract]{Name}}
+\bLatexCode{\umlsimpleclass[tags=abstract]{Name}}
+\bLatexCode{\umlsimpleclass[type=abstrakt]{Name}}
 
 \begin{tikzpicture}
 \umlsimpleclass[type=abstract,x=0]{Lehrer}
@@ -117,7 +117,7 @@ $-$: private, $+$: public, $\#$: protected, \~{}: package
 \end{tikzpicture}
 
 \item[Klassenattribute]
-Klassenattribute (statische Attribute) werden unterstrichen \liLatexCode{\umlstatic{- gehalt}}
+Klassenattribute (statische Attribute) werden unterstrichen \bLatexCode{\umlstatic{- gehalt}}
 \footcite[Seite 118,121]{rupp}
 
 \begin{center}
@@ -135,7 +135,7 @@ Klassenattribute (statische Attribute) werden unterstrichen \liLatexCode{\umlsta
 \item[Multiplizität]
 \zB 0..1, 1..1, 1, 0..*, *, n..m
 \footcite[Seite 98 (PDF 115)]{uml}
-\liLatexCode{\umlcompo[mult1=1,mult2=1..*]{A}{B}}
+\bLatexCode{\umlcompo[mult1=1,mult2=1..*]{A}{B}}
 
 %%
 %
@@ -143,7 +143,7 @@ Klassenattribute (statische Attribute) werden unterstrichen \liLatexCode{\umlsta
 
 \item[Rollen (Assoziationsenden)]
 \footcite[Seite 145]{rupp}
-\liLatexCode{\umlassoc[arg1=faecher,arg2=lehrer]{Fach}{Lehrer}}
+\bLatexCode{\umlassoc[arg1=faecher,arg2=lehrer]{Fach}{Lehrer}}
 
 \begin{center}
 \begin{tikzpicture}
@@ -162,9 +162,9 @@ Die bevorzugte Leserichtung wird durch ein ausgefülltes Dreieck
 darge­stellt, das nach dem Assoziationsnamen platziert wird und dessen
 Spitze in die gewünschte Leserichtung weist.
 \footcite[Seite 144]{rupp}
-\liLatexCode{
+\bLatexCode{
   \umlassoc[name=unterrichtet]{Fach}{Lehrer}
-  \liUmlLeserichtung[pos=below,dir=right,distance=0cm]{unterrichtet}
+  \bUmlLeserichtung[pos=below,dir=right,distance=0cm]{unterrichtet}
 }
 
 \begin{center}
@@ -172,7 +172,7 @@ Spitze in die gewünschte Leserichtung weist.
 \umlsimpleclass{Fach}
 \umlsimpleclass[x=5]{Lehrer}
 \umlassoc[name=unterrichtet]{Fach}{Lehrer}
-\liUmlLeserichtung[pos=below,dir=right,distance=0cm]{unterrichtet}
+\bUmlLeserichtung[pos=below,dir=right,distance=0cm]{unterrichtet}
 \end{tikzpicture}
 \end{center}
 
@@ -189,7 +189,7 @@ Spitze in die gewünschte Leserichtung weist.
 
 \item[Assoziation] Eine Assoziation beschreibt eine Beziehung zwischen
 zwei oder mehr Klassen. An den Enden von Assoziationen sind häufig
-Multiplizitäten vermerkt. \liLatexCode{\umlassoc[mult1=1..*,mult2=1]{Fach}{Lehrer}}
+Multiplizitäten vermerkt. \bLatexCode{\umlassoc[mult1=1..*,mult2=1]{Fach}{Lehrer}}
 
 \begin{center}
 \begin{tikzpicture}
@@ -210,7 +210,7 @@ eine \emph{gerichtete} Beziehung zwischen einer \emph{generelleren} und
 einer \emph{spezielleren} Klasse. Der Pfeil zeigt von der spezielleren
 Klasse zur generellen Klasse.
 \footcite[Kapitel 6.4.6 Generalisierung, Seite 135]{rupp}
-\liLatexCode{\umlinherit{A}{B}}
+\bLatexCode{\umlinherit{A}{B}}
 
 \begin{center}
 \begin{tikzpicture}
@@ -221,7 +221,7 @@ Klasse zur generellen Klasse.
 \end{center}
 
 \item[Realisierung (Realization)] Gestrichelte Linie mit nicht
-ausgefüllten Dreieck als Pfeilspitze. \liLatexCode{\umlreal{A}{B}}
+ausgefüllten Dreieck als Pfeilspitze. \bLatexCode{\umlreal{A}{B}}
 \footcite[Kapitel 6.4.13, Seite 164]{rupp}
 
 \begin{center}
@@ -240,7 +240,7 @@ ausgefüllten Dreieck als Pfeilspitze. \liLatexCode{\umlreal{A}{B}}
 
 Teil-Ganzes-Beziehung, nicht-ausgefüllte Raute am „Ganzen“-Objekt,
 in Java keine Entsprechung
-\liLatexCode{\umlaggreg{A}{B}}
+\bLatexCode{\umlaggreg{A}{B}}
 
 \begin{center}
 \begin{tikzpicture}
@@ -258,7 +258,7 @@ in Java keine Entsprechung
 
 starke Aggregation, ausgefüllte Raute, Teilobjekte existenzabhängig von
 Aggregationsobjekt: \zB Bank, Konto
-\liLatexCode{\umlcompo{A}{B}}
+\bLatexCode{\umlcompo{A}{B}}
 
 \begin{center}
 \begin{tikzpicture}
@@ -278,7 +278,7 @@ Seite der aufgelösten Assoziationsklasse.“
 \item[Abhängigkeitsbeziehung (Dependency)]
 
 Gestrichelte Line mit offenen Pfeil. Der Pfeil zeigt \emph{vom
-abhängigen auf das unabhängige} Modellelement. \liLatexCode{\umldep{A}{B}}
+abhängigen auf das unabhängige} Modellelement. \bLatexCode{\umldep{A}{B}}
 \footcite[Kapitel 6.4.10 Abhängigkeitsbeziehung, Seite 159]{rupp}
 
 \begin{center}
@@ -296,7 +296,7 @@ Eine Usage-Beziehung wird als Abhängigkeitsbeziehung  mit dem
 Schlüsselwort «use» modelliert. Der Pfeil zeigt vom „unvollständigen“
 Element auf das benötigte Element.
 \footcite[Kapitel 6.4.11 Verwendungsbeziehung, Seite 161]{rupp}
-\liLatexCode{\umldep[stereo=use]{A}{B}}
+\bLatexCode{\umldep[stereo=use]{A}{B}}
 
 \begin{center}
 \begin{tikzpicture}
@@ -368,7 +368,7 @@ Instanzen der Klasse A die Instanzen der Klasse B in Pfeilrichtung
 %%
 
 \begin{description}
-\item[Unspezifizierte Navigierbarkeit] \liLatexCode{\umlassoc{A}{B}}
+\item[Unspezifizierte Navigierbarkeit] \bLatexCode{\umlassoc{A}{B}}
 
 \begin{center}
 \begin{tikzpicture}
@@ -382,7 +382,7 @@ Instanzen der Klasse A die Instanzen der Klasse B in Pfeilrichtung
 %
 %%
 
-\item[Unidirektionale Navigierbarkeit] \liLatexCode{\umluniassoc{A}{B}}
+\item[Unidirektionale Navigierbarkeit] \bLatexCode{\umluniassoc{A}{B}}
 
 \begin{center}
 \begin{tikzpicture}

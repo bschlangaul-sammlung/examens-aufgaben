@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{syntax,uml,entwurfsmuster}
+\bLadePakete{syntax,uml,entwurfsmuster}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Aufgabe 3},
   Thematik = {Ticket-Handel},
   RelativerPfad = Staatsexamen/66116/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-3.tex,
@@ -17,7 +17,7 @@
   ExamenAufgabeNr = 3,
 }
 
-\let\j=\liJavaCode
+\let\j=\bJavaCode
 
 \begin{tikzpicture}
 \umlclass{TicketHandel}{
@@ -60,7 +60,7 @@
 \umlVHVdep[arm1=-1.5cm,stereo=use,anchor1=-150, pos stereo=1.5]{TicketDruckerei}{KinderTicket}
 
 \umluniassoc[arg1=,mult2=1,arg2=- druckerei,name=benutzt]{TicketHandel}{TicketDruckerei}
-\liUmlLeserichtung[pos=below left,dir=down,distance=0cm]{benutzt}
+\bUmlLeserichtung[pos=below left,dir=down,distance=0cm]{benutzt}
 \end{tikzpicture}
 
 \noindent
@@ -88,20 +88,20 @@ sich dabei \emph{nicht} um das \emph{Interface}- oder das
 \index{Fabrikmethode (Factory Method)}
 
 \begin{liAntwort}
-\liPseudoUeberschrift{Einzelstück (Singleton)}
+\bPseudoUeberschrift{Einzelstück (Singleton)}
 
-\liEntwurfsEinzelstueckUml
-\liEntwurfsEinzelstueckAkteure
+\bEntwurfsEinzelstueckUml
+\bEntwurfsEinzelstueckAkteure
 
 \begin{tabular}{l|l}
 \textbf{Klasse}       & \textbf{Akteur} \\\hline\hline
 \j{TicketHandel}      & Einzelstück\\
 \end{tabular}
 
-\liPseudoUeberschrift{Fabrikmethode (Factory Method)}
+\bPseudoUeberschrift{Fabrikmethode (Factory Method)}
 
-\liEntwurfsFabrikmethodeUml
-\liEntwurfsFabrikmethodeAkteure
+\bEntwurfsFabrikmethodeUml
+\bEntwurfsFabrikmethodeAkteure
 
 \begin{tabular}{l|l}
 \textbf{Klasse}       & \textbf{Akteur} \\\hline\hline
@@ -138,7 +138,7 @@ der Methode \j{ticketKaufen()} wird die Anzahl der verkauften Tickets um
 Beachten Sie den Hinweis auf der nächsten Seite.
 
 \begin{liAntwort}
-\liJavaExamen{66116}{2020}{09}{ticket/TicketHandel}
+\bJavaExamen{66116}{2020}{09}{ticket/TicketHandel}
 \end{liAntwort}
 
 %%
@@ -148,7 +148,7 @@ Beachten Sie den Hinweis auf der nächsten Seite.
 \item Geben Sie eine Implementierung der Klasse \j{TicketDruckerei} an.
 
 \begin{liAntwort}
-\liJavaExamen{66116}{2020}{09}{ticket/TicketDruckerei}
+\bJavaExamen{66116}{2020}{09}{ticket/TicketDruckerei}
 \end{liAntwort}
 
 %%
@@ -158,7 +158,7 @@ Beachten Sie den Hinweis auf der nächsten Seite.
 \item Geben Sie eine Implementierung der Klasse \j{KinderTicket} an.
 
 \begin{liAntwort}
-\liJavaExamen{66116}{2020}{09}{ticket/KinderTicket}
+\bJavaExamen{66116}{2020}{09}{ticket/KinderTicket}
 \end{liAntwort}
 
 \emph{Hinweis:} Die Implementierungen \emph{müssen} sowohl dem
@@ -171,7 +171,7 @@ verhalten.
 
 Quelltext der Testmethode:
 
-\liJavaExamen[firstline=4,lastline=8]{66116}{2020}{09}{ticket/Test}
+\bJavaExamen[firstline=4,lastline=8]{66116}{2020}{09}{ticket/Test}
 
 Konsolenausgabe:
 

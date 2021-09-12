@@ -29,7 +29,7 @@ local function drucke_einen_keller_uebergang (eingang)
 end
 
 --- Gib mehrere Kellerübergänge aus.
--- \liKellerUebergang{EPSILON, KELLERBODEN, EPSILON; b, A, EPSILON}
+-- \bKellerUebergang{EPSILON, KELLERBODEN, EPSILON; b, A, EPSILON}
 local function drucke_keller_uebergaenge (eingang)
   local elemente = helfer.split(eingang, '%s*;%s*')
   for index, element in ipairs(elemente) do
@@ -42,9 +42,9 @@ end
 local function gib_einen_turing_uebergang (eingang)
   local elemente = helfer.split(eingang, '%s*,%s*')
   for index, element in ipairs(elemente) do
-    element = element:gsub('LEER', '\\liTuringLeerzeichen')
-    element = element:gsub('leer', '\\liTuringLeerzeichen')
-    element = element:gsub('☐', '\\liTuringLeerzeichen')
+    element = element:gsub('LEER', '\\bTuringLeerzeichen')
+    element = element:gsub('leer', '\\bTuringLeerzeichen')
+    element = element:gsub('☐', '\\bTuringLeerzeichen')
     elemente[index] = element
   end
 

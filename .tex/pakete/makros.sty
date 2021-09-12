@@ -47,10 +47,10 @@ anderen Paket passen]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liPseudoUeberschrift}
+% \begin{macro}{\bPseudoUeberschrift}
 % Text, der sich wie eine Überschrift verhält.
 %    \begin{macrocode}
-\newcommand{\liPseudoUeberschrift}[1]{
+\newcommand{\bPseudoUeberschrift}[1]{
   \bigskip
 
   \par
@@ -67,11 +67,11 @@ anderen Paket passen]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liBeschriftung}
-% Ähnlich dem Makro |\liPseudoUeberschrift{}|. Am Ende des Textes wird
+% \begin{macro}{\bBeschriftung}
+% Ähnlich dem Makro |\bPseudoUeberschrift{}|. Am Ende des Textes wird
 % ein Doppelpunktzeichen angehängt.
 %    \begin{macrocode}
-\newcommand{\liBeschriftung}[1]{
+\newcommand{\bBeschriftung}[1]{
 \par
 \noindent
 \medskip
@@ -204,10 +204,10 @@ anderen Paket passen]
   \begin{mdframed}[backgroundcolor=yellow!5]
     \IfNoValueTF {#1}
     {
-      \liPseudoUeberschrift{Additum}
+      \bPseudoUeberschrift{Additum}
     }
     {
-      \liPseudoUeberschrift{Additum:~#1}
+      \bPseudoUeberschrift{Additum:~#1}
     }
 }
 {
@@ -339,23 +339,23 @@ anderen Paket passen]
 %    \end{macrocode}
 % \end{environment}
 
-% \begin{macro}{\liFussnoteUrl}
-% \cmd{\liFussnoteUrl}\oarg{zusätzlicher-text}\marg{url}
-% |\liFussnoteUrl[zusätzlicher Text]{url}|: Eine HTTP-URL als Fußnote setzen.
+% \begin{macro}{\bFussnoteUrl}
+% \cmd{\bFussnoteUrl}\oarg{zusätzlicher-text}\marg{url}
+% |\bFussnoteUrl[zusätzlicher Text]{url}|: Eine HTTP-URL als Fußnote setzen.
 %    \begin{macrocode}
-\NewDocumentCommand{\liFussnoteUrl} { o m } {
+\NewDocumentCommand{\bFussnoteUrl} { o m } {
   \footnote{\url{#2}\IfNoValueTF{#1}{}{ (#1)}}
 }
 
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liFussnoteLink}
-% \cmd{\liFussnoteLink}\oarg{zusätzlicher-text}\marg{link-text}\marg{url}
-% |\liFussnoteLink[zusätzlicher Text]{text}{url}|: Einen Link, d. h. einen Link-Text
+% \begin{macro}{\bFussnoteLink}
+% \cmd{\bFussnoteLink}\oarg{zusätzlicher-text}\marg{link-text}\marg{url}
+% |\bFussnoteLink[zusätzlicher Text]{text}{url}|: Einen Link, d. h. einen Link-Text
 % und eine URL als Fußnote setzen.
 %    \begin{macrocode}
-\NewDocumentCommand{\liFussnoteLink} { o m m } {
+\NewDocumentCommand{\bFussnoteLink} { o m m } {
   \footnote{\href{#3}{#2}\IfNoValueTF{#1}{}{ (#1)}}
 }
 %    \end{macrocode}

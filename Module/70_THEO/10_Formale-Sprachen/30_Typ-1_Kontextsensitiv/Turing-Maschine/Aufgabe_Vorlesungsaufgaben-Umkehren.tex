@@ -1,11 +1,11 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{formale-sprachen,mathe,automaten}
+\bLadePakete{formale-sprachen,mathe,automaten}
 \begin{document}
 \def\z#1{\,z_#1\,}
 \def\p{&\rightarrow}
-\def\l{\,\liTuringLeerzeichen\,}
+\def\l{\,\bTuringLeerzeichen\,}
 
-\liAufgabenTitel{Vorlesungsaufgaben ab-Wörter umkehren}
+\bAufgabenTitel{Vorlesungsaufgaben ab-Wörter umkehren}
 \section{Wörter umkehren auf dem Band der Turingmaschine
 \index{Turing-Maschine}
 \footcite[Seite 27]{theo:fs:3}}
@@ -14,7 +14,7 @@
 
 \begin{enumerate}
 \item Geben Sie eine Turingmaschine an, die die Eingabe über dem
-Alphabet \liAlphabet{a, b} umkehrt.
+Alphabet \bAlphabet{a, b} umkehrt.
 
 Beispiele:
 
@@ -43,80 +43,80 @@ Eingabewort stehen.
   \node[state] (z7) at (10.71cm,-9.43cm) {$z_7$};
   \node[state,accepting] (z8) at (13cm,-9.43cm) {$z_8$};
 
-  \liTuringKante[above left,pos=0.7]{z0}{z1}{
+  \bTuringKante[above left,pos=0.7]{z0}{z1}{
     a, a, L;
     b, b, L;
   }
 
-  \liTuringKante[above,loop above]{z0}{z0}{
+  \bTuringKante[above,loop above]{z0}{z0}{
     LEER, LEER, N;
   }
 
-  \liTuringKante[right]{z1}{z2}{
+  \bTuringKante[right]{z1}{z2}{
     LEER, *, R;
   }
 
-  \liTuringKante[above]{z2}{z3}{
+  \bTuringKante[above]{z2}{z3}{
     a, *, L;
   }
 
-  \liTuringKante[below left]{z2}{z4}{
+  \bTuringKante[below left]{z2}{z4}{
     b, *, L;
   }
 
-  \liTuringKante[above,loop above]{z3}{z3}{
+  \bTuringKante[above,loop above]{z3}{z3}{
     b, b, L;
     a, a, L;
     *, *, L;
   }
 
-  \liTuringKante[above]{z3}{z5}{
+  \bTuringKante[above]{z3}{z5}{
     LEER, a, R;
   }
 
-  \liTuringKante[above left,pos=0.8 ]{z4}{z5}{
+  \bTuringKante[above left,pos=0.8 ]{z4}{z5}{
     LEER, b, R;
   }
 
-  \liTuringKante[above,loop above]{z4}{z4}{
+  \bTuringKante[above,loop above]{z4}{z4}{
     *, *, L;
     a, a, L;
     b, b, L;
   }
 
-  \liTuringKante[right]{z5}{z6}{
+  \bTuringKante[right]{z5}{z6}{
     *, *, R;
   }
 
-  \liTuringKante[above,loop above]{z5}{z5}{
+  \bTuringKante[above,loop above]{z5}{z5}{
     a, a, R;
     b, b, R;
   }
 
-  \liTuringKante[above,loop below]{z6}{z6}{
+  \bTuringKante[above,loop below]{z6}{z6}{
     *, *, R;
   }
 
-  \liTuringKante[left,bend left]{z6}{z2}{
+  \bTuringKante[left,bend left]{z6}{z2}{
     a, a, N;
     b, b, N;
   }
 
-  \liTuringKante[above]{z6}{z7}{
+  \bTuringKante[above]{z6}{z7}{
     LEER, LEER, L;
   }
 
-  \liTuringKante[above,loop above]{z7}{z7}{
+  \bTuringKante[above,loop above]{z7}{z7}{
     *, LEER, L;
   }
 
-  \liTuringKante[above]{z7}{z8}{
+  \bTuringKante[above]{z7}{z8}{
     b, b, N;
     a, a, N;
   }
 \end{tikzpicture}
 \end{center}
-\liFlaci{Af75rdjbc}
+\bFlaci{Af75rdjbc}
 \end{liAntwort}
 
 \item Geben Sie anschließend eine Konfigurationsfolge ihrer TM für $ab$

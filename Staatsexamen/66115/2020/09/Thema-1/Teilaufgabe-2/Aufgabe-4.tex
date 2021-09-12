@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{syntax,mathe,master-theorem}
+\bLadePakete{syntax,mathe,master-theorem}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Aufgabe 4},
   Thematik = {O-Notation},
   RelativerPfad = Staatsexamen/66115/2020/09/Thema-1/Teilaufgabe-2/Aufgabe-4.tex,
@@ -17,8 +17,8 @@
   ExamenAufgabeNr = 4,
 }
 
-\let\j=\liJavaCode
-\let\T=\liT
+\let\j=\bJavaCode
+\let\T=\bT
 
 \begin{enumerate}
 
@@ -30,7 +30,7 @@
 \index{Algorithmische Komplexität (O-Notation)}
 \footcite{examen:66115:2020:09}
 
-\liJavaDatei[firstline=4,lastline=13]{examen/examen_66115/jahr_2020/herbst/o_notation/Mystery1}
+\bJavaDatei[firstline=4,lastline=13]{examen/examen_66115/jahr_2020/herbst/o_notation/Mystery1}
 
 Bestimmen Sie die asymptotische worst-case Laufzeit des Code-Beispiels
 in $\mathcal{O}$-Notation bezüglich der Problemgröße $n$. Begründen Sie
@@ -52,7 +52,7 @@ groß ist als \j{n}.
 
 \item Betrachten Sie das folgende Code-Beispiel (in Java-Notation):
 
-\liJavaDatei[firstline=5,lastline=18]{examen/examen_66115/jahr_2020/herbst/o_notation/Mystery2}
+\bJavaDatei[firstline=5,lastline=18]{examen/examen_66115/jahr_2020/herbst/o_notation/Mystery2}
 
 Bestimmen Sie für das Code-Beispiel die asymptotische worst-case
 Laufzeit in $\mathcal{O}$-Notation
@@ -87,25 +87,25 @@ für die folgende Rekursionsgleichung:
 T(n) = \T{}{2} + \fn
 \end{displaymath}
 
-\liMasterExkurs
+\bMasterExkurs
 
 \begin{liAntwort}
 
-\liMasterVariablenDeklaration
+\bMasterVariablenDeklaration
 {1} % a
 {2} % b
 {\fn} % f(n) ohne $mathe$
 
 Nebenrechnung: $\log_b a = \log_2 1 = 0$
 
-\liMasterFallRechnung
+\bMasterFallRechnung
 % 1. Fall
-{$\fn \notin \liO{n^{-1}}$}
+{$\fn \notin \bO{n^{-1}}$}
 % 2. Fall
-{$\fn \notin \liTheta{1}$}
+{$\fn \notin \bTheta{1}$}
 % 3. Fall
 {$\varepsilon = 2$ \\
-$\fn \in \liOmega{n^2}$ \\
+$\fn \in \bOmega{n^2}$ \\
 Für eine Abschätzung suchen wir eine Konstante, damit gilt: \\
 $1 \cdot f(\frac{n}{2}) \leq c \cdot f(n)$ \\
 $\frac{1}{2} \cdot \frac{1}{4} n^2 + \frac{1}{2}n  \leq c \cdot (\frac{1}{2} \cdot n^2 + n)$ \\
@@ -116,7 +116,7 @@ $\Rightarrow \Theta(\frac{1}{2}n^2 + n)$
 
 $\Rightarrow \Theta(n^2)$
 
-\liMasterWolframLink{T[n]=T[n/2]\%2B1/2n^2\%2Bn}
+\bMasterWolframLink{T[n]=T[n/2]\%2B1/2n^2\%2Bn}
 \end{liAntwort}
 \end{enumerate}
 

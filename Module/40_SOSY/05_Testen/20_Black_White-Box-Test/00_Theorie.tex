@@ -1,18 +1,18 @@
 \documentclass{bschlangaul-theorie}
 \usepackage{multicol}
-\liLadePakete{syntax,mathe,kontrollflussgraph}
+\bLadePakete{syntax,mathe,kontrollflussgraph}
 
 \usepackage{array}
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
 \begin{document}
 
-\let\b=\liBedingung
-\let\c=\liKontrollCode
-\let\f=\liBedingungFalsch
-\let\k=\liKontrollTextzeileKnoten
-\let\p=\liKontrollKnotenPfad
-\let\w=\liBedingungWahr
+\let\b=\bBedingung
+\let\c=\bKontrollCode
+\let\f=\bBedingungFalsch
+\let\k=\bKontrollTextzeileKnoten
+\let\p=\bKontrollKnotenPfad
+\let\w=\bBedingungWahr
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Theorie-Teil
@@ -174,8 +174,8 @@ zusammengefasst werden.\footcite[Seite 204]{hoffmann:software}
 
 Der Kontrollflussgraph wird in manchen Aufgaben auch
 \memph{Ablaufdiagramm} genannt. Gestrichelte Kanten können
-eingezeichnet werden, um einen \liJavaCode{false}-Zweig von einem
-\liJavaCode{true}-Zweig besser unterscheiden zu können. Oftmals sind die
+eingezeichnet werden, um einen \bJavaCode{false}-Zweig von einem
+\bJavaCode{true}-Zweig besser unterscheiden zu können. Oftmals sind die
 Knoten mit dem Präfix „n“ (für node) benannt. \emph{S} steht für
 Start-Knoten und \emph{E} steht für End-Knoten.
 
@@ -183,19 +183,19 @@ Start-Knoten und \emph{E} steht für End-Knoten.
 Schleifenkonstrukte\footcite[Seite 205]{hoffmann:software}}
 
 \begin{itemize}
-\item \liJavaCode{if (B) X;}
+\item \bJavaCode{if (B) X;}
 
-\item \liJavaCode{if (B) X; else Y;}
+\item \bJavaCode{if (B) X; else Y;}
 
-\item \liJavaCode{while (B) X;}
+\item \bJavaCode{while (B) X;}
 
-\item \liJavaCode{do X; while (B);}
+\item \bJavaCode{do X; while (B);}
 \end{itemize}
 
 \def\beispiel{
 \begin{center}
 \begin{minipage}{4cm}
-\liJavaDatei[firstline=4,lastline=16]{testen/Beispiel}
+\bJavaDatei[firstline=4,lastline=16]{testen/Beispiel}
 \end{minipage}
 \begin{minipage}{4cm}
 \begin{liKontrollflussgraph}[y=-1cm]
@@ -241,7 +241,7 @@ die niemals durchlaufen werden) im Programm existiert.
 \beispiel
 
 \noindent
-\liJavaCode{max(4, 5);}: \p{S-1-2-3-4-5-6-E}
+\bJavaCode{max(4, 5);}: \p{S-1-2-3-4-5-6-E}
 
 %%
 %
@@ -260,15 +260,15 @@ ist die \memph{Anweisungsüberdeckung} in der Zweigüberdeckung
 
 Der Zweigüberdeckungstest wird auch
 \memph{Entscheidungsüberdeckungstest} genannt, da die Hilfsvariable
-mindestens einmal mit dem Wert \liJavaCode{true} und \liJavaCode{false}
+mindestens einmal mit dem Wert \bJavaCode{true} und \bJavaCode{false}
 durchlaufen werden muss. In diesem Fall muss die While-Schleife
 mindestens zweimal durchlaufen werden.\footcite{wiki:kontrollfluss-test}
 
 \beispiel
 
 \noindent
-\liJavaCode{max(4, 5);}: \p{S-1-2-3-4-5-6-E}\\
-\liJavaCode{max(3, 2);}: \p{S-1-2-5-E}
+\bJavaCode{max(4, 5);}: \p{S-1-2-3-4-5-6-E}\\
+\bJavaCode{max(3, 2);}: \p{S-1-2-5-E}
 
 %%
 %
@@ -376,7 +376,7 @@ werden.\footcite[Seite 212]{hoffmann:software}
 Anzahl der Schleifendurchläufe auf eine
 Zahl $n$ reduziert
 
-\liPseudoUeberschrift{vollständige Pfadüberdeckung}
+\bPseudoUeberschrift{vollständige Pfadüberdeckung}
 
 \texttt{(S, 1, 2, 3, 4, 5, 6, E), (S, 1, 2, 5, E),
 (S, 1, 2, 3, 4, 5, E), (S, 1, 2, 5, 6, E)}
@@ -509,7 +509,7 @@ Variablenzugriffe in \memph{drei Klassen} ein:
 
 Sie sind besonders geeignet für objektorientiert entwickelte Systeme.
 
-\def\TmpBeispiel#1{(Beispiel: \liJavaCode{#1})}
+\def\TmpBeispiel#1{(Beispiel: \bJavaCode{#1})}
 
 \begin{description}
 \item[Definitorische Nutzung (\texttt{def-use}):]
@@ -554,7 +554,7 @@ eine dp-Interaktion. \TmpBeispiel{if (x > 42)}
 
 \subsubsection{Datenflussgraph}
 
-\liJavaDatei[firstline=18,lastline=25]{testen/Beispiel}
+\bJavaDatei[firstline=18,lastline=25]{testen/Beispiel}
 
 \begin{description}
 \item[def-use:] Knoten

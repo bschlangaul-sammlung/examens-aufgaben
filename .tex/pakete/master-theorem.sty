@@ -10,12 +10,12 @@
 % }
 
 % \begin{verbatim}
-% \liMasterVariablenDeklaration
+% \bMasterVariablenDeklaration
 % {3} % a
 % {3} % b
 % {\mathcal{O}(1)} % f(n)
 %
-% \liMasterFallRechnung
+% \bMasterFallRechnung
 % % 1. Fall
 % {für $\varepsilon = 4$: \\
 % $f(n) = 5n^2 \in \O{n^{\log_2 {8 - 4}}} = \O{n^{\log_2 4}} = \O{n^2}$}
@@ -24,16 +24,16 @@
 % % 3. Fall
 % {$f(n) = 5n^2 \notin \o{n^{\log_2 {8 + \varepsilon}}}$}
 %
-% \liMasterWolframLink{T[n]=9T[n/3]\%2B5n^2}
+% \bMasterWolframLink{T[n]=9T[n/3]\%2B5n^2}
 % \end{verbatim}
 
 % \begin{verbatim}
-% \liMasterVariablenDeklaration
+% \bMasterVariablenDeklaration
 % {} % a
 % {} % b
 % {} % f(n) ohne $mathe$
 %
-% \liMasterFallRechnung
+% \bMasterFallRechnung
 % % 1. Fall
 % {}
 % % 2. Fall
@@ -42,7 +42,7 @@
 % {}
 %
 % $\Rightarrow T(n) \in \t{n^2 \cdot \log n}$
-% \liMasterWolframLink{T[n]=9T[n/3]\%2B5n^2}
+% \bMasterWolframLink{T[n]=9T[n/3]\%2B5n^2}
 % \end{verbatim}
 
 %    \begin{macrocode}
@@ -50,116 +50,116 @@
 \RequirePackage{amsmath}
 %    \end{macrocode}
 
-% \begin{macro}{\liRundeKlammer}
+% \begin{macro}{\bRundeKlammer}
 %    \begin{macrocode}
-\def\liRundeKlammer#1{
+\def\bRundeKlammer#1{
   \negthinspace \left( #1 \right)
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liTheta}
-% |\liTheta{n^2}|: \liTheta{n^2}
+% \begin{macro}{\bTheta}
+% |\bTheta{n^2}|: \bTheta{n^2}
 %    \begin{macrocode}
-\def\liThetaOhneMathe#1{
-  \Theta \liRundeKlammer{#1}
+\def\bThetaOhneMathe#1{
+  \Theta \bRundeKlammer{#1}
 }
-\def\liTheta#1{
+\def\bTheta#1{
   \ifmmode
-    \liThetaOhneMathe{#1}
+    \bThetaOhneMathe{#1}
   \else
-    $\liThetaOhneMathe{#1}$
+    $\bThetaOhneMathe{#1}$
   \fi
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liOmega}
-% |\liOmega{n^2}|: \liOmega{n^2}
+% \begin{macro}{\bOmega}
+% |\bOmega{n^2}|: \bOmega{n^2}
 %    \begin{macrocode}
-\def\liOmegaOhneMathe#1{
-  \Omega \liRundeKlammer{#1}
+\def\bOmegaOhneMathe#1{
+  \Omega \bRundeKlammer{#1}
 }
-\def\liOmega#1{
+\def\bOmega#1{
   \ifmmode
-    \liOmegaOhneMathe{#1}
+    \bOmegaOhneMathe{#1}
   \else
-    $\liOmegaOhneMathe{#1}$
+    $\bOmegaOhneMathe{#1}$
   \fi
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liO}
-% |\liO{n^2}|: \liO{n^2}
+% \begin{macro}{\bO}
+% |\bO{n^2}|: \bO{n^2}
 %    \begin{macrocode}
-\def\liOOhneMathe#1{
-  \mathcal{O} \liRundeKlammer{#1}
+\def\bOOhneMathe#1{
+  \mathcal{O} \bRundeKlammer{#1}
 }
-\def\liO#1{
+\def\bO#1{
   \ifmmode
-    \liOOhneMathe{#1}
+    \bOOhneMathe{#1}
   \else
-    $\liOOhneMathe{#1}$
+    $\bOOhneMathe{#1}$
   \fi
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liT}
+% \begin{macro}{\bT}
 % \bMakroFaulenzer{T}{liT}
-% |\liT{16}{2}|: \liT{16}{2}
-% |\liT{}{2}|: \liT{}{2}
+% |\bT{16}{2}|: \bT{16}{2}
+% |\bT{}{2}|: \bT{}{2}
 %    \begin{macrocode}
-\def\liTOhneMathe#1#2{
+\def\bTOhneMathe#1#2{
   \tl_if_blank:nTF {#1}
   {}
   {#1 \cdot }
   T
-  \liRundeKlammer{\frac{n}{#2}}
+  \bRundeKlammer{\frac{n}{#2}}
 }
-\def\liT#1#2{
+\def\bT#1#2{
   \ifmmode
-    \liTOhneMathe{#1}{#2}
+    \bTOhneMathe{#1}{#2}
   \else
-    $\liTOhneMathe{#1}{#2}$
+    $\bTOhneMathe{#1}{#2}$
   \fi
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liRekursionsGleichung}
-% |\liRekursionsGleichung|: \liRekursionsGleichung
+% \begin{macro}{\bRekursionsGleichung}
+% |\bRekursionsGleichung|: \bRekursionsGleichung
 %    \begin{macrocode}
-\def\liRekursionsGleichung{
-  $T(n) = \liT{a}{b} + f(n)$
+\def\bRekursionsGleichung{
+  $T(n) = \bT{a}{b} + f(n)$
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liBedingungEins}
-% |\liBedingungEins|: \liBedingungEins
+% \begin{macro}{\bBedingungEins}
+% |\bBedingungEins|: \bBedingungEins
 %    \begin{macrocode}
-\def\liBedingungEins{
-  $f(n) \in \liO{n^{\log\sb{b}a - \varepsilon}}$
+\def\bBedingungEins{
+  $f(n) \in \bO{n^{\log\sb{b}a - \varepsilon}}$
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liBedingungZwei}
-% |\liBedingungZwei|: \liBedingungZwei
+% \begin{macro}{\bBedingungZwei}
+% |\bBedingungZwei|: \bBedingungZwei
 %    \begin{macrocode}
-\def\liBedingungZwei{
-  $f(n) \in \liTheta{n^{\log\sb{b}a}}$
+\def\bBedingungZwei{
+  $f(n) \in \bTheta{n^{\log\sb{b}a}}$
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liBedingungDrei}
-% |\liBedingungDrei|: \liBedingungDrei
+% \begin{macro}{\bBedingungDrei}
+% |\bBedingungDrei|: \bBedingungDrei
 %    \begin{macrocode}
-\def\liBedingungDrei{
-  $f(n) \in \liOmega{n^{\log\sb{b}a + \varepsilon}}$
+\def\bBedingungDrei{
+  $f(n) \in \bOmega{n^{\log\sb{b}a + \varepsilon}}$
 }
 %    \end{macrocode}
 % \end{macro}
@@ -168,11 +168,11 @@
 \ExplSyntaxOff
 %    \end{macrocode}
 
-% \begin{macro}{\liMasterVariablen}
+% \begin{macro}{\bMasterVariablen}
 %    \begin{macrocode}
-\def\liMasterVariablen{
+\def\bMasterVariablen{
   \begin{displaymath}
-  T(n) = \liT{a}{b} + f(n)
+  T(n) = \bT{a}{b} + f(n)
   \end{displaymath}
 
   \begin{itemize}
@@ -196,25 +196,25 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMasterFaelle}
+% \begin{macro}{\bMasterFaelle}
 %    \begin{macrocode}
-\def\liMasterFaelle{
+\def\bMasterFaelle{
   \begin{description}
   \item[1. Fall:]
-  $T(n) \in \liTheta{n^{\log\sb{b}a}}$
+  $T(n) \in \bTheta{n^{\log\sb{b}a}}$
 
-  \hfill falls \liBedingungEins
+  \hfill falls \bBedingungEins
   für $\varepsilon > 0$
 
   \item[2. Fall:]
-  $T(n) \in \liTheta{n^{\log\sb{b}a} \cdot \log n}$
+  $T(n) \in \bTheta{n^{\log\sb{b}a} \cdot \log n}$
 
-  \hfill falls \liBedingungZwei
+  \hfill falls \bBedingungZwei
 
   \item[3. Fall:]
-  $T(n) \in \liTheta{f(n)}$
+  $T(n) \in \bTheta{f(n)}$
 
-  \hfill falls \liBedingungDrei
+  \hfill falls \bBedingungDrei
   für $\varepsilon > 0$
   und ebenfalls für ein $c$ mit $0 < c < 1$ und alle hinreichend großen $n$
   gilt:
@@ -224,13 +224,13 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMasterVariablenDeklaration}
+% \begin{macro}{\bMasterVariablenDeklaration}
 %    \begin{macrocode}
-\def\liMasterVariablenDeklaration#1#2#3{
+\def\bMasterVariablenDeklaration#1#2#3{
   \begin{description}
     \item[Allgemeine Rekursionsgleichung:] \strut
 
-    \liRekursionsGleichung
+    \bRekursionsGleichung
 
     \item[Anzahl der rekursiven Aufrufe ($a$):] \strut
 
@@ -246,25 +246,25 @@
 
     \item[Ergibt folgende Rekursionsgleichung:] \strut
 
-    $T(n) = \liT{#1}{#2} + #3$
+    $T(n) = \bT{#1}{#2} + #3$
   \end{description}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMasterFallRechnung}
+% \begin{macro}{\bMasterFallRechnung}
 %    \begin{macrocode}
-\def\liMasterFallRechnung#1#2#3{
+\def\bMasterFallRechnung#1#2#3{
   \begin{description}
-  \item[1. Fall:] \liBedingungEins:
+  \item[1. Fall:] \bBedingungEins:
 
   #1
 
-  \item[2. Fall:] \liBedingungZwei:
+  \item[2. Fall:] \bBedingungZwei:
 
   #2
 
-  \item[3. Fall:] \liBedingungDrei:
+  \item[3. Fall:] \bBedingungDrei:
 
   #3
   \end{description}
@@ -272,25 +272,25 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMasterExkurs}
+% \begin{macro}{\bMasterExkurs}
 %    \begin{macrocode}
-\def\liMasterExkurs{
+\def\bMasterExkurs{
   \begin{liExkurs}[Master-Theorem]
-  \liMasterVariablen
+  \bMasterVariablen
 
   \noindent
   Dann gilt:
 
-  \liMasterFaelle
+  \bMasterFaelle
   \end{liExkurs}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMasterWolframLink}
+% \begin{macro}{\bMasterWolframLink}
 % Link zu Wolframalpha (+ durch Prozent 2B ersetzen)
 %    \begin{macrocode}
-\def\liMasterWolframLink#1{
+\def\bMasterWolframLink#1{
   Berechne die Rekursionsgleichung auf WolframAlpha:
   \href{https://www.wolframalpha.com/input/?i=#1}{WolframAlpha}
 }

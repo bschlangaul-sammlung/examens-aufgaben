@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{er,rmodell,syntax}
+\bLadePakete{er,rmodell,syntax}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Aufgabe 1},
   Thematik = {Einwohnermeldeamt},
   RelativerPfad = Staatsexamen/66116/2020/03/Thema-1/Teilaufgabe-2/Aufgabe-1.tex,
@@ -104,15 +104,15 @@ Datentypen müssen nicht angegeben werden.
 \begin{liAntwort}
 
 \begin{liRmodell}
-Menschen(\liPrimaer{Steuernummer}, Name, Vorname)
+Menschen(\bPrimaer{Steuernummer}, Name, Vorname)
 
-Orte(\liPrimaer{Name}, \liPrimaer{Bundesland}, Einwohneranzahl)
+Orte(\bPrimaer{Name}, \bPrimaer{Bundesland}, Einwohneranzahl)
 
-verheiratet\_mit(\liFremd{Mensch[Menschen]}, \liFremd{Ehepartner[Menschen]})
+verheiratet\_mit(\bFremd{Mensch[Menschen]}, \bFremd{Ehepartner[Menschen]})
 
-befreundet\_mit(\liFremd{Mensch[Menschen]}, \liFremd{Freund[Menschen]})
+befreundet\_mit(\bFremd{Mensch[Menschen]}, \bFremd{Freund[Menschen]})
 
-geboren(Datum, \liFremd{Steuernummer}, \liFremd{Geburtsort[Orte]}, \liFremd{Geburtsbundesland[Orte]})
+geboren(Datum, \bFremd{Steuernummer}, \bFremd{Geburtsort[Orte]}, \bFremd{Geburtsbundesland[Orte]})
 
 \end{liRmodell}
 \end{liAntwort}
@@ -127,18 +127,18 @@ Relationen zusammenfassen.
 \begin{liAntwort}
 \begin{liRmodell}
 Menschen(%
-  \liPrimaer{Steuernummer},
+  \bPrimaer{Steuernummer},
   Name,
   Vorname,
-  \liFremd{Ehepartner[Menschen]},
+  \bFremd{Ehepartner[Menschen]},
   Geburtsdatum,
-  \liFremd{Geburtsort[Orte]},
-  \liFremd{Geburtsbundesland[Orte]}%
+  \bFremd{Geburtsort[Orte]},
+  \bFremd{Geburtsbundesland[Orte]}%
 )
 
-Orte(\liPrimaer{Name}, \liPrimaer{Bundesland}, Einwohneranzahl)
+Orte(\bPrimaer{Name}, \bPrimaer{Bundesland}, Einwohneranzahl)
 
-befreundet\_mit(\liFremd{Mensch[Menschen]}, \liFremd{Freund[Menschen]})
+befreundet\_mit(\bFremd{Mensch[Menschen]}, \bFremd{Freund[Menschen]})
 \end{liRmodell}
 \end{liAntwort}
 

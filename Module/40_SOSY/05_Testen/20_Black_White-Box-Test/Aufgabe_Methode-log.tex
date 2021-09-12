@@ -1,11 +1,11 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{kontrollflussgraph,syntax,spalten}
+\bLadePakete{kontrollflussgraph,syntax,spalten}
 \begin{document}
-\let\c=\liKontrollCode
-\let\p=\liKontrollKnotenPfad
-\let\k=\liKontrollTextzeileKnoten
+\let\c=\bKontrollCode
+\let\p=\bKontrollKnotenPfad
+\let\k=\bKontrollTextzeileKnoten
 
-\liAufgabenTitel{Methode „log()“}
+\bAufgabenTitel{Methode „log()“}
 
 \section{Aufgabe 3: Schleifen-Inneres-Überdeckung\footcite{sosy:ab:7}}
 
@@ -13,7 +13,7 @@ Gegeben sei folgende Methode und ihr Kontrollflussgraph:
 \index{Kontrollflussgraph}
 
 \begin{multicols}{2}
-\liJavaDatei[firstline=4,lastline=16]{aufgaben/sosy/ab_7/Aufgabe3}
+\bJavaDatei[firstline=4,lastline=16]{aufgaben/sosy/ab_7/Aufgabe3}
 
 \begin{liKontrollflussgraph}[xscale=1,yscale=-0.8]
 \node at (0,0) (S) {S};
@@ -89,14 +89,14 @@ gleichzeitig $2$ und ungerade sein.
 
 \path (S) -- (1);
 \path (1) -- (2);
-\path[wahr] (2) -- (3) \liBedingung{right}{x > 1};
+\path[wahr] (2) -- (3) \bBedingung{right}{x > 1};
 \path[wahr] (3) -- (4);
 \path[falsch] (3) -- (5);
 \path (4) -- (6);
 \path (5) -- (6);
 \path (6) -- (7);
 \path (7) -- (-2,6) -- (-2,2) -- (2);
-\path[falsch] (2) -- (2,2) -- (2,7) \liBedingung{right}{x <= 1} -- (E) ;
+\path[falsch] (2) -- (2,2) -- (2,7) \bBedingung{right}{x <= 1} -- (E) ;
 \end{liKontrollflussgraph}
 \end{liAntwort}
 

@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{syntax}
+\bLadePakete{syntax}
 \begin{document}
-\liAufgabenTitel{MergeSort}
+\bAufgabenTitel{MergeSort}
 \section{MergeSort
 \index{Funktionale Programmierung mit Haskell}
 \footcite{fumup:ab:3}}
@@ -11,7 +11,7 @@ Funktionen, die den Merge-Sort-Algorithmus umsetzen. Der
 Sortieralgorithmus folgt dem Teile-und-Herrsche-Prinzip (divide and
 conquer). Er erhält eine unsortierte Liste mit Zahlen, sortiert diese in
 aufsteigender Reihenfolge und gibt die sortierte Liste zurück. Die
-Signatur der Sortierfunktion lautet: \liHaskellCode{mergeSort :: [Int]
+Signatur der Sortierfunktion lautet: \bHaskellCode{mergeSort :: [Int]
 -> [Int]}
 
 \begin{enumerate}
@@ -20,19 +20,19 @@ Signatur der Sortierfunktion lautet: \liHaskellCode{mergeSort :: [Int]
 % (a)
 %%
 
-\item \liHaskellCode{divide :: [Int] -> ([Int], [Int])}: Nimmt eine
+\item \bHaskellCode{divide :: [Int] -> ([Int], [Int])}: Nimmt eine
 Liste entgegen und spaltet diese in der Mitte in zwei Teillisten auf.
 (Tipp: Verwende zur Implementierung die Listen-Funktionen
-\liHaskellCode{div}, \liHaskellCode{length}, \liHaskellCode{take} und
-\liHaskellCode{drop}.)
+\bHaskellCode{div}, \bHaskellCode{length}, \bHaskellCode{take} und
+\bHaskellCode{drop}.)
 
 %%
 % (b)
 %%
 
-\item \liHaskellCode{conquer :: ([Int], [Int]) -> ([Int], [Int])}: Nimmt
-als Parameter ein durch \liHaskellCode{divide} erzeugtes Listenpaar
-entgegen und ruft für jede Teilliste \liHaskellCode{mergeSort}
+\item \bHaskellCode{conquer :: ([Int], [Int]) -> ([Int], [Int])}: Nimmt
+als Parameter ein durch \bHaskellCode{divide} erzeugtes Listenpaar
+entgegen und ruft für jede Teilliste \bHaskellCode{mergeSort}
 (Rekursion!) auf. Das Ergebnis ist ein Listenpaar mit den sortierten
 Teillisten.
 
@@ -40,7 +40,7 @@ Teillisten.
 % (c)
 %%
 
-\item \liHaskellCode{merge :: ([Int], [Int]) -> [Int]}: Verschmilzt die
+\item \bHaskellCode{merge :: ([Int], [Int]) -> [Int]}: Verschmilzt die
 beiden als Listenpaar übergebenen Listen zu einer Ergebnisliste, die
 alle Elemente beider Teillisten in aufsteigender Reihenfolge sortiert
 enthält.
@@ -49,13 +49,13 @@ enthält.
 % (d)
 %%
 
-\item \liHaskellCode{mergeSort :: [Int] -> [Int]}: Falls die übergebene
+\item \bHaskellCode{mergeSort :: [Int] -> [Int]}: Falls die übergebene
 Liste weniger als 2 Elemente enthält wird sie unverändert zurückgegeben.
 In allen anderen Fällen wird die übergebene Liste mittels der Funktion
-\liHaskellCode{divide} zerteilt, deren Ergebnis an die Funktion
-\liHaskellCode{conquer} übergeben und abschließend deren Ergebnis an die
-Funktion \liHaskellCode{merge} übergeben. Das Ergebnis von
-\liHaskellCode{mergeSort} ist dann eine vollständig sortierte Liste.
+\bHaskellCode{divide} zerteilt, deren Ergebnis an die Funktion
+\bHaskellCode{conquer} übergeben und abschließend deren Ergebnis an die
+Funktion \bHaskellCode{merge} übergeben. Das Ergebnis von
+\bHaskellCode{mergeSort} ist dann eine vollständig sortierte Liste.
 
 \end{enumerate}
 \end{document}

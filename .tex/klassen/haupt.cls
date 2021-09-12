@@ -10,7 +10,7 @@ Dokuments, das alles zusammenfasst.]
 
 % Paket „formatierung“ muss vor „literatur“ sein, sonst Option clash
 %    \begin{macrocode}
-\liLadePakete{
+\bLadePakete{
   formatierung,
   abmessung,
   literatur-dummy,

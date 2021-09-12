@@ -1,10 +1,10 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{automaten,mathe,formale-sprachen}
+\bLadePakete{automaten,mathe,formale-sprachen}
 \begin{document}
-\let\m=\liMengeOhneMathe
+\let\m=\bMengeOhneMathe
 \def\z#1{$z_#1$}
 
-\liAufgabenTitel{0^n 1^n, gleich viele ab, kein Präfix mehr Einsen}
+\bAufgabenTitel{0^n 1^n, gleich viele ab, kein Präfix mehr Einsen}
 \section{PDA
 \index{Kellerautomat}
 \footcite[Aufgabe 7: PDA aufstellen]{theo:ab:2}}
@@ -17,10 +17,10 @@ Erstellen Sie jeweils einen PDA, der die angegebenen Sprachen akzeptiert.
 % (a)
 %%
 
-\item \liAusdruck{0^n 1^n}{n \in \mathbb{N}}
+\item \bAusdruck{0^n 1^n}{n \in \mathbb{N}}
 
 \begin{liAntwort}
-\liKellerAutomat{
+\bKellerAutomat{
   zustaende={z_0, z_1, z_2, z_3},
   alphabet={0, 1},
   kelleralphabet={\#, N},
@@ -36,29 +36,29 @@ N = Null
   \node[state] (z2) at (8.71cm,-2.29cm) {$z_2$};
   \node[state,accepting] (z3) at (10.29cm,-4.14cm) {$z_3$};
 
-  \liKellerKante[left]{z0}{z1}{
+  \bKellerKante[left]{z0}{z1}{
     0, KELLERBODEN, N KELLERBODEN;
   }
 
-  \liKellerKante[above]{z1}{z2}{
+  \bKellerKante[above]{z1}{z2}{
     1, N, EPSILON;
   }
 
-  \liKellerKante[above,loop]{z1}{z1}{
+  \bKellerKante[above,loop]{z1}{z1}{
     0, N, N N;
   }
 
-  \liKellerKante[right]{z2}{z3}{
+  \bKellerKante[right]{z2}{z3}{
     EPSILON, KELLERBODEN, EPSILON;
   }
 
-  \liKellerKante[above,loop]{z2}{z2}{
+  \bKellerKante[above,loop]{z2}{z2}{
     1, N, EPSILON;
   }
 \end{tikzpicture}
 \end{center}
 
-\liFlaci{Aji1r8mf7}
+\bFlaci{Aji1r8mf7}
 \end{liAntwort}
 
 %%
@@ -68,7 +68,7 @@ N = Null
 \item Alle Wörter, die gleich viele $a$ wie $b$ enthalten.
 
 \begin{liAntwort}
-\liKellerAutomat{
+\bKellerAutomat{
   zustaende={z_0, z_1, z_2, z_3},
   alphabet={a, b},
   kelleralphabet={\#, A, B},
@@ -82,39 +82,39 @@ N = Null
   \node[state] (z2) at (7.29cm,-5.71cm) {$z_2$};
   \node[state,accepting] (z3) at (1cm,-1.43cm) {$z_3$};
 
-  \liKellerKante[left,bend left]{z0}{z1}{
+  \bKellerKante[left,bend left]{z0}{z1}{
     a, KELLERBODEN, A KELLERBODEN;
   }
 
-  \liKellerKante[above right,bend left=10]{z0}{z2}{
+  \bKellerKante[above right,bend left=10]{z0}{z2}{
     b, KELLERBODEN, B KELLERBODEN;
   }
 
-  \liKellerKante[left]{z0}{z3}{
+  \bKellerKante[left]{z0}{z3}{
     EPSILON, KELLERBODEN, EPSILON;
   }
 
-  \liKellerKante[right,bend left]{z1}{z0}{
+  \bKellerKante[right,bend left]{z1}{z0}{
     b, A, EPSILON;
   }
 
-  \liKellerKante[above,loop]{z1}{z1}{
+  \bKellerKante[above,loop]{z1}{z1}{
     a, A, A A;
     b, A, EPSILON;
   }
 
-  \liKellerKante[above,loop]{z2}{z2}{
+  \bKellerKante[above,loop]{z2}{z2}{
     b, B, B B;
     a, B, EPSILON;
   }
 
-  \liKellerKante[below left,bend left=10]{z2}{z0}{
+  \bKellerKante[below left,bend left=10]{z2}{z0}{
     a, B, EPSILON;
   }
 \end{tikzpicture}
 \end{center}
 
-\liFlaci{Arar6fos7}
+\bFlaci{Arar6fos7}
 \end{liAntwort}
 
 %%
@@ -124,7 +124,7 @@ N = Null
 \item Alle Wörter, bei denen kein Präfix mehr Einsen wie Nullen hat.
 
 \begin{liAntwort}
-\liKellerAutomat{
+\bKellerAutomat{
   zustaende={z_0, z_1, z_2},
   alphabet={0, 1},
   kelleralphabet={\#, N},
@@ -153,25 +153,25 @@ nicht akzeptiert:
   \node[state] (z2) at (7.43cm,-6.43cm) {$z_2$};
   \node[state,accepting] (z1) at (5.57cm,-4.14cm) {$z_1$};
 
-  \liKellerKante[above,bend left]{z0}{z2}{
+  \bKellerKante[above,bend left]{z0}{z2}{
     0, KELLERBODEN, N KELLERBODEN;
   }
 
-  \liKellerKante[above left]{z0}{z1}{
+  \bKellerKante[above left]{z0}{z1}{
     0, KELLERBODEN, EPSILON;
     EPSILON, KELLERBODEN, EPSILON;
   }
 
-  \liKellerKante[above,loop below]{z0}{z0}{
+  \bKellerKante[above,loop below]{z0}{z0}{
     EPSILON, N, EPSILON;
   }
 
-  \liKellerKante[above,loop]{z2}{z2}{
+  \bKellerKante[above,loop]{z2}{z2}{
     1, N, EPSILON;
     0, N, N N;
   }
 
-  \liKellerKante[below,bend left]{z2}{z0}{
+  \bKellerKante[below,bend left]{z2}{z0}{
     0, N, N;
     EPSILON, KELLERBODEN, KELLERBODEN;
     0, KELLERBODEN, EPSILON;
@@ -180,7 +180,7 @@ nicht akzeptiert:
 \end{tikzpicture}
 \end{center}
 
-\liFlaci{Af7rfyqqg}
+\bFlaci{Af7rfyqqg}
 \end{liAntwort}
 \end{enumerate}
 \end{document}

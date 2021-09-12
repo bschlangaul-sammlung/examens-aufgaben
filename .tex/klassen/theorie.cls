@@ -9,7 +9,7 @@ Setzen von Theorie-Zusammenfassungen]
 
 % Paket „formatierung“ muss vor „literatur“ sein, sonst Option clash
 %    \begin{macrocode}
-\liLadePakete{
+\bLadePakete{
   formatierung,
   literatur,
   makros,

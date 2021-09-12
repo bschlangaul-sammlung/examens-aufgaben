@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{syntax}
+\bLadePakete{syntax}
 \begin{document}
-\liAufgabenTitel{Sortieren mit Stapel}
+\bAufgabenTitel{Sortieren mit Stapel}
 
 \section{Aufgabe 4
 \index{Stapel (Stack)}
@@ -14,19 +14,19 @@ mit folgenden Standardoperationen:
 \begin{center}
 \begin{tabular}{l|l}
 Stapel & Schlange \\\hline
-\liJavaCode{boolean isEmpty()} & \liJavaCode{boolean isEmpty()} \\
-\liJavaCode{void push(int e)} & \liJavaCode{enqueue(int e)} \\
-\liJavaCode{int pop()} & \liJavaCode{int dequeue()} \\
-\liJavaCode{int top()} & \liJavaCode{int head()} \\
+\bJavaCode{boolean isEmpty()} & \bJavaCode{boolean isEmpty()} \\
+\bJavaCode{void push(int e)} & \bJavaCode{enqueue(int e)} \\
+\bJavaCode{int pop()} & \bJavaCode{int dequeue()} \\
+\bJavaCode{int top()} & \bJavaCode{int head()} \\
 \end{tabular}
 \end{center}
 
 \noindent
-Beim Stapel gibt die Operation \liJavaCode{top()} das gleiche Element
-wie \liJavaCode{pop()} zurück, bei der Schlange gibt \liJavaCode{head()}
-das gleiche Element wie \liJavaCode{dequeue()} zurück. Im Unterschied zu
-\liJavaCode{pop()}, beziehungsweise \liJavaCode{dequeue()}, wird das
-Element bei \liJavaCode{top()} und \liJavaCode{head()} nicht aus der
+Beim Stapel gibt die Operation \bJavaCode{top()} das gleiche Element
+wie \bJavaCode{pop()} zurück, bei der Schlange gibt \bJavaCode{head()}
+das gleiche Element wie \bJavaCode{dequeue()} zurück. Im Unterschied zu
+\bJavaCode{pop()}, beziehungsweise \bJavaCode{dequeue()}, wird das
+Element bei \bJavaCode{top()} und \bJavaCode{head()} nicht aus der
 Datenstruktur entfernt.
 
 \begin{enumerate}
@@ -35,14 +35,14 @@ Datenstruktur entfernt.
 %
 %%
 
-\item Geben Sie in Pseudocode einen Algorithmus \liJavaCode{sort(Stapel
-s)} an, der als Eingabe einen Stapel \liJavaCode{s} mit \liJavaCode{n}
-Zahlen erhält und die Zahlen in \liJavaCode{s} sortiert. (Sie dürfen die
+\item Geben Sie in Pseudocode einen Algorithmus \bJavaCode{sort(Stapel
+s)} an, der als Eingabe einen Stapel \bJavaCode{s} mit \bJavaCode{n}
+Zahlen erhält und die Zahlen in \bJavaCode{s} sortiert. (Sie dürfen die
 Zahlen wahlweise entweder aufsteigend oder absteigend sortieren.)
 Verwenden Sie als Hilfsdatenstruktur ausschließlich eine Schlange
-\liJavaCode{q}. Sie erhalten volle Punktzahl, wenn Sie außer
-\liJavaCode{s} und \liJavaCode{q} keine weiteren Variablen benutzen. Sie
-dürfen annehmen, dass alle Zahlen in \liJavaCode{s} verschieden sind.
+\bJavaCode{q}. Sie erhalten volle Punktzahl, wenn Sie außer
+\bJavaCode{s} und \bJavaCode{q} keine weiteren Variablen benutzen. Sie
+dürfen annehmen, dass alle Zahlen in \bJavaCode{s} verschieden sind.
 
 \begin{liAntwort}
 \begin{minted}{md}
@@ -55,25 +55,25 @@ while q not empty:
     s.push(q.dequeue)
 \end{minted}
 
-\liPseudoUeberschrift{Als Java-Code}
+\bPseudoUeberschrift{Als Java-Code}
 
-\liJavaExamen[firstline=5,lastline=25]{66115}{2015}{03}{schlange/Sort}
+\bJavaExamen[firstline=5,lastline=25]{66115}{2015}{03}{schlange/Sort}
 
-\liPseudoUeberschrift{Klasse Sort}
+\bPseudoUeberschrift{Klasse Sort}
 
-\liJavaExamen{66115}{2015}{03}{schlange/Sort}
+\bJavaExamen{66115}{2015}{03}{schlange/Sort}
 
-\liPseudoUeberschrift{Klasse Schlange}
+\bPseudoUeberschrift{Klasse Schlange}
 
-\liJavaExamen{66115}{2015}{03}{schlange/Schlange}
+\bJavaExamen{66115}{2015}{03}{schlange/Schlange}
 
-\liPseudoUeberschrift{Klasse Element}
+\bPseudoUeberschrift{Klasse Element}
 
-\liJavaExamen{66115}{2015}{03}{schlange/Element}
+\bJavaExamen{66115}{2015}{03}{schlange/Element}
 
-\liPseudoUeberschrift{Test-Klasse}
+\bPseudoUeberschrift{Test-Klasse}
 
-\liJavaTestDatei{examen/examen_66115/jahr_2015/fruehjahr/schlange/TestCase}
+\bJavaTestDatei{examen/examen_66115/jahr_2015/fruehjahr/schlange/TestCase}
 
 \end{liAntwort}
 
@@ -86,7 +86,7 @@ while q not empty:
 
 \begin{liAntwort}
 Zeitkomplexität: $\mathcal{O}(n^2)$, da es zwei ineinander
-verschachtelte \liJavaCode{while}-Schleifen gibt, die von der Anzahl der
+verschachtelte \bJavaCode{while}-Schleifen gibt, die von der Anzahl der
 Elemente im Stapel abhängen.
 \end{liAntwort}
 \end{enumerate}

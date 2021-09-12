@@ -16,17 +16,17 @@
 \ExplSyntaxOn
 %    \end{macrocode}
 
-% \begin{macro}{\liWpKalkuel}
+% \begin{macro}{\bWpKalkuel}
 % \bMakroFaulenzer{wp}{liWpKalkuel}
 %    \begin{macrocode}
-\def\liWpKalkuelOhneMathe#1#2{
+\def\bWpKalkuelOhneMathe#1#2{
   \text{wp}(\texttt{\scriptsize"#1"},\thinspace #2)
 }
-\def\liWpKalkuel#1#2{
+\def\bWpKalkuel#1#2{
   \ifmmode
-    \liWpKalkuelOhneMathe{#1}{#2}
+    \bWpKalkuelOhneMathe{#1}{#2}
   \else
-    $\liWpKalkuelOhneMathe{#1}{#2}$
+    $\bWpKalkuelOhneMathe{#1}{#2}$
   \fi
 }
 %    \end{macrocode}
@@ -52,20 +52,20 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liWpEquivalent}
+% \begin{macro}{\bWpEquivalent}
 % \bMakroFaulenzer{equivalent}{liWpEquivalent}
 %    \begin{macrocode}
-\def\liWpEquivalent#1{
+\def\bWpEquivalent#1{
   \MatheEnv{$\equiv$\hspace{1em}$#1$}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liWpErklaerung}
+% \begin{macro}{\bWpErklaerung}
 % \bMakroFaulenzer{erklaerung}{liWpErklaerung}
 %    \begin{macrocode}
 \newlength{\@Skip@Erklaerung@Reset}
-\def\liWpErklaerung#1{
+\def\bWpErklaerung#1{
   \setlength{\@Skip@Erklaerung@Reset}{\leftskip}
   \setlength{\leftskip}{0.5cm}
 
@@ -82,14 +82,14 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liWpErklaerungVerzweigung}
+% \begin{macro}{\bWpErklaerungVerzweigung}
 %    \begin{macrocode}
-\def\liWpErklaerungVerzweigung{
-  $\liWpKalkuelOhneMathe{if~\{~b~\}~then~\{~a1~\}~else~\{~a2~\}}{Q}
+\def\bWpErklaerungVerzweigung{
+  $\bWpKalkuelOhneMathe{if~\{~b~\}~then~\{~a1~\}~else~\{~a2~\}}{Q}
   \equiv
-  (b \land \liWpKalkuelOhneMathe{a1}{Q})
+  (b \land \bWpKalkuelOhneMathe{a1}{Q})
   \lor
-  (\neg b \land \liWpKalkuelOhneMathe{a2}{Q})$
+  (\neg b \land \bWpKalkuelOhneMathe{a2}{Q})$
 }
 %    \end{macrocode}
 % \end{macro}

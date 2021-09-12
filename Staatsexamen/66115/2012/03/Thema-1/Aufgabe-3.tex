@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{formale-sprachen,automaten}
+\bLadePakete{formale-sprachen,automaten}
 \begin{document}
-\liAufgabenTitel{Kontextfrei aber nicht regulär}
+\bAufgabenTitel{Kontextfrei aber nicht regulär}
 \section{Aufgabe 3
 \index{Kontextfreie Sprache}
 \footcite{examen:66115:2012:03}}
@@ -11,14 +11,14 @@
 Beweisen Sie, dass folgende Sprache kontextfrei, aber nicht regulär ist.
 
 \begin{center}
-\liAusdruck[C]{a^n b^m}{ n \geq m \geq 1 }
+\bAusdruck[C]{a^n b^m}{ n \geq m \geq 1 }
 \end{center}
 
 \begin{liAntwort}
-\liPseudoUeberschrift{Nachweis Kontextfrei über Grammatik}
+\bPseudoUeberschrift{Nachweis Kontextfrei über Grammatik}
 
 \noindent
-\liGrammatik{variablen={S}, alphabet={a, b}}
+\bGrammatik{variablen={S}, alphabet={a, b}}
 
 \begin{liProduktionsRegeln}
 S -> a S b | a S | a b
@@ -46,7 +46,7 @@ a^n b^m$
 $\Rightarrow L(G) = C$
 \end{description}
 
-\liPseudoUeberschrift{Nachweis Kontextfrei über Kellerautomat}
+\bPseudoUeberschrift{Nachweis Kontextfrei über Kellerautomat}
 
 \begin{center}
 \begin{tikzpicture}[li kellerautomat]
@@ -54,28 +54,28 @@ $\Rightarrow L(G) = C$
   \node[state] (z1) at (5cm,-2.57cm) {$z_1$};
   \node[state,accepting] (z2) at (7.43cm,-2.57cm) {$z_2$};
 
-  \liKellerKante[above,loop above]{z0}{z0}{
+  \bKellerKante[above,loop above]{z0}{z0}{
     a, KELLERBODEN, A KELLERBODEN;
     a, A, A A;
   }
 
-  \liKellerKante[above]{z0}{z1}{
+  \bKellerKante[above]{z0}{z1}{
     b, A, EPSILON;
   }
 
-  \liKellerKante[above]{z1}{z2}{
+  \bKellerKante[above]{z1}{z2}{
     EPSILON, KELLERBODEN, EPSILON;
     EPSILON, A, EPSILON;
   }
 
-  \liKellerKante[above,loop above]{z1}{z1}{
+  \bKellerKante[above,loop above]{z1}{z1}{
     b, A, EPSILON;
   }
 \end{tikzpicture}
 \end{center}
-\liFlaci{Aji151myg}
+\bFlaci{Aji151myg}
 
-\liPseudoUeberschrift{Nachweis: C nicht regulär}
+\bPseudoUeberschrift{Nachweis: C nicht regulär}
 
 C sei regulär
 

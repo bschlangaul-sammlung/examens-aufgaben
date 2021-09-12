@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{formale-sprachen,automaten}
+\bLadePakete{formale-sprachen,automaten}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Vorlesungsaufgabe Kellerautomaten},
   Thematik = {a hoch n c hoch i b hoch n},
   RelativerPfad = Module/70_THEO/10_Formale-Sprachen/20_Typ-2_Kontextfrei/Kellerautomat/Aufgabe_Vorlesungsaufgabe-1.tex,
@@ -12,9 +12,9 @@
   Stichwoerter = {Kontextfreie Sprache, Kellerautomat, Kontextfreie Grammatik, Konfigurationsfolge},
 }
 
-\let\m=\liMenge
-\let\e=\liEpsilon
-\let\z=\liZustandsnameTiefgestellt
+\let\m=\bMenge
+\let\e=\bEpsilon
+\let\z=\bZustandsnameTiefgestellt
 \def\p{$\vdash$ }
 
 \begin{enumerate}
@@ -23,10 +23,10 @@
 \footcite[Seite 25]{theo:fs:2}
 \index{Kellerautomat}
 
-\liAusdruck{a^n c^i b^n}{n, i \in \mathbb{N}_0}
+\bAusdruck{a^n c^i b^n}{n, i \in \mathbb{N}_0}
 
 \begin{liAntwort}
-\liKellerAutomat{zustaende={z_0, z_1, z_2}, alphabet={a, b, c}, kelleralphabet={\#, A}, ende=z_2}
+\bKellerAutomat{zustaende={z_0, z_1, z_2}, alphabet={a, b, c}, kelleralphabet={\#, A}, ende=z_2}
 
 \begin{center}
 \begin{tikzpicture}[li kellerautomat]
@@ -34,39 +34,39 @@
   \node[state] (z1) at (5.29cm,-2.86cm) {$z_1$};
   \node[state,accepting] (z2) at (8cm,-6.57cm) {$z_2$};
 
-  \liKellerKante[left]{z0}{z1}{
+  \bKellerKante[left]{z0}{z1}{
     c, A, A;
     c, KELLERBODEN, KELLERBODEN;
   }
 
-  \liKellerKante[above]{z0}{z2}{
+  \bKellerKante[above]{z0}{z2}{
     EPSILON, KELLERBODEN, EPSILON;
     b, A, EPSILON;
   }
 
-  \liKellerKante[below,loop below]{z0}{z0}{
+  \bKellerKante[below,loop below]{z0}{z0}{
     a, KELLERBODEN, A KELLERBODEN;
     a, A, A A;
   }
 
-  \liKellerKante[right]{z1}{z2}{
+  \bKellerKante[right]{z1}{z2}{
     b, A, EPSILON;
     EPSILON, KELLERBODEN, EPSILON;
   }
 
-  \liKellerKante[above,loop]{z1}{z1}{
+  \bKellerKante[above,loop]{z1}{z1}{
     c, A, A;
     c, KELLERBODEN, KELLERBODEN;
   }
 
-  \liKellerKante[below,loop below]{z2}{z2}{
+  \bKellerKante[below,loop below]{z2}{z2}{
     EPSILON, KELLERBODEN, EPSILON;
     b, A, EPSILON;
   }
 \end{tikzpicture}
 \end{center}
 
-\liFlaci{Apky9znog}
+\bFlaci{Apky9znog}
 
 % akzeptiert
 % c

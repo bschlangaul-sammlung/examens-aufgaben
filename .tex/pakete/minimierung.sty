@@ -4,15 +4,15 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\liLadePakete{typographie}
+\bLadePakete{typographie}
 %    \end{macrocode}
 
 % \begin{verbatim}
-% \let\z=\liZustandsnameTiefgestellt
-% \let\f=\liFussnote
-% \let\l=\liLeereZelle
-% \let\Z=\liZustandsPaar
-% \let\erklaerung=\liMinimierungErklaerung
+% \let\z=\bZustandsnameTiefgestellt
+% \let\f=\bFussnote
+% \let\l=\bLeereZelle
+% \let\Z=\bZustandsPaar
+% \let\erklaerung=\bMinimierungErklaerung
 %
 % \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|}
 % \hline
@@ -28,7 +28,7 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 %     & \z0 & \z1 & \z2 & \z3 & \z4 & \z5 & \z6 & \z7 & \z8 \\ \hline
 % \end{tabular}
 %
-% \liFussnoten
+% \bFussnoten
 %
 % \begin{liUebergangsTabelle}{0}{1}
 % \Z01 & \Z10 & \Z23     \\
@@ -41,99 +41,99 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 %
 % \end{verbatim}
 
-% \begin{macro}{\liFussnote}
+% \begin{macro}{\bFussnote}
 %    \begin{macrocode}
-\def\liFussnote#1{$x_{#1}$}
+\def\bFussnote#1{$x_{#1}$}
 %    \end{macrocode}
 % \end{macro}
 
 %    \begin{macrocode}
 \def\li@fussnote@text#1#2{
-  \liFussnote{#1}
+  \bFussnote{#1}
   \quad
   {\footnotesize #2}
 }
 %    \end{macrocode}
 
-% \begin{macro}{\liFussnoteEinsText}
+% \begin{macro}{\bFussnoteEinsText}
 %    \begin{macrocode}
-\def\liFussnoteEinsText{
+\def\bFussnoteEinsText{
   \li@fussnote@text{1}
   {Paar aus End-/ Nicht-Endzustand kann nicht äquivalent sein.}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liFussnoteZweiText}
+% \begin{macro}{\bFussnoteZweiText}
 %    \begin{macrocode}
-\def\liFussnoteZweiText{
+\def\bFussnoteZweiText{
   \li@fussnote@text{2}
   {Test, ob man mit der Eingabe zu einem bereits markiertem Paar kommt.}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liFussnoteDreiText}
+% \begin{macro}{\bFussnoteDreiText}
 %    \begin{macrocode}
-\def\liFussnoteDreiText{
+\def\bFussnoteDreiText{
   \li@fussnote@text{3}
   {In weiteren Iterationen markierte Zustände.}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liFussnoteVierText}
+% \begin{macro}{\bFussnoteVierText}
 %    \begin{macrocode}
-\def\liFussnoteVierText{
+\def\bFussnoteVierText{
   \li@fussnote@text{4}
   {…}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liFussnoten}
+% \begin{macro}{\bFussnoten}
 % \begin{liBeispiel}
-%   \liFussnoten
+%   \bFussnoten
 % \end{liBeispiel}
 %    \begin{macrocode}
-\def\liFussnoten{
+\def\bFussnoten{
   \bigskip
 
   \noindent
-  \liFussnoteEinsText
+  \bFussnoteEinsText
 
   \noindent
-  \liFussnoteZweiText
+  \bFussnoteZweiText
 
   \noindent
-  \liFussnoteDreiText
+  \bFussnoteDreiText
 
   \noindent
-  \liFussnoteVierText
+  \bFussnoteVierText
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liLeereZelle}
-% |\liLeereZelle|: \liLeereZelle
+% \begin{macro}{\bLeereZelle}
+% |\bLeereZelle|: \bLeereZelle
 % \bMakroFaulenzer{l}{liLeereZelle}
 %    \begin{macrocode}
-\def\liLeereZelle{$\emptyset$}
+\def\bLeereZelle{$\emptyset$}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsPaarVariablenName}
+% \begin{macro}{\bZustandsPaarVariablenName}
 %    \begin{macrocode}
-\def\liZustandsPaarVariablenName{z}
+\def\bZustandsPaarVariablenName{z}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsPaar}
+% \begin{macro}{\bZustandsPaar}
 %    \begin{macrocode}
-\def\liZustandsPaar#1#2{
+\def\bZustandsPaar#1#2{
   $(
-    \liZustandsPaarVariablenName_#1,
-    \liZustandsPaarVariablenName_#2
+    \bZustandsPaarVariablenName_#1,
+    \bZustandsPaarVariablenName_#2
   )$
 }
 %    \end{macrocode}
@@ -143,7 +143,7 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 %    \begin{macrocode}
 \renewcommand{\arraystretch}{1.4}
 \NewDocumentEnvironment{ liUebergangsTabelle } { m m } {
-  \liPseudoUeberschrift{Übergangstabelle}
+  \bPseudoUeberschrift{Übergangstabelle}
   \begin{center}
   \begin{tabular}{r||l|l}
   \textbf{Zustandspaar} & \textbf{#1} & \textbf{#2} \\\hline
@@ -154,23 +154,23 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 %    \end{macrocode}
 % \end{environment}
 
-% \begin{macro}{\liUeberschriftDreiecksTabelle}
-% |\liUeberschriftDreiecksTabelle|: \liUeberschriftDreiecksTabelle
+% \begin{macro}{\bUeberschriftDreiecksTabelle}
+% |\bUeberschriftDreiecksTabelle|: \bUeberschriftDreiecksTabelle
 %    \begin{macrocode}
 \ExplSyntaxOn
-\def\liUeberschriftDreiecksTabelle{
-  \liPseudoUeberschrift{Minimierungstabelle~(Table~filling)}
+\def\bUeberschriftDreiecksTabelle{
+  \bPseudoUeberschrift{Minimierungstabelle~(Table~filling)}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMinimierungErklaerung}
+% \begin{macro}{\bMinimierungErklaerung}
 % \bMakroFaulenzer{erklaerung}{liMinimierungErklaerung}
-% \liMinimierungErklaerung
+% \bMinimierungErklaerung
 %    \begin{macrocode}
-\def\liMinimierungErklaerung{
+\def\bMinimierungErklaerung{
   %\footcite[Seite~19]{koenig}
-  \liParagraphMitLinien{
+  \bParagraphMitLinien{
     Der~Minimierungs-Algorithmus~(auch~Table-Filling-Algorithmus~genannt)~
     trägt~in~seinem~Verlauf~eine~Markierung~in~alle~
     diejenigen~Zellen~der~Tabelle~ein,~die~zueinander~nicht~äquivalente~

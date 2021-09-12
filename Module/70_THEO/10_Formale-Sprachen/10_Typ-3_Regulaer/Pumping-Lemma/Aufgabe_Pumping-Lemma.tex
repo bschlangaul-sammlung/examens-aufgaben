@@ -1,14 +1,14 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{mathe,formale-sprachen}
+\bLadePakete{mathe,formale-sprachen}
 \begin{document}
-\let\m=\liMenge
-\liAufgabenTitel{„w^n^2“ „a^n b^m c^n“}
+\let\m=\bMenge
+\bAufgabenTitel{„w^n^2“ „a^n b^m c^n“}
 \section{Pumping-Lemma
 \index{Pumping-Lemma (Reguläre Sprache)}
 \footcite{theo:ab:1}}
 
 Begründe jeweils, ob die folgenden Sprachen regulär sind oder nicht.
-\liFussnoteUrl{https://www.uni-muenster.de/Informatik/u/lammers//EDU/ws08/AutomatenFormaleSprachen/Loesungen/Loesung05.pdf}
+\bFussnoteUrl{https://www.uni-muenster.de/Informatik/u/lammers//EDU/ws08/AutomatenFormaleSprachen/Loesungen/Loesung05.pdf}
 
 \begin{enumerate}
 
@@ -16,7 +16,7 @@ Begründe jeweils, ob die folgenden Sprachen regulär sind oder nicht.
 % a)
 %%
 
-\item \liAusdruck[L_1]
+\item \bAusdruck[L_1]
 {w \in \m{a, b}^* }
 {\text{ auf ein } a \text{ folgt immer ein } b}
 
@@ -28,21 +28,21 @@ $L_1 = L(b^* (ab)^* b^*)$ und damit regulär.
 % b)
 %%
 
-\item \liAusdruck[L_2]
+\item \bAusdruck[L_2]
 {w \in \{ 1 \}^*}
 {\exists n \in \mathbb{N} \text{ mit } |w| = n^2}
 
 \begin{liAntwort}
 $L_2$ ist nicht regulär.
 
-\liPseudoUeberschrift{Pumping-Lemma:}
+\bPseudoUeberschrift{Pumping-Lemma:}
 
 $j$ sei eine Quadratzahl: Somit ist $1^j \in L_2$. Es gilt $|uv| \leq j$
 und $|v| \geq 1$. Daraus folgt, dass in $v$ mindestens eine $1$
 existiert. Somit wird immer ein $i \in \mathbb{N}$ existieren, sodass
 $uv^iw \notin L$, weil die Quadratzahlen nicht linear darstellbar sind.
 
-\liPseudoUeberschrift{Begründung über die Zahlentheorie:}
+\bPseudoUeberschrift{Begründung über die Zahlentheorie:}
 
 Angenommen, $L_2$ sei regulär, sei $m$ die kleinste Zahl mit $m^2 > j$.
 Dann ist $x = 1^{m^2} \in L_2$. Für eine Zerlegung $x = uvw$ nach dem
@@ -56,10 +56,10 @@ Annahme.
 % c)
 %%
 
-\item \liAusdruck[L_3]{a^n b^m c^n}{m, n \in \mathbb{N}_0}
+\item \bAusdruck[L_3]{a^n b^m c^n}{m, n \in \mathbb{N}_0}
 
 \begin{liAntwort}
-\liAusdruck[L_3]{a^n b^m c^n}{m, n \in \mathbb{N}_0} ist nicht regulär.
+\bAusdruck[L_3]{a^n b^m c^n}{m, n \in \mathbb{N}_0} ist nicht regulär.
 
 $a^j b^j c^j \in L_3$:
 
@@ -79,7 +79,7 @@ vorkommen
 % d)
 %%
 
-\item \liAusdruck[L_4]{w \in \{a\}^*}{\mod_3(|w|) = 0}
+\item \bAusdruck[L_4]{w \in \{a\}^*}{\mod_3(|w|) = 0}
 
 \begin{liAntwort}
 $L_4 = ((aaa)^*)$ und damit regulär.

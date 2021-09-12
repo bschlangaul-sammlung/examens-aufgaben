@@ -1,17 +1,17 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{mathe,formale-sprachen,automaten}
+\bLadePakete{mathe,formale-sprachen,automaten}
 \begin{document}
-\liAufgabenTitel{Reguläre Grammatik, reguläre Ausdrücke und DEA}
+\bAufgabenTitel{Reguläre Grammatik, reguläre Ausdrücke und DEA}
 \section{Reguläre Grammatik, reguläre Ausdrücke und DEA
 \index{Reguläre Sprache}
 \footcite[Aufgabe 2]{theo:ab:1}}
 
-Gegeben sind die folgenden Sprachen über dem Alphabet \liAlphabet{a, b}:
+Gegeben sind die folgenden Sprachen über dem Alphabet \bAlphabet{a, b}:
 
 \begin{itemize}
-\item \liAusdruck[L_0]{w}{w \text{ enthält mindestens ein \emph{bb}}}
-\item \liAusdruck[L_1]{w}{w \text{ endet auf höchstens ein \emph{b}}}
-\item \liAusdruck[L_2]{w}{w \text{ fängt mit \emph{aa} an oder hört mit \emph{bb} auf}}
+\item \bAusdruck[L_0]{w}{w \text{ enthält mindestens ein \emph{bb}}}
+\item \bAusdruck[L_1]{w}{w \text{ endet auf höchstens ein \emph{b}}}
+\item \bAusdruck[L_2]{w}{w \text{ fängt mit \emph{aa} an oder hört mit \emph{bb} auf}}
 \end{itemize}
 \begin{enumerate}
 
@@ -33,7 +33,7 @@ Gegeben sind die folgenden Sprachen über dem Alphabet \liAlphabet{a, b}:
 
 $= (V, \Sigma, P, S)$ mit
 $V = \{S, A, B\}$,
-\liAlphabet{a, b},
+\bAlphabet{a, b},
 $S = S$ und mit
 
 \begin{liProduktionsRegeln}
@@ -41,7 +41,7 @@ S -> a S | b A,
 A -> a S | b B | b,
 B -> a B | a | b B | b
 \end{liProduktionsRegeln}
-\liFlaci{Gjp92ri0w}
+\bFlaci{Gjp92ri0w}
 
 %%
 %
@@ -51,7 +51,7 @@ B -> a B | a | b B | b
 
 $= (V, \Sigma, P, S)$ mit
 $V = \{S, A, B\}$,
-\liAlphabet{a, b},
+\bAlphabet{a, b},
 $S = S$ und mit
 
 % Lösung aus AB 1: Problem das Wort B ist nicht in der Sprache
@@ -60,7 +60,7 @@ $S = S$ und mit
 \begin{liProduktionsRegeln}
 S -> a S | b S | b
 \end{liProduktionsRegeln}
-\liFlaci{Gfdn0xhwg}
+\bFlaci{Gfdn0xhwg}
 
 %%
 %
@@ -70,7 +70,7 @@ S -> a S | b S | b
 
 $= (V, \Sigma, P, S)$ mit
 $V = \{S, A, B, C, D, E\}$,
-\liAlphabet{a, b}, $S = S$ und mit
+\bAlphabet{a, b}, $S = S$ und mit
 
 \begin{liProduktionsRegeln}
 S -> a A | b C,
@@ -80,7 +80,7 @@ C -> a D | b E | b,
 D -> b C | a D,
 E -> b E | b | a D
 \end{liProduktionsRegeln}
-\liFlaci{Gib1z1cwi}
+\bFlaci{Gib1z1cwi}
 
 \end{description}
 \end{liAntwort}
@@ -97,19 +97,19 @@ Syntaxbaum anhand der erstellten Grammatiken aus der Teilaufgabe a) an:
 \item zum Wort \emph{abba} aus der Sprache $L_0$.
 
 \begin{liAntwort}
-\liAbleitung{S -> aS -> abA -> abbB -> aabb}
+\bAbleitung{S -> aS -> abA -> abbB -> aabb}
 \end{liAntwort}
 
 \item zum Wort \emph{baab} aus der Sprache $L_1$.
 
 \begin{liAntwort}
-\liAbleitung{S -> bS -> baS -> baaS -> baab}
+\bAbleitung{S -> bS -> baS -> baaS -> baab}
 \end{liAntwort}
 
 \item zum Wort \emph{aabb} aus der Sprache $L_2$.
 
 \begin{liAntwort}
-\liAbleitung{S -> aA -> aaB -> aabB -> aabb}
+\bAbleitung{S -> aA -> aaB -> aabB -> aabb}
 \end{liAntwort}
 \end{enumerate}
 
@@ -157,7 +157,7 @@ akzeptiert.
   \path (z2) edge[auto,loop above] node{$a,b$} (z2);
 \end{tikzpicture}
 \end{center}
-\liFlaci{Af75ihbc7}
+\bFlaci{Af75ihbc7}
 \end{liAntwort}
 
 \item[Automat zu $L_1$]:
@@ -174,7 +174,7 @@ akzeptiert.
   \path (z1) edge[auto,loop above] node{$b$} (z1);
 \end{tikzpicture}
 \end{center}
-\liFlaci{A53w3wec9}
+\bFlaci{A53w3wec9}
 \end{liAntwort}
 
 \item[Automat (NEA mit $\varepsilon$-Übergängen) zu $L_2$]:
@@ -200,7 +200,7 @@ akzeptiert.
   \path (z5) edge[auto] node{$b$} (z6);
 \end{tikzpicture}
 \end{center}
-\liFlaci{Aj5awmjba}
+\bFlaci{Aj5awmjba}
 \end{liAntwort}
 
 \item[Teil-Automat (DEA Wort beginnt mit zwei a) zu $L_2$]:
@@ -221,7 +221,7 @@ akzeptiert.
   \path (z2) edge[auto,loop above] node{$a,b$} (z2);
 \end{tikzpicture}
 \end{center}
-\liFlaci{Apu1c40a9}
+\bFlaci{Apu1c40a9}
 \end{liAntwort}
 
 \item[Teil-Automat (DEA Wort endet auf zwei b) zu $L_2$]:
@@ -241,7 +241,7 @@ akzeptiert.
   \path (z3) edge[auto,bend left] node{$a$} (z5);
 \end{tikzpicture}
 \end{center}
-\liFlaci{Aj541j43w}
+\bFlaci{Aj541j43w}
 \end{liAntwort}
 
 \item[Automat (DEA) zu $L_2$]:
@@ -269,7 +269,7 @@ akzeptiert.
   \path (z1) edge[auto] node{$b$} (z3);
 \end{tikzpicture}
 \end{center}
-\liFlaci{A5ocw5ac2}
+\bFlaci{A5ocw5ac2}
 \end{liAntwort}
 
 \end{description}

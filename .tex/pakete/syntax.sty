@@ -57,12 +57,12 @@
 %    \end{macrocode}
 % \end{environment}
 
-% \begin{macro}{\liJavaCode}
+% \begin{macro}{\bJavaCode}
 % Im Zeilenfluss einen kurzen Java-Code-Ausschnitt setzen. Es werden automatische
 % Zeilenumbrüche gemacht.
 % \bMakroFaulenzer{j}{liJavaCode}
 %    \begin{macrocode}
-\def\liJavaCode#1{
+\def\bJavaCode#1{
   \,
   \textcolor{blue}{
     \mintinline[
@@ -75,10 +75,10 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liLatexCode}
+% \begin{macro}{\bLatexCode}
 % Im Zeilenfluss einen kurzen \LaTeX-Code-Ausschnitt setzen.
 %    \begin{macrocode}
-\def\liLatexCode#1{\mintinline{latex}|#1|}
+\def\bLatexCode#1{\mintinline{latex}|#1|}
 %    \end{macrocode}
 % \end{macro}
 
@@ -92,11 +92,11 @@
 }
 %    \end{macrocode}
 
-% \begin{macro}{\liJavaDatei}
+% \begin{macro}{\bJavaDatei}
 % Eine komplette Java-Datei einbinden, die
 % Verzeichnis |./Code/src/main/java/org/bschlangaul| liegt.
 %    \begin{macrocode}
-\NewDocumentCommand{\liJavaDatei}{ O{firstline=3} m }{
+\NewDocumentCommand{\bJavaDatei}{ O{firstline=3} m }{
   \inputminted[#1]{java}{
     \directlua{
       syntax.drucke_absoluten_pfad('#2', false)
@@ -109,11 +109,11 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liJavaTestDatei}
+% \begin{macro}{\bJavaTestDatei}
 % Eine komplette Java-Test-Datei einbinden,
 % die Verzeichnis |./Code/src/test/java/org/bschlangaul| liegt.
 %    \begin{macrocode}
-\NewDocumentCommand{\liJavaTestDatei}{ O{firstline=3} m }{
+\NewDocumentCommand{\bJavaTestDatei}{ O{firstline=3} m }{
   \inputminted[#1]{java}{
     \directlua{
       syntax.drucke_absoluten_pfad('#2', true)
@@ -126,13 +126,13 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liJavaExamen}
-% |\liJavaExamen{66116}{2015}{03}{Kunde}|
+% \begin{macro}{\bJavaExamen}
+% |\bJavaExamen{66116}{2015}{03}{Kunde}|
 % Regulärer Ausdruck zum Konvertieren:
-% |\\liJavaDatei(\[.*\])?\{.*examen_(\d{5})_(\d{4})_(\d{2})/(.*)\}|
-% |\\liJavaExamen$1{$2}{$3}{$4}{$5}|
+% |\\bJavaDatei(\[.*\])?\{.*examen_(\d{5})_(\d{4})_(\d{2})/(.*)\}|
+% |\\bJavaExamen$1{$2}{$3}{$4}{$5}|
 %    \begin{macrocode}
-\NewDocumentCommand{\liJavaExamen}{ O{firstline=3} m m m m }{
+\NewDocumentCommand{\bJavaExamen}{ O{firstline=3} m m m m }{
   \inputminted[#1]{java}{
     \directlua{
       syntax.drucke_absoluten_examens_pfad('#2', '#3', '#4', '#5')
@@ -146,45 +146,45 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liAssemblerCode}
+% \begin{macro}{\bAssemblerCode}
 %    \begin{macrocode}
-\def\liAssemblerCode#1{\mintinline{asm}|#1|}
+\def\bAssemblerCode#1{\mintinline{asm}|#1|}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liAssemblerDatei}
-% |\liAssemblerDatei{relativer-pfad}|: Relativer Pfad zu einer
+% \begin{macro}{\bAssemblerDatei}
+% |\bAssemblerDatei{relativer-pfad}|: Relativer Pfad zu einer
 % Assembler-Datei.
 %    \begin{macrocode}
-\NewDocumentCommand{\liAssemblerDatei}{ m }{
+\NewDocumentCommand{\bAssemblerDatei}{ m }{
   \inputminted{asm}{#1}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liMinispracheDatei}
-% |\liMinispracheDatei{relativer-pfad}|: Relativer Pfad zu einer
+% \begin{macro}{\bMinispracheDatei}
+% |\bMinispracheDatei{relativer-pfad}|: Relativer Pfad zu einer
 % Minisprachen-Datei (Hochsprache für die Minimaschine von Albert
 % Wiedemann).
 %    \begin{macrocode}
-\NewDocumentCommand{\liMinispracheDatei}{ m }{
+\NewDocumentCommand{\bMinispracheDatei}{ m }{
   \inputminted{componentpascal}{#1}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liHaskellCode}
-% |\liHaskellCode{haskell}|: Zum Setzen von Haskell-Code.
+% \begin{macro}{\bHaskellCode}
+% |\bHaskellCode{haskell}|: Zum Setzen von Haskell-Code.
 %    \begin{macrocode}
-\def\liHaskellCode#1{\mintinline{haskell}|#1|}
+\def\bHaskellCode#1{\mintinline{haskell}|#1|}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liHaskellDatei}
-% |\liHaskellDatei{relativer-pfad}|: Relativer Pfad zu einer
+% \begin{macro}{\bHaskellDatei}
+% |\bHaskellDatei{relativer-pfad}|: Relativer Pfad zu einer
 % Haskell-Datei.
 %    \begin{macrocode}
-\NewDocumentCommand{\liHaskellDatei}{ m }{
+\NewDocumentCommand{\bHaskellDatei}{ m }{
   \inputminted{haskell}{#1}
 }
 %    \end{macrocode}
@@ -194,11 +194,11 @@
 \ExplSyntaxOff
 %    \end{macrocode}
 
-% \begin{macro}{\liSqlCode}
-% |\liHaskellCode{sql}|: Zum Setzen von SQL-Code.
+% \begin{macro}{\bSqlCode}
+% |\bHaskellCode{sql}|: Zum Setzen von SQL-Code.
 % \bMakroFaulenzer{s}{liSqlCode}
 %    \begin{macrocode}
-\def\liSqlCode#1{\mintinline{sql}|#1|}
+\def\bSqlCode#1{\mintinline{sql}|#1|}
 %    \end{macrocode}
 % \end{macro}
 

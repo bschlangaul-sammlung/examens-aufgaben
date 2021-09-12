@@ -7,10 +7,10 @@ Setzen der Aufgaben-Metadaten.]
 \ExplSyntaxOn
 %    \end{macrocode}
 
-% \begin{macro}{\liMetaSetze}
+% \begin{macro}{\bMetaSetze}
 % Setze die Metadaten einer Aufgabe.
 %    \begin{macrocode}
-\def\liMetaSetze#1{
+\def\bMetaSetze#1{
   \_setze_variablen_zurueck:
 
   \tl_clear:N \g_teilaufgabe_nr_tl
@@ -24,7 +24,7 @@ Setzen der Aufgaben-Metadaten.]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liAufgabenMetadaten}
+% \begin{macro}{\bAufgabenMetadaten}
 % Setzen der Aufgaben-Metadaten über eine plist bzw. über key-values.
 %
 % Die Schlüssel-Werte-Paare sind in der Datei basis.sty definiert. In der
@@ -32,7 +32,7 @@ Setzen der Aufgaben-Metadaten.]
 % Interface |AufgabenMetadaten|.
 %
 % \begin{verbatim}
-% \liAufgabenMetadaten{
+% \bAufgabenMetadaten{
 %   Titel = {Aufgabe 2},
 %   Thematik = {Petri-Netz},
 %   Stichwoerter = {Feld (Array), Implementierung in Java}
@@ -50,8 +50,8 @@ Setzen der Aufgaben-Metadaten.]
 % }
 % \end{verbatim}
 %    \begin{macrocode}
-\def\liAufgabenMetadaten#1{
-  \liMetaSetze{#1}
+\def\bAufgabenMetadaten#1{
+  \bMetaSetze{#1}
 
   \_gib_examen_titel: {}
 
@@ -64,10 +64,10 @@ Setzen der Aufgaben-Metadaten.]
 \ExplSyntaxOff
 %    \end{macrocode}
 
-% \begin{macro}{\liAufgabenTitel}
+% \begin{macro}{\bAufgabenTitel}
 % Momentan eine dummy Makro das die Thematik enthält.
 %    \begin{macrocode}
-\def\liAufgabenTitel#1{}
+\def\bAufgabenTitel#1{}
 %    \end{macrocode}
 % \end{macro}
 

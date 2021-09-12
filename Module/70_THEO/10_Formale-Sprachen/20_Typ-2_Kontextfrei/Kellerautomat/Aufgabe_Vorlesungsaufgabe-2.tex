@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{formale-sprachen,automaten}
+\bLadePakete{formale-sprachen,automaten}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Vorlesungsaufgabe Kellerautomaten},
   Thematik = {Nonterminal: P, Terminale: 01},
   RelativerPfad = Module/70_THEO/10_Formale-Sprachen/20_Typ-2_Kontextfrei/Kellerautomat/Aufgabe_Vorlesungsaufgabe-2.tex,
@@ -12,11 +12,11 @@
   Stichwoerter = {Kellerautomat},
 }
 
-\let\m=\liMenge
-\let\z=\liZustandsnameTiefgestellt
+\let\m=\bMenge
+\let\z=\bZustandsnameTiefgestellt
 
 Erstellen Sie einen Kellerautomaten zu der Grammatik
-\liGrammatik{variablen={S}, alphabet={0, 1}} mit den folgenden
+\bGrammatik{variablen={S}, alphabet={0, 1}} mit den folgenden
 Produktionsregeln\footcite[Seite 27]{theo:fs:2}
 \index{Kellerautomat}
 
@@ -33,7 +33,7 @@ S -> EPSILON | 0 | 1 | 0 S 0 | 1 S 1,
 \end{liProduktionsRegeln}
 
 \begin{liAntwort}
-\liKellerAutomat{
+\bKellerAutomat{
   zustaende={\z0, \z1},
   alphabet={0, 1},
   kelleralphabet={\#, N, E},
@@ -49,7 +49,7 @@ E = Eins
   \node[state,initial] (z0) at (3.57cm,-3.57cm) {$z_0$};
   \node[state,accepting] (z1) at (6.86cm,-3.57cm) {$z_1$};
 
-  \liKellerKante[above,loop]{z0}{z0}{
+  \bKellerKante[above,loop]{z0}{z0}{
     0, KELLERBODEN, N KELLERBODEN;
     0, N, N N;
     0, E, N E;
@@ -58,7 +58,7 @@ E = Eins
     1, N, N E;
   }
 
-  \liKellerKante[above]{z0}{z1}{
+  \bKellerKante[above]{z0}{z1}{
     EPSILON, KELLERBODEN, EPSILON;
     EPSILON, N, N;
     EPSILON, E, E;
@@ -68,14 +68,14 @@ E = Eins
     0, N, N;
   }
 
-  \liKellerKante[above,loop]{z1}{z1}{
+  \bKellerKante[above,loop]{z1}{z1}{
     0, N, EPSILON;
     1, E, EPSILON;
   }
 \end{tikzpicture}
 \end{center}
 
-\liFlaci{Ahij8jnn7}
+\bFlaci{Ahij8jnn7}
 \end{liAntwort}
 
 %%
@@ -92,7 +92,7 @@ B -> 0 B | 1 B | EPSILON,
 \end{enumerate}
 
 \begin{liAntwort}
-\liKellerAutomat{
+\bKellerAutomat{
   zustaende={\z0, \z1},
   alphabet={0, 1},
   kelleralphabet={\#, E},
@@ -107,18 +107,18 @@ E = Eins ist gesetzt
   \node[state,initial] (z0) at (4cm,-8cm) {$z_0$};
   \node[state,accepting] (z1) at (7.86cm,-8cm) {$z_1$};
 
-  \liKellerKante[above,loop]{z0}{z0}{
+  \bKellerKante[above,loop]{z0}{z0}{
     0, KELLERBODEN, KELLERBODEN;
     1, KELLERBODEN, E KELLERBODEN;
   }
 
-  \liKellerKante[above]{z0}{z1}{
+  \bKellerKante[above]{z0}{z1}{
     0, E, EPSILON;
     1, E, EPSILON;
     EPSILON, E, EPSILON;
   }
 
-  \liKellerKante[above,loop]{z1}{z1}{
+  \bKellerKante[above,loop]{z1}{z1}{
     0, KELLERBODEN, KELLERBODEN;
     1, KELLERBODEN, KELLERBODEN;
     EPSILON, KELLERBODEN, EPSILON;
@@ -126,7 +126,7 @@ E = Eins ist gesetzt
 \end{tikzpicture}
 \end{center}
 
-\liFlaci{Ar3imp8a7}
+\bFlaci{Ar3imp8a7}
 \end{liAntwort}
 
 \end{document}

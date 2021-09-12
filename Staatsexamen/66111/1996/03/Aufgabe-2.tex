@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{syntax,rmodell}
+\bLadePakete{syntax,rmodell}
 \begin{document}
-\liAufgabenTitel{Universitätsdatenbank}
+\bAufgabenTitel{Universitätsdatenbank}
 
 \section{Aufgabe 2
 \index{Entity-Relation-Modell}
@@ -49,25 +49,25 @@ Relationenmodell}
 \begin{liAntwort}
 \ttfamily
 \footnotesize
-Dozent(\liPrimaer{PersNr:INT}, Name:VARCHAR(20),
-\liFremd{FakName:VARCHAR(40)[Fakultät]})\\
+Dozent(\bPrimaer{PersNr:INT}, Name:VARCHAR(20),
+\bFremd{FakName:VARCHAR(40)[Fakultät]})\\
 
-Fakultät(\liPrimaer{Name:VARCHAR(40)})\\
+Fakultät(\bPrimaer{Name:VARCHAR(40)})\\
 
-Lehrveranstaltung(\liPrimaer{Nr:INT}, Name:VARCHAR(20), SWS:INT,
-Semester:INT, Art:VARCHAR(20), \liFremd{PersNr:INT[Dozemtn]})\\
+Lehrveranstaltung(\bPrimaer{Nr:INT}, Name:VARCHAR(20), SWS:INT,
+Semester:INT, Art:VARCHAR(20), \bFremd{PersNr:INT[Dozemtn]})\\
 
-Student(\liPrimaer{MatrNr:INT}, Name:VARCHAR(40), Geburtsdatum:DATE,
-Semesteranzahl:INT, \liFremd{FakName:VARCHAR(40)[Fakultät]},
+Student(\bPrimaer{MatrNr:INT}, Name:VARCHAR(40), Geburtsdatum:DATE,
+Semesteranzahl:INT, \bFremd{FakName:VARCHAR(40)[Fakultät]},
 Studiengang:VARCHAR(40))\\
 
-Adresse(\liPrimaer{Adresse:VARCHAR(100)})\\
+Adresse(\bPrimaer{Adresse:VARCHAR(100)})\\
 
-belegt(\liFremd{Nr:INT[Lehrveranstaltung], MatrNr:INT[Adresse]})\\
+belegt(\bFremd{Nr:INT[Lehrveranstaltung], MatrNr:INT[Adresse]})\\
 
-besitzt(\liFremd{Adresse:VARCHAR(100)[Adresse], MatrNr:INT[Student]})\\
+besitzt(\bFremd{Adresse:VARCHAR(100)[Adresse], MatrNr:INT[Student]})\\
 
-Durchführung(\liPrimaer{Zeit:DATE, RaumNr:INT}, \liFremd{Nr:INT[Student]})\\
+Durchführung(\bPrimaer{Zeit:DATE, RaumNr:INT}, \bFremd{Nr:INT[Student]})\\
 \end{liAntwort}
 
 \item Welche Fremdschlüssel gibt es in diesem Schema?

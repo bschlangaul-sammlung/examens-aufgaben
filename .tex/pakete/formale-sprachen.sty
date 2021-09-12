@@ -14,92 +14,92 @@ zum Setzen von mathematischen Formeln bei dem Thema Formale Sprachen]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\liLadePakete{mathe,typographie}
+\bLadePakete{mathe,typographie}
 %    \end{macrocode}
 
-% \begin{macro}{\liMenge}
-% |$\liMenge{a, b, c}$|: $\liMenge{a, b, c}$
+% \begin{macro}{\bMenge}
+% |$\bMenge{a, b, c}$|: $\bMenge{a, b, c}$
 % \bMakroFaulenzer{m}{liMenge}
 %    \begin{macrocode}
-\def\liMengeOhneMathe#1{\{ #1 \}}
-\def\liMenge#1{%
+\def\bMengeOhneMathe#1{\{ #1 \}}
+\def\bMenge#1{%
 \ifmmode%
-\liMengeOhneMathe{#1}%
+\bMengeOhneMathe{#1}%
 \else%
-$\liMengeOhneMathe{#1}$%
+$\bMengeOhneMathe{#1}$%
 \fi%
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liEpsilon}
-% |\liEpsilon|: \liEpsilon
+% \begin{macro}{\bEpsilon}
+% |\bEpsilon|: \bEpsilon
 %
 % \bMakroFaulenzer{e}{liEpsilon}
 %    \begin{macrocode}
-\def\liEpsilon{$\varepsilon$}
+\def\bEpsilon{$\varepsilon$}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liPotenzmenge}
+% \begin{macro}{\bPotenzmenge}
 % Umgeben mit geschweiften Klammern in einer Mathematik-Umgebung
 %    \begin{macrocode}
 \def\erzeuge@tiefgestellt#1{\directlua{formale_sprachen.erzeuge_tiefgestellt('#1')}}
-\def\liPotenzmengeOhneMathe#1{\{ \erzeuge@tiefgestellt{#1} \}}
-\def\liPotenzmenge#1{$\liPotenzmengeOhneMathe{#1}$}
+\def\bPotenzmengeOhneMathe#1{\{ \erzeuge@tiefgestellt{#1} \}}
+\def\bPotenzmenge#1{$\bPotenzmengeOhneMathe{#1}$}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsmenge}
-% |\liZustandsmenge{z1, z2}|: |$\{ z_1, z_2 \}$|
+% \begin{macro}{\bZustandsmenge}
+% |\bZustandsmenge{z1, z2}|: |$\{ z_1, z_2 \}$|
 %    \begin{macrocode}
-\let\liZustandsmengeOhneMathe=\liPotenzmengeOhneMathe
-\let\liZustandsmenge=\liPotenzmenge
+\let\bZustandsmengeOhneMathe=\bPotenzmengeOhneMathe
+\let\bZustandsmenge=\bPotenzmenge
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liUeberfuehrungsFunktion}
-% |\liUeberfuehrungsFunktion{z0, a}|: |$\delta(z_0, a)$|
+% \begin{macro}{\bUeberfuehrungsFunktion}
+% |\bUeberfuehrungsFunktion{z0, a}|: |$\delta(z_0, a)$|
 % \bMakroFaulenzer{d}{liUeberfuehrungsFunktion}
 %    \begin{macrocode}
-\def\liUeberfuehrungsFunktionOhneMathe#1{\delta(\erzeuge@tiefgestellt{#1})}
-\def\liUeberfuehrungsFunktion#1{
+\def\bUeberfuehrungsFunktionOhneMathe#1{\delta(\erzeuge@tiefgestellt{#1})}
+\def\bUeberfuehrungsFunktion#1{
 \ifmmode
-  \liUeberfuehrungsFunktionOhneMathe{#1}
+  \bUeberfuehrungsFunktionOhneMathe{#1}
 \else
-  $\liUeberfuehrungsFunktionOhneMathe{#1}$
+  $\bUeberfuehrungsFunktionOhneMathe{#1}$
 \fi
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liAlphabet}
-% |\liAlphabet{a, b}| (|$\Sigma = \{ a, b \}$|): \liAlphabet{a, b}
+% \begin{macro}{\bAlphabet}
+% |\bAlphabet{a, b}| (|$\Sigma = \{ a, b \}$|): \bAlphabet{a, b}
 %    \begin{macrocode}
-\def\liAlphabet#1{$\Sigma = \{ #1 \}$}
+\def\bAlphabet#1{$\Sigma = \{ #1 \}$}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liBandAlphabet}
-% |\liBandAlphabet{\liTuringLeerzeichen}|: \liBandAlphabet{\liTuringLeerzeichen}
+% \begin{macro}{\bBandAlphabet}
+% |\bBandAlphabet{\bTuringLeerzeichen}|: \bBandAlphabet{\bTuringLeerzeichen}
 %    \begin{macrocode}
-\def\liBandAlphabet#1{$\Gamma = \Sigma \cup \{ #1 \}$}
+\def\bBandAlphabet#1{$\Gamma = \Sigma \cup \{ #1 \}$}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsBuchstabe}
+% \begin{macro}{\bZustandsBuchstabe}
 %    \begin{macrocode}
-\def\liZustandsBuchstabe{z}
+\def\bZustandsBuchstabe{z}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsBuchstabeGross}
+% \begin{macro}{\bZustandsBuchstabeGross}
 %    \begin{macrocode}
-\def\liZustandsBuchstabeGross{Z}
+\def\bZustandsBuchstabeGross{Z}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsmengeNr}
+% \begin{macro}{\bZustandsmengeNr}
 %    \begin{macrocode}
 \def\zustandsnamens@liste#1#2{
   $
@@ -108,34 +108,34 @@ $\liMengeOhneMathe{#1}$%
     \}
   $
 }
-\def\liZustandsmengeNr#1{\zustandsnamens@liste{\liZustandsBuchstabe}{#1}}
+\def\bZustandsmengeNr#1{\zustandsnamens@liste{\bZustandsBuchstabe}{#1}}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsmengeNrGross}
+% \begin{macro}{\bZustandsmengeNrGross}
 %    \begin{macrocode}
-\def\liZustandsmengeNrGross#1{\zustandsnamens@liste{\liZustandsBuchstabeGross}{#1}}
+\def\bZustandsmengeNrGross#1{\zustandsnamens@liste{\bZustandsBuchstabeGross}{#1}}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsname}
-% |\liZustandsname{1}|: |$z_1$|
+% \begin{macro}{\bZustandsname}
+% |\bZustandsname{1}|: |$z_1$|
 %    \begin{macrocode}
-\def\liZustandsname#1{$\liZustandsBuchstabe_#1$}
+\def\bZustandsname#1{$\bZustandsBuchstabe_#1$}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsnameGross}
-% |\liZustandsnameGross{1}|: |$Z_1$|
+% \begin{macro}{\bZustandsnameGross}
+% |\bZustandsnameGross{1}|: |$Z_1$|
 %    \begin{macrocode}
-\def\liZustandsnameGross#1{$\liZustandsBuchstabeGross_#1$}
+\def\bZustandsnameGross#1{$\bZustandsBuchstabeGross_#1$}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liAbleitung}
-% |\liAbleitung{S -> aB -> ab}|: \liAbleitung{S -> aB -> ab}
+% \begin{macro}{\bAbleitung}
+% |\bAbleitung{S -> aB -> ab}|: \bAbleitung{S -> aB -> ab}
 %    \begin{macrocode}
-\def\liAbleitung#1{$\directlua{formale_sprachen.formatiere_ableitung('#1')}$}
+\def\bAbleitung#1{$\directlua{formale_sprachen.formatiere_ableitung('#1')}$}
 %    \end{macrocode}
 % \end{macro}
 
@@ -153,7 +153,7 @@ $\liMengeOhneMathe{#1}$%
 \NewDocumentEnvironment { liProduktionsRegeln }
 { O{P} +b }
 {
-  \liGeschweifteKlammern{#1}
+  \bGeschweifteKlammern{#1}
   {
     \begin{align*}
     \directlua{formale_sprachen.produktions_regeln('#2')}
@@ -163,24 +163,24 @@ $\liMengeOhneMathe{#1}$%
 %    \end{macrocode}
 % \end{environment}
 
-% \begin{macro}{\liProduktionen}
-% |\liProduktionen{S -> A, A -> a}|: \liProduktionen{S -> A, A -> a}
+% \begin{macro}{\bProduktionen}
+% |\bProduktionen{S -> A, A -> a}|: \bProduktionen{S -> A, A -> a}
 %    \begin{macrocode}
-\def\liProduktionen#1{
-  \liMenge{\directlua{formale_sprachen.produktions_regeln('#1', true)}}
+\def\bProduktionen#1{
+  \bMenge{\directlua{formale_sprachen.produktions_regeln('#1', true)}}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liZustandsnameTiefgestellt}
+% \begin{macro}{\bZustandsnameTiefgestellt}
 % Automatisch tiefgestellte Nummerierung |\z1|
 % \bMakroFaulenzer{z}{liZustandsnameTiefgestellt}
 %    \begin{macrocode}
-\def\liZustandsnameTiefgestellt#1{
+\def\bZustandsnameTiefgestellt#1{
   \ifmmode
-    \liZustandsBuchstabe\sb{#1}
+    \bZustandsBuchstabe\sb{#1}
   \else
-    $\liZustandsBuchstabe\sb{#1}$
+    $\bZustandsBuchstabe\sb{#1}$
   \fi
 }
 %    \end{macrocode}
@@ -190,18 +190,18 @@ $\liMengeOhneMathe{#1}$%
 \ExplSyntaxOn
 %    \end{macrocode}
 
-% \begin{macro}{\liAusdruck}
-% |\liAusdruck[L_2]{a_1,a_2,\dots,a_n}{n \in N}|: \liAusdruck[L_2]{a_1,a_2,\dots,a_n}{n \in N}
+% \begin{macro}{\bAusdruck}
+% |\bAusdruck[L_2]{a_1,a_2,\dots,a_n}{n \in N}|: \bAusdruck[L_2]{a_1,a_2,\dots,a_n}{n \in N}
 %
-% Ohne „=“: |\liAusdruck[]{x}{y}|: \liAusdruck[]{x}{y}
+% Ohne „=“: |\bAusdruck[]{x}{y}|: \bAusdruck[]{x}{y}
 %
 % Regulärer Ausdruck zum Konvertieren:
 % \begin{verbatim}
 % \$(.*) += +\\\{ *(.*?)( *\\, *)?\|( *\\, *)?(.*?) *\\\}\$
-% \\liAusdruck[$1]{$2}{$5}
+% \\bAusdruck[$1]{$2}{$5}
 % \end{verbatim}
 %    \begin{macrocode}
-\NewDocumentCommand{ \liAusdruck } { O{L} m m } {
+\NewDocumentCommand{ \bAusdruck } { O{L} m m } {
   $
    \tl_if_empty:nTF {#1} {} {#1 =}
    \{
@@ -214,10 +214,10 @@ $\liMengeOhneMathe{#1}$%
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liFlaci}
-% Link zur flaci.com Website: |\liFlaci{Grxk1oczg}|: \liFlaci{Grxk1oczg}
+% \begin{macro}{\bFlaci}
+% Link zur flaci.com Website: |\bFlaci{Grxk1oczg}|: \bFlaci{Grxk1oczg}
 %    \begin{macrocode}
-\def\liFlaci#1{%
+\def\bFlaci#1{%
   \par
   {%
     \scriptsize
@@ -231,31 +231,31 @@ $\liMengeOhneMathe{#1}$%
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liGrammatik}
-% \cmd{\liGrammatik}\oarg{grammtik-name}\marg{variablen=V,alphabet=$\Sigma$,produktionen=P,start=S}
+% \begin{macro}{\bGrammatik}
+% \cmd{\bGrammatik}\oarg{grammtik-name}\marg{variablen=V,alphabet=$\Sigma$,produktionen=P,start=S}
 %
-% |\liGrammatik{variablen={}, alphabet={}}|
+% |\bGrammatik{variablen={}, alphabet={}}|
 %
 % \begin{itemize}
-% \item |\liGrammatik{}|: \liGrammatik{}
-% \item |\liGrammatik[G_1]{}|: \liGrammatik[G_1]{}
-% \item |\liGrammatik{variablen={S,A,B}}|: \liGrammatik{variablen={S,A,B}}
-% \item |\liGrammatik{alphabet={a,b}}|: \liGrammatik{alphabet={a,b}}
-% \item |\liGrammatik{start=X}|: \liGrammatik{start=X}
+% \item |\bGrammatik{}|: \bGrammatik{}
+% \item |\bGrammatik[G_1]{}|: \bGrammatik[G_1]{}
+% \item |\bGrammatik{variablen={S,A,B}}|: \bGrammatik{variablen={S,A,B}}
+% \item |\bGrammatik{alphabet={a,b}}|: \bGrammatik{alphabet={a,b}}
+% \item |\bGrammatik{start=X}|: \bGrammatik{start=X}
 % \end{itemize}
 %
 %    \begin{macrocode}
 \ExplSyntaxOn
-\NewDocumentCommand {\liGrammatik} { O{G} m } {
+\NewDocumentCommand {\bGrammatik} { O{G} m } {
   \tl_set:Nn \l_variablen_tl {V}
   \tl_set:Nn \l_alphabet_tl {\Sigma}
   \tl_set:Nn \l_produktionen_tl {P}
   \tl_set:Nn \l_start_tl {S}
 
   \keys_define:nn { grammatik } {
-    variablen .code:n = {\tl_set:Nn \l_variablen_tl {\liMenge{##1}}},
-    alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\liMenge{##1}}},
-    produktionen .code:n = {\tl_set:Nn \l_produktionen_tl {\liProduktionen{##1}}},
+    variablen .code:n = {\tl_set:Nn \l_variablen_tl {\bMenge{##1}}},
+    alphabet .code:n = {\tl_set:Nn \l_alphabet_tl {\bMenge{##1}}},
+    produktionen .code:n = {\tl_set:Nn \l_produktionen_tl {\bProduktionen{##1}}},
     start .code:n = {\tl_set:Nn \l_start_tl {##1}},
   }
 

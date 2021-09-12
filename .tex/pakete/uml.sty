@@ -69,17 +69,17 @@ Erweiterung bereitstellt]
 % \umlVHVdep[arm1=-1.5cm,stereo=use,anchor1=-150, pos stereo=1.5]{TicketDruckerei}{KinderTicket}
 
 % \umluniassoc[arg1=,mult2=1,arg2=- druckerei,name=benutzt]{TicketHandel}{TicketDruckerei}
-% \liUmlLeserichtung[pos=below left,dir=down,distance=0cm]{benutzt}
+% \bUmlLeserichtung[pos=below left,dir=down,distance=0cm]{benutzt}
 % \end{tikzpicture}
 % \end{liBeispiel}
 
-% \begin{macro}{\liUmlLeserichtung}
+% \begin{macro}{\bUmlLeserichtung}
 % \begin{verbatim}
 % \umluniassoc[arg1=,mult2=1,arg2=- druckerei,name=benutzt]{TicketHandel}{TicketDruckerei}
-% \liUmlLeserichtung[pos=below left,dir=down,distance=0cm]{benutzt}
+% \bUmlLeserichtung[pos=below left,dir=down,distance=0cm]{benutzt}
 % \end{verbatim}
 %    \begin{macrocode}
-\NewDocumentCommand{ \liUmlLeserichtung } { O{dir=right} m } {
+\NewDocumentCommand{ \bUmlLeserichtung } { O{dir=right} m } {
   \def\@liDirLeft{}
   \def\@liDirRight{ \RIGHTarrow}
   \pgfkeys{/lese/dir/.is choice}

@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{syntax,kontrollflussgraph}
+\bLadePakete{syntax,kontrollflussgraph}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Aufgabe 4},
   Thematik = {White-Box-Testverfahren},
   RelativerPfad = Staatsexamen/66116/2020/09/Thema-1/Teilaufgabe-1/Aufgabe-4.tex,
@@ -17,10 +17,10 @@
   ExamenAufgabeNr = 4,
 }
 
-\let\c=\liKontrollCode
-\let\b=\liBedingung
-\let\p=\liKontrollKnotenPfad
-\let\k=\liKontrollTextzeileKnoten
+\let\c=\bKontrollCode
+\let\b=\bBedingung
+\let\p=\bKontrollKnotenPfad
+\let\k=\bKontrollTextzeileKnoten
 
 Diese Aufgabe behandelt \emph{Wortpalindrome}, also Wörter, die vorwärts
 und rückwärts gelesen jeweils dieselbe Zeichenkette bilden, \zB
@@ -32,7 +32,7 @@ Wortpalindrome der Wortlänge $0$) sind dabei nicht zulässig.
 Folgende \emph{Java-Methode} prüft, ob das übergebene Zeichen-Array ein
 Wortpalindrom darstellt:
 
-\liJavaExamen[firstline=6,lastline=28]{66116}{2020}{09}{Palindrom}
+\bJavaExamen[firstline=6,lastline=28]{66116}{2020}{09}{Palindrom}
 
 \begin{enumerate}
 
@@ -96,15 +96,15 @@ Testmenge mit einer kleineren Zahl von Testfällen gibt. Die Minimalität
 muss \emph{nicht} bewiesen werden.
 
 \begin{liAntwort}
-\liJavaCode{isWortpalindrom(new char[] { 'a' })}:\\
+\bJavaCode{isWortpalindrom(new char[] { 'a' })}:\\
 \p{S-2-3-4-5            -17-18-22-E}
 % {S-2-3-4-5-6-7-8-10-12-17-18-22-E}
 
-\liJavaCode{isWortpalindrom(new char[] { 'a', 'b' })}:\\
+\bJavaCode{isWortpalindrom(new char[] { 'a', 'b' })}:\\
 \p{S-2-3-4-5-6-7-8-10-12-      22-E}
 % {S-2-3-4-5-6-7-8-10-12-17-18-22-E}
 
-% \liJavaCode{isWortpalindrom(new char[] { 'a', 'a' })}\\
+% \bJavaCode{isWortpalindrom(new char[] { 'a', 'a' })}\\
 % \p{S-2-3-4-5-6-7-8-10-         22-E}
 %   {S-2-3-4-5-6-7-8-10-12-17-18-22-E}
 \end{liAntwort}
@@ -134,15 +134,15 @@ werden.
 \item[Äußere Pfade] \strut
 
 \begin{itemize}
-\item \liJavaCode{isWortpalindrom(null}:\\
+\item \bJavaCode{isWortpalindrom(null}:\\
 \p{S-2-3                      -22-E}
 % {S-2-3-4-5-6-7-8-10-12-17-18-22-E}
 
-\item \liJavaCode{isWortpalindrom(new char[] { })}:\\
+\item \bJavaCode{isWortpalindrom(new char[] { })}:\\
 \p{S-2-3-4-5            -17   -22-E}
 % {S-2-3-4-5-6-7-8-10-12-17-18-22-E}
 
-\item \liJavaCode{isWortpalindrom(new char[] { 'a' })}:\\
+\item \bJavaCode{isWortpalindrom(new char[] { 'a' })}:\\
 \p{S-2-3-4-5            -17-18-22-E}
 % {S-2-3-4-5-6-7-8-10-12-17-18-22-E}
 
@@ -156,10 +156,10 @@ werden.
 
 Für Schleifen fester Lauflänge ist diese Testfallgruppe leer.
 
-\item \liJavaCode{isWortpalindrom(new char[] { 'a', 'a' })}:\\
+\item \bJavaCode{isWortpalindrom(new char[] { 'a', 'a' })}:\\
 \p{S-2-3-4-5-6-7-8-10-7-22-E}
 
-\item \liJavaCode{isWortpalindrom(new char[] { 'a', 'b' })}:\\
+\item \bJavaCode{isWortpalindrom(new char[] { 'a', 'b' })}:\\
 \p{S-2-3-4-5-6-7-8-10-12-22-E}
 
 %%
@@ -169,10 +169,10 @@ Für Schleifen fester Lauflänge ist diese Testfallgruppe leer.
 \item[Innere Pfade (interior test)] \strut
 
 \begin{itemize}
-\item \liJavaCode{isWortpalindrom(new char[] { 'a', 'a', 'a', 'a' })}:\\
+\item \bJavaCode{isWortpalindrom(new char[] { 'a', 'a', 'a', 'a' })}:\\
 \p{S-2-3-4-5-6- 7-8-10- 7-8-10- 7-22-E}
 
-\item \liJavaCode{isWortpalindrom(new char[] { 'a', 'b', 'a', 'a' })}:\\
+\item \bJavaCode{isWortpalindrom(new char[] { 'a', 'b', 'a', 'a' })}:\\
 \p{S-2-3-4-5-6- 7-8-10- 7-8-10- 12-22-E}
 
 \end{itemize}

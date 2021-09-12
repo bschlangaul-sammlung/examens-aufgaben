@@ -1,10 +1,10 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{automaten,formale-sprachen}
+\bLadePakete{automaten,formale-sprachen}
 \begin{document}
-\let\p=\liPotenzmenge
-\let\s=\liZustandsnameGross
+\let\p=\bPotenzmenge
+\let\s=\bZustandsnameGross
 
-\liAufgabenTitel{Reguläre Sprache}
+\bAufgabenTitel{Reguläre Sprache}
 \section{Aufgabe 1: Reguläre Sprachen
 \index{Potenzmengenalgorithmus}
 \footcite{examen:46115:2016:09}}
@@ -37,12 +37,12 @@ einen (deterministischen) EA, der dieselbe Sprache akzeptiert.
 \path (2) edge[above] node{a,b} (3);
 \path (0) edge[above,loop] node{a,b} (0);
 \end{tikzpicture}
-\liFlaci{Aiqxdazuw}
+\bFlaci{Aiqxdazuw}
 \end{center}
 
 \begin{liAntwort}
 \def\z#1{
-  \liZustandsMengenSammlung{#1}{{
+  \bZustandsMengenSammlung{#1}{{
     {0} {z0}
     {1} {z0, z1}
     {2} {z0, z1, z2}
@@ -53,7 +53,7 @@ einen (deterministischen) EA, der dieselbe Sprache akzeptiert.
     {7} {z0, z1, z3}
   }}
 }
-\let\p=\liPotenzmenge
+\let\p=\bPotenzmenge
 
 \begin{tabular}{l|l|l|l}
 Name & Zustandsmenge & Eingabe a & Eingabe b \\\hline\hline
@@ -148,7 +148,7 @@ Name & Zustandsmenge & Eingabe a & Eingabe b \\\hline\hline
 \path (7) edge[above right] node{a} (2);
 \path (7) edge[above,bend left] node{b} (3);
 \end{tikzpicture}
-\liFlaci{Aiqnk06c9}
+\bFlaci{Aiqnk06c9}
 \end{center}
 \end{liAntwort}
 
@@ -163,21 +163,21 @@ folgenden regulären Ausdrücken beschrieben werden:
 \item $(a | b)^*a$
 
 \begin{liAntwort}
-Sprache mit dem Alphabet \liAlphabet{a, b}: Alle Wörter der Sprache
+Sprache mit dem Alphabet \bAlphabet{a, b}: Alle Wörter der Sprache
 enden auf $a$.
 \end{liAntwort}
 
 \item $(a|b)^*a(a|b)^*a(a|b)^*$
 
 \begin{liAntwort}
-Sprache mit dem Alphabet \liAlphabet{a, b}: Alle Wörter der Sprache
+Sprache mit dem Alphabet \bAlphabet{a, b}: Alle Wörter der Sprache
 enthalten mindestens 2 $a$’s.
 \end{liAntwort}
 
 \item $(a|b)^*a(bb)^*a(a|b)^*$
 
 \begin{liAntwort}
-Sprache mit dem Alphabet \liAlphabet{a, b}: Alle Wörter der Sprache
+Sprache mit dem Alphabet \bAlphabet{a, b}: Alle Wörter der Sprache
 enthalten mindestens 2 $a$’s, die von einer geradzahligen Anzahl von
 $b$’s getrennt sind.
 \end{liAntwort}

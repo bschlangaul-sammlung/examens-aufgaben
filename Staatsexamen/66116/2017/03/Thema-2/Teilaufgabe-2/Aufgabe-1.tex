@@ -1,7 +1,7 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{syntax,mathe,kontrollflussgraph}
+\bLadePakete{syntax,mathe,kontrollflussgraph}
 \begin{document}
-\liAufgabenMetadaten{
+\bAufgabenMetadaten{
   Titel = {Aufgabe 1},
   Thematik = {Methode „binToInt()“ und Kontrollflussgraph},
   RelativerPfad = Staatsexamen/66116/2017/03/Thema-2/Teilaufgabe-2/Aufgabe-1.tex,
@@ -17,14 +17,14 @@
   ExamenAufgabeNr = 1,
 }
 
-\let\c=\liKontrollCode
+\let\c=\bKontrollCode
 
 Gegeben\footcite[Aufgabe 5 (Check-Up)]{sosy:ab:7} Sei folgende Methode und ihr Kontrollflussgraph:
 \footcite[Thema 2 Teilaufgabe 2 Aufgabe 1]{examen:66116:2017:03}
 \index{Kontrollflussgraph}
 
 \begin{minipage}{6cm}
-\liJavaDatei[firstline=4,lastline=21]{aufgaben/sosy/ab_7/Aufgabe5}
+\bJavaDatei[firstline=4,lastline=21]{aufgaben/sosy/ab_7/Aufgabe5}
 %
 \end{minipage}
 %
@@ -42,17 +42,17 @@ Gegeben\footcite[Aufgabe 5 (Check-Up)]{sosy:ab:7} Sei folgende Methode und ihr K
 \node[knoten] at (-2,6) (E) {E};
 
 \path (S) -- (1);
-\path[falsch] (1) -- (2) \liBedingungFalsch{right};
+\path[falsch] (1) -- (2) \bBedingungFalsch{right};
 \path (2) -- (3);
-\path[falsch] (3) -- (4) \liBedingungFalsch{below};
-\path (3) -- (5) \liBedingungWahr{right};
-\path[falsch] (5) -- (6) \liBedingungFalsch{right};
-\path (5) -- (7) \liBedingungWahr{right};
-\path (6) -- (8) \liBedingungWahr{right};
+\path[falsch] (3) -- (4) \bBedingungFalsch{below};
+\path (3) -- (5) \bBedingungWahr{right};
+\path[falsch] (5) -- (6) \bBedingungFalsch{right};
+\path (5) -- (7) \bBedingungWahr{right};
+\path (6) -- (8) \bBedingungWahr{right};
 \path (7) -- (8);
-\path[falsch] (6) -- (E) \liBedingungFalsch{right};
+\path[falsch] (6) -- (E) \bBedingungFalsch{right};
 \path (4) -- (E);
-\path (1) -- (-2,1) -- (E) \liBedingungWahr{left};
+\path (1) -- (-2,1) -- (E) \bBedingungWahr{left};
 \path (8) -- (2,6) -- (2,3) -- (3);
 \end{liKontrollflussgraph}
 \end{minipage}
@@ -71,52 +71,52 @@ Kontrollflussgraphen an, die zum Erzielen einer vollständigen
 \node[knoten] at (0,0) (S) {S};
 
 \node[knoten,pin={
-  \liJavaCode{if (bin.isEmpty())}
+  \bJavaCode{if (bin.isEmpty())}
 }] at (0,1) (1) {1};
 
 \node[knoten,pin={
-  \liJavaCode{int place; int length}
+  \bJavaCode{int place; int length}
 }] at (0,2) (2) {2};
 
 \node[knoten,pin={
   [pin distance=2cm]
-  for-Bedingung \liJavaCode{i >= 0}}
+  for-Bedingung \bJavaCode{i >= 0}}
 ] at (0,3) (3) {3};
 
 \node[knoten,pin={
-  180:\liJavaCode{return value;}
+  180:\bJavaCode{return value;}
 }] at (-1.5,3) (4) {4};
 
 \node[knoten,pin={
-  \liJavaCode{if (ch = '1')}
+  \bJavaCode{if (ch = '1')}
 }] at (0,4) (5) {5};
 
 \node[knoten,pin={
-  180:\liJavaCode{else if (ch = '0')}
+  180:\bJavaCode{else if (ch = '0')}
 }] at (-1,5) (6) {6};
 
 \node[knoten,pin={
-  \liJavaCode{value += place;}
+  \bJavaCode{value += place;}
 }] at (1,5) (7) {7};
 
 \node[knoten,pin={
-  270:\liJavaCode{place *= 2; i--;}}
+  270:\bJavaCode{place *= 2; i--;}}
 ] at (0,6) (8) {8};
 
 \node[knoten] at (-2,6) (E) {E};
 
 \path (S) -- (1);
-\path[falsch] (1) -- (2) \liBedingungFalsch{right};
+\path[falsch] (1) -- (2) \bBedingungFalsch{right};
 \path (2) -- (3);
-\path[falsch] (3) -- (4) \liBedingungFalsch{below};
-\path (3) -- (5) \liBedingungWahr{right};
-\path[falsch] (5) -- (6) \liBedingungFalsch{right};
-\path (5) -- (7) \liBedingungWahr{right};
-\path (6) -- (8) \liBedingungWahr{right};
+\path[falsch] (3) -- (4) \bBedingungFalsch{below};
+\path (3) -- (5) \bBedingungWahr{right};
+\path[falsch] (5) -- (6) \bBedingungFalsch{right};
+\path (5) -- (7) \bBedingungWahr{right};
+\path (6) -- (8) \bBedingungWahr{right};
 \path (7) -- (8);
-\path[falsch] (6) -- (E) \liBedingungFalsch{right};
+\path[falsch] (6) -- (E) \bBedingungFalsch{right};
 \path (4) -- (E);
-\path (1) -- (-2,1) -- (E) \liBedingungWahr{left};
+\path (1) -- (-2,1) -- (E) \bBedingungWahr{left};
 \path (8) -- (2,6) -- (2,3) -- (3);
 \end{liKontrollflussgraph}
 \end{liAntwort}
@@ -199,18 +199,18 @@ weshalb der Pfad nicht überdeckbar ist.
 \begin{liAntwort}
 Erweitere Methode, die die Knotennamen ausgibt:
 
-\liJavaDatei[firstline=23]{aufgaben/sosy/ab_7/Aufgabe5}
+\bJavaDatei[firstline=23]{aufgaben/sosy/ab_7/Aufgabe5}
 
 Alle mit Ausnahme von p2.
 
 \textbf{p2} ist nicht überdeckbar. Passiert ein Wert der Variable
-\liJavaCode{bin} die erste if-Verzweigung, dann hat der Wert eine Länge größer
+\bJavaCode{bin} die erste if-Verzweigung, dann hat der Wert eine Länge größer
 0 und betritt deshalb die Wiederholung mit fester Anzahl.
 
 \begin{tabular}{lll}
 p1 &
 S 1 E &
-\liJavaCode{binToInt("");} \\
+\bJavaCode{binToInt("");} \\
 
 p2 &
 S 1 2 3 4 E &
@@ -218,43 +218,43 @@ not feasible \\
 
 p3 &
 S 1 2 3 5 \r{7} 8 3 5 \g{6} 8 3 5 \g{6} E &
-\liJavaCode{binToInt("x01");} \\
+\bJavaCode{binToInt("x01");} \\
 
 p4 &
 S 1 2 3 5 \g{6} E  &
-\liJavaCode{binToInt("x");} \\
+\bJavaCode{binToInt("x");} \\
 
 p5 &
 S 1 2 3 5 \r{7} 8 3 5 \r{7} 8 3 4 E &
-\liJavaCode{binToInt("11");} \\
+\bJavaCode{binToInt("11");} \\
 
 p6 &
 S 1 2 3 5 \r{7} 8 3 5 \g{6} 8 3 4 E &
-\liJavaCode{binToInt("01");} \\
+\bJavaCode{binToInt("01");} \\
 
 p7 &
 S 1 2 3 5 \g{6} 8 3 5 \g{6} 8 3 4 E &
-\liJavaCode{binToInt("00");} \\
+\bJavaCode{binToInt("00");} \\
 
 p8 &
 S 1 2 3 5 \g{6} 8 3 5 \r{7} 8 3 4 E &
-\liJavaCode{binToInt("10");} \\
+\bJavaCode{binToInt("10");} \\
 
 p9 &
 S 1 2 3 5 \r{7} 8 3 5 \r{7} 8 3 5 \g{6} E &
-\liJavaCode{binToInt("x11");} \\
+\bJavaCode{binToInt("x11");} \\
 
 p10 = p3 &
 S 1 2 3 5 \r{7} 8 3 5 \g{6} 8 3 5 \g{6} E &
-\liJavaCode{binToInt("x01");} \\
+\bJavaCode{binToInt("x01");} \\
 
 p11 &
 S 1 2 3 5 \g{6} 8 3 5 \g{6} 8 3 5 \g{6} E &
-\liJavaCode{binToInt("x00");} \\
+\bJavaCode{binToInt("x00");} \\
 
 p12 &
 S 1 2 3 5 \g{6} 8 3 5 \r{7} 8 3 5 \g{6} E &
-\liJavaCode{binToInt("x10");} \\
+\bJavaCode{binToInt("x10");} \\
 \end{tabular}
 \end{liAntwort}
 

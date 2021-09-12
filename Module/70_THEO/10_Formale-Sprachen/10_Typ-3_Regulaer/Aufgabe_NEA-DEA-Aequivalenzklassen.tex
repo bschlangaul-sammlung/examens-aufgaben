@@ -1,17 +1,17 @@
 \documentclass{bschlangaul-aufgabe}
-\liLadePakete{mathe,automaten,minimierung}
+\bLadePakete{mathe,automaten,minimierung}
 \begin{document}
-\let\f=\liFussnote
-\let\l=\liLeereZelle
+\let\f=\bFussnote
+\let\l=\bLeereZelle
 \def\Z#1#2{(#1, #2)}
 
-\liAufgabenTitel{NEA-DEA-Aequivalenzklassen}
+\bAufgabenTitel{NEA-DEA-Aequivalenzklassen}
 \section{NEA-DEA-Äquivalenzklassen
 \index{Reguläre Sprache}
 \footcite[Seite 11, Aufgabe 7]{theo:ab:1}}
 
 Gegeben ist der deterministische endliche Automat
-\liAutomat{
+\bAutomat{
   zustaende={A, B, C, D, E},
   alphabet={0, 1},
   start=A,
@@ -54,7 +54,7 @@ Minimierungsalgorithmus. Dokumentieren Sie die Schritte geeignet.
 \path (D) edge[above] node{0} (E);
 \path (E) edge[above,loop right] node{0,1} (E);
 \end{tikzpicture}
-\liFlaci{A5amu40wc}
+\bFlaci{A5amu40wc}
 \end{center}
 
 \begin{center}
@@ -69,7 +69,7 @@ E & \f1 & \f1 & \f1 & \f1 & \l \\ \hline\hline
 \end{tabular}
 \end{center}
 
-\liFussnoten
+\bFussnoten
 
 \begin{liUebergangsTabelle}{0}{1}
 \Z A B & \Z B E \f2 & \Z C C \\
@@ -80,7 +80,7 @@ E & \f1 & \f1 & \f1 & \f1 & \l \\ \hline\hline
 \Z C D & \Z D E \f2 & \Z C A \\
 \end{liUebergangsTabelle}
 
-\liPseudoUeberschrift{Minimiert}
+\bPseudoUeberschrift{Minimiert}
 
 \begin{center}
 \begin{tikzpicture}[li automat]
@@ -95,7 +95,7 @@ E & \f1 & \f1 & \f1 & \f1 & \l \\ \hline\hline
   \path (E) edge[auto,loop above] node{$0,1$} (E);
 \end{tikzpicture}
 \end{center}
-\liFlaci{Ara57j4oa}
+\bFlaci{Ara57j4oa}
 \end{liAntwort}
 
 \item Geben Sie einen regulären Ausdruck für die erkannte Sprache an.
