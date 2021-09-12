@@ -91,7 +91,7 @@
 % \end{macro}
 
 % \begin{macro}{\liAutomatenKante}
-% \liLet{k}{liAutomatenKante}
+% \bMakroFaulenzer{k}{liAutomatenKante}
 %    \begin{macrocode}
 \def\liAutomatenKante#1#2#3#4{
   \path (#1) edge[#4] node{#3} (#2);
@@ -218,7 +218,7 @@
 % \end{macro}
 
 % \begin{macro}{\liKellerUebergang}
-% \liLet{u}{liKellerUebergang}
+% \bMakroFaulenzer{u}{liKellerUebergang}
 %
 % |\liKellerUebergang{a, KELLERBODEN, A; b KELLERBODEN, EPSILON}|
 %
@@ -240,7 +240,7 @@
 
 % \begin{macro}{\liKellerKante}
 % \cmd{\liKellerKante}\oarg{tikz-optionen}\marg{von}\marg{zu}\marg{übergange}
-% \liLet{k}{liKellerKante}
+% \bMakroFaulenzer{k}{liKellerKante}
 %    \begin{macrocode}
 \NewDocumentCommand{\liKellerKante} { O{above} m m m  } {
   \path (#2) edge[#1] node{\liKellerUebergang{#4}} (#3);
@@ -342,7 +342,7 @@
 
 % \begin{macro}{\liTuringUebergangZelle}
 % Formatiert einen Zustandsübergang für eine Übergangstabelle.
-% \liLet{t}{liTuringUebergangZelle}
+% \bMakroFaulenzer{t}{liTuringUebergangZelle}
 % |\liTuringUebergangZelle{z_1, LEER, R}|: \liTuringUebergangZelle{z_1, LEER, R}
 % |\liTuringUebergangZelle{z1, leer, l}|: \liTuringUebergangZelle{z_1, LEER, l}
 %    \begin{macrocode}
@@ -357,7 +357,7 @@
 % \begin{macro}{\liTuringUebergaenge}
 % Nur in den TikZ-Grafiken zu verwenden. Setzt Zeilenumbrüche ans Ende.
 % Nicht für die Tabelle geeignet.
-% \liLet{t}{liTuringUebergaenge}
+% \bMakroFaulenzer{t}{liTuringUebergaenge}
 % \noindent
 % \liTuringUebergaenge{z_1, LEER, l; LEER, LEER, r}
 %    \begin{macrocode}
@@ -371,7 +371,7 @@
 
 % \begin{macro}{\liTuringKante}
 % \cmd{\liTuringKante}\oarg{tikz-optionen}\marg{zustand-oder-lese}\marg{schreibe}\marg{richtung}
-% \liLet{t}{liTuringKante}
+% \bMakroFaulenzer{t}{liTuringKante}
 %    \begin{macrocode}
 \NewDocumentCommand{\liTuringKante} { O{above} m m m  } {
   \path (#2) edge[#1] node{\liTuringUebergaenge{#4}} (#3);

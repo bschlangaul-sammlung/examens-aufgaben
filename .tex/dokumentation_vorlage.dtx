@@ -50,51 +50,15 @@
 \usepackage{amsmath}
 \usepackage{mdframed}
 
-\newenvironment{liBeispiel}{
-  \begin{mdframed}
-}{
-  \end{mdframed}
-}
-
 % dummy
 \newcommand{\footcite}[2][]{}
-
-% \|\\let\\(.*?)=\\(.*?)\|
-% \liLet{$1}{$2}
-\ExplSyntaxOn
-
-\def\li@Let#1#2{
-  \texttt{
-    \textbackslash let
-    \textbackslash#1
-    =
-    \textbackslash#2
-  }
-}
-
-\def\liLet#1#2{
-  \par
-  \noindent
-  \textbf{Let-Abkürzung:~}
-  \li@Let{#1}{#2}
-  \par
-}
-
-\prop_new:N \l_lets_prop
-
-\def\liLets#1{
-  \prop_clear:N \l_lets_prop
-  \prop_put_from_keyval:Nn \l_lets_prop {#1}
-  \subsubsection{Makro-Kürzel}
-  \prop_map_inline:Nn \l_lets_prop {\noindent\li@Let{##1}{##2}\par}
-  \bigskip
-}
 
 \ExplSyntaxOff
 
 \usepackage{bschlangaul-basis}
 
 \liLadePakete{
+  formatierung,
   meta,
   automaten,
   baum,
@@ -115,6 +79,7 @@
   sortieren,
   synthese-algorithmus,
   typographie,
+  tex-dokumentation,
   uml,
 }
 \EnableCrossrefs

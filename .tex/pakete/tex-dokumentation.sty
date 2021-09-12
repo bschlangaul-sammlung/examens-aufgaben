@@ -1,0 +1,74 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{bschlangaul-tex-dokumentation}[2021/09/12 Hilfsmakros
+für die DTX-Dokumentation]
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\RequirePackage{mdframed}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\newenvironment{liBeispiel}
+{
+  \begin{mdframed}
+}
+{
+  \end{mdframed}
+}
+%    \end{macrocode}
+
+% \begin{macro}{\bMakroFaulenzer}
+% \cmd{\bMakroFaulenzer}\marg{Abkürzung}\marg{Makroname ohne Schrägstrich}
+%    \begin{macrocode}
+\cs_new:Npn \let_abkuerzung:nn #1 #2
+{
+  \texttt
+  {
+    \textbackslash let
+    \textbackslash#1
+    =
+    \textbackslash#2
+  }
+}
+\def\bMakroFaulenzer #1 #2
+{
+  \par
+  \noindent
+  \textbf{Makro-Faulenzer:~}
+  \let_abkuerzung:nn {#1}{#2}
+  \par
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\prop_new:N \l_faulenzer_prop
+%    \end{macrocode}
+
+% \begin{macro}{\bFaulenzer}
+%    \begin{macrocode}
+\def\bFaulenzer#1
+{
+  \prop_clear:N \l_faulenzer_prop
+  \prop_put_from_keyval:Nn \l_faulenzer_prop {#1}
+  \subsubsection{Faulenzer}
+  \prop_map_inline:Nn \l_faulenzer_prop
+  {
+    \noindent
+    \let_abkuerzung:nn {##1} {##2}
+    \par
+  }
+  \bigskip
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
+
+%    \begin{macrocode}

@@ -16,7 +16,7 @@ Attributhülle]
 }
 %    \end{macrocode}
 
-% \liLets{
+% \bFaulenzer{
 %   ah = liAttributHuelle,
 %   ahL = liLinksReduktion,
 %   ahl = liLinksReduktionInline,
@@ -35,7 +35,7 @@ Attributhülle]
 %    \end{macrocode}
 
 % \begin{macro}{\liAttributHuelle}
-% \liLet{ah}{liAttributHuelle}
+% \bMakroFaulenzer{ah}{liAttributHuelle}
 % |\ah{F, \m{A, B}}| \liAttributHuelle{F, \liAttributMenge{A, B}}
 % Regulärer Ausdruck zum Konvertieren
 % |AttrHülle\((.*)\)|
@@ -53,7 +53,7 @@ Attributhülle]
 % \end{macro}
 
 % \begin{macro}{\liAttributMenge}
-% \liLet{m}{liAttributMenge}
+% \bMakroFaulenzer{m}{liAttributMenge}
 %    \begin{macrocode}
 \def\liAttributMenge#1{\{ \textit{#1} \}}
 %    \end{macrocode}
@@ -75,7 +75,7 @@ Attributhülle]
 % \begin{macro}{\liLinksReduktion}
 % Nur innerhalb von |liAHuelle| zu verwenden
 % bzw. |multline|
-% \liLet{ahL}{liLinksReduktion}
+% \bMakroFaulenzer{ahL}{liLinksReduktion}
 % |\ahL{ursprüngliche linke Attributmenge}{ohne dieses Attribut}{Ergebnis}|
 %    \begin{macrocode}
 \def\liLinksReduktion#1#2#3{
@@ -91,7 +91,7 @@ Attributhülle]
 % \end{macro}
 
 % \begin{macro}{\liLinksReduktionInline}
-% \liLet{ahL}{liLinksReduktionInline}
+% \bMakroFaulenzer{ahL}{liLinksReduktionInline}
 % |\ahl{ursprüngliche linke Attributmenge}{ohne dieses Attribut}{Ergebnis}|
 % |\ahl{A, E}{E}{A, E, F, B, \textbf{D}}|: \liLinksReduktionInline{A, E}{E}{A, E, F, B, \textbf{D}}
 %    \begin{macrocode}
@@ -107,7 +107,7 @@ Attributhülle]
 % \end{macro}
 
 % \begin{macro}{\liLinksReduktionInline}
-% \liLet{ahr}{liLinksReduktionInline}
+% \bMakroFaulenzer{ahr}{liLinksReduktionInline}
 % |\ahr{gelöschte FA}{neue FA ohne rechts Attribut}{gegebene Attribute}{Ergebnis}|
 %    \begin{macrocode}
 \def\liRechtsReduktionInline#1#2#3#4{%
@@ -130,7 +130,7 @@ Attributhülle]
 % \end{macro}
 
 % \begin{macro}{\liFunktionaleAbhaengigkeit}
-% \liLet{fa}{liFunktionaleAbhaengigkeit}
+% \bMakroFaulenzer{fa}{liFunktionaleAbhaengigkeit}
 % |\fa{A, B -> C, D}|: \liFunktionaleAbhaengigkeit{A, B -> C, D}
 % Regulärer Ausdruck zum Konvertieren: |\$(.*?) \\rightarrow (.*?)\$|
 % |\\fa{$1 -> $2}|
@@ -159,7 +159,7 @@ Attributhülle]
 %   P -> PN;
 % }
 % \end{liBeispiel}
-% \liLet{FA}{liFunktionaleAbhaengigkeiten}
+% \bMakroFaulenzer{FA}{liFunktionaleAbhaengigkeiten}
 % Regulärer Ausdruck zum Konvertieren:
 % |\\item \$(.*) \\rightarrow (.*)\$|
 % |\$(.*) \\rightarrow (.*)\$|
@@ -180,7 +180,7 @@ Attributhülle]
 % \end{macro}
 
 % \begin{macro}{\liRelation}
-% \liLet{r}{liRelation}
+% \bMakroFaulenzer{r}{liRelation}
 % |\r[R3]{\u{A}, B, C}|: \liRelation[R3]{\underline{A}, B, C}
 % Regulärer Ausdruck zum Konvertieren:
 % |\$(R.*)\((.*)\)\$|

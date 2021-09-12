@@ -50,51 +50,15 @@
 \usepackage{amsmath}
 \usepackage{mdframed}
 
-\newenvironment{liBeispiel}{
-  \begin{mdframed}
-}{
-  \end{mdframed}
-}
-
 % dummy
 \newcommand{\footcite}[2][]{}
-
-% \|\\let\\(.*?)=\\(.*?)\|
-% \liLet{$1}{$2}
-\ExplSyntaxOn
-
-\def\li@Let#1#2{
-  \texttt{
-    \textbackslash let
-    \textbackslash#1
-    =
-    \textbackslash#2
-  }
-}
-
-\def\liLet#1#2{
-  \par
-  \noindent
-  \textbf{Let-Abkürzung:~}
-  \li@Let{#1}{#2}
-  \par
-}
-
-\prop_new:N \l_lets_prop
-
-\def\liLets#1{
-  \prop_clear:N \l_lets_prop
-  \prop_put_from_keyval:Nn \l_lets_prop {#1}
-  \subsubsection{Makro-Kürzel}
-  \prop_map_inline:Nn \l_lets_prop {\noindent\li@Let{##1}{##2}\par}
-  \bigskip
-}
 
 \ExplSyntaxOff
 
 \usepackage{bschlangaul-basis}
 
 \liLadePakete{
+  formatierung,
   meta,
   automaten,
   baum,
@@ -115,6 +79,7 @@
   sortieren,
   synthese-algorithmus,
   typographie,
+  tex-dokumentation,
   uml,
 }
 \EnableCrossrefs
@@ -1414,7 +1379,7 @@ Setzen der Aufgaben-Metadaten.]
 % \end{macro}
 
 % \begin{macro}{\liAutomatenKante}
-% \liLet{k}{liAutomatenKante}
+% \bMakroFaulenzer{k}{liAutomatenKante}
 %    \begin{macrocode}
 \def\liAutomatenKante#1#2#3#4{
   \path (#1) edge[#4] node{#3} (#2);
@@ -1541,7 +1506,7 @@ Setzen der Aufgaben-Metadaten.]
 % \end{macro}
 
 % \begin{macro}{\liKellerUebergang}
-% \liLet{u}{liKellerUebergang}
+% \bMakroFaulenzer{u}{liKellerUebergang}
 %
 % |\liKellerUebergang{a, KELLERBODEN, A; b KELLERBODEN, EPSILON}|
 %
@@ -1563,7 +1528,7 @@ Setzen der Aufgaben-Metadaten.]
 
 % \begin{macro}{\liKellerKante}
 % \cmd{\liKellerKante}\oarg{tikz-optionen}\marg{von}\marg{zu}\marg{übergange}
-% \liLet{k}{liKellerKante}
+% \bMakroFaulenzer{k}{liKellerKante}
 %    \begin{macrocode}
 \NewDocumentCommand{\liKellerKante} { O{above} m m m  } {
   \path (#2) edge[#1] node{\liKellerUebergang{#4}} (#3);
@@ -1665,7 +1630,7 @@ Setzen der Aufgaben-Metadaten.]
 
 % \begin{macro}{\liTuringUebergangZelle}
 % Formatiert einen Zustandsübergang für eine Übergangstabelle.
-% \liLet{t}{liTuringUebergangZelle}
+% \bMakroFaulenzer{t}{liTuringUebergangZelle}
 % |\liTuringUebergangZelle{z_1, LEER, R}|: \liTuringUebergangZelle{z_1, LEER, R}
 % |\liTuringUebergangZelle{z1, leer, l}|: \liTuringUebergangZelle{z_1, LEER, l}
 %    \begin{macrocode}
@@ -1680,7 +1645,7 @@ Setzen der Aufgaben-Metadaten.]
 % \begin{macro}{\liTuringUebergaenge}
 % Nur in den TikZ-Grafiken zu verwenden. Setzt Zeilenumbrüche ans Ende.
 % Nicht für die Tabelle geeignet.
-% \liLet{t}{liTuringUebergaenge}
+% \bMakroFaulenzer{t}{liTuringUebergaenge}
 % \noindent
 % \liTuringUebergaenge{z_1, LEER, l; LEER, LEER, r}
 %    \begin{macrocode}
@@ -1694,7 +1659,7 @@ Setzen der Aufgaben-Metadaten.]
 
 % \begin{macro}{\liTuringKante}
 % \cmd{\liTuringKante}\oarg{tikz-optionen}\marg{zustand-oder-lese}\marg{schreibe}\marg{richtung}
-% \liLet{t}{liTuringKante}
+% \bMakroFaulenzer{t}{liTuringKante}
 %    \begin{macrocode}
 \NewDocumentCommand{\liTuringKante} { O{above} m m m  } {
   \path (#2) edge[#1] node{\liTuringUebergaenge{#4}} (#3);
@@ -2347,7 +2312,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 \liLadePakete{typographie}
 %    \end{macrocode}
 
-% \liLets{
+% \bFaulenzer{
 %   erklaerung = liChomskyErklaerung,
 %   schritt = liChomskyUeberschrift,
 %   schrittE= liChomskyUeberErklaerung,
@@ -2421,7 +2386,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \end{verbatim}
 
 % \begin{macro}{\liChomskyUeberschrift}
-% \liLet{schritt}{liChomskyUeberschrift}
+% \bMakroFaulenzer{schritt}{liChomskyUeberschrift}
 %    \begin{macrocode}
 \def\liChomskyUeberschrift#1{
   {
@@ -2439,7 +2404,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \end{macro}
 
 % \begin{macro}{\liChomskyErklaerung}
-% \liLet{erklaerung}{liChomskyErklaerung}
+% \bMakroFaulenzer{erklaerung}{liChomskyErklaerung}
 %  Hoffmann Seite 180
 %    \begin{macrocode}
 \def\li@chomsky@erklaerung@texte#1{
@@ -2485,7 +2450,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \end{macro}
 
 % \begin{macro}{\liChomskyUeberErklaerung}
-% \liLet{schrittE}{liChomskyUeberErklaerung}
+% \bMakroFaulenzer{schrittE}{liChomskyUeberErklaerung}
 %    \begin{macrocode}
 \def\liChomskyUeberErklaerung#1{
   \liChomskyUeberschrift{#1}\par
@@ -2509,7 +2474,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 \liLadePakete{mathe,typographie}
 %    \end{macrocode}
 
-% \liLets{
+% \bFaulenzer{
 %   f = footnotesize,
 %   FZ = liCpmFruehI,
 %   SZ = liCpmSpaetI,
@@ -2672,7 +2637,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \end{verbatim}
 
 % \begin{macro}{\liCpmVonZu}
-% \liLet{vz}{liCpmVonZu}
+% \bMakroFaulenzer{vz}{liCpmVonZu}
 % |\liCpmVonZu{1}(2-3)|: \liCpmVonZu{1}(2-3)
 %    \begin{macrocode}
 \def\liCpmVonZuOhneMathe#1(#2-#3){#1_{\scriptscriptstyle(#2\rightarrow#3)}}
@@ -2687,7 +2652,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \end{macro}
 
 % \begin{macro}{\liCpmVon}
-% \liLet{v}{liCpmVon}
+% \bMakroFaulenzer{v}{liCpmVon}
 % |\liCpmVon{1}(2)|: \liCpmVon{1}(2)
 %    \begin{macrocode}
 \def\liCpmVonOhneMathe#1(#2){#1_{\scriptscriptstyle(\rightarrow#2)}}
@@ -2702,7 +2667,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 % \end{macro}
 
 % \begin{macro}{\liCpmZu}
-% \liLet{z}{liCpmZu}
+% \bMakroFaulenzer{z}{liCpmZu}
 % |\liCpmZu{1}(2)|: \liCpmZu{1}(2)
 %    \begin{macrocode}
 \def\liCpmZuOhneMathe#1(#2){#1_{\scriptscriptstyle(\leftarrow#2)}}
@@ -2722,7 +2687,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 
 % \begin{macro}{\liCpmSpaetI}
 % Spätester Zeitpunkt, zu dem Ereignis $i$ eintreten kann
-% \liLet{SZ}{liCpmSpaetI}
+% \bMakroFaulenzer{SZ}{liCpmSpaetI}
 %    \begin{macrocode}
 \NewDocumentCommand{ \liCpmSpaetI } { O{i} } {
   \ifmmode
@@ -2736,7 +2701,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 
 % \begin{macro}{\liCpmFruehI}
 % Frühester Zeitpunkt, zu dem Ereignis $i$ eintreten kann.
-% \liLet{FZ}{liCpmFruehI}
+% \bMakroFaulenzer{FZ}{liCpmFruehI}
 %    \begin{macrocode}
 \NewDocumentCommand{ \liCpmFruehI } { O{i} } {
   \ifmmode
@@ -2814,7 +2779,7 @@ Hilfsmakros zum Setzen des Algorithmus zum Erreichen der Chomsky-Normalform]
 zum Setzen des CYK-Algorithmus]
 %    \end{macrocode}
 
-% \liLets{
+% \bFaulenzer{
 %   l = liKurzeTabellenLinie,
 % }
 
@@ -2835,7 +2800,7 @@ zum Setzen des CYK-Algorithmus]
 % \end{verbatim}
 
 % \begin{macro}{\liKurzeTabellenLinie}
-% \liLet{l}{liKurzeTabellenLinie}
+% \bMakroFaulenzer{l}{liKurzeTabellenLinie}
 %    \begin{macrocode}
 \def\liKurzeTabellenLinie#1{\\\cline{1-#1}}
 %    \end{macrocode}
@@ -3785,7 +3750,7 @@ ER-Diagrammen]
 \RequirePackage{fontawesome}
 %    \end{macrocode}
 
-% \liLets{
+% \bFaulenzer{
 %   a = liErMpAttribute,
 %   d = liErDatenbankName,
 %   e = liErMpEntity,
@@ -3816,7 +3781,7 @@ ER-Diagrammen]
 
 % \begin{macro}{\liErMpEntity}
 % mp = marginpar
-% \liLet{e}{liErMpEntity}
+% \bMakroFaulenzer{e}{liErMpEntity}
 %    \begin{macrocode}
 \def\liErMpEntity#1{
   \liErEntity{#1}
@@ -3828,7 +3793,7 @@ ER-Diagrammen]
 % \end{macro}
 
 % \begin{macro}{\liErMpRelationship}
-% \liLet{r}{liErMpRelationship}
+% \bMakroFaulenzer{r}{liErMpRelationship}
 %    \begin{macrocode}
 \def\liErMpRelationship#1{
   \liErRelationship{#1}
@@ -3840,7 +3805,7 @@ ER-Diagrammen]
 % \end{macro}
 
 % \begin{macro}{\liErMpAttribute}
-% \liLet{a}{liErMpAttribute}
+% \bMakroFaulenzer{a}{liErMpAttribute}
 %    \begin{macrocode}
 \def\liErMpAttribute#1{
   \liErAttribute{#1}
@@ -3852,7 +3817,7 @@ ER-Diagrammen]
 % \end{macro}
 
 % \begin{macro}{\liErDatenbankName}
-% \liLet{d}{liErDatenbankName}
+% \bMakroFaulenzer{d}{liErDatenbankName}
 % datenbank name
 %    \begin{macrocode}
 \def\liErDatenbankName#1{
@@ -3893,7 +3858,7 @@ zum Setzen von mathematischen Formeln bei dem Thema Formale Sprachen]
 
 % \begin{macro}{\liMenge}
 % |$\liMenge{a, b, c}$|: $\liMenge{a, b, c}$
-% \liLet{m}{liMenge}
+% \bMakroFaulenzer{m}{liMenge}
 %    \begin{macrocode}
 \def\liMengeOhneMathe#1{\{ #1 \}}
 \def\liMenge#1{%
@@ -3909,7 +3874,7 @@ $\liMengeOhneMathe{#1}$%
 % \begin{macro}{\liEpsilon}
 % |\liEpsilon|: \liEpsilon
 %
-% \liLet{e}{liEpsilon}
+% \bMakroFaulenzer{e}{liEpsilon}
 %    \begin{macrocode}
 \def\liEpsilon{$\varepsilon$}
 %    \end{macrocode}
@@ -3934,7 +3899,7 @@ $\liMengeOhneMathe{#1}$%
 
 % \begin{macro}{\liUeberfuehrungsFunktion}
 % |\liUeberfuehrungsFunktion{z0, a}|: |$\delta(z_0, a)$|
-% \liLet{d}{liUeberfuehrungsFunktion}
+% \bMakroFaulenzer{d}{liUeberfuehrungsFunktion}
 %    \begin{macrocode}
 \def\liUeberfuehrungsFunktionOhneMathe#1{\delta(\erzeuge@tiefgestellt{#1})}
 \def\liUeberfuehrungsFunktion#1{
@@ -4048,7 +4013,7 @@ $\liMengeOhneMathe{#1}$%
 
 % \begin{macro}{\liZustandsnameTiefgestellt}
 % Automatisch tiefgestellte Nummerierung |\z1|
-% \liLet{z}{liZustandsnameTiefgestellt}
+% \bMakroFaulenzer{z}{liZustandsnameTiefgestellt}
 %    \begin{macrocode}
 \def\liZustandsnameTiefgestellt#1{
   \ifmmode
@@ -4205,7 +4170,6 @@ $\liMengeOhneMathe{#1}$%
 % \subsubsection{Kasten}
 %    \begin{macrocode}
 \RequirePackage{mdframed}
-\mdfsetup{backgroundcolor=infogray}
 %    \end{macrocode}
 
 % \begin{environment}{liKasten}
@@ -4554,7 +4518,7 @@ Setzen von Karps NP-vollständigen Problemen, Hilfsmakros für die
 Polynomialzeitreduktion.]
 %    \end{macrocode}
 
-% \liLets{
+% \bFaulenzer{
 %   n = liProblemName,
 %   r = liPolynomiellReduzierbar,
 %   b = liProblemBeschreibung,
@@ -4578,7 +4542,7 @@ Polynomialzeitreduktion.]
 
 % \begin{macro}{\liProblemName}
 % Zu Setzen von Problemnamen wie zum Beispiel SAT, COL, VERTEX COVER
-% \liLet{n}{liProblemName}
+% \bMakroFaulenzer{n}{liProblemName}
 % |\liProblemName|: \liProblemName{Sat} \liProblemName{Vertex Cover}
 %    \begin{macrocode}
 \def\liProblemName#1{\texttt{\textsc{#1}}}
@@ -4603,7 +4567,7 @@ Polynomialzeitreduktion.]
 % Knoten $u \neq v \in V$ gilt, dass $\{ u, v \}$ eine Kante in $E$
 % ist?}
 % \end{liBeispiel}
-% \liLet{b}{liProblemBeschreibung}
+% \bMakroFaulenzer{b}{liProblemBeschreibung}
 %    \begin{macrocode}
 \def\liProblemBeschreibung#1#2#3{
   \begin{mdframed}[
@@ -4625,7 +4589,7 @@ Polynomialzeitreduktion.]
 % \end{macro}
 
 % \begin{macro}{\liPolynomiellReduzierbar}
-% \liLet{r}{liPolynomiellReduzierbar}
+% \bMakroFaulenzer{r}{liPolynomiellReduzierbar}
 %    \begin{macrocode}
 \NewDocumentCommand{ \liPolynomiellReduzierbar } { m O{p}  m } {
 \begin{displaymath}
@@ -4708,7 +4672,7 @@ aufgestellt werden.
 \ProvidesPackage{bschlangaul-kontrollflussgraph}[2020/11/07]
 %    \end{macrocode}
 
-% \liLets{
+% \bFaulenzer{
 %   b = liBedingung,
 %   c = liKontrollCode,
 %   f = liBedingungFalsch,
@@ -4856,42 +4820,42 @@ aufgestellt werden.
 % \end{macro}
 
 % \begin{macro}{\liBedingung}
-% \liLet{b}{liBedingung}
+% \bMakroFaulenzer{b}{liBedingung}
 %    \begin{macrocode}
 \def\liBedingung#1#2{node[bedingung,#1]{[\texttt{#2}]}}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\liBedingungWahr}
-% \liLet{w}{liBedingungWahr}
+% \bMakroFaulenzer{w}{liBedingungWahr}
 %    \begin{macrocode}
 \def\liBedingungWahr#1{node[bedingung,#1]{\texttt{[true]}}}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\liBedingungFalsch}
-% \liLet{f}{liBedingungFalsch}
+% \bMakroFaulenzer{f}{liBedingungFalsch}
 %    \begin{macrocode}
 \def\liBedingungFalsch#1{node[bedingung,#1]{\texttt{[false]}}}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\liKontrollCode}
-% \liLet{c}{liKontrollCode}
+% \bMakroFaulenzer{c}{liKontrollCode}
 %    \begin{macrocode}
 \def\liKontrollCode#1{{\tiny\texttt{\textcolor{gray}{#1}}}}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\liKontrollTextzeileKnoten}
-% \liLet{k}{liKontrollTextzeileKnoten}
+% \bMakroFaulenzer{k}{liKontrollTextzeileKnoten}
 %    \begin{macrocode}
 \def\liKontrollTextzeileKnoten#1{\raisebox{-2pt}{\tikz[scale=0.5,transform shape] \node[draw,circle]{#1};}}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\liKontrollKnotenPfad}
-% \liLet{p}{liKontrollKnotenPfad}
+% \bMakroFaulenzer{p}{liKontrollKnotenPfad}
 %    \begin{macrocode}
 \ExplSyntaxOn
 \NewDocumentCommand { \liKontrollKnotenPfad }{ m }
@@ -5392,7 +5356,7 @@ anderen Paket passen]
 \ProvidesPackage{bschlangaul-master-theorem}[2021/04/13]
 %    \end{macrocode}
 
-% \liLets{
+% \bFaulenzer{
 %   O = liO,
 %   o = liOmega,
 %   T = liT,
@@ -5497,7 +5461,7 @@ anderen Paket passen]
 % \end{macro}
 
 % \begin{macro}{\liT}
-% \liLet{T}{liT}
+% \bMakroFaulenzer{T}{liT}
 % |\liT{16}{2}|: \liT{16}{2}
 % |\liT{}{2}|: \liT{}{2}
 %    \begin{macrocode}
@@ -5885,7 +5849,7 @@ von Textschnipseln, die das Projekt beschreiben]
 % \subsection{minimierung.sty}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesPackage{bschlangaul-mathe}[2021/03/13 Für den
+\ProvidesPackage{bschlangaul-minimierung}[2021/03/13 Für den
 Minimierungsalgorithmus von einem NEA zu einem DEA]
 %    \end{macrocode}
 
@@ -6002,7 +5966,7 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 
 % \begin{macro}{\liLeereZelle}
 % |\liLeereZelle|: \liLeereZelle
-% \liLet{l}{liLeereZelle}
+% \bMakroFaulenzer{l}{liLeereZelle}
 %    \begin{macrocode}
 \def\liLeereZelle{$\emptyset$}
 %    \end{macrocode}
@@ -6051,7 +6015,7 @@ Minimierungsalgorithmus von einem NEA zu einem DEA]
 % \end{macro}
 
 % \begin{macro}{\liMinimierungErklaerung}
-% \liLet{erklaerung}{liMinimierungErklaerung}
+% \bMakroFaulenzer{erklaerung}{liMinimierungErklaerung}
 % \liMinimierungErklaerung
 %    \begin{macrocode}
 \def\liMinimierungErklaerung{
@@ -6095,7 +6059,7 @@ Attributhülle]
 }
 %    \end{macrocode}
 
-% \liLets{
+% \bFaulenzer{
 %   ah = liAttributHuelle,
 %   ahL = liLinksReduktion,
 %   ahl = liLinksReduktionInline,
@@ -6114,7 +6078,7 @@ Attributhülle]
 %    \end{macrocode}
 
 % \begin{macro}{\liAttributHuelle}
-% \liLet{ah}{liAttributHuelle}
+% \bMakroFaulenzer{ah}{liAttributHuelle}
 % |\ah{F, \m{A, B}}| \liAttributHuelle{F, \liAttributMenge{A, B}}
 % Regulärer Ausdruck zum Konvertieren
 % |AttrHülle\((.*)\)|
@@ -6132,7 +6096,7 @@ Attributhülle]
 % \end{macro}
 
 % \begin{macro}{\liAttributMenge}
-% \liLet{m}{liAttributMenge}
+% \bMakroFaulenzer{m}{liAttributMenge}
 %    \begin{macrocode}
 \def\liAttributMenge#1{\{ \textit{#1} \}}
 %    \end{macrocode}
@@ -6154,7 +6118,7 @@ Attributhülle]
 % \begin{macro}{\liLinksReduktion}
 % Nur innerhalb von |liAHuelle| zu verwenden
 % bzw. |multline|
-% \liLet{ahL}{liLinksReduktion}
+% \bMakroFaulenzer{ahL}{liLinksReduktion}
 % |\ahL{ursprüngliche linke Attributmenge}{ohne dieses Attribut}{Ergebnis}|
 %    \begin{macrocode}
 \def\liLinksReduktion#1#2#3{
@@ -6170,7 +6134,7 @@ Attributhülle]
 % \end{macro}
 
 % \begin{macro}{\liLinksReduktionInline}
-% \liLet{ahL}{liLinksReduktionInline}
+% \bMakroFaulenzer{ahL}{liLinksReduktionInline}
 % |\ahl{ursprüngliche linke Attributmenge}{ohne dieses Attribut}{Ergebnis}|
 % |\ahl{A, E}{E}{A, E, F, B, \textbf{D}}|: \liLinksReduktionInline{A, E}{E}{A, E, F, B, \textbf{D}}
 %    \begin{macrocode}
@@ -6186,7 +6150,7 @@ Attributhülle]
 % \end{macro}
 
 % \begin{macro}{\liLinksReduktionInline}
-% \liLet{ahr}{liLinksReduktionInline}
+% \bMakroFaulenzer{ahr}{liLinksReduktionInline}
 % |\ahr{gelöschte FA}{neue FA ohne rechts Attribut}{gegebene Attribute}{Ergebnis}|
 %    \begin{macrocode}
 \def\liRechtsReduktionInline#1#2#3#4{%
@@ -6209,7 +6173,7 @@ Attributhülle]
 % \end{macro}
 
 % \begin{macro}{\liFunktionaleAbhaengigkeit}
-% \liLet{fa}{liFunktionaleAbhaengigkeit}
+% \bMakroFaulenzer{fa}{liFunktionaleAbhaengigkeit}
 % |\fa{A, B -> C, D}|: \liFunktionaleAbhaengigkeit{A, B -> C, D}
 % Regulärer Ausdruck zum Konvertieren: |\$(.*?) \\rightarrow (.*?)\$|
 % |\\fa{$1 -> $2}|
@@ -6238,7 +6202,7 @@ Attributhülle]
 %   P -> PN;
 % }
 % \end{liBeispiel}
-% \liLet{FA}{liFunktionaleAbhaengigkeiten}
+% \bMakroFaulenzer{FA}{liFunktionaleAbhaengigkeiten}
 % Regulärer Ausdruck zum Konvertieren:
 % |\\item \$(.*) \\rightarrow (.*)\$|
 % |\$(.*) \\rightarrow (.*)\$|
@@ -6259,7 +6223,7 @@ Attributhülle]
 % \end{macro}
 
 % \begin{macro}{\liRelation}
-% \liLet{r}{liRelation}
+% \bMakroFaulenzer{r}{liRelation}
 % |\r[R3]{\u{A}, B, C}|: \liRelation[R3]{\underline{A}, B, C}
 % Regulärer Ausdruck zum Konvertieren:
 % |\$(R.*)\((.*)\)\$|
@@ -6283,7 +6247,7 @@ Attributhülle]
 \ProvidesPackage{bschlangaul-o-notation}[2021/09/08]
 %    \end{macrocode}
 
-% \liLets{
+% \bFaulenzer{
 %   O = liONotationO,
 % }
 
@@ -6359,7 +6323,7 @@ Attributhülle]
 \ProvidesPackage{bschlangaul-petri}[2020/12/03]
 %    \end{macrocode}
 
-% \liLets{
+% \bFaulenzer{
 %   t = liPetriTransitionsName,
 %   tp = liPetriTransPfeile,
 %   k = liPetriErreichKnotenDrei,
@@ -6462,7 +6426,7 @@ Attributhülle]
 %    \end{macrocode}
 
 % \begin{macro}{\liPetriTransitionsName}
-% \liLet{t}{liPetriTransitionsName}
+% \bMakroFaulenzer{t}{liPetriTransitionsName}
 % |\$t_(\d+)\$| |\t$1|
 %    \begin{macrocode}
 \def\liPetriTransitionsNameOhneMathe#1{t\sb{#1}}
@@ -6477,7 +6441,7 @@ Attributhülle]
 % \end{macro}
 
 % \begin{macro}{\liPetriErreichTransition}
-% \liLet{t}{liPetriErreichTransition}
+% \bMakroFaulenzer{t}{liPetriErreichTransition}
 %    \begin{macrocode}
 \NewDocumentCommand{ \liPetriErreichTransition } { m m m O{} O{} } {
   \draw[->] (#1) edge[#4] node[pos=0.5,auto,sloped,#5]{$t\sb{#3}$} (#2);
@@ -6486,14 +6450,14 @@ Attributhülle]
 % \end{macro}
 
 % \begin{macro}{\liPetriErreichKnotenDrei}
-% \liLet{k}{liPetriErreichKnotenDrei}
+% \bMakroFaulenzer{k}{liPetriErreichKnotenDrei}
 %    \begin{macrocode}
 \def\liPetriErreichKnotenDrei#1#2#3{(#1,#2,#3)}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\liPetriTransPfeile}
-% \liLet{tp}{liPetriTransPfeile}
+% \bMakroFaulenzer{tp}{liPetriTransPfeile}
 %    \begin{macrocode}
 \def\liPetriTransPfeile#1{$\rightarrow \hspace{0.4cm} \liPetriTransitionsName{#1} \hspace{0.35cm} \rightarrow$}
 %    \end{macrocode}
@@ -6978,7 +6942,7 @@ Datenbanken.]
 \RequirePackage{soul}
 %    \end{macrocode}
 
-% \liLets{
+% \bFaulenzer{
 %   a = liAttribut,
 %   f = liFremd,
 %   p = liPrimaer,
@@ -7021,7 +6985,7 @@ Datenbanken.]
 % \end{environment}
 
 % \begin{macro}{\liRelationMenge}
-% \liLet{r}{liRelationMenge}
+% \bMakroFaulenzer{r}{liRelationMenge}
 % |\liRelationMenge{name}{attribut, attribut}|: Umhüllen der Attribute
 % mit geschweiften und dann eckigen Klammern.
 %    \begin{macrocode}
@@ -7034,7 +6998,7 @@ Datenbanken.]
 % \end{macro}
 
 % \begin{macro}{\liAttribut}
-% \liLet{a}{liAttribut}
+% \bMakroFaulenzer{a}{liAttribut}
 % |\liAttribut{text}|: Gleiche Schrift wie Umgebung |liRmodell|
 %    \begin{macrocode}
 \def\liAttribut#1{{\li@Rmodell@Schrift#1}}
@@ -7294,7 +7258,7 @@ Paket struktex zum Setzen von Struktogrammen]
 % installiert sein. Außerdem müssen die TeX-Dateien mit der
 % Kommandozeilen-Option |--shell-escape| kompiliert werden.
 
-% \liLets{
+% \bFaulenzer{
 %   j = liJavaCode,
 %   s = liSqlCode,
 % }
@@ -7346,7 +7310,7 @@ Paket struktex zum Setzen von Struktogrammen]
 % \begin{macro}{\liJavaCode}
 % Im Zeilenfluss einen kurzen Java-Code-Ausschnitt setzen. Es werden automatische
 % Zeilenumbrüche gemacht.
-% \liLet{j}{liJavaCode}
+% \bMakroFaulenzer{j}{liJavaCode}
 %    \begin{macrocode}
 \def\liJavaCode#1{
   \,
@@ -7482,7 +7446,7 @@ Paket struktex zum Setzen von Struktogrammen]
 
 % \begin{macro}{\liSqlCode}
 % |\liHaskellCode{sql}|: Zum Setzen von SQL-Code.
-% \liLet{s}{liSqlCode}
+% \bMakroFaulenzer{s}{liSqlCode}
 %    \begin{macrocode}
 \def\liSqlCode#1{\mintinline{sql}|#1|}
 %    \end{macrocode}
@@ -7522,7 +7486,7 @@ Relation in die 3. Normalform]
 \ExplSyntaxOn
 %    \end{macrocode}
 
-% \liLets{
+% \bFaulenzer{
 %   schrittE = liSyntheseUeberErklaerung,
 % }
 
@@ -7611,7 +7575,7 @@ Relation in die 3. Normalform]
 % \end{liBeispiel}
 
 % \begin{macro}{\liSyntheseUeberschrift}
-% \liLet{schritt}{liSyntheseUeberschrift}
+% \bMakroFaulenzer{schritt}{liSyntheseUeberschrift}
 %    \begin{macrocode}
 \def\liSyntheseUeberschrift#1{
   {
@@ -7633,7 +7597,7 @@ Relation in die 3. Normalform]
 % \end{macro}
 
 % \begin{macro}{\liSyntheseErklaerung}
-% \liLet{erklaerung}{liSyntheseErklaerung}
+% \bMakroFaulenzer{erklaerung}{liSyntheseErklaerung}
 %    \begin{macrocode}
 \def\li@synthese@erklaerung@texte#1{
   \str_case:nn {#1} {
@@ -7702,7 +7666,7 @@ Relation in die 3. Normalform]
 % \end{macro}
 
 % \begin{macro}{\liSyntheseUeberErklaerung}
-% \liLet{schrittE}{liSyntheseUeberErklaerung}
+% \bMakroFaulenzer{schrittE}{liSyntheseUeberErklaerung}
 %    \begin{macrocode}
 \def\liSyntheseUeberErklaerung#1{
   \liSyntheseUeberschrift{#1}\par
@@ -7720,6 +7684,84 @@ Relation in die 3. Normalform]
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{bschlangaul-tabelle}[2020/12/05 Lädt das Paket tabluarx]
 \RequirePackage{tabularx}
+
+%    \end{macrocode}
+% \subsection{tex-dokumentation.sty}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{bschlangaul-tex-dokumentation}[2021/09/12 Hilfsmakros
+für die DTX-Dokumentation]
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\ExplSyntaxOn
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\RequirePackage{mdframed}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\newenvironment{liBeispiel}
+{
+  \begin{mdframed}
+}
+{
+  \end{mdframed}
+}
+%    \end{macrocode}
+
+% \begin{macro}{\bMakroFaulenzer}
+% \cmd{\bMakroFaulenzer}\marg{Abkürzung}\marg{Makroname ohne Schrägstrich}
+%    \begin{macrocode}
+\cs_new:Npn \let_abkuerzung:nn #1 #2
+{
+  \texttt
+  {
+    \textbackslash let
+    \textbackslash#1
+    =
+    \textbackslash#2
+  }
+}
+\def\bMakroFaulenzer #1 #2
+{
+  \par
+  \noindent
+  \textbf{Makro-Faulenzer:~}
+  \let_abkuerzung:nn {#1}{#2}
+  \par
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\prop_new:N \l_faulenzer_prop
+%    \end{macrocode}
+
+% \begin{macro}{\bFaulenzer}
+%    \begin{macrocode}
+\def\bFaulenzer#1
+{
+  \prop_clear:N \l_faulenzer_prop
+  \prop_put_from_keyval:Nn \l_faulenzer_prop {#1}
+  \subsubsection{Faulenzer}
+  \prop_map_inline:Nn \l_faulenzer_prop
+  {
+    \noindent
+    \let_abkuerzung:nn {##1} {##2}
+    \par
+  }
+  \bigskip
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{typographie.sty}
@@ -7951,7 +7993,7 @@ Hilfsmakros zum Setzen der Vollständigen Induktion, vor allem die
 Überschriften für die einzelnen Schritte]
 %    \end{macrocode}
 
-% \liLets{
+% \bFaulenzer{
 %   m = liInduktionMarkierung,
 %   e = liInduktionErklaerung,
 % }
@@ -8009,7 +8051,7 @@ Hilfsmakros zum Setzen der Vollständigen Induktion, vor allem die
 
 % \begin{macro}{\liInduktionMarkierung}
 % Hilfsmakro um Teile von mathematischen Formeln markieren zu können.
-% \liLet{m}{liInduktionMarkierung}
+% \bMakroFaulenzer{m}{liInduktionMarkierung}
 %    \begin{macrocode}
 \def\liInduktionMarkierung#1{\textcolor{violet}{#1}}
 %    \end{macrocode}
@@ -8018,7 +8060,7 @@ Hilfsmakros zum Setzen der Vollständigen Induktion, vor allem die
 % \begin{macro}{\liInduktionErklaerung}
 % Gedacht für die rechte Spalte in der align-Umgebung. Das text-Makro
 % ist dann nicht mehr nötig.
-% \liLet{e}{liInduktionErklaerung}
+% \bMakroFaulenzer{e}{liInduktionErklaerung}
 %    \begin{macrocode}
 \def\liInduktionErklaerung#1{\scriptsize\text{#1}}
 %    \end{macrocode}
@@ -8100,7 +8142,7 @@ Hilfsmakros zum Setzen der Vollständigen Induktion, vor allem die
 \ProvidesPackage{bschlangaul-wpkalkuel}[2020/06/13]
 %    \end{macrocode}
 
-% \liLets{
+% \bFaulenzer{
 %   wp = liWpKalkuel,
 %   equivalent = liWpEquivalent,
 %   erklaerung = liWpErklaerung,
@@ -8115,7 +8157,7 @@ Hilfsmakros zum Setzen der Vollständigen Induktion, vor allem die
 %    \end{macrocode}
 
 % \begin{macro}{\liWpKalkuel}
-% \liLet{wp}{liWpKalkuel}
+% \bMakroFaulenzer{wp}{liWpKalkuel}
 %    \begin{macrocode}
 \def\liWpKalkuelOhneMathe#1#2{
   \text{wp}(\texttt{\scriptsize"#1"},\thinspace #2)
@@ -8151,7 +8193,7 @@ Hilfsmakros zum Setzen der Vollständigen Induktion, vor allem die
 % \end{macro}
 
 % \begin{macro}{\liWpEquivalent}
-% \liLet{equivalent}{liWpEquivalent}
+% \bMakroFaulenzer{equivalent}{liWpEquivalent}
 %    \begin{macrocode}
 \def\liWpEquivalent#1{
   \MatheEnv{$\equiv$\hspace{1em}$#1$}
@@ -8160,7 +8202,7 @@ Hilfsmakros zum Setzen der Vollständigen Induktion, vor allem die
 % \end{macro}
 
 % \begin{macro}{\liWpErklaerung}
-% \liLet{erklaerung}{liWpErklaerung}
+% \bMakroFaulenzer{erklaerung}{liWpErklaerung}
 %    \begin{macrocode}
 \newlength{\@Skip@Erklaerung@Reset}
 \def\liWpErklaerung#1{
