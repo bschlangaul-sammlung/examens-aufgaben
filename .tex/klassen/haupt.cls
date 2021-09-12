@@ -51,8 +51,21 @@ Dokuments, das alles zusammenfasst.]
   {
     Alle~Aufgaben
   }
+
+  \tableofcontents
+  \clearpage
 }
 %    \end{macrocode}
+
+% \begin{macro}{\bAufgabenMetadaten}
+% Das Metadaten-Makro überschreiben
+%    \begin{macrocode}
+\def\bAufgabenMetadaten#1{
+  \bMetaSetze{#1}
+  \subsection{\gib_aufgaben_pfad_lang_sicher:}
+}
+%    \end{macrocode}
+% \end{macro}
 
 %    \begin{macrocode}
 \ExplSyntaxOff
