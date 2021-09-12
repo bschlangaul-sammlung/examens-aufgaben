@@ -19,7 +19,7 @@
 % \end{tikzpicture}
 % \end{verbatim}
 
-% \begin{liBeispiel}
+% \begin{bBeispiel}
 % \begin{tikzpicture}[li automat]
 % \node[state,initial,accepting] (0) {$z_0$};
 % \node[state,right of=0] (1) {$z_1$};
@@ -28,7 +28,7 @@
 % \path (0) edge[loop,above] node{0} (0);
 % \path (1) edge[loop,above] node{0} (1);
 % \end{tikzpicture}
-% \end{liBeispiel}
+% \end{bBeispiel}
 
 %    \begin{macrocode}
 \RequirePackage{tikz}
@@ -134,7 +134,7 @@
 % \end{tikzpicture}
 % \end{verbatim}
 
-% \begin{liBeispiel}
+% \begin{bBeispiel}
 % \begin{tikzpicture}[li kellerautomat,node distance=5cm]
 % \node[state,initial] (0) {$z_0$};
 % \node[state,right of=0,accepting] (1) {$z_1$};
@@ -156,7 +156,7 @@
 %   0, KELLERBODEN, KELLERBODEN;
 % }
 % \end{tikzpicture}
-% \end{liBeispiel}
+% \end{bBeispiel}
 
 % \begin{macro}{\bKellerAutomat}
 % \cmd{\bKellerAutomat}\oarg{automaten-name}
@@ -171,14 +171,14 @@
 % }
 % \end{verbatim}
 %
-% \begin{liBeispiel}
+% \begin{bBeispiel}
 % \bKellerAutomat{
 %   zustaende={z_0, z_1, z_2},
 %   alphabet={a, b, c},
 %   kelleralphabet={\#, A},
 %   ende={z_2},
 % }
-% \end{liBeispiel}
+% \end{bBeispiel}
 %
 %    \begin{macrocode}
 \ExplSyntaxOn
@@ -222,9 +222,9 @@
 %
 % |\bKellerUebergang{a, KELLERBODEN, A; b KELLERBODEN, EPSILON}|
 %
-% \begin{liBeispiel}
+% \begin{bBeispiel}
 %   \bKellerUebergang{a, KELLERBODEN, A; b, KELLERBODEN, EPSILON}
-% \end{liBeispiel}
+% \end{bBeispiel}
 %
 % Regulärer Ausdruck zum Konvertieren:
 % |\((.*), (.*), (.*)\)|
@@ -273,9 +273,9 @@
 %    \end{macrocode}
 
 % \begin{macro}{\bTuringLeerzeichen}
-% \begin{liBeispiel}
+% \begin{bBeispiel}
 % \bTuringLeerzeichen
-% \end{liBeispiel}
+% \end{bBeispiel}
 %    \begin{macrocode}
 \def\bTuringLeerzeichen{\Box}
 %    \end{macrocode}
@@ -294,14 +294,14 @@
 % }
 % \end{verbatim}
 %
-% \begin{liBeispiel}
+% \begin{bBeispiel}
 % \bTuringMaschine{
 %   zustaende={z_0, z_1, z_2},
 %   alphabet={a, b, c},
 %   bandalphabet={\bTuringLeerzeichen, A},
 %   ende={z_2},
 % }
-% \end{liBeispiel}
+% \end{bBeispiel}
 %
 %    \begin{macrocode}
 \ExplSyntaxOn

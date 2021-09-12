@@ -15,7 +15,7 @@ Gegeben sei folgende Methode und ihr Kontrollflussgraph:
 \begin{multicols}{2}
 \bJavaDatei[firstline=4,lastline=16]{aufgaben/sosy/ab_7/Aufgabe3}
 
-\begin{liKontrollflussgraph}[xscale=1,yscale=-0.8]
+\begin{bKontrollflussgraph}[xscale=1,yscale=-0.8]
 \node at (0,0) (S) {S};
 \node at (0,1) (1) {1};
 \node at (0,2) (2) {2};
@@ -36,7 +36,7 @@ Gegeben sei folgende Methode und ihr Kontrollflussgraph:
 \path (6) -- (7);
 \path (7) -- (-2,6) -- (-2,2) -- (2);
 \path[falsch] (2) -- (2,2) -- (2,7) -- (E);
-\end{liKontrollflussgraph}
+\end{bKontrollflussgraph}
 \end{multicols}
 
 \begin{enumerate}
@@ -54,7 +54,7 @@ gibt, unter der dieser Pfad durchlaufen werden kann.
 Damit dieser Pfad durchlaufen werden könnte, müsste die Eingabe $a$
 gleichzeitig $2$ und ungerade sein.
 
-\begin{liKontrollflussgraph}[xscale=1,yscale=-1]
+\begin{bKontrollflussgraph}[xscale=1,yscale=-1]
 \node at (0,0) (S) {S};
 
 \node[pin={
@@ -97,7 +97,7 @@ gleichzeitig $2$ und ungerade sein.
 \path (6) -- (7);
 \path (7) -- (-2,6) -- (-2,2) -- (2);
 \path[falsch] (2) -- (2,2) -- (2,7) \bBedingung{right}{x <= 1} -- (E) ;
-\end{liKontrollflussgraph}
+\end{bKontrollflussgraph}
 \end{bAntwort}
 
 %%

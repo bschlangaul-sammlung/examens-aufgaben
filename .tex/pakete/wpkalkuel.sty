@@ -1,5 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesPackage{bschlangaul-wpkalkuel}[2020/06/13]
+\ProvidesPackage{bschlangaul-wpkalkuel}[2020/06/13 Hilfsmakros zum
+Setzen des WP-Kalküls]
 %    \end{macrocode}
 
 % \bFaulenzer{
@@ -32,9 +33,8 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\MatheEnv}
 %    \begin{macrocode}
-\def\MatheEnv#1{
+\cs_new:Npn \mathe_umgebung:n #1{
   \medskip
 
   \hspace{1em}#1
@@ -42,12 +42,11 @@
   \medskip
 }
 %    \end{macrocode}
-% \end{macro}
 
-% \begin{macro}{\Mathe}
+% \begin{macro}{\bWpPseudoMatheUmgebung}
 %    \begin{macrocode}
-\def\Mathe#1{
-  \MatheEnv{$#1$}
+\def\bWpPseudoMatheUmgebung#1{
+  \mathe_umgebung:n{$#1$}
 }
 %    \end{macrocode}
 % \end{macro}
@@ -55,8 +54,13 @@
 % \begin{macro}{\bWpEquivalent}
 % \bMakroFaulenzer{equivalent}{liWpEquivalent}
 %    \begin{macrocode}
-\def\bWpEquivalent#1{
-  \MatheEnv{$\equiv$\hspace{1em}$#1$}
+\def\bWpEquivalent#1
+{
+  \mathe_umgebung:n {
+    $\equiv$
+    \hspace{1em}
+    $#1$
+  }
 }
 %    \end{macrocode}
 % \end{macro}
@@ -65,7 +69,8 @@
 % \bMakroFaulenzer{erklaerung}{liWpErklaerung}
 %    \begin{macrocode}
 \newlength{\@Skip@Erklaerung@Reset}
-\def\bWpErklaerung#1{
+\def\bWpErklaerung#1
+{
   \setlength{\@Skip@Erklaerung@Reset}{\leftskip}
   \setlength{\leftskip}{0.5cm}
 

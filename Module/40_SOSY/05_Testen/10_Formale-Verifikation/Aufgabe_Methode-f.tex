@@ -15,6 +15,24 @@
 \let\equivalent=\bWpEquivalent
 \let\erklaerung=\bWpErklaerung
 
+\def\code#1{„\texttt{#1}“}
+\def\FarbeA#1{\textcolor{orange}{#1}}
+\def\FarbeB#1{\textcolor{red}{#1}}
+\def\FarbeC#1{\textcolor{blue}{#1}}
+
+\def\NebenRechnung#1{\medskip\bigskip\par\textbf{Nebenrechnung: #1}\par\medskip}
+
+\def\AnweisungI{x=2*x+1+x*x;}
+\def\AnweisungII{y+=7;}
+\def\AnweisungIII{y=2*y;}
+\def\AnweisungIV{y-=8;}
+\def\AnweisungV{x*=2;}
+
+\def\A{\FarbeA{\AnweisungI\AnweisungII}}
+\def\B{\FarbeB{\AnweisungIII}}
+\def\C{\FarbeC{\AnweisungIV\AnweisungV}}
+\def\Q{(x \geq 8) \land (y \% 2 = 1)}
+
 Gegeben sei folgendes Programm:
 \index{wp-Kalkül}
 \text{wp}-Kalkül\footcite{sosy:ab:8}
@@ -41,24 +59,6 @@ zutrifft.
 
 \begin{bAntwort}
 \setlength{\parindent}{0pt}
-
-\def\code#1{„\texttt{#1}“}
-\def\FarbeA#1{\textcolor{orange}{#1}}
-\def\FarbeB#1{\textcolor{red}{#1}}
-\def\FarbeC#1{\textcolor{blue}{#1}}
-
-\def\NebenRechnung#1{\medskip\bigskip\par\textbf{Nebenrechnung: #1}\par\medskip}
-
-\def\AnweisungI{x=2*x+1+x*x;}
-\def\AnweisungII{y+=7;}
-\def\AnweisungIII{y=2*y;}
-\def\AnweisungIV{y-=8;}
-\def\AnweisungV{x*=2;}
-
-\def\A{\FarbeA{\AnweisungI\AnweisungII}}
-\def\B{\FarbeB{\AnweisungIII}}
-\def\C{\FarbeC{\AnweisungIV\AnweisungV}}
-\def\Q{(x \geq 8) \land (y \% 2 = 1)}
 
 Mit dem Distributivgesetz der Konjugation gilt: \bigskip
 
@@ -97,7 +97,7 @@ $\wp{\A\C}{\Q}$
 
 \NebenRechnung{$\wp{A;}{b}$}
 
-\Mathe{
+bWpPseudoMatheUmgebung{
   \wp{\A}{x > 196}
 }
 
@@ -141,7 +141,7 @@ eingesetzt.}
 
 \NebenRechnung{$\wp{A;B;}{Q}$}
 
-\Mathe{
+bWpPseudoMatheUmgebung{
   \wp{\A\B}{\Q}
 }
 
@@ -180,7 +180,7 @@ Zahl immer 0 ist und nicht 1.}
 
 \NebenRechnung{$\wp{A;}{\neg b}$}
 
-\Mathe{
+bWpPseudoMatheUmgebung{
   \wp{\A}{x \leq 196}
 }
 
@@ -196,7 +196,7 @@ Zahl immer 0 ist und nicht 1.}
 
 \NebenRechnung{$\wp{A;C;}{Q}$}
 
-\Mathe{
+bWpPseudoMatheUmgebung{
   \wp{\A\C}{\Q}
 }
 
@@ -329,7 +329,7 @@ Betragsfunktion hinzufügen (Die Betragsfunktion ist festgelegt als
   (1 \leq x \leq 13 \lor -13 \leq x \leq -1) \land y\%2 = 0
 }
 
-\Mathe{=: P}
+bWpPseudoMatheUmgebung{=: P}
 
 \end{bAntwort}
 \end{document}
