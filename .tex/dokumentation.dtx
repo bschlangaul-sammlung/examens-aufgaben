@@ -7195,7 +7195,7 @@ Paket struktex zum Setzen von Struktogrammen]
 Syntaxbäumen mit Hilfe des Pakets tikz-qtree]
 \RequirePackage{tikz-qtree}
 
-\tikzset{li parsetree/.style={
+\tikzset{b syntaxbaum/.style={
     every internal node/.style={
       draw,circle
     },
@@ -7568,39 +7568,6 @@ formatierung.sty definiert.]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\bTypoUeberschrift}
-%    \begin{macrocode}
-\def\bTypoUeberschrift#1{
-  {
-    \bfseries\rmfamily
-    #1
-  }
-}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\bTypoUeberGross}
-%    \begin{macrocode}
-\def\bTypoUeberGross#1{
-  {
-    \huge
-    \bTypoUeberschrift{#1}
-  }
-}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\bTypoUeberGross}
-%    \begin{macrocode}
-\def\bTypoUeberGROSS#1{
-  {
-    \Huge
-    \bTypoUeberschrift{#1}
-  }
-}
-%    \end{macrocode}
-% \end{macro}
-
 %    \begin{macrocode}
 \ExplSyntaxOff
 %    \end{macrocode}
@@ -7727,8 +7694,8 @@ Hilfsmakros zum Setzen der Vollständigen Induktion, vor allem die
 %    \end{macrocode}
 
 % \bFaulenzer{
-%   m = liInduktionMarkierung,
-%   e = liInduktionErklaerung,
+%   m = bInduktionMarkierung,
+%   e = bInduktionErklaerung,
 % }
 
 % \begin{verbatim}
@@ -7773,9 +7740,11 @@ Hilfsmakros zum Setzen der Vollständigen Induktion, vor allem die
 
 % Lade häufig benötigte Pakete
 %    \begin{macrocode}
-\RequirePackage{bschlangaul-typographie}
-\RequirePackage{bschlangaul-mathe}
-\RequirePackage{bschlangaul-syntax}
+\bLadePakete{
+  typographie,
+  mathe,
+  syntax
+}
 %    \end{macrocode}
 
 %    \begin{macrocode}
@@ -7786,7 +7755,10 @@ Hilfsmakros zum Setzen der Vollständigen Induktion, vor allem die
 % Hilfsmakro um Teile von mathematischen Formeln markieren zu können.
 % \bMakroFaulenzer{m}{liInduktionMarkierung}
 %    \begin{macrocode}
-\def\bInduktionMarkierung#1{\textcolor{violet}{#1}}
+\def\bInduktionMarkierung#1
+{
+  \textcolor{violet}{#1}
+}
 %    \end{macrocode}
 % \end{macro}
 
@@ -7795,7 +7767,10 @@ Hilfsmakros zum Setzen der Vollständigen Induktion, vor allem die
 % ist dann nicht mehr nötig.
 % \bMakroFaulenzer{e}{liInduktionErklaerung}
 %    \begin{macrocode}
-\def\bInduktionErklaerung#1{\scriptsize\text{#1}}
+\def\bInduktionErklaerung#1
+{
+  \scriptsize\text{#1}
+}
 %    \end{macrocode}
 % \end{macro}
 
