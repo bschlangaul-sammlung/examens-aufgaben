@@ -10,39 +10,39 @@
 
 \chapter{Hashing}
 
-\begin{liQuellen}
+\begin{bQuellen}
 \item \cite[Kapitel 6.3.3 Streutabellen (Hashing), Seite
 188-189]{schneider}
 \item \cite[Seite 22-39]{aud:fs:tafeluebung-10}
 \item \cite[Seite 419-439]{saake}
 \item \cite{wiki:hashtabelle}
-\end{liQuellen}
+\end{bQuellen}
 
 %-----------------------------------------------------------------------
 %
 %-----------------------------------------------------------------------
 
 \section{Grundlagen}
-Das Ziel von Hashing ist einerseits einen \memph{extrem großen
-Schlüsselraum} auf einen vernünftig \memph{kleinen Bereich von ganzen
-Zahlen} abzubilden und andererseits dass \memph{zwei Schlüssel auf die
-selbe Zahl} abgebildet werden, soll möglichst \memph{unwahrscheinlich}
+Das Ziel von Hashing ist einerseits einen \bEmph{extrem großen
+Schlüsselraum} auf einen vernünftig \bEmph{kleinen Bereich von ganzen
+Zahlen} abzubilden und andererseits dass \bEmph{zwei Schlüssel auf die
+selbe Zahl} abgebildet werden, soll möglichst \bEmph{unwahrscheinlich}
 sein.\footnote{Seite 4
 \url{https://moves.rwth-aachen.de/wp-content/uploads/SS15/dsal/lec13.pdf}}
 
-Daten werden in einer \memph{Streu(wert)tabelle} (hash table) abgelegt.
+Daten werden in einer \bEmph{Streu(wert)tabelle} (hash table) abgelegt.
 Aufgrund des wahlfreien Zugriffs eignen sich Felder zum Abspeichern der
 Daten.
 %
-Eine \memph{Hashfunktion} $h$ bildet ein Datenelement auf einen
-\memph{Hashwert} ab. Das Datenelement benötigt dazu einen
-\memph{Schlüssel} (key), der das Element eindeutig identifiziert. Der
+Eine \bEmph{Hashfunktion} $h$ bildet ein Datenelement auf einen
+\bEmph{Hashwert} ab. Das Datenelement benötigt dazu einen
+\bEmph{Schlüssel} (key), der das Element eindeutig identifiziert. Der
 Hashwert wird als Index in dem Feld verwendet. Das Datenelement wird
-im entsprechenden \memph{Bucket} der Tabelle gespeichert.
+im entsprechenden \bEmph{Bucket} der Tabelle gespeichert.
 %
-Bei der \memph{Suche} nach einem Element mit \memph{bekanntem Schlüssel}
+Bei der \bEmph{Suche} nach einem Element mit \bEmph{bekanntem Schlüssel}
 wird der Index mittels der Hashfunktion bestimmt. Dies geschieht mit
-\memph{konstantem Aufwand}.
+\bEmph{konstantem Aufwand}.
 %
 Der Aufwand des Nachschlagens an entsprechender Stelle ist abhängig von
 der \emph{Organisationsform}.
@@ -54,16 +54,16 @@ der \emph{Organisationsform}.
 
 \section{Kollisionen}
 
-Da Hashfunktionen im Allgemeinen \memph{nicht eindeutig (injektiv)}
+Da Hashfunktionen im Allgemeinen \bEmph{nicht eindeutig (injektiv)}
 sind, können zwei unterschiedliche Schlüssel zum selben Hash-Wert, also
 zum selben Feld in der Tabelle, führen. Dieses Ereignis wird als
-\memph{Kollision} bezeichnet. In diesem Fall muss die Hashtabelle
+\bEmph{Kollision} bezeichnet. In diesem Fall muss die Hashtabelle
 mehrere Werte in demselben Bucket aufnehmen.
 
 Zur Behandlung von Kollisionen werden kollidierte Daten nach einer
-\memph{Ausweichstrategie in alternativen Feldern} oder in einer
-\memph{Liste} gespeichert. Schlimmstenfalls können Kollisionen zu einer
-\memph{Entartung der Hashtabelle} führen, wenn wenige Hashwerte sehr
+\bEmph{Ausweichstrategie in alternativen Feldern} oder in einer
+\bEmph{Liste} gespeichert. Schlimmstenfalls können Kollisionen zu einer
+\bEmph{Entartung der Hashtabelle} führen, wenn wenige Hashwerte sehr
 vielen Objekten zugewiesen wurden, während andere Hashwerte unbenutzt
 bleiben.\footcite{wiki:hashtabelle}
 
@@ -77,21 +77,21 @@ Kollisionsauflösungsstrategien.
 \subsection{geschlossenes Hashing mit offener Adressierung}
 
 Wenn dabei ein Eintrag an einer schon belegten Stelle in der
-Tabelle abgelegt werden soll, wird stattdessen eine \memph{andere freie
+Tabelle abgelegt werden soll, wird stattdessen eine \bEmph{andere freie
 Stelle genommen}. Häufig werden drei Varianten unterschieden:
 
 \subsubsection{lineares Sondieren}
 
-es wird um ein \memph{konstantes Intervall} verschoben nach einer freien
+es wird um ein \bEmph{konstantes Intervall} verschoben nach einer freien
 Stelle gesucht. Meistens wird die Intervallgröße auf 1 festgelegt.
 
 \subsubsection{quadratisches Sondieren}
 
-Nach jedem erfolglosen Suchschritt wird das \memph{Intervall quadriert}.
+Nach jedem erfolglosen Suchschritt wird das \bEmph{Intervall quadriert}.
 
 \subsubsection{doppeltes Hashen}
 
-eine \memph{weitere Hash-Funktion} liefert das Intervall.
+eine \bEmph{weitere Hash-Funktion} liefert das Intervall.
 
 %%
 %
@@ -100,8 +100,8 @@ eine \memph{weitere Hash-Funktion} liefert das Intervall.
 \subsection{offenes Hashing mit geschlossener Adressierung}
 
 Anstelle der gesuchten Daten enthält die Hashtabelle hier
-\memph{Behälter} (englisch \memph{Buckets}), die alle Daten mit gleichem
-Hash-Wert aufnehmen. Es müssen die \memph{Elemente im Behälter
+\bEmph{Behälter} (englisch \bEmph{Buckets}), die alle Daten mit gleichem
+Hash-Wert aufnehmen. Es müssen die \bEmph{Elemente im Behälter
 durchsucht werden}. Oft wird die Verkettung durch eine lineare Liste pro
 Behälter realisiert.
 \footcite{wiki:hashtabelle}

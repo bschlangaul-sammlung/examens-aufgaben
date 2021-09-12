@@ -20,9 +20,9 @@
 
 \chapter{Testen}
 
-\begin{liQuellen}
+\begin{bQuellen}
 \item \cite[Kapitel 4 „Software-Text“; Seite 157-246]{hoffmann:software}
-\end{liQuellen}
+\end{bQuellen}
 
 \section{Testgetriebene Entwicklung (Test-Driven
 Development)\footcite[Kaptiel 5.7 Seite 150-145]{schatten}}
@@ -40,23 +40,23 @@ Software-Entwicklung als effiziente agile Praxis etabliert\footcite[Seite
 
 \section{Black-Box-Test\footcite[Seite 32]{sosy:fs:5}}
 
-Die Grundlage für das Black-Box Testverfahren sind \memph{Anforderungen
+Die Grundlage für das Black-Box Testverfahren sind \bEmph{Anforderungen
 und Spezifikationen}, für die der innere Aufbau der Komponenten oder des
 Systems (also die konkrete Umsetzung und Implementierung) zum Zeitpunkt
-des Tests \memph{nicht bekannt} sein muss. Die Testobjekte werden daher
-\memph{unabhängig von ihrer Realisierung getestet}. Aufgrund der
+des Tests \bEmph{nicht bekannt} sein muss. Die Testobjekte werden daher
+\bEmph{unabhängig von ihrer Realisierung getestet}. Aufgrund der
 Betrachtung des zu testenden Objekts als Black-Box werden die Testfälle
-von \memph{Daten getrieben} (\memph{Data-Driven}) und beziehen sich auf
+von \bEmph{Daten getrieben} (\bEmph{Data-Driven}) und beziehen sich auf
 Anforderungen und das spezifizierte Verhalten der Testobjekte. Das
 Testobjekt wird mit definierten Eingangsparametern aufgerufen. Die
 Ergebnisse - nach Abarbeitung durch das Testobjekt - werden mit den
 erwarteten Ergebnissen verglichen. Stimmen die tatsächlichen Ergebnisse
 nicht mit den erwarteten Ergebnissen überein, liegt ein Fehler vor. Ziel
-ist es dabei, eine \memph{möglichst hohe Anforderungsüberdeckung} zu
+ist es dabei, eine \bEmph{möglichst hohe Anforderungsüberdeckung} zu
 erreichen, also möglichst alle Anforderungen zu testen. Um die Anzahl
 der Tests bei gleichbleibender Testintensität zu reduzieren, bedient man
-sich Techniken, wie \memph{Äquivalenzklassenzerlegung} und
-\memph{Grenzwertanalyse}. Dabei versucht man, die Menge an Eingabe- und
+sich Techniken, wie \bEmph{Äquivalenzklassenzerlegung} und
+\bEmph{Grenzwertanalyse}. Dabei versucht man, die Menge an Eingabe- und
 Ausgabedaten zu beschränken, um mit minimalem Aufwand möglichst alle
 Testfälle abzudecken.\footcite[Seite 140-141]{schatten}
 
@@ -66,22 +66,22 @@ Testfälle abzudecken.\footcite[Seite 140-141]{schatten}
 
 \subsection{Äquivalenzklassenzerlegung\footcite[Seite 250]{schneider}}
 
-Das \memph{vollständige Testen} einer Komponente oder eines
+Das \bEmph{vollständige Testen} einer Komponente oder eines
 Software-Systems ist in der Regel aufgrund der Vielzahl an
 unterschiedenen Werten, die sowohl Eingangsparameter als auch
 Ausgangsparameter annehmen können, kaum realisierbar und auch meist
 nicht sinnvoll. Um die Anzahl der Testdaten auf ein vernünftiges Minimum
 zu reduzieren, bedient man sich der Äquivalenzklassenzerlegung. Die
 Äquivalenzklassenzerlegung hilft dabei, \emph{Bereiche von
-Eingabewerten} zu identifizieren, die jeweils \memph{dieselben
+Eingabewerten} zu identifizieren, die jeweils \bEmph{dieselben
 Ergebnisse} liefern. Aus diesen Klassen von Eingabewerte wählt man
-jeweils einen \memph{Vertreter (Repräsentanten)} aus, der dann für den
+jeweils einen \bEmph{Vertreter (Repräsentanten)} aus, der dann für den
 konkreten Testfall verwendet wird.
 
 Komplizierter wird die Äquivalenzklassenzerlegung, falls Bedingungen mit
 mehreren Parametern zu testen sind, da sämtliche Kombinationen von
 Parameterklassen getestet werden müssen. Allerdings gilt auch hier
-wieder, dass \memph{pro Äquivalenzklassenkombination nur ein
+wieder, dass \bEmph{pro Äquivalenzklassenkombination nur ein
 Repräsentant} ausgewählt werden muss und die Anzahl der Testfälle auf
 diese Weise beschränkt werden kann.\footcite[Seite 142]{schatten}
 
@@ -91,14 +91,14 @@ diese Weise beschränkt werden kann.\footcite[Seite 142]{schatten}
 
 \subsection{Grenzwertanalyse\footcite[Seite 251]{schneider}}
 
-Einen besonderen Stellenwert nehmen \memph{Bereichsgrenzen von
+Einen besonderen Stellenwert nehmen \bEmph{Bereichsgrenzen von
 Äquivalenzklassen} ein, da diese häufige Ursachen für Fehler sind, die
-beispielsweise durch \memph{Tippfehler} verursacht werden. Statt eines
+beispielsweise durch \bEmph{Tippfehler} verursacht werden. Statt eines
 „\texttt{<=}“ wird ein „\texttt{<}“ geschrieben, was speziell an den
 Systemgrenzen zu einem Fehlverhalten des Systems führt. Diese
 Fehlerquelle kann beispielsweise mit der Grenzwertanalyse erkannt
 werden. Die Kernidee bei der Grenzwertanalyse ist, (a)
-\memph{Grenzbereiche zu identifizieren} und (b) \memph{Testdaten aus dem
+\bEmph{Grenzbereiche zu identifizieren} und (b) \bEmph{Testdaten aus dem
 nahen Umfeld} dieser Bereichsgrenzen auszuwählen. Dabei empfiehlt es
 sich, jeweils einen Wert aus dem Grenzbereich der einen und der anderen
 Klasse auszuwählen. Optional kann natürlich auch der exakte Grenzwert in
@@ -112,10 +112,10 @@ ohnehin einer der beiden Klassen zugeordnet werden kann.
 
 \section{White-Box-Testtechniken\footcite[Seite 199-246]{hoffmann:software}}
 
-\begin{liQuellen}
+\begin{bQuellen}
 \item \cite{wiki:white-box-test}
 \item \cite[Seite 199-246]{hoffmann:software}
-\end{liQuellen}
+\end{bQuellen}
 
 Bei White-Box-Tests ist der Quellcode bekannt und wird zum Testen
 benutzt.\footcite[Seite 32]{sosy:fs:5}
@@ -126,10 +126,10 @@ benutzt.\footcite[Seite 32]{sosy:fs:5}
 
 \subsection{Kontrollflussorientiertes Testen\footcite[Seite 34]{sosy:fs:5}}
 
-\begin{liQuellen}
+\begin{bQuellen}
 \item \cite{wiki:kontrollfluss-test}
 \item \cite[Kapitel 8.6.3 „Methoden zur Testfallermittlung“, Seite 251-252]{schneider}
-\end{liQuellen}
+\end{bQuellen}
 
 Dynamische White-Box-Tests, die sich am Kontrollflussgraphen des
 Programms orientieren.
@@ -147,33 +147,33 @@ Programms orientieren.
 
 \subsection{Kontrollflussgraph}
 
-Ein Kontrollflussgraph (englisch: \memph{control-flow graph} (CFG))
-bezeichnet einen \memph{gerichteten Graphen} der dazu dient, den
+Ein Kontrollflussgraph (englisch: \bEmph{control-flow graph} (CFG))
+bezeichnet einen \bEmph{gerichteten Graphen} der dazu dient, den
 Kontrollfluss eines Computerprogramms zu beschreiben. Sie werden unter
 anderem zur Programmoptimierung
 eingesetzt.\footcite{wiki:kontrollflussgraph}
 
-Jeder Graph enthält genau \memph{einen Startknoten} und \memph{einen
-Endknoten}. \memph{Verschiedenen Aussprungspunkte} (\zB mehrere
-return-Anweisungen) werden in einem neuen, \memph{zusätzlich
+Jeder Graph enthält genau \bEmph{einen Startknoten} und \bEmph{einen
+Endknoten}. \bEmph{Verschiedenen Aussprungspunkte} (\zB mehrere
+return-Anweisungen) werden in einem neuen, \bEmph{zusätzlich
 eingeführten Knoten} zusammengeführt.\footcite[Seite
 203]{hoffmann:software}
 
-Der \memph{kantenmarkierter} Kontrollﬂussgraphen ist ein Graph, indem
-die \memph{Anweisungen den Knoten} und die
-\memph{Verzweigungsbedingungen den Kanten} zugeordnet werden. Die
+Der \bEmph{kantenmarkierter} Kontrollﬂussgraphen ist ein Graph, indem
+die \bEmph{Anweisungen den Knoten} und die
+\bEmph{Verzweigungsbedingungen den Kanten} zugeordnet werden. Die
 meisten White-Box-Tests basieren auf dieser Art der
 Kontrollﬂussmodellierung.\footcite[Seite 203]{hoffmann:software}
 
-\memph{Expandierte Kontrollﬂussgraphen} enthalten für jeden Befehl einen
+\bEmph{Expandierte Kontrollﬂussgraphen} enthalten für jeden Befehl einen
 separaten Knoten.\footcite[Seite 204]{hoffmann:software}
 
-\memph{Kollabierte Kontrollﬂussgraphen} zeichnen sich dadurch aus, dass
+\bEmph{Kollabierte Kontrollﬂussgraphen} zeichnen sich dadurch aus, dass
 verzweigungsfreie Befehlsblöcke vollständig in einem einzigen Knoten
 zusammengefasst werden.\footcite[Seite 204]{hoffmann:software}
 
 Der Kontrollflussgraph wird in manchen Aufgaben auch
-\memph{Ablaufdiagramm} genannt. Gestrichelte Kanten können
+\bEmph{Ablaufdiagramm} genannt. Gestrichelte Kanten können
 eingezeichnet werden, um einen \bJavaCode{false}-Zweig von einem
 \bJavaCode{true}-Zweig besser unterscheiden zu können. Oftmals sind die
 Knoten mit dem Präfix „n“ (für node) benannt. \emph{S} steht für
@@ -230,11 +230,11 @@ Schleifenkonstrukte\footcite[Seite 205]{hoffmann:software}}
 
 \subsubsection{$C_0$-Test: Anweisungsüberdeckung (Statement Coverage)\footcite[Seite 36]{sosy:fs:5}}
 
-Anweisungsüberdeckungstests, auch $C_0$-Test genannt, testen \memph{jede
+Anweisungsüberdeckungstests, auch $C_0$-Test genannt, testen \bEmph{jede
 Anweisung mindestens ein Mal}. Wurde jede Anweisung in einem Programm
-mindestens einmal ausgeführt, spricht man von \memph{vollständiger
+mindestens einmal ausgeführt, spricht man von \bEmph{vollständiger
 Anweisungsüberdeckung}. Wurde vollständige Anweisungsüberdeckung
-erreicht, dann steht fest, dass \memph{kein toter Code} (Anweisungen,
+erreicht, dann steht fest, dass \bEmph{kein toter Code} (Anweisungen,
 die niemals durchlaufen werden) im Programm existiert.
 \footcite{wiki:kontrollfluss-test}
 
@@ -250,16 +250,16 @@ die niemals durchlaufen werden) im Programm existiert.
 \subsubsection{$C_1$-Test: Zweigüberdeckung (Branch Coverage)\footcite[Seite 37]{sosy:fs:5}}
 
 Die Zweigüberdeckung (auch Kantenüberdeckung) fordert, dass jede
-\memph{Kante} des Kontrollflussgraphen von mindestens einem Testfall
+\bEmph{Kante} des Kontrollflussgraphen von mindestens einem Testfall
 durchlaufen werden muss. Um das Kriterium zu erfüllen, müssen die
 Testfälle so gewählt werden, dass jede Verzweigungsbedingung mindestens
-\memph{einmal wahr} und mindestens \memph{einmal falsch} wird. Da
+\bEmph{einmal wahr} und mindestens \bEmph{einmal falsch} wird. Da
 hierdurch alle Knoten ebenfalls mindestens einmal besucht werden müssen,
-ist die \memph{Anweisungsüberdeckung} in der Zweigüberdeckung
-\memph{vollständig enthalten}.\footcite[Seite 209]{hoffmann:software}
+ist die \bEmph{Anweisungsüberdeckung} in der Zweigüberdeckung
+\bEmph{vollständig enthalten}.\footcite[Seite 209]{hoffmann:software}
 
 Der Zweigüberdeckungstest wird auch
-\memph{Entscheidungsüberdeckungstest} genannt, da die Hilfsvariable
+\bEmph{Entscheidungsüberdeckungstest} genannt, da die Hilfsvariable
 mindestens einmal mit dem Wert \bJavaCode{true} und \bJavaCode{false}
 durchlaufen werden muss. In diesem Fall muss die While-Schleife
 mindestens zweimal durchlaufen werden.\footcite{wiki:kontrollfluss-test}
@@ -308,8 +308,8 @@ McCabe-Überdeckung, Seite 216-220]{hoffmann:software}
 \subsubsection{$C_2$-Test: Pfadüberdeckung (Path Coverage)\footcite[Seite 39]{sosy:fs:5}}
 
 Die Pfadüberdeckung ist die mit Abstand mächtigste
-White-Box-Prüftechnik, besitzt aufgrund ihrer \memph{immensen
-Komplexität} aber nur eine äußerst \memph{geringe Praxisbedeutung}.
+White-Box-Prüftechnik, besitzt aufgrund ihrer \bEmph{immensen
+Komplexität} aber nur eine äußerst \bEmph{geringe Praxisbedeutung}.
 
 %%
 %
@@ -318,16 +318,16 @@ Komplexität} aber nur eine äußerst \memph{geringe Praxisbedeutung}.
 \paragraph{$C_{2a}$ Vollständige Pfadüberdeckung (Full Path Coverage):}
 
 Das Kriterium der vollständigen Pfadüberdeckung wird erst dann erfüllt,
-wenn für \memph{jeden möglichen Pfad}, der den Eingangsknoten des
+wenn für \bEmph{jeden möglichen Pfad}, der den Eingangsknoten des
 Kontrollflussgraphen mit dem Ausgangsknoten verbindet, ein separater
 Testfall existiert.\footcite[Seite 210]{hoffmann:software}
 
 Um die Limitierungen der vollständigen Pfadüberdeckung zu überwinden,
 wurden in der Vergangenheit mehrere Variationen vorgeschlagen, mit deren
-Hilfe sich die \memph{kombinatorische Explosion} zumindest teilweise
+Hilfe sich die \bEmph{kombinatorische Explosion} zumindest teilweise
 eindämmen lässt. Von Bedeutung sind in diesem Zusammenhang insbesondere
-die \memph{Boundary-Interior-Pfadüberdeckung} und die
-\memph{strukturierte Pfadüberdeckung}.
+die \bEmph{Boundary-Interior-Pfadüberdeckung} und die
+\bEmph{strukturierte Pfadüberdeckung}.
 
 %%
 %
@@ -345,23 +345,23 @@ werden müssen.
 \item[Äußere Pfade]
 
 Die Testfälle durchlaufen das Programm auf Pfaden, die den
-\memph{Schleifenkörper nicht betreten}. Für Schleifen fester Lauflänge
+\bEmph{Schleifenkörper nicht betreten}. Für Schleifen fester Lauflänge
 sowie für While-Schleifen, die erst am Ende des Schleifenkörpers die
 Wiederholungsbedingung auswerten, ist diese Testfallgruppe leer.
 
 \item[Grenzpfade (boundary paths, boundary test)]
 
 Die Testfälle durchlaufen das Programm auf Pfaden, die den
-\memph{Schleifenkörper betreten}, jedoch zu \memph{keiner Wiederholung}
-führen. Innerhalb des Schleifeninneren müssen \memph{alle möglichen
+\bEmph{Schleifenkörper betreten}, jedoch zu \bEmph{keiner Wiederholung}
+führen. Innerhalb des Schleifeninneren müssen \bEmph{alle möglichen
 Pfade getestet} werden. Für Schleifen fester Lauflänge ist diese
 Testfallgruppe leer.
 
 \item[Innere Pfade (interior test)]
 
 Die Testfälle durchlaufen das Programm auf Pfaden, die den
-Schleifenkörper betreten und \memph{mindestens eine weitere Iteration}
-ausführen. Die Testfälle werden so gewählt, dass \memph{innerhalb der
+Schleifenkörper betreten und \bEmph{mindestens eine weitere Iteration}
+ausführen. Die Testfälle werden so gewählt, dass \bEmph{innerhalb der
 ersten beiden Ausführungen alle möglichen Pfade abgearbeitet}
 werden.\footcite[Seite 212]{hoffmann:software}
 \end{description}
@@ -494,18 +494,18 @@ hoher Aufwand\\
 
 \subsection{Datenflussorientiertes Testen}
 
-\begin{liQuellen}
+\begin{bQuellen}
 \item \cite[Kapitel 8.6.3 „Methoden zur Testfallermittlung“, Seite 250-251]{schneider}
 \item \cite[Kapitel 4.4.7 Def-Uses-Überdeckung, Seite 220-227]{hoffmann:software}
 
-\end{liQuellen}
+\end{bQuellen}
 Im Gegensatz zu allen bisher betrachteten Überdeckungskriterien, die
 ausschließlich den Kontrollfluss eines Programms in Betracht ziehen,
 leiten die Defs-Uses-Kriterien die auszuführenden Pfade aus dem
-Datenfluss ab. Hierzu werden die \memph{Variablenzugriffe} des
-untersuchten Programms analysiert und \memph{mit verschiedenen
+Datenfluss ab. Hierzu werden die \bEmph{Variablenzugriffe} des
+untersuchten Programms analysiert und \bEmph{mit verschiedenen
 Datenflussattributen versehen}. Die vergebenen Attribute teilen die
-Variablenzugriffe in \memph{drei Klassen} ein:
+Variablenzugriffe in \bEmph{drei Klassen} ein:
 
 Sie sind besonders geeignet für objektorientiert entwickelte Systeme.
 
@@ -514,14 +514,14 @@ Sie sind besonders geeignet für objektorientiert entwickelte Systeme.
 \begin{description}
 \item[Definitorische Nutzung (\texttt{def-use}):]
 
-In diese Klasse fallen alle Zugriffe, die den aktuellen \memph{Wert
+In diese Klasse fallen alle Zugriffe, die den aktuellen \bEmph{Wert
 einer Variablen überschreiben}. Alle Variablenzugriffe auf der linken
 Seite einer Zuweisung fallen in diese Kategorie. \TmpBeispiel{x = 42;}
 
 \item[Referenzierende Nutzung (\texttt{r-use}):]
 
 In diese Klasse fallen alle Zugriffe, die den Wert einer Variablen
-\memph{verwenden, jedoch nicht verändern}. Zwischen einer Zuweisung und
+\bEmph{verwenden, jedoch nicht verändern}. Zwischen einer Zuweisung und
 einer nachfolgenden Referenz, die den zugewiesenen Wert verwendet,
 besteht eine \texttt{du}-Interaktion. Referenzierende Nutzungen können
 weiter in berechnende und prädikative Nutzungen unterteilt werden.
@@ -529,8 +529,8 @@ weiter in berechnende und prädikative Nutzungen unterteilt werden.
 \begin{description}
 \item[Berechnende Nutzung (\texttt{c-use}):]
 
-In diese Klasse fallen alle Zugriffe, die den \memph{Wert einer
-Variablen in einer Berechnung verwenden} (\memph{computational use},
+In diese Klasse fallen alle Zugriffe, die den \bEmph{Wert einer
+Variablen in einer Berechnung verwenden} (\bEmph{computational use},
 kurz \texttt{c-use}). Zwischen einer Zuweisung und einer sich
 anschließenden berechnenden Nutzung besteht eine
 \texttt{dc}-Interaktion. \TmpBeispiel{x = x * 2;} (+ \texttt{def-use})
@@ -539,8 +539,8 @@ anschließenden berechnenden Nutzung besteht eine
 \item[Prädikative Nutzung (\texttt{p-use}):]
 
 In diese Klasse fallen alle Zugriffe, die den Wert einer Variablen
-\memph{prädikativ}, d. h. innerhalb eines \memph{booleschen Ausdrucks}
-verwenden (\memph{predicative use}, kurz \texttt{p-use}). Zwischen einer
+\bEmph{prädikativ}, d. h. innerhalb eines \bEmph{booleschen Ausdrucks}
+verwenden (\bEmph{predicative use}, kurz \texttt{p-use}). Zwischen einer
 Zuweisung und einer sich anschließenden prädikativen Nutzung besteht
 eine dp-Interaktion. \TmpBeispiel{if (x > 42)}
 \footcite[Seite 221]{hoffmann:software}
@@ -656,10 +656,10 @@ Ergebnisse.
 
 \section{Unit-Test}
 
-Mit dem Begriff Unit wird eine \memph{atomare Programmeinheit}
+Mit dem Begriff Unit wird eine \bEmph{atomare Programmeinheit}
 bezeichnet, die groß genug ist, um als solche eigenständig getestet zu
-werden. Der Unit-Test wird nicht selten auch als \memph{Modultest} oder
-noch allgemeiner als \memph{Komponententest} bezeichnet. Wird die
+werden. Der Unit-Test wird nicht selten auch als \bEmph{Modultest} oder
+noch allgemeiner als \bEmph{Komponententest} bezeichnet. Wird die
 Methodik des Unit-Tests auf größere Klassen- oder Modulverbünde
 angewendet, so geht der Testprozess fast nahtlos in den Integrationstest
 über.\footcite[Seite 159 Kapitel 4.2.1.1 Unit Tests]{hoffmann:software}

@@ -14,18 +14,18 @@
 
 Die Komplexität der notwendigen Systeme nimmt rasant zu. Daher ist auch
 eine Struktur in Software-Systemen von großer Bedeutung.
-Software-Architektur ist ein \memph{Spezialgebiet des
+Software-Architektur ist ein \bEmph{Spezialgebiet des
 Software-Engineering}, spielt dabei aber eine wesentliche Rolle. Durch
-die Strukturierung werden \memph{klare Grenzen in eine Anwendung}
+die Strukturierung werden \bEmph{klare Grenzen in eine Anwendung}
 gebracht.
 
 Moderne Software-Systeme sind während der Einsatzzeit meist auch
-\memph{kontinuierlichen Änderungen} unterworfen. Die
+\bEmph{kontinuierlichen Änderungen} unterworfen. Die
 Software-Architektur beschreibt daher nicht nur die statische Struktur
-einer Anwendung, sondern es fließen auch \memph{nicht funktionale
+einer Anwendung, sondern es fließen auch \bEmph{nicht funktionale
 Anforderungen}, wie Skalierbarkeit, Performanz oder Verfügbarkeit in die
 Architektur ein. Eine gute Architektur erleichtert zudem auch
-\memph{zukünftige Änderungen und Weiterentwicklungen der Software}.
+\bEmph{zukünftige Änderungen und Weiterentwicklungen der Software}.
 \footcite[Seite 200]{schatten}
 
 %-----------------------------------------------------------------------
@@ -34,33 +34,33 @@ Architektur ein. Eine gute Architektur erleichtert zudem auch
 
 \section{Schichtenarchitektur (Multitier Architecture)\footcite[Seite 10]{sosy:fs:4}}
 
-Die Schichtenarchitektur zählt zu den \memph{beliebtesten
+Die Schichtenarchitektur zählt zu den \bEmph{beliebtesten
 Architektur-Stilen} in der Software-Entwicklung. Jede Schicht
-(\memph{Layer}) nimmt dabei eine klar definierte Rolle ein und bietet
+(\bEmph{Layer}) nimmt dabei eine klar definierte Rolle ein und bietet
 darüberliegenden Schichten eine Menge an Diensten an. Wie bei den
 Architektur-Stilen erwähnt, werden durch den Stil auch Regeln
 beschrieben, die eingehalten werden müssen. Bei der Schichtenarchitektur
 sind folgende Punkte zu beachten:
 
 \begin{itemize}
-\item Eine Schicht \memph{verbirgt} sowohl \emph{darunterliegende
-Schichten} als auch die \memph{interne Komplexität}. \memph{Untere}
-Schichten konzentrieren sich meistens auf die \memph{Technik}, während
-\memph{obere} Schichten eher den Fokus auf die
-\memph{Benutzerschnittstelle} legen.
+\item Eine Schicht \bEmph{verbirgt} sowohl \emph{darunterliegende
+Schichten} als auch die \bEmph{interne Komplexität}. \bEmph{Untere}
+Schichten konzentrieren sich meistens auf die \bEmph{Technik}, während
+\bEmph{obere} Schichten eher den Fokus auf die
+\bEmph{Benutzerschnittstelle} legen.
 
-\item \memph{Top-down-Kommunikation}, d. h., Komponenten der höheren
+\item \bEmph{Top-down-Kommunikation}, d. h., Komponenten der höheren
 Schicht verwenden Dienste der unteren Schicht und nicht umgekehrt.
 
-\item Komponenten \memph{innerhalb} einer Schicht sind von ähnlichem
-\memph{Abstraktionsgrad} (\zB Komponenten in der Daten-Schicht
+\item Komponenten \bEmph{innerhalb} einer Schicht sind von ähnlichem
+\bEmph{Abstraktionsgrad} (\zB Komponenten in der Daten-Schicht
 konzentrieren sich um Persistenz).
 
-\item Das Design einer Schicht soll eine \memph{lose Kopplung} zu
+\item Das Design einer Schicht soll eine \bEmph{lose Kopplung} zu
 anderen Schichten ermöglichen.
 
-\item Die \memph{Kommunikation} zwischen den Schichten erfolgt über klar
-\memph{definierte Schnittstellen und Protokolle}.
+\item Die \bEmph{Kommunikation} zwischen den Schichten erfolgt über klar
+\bEmph{definierte Schnittstellen und Protokolle}.
 \footcite[Seite 211]{schatten}
 \end{itemize}
 
@@ -98,22 +98,22 @@ Zusammengefasst bietet die Schichtenarchitektur folgende Vorteile:
 
 \begin{itemize}
 
-\item \memph{Einfaches}, effizientes und verständliches
-\memph{Architekturmuster}.
+\item \bEmph{Einfaches}, effizientes und verständliches
+\bEmph{Architekturmuster}.
 
-\item Es besteht eine \memph{saubere Trennung} der einzelnen Schichten.
+\item Es besteht eine \bEmph{saubere Trennung} der einzelnen Schichten.
 Dadurch kann auch ein verteiltes Arbeiten in Team durchgeführt werden.
 
-\item Schichten sind \memph{austauschbar} und können auch auf
+\item Schichten sind \bEmph{austauschbar} und können auch auf
 verschiedenen Infrastrukturen betrieben werden. Beispielsweise können
 die Datenbank, die Services und die Komponenten für den Client auf
 unterschiedlichen Rechnern betrieben werden.
 
-\item \memph{Minimale Abhängigkeit} zwischen den Schichten. Die
+\item \bEmph{Minimale Abhängigkeit} zwischen den Schichten. Die
 Kommunikationswege der Schichten sind durch Schnittstellen klar
 definiert.
 
-\item Die \memph{Wartung und Erweiterbarkeit} ist durch die klare
+\item Die \bEmph{Wartung und Erweiterbarkeit} ist durch die klare
 Trennung der Schichten einfach.\footcite[Seite 212]{schatten}
 \end{itemize}
 
@@ -127,17 +127,17 @@ Trennung der Schichten einfach.\footcite[Seite 212]{schatten}
 \item Wird die Top-down-Kommunikation bei einer Schichtenarchitektur
 streng eingehalten, kann eine triviale Operationen in einer Schicht oft
 nur aus einem „Durchreichen“ in die nächste Schicht bestehen. Das
-kann dazu führen, dass \memph{aus relativ einfachen Operationen komplexe
+kann dazu führen, dass \bEmph{aus relativ einfachen Operationen komplexe
 Funktionen} werden.
 
-\item Mehr Schichten bedeutet \memph{mehr Komplexität und
+\item Mehr Schichten bedeutet \bEmph{mehr Komplexität und
 Implementierungsaufwand}. Weniger Schichten bedeutet stärkere Kopplung
 und weniger Flexibilität. Hier muss abgewogen werden, wie viele
 Schichten wirklich notwendig sind, um die Anforderungen des Systems zu
 erfüllen.
 
 \item Änderungen an den Schnittstellen der unteren Schichten können
-Änderungen in den oberen Schichten und damit einen \memph{erhöhten
+Änderungen in den oberen Schichten und damit einen \bEmph{erhöhten
 Aufwand bei der Anpassung} zur Folge haben.\footcite[Seite 213]{schatten}
 \end{itemize}
 
@@ -167,15 +167,15 @@ Aufwand bei der Anpassung} zur Folge haben.\footcite[Seite 213]{schatten}
 \end{center}
 
 Die 2-Schichtenarchitektur ist bei verteilten Systemen auch als
-\memph{Client/Server-Architektur} bekannt. Der \memph{Client} ist dann
-in der Regel ein Programm, das sowohl die \memph{GUI} als auch die
-gesamte \memph{Applikationslogik} beinhaltet. Der \memph{Server} besteht
-meist aus einer \memph{relationalen Datenbank}. Für eine
-\memph{Stammdatenverwaltung} oder ähnliche Systeme war \memph{diese
+\bEmph{Client/Server-Architektur} bekannt. Der \bEmph{Client} ist dann
+in der Regel ein Programm, das sowohl die \bEmph{GUI} als auch die
+gesamte \bEmph{Applikationslogik} beinhaltet. Der \bEmph{Server} besteht
+meist aus einer \bEmph{relationalen Datenbank}. Für eine
+\bEmph{Stammdatenverwaltung} oder ähnliche Systeme war \bEmph{diese
 Architektur unter Umständen ausreichend} und auch effizient. Durch die
-\memph{wachsende Komplexität} in den einzelnen Domänen und die
+\bEmph{wachsende Komplexität} in den einzelnen Domänen und die
 Anforderungen an verteilte Systeme ist es jedoch meist notwendig und
-auch sinnvoll, Teile des Applikationscodes \memph{auf mehrere Schichten
+auch sinnvoll, Teile des Applikationscodes \bEmph{auf mehrere Schichten
 aufzuteilen}. Einzelne Schichten können auch auf einen Server
 ausgelagert werden.
 \footcite[Seite 213]{schatten}
@@ -217,38 +217,38 @@ ausgelagert werden.
 \end{tikzpicture}
 
 Die 3-Schichtenarchitektur ist der bekannteste und beliebteste Stil, um
-ein System zu strukturieren. Der \memph{Wunsch den Code der
+ein System zu strukturieren. Der \bEmph{Wunsch den Code der
 Geschäftslogik vom Client zu lösen}, führt dazu, dass eine neue Schicht
-(\memph{Logik- oder Business-Schicht}) eingeführt wird, die diese Logik
+(\bEmph{Logik- oder Business-Schicht}) eingeführt wird, die diese Logik
 beinhaltet. In der Praxis gibt es mehrere Variationen, wie die
 Logik-Schicht auf den Client und den Server aufgeteilt ist.
 
 Auf der untersten Ebene der 3-Schichtenarchitektur befindet sich die
-\memph{Daten-Schicht}, die eine Menge an Datenquellen zur Verfügung stellt.
+\bEmph{Daten-Schicht}, die eine Menge an Datenquellen zur Verfügung stellt.
 Typische Objekte in dieser Schicht sind relationale oder
 objektorientierte Datenbanken. In diesen Objekten werden die Daten von
 den Applikationen persistiert.
 
 Aufbauend auf der Daten-Schicht befindet sich nun die neue
-\memph{Logik-Schicht}, welche die Kernfunktionalität des Systems
+\bEmph{Logik-Schicht}, welche die Kernfunktionalität des Systems
 beinhaltet. Hier erfolgt die tatsächliche Abbildung der Problemdomäne in
 Form von Logik- und Serviceobjekten. Typische Funktionen, die in der
 Business-Schicht angeboten werden, sind die Verarbeitung und die
 Aufbereitung von Daten für die Präsentationsschicht.
 
-Die Logik-Schicht wird bei \memph{komplexen Systemen} oft noch in eine
-\memph{Datenzugriffs-Schicht} (\memph{Data Access Layer}) und eine
-\memph{Service-Schicht} unterteilt.
+Die Logik-Schicht wird bei \bEmph{komplexen Systemen} oft noch in eine
+\bEmph{Datenzugriffs-Schicht} (\bEmph{Data Access Layer}) und eine
+\bEmph{Service-Schicht} unterteilt.
 
 Die Datenzugriffs-Schicht besteht aus einer Menge von
-\memph{Datenzugriffsobjekten}, sogenannten \memph{Data Access Objects
+\bEmph{Datenzugriffsobjekten}, sogenannten \bEmph{Data Access Objects
 (DAOs)}, die den Zugriff auf die darunterliegende Daten-Schicht
 abstrahieren. Diese DAOs werden von Servicekomponenten der
 Service-Schicht in Anspruch genommen, um Daten zu laden und zu
 speichern.
 
 Jegliche Form der Interaktion mit dem Benutzer erfolgt in der
-\memph{Präsentationsschicht}. Komponenten in dieser Schicht beinhalten
+\bEmph{Präsentationsschicht}. Komponenten in dieser Schicht beinhalten
 auch eine gewisse Logik für die Verarbeitung von Ereignissen, etwa die
 Logik, die auf das Betätigen eines Buttons oder eine Tastenkombination
 reagiert. Die Logik sollte jedoch hauptsächlich auf GUI-Komponenten

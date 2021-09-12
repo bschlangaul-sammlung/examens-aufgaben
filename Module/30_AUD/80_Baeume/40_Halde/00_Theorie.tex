@@ -11,11 +11,11 @@
 
 \chapter{Halden}
 
-\begin{liQuellen}
+\begin{bQuellen}
 \item \cite[Seite 25-32]{aud:fs:tafeluebung-11}
 \item \cite{wiki:heap}
 \item \cite[Seite 407-409 Kapitel 14.6.1]{saake}
-\end{liQuellen}
+\end{bQuellen}
 
 \section{Visualisierungstools}
 
@@ -26,12 +26,12 @@
 \end{itemize}
 
 \noindent
-Ein Heap (englisch wörtlich: \memph{Haufen} oder \memph{Halde}) ist
-eine auf Bäumen basierende \memph{abstrakte} und
-\memph{dynamische} Datenstruktur.
+Ein Heap (englisch wörtlich: \bEmph{Haufen} oder \bEmph{Halde}) ist
+eine auf Bäumen basierende \bEmph{abstrakte} und
+\bEmph{dynamische} Datenstruktur.
 %
 Der Begriff Heap wird häufig als bedeutungsgleich zu einem
-\memph{partiell geordneten Binärbaum} verstanden.
+\bEmph{partiell geordneten Binärbaum} verstanden.
 \footcite{wiki:heap}
 
 Die Datenstruktur Heap bezeichnet einen binären Baum, der folgende
@@ -49,21 +49,21 @@ Heap-Eigenschaft bezeichnet.
 Es gibt zwei unterschiedlichen Arten von Halden, nämlich:
 
 \begin{itemize}
-\item ein \memph{Max-Heap}. Hier ist die Wurzel jedes Teilbaums ist das
-\memph{Maximum} aller Knoten des Teilbaums.
+\item ein \bEmph{Max-Heap}. Hier ist die Wurzel jedes Teilbaums ist das
+\bEmph{Maximum} aller Knoten des Teilbaums.
 %
-\item eine \memph{Min-Heap}: Die Wurzel jedes Teilbaums ist das
-\memph{Minimum} aller Knoten des Teilbaums.
+\item eine \bEmph{Min-Heap}: Die Wurzel jedes Teilbaums ist das
+\bEmph{Minimum} aller Knoten des Teilbaums.
 \end{itemize}
 %
-\memph{Duplikate} sind in einem Heap \memph{erlaubt}.
+\bEmph{Duplikate} sind in einem Heap \bEmph{erlaubt}.
 %
-Heaps erlauben einen schnellen Zugriff auf das \memph{größte} bzw.
-\memph{kleinste} Element. Sie werden deshalb als
-\memph{Prioritätswarteschlange} verwendent.
+Heaps erlauben einen schnellen Zugriff auf das \bEmph{größte} bzw.
+\bEmph{kleinste} Element. Sie werden deshalb als
+\bEmph{Prioritätswarteschlange} verwendent.
 %
 Heaps können als „klassischer“ Binärbaum implementiert werden. Eine
-effiziente Speicherung ist in einem \memph{Array} möglich.
+effiziente Speicherung ist in einem \bEmph{Array} möglich.
 \footcite[Seite 22]{aud:fs:tafeluebung-11}
 
 %-----------------------------------------------------------------------
@@ -73,10 +73,10 @@ effiziente Speicherung ist in einem \memph{Array} möglich.
 \section{Links-Vollständigkeit}
 
 Oft (nicht immer) verstehen wir unter Heaps links-vollständige Bäume:
-\dh alle „Ebenen“ (bis auf die unterste) sind \memph{voll besetzt}
-und auf unterster „Ebene“ sitzen alle Knoten \memph{soweit links wie
-möglich}. Dadurch ist eine \memph{lückenlose Darstellung} in einem
-\memph{Array} möglich (sog. Feld-Einbettung). Nicht nur Halden können
+\dh alle „Ebenen“ (bis auf die unterste) sind \bEmph{voll besetzt}
+und auf unterster „Ebene“ sitzen alle Knoten \bEmph{soweit links wie
+möglich}. Dadurch ist eine \bEmph{lückenlose Darstellung} in einem
+\bEmph{Array} möglich (sog. Feld-Einbettung). Nicht nur Halden können
 linksvollständig sein, sondern jeder beliebige Baum.
 
 %-----------------------------------------------------------------------
@@ -133,11 +133,11 @@ $\frac{i - 1}{2}$
 
 \subsection{Einfügen eines neuen Elements}
 
-Ein neues Element wird an die \memph{nächste freie Position in der
-untersten Ebene einfügt}. Falls die Ebene \memph{voll} ist, wird das
-neue Element \memph{erster Knoten einer neuen Ebene}. Solange die
+Ein neues Element wird an die \bEmph{nächste freie Position in der
+untersten Ebene einfügt}. Falls die Ebene \bEmph{voll} ist, wird das
+neue Element \bEmph{erster Knoten einer neuen Ebene}. Solange die
 Halden-Eigenschaft in einem Teilbaum verletzt ist, lassen wir das neue
-Element entsprechend der Halden-Eigenschaft \memph{nach oben wandern}.
+Element entsprechend der Halden-Eigenschaft \bEmph{nach oben wandern}.
 
 %%
 %
@@ -145,15 +145,15 @@ Element entsprechend der Halden-Eigenschaft \memph{nach oben wandern}.
 
 \subsection{Löschen eines Elements}
 
-Wir \memph{ersetzen} das zu löschende Element mit dem \memph{letzten
+Wir \bEmph{ersetzen} das zu löschende Element mit dem \bEmph{letzten
 Element der untersten Ebene}.
 %
 Solange die Halden-Eigenschaft in einem Teilbaum verletzt ist, lassen
-wir das neue Element entsprechend der Halden-Eigenschaft \memph{nach
+wir das neue Element entsprechend der Halden-Eigenschaft \bEmph{nach
 unten sickern}.
 %
-Bei einer \memph{Min-Heap} wird mit dem \memph{kleineren Kind}
-getauscht, bei einer \memph{Max-Heap} mit dem \memph{größeren Kind}.
+Bei einer \bEmph{Min-Heap} wird mit dem \bEmph{kleineren Kind}
+getauscht, bei einer \bEmph{Max-Heap} mit dem \bEmph{größeren Kind}.
 \footcite[Seite 28]{aud:fs:tafeluebung-11}
 
 \bJavaDatei[firstline=3]{baum/Halde}

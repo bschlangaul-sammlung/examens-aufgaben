@@ -10,20 +10,20 @@
 % AUD_5_Teil1.m4v 43min
 \chapter{B-Bäume}
 
-\begin{liQuellen}
+\begin{bQuellen}
 \item \cite{wiki:bbaum}
 \item \cite[Kapitel 14.4.3, Seite 386-399 (PDF 402-415)]{saake}
 \item \cite[Kapitel 13.5.4.2 Balancierte Mehrwegbäume, Seite 464, wird
 nur erwähnt, nicht beschrieben]{schneider}
 \item \cite[7.8 B-Bäume Seite 224-228]{kemper}
-\end{liQuellen}
+\end{bQuellen}
 
 \url{https://www.cs.usfca.edu/~galles/visualization/BTree.html}
 Max. Degree = 5 entspricht k = 2
 
 \noindent
 Eine ausgeglichene Baumstruktur ist der von R. Bayer und E. McCreight
-entwickelte B-Baum. Hierbei \memph{steht der Name „B“ für balanciert},
+entwickelte B-Baum. Hierbei \bEmph{steht der Name „B“ für balanciert},
 breit, buschig oder auch Bayer, nicht jedoch für binär. Die Grundidee
 des B-Baumes ist es gerade, dass der Verzweigungsgrad variiert, während
 die Baumhöhe vollständig ausgeglichen ist.
@@ -39,17 +39,17 @@ Ein Baum heißt genau dann B-Baum, wenn gilt:
 %
 
 \begin{enumerate}
-\item Jeder Knoten außer der Wurzel enthält zwischen \memph{$k$ und $2k$
-Elemente} (Schlüsselwerte), $k$ wird als \memph{Ordnung} des B-Baums
+\item Jeder Knoten außer der Wurzel enthält zwischen \bEmph{$k$ und $2k$
+Elemente} (Schlüsselwerte), $k$ wird als \bEmph{Ordnung} des B-Baums
 bezeichnet.
 %
-\item Jeder \memph{Knoten ist entweder ein Blatt (ohne Kinder)} oder hat
-\memph{mindestens $k + 1$ und höchstens $2k + 1$ Kind-Knoten}.
+\item Jeder \bEmph{Knoten ist entweder ein Blatt (ohne Kinder)} oder hat
+\bEmph{mindestens $k + 1$ und höchstens $2k + 1$ Kind-Knoten}.
 %
-\item Der Wurzelknoten ist \memph{entweder ein Blatt oder hat mindestens
+\item Der Wurzelknoten ist \bEmph{entweder ein Blatt oder hat mindestens
 2 Nachfolger}.
 %
-\item Alle Blätter haben die \memph{gleiche Tiefe}, \dh alle Wege von
+\item Alle Blätter haben die \bEmph{gleiche Tiefe}, \dh alle Wege von
 der Wurzel bis zu den Blättern sind gleich lang. Pfade haben die Länge
 $h - 1$, wobei $h$ die Höhe des gesamten Baums ist.
 \end{enumerate}
@@ -61,11 +61,11 @@ $h - 1$, wobei $h$ die Höhe des gesamten Baums ist.
 
 \section{Einfügen}
 
-Das Einfügen in einen B-Baum erfolgt \memph{nur in den Blattknoten}.
-Wenn in einem Blattknoten die \memph{maximale Anzahl} von Elementen
-($2k$) erreicht ist, findet ein \memph{Split} statt, \dh die
+Das Einfügen in einen B-Baum erfolgt \bEmph{nur in den Blattknoten}.
+Wenn in einem Blattknoten die \bEmph{maximale Anzahl} von Elementen
+($2k$) erreicht ist, findet ein \bEmph{Split} statt, \dh die
 Elemente werden aufgeteilt und ein neuer Knoten entsteht. Das
-\memph{mittlere Element} des ursprünglichen Knotens wird dabei \memph{in
+\bEmph{mittlere Element} des ursprünglichen Knotens wird dabei \bEmph{in
 den Elternknoten integriert}.
 \footcite[Seite 32]{aud:fs:5}
 
@@ -75,20 +75,20 @@ den Elternknoten integriert}.
 
 \section{Suchen}
 
-Beginnend mit dem Wurzelknoten werden die Knoten jeweils \memph{von
+Beginnend mit dem Wurzelknoten werden die Knoten jeweils \bEmph{von
 links nach rechts} durchsucht:
 %
-\memph{Stimmt} ein Element mit dem gesuchtem Schlüsselwert
-\memph{überein}, ist der Satz \memph{gefunden}.
+\bEmph{Stimmt} ein Element mit dem gesuchtem Schlüsselwert
+\bEmph{überein}, ist der Satz \bEmph{gefunden}.
 %
-Ist das \memph{Element größer} als der gesuchte Wert, wird die
-Suche im \memph{links} hängenden Unterbaum \memph{fortgesetzt}.
+Ist das \bEmph{Element größer} als der gesuchte Wert, wird die
+Suche im \bEmph{links} hängenden Unterbaum \bEmph{fortgesetzt}.
 %
-Ist das \memph{Element kleiner} als der gesuchte Wert, wird der
-Vergleich mit dem \memph{nächsten Element der Wurzel wiederholt}.
+Ist das \bEmph{Element kleiner} als der gesuchte Wert, wird der
+Vergleich mit dem \bEmph{nächsten Element der Wurzel wiederholt}.
 %
 Ist auch das letztes Element der Wurzel noch kleiner als der gesuchte
-Wert, dann wird die Suche im \memph{rechten Unterbaum} des Elements
+Wert, dann wird die Suche im \bEmph{rechten Unterbaum} des Elements
 fortgesetzt.
 %
 Falls ein weiterer Abstieg in den Unterbaum nicht möglich ist
@@ -120,11 +120,11 @@ ausgewählten Knoten verschoben.
 
 Enthalten sowohl der für den Abstieg ausgewählte Unterbaum  als auch
 sein unmittelbar vorausgehender und nachfolgender Geschwisterknoten
-\memph{genau die minimale Schlüsselanzahl}, ist eine Verschiebung nicht
+\bEmph{genau die minimale Schlüsselanzahl}, ist eine Verschiebung nicht
 möglich. In diesem Fall wird eine Verschmelzung des ausgewählten
 Unterbaumes mit dem vorausgehenden oder nachfolgenden
 Geschwisterknoten durchgeführt. Dazu wird der Schlüssel aus dem
-\memph{Vaterknoten}, welcher die Wertebereiche der Schlüssel in den beiden zu
+\bEmph{Vaterknoten}, welcher die Wertebereiche der Schlüssel in den beiden zu
 verschmelzenden Knoten trennt, als mittlerer Schlüssel in den
 verschmolzenen Knoten verschoben. Die beiden Verweise auf die jetzt
 verschmolzenen Kindknoten werden durch einen Verweis auf den neuen
@@ -147,14 +147,14 @@ es muss wieder gesplittet werde.
 Wird der zu löschende Schlüssel bereits in einem inneren Knoten
 gefunden, kann dieser nicht direkt gelöscht werden, weil er für die
 Trennung der Wertebereiche seiner beiden Unterbäume benötigt wird. In
-diesem Fall wird sein \memph{symmetrischer Vorgänger} (oder sein
-symmetrischer \memph{Nachfolger}) gelöscht und \memph{an seine Stelle
+diesem Fall wird sein \bEmph{symmetrischer Vorgänger} (oder sein
+symmetrischer \bEmph{Nachfolger}) gelöscht und \bEmph{an seine Stelle
 kopiert}. Der symmetrische Vorgänger ist der größte Blattknoten im
 linken Unterbaum, befindet sich also dort ganz rechts außen. Der
 symmetrische Nachfolger ist entsprechend der kleinste Blattknoten im
 rechten Unterbaum und befindet sich dort ganz links außen. Die
-\memph{Entscheidung}, in welchen Unterbaum der Abstieg für die Löschung
-stattfindet, wird davon abhängig gemacht, \memph{welcher genügend
+\bEmph{Entscheidung}, in welchen Unterbaum der Abstieg für die Löschung
+stattfindet, wird davon abhängig gemacht, \bEmph{welcher genügend
 Schlüssel enthält}. Haben beide nur die minimale Schlüsselanzahl, werden
 die Unterbäume verschmolzen. Damit wird keine Trennung der Wertebereiche
 mehr benötigt und der Schlüssel kann direkt gelöscht werden.

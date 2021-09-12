@@ -12,7 +12,7 @@ anderen Paket passen]
 \RequirePackage{graphicx}
 %    \end{macrocode}
 
-% Für die Umgebung |liQuellen| benötigt.
+% Für die Umgebung |bQuellen| benötigt.
 %    \begin{macrocode}
 \RequirePackage{paralist}
 %    \end{macrocode}
@@ -34,10 +34,16 @@ anderen Paket passen]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\memph}
-% |\mephm| (|\marginpar| and |\emph|)
+% \begin{macro}{\bEmph}
+% |\bEmph| (|\marginpar| and |\emph|)
 %    \begin{macrocode}
-\newcommand{\memph}[1]{\emph{#1}\marginpar{\tiny#1}}
+\def\bEmph#1
+{
+  \emph{#1}
+  \marginpar{
+    \tiny#1
+  }
+}
 %    \end{macrocode}
 % \end{macro}
 
@@ -59,32 +65,8 @@ anderen Paket passen]
 
   \medskip
 
-  \par
-  % Keine Einrückung
-  \@afterindentfalse
-  \@afterheading
+  \keine_einrueckung:
 }
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\bBeschriftung}
-% Ähnlich dem Makro |\bPseudoUeberschrift{}|. Am Ende des Textes wird
-% ein Doppelpunktzeichen angehängt.
-%    \begin{macrocode}
-\newcommand{\bBeschriftung}[1]{
-\par
-\noindent
-\medskip
-\textbf{#1}:
-\medskip
-\noindent
-}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\hinweis}
-%    \begin{macrocode}
-\def\hinweis#1{{\footnotesize[#1]}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -117,7 +99,7 @@ anderen Paket passen]
 % eine Box verschoben, die dann einfach ignoriert wird.
 
 % \begin{verbatim}
-% \NewDocumentEnvironment{ liAdditum } { o }
+% \NewDocumentEnvironment{ bAdditum } { o }
 % {
 %   \ifADDITUM
 %   \else
@@ -188,12 +170,12 @@ anderen Paket passen]
 %    \end{macrocode}
 % \end{environment}
 
-% \begin{environment}{liAdditum}
+% \begin{environment}{bAdditum}
 % Zusätzliches Material bei Aufgaben, das
 % zum Lösen der Aufgaben nicht unbedingt nötig ist, z. b.
 % Hintergrundinformation, Test-Dateien, komplette Code-Dateien.
 % \begin{macrocode}
-\NewDocumentEnvironment{ liAdditum } { o }
+\NewDocumentEnvironment{ bAdditum } { o }
 {
   \ifADDITUM
   \else
@@ -221,24 +203,25 @@ anderen Paket passen]
 %    \end{macrocode}
 % \end{environment}
 
-% \begin{environment}{liExkurs}
+% \begin{environment}{bExkurs}
 
 % \begin{verbatim}
-% \begin{liExkurs}[Linear rekursiv]
+% \begin{bExkurs}[Linear rekursiv]
 % Die häufigste Rekursionsform ist die lineare Rekursion, bei der in jedem
 % Fall der rekursiven Definition höchstens ein rekursiver Aufruf vorkommen
 % darf.
-% \end{liExkurs}
+% \end{bExkurs}
 % \end{verbatim}
 
-% \begin{liExkurs}[Linear rekursiv]
+% \begin{bExkurs}[Linear rekursiv]
 % Die häufigste Rekursionsform ist die lineare Rekursion, bei der in jedem
 % Fall der rekursiven Definition höchstens ein rekursiver Aufruf vorkommen
 % darf.
-% \end{liExkurs}
+% \end{bExkurs}
 
 %    \begin{macrocode}
-\NewDocumentEnvironment{ liExkurs }{o +b}{
+\NewDocumentEnvironment{ bExkurs }{ o +b }
+{
   \ifEXKURS
     \vspace{0.2cm}%
     \begin{mdframed}[
@@ -252,70 +235,57 @@ anderen Paket passen]
       rightline=false,
       topline=false,
     ]
-    \footnotesize
-    \noindent%
-    \textbf{Exkurs:~#1}\par%
-    \noindent%
-    #2
+      \footnotesize
+      \noindent%
+      \textbf{Exkurs:~#1}\par%
+      \noindent%
+      #2
     \end{mdframed}
     \vspace{0.2cm}
   \else
   \fi
-}{}
+}
+{}
 %    \end{macrocode}
 % \end{environment}
 
-% \begin{environment}{liQuellen}
+% \begin{environment}{bQuellen}
 
 % \url{https://tex.stackexchange.com/a/229004}
 
 % \begin{verbatim}
-% \begin{liQuellen}
+% \begin{bQuellen}
 % \item Quelle 1
 % \item Quelle 2
-% \end{liQuellen}
+% \end{bQuellen}
 % \end{verbatim}
 
-% \begin{liQuellen}
+% \begin{bQuellen}
 % \item Quelle 1
 % \item Quelle 2
-% \end{liQuellen}
+% \end{bQuellen}
 
 %    \begin{macrocode}
-\cs_new:Npn \listen@punkt #1 {\item #1}
-\NewDocumentEnvironment { liQuellen }{ +b }
+\cs_new:Npn \listen_punkt:n #1
+{
+  \item #1
+}
+\NewDocumentEnvironment { bQuellen }{ +b }
 {
   \seq_clear_new:N \l_quellen
   \seq_set_split:Nnn \l_quellen {\item} {#1}
   \seq_remove_all:Nn \l_quellen {}
   \begin{mdframed}[backgroundcolor=white!0]
-  \footnotesize
-  \noindent
-  \textsf{\textbf{Weiterführende~Literatur:}}
-  \medskip
-  \begin{compactitem}
-  \seq_map_function:NN \l_quellen {\listen@punkt}
-  \end{compactitem}
+    \footnotesize
+    \noindent
+    \textsf{\textbf{Weiterführende~Literatur:}}
+    \medskip
+    \begin{compactitem}
+      \seq_map_function:NN \l_quellen {\listen_punkt:n}
+    \end{compactitem}
   \end{mdframed}
-  %
-  \par
-  \@afterindentfalse
-  \@afterheading
-} {}
-%    \end{macrocode}
-% \end{environment}
 
-% \begin{environment}{liLernkartei}
-%    \begin{macrocode}
-\NewDocumentEnvironment { liLernkartei }{ m +b }
-{
-  \begin{mdframed}
-  \footnotesize
-  \noindent%
-  \textbf{Lernkarteikarte:~#1}\par%
-  \noindent%
-  #2
-  \end{mdframed}
+  \keine_einrueckung:
 } {}
 %    \end{macrocode}
 % \end{environment}
@@ -324,8 +294,16 @@ anderen Paket passen]
 % \cmd{\bFussnoteUrl}\oarg{zusätzlicher-text}\marg{url}
 % |\bFussnoteUrl[zusätzlicher Text]{url}|: Eine HTTP-URL als Fußnote setzen.
 %    \begin{macrocode}
-\NewDocumentCommand{\bFussnoteUrl} { o m } {
-  \footnote{\url{#2}\IfNoValueTF{#1}{}{ (#1)}}
+\NewDocumentCommand { \bFussnoteUrl } { o m }
+{
+  \footnote{
+    \url{#2}
+    \IfNoValueTF{#1}
+    {}
+    {
+     ~(#1)
+    }
+  }
 }
 
 %    \end{macrocode}
@@ -336,8 +314,16 @@ anderen Paket passen]
 % |\bFussnoteLink[zusätzlicher Text]{text}{url}|: Einen Link, d. h. einen Link-Text
 % und eine URL als Fußnote setzen.
 %    \begin{macrocode}
-\NewDocumentCommand{\bFussnoteLink} { o m m } {
-  \footnote{\href{#3}{#2}\IfNoValueTF{#1}{}{ (#1)}}
+\NewDocumentCommand{ \bFussnoteLink } { o m m }
+{
+  \footnote{
+    \href{#3}{#2}
+    \IfNoValueTF{#1}
+    {}
+    {
+    ~(#1)
+    }
+  }
 }
 %    \end{macrocode}
 % \end{macro}

@@ -106,10 +106,7 @@ Setzen einer Aufgabe]
 
   \bigskip
 
-  \par
-  % Keine Einrückung
-  \@afterindentfalse
-  \@afterheading
+  \keine_einrueckung:
 }
 %    \end{macrocode}
 % \end{macro}

@@ -14,11 +14,11 @@
 
 \section{Kellerautomat}
 
-\begin{liQuellen}
+\begin{bQuellen}
 \item \cite[Kapitel 19.1.2.3, Seite 587-88]{schneider}
 \item \cite{wiki:pda}
 \item \cite[Seite 224-226]{hoffmannn}
-\end{liQuellen}
+\end{bQuellen}
 
 Ein Kellerautomat ist ein um einen „Speicher“ (Keller) erweiterter
 endlicher Automat.
@@ -45,32 +45,32 @@ Zwischenzeitliches „Testen” soll aber möglich sein!
 
 \end{description}
 
-Der Kellerspeicher ist als \memph{Stapel (stack)} organisiert und
+Der Kellerspeicher ist als \bEmph{Stapel (stack)} organisiert und
 erlaubt daher nur einen eingeschränkten Zugriff auf die Elemente. Die
 Funktionsweise ist ähnlich derer eines konventionellen Bücherstapels;
 hier können wir ein neues Buch entweder oben auf den Stapel packen
 (Push-Operation) oder das oberste Buch wegnehmen (Pop-Operation). In
 einem Stack dürfen Elemente weder von unten noch aus der Mitte entnommen
 werden, d. h., das zuletzt hinzugefügte Element wird immer als erstes
-wieder entfernt (\memph{LIFO-Prinzip}, \memph{Last-In-First-Out}).
+wieder entfernt (\bEmph{LIFO-Prinzip}, \bEmph{Last-In-First-Out}).
 
 Im Gegensatz zu den bisher betrachteten Akzeptoren besitzen
-Kellerautomaten zwei \memph{verschiedene Alphabete} $\Sigma$ und
-$\Gamma$. Das \memph{Eingabealphabet $\Sigma$} enthält die Zeichen, aus
-denen sich die \memph{Eingabewörter} zusammensetzen, und das
-\memph{Kelleralphabet $\Gamma$} alle Symbole, die in den
-\memph{Kellerspeicher} geschrieben werden dürfen. Damit beide Alphabete
+Kellerautomaten zwei \bEmph{verschiedene Alphabete} $\Sigma$ und
+$\Gamma$. Das \bEmph{Eingabealphabet $\Sigma$} enthält die Zeichen, aus
+denen sich die \bEmph{Eingabewörter} zusammensetzen, und das
+\bEmph{Kelleralphabet $\Gamma$} alle Symbole, die in den
+\bEmph{Kellerspeicher} geschrieben werden dürfen. Damit beide Alphabete
 einfacher unterschieden werden können, halten wir uns an die gängige
-Konvention, \memph{Eingabezeichen mit Kleinbuchstaben} und
-\memph{Kellerzeichen mit Großbuchstaben} darzustellen.
+Konvention, \bEmph{Eingabezeichen mit Kleinbuchstaben} und
+\bEmph{Kellerzeichen mit Großbuchstaben} darzustellen.
 \footcite[Seite 224]{hoffmann}
 
 Kellerautomaten können analog zu endlichen Automaten durch
 Zustandsgraphen veranschaulicht werden.
 
-Die \memph{Zustandsübergänge} sind charakterisiert durch das
-\memph{gelesene Zeichen}, das \memph{oberste Kellersymbol} und
-\memph{die auf den Keller gelegten Zeichen, die das oberste Kellersymbol
+Die \bEmph{Zustandsübergänge} sind charakterisiert durch das
+\bEmph{gelesene Zeichen}, das \bEmph{oberste Kellersymbol} und
+\bEmph{die auf den Keller gelegten Zeichen, die das oberste Kellersymbol
 ersetzen}.
 \footcite[Seite 23]{theo:fs:2}
 
@@ -110,16 +110,16 @@ Standardschreibweise:
 \begin{itemize}
 \item
 
-\memph{Buchstabe} des Wortes, der \memph{gerade bearbeitet} wird.
+\bEmph{Buchstabe} des Wortes, der \bEmph{gerade bearbeitet} wird.
 
 \item
 
-das \memph{aktuelle Kellerzeichen} (\dh das oberste
+das \bEmph{aktuelle Kellerzeichen} (\dh das oberste
 Zeichen auf dem Keller-Stapel)
 
 \item
 
-\memph{Zustand} des Kellers \memph{nach Abarbeitung}. Dabei bedeutet...
+\bEmph{Zustand} des Kellers \bEmph{nach Abarbeitung}. Dabei bedeutet...
 
 \begin{description}
 \item[$\varepsilon$]
@@ -156,8 +156,8 @@ $(z_0, \text{abbba}, \# ) \vdash (z_0, \text{bbba}, A\#)$
 \section{Von kontextfreien Grammatiken zu Kellerautomaten}
 
 Für das Akzeptieren einer kontextfreien Sprache genügt ein Kellerautomat
-mit nur \memph{zwei Zuständen}, wobei die einzige Aufgabe des
-Startzustands (\memph{\z0}) darin besteht, das \memph{Startsymbol $S$
+mit nur \bEmph{zwei Zuständen}, wobei die einzige Aufgabe des
+Startzustands (\bEmph{\z0}) darin besteht, das \bEmph{Startsymbol $S$
 der Grammatik in den Keller} zu legen. Während der eigentlichen Rechnung
 befindet sich der Automat permanent in dem anderen Zustand (\z1), dem
 einzigen Endzustand; die Rechnung findet nur in dem Keller statt. Der

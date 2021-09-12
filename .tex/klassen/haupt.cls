@@ -15,7 +15,8 @@ Dokuments, das alles zusammenfasst.]
   abmessung,
   typographie,
   grafik,
-  meta
+  meta,
+  index
 }]{bschlangaul-basis}
 %    \end{macrocode}
 
@@ -54,6 +55,8 @@ Dokuments, das alles zusammenfasst.]
 
   \tableofcontents
   \clearpage
+
+  \pagestyle{fancy}
 }
 %    \end{macrocode}
 

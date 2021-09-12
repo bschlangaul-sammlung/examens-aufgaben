@@ -6,9 +6,9 @@
 
 \section{Definition Transaktion}
 
-Unter einer Transaktion versteht man die \memph{„Bündelung“ mehrerer
+Unter einer Transaktion versteht man die \bEmph{„Bündelung“ mehrerer
 Datenbankoperationen}, die in einem Mehrbenutzersystem ohne unerwünschte
-Einflüsse durch andere Transaktionen als \memph{Einheit fehlerfrei
+Einflüsse durch andere Transaktionen als \bEmph{Einheit fehlerfrei
 ausgeführt} werden sollen.\footcite[Seite 1]{db:fs:5}
 
 %-----------------------------------------------------------------------
@@ -17,11 +17,11 @@ ausgeführt} werden sollen.\footcite[Seite 1]{db:fs:5}
 
 \section{ACID-Prinzip}
 
-\begin{liQuellen}
+\begin{bQuellen}
 \item \cite[Kapitel 9.5 „Eigenschaften von Transaktionen“, Seite 305]{kemper}
 \item \cite[Seite 1]{db:fs:5}
 \item \cite{wiki:acid}
-\end{liQuellen}
+\end{bQuellen}
 
 \begin{description}
 \item[Atomicity]
@@ -54,11 +54,11 @@ dauerhaft (persistent).
 
 \section{Operationen auf Transaktions-Ebene}
 
-\begin{liQuellen}
+\begin{bQuellen}
 \item \cite[Seite 5]{db:fs:5}
 \item \cite[Seite 211]{winter}
 \item \cite[Kapitel 9.3, Seite 302-303]{kemper}
-\end{liQuellen}
+\end{bQuellen}
 
 \begin{description}
 \item[read \& write]
@@ -78,7 +78,7 @@ Hierdurch wird die Beendigung der Transaktion eingeleitet. Alle
 
 \item[abort]
 
-Dieser Befehl führt zu einem \memph{Selbstabbruch} der Transaktion. Das
+Dieser Befehl führt zu einem \bEmph{Selbstabbruch} der Transaktion. Das
 Datenbanksystem muss sicherstellen, dass die Datenbasis wieder in den
 Zustand zurückgesetzt wird, der vor Beginn der Transaktionsausführung
 existierte.
@@ -98,10 +98,10 @@ Für den Abschluss einer Transaktion gibt es 2 Möglichkeiten:
 
 \section{Zustandsübergänge einer Transaktion}
 
-\begin{liQuellen}
+\begin{bQuellen}
 \item \cite[Kapitel 9.7, Seite 307]{kemper}
 \item \cite[Seite 5]{db:fs:5}
-\end{liQuellen}
+\end{bQuellen}
 
 \begin{description}
 \item[potentiell]
@@ -173,13 +173,13 @@ Transaktionsverarbeitung geht in den Endzustand aufgegeben über.
 \subsection{„Einfacher” Fehlerfall}
 
 Änderungen durch nicht zu Ende geführte Transaktionen müssen
-\memph{rückgängig gemacht werden}. Diesen Vorgang nennt man
-\memph{Rollback}. Dazu müssen gegebenenfalls die zuletzt gültigen Werte
+\bEmph{rückgängig gemacht werden}. Diesen Vorgang nennt man
+\bEmph{Rollback}. Dazu müssen gegebenenfalls die zuletzt gültigen Werte
 der geänderten Datenbankobjekte in die Datenbank geschrieben werden.
 
 Es muss sichergestellt werden, dass die Änderungen erfolgreich zu Ende
-geführter Transaktionen tatsächlich \memph{permanent} gemacht werden.
-Dazu müssen gegebenenfalls die \memph{neuen Werte der Datenbankobjekte
+geführter Transaktionen tatsächlich \bEmph{permanent} gemacht werden.
+Dazu müssen gegebenenfalls die \bEmph{neuen Werte der Datenbankobjekte
 erneut} auf die Datenbank geschrieben werden.\footcite[Seite
 11]{db:fs:5}
 
@@ -189,7 +189,7 @@ erneut} auf die Datenbank geschrieben werden.\footcite[Seite
 
 \subsection{Das Lost-Update-Problem\footcite{wiki:verlorenes-update}}
 
-\memph{Änderungen} in einer Datenbank, die durch eine Transaktion
+\bEmph{Änderungen} in einer Datenbank, die durch eine Transaktion
 vorgenommen wurden, gehen aufgrund unkontrollierter Parallelausführung
 verloren.\footcite[11.1.1 Verlorengegangenee Änderungen, Seite 332]{kemper}
 
@@ -202,7 +202,7 @@ verloren.\footcite[11.1.1 Verlorengegangenee Änderungen, Seite 332]{kemper}
 \subsection{Das Dirty-Read-Problem\footcite{wiki:schreib-lese-konflikt}}
 
 Der Wert eines Datenobjekts, der noch nicht permanent gespeichert wurde,
-wird \memph{gelesen}.\footcite[11.1.2 Abhängigkeit von nicht freigegebenen Änderungen, Seite 332]{kemper}
+wird \bEmph{gelesen}.\footcite[11.1.2 Abhängigkeit von nicht freigegebenen Änderungen, Seite 332]{kemper}
 
 \emph{„Zwischenstände lesen“}
 
@@ -213,8 +213,8 @@ wird \memph{gelesen}.\footcite[11.1.2 Abhängigkeit von nicht freigegebenen Änd
 \subsection{Das Unrepeatable-Read-Problem\footcite{wiki:nichtwiederholbares-lesen}}
 
 Während einer Transaktion wird der Wert eines Datenobjekts
-\memph{zweimal gelesen}, wobei dieser Wert aber in der Zwischenzeit von
-einer anderen Transaktion \memph{geändert} wurde.\footcite[11.1.3 Phantomproblem, Seite 333]{kemper}
+\bEmph{zweimal gelesen}, wobei dieser Wert aber in der Zwischenzeit von
+einer anderen Transaktion \bEmph{geändert} wurde.\footcite[11.1.3 Phantomproblem, Seite 333]{kemper}
 
 \emph{„Verschiedene Zwischenstände lesen“}
 
