@@ -39,18 +39,18 @@ mehreren Aufgaben zu einem Examen.]
 \ExplSyntaxOn
 %    \end{macrocode}
 
-% \begin{macro}{\bSetzeExamenThemaNr}
+% \begin{macro}{\bSetzeThemaNr}
 %    \begin{macrocode}
-\def\bSetzeExamenThemaNr#1{
+\def\bSetzeThemaNr#1{
   \tl_gset:Nn \g_thema_nr_tl { #1 }
   \section{Thema~Nr.~#1}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\bSetzeExamenTeilaufgabeNr}
+% \begin{macro}{\bSetzeTeilaufgabeNr}
 %    \begin{macrocode}
-\def\bSetzeExamenTeilaufgabeNr#1{
+\def\bSetzeTeilaufgabeNr#1{
   \tl_gset:Nn \g_teilaufgabe_nr_tl { #1 }
   \subsection{Teilaufgabe~Nr.~#1}
 }

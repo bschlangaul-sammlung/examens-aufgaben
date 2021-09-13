@@ -489,18 +489,18 @@ mehreren Aufgaben zu einem Examen.]
 \ExplSyntaxOn
 %    \end{macrocode}
 
-% \begin{macro}{\bSetzeExamenThemaNr}
+% \begin{macro}{\bSetzeThemaNr}
 %    \begin{macrocode}
-\def\bSetzeExamenThemaNr#1{
+\def\bSetzeThemaNr#1{
   \tl_gset:Nn \g_thema_nr_tl { #1 }
   \section{Thema~Nr.~#1}
 }
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\bSetzeExamenTeilaufgabeNr}
+% \begin{macro}{\bSetzeTeilaufgabeNr}
 %    \begin{macrocode}
-\def\bSetzeExamenTeilaufgabeNr#1{
+\def\bSetzeTeilaufgabeNr#1{
   \tl_gset:Nn \g_teilaufgabe_nr_tl { #1 }
   \subsection{Teilaufgabe~Nr.~#1}
 }
@@ -654,6 +654,7 @@ Dokuments, das alles zusammenfasst.]
 \setze_kopf_fusszeilen:nn {} {}
 %    \end{macrocode}
 
+% Breiterer rechter Rand für die Indexes
 %    \begin{macrocode}
 \geometry{
   right = 3cm,
@@ -875,12 +876,12 @@ Setzen der Aufgaben-Metadaten.]
 %   BearbeitungsStand = OCR,
 %   Korrektheit = absolut korrekt,
 %   RelativerPfad = Staatsexamen/46116/2016/03/Thema-2/Teilaufgabe-1/Aufgabe-2.tex,
-%   ExamenNummer = 46116,
-%   ExamenJahr = 2016,
-%   ExamenMonat = 03,
-%   ExamenThemaNr = 2,
-%   ExamenTeilaufgabeNr = 1,
-%   ExamenAufgabeNr = 2,
+%   EinzelpruefungsNr = 46116,
+%   Jahr = 2016,
+%   Monat = 03,
+%   ThemaNr = 2,
+%   TeilaufgabeNr = 1,
+%   AufgabeNr = 2,
 % }
 % \end{verbatim}
 %    \begin{macrocode}
@@ -1488,14 +1489,14 @@ Setzen der Aufgaben-Metadaten.]
   RelativerPfad       .tl_gset:N = \g_relativer_pfad_tl,
   IdentischeAufgabe   .tl_gset:N = \g_identische_aufgabe_tl,
   %
-  ExamenNummer        .tl_gset:N = \g_einzelpruefungs_nr_tl,
+  EinzelpruefungsNr   .tl_gset:N = \g_einzelpruefungs_nr_tl,
   ExamenFach          .tl_gset:N = \g_examen_fach_tl,
-  ExamenJahr          .tl_gset:N = \g_jahr_tl,
-  ExamenMonat         .tl_gset:N = \g_monat_tl,
-  ExamenJahreszeit    .tl_gset:N = \g_jahreszeit_tl,
-  ExamenThemaNr       .tl_gset:N = \g_thema_nr_tl,
-  ExamenTeilaufgabeNr .tl_gset:N = \g_teilaufgabe_nr_tl,
-  ExamenAufgabeNr     .tl_gset:N = \g_aufgabe_nr_tl,
+  Jahr                .tl_gset:N = \g_jahr_tl,
+  Monat               .tl_gset:N = \g_monat_tl,
+  Jahreszeit          .tl_gset:N = \g_jahreszeit_tl,
+  ThemaNr             .tl_gset:N = \g_thema_nr_tl,
+  TeilaufgabeNr       .tl_gset:N = \g_teilaufgabe_nr_tl,
+  AufgabeNr           .tl_gset:N = \g_aufgabe_nr_tl,
 }
 %    \end{macrocode}
 
