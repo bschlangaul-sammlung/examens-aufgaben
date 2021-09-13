@@ -1,12 +1,23 @@
 \documentclass{bschlangaul-aufgabe}
 \bLadePakete{baum}
 \begin{document}
-\bAufgabenTitel{Binärbaum, Halde, AVL}
-
-\section{Staatsexamenaufgabe zu Binärbaum, Halde, AVL
-\index{AVL-Baum}
-\index{Halde (Heap)}
-\footcite[Thema 2 Aufgabe 8, Seite 12]{examen:66115:2017:09}}
+\bAufgabenMetadaten{
+  Titel = {Aufgabe 8},
+  Thematik = {Binärbaum, Halde, AVL},
+  Referenz = 66115-2017-H.T2-A8,
+  RelativerPfad = Staatsexamen/66115/2017/09/Thema-2/Aufgabe-8.tex,
+  ZitatSchluessel = examen:66115:2017:09,
+  ZitatBeschreibung = {Thema 2 Aufgabe 8, Seite 12},
+  BearbeitungsStand = mit Lösung,
+  Korrektheit = korrekt und überprüft,
+  Ueberprueft = {mit einer Dozentenlösung abgeglichen},
+  Stichwoerter = {AVL-Baum, Halde (Heap), Binärbaum},
+  EinzelpruefungsNr = 66115,
+  Jahr = 2017,
+  Monat = 09,
+  ThemaNr = 2,
+  AufgabeNr = 8,
+}
 
 \begin{enumerate}
 
@@ -14,9 +25,12 @@
 % (a)
 %%
 
-\item Fügen Sie die Zahlen $13$, $12$, $42$, $3$, $11$ in der gegebenen
-Reihenfolge in einen zunächst leeren binären Suchbaum mit aufsteigender
-Sortierung ein. Stellen Sie nur das Endergebnis dar.\index{Binärbaum}
+\item Fügen\index{AVL-Baum}
+\index{Halde (Heap)}
+\footcite{examen:66115:2017:09} Sie die Zahlen $13$, $12$, $42$, $3$,
+$11$ in der gegebenen Reihenfolge in einen zunächst leeren binären
+Suchbaum mit aufsteigender Sortierung ein. Stellen Sie nur das
+Endergebnis dar.\index{Binärbaum}
 \footcite[Aufgabe 2]{aud:ab:5}
 
 \begin{bAntwort}
@@ -120,7 +134,7 @@ Suchbaumeigenschaft.
 % (c)
 %%
 
-\item Fügen Sie einen neuen Knoten mit dem Wert 13 in die folgende
+\item Fügen Sie einen neuen Knoten mit dem Wert $13$ in die folgende
 Min-Halde ein und stellen Sie anschließend die Halden-Eigenschaft vom
 neuen Blatt aus beginnend wieder her, wobei möglichst viele Knoten der
 Halde unverändert bleiben und die Halde zu jedem Zeitpunkt
@@ -144,6 +158,7 @@ links-vollständig sein soll. Geben Sie nur das Endergebnis an.
 ]
 \end{tikzpicture}
 \end{center}
+\begin{bAntwort}
 
 \begin{bBaum}{Nach dem Einfügen von „13“}
 
@@ -165,7 +180,7 @@ links-vollständig sein soll. Geben Sie nur das Endergebnis an.
 \end{tikzpicture}
 \end{bBaum}
 
-\begin{bBaum}{Nach Vertauschen von „13“ und „28“}
+\begin{bBaum}{Nach dem Vertauschen von „13“ und „28“}
 
 \begin{tikzpicture}[li binaer baum]
 \Tree
@@ -185,7 +200,7 @@ links-vollständig sein soll. Geben Sie nur das Endergebnis an.
 \end{tikzpicture}
 \end{bBaum}
 
-\begin{bBaum}{Nach Vertauschen von „13“ und „19“}
+\begin{bBaum}{Nach dem Vertauschen von „13“ und „19“}
 
 \begin{tikzpicture}[li binaer baum]
 \Tree
@@ -204,13 +219,14 @@ links-vollständig sein soll. Geben Sie nur das Endergebnis an.
 ]
 \end{tikzpicture}
 \end{bBaum}
+\end{bAntwort}
 
 %%
 % (d)
 %%
 
 \item Geben Sie für die ursprüngliche Min-Halde aus Teilaufgabe c)(\dh
-ohne den neu eingefügten Knoten mit dem Wert 13) die Feld-Einbettung
+ohne den neu eingefügten Knoten mit dem Wert $13$) die Feld-Einbettung
 (Array-Darstellung) an.
 
 \begin{bAntwort}
@@ -250,26 +266,8 @@ links-vollständig sein soll. Geben Sie nur das Endergebnis an.
 \end{tikzpicture}
 \end{center}
 
-\begin{bBaum}{Nach dem Entfernen von „42“}
-\begin{tikzpicture}[li binaer baum]
-\Tree
-[.42
-  [.24
-    [.21
-      [.13 ]
-      \edge[blank]; \node[blank]{};
-    ]
-    [.19 ]
-  ]
-  [.28
-    [.3 ]
-    [.7 ]
-  ]
-]
-\end{tikzpicture}
-\end{bBaum}
-
-\begin{bBaum}{Nach Vertauschen von „42“ und „13“}
+\begin{bAntwort}
+\begin{bBaum}{Nach dem Ersetzen von „42“ mit „13“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.13
@@ -285,7 +283,7 @@ links-vollständig sein soll. Geben Sie nur das Endergebnis an.
 \end{tikzpicture}
 \end{bBaum}
 
-\begin{bBaum}{Nach Vertauschen von „13“ und „28“}
+\begin{bBaum}{Nach dem Vertauschen von „13“ und „28“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.28
@@ -300,6 +298,7 @@ links-vollständig sein soll. Geben Sie nur das Endergebnis an.
 ]
 \end{tikzpicture}
 \end{bBaum}
+\end{bAntwort}
 
 %%
 % (f)
@@ -328,6 +327,7 @@ Zeichnen Sie den Baum vor und nach den Rotationen.
   [.\node[label=0]{28}; ]
 ]
 \end{tikzpicture}
+\begin{bAntwort}
 
 \begin{bBaum}{Nach dem Einfügen von „13“}
 \begin{tikzpicture}[li binaer baum]
@@ -376,6 +376,7 @@ Zeichnen Sie den Baum vor und nach den Rotationen.
 ]
 \end{tikzpicture}
 \end{bBaum}
+\end{bAntwort}
 
 %%
 % ii)
@@ -396,6 +397,7 @@ Zeichnen Sie den Baum vor und nach den Rotationen.
 \end{tikzpicture}
 \end{center}
 
+\begin{bAntwort}
 \begin{bBaum}{Nach dem Einfügen von „13“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
@@ -427,6 +429,7 @@ Zeichnen Sie den Baum vor und nach den Rotationen.
 ]
 \end{tikzpicture}
 \end{bBaum}
+\end{bAntwort}
 
 \end{enumerate}
 \end{enumerate}
