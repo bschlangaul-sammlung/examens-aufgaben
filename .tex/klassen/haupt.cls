@@ -37,6 +37,14 @@ Dokuments, das alles zusammenfasst.]
 \setze_kopf_fusszeilen:nn {} {}
 %    \end{macrocode}
 
+% Breiterer rechter Rand für die Indexes
+%    \begin{macrocode}
+\geometry{
+  right = 3cm,
+  marginparwidth = 2.8cm,
+}
+%    \end{macrocode}
+
 %    \begin{macrocode}
 \AddToHook { begindocument }
 {
@@ -60,10 +68,18 @@ Dokuments, das alles zusammenfasst.]
 }
 %    \end{macrocode}
 
+%    \begin{macrocode}
+\AddToHook { enddocument }
+{
+  \printindex
+}
+%    \end{macrocode}
+
 % \begin{macro}{\bAufgabenMetadaten}
 % Das Metadaten-Makro überschreiben
 %    \begin{macrocode}
-\def\bAufgabenMetadaten#1{
+\def\bAufgabenMetadaten #1
+{
   \bMetaSetze{#1}
   \subsection{\gib_aufgaben_pfad_lang_sicher:}
 }

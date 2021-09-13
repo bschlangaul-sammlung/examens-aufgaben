@@ -655,6 +655,13 @@ Dokuments, das alles zusammenfasst.]
 %    \end{macrocode}
 
 %    \begin{macrocode}
+\geometry{
+  right = 3cm,
+  marginparwidth = 2.8cm,
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \AddToHook { begindocument }
 {
   \repariere_kopfzeile_breite:
@@ -677,10 +684,18 @@ Dokuments, das alles zusammenfasst.]
 }
 %    \end{macrocode}
 
+%    \begin{macrocode}
+\AddToHook { enddocument }
+{
+  \printindex
+}
+%    \end{macrocode}
+
 % \begin{macro}{\bAufgabenMetadaten}
 % Das Metadaten-Makro überschreiben
 %    \begin{macrocode}
-\def\bAufgabenMetadaten#1{
+\def\bAufgabenMetadaten #1
+{
   \bMetaSetze{#1}
   \subsection{\gib_aufgaben_pfad_lang_sicher:}
 }
@@ -4226,6 +4241,32 @@ lassen]
 
 %    \begin{macrocode}
 \RequirePackage{makeidx}
+%    \end{macrocode}
+
+% Anzeigen des Indexes auf der rechten Seite
+%    \begin{macrocode}
+\RequirePackage{showidx}
+%    \end{macrocode}
+
+% Überschreiben des Makros aus showidx um kleinere Schrift zu bekommen
+%    \begin{macrocode}
+\def\@showidx#1
+{%
+\insert
+\indexbox
+  {
+    \tiny
+    \hsize\marginparwidth
+    \hangindent\marginparsep \parindent\z@
+    \everypar{}\let\par\@@par \parfillskip\@flushglue
+    \lineskip\normallineskip
+    \baselineskip .8\normalbaselineskip\sloppy
+    \raggedright \leavevmode
+    \vrule \@height .7\normalbaselineskip \@width \z@\relax
+    #1\relax
+    \vrule \@height \z@ \@depth .3\normalbaselineskip \@width \z@
+  }
+}
 %    \end{macrocode}
 
 %    \begin{macrocode}

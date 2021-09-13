@@ -9,12 +9,12 @@ git_submodule:
 install_config:
 	.scripts/shell/install-config.sh
 
-install_cli:
+build: werkzeug_baue
+
+werkzeug_installiere:
 	cd .scripts/nodejs; npm install; npm run build
 
-build: build_cli
-
-build_cli:
+werkzeug_baue:
 	cd .scripts/nodejs; npm run build
 
 install_tex:
@@ -30,5 +30,11 @@ readme:
 
 clean:
 	.scripts/shell/clean.sh
+
+pull_submodules:
+	.scripts/shell/git-pull-checkout-main.sh
+
+sammlungen:
+	.scripts/nodejs/dist/main.js sammlungen haupt -vvv
 
 .PHONY: install_tex readme install_cli install_config clean

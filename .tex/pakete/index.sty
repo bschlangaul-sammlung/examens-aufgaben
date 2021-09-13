@@ -11,6 +11,32 @@ lassen]
 \RequirePackage{makeidx}
 %    \end{macrocode}
 
+% Anzeigen des Indexes auf der rechten Seite
+%    \begin{macrocode}
+\RequirePackage{showidx}
+%    \end{macrocode}
+
+% Überschreiben des Makros aus showidx um kleinere Schrift zu bekommen
+%    \begin{macrocode}
+\def\@showidx#1
+{%
+\insert
+\indexbox
+  {
+    \tiny
+    \hsize\marginparwidth
+    \hangindent\marginparsep \parindent\z@
+    \everypar{}\let\par\@@par \parfillskip\@flushglue
+    \lineskip\normallineskip
+    \baselineskip .8\normalbaselineskip\sloppy
+    \raggedright \leavevmode
+    \vrule \@height .7\normalbaselineskip \@width \z@\relax
+    #1\relax
+    \vrule \@height \z@ \@depth .3\normalbaselineskip \@width \z@
+  }
+}
+%    \end{macrocode}
+
 %    \begin{macrocode}
 \makeindex
 %    \end{macrocode}
