@@ -1,11 +1,21 @@
 \documentclass{bschlangaul-aufgabe}
 \bLadePakete{baum}
 \begin{document}
-\bAufgabenTitel{B-Baum m=2}
-
-\section{Übungsaufgabe B-Bäume
-\index{B-Baum}
-\footcite[Thema 2 Aufgabe 6 (Adaptiert)]{66112:2005:09}
+\bAufgabenMetadaten{
+  Titel = {Übungsaufgabe B-Bäume},
+  Thematik = {B-Baum m=2},
+  Referenz = 66112-2005-H.T2-A6,
+  RelativerPfad = Staatsexamen/66112/2005/09/Thema-2/Aufgabe-6.tex,
+  ZitatSchluessel = 66112:2005:09,
+  ZitatBeschreibung = {Thema 2 Aufgabe 6 (Adaptiert)},
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {B-Baum},
+  EinzelpruefungsNr = 66112,
+  Jahr = 2005,
+  Monat = 09,
+  ThemaNr = 2,
+  AufgabeNr = 6,
 }
 
 \begin{enumerate}
@@ -14,8 +24,9 @@
 % a)
 %%
 
-\item Erzeugen Sie aus der gegebenen Folge einen B-Baum der Ordnung
-$m=2$:\footcite[Seite 34-37(PDF 28-31)]{aud:fs:5}
+\item Erzeugen\index{B-Baum} \footcite[Thema 2 Aufgabe 6
+(Adaptiert)]{66112:2005:09} Sie aus der gegebenen Folge einen B-Baum der
+Ordnung $m=2$:\footcite[Seite 34-37(PDF 28-31)]{aud:fs:5}
 
 $22,10,19,20,1,13,11,12,7,8,5,42,33,21,52,48,50$
 
@@ -32,7 +43,7 @@ Zwischenergebnisse und die angewendeten Operationen als Bäume dar!
 \item \fbox{+22} \fbox{+10} \fbox{+19} \fbox{+20} Einfügen der ersten
 Zahlen bis zur kompletten Füllung der Wurzel:
 
-\begin{tikzpicture}[bbaum]
+\begin{tikzpicture}[b bbaum]
 \node {10 \nodepart{two} 19 \nodepart{three} 20 \nodepart{four} 22};
 \end{tikzpicture}
 
@@ -42,7 +53,7 @@ Zahlen bis zur kompletten Füllung der Wurzel:
 
 \item \fbox{+1} Einfügen der 1 führt zum Überlauf, deshalb Aufspaltung:
 
-\begin{tikzpicture}[bbaum]
+\begin{tikzpicture}[b bbaum]
 \node {1 \nodepart{two} 10 \nodepart{three} 19 \nodepart{four} 20 \nodepart{five} 22};
 \end{tikzpicture}
 
@@ -53,7 +64,7 @@ Zahlen bis zur kompletten Füllung der Wurzel:
 \item Übernahme des mittleren Elements (19) in die Wurzel:
 
 \begin{tikzpicture}[
-  li bbaum,
+  b bbaum,
   level 1/.append style={sibling distance=15mm},
 ]
 \node {19}[->]
@@ -69,7 +80,7 @@ Zahlen bis zur kompletten Füllung der Wurzel:
 \item \fbox{+13} Einfügen der 13:
 
 \begin{tikzpicture}[
-  li bbaum,
+  b bbaum,
   level 1/.append style={sibling distance=20mm},
 ]
 \node {19}[->]
@@ -86,7 +97,7 @@ Zahlen bis zur kompletten Füllung der Wurzel:
 11 als mittleres Element wird nach oben geschrieben:
 
 \begin{tikzpicture}[
-  li bbaum,
+  b bbaum,
   level 1/.append style={sibling distance=15mm},
 ]
 \node {11 \nodepart{two} 19}[->]
@@ -103,7 +114,7 @@ Zahlen bis zur kompletten Füllung der Wurzel:
 \item \fbox{+7} \fbox{+8} Einfügen von 7 und 8:
 
 \begin{tikzpicture}[
-  li bbaum,
+  b bbaum,
   level 1/.append style={sibling distance=20mm},
 ]
 \node {11 \nodepart{two} 19}[->]
@@ -121,7 +132,7 @@ Zahlen bis zur kompletten Füllung der Wurzel:
 mittleres Element wird nach oben geschrieben:
 
 \begin{tikzpicture}[
-  li bbaum,
+  b bbaum,
   level 1/.append style={sibling distance=15mm},
 ]
 \node {7 \nodepart{two} 11 \nodepart{three} 19}[->]
@@ -139,7 +150,7 @@ mittleres Element wird nach oben geschrieben:
 \item \fbox{+42} \fbox{+33} Einfügen von 42 und 33:
 
 \begin{tikzpicture}[
-  li bbaum,
+  b bbaum,
   level 1/.append style={sibling distance=20mm},
 ]
 \node {7 \nodepart{two} 11 \nodepart{three} 19}[->]
@@ -158,7 +169,7 @@ mittleres Element wird nach oben geschrieben:
 nach oben schieben
 
 \begin{tikzpicture}[
-  li bbaum,
+  b bbaum,
   level 1/.append style={sibling distance=15mm},
 ]
 \node {7 \nodepart{two} 11 \nodepart{three} 19 \nodepart{four} 22}[->]
@@ -173,7 +184,7 @@ nach oben schieben
 \item \fbox{+52} \fbox{+48} Einfügen von 52 und 48
 
 \begin{tikzpicture}[
-  li bbaum,
+  b bbaum,
   level 1/.append style={sibling distance=20mm},
 ]
 \node {7 \nodepart{two} 11 \nodepart{three} 19 \nodepart{four} 22}[->]
@@ -189,7 +200,7 @@ nach oben schieben
 nach oben schieben
 
 \begin{tikzpicture}[
-  li bbaum,
+  b bbaum,
   level 1/.append style={sibling distance=15mm},
 ]
 \node {7 \nodepart{two} 11 \nodepart{three} 19 \nodepart{four} 22 \nodepart{five} 48}[->]
@@ -206,7 +217,7 @@ nach oben schieben
 weiterer Splitt notwendig, der neue Ebene erzeugt!
 
 \begin{tikzpicture}[
-  li bbaum,
+  b bbaum,
   level 1/.append style={level distance=5mm,sibling distance=60mm},
   level 2/.append style={sibling distance=20mm}
 ]
@@ -233,7 +244,7 @@ weiterer Splitt notwendig, der neue Ebene erzeugt!
 Ablauf des Suchalgorithmus an einer Zeichnung graphisch dar!
 
 \begin{tikzpicture}[
-  li bbaum,
+  b bbaum,
   level 1/.append style={level distance=5mm,sibling distance=60mm},
   level 2/.append style={sibling distance=20mm}
 ]
