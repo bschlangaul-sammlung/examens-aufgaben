@@ -18,17 +18,17 @@
 
 \item
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> 0S1 | epsilon
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 
 \begin{bAntwort}
 \begin{enumerate}
 \item \schrittE{1}
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> 0S1 | 01
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 \bFlaci{Ghje1ygz9}
 \item \schrittE{2}
 
@@ -38,20 +38,20 @@ S -> 0S1 | 01
 
 N = Null, E = Eins
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> NSE | NE,
 N -> 0,
 E -> 1
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 
 \item \schrittE{4}
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> NR | NE,
 R -> SE,
 N -> 0,
 E -> 1
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 \end{enumerate}
 \end{bAntwort}
 
@@ -61,22 +61,22 @@ E -> 1
 
 \item
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> a | aA | B,
 A -> aBB | epsilon,
 B -> Aa | b
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 \bFlaci{G54gubr9i}
 
 \begin{bAntwort}
 \begin{enumerate}
 \item \schrittE{1}
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> a | aA | B,
 A -> aBB,
 B -> Aa | b | a
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 
 Das leere Wort ist nicht in der Sprache ($\varepsilon \notin L(G )$). In
 der Sprache sind immer Wörter mit mindestens einem Buchstaben. In der
@@ -88,11 +88,11 @@ entstanden ist.
 
 \item \schrittE{2}
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> a | aA | Aa | b,
 A -> aBB,
 B -> Aa | b | a
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 
 Wir schreiben die Regel, die keine einzelnes Nonterminal auf der rechten
 Seite enthalten, ab. In der ersten Regel wird $B$ mit $Aa | b | a$
@@ -102,22 +102,22 @@ weggelassen werden, weil sie in der $A$-Regel vorkommt.
 
 \item \schrittE{3}
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> a | VA | AV | b,
 A -> VBB,
 B -> AV | b | a,
 V -> a
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 
 \item \schrittE{4}
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> a | VA | AV | b,
 A -> VC,
 B -> AV | b | a,
 V -> a,
 C -> BB
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 \end{enumerate}
 \end{bAntwort}
 
@@ -127,45 +127,45 @@ C -> BB
 
 \item % Video ab 1h26
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> ABC,
 A -> aCD,
 B -> bCD,
 C -> D | epsilon,
 D -> C
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 \bFlaci{Grxwcync2}
 
 \begin{bAntwort}
 \begin{enumerate}
 \item \schrittE{1}
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> ABC | AB,
 A -> aCD | aD,
 B -> bCD | bD,
 C -> D,
 D -> C | epsilon
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 
 In der letzten Regel entsteht ein neues $\varepsilon$. Es muss in der
 nächsten Iteration entfernt werden.
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> ABC | AB,
 A -> aCD | aD | aC | a,
 B -> bCD | bD | bC | b,
 C -> D,
 D -> C
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 
 \item \schrittE{2}
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> AB,
 A -> a,
 B -> b,
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 
 $C$ und $D$ sind nicht produktiv. $C \rightarrow D$ und $D \rightarrow
 C$ können gestrichen werden.

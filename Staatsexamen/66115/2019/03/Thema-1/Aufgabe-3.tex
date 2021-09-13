@@ -12,11 +12,11 @@ Gegeben sei die kontextfreie Grammatik \bGrammatik{} mit Sprache
 $L(G)$, wobei $V = \bMenge{S,T,U}$ und \bAlphabet{a,b}. $P$ bestehe
 aus den folgenden Produktionen:
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> T U U T,
 T -> a T | EPSILON,
 U -> b U b | a,
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 \bFussnoteUrl{https://flaci.com/Gjpsin26a}
 \begin{enumerate}
 
@@ -59,11 +59,11 @@ Vorgehensweise.
 \begin{enumerate}
 \item \schrittE{1}
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> T U U T | T U U | U U T | U U,
 T -> a T | a,
 U -> b U b | a,
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 
 \item \schrittE{2}
 
@@ -71,13 +71,13 @@ U -> b U b | a,
 
 \item \schrittE{3}
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> T U U T | T U U | U U T | U U,
 T -> A T | A,
 U -> B U B | A,
 A -> a,
 B -> b
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 
 \item \schrittE{4}
 
@@ -91,7 +91,7 @@ B -> b
 % S.4 -> U U
 % U.1 -> U T2
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> T S_1 | T S_3 | U S_2 | U U, % S   -> T S.1 | U S.2 | T S.4 | U U
 S_1 -> U S_2, % S.1 -> U S.2
 S_2 -> U T, % S.2 -> U T
@@ -101,7 +101,7 @@ U -> B U_1 | a, % U   -> T2 U.1 | a
 U_1 -> U B, % U.1 -> U T2
 A -> a, % T1  -> a
 B -> b, % T2  -> b
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 \end{enumerate}
 
 \end{bAntwort}

@@ -57,13 +57,13 @@ dass X =>* w.
 
 Bringen Sie die folgende Grammatik in Chomsky-Normalform.
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> A A B | C D | a b c,
 A -> A A A A | a,
 B -> B B | S,
 C -> C C C | C C,
 D -> d,
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 \bFlaci{Gf7f9tp7z}
 
 Das Startsymbol der Grammatik ist S, das Terminalalphabet ist {a,b,c,d} und die Menge
@@ -82,27 +82,27 @@ Eine rechte Seite in der C vorkommt, lässt sich wegen \bProduktionen{C
 -> C C C | C C} nicht ableiten, weil es zu einer Endlosschleife kommt.
 Wir entfernen die entsprechenden Regeln.
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> A A B | a b c,
 A -> A A A A | a,
 B -> B B | A A B | a b c,
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 
 \item \schrittE{3}
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> A A B | T_a T_b T_c,
 A -> A A A A | a,
 B -> B B | A A B | T_a T_b T_c,
 T_a  -> a,
 T_b  -> b,
 T_c  -> c,
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 
 \item \schrittE{4}
 \end{enumerate}
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S   -> A S_1 | T_a S_2,
 A   -> A A_1 | a,
 B   -> B B | A S_1 | T_a S_2,
@@ -113,7 +113,7 @@ S_1 -> A B,
 S_2 -> T_b T_c,
 A_1 -> A A_2,
 A_2 -> A A,
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 \end{bAntwort}
 
 \end{enumerate}

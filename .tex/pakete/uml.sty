@@ -6,10 +6,19 @@ Erweiterung bereitstellt]
 
 %    \begin{macrocode}
 \RequirePackage{tikz-uml}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \RequirePackage{tikz-uml-activity}
+%    \end{macrocode}
+
 % Not compatible with wasysym
+%    \begin{macrocode}
 %\RequirePackage{mathabx}
 \RequirePackage{wasysym}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \usetikzlibrary{positioning}
 %    \end{macrocode}
 
@@ -79,7 +88,8 @@ Erweiterung bereitstellt]
 % \bUmlLeserichtung[pos=below left,dir=down,distance=0cm]{benutzt}
 % \end{verbatim}
 %    \begin{macrocode}
-\NewDocumentCommand{ \bUmlLeserichtung } { O{dir=right} m } {
+\NewDocumentCommand{ \bUmlLeserichtung } { O{dir=right} m }
+{
   \def\@liDirLeft{}
   \def\@liDirRight{ \RIGHTarrow}
   \pgfkeys{/lese/dir/.is choice}

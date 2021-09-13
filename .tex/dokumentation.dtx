@@ -78,6 +78,7 @@
   relationale-algebra,
   sortieren,
   synthese-algorithmus,
+  syntaxbaum,
   typographie,
   tex-dokumentation,
   uml,
@@ -6817,7 +6818,13 @@ realisiert werden kann.]
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{bschlangaul-struktogramm}[2021/01/31 Lädt das
 Paket struktex zum Setzen von Struktogrammen]
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \RequirePackage{struktex}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{syntax.sty}
@@ -6864,7 +6871,8 @@ Paket struktex zum Setzen von Struktogrammen]
 %\BeforeBeginEnvironment{minted}{\begin{mdframed}}
 %\AfterEndEnvironment{minted}{\end{mdframed}}
 %\setminted{breaklines=true,linenos}
-\setminted{
+\setminted
+{
   breaklines=true,
   linenos=false,
   fontsize=\footnotesize,
@@ -6875,7 +6883,8 @@ Paket struktex zum Setzen von Struktogrammen]
 % Eine Umgebung für Java-Code, ohne Zeilennummer und etwas eingerückt
 % um den Java-Code in Angaben / Aufgabestellungen zu setzen.
 %    \begin{macrocode}
-\newminted[bJavaAngabe]{java}{
+\newminted[bJavaAngabe]{java}
+{
   xleftmargin=1cm
 }
 %    \end{macrocode}
@@ -6886,7 +6895,8 @@ Paket struktex zum Setzen von Struktogrammen]
 % Zeilenumbrüche gemacht.
 % \bMakroFaulenzer{j}{liJavaCode}
 %    \begin{macrocode}
-\def\bJavaCode#1{
+\def\bJavaCode#1
+{
   \,
   \textcolor{blue}{
     \mintinline[
@@ -6902,12 +6912,16 @@ Paket struktex zum Setzen von Struktogrammen]
 % \begin{macro}{\bLatexCode}
 % Im Zeilenfluss einen kurzen \LaTeX-Code-Ausschnitt setzen.
 %    \begin{macrocode}
-\def\bLatexCode#1{\mintinline{latex}|#1|}
+\def\bLatexCode#1
+{
+  \mintinline{latex}|#1|
+}
 %    \end{macrocode}
 % \end{macro}
 
 %    \begin{macrocode}
-\def\li@GithubLink#1#2{
+\def\li@GithubLink#1#2
+{
   \begin{flushright}
     \tiny
     Code-Beispiel~auf~Github~ansehen:~
@@ -6920,7 +6934,8 @@ Paket struktex zum Setzen von Struktogrammen]
 % Eine komplette Java-Datei einbinden, die
 % Verzeichnis |./Code/src/main/java/org/bschlangaul| liegt.
 %    \begin{macrocode}
-\NewDocumentCommand{\bJavaDatei}{ O{firstline=3} m }{
+\NewDocumentCommand{ \bJavaDatei }{ O{firstline=3} m }
+{
   \inputminted[#1]{java}{
     \directlua{
       syntax.drucke_absoluten_pfad('#2', false)
@@ -6937,7 +6952,8 @@ Paket struktex zum Setzen von Struktogrammen]
 % Eine komplette Java-Test-Datei einbinden,
 % die Verzeichnis |./Code/src/test/java/org/bschlangaul| liegt.
 %    \begin{macrocode}
-\NewDocumentCommand{\bJavaTestDatei}{ O{firstline=3} m }{
+\NewDocumentCommand{ \bJavaTestDatei }{ O{firstline=3} m }
+{
   \inputminted[#1]{java}{
     \directlua{
       syntax.drucke_absoluten_pfad('#2', true)
@@ -6956,7 +6972,8 @@ Paket struktex zum Setzen von Struktogrammen]
 % |\\bJavaDatei(\[.*\])?\{.*examen_(\d{5})_(\d{4})_(\d{2})/(.*)\}|
 % |\\bJavaExamen$1{$2}{$3}{$4}{$5}|
 %    \begin{macrocode}
-\NewDocumentCommand{\bJavaExamen}{ O{firstline=3} m m m m }{
+\NewDocumentCommand{ \bJavaExamen }{ O{firstline=3} m m m m }
+{
   \inputminted[#1]{java}{
     \directlua{
       syntax.drucke_absoluten_examens_pfad('#2', '#3', '#4', '#5')
@@ -6972,7 +6989,10 @@ Paket struktex zum Setzen von Struktogrammen]
 
 % \begin{macro}{\bAssemblerCode}
 %    \begin{macrocode}
-\def\bAssemblerCode#1{\mintinline{asm}|#1|}
+\def\bAssemblerCode#1
+{
+  \mintinline{asm}|#1|
+}
 %    \end{macrocode}
 % \end{macro}
 
@@ -6980,7 +7000,8 @@ Paket struktex zum Setzen von Struktogrammen]
 % |\bAssemblerDatei{relativer-pfad}|: Relativer Pfad zu einer
 % Assembler-Datei.
 %    \begin{macrocode}
-\NewDocumentCommand{\bAssemblerDatei}{ m }{
+\NewDocumentCommand { \bAssemblerDatei } { m }
+{
   \inputminted{asm}{#1}
 }
 %    \end{macrocode}
@@ -6991,7 +7012,8 @@ Paket struktex zum Setzen von Struktogrammen]
 % Minisprachen-Datei (Hochsprache für die Minimaschine von Albert
 % Wiedemann).
 %    \begin{macrocode}
-\NewDocumentCommand{\bMinispracheDatei}{ m }{
+\NewDocumentCommand { \bMinispracheDatei } { m }
+{
   \inputminted{componentpascal}{#1}
 }
 %    \end{macrocode}
@@ -7000,7 +7022,10 @@ Paket struktex zum Setzen von Struktogrammen]
 % \begin{macro}{\bHaskellCode}
 % |\bHaskellCode{haskell}|: Zum Setzen von Haskell-Code.
 %    \begin{macrocode}
-\def\bHaskellCode#1{\mintinline{haskell}|#1|}
+\def\bHaskellCode#1
+{
+  \mintinline{haskell}|#1|
+}
 %    \end{macrocode}
 % \end{macro}
 
@@ -7008,8 +7033,20 @@ Paket struktex zum Setzen von Struktogrammen]
 % |\bHaskellDatei{relativer-pfad}|: Relativer Pfad zu einer
 % Haskell-Datei.
 %    \begin{macrocode}
-\NewDocumentCommand{\bHaskellDatei}{ m }{
+\NewDocumentCommand { \bHaskellDatei } { m }
+{
   \inputminted{haskell}{#1}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\bSqlCode}
+% |\bHaskellCode{sql}|: Zum Setzen von SQL-Code.
+% \bMakroFaulenzer{s}{liSqlCode}
+%    \begin{macrocode}
+\def\bSqlCode#1
+{
+  \mintinline{sql}|#1|
 }
 %    \end{macrocode}
 % \end{macro}
@@ -7017,14 +7054,6 @@ Paket struktex zum Setzen von Struktogrammen]
 %    \begin{macrocode}
 \ExplSyntaxOff
 %    \end{macrocode}
-
-% \begin{macro}{\bSqlCode}
-% |\bHaskellCode{sql}|: Zum Setzen von SQL-Code.
-% \bMakroFaulenzer{s}{liSqlCode}
-%    \begin{macrocode}
-\def\bSqlCode#1{\mintinline{sql}|#1|}
-%    \end{macrocode}
-% \end{macro}
 
 %    \begin{macrocode}
 
@@ -7034,8 +7063,27 @@ Paket struktex zum Setzen von Struktogrammen]
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{bschlangaul-syntaxbaum}[2021/02/14 Zum Setzen von
 Syntaxbäumen mit Hilfe des Pakets tikz-qtree]
-\RequirePackage{tikz-qtree}
+%    \end{macrocode}
 
+% \subsection{TeX-Markup-Beispiel}
+
+% \begin{verbatim}
+% \begin{tikzpicture}[b syntaxbaum,level distance=1cm]
+% \Tree [.S 0 [ 0 [.S $\varepsilon$ ] 0 ] 0 ]
+% \end{tikzpicture}
+% \end{verbatim}
+
+% \begin{bBeispiel}
+% \begin{tikzpicture}[b syntaxbaum,level distance=1cm]
+% \Tree [.S 0 [ 0 [.S $\varepsilon$ ] 0 ] 0 ]
+% \end{tikzpicture}
+% \end{bBeispiel}
+
+%    \begin{macrocode}
+\RequirePackage{tikz-qtree}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \tikzset{b syntaxbaum/.style={
     every internal node/.style={
       draw,circle
@@ -7045,6 +7093,9 @@ Syntaxbäumen mit Hilfe des Pakets tikz-qtree]
     },
   }
 }
+%    \end{macrocode}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{synthese-algorithmus.sty}
@@ -7056,7 +7107,14 @@ Relation in die 3. Normalform]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\bLadePakete{normalformen,mathe,typographie}
+\bLadePakete{
+  normalformen,
+  mathe,
+  typographie
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \ExplSyntaxOn
 %    \end{macrocode}
 
@@ -7151,7 +7209,8 @@ Relation in die 3. Normalform]
 % \begin{macro}{\bSyntheseUeberschrift}
 % \bMakroFaulenzer{schritt}{liSyntheseUeberschrift}
 %    \begin{macrocode}
-\def\bSyntheseUeberschrift#1{
+\def\bSyntheseUeberschrift#1
+{
   {
     \bfseries
     \rmfamily
@@ -7173,7 +7232,8 @@ Relation in die 3. Normalform]
 % \begin{macro}{\bSyntheseErklaerung}
 % \bMakroFaulenzer{erklaerung}{liSyntheseErklaerung}
 %    \begin{macrocode}
-\def\li@synthese@erklaerung@texte#1{
+\def\li@synthese@erklaerung@texte#1
+{
   \str_case:nn {#1} {
     {1} {
       Die~kanonische~Überdeckung~-~also~die~kleinst~mögliche~noch~
@@ -7229,7 +7289,8 @@ Relation in die 3. Normalform]
     }
   }
 }
-\def\bSyntheseErklaerung#1{
+\def\bSyntheseErklaerung#1
+{
   {
     \itshape
     \footnotesize
@@ -7242,7 +7303,8 @@ Relation in die 3. Normalform]
 % \begin{macro}{\bSyntheseUeberErklaerung}
 % \bMakroFaulenzer{schrittE}{liSyntheseUeberErklaerung}
 %    \begin{macrocode}
-\def\bSyntheseUeberErklaerung#1{
+\def\bSyntheseUeberErklaerung#1
+{
   \bSyntheseUeberschrift{#1}\par
   \bSyntheseErklaerung{#1}
 }
@@ -7257,7 +7319,13 @@ Relation in die 3. Normalform]
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{bschlangaul-tabelle}[2020/12/05 Lädt das Paket tabluarx]
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \RequirePackage{tabularx}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{tex-dokumentation.sty}
@@ -7375,7 +7443,8 @@ formatierung.sty definiert.]
 % \bParagraphMitLinien{Lorem ipsum dolor sit, ipsum dolor sit, ipsum
 % dolor sit, ipsum dolor sit, ipsum dolor sit, ipsum dolor sit}
 %    \begin{macrocode}
-\def\bParagraphMitLinien#1{
+\def\bParagraphMitLinien#1
+{
   \noindent
   \vrule height 2pt depth -1.6pt width 0.4cm
   \enspace
@@ -7395,7 +7464,8 @@ formatierung.sty definiert.]
 % \bGeschweifteKlammern{Variable}{\begin{center}Inhalt\end{center}}{0cm}{0cm}
 % \end{bBeispiel}
 %    \begin{macrocode}
-\def\bGeschweifteKlammern#1#2#3#4{
+\def\bGeschweifteKlammern#1#2#3#4
+{
   \par
   \medskip
   \noindent
@@ -7426,10 +7496,19 @@ Erweiterung bereitstellt]
 
 %    \begin{macrocode}
 \RequirePackage{tikz-uml}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \RequirePackage{tikz-uml-activity}
+%    \end{macrocode}
+
 % Not compatible with wasysym
+%    \begin{macrocode}
 %\RequirePackage{mathabx}
 \RequirePackage{wasysym}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \usetikzlibrary{positioning}
 %    \end{macrocode}
 
@@ -7499,7 +7578,8 @@ Erweiterung bereitstellt]
 % \bUmlLeserichtung[pos=below left,dir=down,distance=0cm]{benutzt}
 % \end{verbatim}
 %    \begin{macrocode}
-\NewDocumentCommand{ \bUmlLeserichtung } { O{dir=right} m } {
+\NewDocumentCommand{ \bUmlLeserichtung } { O{dir=right} m }
+{
   \def\@liDirLeft{}
   \def\@liDirRight{ \RIGHTarrow}
   \pgfkeys{/lese/dir/.is choice}
@@ -7744,7 +7824,8 @@ Setzen des WP-Kalküls]
 % \begin{macro}{\bWpKalkuel}
 % \bMakroFaulenzer{wp}{liWpKalkuel}
 %    \begin{macrocode}
-\def\bWpKalkuelOhneMathe#1#2{
+\def\bWpKalkuelOhneMathe#1#2
+{
   \text{wp}(\texttt{\scriptsize"#1"},\thinspace #2)
 }
 \def\bWpKalkuel#1#2{
@@ -7758,7 +7839,8 @@ Setzen des WP-Kalküls]
 % \end{macro}
 
 %    \begin{macrocode}
-\cs_new:Npn \mathe_umgebung:n #1{
+\cs_new:Npn \mathe_umgebung:n #1
+{
   \medskip
 
   \hspace{1em}#1
@@ -7769,7 +7851,8 @@ Setzen des WP-Kalküls]
 
 % \begin{macro}{\bWpPseudoMatheUmgebung}
 %    \begin{macrocode}
-\def\bWpPseudoMatheUmgebung#1{
+\def\bWpPseudoMatheUmgebung#1
+{
   \mathe_umgebung:n{$#1$}
 }
 %    \end{macrocode}
@@ -7813,7 +7896,8 @@ Setzen des WP-Kalküls]
 
 % \begin{macro}{\bWpErklaerungVerzweigung}
 %    \begin{macrocode}
-\def\bWpErklaerungVerzweigung{
+\def\bWpErklaerungVerzweigung
+{
   $\bWpKalkuelOhneMathe{if~\{~b~\}~then~\{~a1~\}~else~\{~a2~\}}{Q}
   \equiv
   (b \land \bWpKalkuelOhneMathe{a1}{Q})

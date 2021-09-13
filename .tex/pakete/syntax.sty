@@ -40,7 +40,8 @@
 %\BeforeBeginEnvironment{minted}{\begin{mdframed}}
 %\AfterEndEnvironment{minted}{\end{mdframed}}
 %\setminted{breaklines=true,linenos}
-\setminted{
+\setminted
+{
   breaklines=true,
   linenos=false,
   fontsize=\footnotesize,
@@ -51,7 +52,8 @@
 % Eine Umgebung für Java-Code, ohne Zeilennummer und etwas eingerückt
 % um den Java-Code in Angaben / Aufgabestellungen zu setzen.
 %    \begin{macrocode}
-\newminted[bJavaAngabe]{java}{
+\newminted[bJavaAngabe]{java}
+{
   xleftmargin=1cm
 }
 %    \end{macrocode}
@@ -62,7 +64,8 @@
 % Zeilenumbrüche gemacht.
 % \bMakroFaulenzer{j}{liJavaCode}
 %    \begin{macrocode}
-\def\bJavaCode#1{
+\def\bJavaCode#1
+{
   \,
   \textcolor{blue}{
     \mintinline[
@@ -78,12 +81,16 @@
 % \begin{macro}{\bLatexCode}
 % Im Zeilenfluss einen kurzen \LaTeX-Code-Ausschnitt setzen.
 %    \begin{macrocode}
-\def\bLatexCode#1{\mintinline{latex}|#1|}
+\def\bLatexCode#1
+{
+  \mintinline{latex}|#1|
+}
 %    \end{macrocode}
 % \end{macro}
 
 %    \begin{macrocode}
-\def\li@GithubLink#1#2{
+\def\li@GithubLink#1#2
+{
   \begin{flushright}
     \tiny
     Code-Beispiel~auf~Github~ansehen:~
@@ -96,7 +103,8 @@
 % Eine komplette Java-Datei einbinden, die
 % Verzeichnis |./Code/src/main/java/org/bschlangaul| liegt.
 %    \begin{macrocode}
-\NewDocumentCommand{\bJavaDatei}{ O{firstline=3} m }{
+\NewDocumentCommand{ \bJavaDatei }{ O{firstline=3} m }
+{
   \inputminted[#1]{java}{
     \directlua{
       syntax.drucke_absoluten_pfad('#2', false)
@@ -113,7 +121,8 @@
 % Eine komplette Java-Test-Datei einbinden,
 % die Verzeichnis |./Code/src/test/java/org/bschlangaul| liegt.
 %    \begin{macrocode}
-\NewDocumentCommand{\bJavaTestDatei}{ O{firstline=3} m }{
+\NewDocumentCommand{ \bJavaTestDatei }{ O{firstline=3} m }
+{
   \inputminted[#1]{java}{
     \directlua{
       syntax.drucke_absoluten_pfad('#2', true)
@@ -132,7 +141,8 @@
 % |\\bJavaDatei(\[.*\])?\{.*examen_(\d{5})_(\d{4})_(\d{2})/(.*)\}|
 % |\\bJavaExamen$1{$2}{$3}{$4}{$5}|
 %    \begin{macrocode}
-\NewDocumentCommand{\bJavaExamen}{ O{firstline=3} m m m m }{
+\NewDocumentCommand{ \bJavaExamen }{ O{firstline=3} m m m m }
+{
   \inputminted[#1]{java}{
     \directlua{
       syntax.drucke_absoluten_examens_pfad('#2', '#3', '#4', '#5')
@@ -148,7 +158,10 @@
 
 % \begin{macro}{\bAssemblerCode}
 %    \begin{macrocode}
-\def\bAssemblerCode#1{\mintinline{asm}|#1|}
+\def\bAssemblerCode#1
+{
+  \mintinline{asm}|#1|
+}
 %    \end{macrocode}
 % \end{macro}
 
@@ -156,7 +169,8 @@
 % |\bAssemblerDatei{relativer-pfad}|: Relativer Pfad zu einer
 % Assembler-Datei.
 %    \begin{macrocode}
-\NewDocumentCommand{\bAssemblerDatei}{ m }{
+\NewDocumentCommand { \bAssemblerDatei } { m }
+{
   \inputminted{asm}{#1}
 }
 %    \end{macrocode}
@@ -167,7 +181,8 @@
 % Minisprachen-Datei (Hochsprache für die Minimaschine von Albert
 % Wiedemann).
 %    \begin{macrocode}
-\NewDocumentCommand{\bMinispracheDatei}{ m }{
+\NewDocumentCommand { \bMinispracheDatei } { m }
+{
   \inputminted{componentpascal}{#1}
 }
 %    \end{macrocode}
@@ -176,7 +191,10 @@
 % \begin{macro}{\bHaskellCode}
 % |\bHaskellCode{haskell}|: Zum Setzen von Haskell-Code.
 %    \begin{macrocode}
-\def\bHaskellCode#1{\mintinline{haskell}|#1|}
+\def\bHaskellCode#1
+{
+  \mintinline{haskell}|#1|
+}
 %    \end{macrocode}
 % \end{macro}
 
@@ -184,8 +202,20 @@
 % |\bHaskellDatei{relativer-pfad}|: Relativer Pfad zu einer
 % Haskell-Datei.
 %    \begin{macrocode}
-\NewDocumentCommand{\bHaskellDatei}{ m }{
+\NewDocumentCommand { \bHaskellDatei } { m }
+{
   \inputminted{haskell}{#1}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\bSqlCode}
+% |\bHaskellCode{sql}|: Zum Setzen von SQL-Code.
+% \bMakroFaulenzer{s}{liSqlCode}
+%    \begin{macrocode}
+\def\bSqlCode#1
+{
+  \mintinline{sql}|#1|
 }
 %    \end{macrocode}
 % \end{macro}
@@ -193,13 +223,5 @@
 %    \begin{macrocode}
 \ExplSyntaxOff
 %    \end{macrocode}
-
-% \begin{macro}{\bSqlCode}
-% |\bHaskellCode{sql}|: Zum Setzen von SQL-Code.
-% \bMakroFaulenzer{s}{liSqlCode}
-%    \begin{macrocode}
-\def\bSqlCode#1{\mintinline{sql}|#1|}
-%    \end{macrocode}
-% \end{macro}
 
 %    \begin{macrocode}

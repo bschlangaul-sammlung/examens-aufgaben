@@ -20,7 +20,8 @@ Setzen des WP-Kalküls]
 % \begin{macro}{\bWpKalkuel}
 % \bMakroFaulenzer{wp}{liWpKalkuel}
 %    \begin{macrocode}
-\def\bWpKalkuelOhneMathe#1#2{
+\def\bWpKalkuelOhneMathe#1#2
+{
   \text{wp}(\texttt{\scriptsize"#1"},\thinspace #2)
 }
 \def\bWpKalkuel#1#2{
@@ -34,7 +35,8 @@ Setzen des WP-Kalküls]
 % \end{macro}
 
 %    \begin{macrocode}
-\cs_new:Npn \mathe_umgebung:n #1{
+\cs_new:Npn \mathe_umgebung:n #1
+{
   \medskip
 
   \hspace{1em}#1
@@ -45,7 +47,8 @@ Setzen des WP-Kalküls]
 
 % \begin{macro}{\bWpPseudoMatheUmgebung}
 %    \begin{macrocode}
-\def\bWpPseudoMatheUmgebung#1{
+\def\bWpPseudoMatheUmgebung#1
+{
   \mathe_umgebung:n{$#1$}
 }
 %    \end{macrocode}
@@ -89,7 +92,8 @@ Setzen des WP-Kalküls]
 
 % \begin{macro}{\bWpErklaerungVerzweigung}
 %    \begin{macrocode}
-\def\bWpErklaerungVerzweigung{
+\def\bWpErklaerungVerzweigung
+{
   $\bWpKalkuelOhneMathe{if~\{~b~\}~then~\{~a1~\}~else~\{~a2~\}}{Q}
   \equiv
   (b \land \bWpKalkuelOhneMathe{a1}{Q})

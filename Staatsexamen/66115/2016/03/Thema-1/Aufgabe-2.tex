@@ -11,10 +11,10 @@
 Betrachten Sie die folgende Grammatik \bGrammatik{variablen={S, A},
 alphabet={0, 1, 2}} mit\footcite[Aufgabe 2e)]{theo:ab:5}
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> 0 S 0 | 1 S 1 | 2 A 2 | 0 | 1 | EPSILON,
 A -> A 2
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 \bFlaci{Gf6scqja9}
 
 \noindent
@@ -28,9 +28,9 @@ Die Regeln \bProduktionen{S -> 2 A 2} und  \bProduktionen{A -> A 2}
 können gelöscht werden, da es keine Regel \bProduktionen{A -> EPSILON}
 oder \bProduktionen{A -> S} gibt. So erhalten wir:
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> 0 S 0 | 1 S 1 | 0 | 1 | EPSILON
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 
 \begin{enumerate}
 
@@ -39,10 +39,10 @@ S -> 0 S 0 | 1 S 1 | 0 | 1 | EPSILON
 falls $S \rightarrow \varepsilon \in P$ neuen Startzustand $S_1$
 einführen
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> 0 S 0 | 1 S 1 | 0 | 1 | 0 0 | 1 1,
 S_1 -> EPSILON | S
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 
 \item \schrittE{2}
 
@@ -53,13 +53,13 @@ S_1 -> EPSILON | S
 N = Null
 E = Eins
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> N S N | E S E | 0 | 1 | N N | E E,
 S_1 -> EPSILON | S,
 A -> A Z,
 N -> 0,
 E -> 1,
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 
 \item \schrittE{4}
 
@@ -70,14 +70,14 @@ E -> 1,
 % S.1 -> S T1
 % S.2 -> S T2
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> N S_N | E S_E | 0 | 1 | N N | E E, % T1 S.1 | T2 S.2 | 0 | 1 | T1 T1 | T2 T2
 S_1 -> EPSILON | S, % S.S -> S | EPSILON
 S_N -> S N, % S.1 -> S T1
 S_E -> S E, % S.2 -> S T2
 N -> 0, % T1  -> 0
 E -> 1, % T2  -> 1
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 
 \end{enumerate}
 \end{bAntwort}

@@ -14,11 +14,11 @@ L(G), wobei $V = {S, T, U}$ und \bAlphabet{a, b, c, d, e}. $P$ bestehe
 aus den folgenden Produktionen:
 \index{Chomsky-Normalform}
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> U | S b U,
 T -> d S e | a,
 U -> T | U c T
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 \bFlaci{Gib25c5oc}
 
 \begin{enumerate}
@@ -54,15 +54,15 @@ a c d a e}
 
 \item \schrittE{2}
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> d S e | a | U c T | S b U,
 T -> d S e | a,
 U -> d S e | a | U c T,
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 
 \item \schrittE{3}
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> D S E | a | U C T | S B U,
 T -> D S E | a,
 U -> D S E | a | U C T,
@@ -70,7 +70,7 @@ B -> b,
 C -> c,
 D -> d,
 E -> e,
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 
 \item \schrittE{4}
 % S   -> S S.1 | T2 S.2 | a | U S.3
@@ -84,7 +84,7 @@ E -> e,
 % S.2 -> S T3
 % S.3 -> T4 T
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> D S_E | a | U C_T | S B_U, % S   -> S S.1 | T2 S.2 | a | U S.3
 T -> D S_E | a, % T   -> T2 S.2 | a
 U -> D S_E | a | U C_T, % U   -> T2 S.2 | a | U S.3
@@ -95,7 +95,7 @@ E -> e, % T3  -> e
 S_E -> S E, % S.2 -> S T3
 C_T -> C T, % S.3 -> T4 T
 B_U -> B U, % S.1 -> T1 U
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 \end{enumerate}
 \end{bAntwort}
 \end{enumerate}
@@ -110,10 +110,10 @@ B_U -> B U, % S.1 -> T1 U
 \begin{bAntwort}
 Wir interpretieren $\mathbb{N}$ als $\mathbb{N}_0$.
 
-\begin{liProduktionsRegeln}
+\begin{bProduktionsRegeln}
 S -> a S c | a B c | B | EPSILON
 B -> b | B b
-\end{liProduktionsRegeln}
+\end{bProduktionsRegeln}
 \bFlaci{Ghp3bfdtg}
 \end{bAntwort}
 
