@@ -1,273 +1,237 @@
 \documentclass{bschlangaul-aufgabe}
 \bLadePakete{baum}
 \begin{document}
-\bAufgabenTitel{AVL-Baum mit 6, 13, 4, 8, 11, 9, 10}
-
-\section{Aufgabe Herbst 2006, Thema 1
-\index{AVL-Baum}
-\footcite[Thema 1 Aufgabe 4 Seite 2]{examen:66115:2006:09}}
+\bAufgabenMetadaten{
+  Titel = {Aufgabe 4},
+  Thematik = {AVL-Baum, Dijkstra, Tiefensuche},
+  Referenz = 66115-2006-H.T1-A4,
+  RelativerPfad = Staatsexamen/66115/2006/09/Thema-1/Aufgabe-4.tex,
+  ZitatSchluessel = examen:66115:2006:09,
+  ZitatBeschreibung = {},
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {AVL-Baum},
+  EinzelpruefungsNr = 66115,
+  Jahr = 2006,
+  Monat = 09,
+  ThemaNr = 1,
+  AufgabeNr = 4,
+}
 
 \begin{enumerate}
-\item Gegeben sei die folgende Folge ganzer Zahlen: 6, 13, 4, 8, 11, 9, 10.
+\item Gegeben sei die folgende Folge ganzer Zahlen: $6, 13, 4, 8, 11, 9,
+10$.
+\index{AVL-Baum}
+\footcite{examen:66115:2006:09}
+
+% didaktik.java baum --avl 6 13 4 8 11 9 10
 
 \begin{enumerate}
 \item Fügen Sie obige Zahlen der Reihe nach in einen anfangs leeren
 AVL-Baum ein und stellen Sie den Baum nach jedem Einfügeschritt dar!
 
+\begin{bAntwort}
+\begin{bBaum}{Nach dem Einfügen von „6“}
+\begin{tikzpicture}[b binaer baum]
+\Tree
+[.\node[label=0]{6}; ]
+\end{tikzpicture}
+\end{bBaum}
+
+\begin{bBaum}{Nach dem Einfügen von „13“}
+\begin{tikzpicture}[b binaer baum]
+\Tree
+[.\node[label=+1]{6};
+  \edge[blank]; \node[blank]{};
+  [.\node[label=0]{13}; ]
+]
+\end{tikzpicture}
+\end{bBaum}
+
+\begin{bBaum}{Nach dem Einfügen von „4“}
+\begin{tikzpicture}[b binaer baum]
+\Tree
+[.\node[label=0]{6};
+  [.\node[label=0]{4}; ]
+  [.\node[label=0]{13}; ]
+]
+\end{tikzpicture}
+\end{bBaum}
+
+\begin{bBaum}{Nach dem Einfügen von „8“}
+\begin{tikzpicture}[b binaer baum]
+\Tree
+[.\node[label=+1]{6};
+  [.\node[label=0]{4}; ]
+  [.\node[label=-1]{13};
+    [.\node[label=0]{8}; ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{bBaum}
+
+\begin{bBaum}{Nach dem Einfügen von „11“}
+\begin{tikzpicture}[b binaer baum]
+\Tree
+[.\node[label=+2]{6};
+  [.\node[label=0]{4}; ]
+  [.\node[label=-2]{13};
+    [.\node[label=+1]{8};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{11}; ]
+    ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{bBaum}
+
+\begin{bBaum}{Nach der Linksrotation}
+\begin{tikzpicture}[b binaer baum]
+\Tree
+[.\node[label=+2]{6};
+  [.\node[label=0]{4}; ]
+  [.\node[label=-2]{13};
+    [.\node[label=-1]{11};
+      [.\node[label=0]{8}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{bBaum}
+
+\begin{bBaum}{Nach der Rechtsrotation}
+\begin{tikzpicture}[b binaer baum]
+\Tree
+[.\node[label=+1]{6};
+  [.\node[label=0]{4}; ]
+  [.\node[label=0]{11};
+    [.\node[label=0]{8}; ]
+    [.\node[label=0]{13}; ]
+  ]
+]
+\end{tikzpicture}
+\end{bBaum}
+
+\begin{bBaum}{Nach dem Einfügen von „9“}
+\begin{tikzpicture}[b binaer baum]
+\Tree
+[.\node[label=+2]{6};
+  [.\node[label=0]{4}; ]
+  [.\node[label=-1]{11};
+    [.\node[label=+1]{8};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{9}; ]
+    ]
+    [.\node[label=0]{13}; ]
+  ]
+]
+\end{tikzpicture}
+\end{bBaum}
+
+\begin{bBaum}{Nach der Rechtsrotation}
+\begin{tikzpicture}[b binaer baum]
+\Tree
+[.\node[label=+2]{6};
+  [.\node[label=0]{4}; ]
+  [.\node[label=+2]{8};
+    \edge[blank]; \node[blank]{};
+    [.\node[label=0]{11};
+      [.\node[label=0]{9}; ]
+      [.\node[label=0]{13}; ]
+    ]
+  ]
+]
+\end{tikzpicture}
+\end{bBaum}
+
+\begin{bBaum}{Nach der Linksrotation}
+\begin{tikzpicture}[b binaer baum]
+\Tree
+[.\node[label=0]{8};
+  [.\node[label=-1]{6};
+    [.\node[label=0]{4}; ]
+    \edge[blank]; \node[blank]{};
+  ]
+  [.\node[label=0]{11};
+    [.\node[label=0]{9}; ]
+    [.\node[label=0]{13}; ]
+  ]
+]
+\end{tikzpicture}
+\end{bBaum}
+
+\begin{bBaum}{Nach dem Einfügen von „10“}
+\begin{tikzpicture}[b binaer baum]
+\Tree
+[.\node[label=+1]{8};
+  [.\node[label=-1]{6};
+    [.\node[label=0]{4}; ]
+    \edge[blank]; \node[blank]{};
+  ]
+  [.\node[label=-1]{11};
+    [.\node[label=+1]{9};
+      \edge[blank]; \node[blank]{};
+      [.\node[label=0]{10}; ]
+    ]
+    [.\node[label=0]{13}; ]
+  ]
+]
+\end{tikzpicture}
+\end{bBaum}
+\end{bAntwort}
+
 \item Löschen Sie das Wurzelelement des entstandenen AVL-Baums und
 stellen Sie die AVL-Eigenschaft wieder her!
-\end{enumerate}
-\end{enumerate}
 
-\NewDocumentCommand{\tmpEinfuegen}{ m }{
-  \bigskip
-  \noindent
-  \textbf{Einfügen von $#1$:}
-}
-
-\NewDocumentCommand{\tmpAvl}{ m m } {
-  \bigskip
-  \noindent
-  \begin{minipage}{6cm}
-  \begin{tikzpicture}[li binaer baum]
-   #1
-  \end{tikzpicture}
-  \end{minipage}
-  \begin{minipage}{6cm}
-  #2
-  \end{minipage}
-}
-
-%-----------------------------------------------------------------------
-%
-%-----------------------------------------------------------------------
-
-\tmpEinfuegen{6}
-
-%%
-%
-%%
-
-\tmpAvl
-{\Tree[.6 ]}
-{$6$ als Wurzel eingefügt}
-
-%-----------------------------------------------------------------------
-%
-%-----------------------------------------------------------------------
-
-\tmpEinfuegen{13}
-
-%%
-%
-%%
-
-\tmpAvl
-{\Tree
-[.6
-  \edge[blank]; \node[blank]{};
-  \edge[]; {13}
+\begin{bAntwort}
+\begin{bBaum}{Nach dem Löschen von „8“}
+\begin{tikzpicture}[b binaer baum]
+\Tree
+[.\node[label=0]{9};
+  [.\node[label=-1]{6};
+    [.\node[label=0]{4}; ]
+    \edge[blank]; \node[blank]{};
+  ]
+  [.\node[label=0]{11};
+    [.\node[label=0]{10}; ]
+    [.\node[label=0]{13}; ]
+  ]
 ]
-}
-{$13 > 6$ deshalb rechts angehängt}
-
-%-----------------------------------------------------------------------
-%
-%-----------------------------------------------------------------------
-
-\tmpEinfuegen{4}
+\end{tikzpicture}
+\end{bBaum}
+\end{bAntwort}
+\end{enumerate}
 
 %%
-%
+% b)
 %%
 
-\tmpAvl
-{\Tree
-[.6
-  [.4 ]
-  [.13 ]
-]}
-{$4 < 6$ deshalb links angehängt}
+\item Gegeben sei der folgende gerichtete und gewichtete Graph:
 
-%-----------------------------------------------------------------------
-%
-%-----------------------------------------------------------------------
+\begin{itemize}
+\item Bestimmen Sie mit Hilfe des Algorithmus von Dijkstra die kürzesten
+Wege vom Knoten A zu allen anderen Knoten! Geben Sie dabei nach jedem
+Verarbeitungsschritt den Zustand der Hilfsdatenstruktur an!
+\index{Algorithmus von Dijkstra}
 
-\tmpEinfuegen{8}
+\item Skizzieren Sie einen Algorithmus für den Tiefendurchlauf von
+gerichteten Graphen, wobei jede Kante nur einmal verwendet werden darf!
+\index{Tiefensuche}
 
+\end{itemize}
 %%
-%
-%%
-
-\tmpAvl
-{\Tree
-[.6
-  [.4 ]
-  [.13
-    \edge[]; {8}
-    \edge[blank]; \node[blank]{};
-  ]
-]}
-{$8 > 6$ und $8 < 13$}
-
-%-----------------------------------------------------------------------
-%
-%-----------------------------------------------------------------------
-
-\tmpEinfuegen{11}
-
-%%
-%
+% c)
 %%
 
-\tmpAvl
-{\Tree
-[.6
-  [.4 ]
-  [.13
-    [.8
-      \edge[blank]; \node[blank]{};
-      \edge[]; {11}
-    ]
-    \edge[blank]; \node[blank]{};
-  ]
-]}
-{
-  $11 > 6$, $11 < 13$ und $11 > 8$;
-  die Balancierung ist jetzt verletzt, mit unterschiedlichen Vorzeichen ($+1$, $-2$)
-  deshalb Doppelrotation links-rechts
-}
+\item Ein wesentlicher Nachteil der Standardimplementierung des
+QUICKSORT Algorithmus ist dessen rekursiver Aufruf. Implementieren Sie
+den Algorithmus QUICKSORT ohne den rekursiven Prozeduraufruf!
+\index{Quicksort}
 
-%%
-%
-%%
+\end{enumerate}
 
-\tmpAvl
-{\Tree
-[.6
-  [.4 ]
-  [.13
-    [.11
-      \edge[]; {8}
-      \edge[blank]; \node[blank]{};
-    ]
-    \edge[blank]; \node[blank]{};
-  ]
-]}
-{
-  Balancierung wäre nach Linksrotation weiter verletzt, deshalb zusätzliche Rechtsrotation
-}
-
-%%
-%
-%%
-
-\tmpAvl
-{\Tree
-[.6
-  [.4 ]
-  [.11
-    [.8 ]
-    [.13 ]
-  ]
-]}
-{Balancierung wiederhergestellt}
-
-%-----------------------------------------------------------------------
-%
-%-----------------------------------------------------------------------
-
-\tmpEinfuegen{9}
-
-%%
-%
-%%
-
-\tmpAvl
-{\Tree
-[.6
-  [.4 ]
-  [.11
-    [.8
-      \edge[blank]; \node[blank]{};
-      \edge[]; {9}
-    ]
-    [.13 ]
-  ]
-]}
-{
-  $9 > 8$;
-  Balancierung verletzt mit unterschiedlichen Vorzeichen ($-1$, $+2$),
-  deshalb Doppelrotation rechts-links
-}
-
-%%
-%
-%%
-
-\tmpAvl
-{\Tree
-[.6
-  [.4 ]
-  [.8
-    [.9 ]
-    [.11
-      \edge[blank]; \node[blank]{};
-      \edge[]; {13}
-    ]
-  ]
-]}
-{
-  Balancierung wäre nach Rechtsrotation weiter verletzt,
-  deshalb zusätzliche Linksrotation
-}
-
-%%
-%
-%%
-
-\tmpAvl
-{\Tree
-[.8
-  [.6
-    \edge[]; {4}
-    \edge[blank]; \node[blank]{};
-  ]
-  [.11
-    [.9 ]
-    [.13 ]
-  ]
-]}
-{
-  Balancierung wiederhergestellt
-}
-
-%-----------------------------------------------------------------------
-%
-%-----------------------------------------------------------------------
-
-\tmpEinfuegen{10}
-
-%%
-%
-%%
-
-\tmpAvl
-{\Tree
-[.8
-  [.6
-    \edge[]; {4}
-    \edge[blank]; \node[blank]{};
-  ]
-  [.11
-    [.9
-      \edge[blank]; \node[blank]{};
-      \edge[]; {10}
-    ]
-    [.13 ]
-  ]
-]}
-{
-  $10 > 8$
-}
 \end{document}
