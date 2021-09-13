@@ -7824,24 +7824,59 @@ Hilfsmakros zum Setzen der Vollständigen Induktion, vor allem die
 % \subsection{wasserfall.sty}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesPackage{bschlangaul-wasserfall}[2020/06/10]
+\ProvidesPackage{bschlangaul-wasserfall}[2020/06/10 Zu Setzen des
+Diagramms zum Wasserfallmodell]
+%    \end{macrocode}
+
+% \subsubsection{Latex-Markup-Beispiel}
+
+% \begin{verbatim}
+% \begin{tikzpicture}[b wasserfall]
+% \node {Systemanforderung}; % A-1
+% \node {Softwareanforderung};
+% \node {Analyse};
+% \node {Entwurf};
+% \node {Implementierung};
+% \node {Test};
+% \node {Betrieb};
+%
+% \foreach \i [count=\j] in {2,...,7}
+% {
+%   \draw[->, thick] (A-\i) -| (A-\j);
+%   \draw[->, thick] (A-\j) -| (A-\i);
+% }
+% \end{tikzpicture}
+% \end{verbatim}
+
+%    \begin{macrocode}
 \RequirePackage{tikz}
-\tikzset{wasserfall/.style={
-  >=stealth,
-  node distance = 2mm and -8mm,
-  start chain = A going below right,
-  every node/.style = {
-    draw,
-    text width=24mm,
-    minimum height=12mm,
-    align=center,
-    inner sep=1mm,
-    fill=white,
-    drop shadow={fill=black},
-    on chain=A
-  },
-}}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 \usetikzlibrary{chains,positioning,shadows}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\tikzset{
+  b wasserfall/.style={
+    >=stealth,
+    node distance = 2mm and -8mm,
+    start chain = A going below right,
+    every node/.style = {
+      draw,
+      text width=24mm,
+      minimum height=12mm,
+      align=center,
+      inner sep=1mm,
+      fill=white,
+      drop shadow={fill=black},
+      on chain=A
+    },
+  }
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
 
 %    \end{macrocode}
 % \subsection{wpkalkuel.sty}
