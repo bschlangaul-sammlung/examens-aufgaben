@@ -1,50 +1,74 @@
 \documentclass{bschlangaul-aufgabe}
 \bLadePakete{syntax}
 \begin{document}
-\bAufgabenTitel{Schuldatenbank}
-
-\section{Aufgabe 3
-\index{SQL}
-\footcite[Thema 2 Teilaufgabe 2 Aufgabe 3]{examen:46116:2018:09}
+\bAufgabenMetadaten{
+  Titel = {Aufgabe 3},
+  Thematik = {Schuldatenbank},
+  Referenz = 46116-2018-H.T2-TA2-A3,
+  RelativerPfad = Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-3.tex,
+  ZitatSchluessel = examen:46116:2018:09,
+  ZitatBeschreibung = {Thema 2 Teilaufgabe 2 Aufgabe 3},
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {SQL, SQL mit Übungsdatenbank, CREATE TABLE, INSERT, ALTER TABLE, UPDATE, DELETE, VIEW, GROUP BY, DROP TABLE},
+  EinzelpruefungsNr = 46116,
+  Jahr = 2018,
+  Monat = 09,
+  ThemaNr = 2,
+  TeilaufgabeNr = 2,
+  AufgabeNr = 3,
 }
 
-Gegeben sei das folgende Datenbank-Schema, das für die Speicherung der
-Daten einer Schule entworfen wurde, zusammen mit einem Teil seiner
-Ausprägung. Die Primärschlüssel-Attribute sind jeweils unterstrichen.
+\let\f=\textbf
+\let\u=\underline
+
+Gegeben\index{SQL} \footcite{examen:46116:2018:09} sei das folgende
+Datenbank-Schema, das für die Speicherung der Daten einer Schule
+entworfen wurde, zusammen mit einem Teil seiner Ausprägung. Die
+Primärschlüssel-Attribute sind jeweils unterstrichen.
 \footcite{db:ab:3}
 
-Die Relation \emph{Schüler} enthält allgemeine Daten zu den
-Schülerinnen und Schülern. Schülerinnen und Schüler nehmen an Prüfungen
-in verschiedenen Unterrichtsfächern teil und erhalten dadurch Noten.
-Diese werden in der Relation \emph{Noten} abgespeichert. Prüfungen haben
-ein unterschiedliches Gewicht. Beispielsweise hat ein mündliches
-Ausfragen oder eine Extemporale das Gewicht 1, während eine Schulaufgabe
-das Gewicht 2 hat.
+Die Relation \emph{Schüler} enthält allgemeine Daten zu den Schülerinnen
+und Schülern. Schülerinnen und Schüler nehmen an Prüfungen in
+verschiedenen Unterrichtsfächern teil und erhalten dadurch Noten. Diese
+werden in der Relation \emph{Noten} abgespeichert. Prüfungen haben ein
+unterschiedliches Gewicht. Beispielsweise hat ein mündliches Ausfragen
+oder eine Extemporale das Gewicht $1$, während eine Schulaufgabe das
+Gewicht $2$ hat.
 
-Schüler:
+\bPseudoUeberschrift{Schüler:}
 
-\begin{tabular}{llll}
-SchülerID  & Vorname & Nachname  & Klasse \\
-1          & Laura   & Müller    & 4A     \\
-2          & Linus   & Schmidt   & 4A     \\
-3          & Jonas   & Schneider & 4A     \\
-4          & Liam    & Fischer   & 4B     \\
-5          & Tim     & Weber     & 4B     \\
-6          & Lea     & Becker    & 4B     \\
-7          & Emilia  & Klein     & 4C     \\
-8          & Julia   & Wolf      & 4C
+\begin{center}
+\begin{tabular}{|llll|}
+\hline
+\f{\u{SchülerID}} & \f{Vorname} & \f{Nachname}  & \f{Klasse} \\
+1                 & Laura       & Müller        & 4A         \\
+2                 & Linus       & Schmidt       & 4A         \\
+3                 & Jonas       & Schneider     & 4A         \\
+4                 & Liam        & Fischer       & 4B         \\
+5                 & Tim         & Weber         & 4B         \\
+6                 & Lea         & Becker        & 4B         \\
+7                 & Emilia      & Klein         & 4C         \\
+8                 & Julia       & Wolf          & 4C         \\
+\hline
 \end{tabular}
+\end{center}
 
-Noten:
+\bPseudoUeberschrift{Noten:}
 
-\begin{tabular}{lllll}
-SchülerID {[}Schüler{]} & Schulfach  & Note & Gewicht & Datum      \\
-1                       & Mathematik & 3    & 2       & 23.09.2017 \\
-1                       & Mathematik & 1    & 1       & 03.10.2017 \\
-1                       & Mathematik & 2    & 2       & 15.10.2017 \\
-1                       & Mathematik & 4    & 1       & 11.11.2017
+\begin{center}
+\begin{tabular}{|lllll|}
+\hline
+\f{\u{SchülerID{[}Schüler{]}}} & \f{Schulfach}  & \f{Note} & \f{Gewicht} & \f{Datum}  \\
+1                              & Mathematik     & 3        & 2           & 23.09.2017 \\
+1                              & Mathematik     & 1        & 1           & 03.10.2017 \\
+1                              & Mathematik     & 2        & 2           & 15.10.2017 \\
+1                              & Mathematik     & 4        & 1           & 11.11.2017 \\
+\hline
 \end{tabular}
+\end{center}
 
+\begin{bAdditum}[Übungsdatenbank]
 % Datenbankname: schuldatenbank
 \begin{minted}{sql}
 CREATE TABLE Schüler (
@@ -81,6 +105,7 @@ INSERT INTO Noten VALUES
   (1, 'Mathematik', 4, 1, '11.11.2017');
 \end{minted}
 \index{SQL mit Übungsdatenbank}
+\end{bAdditum}
 
 \begin{enumerate}
 

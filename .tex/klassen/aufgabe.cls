@@ -55,8 +55,10 @@ Setzen einer Aufgabe]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\cs_gset:Npn \thematik_formatiert: {
-  \tl_if_empty:NTF \g_thematik_tl {} {
+\cs_gset:Npn \thematik_formatiert:
+{
+  \tl_if_empty:NTF \g_thematik_tl {}
+  {
     \textit{
       ( \g_thematik_tl )
     }
@@ -64,22 +66,35 @@ Setzen einer Aufgabe]
 }
 %    \end{macrocode}
 
-% \begin{macro}{\bAufgabenMetadaten}
 %    \begin{macrocode}
-\def\bAufgabenMetadaten #1
+\cs_gset:Npn \examen_titel_formatiert:
 {
-  \bMetaSetze{#1}
-
   \tl_if_empty:NTF \g_einzelpruefungs_nr_tl {}
   {
     {
       \noindent
-      \large
-      \_gib_einzelpruefung_trenner:
-      \par\medskip
+      \small
+      Einzelprüfung~
+      „\fach:“
     }
-  }
 
+    \par\medskip
+
+    \noindent
+    {
+      \large
+      Einzelprüfungsnummer~
+      \einzelpruefungsnr_jahr_jahreszeit:
+    }
+
+    \par\medskip
+  }
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\cs_gset:Npn \aufgabe_titel_formatiert:
+{
   {
     \noindent
     \bfseries
@@ -89,20 +104,33 @@ Setzen einer Aufgabe]
       \g_titel_tl
     }
     {
-      \_gib_aufgaben_pfad_trenner:
+      \thema_teil_aufgabe:
     }
   }
-  \hfill \thematik_formatiert:
-  \par
+  \hfill
 
-  \medskip
+  \thematik_formatiert:
+}
+%    \end{macrocode}
+
+% \begin{macro}{\bAufgabenMetadaten}
+%    \begin{macrocode}
+\def\bAufgabenMetadaten #1
+{
+  \bMetaSetze{#1}
+
+  \examen_titel_formatiert:
+
+  \aufgabe_titel_formatiert:
+
+  \par\medskip
 
   \noindent
   {\footnotesize\stichwoerter_formatiert:}
 
   \horizontale_linie:
 
-  \setze_kopfzeile_oben_rechts:n { \gib_aufgaben_pfad_lang_sicher: }
+  \setze_kopfzeile_oben_rechts:n { \aufgabenpfad_lang: }
 
   \bigskip
 

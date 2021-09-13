@@ -81,7 +81,7 @@ Dokuments, das alles zusammenfasst.]
 \def\bAufgabenMetadaten #1
 {
   \bMetaSetze{#1}
-  \subsection{\gib_aufgaben_pfad_lang_sicher:}
+  \subsection{\aufgabenpfad_lang:}
 }
 %    \end{macrocode}
 % \end{macro}

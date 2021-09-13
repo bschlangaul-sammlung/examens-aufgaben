@@ -172,8 +172,10 @@ Setzen einer Aufgabe]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\cs_gset:Npn \thematik_formatiert: {
-  \tl_if_empty:NTF \g_thematik_tl {} {
+\cs_gset:Npn \thematik_formatiert:
+{
+  \tl_if_empty:NTF \g_thematik_tl {}
+  {
     \textit{
       ( \g_thematik_tl )
     }
@@ -181,22 +183,35 @@ Setzen einer Aufgabe]
 }
 %    \end{macrocode}
 
-% \begin{macro}{\bAufgabenMetadaten}
 %    \begin{macrocode}
-\def\bAufgabenMetadaten #1
+\cs_gset:Npn \examen_titel_formatiert:
 {
-  \bMetaSetze{#1}
-
   \tl_if_empty:NTF \g_einzelpruefungs_nr_tl {}
   {
     {
       \noindent
-      \large
-      \_gib_einzelpruefung_trenner:
-      \par\medskip
+      \small
+      Einzelprüfung~
+      „\fach:“
     }
-  }
 
+    \par\medskip
+
+    \noindent
+    {
+      \large
+      Einzelprüfungsnummer~
+      \einzelpruefungsnr_jahr_jahreszeit:
+    }
+
+    \par\medskip
+  }
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\cs_gset:Npn \aufgabe_titel_formatiert:
+{
   {
     \noindent
     \bfseries
@@ -206,20 +221,33 @@ Setzen einer Aufgabe]
       \g_titel_tl
     }
     {
-      \_gib_aufgaben_pfad_trenner:
+      \thema_teil_aufgabe:
     }
   }
-  \hfill \thematik_formatiert:
-  \par
+  \hfill
 
-  \medskip
+  \thematik_formatiert:
+}
+%    \end{macrocode}
+
+% \begin{macro}{\bAufgabenMetadaten}
+%    \begin{macrocode}
+\def\bAufgabenMetadaten #1
+{
+  \bMetaSetze{#1}
+
+  \examen_titel_formatiert:
+
+  \aufgabe_titel_formatiert:
+
+  \par\medskip
 
   \noindent
   {\footnotesize\stichwoerter_formatiert:}
 
   \horizontale_linie:
 
-  \setze_kopfzeile_oben_rechts:n { \gib_aufgaben_pfad_lang_sicher: }
+  \setze_kopfzeile_oben_rechts:n { \aufgabenpfad_lang: }
 
   \bigskip
 
@@ -698,7 +726,7 @@ Dokuments, das alles zusammenfasst.]
 \def\bAufgabenMetadaten #1
 {
   \bMetaSetze{#1}
-  \subsection{\gib_aufgaben_pfad_lang_sicher:}
+  \subsection{\aufgabenpfad_lang:}
 }
 %    \end{macrocode}
 % \end{macro}
@@ -1530,75 +1558,99 @@ Setzen der Aufgaben-Metadaten.]
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\cs_set:Nn \_trenner: {
+\cs_set:Nn \trenner: {
   \, / \,
 }
 %    \end{macrocode}
 
 %    \begin{macrocode}
-\cs_gset:Npn \_gib_jahreszeit_durch_monat: #1 {
-  % \str_case funktioniert nicht mit den Tokenlist variablen.
-  \tl_case:Nn { #1 }
+\cs_gset:Npn \gib_jahreszeit_durch_monat: #1 {
+  \str_case_e:nnTF { #1 }
   {
     { 3 } { Frühjahr }
     { 03 } { Frühjahr }
     { 9 } { Herbst }
     { 09 } { Herbst }
   }
+  {}
+  {
+    \msg_error:nn
+    { bschlangaul }
+    { Erlaubte~Eingaben~sind~3~03~9~und~09~nicht~„#1“ }
+  }
 }
 %    \end{macrocode}
 
 % Definiert auch in .scripts/nodejs/src/examen.ts funktioniert nicht
 %    \begin{macrocode}
-\cs_gset:Npn \_gib_examen_fach_durch_nummer: #1 {
-  \tl_case:Nn { #1 }
+\cs_gset:Npn \fach_durch_nummer:n #1
+{
+  \str_case_e:nnTF { #1 }
   {
-    { 46110 } { Grundlagen der Informatik (nicht vertieft) }
-    { 46111 } { Programmentwicklung / Systemprogrammierung / Datenbanksysteme (nicht vertieft) }
-    { 46112 } { Grundlagen der Informatik (nicht vertieft) }
-    { 46113 } { Theoretische Informatik (nicht vertieft) }
-    { 46114 } { Algorithmen / Datenstrukturen / Programmiermethoden (nicht vertieft) }
-    { 46115 } { Theoretische Informatik / Algorithmen / Datenstrukturen (nicht vertieft) }
-    { 46116 } { Softwaretechnologie / Datenbanksysteme (nicht vertieft) }
-    { 46118 } { Fachdidaktik (Mittelschulen) }
-    { 46119 } { Fachdidaktik (Realschulen) }
-    { 46121 } { Fachdidaktik (berufliche Schulen) }
-    { 66110 } { Automatentheorie, Algorithmische Sprache (vertieft) }
-    { 66111 } { Betriebssysteme / Datenbanksysteme / Rechnerarchitektur (vertieft) }
-    { 66112 } { Automatentheorie / Komplexität / Algorithmen (vertieft) }
-    { 66113 } { Rechnerarchitektur / Datenbanken / Betriebssysteme (vertieft) }
-    { 66114 } { Datenbank- und Betriebssysteme (vertieft) }
-    { 66115 } { Theoretische Informatik / Algorithmen (vertieft) }
-    { 66116 } { Datenbanksysteme / Softwaretechnologie (vertieft) }
-    { 66118 } { Fachdidaktik (Gymnasium) }
+    { 46110 } { Grundlagen~der~Informatik~(nicht~vertieft) }
+    { 46111 } { Programmentwicklung~/~Systemprogrammierung~/~Datenbanksysteme~(nicht~vertieft) }
+    { 46112 } { Grundlagen~der~Informatik~(nicht~vertieft) }
+    { 46113 } { Theoretische~Informatik~(nicht~vertieft) }
+    { 46114 } { Algorithmen~/~Datenstrukturen~/~Programmiermethoden~(nicht~vertieft) }
+    { 46115 } { Theoretische~Informatik~/~Algorithmen~/~Datenstrukturen~(nicht~vertieft) }
+    { 46116 } { Softwaretechnologie~/~Datenbanksysteme~(nicht~vertieft) }
+    { 46118 } { Fachdidaktik~(Mittelschulen) }
+    { 46119 } { Fachdidaktik~(Realschulen) }
+    { 46121 } { Fachdidaktik~(berufliche~Schulen) }
+    { 66110 } { Automatentheorie,~Algorithmische~Sprache~(vertieft) }
+    { 66111 } { Betriebssysteme~/~Datenbanksysteme~/~Rechnerarchitektur~(vertieft) }
+    { 66112 } { Automatentheorie~/~Komplexität~/~Algorithmen~(vertieft) }
+    { 66113 } { Rechnerarchitektur~/~Datenbanken~/~Betriebssysteme~(vertieft) }
+    { 66114 } { Datenbank-~und~Betriebssysteme~(vertieft) }
+    { 66115 } { Theoretische~Informatik~/~Algorithmen~(vertieft) }
+    { 66116 } { Datenbanksysteme~/~Softwaretechnologie~(vertieft) }
+    { 66118 } { Fachdidaktik~(Gymnasium) }
+  }
+  {}
+  {
+    \msg_error:nn
+    { bschlangaul }
+    { Unbekannte~Einzelprüfungsnummer~„#1“ }
+  }
+}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\cs_gset:Npn \fach:
+{
+  \tl_if_empty:NTF \g_einzelpruefungs_nr_tl {}
+  {
+    \fach_durch_nummer:n \g_einzelpruefungs_nr_tl
   }
 }
 %    \end{macrocode}
 
 % „Einzelprüfungsnummer / Jahr / Jahreszeit“ mit Trennzeichen
 %    \begin{macrocode}
-\cs_gset:Npn \_gib_einzelpruefung_trenner: {
+\cs_gset:Npn \einzelpruefungsnr_jahr_jahreszeit: {
   \g_einzelpruefungs_nr_tl
 
-  \_trenner:
+  \trenner:
 
   \g_jahr_tl
 
-  \_trenner:
+  \trenner:
 
-  \_gib_jahreszeit_durch_monat: \g_monat_tl
+  \gib_jahreszeit_durch_monat: \g_monat_tl
 }
 %    \end{macrocode}
 
 % Thema 1 / Teilaufgabe 2 / Aufgabe 3
 %    \begin{macrocode}
-\cs_gset:Npn \_gib_aufgaben_pfad_trenner: {
+\cs_gset:Npn \thema_teil_aufgabe: {
   \tl_if_empty:NTF \g_thema_nr_tl {} {
-    Thema ~ \g_thema_nr_tl \_trenner:
+    Thema ~ \g_thema_nr_tl \trenner:
   }
+
   \tl_if_empty:NTF \g_teilaufgabe_nr_tl {} {
-    Teilaufgabe ~ \g_teilaufgabe_nr_tl \_trenner:
+    Teilaufgabe ~ \g_teilaufgabe_nr_tl \trenner:
   }
+
   \tl_if_empty:NTF \g_aufgabe_nr_tl {} {
     Aufgabe ~ \g_aufgabe_nr_tl
   }
@@ -1609,15 +1661,15 @@ Setzen der Aufgaben-Metadaten.]
 % Examensaufgabe, wird auch eine Titel zurückgegeben. Für die
 % Kopfzeile gedacht.
 %    \begin{macrocode}
-\cs_new:Npn \gib_aufgaben_pfad_lang_sicher: {
+\cs_new:Npn \aufgabenpfad_lang: {
   \tl_if_empty:NTF \g_einzelpruefungs_nr_tl
   {
     \g_titel_tl
   }
   {
-    \_gib_einzelpruefung_trenner:
-    \_trenner:
-    \_gib_aufgaben_pfad_trenner:
+    \einzelpruefungsnr_jahr_jahreszeit:
+    \trenner:
+    \thema_teil_aufgabe:
   }
 }
 %    \end{macrocode}
@@ -1625,7 +1677,6 @@ Setzen der Aufgaben-Metadaten.]
 %    \begin{macrocode}
 \cs_gset:Npn \_gib_examen_titel:
 {
-  \cs_set:Nn \_trenner: { \, / \, }
   \bool_if:nTF
   {
     ! \tl_if_empty_p:N \g_einzelpruefungs_nr_tl &&
@@ -1639,20 +1690,20 @@ Setzen der Aufgaben-Metadaten.]
       \par
       \noindent
       Staatsexamen ~
-      \g_einzelpruefungs_nr_tl \_trenner:
-      \g_jahr_tl \_trenner:
+      \g_einzelpruefungs_nr_tl \trenner:
+      \g_jahr_tl \trenner:
 
       \tl_case:Nn \g_monat_tl
       {
         { 03 } { Frühjahr }
         { 09 } { Herbst }
-      } \_trenner:
+      } \trenner:
 
       \tl_if_empty:NTF \g_thema_nr_tl {} {
-        Thema ~ Nr. ~ \g_thema_nr_tl \_trenner:
+        Thema ~ Nr. ~ \g_thema_nr_tl \trenner:
       }
       \tl_if_empty:NTF \g_teilaufgabe_nr_tl {} {
-        Teilaufgabe ~ Nr. ~ \g_teilaufgabe_nr_tl \_trenner:
+        Teilaufgabe ~ Nr. ~ \g_teilaufgabe_nr_tl \trenner:
       }
       \tl_if_empty:NTF \g_aufgabe_nr_tl {} {
         Aufgabe ~ Nr. ~ \g_aufgabe_nr_tl
