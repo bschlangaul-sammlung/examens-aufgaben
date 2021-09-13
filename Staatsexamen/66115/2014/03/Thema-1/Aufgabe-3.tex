@@ -1,10 +1,21 @@
 \documentclass{bschlangaul-aufgabe}
-\bLadePakete{baum}
+\bLadePakete{baum,spalten}
 \begin{document}
-\bAufgabenTitel{Einfügen und dreimal einen Knoten löschen}
-\section{Aufgabe 3
-\index{AVL-Baum}
-\footcite{examen:66115:2014:03}}
+\bAufgabenMetadaten{
+  Titel = {Aufgabe 3},
+  Thematik = {Einfügen und dreimal einen Knoten löschen},
+  RelativerPfad = Staatsexamen/66115/2014/03/Thema-1/Aufgabe-3.tex,
+  ZitatSchluessel = examen:66115:2014:03,
+  BearbeitungsStand = mit Lösung,
+  Korrektheit = korrekt und überprüft,
+  Ueberprueft = {Mit dem Online-Tool Visualgo auf \url{https://visualgo.net/en/bst}},
+  Stichwoerter = {AVL-Baum},
+  ExamenNummer = 66115,
+  ExamenJahr = 2014,
+  ExamenMonat = 03,
+  ExamenThemaNr = 1,
+  ExamenAufgabeNr = 3,
+}
 
 \begin{enumerate}
 
@@ -16,14 +27,21 @@
 Reihenfolge in einen anfangs leeren AVL Baum ein. Stellen Sie die AVL
 Eigenschaft ggf. nach jedem Einfügen mit geeigneten Rotationen wieder
 her. Zeichnen Sie den AVL Baum einmal vor und einmal nach jeder
-einzelnen Rotation.
+einzelnen Rotation.\index{AVL-Baum}
+\footcite{examen:66115:2014:03}
 
-\begin{liProjektSprache}{Baum}
+\begin{bProjektSprache}{Baum}
 baum avl (
   setze: 7 6 2 1 5 3 8 4;
   drucke;
 )
-\end{liProjektSprache}
+\end{bProjektSprache}
+
+% https://visualgo.net/en/bst
+% 7, 6, 2, 1, 5, 3, 8, 4
+
+\begin{bAntwort}
+\begin{multicols}{2}
 
 \begin{bBaum}{Nach dem Einfügen von „7“}
 \begin{tikzpicture}[li binaer baum]
@@ -77,6 +95,11 @@ baum avl (
 ]
 \end{tikzpicture}
 \end{bBaum}
+\end{multicols}
+
+\bLinie
+
+\begin{multicols}{2}
 
 \begin{bBaum}{Nach dem Einfügen von „5“}
 \begin{tikzpicture}[li binaer baum]
@@ -138,6 +161,9 @@ baum avl (
 ]
 \end{tikzpicture}
 \end{bBaum}
+\end{multicols}
+
+\bLinie
 
 \begin{bBaum}{Nach dem Einfügen von „8“}
 \begin{tikzpicture}[li binaer baum]
@@ -192,6 +218,7 @@ baum avl (
 ]
 \end{tikzpicture}
 \end{bBaum}
+\end{bAntwort}
 
 %%
 % b)
@@ -209,13 +236,14 @@ Rotationen wieder her. Zeichnen Sie nur den resultierenden Baum.
 
 \item Baum 1:
 
-\begin{liProjektSprache}{Baum}
+\begin{bProjektSprache}{Baum}
 baum avl (
   setze: 5 2 10 1 3 8 12 4 6 9 11 13 7 14;
   drucke;
 )
-\end{liProjektSprache}
+\end{bProjektSprache}
 
+\begin{center}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=+1]{5};
@@ -244,9 +272,14 @@ baum avl (
   ]
 ]
 \end{tikzpicture}
+\end{center}
 
 % liefert falsches Ergebnis: didaktik.java baum --avl 5 2 10 1 3 8 12 4 6 9 11 13 7 14 lösche 4 -v
 
+% https://visualgo.net/en/bst
+% 5, 2, 10, 1, 3, 8, 12, 4, 6, 9, 11, 13, 7, 14
+
+\begin{bAntwort}
 \begin{bBaum}{Nach dem Löschen von „4“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
@@ -274,6 +307,7 @@ baum avl (
 ]
 \end{tikzpicture}
 \end{bBaum}
+\end{bAntwort}
 
 %%
 % ii)
@@ -281,12 +315,12 @@ baum avl (
 
 \item Baum 2:
 
-\begin{liProjektSprache}{Baum}
+\begin{bProjektSprache}{Baum}
 baum avl (
   setze: 6 2 8 1 4 7 3 5;
   drucke;
 )
-\end{liProjektSprache}
+\end{bProjektSprache}
 
 \begin{center}
 \begin{tikzpicture}[li binaer baum]
@@ -307,6 +341,10 @@ baum avl (
 \end{tikzpicture}
 \end{center}
 
+% https://visualgo.net/en/bst
+% 6, 2, 8, 1, 4, 7, 3, 5
+
+\begin{bAntwort}
 \begin{bBaum}{Nach dem Löschen von „7“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
@@ -354,6 +392,7 @@ baum avl (
 ]
 \end{tikzpicture}
 \end{bBaum}
+\end{bAntwort}
 
 %%
 % ii)
@@ -361,13 +400,14 @@ baum avl (
 
 \item Baum 3:
 
-\begin{liProjektSprache}{Baum}[bii]
+\begin{bProjektSprache}{Baum}[bii]
 baum avl (
   setze: 10 5 12 2 8 11 13 1 4 6 9 14 3 7;
   drucke;
 )
-\end{liProjektSprache}
+\end{bProjektSprache}
 
+\begin{center}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=-1]{10};
@@ -396,8 +436,13 @@ baum avl (
   ]
 ]
 \end{tikzpicture}
+\end{center}
 
-\begin{bBaum}{Nach dem Löschen von „5“:}
+% https://visualgo.net/en/bst
+% 10, 5, 12, 2, 8, 11, 13, 1, 4, 6, 9, 14, 3, 7
+
+\begin{bAntwort}
+\begin{bBaum}{Nach dem Löschen von „5“}
 \begin{tikzpicture}[li binaer baum]
 \Tree
 [.\node[label=-1]{10};
@@ -424,6 +469,7 @@ baum avl (
 ]
 \end{tikzpicture}
 \end{bBaum}
+\end{bAntwort}
 \end{enumerate}
 \end{enumerate}
 \end{document}

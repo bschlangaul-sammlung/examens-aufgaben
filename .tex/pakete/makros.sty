@@ -70,14 +70,14 @@ anderen Paket passen]
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{environment}{liProjektSprache}
-% |\begin{liProjektSprache}{NameProjektSprache} \end{liProjektSprache}|:
+% \begin{environment}{bProjektSprache}
+% |\begin{bProjektSprache}{NameProjektSprache} \end{bProjektSprache}|:
 % Zum Einbetten von projekteigenen Minisprachen/DSLs (Domain-specific
 % language) (\zB RelationenSchema). Der Inhalt der Umgebung wird nicht
 % von TeX kompiliert, sondern von dem Java-Kommandozeilen-Programm
 % |didaktik.java| verarbeitet.
 %    \begin{macrocode}
-\NewDocumentEnvironment { liProjektSprache }{ o +b } {} {}
+\NewDocumentEnvironment { bProjektSprache }{ o +b } {} {}
 %    \end{macrocode}
 % \end{environment}
 
@@ -328,21 +328,38 @@ anderen Paket passen]
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\bLinie}
+% Eine horizontale Linie
+%    \begin{macrocode}
+\def\bLinie{
+  \par
+  \noindent
+  \rule
+  {
+    \textwidth
+  }
+  {
+    0.4pt
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\zB}
 %    \begin{macrocode}
-\def\zB{z.\,B. }
+\def\zB{z.\,B.~}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\ZB}
 %    \begin{macrocode}
-\def\ZB{Z.\,B. }
+\def\ZB{Z.\,B.~}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\dh}
 %    \begin{macrocode}
-\def\dh{d.\,h. }
+\def\dh{d.\,h.~}
 %    \end{macrocode}
 % \end{macro}
 
