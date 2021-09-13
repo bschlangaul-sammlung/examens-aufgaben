@@ -6876,8 +6876,12 @@ realisiert werden kann.]
 % \subsection{sql.sty}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesPackage{bschlangaul-tabelle}[2021/09/02 Zu Setzen von SQL]
+\ProvidesPackage{bschlangaul-sql}[2021/09/02 Zu Setzen von SQL]
 %    \end{macrocode}
+
+% \bFaulenzer{
+%   s = bSqlCode
+% }
 
 % \subsubsection{Latex-Markup-Beispiel}
 
@@ -6917,8 +6921,24 @@ realisiert werden kann.]
 
 %    \begin{macrocode}
 \RequirePackage{fancyvrb}
-\DefineVerbatimEnvironment{liSqlErgebnis}{Verbatim}
-{fontsize=\footnotesize}
+\DefineVerbatimEnvironment {bSqlErgebnis} {Verbatim}
+{
+ fontsize=\scriptsize
+}
+%    \end{macrocode}
+
+% \begin{macro}{\bSqlCode}
+% \bMakroFaulenzer{s}{liSqlCode}
+%    \begin{macrocode}
+\def\bSqlCode#1
+{
+  \mintinline{sql}|#1|
+}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\ExplSyntaxOff
 %    \end{macrocode}
 
 %    \begin{macrocode}
@@ -7147,17 +7167,6 @@ Paket struktex zum Setzen von Struktogrammen]
 \NewDocumentCommand { \bHaskellDatei } { m }
 {
   \inputminted{haskell}{#1}
-}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\bSqlCode}
-% |\bHaskellCode{sql}|: Zum Setzen von SQL-Code.
-% \bMakroFaulenzer{s}{liSqlCode}
-%    \begin{macrocode}
-\def\bSqlCode#1
-{
-  \mintinline{sql}|#1|
 }
 %    \end{macrocode}
 % \end{macro}

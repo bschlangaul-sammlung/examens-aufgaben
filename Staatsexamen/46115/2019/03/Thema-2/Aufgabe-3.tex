@@ -1,13 +1,15 @@
 \documentclass{bschlangaul-aufgabe}
-
+\bLadePakete{baum}
 \begin{document}
 \bAufgabenMetadaten{
   Titel = {Aufgabe 3},
   Thematik = {},
+  Referenz = 46115-2019-F.T2-A3,
   RelativerPfad = Staatsexamen/46115/2019/03/Thema-2/Aufgabe-3.tex,
   ZitatSchluessel = examen:46115:2019:03,
-  BearbeitungsStand = unbekannt,
-  Korrektheit = unbekannt,
+  BearbeitungsStand = mit Lösung,
+  Korrektheit = korrekt und überprüft,
+  Ueberprueft = {mit den Online-Tool VisuAlgo \url{https://visualgo.net/en/bst}},
   Stichwoerter = {AVL-Baum},
   EinzelpruefungsNr = 46115,
   Jahr = 2019,
@@ -27,11 +29,60 @@ befindet sich der AVL-Baum wieder in seinem
 Ursprungszustand.\index{AVL-Baum}
 \footcite{examen:46115:2019:03}
 
+\begin{bAntwort}
+Die Aussage ist falsch. Wir widerlegen die Aussage durch ein konkretes
+Beispiel:
+
+\begin{bBaum}{Unser Ausgangs-AVL-Baum}
+\begin{tikzpicture}[b binaer baum]
+\Tree
+[.\node[label=+1]{1};
+  \edge[blank]; \node[blank]{};
+  [.\node[label=0]{2}; ]
+]
+\end{tikzpicture}
+\end{bBaum}
+
+\begin{bBaum}{Nach dem Einfügen von „3“}
+\begin{tikzpicture}[b binaer baum]
+\Tree
+[.\node[label=0]{2};
+  [.\node[label=0]{1}; ]
+  [.\node[label=0]{3}; ]
+]
+\end{tikzpicture}
+\end{bBaum}
+
+\begin{bBaum}{Nach dem Löschen von „3“}
+\begin{tikzpicture}[b binaer baum]
+\Tree
+[.\node[label=-1]{2};
+  [.\node[label=0]{1}; ]
+  \edge[blank]; \node[blank]{};
+]
+\end{tikzpicture}
+\end{bBaum}
+
+\end{bAntwort}
+
 %%
 % (b)
 %%
 
-\item Fügen Sie in den gegebenen Baum den Schlüssel 11 ein.
+\item Fügen Sie in den gegebenen Baum den Schlüssel $11$ ein.
+
+\begin{center}
+\begin{tikzpicture}[b binaer baum]
+\Tree
+[.\node[label=+1]{10};
+  [.\node[label=0]{5}; ]
+  [.\node[label=-1]{15};
+    [.\node[label=0]{12}; ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{center}
 
 Rebalancieren Sie anschließend den Baum so, dass die AVL-Eigenschaft
 wieder erreicht wird. Zeichnen Sie den Baum nach jeder Einfach- und
@@ -40,5 +91,37 @@ Links-Rechts-, oder Rechts-Links-Rotation). Argumentieren Sie jeweils
 über die Höhenbalancen der Teilbäume.
 
 Tipp: Zeichnen Sie nach jedem Schritt die Höhenbalancen in den Baum ein.
+
+%  didaktik.java baum --avl 10 5 15 12 11 -v -t
+\begin{bAntwort}
+\begin{bBaum}{Nach dem Einfügen von „11“}
+\begin{tikzpicture}[b binaer baum]
+\Tree
+[.\node[label=+2]{10};
+  [.\node[label=0]{5}; ]
+  [.\node[label=-2]{15};
+    [.\node[label=-1]{12};
+      [.\node[label=0]{11}; ]
+      \edge[blank]; \node[blank]{};
+    ]
+    \edge[blank]; \node[blank]{};
+  ]
+]
+\end{tikzpicture}
+\end{bBaum}
+
+\begin{bBaum}{Nach der Rechtsrotation}
+\begin{tikzpicture}[b binaer baum]
+\Tree
+[.\node[label=+1]{10};
+  [.\node[label=0]{5}; ]
+  [.\node[label=0]{12};
+    [.\node[label=0]{11}; ]
+    [.\node[label=0]{15}; ]
+  ]
+]
+\end{tikzpicture}
+\end{bBaum}
+\end{bAntwort}
 \end{enumerate}
 \end{document}

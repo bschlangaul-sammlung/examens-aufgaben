@@ -1,5 +1,5 @@
 \documentclass{bschlangaul-aufgabe}
-\bLadePakete{syntax}
+\bLadePakete{sql}
 \begin{document}
 \bAufgabenMetadaten{
   Titel = {Aufgabe 3},
@@ -8,8 +8,9 @@
   RelativerPfad = Staatsexamen/46116/2018/09/Thema-2/Teilaufgabe-2/Aufgabe-3.tex,
   ZitatSchluessel = examen:46116:2018:09,
   ZitatBeschreibung = {Thema 2 Teilaufgabe 2 Aufgabe 3},
-  BearbeitungsStand = unbekannt,
-  Korrektheit = unbekannt,
+  BearbeitungsStand = mit Lösung,
+  Korrektheit = korrekt und überprüft,
+  Ueberprueft = {mit Dozentenlösung abgeglichen},
   Stichwoerter = {SQL, SQL mit Übungsdatenbank, CREATE TABLE, INSERT, ALTER TABLE, UPDATE, DELETE, VIEW, GROUP BY, DROP TABLE},
   EinzelpruefungsNr = 46116,
   Jahr = 2018,
@@ -21,6 +22,7 @@
 
 \let\f=\textbf
 \let\u=\underline
+\let\s=\bSqlCode
 
 Gegeben\index{SQL} \footcite{examen:46116:2018:09} sei das folgende
 Datenbank-Schema, das für die Speicherung der Daten einer Schule
@@ -89,14 +91,14 @@ CREATE TABLE Noten (
 );
 
 INSERT INTO Schüler VALUES
-  (1, 'Laura', 'Müller', '4A'),
-  (2, 'Linus', 'Schmidt', '4A'),
-  (3, 'Jonas', 'Schneider', '4A'),
-  (4, 'Liam', 'Fischer', '4B'),
-  (5, 'Tim', 'Weber', '4B'),
-  (6, 'Lea', 'Becker', '4B'),
-  (7, 'Emilia', 'Klein', '4C'),
-  (8, 'Julia', 'Wolf', '4C');
+  (1, 'Laura',  'Müller',    '4A'),
+  (2, 'Linus',  'Schmidt',   '4A'),
+  (3, 'Jonas',  'Schneider', '4A'),
+  (4, 'Liam',   'Fischer',   '4B'),
+  (5, 'Tim',    'Weber',     '4B'),
+  (6, 'Lea',    'Becker',    '4B'),
+  (7, 'Emilia', 'Klein',     '4C'),
+  (8, 'Julia',  'Wolf',      '4C');
 
 INSERT INTO Noten VALUES
   (1, 'Mathematik', 3, 2, '23.09.2017'),
@@ -148,14 +150,15 @@ verarbeitet werden können und begründen Sie Ihre Antwort kurz.
 \index{INSERT}
 
 \begin{minted}{sql}
-INSERT INTO
-Schüler (SchülerID, Vorname, Nachname, Klasse)
-VALUES (9, 'Johannes', 'Schmied', '4C');
+INSERT INTO Schüler
+  (SchülerID, Vorname, Nachname, Klasse)
+VALUES
+  (6, 'Johannes', 'Schmied', '4C');
 \end{minted}
 
 \begin{bAntwort}
-Nein, denn die Spalte, die Primärschlüssel heißt Schüler und nicht
-SchülerID. Außerdem existiert bereits ein Schuüler mit der ID 6.
+Nein. Ein/e Schüler/in mit der ID 6 existiert bereits. Primärschlüssel
+müssen eindeutig sein.
 \end{bAntwort}
 
 \begin{minted}{sql}
@@ -163,10 +166,12 @@ INSERT INTO Noten VALUES (6, 'Chemie', 1, 2, '1.4.2020');
 \end{minted}
 
 \begin{bAntwort}
-Nein, Datum ist zwingend nötig, da es im Primärschlüssel enthalten ist.
-Es gibt keine Schüler mit der ID 9. Der müsste vorher angelegt sein,
-da die Spalte SchülerID von Noten auf den Fremdschlüssel Schüler aus
-der Schülertabelle verweist.
+Nein. Ein \emph{Datum} ist zwingend notwendig. Da \emph{Datum} im
+Primärschlüssel enthalten ist, darf es nicht NULL sein. Es gibt auch
+keine/n Schüler/in mit der ID 9. Der/die Schüler/in  müsste vorher
+angelegt werden, da die Spalte \emph{SchülerID} von der Tabelle
+\emph{Noten} auf den Fremdschlüssel \emph{SchülerId} aus der
+Schülertabelle verweist.
 \end{bAntwort}
 
 %%
@@ -175,7 +180,7 @@ der Schülertabelle verweist.
 
 \item Geben Sie die Befehle für die folgenden Aktionen in SQL an.
 Beachten Sie dabei, dass die Befehle auch noch bei Änderungen des oben
-gegebenen Datenbank- zustandes korrekte Ergebnisse zurückliefern müssen.
+gegebenen Datenbankzustandes korrekte Ergebnisse zurückliefern müssen.
 \index{ALTER TABLE}
 
 \begin{itemize}
@@ -188,53 +193,72 @@ durchführt.
 \begin{bAntwort}
 \begin{minted}{sql}
 ALTER TABLE Schüler
-ADD CONSTRAINT Vorname_eindeutig UNIQUE (Vorname, Klasse);
+ADD CONSTRAINT eindeutiger_Vorname UNIQUE (Vorname, Klasse);
 \end{minted}
 \end{bAntwort}
 
-\item Der Schüler Tim Weber (SchülerID: 5) wechselt die Klasse. Geben
-Sie den SQL-Befehl an, der den genannten Schüler in die Klasse “4C“
-überführt.
+\item Der Schüler \emph{Tim Weber} (SchülerID: 5) wechselt die Klasse.
+Geben Sie den SQL-Befehl an, der den genannten Schüler in die Klasse
+\emph{„4C“} überführt.
 \index{UPDATE}
 
 \begin{bAntwort}
 \begin{minted}{sql}
 UPDATE Schüler
 SET Klasse = '4C'
-WHERE Vorname = 'Tim' AND Nachname = 'Weber' AND SchülerID = 5;
+WHERE
+  Vorname = 'Tim' AND
+  Nachname = 'Weber' AND
+  SchülerID = 5;
 \end{minted}
 \end{bAntwort}
 
-\item Die Schülerin Laura Müller (SchülerID: 1) zieht um und wechselt
-die Schule. Löschen Sie die Schülerin aus der Datenbank. Nennen Sie
-einen möglichen Effekt, welcher bei der Verwendung von Primär- und
+\item Die Schülerin \emph{Laura Müller} (SchülerID: 1) zieht um und
+wechselt die Schule. Löschen Sie die Schülerin aus der Datenbank. Nennen
+Sie einen möglichen Effekt, welcher bei der Verwendung von Primär- und
 Fremdschlüsseln auftreten kann.
 \index{DELETE}
 
 \begin{bAntwort}
-Löschen aller Noten von Laura Müller, falls ON DELETE CASCADE gesetzt.
-Oder es müssen erst alle Fremdschlüsselverweise auf diese SchülerID in
-Noten gelöscht werden
+Alle Noten von \emph{Laura Müller} werden gelöscht, falls \s{ON DELETE
+CASCADE} gesetzt ist. Oder es müssen erst alle Fremdschlüsselverweise
+auf diese \emph{SchülerID} in der Tabelle \emph{Noten} gelöscht werden
+
+\begin{minted}{sql}
+DELETE FROM Noten
+WHERE SchülerID = 1;
+\end{minted}
 \end{bAntwort}
 
-\item Erstellen Sie eine View „DurchschnittsNoten“, die die folgenden
-Spalten beinhaltet: Klasse, Schulfach, Durchschnittsnote Hinweis:
-Beachten Sie die Gewichte der Noten.
+\item Erstellen Sie eine View \emph{„DurchschnittsNoten“}, die die
+folgenden Spalten beinhaltet: \emph{Klasse}, \emph{Schulfach}, \emph{Durchschnittsnote}
+
+Hinweis: Beachten Sie die Gewichte der Noten.
 \index{VIEW}
 \index{GROUP BY}
 
 \begin{bAntwort}
 \begin{minted}{sql}
 CREATE VIEW DurchschnittsNoten AS (
-  (SELECT s.Klasse, n.Schulfach, (SUM(n.Note * n.Gewicht) / SUM(n.Gesicht)) AS Durchschnittsnote
+  (SELECT s.Klasse, n.Schulfach, (SUM(n.Note * n.Gewicht) / SUM(n.Gewicht)) AS Durchschnittsnote
   FROM Noten n, Schüler s
-  WHERE s.SchülerID = n.SchülerID AND n.Gewicht = 1
+  WHERE s.SchülerID = n.SchülerID
   GROUP BY s.Klasse, n.Schulfach)
 );
+
+SELECT * FROM DurchschnittsNoten;
 \end{minted}
+
+\begin{bSqlErgebnis}
+ klasse | schulfach  | durchschnittsnote
+--------+------------+-------------------
+ 4A     | Mathematik |                 2
+(1 row)
+\end{bSqlErgebnis}
 \end{bAntwort}
 
-\item Geben Sie den Befehl an, der die komplette Tabelle „Noten“ löscht.
+\item Geben Sie den Befehl an, der die komplette Tabelle \emph{„Noten“}
+löscht.
 \index{DROP TABLE}
 
 \begin{bAntwort}
@@ -272,16 +296,6 @@ WHERE Schulfach = 'Mathematik';
 \end{minted}
 \end{bAntwort}
 
-Musterlösung nimmt View zu hand.
-
-\begin{bAntwort}
-\begin{minted}{sql}
-SELECT AVG(Note) AS durchschnittlicheNote
-FROM DurchschnittsNoten
-WHERE Schulfach = 'Mathematik';
-\end{minted}
-\end{bAntwort}
-
 %%
 %
 %%
@@ -290,21 +304,26 @@ WHERE Schulfach = 'Mathematik';
 23.09.2017 eine Schulaufgabe (\dh Gewicht=2) geschrieben haben.
 
 \begin{bAntwort}
-Ich habe in der WHERE Klauses das Schulfach vergessen. Sonst richtig.
-Außerdem habe ich das Datum einfach übernommen.
 \begin{minted}{sql}
-SELECT COUNT(SchülerID) AS AnzahlSchüler
+SELECT COUNT(*) AS Anzahl_Schüler
 FROM Noten
-WHERE Datum = 2017-09-23 AND Gewichtung = 2 AND Schulfach = 'Mathematik';
+WHERE Datum = '23.09.2017' AND Gewicht = 2 AND Schulfach = 'Mathematik';
 \end{minted}
+
+\begin{bSqlErgebnis}
+ anzahl_schüler
+----------------
+              1
+(1 row)
+\end{bSqlErgebnis}
 \end{bAntwort}
 
 %%
 %
 %%
 
-\item Geben Sie die SchülerID aller Schüler zurück, die im Fach
-Mathematik mindestens drei mal die Schulnote 6 geschrieben haben.
+\item Geben Sie die \emph{SchülerID} aller Schüler zurück, die im Fach
+Mathematik mindestens drei mal die Schulnote $6$ geschrieben haben.
 
 \begin{bAntwort}
 \begin{minted}{sql}
@@ -314,6 +333,12 @@ WHERE Schulfach = 'Mathematik' AND Note = 6
 GROUP BY SchülerID
 HAVING COUNT(*) >= 3;
 \end{minted}
+
+\begin{bSqlErgebnis}
+ schülerid
+-----------
+(0 rows)
+\end{bSqlErgebnis}
 \end{bAntwort}
 
 %%
@@ -325,20 +350,18 @@ HAVING COUNT(*) >= 3;
 
 \begin{bAntwort}
 \begin{minted}{sql}
-SELECT n.Schulfach, AVG (n.Note)
+SELECT n.Schulfach, AVG(n.Note)
 FROM Schüler s, Noten n
-WHERE s.SchülerID = n.SchülerID AND s.Klasse = ’4 A ’
-GROUP BY n.Schulfach
+WHERE s.SchülerID = n.SchülerID AND s.Klasse = '4A'
+GROUP BY n.Schulfach;
 \end{minted}
 
-Hier wäre Gewicht unberücksichtigt, also möglicherweise besser, auf die oben erstellte
-View zurückgreifen:
-
-\begin{minted}{sql}
-SELECT Schulfach, durchschnittlicheNote,
-FROM DurchschnittsNoten
-WHERE Klasse = '4a';
-\end{minted}
+\begin{bSqlErgebnis}
+schulfach  |        avg
+------------+--------------------
+ Mathematik | 2.5000000000000000
+(1 row)
+\end{bSqlErgebnis}
 \end{bAntwort}
 \end{itemize}
 
@@ -356,17 +379,29 @@ Schüler NATURAL JOIN Noten;
 \end{minted}
 
 \begin{bAntwort}
-1 $\rightarrow$ 4A von Laura Müller
+\begin{bSqlErgebnis}
+ count
+-------
+     1
+(1 row)
+\end{bSqlErgebnis}
+4A von Laura Müller. Ohne \s{DISTINCT} wäre das Ergebnis 4.
 \end{bAntwort}
 
 \begin{minted}{sql}
-SELECT COUNT(all Klasse)
+SELECT COUNT(ALL Klasse)
 FROM
 Noten, Schüler;
 \end{minted}
 
 \begin{bAntwort}
-32 $\rightarrow$ Kreuzprodukt, zählt alle Einträge in Klasse
+\begin{bSqlErgebnis}
+ count
+-------
+    32
+(1 row)
+\end{bSqlErgebnis}
+Es entsteht das Kreuzprodukt ($8 \cdot 4 = 32$).
 \end{bAntwort}
 
 \begin{minted}{sql}
@@ -376,7 +411,39 @@ Schüler NATURAL LEFT OUTER JOIN Noten;
 \end{minted}
 
 \begin{bAntwort}
-4 $\rightarrow$ null-Werte nicht mitgezählt, 4 Noten von Laura
+\begin{minted}{sql}
+SELECT * FROM Schüler NATURAL LEFT OUTER JOIN Noten;
+\end{minted}
+
+ergibt:
+
+\begin{bSqlErgebnis}
+ schülerid | vorname | nachname  | klasse | schulfach  | note | gewicht |   datum
+-----------+---------+-----------+--------+------------+------+---------+------------
+         1 | Laura   | Müller    | 4A     | Mathematik |    3 |       2 | 2017-09-23
+         1 | Laura   | Müller    | 4A     | Mathematik |    1 |       1 | 2017-10-03
+         1 | Laura   | Müller    | 4A     | Mathematik |    2 |       2 | 2017-10-15
+         1 | Laura   | Müller    | 4A     | Mathematik |    4 |       1 | 2017-11-11
+         2 | Linus   | Schmidt   | 4A     |            |      |         |
+         5 | Tim     | Weber     | 4B     |            |      |         |
+         8 | Julia   | Wolf      | 4C     |            |      |         |
+         6 | Lea     | Becker    | 4B     |            |      |         |
+         4 | Liam    | Fischer   | 4B     |            |      |         |
+         3 | Jonas   | Schneider | 4A     |            |      |         |
+         7 | Emilia  | Klein     | 4C     |            |      |         |
+(11 rows)
+\end{bSqlErgebnis}
+
+\begin{bSqlErgebnis}
+ count
+-------
+     4
+(1 row)
+\end{bSqlErgebnis}
+
+\s{COUNT} zählt die \s{NULL}-Werte nicht mit. Die \emph{Laura Müller}
+hat 4
+Noten.
 \end{bAntwort}
 
 \begin{minted}{sql}
@@ -386,7 +453,14 @@ Schüler NATURAL LEFT OUTER JOIN Noten;
 \end{minted}
 
 \begin{bAntwort}
-11 $\rightarrow$ alle Schüler, Laura dabei 4-mal, weil 4 Noten
+\begin{bSqlErgebnis}
+ count
+-------
+    11
+(1 row)
+\end{bSqlErgebnis}
+Siehe Zwischenergebistabelle in der obenstehenden Antwort. Alle Schüler
+und die Laura 4-mal, weil sie 4 Noten hat.
 \end{bAntwort}
 \end{enumerate}
 \end{document}
