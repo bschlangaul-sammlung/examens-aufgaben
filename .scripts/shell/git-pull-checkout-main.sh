@@ -8,6 +8,6 @@ _config() {
   git checkout main
 }
 
-_config ".scripts/nodejs"
-_config "Code"
+_config "werkzeug"
+_config "java"
 _config ""

@@ -1354,6 +1354,12 @@ Setzen der Aufgaben-Metadaten.]
 \ExplSyntaxOn
 %    \end{macrocode}
 
+% Lade die Konfigurationsdatei.
+% |\def\LehramtInformatikRepository{/pfad/zum/repository}|
+%    \begin{macrocode}
+\input /etc/bschlangaul.config.tex
+%    \end{macrocode}
+
 % \subsubsection{IFs}
 
 % Wir weichen von dem üblichen Namensschema ab und schreiben das Wort
@@ -1813,11 +1819,6 @@ Setzen der Aufgaben-Metadaten.]
 %    \begin{macrocode}
 \msg_new:nnn { aufgabenmetadaten } { kein-titel }
   { Der~Schlüssel~ist~zwingend~notwendig }
-%    \end{macrocode}
-
-% |\def\LehramtInformatikRepository{/pfad/zum/repository}|
-%    \begin{macrocode}
-\input /etc/lehramt-informatik.config.tex
 %    \end{macrocode}
 
 % biblatex not working with lualatex and babel
@@ -5550,6 +5551,30 @@ von Textschnipseln, die das Projekt beschreiben]
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\bMetaEmail}
+%    \begin{macrocode}
+\def\bMetaEmail
+{
+  hermine.bschlangaul@gmx.net
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\bMetaEmailLink}
+%    \begin{macrocode}
+\def\bMetaEmailLink
+{
+  \href
+  {
+    mailto:\bMetaEmail
+  }
+  {
+    \bMetaEmail
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\bMetaUeberDasProjekt}
 %    \begin{macrocode}
 \def\bMetaUeberDasProjekt
@@ -5575,29 +5600,6 @@ von Textschnipseln, die das Projekt beschreiben]
     Creative~Commons~Namensnennung-Nicht~kommerziell-Share~Alike~4.0~
     International-Lizenz
   }.
-}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\bMetaEmail}
-%    \begin{macrocode}
-\def\bMetaEmail
-{
-  hermine.bschlangaul@gmx.net
-}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\bMetaEmailLink}
-%    \begin{macrocode}
-\def\bMetaEmailLink
-{
-  \href
-  {
-    mailto:\bMetaEmail
-  }{
-    \bMetaEmail
-  }
 }
 %    \end{macrocode}
 % \end{macro}
@@ -6972,7 +6974,6 @@ Paket struktex zum Setzen von Struktogrammen]
 
 % \bFaulenzer{
 %   j = bJavaCode,
-%   s = bSqlCode,
 % }
 
 %    \begin{macrocode}

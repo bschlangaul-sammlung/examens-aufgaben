@@ -27,7 +27,7 @@ KONF = {
   github_tex_repo = 'hbschlang/lehramt-informatik',
 
   -- \LehramtInformatikGithubCodeRepo
-  github_code_repo = 'hbschlang/Java-Didaktik-Beispiele',
+  github_code_repo = 'bschlangaul-sammlung/java',
 
   -- \LehramtInformatikGitBranch
   git_branch = 'main',
@@ -85,7 +85,7 @@ end
 -- @return Der absolute lokale Dateipfad
 local function gib_absoluten_pfad(relativer_pfad, ist_test)
   return KONF.tex_repo_lokaler_pfad ..
-    '/Code/' ..
+    '/java/' ..
     gib_relativen_repo_pfad(relativer_pfad, ist_test)
 end
 

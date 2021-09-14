@@ -7,6 +7,6 @@ _config() {
   git-config-bschlangaul.sh
 }
 
-_config ".scripts/nodejs"
-_config "Code"
+_config "werkzeug"
+_config "java"
 _config ""

@@ -389,7 +389,7 @@ als Markdown-Liste eingebettet werden kann.
 ## TeX-Klassen und Pakete installieren
 
 ```
-su -c "echo "\\\\def\\\\LehramtInformatikRepository{$(pwd)}" > /etc/lehramt-informatik.config.tex"
+su -c "echo "\\\\def\\\\LehramtInformatikRepository{$(pwd)}" > /etc/bschlangaul.config.tex"
 ```
 
 ```
