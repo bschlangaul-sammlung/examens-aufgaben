@@ -1,17 +1,30 @@
 \documentclass{bschlangaul-aufgabe}
-\bLadePakete{vollstaendige-induktion}
+\bLadePakete{java,vollstaendige-induktion}
 \begin{document}
+\bAufgabenMetadaten{
+  Titel = {Aufgabe 1},
+  Thematik = {Hanoi},
+  Referenz = 46116-2014-F.T2-TA1-A1,
+  RelativerPfad = Staatsexamen/46116/2014/03/Thema-2/Teilaufgabe-1/Aufgabe-1.tex,
+  ZitatSchluessel = examen:46116:2014:03,
+  BearbeitungsStand = mit Lösung,
+  Korrektheit = korrekt und überprüft,
+  Ueberprueft = {mit Dozentenlösung abgeglichen},
+  Stichwoerter = {Terminierungsfunktion},
+  EinzelpruefungsNr = 46116,
+  Jahr = 2014,
+  Monat = 03,
+  ThemaNr = 2,
+  TeilaufgabeNr = 1,
+  AufgabeNr = 1,
+}
+
 \let\m=\bInduktionMarkierung
 \let\e=\bInduktionErklaerung
 
-\bAufgabenTitel{Hanoi}
-
-\section{Aufgabe 1: „Formale Verifikation“
-\index{Vollständige Induktion}
-\footcite[Thema 2 Teilaufgabe 1 Aufgabe 1]{examen:46116:2014:03}}
-
-Gegeben sei folgende Methode zur Berechnung der Anzahl der notwendigen
-Züge beim Spiel \emph{„Die Türme von Hanoi“}:
+Gegeben\footcite{examen:46116:2014:03} sei folgende Methode zur
+Berechnung der Anzahl der notwendigen Züge beim Spiel \emph{„Die Türme
+von Hanoi“}:
 \footcite{sosy:pu:5:1}
 
 \bJavaExamen[firstline=4,lastline=15]{46116}{2014}{03}{Hanoi}
@@ -115,19 +128,11 @@ Terminierungsfunktion\index{Terminierungsfunktion} an und begründen Sie
 kurz Ihre Wahl!
 
 \begin{bAntwort}
-Betrachte die Argumentenfolge $k, k-1, k-2, \dots, 0$.
-
-$\Rightarrow$ Terminierungsfunktion: $T(k) = k$
-
-Nachweis für ganzzahlige $k \geq 0$:
-
-\begin{itemize}
-\item $T(k)$ ist auf der Folge der Argumente streng monoton fallend bei
-jedem Rekursionsschritt.
-
-\item Bei der impliziten Annahme $k$ ist ganzzahlig und $k \geq 0$ ist
-$T(k)$ nach unten durch $0$ beschränkt.
-\end{itemize}
+Betrachte die Argumentenfolge $k, k-1, k-2, \dots, 0$. Die
+Terminierungsfunktion ist offenbar $T(k) = k$. $T(k)$ ist bei jedem
+Rekursionsschritt auf der Folge der Argumente streng monoton fallend.
+Bei der impliziten Annahme $k$ ist ganzzahlig und $k \geq 0$ ist $T(k)$
+nach unten durch $0$ beschränkt.
 \end{bAntwort}
 \end{enumerate}
 \end{document}

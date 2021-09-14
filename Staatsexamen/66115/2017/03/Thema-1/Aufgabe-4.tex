@@ -1,5 +1,5 @@
 \documentclass{bschlangaul-aufgabe}
-\bLadePakete{vollstaendige-induktion}
+\bLadePakete{java,vollstaendige-induktion}
 
 \begin{document}
 \bAufgabenMetadaten{
@@ -8,8 +8,9 @@
   Referenz = 66115-2017-F.T1-A4,
   RelativerPfad = Staatsexamen/66115/2017/03/Thema-1/Aufgabe-4.tex,
   ZitatSchluessel = sosy:ab:8,
-  BearbeitungsStand = unbekannt,
-  Korrektheit = unbekannt,
+  BearbeitungsStand = mit Lösung,
+  Korrektheit = korrekt und überprüft,
+  Ueberprueft = {Mit Dozentenlösung abgeglichen},
   Stichwoerter = {Vollständige Induktion},
   EinzelpruefungsNr = 66115,
   Jahr = 2017,
@@ -21,10 +22,10 @@
 \let\m=\bInduktionMarkierung
 \let\e=\bInduktionErklaerung
 
-Sie\index{Vollständige Induktion}
-\footcite{sosy:ab:8} dürfen im Folgenden davon ausgehen, dass keinerlei Under- oder
-Overflows auftreten.
-\footcite[Thema 1 Aufgabe 4]{examen:66115:2017:03}
+Sie\index{Vollständige Induktion} \footcite[Aufgabe 4]{sosy:ab:8} dürfen im
+Folgenden davon ausgehen, dass keinerlei Under- oder Overflows
+auftreten.
+\footcite{examen:66115:2017:03}
 
 \bigskip
 
@@ -112,10 +113,10 @@ f(n + 1)
 %
 %
 & = \frac{\m{(n + 1)(}6(n + 1) + n(2n + 1)\m{)}}{6}
-& \e{$n + 1$ ausklammert}\\
+& \e{$n + 1$ ausgeklammert}\\
 %
 & = \frac{(n + 1)(\m{6n + 6 + 2n^2 + n}))}{6}
-& \e{Klammern ausmultiplizieren / auflösen}\\
+& \e{Klammern ausmultipliziert / aufgelöst}\\
 %
 & = \frac{(n + 1)(2n^2 + \m{7n} + 6)}{6}
 & \e{umsortiert, addiert $6n + n = 7n$}\\
@@ -138,7 +139,7 @@ f(n + 1)
 
 \item Beweisen Sie die Terminierung von \bJavaCode{sumOfSquares(n)} für alle
 $n \geq 0$.
-<
+
 \begin{bAntwort}
 Sei $T (n) = n$. Die Funktion $T (n)$ ist offenbar ganzzahlig. In jedem
 Rekursionsschritt wird $n$ um eins verringert, somit ist $T (n)$ streng
