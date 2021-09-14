@@ -1,16 +1,29 @@
 \documentclass{bschlangaul-aufgabe}
-\bLadePakete{syntax,rmodell}
+\bLadePakete{sql,rmodell}
 \begin{document}
-\bAufgabenTitel{Turmspringen}
-
-\section{Aufgabe 4
-\index{SQL}
-\footcite[Thema 2 Teilaufgabe 2 Aufgabe 4]{examen:46116:2017:09}}
+\bAufgabenMetadaten{
+  Titel = {Aufgabe 4},
+  Thematik = {Turmspringen},
+  Referenz = 46116-2017-H.T2-TA2-A4,
+  RelativerPfad = Staatsexamen/46116/2017/09/Thema-2/Teilaufgabe-2/Aufgabe-4.tex,
+  ZitatSchluessel = examen:46116:2017:09,
+  ZitatBeschreibung = {Thema 2 Teilaufgabe 2 Aufgabe 4},
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {SQL, SQL mit Übungsdatenbank, GROUP BY},
+  EinzelpruefungsNr = 46116,
+  Jahr = 2017,
+  Monat = 09,
+  ThemaNr = 2,
+  TeilaufgabeNr = 2,
+  AufgabeNr = 4,
+}
 
 \noindent
-Für die bayerische Meisterschaft im Turmspringen ist folgendes
-Datenbankschema angelegt:
-\footcite[SQL-Anfragen auf mehreren Tabellen, Aufgabe 4]{db:ab:2}
+Für\index{SQL}\footcite[Thema 2 Teilaufgabe 2 Aufgabe
+4]{examen:46116:2017:09} die bayerische Meisterschaft im Turmspringen
+ist folgendes Datenbankschema angelegt:
+\footcite{db:ab:2}
 
 \begin{liRelationenSchemaFormat}
 Springer(Startnummer*, Nachname, Vorname, Geburtsdatum, Körpergröße)
@@ -29,6 +42,7 @@ FK (SID) referenziert Sprung (SID)\\
 FK (Startnummer) referenziert Springer (Startnummer)
 \end{liRmodell}
 
+\begin{bAdditum}[Übungsdatenbank]
 % Datenbankname: turmspringen
 \begin{minted}{sql}
 CREATE TABLE Springer (
@@ -65,6 +79,7 @@ INSERT INTO springt VALUES
   (2, 2, 1);
 \end{minted}
 \index{SQL mit Übungsdatenbank}
+\end{bAdditum}
 
 \noindent
 Das Attribut Schwierigkeit kann die Werte 1 bis 10 annehmen, das
