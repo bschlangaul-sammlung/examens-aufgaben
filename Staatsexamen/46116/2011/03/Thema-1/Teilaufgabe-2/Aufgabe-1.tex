@@ -1,6 +1,25 @@
 \documentclass{bschlangaul-aufgabe}
-\bLadePakete{uml,syntax}
+\bLadePakete{uml,java}
 \begin{document}
+\bAufgabenMetadaten{
+  Titel = {1 Firmenstruktur},
+  Thematik = {Firmenstruktur},
+  Referenz = 46116-2011-F.T1-TA2-A1,
+  RelativerPfad = Staatsexamen/46116/2011/03/Thema-1/Teilaufgabe-2/Aufgabe-1.tex,
+  ZitatSchluessel = examen:46116:2011:03,
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {Einfach-verkettete Liste, Objektdiagramm},
+  EinzelpruefungsNr = 46116,
+  Jahr = 2011,
+  Monat = 03,
+  ThemaNr = 1,
+  TeilaufgabeNr = 2,
+  AufgabeNr = 1,
+}
+
+\let\j=\bJavaCode
+
 \bAufgabenTitel{Firmenstruktur}
 \section{1 Firmenstruktur
 \index{Einfach-verkettete Liste}
@@ -22,8 +41,8 @@
 \end{center}
 
 \noindent
-Eine Firma besteht aus \bJavaCode{null} oder mehr Abteilungen, von
-denen jede \bJavaCode{null} oder mehr Angestellte hat. Da sowohl die
+Eine Firma besteht aus \j{null} oder mehr Abteilungen, von
+denen jede \j{null} oder mehr Angestellte hat. Da sowohl die
 Abteilungen als auch deren Angestellten geordnet sind, sind Angestellte
 insgesamt geordnet. Sie haben durchgehende, ganzzahlige IDs, die bei 1
 beginnen.
@@ -35,11 +54,11 @@ beginnen.
 %%
 
 \item Erstellen Sie exemplarisch ein Objektdiagramm: Stellen Sie eine
-Firma mit dem Instanznamen \bJavaCode{f} und den zwei Abteilungen
-„Produktion“ (Name \bJavaCode{p}) und „Marketing“ (Name \bJavaCode{m})
+Firma mit dem Instanznamen \j{f} und den zwei Abteilungen
+„Produktion“ (Name \j{p}) und „Marketing“ (Name \j{m})
 dar. Die Produktion hat zwei Angestellte, Marketing hat einen
-Angestellten. Die Angestellten haben die Namen \bJavaCode{a1},
-\bJavaCode{a2}, und \bJavaCode{a3}.
+Angestellten. Die Angestellten haben die Namen \j{a1},
+\j{a2}, und \j{a3}.
 \index{Objektdiagramm}
 
 \begin{bAntwort}
@@ -75,10 +94,10 @@ leider mit TikZ-UML nicht.
 \item Implementieren Sie das Klassendiagramm in Java oder in einer
 anderen geeigneten objektorientierten Programmiersprache Ihrer Wahl.
 Beachten Sie, dass die Assoziationen bidirektional und geordnet sind.
-Die beiden Methoden der Klasse \bJavaCode{Firma} sollen dabei folgendes
+Die beiden Methoden der Klasse \j{Firma} sollen dabei folgendes
 Verhalten haben:
 
-Die Methode \bJavaCode{erzeugeIDs} sorgt dafür, dass die IDs wieder
+Die Methode \j{erzeugeIDs} sorgt dafür, dass die IDs wieder
 korrekt zugewiesen sind. Die alten IDs können beliebig geändert werden,
 solange das Endergebnis wieder den obenstehenden Kriterien genügt.
 
@@ -94,13 +113,13 @@ solange das Endergebnis wieder den obenstehenden Kriterien genügt.
 
 \item Angestellte sollen in Manager und einfache Angestellte unterteilt
 werden. Zeichnen Sie ein Klassendiagramm mit der Oberklasse
-\bJavaCode{Angestellter} und den zwei Unterklassen \bJavaCode{Manager}
-und \bJavaCode{EinfacherAngestellter}. Die Klasse
-\bJavaCode{Angestellter} soll nicht instantiierbar sein und erzwingen,
-dass die Methode \bJavaCode{getPosition()} (öffentlich, ohne Argumente,
-Rückgabewert \bJavaCode{String}) von allen konkreten Unterklassen
-implementiert wird. \bJavaCode{Manager} und
-\bJavaCode{EinfacherAngestellter} sollen instantiierbar sein.
+\j{Angestellter} und den zwei Unterklassen \j{Manager}
+und \j{EinfacherAngestellter}. Die Klasse
+\j{Angestellter} soll nicht instantiierbar sein und erzwingen,
+dass die Methode \j{getPosition()} (öffentlich, ohne Argumente,
+Rückgabewert \j{String}) von allen konkreten Unterklassen
+implementiert wird. \j{Manager} und
+\j{EinfacherAngestellter} sollen instantiierbar sein.
 
 \begin{bAntwort}
 \begin{center}

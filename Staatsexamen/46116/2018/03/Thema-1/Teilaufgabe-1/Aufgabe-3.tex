@@ -1,5 +1,5 @@
 \documentclass{bschlangaul-aufgabe}
-\bLadePakete{syntax,uml}
+\bLadePakete{java,uml}
 \begin{document}
 \bAufgabenMetadaten{
   Titel = {Aufgabe 3 (Objektorientierte Implementierung)},
@@ -18,6 +18,8 @@
   TeilaufgabeNr = 1,
   AufgabeNr = 3,
 }
+
+\let\j=\bJavaCode
 
 Für\footcite{examen:46116:2018:03} die nächste Fußballweltmeisterschaft
 möchte ein Wettbüro ein Programm zur Verwaltung von Spielern, Vereinen
@@ -60,7 +62,7 @@ entworfen.\footcite{oomup:pu:4}
 \end{center}
 
 \noindent
-Es kann angenommen werden, dass die Klasse \bJavaCode{Verein} bereits
+Es kann angenommen werden, dass die Klasse \j{Verein} bereits
 implementiert ist. In den folgenden
 Implementierungsaufgaben\index{Implementierung in Java} können Sie eine
 objektorientierte Programmiersprache Ihrer Wahl verwenden. Die
@@ -74,7 +76,7 @@ Konstruktorn und Operationen.
 % a)
 %%
 
-\item Es ist eine Implementierung der Klasse \bJavaCode{Spieler} anzugeben.
+\item Es ist eine Implementierung der Klasse \j{Spieler} anzugeben.
 Der Konstruktor soll die Instanzvariablen mit den gegebenen Parametern
 initialisieren, wobei die. Anzahl der Tore nach der Objekterzeugung
 gleich 0 sein soll. Ansonsten kann die Funktionalität der einzelnen
@@ -88,17 +90,17 @@ Operationen aus deren Namen geschlossen werden.
 % b)
 %%
 
-\item Es ist eine Implementierung der Klasse \bJavaCode{Mannschaft}
+\item Es ist eine Implementierung der Klasse \j{Mannschaft}
 anzugeben. Der Konstruktor soll das Land initialisieren, die Anzahl der
-Spieler auf 0 setzen und das Team mit einem noch „leeren“
-Array\index{Feld (Array)} der Länge 20 initialisieren. Das Team soll mit
-der Methode \bJavaCode{hinzufuegen} um einen Spieler erweitert werden. Die
-Methode \bJavaCode{torschuetzenkoenig} soll den Namen eines Spielers aus dem
-Team zurückgeben, der die meisten Tore für die Mannschaft geschossen
-hat. Ist das für mehrere Spieler der Fall, dann kann der Name eines
-beliebigen solchen Spielers zurückgegeben werden. Ist noch kein Spieler
-im Team, dann soll der String \bJavaCode{"Kein Spieler vorhanden"}
-zurückgegeben werden.
+Spieler auf 0 setzen und das Team mit einem noch „leeren
+“Array\index{Feld (Array)} der Länge 20 initialisieren. Das Team soll
+mit der Methode \j{hinzufuegen} um einen Spieler erweitert
+werden. Die Methode \j{torschuetzenkoenig} soll den Namen eines
+Spielers aus dem Team zurückgeben, der die meisten Tore für die
+Mannschaft geschossen hat. Ist das für mehrere Spieler der Fall, dann
+kann der Name eines beliebigen solchen Spielers zurückgegeben werden.
+Ist noch kein Spieler im Team, dann soll der String \j{"Kein
+Spieler vorhanden"} zurückgegeben werden.
 
 \begin{bAntwort}
 \bJavaExamen{46116}{2018}{03}{verein/Mannschaft}
@@ -109,14 +111,14 @@ zurückgegeben werden.
 %%
 
 \item Schreiben Sie den Rumpf einer
-\bJavaCode{main}-Methode\index{main-Methode}, so dass nach Ausführung der
-Methode eine deutsche Mannschaft existiert mit zwei Spielern Namens
-\bJavaCode{"Hugo Meier"} und \bJavaCode{"Frank Huber"}. Beide Spieler sollen zum
-selben Verein \bJavaCode{"FC Staatsexamen"} gehören. \bJavaCode{"Hugo Meier"} soll
-nach Aufnahme in die deutsche Mannschaft genau ein Tor geschossen haben,
-während \bJavaCode{"Frank Huber"} noch kein Tor erzielt hat. (Wir
-abstrahieren hier von der Realität, in der ein 2-er Team noch gar nicht
-spielbereit ist.)
+\j{main}-Methode\index{main-Methode}, so dass nach Ausführung
+der Methode eine deutsche Mannschaft existiert mit zwei Spielern Namens
+\j{"Hugo Meier"} und \j{"Frank Huber"}. Beide Spieler
+sollen zum selben Verein \j{"FC Staatsexamen"} gehören.
+\j{"Hugo Meier"} soll nach Aufnahme in die deutsche Mannschaft
+genau ein Tor geschossen haben, während \j{"Frank Huber"} noch
+kein Tor erzielt hat. (Wir abstrahieren hier von der Realität, in der
+ein 2-er Team noch gar nicht spielbereit ist.)
 
 \begin{bAntwort}
 \bJavaExamen{46116}{2018}{03}{verein/Verein}
