@@ -1,17 +1,35 @@
 \documentclass{bschlangaul-aufgabe}
 \bLadePakete{uml}
 \begin{document}
-\bAufgabenTitel{Digitaluhr}
+\bAufgabenMetadaten{
+  Titel = {Aufgabe 3},
+  Thematik = {Verhaltens-Modellierung mit Zustandsdiagrammen. Digitaluhr},
+  Referenz = 46116-2018-H.T1-TA1-A3,
+  RelativerPfad = Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-3.tex,
+  ZitatSchluessel = examen:46116:2018:09,
+  ZitatBeschreibung = {Thema 1 Teilaufgabe 1},
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {Zustandsdiagramm zeichnen},
+  EinzelpruefungsNr = 46116,
+  Jahr = 2018,
+  Monat = 09,
+  ThemaNr = 1,
+  TeilaufgabeNr = 1,
+  AufgabeNr = 3,
+}
 
-\section{Aufgabe 3 (Verhaltens-Modellierung mit Zustandsdiagrammen)
-\index{Zustandsdiagramm zeichnen}
-\footcite[Thema 1 Teilaufgabe 1]{examen:46116:2018:09}}
+\def\TmpRekursiv#1#2{
+\umltrans[recursive=-10|10|0.5cm,recursive direction=right to right,name=#1-trans]{#1}{#1}
+\node[anchor=west,text width=2cm,font=\scriptsize] at (#1-trans-3){#2};
+}
 
 Eine Digitaluhr kann alternativ entweder die Zeit (Stunden und Minuten)
 oder das Datum (Tag, Monat und Jahr) anzeigen. Zu Beginn zeigt die Uhr
 die Zeit an. Sie besitzt drei Druckknöpfe \textbf{A}, \textbf{B} und
 \textbf{C}. Mit Knopf \textbf{A} kann zwischen Zeit- und Datumsanzeige
-hin und her gewechselt werden.
+hin und her gewechselt werden.\index{Zustandsdiagramm zeichnen}
+\footcite[Thema 1 Teilaufgabe 1]{examen:46116:2018:09}
 
 Wird die Zeit angezeigt, dann kann mit Knopf \textbf{B} der Reihe nach
 erst in einen Stundenmodus, dann in einen Minutenmodus und schließlich
@@ -49,11 +67,8 @@ Hälfte, wobei der Name des Zustands in den oberen Teil und eine in dem
 Zustand auszuführende Aktivität in den unteren Teil einzutragen ist.
 \footcite{oomup:pu:2}
 
+\begin{bAntwort}
 \begin{tikzpicture}[font=\scriptsize]
-\def\TmpRekursiv#1#2{
-\umltrans[recursive=-10|10|0.5cm,recursive direction=right to right,name=#1-trans]{#1}{#1}
-\node[anchor=west,text width=2cm,font=\scriptsize] at (#1-trans-3){#2};
-}
 
 %%
 % Zeit
@@ -106,4 +121,5 @@ Zustand auszuführende Aktivität in den unteren Teil einzutragen ist.
 \umltrans[arg={drücke Knopf B},pos=0.5]{Datumsanzeige}{Zeitanzeige}
 
 \end{tikzpicture}
+\end{bAntwort}
 \end{document}

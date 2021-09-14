@@ -1,11 +1,26 @@
 \documentclass{bschlangaul-aufgabe}
 \bLadePakete{syntax,rmodell}
 \begin{document}
-\bAufgabenTitel{Kundenverwaltungssystem}
+\bAufgabenMetadaten{
+  Titel = {Aufgabe 4},
+  Thematik = {Kundenverwaltungssystem},
+  Referenz = 46116-2018-H.T1-TA1-A4,
+  RelativerPfad = Staatsexamen/46116/2018/09/Thema-1/Teilaufgabe-1/Aufgabe-4.tex,
+  ZitatSchluessel = db:pu:3,
+  ZitatBeschreibung = {Aufgabe 2},
+  BearbeitungsStand = unbekannt,
+  Korrektheit = unbekannt,
+  Stichwoerter = {SQL, SQL mit Übungsdatenbank, CREATE TABLE, HAVING, EXCEPT, Top-N-Query, WITH, DELETE},
+  EinzelpruefungsNr = 46116,
+  Jahr = 2018,
+  Monat = 09,
+  ThemaNr = 1,
+  TeilaufgabeNr = 1,
+  AufgabeNr = 4,
+}
 
-\section{Aufgabe 4\footcite[Aufgabe 2]{db:pu:3}}
-\index{SQL}
-Gegeben sind folgende Relationen aus einem Kundenverwaltungssystem:
+Gegeben\footcite[Aufgabe 2]{db:pu:3}\index{SQL} sind folgende Relationen
+aus einem Kundenverwaltungssystem:
 \footcite[Thema 1 Teilaufgabe 1 ]{examen:46116:2018:09}
 
 \begin{liRmodell}
@@ -14,6 +29,7 @@ Gegeben sind folgende Relationen aus einem Kundenverwaltungssystem:
 \bRelationMenge{Kauf}{\bPrimaer{ID[Kunde], GTIN[Produkt], Datum}, Menge}
 \end{liRmodell}
 
+\begin{bAdditum}[Übungstabelle]
 % Datenbankname: kundenverwaltungssystem
 \begin{minted}{sql}
 CREATE TABLE Kunde(
@@ -89,6 +105,7 @@ VALUES
   (4, 004, '2019-07-30', 9);
 \end{minted}
 \index{SQL mit Übungsdatenbank}
+\end{bAdditum}
 
 Verwenden Sie im Folgenden nur Standard-SQL und keine
 produktspezifischen Erweiterungen. Sie dürfen bei Bedarf Views anlegen.
