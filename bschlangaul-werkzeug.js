@@ -1,1 +1,1 @@
-.scripts/nodejs/dist/main.js
+werkzeug/dist/main.js
