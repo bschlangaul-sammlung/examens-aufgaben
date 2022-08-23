@@ -17,6 +17,12 @@
   AufgabeNr = 1,
 }
 
+% F21-ST-TA1
+
+% Aufgabe 1a, Sichbarkeiten:
+
+%
+
 \begin{enumerate}
 
 %%
@@ -31,15 +37,29 @@ Erklären Sie diese kurz (je ein Satz).\index{Sichtbarkeit}
 \begin{bAntwort}
 \begin{description}
 \item[private]
-Das Feld ist innerhalb einer Klasse zugreifbar.
+Das Feld ist nur innerhalb der eigenen Klasse zugreifbar.
 
 \item[package-private]
-Das Feld ist innerhalb der Klassen eines Packets zugreifbar.
+Bei \emph{package private} (kein \emph{modifier}) wird die Sichtbarkeit
+auf das Paket, dem die Klasse angehört, ausgedehnt
+(https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html).
 
 \item[protected]
-Das Feld ist in allen Subklassen und in der eigenen Klasse zugreifbar.
+Die Sichtbarkeit wird gegenüber \emph{package-private} auf alle
+Subklassen
+(auch Subklassen, die nicht dem Paket angehören) ausgedehnt.
 
 \end{description}
+
+\begin{tabular}{llllll}
+Modifier & Class & Package & Sub (same pkg) & Sub (diff pkg) & World\\\hline
+public & ja & ja & ja & ja & ja \\
+protected & ja & ja & ja & ja & nein\\
+\emph{no modifier} & ja & ja & ja & nein & nein\\
+private & ja & nein & nein & nein & nein\\
+\end{tabular}
+
+https://stackoverflow.com/a/215505
 \end{bAntwort}
 
 %%
@@ -60,7 +80,7 @@ Schnittstellen sich ändern.
 
 \item[package-private]
 
-Um die Felder zwar innerhalb deines Packets für alle Klassen zugänglich
+Um die Felder zwar innerhalb deines Pakets für alle Klassen zugänglich
 zu machen aber nicht außerhalb, \zB in einem größeren Projekt.
 
 \item[protected]
