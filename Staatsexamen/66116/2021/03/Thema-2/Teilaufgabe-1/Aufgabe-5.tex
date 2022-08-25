@@ -41,7 +41,8 @@
 % b)
 %%
 
-\item Erlautern Sie die Begriffe Overloading und Overriding, sowie deren
+\item Erläutern Sie die Begriffe \emph{Overloading} und
+\emph{Overriding}, sowie deren
 Unterschiede.
 
 \begin{bAntwort}
@@ -56,7 +57,7 @@ Unterschiede.
 Kompilierzeit zu erreichen. Das Überschreiben der Methode wird
 verwendet, um einen Laufzeit-Polymorphismus zu erreichen.
 
-In Methoden- / Funktionsüberladung weiß der Compiler, welches Objekt
+Bei der Methodenüberladung weiß der Compiler, welches Objekt
 welcher Klasse zum Zeitpunkt der Kompilierung zugewiesen wurde. In
 der Methodenüberschreibung sind diese Informationen jedoch erst zur
 Laufzeit bekannt.
@@ -73,11 +74,11 @@ Klasse stattfindet.\footcite[Seite 27-28]{oomup:fs:3}
 % c)
 %%
 
-\item Erlautern Sie, wie sich zentrale und dezentrale Versionsverwaltung
+\item Erläutern Sie, wie sich zentrale und dezentrale Versionsverwaltung
 unterscheiden.
 
 \begin{bAntwort}
-Beim der dezentralen Versionsverwaltung hat jeder EntwicklerIn die
+Beim der dezentralen Versionsverwaltung hat jede/r EntwicklerIn das
 komplette Repository mit seiner kompletten History lokal gespeichert und
 kann diese dann mit anderen Repositories abgleichen.
 
@@ -112,6 +113,8 @@ Ihren Bearbeitungsbogen.
 \bJavaExamen{66116}{2021}{03}{webshop/Artikel}
 \bJavaExamen{66116}{2021}{03}{webshop/Bestellung}
 
+\newpage
+
 \begin{bAntwort}
 \begin{tikzpicture}[scale=0.5,transform shape]
 \begin{umlseqdiag}
@@ -119,38 +122,50 @@ Ihren Bearbeitungsbogen.
 \umlcreatecall[class=Bestellung]{w}{b1}
 \umlcreatecall[class=Artikel]{w}{a1}
 
-\begin{umlcallself}[op=setName("Taschenrechner")]{a1}
-\begin{umlcallself}[op=setPrice(10)]{a1}
-\begin{umlcall}[op=addArticle()]{a1}{b1}
+\begin{umlcall}[op=setName("Taschenrechner")]{w}{a1}
 \end{umlcall}
-\end{umlcallself}
-\end{umlcallself}
+
+\begin{umlcall}[op=setPrice(10)]{w}{a1}
+\end{umlcall}
+
+\begin{umlcall}[op=addArticle(a1)]{w}{b1}
+\begin{umlcall}[op=getPrice(),return=10]{b1}{a1}
+\end{umlcall}
+\end{umlcall}
 
 \umlcreatecall[class=Bestellung]{w}{b2}
 
 \umlcreatecall[class=Artikel]{w}{a2}
 
-\begin{umlcallself}[op=setName("Lineal")]{a2}
-\begin{umlcallself}[op=setPrice(1.5)]{a2}
-\end{umlcallself}
-\end{umlcallself}
+\begin{umlcall}[op=setName("Lineal")]{w}{a2}
+\end{umlcall}
+
+\begin{umlcall}[op=setPrice(2.5)]{w}{a2}
+\end{umlcall}
 
 \umlcreatecall[class=Artikel]{w}{a3}
 
-\begin{umlcallself}[op=setName("Bleistift")]{a3}
-\begin{umlcallself}[op=setPrice(0.7)]{a3}
-\end{umlcallself}
-\begin{umlcall}[op=addArticle()]{a3}{b2}
+\begin{umlcall}[op=setName("Bleistift")]{w}{a3}
 \end{umlcall}
-\begin{umlcall}[op=addArticle()]{a2}{b1}
+
+\begin{umlcall}[op=setPrice(0.7)]{w}{a3}
 \end{umlcall}
-\end{umlcallself}
 
-\begin{umlcallself}[op=getSize()]{b1}
-\end{umlcallself}
+\begin{umlcall}[op=addArticle(a3)]{w}{b2}
+\begin{umlcall}[op=getPrice(),return=0.7]{b2}{a3}
+\end{umlcall}
+\end{umlcall}
 
-\begin{umlcallself}[op=getPrice()]{b2}
-\end{umlcallself}
+\begin{umlcall}[op=addArticle(a2)]{w}{b1}
+\begin{umlcall}[op=getPrice(),return=2.5]{b1}{a2}
+\end{umlcall}
+\end{umlcall}
+
+\begin{umlcall}[op=getSize(),return=2]{w}{b1}
+\end{umlcall}
+
+\begin{umlcall}[op=getPrice(),return=0.7]{w}{b2}
+\end{umlcall}
 
 \end{umlseqdiag}
 \end{tikzpicture}
