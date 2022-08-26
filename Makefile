@@ -27,7 +27,7 @@ install_tex_dtx: install_tex
 tex: install_tex_dtx
 
 readme:
-	werkzeug/dist/main.js generiere-readme
+	bschlangaul-werkzeug generiere-readme
 
 clean:
 	.scripts/shell/clean.sh
