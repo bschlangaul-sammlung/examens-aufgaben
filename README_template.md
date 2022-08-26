@@ -2,7 +2,7 @@
 
 # Examensaufgaben
 
-Sammlung von Examensaufgaben und weiteren zusätzlichen Aufgaben mit
+Sammlung von Examensaufgaben und weiteren, zusätzlichen Aufgaben mit
 Lösungen für das Studium „Lehramt Informatik“ in Bayern.
 
 __Intention:__ insgemein Hoffnung auf Kontributionen
@@ -29,6 +29,28 @@ Java-Repository ist als
 [git submodule](https://git-scm.com/book/de/v2/Git-Tools-Submodule) im Verzeichnis `.repos/java`
 eingebunden.
 
+# Aufgaben geordnet nach Staatsexamen
+
+In diesem Repository findet Ihr viele Staatsexamensaufgaben. Von fast
+allen Staatsexamen liegt ein Scan der Angabe (`Scan.pdf`), sowie eine
+Plain-Text-Version (`OCR.txt`) der Text-Erkennung vor.
+
+`03` steht für Frühjahr und `09` steht für Herbst
+
+eine Aufgabe:
+`Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-2/Aufgabe-2.tex` bzw.
+`Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf`
+
+gescanntes komplettes Staatsexamen (Angabe):
+`Staatsexamen/66116/2018/03/Scan.pdf`
+
+OCR des oben genannten Scans:
+`Staatsexamen/66116/2018/03/OCR.txt`
+
+{{ staatsexamen }}
+
+# Aufgaben geordnet nach Themen
+
 ## Abkürzungen der Modulnamen
 
 | Abk.  | Modulename                                          |
@@ -42,9 +64,6 @@ eingebunden.
 | TECH  | Technische Informatik                               |
 | THEO  | Theoretische Informatik                             |
 | DDI   | Didaktik der Informatik                             |
-
-# Aufgaben geordnet nach Themen
-
 
 
 ## Datenbanksysteme (DB)
@@ -352,26 +371,6 @@ Weitere Aufgaben zum Thema „SQL“:
 ### Komplexitätstheorie
 {{ stichwort "Komplexitätstheorie" }}
 
-# Aufgaben geordnet nach Staatsexamen
-
-In diesem Repository findet Ihr viele Staatsexamensaufgaben. Von fast
-allen Staatsexamen liegt ein Scan der Angabe (`Scan.pdf`), sowie eine
-Plain-Text-Version (`OCR.txt`) der Text-Erkennung vor.
-
-`03` steht für Frühjahr `09` steht für Herbst
-
-eine Aufgabe:
-`Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-2/Aufgabe-2.tex` bzw.
-`Staatsexamen/66116/2018/03/Thema-2/Teilaufgabe-2/Aufgabe-2.pdf`
-
-gescanntes komplettes Staatsexamen (Angabe):
-`Staatsexamen/66116/2018/03/Scan.pdf`
-
-OCR des oben genannten Scans:
-`Staatsexamen/66116/2018/03/OCR.txt`
-
-{{ staatsexamen }}
-
 # Stichwort-Verzeichnis
 
 Diese Informatik-Material- und Aufgabensammlung verwendet das TeX-Makro
@@ -386,11 +385,11 @@ als Markdown-Liste eingebettet werden kann.
 
 {{ stichwortverzeichnis }}
 
-# Über meinen Nachnamen
-
-`Bschlagengaul` auch `Bschlagngaul`, `Bschlangaul`, `Bschlangengaul`
+## Über meinen Nachnamen
 
 aus dem [Digitalen Familiennamenwörterbuch Deutschlands (DFD)](http://www.namenforschung.net/id/name/183361/1)
+
+`Bschlagengaul` auch `Bschlagngaul`, `Bschlangaul`, `Bschlangengaul`
 
 Benennung nach Beruf zu mittelhochdeutsch `beslahen`, `beslagen` *„auf
 etwas schlagen, schlagend etwas befestigen, beschlagen“*,
