@@ -1,9 +1,9 @@
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
-# Aufgaben- und Materialsammlung „Lehramt Informatik“
+# Examensaufgaben
 
-Aufgaben- und Materialsammlung mit Lösungen für das Studium „Lehramt
-Informatik“ in Bayern.
+Sammlung von Examensaufgaben und weiteren zusätzlichen Aufgaben mit
+Lösungen für das Studium „Lehramt Informatik“ in Bayern.
 
 __Intention:__ insgemein Hoffnung auf Kontributionen
 (Fehlerkorrekturen, weitere Lösungen etc.) durch die „Community“ durch
@@ -11,22 +11,22 @@ Pull-Request oder per-Mail an hermine.bschlangaul@gmx.net. Lösungen ohne
 Gewähr ...
 
 __Lizenz:__ Die Materialsammlung unterliegt den Bestimmungen einer
-[Creative Commons Namensnennung-Nicht kommerziell-Share Alike 4.0 International-Lizenz][cc-by-nc-sa].
+[Creative Commons Namensnennung-Nicht kommerziell-Share Alike 4.0 International-Lizenz](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 __TeX:__ Alle Aufgaben und Materialen sind „geTeX’t“, d. h. mit Hilfe
 des Textsatzsystems [TeX](https://www.ctan.org/) bzw. mit der
-Makrossammlung [LaTeX](https://www.latex-project.org) gesetzt. Im Ordner
-[.tex](https://github.com/hbschlang/lehramt-informatik/tree/main/.tex)
-befindet sich eine mittlerweile umfangreiche [Sammlungen an
-Hilfs-Klassen und
--Paketen](https://github.com/hbschlang/lehramt-informatik/raw/main/.tex/dokumentation.pdf),
+Makrossammlung [LaTeX](https://www.latex-project.org) gesetzt. Im
+Repository
+[latex-vorlagen](https://github.com/bschlangaul-sammlung/latex-vorlagen)
+befindet sich eine mittlerweile umfangreiche
+[Sammlungen an Hilfs-Klassen und -Paketen](https://github.com/bschlangaul-sammlung/latex-vorlagen/raw/main/dokumentation.pdf),
 die benötigt werden, um die Aufgaben zu setzen.
 
-__Java:__ Zu diesem Repository, das vorallem TeX- und PDF-Dateien
-enthält, gehört ein [Git-Repository mit
-Java-Code](https://github.com/hbschlang/Java-Didaktik-Beispiele). Dieses
-Java-Repository ist als [git
-submodule](https://git-scm.com/book/de/v2/Git-Tools-Submodule)
+__Java:__ Zu diesem Repository, das vor allem TeX- und PDF-Dateien
+enthält, gehört ein
+[Git-Repository mit Java-Code](https://github.com/bschlangaul-sammlung/java-fuer-examens-aufgaben). Dieses
+Java-Repository ist als
+[git submodule](https://git-scm.com/book/de/v2/Git-Tools-Submodule) im Verzeichnis `.repos/java`
 eingebunden.
 
 ## Abkürzungen der Modulnamen
@@ -2264,29 +2264,15 @@ als Markdown-Liste eingebettet werden kann.
     - 7. Jahrgangsstufe
 
 
-## TeX-Klassen und Pakete installieren
+# Über meinen Nachnamen
 
-```
-su -c "echo "\\\\def\\\\LehramtInformatikRepository{$(pwd)}" > /etc/bschlangaul.config.tex"
-```
+`Bschlagengaul` auch `Bschlagngaul`, `Bschlangaul`, `Bschlangengaul`
 
-```
-make install_tex
-```
+aus dem [Digitalen Familiennamenwörterbuch Deutschlands (DFD)](http://www.namenforschung.net/id/name/183361/1)
 
-Die Java-Dateien sind als Git Submodule eingebunden:
-
-```
-git submodule update --init
-```
-
-Bschlagengaul auch Bschlagngaul, Bschlangaul, Bschlangengaul
-
-Benennung nach Beruf zu mittelhochdeutsch beslahen , beslagen ‘auf etwas
-schlagen, schlagend etwas befestigen, beschlagen’, mittelhochdeutsch den
-‘den’ (Definitartikel; maskulin Akkusativ Singular) und
-mittelhochdeutsch gūl ‘Gaul, Pferd’. Es handelt sich um einen indirekten
-Berufsnamen für einen Hufschmied in Form eines Satznamens (< [ich]
-beschlage den Gaul).
-
-https://www.namenforschung.net
+Benennung nach Beruf zu mittelhochdeutsch `beslahen`, `beslagen` *„auf
+etwas schlagen, schlagend etwas befestigen, beschlagen“*,
+mittelhochdeutsch `den` *„den“* (Definitartikel; maskulin Akkusativ
+Singular) und mittelhochdeutsch `gūl` *„Gaul, Pferd“*. Es handelt sich
+um einen indirekten Berufsnamen für einen Hufschmied in Form eines
+Satznamens (< [ich] beschlage den Gaul).
