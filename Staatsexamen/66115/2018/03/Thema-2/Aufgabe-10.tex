@@ -76,7 +76,7 @@ h -- h: 1
 \]
 
 \begin{center}
-\begin{tikzpicture}[li graph]
+\begin{tikzpicture}[li graph,every loop/.style={}]
 \node (a) at (0,-1) {a};
 \node (b) at (10,-1) {b};
 \node (c) at (4,0) {c};
@@ -86,14 +86,14 @@ h -- h: 1
 \node (g) at (10,4) {g};
 \node (h) at (0,4) {h};
 
-\path (a) edge (b);
+\path (a) edge node {1} (b);
 \path (a) edge node {4} (c);
 \path (a) edge node {6} (d);
 \path (a) edge node {5} (h);
 \path (b) edge node {3} (c);
 \path (b) edge node {4} (e);
 \path (b) edge node {7} (g);
-\path (c) edge (d);
+\path (c) edge node {1} (d);
 \path (d) edge node {9} (e);
 \path (d) edge node {6} (f);
 \path (d) edge node {2} (g);
@@ -101,7 +101,7 @@ h -- h: 1
 \path (e) edge node {5} (f);
 \path (e) edge node {5} (g);
 \path (g) edge node {8} (h);
-\path (h) edge (h);
+\path (h) edge[loop above] node {1} (h);
 \end{tikzpicture}
 \end{center}
 
@@ -122,11 +122,11 @@ Gewicht an.
 
 \begin{tabular}{l|l}
 „schwarze“ & „graue“ Randknoten \\\hline\hline
-(a, NULL, $\infty$) & (b, a, 1) (c, a, 4) (d, a, 6) (h, a, 5) \\\hline
-(b, a, 1) & (c, b, 3) (d, a, 6) (e, b, 4) (g, b, 7) (h, a, 5)  \\\hline
-(c, b, 3) & (d, c, 1) (e, b, 4) (g, b, 7) (h, a, 5) \\\hline
-(d, c, 1) & (e, b, 4) (f, d, 6) (g, d, 2) (h, d, 0) \\\hline
-(h, d, 0) & (e, b, 4) (f, d, 6) (g, d, 2) \\\hline
+(a, NULL, $\infty$) & (b, a, 1) (c, a, 4)  (h, a, 5) (d, a, 6) \\\hline
+(b, a, 1) & (c, b, 3) (e, b, 4) (h, a, 5) (d, a, 6) (g, b, 7) \\\hline
+(c, b, 3) & (d, c, 1) (e, b, 4) (h, a, 5) (g, b, 7) \\\hline
+(d, c, 1) & (h, d, 0) (g, d, 2) (e, b, 4) (f, d, 6)\\\hline
+(h, d, 0) & (g, d, 2) (e, b, 4) (f, d, 6) \\\hline
 (g, d, 2) & (e, b, 4) (f, d, 6) \\\hline
 (e, b, 4) & (f, e, 5) \\\hline
 (f, e, 5) & \\\hline
@@ -143,14 +143,14 @@ Gewicht an.
 \node (g) at (10,4) {g};
 \node (h) at (0,4) {h};
 
-\path (a) edge (b);
+\path (a) edge node {1} (b);
 % \path (a) edge node {4} (c);
 % \path (a) edge node {6} (d);
 % \path (a) edge node {5} (h);
 \path (b) edge node {3} (c);
 \path (b) edge node {4} (e);
 % \path (b) edge node {7} (g);
-\path (c) edge (d);
+\path (c) edge node {1} (d);
 % \path (d) edge node {9} (e);
 % \path (d) edge node {6} (f);
 \path (d) edge node {2} (g);
