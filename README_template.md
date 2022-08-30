@@ -385,6 +385,14 @@ als Markdown-Liste eingebettet werden kann.
 
 {{ stichwortverzeichnis }}
 
+## Makefile
+
+| make ...   | Beschreibung  |
+|------------|---------------|
+| readme     | Die Datei README.md aus der Datei README_template.md erzeugen. |
+| aufgaben   | Alle Aufgaben neu kompilieren. Die erste fehlerhafte Datei wird im Editor Visual Studio Code geöffnet. |
+| sammlungen | Erzeuge verschiedene Aufgaben-Sammlungen. |
+
 ## Über meinen Nachnamen
 
 aus dem [Digitalen Familiennamenwörterbuch Deutschlands (DFD)](http://www.namenforschung.net/id/name/183361/1)
