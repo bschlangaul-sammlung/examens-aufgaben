@@ -4,7 +4,10 @@ readme:
 aufgaben:
 	bschlangaul-werkzeug.js kompiliere-aufgaben
 
-sammlungen:
-	bschlangaul-werkzeug.js sammlungen haupt -vvv
+sammlungen_korrekt:
+	bschlangaul-werkzeug.js sammlungen aufgaben --korrektheit 2 -vvv
+
+sammlungen_alle:
+	bschlangaul-werkzeug.js sammlungen aufgaben --ziel Alle-Aufgaben -vvv
 
 .PHONY: readme aufgaben sammlungen
