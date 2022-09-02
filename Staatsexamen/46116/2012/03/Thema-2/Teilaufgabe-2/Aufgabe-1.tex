@@ -88,16 +88,22 @@ Adresse und ist seinem Zimmer zugeordnet.
 
 \umlclass[x=7]{Gast}{- name : String\\- adresse : String}{ + unterhalten() }
 
-\umlassoc[mult1=1..*,pos1=0.1,mult2=1,pos2=0.9,arg2=,name=angestellter]{Angestellter}{Hotel}
-\node [above left=0.1cm and -0.7cm of angestellter-1] {ist angestellt \bLeserichtungRechts};
+\umlassoc[mult1=1..*,pos1=0.1,mult2=1,pos2=0.9,arg2=,name=Angestellter-Hotel]{Angestellter}{Hotel}
+% \node [above left=0.1cm and -0.7cm of angestellter-1] {ist angestellt \bLeserichtungRechts};
+\bUmlLeserichtung[pos=below left,dir=down,distance=0cm]{Angestellter-Hotel}
 
 \umlHVassoc[mult1=1..*,mult2=1,pos2=1.9]{Gast}{Gästezimmer}
 
-\umlVHassoc[anchor1=-140,mult1=1..*,mult2=1..*,pos2=1.9, arg=betreut\bLeserichtungRechts]
+\umlVHassoc[anchor1=-140,mult1=1..*,mult2=1..*,pos2=1.9, arg=betreut, name=Servicekraft-Gast]
 {Servicekraft}{Gast}
-\umlVHVassoc[arm1=5cm,anchor1=-140,mult1=1..*,mult2=1..*,pos2=1.9, arg=reinigt\bLeserichtungRechts]
-{Servicekraft}{Gästezimmer}
+\bUmlLeserichtung[pos=below left,dir=down,distance=0cm]{Servicekraft-Gast}
 
-\umlVHVassoc[anchor1=40,anchor2=125,arm1=0.5cm,arg=arbeitet in\bLeserichtungRechts,pos=1.5]{Küchenmitarbeiter}{Küche}
+\umlVHVassoc[arm1=5cm,anchor1=-140,mult1=1..*,mult2=1..*,pos2=1.9, arg=reinigt,name=Servicekraft-Gästezimmer]
+{Servicekraft}{Gästezimmer}
+\bUmlLeserichtung[pos=below left,dir=down,distance=0cm]{Servicekraft-Gästezimmer}
+
+\umlVHVassoc[anchor1=40,anchor2=125,arm1=0.5cm,arg=arbeitet in,pos=1.5,name=Küchenmitarbeiter-Küche]{Küchenmitarbeiter}{Küche}
+\bUmlLeserichtung[pos=below left,dir=down,distance=0cm]{Küchenmitarbeiter-Küche}
+
 \end{tikzpicture}
 \end{document}
