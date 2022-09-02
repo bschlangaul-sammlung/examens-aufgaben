@@ -2,7 +2,7 @@ readme:
 	bschlangaul-werkzeug.js generiere-readme
 
 aufgaben:
-	bschlangaul-werkzeug.js kompiliere-aufgaben
+	bschlangaul-werkzeug.js kompiliere-tex --ausschliessen Theorie
 
 sammlungen_korrekt:
 	bschlangaul-werkzeug.js sammlungen aufgaben --korrektheit 2 -vvv
