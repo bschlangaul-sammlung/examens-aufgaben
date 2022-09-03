@@ -73,23 +73,23 @@ Lehrbuch „Datenbanksysteme“ von Alfons Kemper und André Eickler.
 
 
 ### Übersicht
-{{ stichwort "Datenbank-Übersicht" }}
+{{ gibAufgabenListe("Datenbank-Übersicht") }}
 
 
 ### Datenbankentwurf
 
 #### Entity-Relation-Modell
-{{ stichwort "Entity-Relation-Modell" }}
+{{ gibAufgabenListe("Entity-Relation-Modell") }}
 
 
 ### Relationales Modell
 
 #### Relationenmodell
-{{ stichwort "Relationenmodell" }}
+{{ gibAufgabenListe("Relationenmodell") }}
 #### Relationale Algebra
-{{ stichwort "Relationale Algebra" }}
+{{ gibAufgabenListe("Relationale Algebra") }}
 #### Tupelkalkül
-{{ stichwort "Tupelkalkül" }}
+{{ gibAufgabenListe("Tupelkalkül") }}
 
 
 ### Relationale Anfragesprachen
@@ -111,27 +111,27 @@ CREATE TABLE
 ```
 
 Hier alle Aufgaben mit einer Übungsdatenbank:
-{{ stichwort "SQL mit Übungsdatenbank" }}
+{{ gibAufgabenListe("SQL mit Übungsdatenbank") }}
 
 Weitere Aufgaben zum Thema „SQL“:
-{{ stichwort "SQL" }}
+{{ gibAufgabenListe("SQL") }}
 
 
 ### Relationale Entwurfstheorie
 
 #### Normalformen
-{{ stichwort "Normalformen" }}
+{{ gibAufgabenListe("Normalformen") }}
 
 
 ### Transaktionsverwaltung
-{{ stichwort "Transaktionsverwaltung" }}
+{{ gibAufgabenListe("Transaktionsverwaltung") }}
 
 
 
 ## Objektorientierte Modellierung und Programmierung (OOMUP)
 
 ### Vererbung
-{{ stichwort "Vererbung" }}
+{{ gibAufgabenListe("Vererbung") }}
 
 
 
@@ -139,74 +139,74 @@ Weitere Aufgaben zum Thema „SQL“:
 
 
 ### Rekursion
-{{ stichwort "Rekursion" }}
+{{ gibAufgabenListe("Rekursion") }}
 
 
 ### Suche
-{{ stichwort "Suche" }}
+{{ gibAufgabenListe("Suche") }}
 
 
 ### Sortieralgorithmen
 
 #### Bubblesort
-{{ stichwort "Bubblesort" }}
+{{ gibAufgabenListe("Bubblesort") }}
 #### Selectionsort
-{{ stichwort "Selectionsort" }}
+{{ gibAufgabenListe("Selectionsort") }}
 #### Insertionsort
-{{ stichwort "Insertionsort" }}
+{{ gibAufgabenListe("Insertionsort") }}
 #### Quicksort
-{{ stichwort "Quicksort" }}
+{{ gibAufgabenListe("Quicksort") }}
 #### Mergesort
-{{ stichwort "Mergesort" }}
+{{ gibAufgabenListe("Mergesort") }}
 #### Heapsort
-{{ stichwort "Heapsort" }}
+{{ gibAufgabenListe("Heapsort") }}
 
 
 ### Algorithmische Komplexität (O-Notation)
-{{ stichwort "Algorithmische Komplexität (O-Notation)" }}
+{{ gibAufgabenListe("Algorithmische Komplexität (O-Notation)") }}
 
 #### Master-Theorem
-{{ stichwort "Master-Theorem" }}
+{{ gibAufgabenListe("Master-Theorem") }}
 
 
 ### Algorithmenmuster
-{{ stichwort "Algorithmenmuster" }}
+{{ gibAufgabenListe("Algorithmenmuster") }}
 
 
 ### Listen
 
 #### Einfach-verkettete Liste
-{{ stichwort "Einfach-verkettete Liste" }}
+{{ gibAufgabenListe("Einfach-verkettete Liste") }}
 ### Doppelt-verkettete Liste
-{{ stichwort "Doppelt-verkettete Liste" }}
+{{ gibAufgabenListe("Doppelt-verkettete Liste") }}
 ### Stapel (Stack)
-{{ stichwort "Stapel (Stack)" }}
+{{ gibAufgabenListe("Stapel (Stack)") }}
 ### Warteschlange (Queue)
-{{ stichwort "Warteschlange (Queue)" }}
+{{ gibAufgabenListe("Warteschlange (Queue)") }}
 
 
 ### Bäume
 
 #### Binärbaum
-{{ stichwort "Binärbaum" }}
+{{ gibAufgabenListe("Binärbaum") }}
 #### AVL-Baum
-{{ stichwort "AVL-Baum" }}
+{{ gibAufgabenListe("AVL-Baum") }}
 #### Halde (Heap)
-{{ stichwort "Halde (Heap)" }}
+{{ gibAufgabenListe("Halde (Heap)") }}
 #### B-Baum
-{{ stichwort "B-Baum" }}
+{{ gibAufgabenListe("B-Baum") }}
 #### Streutabellen (Hashing)
-{{ stichwort "Streutabellen (Hashing)" }}
+{{ gibAufgabenListe("Streutabellen (Hashing)") }}
 
 
 ### Graphen
 
 #### Algorithmus von Dijkstra
-{{ stichwort "Algorithmus von Dijkstra" }}
+{{ gibAufgabenListe("Algorithmus von Dijkstra") }}
 #### Minimaler Spannbaum
-{{ stichwort "Minimaler Spannbaum" }}
+{{ gibAufgabenListe("Minimaler Spannbaum") }}
 #### Knotensuchalgorithmen
-{{ stichwort "Knotensuchalgorithmen" }}
+{{ gibAufgabenListe("Knotensuchalgorithmen") }}
 
 
 
@@ -214,33 +214,33 @@ Weitere Aufgaben zum Thema „SQL“:
 
 
 ### Projektmanagement
-{{ stichwort "Projektmanagement" }}
+{{ gibAufgabenListe("Projektmanagement") }}
 
 
 ### Projektplanung
-{{ stichwort "Projektplanung" }}
+{{ gibAufgabenListe("Projektplanung") }}
 
 ### Modellierung: UML-Diagramme
 
 #### Struktur-Diagramme
 
 ##### Klassendiagramm
-{{ stichwort "Klassendiagramm" }}
+{{ gibAufgabenListe("Klassendiagramm") }}
 ##### Objektdiagramm
-{{ stichwort "Objektdiagramm" }}
+{{ gibAufgabenListe("Objektdiagramm") }}
 
 #### Verhaltens-Diagramme
 
 ##### Sequenzdiagramm
-{{ stichwort "Sequenzdiagramm" }}
+{{ gibAufgabenListe("Sequenzdiagramm") }}
 ##### Kommunikationsdiagramm
-{{ stichwort "Kommunikationsdiagramm" }}
+{{ gibAufgabenListe("Kommunikationsdiagramm") }}
 ##### Aktivitätsdiagramm
-{{ stichwort "Aktivitätsdiagramm" }}
+{{ gibAufgabenListe("Aktivitätsdiagramm") }}
 ##### Anwendungsfalldiagramm
-{{ stichwort "Anwendungsfalldiagramm" }}
+{{ gibAufgabenListe("Anwendungsfalldiagramm") }}
 ##### Zustandsdiagramm
-{{ stichwort "Zustandsdiagramm" }}
+{{ gibAufgabenListe("Zustandsdiagramm") }}
 
 
 ### Entwurfsmuster
@@ -248,70 +248,70 @@ Weitere Aufgaben zum Thema „SQL“:
 #### Erzeugungsmuster (Creational Patterns)
 
 ##### Abstrakte Fabrik (Abstract Factory)
-{{ stichwort "Abstrakte Fabrik (Abstract Factory)" }}
+{{ gibAufgabenListe("Abstrakte Fabrik (Abstract Factory)") }}
 ##### Einzelstück (Singleton)
-{{ stichwort "Einzelstück (Singleton)" }}
+{{ gibAufgabenListe("Einzelstück (Singleton)") }}
 ##### Erbauer (Builder)
-{{ stichwort "Erbauer (Builder)" }}
+{{ gibAufgabenListe("Erbauer (Builder)") }}
 
 #### Strukturmuster (Structural Patterns)
 
 ##### Adapter
-{{ stichwort "Adapter" }}
+{{ gibAufgabenListe("Adapter") }}
 ##### Dekorierer (Decorator)
-{{ stichwort "Dekorierer (Decorator)" }}
+{{ gibAufgabenListe("Dekorierer (Decorator)") }}
 ##### Kompositum (Composite)
-{{ stichwort "Kompositum (Composite)" }}
+{{ gibAufgabenListe("Kompositum (Composite)") }}
 ##### Stellvertreter (Proxy)
-{{ stichwort "Stellvertreter (Proxy)" }}
+{{ gibAufgabenListe("Stellvertreter (Proxy)") }}
 
 #### Verhaltensmuster (Behavioral Patterns)
 
 ##### Beobachter (Observer)
-{{ stichwort "Beobachter (Observer)" }}
+{{ gibAufgabenListe("Beobachter (Observer)") }}
 ##### Kommando (Command)
-{{ stichwort "Kommando (Command)" }}
+{{ gibAufgabenListe("Kommando (Command)") }}
 ##### Schablone (Template)
-{{ stichwort "Schablone (Template)" }}
+{{ gibAufgabenListe("Schablone (Template)") }}
 ##### Wiederholer (Iterator)
-{{ stichwort "Wiederholer (Iterator)" }}
+{{ gibAufgabenListe("Wiederholer (Iterator)") }}
 ##### Zustand (State)
-{{ stichwort "Zustand (State)" }}
+{{ gibAufgabenListe("Zustand (State)") }}
 
 #### Sonstige Entwurfsmuster
 
 ##### Modell-Präsentation-Steuerung (Model-View-Controller)
-{{ stichwort "Modell-Präsentation-Steuerung (Model-View-Controller)" }}
+{{ gibAufgabenListe("Modell-Präsentation-Steuerung (Model-View-Controller)") }}
 ##### Einbringen von Abhängigkeiten (Dependency Injection)
-{{ stichwort "Einbringen von Abhängigkeiten (Dependency Injection)" }}
+{{ gibAufgabenListe("Einbringen von Abhängigkeiten (Dependency Injection)") }}
 
 
 ### Softwarearchitektur
-{{ stichwort "Softwarearchitektur" }}
+{{ gibAufgabenListe("Softwarearchitektur") }}
 
 
 ### Testen
 
 #### Kontrollflussorientieres Testen
-{{ stichwort "Kontrollflussorientieres Testen" }}
+{{ gibAufgabenListe("Kontrollflussorientieres Testen") }}
 #### Datenflussorientiertes Testen
-{{ stichwort "Datenflussorientiertes Testen" }}
+{{ gibAufgabenListe("Datenflussorientiertes Testen") }}
 
 #### Formale Verifikation
 
 ##### wp-Kalkül
-{{ stichwort "wp-Kalkül" }}
+{{ gibAufgabenListe("wp-Kalkül") }}
 ##### Vollständige Induktion
-{{ stichwort "Vollständige Induktion" }}
+{{ gibAufgabenListe("Vollständige Induktion") }}
 
 
 
 ## Technische Informatik (TECH)
 
 ### Ein-Adress-Befehl-Assembler
-{{ stichwort "Ein-Adress-Befehl-Assembler" }}
+{{ gibAufgabenListe("Ein-Adress-Befehl-Assembler") }}
 ### Mehr-Adress-Befehl-Assembler
-{{ stichwort "Mehr-Adress-Befehl-Assembler" }}
+{{ gibAufgabenListe("Mehr-Adress-Befehl-Assembler") }}
 
 
 
@@ -321,55 +321,55 @@ Weitere Aufgaben zum Thema „SQL“:
 ### Reguläre Sprachen
 
 #### Reguläre Grammatik
-{{ stichwort "Reguläre Grammatik" }}
+{{ gibAufgabenListe("Reguläre Grammatik") }}
 #### Reguläre Ausdrücke
-{{ stichwort "Reguläre Ausdrücke" }}
+{{ gibAufgabenListe("Reguläre Ausdrücke") }}
 #### Deterministisch endlicher Automat (DEA)
-{{ stichwort "Deterministisch endlicher Automat (DEA)" }}
+{{ gibAufgabenListe("Deterministisch endlicher Automat (DEA)") }}
 #### Nichtdeterministisch endlicher Automat (NEA)
-{{ stichwort "Nichtdeterministisch endlicher Automat (NEA)" }}
+{{ gibAufgabenListe("Nichtdeterministisch endlicher Automat (NEA)") }}
 #### Potenzmengenalgorithmus
-{{ stichwort "Potenzmengenalgorithmus" }}
+{{ gibAufgabenListe("Potenzmengenalgorithmus") }}
 #### Erweiteter Potenzmengenalgorithmus
-{{ stichwort "Erweiteter Potenzmengenalgorithmus" }}
+{{ gibAufgabenListe("Erweiteter Potenzmengenalgorithmus") }}
 #### Pumping-Lemma (Reguläre Sprache)
-{{ stichwort "Pumping-Lemma (Reguläre Sprache)" }}
+{{ gibAufgabenListe("Pumping-Lemma (Reguläre Sprache)") }}
 #### Minimierungsalgorithmus
-{{ stichwort "Minimierungsalgorithmus" }}
+{{ gibAufgabenListe("Minimierungsalgorithmus") }}
 
 
 ### Kontextfreie Sprachen
 
 #### Kontextfreie Grammtik
-{{ stichwort "Kontextfreie Grammtik" }}
+{{ gibAufgabenListe("Kontextfreie Grammtik") }}
 #### Ableitung (Kontextfreie Sprache)
-{{ stichwort "Ableitung (Kontextfreie Sprache)" }}
+{{ gibAufgabenListe("Ableitung (Kontextfreie Sprache)") }}
 #### Kellerautomat
-{{ stichwort "Kellerautomat" }}
+{{ gibAufgabenListe("Kellerautomat") }}
 #### Chomsky-Normalform
-{{ stichwort "Chomsky-Normalform" }}
+{{ gibAufgabenListe("Chomsky-Normalform") }}
 #### CYK-Algorithmus
-{{ stichwort "CYK-Algorithmus" }}
+{{ gibAufgabenListe("CYK-Algorithmus") }}
 ### Pumping-Lemma (Kontextfreie Sprache)
-{{ stichwort "Pumping-Lemma (Kontextfreie Sprache)" }}
+{{ gibAufgabenListe("Pumping-Lemma (Kontextfreie Sprache)") }}
 
 
 ### Kontextsensitive Sprache
-{{ stichwort "Kontextsensitive Sprache" }}
+{{ gibAufgabenListe("Kontextsensitive Sprache") }}
 
 #### Kontextsensitive Grammatik
-{{ stichwort "Kontextsensitive Grammatik" }}
+{{ gibAufgabenListe("Kontextsensitive Grammatik") }}
 #### Turing-Maschine
-{{ stichwort "Turing-Maschine" }}
+{{ gibAufgabenListe("Turing-Maschine") }}
 
 ### Berechenbarkeit
-{{ stichwort "Berechenbarkeit" }}
+{{ gibAufgabenListe("Berechenbarkeit") }}
 
 ### Entscheidbarkeit
-{{ stichwort "Entscheidbarkeit" }}
+{{ gibAufgabenListe("Entscheidbarkeit") }}
 
 ### Komplexitätstheorie
-{{ stichwort "Komplexitätstheorie" }}
+{{ gibAufgabenListe("Komplexitätstheorie") }}
 
 # Stichwort-Verzeichnis
 
