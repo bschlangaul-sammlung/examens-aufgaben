@@ -16,11 +16,6 @@
 
 \let\r=\bRelationMenge
 
-\section{Aufgabe zum Relationenmodell und zum verfeinertem
-Relationenmodell
-\index{Relationenmodell}
-\footcite[Aufgabe 3: Relationenmodell Einstieg, Seite 2-3]{db:pu:1}}
-
 \begin{tikzpicture}
 \node[entity] (Abteilung) {Abteilung};
 \node[attribute,above left=0.5cm and -0.5cm of Abteilung] {\key{AbtID}}
@@ -62,9 +57,11 @@ edge node[auto]{n} (arbeitetMit.south) edge node[auto]{1} (verantFür.south);
 
 \item Übertragen Sie das gegebene ER-Modell in ein
 relationales Schema! Geben Sie in geeigneter Weise Schlüssel an.
+\index{Relationenmodell}
+\footcite[Aufgabe 3: Relationenmodell Einstieg, Seite 2-3]{db:pu:1}
 
 \begin{bAntwort}
-\begin{liRmodell}
+\begin{bRelationenModell}
 \r{Abteilung}{\bPrimaer{AbtID}, AName}
 \r{Mitarbeiter}{\bPrimaer{PersID}, MName}
 \r{Projekt}{\bPrimaer{ProjID}, PName}
@@ -72,7 +69,7 @@ relationales Schema! Geben Sie in geeigneter Weise Schlüssel an.
 \r{arbeitetMit}{\bPrimaer{PersID}, ProjID}
 \r{istChefvon}{\bPrimaer{PersID}, VorID}
 \r{verantfür}{PersID, \bPrimaer{ProjID}}
-\end{liRmodell}
+\end{bRelationenModell}
 \end{bAntwort}
 
 %%
@@ -83,24 +80,24 @@ relationales Schema! Geben Sie in geeigneter Weise Schlüssel an.
 \index{Verfeinertes Relationenmodell}
 
 \begin{bAntwort}
-\begin{liRmodell}
+\begin{bRelationenModell}
 \r{Abteilung}{AbtID, AName}
 \r{Mitarbeiter}{PersID, MName, AbtID, VerantwortlicherID}
-\end{liRmodell}
+\end{bRelationenModell}
 
 $\rightarrow$ \bAttribut{gehörtZu} und \bAttribut{istChefVon} wurden
 berücksichtigt
 
-\begin{liRmodell}
+\begin{bRelationenModell}
 \r{Projekt}{ProjID, PName, VerantwortlicherID}
-\end{liRmodell}
+\end{bRelationenModell}
 
 $\rightarrow$ zur Vermeidung von NULL-Werten wurde hier
 \bAttribut{verantFür} berücksichtigt
 
-\begin{liRmodell}
+\begin{bRelationenModell}
 \r{arbeitetMit}{PersID, ProjID}
-\end{liRmodell}
+\end{bRelationenModell}
 \end{bAntwort}
 \end{enumerate}
 \end{document}

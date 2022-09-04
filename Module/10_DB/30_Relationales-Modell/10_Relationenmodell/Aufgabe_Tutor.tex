@@ -51,19 +51,19 @@ Relationen. Legen Sie für jede der Relationen einen Primärschlüssel
 fest.
 
 \begin{bAntwort}
-\begin{liRmodell}
+\begin{bRelationenModell}
 \r{Kurs}{\bPrimaer{KursNr}, Kursname}
 
 \r{Tutor}{\bPrimaer{PersNr}, Name, Buero}
-\end{liRmodell}
+\end{bRelationenModell}
 
 bzw.
 
-\begin{liRmodell}
+\begin{bRelationenModell}
 \r{Kurs}{KursNr, \bPrimaer{Kursname}}
 
 \r{Tutor}{PersNr, \bPrimaer{Name, Buero}}
-\end{liRmodell}
+\end{bRelationenModell}
 \end{bAntwort}
 
 %%
@@ -91,7 +91,7 @@ Schlüsselkandidaten gleichzeitig Schlüsselkandidaten von betreut. Einer
 der beiden wird als Primärschlüssel ausgewählt. Es gibt folglich acht
 mögliche Relationen:
 
-\begin{liRmodell}
+\begin{bRelationenModell}
 \r{betreut}{\bPrimaer{PersNr}, KursNr, Sprechstunde}
 \r{betreut}{PersNr, \bPrimaer{KursNr}, Sprechstunde}
 \r{betreut}{\bPrimaer{PersNr}, Kursname, Sprechstunde}
@@ -100,7 +100,7 @@ mögliche Relationen:
 \r{betreut}{Name, Büro, \bPrimaer{KursNr}, Sprechstunde}
 \r{betreut}{\bPrimaer{Name, Büro}, Kursname, Sprechstunde}
 \r{betreut}{Name, Büro, \bPrimaer{Kursname}, Sprechstunde}
-\end{liRmodell}
+\end{bRelationenModell}
 \end{bAntwort}
 \end{enumerate}
 \end{document}
