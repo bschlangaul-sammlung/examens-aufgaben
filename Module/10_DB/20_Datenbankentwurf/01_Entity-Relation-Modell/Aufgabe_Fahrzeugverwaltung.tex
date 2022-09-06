@@ -18,7 +18,9 @@ Gegeben ist das folgende ER-Modell der Fahrzeugverwaltung einer Firma:
 \index{Entity-Relation-Modell}
 \footcite[Seite 2-3, Aufgabe 4: Fahrzeugverwaltung]{db:ab:1}
 
-\begin{tikzpicture}[scale=0.8, transform shape]
+\begin{center}
+\resizebox{0.7\textwidth}{!}{
+\begin{tikzpicture}[scale=1.5]
 \node[entity] (Fahrer) at (0,0) {Fahrer};
 \node[entity] (Fahrzeug) at (5,0) {Fahrzeug};
 \node[entity] (Abteilung) at (10,0) {Abteilung};
@@ -36,6 +38,8 @@ Gegeben ist das folgende ER-Modell der Fahrzeugverwaltung einer Firma:
   edge (Fahrzeug)
   edge (Garage);
 \end{tikzpicture}
+}
+\end{center}
 
 \noindent
 Die Attribute wurden aus Einfachheitsgründen weggelassen. Es gelten
@@ -64,7 +68,9 @@ Einschränkung.
 der (min, max)-Notation an.
 
 \begin{bAntwort}
-\begin{tikzpicture}[scale=0.8, transform shape]
+\begin{center}
+\resizebox{0.7\textwidth}{!}{
+\begin{tikzpicture}[scale=1.5]
 \node[entity] (Fahrer) at (0,0) {Fahrer};
 \node[entity] (Fahrzeug) at (6,0) {Fahrzeug};
 \node[entity] (Abteilung) at (12,0) {Abteilung};
@@ -82,6 +88,8 @@ der (min, max)-Notation an.
   edge node[auto,swap] {(0,1)} (Fahrzeug)
   edge node[auto,swap] {(1,1)} (Garage);
 \end{tikzpicture}
+}
+\end{center}
 \end{bAntwort}
 
 %%
@@ -92,7 +100,9 @@ der (min, max)-Notation an.
 n:m etc.)?
 
 \begin{bAntwort}
-\begin{tikzpicture}[scale=0.8, transform shape]
+\begin{center}
+\resizebox{0.7\textwidth}{!}{
+\begin{tikzpicture}[scale=1.5]
 \node[entity] (Fahrer) at (0,0) {Fahrer};
 \node[entity] (Fahrzeug) at (6,0) {Fahrzeug};
 \node[entity] (Abteilung) at (12,0) {Abteilung};
@@ -110,6 +120,8 @@ n:m etc.)?
   edge node[auto,swap] {1} (Fahrzeug)
   edge node[auto,swap] {1} (Garage);
 \end{tikzpicture}
+}
+\end{center}
 \end{bAntwort}
 
 \end{enumerate}

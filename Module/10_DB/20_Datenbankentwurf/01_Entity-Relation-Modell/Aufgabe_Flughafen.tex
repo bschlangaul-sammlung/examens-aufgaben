@@ -53,7 +53,8 @@ ER-Modell „auftauchenden“ Informationen bestimmt werden können.
 
 \begin{bAntwort}
 \begin{center}
-\begin{tikzpicture}[er2,scale=0.7,transform shape]
+\resizebox{0.7\textwidth}{!}{
+\begin{tikzpicture}[er2,node distance=3.3cm]
 \node[entity] (Fluggesellschaft) {Fluggesellschaft};
 \node[attribute, left of=Fluggesellschaft] {Name} edge (Fluggesellschaft);
 \node[attribute, above of=Fluggesellschaft] {Hauptsitz} edge (Fluggesellschaft);
@@ -82,6 +83,7 @@ ER-Modell „auftauchenden“ Informationen bestimmt werden können.
 \node[attribute, below left of=Passagier] {Gebdat} edge (Passagier);
 \node[attribute, below of=Passagier] {PasID} edge (Passagier);
 \end{tikzpicture}
+}
 \end{center}
 
 %\includegraphics[width=\linewidth]{Aufgabe-1_muster}
@@ -219,6 +221,7 @@ WHERE
 Abflugzeit, FGName) derjenige mit dem „modernsten“ Flugzeug ist, der
 nach „London“ geht.
 
+\begin{bAntwort}
 \begin{minted}{sql}
 SELECT f.Flug-Nr, f.FZ-Nr, f.Abflugzeit, f.FGName
 FROM Flug f, Flugzeug fz
@@ -233,6 +236,7 @@ WHERE
       Flug.FZ-Nr = Flugzeug.FZ-Nr
   )
 \end{minted}
+\end{bAntwort}
 \end{enumerate}
 \end{enumerate}
 \end{document}
