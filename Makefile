@@ -14,4 +14,7 @@ sammlungen_alle_aufgaben:
 sammlungen_alle_examens_aufgaben:
 	bschlangaul-werkzeug.js sammlungen aufgaben --ziel Alle-Examens-Aufgaben -vvv
 
+rsync_pdfs:
+	rsync --archive --verbose --delete --prune-empty-dirs --include="*/" --include="*.pdf" --exclude="*"   . ../pdfs
+
 .PHONY: readme aufgaben sammlungen
