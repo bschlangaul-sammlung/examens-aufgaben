@@ -26,10 +26,12 @@
 % a)
 %%
 
-\item Betrachten Sie die formale Sprache L © {a,b,c}*: aller Wörter, die entweder mit b beginnen
-oder mit a enden (aber nicht beides gleichzeitig) und das Teilwort cc enthalten.
-Entwerfen Sie einen (vollständigen) deterministischen endlichen Automaten, der die Sprache
-L akzeptiert. (Hinweis: Es werden weniger als 10 Zustände benötigt.)
+\item Betrachten Sie die formale Sprache $L \subseteq \{ a, b, c \}^*$:
+aller Wörter, die entweder mit $b$ beginnen oder mit $a$ enden (aber
+nicht beides gleichzeitig) und das Teilwort $cc$ enthalten. Entwerfen
+Sie einen (vollständigen) deterministischen endlichen Automaten, der die
+Sprache $L$ akzeptiert. (Hinweis: Es werden weniger als 10 Zustände
+benötigt.)
 
 \begin{bAntwort}
 
@@ -88,7 +90,7 @@ konvertierter DEA:
   \path (q4) edge[auto,bend left] node{$a,b$} (q6);
   \path (q5+q8+q9) edge[auto,loop above] node{$a,b,c$} (q5+q8+q9);
   \path (q6) edge[auto,bend left] node{$c$} (q4);
-  \path (q6) edge[auto,loop above] node{$a,b$} (q6);
+  \path (q6) edge[auto,loop left] node{$a,b$} (q6);
   \path (q1) edge[auto,bend left] node{$b,c$} (q7+q10);
   \path (q1) edge[auto,loop above] node{$a$} (q1);
 \end{tikzpicture}
@@ -103,11 +105,13 @@ konvertierter DEA:
 
 \item Ist die folgende Aussage richtig? Begründen Sie Ihre Antwort.
 
-„Jede Teilsprache einer regulären Sprache ist regulär, d. h. für ein Alphabet  und formale
-Sprachen L[’ C LC * ist L’ regular, falls L regulär ist.“
+„Jede Teilsprache einer regulären Sprache ist regulär, d. h. für ein
+Alphabet  und formale Sprachen $L' \subseteq L \subseteq \Sigma^*$ ist
+$L'$ regulär, falls $L$ regulär ist.“
 
 \begin{bAntwort}
-Ja. Reguläre Sprachen sind abgeschlossen unter dem Komplement und der Vereinigung
+Ja. Reguläre Sprachen sind abgeschlossen unter dem Komplement und der
+Vereinigung.
 \end{bAntwort}
 
 \end{enumerate}
