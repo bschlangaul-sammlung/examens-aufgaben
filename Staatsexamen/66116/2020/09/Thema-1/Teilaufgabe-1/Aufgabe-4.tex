@@ -136,7 +136,7 @@ werden.
 \item[Äußere Pfade] \strut
 
 \begin{itemize}
-\item \bJavaCode{isWortpalindrom(null}:\\
+\item \bJavaCode{isWortpalindrom(null)}:\\
 \p{S-2-3                      -22-E}
 % {S-2-3-4-5-6-7-8-10-12-17-18-22-E}
 
@@ -195,7 +195,13 @@ alleine gibt keine Punkte).
 \begin{bAntwort}
 Pro Schleifendurchlauf: $2 \cdot 2 \cdot 2 = 2^3 = 8$
 
-Maximal 2 Schleifendurchläufe: $2 \cdot 8 = 16$
+Maximal 2 Schleifendurchläufe: $8 \cdot 8 + 8 + 1 = 73$
+
+wenn man die Fälle $0$, $1$ oder $2$ Durchläufe getrennt betrachtet.
+Natürlich entstehen aus der Sicht des reinen Graphen keine neuen Pfade,
+so dass man auch zur Antwort $9$ neigen könnte. Aber es geht darum, dass
+bei späteren Durchläufen andere Dinge passieren können (Fehler), so dass
+man eine Art Kopie des Schleifenteils pro Durchlauf betrachtet.
 \end{bAntwort}
 
 \item Könnte für das hier abgebildete Quelltext-Beispiel auch das
@@ -204,23 +210,24 @@ möglicher Pfade ohne Beschränkung) als Test-Kriterium gewählt werden?
 Begründen Sie.
 
 \begin{bAntwort}
+Nein. Der Pfad von Konten \k{17} zu Knoten \k{22} wird nie beschritten,
+d. h. wird Zeile 17 betreten, wird auch immer die bedingte Anweisung in
+Zeile 18 ausgeführt.
 
-% Stimmt nicht: Leeres Array
-% Nein. Der Pfad von Konten \k{17} zu Knoten \k{22} wird nie beschritten,
-% d. h. wird Zeile 17 betreten, wird auch immer die bedingte Anweisung in
-% Zeile 18 ausgeführt.
+Statt
 
-% Statt
+\begin{minted}{java}
+if (laenge == 1) {
+  resultat = true;
+}
+\end{minted}
 
-% if (laenge == 1) {
-%   resultat = true;
-% }
+könnte auch nur so geschrieben werden:
 
-% könnte auch nur so geschrieben werden:
+\begin{minted}{java}
+resultat = true;
+\end{minted}
 
-% resultat = true;
-
-Kante 7 nach 22
 \end{bAntwort}
 
 \end{enumerate}
