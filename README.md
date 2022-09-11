@@ -1,4 +1,4 @@
-Alle Aufgaben des Bschlangaul-Projekts finden sie in der PDF-Datei:
+Alle Aufgaben des Bschlangaul-Projekts sind in folgender PDF-Datei zu finden:
 [Bschlangaul-Sammlung.pdf](https://github.com/bschlangaul-sammlung/examens-aufgaben-pdf/raw/main/Bschlangaul-Sammlung.pdf)
 
 Dieses Repository wurde in mehrere kleine Repositories aufgeteilt:
@@ -10,3 +10,5 @@ Dieses Repository wurde in mehrere kleine Repositories aufgeteilt:
 * [java-fuer-examens-aufgaben](https://github.com/bschlangaul-sammlung/java-fuer-examens-aufgaben)
 * [kommandozeilen-werkzeug](https://github.com/bschlangaul-sammlung/kommandozeilen-werkzeug)
 * [logo-grafiken](https://github.com/bschlangaul-sammlung/logo-grafiken)
+
+Dieses Repository wurde archiviert. Es kann nicht mehr verändert werden.
